@@ -222,10 +222,6 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	connect(pbInv, SIGNAL(toggled(bool)), SLOT(slotInvtoggled(bool)));
 	pbInv->setToggleButton(true);
 
-	pbA = new QPushButton("A", mSmallPage, "A-Button");
-	pbA->setAutoDefault(false);
-	connect(pbA, SIGNAL(clicked(void)), SLOT(slotAclicked(void)));
-
 	pbSin = new QPushButton("Sin", mSmallPage, "Sin-Button");
 	pbSin->setAutoDefault(false);
 	connect(pbSin, SIGNAL(clicked(void)), SLOT(slotSinclicked(void)));
@@ -234,10 +230,6 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	QToolTip::add(pbPlusMinus, i18n("Change sign"));
 	pbPlusMinus->setAutoDefault(false);
 	connect(pbPlusMinus, SIGNAL(clicked(void)), SLOT(slotPlusMinusclicked(void)));
-
-	pbB = new QPushButton("B", mSmallPage, "B-Button");
-	pbB->setAutoDefault(false);
-	connect(pbB, SIGNAL(clicked(void)), SLOT(slotBclicked(void)));
 
 	pbCos = new QPushButton("Cos", mSmallPage, "Cos-Button");
 	pbCos->setAutoDefault(false);
@@ -248,10 +240,6 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pbReci->setAutoDefault(false);
 	connect(pbReci, SIGNAL(clicked(void)), SLOT(slotReciclicked(void)));
 
-	pbC = new QPushButton("C", mSmallPage, "C-Button");
-	pbC->setAutoDefault(false);
-	connect(pbC, SIGNAL(clicked(void)), SLOT(slotCclicked(void)));
-
 	pbTan = new QPushButton("Tan", mSmallPage, "Tan-Button");
 	pbTan->setAutoDefault(false);
 	connect(pbTan, SIGNAL(clicked(void)),SLOT(slotTanclicked(void)));
@@ -260,10 +248,6 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	QToolTip::add(pbFactorial, i18n("Factorial"));
 	pbFactorial->setAutoDefault(false);
 	connect(pbFactorial, SIGNAL(clicked(void)),SLOT(slotFactorialclicked(void)));
-
-	pbD = new QPushButton("D", mSmallPage, "D-Button");
-	pbD->setAutoDefault(false);
-	connect(pbD, SIGNAL(clicked(void)), SLOT(slotDclicked(void)));
 
 	pbLog = new QPushButton("Log", mSmallPage, "Log-Button");
 	pbLog->setAutoDefault(false);
@@ -274,10 +258,6 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pbSquare->setAutoDefault(false);
 	connect(pbSquare, SIGNAL(clicked(void)), SLOT(slotSquareclicked(void)));
 
-	pbE = new QPushButton("E", mSmallPage, "E-Button");
-	pbE->setAutoDefault(false);
-	connect(pbE, SIGNAL(clicked(void)), SLOT(slotEclicked(void)));
-
 	pbLn = new QPushButton("Ln", mSmallPage, "Ln-Button");
 	pbLn->setAutoDefault(false);
 	connect(pbLn, SIGNAL(clicked(void)), SLOT(slotLnclicked(void)));
@@ -286,10 +266,6 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pbPower->setAutoDefault(false);
 	QToolTip::add(pbPower, i18n("x to the power of y"));
 	connect(pbPower, SIGNAL(clicked(void)), SLOT(slotPowerclicked(void)));
-
-	pbF = new QPushButton("F", mSmallPage, "F-Button");
-	pbF->setAutoDefault(false);
-	connect(pbF, SIGNAL(clicked(void)), SLOT(slotFclicked(void)));
 
 	pbEE = new QPushButton("EE", mLargePage, "EE-Button");
 	QToolTip::add(pbEE, i18n("Exponent"));
@@ -320,18 +296,6 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pbAC->setAutoDefault(false);
 	connect(pbAC, SIGNAL(clicked(void)), SLOT(slotACclicked(void)));
 
-	pb7 = new QPushButton("7", mLargePage, "7-Button");
-	pb7->setAutoDefault(false);
-	connect(pb7, SIGNAL(clicked(void)), SLOT(slot7clicked(void)));
-
-	pb8 = new QPushButton("8", mLargePage, "8-Button");
-	pb8->setAutoDefault(false);
-	connect(pb8, SIGNAL(clicked(void)), SLOT(slot8clicked(void)));
-
-	pb9 = new QPushButton("9", mLargePage, "9-Button");
-	pb9->setAutoDefault(false);
-	connect(pb9, SIGNAL(clicked(void)), SLOT(slot9clicked(void)));
-
 	pbParenOpen = new QPushButton("(", mLargePage, "ParenOpen-Button");
 	pbParenOpen->setAutoDefault(false);
 	connect(pbParenOpen, SIGNAL(clicked(void)),SLOT(slotParenOpenclicked(void)));
@@ -344,18 +308,6 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	QToolTip::add(pbAND, i18n("Bitwise AND"));
 	pbAND->setAutoDefault(false);
 	connect(pbAND, SIGNAL(clicked(void)), SLOT(slotANDclicked(void)));
-
-	pb4 = new QPushButton("4", mLargePage, "4-Button");
-	pb4->setAutoDefault(false);
-	connect(pb4, SIGNAL(clicked(void)), SLOT(slot4clicked(void)));
-
-	pb5 = new QPushButton("5", mLargePage, "5-Button");
-	pb5->setAutoDefault(false);
-	connect(pb5, SIGNAL(clicked(void)), SLOT(slot5clicked(void)));
-
-	pb6 = new QPushButton("6", mLargePage, "6-Button");
-	pb6->setAutoDefault(false);
-	connect(pb6, SIGNAL(clicked(void)), SLOT(slot6clicked(void)));
 
 	pbX = new QPushButton("X", mLargePage, "Multiply-Button");
 	QToolTip::add(pbX, i18n("Multiplication"));
@@ -372,17 +324,75 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pbOR->setAutoDefault(false);
 	connect(pbOR, SIGNAL(clicked(void)), SLOT(slotORclicked(void)));
 
-	pb1 = new QPushButton("1", mLargePage, "1-Button");
-	pb1->setAutoDefault(false);
-	connect(pb1, SIGNAL(clicked(void)), SLOT(slot1clicked(void)));
+	QPushButton *tmp_pb;
 
-	pb2 = new QPushButton("2", mLargePage, "2-Button");
-	pb2->setAutoDefault(false);
-	connect(pb2, SIGNAL(clicked(void)), SLOT(slot2clicked(void)));
+	NumButtonGroup = new QButtonGroup(0, "Num-Button-Group");
+	connect(NumButtonGroup, SIGNAL(clicked(int)),
+		SLOT(slotNumberclicked(int)));
 
-	pb3 = new QPushButton("3", mLargePage, "3-Button");
-	pb3->setAutoDefault(false);
-	connect(pb3, SIGNAL(clicked(void)), SLOT(slot3clicked(void)));
+	tmp_pb = new QPushButton("0", mLargePage, "0-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 0);
+
+	tmp_pb = new QPushButton("1", mLargePage, "1-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 1);
+
+	tmp_pb = new QPushButton("2", mLargePage, "2-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 2);
+
+	tmp_pb = new QPushButton("3", mLargePage, "3-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 3);
+
+	tmp_pb = new QPushButton("4", mLargePage, "4-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 4);
+
+	tmp_pb = new QPushButton("5", mLargePage, "5-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 5);
+
+	tmp_pb = new QPushButton("6", mLargePage, "6-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 6);
+
+	tmp_pb = new QPushButton("7", mLargePage, "7-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 7);
+
+	tmp_pb = new QPushButton("8", mLargePage, "8-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 8);
+
+	tmp_pb = new QPushButton("9", mLargePage, "9-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 9);
+
+	tmp_pb = new QPushButton("A", mSmallPage, "A-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 0xA);
+
+	tmp_pb = new QPushButton("B", mSmallPage, "B-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 0xB);
+
+	tmp_pb = new QPushButton("C", mSmallPage, "C-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 0xC);
+
+	tmp_pb = new QPushButton("D", mSmallPage, "D-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 0xD);
+
+	tmp_pb = new QPushButton("E", mSmallPage, "E-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 0xE);
+
+	tmp_pb = new QPushButton("F", mSmallPage, "F-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 0xF);
 
 	pbPlus = new QPushButton("+", mLargePage, "Plus-Button");
 	QToolTip::add(pbPlus, i18n("Addition"));
@@ -403,10 +413,6 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	QToolTip::add(pbPeriod, i18n("Decimal point"));
 	pbPeriod->setAutoDefault(false);
 	connect(pbPeriod, SIGNAL(clicked(void)), SLOT(slotPeriodclicked(void)));
-
-	pb0 = new QPushButton("0", mLargePage, "0-Button");
-	pb0->setAutoDefault(false);
-	connect(pb0, SIGNAL(clicked(void)), SLOT(slot0clicked(void)));
 
 	pbEqual = new QPushButton("=", mLargePage, "Equal-Button");
 	QToolTip::add(pbEqual, i18n("Result"));
@@ -464,27 +470,27 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	// small button layout
 	smallBtnLayout->addWidget(pbHyp, 0, 0);
 	smallBtnLayout->addWidget(pbInv, 0, 1);
-	smallBtnLayout->addWidget(pbA, 0, 2);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xA), 0, 2);
 
 	smallBtnLayout->addWidget(pbSin, 1, 0);
 	smallBtnLayout->addWidget(pbPlusMinus, 1, 1);
-	smallBtnLayout->addWidget(pbB, 1, 2);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xB), 1, 2);
 
 	smallBtnLayout->addWidget(pbCos, 2, 0);
 	smallBtnLayout->addWidget(pbReci, 2, 1);
-	smallBtnLayout->addWidget(pbC, 2, 2);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xC), 2, 2);
 
 	smallBtnLayout->addWidget(pbTan, 3, 0);
 	smallBtnLayout->addWidget(pbFactorial, 3, 1);
-	smallBtnLayout->addWidget(pbD, 3, 2);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xD), 3, 2);
 
 	smallBtnLayout->addWidget(pbLog, 4, 0);
 	smallBtnLayout->addWidget(pbSquare, 4, 1);
-	smallBtnLayout->addWidget(pbE, 4, 2);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xE), 4, 2);
 
 	smallBtnLayout->addWidget(pbLn, 5, 0);
 	smallBtnLayout->addWidget(pbPower, 5, 1);
-	smallBtnLayout->addWidget(pbF, 5, 2);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xF), 5, 2);
 
 	smallBtnLayout->setRowStretch(0, 0);
 	smallBtnLayout->setRowStretch(1, 0);
@@ -501,28 +507,28 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	largeBtnLayout->addWidget(pbClear, 0, 4);
 	largeBtnLayout->addWidget(pbAC, 0, 5);
 
-	largeBtnLayout->addWidget(pb7, 1, 0);
-	largeBtnLayout->addWidget(pb8, 1, 1);
-	largeBtnLayout->addWidget(pb9, 1, 2);
+	largeBtnLayout->addWidget(NumButtonGroup->find(7), 1, 0);
+	largeBtnLayout->addWidget(NumButtonGroup->find(8), 1, 1);
+	largeBtnLayout->addWidget(NumButtonGroup->find(9), 1, 2);
 	largeBtnLayout->addWidget(pbParenOpen, 1, 3);
 	largeBtnLayout->addWidget(pbParenClose, 1, 4);
 	largeBtnLayout->addWidget(pbAND, 1, 5);
 
-	largeBtnLayout->addWidget(pb4, 2, 0);
-	largeBtnLayout->addWidget(pb5, 2, 1);
-	largeBtnLayout->addWidget(pb6, 2, 2);
+	largeBtnLayout->addWidget(NumButtonGroup->find(4), 2, 0);
+	largeBtnLayout->addWidget(NumButtonGroup->find(5), 2, 1);
+	largeBtnLayout->addWidget(NumButtonGroup->find(6), 2, 2);
 	largeBtnLayout->addWidget(pbX, 2, 3);
 	largeBtnLayout->addWidget(pbDivision, 2, 4);
 	largeBtnLayout->addWidget(pbOR, 2, 5);
 
-	largeBtnLayout->addWidget(pb1, 3, 0);
-	largeBtnLayout->addWidget(pb2, 3, 1);
-	largeBtnLayout->addWidget(pb3, 3, 2);
+	largeBtnLayout->addWidget(NumButtonGroup->find(1), 3, 0);
+	largeBtnLayout->addWidget(NumButtonGroup->find(2), 3, 1);
+	largeBtnLayout->addWidget(NumButtonGroup->find(3), 3, 2);
 	largeBtnLayout->addWidget(pbPlus, 3, 3);
 	largeBtnLayout->addWidget(pbMinus, 3, 4);
 	largeBtnLayout->addWidget(pbShift, 3, 5);
 
-	largeBtnLayout->addWidget(pb0, 4, 0);
+        largeBtnLayout->addWidget(NumButtonGroup->find(0), 4, 0);
 	largeBtnLayout->addWidget(pbPeriod, 4, 1);
 	largeBtnLayout->addWidget(pbEqual, 4, 2);
 	largeBtnLayout->addWidget(pbPercent, 4, 3);
@@ -550,17 +556,6 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	statusLayout->addWidget(statusHYPLabel);
 	statusLayout->addWidget(statusERRORLabel, 10);
 
-	mNumButtonList.append(pb0);
-	mNumButtonList.append(pb1);
-	mNumButtonList.append(pb2);
-	mNumButtonList.append(pb3);
-	mNumButtonList.append(pb4);
-	mNumButtonList.append(pb5);
-	mNumButtonList.append(pb6);
-	mNumButtonList.append(pb7);
-	mNumButtonList.append(pb8);
-	mNumButtonList.append(pb9);
-
 	mFunctionButtonList.append(pbHyp);
 	mFunctionButtonList.append(pbInv);
 	mFunctionButtonList.append(pbSin);
@@ -573,13 +568,6 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	mFunctionButtonList.append(pbSquare);
 	mFunctionButtonList.append(pbLn);
 	mFunctionButtonList.append(pbPower);
-
-	mHexButtonList.append(pbA);
-	mHexButtonList.append(pbB);
-	mHexButtonList.append(pbC);
-	mHexButtonList.append(pbD);
-	mHexButtonList.append(pbE);
-	mHexButtonList.append(pbF);
 
 	mMemButtonList.append(pbEE);
 	mMemButtonList.append(pbMR);
@@ -651,11 +639,11 @@ void QtCalculator::updateGeometry()
 
     l = (QObjectList*)mLargePage->children(); // silence please
 
-    int h1 = pbF->minimumSize().height();
+    int h1 = (NumButtonGroup->find(0xF))->minimumSize().height();
     int h2 = (int)((((float)h1 + 4.0) / 5.0));
     s.setWidth(mLargePage->fontMetrics().width("MMM") +
                QApplication::style().
-               pixelMetric(QStyle::PM_ButtonMargin, pbF)*2);
+               pixelMetric(QStyle::PM_ButtonMargin, NumButtonGroup->find(0xF))*2);
     s.setHeight(h1 + h2);
 
     for(uint i = 0; i < l->count(); i++)
@@ -682,33 +670,19 @@ void QtCalculator::updateGeometry()
 
 void QtCalculator::Base_Selected(int base)
 {
-	// Enable the hexit buttons if we're in hex mode
-	// (Base 0 == hexidecimal)
-
-	for(QPushButton *p = mHexButtonList.first(); p; p=mHexButtonList.next())
-	{
-		p->setEnabled(base == 0);
-	}
-
-	// Enable 8 & 9 if we're in dec mode or better
-	// (Base 1 == decimal)
-	pb9->setEnabled(base <= 1);
-	pb8->setEnabled(base <= 1);
-
-	// Enable 2,3,4,5,6,7 if we're in oct mode or better
-	// (Base 2 == decimal)
-	pb7->setEnabled(base <= 2);
-	pb6->setEnabled(base <= 2);
-	pb5->setEnabled(base <= 2);
-	pb4->setEnabled(base <= 2);
-	pb3->setEnabled(base <= 2);
-	pb2->setEnabled(base <= 2);
-
-	// Only enable the decimal point in decimal
-	pbPeriod->setEnabled(base == 1);
-
 	// Call down to the core
 	base_selected(base);
+
+	// Enable the buttons not available in this base
+	for (int i=0; i<current_base; i++)
+	  NumButtonGroup->find(i)->setEnabled (true);
+
+	// Disable the buttons not available in this base
+	for (int i=current_base; i<16; i++)
+	  NumButtonGroup->find(i)->setEnabled (false);
+
+	// Only enable the decimal point in decimal
+	pbPeriod->setEnabled(current_base == NB_DECIMAL);
 }
 
 void QtCalculator::Hex_Selected()
@@ -826,11 +800,11 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
 		pbInv->setOn(true);
 		break;
 	case Key_A:
-		pbA->animateClick();
+	        (NumButtonGroup->find(0xA))->animateClick();
 		break;
 	case Key_E:
 		if (current_base == NB_HEX)
-			pbE->animateClick();
+			(NumButtonGroup->find(0xE))->animateClick();
 		else
 			pbEE->animateClick();
 		break;
@@ -847,16 +821,16 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
 		pbPlusMinus->animateClick();
 		break;
 	case Key_B:
-		pbB->animateClick();
+		(NumButtonGroup->find(0xB))->animateClick();
 		break;
 	case Key_7:
-		pb7->animateClick();
+		(NumButtonGroup->find(7))->animateClick();
 		break;
 	case Key_8:
-		pb8->animateClick();
+		(NumButtonGroup->find(8))->animateClick();
 		break;
 	case Key_9:
-		pb9->animateClick();
+		(NumButtonGroup->find(9))->animateClick();
 		break;
 	case Key_ParenLeft:
 		pbParenOpen->animateClick();
@@ -869,18 +843,18 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
 		break;
 	case Key_C:
 		if (current_base == NB_HEX)
-			pbC->animateClick();
+			(NumButtonGroup->find(0xC))->animateClick();
 		else
 			pbCos->animateClick();
 		break;
 	case Key_4:
-		pb4->animateClick();
+		(NumButtonGroup->find(4))->animateClick();
 		break;
 	case Key_5:
-		pb5->animateClick();
+		(NumButtonGroup->find(5))->animateClick();
 		break;
 	case Key_6:
-		pb6->animateClick();
+		(NumButtonGroup->find(6))->animateClick();
 		break;
 	case Key_Asterisk:
         case Key_multiply:
@@ -901,18 +875,18 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
 		break;
 	case Key_D:
 		if(kcalcdefaults.style == 0)
-			pbD->animateClick(); // trig mode
+			(NumButtonGroup->find(0xD))->animateClick(); // trig mode
 		else
 			pbLog->animateClick(); // stat mode
 		break;
 	case Key_1:
-		pb1->animateClick();
+		(NumButtonGroup->find(1))->animateClick();
 		break;
 	case Key_2:
-		pb2->animateClick();
+		(NumButtonGroup->find(2))->animateClick();
 		break;
 	case Key_3:
-		pb3->animateClick();
+		(NumButtonGroup->find(3))->animateClick();
 		break;
 	case Key_Plus:
 		pbPlus->animateClick();
@@ -933,14 +907,14 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
 		pbPower->animateClick();
 		break;
 	case Key_F:
-		pbF->animateClick();
+		(NumButtonGroup->find(0xF))->animateClick();
 		break;
 	case Key_Period:
 	case Key_Comma:
 		pbPeriod->animateClick();
 		break;
 	case Key_0:
-		pb0->animateClick();
+		(NumButtonGroup->find(0))->animateClick();
 		break;
 	case Key_Equal:
 	case Key_Return:
@@ -1022,9 +996,11 @@ void QtCalculator::slotMRclicked(void)
 	MR();
 }
 
-void QtCalculator::slotAclicked(void)
+void QtCalculator::slotNumberclicked(int number_clicked)
 {
-	buttonA();
+  Q_ASSERT(number_clicked < current_base);
+
+  EnterDigit(number_clicked);
 }
 
 void QtCalculator::slotSinclicked(void)
@@ -1042,11 +1018,6 @@ void QtCalculator::slotMPlusMinusclicked(void)
 	Mplusminus();
 }
 
-void QtCalculator::slotBclicked(void)
-{
-	buttonB();
-}
-
 void QtCalculator::slotCosclicked(void)
 {
 	ExecCos();
@@ -1055,11 +1026,6 @@ void QtCalculator::slotCosclicked(void)
 void QtCalculator::slotReciclicked(void)
 {
 	EnterRecip();
-}
-
-void QtCalculator::slotCclicked(void)
-{
-	buttonC();
 }
 
 void QtCalculator::slotTanclicked(void)
@@ -1072,11 +1038,6 @@ void QtCalculator::slotFactorialclicked(void)
 	EnterFactorial();
 }
 
-void QtCalculator::slotDclicked(void)
-{
-	buttonD();
-}
-
 void QtCalculator::slotLogclicked(void)
 {
 	EnterLogr();
@@ -1087,14 +1048,6 @@ void QtCalculator::slotSquareclicked(void)
 	EnterSquare();
 }
 
-void QtCalculator::slotEclicked(void)
-{
-	if(!display_error)
-		buttonE();
-	else
-		KNotifyClient::beep();
-}
-
 void QtCalculator::slotLnclicked(void)
 {
 	EnterLogn();
@@ -1103,11 +1056,6 @@ void QtCalculator::slotLnclicked(void)
 void QtCalculator::slotPowerclicked(void)
 {
 	Power();
-}
-
-void QtCalculator::slotFclicked(void)
-{
-	buttonF();
 }
 
 void QtCalculator::slotMCclicked(void)
@@ -1125,21 +1073,6 @@ void QtCalculator::slotACclicked(void)
 	ClearAll();
 }
 
-void QtCalculator::slot7clicked(void)
-{
-	button7();
-}
-
-void QtCalculator::slot8clicked(void)
-{
-	button8();
-}
-
-void QtCalculator::slot9clicked(void)
-{
-	button9();
-}
-
 void QtCalculator::slotParenOpenclicked(void)
 {
 	EnterOpenParen();
@@ -1155,21 +1088,6 @@ void QtCalculator::slotANDclicked(void)
 	And();
 }
 
-void QtCalculator::slot4clicked(void)
-{
-	button4();
-}
-
-void QtCalculator::slot5clicked(void)
-{
-	button5();
-}
-
-void QtCalculator::slot6clicked(void)
-{
-	button6();
-}
-
 void QtCalculator::slotXclicked(void)
 {
 	Multiply();
@@ -1183,21 +1101,6 @@ void QtCalculator::slotDivisionclicked(void)
 void QtCalculator::slotORclicked(void)
 {
 	Or();
-}
-
-void QtCalculator::slot1clicked(void)
-{
-	button1();
-}
-
-void QtCalculator::slot2clicked(void)
-{
-	button2();
-}
-
-void QtCalculator::slot3clicked(void)
-{
-	button3();
 }
 
 void QtCalculator::slotPlusclicked(void)
@@ -1218,11 +1121,6 @@ void QtCalculator::slotShiftclicked(void)
 void QtCalculator::slotPeriodclicked(void)
 {
 	EnterDecimal();
-}
-
-void QtCalculator::slot0clicked(void)
-{
-	button0();
 }
 
 void QtCalculator::slotEqualclicked(void)
@@ -1369,11 +1267,11 @@ void QtCalculator::writeSettings()
 	config->writeEntry("ForeColor",kcalcdefaults.forecolor);
 	config->writeEntry("BackColor",kcalcdefaults.backcolor);
 	config->writeEntry("NumberButtonsColor",
-		mNumButtonList.first()->palette().active().button());
+		(NumButtonGroup->find(0))->palette().active().button());
 	config->writeEntry("FunctionButtonsColor",
 		mFunctionButtonList.first()->palette().active().button());
 	config->writeEntry("HexButtonsColor",
-		mHexButtonList.first()->palette().active().button());
+		(NumButtonGroup->find(0xA))->palette().active().button());
 	config->writeEntry("MemoryButtonsColor",
 		mMemButtonList.first()->palette().active().button());
 	config->writeEntry("OperationButtonsColor",
@@ -1539,9 +1437,9 @@ void QtCalculator::set_colors()
 	QColor bg = palette().active().background();
 
 	QPalette numPal(kcalcdefaults.numberButtonColor, bg);
-	for(p = mNumButtonList.first(); p; p=mNumButtonList.next())
+	for(int i=0; i<10; i++)
 	{
-		p->setPalette(numPal);
+		(NumButtonGroup->find(i))->setPalette(numPal);
 	}
 
 	QPalette funcPal(kcalcdefaults.functionButtonColor, bg);
@@ -1552,9 +1450,9 @@ void QtCalculator::set_colors()
 	}
 
 	QPalette hexPal(kcalcdefaults.hexButtonColor, bg);
-	for(p = mHexButtonList.first(); p; p=mHexButtonList.next())
+	for(int i=10; i<16; i++)
 	{
-		p->setPalette(hexPal);
+		(NumButtonGroup->find(i))->setPalette(hexPal);
 	}
 
 	QPalette memPal(kcalcdefaults.memoryButtonColor, bg);
@@ -1645,18 +1543,26 @@ bool QtCalculator::eventFilter(QObject *o, QEvent *e)
 		QDropEvent *ev = (QDropEvent *)e;
 		if( KColorDrag::decode(ev, c))
 		{
-			QPtrList<QPushButton> *list;
-			if( mNumButtonList.findRef((QPushButton*)o) != -1)
+		        QPtrList<QPushButton> *list;
+			int num_but;
+			if((num_but = NumButtonGroup->id((QPushButton*)o))
+			   != -1)
 			{
-				list = &mNumButtonList;
+			  QPalette pal(c, palette().active().background());
+			  
+			  // Was it hex-button or normal digit??
+			  if (num_but <10)
+			    for(int i=0; i<10; i++)
+			      (NumButtonGroup->find(i))->setPalette(pal);
+			  else
+			    for(int i=10; i<16; i++)
+			      (NumButtonGroup->find(i))->setPalette(pal);
+
+			  return true;
 			}
 			else if( mFunctionButtonList.findRef((QPushButton*)o) != -1)
 			{
 				list = &mFunctionButtonList;
-			}
-			else if( mHexButtonList.findRef((QPushButton*)o) != -1)
-			{
-				list = &mHexButtonList;
 			}
 			else if( mMemButtonList.findRef((QPushButton*)o) != -1)
 			{
