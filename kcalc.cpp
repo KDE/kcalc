@@ -49,6 +49,7 @@
 #include <khelpmenu.h>
 #include <kpushbutton.h>
 #include <kpopupmenu.h>
+#include <kglobalsettings.h>
 
 #include "dlabel.h"
 #include "kcalc.h"
@@ -1946,7 +1947,7 @@ void QtCalculator::readSettings()
 
 	KConfig *config = KGlobal::config();
 	config->setGroup("Font");
-	QFont tmpFont("helvetica",14,QFont::Bold);
+	QFont tmpFont(KGlobalSettings::generalFont().family() ,14 ,QFont::Bold);
 	kcalcdefaults.font = config->readFontEntry("Font",&tmpFont);
 
 	config->setGroup("Colors");
@@ -2028,7 +2029,7 @@ void QtCalculator::writeSettings()
 void QtCalculator::display_selected()
 {
 	if(calc_display->Button() == LeftButton) {
-	
+
 		if(calc_display->isLit()) {
 			QClipboard *cb = QApplication::clipboard();
 			bool oldMode = cb->selectionModeEnabled();
@@ -2326,7 +2327,7 @@ bool QtCalculator::eventFilter(QObject *o, QEvent *e)
 int main(int argc, char *argv[])
 {
         QString precisionStatement;
-        
+
 #ifdef HAVE_LONG_DOUBLE
         precisionStatement = QString(I18N_NOOP("Built with %1 bit (long double) precision"))
                                      .arg(sizeof(long double) * 8);
@@ -2350,7 +2351,7 @@ int main(int argc, char *argv[])
 	aboutData.addAuthor("Bernd Johannes Wuebben", 0, "wuebben@kde.org");
 	aboutData.addAuthor("Evan Teran", 0, "emt3734@rit.edu");
 	aboutData.addAuthor("Espen Sand", 0, "espen@kde.org");
-	aboutData.addAuthor("Chris Howells", 0, "howells@kde.org");	
+	aboutData.addAuthor("Chris Howells", 0, "howells@kde.org");
         aboutData.addAuthor("Aaron J. Seigo", 0, "aseigo@olympusproject.org");
         aboutData.addAuthor("Charles Samuels", 0, "charles@altair.dhs.org");
 	KCmdLineArgs::init(argc, argv, &aboutData);
