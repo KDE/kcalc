@@ -27,23 +27,38 @@
 
 
 KCalcButton::KCalcButton(QWidget * parent, const char * name)
-  : KPushButton(parent, name), _inverse_mode(false)
+  : KPushButton(parent, name), _inverse_mode(false), _show_accel_mode(false)
 {
   setAutoDefault(false);
 }
 
 KCalcButton::KCalcButton(const QString &label, QWidget * parent,
 			 const char * name)
-  : KPushButton(label, parent, name), _inverse_mode(false)
+  : KPushButton(label, parent, name), _inverse_mode(false),
+    _show_accel_mode(false)
 {
   setAutoDefault(false);
   setText(label);
 }
 
-void KCalcButton::setInverseMode(bool flag)
+void KCalcButton::slotSetInverseMode(bool flag)
 {
   _inverse_mode = flag;
   update();
+}
+
+void KCalcButton::slotSetAccelDisplayMode(bool flag)
+{
+  _show_accel_mode = flag;
+
+  // save accel, because setting label erases accel
+  QKeySequence _accel = accel();
+
+  KPushButton::setText(QString(accel()));
+  update();
+
+  // set back deleted accel
+  setAccel(_accel);
 }
 
 void KCalcButton::setText(const QString &label)
@@ -62,7 +77,9 @@ void KCalcButton::setInvText(const QString &label)
 
 void KCalcButton::drawButtonLabel(QPainter *paint)
 {
-  if(pixmap()) {
+  if (_show_accel_mode) {
+    KPushButton::drawButtonLabel(paint);
+  } else if(pixmap()) {
     KPushButton::drawButtonLabel(paint);
     return;
   } else {

@@ -4,4 +4,5 @@
 * get rid of dlabel.h & dlabel.cpp
 * key groups for color configuration need to be rethought
 * better to handle keys with "accel" or with "keyPressEvent"?
-* It would be nice to press for example "shift" and see, the accel for each button (as a Tooltip or something).
+
+* labels on buttons need to be recentered after eye-candy was added

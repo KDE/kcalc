@@ -1,3 +1,7 @@
+2004-03-24 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Press (and hold) CTRL-key to see accels for all
+	buttons (BUG 69850).
+	
 2004-03-19 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Labels like e.g. "x^y" are drawn with QSimpleRichText
 	  Need to center the labels better!!

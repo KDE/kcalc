@@ -41,13 +41,15 @@ public:
  void setInvText(const QString &label);
 
 public slots: 
-  void setInverseMode(bool flag);
+  void slotSetInverseMode(bool flag);
+  void slotSetAccelDisplayMode(bool flag);
 
 protected:
  virtual void drawButtonLabel(QPainter *paint);
 
 private:
  bool _inverse_mode;
+ bool _show_accel_mode;
  QString _label;
  QString _inv_label;
 };

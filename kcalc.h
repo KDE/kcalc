@@ -66,6 +66,7 @@ public:
 
 signals:
 	void switchInverse(bool);
+	void switchShowAccels(bool);
 
 private:
 	virtual bool eventFilter( QObject *o, QEvent *e );
@@ -78,7 +79,8 @@ private:
 	void setupTrigKeys(QWidget *parent);
 	void setupStatisticKeys(QWidget *parent);
 	void setupConstantsKeys(QWidget *parent);
-	void keyPressEvent( QKeyEvent *e );
+	void keyPressEvent(QKeyEvent *e);
+	void keyReleaseEvent(QKeyEvent *e);
 	void set_precision();
 	void set_style();
 	void history_next();
