@@ -55,6 +55,7 @@ class KCalcButton;
 
 // IMPORTANT this has to come after ../config.h
 #include "kcalc_core.h"
+#include "kcalc_button.h"
 
 class KCalculator : public KMainWindow
 {
@@ -66,6 +67,7 @@ public:
 
 signals:
 	void switchInverse(bool);
+	void switchMode(ButtonModeFlags,bool);
 	void switchShowAccels(bool);
 
 private:

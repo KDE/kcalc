@@ -1,3 +1,10 @@
+2004-04-27 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Buttons have now their own modes (like inverse Mode etc.)
+	This allows moving tooltips and labels into kcalc_button.cpp
+	instead of having everything in kcalc.cpp.
+	This needs to be cleaned up and the tooltips and labels should be
+	revised.
+	
 2004-04-05 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Changed accel for OR-button from "O" to "|"
 	* More accels are visible, when "Ctrl" is used

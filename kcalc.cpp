@@ -68,7 +68,6 @@
 #include "colors.h"
 #include "constants.h"
 
-#include "kcalc_button.h"
 #include "kcalc_settings.h"
 
 const CALCAMNT KCalculator::pi = (ASIN(1L) * 2L);
@@ -76,15 +75,6 @@ const CALCAMNT KCalculator::pi = (ASIN(1L) * 2L);
 
 static const char description[] = I18N_NOOP("KDE Calculator");
 static const char version[] = KCALCVERSION;
-
-//
-// * ported to QLayout (mosfet 10/28/99)
-//
-// * 1999-10-31 Espen Sand: More modifications.
-//   All fixed sizes removed.
-//   New config dialog.
-//   Look in updateGeometry() for size settings.
-//
 
 
 KCalculator::KCalculator(QWidget *parent, const char *name)
@@ -174,29 +164,31 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	setupTrigKeys(mSmallPage);
 	setupConstantsKeys(mSmallPage);
 
-	pbPi = new KCalcButton(QString::fromUtf8("π", -1), // Pi in utf8
-			       mSmallPage, "Pi-Button");
-	QToolTip::add(pbPi, i18n("Pi=3.1415..."));
+	pbPi = new KCalcButton(mSmallPage, "Pi-Button");
+	pbPi->addMode(ModeNormal, QString::fromUtf8("π", -1), // Pi in utf8
+		      i18n("Pi=3.1415..."));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbPi, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(pbPi, SIGNAL(clicked(void)), SLOT(slotPiclicked(void)));
 
-	pbMod = new KCalcButton("Mod", mSmallPage, "Modulo-Button");
-	QToolTip::add(pbMod, i18n("Modulo"));
+	pbMod = new KCalcButton(mSmallPage, "Modulo-Button");
+	pbMod->addMode(ModeNormal, "Mod", i18n("Modulo"));
 	pbMod->setAccel(Key_Colon);
+	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
+		pbMod, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbMod, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(pbMod, SIGNAL(clicked(void)), SLOT(slotModclicked(void)));
 
-	pbReci = new KCalcButton("1/x", mSmallPage, "Reciprocal-Button");
-	QToolTip::add(pbReci, i18n("Reciprocal"));
+	pbReci = new KCalcButton(mSmallPage, "Reciprocal-Button");
+	pbReci->addMode(ModeNormal, "1/x", i18n("Reciprocal"));
 	pbReci->setAccel(Key_R);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbReci, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(pbReci, SIGNAL(clicked(void)), SLOT(slotReciclicked(void)));
 
-	pbFactorial = new KCalcButton("x!", mSmallPage, "Factorial-Button");
-	QToolTip::add(pbFactorial, i18n("Factorial"));
+	pbFactorial = new KCalcButton(mSmallPage, "Factorial-Button");
+	pbFactorial->addMode(ModeNormal, "x!", i18n("Factorial"));
 	pbFactorial->setAccel(Key_Exclam);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbFactorial, SLOT(slotSetAccelDisplayMode(bool)));
@@ -217,14 +209,15 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// changeRepresentation() that paints the letters When
 	// pressing the INV Button y^x will be drawn on that button
 	pbPower = new KCalcButton(mSmallPage, "Power-Button");
-	pbPower->setText("x<sup>y</sup>");
-	pbPower->setInvText("x<sup>1/y</sup>");
+	pbPower->addMode(ModeNormal, "x<sup>y</sup>",
+			 i18n("x to the power of y"));
+	pbPower->addMode(ModeInverse, "x<sup>1/y</sup>",
+			 i18n("x to the power of 1/y"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbPower, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchInverse(bool)),
-		pbPower, SLOT(slotSetInverseMode(bool)));
+	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
+		pbPower, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	pbPower->setAccel(Key_AsciiCircum);
-	QToolTip::add(pbPower, i18n("x to the power of y"));
 	connect(pbPower, SIGNAL(clicked(void)), SLOT(slotPowerclicked(void)));
 
 
@@ -753,50 +746,50 @@ void KCalculator::setupLogicKeys(QWidget *parent)
 
 	KCalcButton *tmp_pb;
 
-	tmp_pb = new KCalcButton("AND", parent, "AND-Button");
+	tmp_pb = new KCalcButton(parent, "AND-Button");
+	tmp_pb->addMode(ModeNormal, "AND", i18n("Bitwise AND"));
 	pbLogic.insert("AND", tmp_pb);
-	QToolTip::add(tmp_pb, i18n("Bitwise AND"));
 	tmp_pb->setAccel(Key_Ampersand);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotANDclicked(void)));
 
-	tmp_pb = new KCalcButton("OR", parent, "OR-Button");
+	tmp_pb = new KCalcButton(parent, "OR-Button");
+	tmp_pb->addMode(ModeNormal, "OR", i18n("Bitwise OR"));
 	pbLogic.insert("OR", tmp_pb);
-	QToolTip::add(tmp_pb, i18n("Bitwise OR"));
 	tmp_pb->setAccel(Key_Bar);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotORclicked(void)));
 
-	tmp_pb = new KCalcButton("XOR", parent, "XOR-Button");
+	tmp_pb = new KCalcButton(parent, "XOR-Button");
+	tmp_pb->addMode(ModeNormal, "XOR", i18n("Bitwise XOR"));
 	pbLogic.insert("XOR", tmp_pb);
-	QToolTip::add(tmp_pb, i18n("Bitwise XOR"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotXORclicked(void)));
 
-	tmp_pb = new KCalcButton("Cmp", parent, "One-Complement-Button");
+	tmp_pb = new KCalcButton(parent, "One-Complement-Button");
+	tmp_pb->addMode(ModeNormal, "Cmp", i18n("One's complement"));
 	pbLogic.insert("One-Complement", tmp_pb);
-	QToolTip::add(tmp_pb, i18n("One's complement"));
 	tmp_pb->setAccel(Key_AsciiTilde);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotNegateclicked(void)));
 
-	tmp_pb = new KCalcButton("Lsh", parent, "LeftBitShift-Button");
+	tmp_pb = new KCalcButton(parent, "LeftBitShift-Button");
+	tmp_pb->addMode(ModeNormal, "Lsh", i18n("Left bit shift"));
 	tmp_pb->setAccel(Key_Less);
 	pbLogic.insert("LeftShift", tmp_pb);
-	QToolTip::add(tmp_pb, i18n("Left bit shift"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)),
 		SLOT(slotLeftShiftclicked(void)));
 
-	tmp_pb = new KCalcButton("Rsh", parent, "RightBitShift-Button");
+	tmp_pb = new KCalcButton(parent, "RightBitShift-Button");
+	tmp_pb->addMode(ModeNormal, "Rsh", i18n("Right bit shift"));
 	tmp_pb->setAccel(Key_Greater);
 	pbLogic.insert("RightShift", tmp_pb);
-	QToolTip::add(tmp_pb, i18n("Right bit shift"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)),
@@ -810,28 +803,28 @@ void KCalculator::setupLogExpKeys(QWidget *parent)
 	KCalcButton *tmp_pb;
 
 	tmp_pb = new KCalcButton(parent, "Ln-Button");
-	tmp_pb->setText("Ln");
-	tmp_pb->setInvText("e<sup> x </sup>");
+	tmp_pb->addMode(ModeNormal, "Ln", i18n("Natural log"));
+	tmp_pb->addMode(ModeInverse, "e<sup> x </sup>",
+			i18n("Exponential function"));
 	pbExp.insert("LogNatural", tmp_pb);
-	QToolTip::add(tmp_pb, i18n("Natural log"));
 	tmp_pb->setAccel(Key_N);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
+		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotLnclicked(void)));
-	connect(this, SIGNAL(switchInverse(bool)),
-		tmp_pb, SLOT(slotSetInverseMode(bool)));
 
 	tmp_pb = new KCalcButton(parent, "Log-Button");
-	tmp_pb->setText("Log");
-	tmp_pb->setInvText("10<sup> x </sup>");
+	tmp_pb->addMode(ModeNormal, "Log", i18n("Logarithm to base 10"));
+	tmp_pb->addMode(ModeInverse, "10<sup> x </sup>",
+			i18n("10 to the power of x"));
 	pbExp.insert("Log10", tmp_pb);
-	QToolTip::add(tmp_pb, i18n("Logarithm to base 10"));
 	tmp_pb->setAccel(Key_L);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
+		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotLogclicked(void)));
-	connect(this, SIGNAL(switchInverse(bool)),
-		tmp_pb, SLOT(slotSetInverseMode(bool)));
 
 }
 
@@ -850,28 +843,46 @@ void KCalculator::setupTrigKeys(QWidget *parent)
 	connect(tmp_pb, SIGNAL(toggled(bool)), SLOT(slotHyptoggled(bool)));
 	tmp_pb->setToggleButton(true);
 
-	tmp_pb = new KCalcButton("Sin", parent, "Sin-Button");
+	tmp_pb = new KCalcButton(parent, "Sin-Button");
 	pbTrig.insert("Sine", tmp_pb);
-	QToolTip::add(tmp_pb, i18n("Sine"));
+	tmp_pb->addMode(ModeNormal, "Sin", i18n("Sine"));
+	tmp_pb->addMode(ModeInverse, "Arcsin", i18n("Arc sine"));
+	tmp_pb->addMode(ModeHyperbolic, "Sinh", i18n("Hyperbolic sine"));
+	tmp_pb->addMode(ButtonModeFlags(ModeInverse | ModeHyperbolic),
+			"Arsinh", i18n("Hyperbolic area sine"));
 	tmp_pb->setAccel(Key_S);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
+		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotSinclicked(void)));
 
-	tmp_pb = new KCalcButton("Cos", parent, "Cos-Button");
+	tmp_pb = new KCalcButton(parent, "Cos-Button");
 	pbTrig.insert("Cosine", tmp_pb);
-	QToolTip::add(tmp_pb, i18n("Cosine"));
+	tmp_pb->addMode(ModeNormal, "Cos", i18n("Cosine"));
+	tmp_pb->addMode(ModeInverse, "Arccos", i18n("Arc cosine"));
+	tmp_pb->addMode(ModeHyperbolic, "Cosh", i18n("Hyperbolic cosine"));
+	tmp_pb->addMode(ButtonModeFlags(ModeInverse | ModeHyperbolic),
+			"Arcosh", i18n("Hyperbolic area cosine"));
 	tmp_pb->setAccel(Key_C);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
+		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotCosclicked(void)));
 
 	tmp_pb = new KCalcButton("Tan", parent, "Tan-Button");
 	pbTrig.insert("Tangent", tmp_pb);
-	QToolTip::add(tmp_pb, i18n("Tangent"));
+	tmp_pb->addMode(ModeNormal, "Tan", i18n("Tangent"));
+	tmp_pb->addMode(ModeInverse, "Arctan", i18n("Arc tangent"));
+	tmp_pb->addMode(ModeHyperbolic, "Tanh", i18n("Hyperbolic tangent"));
+	tmp_pb->addMode(ButtonModeFlags(ModeInverse | ModeHyperbolic),
+			"Artanh", i18n("Hyperbolic area tangent"));
 	tmp_pb->setAccel(Key_T);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
+		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)),SLOT(slotTanclicked(void)));
 
 }
@@ -882,15 +893,16 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
 
 	KCalcButton *tmp_pb;
 
-	tmp_pb = new KCalcButton("N", parent, "Stat.NumData-Button");
+	tmp_pb = new KCalcButton(parent, "Stat.NumData-Button");
+	tmp_pb->addMode(ModeNormal, "N", i18n("Number of data entered"));
 	pbStat.insert("NumData", tmp_pb);
         mStatButtonList.append(tmp_pb);
-	QToolTip::add(tmp_pb, i18n("Number of data entered"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotStatNumclicked(void)));
 
-	tmp_pb = new KCalcButton("Med", parent, "Stat.Median-Button");
+	tmp_pb = new KCalcButton(parent, "Stat.Median-Button");
+	tmp_pb->addMode(ModeNormal, "Med", i18n("Median"));
 	pbStat.insert("Median", tmp_pb);
         mStatButtonList.append(tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Median"));
@@ -898,35 +910,34 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotStatMedianclicked(void)));
 
-	tmp_pb = new KCalcButton("Mea", parent, "Stat.Mean-Button");
+	tmp_pb = new KCalcButton(parent, "Stat.Mean-Button");
+	tmp_pb->addMode(ModeNormal, "Mea", i18n("Mean"));
 	pbStat.insert("Mean", tmp_pb);
         mStatButtonList.append(tmp_pb);
-	QToolTip::add(tmp_pb, i18n("Mean"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotStatMeanclicked(void)));
 
-	tmp_pb = new KCalcButton("Std", parent,
-				 "Stat.StandardDeviation-Button");
+	tmp_pb = new KCalcButton(parent, "Stat.StandardDeviation-Button");
+	tmp_pb->addMode(ModeNormal, "Std", i18n("Standard deviation"));
 	pbStat.insert("StandardDeviation", tmp_pb);
         mStatButtonList.append(tmp_pb);
-	QToolTip::add(tmp_pb, i18n("Standard deviation"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotStatStdDevclicked(void)));
 
-	tmp_pb = new KCalcButton("Dat", parent, "Stat.DataInput-Button");
+	tmp_pb = new KCalcButton(parent, "Stat.DataInput-Button");
+	tmp_pb->addMode(ModeNormal, "Dat", i18n("Enter data"));
 	pbStat.insert("InputData", tmp_pb);
         mStatButtonList.append(tmp_pb);
-	QToolTip::add(tmp_pb, i18n("Enter data"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotStatDataInputclicked(void)));
 
 	tmp_pb = new KCalcButton("CSt", parent, "Stat.ClearData-Button");
+	tmp_pb->addMode(ModeNormal, "CSt", i18n("Clear data store"));
 	pbStat.insert("ClearData", tmp_pb);
         mStatButtonList.append(tmp_pb);
-	QToolTip::add(tmp_pb, i18n("Clear data store"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotStatClearDataclicked(void)));
@@ -1201,7 +1212,7 @@ void KCalculator::slotInvtoggled(bool flag)
 {
 	inverse = flag;
 
-	emit switchInverse(flag);
+	emit switchMode(ModeInverse, flag);
 
 	if (inverse)
 	{
@@ -1232,32 +1243,7 @@ void KCalculator::slotHyptoggled(bool flag)
 	// toggle between hyperbolic and standart trig functions
 	hyp_mode = flag;
 
-	QToolTip::remove(pbTrig["Sine"]);
-	QToolTip::remove(pbTrig["Cosine"]);
-	QToolTip::remove(pbTrig["Tangent"]);
-
-	if(flag)
-	{
-		pbTrig["Sine"]->setText("Sinh");
-		QToolTip::add(pbTrig["Sine"], i18n("Hyperbolic Sine"));
-		pbTrig["Cosine"]->setText("Cosh");
-		QToolTip::add(pbTrig["Cosine"], i18n("Hyperbolic Cosine"));
-		pbTrig["Tangent"]->setText("Tanh");
-		QToolTip::add(pbTrig["Tangent"], i18n("Hyperbolic Tangent"));
-	}
-	else
-	{
-		pbTrig["Sine"]->setText("Sin");
-		QToolTip::add(pbTrig["Sine"], i18n("Sine"));
-		pbTrig["Cosine"]->setText("Cos");
-		QToolTip::add(pbTrig["Cosine"], i18n("Cosine"));
-		pbTrig["Tangent"]->setText("Tan");
-		QToolTip::add(pbTrig["Tangent"], i18n("Tangent"));
-	}
-
-	// changing the label, deletes the accel, hence renew it
-	pbTrig["Sine"]->setAccel(Key_S);
-	pbTrig["Tangent"]->setAccel(Key_T);
+	emit switchMode(ModeHyperbolic, flag); 
 }
 
 

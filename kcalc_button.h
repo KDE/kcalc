@@ -26,7 +26,23 @@
 
 #include <kpushbutton.h>
 
+typedef enum {ModeNormal = 0, ModeInverse = 1, ModeHyperbolic = 2} ButtonModeFlags;
+
 class QDomNode;
+
+// Each kcalc button can be in one of several modes.
+// The following class describes label, tooltip etc. for each mode...
+class ButtonMode
+{
+public:
+  ButtonMode(void) {};
+  ButtonMode(QString &label, QString &tooltip)
+    : label(label), tooltip(tooltip) { };
+
+  QString label;
+  QString tooltip;
+};
+
 
 class KCalcButton : public KPushButton
 {
@@ -36,12 +52,13 @@ public:
  KCalcButton(QWidget *parent, const char * name = 0); 
  KCalcButton(const QString &label, QWidget *parent, const char * name = 0);
 
- virtual void setText(const QString &label);
- // set label for inverse mode!!
- void setInvText(const QString &label);
+ void addMode(ButtonModeFlags mode, QString label, QString tooltip);
 
+ virtual void setText(const QString &label);
+ 
 public slots: 
   void slotSetInverseMode(bool flag);
+  void slotSetMode(ButtonModeFlags mode, bool flag); 
   void slotSetAccelDisplayMode(bool flag);
 
 protected:
@@ -51,7 +68,10 @@ private:
  bool _inverse_mode;
  bool _show_accel_mode;
  QString _label;
- QString _inv_label;
+
+ ButtonModeFlags _mode_flags;
+
+ QMap<ButtonModeFlags, ButtonMode> _mode;
 };
 
 

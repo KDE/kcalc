@@ -21,13 +21,16 @@
 */
 
 #include <qsimplerichtext.h>
+#include <qtooltip.h>
 
 #include "qdom.h"
+
 #include "kcalc_button.h"
 
 
 KCalcButton::KCalcButton(QWidget * parent, const char * name)
-  : KPushButton(parent, name), _inverse_mode(false), _show_accel_mode(false)
+  : KPushButton(parent, name), _inverse_mode(false), _show_accel_mode(false),
+    _mode_flags(ModeNormal)
 {
   setAutoDefault(false);
 }
@@ -35,10 +38,33 @@ KCalcButton::KCalcButton(QWidget * parent, const char * name)
 KCalcButton::KCalcButton(const QString &label, QWidget * parent,
 			 const char * name)
   : KPushButton(label, parent, name), _inverse_mode(false),
-    _show_accel_mode(false)
+    _show_accel_mode(false), _mode_flags(ModeNormal)
 {
   setAutoDefault(false);
   setText(label);
+}
+
+void KCalcButton::addMode(ButtonModeFlags mode, QString label,
+			  QString tooltip)
+{
+  _mode[mode] = ButtonMode(label, tooltip);
+
+  // Need to put each button into default mode first
+  if(mode == ModeNormal) slotSetMode(ModeNormal, true);
+}
+
+void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
+{
+  ButtonModeFlags new_mode;
+
+  if (flag) new_mode = ButtonModeFlags(_mode_flags | mode);
+  else  if (_mode_flags && mode) new_mode = ButtonModeFlags(_mode_flags - mode);
+
+  if (_mode.contains(new_mode)) {
+    setText(_mode[new_mode].label);
+    QToolTip::add(this, _mode[new_mode].tooltip);
+    _mode_flags = new_mode;
+  }
 }
 
 void KCalcButton::slotSetInverseMode(bool flag)
@@ -68,13 +94,6 @@ void KCalcButton::setText(const QString &label)
   update();
 }
 
-void KCalcButton::setInvText(const QString &label)
-{
-  _inv_label = "<qt type=\"page\"><center>" + label + "</center></qt>";
-  KPushButton::setText(_label);
-  update();
-}
-
 void KCalcButton::drawButtonLabel(QPainter *paint)
 {
   if (_show_accel_mode) {
@@ -83,11 +102,8 @@ void KCalcButton::drawButtonLabel(QPainter *paint)
     KPushButton::drawButtonLabel(paint);
     return;
   } else {
-    if (_inverse_mode == false  || _inv_label.isNull()) {
+    if (_inverse_mode == false) {
       QSimpleRichText _text(_label, font());
-      _text.draw(paint, width()/2-_text.width()/2, 0, childrenRegion(), colorGroup());
-    } else {
-      QSimpleRichText _text(_inv_label, font());
       _text.draw(paint, width()/2-_text.width()/2, 0, childrenRegion(), colorGroup());
     }
   }
