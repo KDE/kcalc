@@ -1,10 +1,14 @@
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook V3.1-Based Variant V1.0//EN" [
- <!ENTITY kcalc "<application>kcalc</application>">
+  <!ENTITY kappname "&kcalc;" -- replace kapp here. This only *seems* redundant -->
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE" -- change language only here -->
+  <!ENTITY % ents PUBLIC "-//KDE//ENTITIES Documentation V1.0//EN">
+  %ents;
 ]>
 
-<book lang="en">
+<book lang="&language;">
 <bookinfo>
-<title>The KCalc Handbook</title>
+<title>The &kcalc; Handbook</title>
 <authorgroup>
 <author>
 <firstname>Bernd Johannes</firstname>
@@ -12,11 +16,12 @@
 <affiliation><address><email>wuebben@kde.org</email></address></affiliation>
 </author>
 </authorgroup>
-<date>20/09/1997</date>
+
+<date>14/12/2000</date>
 <releaseinfo>0.04.00</releaseinfo>
-<abstract>
-<para>This Handbook describes KCalc Version 0.4</para>
-</abstract>
+
+<abstract><para>This Handbook describes &kcalc; Version 0.4</para></abstract>
+
 <keywordset>
 <keyword>KDE</keyword>
 <keyword>KCalc</keyword>
@@ -27,137 +32,63 @@
 <chapter id="introduction">
 <title>Introduction</title>
 
-<para>This is release 0.4 of KCalc. KCalc is a simple but hopefully useful scientific
+<para>This is release 0.4 of &Kcalc;. &kcalc; is a simple but hopefully useful scientific
 calculator for the KDE project. </para>
 
-<para>KCalc offers many more mathematical functions than meet the eye on a first glance.
+<para>&kcalc; offers many more mathematical functions than meet the eye on a first glance.
 Please study the section on keyboard accelerators and  modes in this handbook to 
 learn more about the many functions available.</para>
 
 <para>In addition to the usual functionality offered by most scientific calculators,
-KCalc offers a number of features, which I think are worthwhile pointing out:</para>
+&kcalc; offers a number of features, which I think are worthwhile pointing out:</para>
 
 <para><itemizedlist>
 <listitem>
-<para>KCalc has a trigonometric and a statistics mode.</para>
+<para>&kcalc; has a trigonometric and a statistics mode.</para>
 </listitem>
 <listitem>
-<para>KCalc allows you to cut and paste numbers
+<para>&kcalc; allows you to cut and paste numbers
 from/into its display.</para>
 </listitem>
 <listitem>
-<para>KCalc features a 'results-stack' which let's
+<para>&kcalc; features a 'results-stack' which let's
 you conveniently recall previous results. </para>
 </listitem>
 <listitem>
 <para>You can
-configure KCalc's display colors and font.</para>
+configure &kcalc;'s display colors and font.</para>
 </listitem>
 <listitem>
-<para>You can configure KCalc's  precision and the number
+<para>You can configure &kcalc;'s  precision and the number
 of digits after the period.</para>
 </listitem>
 <listitem>
-<para> KCalc offers a great number of useful key-bindings, which make using KCalc
+<para> &kcalc; offers a great number of useful key-bindings, which make using &kcalc;
 without using a pointing device easy.</para>
 </listitem>
 </itemizedlist>
 </para>
 
-<para>Have fun with KCalc!</para>
+<para>Have fun with &kcalc;!</para>
 
 <para><literal remap="tt">Bernd Johannes Wuebben</literal></para>
 
 <para><ulink url="mailto:wuebben@math.cornell.edu">wuebben@math.cornell.edu</ulink></para>
 </chapter>
 
-<chapter id="installation">
-<title>Installation</title>
-
-<sect1 id="howtoobtainkcalc">
-<title>How to obtain KCalc</title>
-
-<para>KCalc is part  of the KDE project <ulink url="http://www.kde.org">http://www.kde.org</ulink>.
-KCalc can be found on <ulink url="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</ulink>, the main ftp site
-of the KDE project. It's home site is
-<ulink url="http://math.cornell.edu/~wuebben/kde.html">http://math.cornell.edu/~wuebben/kde.html</ulink></para>
-</sect1>
-
-<sect1 id="requirements">
-<title>Requirements</title>
-
-<para>In order to successfully compile KCalc, you need the latest versions of <literal remap="tt"> libkdecore</literal> and <literal remap="tt"> libkdeui</literal>. All required libraries as well as KCalc itself can be found
-on <ulink url="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</ulink>. </para>
-</sect1>
-
-<sect1 id="compilationandinstallation">
-<title>Compilation and installation</title>
-
-<para>The usual:</para>
-
-<para><screen>% ./configure
-% make
-% make install
-</screen>
-</para>
-
-<para><emphasis remap="bf">IMPORTANT:</emphasis> </para>
-
-<para><emphasis remap="bf">How to enable long double precision for KCalc:</emphasis></para>
-
-<para>If your machine supports the C data type 'long double' and if you
-have a working libc you can enable 'long double' precison for KCalc.</para>
-
-<para>( RedHat 5.0 users are out of luck -- I suggest
-you get yourself a KDE friendly Linux distribution 
-that has a working libc )</para>
-
-<para>Here is what to do:</para>
-
-<para><orderedlist><listitem>
-<para> Check ../config.h and see whether HAVE&lowbar;LONG&lowbar;DOUBLE is defined, ie
-you should be able to locate a line saying:
-
-<screen>#define HAVE_LONG_DOUBLE 1
-</screen>
-
-
-If you can't find such a line your system doesn't support long
-double IEEE precision.
-</para>
-</listitem>
-<listitem>
-<para> Edit the file kcalctype.h configdlg.cpp kcalc.cpp and kcalc&lowbar;core.cpp and 
-remove the lines 
-
-<screen>#ifdef HAVE_LONG_DOUBLE
-#undef HAVE_LONG_DOUBLE
-#endif
-</screen>
-
-</para>
-</listitem>
-<listitem>
-<para> recompile KCalc.
-</para>
-</listitem>
-</orderedlist>
-</para>
-</sect1>
-</chapter>
 
 <chapter id="usage">
 <title>Usage </title>
 
 <para>General usage is straight forward and similar if not identical to the way
-most simple scientific calculators operate. Click on the <emphasis remap="bf">KCalc</emphasis>
+most simple scientific calculators operate. Click on the <emphasis remap="bf">&kcalc;</emphasis>
 button to bring up the configuration dialog.</para>
 
 <sect1 id="resultstack">
 <title>Result Stack</title>
 
 <para>Each time you click the enter button or press the 'equal' or 'Enter' or 'Return'
-keys, the display result is written to KCalc's result stack. You can navigate 
+keys, the display result is written to &kcalc;'s result stack. You can navigate 
 through the result stack by pressing the up and down arrow keys.</para>
 </sect1>
 
@@ -182,11 +113,11 @@ to fix the number of digits which are displayed past the period.</para>
 
 <para><itemizedlist>
 <listitem>
-<para>Pressing the left mouse button on KCalc's display will place the displayed
+<para>Pressing the left mouse button on &kcalc;'s display will place the displayed
 number on to the clip-board.</para>
 </listitem>
 <listitem>
-<para>Pressing the right or middle mouse button on KCalc's display will paste
+<para>Pressing the right or middle mouse button on &kcalc;'s display will paste
 the clip-board content into the display if the content of the clip-board
 is a valid floating point number.</para>
 </listitem>
@@ -272,7 +203,7 @@ by pressing F2 to switch into statistics mode.</para>
 <sect1 id="trigonometricmode">
 <title>Trigonometric Mode</title>
 
-<para>Press F3 to toggle between statistical and trigonometry mode. Alternatively bring up the configuration dialog by pushing the KCALC button or
+<para>Press F3 to toggle between statistical and trigonometry mode. Alternatively bring up the configuration dialog by pushing the &KCALC; button or
 by pressing F2 to switch into trigonometric mode.</para>
 
 <para><variablelist>
@@ -495,7 +426,7 @@ You get Rsh (right shift)  by pressing INV Lsh.</para>
 and which fonts to install in order to get great fonts under X11. I can't
 help you gather great fonts for X11, but I can show you what my FontPath in
 /etc/XF86Config looks like -- this will help you getting better results for xemacs as well as
-kcalc:</para>
+&kcalc;:</para>
 
 <para><screen>Section "Files"
    RgbPath    "/usr/X11R6/lib/X11/rgb"
@@ -532,7 +463,7 @@ EndSection
 <sect1 id="howdoigettwofixeddigitsaftertheperiod">
 <title>How do I get two fixed digits after the period?</title>
 
-<para>Click on the KCalc button, this will bring up the configuration dialog.
+<para>Click on the &kcalc; button, this will bring up the configuration dialog.
 Click on "Set Fixed Precision" and adjust the spin control so that it
 shows a 2.</para>
 </sect1>
@@ -540,11 +471,11 @@ shows a 2.</para>
 <sect1 id="whataboutprecision">
 <title>What about Precision?</title>
 
-<para>The main factor determining the precision of kcalc is whether your libc and libmath
-supports the C data type <literal remap="tt">long double</literal>. If this is the case, kcalc will detect this
+<para>The main factor determining the precision of &kcalc; is whether your libc and libmath
+supports the C data type <literal remap="tt">long double</literal>. If this is the case, &kcalc; will detect this
 at compile time and use it as its fundamental data type to represent numbers.
-Check KCalc's about dialog in order to find out what the fundamental data type
-for your copy of KCalc is.</para>
+Check &kcalc;'s about dialog in order to find out what the fundamental data type
+for your copy of &kcalc; is.</para>
 
 <para>Unless you have a libc and libmath of exceptionally high quality, you will
 be able to observe some "interesting" results when trying
@@ -552,9 +483,9 @@ to execute computations such as: 123.22 - 123.21; 2.01 - 2; 123.88 - 123.87 and
 similar. However if you think this is bad I ask you to do the same computation on 
 the windows calculator.</para>
 
-<para>Adjust the precision on KCalc's configure dialog so that the above computation
+<para>Adjust the precision on &kcalc;'s configure dialog so that the above computation
 go through correctly. I recommend a precision of 14 if the fundamental data
-type for your copy of KCalc is long double, otherwise 8 or 10.</para>
+type for your copy of &kcalc; is long double, otherwise 8 or 10.</para>
 
 <para>Note: Higher precision doesn't necessarily lead to better results. Play with
 the precision and you will see what I mean.</para>
@@ -565,11 +496,11 @@ the precision and you will see what I mean.</para>
 <title>Copyright</title>
 
 <para><screen>
-KCalc Copyright 1996,1997 Bernd Johannes Wuebben 
+&kcalc; Copyright 1996,1997 Bernd Johannes Wuebben 
                           wuebben@math.cornell.edu
 
-KCalc was inspired by Martin Bartlett's xfrmcalc, whose stack 
-engine is still part of KCalc.
+&kcalc; was inspired by Martin Bartlett's xfrmcalc, whose stack 
+engine is still part of &kcalc;.
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -588,6 +519,83 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 </screen>
 </para>
 </chapter>
+
+<appendix id="installation">
+<title>Installation</title>
+
+<sect1 id="howtoobtainkcalc">
+<title>How to obtain &kcalc;</title>
+
+<para>&kcalc; is part  of the KDE project <ulink url="http://www.kde.org">http://www.kde.org</ulink>.
+&kcalc; can be found on <ulink url="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</ulink>, the main ftp site
+of the KDE project. It's home site is
+<ulink url="http://math.cornell.edu/~wuebben/kde.html">http://math.cornell.edu/~wuebben/kde.html</ulink></para>
+</sect1>
+
+<sect1 id="requirements">
+<title>Requirements</title>
+
+<para>In order to successfully compile &kcalc;, you need the latest versions of <literal remap="tt"> libkdecore</literal> and <literal remap="tt"> libkdeui</literal>. All required libraries as well as &kcalc; itself can be found
+on <ulink url="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</ulink>. </para>
+</sect1>
+
+<sect1 id="compilationandinstallation">
+<title>Compilation and installation</title>
+
+<para>The usual:</para>
+
+<para><screen>% ./configure
+% make
+% make install
+</screen>
+</para>
+
+<para><emphasis remap="bf">IMPORTANT:</emphasis> </para>
+
+<para><emphasis remap="bf">How to enable long double precision for &kcalc;:</emphasis></para>
+
+<para>If your machine supports the C data type 'long double' and if you
+have a working libc you can enable 'long double' precison for &kcalc;.</para>
+
+<para>( RedHat 5.0 users are out of luck -- I suggest
+you get yourself a KDE friendly Linux distribution 
+that has a working libc )</para>
+
+<para>Here is what to do:</para>
+
+<para><orderedlist><listitem>
+<para> Check ../config.h and see whether HAVE&lowbar;LONG&lowbar;DOUBLE is defined, ie
+you should be able to locate a line saying:
+
+<screen>#define HAVE_LONG_DOUBLE 1
+</screen>
+
+
+If you can't find such a line your system doesn't support long
+double IEEE precision.
+</para>
+</listitem>
+<listitem>
+<para> Edit the file &kcalc;type.h configdlg.cpp &kcalc;.cpp and &kcalc;&lowbar;core.cpp and 
+remove the lines 
+
+<screen>#ifdef HAVE_LONG_DOUBLE
+#undef HAVE_LONG_DOUBLE
+#endif
+</screen>
+
+</para>
+</listitem>
+<listitem>
+<para> recompile &kcalc;.
+</para>
+</listitem>
+</orderedlist>
+</para>
+</sect1>
+</appendix>
+
+
 </book>
 <!--
 Local Variables:
