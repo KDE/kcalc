@@ -70,7 +70,10 @@ public:
 private:
 	virtual bool eventFilter( QObject *o, QEvent *e );
 	void updateGeometry();
-
+	void setupMainActions(void);
+	void setupLogExpActions(void);
+	void setupTrigActions(void);
+	void setupStatActions(void);
 	void keyPressEvent( QKeyEvent *e );
 	void set_precision();
 	void set_style();
@@ -196,9 +199,10 @@ private:
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
     QButtonGroup*       NumButtonGroup;
 
-    KToggleAction *actionStatshow;
-    KToggleAction *actionTrigshow;
+    KToggleToolBarAction *actionStatshow;
+    KToggleToolBarAction *actionTrigshow;
     KToggleAction *actionLogicshow;
+    KToggleToolBarAction *actionExpLogshow;
 
     QPtrList<QPushButton> mFunctionButtonList;
     QPtrList<QPushButton> mStatButtonList;

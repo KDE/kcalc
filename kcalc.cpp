@@ -100,40 +100,11 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	statusBar()->insertFixedItem(" NORM ", 0, true);
 	statusBar()->setItemAlignment(0, AlignCenter);
 
+	setupMainActions();
 
-	// file menu
-	KStdAction::quit(this, SLOT(close()), actionCollection());
-
-	// edit menu
-	KStdAction::cut(calc_display, SLOT(slotCut()), actionCollection());
-	KStdAction::copy(calc_display, SLOT(slotCopy()), actionCollection());
-	KStdAction::paste(calc_display, SLOT(slotPaste()), actionCollection());
-	
-	// settings menu
-	KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
-
-	actionStatshow =  new KToggleAction(i18n("&Statistic Buttons"), 0,
-					actionCollection(), "show_stat");
-	connect(actionStatshow, SIGNAL(toggled(bool)), this,
-		SLOT(slotStatshow(bool)));
-	
-	actionTrigshow = new KToggleAction(i18n("&Trigonometric Buttons"), 0,
-					   actionCollection(), "show_trig");
-	connect(actionTrigshow, SIGNAL(toggled(bool)),
-		this, SLOT(slotTrigshow(bool)));
-
-	actionLogicshow = new KToggleAction(i18n("&Logic Buttons"), 0,
-					    actionCollection(), "show_logic");
-	connect(actionLogicshow, SIGNAL(toggled(bool)),
-		this, SLOT(slotLogicshow(bool)));
-
-
-	(void) new KAction(i18n("&Show All"), 0, this, SLOT(slotShowAll()),
-			   actionCollection(), "show_all");
-
-	(void) new KAction(i18n("&Hide All"), 0, this, SLOT(slotHideAll()),
-			   actionCollection(), "hide_all");
-
+	setupLogExpActions();
+	setupTrigActions();
+	setupStatActions();
 
 	createGUI();
 
@@ -195,93 +166,31 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	mSmallPage = new QWidget(central);
 	mLargePage = new QWidget(central);
 
-	pbHyp = new QPushButton("Hyp", mSmallPage, "Hyp-Button");
-	QToolTip::add(pbHyp, i18n("Hyperbolic mode"));
-	pbHyp->setAutoDefault(false);
-	connect(pbHyp, SIGNAL(toggled(bool)), SLOT(slotHyptoggled(bool)));
-	pbHyp->setToggleButton(true);
-
-	pbStatNum = new QPushButton("N", mSmallPage, "Stat.NumData-Button");
-	QToolTip::add(pbStatNum, i18n("Number of data entered"));
- 	pbStatNum->setAutoDefault(false);
-	connect(pbStatNum, SIGNAL(clicked(void)), SLOT(slotStatNumclicked(void)));
-
 	pbPi = new QPushButton(QString::fromUtf8("π", -1), // Pi in utf8
 			       mSmallPage, "Pi-Button");
 	QToolTip::add(pbPi, i18n("Pi=3.1415..."));
 	pbPi->setAutoDefault(false);
 	connect(pbPi, SIGNAL(clicked(void)), SLOT(slotPiclicked(void)));
 
-	pbSin = new QPushButton("Sin ", mSmallPage, "Sin-Button");
-	QToolTip::add(pbSin, i18n("Sine"));
-	pbSin->setAutoDefault(false);
-	connect(pbSin, SIGNAL(clicked(void)), SLOT(slotSinclicked(void)));
-
-	pbStatMean = new QPushButton("Mea", mSmallPage, "Stat.Mean-Button");
-	QToolTip::add(pbStatMean, i18n("Mean"));
-	pbStatMean->setAutoDefault(false);
-	connect(pbStatMean, SIGNAL(clicked(void)), SLOT(slotStatMeanclicked(void)));
-
 	pbPlusMinus = new QPushButton("+/-", mSmallPage, "Sign-Button");
 	QToolTip::add(pbPlusMinus, i18n("Change sign"));
 	pbPlusMinus->setAutoDefault(false);
 	connect(pbPlusMinus, SIGNAL(clicked(void)), SLOT(slotPlusMinusclicked(void)));
-
-	pbCos = new QPushButton("Cos ", mSmallPage, "Cos-Button");
-	QToolTip::add(pbCos, i18n("Cosine"));
-	pbCos->setAutoDefault(false);
-	connect(pbCos, SIGNAL(clicked(void)), SLOT(slotCosclicked(void)));
-
-	pbStatStdDev = new QPushButton("Std", mSmallPage,
-				       "Stat.StandardDeviation-Button");
-	QToolTip::add(pbStatStdDev, i18n("Standard deviation"));
-	pbStatStdDev->setAutoDefault(false);
-	connect(pbStatStdDev, SIGNAL(clicked(void)), SLOT(slotStatStdDevclicked(void)));
 
 	pbReci = new QPushButton("1/x", mSmallPage, "Reciprocal-Button");
 	QToolTip::add(pbReci, i18n("Reciprocal"));
 	pbReci->setAutoDefault(false);
 	connect(pbReci, SIGNAL(clicked(void)), SLOT(slotReciclicked(void)));
 
-	pbTan = new QPushButton("Tan ", mSmallPage, "Tan-Button");
-	QToolTip::add(pbTan, i18n("Tangent"));
-	pbTan->setAutoDefault(false);
-	connect(pbTan, SIGNAL(clicked(void)),SLOT(slotTanclicked(void)));
-
-	pbStatMedian = new QPushButton("Med", mSmallPage, "Stat.Median-Button");
-	QToolTip::add(pbStatMedian, i18n("Median"));
-	pbStatMedian->setAutoDefault(false);
-	connect(pbStatMedian, SIGNAL(clicked(void)),SLOT(slotStatMedianclicked(void)));
-
 	pbFactorial = new QPushButton("x!", mSmallPage, "Factorial-Button");
 	QToolTip::add(pbFactorial, i18n("Factorial"));
 	pbFactorial->setAutoDefault(false);
 	connect(pbFactorial, SIGNAL(clicked(void)),SLOT(slotFactorialclicked(void)));
 
-	pbLog = new QPushButton("Log", mSmallPage, "Log-Button");
-	QToolTip::add(pbLog, i18n("Logarithm to base 10"));
-	pbLog->setAutoDefault(false);
-	connect(pbLog, SIGNAL(clicked(void)), SLOT(slotLogclicked(void)));
-
-	pbStatDataInput = new QPushButton("Dat", mSmallPage, "Stat.DataInput-Button");
-	QToolTip::add(pbStatDataInput, i18n("Enter data"));
-	pbStatDataInput->setAutoDefault(false);
-	connect(pbStatDataInput, SIGNAL(clicked(void)), SLOT(slotStatDataInputclicked(void)));
-
 	pbSquare = new QPushButton("x^2", mSmallPage, "Square-Button");
 	QToolTip::add(pbSquare, i18n("Square"));
 	pbSquare->setAutoDefault(false);
 	connect(pbSquare, SIGNAL(clicked(void)), SLOT(slotSquareclicked(void)));
-
-	pbLn = new QPushButton("Ln", mSmallPage, "Ln-Button");
-	QToolTip::add(pbLn, i18n("Natural log"));
-	pbLn->setAutoDefault(false);
-	connect(pbLn, SIGNAL(clicked(void)), SLOT(slotLnclicked(void)));
-
-	pbStatClearData = new QPushButton("CSt", mSmallPage, "Stat.ClearData-Button");
-	QToolTip::add(pbStatClearData, i18n("Clear data store"));
-	pbStatClearData->setAutoDefault(false);
-	connect(pbStatClearData, SIGNAL(clicked(void)), SLOT(slotStatClearDataclicked(void)));
 
 	pbPower = new QPushButton("x^y", mSmallPage, "Power-Button");
 	pbPower->setAutoDefault(false);
@@ -497,7 +406,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// to "activate()" the layout at the end.
 	//
 	//
-	QGridLayout *smallBtnLayout = new QGridLayout(mSmallPage, 6, 4, 0,
+	QGridLayout *smallBtnLayout = new QGridLayout(mSmallPage, 6, 2, 0,
 		mInternalSpacing);
 	QGridLayout *largeBtnLayout = new QGridLayout(mLargePage, 5, 6, 0,
 		mInternalSpacing);
@@ -520,35 +429,23 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	btnLayout->addWidget(mLargePage,0,AlignTop);
 
 	// small button layout
-	smallBtnLayout->addWidget(pbStatNum, 0, 0);
-	smallBtnLayout->addWidget(pbHyp, 0, 1);
-	smallBtnLayout->addWidget(pbPi, 0, 2);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xA), 0, 3);
+	smallBtnLayout->addWidget(pbPi, 0, 0);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xA), 0, 1);
 
-	smallBtnLayout->addWidget(pbStatMean, 1, 0);
-	smallBtnLayout->addWidget(pbSin, 1, 1);
-	smallBtnLayout->addWidget(pbPlusMinus, 1, 2);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xB), 1, 3);
+	smallBtnLayout->addWidget(pbPlusMinus, 1, 0);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xB), 1, 1);
 
-	smallBtnLayout->addWidget(pbStatStdDev, 2, 0);
-	smallBtnLayout->addWidget(pbCos, 2, 1);
-	smallBtnLayout->addWidget(pbReci, 2, 2);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xC), 2, 3);
+	smallBtnLayout->addWidget(pbReci, 2, 0);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xC), 2, 1);
 
-	smallBtnLayout->addWidget(pbStatMedian, 3, 0);
-	smallBtnLayout->addWidget(pbTan, 3, 1);
-	smallBtnLayout->addWidget(pbFactorial, 3, 2);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xD), 3, 3);
+	smallBtnLayout->addWidget(pbFactorial, 3, 0);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xD), 3, 1);
 
-	smallBtnLayout->addWidget(pbStatDataInput, 4, 0);
-	smallBtnLayout->addWidget(pbLog, 4, 1);
-	smallBtnLayout->addWidget(pbSquare, 4, 2);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xE), 4, 3);
+	smallBtnLayout->addWidget(pbSquare, 4, 0);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xE), 4, 1);
 
-	smallBtnLayout->addWidget(pbStatClearData, 5, 0);
-	smallBtnLayout->addWidget(pbLn, 5, 1);
-	smallBtnLayout->addWidget(pbPower, 5, 2);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xF), 5, 3);
+	smallBtnLayout->addWidget(pbPower, 5, 0);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xF), 5, 1);
 
 	smallBtnLayout->setRowStretch(0, 0);
 	smallBtnLayout->setRowStretch(1, 0);
@@ -675,7 +572,189 @@ KCalculator::~KCalculator()
 	delete calc_display;
 }
 
-void KCalculator::updateGeometry()
+void KCalculator::setupMainActions(void)
+{
+	// file menu
+	KStdAction::quit(this, SLOT(close()), actionCollection());
+
+	// edit menu
+	KStdAction::cut(calc_display, SLOT(slotCut()), actionCollection());
+	KStdAction::copy(calc_display, SLOT(slotCopy()), actionCollection());
+	KStdAction::paste(calc_display, SLOT(slotPaste()), actionCollection());
+	
+	// settings menu
+	actionStatshow =  new KToggleToolBarAction("StatToolBar",
+						   i18n("&Statistic Buttons"),
+						   actionCollection(), "show_stat");
+	//connect(actionStatshow, SIGNAL(toggled(bool)), this,
+	//	SLOT(slotStatshow(bool)));
+
+	actionExpLogshow = new KToggleToolBarAction("ExpLogToolBar",
+						    i18n("&Exp/Log-Buttons"),
+						    actionCollection(),
+						    "show_explog");
+	//connect(actionTrigshow, SIGNAL(toggled(bool)),
+	//	this, SLOT(slotTrigshow(bool)));
+	
+	actionTrigshow = new KToggleToolBarAction("TrigToolBar",
+						  i18n("&Trigonometric Buttons"),
+						  actionCollection(),
+						  "show_trig");
+	connect(actionTrigshow, SIGNAL(toggled(bool)),
+		this, SLOT(slotTrigshow(bool)));
+
+	actionLogicshow = new KToggleAction(i18n("&Logic Buttons"), 0,
+					    actionCollection(), "show_logic");
+	connect(actionLogicshow, SIGNAL(toggled(bool)),
+		this, SLOT(slotLogicshow(bool)));
+
+
+	(void) new KAction(i18n("&Show All"), 0, this, SLOT(slotShowAll()),
+			   actionCollection(), "show_all");
+
+	(void) new KAction(i18n("&Hide All"), 0, this, SLOT(slotHideAll()),
+			   actionCollection(), "hide_all");
+
+	KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
+}
+
+void KCalculator::setupLogExpActions(void)
+{
+	// Log-Button
+	pbLog = new QPushButton("Log", mSmallPage, "Log-Button");
+	QToolTip::add(pbLog, i18n("Logarithm to base 10"));
+	pbLog->setAutoDefault(false);
+	connect(pbLog, SIGNAL(clicked(void)), SLOT(slotLogclicked(void)));
+
+	(void) new KWidgetAction(pbLog, "Log", Key_L, pbLog,
+				 SLOT(animateClick(void)),
+				 actionCollection(), "log_action");
+
+	// Ln-Button
+	pbLn = new QPushButton("Ln", mSmallPage, "Ln-Button");
+	QToolTip::add(pbLn, i18n("Natural log"));
+	pbLn->setAutoDefault(false);
+	connect(pbLn, SIGNAL(clicked(void)), SLOT(slotLnclicked(void)));
+
+	(void) new KWidgetAction(pbLn, "Ln", Key_N, pbLn,
+				 SLOT(animateClick(void)),
+				 actionCollection(), "ln_action");
+}
+
+
+void KCalculator::setupTrigActions(void)
+{
+	// Switch-Hyp-Button
+	pbHyp = new QPushButton("Hyp", mSmallPage, "Hyp-Button");
+	QToolTip::add(pbHyp, i18n("Hyperbolic mode"));
+	pbHyp->setAutoDefault(false);
+	connect(pbHyp, SIGNAL(toggled(bool)), SLOT(slotHyptoggled(bool)));
+	pbHyp->setToggleButton(true);
+
+	(void) new KWidgetAction(pbHyp, "Hyp", Key_H, pbHyp,
+				 SLOT(toggle(void)),
+				 actionCollection(), "hyp_action");
+
+	// Sin-Button
+	pbSin = new QPushButton("Sin ", mSmallPage, "Sin-Button");
+	QToolTip::add(pbSin, i18n("Sine"));
+	pbSin->setAutoDefault(false);
+	connect(pbSin, SIGNAL(clicked(void)), SLOT(slotSinclicked(void)));
+
+	(void) new KWidgetAction(pbSin, "Sin", Key_S, pbSin,
+				 SLOT(animateClick(void)),
+				 actionCollection(), "sin_action");
+
+	// Cos-Button
+	pbCos = new QPushButton("Cos ", mSmallPage, "Cos-Button");
+	QToolTip::add(pbCos, i18n("Cosine"));
+	pbCos->setAutoDefault(false);
+	connect(pbCos, SIGNAL(clicked(void)), SLOT(slotCosclicked(void)));
+
+	(void) new KWidgetAction(pbCos, "Cos", Key_C, pbCos,
+				 SLOT(animateClick(void)),
+				 actionCollection(), "cos_action");
+	// Tan-Button
+	pbTan = new QPushButton("Tan ", mSmallPage, "Tan-Button");
+	QToolTip::add(pbTan, i18n("Tangent"));
+	pbTan->setAutoDefault(false);
+	connect(pbTan, SIGNAL(clicked(void)),SLOT(slotTanclicked(void)));
+
+	(void) new KWidgetAction(pbTan, "Tan", Key_T, pbTan,
+				 SLOT(animateClick(void)),
+				 actionCollection(), "tan_action");
+}
+
+void KCalculator::setupStatActions(void)
+{
+	// Number of StatEntries-Button
+	pbStatNum = new QPushButton("N", mSmallPage, "Stat.NumData-Button");
+	QToolTip::add(pbStatNum, i18n("Number of data entered"));
+ 	pbStatNum->setAutoDefault(false);
+	connect(pbStatNum, SIGNAL(clicked(void)), SLOT(slotStatNumclicked(void)));
+
+	(void) new KWidgetAction(pbStatNum, "StatNum", Key_H, pbStatNum,
+				 SLOT(animateClick(void)),
+				 actionCollection(), "stat_num_action");
+
+	// StatMean-Button
+	pbStatMean = new QPushButton("Mea", mSmallPage, "Stat.Mean-Button");
+	QToolTip::add(pbStatMean, i18n("Mean"));
+	pbStatMean->setAutoDefault(false);
+	connect(pbStatMean, SIGNAL(clicked(void)), SLOT(slotStatMeanclicked(void)));
+
+	(void) new KWidgetAction(pbStatMean, "StatMean", Key_H, pbStatMean,
+				 SLOT(animateClick(void)),
+				 actionCollection(), "stat_mean_action");
+
+	// StatStandardDeviation-Button
+	pbStatStdDev = new QPushButton("Std", mSmallPage,
+				       "Stat.StandardDeviation-Button");
+	QToolTip::add(pbStatStdDev, i18n("Standard deviation"));
+	pbStatStdDev->setAutoDefault(false);
+	connect(pbStatStdDev, SIGNAL(clicked(void)), SLOT(slotStatStdDevclicked(void)));
+
+	(void) new KWidgetAction(pbStatStdDev, "StatDeviation", Key_H,
+				 pbStatStdDev,
+				 SLOT(animateClick(void)),
+				 actionCollection(), "stat_deviation_action");
+
+	// StatDataInput-Button
+	pbStatDataInput = new QPushButton("Dat", mSmallPage, "Stat.DataInput-Button");
+	QToolTip::add(pbStatDataInput, i18n("Enter data"));
+	pbStatDataInput->setAutoDefault(false);
+	connect(pbStatDataInput, SIGNAL(clicked(void)), SLOT(slotStatDataInputclicked(void)));
+
+	(void) new KWidgetAction(pbStatDataInput, "StatInput", Key_H,
+				 pbStatDataInput,
+				 SLOT(animateClick(void)),
+				 actionCollection(), "stat_input_action");
+
+	// StatMedian-Button
+	pbStatMedian = new QPushButton("Med", mSmallPage, "Stat.Median-Button");
+	QToolTip::add(pbStatMedian, i18n("Median"));
+	pbStatMedian->setAutoDefault(false);
+	connect(pbStatMedian, SIGNAL(clicked(void)),SLOT(slotStatMedianclicked(void)));
+
+	(void) new KWidgetAction(pbStatMedian, "StatMedian", Key_H,
+				 pbStatMedian,
+				 SLOT(animateClick(void)),
+				 actionCollection(), "stat_median_action");
+
+	// StatClearData-Button
+	pbStatClearData = new QPushButton("CSt", mSmallPage, "Stat.ClearData-Button");
+	QToolTip::add(pbStatClearData, i18n("Clear data store"));
+	pbStatClearData->setAutoDefault(false);
+	connect(pbStatClearData, SIGNAL(clicked(void)), SLOT(slotStatClearDataclicked(void)));
+
+	(void) new KWidgetAction(pbStatClearData, "StatClear", Key_H,
+				 pbStatClearData,
+				 SLOT(animateClick(void)),
+				 actionCollection(), "stat_clear_action");
+}
+
+
+void KCalculator::updateGeometry(void)
 {
     QObjectList *l;
     QSize s;
@@ -761,9 +840,6 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 	case Key_Prior:
 		pbClear->animateClick();
 		break;
-	case Key_H:
-		pbHyp->toggle();
-		break;
 	case Key_I:
 		pbInv->toggle();
 		break;
@@ -778,9 +854,6 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 		break;
 	case Key_Delete:
 		pbAC->animateClick();
-		break;
-	case Key_S:
-		pbSin->animateClick();
 		break;
 	case Key_Backslash:
 		pbPlusMinus->animateClick();
@@ -801,7 +874,6 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 	  //if (current_base == NB_HEX)
 	  //		(NumButtonGroup->find(0xC))->animateClick();
 			//else
-			pbCos->animateClick();
 		break;
 	case Key_Asterisk:
         case Key_multiply:
@@ -813,9 +885,6 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 		break;
 	case Key_O:
 		pbOR->animateClick();
-		break;
-	case Key_T:
-		pbTan->animateClick();
 		break;
 	case Key_Exclam:
 		pbFactorial->animateClick();
@@ -834,12 +903,6 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 		break;
 	case Key_Less:
 		pbShift->animateClick();
-		break;
-	case Key_N:
-		pbLn->animateClick();
-		break;
-	case Key_L:
-		pbLog->animateClick();
 		break;
 	case Key_AsciiCircum:
 		pbPower->animateClick();
@@ -1404,22 +1467,22 @@ void KCalculator::slotTrigshow(bool toggled)
 {
 	if(toggled)
 	{
-	        pbHyp->show();
-		pbSin->show();
-		pbCos->show();
-		pbTan->show();
-		pbLog->show();
-		pbLn->show();
+		//pbHyp->show();
+		//pbSin->show();
+		//pbCos->show();
+		//pbTan->show();
+		//pbLog->show();
+		//pbLn->show();
 		angle_group->show();
 	}
 	else
 	{
-	        pbHyp->hide();
-		pbSin->hide();
-		pbCos->hide();
-		pbTan->hide();
-		pbLog->hide();
-		pbLn ->hide();
+		//pbHyp->hide();
+		//pbSin->hide();
+		//pbCos->hide();
+		//pbTan->hide();
+		//pbLog->hide();
+		//pbLn ->hide();
 		angle_group->hide();
 	}
 }
@@ -1452,16 +1515,18 @@ void KCalculator::slotLogicshow(bool toggled)
 
 void KCalculator::slotShowAll(void)
 {
-	if(!actionStatshow->isChecked()) actionStatshow->activate();
-	if(!actionTrigshow->isChecked()) actionTrigshow->activate();
 	if(!actionLogicshow->isChecked()) actionLogicshow->activate();
+	actionStatshow->setChecked(true);
+	actionTrigshow->setChecked(true);
+	actionExpLogshow->setChecked(true);
 }
 
 void KCalculator::slotHideAll(void)
 {
-	if(actionStatshow->isChecked()) actionStatshow->activate();
-	if(actionTrigshow->isChecked()) actionTrigshow->activate();
 	if(actionLogicshow->isChecked()) actionLogicshow->activate();
+	actionStatshow->setChecked(false);
+	actionTrigshow->setChecked(false);
+	actionExpLogshow->setChecked(false);
 }
 
 void KCalculator::RefreshCalculator()

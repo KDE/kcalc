@@ -1,3 +1,7 @@
+2003-09-26 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Moved all type of buttons to menubars, which can be hidden/showed
+	  via the menubar. This is quite experimental and full of bugs.
+	
 2003-09-11 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Button groups can be switch on/off via actions.
 	  This is not yet the final GUI-Layout (yes, it looks broken).
