@@ -1726,7 +1726,7 @@ int QtCalculator::cvb(char *out_str, KCALC_LONG amount, int max_digits)
 	char *strPtr	= out_str;
 	bool hitOne		= false;
 	unsigned KCALC_LONG bit_mask =
-		((unsigned KCALC_LONG) 1 << ((sizeof(amount) * CHAR_BIT) - 1));
+		((unsigned KCALC_LONG) 1 << (BIN_SIZE - 1));
 	unsigned KCALC_LONG bit_mask_mask = bit_mask - 1;
 	unsigned int count = 0 ;
 
