@@ -47,7 +47,7 @@
 
 #ifndef HAVE_FUNC_ISINF
 int isinf(double x) {
-  return (log(abs(x) + 1) > 240);
+  return (log(fabs(x) + 1) > 240);
 }
 #endif
 
