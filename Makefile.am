@@ -17,9 +17,6 @@ kcalc_SOURCES = dummy.cpp
 kcalc_LDADD = kcalc.la
 kcalc_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
-pics_DATA = 
-picsdir = $(kde_datadir)/kcalc/pics
-
 KDE_ICON = kcalc
 
 xdg_apps_DATA = kcalc.desktop
