@@ -32,6 +32,14 @@
 #include "configdlg.h"
 #include "configdlg.moc"
 
+// Undefine HAVE_LONG_DOUBLE for Beta 4 since RedHat 5.0 comes with a borken
+// glibc
+
+#ifdef HAVE_LONG_DOUBLE
+#undef HAVE_LONG_DOUBLE
+#endif
+
+
 ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
 		     KApplication *_mykapp, DefStruct *defstruct)
   : QDialog(parent, name)
