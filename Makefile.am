@@ -3,8 +3,9 @@ bin_PROGRAMS = kcalc
 lib_LTLIBRARIES = kcalc.la
 
 kcalc_la_SOURCES = kcalc.cpp kcalc_core.cpp dlabel.cpp stats.cpp \
-	optiondialog.cpp
-METASOURCES = kcalc.moc dlabel.moc optiondialog.moc
+	           optiondialog.cpp
+
+METASOURCES = AUTO
 
 noinst_HEADERS  = kcalc.h dlabel.h stats.h kcalctype.h
 
