@@ -63,14 +63,14 @@ void KCalcButton::slotSetAccelDisplayMode(bool flag)
 
 void KCalcButton::setText(const QString &label)
 {
-  _label = "<qt type=\"page\"><center>     " + label + "     </center></qt>";
+  _label = "<qt type=\"page\"><center>" + label + "</center></qt>";
   KPushButton::setText(_label);
   update();
 }
 
 void KCalcButton::setInvText(const QString &label)
 {
-  _inv_label = "<qt type=\"page\"><center>     " + label + "     </center></qt>";
+  _inv_label = "<qt type=\"page\"><center>" + label + "</center></qt>";
   KPushButton::setText(_label);
   update();
 }
@@ -85,10 +85,10 @@ void KCalcButton::drawButtonLabel(QPainter *paint)
   } else {
     if (_inverse_mode == false  || _inv_label.isNull()) {
       QSimpleRichText _text(_label, font());
-      _text.draw(paint, 0, 0, childrenRegion(), colorGroup());
+      _text.draw(paint, width()/2-_text.width()/2, 0, childrenRegion(), colorGroup());
     } else {
       QSimpleRichText _text(_inv_label, font());
-      _text.draw(paint, 0, 0, childrenRegion(), colorGroup());
+      _text.draw(paint, width()/2-_text.width()/2, 0, childrenRegion(), colorGroup());
     }
   }
 }
