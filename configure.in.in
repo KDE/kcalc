@@ -44,9 +44,13 @@ exit(result); }
 ])
 KDE_C_LONG_DOUBLE
 
-AC_CHECK_FUNC(m, asinl,
-  AC_DEFINE(HAVE_L_FUNCS,1,[Define if you have *l math functions (absl, ...)]),
-)
+have_l_funcs=yes
+AC_CHECK_LIB(m, asinl,,have_l_funcs=no)
+AC_CHECK_LIB(m, sqrtl,,have_l_funcs=no)
+
+if test "xyes" = "x$have_l_funcs" ; then
+  AC_DEFINE(HAVE_L_FUNCS,1,[Define if you have *l math functions (absl, ...)])
+fi
 
 AC_LANG_C
 AC_CHECK_LIB(m, isinf, [
