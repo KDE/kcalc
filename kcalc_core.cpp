@@ -358,6 +358,8 @@ void QtCalculator::RefreshCalculator()
 void QtCalculator::EnterDigit(int data)
 {
 	if(eestate) {
+		if (strlen(display_str) >= DSP_SIZE)
+			return;
 		QString string;
 		string.setNum(data);
 		strcat(display_str, string.latin1());
@@ -460,16 +462,16 @@ void QtCalculator::EnterDecimal()
 
 	if(last_input == DIGIT)
 	{
-      if (decimal_point==0)  //strpbrk() doesn't work in fixed precision mode
+		if (decimal_point==0)  //strpbrk() doesn't work in fixed precision mode
 		{
 			// if the last input was a DIGIT and we don't
 			// have already a period in our
 			// display string then display a period
 			if (strlen(display_str) >= DSP_SIZE)
-			   return;
+				return;
 
-         if (!kcalcdefaults.fixed)
-            calc_display->setText(strcat(display_str, "."));
+			if (!kcalcdefaults.fixed)
+				calc_display->setText(strcat(display_str, "."));
 			decimal_point = 1;
 		}
 	}
@@ -478,7 +480,7 @@ void QtCalculator::EnterDecimal()
 		// the last input wasn't a DIGIT so we are about to
 		// input a new number in particular we need to display a "0.".
 
-      if (decimal_point==0)  //strpbrk() doesn't work in fixed precision mode
+		if (decimal_point==0)  //strpbrk() doesn't work in fixed precision mode
 		{
 
 			DISPLAY_AMOUNT = 0L;
@@ -488,8 +490,8 @@ void QtCalculator::EnterDecimal()
 			//	  decimal_point = 1;
 			//	  input_count = 1;
 
-         if (!kcalcdefaults.fixed)
-            strcpy(display_str, "0.");
+			if (!kcalcdefaults.fixed)
+				strcpy(display_str, "0.");
 			calc_display->setText(display_str);
 		}
 	}
