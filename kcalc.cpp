@@ -484,47 +484,47 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	connect(NumButtonGroup, SIGNAL(clicked(int)),
 		SLOT(slotNumberclicked(int)));
 
-	tmp_pb = new KCalcButton("0", thisPage, "0-Button");
+	tmp_pb = new KCalcButton("<big>0</big>", thisPage, "0-Button");
 	tmp_pb->setAccel(Key_0);
         NumButtonGroup->insert(tmp_pb, 0);
 
-	tmp_pb = new KCalcButton("1", thisPage, "1-Button");
+	tmp_pb = new KCalcButton("<big>1</big>", thisPage, "1-Button");
 	tmp_pb->setAccel(Key_1);
         NumButtonGroup->insert(tmp_pb, 1);
 
-	tmp_pb = new KCalcButton("2", thisPage, "2-Button");
+	tmp_pb = new KCalcButton("<big>2</big>", thisPage, "2-Button");
 	tmp_pb->setAccel(Key_2);
         NumButtonGroup->insert(tmp_pb, 2);
 
-	tmp_pb = new KCalcButton("3", thisPage, "3-Button");
+	tmp_pb = new KCalcButton("<big>3</big>", thisPage, "3-Button");
 	tmp_pb->setAccel(Key_3);
         NumButtonGroup->insert(tmp_pb, 3);
 
-	tmp_pb = new KCalcButton("4", thisPage, "4-Button");
+	tmp_pb = new KCalcButton("<big>4</big>", thisPage, "4-Button");
 	tmp_pb->setAccel(Key_4);
         NumButtonGroup->insert(tmp_pb, 4);
 
-	tmp_pb = new KCalcButton("5", thisPage, "5-Button");
+	tmp_pb = new KCalcButton("<big>5</big>", thisPage, "5-Button");
 	tmp_pb->setAccel(Key_5);
         NumButtonGroup->insert(tmp_pb, 5);
 
-	tmp_pb = new KCalcButton("6", thisPage, "6-Button");
+	tmp_pb = new KCalcButton("<big>6</big>", thisPage, "6-Button");
 	tmp_pb->setAccel(Key_6);
         NumButtonGroup->insert(tmp_pb, 6);
 
-	tmp_pb = new KCalcButton("7", thisPage, "7-Button");
+	tmp_pb = new KCalcButton("<big>7</big>", thisPage, "7-Button");
 	tmp_pb->setAccel(Key_7);
         NumButtonGroup->insert(tmp_pb, 7);
 
-	tmp_pb = new KCalcButton("8", thisPage, "8-Button");
+	tmp_pb = new KCalcButton("<big>8</big>", thisPage, "8-Button");
 	tmp_pb->setAccel(Key_8);
         NumButtonGroup->insert(tmp_pb, 8);
 
-	tmp_pb = new KCalcButton("9", thisPage, "9-Button");
+	tmp_pb = new KCalcButton("<big>9</big>", thisPage, "9-Button");
 	tmp_pb->setAccel(Key_9);
         NumButtonGroup->insert(tmp_pb, 9);
 
-	pbEE = new KCalcButton("EE", thisPage, "EE-Button");
+	pbEE = new KCalcButton("x<small>·10</small><sup> y </sup>", thisPage, "EE-Button");
 	QToolTip::add(pbEE, i18n("Exponent"));
 	pbEE->setAccel(Key_E);
 	connect(pbEE, SIGNAL(clicked(void)), SLOT(slotEEclicked(void)));
@@ -533,7 +533,7 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	pbParenClose->setAccel(Key_ParenRight);
 	connect(pbParenClose,SIGNAL(clicked(void)),SLOT(slotParenCloseclicked(void)));
 
-	pbX = new KCalcButton("X", thisPage, "Multiply-Button");
+	pbX = new KCalcButton("<big>X</big>", thisPage, "Multiply-Button");
 	QToolTip::add(pbX, i18n("Multiplication"));
 	accel()->insert("Pressed '*'", i18n("Pressed Multiplication-Button"),
 			0, Key_Asterisk, pbX, SLOT(animateClick()));
@@ -541,22 +541,22 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 			0, Key_multiply, pbX, SLOT(animateClick()));
 	connect(pbX, SIGNAL(clicked(void)), SLOT(slotXclicked(void)));
 
-	pbDivision = new KCalcButton("/", thisPage, "Division-Button");
+	pbDivision = new KCalcButton("<big>/</big>", thisPage, "Division-Button");
 	QToolTip::add(pbDivision, i18n("Division"));
 	pbDivision->setAccel(Key_Slash);
 	connect(pbDivision, SIGNAL(clicked(void)), SLOT(slotDivisionclicked(void)));
 
-	pbPlus = new KCalcButton("+", thisPage, "Plus-Button");
+	pbPlus = new KCalcButton("<big>+</big>", thisPage, "Plus-Button");
 	QToolTip::add(pbPlus, i18n("Addition"));
 	pbPlus->setAccel(Key_Plus);
 	connect(pbPlus, SIGNAL(clicked(void)), SLOT(slotPlusclicked(void)));
 
-	pbMinus = new KCalcButton("-", thisPage, "Minus-Button");
+	pbMinus = new KCalcButton("<big>-</big>", thisPage, "Minus-Button");
 	QToolTip::add(pbMinus, i18n("Subtraction"));
 	pbMinus->setAccel(Key_Minus);
 	connect(pbMinus, SIGNAL(clicked(void)), SLOT(slotMinusclicked(void)));
 
-	pbPeriod = new KCalcButton(KGlobal::locale()->decimalSymbol(), thisPage, "Period-Button");
+	pbPeriod = new KCalcButton("<big>" + KGlobal::locale()->decimalSymbol() + "</big>", thisPage, "Period-Button");
 	QToolTip::add(pbPeriod, i18n("Decimal point"));
 	accel()->insert("Decimal Point (Period)", i18n("Pressed Decimal Point"),
 			0, Key_Period, pbPeriod, SLOT(animateClick()));
@@ -564,7 +564,7 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 			0, Key_Comma, pbPeriod, SLOT(animateClick()));
 	connect(pbPeriod, SIGNAL(clicked(void)), SLOT(slotPeriodclicked(void)));
 
-	pbEqual = new KCalcButton("=", thisPage, "Equal-Button");
+	pbEqual = new KCalcButton("<big>=</big>", thisPage, "Equal-Button");
 	QToolTip::add(pbEqual, i18n("Result"));
 	accel()->insert("Entered Equal", i18n("Pressed Equal-Button"),
 			0, Key_Equal, pbEqual, SLOT(animateClick()));
