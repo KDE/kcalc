@@ -1833,6 +1833,7 @@ void QtCalculator::set_colors()
 {
   QPalette pal = calc_display->palette();
   pal.setColor( QColorGroup::Text, kcalcdefaults.forecolor );
+  pal.setColor( QColorGroup::Foreground, kcalcdefaults.forecolor );
   pal.setColor( QColorGroup::Background, kcalcdefaults.backcolor );
   calc_display->setPalette(pal);
   calc_display->setBackgroundColor(kcalcdefaults.backcolor);
