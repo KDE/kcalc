@@ -1537,7 +1537,7 @@ void QtCalculator::configclicked(){
   label->setAlignment(AlignLeft|WordBreak|ExpandTabs);
   label->setText(labelstring.data());
   
-  QString pixdir = mykapp->kdedir() + QString("/share/apps/kcalc/pics/");  
+  QString pixdir = mykapp->kde_datadir() + "/kcalc/pics/";
 
 
   QPixmap pm((pixdir + "kcalclogo.xpm").data());
