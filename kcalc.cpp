@@ -163,6 +163,8 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// First the widgets that are the parents of the buttons
 	mSmallPage = new QWidget(central);
 	mLargePage = new QWidget(central);
+	mNumericPage = 	setupNumericKeys(central);
+
 
 	pbHyp = new QPushButton("Hyp", mSmallPage, "Hyp-Button");
 	QToolTip::add(pbHyp, i18n("Hyperbolic mode"));
@@ -181,7 +183,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	pbPi->setAutoDefault(false);
 	connect(pbPi, SIGNAL(clicked(void)), SLOT(slotPiclicked(void)));
 
-	pbSin = new QPushButton("Sin ", mSmallPage, "Sin-Button");
+	pbSin = new QPushButton("Sin", mSmallPage, "Sin-Button");
 	QToolTip::add(pbSin, i18n("Sine"));
 	pbSin->setAutoDefault(false);
 	accel()->insert("Apply Sine", i18n("Pressed Sin-Button"),
@@ -193,12 +195,12 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	pbStatMean->setAutoDefault(false);
 	connect(pbStatMean, SIGNAL(clicked(void)), SLOT(slotStatMeanclicked(void)));
 
-	pbPlusMinus = new QPushButton("+/-", mSmallPage, "Sign-Button");
-	QToolTip::add(pbPlusMinus, i18n("Change sign"));
-	pbPlusMinus->setAutoDefault(false);
-	connect(pbPlusMinus, SIGNAL(clicked(void)), SLOT(slotPlusMinusclicked(void)));
+	pbMod = new QPushButton("Mod", mSmallPage, "Modulo-Button");
+	QToolTip::add(pbMod, i18n("Modulo"));
+	pbMod->setAutoDefault(false);
+	connect(pbMod, SIGNAL(clicked(void)), SLOT(slotModclicked(void)));
 
-	pbCos = new QPushButton("Cos ", mSmallPage, "Cos-Button");
+	pbCos = new QPushButton("Cos", mSmallPage, "Cos-Button");
 	QToolTip::add(pbCos, i18n("Cosine"));
 	pbCos->setAutoDefault(false);
 	accel()->insert("Apply Cosine", i18n("Pressed Cos-Button"),
@@ -216,7 +218,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	pbReci->setAutoDefault(false);
 	connect(pbReci, SIGNAL(clicked(void)), SLOT(slotReciclicked(void)));
 
-	pbTan = new QPushButton("Tan ", mSmallPage, "Tan-Button");
+	pbTan = new QPushButton("Tan", mSmallPage, "Tan-Button");
 	QToolTip::add(pbTan, i18n("Tangent"));
 	pbTan->setAutoDefault(false);
 	accel()->insert("Apply Tangent", i18n("Pressed Tan-Button"),
@@ -267,209 +269,26 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	QToolTip::add(pbPower, i18n("x to the power of y"));
 	connect(pbPower, SIGNAL(clicked(void)), SLOT(slotPowerclicked(void)));
 
-	pbEE = new QPushButton("EE", mLargePage, "EE-Button");
-	QToolTip::add(pbEE, i18n("Exponent"));
-	pbEE->setAutoDefault(false);
-	connect(pbEE, SIGNAL(clicked(void)), SLOT(slotEEclicked(void)));
-
-	pbMR = new QPushButton("MR", mLargePage, "MemRecall-Button");
-	QToolTip::add(pbMR, i18n("Memory recall"));
-	pbMR->setAutoDefault(false);
-	connect(pbMR, SIGNAL(clicked(void)), SLOT(slotMRclicked(void)));
-
-	pbMPlusMinus = new QPushButton("M+-", mLargePage, "MPlusMinus-Button");
-	pbMPlusMinus->setAutoDefault(false);
-	connect(pbMPlusMinus,SIGNAL(clicked(void)),SLOT(slotMPlusMinusclicked(void)));
-
-	pbMC = new QPushButton("MC", mLargePage, "MemClear-Button");
-	QToolTip::add(pbMC, i18n("Clear memory"));
-	pbMC->setAutoDefault(false);
-	connect(pbMC, SIGNAL(clicked(void)), SLOT(slotMCclicked(void)));
-
-	pbClear = new QPushButton("C", mLargePage, "Clear-Button");
-	QToolTip::add(pbClear, i18n("Clear"));
-	pbClear->setAutoDefault(false);
-	connect(pbClear, SIGNAL(clicked(void)), SLOT(slotClearclicked(void)));
-
-	pbAC = new QPushButton("AC", mLargePage, "AC-Button");
-	QToolTip::add(pbAC, i18n("Clear all"));
-	pbAC->setAutoDefault(false);
-	connect(pbAC, SIGNAL(clicked(void)), SLOT(slotACclicked(void)));
-
-	pbParenOpen = new QPushButton("(", mLargePage, "ParenOpen-Button");
-	pbParenOpen->setAutoDefault(false);
-	connect(pbParenOpen, SIGNAL(clicked(void)),SLOT(slotParenOpenclicked(void)));
-
-	pbParenClose = new QPushButton(")", mLargePage, "ParenClose-Button");
-	pbParenClose->setAutoDefault(false);
-	connect(pbParenClose,SIGNAL(clicked(void)),SLOT(slotParenCloseclicked(void)));
-
-	pbAND = new QPushButton("And", mLargePage, "AND-Button");
+	pbAND = new QPushButton("And", mSmallPage, "AND-Button");
 	QToolTip::add(pbAND, i18n("Bitwise AND"));
 	pbAND->setAutoDefault(false);
 	connect(pbAND, SIGNAL(clicked(void)), SLOT(slotANDclicked(void)));
 
-	pbX = new QPushButton("X", mLargePage, "Multiply-Button");
-	QToolTip::add(pbX, i18n("Multiplication"));
-	pbX->setAutoDefault(false);
-	connect(pbX, SIGNAL(clicked(void)), SLOT(slotXclicked(void)));
-
-	pbDivision = new QPushButton("/", mLargePage, "Division-Button");
-	QToolTip::add(pbDivision, i18n("Division"));
-	pbDivision->setAutoDefault(false);
-	connect(pbDivision, SIGNAL(clicked(void)), SLOT(slotDivisionclicked(void)));
-
-	pbOR = new QPushButton("Or", mLargePage, "OR-Button");
+	pbOR = new QPushButton("Or", mSmallPage, "OR-Button");
 	QToolTip::add(pbOR, i18n("Bitwise OR"));
 	pbOR->setAutoDefault(false);
 	connect(pbOR, SIGNAL(clicked(void)), SLOT(slotORclicked(void)));
 
-	QPushButton *tmp_pb;
-
-	NumButtonGroup = new QButtonGroup(0, "Num-Button-Group");
-	connect(NumButtonGroup, SIGNAL(clicked(int)),
-		SLOT(slotNumberclicked(int)));
-
-	tmp_pb = new QPushButton("0", mLargePage, "0-Button");
-	tmp_pb->setAutoDefault(false);
-        NumButtonGroup->insert(tmp_pb, 0);
-	accel()->insert("Entered 0", i18n("Pressed 0-Button"),
-			0, Qt::Key_0, tmp_pb, SLOT(animateClick()));
-
-	tmp_pb = new QPushButton("1", mLargePage, "1-Button");
-	tmp_pb->setAutoDefault(false);
-        NumButtonGroup->insert(tmp_pb, 1);
-	accel()->insert("Entered 1", i18n("Pressed 1-Button"),
-			0, Qt::Key_1, tmp_pb, SLOT(animateClick()));
-
-	tmp_pb = new QPushButton("2", mLargePage, "2-Button");
-	tmp_pb->setAutoDefault(false);
-        NumButtonGroup->insert(tmp_pb, 2);
-	accel()->insert("Entered 2", i18n("Pressed 2-Button"),
-			0, Qt::Key_2, tmp_pb, SLOT(animateClick()));
-
-
-	tmp_pb = new QPushButton("3", mLargePage, "3-Button");
-	tmp_pb->setAutoDefault(false);
-        NumButtonGroup->insert(tmp_pb, 3);
-	accel()->insert("Entered 3", i18n("Pressed 3-Button"),
-			0, Qt::Key_3, tmp_pb, SLOT(animateClick()));
-
-	tmp_pb = new QPushButton("4", mLargePage, "4-Button");
-	tmp_pb->setAutoDefault(false);
-        NumButtonGroup->insert(tmp_pb, 4);
-	accel()->insert("Entered 4", i18n("Pressed 4-Button"),
-			0, Qt::Key_4, tmp_pb, SLOT(animateClick()));
-
-	tmp_pb = new QPushButton("5", mLargePage, "5-Button");
-	tmp_pb->setAutoDefault(false);
-        NumButtonGroup->insert(tmp_pb, 5);
-	accel()->insert("Entered 5", i18n("Pressed 5-Button"),
-			0, Qt::Key_5, tmp_pb, SLOT(animateClick()));
-
-	tmp_pb = new QPushButton("6", mLargePage, "6-Button");
-	tmp_pb->setAutoDefault(false);
-        NumButtonGroup->insert(tmp_pb, 6);
-	accel()->insert("Entered 6", i18n("Pressed 6-Button"),
-			0, Qt::Key_6, tmp_pb, SLOT(animateClick()));
-
-	tmp_pb = new QPushButton("7", mLargePage, "7-Button");
-	tmp_pb->setAutoDefault(false);
-        NumButtonGroup->insert(tmp_pb, 7);
-	accel()->insert("Entered 7", i18n("Pressed 7-Button"),
-			0, Qt::Key_7, tmp_pb, SLOT(animateClick()));
-
-	tmp_pb = new QPushButton("8", mLargePage, "8-Button");
-	tmp_pb->setAutoDefault(false);
-        NumButtonGroup->insert(tmp_pb, 8);
-	accel()->insert("Entered 8", i18n("Pressed 8-Button"),
-			0, Qt::Key_8, tmp_pb, SLOT(animateClick()));
-
-	tmp_pb = new QPushButton("9", mLargePage, "9-Button");
-	tmp_pb->setAutoDefault(false);
-        NumButtonGroup->insert(tmp_pb, 9);
-	accel()->insert("Entered 9", i18n("Pressed 9-Button"),
-			0, Qt::Key_9, tmp_pb, SLOT(animateClick()));
-
-	tmp_pb = new QPushButton("A", mSmallPage, "A-Button");
-	tmp_pb->setAutoDefault(false);
-        NumButtonGroup->insert(tmp_pb, 0xA);
-	accel()->insert("Entered A", i18n("Pressed A-Button"),
-			0, Qt::Key_A, tmp_pb, SLOT(animateClick()));
-
-	tmp_pb = new QPushButton("B", mSmallPage, "B-Button");
-	tmp_pb->setAutoDefault(false);
-        NumButtonGroup->insert(tmp_pb, 0xB);
-	accel()->insert("Entered B", i18n("Pressed B-Button"),
-			0, Qt::Key_B, tmp_pb, SLOT(animateClick()));
-
-	tmp_pb = new QPushButton("C", mSmallPage, "C-Button");
-	tmp_pb->setAutoDefault(false);
-        NumButtonGroup->insert(tmp_pb, 0xC);
-	accel()->insert("Entered C", i18n("Pressed C-Button"),
-			0, Qt::Key_C, tmp_pb, SLOT(animateClick()));
-
-	tmp_pb = new QPushButton("D", mSmallPage, "D-Button");
-	tmp_pb->setAutoDefault(false);
-        NumButtonGroup->insert(tmp_pb, 0xD);
-	accel()->insert("Entered D", i18n("Pressed D-Button"),
-			0, Qt::Key_D, tmp_pb, SLOT(animateClick()));
-
-	tmp_pb = new QPushButton("E", mSmallPage, "E-Button");
-	tmp_pb->setAutoDefault(false);
-        NumButtonGroup->insert(tmp_pb, 0xE);
-	accel()->insert("Entered E", i18n("Pressed E-Button"),
-			0, Qt::Key_E, tmp_pb, SLOT(animateClick()));
-
-	tmp_pb = new QPushButton("F", mSmallPage, "F-Button");
-	tmp_pb->setAutoDefault(false);
-        NumButtonGroup->insert(tmp_pb, 0xF);
-	accel()->insert("Entered F", i18n("Pressed F-Button"),
-			0, Qt::Key_F, tmp_pb, SLOT(animateClick()));
-
-	pbPlus = new QPushButton("+", mLargePage, "Plus-Button");
-	QToolTip::add(pbPlus, i18n("Addition"));
-	pbPlus->setAutoDefault(false);
-	accel()->insert("Pressed '+'", i18n("Pressed Plus-Button"),
-			0, Qt::Key_Plus, pbPlus, SLOT(animateClick()));
-	connect(pbPlus, SIGNAL(clicked(void)), SLOT(slotPlusclicked(void)));
-
-	pbMinus = new QPushButton("-", mLargePage, "Minus-Button");
-	QToolTip::add(pbMinus, i18n("Subtraction"));
-	pbMinus->setAutoDefault(false);
-	accel()->insert("Pressed '-'", i18n("Pressed Minus-Button"),
-			0, Qt::Key_Minus, pbMinus, SLOT(animateClick()));
-	connect(pbMinus, SIGNAL(clicked(void)), SLOT(slotMinusclicked(void)));
-
-	pbShift = new QPushButton("Lsh", mLargePage, "Bitshift-Button");
-	QToolTip::add(pbShift, i18n("Bit shift"));
-	pbShift->setAutoDefault(false);
-	connect(pbShift, SIGNAL(clicked(void)), SLOT(slotShiftclicked(void)));
-
-	pbPeriod = new QPushButton(KGlobal::locale()->decimalSymbol(), mLargePage, "Period-Button");
-	QToolTip::add(pbPeriod, i18n("Decimal point"));
-	pbPeriod->setAutoDefault(false);
-	connect(pbPeriod, SIGNAL(clicked(void)), SLOT(slotPeriodclicked(void)));
-
-	pbEqual = new QPushButton("=", mLargePage, "Equal-Button");
-	QToolTip::add(pbEqual, i18n("Result"));
-	pbEqual->setAutoDefault(false);
-	connect(pbEqual, SIGNAL(clicked(void)), SLOT(slotEqualclicked(void)));
-
-	pbPercent = new QPushButton("%", mLargePage, "Percent-Button");
-	QToolTip::add(pbPercent, i18n("Percent"));
-	pbPercent->setAutoDefault(false);
-	connect(pbPercent, SIGNAL(clicked(void)), SLOT(slotPercentclicked(void)));
-
-	pbNegate = new QPushButton("Cmp", mLargePage, "OneComplement-Button");
+	pbNegate = new QPushButton("Cmp", mSmallPage, "OneComplement-Button");
 	QToolTip::add(pbNegate, i18n("One's complement"));
 	pbNegate->setAutoDefault(false);
 	connect(pbNegate, SIGNAL(clicked(void)), SLOT(slotNegateclicked(void)));
 
-	pbMod = new QPushButton("Mod", mLargePage, "Modulo-Button");
-	QToolTip::add(pbMod, i18n("Modulo"));
-	pbMod->setAutoDefault(false);
-	connect(pbMod, SIGNAL(clicked(void)), SLOT(slotModclicked(void)));
+	pbShift = new QPushButton("Lsh", mSmallPage, "Bitshift-Button");
+	QToolTip::add(pbShift, i18n("Bit shift"));
+	pbShift->setAutoDefault(false);
+	connect(pbShift, SIGNAL(clicked(void)), SLOT(slotShiftclicked(void)));
+
 
 	//
 	// All these layouts are needed because all the groups have their
@@ -480,7 +299,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// to "activate()" the layout at the end.
 	//
 	//
-	QGridLayout *smallBtnLayout = new QGridLayout(mSmallPage, 6, 4, 0,
+	QGridLayout *smallBtnLayout = new QGridLayout(mSmallPage, 6, 5, 0,
 		mInternalSpacing);
 	QGridLayout *largeBtnLayout = new QGridLayout(mLargePage, 5, 6, 0,
 		mInternalSpacing);
@@ -498,40 +317,45 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	mainLayout->addLayout(btnLayout);
 
 	// button layout
-	btnLayout->addWidget(mSmallPage,0,AlignTop);
+	btnLayout->addWidget(mSmallPage, 0, AlignTop);
 	btnLayout->addSpacing(mInternalSpacing);
-	btnLayout->addWidget(mLargePage,0,AlignTop);
+	btnLayout->addWidget(mLargePage, 0, AlignTop);
+	btnLayout->addWidget(mNumericPage, 0, AlignTop);
 
 	// small button layout
 	smallBtnLayout->addWidget(pbStatNum, 0, 0);
 	smallBtnLayout->addWidget(pbHyp, 0, 1);
-	smallBtnLayout->addWidget(pbPi, 0, 2);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xA), 0, 3);
+	smallBtnLayout->addWidget(pbAND, 0, 2);
+	smallBtnLayout->addWidget(pbPi, 0, 3);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xA), 0, 4);
 
 	smallBtnLayout->addWidget(pbStatMean, 1, 0);
 	smallBtnLayout->addWidget(pbSin, 1, 1);
-	smallBtnLayout->addWidget(pbPlusMinus, 1, 2);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xB), 1, 3);
+	smallBtnLayout->addWidget(pbOR, 1, 2);
+	smallBtnLayout->addWidget(pbMod, 1, 3);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xB), 1, 4);
 
 	smallBtnLayout->addWidget(pbStatStdDev, 2, 0);
 	smallBtnLayout->addWidget(pbCos, 2, 1);
-	smallBtnLayout->addWidget(pbReci, 2, 2);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xC), 2, 3);
+	smallBtnLayout->addWidget(pbShift, 2, 2);
+	smallBtnLayout->addWidget(pbReci, 2, 3);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xC), 2, 4);
 
 	smallBtnLayout->addWidget(pbStatMedian, 3, 0);
 	smallBtnLayout->addWidget(pbTan, 3, 1);
-	smallBtnLayout->addWidget(pbFactorial, 3, 2);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xD), 3, 3);
+	smallBtnLayout->addWidget(pbNegate, 3, 2);
+	smallBtnLayout->addWidget(pbFactorial, 3, 3);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xD), 3, 4);
 
 	smallBtnLayout->addWidget(pbStatDataInput, 4, 0);
 	smallBtnLayout->addWidget(pbLog, 4, 1);
-	smallBtnLayout->addWidget(pbSquare, 4, 2);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xE), 4, 3);
+	smallBtnLayout->addWidget(pbSquare, 4, 3);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xE), 4, 4);
 
 	smallBtnLayout->addWidget(pbStatClearData, 5, 0);
 	smallBtnLayout->addWidget(pbLn, 5, 1);
-	smallBtnLayout->addWidget(pbPower, 5, 2);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xF), 5, 3);
+	smallBtnLayout->addWidget(pbPower, 5, 3);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xF), 5, 4);
 
 	smallBtnLayout->setRowStretch(0, 0);
 	smallBtnLayout->setRowStretch(1, 0);
@@ -541,41 +365,19 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	smallBtnLayout->setRowStretch(5, 0);
 
 	// large button layout
-	largeBtnLayout->addWidget(pbEE, 0, 0);
-	largeBtnLayout->addWidget(pbMR, 0, 1);
-	largeBtnLayout->addWidget(pbMPlusMinus, 0, 2);
-	largeBtnLayout->addWidget(pbMC, 0, 3);
-	largeBtnLayout->addWidget(pbClear, 0, 4);
-	largeBtnLayout->addWidget(pbAC, 0, 5);
+	largeBtnLayout->addWidget(pbClear, 0, 0);
+	largeBtnLayout->addWidget(pbAC, 0, 1);
 
-	largeBtnLayout->addWidget(NumButtonGroup->find(7), 1, 0);
-	largeBtnLayout->addWidget(NumButtonGroup->find(8), 1, 1);
-	largeBtnLayout->addWidget(NumButtonGroup->find(9), 1, 2);
-	largeBtnLayout->addWidget(pbParenOpen, 1, 3);
-	largeBtnLayout->addWidget(pbParenClose, 1, 4);
-	largeBtnLayout->addWidget(pbAND, 1, 5);
+	largeBtnLayout->addWidget(pbParenOpen, 1, 0);
+	largeBtnLayout->addWidget(pbParenClose, 1, 1);
 
-	largeBtnLayout->addWidget(NumButtonGroup->find(4), 2, 0);
-	largeBtnLayout->addWidget(NumButtonGroup->find(5), 2, 1);
-	largeBtnLayout->addWidget(NumButtonGroup->find(6), 2, 2);
-	largeBtnLayout->addWidget(pbX, 2, 3);
-	largeBtnLayout->addWidget(pbDivision, 2, 4);
-	largeBtnLayout->addWidget(pbOR, 2, 5);
+	largeBtnLayout->addWidget(pbMR, 2, 0);
 
-	largeBtnLayout->addWidget(NumButtonGroup->find(1), 3, 0);
-	largeBtnLayout->addWidget(NumButtonGroup->find(2), 3, 1);
-	largeBtnLayout->addWidget(NumButtonGroup->find(3), 3, 2);
-	largeBtnLayout->addWidget(pbPlus, 3, 3);
-	largeBtnLayout->addWidget(pbMinus, 3, 4);
-	largeBtnLayout->addWidget(pbShift, 3, 5);
+	largeBtnLayout->addWidget(pbMPlusMinus, 3, 0);
+	largeBtnLayout->addWidget(pbPercent, 3, 1);
 
-        largeBtnLayout->addWidget(NumButtonGroup->find(0), 4, 0);
-	largeBtnLayout->addWidget(pbPeriod, 4, 1);
-	largeBtnLayout->addWidget(pbEqual, 4, 2);
-	largeBtnLayout->addWidget(pbPercent, 4, 3);
-	largeBtnLayout->addWidget(pbMod, 4, 4);
-	largeBtnLayout->addWidget(pbNegate, 4, 5);
-
+	largeBtnLayout->addWidget(pbMC, 4, 0);
+	largeBtnLayout->addWidget(pbPlusMinus, 4, 1);
 
 	largeBtnLayout->addColSpacing(0,10);
 	largeBtnLayout->addColSpacing(1,10);
@@ -671,22 +473,26 @@ void KCalculator::setupMainActions(void)
 	// settings menu
 	actionStatshow =  new KToggleAction(i18n("&Statistic Buttons"), 0,
 					    actionCollection(), "show_stat");
+	actionStatshow->setChecked(true);
 	connect(actionStatshow, SIGNAL(toggled(bool)), this,
 		SLOT(slotStatshow(bool)));
 
 	actionExpLogshow = new KToggleAction(i18n("&Exp/Log-Buttons"), 0,
 					     actionCollection(),
 					     "show_explog");
+	actionExpLogshow->setChecked(true);
 	connect(actionExpLogshow, SIGNAL(toggled(bool)),
 		this, SLOT(slotExpLogshow(bool)));
 	
 	actionTrigshow = new KToggleAction(i18n("&Trigonometric Buttons"), 0,
 					   actionCollection(), "show_trig");
+	actionTrigshow->setChecked(true);
 	connect(actionTrigshow, SIGNAL(toggled(bool)),
 		this, SLOT(slotTrigshow(bool)));
 
 	actionLogicshow = new KToggleAction(i18n("&Logic Buttons"), 0,
 					    actionCollection(), "show_logic");
+	actionLogicshow->setChecked(true);
 	connect(actionLogicshow, SIGNAL(toggled(bool)),
 		this, SLOT(slotLogicshow(bool)));
 
@@ -700,6 +506,233 @@ void KCalculator::setupMainActions(void)
 	KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
 }
 
+QWidget* KCalculator::setupNumericKeys(QWidget *parent)
+{
+	QWidget *thisPage = new QWidget(parent);
+
+	QPushButton *tmp_pb;
+
+	NumButtonGroup = new QButtonGroup(0, "Num-Button-Group");
+	connect(NumButtonGroup, SIGNAL(clicked(int)),
+		SLOT(slotNumberclicked(int)));
+
+	tmp_pb = new QPushButton("0", thisPage, "0-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 0);
+	accel()->insert("Entered 0", i18n("Pressed 0-Button"),
+			0, Qt::Key_0, tmp_pb, SLOT(animateClick()));
+
+	tmp_pb = new QPushButton("1", thisPage, "1-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 1);
+	accel()->insert("Entered 1", i18n("Pressed 1-Button"),
+			0, Qt::Key_1, tmp_pb, SLOT(animateClick()));
+
+	tmp_pb = new QPushButton("2", thisPage, "2-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 2);
+	accel()->insert("Entered 2", i18n("Pressed 2-Button"),
+			0, Qt::Key_2, tmp_pb, SLOT(animateClick()));
+
+
+	tmp_pb = new QPushButton("3", thisPage, "3-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 3);
+	accel()->insert("Entered 3", i18n("Pressed 3-Button"),
+			0, Qt::Key_3, tmp_pb, SLOT(animateClick()));
+
+	tmp_pb = new QPushButton("4", thisPage, "4-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 4);
+	accel()->insert("Entered 4", i18n("Pressed 4-Button"),
+			0, Qt::Key_4, tmp_pb, SLOT(animateClick()));
+
+	tmp_pb = new QPushButton("5", thisPage, "5-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 5);
+	accel()->insert("Entered 5", i18n("Pressed 5-Button"),
+			0, Qt::Key_5, tmp_pb, SLOT(animateClick()));
+
+	tmp_pb = new QPushButton("6", thisPage, "6-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 6);
+	accel()->insert("Entered 6", i18n("Pressed 6-Button"),
+			0, Qt::Key_6, tmp_pb, SLOT(animateClick()));
+
+	tmp_pb = new QPushButton("7", thisPage, "7-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 7);
+	accel()->insert("Entered 7", i18n("Pressed 7-Button"),
+			0, Qt::Key_7, tmp_pb, SLOT(animateClick()));
+
+	tmp_pb = new QPushButton("8", thisPage, "8-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 8);
+	accel()->insert("Entered 8", i18n("Pressed 8-Button"),
+			0, Qt::Key_8, tmp_pb, SLOT(animateClick()));
+
+	tmp_pb = new QPushButton("9", thisPage, "9-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 9);
+	accel()->insert("Entered 9", i18n("Pressed 9-Button"),
+			0, Qt::Key_9, tmp_pb, SLOT(animateClick()));
+
+	pbEE = new QPushButton("EE", thisPage, "EE-Button");
+	QToolTip::add(pbEE, i18n("Exponent"));
+	pbEE->setAutoDefault(false);
+	connect(pbEE, SIGNAL(clicked(void)), SLOT(slotEEclicked(void)));
+
+	pbParenClose = new QPushButton(")", mLargePage, "ParenClose-Button");
+	pbParenClose->setAutoDefault(false);
+	connect(pbParenClose,SIGNAL(clicked(void)),SLOT(slotParenCloseclicked(void)));
+
+	pbX = new QPushButton("X", thisPage, "Multiply-Button");
+	QToolTip::add(pbX, i18n("Multiplication"));
+	pbX->setAutoDefault(false);
+	connect(pbX, SIGNAL(clicked(void)), SLOT(slotXclicked(void)));
+
+	pbDivision = new QPushButton("/", thisPage, "Division-Button");
+	QToolTip::add(pbDivision, i18n("Division"));
+	pbDivision->setAutoDefault(false);
+	connect(pbDivision, SIGNAL(clicked(void)), SLOT(slotDivisionclicked(void)));
+
+	pbPlus = new QPushButton("+", thisPage, "Plus-Button");
+	QToolTip::add(pbPlus, i18n("Addition"));
+	pbPlus->setAutoDefault(false);
+	accel()->insert("Pressed '+'", i18n("Pressed Plus-Button"),
+			0, Qt::Key_Plus, pbPlus, SLOT(animateClick()));
+	connect(pbPlus, SIGNAL(clicked(void)), SLOT(slotPlusclicked(void)));
+
+	pbMinus = new QPushButton("-", thisPage, "Minus-Button");
+	QToolTip::add(pbMinus, i18n("Subtraction"));
+	pbMinus->setAutoDefault(false);
+	accel()->insert("Pressed '-'", i18n("Pressed Minus-Button"),
+			0, Qt::Key_Minus, pbMinus, SLOT(animateClick()));
+	connect(pbMinus, SIGNAL(clicked(void)), SLOT(slotMinusclicked(void)));
+
+	pbPeriod = new QPushButton(KGlobal::locale()->decimalSymbol(), thisPage, "Period-Button");
+	QToolTip::add(pbPeriod, i18n("Decimal point"));
+	pbPeriod->setAutoDefault(false);
+	connect(pbPeriod, SIGNAL(clicked(void)), SLOT(slotPeriodclicked(void)));
+
+	pbEqual = new QPushButton("=", thisPage, "Equal-Button");
+	QToolTip::add(pbEqual, i18n("Result"));
+	pbEqual->setAutoDefault(false);
+	connect(pbEqual, SIGNAL(clicked(void)), SLOT(slotEqualclicked(void)));
+
+
+	QGridLayout *thisLayout = new QGridLayout(thisPage, 5, 4, 0,
+						  mInternalSpacing);
+
+	// large button layout
+	thisLayout->addWidget(pbEE, 0, 0);
+	thisLayout->addWidget(pbDivision, 0, 1);
+	thisLayout->addWidget(pbX, 0, 2);
+	thisLayout->addWidget(pbMinus, 0, 3);
+
+	thisLayout->addWidget(NumButtonGroup->find(7), 1, 0);
+	thisLayout->addWidget(NumButtonGroup->find(8), 1, 1);
+	thisLayout->addWidget(NumButtonGroup->find(9), 1, 2);
+	thisLayout->addMultiCellWidget(pbPlus, 1, 2, 3, 3);
+
+	thisLayout->addWidget(NumButtonGroup->find(4), 2, 0);
+	thisLayout->addWidget(NumButtonGroup->find(5), 2, 1);
+	thisLayout->addWidget(NumButtonGroup->find(6), 2, 2);
+	//thisLayout->addMultiCellWidget(pbPlus, 1, 2, 3, 3);
+
+	thisLayout->addWidget(NumButtonGroup->find(1), 3, 0);
+	thisLayout->addWidget(NumButtonGroup->find(2), 3, 1);
+	thisLayout->addWidget(NumButtonGroup->find(3), 3, 2);
+	thisLayout->addMultiCellWidget(pbEqual, 3, 4, 3, 3);
+
+        thisLayout->addMultiCellWidget(NumButtonGroup->find(0), 4, 4, 0, 1);
+	thisLayout->addWidget(pbPeriod, 4, 2);
+	//thisLayout->addMultiCellWidget(pbEqual, 3, 4, 3, 3);
+
+	thisLayout->addColSpacing(0,10);
+	thisLayout->addColSpacing(1,10);
+	thisLayout->addColSpacing(2,10);
+	thisLayout->addColSpacing(3,10);
+	thisLayout->addColSpacing(4,10);
+
+
+	pbMR = new QPushButton("MR", mLargePage, "MemRecall-Button");
+	QToolTip::add(pbMR, i18n("Memory recall"));
+	pbMR->setAutoDefault(false);
+	connect(pbMR, SIGNAL(clicked(void)), SLOT(slotMRclicked(void)));
+
+	pbMPlusMinus = new QPushButton("M±", mLargePage, "MPlusMinus-Button");
+	pbMPlusMinus->setAutoDefault(false);
+	connect(pbMPlusMinus,SIGNAL(clicked(void)),SLOT(slotMPlusMinusclicked(void)));
+
+	pbMC = new QPushButton("MC", mLargePage, "MemClear-Button");
+	QToolTip::add(pbMC, i18n("Clear memory"));
+	pbMC->setAutoDefault(false);
+	connect(pbMC, SIGNAL(clicked(void)), SLOT(slotMCclicked(void)));
+
+	pbClear = new QPushButton("C", mLargePage, "Clear-Button");
+	QToolTip::add(pbClear, i18n("Clear"));
+	pbClear->setAutoDefault(false);
+	connect(pbClear, SIGNAL(clicked(void)), SLOT(slotClearclicked(void)));
+
+	pbAC = new QPushButton("AC", mLargePage, "AC-Button");
+	QToolTip::add(pbAC, i18n("Clear all"));
+	pbAC->setAutoDefault(false);
+	connect(pbAC, SIGNAL(clicked(void)), SLOT(slotACclicked(void)));
+
+	pbParenOpen = new QPushButton("(", mLargePage, "ParenOpen-Button");
+	pbParenOpen->setAutoDefault(false);
+	connect(pbParenOpen, SIGNAL(clicked(void)),SLOT(slotParenOpenclicked(void)));
+
+	pbPercent = new QPushButton("%", mLargePage, "Percent-Button");
+	QToolTip::add(pbPercent, i18n("Percent"));
+	pbPercent->setAutoDefault(false);
+	connect(pbPercent, SIGNAL(clicked(void)), SLOT(slotPercentclicked(void)));
+
+	pbPlusMinus = new QPushButton("±", mLargePage, "Sign-Button");
+	QToolTip::add(pbPlusMinus, i18n("Change sign"));
+	pbPlusMinus->setAutoDefault(false);
+	connect(pbPlusMinus, SIGNAL(clicked(void)), SLOT(slotPlusMinusclicked(void)));
+
+
+	tmp_pb = new QPushButton("A", mSmallPage, "A-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 0xA);
+	accel()->insert("Entered A", i18n("Pressed A-Button"),
+			0, Qt::Key_A, tmp_pb, SLOT(animateClick()));
+
+	tmp_pb = new QPushButton("B", mSmallPage, "B-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 0xB);
+	accel()->insert("Entered B", i18n("Pressed B-Button"),
+			0, Qt::Key_B, tmp_pb, SLOT(animateClick()));
+
+	tmp_pb = new QPushButton("C", mSmallPage, "C-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 0xC);
+	accel()->insert("Entered C", i18n("Pressed C-Button"),
+			0, Qt::Key_C, tmp_pb, SLOT(animateClick()));
+
+	tmp_pb = new QPushButton("D", mSmallPage, "D-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 0xD);
+	accel()->insert("Entered D", i18n("Pressed D-Button"),
+			0, Qt::Key_D, tmp_pb, SLOT(animateClick()));
+
+	tmp_pb = new QPushButton("E", mSmallPage, "E-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 0xE);
+	accel()->insert("Entered E", i18n("Pressed E-Button"),
+			0, Qt::Key_E, tmp_pb, SLOT(animateClick()));
+
+	tmp_pb = new QPushButton("F", mSmallPage, "F-Button");
+	tmp_pb->setAutoDefault(false);
+        NumButtonGroup->insert(tmp_pb, 0xF);
+	accel()->insert("Entered F", i18n("Pressed F-Button"),
+			0, Qt::Key_F, tmp_pb, SLOT(animateClick()));
+
+	return thisPage;
+}
 
 void KCalculator::updateGeometry(void)
 {
@@ -710,7 +743,7 @@ void KCalculator::updateGeometry(void)
     //
     // Calculator buttons
     //
-    s.setWidth(mSmallPage->fontMetrics().width("MMM"));
+    s.setWidth(mSmallPage->fontMetrics().width("MMMM"));
     s.setHeight(mSmallPage->fontMetrics().lineSpacing());
 
     l = (QObjectList*)mSmallPage->children(); // silence please
@@ -722,7 +755,8 @@ void KCalculator::updateGeometry(void)
         {
             margin = QApplication::style().
                 pixelMetric(QStyle::PM_ButtonMargin, ((QWidget *)o))*2;
-            ((QWidget*)o)->setMinimumSize(s.width()+margin, s.height()+margin);
+            ((QWidget*)o)->setFixedSize(s.width()+margin, s.height()+margin);
+            //((QWidget*)o)->setMinimumSize(s.width()+margin, s.height()+margin);
             ((QWidget*)o)->installEventFilter( this );
             ((QWidget*)o)->setAcceptDrops(true);
         }
@@ -730,11 +764,11 @@ void KCalculator::updateGeometry(void)
 
     l = (QObjectList*)mLargePage->children(); // silence please
 
-    int h1 = (NumButtonGroup->find(0xF))->minimumSize().height();
+    int h1 = (NumButtonGroup->find(0x0F))->minimumSize().height();
     int h2 = (int)((((float)h1 + 4.0) / 5.0));
     s.setWidth(mLargePage->fontMetrics().width("MMM") +
                QApplication::style().
-               pixelMetric(QStyle::PM_ButtonMargin, NumButtonGroup->find(0xF))*2);
+               pixelMetric(QStyle::PM_ButtonMargin, NumButtonGroup->find(0x0F))*2);
     s.setHeight(h1 + h2);
 
     for(uint i = 0; i < l->count(); i++)
@@ -748,6 +782,40 @@ void KCalculator::updateGeometry(void)
         }
     }
 
+    pbInv->setFixedSize(s);
+    pbInv->installEventFilter(this);
+    pbInv->setAcceptDrops(true);
+
+
+
+    l = (QObjectList*)mNumericPage->children(); // silence please
+
+    h1 = (NumButtonGroup->find(0x0F))->minimumSize().height();
+    h2 = (int)((((float)h1 + 4.0) / 5.0));
+    s.setWidth(mLargePage->fontMetrics().width("MMM") +
+               QApplication::style().
+               pixelMetric(QStyle::PM_ButtonMargin, NumButtonGroup->find(0x0F))*2);
+    s.setHeight(h1 + h2);
+
+    for(uint i = 0; i < l->count(); i++)
+    {
+        QObject *o = l->at(i);
+        if(o->isWidgetType())
+        {
+            ((QWidget*)o)->setFixedSize(s);
+            ((QWidget*)o)->installEventFilter(this);
+            ((QWidget*)o)->setAcceptDrops(true);
+        }
+    }
+
+    // Set Buttons of double size
+    QSize t(s);
+    t.setWidth(2*s.width());
+    NumButtonGroup->find(0x00)->setFixedSize(t);
+    t = s;
+    t.setHeight(2*s.height());
+    pbEqual->setFixedSize(t);
+    pbPlus->setFixedSize(t);
 }
 
 void KCalculator::slotBaseSelected(int base)

@@ -70,6 +70,7 @@ private:
 	virtual bool eventFilter( QObject *o, QEvent *e );
 	void updateGeometry();
 	void setupMainActions(void);
+	QWidget *setupNumericKeys(QWidget *parent);
 	void keyPressEvent( QKeyEvent *e );
 	void set_precision();
 	void set_style();
@@ -145,6 +146,7 @@ public:
 private:
     QWidget *mSmallPage;
     QWidget *mLargePage;
+    QWidget *mNumericPage;
 
     DispLogic*	calc_display; // for historic reasons in "dlabel.h"
     QRadioButton*	anglebutton[3];

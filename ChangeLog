@@ -1,3 +1,7 @@
+2003-10-10 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Number buttons look like numeric keyboard (on US-keyboards that is)
+	* Initialize ToggleActions correctly
+	
 2003-10-09 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Reverted the menubar stuff after several complaints.
 	  Now Kcalc-GUI looks again like on 2003-09-11.
