@@ -16,6 +16,7 @@ Exec=kcalc  -caption "%c" %i %m
 Icon=kcalc
 DocPath=kcalc/index.html
 GenericName=Scientific Calculator
+GenericName[af]=wetenskaplike sakrekenaar
 GenericName[ar]=آلة حاسبة علمية
 GenericName[be]=Навуковы калькулятар
 GenericName[bg]=Научен Калкулатор
