@@ -28,6 +28,7 @@
 
 #include <qclipboard.h>
 
+#include <kglobal.h>
 #include <klocale.h>
 #include <knotifyclient.h>
 #include "kcalcdisplay.h"
@@ -38,7 +39,12 @@ static CALCAMNT toDouble(const QString &s, bool &ok)
 {
 	char *ptr = 0;
 	errno = 0;
-	CALCAMNT result = (CALCAMNT) STRTOD(s.latin1(),&ptr);
+	// Replace the decimalSymbol with a .
+	QString t = s;
+	QChar decimalSymbol = KGlobal::locale()->decimalSymbol().at(0);
+	if (t.contains(decimalSymbol))
+		t.replace(decimalSymbol,QChar('.'));
+	CALCAMNT result = (CALCAMNT) STRTOD(t.latin1(),&ptr);
 
 	// find first non-space character for check below
 	while (ptr != 0 && *ptr != '\0' && isspace(*ptr)) {
@@ -46,7 +52,10 @@ static CALCAMNT toDouble(const QString &s, bool &ok)
 		ptr++;
 	}
 	// input contains more than a number or another error
-	ok = (errno == 0) && (ptr != 0) && (*ptr == 0);
+	// hierro: I needed to add the last condition because i get an error
+	// if the display is '0' and i can't find a better way of handle it.
+	// TODO: find a better way to get ride of this error
+	ok = ((errno == 0) && (ptr != 0) && (*ptr == 0)) || t == QString::number(0) ;
 	return result;
 }
 
@@ -414,6 +423,8 @@ void KCalcDisplay::newCharacter(char const new_char)
 		if(_beep) KNotifyClient::beep();
 		return;
 	}
+	// Obtain the decimal separator
+	char decimalSymbol = KGlobal::locale()->decimalSymbol().at(0).latin1();
 
 	// test if character is valid
 	switch(new_char)
@@ -427,19 +438,6 @@ void KCalcDisplay::newCharacter(char const new_char)
 			return;
 		}
 		_eestate = true;
-		break;
-
-	case '.':
-		// Period can be set only once and only in decimal
-		// mode, also not in EE-mode
-		if (_num_base != NB_DECIMAL  ||
-		    _period == true  ||
-		    _eestate == true)
-		{
-			if(_beep) KNotifyClient::beep();
-			return;
-		}
-		_period = true;
 		break;
 
 	case 'F':
@@ -479,6 +477,25 @@ void KCalcDisplay::newCharacter(char const new_char)
 		break;
 
 	default:
+		// hierro:
+		// We can't process decimalSymbol with a case because it
+		// doesn't expand to an integer constant, so processing it
+		// here is the best i can do. 
+		if (new_char == decimalSymbol)
+		{
+			// Period can be set only once and only in decimal
+			// mode, also not in EE-mode
+			if (_num_base != NB_DECIMAL  ||
+			    _period == true  ||
+			    _eestate == true)
+			{
+				if(_beep) KNotifyClient::beep();
+				return;
+			}
+			_period = true;
+			break;
+		}
+		
 		if(_beep) KNotifyClient::beep();
 		return;
 	}
@@ -499,16 +516,19 @@ void KCalcDisplay::newCharacter(char const new_char)
 		{
 			switch(new_char)
 			{
-			case '.':
-				// display "0." not just "."
-				_str_int.append(new_char);
-				break;
 			case 'e':
 				// display "0e" not just "e"
 				// "0e" does not make sense either, but...
 				_str_int.append(new_char);
 				break;
 			default:
+				// See comment on line 483
+				if (new_char == KGlobal::locale()->decimalSymbol().at(0))
+				{
+					_str_int.append(new_char);
+					break;
+				}
+									
 				// no leading '0's
 				_str_int[0] = new_char;
 			}
@@ -547,7 +567,7 @@ void KCalcDisplay::deleteLastDigit(void)
 		int length = _str_int.length();
 		if(length > 1)
 		{
-			if (_str_int[length-1] == '.')
+			if (_str_int[length-1] == KGlobal::locale()->decimalSymbol().at(0))
 				_period = false;
 			_str_int.truncate(length-1);
 		}
