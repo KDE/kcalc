@@ -23,6 +23,8 @@
 
 */
 
+#include <qclipboard.h>
+
 #include <klocale.h>
 #include <knotifyclient.h>
 #include "kcalcdisplay.h"
@@ -52,15 +54,61 @@ KCalcDisplay::~KCalcDisplay()
 	delete selection_timer;
 }
 
+void KCalcDisplay::slotCut(void)
+{
+	if(_error  &&  _beep)
+	{
+		KNotifyClient::beep();
+		return;
+	}
+
+	slotCopy();
+	Reset();
+}
+
+void KCalcDisplay::slotCopy(void)
+{
+	if(_error  &&  _beep)
+	{
+		KNotifyClient::beep();
+		return;
+	}
+
+	if (_num_base == NB_HEX)
+		(QApplication::clipboard())->setText("0x" + text(),
+						     QClipboard::Selection);
+	else
+		(QApplication::clipboard())->setText(text(),
+						     QClipboard::Selection);
+}
+
+void KCalcDisplay::slotPaste(void)
+{
+	if(_error  &&  _beep)
+	{
+		KNotifyClient::beep();
+		return;
+	}
+
+	QString tmp_str = (QApplication::clipboard())->text(QClipboard::Selection);
+
+	bool was_ok;
+	CALCAMNT tmp_result = (CALCAMNT) tmp_str.toDouble(&was_ok);
+
+	if (!was_ok)
+	{
+		tmp_result = (CALCAMNT) (0);
+		if(_beep) KNotifyClient::beep();		
+	}
+
+	setAmount(tmp_result);
+}
+
 void KCalcDisplay::slotDisplaySelected(void)
 {
 	if(_button == LeftButton) {
 		if(_lit) {
-			QClipboard *cb = QApplication::clipboard();
-			bool oldMode = cb->selectionModeEnabled();
-			cb->setSelectionMode(true);
-			cb->setText(text());
-			cb->setSelectionMode(oldMode);
+			slotCopy();
 			selection_timer->start(100);
 		} else {
 			selection_timer->stop();
@@ -68,20 +116,7 @@ void KCalcDisplay::slotDisplaySelected(void)
 
 		invertColors();
 	} else {
-		QClipboard *cb = QApplication::clipboard();
-		bool oldMode = cb->selectionModeEnabled();
-		cb->setSelectionMode(true);
-
-		CALCAMNT result;
-		bool was_ok;
-		result = (CALCAMNT) cb->text().toDouble(&was_ok);
-		cb->setSelectionMode(oldMode);
-
-		if (!was_ok)
-			result = (CALCAMNT) (0);
-
-		//_last_input = START_NEW_NUMBER;
-		setAmount(result);
+		slotPaste();
 	}
 }
 
@@ -623,6 +658,9 @@ int KCalcDisplay::cvb(char *out_str, KCALC_LONG amount, int max_digits)
 
 void KCalcDisplay::Reset(void)
 {
+	// This updates display through setError.
+	// Should one explicitely call UpdateDisplay to be nicer?
+
 	_display_amount = 0.0;
 	_str_int = "0";
 	_str_int_exp = (char *)0;

@@ -87,27 +87,29 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// Detect color change
 	connect(kapp,SIGNAL(kdisplayPaletteChanged()), this, SLOT(set_colors()));
 
-	KStdAction::quit(this, SLOT(close()), actionCollection());
-
-	// Create uppermost bar with buttons and numberdisplay
-	mConfigButton = new KPushButton(KGuiItem( i18n("Config&ure"), "configure" ),
-            central, "configbutton");
-	mConfigButton->setAutoDefault(false);
-	QToolTip::add(mConfigButton, i18n("Click to configure KCalc"));
-	connect(mConfigButton, SIGNAL(clicked()), this, SLOT(slotConfigclicked()));
-	if (KGlobal::config()->isImmutable())
-	   mConfigButton->hide();
-
-	mHelpMenu = helpMenu();
-	mHelpButton = new KPushButton(KStdGuiItem::help(), central);
-	mHelpButton->setAutoDefault(false);
-	mHelpButton->setPopup(mHelpMenu);
-
 	calc_display = new DispLogic(central, "display");
 
 	// Status bar contents
 	statusBar()->insertFixedItem(" NORM ", 0, true);
 	statusBar()->setItemAlignment(0, AlignCenter);
+
+
+	// file menu
+	KStdAction::quit(this, SLOT(close()), actionCollection());
+
+	// edit menu
+	KStdAction::cut(calc_display, SLOT(slotCut()), actionCollection());
+	KStdAction::copy(calc_display, SLOT(slotCopy()), actionCollection());
+	KStdAction::paste(calc_display, SLOT(slotPaste()), actionCollection());
+	
+	// preferences
+	KStdAction::preferences(this, SLOT(slotConfig()), actionCollection());
+	
+	createGUI();
+
+	// How can I make the toolBar not appear at all?
+	// This is not a nice solution.
+	toolBar()->close();
 
 	// Create Number Base Button Group
 	QButtonGroup *base_group = new QButtonGroup(4, Horizontal,  central, "base");
@@ -569,8 +571,6 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 
 
 	// top layout
-	topLayout->addWidget(mConfigButton);
-	topLayout->addWidget(mHelpButton);
 	topLayout->addWidget(calc_display, 10);
 
 	// radiobutton layout
@@ -747,11 +747,8 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
     if ( ( e->state() & KeyButtonMask ) == 0 || ( e->state() & ShiftButton ) ) {
 	switch (e->key())
 	{
-	case Key_F1:
-		kapp->invokeHelp();
-		break;
 	case Key_F2:
-		slotConfigclicked();
+		slotConfig();
 		break;
 	case Key_F3:
 		kcalcdefaults.style = !kcalcdefaults.style;
@@ -1125,17 +1122,12 @@ void KCalculator::slotClearclicked(void)
 	calc_display->clearLastInput();
 }
 
-void KCalculator::ClearAll()
+void KCalculator::slotACclicked(void)
 {
 	core.Reset();
 	calc_display->Reset();
 
 	UpdateDisplay(true);
-}
-
-void KCalculator::slotACclicked(void)
-{
-	ClearAll();
 }
 
 void KCalculator::slotParenOpenclicked(void)
@@ -1341,11 +1333,11 @@ void KCalculator::slotStatClearDataclicked(void)
 	}
 }
 
-void KCalculator::slotConfigclicked()
+void KCalculator::slotConfig()
 {
 	if(mConfigureDialog == 0)
 	{
-		mConfigureDialog = new ConfigureDialog( 0, 0, true);
+		mConfigureDialog = new ConfigureDialog( 0, 0, false);
 		mConfigureDialog->setState( kcalcdefaults );
 
 		connect( mConfigureDialog, SIGNAL( valueChanged(const DefStruct &)),

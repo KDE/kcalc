@@ -1,3 +1,9 @@
+2003-09-02 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* dropped configure-button and Help-button
+	* created menubar with standard-actions
+	* ConfigDialog is not modal anymore
+	* copy/paste/cut-standard actions applied to calc_display
+	
 2003-08-28 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* created Pi-button and moved Inv-button to make space for it
 	* label of "."-button is now localized

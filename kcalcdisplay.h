@@ -28,7 +28,6 @@
 
 #include <stdlib.h>
 #include <qlabel.h>
-#include <qclipboard.h>
 #include <qtimer.h>
 #include "kcalctype.h"
 
@@ -140,6 +139,11 @@ private:
 signals:
 	void clicked(void);
 	void changedText(QString const &);
+
+public slots:
+	void slotCut(void);
+	void slotCopy(void);
+	void slotPaste(void);
 
 private slots:
 	void slotSelectionTimedOut(void);

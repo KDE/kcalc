@@ -93,7 +93,7 @@ protected slots:
     void configurationChanged(const DefStruct &state);
     void set_colors();
     void EnterEqual();
-    void ClearAll();
+    void slotConfig(void);
     void RefreshCalculator();
     void slotAngleSelected(int number);
     void slotBaseSelected(int number);
@@ -137,7 +137,6 @@ protected slots:
     void slotStatDataInputclicked(void);
     void slotStatClearDataclicked(void);
     void slotHyptoggled(bool flag);
-    void slotConfigclicked(void);
 
 private:
      DefStruct kcalcdefaults;
@@ -153,9 +152,6 @@ public:
 private:
     QWidget *mSmallPage;
     QWidget *mLargePage;
-
-    KPushButton *mConfigButton;
-    KPushButton *mHelpButton;
 
     DispLogic*	calc_display; // for historic reasons in "dlabel.h"
     QRadioButton*	anglebutton[3];
