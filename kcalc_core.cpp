@@ -355,12 +355,12 @@ static CALCAMNT ExecPwrRoot(CALCAMNT left_op, CALCAMNT right_op)
 
 static CALCAMNT ExecAddP(CALCAMNT left_op, CALCAMNT right_op)
 {
-    return (left_op * 100.0) / right_op + 100;
+    return left_op * (100.0 + right_op) / 100.0;
 }
 
 static CALCAMNT ExecSubP(CALCAMNT left_op, CALCAMNT right_op)
 {
-    return (left_op * 100.0) / right_op - 100;
+    return left_op * (100.0 - right_op) / 100.0;
 }
 
 static CALCAMNT ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op)
