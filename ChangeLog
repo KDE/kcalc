@@ -1,3 +1,6 @@
+2004-09-11 Klaus Niederkrüger <kniederk@math.uni-koeln.de> *
+	* fix bug 82433: show a check mark next to the angle mode in popup menu
+	
 2004-09-10 Klaus Niederkrüger <kniederk@math.uni-koeln.de> *
 	* bundle precedence of operators and function pointers into a single
 	  struct.

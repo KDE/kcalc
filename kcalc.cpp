@@ -128,13 +128,14 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	QToolTip::add(pbAngleChoose, i18n("Choose the unit for the angle measure"));
 	pbAngleChoose->setAutoDefault(false);
 
-	KPopupMenu *base_menu = new KPopupMenu(pbAngleChoose, "AngleMode-Selection-Menu");
-	connect(base_menu, SIGNAL(activated(int)), SLOT(slotAngleSelected(int)));
-	base_menu->insertItem(i18n("Degrees"), 0);
-	base_menu->insertItem(i18n("Radians"), 1);
-	base_menu->insertItem(i18n("Gradians"), 2);
+	KPopupMenu *angle_menu = new KPopupMenu(pbAngleChoose, "AngleMode-Selection-Menu");
+	angle_menu->insertItem(i18n("Degrees"), 0);
+	angle_menu->insertItem(i18n("Radians"), 1);
+	angle_menu->insertItem(i18n("Gradians"), 2);
 
-	pbAngleChoose->setPopup(base_menu);
+	angle_menu->setCheckable(true);
+	connect(angle_menu, SIGNAL(activated(int)), SLOT(slotAngleSelected(int)));
+	pbAngleChoose->setPopup(angle_menu);
 
 
 
@@ -1191,19 +1192,26 @@ void KCalculator::keyReleaseEvent(QKeyEvent *e)
 
 void KCalculator::slotAngleSelected(int number)
 {
+	pbAngleChoose->popup()->setItemChecked(0, false);
+	pbAngleChoose->popup()->setItemChecked(1, false);
+	pbAngleChoose->popup()->setItemChecked(2, false);
+	
 	switch(number)
 	{
 	case 0:
 		_angle_mode = DegMode;
 		statusBar()->changeItem("DEG", 2);
+		pbAngleChoose->popup()->setItemChecked(0, true);
 		break;
 	case 1:
 		_angle_mode = RadMode;
 		statusBar()->changeItem("RAD", 2);
+		pbAngleChoose->popup()->setItemChecked(1, true);
 		break;
 	case 2:
 		_angle_mode = GradMode;
 		statusBar()->changeItem("GRA", 2);
+		pbAngleChoose->popup()->setItemChecked(2, true);
 		break;
 	default: // we shouldn't ever end up here
 		_angle_mode = RadMode;
