@@ -772,18 +772,24 @@ void QtCalculator::EnterFactorial()
 	eestate = false;
 	CALCAMNT work_amount1;
 	CALCAMNT work_amount2;
-	int incr;
 
 	MODF(DISPLAY_AMOUNT, &work_amount1);
 
-	incr = work_amount1 < 0 ? -1 : 1;
+	if (work_amount1 < 0)
+	{
+		display_error = true;
+		refresh_display = true;
+		last_input = OPERATION;
+		UpdateDisplay();
+		return;
+	}
 
-	work_amount2 = work_amount1 - incr;
+	work_amount2 = work_amount1 - 1;
 
 	while (work_amount1 != 0 && work_amount2 != 0 && !display_error)
 	{
 		work_amount1 *= work_amount2;
-		work_amount2 -= incr;
+		work_amount2--;
 		if(ISINF(work_amount1))
 		{
 			display_error = true;
