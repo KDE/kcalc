@@ -452,64 +452,89 @@ CALCAMNT CalcEngine::lastOutput(bool &error) const
 	return _last_number;
 }
 
-void CalcEngine::ArcCos(CALCAMNT input)
+void CalcEngine::ArcCosDeg(CALCAMNT input)
 {
 	CALCAMNT tmp = ACOS(input);
 
-	switch (_angle_mode)
-	{
-	case AngleDegree:
-		_last_number = Rad2Deg(tmp);
-		break;
-	case AngleGradient:
-		_last_number = Rad2Gra(tmp);
-		break;
-	case AngleRadian:
-		_last_number = tmp;
-		break;
-	}
+	_last_number = Rad2Deg(tmp);
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
 }
 
-void CalcEngine::ArcSin(CALCAMNT input)
+void CalcEngine::ArcCosRad(CALCAMNT input)
+{
+	CALCAMNT tmp = ACOS(input);
+	
+	_last_number = tmp;
+
+	//if (errno == EDOM || errno == ERANGE)
+	//	_error = true;
+}
+
+void CalcEngine::ArcCosGrad(CALCAMNT input)
+{
+	CALCAMNT tmp = ACOS(input);
+
+	_last_number = Rad2Gra(tmp);
+
+	//if (errno == EDOM || errno == ERANGE)
+	//	_error = true;
+}
+
+void CalcEngine::ArcSinDeg(CALCAMNT input)
+{
+	CALCAMNT tmp = ASIN(input);
+	
+	_last_number = Rad2Deg(tmp);
+
+	//if (errno == EDOM || errno == ERANGE)
+	//	_error = true;
+}
+
+void CalcEngine::ArcSinRad(CALCAMNT input)
 {
 	CALCAMNT tmp = ASIN(input);
 
-	switch (_angle_mode)
-	{
-	case AngleDegree:
-		_last_number = Rad2Deg(tmp);
-		break;
-	case AngleGradient:
-		_last_number = Rad2Gra(tmp);
-		break;
-	case AngleRadian:
-		_last_number = tmp;
-		break;
-	}
+	_last_number = tmp;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
 }
 
-void CalcEngine::ArcTangens(CALCAMNT input)
+void CalcEngine::ArcSinGrad(CALCAMNT input)
+{
+	CALCAMNT tmp = ASIN(input);
+
+	_last_number = Rad2Gra(tmp);
+
+	//if (errno == EDOM || errno == ERANGE)
+	//	_error = true;
+}
+
+void CalcEngine::ArcTangensDeg(CALCAMNT input)
+{
+	CALCAMNT tmp = ATAN(input);
+	
+	_last_number = Rad2Deg(tmp);
+
+	//if (errno == EDOM || errno == ERANGE)
+	//	_error = true;
+}
+
+void CalcEngine::ArcTangensRad(CALCAMNT input)
+{
+	_last_number = ATAN(input);
+
+	//if (errno == EDOM || errno == ERANGE)
+	//	_error = true;
+}
+
+void CalcEngine::ArcTangensGrad(CALCAMNT input)
 {
 	CALCAMNT tmp = ATAN(input);
 
-	switch (_angle_mode)
-	{
-	case AngleDegree:
-		_last_number = Rad2Deg(tmp);
-		break;
-	case AngleGradient:
-		_last_number = Rad2Gra(tmp);
-		break;
-	case AngleRadian:
-		_last_number = tmp;
-		break;
-	}
+	_last_number = Rad2Gra(tmp);
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
@@ -553,22 +578,41 @@ void CalcEngine::Complement(CALCAMNT input)
 	_last_number = ~boh_work;
 }
 
-void CalcEngine::Cos(CALCAMNT input)
+void CalcEngine::CosDeg(CALCAMNT input)
+{
+	CALCAMNT tmp = input;
+	
+	tmp = Deg2Rad(input);
+
+	_last_number = COS(tmp);
+
+	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
+	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
+		_last_number = 0.0;
+
+	//if (errno == EDOM || errno == ERANGE)
+	//	_error = true;
+}
+
+void CalcEngine::CosRad(CALCAMNT input)
 {
 	CALCAMNT tmp = input;
 
-	switch (_angle_mode)
-	{
-	case AngleDegree:
-		tmp = Deg2Rad(input);
-		break;
-	case AngleGradient:
-		tmp = Gra2Rad(input);
-		break;
-	case AngleRadian:
-		tmp = input;
-		break;
-	}
+	_last_number = COS(tmp);
+
+	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
+	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
+		_last_number = 0.0;
+
+	//if (errno == EDOM || errno == ERANGE)
+	//	_error = true;
+}
+
+void CalcEngine::CosGrad(CALCAMNT input)
+{
+	CALCAMNT tmp = input;
+
+	tmp = Gra2Rad(input);
 
 	_last_number = COS(tmp);
 
@@ -685,22 +729,41 @@ void CalcEngine::Reciprocal(CALCAMNT input)
 		_last_number = 1/input;
 }
 		
-void CalcEngine::Sin(CALCAMNT input)
+void CalcEngine::SinDeg(CALCAMNT input)
 {
 	CALCAMNT tmp = input;
 
-	switch (_angle_mode)
-	{
-	case AngleDegree:
-		tmp = Deg2Rad(input);
-		break;
-	case AngleGradient:
-		tmp = Gra2Rad(input);
-		break;
-	case AngleRadian:
-		tmp = input;
-		break;
-	}
+	tmp = Deg2Rad(input);
+
+	_last_number = SIN(tmp);
+
+	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
+	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
+		_last_number = 0.0;
+
+	//if (errno == EDOM || errno == ERANGE)
+	//	_error = true;
+}
+
+void CalcEngine::SinRad(CALCAMNT input)
+{
+	CALCAMNT tmp = input;
+
+	_last_number = SIN(tmp);
+
+	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
+	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
+		_last_number = 0.0;
+
+	//if (errno == EDOM || errno == ERANGE)
+	//	_error = true;
+}
+
+void CalcEngine::SinGrad(CALCAMNT input)
+{
+	CALCAMNT tmp = input;
+
+	tmp = Gra2Rad(input);
 
 	_last_number = SIN(tmp);
 
@@ -802,22 +865,9 @@ void CalcEngine::StatSumSquares(CALCAMNT input)
 	_error = stats.error();
 }
 
-void CalcEngine::Tangens(CALCAMNT input)
+void CalcEngine::TangensDeg(CALCAMNT input)
 {
-	CALCAMNT aux, tmp = input;
-
-	switch (_angle_mode)
-	{
-	case AngleDegree:
-		tmp = Deg2Rad(input);
-		break;
-	case AngleGradient:
-		tmp = Gra2Rad(input);
-		break;
-	case AngleRadian:
-		tmp = input;
-		break;
-	}
+	CALCAMNT aux, tmp = Deg2Rad(input);
 	
 	aux = tmp;
 	// make aux positive
@@ -826,7 +876,57 @@ void CalcEngine::Tangens(CALCAMNT input)
 	while (aux > pi) aux -= pi;
 	// if were are really close to pi/2 throw an error
 	// tan(pi/2) => inf
-	// using the 10 factor because without it 270� tan still gave a result
+	// using the 10 factor because without it 270Âº tan still gave a result
+	if ( (aux - pi/2 < POS_ZERO * 10) && (aux - pi/2 > NEG_ZERO * 10) )
+		_error = true;
+	else
+		_last_number = TAN(tmp);
+
+	// Now a cheat to help the weird case of TAN 0 degrees not being 0!!!
+	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
+		_last_number = 0.0;
+
+	//if (errno == EDOM || errno == ERANGE)
+	//	_error = true;
+}
+
+void CalcEngine::TangensRad(CALCAMNT input)
+{
+	CALCAMNT aux, tmp = input;
+	
+	aux = tmp;
+	// make aux positive
+	if (aux < 0) aux = -aux;
+	// put aux between 0 and pi
+	while (aux > pi) aux -= pi;
+	// if were are really close to pi/2 throw an error
+	// tan(pi/2) => inf
+	// using the 10 factor because without it 270Âº tan still gave a result
+	if ( (aux - pi/2 < POS_ZERO * 10) && (aux - pi/2 > NEG_ZERO * 10) )
+		_error = true;
+	else
+		_last_number = TAN(tmp);
+
+	// Now a cheat to help the weird case of TAN 0 degrees not being 0!!!
+	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
+		_last_number = 0.0;
+
+	//if (errno == EDOM || errno == ERANGE)
+	//	_error = true;
+}
+
+void CalcEngine::TangensGrad(CALCAMNT input)
+{
+	CALCAMNT aux, tmp = Gra2Rad(input);
+	
+	aux = tmp;
+	// make aux positive
+	if (aux < 0) aux = -aux;
+	// put aux between 0 and pi
+	while (aux > pi) aux -= pi;
+	// if were are really close to pi/2 throw an error
+	// tan(pi/2) => inf
+	// using the 10 factor because without it 270Âº tan still gave a result
 	if ( (aux - pi/2 < POS_ZERO * 10) && (aux - pi/2 > NEG_ZERO * 10) )
 		_error = true;
 	else

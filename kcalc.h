@@ -162,6 +162,13 @@ private:
 	CALCAMNT memory_num;
 	CALCAMNT setvalue;
 
+	// angle modes for trigonometric values
+	enum {
+	  DegMode,
+	  RadMode,
+	  GradMode
+	} _angle_mode;
+
 public:
 	static const CALCAMNT pi;
 

@@ -77,9 +77,8 @@ static const char version[] = KCALCVERSION;
 
 KCalculator::KCalculator(QWidget *parent, const char *name)
 	: KMainWindow(parent, name), inverse(false),
-	  hyp_mode(false), memory_num(0.0),calc_display(NULL),
-	  mInternalSpacing(4),
-	  core()
+	  hyp_mode(false), memory_num(0.0), calc_display(NULL),
+	  mInternalSpacing(4), core()
 {
 	/* central widget to contain all the elements */
 	QWidget *central = new QWidget(this);
@@ -1195,19 +1194,19 @@ void KCalculator::slotAngleSelected(int number)
 	switch(number)
 	{
 	case 0:
-		core.setAngleMode(CalcEngine::AngleDegree);
+		_angle_mode = DegMode;
 		statusBar()->changeItem("DEG", 2);
 		break;
 	case 1:
-		core.setAngleMode(CalcEngine::AngleRadian);
+		_angle_mode = RadMode;
 		statusBar()->changeItem("RAD", 2);
 		break;
 	case 2:
-		core.setAngleMode(CalcEngine::AngleGradient);
+		_angle_mode = GradMode;
 		statusBar()->changeItem("GRA", 2);
 		break;
 	default: // we shouldn't ever end up here
-		core.setAngleMode(CalcEngine::AngleRadian);
+		_angle_mode = RadMode;
 	}
 }
 
@@ -1277,9 +1276,31 @@ void KCalculator::slotSinclicked(void)
 	{
 		// sine or arcsine
 		if (!inverse)
-			core.Sin(calc_display->getAmount());
+			switch(_angle_mode)
+			{
+			case DegMode:
+				core.SinDeg(calc_display->getAmount());
+				break;
+			case RadMode:
+				core.SinRad(calc_display->getAmount());
+				break;
+			case GradMode:
+				core.SinGrad(calc_display->getAmount());
+				break;
+			}
 		else
-			core.ArcSin(calc_display->getAmount());
+			switch(_angle_mode)
+			{
+			case DegMode:
+				core.ArcSinDeg(calc_display->getAmount());
+				break;
+			case RadMode:
+				core.ArcSinDeg(calc_display->getAmount());
+				break;
+			case GradMode:
+				core.ArcSinDeg(calc_display->getAmount());
+				break;
+			}
 	}
 
 	UpdateDisplay(true);
@@ -1322,9 +1343,31 @@ void KCalculator::slotCosclicked(void)
 	{
 		// cosine or arccosine
 		if (!inverse)
-			core.Cos(calc_display->getAmount());
+			switch(_angle_mode)
+			{
+			case DegMode:
+				core.CosDeg(calc_display->getAmount());
+				break;
+			case RadMode:
+				core.CosRad(calc_display->getAmount());
+				break;
+			case GradMode:
+				core.CosGrad(calc_display->getAmount());
+				break;
+			}
 		else
-			core.ArcCos(calc_display->getAmount());
+			switch(_angle_mode)
+			{
+			case DegMode:
+				core.ArcCosDeg(calc_display->getAmount());
+				break;
+			case RadMode:
+				core.ArcCosRad(calc_display->getAmount());
+				break;
+			case GradMode:
+				core.ArcCosGrad(calc_display->getAmount());
+				break;
+			}
 	}
 
 	UpdateDisplay(true);
@@ -1350,9 +1393,31 @@ void KCalculator::slotTanclicked(void)
 	{
 		// tan or arctan
 		if (!inverse)
-			core.Tangens(calc_display->getAmount());
+			switch(_angle_mode)
+			{
+			case DegMode:
+				core.TangensDeg(calc_display->getAmount());
+				break;
+			case RadMode:
+				core.TangensRad(calc_display->getAmount());
+				break;
+			case GradMode:
+				core.TangensGrad(calc_display->getAmount());
+				break;
+			}
 		else
-			core.ArcTangens(calc_display->getAmount());
+			switch(_angle_mode)
+			{
+			case DegMode:
+				core.ArcTangensDeg(calc_display->getAmount());
+				break;
+			case RadMode:
+				core.ArcTangensRad(calc_display->getAmount());
+				break;
+			case GradMode:
+				core.ArcTangensGrad(calc_display->getAmount());
+				break;
+			}
 	}
 
 	UpdateDisplay(true);

@@ -69,27 +69,29 @@ class CalcEngine
     FUNC_INTDIV
   };
 
-  // angle modes for trigonometric values
-  typedef enum {
-    AngleDegree,
-    AngleRadian,
-    AngleGradient
-  } angle_type;
-
   CalcEngine();
   
   CALCAMNT lastOutput(bool &error) const;
 
   void enterOperation(CALCAMNT num, Operation func);
 
-  void ArcCos(CALCAMNT input);
-  void ArcSin(CALCAMNT input);
-  void ArcTangens(CALCAMNT input);
+
+  void ArcCosDeg(CALCAMNT input);
+  void ArcCosRad(CALCAMNT input);
+  void ArcCosGrad(CALCAMNT input);
+  void ArcSinDeg(CALCAMNT input);
+  void ArcSinRad(CALCAMNT input);
+  void ArcSinGrad(CALCAMNT input);
+  void ArcTangensDeg(CALCAMNT input);
+  void ArcTangensRad(CALCAMNT input);
+  void ArcTangensGrad(CALCAMNT input);
   void AreaCosHyp(CALCAMNT input);
   void AreaSinHyp(CALCAMNT input);
   void AreaTangensHyp(CALCAMNT input);
   void Complement(CALCAMNT input);
-  void Cos(CALCAMNT input);
+  void CosDeg(CALCAMNT input);
+  void CosRad(CALCAMNT input);
+  void CosGrad(CALCAMNT input);
   void CosHyp(CALCAMNT input);
   void Exp(CALCAMNT input);
   void Exp10(CALCAMNT input);
@@ -100,7 +102,9 @@ class CalcEngine
   void ParenClose(CALCAMNT input);
   void ParenOpen(CALCAMNT input);
   void Reciprocal(CALCAMNT input);
-  void Sin(CALCAMNT input);
+  void SinDeg(CALCAMNT input);
+  void SinGrad(CALCAMNT input);
+  void SinRad(CALCAMNT input);
   void SinHyp(CALCAMNT input);
   void Square(CALCAMNT input);
   void SquareRoot(CALCAMNT input);
@@ -114,11 +118,12 @@ class CalcEngine
   void StatStdSample(CALCAMNT input);
   void StatSum(CALCAMNT input);
   void StatSumSquares(CALCAMNT input);
-  void Tangens(CALCAMNT input);
+  void TangensDeg(CALCAMNT input);
+  void TangensRad(CALCAMNT input);
+  void TangensGrad(CALCAMNT input);
   void TangensHyp(CALCAMNT input);
 
   void Reset();
-  void setAngleMode(angle_type mode) { _angle_mode = mode; };
  private:
   KStats	stats;
 
@@ -150,7 +155,6 @@ class CalcEngine
 
   CALCAMNT _last_number;
 
-  angle_type _angle_mode;
   bool _percent_mode;
 
   int _precedence_list[20]; // priority of operators in " enum Operation"

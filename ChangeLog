@@ -1,3 +1,6 @@
+2004-09-08 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* moved angle mode logic into GUI
+
 2004-09-04 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* reduced the number of entry points into the CalcEngine
 	  Aim: enterOperation the only entry point
