@@ -1,3 +1,7 @@
+2005-04-02 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* GUI: added statusflags to display, looks very neat (this was
+	  contributed by Bernd Brandstetter; well done!)
+
 2005-03-30 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* added a Memory-Store button (contributed by Bernd Brandstetter)
 

@@ -1135,21 +1135,26 @@ void KCalculator::slotBaseSelected(int base)
 	case 3:
 	  current_base = calc_display->setBase(NumBase(2));
 	  if (statusBar()->hasItem(1)) statusBar()->changeItem("BIN",1);
+	  calc_display->setStatusText(1, "Bin");
 	  break;
 	case 2:
 	  current_base = calc_display->setBase(NumBase(8));
 	  if (statusBar()->hasItem(1)) statusBar()->changeItem("OCT",1);
+	  calc_display->setStatusText(1, "Oct");
 	  break;
 	case 1:
 	  current_base = calc_display->setBase(NumBase(10));
 	  if (statusBar()->hasItem(1)) statusBar()->changeItem("DEC",1);
+	  calc_display->setStatusText(1, "Dec");
 	  break;
 	case 0:
 	  current_base = calc_display->setBase(NumBase(16));
 	  if (statusBar()->hasItem(1)) statusBar()->changeItem("HEX",1);
+	  calc_display->setStatusText(1, "Hex");
 	  break;
 	default:
 	  if (statusBar()->hasItem(1)) statusBar()->changeItem("Error",1);
+	  calc_display->setStatusText(1, "Error");
 	  return;
 	}
 
@@ -1236,16 +1241,19 @@ void KCalculator::slotAngleSelected(int number)
 		_angle_mode = DegMode;
 		statusBar()->changeItem("DEG", 2);
 		pbAngleChoose->popup()->setItemChecked(0, true);
+		calc_display->setStatusText(2, "Deg");
 		break;
 	case 1:
 		_angle_mode = RadMode;
 		statusBar()->changeItem("RAD", 2);
 		pbAngleChoose->popup()->setItemChecked(1, true);
+		calc_display->setStatusText(2, "Rad");
 		break;
 	case 2:
 		_angle_mode = GradMode;
 		statusBar()->changeItem("GRA", 2);
 		pbAngleChoose->popup()->setItemChecked(2, true);
+		calc_display->setStatusText(2, "Gra");
 		break;
 	default: // we shouldn't ever end up here
 		_angle_mode = RadMode;
@@ -1266,10 +1274,12 @@ void KCalculator::slotInvtoggled(bool flag)
 	if (inverse)
 	{
 		statusBar()->changeItem("INV", 0);
+		calc_display->setStatusText(0, "Inv");
 	}
 	else
 	{
 		statusBar()->changeItem("NORM", 0);
+		calc_display->setStatusText(0, QString::null);
 	}
 }
 
@@ -1297,7 +1307,7 @@ void KCalculator::slotMemStoreclicked(void)
 	EnterEqual();
 
 	memory_num = calc_display->getAmount();
-	//calc_display->setStatusText(3, "M");
+	calc_display->setStatusText(3, "M");
 	statusBar()->changeItem("M",3);
 	pbMemRecall->setEnabled(true);
 }
@@ -1372,7 +1382,8 @@ void KCalculator::slotMemPlusMinusclicked(void)
 
 	pbInv->setOn(false);
 	statusBar()->changeItem("M",3);
-        pbMemRecall->setEnabled(true);
+	calc_display->setStatusText(3, "M");
+	pbMemRecall->setEnabled(true);
 }
 
 void KCalculator::slotCosclicked(void)
@@ -1541,7 +1552,8 @@ void KCalculator::slotMCclicked(void)
 {
 	memory_num		= 0;
 	statusBar()->changeItem(" \xa0\xa0 ",3);
-        pbMemRecall->setDisabled(true);
+	calc_display->setStatusText(3, QString::null);
+	pbMemRecall->setDisabled(true);
 }
 
 void KCalculator::slotClearclicked(void)
@@ -1966,6 +1978,7 @@ void KCalculator::slotTrigshow(bool toggled)
 		if(!statusBar()->hasItem(2))
 			statusBar()->insertFixedItem(" DEG ", 2, true);
 		statusBar()->setItemAlignment(2, AlignCenter);
+		calc_display->setStatusText(2, "Deg");
 		slotAngleSelected(0);
 	}
 	else
@@ -1977,6 +1990,7 @@ void KCalculator::slotTrigshow(bool toggled)
 		pbAngleChoose->hide();
 		if(statusBar()->hasItem(2))
 			statusBar()->removeItem(2);
+		calc_display->setStatusText(2, QString::null);
 	}
 	adjustSize();
 	setFixedSize(sizeHint());
@@ -2013,6 +2027,7 @@ void KCalculator::slotLogicshow(bool toggled)
 		if(!statusBar()->hasItem(1))
 			statusBar()->insertFixedItem(" HEX ", 1, true);
 		statusBar()->setItemAlignment(1, AlignCenter);
+		calc_display->setStatusText(1, "Hex");
 		resetBase();
 		BaseChooseGroup->show();
 		for (int i=10; i<16; i++)
@@ -2031,6 +2046,7 @@ void KCalculator::slotLogicshow(bool toggled)
 		BaseChooseGroup->hide();
 		if(statusBar()->hasItem(1))
 			statusBar()->removeItem(1);
+		calc_display->setStatusText(1, QString::null);
 		for (int i=10; i<16; i++)
 			(NumButtonGroup->find(i))->hide();
 	}

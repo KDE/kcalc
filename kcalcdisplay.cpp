@@ -27,6 +27,7 @@
 #include <ctype.h>
 
 #include <qclipboard.h>
+#include <qpainter.h>
 #include <qregexp.h>
 
 #include <kglobal.h>
@@ -428,6 +429,13 @@ int KCalcDisplay::setBase(NumBase new_base)
 	return _num_base;
 }
 
+void KCalcDisplay::setStatusText(uint i, const QString& text)
+{
+	if (i < NUM_STATUS_TEXT)
+		_str_status[i] = text;
+	update();
+}
+
 bool KCalcDisplay::updateDisplay(void)
 {
 	// Put sign in front.
@@ -698,3 +706,33 @@ bool KCalcDisplay::getError(void) const
 {
 	return _error;
 }
+
+void KCalcDisplay::drawContents(QPainter *p)
+{
+	QLabel::drawContents(p);
+
+	// draw the status texts using half of the normal
+	// font size but not smaller than 7pt
+	QFont f(font());
+	f.setPointSize(QMAX((f.pointSize() / 2), 7));
+	p->setFont(f);
+	QFontMetrics fm(f);
+	uint w = fm.width("_____");
+	uint h = fm.height();
+
+	for (uint i = 0; i < NUM_STATUS_TEXT; i++)
+	{
+		p->drawText(5 + i * w, h, _str_status[i]);
+	}
+}
+
+// Return the QLabel's normal size hint vertically expanded
+// by half the font height to make room for the status texts
+QSize KCalcDisplay::sizeHint() const
+{
+	QFont f(font());
+	f.setPointSize(QMAX((f.pointSize() / 2), 7));
+	QFontMetrics fm(f);
+	return QLabel::sizeHint() + QSize(0, fm.height());
+}
+

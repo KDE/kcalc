@@ -57,6 +57,8 @@
 
 #define		DSP_SIZE	50 // 25
 
+#define		NUM_STATUS_TEXT 4
+
 /*
   This class provides a pocket calculator display.  The display has
   implicitely two major modes: One is for editing and one is purely
@@ -91,6 +93,7 @@ public:
 
 protected:
 	void  mousePressEvent ( QMouseEvent *);
+	virtual void drawContents(QPainter *p);
 
 public:
 	enum Event {
@@ -114,6 +117,8 @@ public:
 	void setText(QString const &string);
 	QString text() const;
 	bool updateDisplay(void);
+	void setStatusText(uint i, const QString& text);
+	virtual QSize sizeHint() const;
 private:
 	bool _beep;
 	bool _groupdigits;
@@ -138,6 +143,7 @@ private:
 	bool _neg_sign;
 	QString _str_int;
 	QString _str_int_exp;
+	QString _str_status[NUM_STATUS_TEXT];
 
 	QTimer* selection_timer;
 
