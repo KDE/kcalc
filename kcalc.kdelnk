@@ -13,6 +13,7 @@ Name[sk]=Kalkulaèka
 Name[cs]=Kalkulaèka
 Name[hr]=Kalkulator
 Name[sv]=Kalkylator
+Name[ro]=Calculator
 Exec=kcalc  -caption "%c" %i %m
 Icon=kcalc.xpm
 DocPath=kcalc/index.html
@@ -29,6 +30,7 @@ Comment[sk]=Vedecká kalkulaèka
 Comment[cs]=Vìdecká kalkulaèka
 Comment[hr]=Znanstveni kalkulator
 Comment[sv]=En vetenskaplig kalkylator
+Comment[ro]=Calculator ºtiinþific 
 Terminal=0
 Type=Application
 
