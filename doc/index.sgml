@@ -1,0 +1,345 @@
+<!doctype linuxdoc system>
+
+<!-- The KCalc Handbook.
+
+ -->
+
+<article>
+
+<!-- Title information -->
+
+<title>The KCalc Handbook
+<author>Bernd Johannes Wuebben, <tt/wuebben@kde.org/
+<date>Version 0.4, 20 September 1997
+<abstract>This Handbook describes KCalc Version 0.4
+
+<!-- Table of contents -->
+<toc>
+
+<!-- Begin the document -->
+
+
+<sect>Introduction<p>
+This is release 0.4 of KCalc. KCalc is a simple but hopefully useful scientific
+calculator for the KDE project. 
+
+KCalc offers many more mathematical functions than meet the eye on a first glance.
+Please study the section on keyboard accelerators and  modes in this handbook to 
+learn more about the many functions available.
+
+
+In addition to the usual functionality offered by most scientific calculators,
+KCalc offers a number of features, which I think are worthwhile pointing out:
+<p>
+<itemize>
+<item>KCalc has a trigonometric and a statistics mode.
+<item>KCalc allows you to cut and paste numbers
+from/into it's display.
+<item>KCalc features a 'results-stack' which let's
+you conveniently recall previous results. 
+<item>You can
+configure KCalc's display colors and font.
+<item>You can configure KCalc's  precision and the number
+of digits after the period.
+<item> KCalc offers a great number of useful key-bindings, which make using KCalc
+without using a pointing device easy.
+</itemize>
+
+Have fun with KCalc!
+
+<p>
+<tt>Bernd Johannes Wuebben</tt>
+
+<p>
+<htmlurl url="mailto:wuebben@math.cornell.edu" name="wuebben@math.cornell.edu"><p>
+
+
+<sect>Installation
+<p>
+<sect1>How to obtain KCalc
+<p>
+KCalc is part  of the KDE project <url url="http://www.kde.org">.
+KCalc can be found on <url url="ftp://ftp.kde.org/pub/kde/">, the main ftp site
+of the KDE project. It's home site is
+<htmlurl url="http://math.cornell.edu/~wuebben/kde.html" name="http://math.cornell.edu/~wuebben/kde.html">
+
+<sect1>Requirements
+<p>
+In order to successfully compile KCalc, you need the latest versions of <tt> libkdecore</tt> and <tt> libkdeui</tt>. All required libraries as well as KCalc itself can be found
+on <url url="ftp://ftp.kde.org/pub/kde/">. 
+
+<sect1>Compilation and installation
+<p>
+
+The usual:
+
+<tscreen><verb>
+% ./configure
+% make
+% make install
+</verb></tscreen>
+
+
+Should you run into problems please report them to me.
+<p>
+
+<sect> Usage <p>
+General usage is straight forward and similar if not identical to the way
+most simple scientific calculators operate. Click on the <bf>KCalc</bf>
+button to bring up the configuration dialog.
+<p>
+
+<sect1> Result Stack
+<p>
+Each time you click the enter button or press the 'equal' or 'Enter' or 'Return'
+keys, the display result is written to KCalc's result stack. You can navigate 
+through the result stack by pressing the up and down arrow keys.
+<p>
+
+<sect1>
+Percent Function<p>
+The percent function works somewhat different from that of most calculators.
+However, once understood, its enhance functionality proves quite useful.
+See the section on the percent function in the "Comments on specific 
+functions" section for a details explanation of the percent functionality.
+<p>
+<sect1>Fixed Precision<p>
+Click the fixed precision check-box on the configure dialog if you whish
+to fix the number of digits which are displayed past the period.
+<p>
+
+<sect1>Cut and Paste
+<p>
+<itemize>
+<item>Pressing the left mouse button on KCalc's display will place the displayed
+number on to the clip-board.
+<item>Pressing the right or middle mouse button on KCalc's display will paste
+the clip-board content into the display if the content of the clip-board
+is a valid floating point number.
+</itemize>
+<p>
+
+<sect>Modes<p>
+
+<sect1>Statistical Mode<p>
+Press F4 or bring up the configuration dialog by pushing the KCALC button or
+by pressing F2 to switch into statistics mode.
+
+<descrip>
+<tag/N/ Recall the number of data items entered
+
+<tag/INV N / Display the sum of all data items entered
+
+<tag/Mea / Display the mean of the data items entered
+
+<tag/INV Mea / Display the sum of the square of all data items entered
+
+<tag/Std / Display the standard deviation (n)
+
+<tag/INV Std / Display the population standard deviation  (n-1)
+
+<tag/Med / Display the median
+
+<tag/Dat / Enter a data item
+
+<tag/INV Dat / Clear last data item entered
+
+<tag/Cst / Clear all data item entered
+
+</descrip>
+
+<sect1>Trigonometric Mode<p>
+Press F3 or bring up the configuration dialog by pushing the KCALC button or
+by pressing F2 to switch into trigonometric mode.
+
+<descrip>
+<tag/Hyp/ Enter Hyperbolic sub mode. HYP SIN for example is the hyperbolic sine: sinh(x)
+
+<tag/Sin/ Compute the sine.
+
+<tag/INV Sin/ Compute the inverse sine.
+
+<tag/Cos/ Compute the cosine.
+
+<tag/INV Cos/ Compute the inverse cosine.
+
+<tag/Tan/ Compute the tangents.
+
+<tag/INV Tan/ Compute the inverse tangent.
+
+<tag/Log/ Compute the Log base 10
+
+<tag/INV Log/ Compute the 10 to the power of x
+
+<tag/Ln/ Compute the natural logarithm. That is the log with base e.
+
+<tag/INV Ln/ Compute the natural logarithm. That is the log with base e.
+
+</descrip>
+
+<p>
+<sect>Key Accels<p>
+(TODO): This list is probably incomplete. Check!
+
+<tscreen><verb>
+
+F1         Help
+F2         Config Dialog
+F3         Switch into Trigonometry Mode
+F4         Switch into Statistics Mode
+
+Up Key     display previous element of the result stack
+Down Key   display next element of the result stack
+Page UP    Clear
+Prior      Clear
+Page Down  Clear All
+Next       Clear All
+
+ALT + d    set trig-mode to deg
+ALT + r    set trig-mode to rad
+ALT + g    set trig-mode to grad
+ALT + e    set radix to decimal
+ALT + o    set radix to octal
+ALT + b    set radix to binary
+
+s          Sin 
+c          Cos 
+t          Tan
+n          ln  = log base e
+l          log = log base 10
+i          Inv inverse, e.g. if you want arcsin(x) type i s 
+\          +/- 
+[          ^2 
+^          x^y 
+=          = 
+!          factorial
+<          left shift
+>          right shift
+&          AND
+*          multiply
+/          divide
+
+d          enter stat data item ( in stat mode)
+
+o          OR
+INV o      XOR
+r          1/x r for reciproc 
+Enter      = 
+Return     = 
+Backspace  Clear All 
+Del        Clear All
+Esc        Clear
+h          Hyp (Hyperbolic) as e.g in Hyp Sin , the sinh(x) 
+</verb></tscreen>
+
+<sect>Comments on specific functions<p>
+
+<sect1>Mod<p>
+Give the remainder of dividing the display number by the next input number.
+<sect1>%<p>
+
+Interpret the final operation carried out in  the current 
+calculation as follows:
+
+<itemize>
+
+The function of the % key is similar to the one found on some CASIO calculators:
+
+<item>If the final operator is + give the percentage increase
+the result is over the second operand.
+
+<item> If the final operator is - give the percentage decrease the result 
+is over the second operand.
+
+<item>If the final operator is * give the right operand 
+as a percentage of the left operand.
+
+<item>If the final operator is / or Mod, give the left operand
+as a percentage of the right operand.
+
+<item>If the final operator is x**y give the left operand 
+raised to the power of the (right operand / 100).
+
+<item> In all other cases the % key gives identical results to the = key.
+
+</itemize>                              
+<sect2>Examples<p>
+<verb>
+
+Type:             45 / 55 %
+Answer Displayed: 81.8181...
+Explanation:      45 is 81.81...percent of 55
+
+Type:             11 + 89 %
+Answer Displayed: 112.35.. 
+Explanation:      89 + 11 = 100 and  100 is 112.35 percent of 89. 
+</verb>
+<p>
+<sect1>Lsh (Rsh)<p>
+Left (right) shift the n times, where n is the next input number.
+You get Rsh (right shift)  by pressing INV Lsh.
+
+<p>
+
+<sect>Questions and Answers<p>
+<sect1>How do I get pi=3.1415926...?<p>
+Simply type INV EE.
+<p>
+<sect1>How do I get e, the Euler number?<p>
+Type 1 INV ln.
+<p>
+
+
+<sect1>How do I get two fixed digits after the period?<p>
+Click on the KCalc button, this will bring up the configuration dialog.
+Click on "Set Fixed Precision" and adjust the spin control so that it
+shows a 2.<p>
+
+<sect1>What about Precision?<p>
+The main factor determining the precision of kcalc is whether your libc and libmath
+supports the C data type <tt>long double</tt>. If this is the case, kcalc will detect this
+at compile time and use it as it's fundamental data type to represent numbers.
+Check KCalc's about dialog in order to find out what the fundamental data type
+for your copy of KCalc is.
+<p>
+
+Unless you have a libc and libmath of exceptionally high quality, you will
+be able to observe some "interesting" results when trying
+to execute computations such as: 123.22 - 123.21; 2.01 - 2; 123.88 - 123.87 and
+similar. However if you think this is bad I ask you to do the same computation on 
+the windows calculator.
+<p>
+Adjust the precision on KCalc's configure dialog so that the above computation
+go through correctly. I recommend a precision of 14 if the fundamental data
+type for your copy of KCalc is long double, otherwise 8 or 10.
+<p>
+Note: Higher precision doesn't necessarily lead to better results. Play with
+the precision and you will see what I mean.
+<p>
+
+<sect>Copyright<p>
+<tscreen><verb>
+
+KCalc Copyright 1996,1997 Bernd Johannes Wuebben 
+                          wuebben@math.cornell.edu
+
+KCalc was inspired by Martin Bartlett's xfrmcalc, whose stack 
+engine is still part of KCalc.
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+</verb></tscreen>
+</article>
+
