@@ -61,13 +61,17 @@
 // and this for all the poor devels out there who don't have long double math
 // I guess it's time to switch to LINUX guys .....
 
+#define HAVE_FABSL
+/* TAKE CARE OF TH HAVE_LONG_DOUBLE defines in core.cpp*/
+
+
 #ifdef HAVE_FABSL
 #define CALCAMNT        long double
 #else
 #define CALCAMNT        double
 #endif
 
-#ifdef HAVE_FABSL 
+#ifdef HAVE_FABSL
 #define FABS(X)   	fabsl(X)
 #define MODF(X,Y)       modfl(X,Y)
 #define FMOD(X,Y)   	fmodl(X,Y)

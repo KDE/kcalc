@@ -23,7 +23,7 @@ CXXFLAGS  = @CXXFLAGS@
 CPPFLAGS  = @CPPFLAGS@
 CC	  = @CC@
 CFLAGS    = @CFLAGS@
-LDFLAGS   = @all_libraries@ -lqt -lX11 -lm
+LDFLAGS   = @all_libraries@ -lkdecore -lqt -lX11 -lm
 
 ############# Install ##############
 
@@ -34,6 +34,7 @@ INSTALL_DIR  = @INSTALL@ -d -m 0755
 prefix       = @prefix@
 BINDIR       = $(prefix)/bin
 LIBDIR       = $(prefix)/lib
+PICSDIR      = $(prefix)/lib/pics
 DOCSDIR      = $(prefix)/doc/HTML/kcalc
 
 ########## Implicit Rules ##########
@@ -41,7 +42,7 @@ DOCSDIR      = $(prefix)/doc/HTML/kcalc
 .SUFFIXES: .cpp .c
 
 .cpp.o:
-	$(CXX) $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CXXFLAGS) -c $<
+	$(CC) $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CXXFLAGS) -c $<
 
 .c.o:
 	$(CC) $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CFLAGS) -c $<
@@ -60,8 +61,9 @@ install: all
 	[ -d $(BINDIR) ] || $(INSTALL_DIR) $(BINDIR)
 	$(INSTALL) $(TARGET) $(BINDIR)
 	[ -d $(DOCSDIR) ] || $(INSTALL_DIR) $(DOCSDIR)
-	$(INSTALL_DATA) ./doc/kcalc.gif $(DOCSDIR)
-	$(INSTALL_DATA) ./doc/kcalc.html $(DOCSDIR)
+	$(INSTALL_DATA) ./doc/k* $(DOCSDIR)
+	$(INSTALL_DIR)  $(PICSDIR)
+	$(INSTALL_DATA) kcalc.xpm $(PICSDIR)	
 
 uninstall:
 	rm -f $(BINDIR)/$(TARGET)

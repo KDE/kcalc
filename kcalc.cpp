@@ -32,11 +32,15 @@
 #include <config.h>
 #endif
 
+#include <kapp.h>
 #include "kcalc.h"
 #include <assert.h>
-//#include <iostream.h>
+#include "version.h"
+#include <stdio.h>
 
 extern num_base current_base;
+KApplication *mykapp;
+
 
 QtCalculator :: QtCalculator( QWidget *parent, const char *name )
   : QDialog( parent, name )
@@ -1357,13 +1361,7 @@ void QtCalculator::pbmodtoggled(bool myboolean)  {
 
 void QtCalculator::helpbuttonclicked(){
 
-  if ( fork() == 0 )
-        {
-                QString path = DOCS_PATH;
-                path += "/kcalc.html";
-                execlp( "kdehelp", "kdehelp", path.data(), 0 );
-                ::exit( 1 );
-        }
+  mykapp->invokeHTMLHelp("","");
 
 }
 
@@ -1381,14 +1379,33 @@ void QtCalculator::helpbuttonclicked(){
 int main( int argc, char **argv )
 {
 
-//  QApplication::setColorMode( QApplication::CustomColors );
-    QApplication a( argc, argv );
+    mykapp = new KApplication (argc, argv, "kcalc");
+
+    QFont font( "-misc-fixed-medium-*-semicondensed-*-13-*-*-*-*-*-*-*" );
+    font.setRawMode( TRUE );
+    mykapp->setFont(font);
+
+    if( argc >1 ){
+      argv++;
+      for(int i = 1; i <= argc ;i++){
+	if(strcmp(*argv,"-v")==0 || strcmp(*argv, "-h")== 0){
+	  printf("KCalc "KCALCVERSION"\nCopyright 1997 Bernd Johannes Wuebben"\
+		 " <wuebben@kde.org>\n");
+	  exit(1);
+	}
+	argv++;
+      }
+
+    }
+
     QtCalculator  *calc = new QtCalculator;
-    a.setMainWidget( calc );
+    mykapp->setMainWidget( calc );
+
     // calc->setGeometry(300, 100, 9 + 100 + 9 + 233 + 9, 220);   
+
     calc->setFixedSize( 9 + 100 + 9 + 233 + 9, 239);   
     calc->show();
-    return a.exec();
+    return mykapp->exec();
 }
 
 

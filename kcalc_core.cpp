@@ -160,9 +160,12 @@ void QtCalculator::InitializeCalculator(void) {
 
 void fpe_handler(int fpe_parm)
 {
-	display_error = 1;
-	DISPLAY_AMOUNT = 0L;
- }		
+  (void) fpe_parm;
+
+  display_error = 1;
+  DISPLAY_AMOUNT = 0L;
+
+}		
 
 
 void QtCalculator::RefreshCalculator(void)
@@ -449,7 +452,7 @@ void QtCalculator::Power()
 void QtCalculator::EnterStackFunction(int data)
 {
 	item_contents 	new_item;
-	int		new_precedence, button;
+	int		new_precedence;
 	int 		dummy;
 	
 	if (inverse ) {
@@ -516,7 +519,6 @@ void QtCalculator::EnterRecip()
 void QtCalculator::EnterInt()
 {
 	CALCAMNT work_amount1, work_amount2;
-	int button;
 
 	last_input = OPERATION;	
 	if (!inverse){
@@ -556,7 +558,6 @@ void QtCalculator::EnterFactorial()
 
 void QtCalculator::EnterSquare()
 {
-	int button;
 	if (!inverse){
 		DISPLAY_AMOUNT *= DISPLAY_AMOUNT;	
 	} 
@@ -822,7 +823,6 @@ void QtCalculator::EnterPercent()
 
 void QtCalculator::EnterLogr()
 {
-	int button;
 
 	last_input = OPERATION;
 
@@ -844,7 +844,6 @@ void QtCalculator::EnterLogr()
 
 void QtCalculator::EnterLogn()
 {
-	int button;
 
 	last_input = OPERATION;
 	if (!inverse) {
@@ -1057,8 +1056,8 @@ void QtCalculator::UpdateDisplay()
   // are correctly displayed.
 
 	CALCAMNT	boh_work_d;
-	long 		boh_work;
-	int		str_size;
+	long 		boh_work = 0;
+	int		str_size = 0;
 
 	if (current_base != NB_DECIMAL) { 
 		MODF(DISPLAY_AMOUNT, &boh_work_d);
@@ -1091,7 +1090,8 @@ void QtCalculator::UpdateDisplay()
 		else if (current_base == NB_DECIMAL) {
 
 		  str_size = sprintf(display_str, 
-#ifdef HAVE_LONG_DOUBLE
+
+#ifdef HAVE_FABSL
 					   "%.*Lg",
 					    18,
 #else
@@ -1104,7 +1104,7 @@ void QtCalculator::UpdateDisplay()
 
 		  if ( input_count > 0 && !strpbrk(display_str,"e") &&
 					   last_input == DIGIT   ) {
-#ifdef HAVE_LONG_DOUBLE
+#ifdef HAVE_FABSL
 		    str_size = sprintf(display_str, 
 					   "%.*Lf",
 					    (19 > input_count)? input_count :18,
@@ -1197,8 +1197,8 @@ int cvb(char *out_str, long amount, int max_digits)
 int UpdateStack(int run_precedence)
 {
 	item_contents 	new_item, *top_item , *top_function;
-	CALCAMNT	left_op, right_op;
-	int		op_function, return_value = 0;
+	CALCAMNT	left_op =0.0 , right_op =0.0;
+	int		op_function= 0, return_value = 0;
 
 	new_item.s_item_type = ITEM_AMOUNT;
 	while ((top_function = TopTypeStack(ITEM_FUNCTION)) &&
@@ -1441,6 +1441,8 @@ CALCAMNT ExecPwrRoot(CALCAMNT left_op, CALCAMNT right_op)
 	
 CALCAMNT ExecAddSubP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 {
+  (void) left_op;
+
 	if (result == 0) {
 		display_error = 1;
 		return 0;
@@ -1450,21 +1452,30 @@ CALCAMNT ExecAddSubP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 
 CALCAMNT ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 {
+  (void) left_op;
+  (void) right_op;
+
 	return (result / 100L);
 }
 
 CALCAMNT ExecDivideP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 {
+  (void) left_op;
+  (void) right_op;
+
 	return (result * 100L);
 }
 
 CALCAMNT ExecPowerP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 {
+  (void) result;
 	return ExecPower(left_op, (right_op / 100L));
 }
 
 CALCAMNT ExecPwrRootP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 {
+  (void) result;
+
 	if (right_op == 0) {
 		display_error = 1;
 		return 0;
@@ -1484,6 +1495,7 @@ stack_ptr AllocStackItem (void) {
 	}
 
 	QMessageBox::message( "Emergency", "Stack Error !", "O.K." );
+	return &process_stack[stack_next];
 }
 
 void UnAllocStackItem (stack_ptr return_item) {
@@ -1531,7 +1543,7 @@ item_contents *PopStack(void)
 	item_contents *return_item_ptr = NULL;
 	stack_ptr return_stack_ptr;
 
-	if (return_stack_ptr = top_of_stack) {
+	if ((return_stack_ptr = top_of_stack)) {
 		return_item = top_of_stack->item_value;
 
 		top_type_stack[return_item.s_item_type]
