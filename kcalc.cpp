@@ -178,20 +178,19 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	pbMod = new QPushButton("Mod", mSmallPage, "Modulo-Button");
 	QToolTip::add(pbMod, i18n("Modulo"));
 	pbMod->setAutoDefault(false);
+	pbMod->setAccel(Key_Colon);
 	connect(pbMod, SIGNAL(clicked(void)), SLOT(slotModclicked(void)));
 
 	pbReci = new QPushButton("1/x", mSmallPage, "Reciprocal-Button");
 	QToolTip::add(pbReci, i18n("Reciprocal"));
 	pbReci->setAutoDefault(false);
-	accel()->insert("Entered Reciprocal", i18n("Pressed R"),
-			0, Key_R, pbReci, SLOT(animateClick()));
+	pbReci->setAccel(Key_R);
 	connect(pbReci, SIGNAL(clicked(void)), SLOT(slotReciclicked(void)));
 
 	pbFactorial = new QPushButton("x!", mSmallPage, "Factorial-Button");
 	QToolTip::add(pbFactorial, i18n("Factorial"));
 	pbFactorial->setAutoDefault(false);
-	accel()->insert("Entered Factorial", i18n("Pressed Exclamation-Mark"),
-			0, Key_Exclam, pbFactorial, SLOT(animateClick()));
+	pbFactorial->setAccel(Key_Exclam);
 	connect(pbFactorial, SIGNAL(clicked(void)),SLOT(slotFactorialclicked(void)));
 
 	pbSquare = new QPushButton("x^2", mSmallPage, "Square-Button");
@@ -201,9 +200,8 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 
 	pbPower = new QPushButton("x^y", mSmallPage, "Power-Button");
 	pbPower->setAutoDefault(false);
+	pbPower->setAccel(Key_AsciiCircum);
 	QToolTip::add(pbPower, i18n("x to the power of y"));
-	accel()->insert("Entered Power", i18n("Pressed '^'"),
-			0, Key_AsciiCircum, pbPower, SLOT(animateClick()));
 	connect(pbPower, SIGNAL(clicked(void)), SLOT(slotPowerclicked(void)));
 
 
@@ -480,73 +478,63 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 
 	tmp_pb = new QPushButton("0", thisPage, "0-Button");
 	tmp_pb->setAutoDefault(false);
+	tmp_pb->setAccel(Key_0);
         NumButtonGroup->insert(tmp_pb, 0);
-	accel()->insert("Entered 0", i18n("Pressed 0-Button"),
-			0, Key_0, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("1", thisPage, "1-Button");
 	tmp_pb->setAutoDefault(false);
+	tmp_pb->setAccel(Key_1);
         NumButtonGroup->insert(tmp_pb, 1);
-	accel()->insert("Entered 1", i18n("Pressed 1-Button"),
-			0, Key_1, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("2", thisPage, "2-Button");
 	tmp_pb->setAutoDefault(false);
+	tmp_pb->setAccel(Key_2);
         NumButtonGroup->insert(tmp_pb, 2);
-	accel()->insert("Entered 2", i18n("Pressed 2-Button"),
-			0, Key_2, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("3", thisPage, "3-Button");
 	tmp_pb->setAutoDefault(false);
+	tmp_pb->setAccel(Key_3);
         NumButtonGroup->insert(tmp_pb, 3);
-	accel()->insert("Entered 3", i18n("Pressed 3-Button"),
-			0, Key_3, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("4", thisPage, "4-Button");
 	tmp_pb->setAutoDefault(false);
+	tmp_pb->setAccel(Key_4);
         NumButtonGroup->insert(tmp_pb, 4);
-	accel()->insert("Entered 4", i18n("Pressed 4-Button"),
-			0, Key_4, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("5", thisPage, "5-Button");
 	tmp_pb->setAutoDefault(false);
+	tmp_pb->setAccel(Key_5);
         NumButtonGroup->insert(tmp_pb, 5);
-	accel()->insert("Entered 5", i18n("Pressed 5-Button"),
-			0, Key_5, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("6", thisPage, "6-Button");
 	tmp_pb->setAutoDefault(false);
+	tmp_pb->setAccel(Key_6);
         NumButtonGroup->insert(tmp_pb, 6);
-	accel()->insert("Entered 6", i18n("Pressed 6-Button"),
-			0, Key_6, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("7", thisPage, "7-Button");
 	tmp_pb->setAutoDefault(false);
+	tmp_pb->setAccel(Key_7);
         NumButtonGroup->insert(tmp_pb, 7);
-	accel()->insert("Entered 7", i18n("Pressed 7-Button"),
-			0, Key_7, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("8", thisPage, "8-Button");
 	tmp_pb->setAutoDefault(false);
+	tmp_pb->setAccel(Key_8);
         NumButtonGroup->insert(tmp_pb, 8);
-	accel()->insert("Entered 8", i18n("Pressed 8-Button"),
-			0, Key_8, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("9", thisPage, "9-Button");
 	tmp_pb->setAutoDefault(false);
+	tmp_pb->setAccel(Key_9);
         NumButtonGroup->insert(tmp_pb, 9);
-	accel()->insert("Entered 9", i18n("Pressed 9-Button"),
-			0, Key_9, tmp_pb, SLOT(animateClick()));
 
 	pbEE = new QPushButton("EE", thisPage, "EE-Button");
 	QToolTip::add(pbEE, i18n("Exponent"));
 	pbEE->setAutoDefault(false);
+	pbEE->setAccel(Key_E);
 	connect(pbEE, SIGNAL(clicked(void)), SLOT(slotEEclicked(void)));
 
 	pbParenClose = new QPushButton(")", mLargePage, "ParenClose-Button");
 	pbParenClose->setAutoDefault(false);
-	accel()->insert("Entered )", i18n("Pressed )-Button"), 0,
-			Key_ParenRight, pbParenClose, SLOT(animateClick()));
+	pbParenClose->setAccel(Key_ParenRight);
 	connect(pbParenClose,SIGNAL(clicked(void)),SLOT(slotParenCloseclicked(void)));
 
 	pbX = new QPushButton("X", thisPage, "Multiply-Button");
@@ -561,22 +549,19 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	pbDivision = new QPushButton("/", thisPage, "Division-Button");
 	QToolTip::add(pbDivision, i18n("Division"));
 	pbDivision->setAutoDefault(false);
-    accel()->insert("Pressed '/'", i18n("Pressed Division-Button"),
-                    0, Key_Slash, pbDivision, SLOT(animateClick()));
+	pbDivision->setAccel(Key_Slash);
 	connect(pbDivision, SIGNAL(clicked(void)), SLOT(slotDivisionclicked(void)));
 
 	pbPlus = new QPushButton("+", thisPage, "Plus-Button");
 	QToolTip::add(pbPlus, i18n("Addition"));
 	pbPlus->setAutoDefault(false);
-	accel()->insert("Pressed '+'", i18n("Pressed Plus-Button"),
-			0, Key_Plus, pbPlus, SLOT(animateClick()));
+	pbPlus->setAccel(Key_Plus);
 	connect(pbPlus, SIGNAL(clicked(void)), SLOT(slotPlusclicked(void)));
 
 	pbMinus = new QPushButton("-", thisPage, "Minus-Button");
 	QToolTip::add(pbMinus, i18n("Subtraction"));
 	pbMinus->setAutoDefault(false);
-	accel()->insert("Pressed '-'", i18n("Pressed Minus-Button"),
-			0, Key_Minus, pbMinus, SLOT(animateClick()));
+	pbMinus->setAccel(Key_Minus);
 	connect(pbMinus, SIGNAL(clicked(void)), SLOT(slotMinusclicked(void)));
 
 	pbPeriod = new QPushButton(KGlobal::locale()->decimalSymbol(), thisPage, "Period-Button");
@@ -665,60 +650,51 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 
 	pbParenOpen = new QPushButton("(", mLargePage, "ParenOpen-Button");
 	pbParenOpen->setAutoDefault(false);
-	accel()->insert("Entered '('", i18n("Pressed (-Button"), 0,
-			Key_ParenLeft, pbParenOpen, SLOT(animateClick()));
+	pbParenOpen->setAccel(Key_ParenLeft);
 	connect(pbParenOpen, SIGNAL(clicked(void)),SLOT(slotParenOpenclicked(void)));
 
 	pbPercent = new QPushButton("%", mLargePage, "Percent-Button");
 	QToolTip::add(pbPercent, i18n("Percent"));
 	pbPercent->setAutoDefault(false);
-	accel()->insert("Entered '%'", i18n("Pressed %-Button"), 0,
-			Key_Percent, pbPercent, SLOT(animateClick()));
+	pbPercent->setAccel(Key_Percent);
 	connect(pbPercent, SIGNAL(clicked(void)), SLOT(slotPercentclicked(void)));
 
 	pbPlusMinus = new QPushButton("±", mLargePage, "Sign-Button");
 	QToolTip::add(pbPlusMinus, i18n("Change sign"));
 	pbPlusMinus->setAutoDefault(false);
-	accel()->insert("Entered '\\'", i18n("Pressed \\-Button"), 0,
-			Key_Backslash, pbPlusMinus, SLOT(animateClick()));
+	pbPlusMinus->setAccel(Key_Backslash);
 	connect(pbPlusMinus, SIGNAL(clicked(void)), SLOT(slotPlusMinusclicked(void)));
 
 
 	tmp_pb = new QPushButton("A", mSmallPage, "A-Button");
 	tmp_pb->setAutoDefault(false);
+	tmp_pb->setAccel(Key_A);
         NumButtonGroup->insert(tmp_pb, 0xA);
-	accel()->insert("Entered A", i18n("Pressed A-Button"),
-			0, Key_A, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("B", mSmallPage, "B-Button");
 	tmp_pb->setAutoDefault(false);
+	tmp_pb->setAccel(Key_B);
         NumButtonGroup->insert(tmp_pb, 0xB);
-	accel()->insert("Entered B", i18n("Pressed B-Button"),
-			0, Key_B, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("C", mSmallPage, "C-Button");
 	tmp_pb->setAutoDefault(false);
+	tmp_pb->setAccel(Key_C);
         NumButtonGroup->insert(tmp_pb, 0xC);
-	accel()->insert("Entered C", i18n("Pressed C-Button"),
-			0, Key_C, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("D", mSmallPage, "D-Button");
 	tmp_pb->setAutoDefault(false);
+	tmp_pb->setAccel(Key_D);
         NumButtonGroup->insert(tmp_pb, 0xD);
-	accel()->insert("Entered D", i18n("Pressed D-Button"),
-			0, Key_D, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("E", mSmallPage, "E-Button");
 	tmp_pb->setAutoDefault(false);
+	tmp_pb->setAccel(Key_E);
         NumButtonGroup->insert(tmp_pb, 0xE);
-	accel()->insert("Entered E", i18n("Pressed E-Button"),
-			0, Key_E, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("F", mSmallPage, "F-Button");
 	tmp_pb->setAutoDefault(false);
+	tmp_pb->setAccel(Key_F);
         NumButtonGroup->insert(tmp_pb, 0xF);
-	accel()->insert("Entered F", i18n("Pressed F-Button"),
-			0, Key_F, tmp_pb, SLOT(animateClick()));
 
 	return thisPage;
 }
@@ -732,17 +708,15 @@ void KCalculator::setupLogicKeys(QWidget *parent)
 	tmp_pb = new QPushButton("AND", parent, "AND-Button");
 	pbLogic.insert("AND", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Bitwise AND"));
-	accel()->insert("Apply AND", i18n("Pressed Ampersand-Button"),
-			0, Key_Ampersand, tmp_pb, SLOT(animateClick()));
 	tmp_pb->setAutoDefault(false);
+	tmp_pb->setAccel(Key_Ampersand);
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotANDclicked(void)));
 
 	tmp_pb = new QPushButton("OR", parent, "OR-Button");
 	pbLogic.insert("OR", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Bitwise OR"));
-	accel()->insert("Apply OR", i18n("Pressed O-Button"),
-			0, Key_O, tmp_pb, SLOT(animateClick()));
 	tmp_pb->setAutoDefault(false);
+	tmp_pb->setAccel(Key_O);
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotORclicked(void)));
 
 	tmp_pb = new QPushButton("XOR", parent, "XOR-Button");
@@ -760,18 +734,16 @@ void KCalculator::setupLogicKeys(QWidget *parent)
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotNegateclicked(void)));
 
 	tmp_pb = new QPushButton("Lsh", parent, "LeftBitShift-Button");
+	tmp_pb->setAccel(Key_Less);
 	pbLogic.insert("LeftShift", tmp_pb);
-	accel()->insert("Apply left shift", i18n("Pressed '<'-Button"),
-			0, Key_Less, tmp_pb, SLOT(animateClick()));
 	QToolTip::add(tmp_pb, i18n("Left bit shift"));
 	tmp_pb->setAutoDefault(false);
 	connect(tmp_pb, SIGNAL(clicked(void)),
 		SLOT(slotLeftShiftclicked(void)));
 
 	tmp_pb = new QPushButton("Rsh", parent, "RightBitShift-Button");
+	tmp_pb->setAccel(Key_Greater);
 	pbLogic.insert("RightShift", tmp_pb);
-	accel()->insert("Apply right shift", i18n("Pressed '>'-Button"),
-			0, Key_Greater, tmp_pb, SLOT(animateClick()));
 	QToolTip::add(tmp_pb, i18n("Right bit shift"));
 	tmp_pb->setAutoDefault(false);
 	connect(tmp_pb, SIGNAL(clicked(void)),
@@ -788,16 +760,14 @@ void KCalculator::setupLogExpKeys(QWidget *parent)
 	pbExp.insert("LogNatural", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Natural log"));
 	tmp_pb->setAutoDefault(false);
-	accel()->insert("Apply Natural Log", i18n("Pressed Ln-Button"),
-			0, Key_N, tmp_pb, SLOT(animateClick()));
+	tmp_pb->setAccel(Key_N);
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotLnclicked(void)));
 
 	tmp_pb = new QPushButton("Log", parent, "Log-Button");
 	pbExp.insert("Log10", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Logarithm to base 10"));
 	tmp_pb->setAutoDefault(false);
-	accel()->insert("Apply Logarithm", i18n("Pressed Log-Button"),
-			0, Key_L, tmp_pb, SLOT(animateClick()));
+	tmp_pb->setAccel(Key_L);
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotLogclicked(void)));
 }
 
@@ -811,33 +781,29 @@ void KCalculator::setupTrigKeys(QWidget *parent)
 	pbTrig.insert("HypMode", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Hyperbolic mode"));
 	tmp_pb->setAutoDefault(false);
+	tmp_pb->setAccel(Key_H);
 	connect(tmp_pb, SIGNAL(toggled(bool)), SLOT(slotHyptoggled(bool)));
 	tmp_pb->setToggleButton(true);
-	accel()->insert("Toggle HypMode", i18n("Changed Hyp-Mode"),
-			0, Key_H, tmp_pb, SLOT(toggle()));
 
 	tmp_pb = new QPushButton("Sin", parent, "Sin-Button");
 	pbTrig.insert("Sine", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Sine"));
 	tmp_pb->setAutoDefault(false);
-	accel()->insert("Apply Sine", i18n("Pressed Sin-Button"),
-			0, Key_S, tmp_pb, SLOT(animateClick()));
+	tmp_pb->setAccel(Key_S);
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotSinclicked(void)));
 
 	tmp_pb = new QPushButton("Cos", parent, "Cos-Button");
 	pbTrig.insert("Cosine", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Cosine"));
 	tmp_pb->setAutoDefault(false);
-	accel()->insert("Apply Cosine", i18n("Pressed Cos-Button"),
-			0, Key_C, tmp_pb, SLOT(animateClick()));
+	tmp_pb->setAccel(Key_C);
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotCosclicked(void)));
 
 	tmp_pb = new QPushButton("Tan", parent, "Tan-Button");
 	pbTrig.insert("Tangent", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Tangent"));
 	tmp_pb->setAutoDefault(false);
-	accel()->insert("Apply Tangent", i18n("Pressed Tan-Button"),
-			0, Key_T, tmp_pb, SLOT(animateClick()));
+	tmp_pb->setAccel(Key_T);
 	connect(tmp_pb, SIGNAL(clicked(void)),SLOT(slotTanclicked(void)));
 
 }
@@ -860,8 +826,7 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
         mStatButtonList.append(tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Median"));
 	tmp_pb->setAutoDefault(false);
-	connect(tmp_pb, SIGNAL(clicked(void)),
-		SLOT(slotStatMedianclicked(void)));
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotStatMedianclicked(void)));
 
 	tmp_pb = new QPushButton("Mea", parent, "Stat.Mean-Button");
 	pbStat.insert("Mean", tmp_pb);
@@ -876,24 +841,21 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
         mStatButtonList.append(tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Standard deviation"));
 	tmp_pb->setAutoDefault(false);
-	connect(tmp_pb, SIGNAL(clicked(void)),
-		SLOT(slotStatStdDevclicked(void)));
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotStatStdDevclicked(void)));
 
 	tmp_pb = new QPushButton("Dat", parent, "Stat.DataInput-Button");
 	pbStat.insert("InputData", tmp_pb);
         mStatButtonList.append(tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Enter data"));
 	tmp_pb->setAutoDefault(false);
-	connect(tmp_pb, SIGNAL(clicked(void)),
-		SLOT(slotStatDataInputclicked(void)));
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotStatDataInputclicked(void)));
 
 	tmp_pb = new QPushButton("CSt", parent, "Stat.ClearData-Button");
 	pbStat.insert("ClearData", tmp_pb);
         mStatButtonList.append(tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Clear data store"));
 	tmp_pb->setAutoDefault(false);
-	connect(tmp_pb, SIGNAL(clicked(void)),
-		SLOT(slotStatClearDataclicked(void)));
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotStatClearDataclicked(void)));
 }
 
 void KCalculator::setupConstantsKeys(QWidget *parent)
@@ -903,13 +865,13 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
 	QPushButton *tmp_pb;
 	tmp_pb = new QPushButton("C1", parent, "Constant C1 - Button");
 	pbConstant.insert("C1", tmp_pb);
-    mConstButtonList.append(tmp_pb);
- 	tmp_pb->setAutoDefault(false);
+	mConstButtonList.append(tmp_pb);
+	tmp_pb->setAutoDefault(false);
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC1clicked(void)));	
 
 	tmp_pb = new QPushButton("C2", parent, "Constant C2 - Button");
 	pbConstant.insert("C2", tmp_pb);
-    mConstButtonList.append(tmp_pb);
+	mConstButtonList.append(tmp_pb);
  	tmp_pb->setAutoDefault(false);
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC2clicked(void)));	
 	
@@ -1062,6 +1024,8 @@ void KCalculator::slotBaseSelected(int base)
 
 	// Only enable the decimal point in decimal
 	pbPeriod->setEnabled(current_base == NB_DECIMAL);
+	// Only enable the x*10^y button in decimal
+	pbEE->setEnabled(current_base == NB_DECIMAL);
 
 	// Disable the "accels" for disabled buttons
 	if(current_base != NB_HEX)
@@ -1098,12 +1062,6 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 	case Key_Next:
 		pbAC->animateClick();
 		break;
-	case Key_E:
-	  //if (current_base == NB_HEX)
-	  //		(NumButtonGroup->find(0xE))->animateClick();
-			//else
-			pbEE->animateClick();
-		break;
 	case Key_Delete:
 		pbAC->animateClick();
 		break;
@@ -1116,9 +1074,6 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 	  //	(NumButtonGroup->find(0xD))->animateClick(); // trig mode
 	  //	else
 			pbStat["InputData"]->animateClick(); // stat mode
-		break;
-	case Key_Colon:
-		pbMod->animateClick();
 		break;
 	case Key_BracketLeft:
         case Key_twosuperior:
@@ -1207,6 +1162,11 @@ void KCalculator::slotHyptoggled(bool flag)
 		pbTrig["Tangent"]->setText("Tan");
 		QToolTip::add(pbTrig["Tangent"], i18n("Tangent"));
 	}
+
+	// changing the label, deletes the accel, hence renew it
+	pbTrig["Sine"]->setAccel(Key_S);
+	pbTrig["Cosine"]->setAccel(Key_C);
+	pbTrig["Tangent"]->setAccel(Key_T);
 }
 
 
