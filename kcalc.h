@@ -1,6 +1,4 @@
 /*
-    $id: kcalc.h,v 1.47 2003/03/19 01:35:11 bmeyer Exp $
-
     KCalc, a scientific calculator for the X window system using the
     Qt widget libraries, available at no cost at http://www.troll.no
 
@@ -51,9 +49,7 @@ class DispLogic;
   operation button is pressed, e.g. "core.Plus(display_number)".
  */
 
-#ifdef HAVE_CONFIG_H
-	#include "../config.h"
-#endif
+#include "config.h"
 
 // IMPORTANT this has to come after ../config.h
 #include "kcalc_core.h"

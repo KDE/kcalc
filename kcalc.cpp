@@ -1,6 +1,4 @@
 /*
-    $Id$
-
     kCalculator, a simple scientific calculator for KDE
 
     Copyright (C) 1996-2000 Bernd Johannes Wuebben
@@ -459,10 +457,25 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	setFixedSize(sizeHint());
 
 	UpdateDisplay(true);
+
+	// Read and set button groups
+
+	actionStatshow->setChecked(KCalcSettings::showStat());
+	slotStatshow(KCalcSettings::showStat());
+
+	actionExpLogshow->setChecked(KCalcSettings::showExpLog());
+	slotExpLogshow(KCalcSettings::showExpLog());
+
+	actionTrigshow->setChecked(KCalcSettings::showTrig());
+	slotTrigshow(KCalcSettings::showTrig());
+
+	actionLogicshow->setChecked(KCalcSettings::showLogic());
+	slotLogicshow(KCalcSettings::showLogic());
 }
 
 KCalculator::~KCalculator()
 {
+	KCalcSettings::writeConfig();
 	delete calc_display;
 }
 
@@ -510,6 +523,7 @@ void KCalculator::setupMainActions(void)
 			   actionCollection(), "hide_all");
 
 	KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
+
         KStdAction::keyBindings( this, SLOT( slotConfigureKeys() ), actionCollection() );
 }
 
@@ -1504,6 +1518,7 @@ void KCalculator::slotStatshow(bool toggled)
 	}
 	adjustSize();
 	setFixedSize(sizeHint());
+	KCalcSettings::setShowStat(toggled);
 }
 
 void KCalculator::slotTrigshow(bool toggled)
@@ -1530,6 +1545,7 @@ void KCalculator::slotTrigshow(bool toggled)
 	}
 	adjustSize();
 	setFixedSize(sizeHint());
+	KCalcSettings::setShowTrig(toggled);
 }
 
 void KCalculator::slotExpLogshow(bool toggled)
@@ -1546,6 +1562,7 @@ void KCalculator::slotExpLogshow(bool toggled)
 	}
 	adjustSize();
 	setFixedSize(sizeHint());
+	KCalcSettings::setShowExpLog(toggled);
 }
 
 void KCalculator::slotLogicshow(bool toggled)
@@ -1582,6 +1599,7 @@ void KCalculator::slotLogicshow(bool toggled)
 	}
 	adjustSize();
 	setFixedSize(sizeHint());
+	KCalcSettings::setShowLogic(toggled);
 }
 
 void KCalculator::slotShowAll(void)
