@@ -1,9 +1,3 @@
 == ToDo ==
-
-* replace current gui code with ui files
 * find a real fix  for cos 90 != 0 bug (only in double version of compile)
-
-
-
-  
 
