@@ -58,6 +58,7 @@ void DispLogic::changeSettings()
 		setFixedPrecision(KCalcSettings::fixedPrecision());
 
 	setBeep(KCalcSettings::beep());
+	setGroupDigits(KCalcSettings::groupDigits());
 }
 
 void DispLogic::update_from_core(CalcEngine const &core,

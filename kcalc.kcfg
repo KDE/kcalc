@@ -76,6 +76,10 @@ int maxPrecision = 12;
       <label>Whether to show the result in the window title.</label>
       <default>false</default>
     </entry>
+    <entry name="GroupDigits" type="Bool" key="groupdigits">
+      <label>Whether to group digits.</label>
+      <default>true</default>
+    </entry>
     <entry name="ShowStat" type="Bool">
       <label>Whether to show statistical buttons.</label>
       <default>false</default>

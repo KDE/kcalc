@@ -228,6 +228,11 @@ void KCalcDisplay::setBeep(bool flag)
 	_beep = flag;
 }
 
+void KCalcDisplay::setGroupDigits(bool flag)
+{
+	_groupdigits = flag;
+}
+
 CALCAMNT KCalcDisplay::getAmount(void) const
 {
 	return _display_amount;
@@ -314,7 +319,7 @@ void KCalcDisplay::setText(QString const &string)
 	QString localizedString = string;
 	
 	// If we aren't in decimal mode, we don't need to modify the string
-	if (_num_base == NB_DECIMAL && !_error)
+	if (_num_base == NB_DECIMAL && !_error && _groupdigits)
 	{
 		// Obtain decimal symbol and thousands separator
 		QString decimalSymbol = KGlobal::locale()->decimalSymbol();
@@ -336,7 +341,7 @@ void KCalcDisplay::setText(QString const &string)
 
 QString KCalcDisplay::text() const
 {
-	if (_num_base != NB_DECIMAL || _error)
+	if (_num_base != NB_DECIMAL || _error || _groupdigits)
 		return QLabel::text();
 	
 	QString unlocalizedString = QLabel::text();

@@ -107,6 +107,7 @@ public:
 	bool setAmount(CALCAMNT new_amount);
 	int setBase(NumBase new_base);
 	void setBeep(bool flag);
+	void setGroupDigits(bool flag);
 	void setFixedPrecision(int precision);
 	void setPrecision(int precision);
 	void setText(QString const &string);
@@ -114,6 +115,7 @@ public:
 	bool updateDisplay(void);
 private:
 	bool _beep;
+	bool _groupdigits;
 	int  _button;
 	bool _lit;
 	NumBase _num_base;

@@ -154,6 +154,14 @@
                         <string>Show &amp;result in window title</string>
                     </property>
                 </widget>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>kcfg_GroupDigits</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Group digits</string>
+                    </property>
+                </widget>
             </vbox>
         </widget>
         <spacer>
