@@ -74,6 +74,7 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
     // restore accel
     setAccel(_accel);
   }
+  update();
 }
 
 static QString escape(QString str)
