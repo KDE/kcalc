@@ -15,7 +15,7 @@ Name[pt]=Calculadora
 Name[pt_BR]=Calculadora
 Name[ru]=ëÁÌØËÕÌÑÔÏÒ
 Name[sk]=Kalkulaèka
-Name[sv]=Kalkylator
+Name[sv]=Miniräknare
 Exec=kcalc  -caption "%c" %i %m
 Icon=kcalc.xpm
 DocPath=kcalc/index.html
@@ -35,7 +35,7 @@ Comment[pt_BR]=Calculadora Científica
 Comment[ro]=Calculator ºtiinşific
 Comment[ru]=îÁÕŞÎÙÊ ËÁÌØËÕÌÑÔÏÒ
 Comment[sk]=Vedecká kalkulaèka
-Comment[sv]=En vetenskaplig kalkylator
+Comment[sv]=En vetenskaplig miniräknare
 Terminal=0
 Type=Application
 
