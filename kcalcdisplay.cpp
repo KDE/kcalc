@@ -111,12 +111,18 @@ void KCalcDisplay::slotPaste(bool bClipboard)
 		return;
 	}
 
-	if (_num_base == NB_HEX  &&  ! tmp_str.startsWith("0x", false))
-		tmp_str.prepend( "0x" );
-
 	bool was_ok;
-	CALCAMNT tmp_result = toDouble(tmp_str, was_ok);
-
+	CALCAMNT tmp_result;
+	
+	if (_num_base == NB_HEX  &&  ! tmp_str.startsWith("0x", false))
+	  tmp_str.prepend( "0x" );
+	
+	if ( (_num_base == NB_OCTAL || _num_base == NB_BINARY) &&
+	     !  tmp_str.startsWith("0x",false))
+	  tmp_result = CALCAMNT(tmp_str.toLongLong(& was_ok, _num_base));
+	else
+	  tmp_result = toDouble(tmp_str, was_ok);
+	
 	if (!was_ok)
 	{
 		tmp_result = (CALCAMNT) (0);
