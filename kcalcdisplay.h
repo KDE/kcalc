@@ -111,7 +111,7 @@ public:
 	bool updateDisplay(void);
 private:
 	bool _beep;
-	int _button;
+	int  _button;
 	bool _lit;
 	NumBase _num_base;
 	int _input_limit;
@@ -142,7 +142,7 @@ signals:
 public slots:
 	void slotCut(void);
 	void slotCopy(void);
-	void slotPaste(void);
+	void slotPaste(bool bClipboard=true);
 
 private slots:
 	void slotSelectionTimedOut(void);

@@ -1,3 +1,7 @@
+2004-01-27 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+        * Fix paste-function: Pasting e.g. "123  \n" did not work
+          because of the trailing spaces and returns.
+
 2004-01-25 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Applied patch from Thomas Weber: Creates buttons C1-C6
 	  to store constants
