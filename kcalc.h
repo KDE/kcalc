@@ -85,7 +85,7 @@ class KPushButton;
 
 
 typedef	CALCAMNT	(*Arith)(CALCAMNT, CALCAMNT);
-typedef	CALCAMNT	(*Prcnt)(CALCAMNT, CALCAMNT, CALCAMNT);
+typedef	CALCAMNT	(*Prcnt)(CALCAMNT, CALCAMNT);
 typedef	CALCAMNT	(*Trig)(CALCAMNT);
 
 typedef enum _last_input_type
@@ -204,7 +204,7 @@ private:
 
 	int UpdateStack(int run_precedence);
 protected slots:
-    void configurationChanged(const DefStruct &state); 
+    void configurationChanged(const DefStruct &state);
     void set_colors();
     void display_selected();
     void invertColors();
@@ -348,11 +348,10 @@ public:
 	static CALCAMNT ExecPower(CALCAMNT left_op, CALCAMNT right_op);
 	static CALCAMNT ExecPwrRoot(CALCAMNT left_op, CALCAMNT right_op);
 	static CALCAMNT ExecIntDiv(CALCAMNT left_op, CALCAMNT right_op);
-	static CALCAMNT ExecAddSubP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
-	static CALCAMNT ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
-	static CALCAMNT ExecDivideP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
-	static CALCAMNT ExecPowerP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
-	static CALCAMNT ExecPwrRootP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
+        static CALCAMNT ExecAddP(CALCAMNT left_op, CALCAMNT right_op);
+        static CALCAMNT ExecSubP(CALCAMNT left_op, CALCAMNT right_op);
+        static CALCAMNT ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op);
+        static CALCAMNT ExecDivideP(CALCAMNT left_op, CALCAMNT right_op);
 	static CALCAMNT ExecFunction(CALCAMNT left_op, int function, CALCAMNT right_op);
 
 public:
@@ -446,9 +445,9 @@ private:
     QPushButton* 	pbperiod;
     QPushButton* 	pb0;
     QPushButton* 	pbequal;
-    QPushButton* 	pbpercent;    
-    QPushButton* 	pbnegate;    
-    QPushButton* 	pbmod;    
+    QPushButton* 	pbpercent;
+    QPushButton* 	pbnegate;
+    QPushButton* 	pbmod;
     QButtonGroup*	angle_group;
 
     KHelpMenu *mHelpMenu;

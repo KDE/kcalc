@@ -134,14 +134,14 @@ Prcnt Prcnt_ops[14] =
 	NULL,
 	NULL,
 	NULL,
-	QtCalculator::ExecAddSubP,
-	QtCalculator::ExecAddSubP,
+	QtCalculator::ExecAddP,
+	QtCalculator::ExecSubP,
 	QtCalculator::ExecMultiplyP,
 	QtCalculator::ExecDivideP,
-	QtCalculator::ExecDivideP,
-	QtCalculator::ExecPowerP,
-	QtCalculator::ExecPwrRootP,
-	QtCalculator::ExecDivideP
+        NULL,
+        NULL,
+	NULL,
+	NULL
 };
 
 
@@ -1804,20 +1804,17 @@ int QtCalculator::UpdateStack(int run_precedence)
 
 		left_op = top_item->s_item_data.item_amount;
 
-		new_item.s_item_data.item_amount =
+		if ( ! percent_mode || Prcnt_ops[op_function] == NULL )
+                {
+                    new_item.s_item_data.item_amount =
 			(Arith_ops[op_function])(left_op, right_op);
-
-		PushStack(&new_item);
-	}
-
-	if (return_value &&
-		percent_mode &&
-		!display_error &&
-		Prcnt_ops[op_function] != NULL)
-	{
-		new_item.s_item_data.item_amount =
-			(Prcnt_ops[op_function])
-				(left_op, right_op, new_item.s_item_data.item_amount);
+                }
+                else
+                {
+                    new_item.s_item_data.item_amount =
+                        (Prcnt_ops[op_function])(left_op, right_op);
+                    percent_mode = false;
+                };
 
 		PushStack(&new_item);
 	}
@@ -2132,69 +2129,34 @@ CALCAMNT QtCalculator::ExecPwrRoot(CALCAMNT left_op, CALCAMNT right_op)
 //-------------------------------------------------------------------------
 // Name: ExecAddSubP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 //-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecAddSubP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
+CALCAMNT QtCalculator::ExecAddP(CALCAMNT left_op, CALCAMNT right_op)
 {
-	// printf("ExecAddsubP\n");
-	UNUSED(left_op);
+    return (left_op + left_op * right_op/100 );
+}
 
-	if (result == 0)
-	{
-		display_error = true;
-		return 0;
-	}
-	else
-		return (result * 100L) / right_op;
+//-------------------------------------------------------------------------
+// Name: ExecAddSubP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
+//-------------------------------------------------------------------------
+CALCAMNT QtCalculator::ExecSubP(CALCAMNT left_op, CALCAMNT right_op)
+{
+    return (left_op - left_op * right_op/100 );
 }
 
 //-------------------------------------------------------------------------
 // Name: ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 //-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
+CALCAMNT QtCalculator::ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op)
 {
-	// printf("ExecMultiplyP\n");
-	UNUSED(left_op);
-	UNUSED(right_op);
-	return (result / 100L);
+    return left_op*right_op/100;
 }
 
 //-------------------------------------------------------------------------
 // Name: ExecPowerP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 //-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecDivideP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
+CALCAMNT QtCalculator::ExecDivideP(CALCAMNT left_op, CALCAMNT right_op)
 {
-	// printf("ExecDivideP\n");
-	UNUSED(left_op);
-	UNUSED(right_op);
-	return (result * 100L);
+    return left_op*100/right_op;
 }
-
-//-------------------------------------------------------------------------
-// Name: ExecPowerP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
-//-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecPowerP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
-{
-	// printf("ExecPowerP\n");
-	UNUSED(result);
-	return ExecPower(left_op, (right_op / 100L));
-}
-
-//-------------------------------------------------------------------------
-// Name: ExecPwrRootP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
-//-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecPwrRootP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
-{
-	// printf("ExePwrRootP\n");
-	UNUSED(result);
-
-	if (right_op == 0)
-	{
-		display_error = true;
-		return 0;
-	}
-	else
-		return ExecPower(left_op, (100L / right_op));
-}
-
 
 //-------------------------------------------------------------------------
 // Name: AllocStackItem()
