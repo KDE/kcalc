@@ -59,6 +59,8 @@
 #include <knotifyclient.h>
 #include <kaboutdata.h>
 
+#include <qfont.h>
+
 #include "dlabel.h"
 #include "kcalc.h"
 #include "optiondialog.h"
@@ -93,19 +95,19 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	inverse(false), hyp_mode(false), eestate(false), refresh_display(false),
 	display_size(DEC_SIZE), angle_mode(ANG_DEGREE), input_limit(0),
 	input_count(0), decimal_point(0), precedence_base(0),
-	current_base(NB_DECIMAL), memory_num(0.0), history_index(0), 
-	selection_timer(new QTimer), key_pressed(false), 
+	current_base(NB_DECIMAL), memory_num(0.0), history_index(0),
+	selection_timer(new QTimer), key_pressed(false),
         mInternalSpacing(4), status_timer(new QTimer), mConfigureDialog(0),
 	last_input(DIGIT)
 {
 	// make sure the display_str is NULL terminated so we can
 	// user library string functions
 	display_str[0] = '\0';
-	
-	connect(status_timer, SIGNAL(timeout()), 
+
+	connect(status_timer, SIGNAL(timeout()),
 		this, SLOT(clear_status_label()));
-		
-	connect(selection_timer, SIGNAL(timeout()), 
+
+	connect(selection_timer, SIGNAL(timeout()),
 		this, SLOT(selection_timed_out()));
 
 	readSettings();
@@ -161,12 +163,12 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	anglebutton[0] = new QRadioButton(angle_group);
 	anglebutton[0]->setText("&Deg");
 	anglebutton[0]->setChecked(true);
-	accel->connectItem(accel->insertItem(Key_D+ALT), 
+	accel->connectItem(accel->insertItem(Key_D+ALT),
 		this, SLOT(Deg_Selected()));
 
 	anglebutton[1] = new QRadioButton(angle_group);
 	anglebutton[1]->setText("&Rad");
-	accel->connectItem(accel->insertItem(Key_R+ALT), 
+	accel->connectItem(accel->insertItem(Key_R+ALT),
 		this, SLOT(Rad_Selected()));
 
 	anglebutton[2] = new QRadioButton(angle_group);
@@ -181,29 +183,29 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 
 	basebutton[0] = new QRadioButton(base_group);
 	basebutton[0]->setText("&Hex");
-	accel->connectItem(accel->insertItem(Key_H+ALT), 
+	accel->connectItem(accel->insertItem(Key_H+ALT),
 		this, SLOT(Hex_Selected()));
 
 	basebutton[1] = new QRadioButton(base_group);
 	basebutton[1]->setText("D&ec");
 	basebutton[1]->setChecked(true);
-	accel->connectItem(accel->insertItem(Key_E+ALT), 
+	accel->connectItem(accel->insertItem(Key_E+ALT),
 		this, SLOT(Dec_Selected()));
 
 	basebutton[2] = new QRadioButton(base_group);
 	basebutton[2]->setText("&Oct");
-	accel->connectItem(accel->insertItem(Key_O+ALT), 
+	accel->connectItem(accel->insertItem(Key_O+ALT),
 		this, SLOT(Oct_Selected()));
 
 	basebutton[3] = new QRadioButton(base_group);
 	basebutton[3]->setText("&Bin");
-	accel->connectItem(accel->insertItem(Key_B+ALT), 
+	accel->connectItem(accel->insertItem(Key_B+ALT),
 		this, SLOT(Bin_Selected()));
 
 	//
 	//  Create Calculator Buttons
 	//
-	
+
 	// First the widgets that are the parents of the buttons
 	mSmallPage = new QWidget(this);
 	mLargePage = new QWidget(this);
@@ -391,12 +393,12 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pb1 = new QPushButton("1", mLargePage, "1button");
 	pb1->setAutoDefault(false);
 	connect(pb1, SIGNAL(toggled(bool)), SLOT(pb1toggled(bool)));
-	pb1->setToggleButton(true);	
+	pb1->setToggleButton(true);
 
 	pb2 = new QPushButton("2", mLargePage, "2button");
 	pb2->setAutoDefault(false);
 	connect(pb2, SIGNAL(toggled(bool)), SLOT(pb2toggled(bool)));
-	pb2->setToggleButton(true);		
+	pb2->setToggleButton(true);
 
 	pb3 = new QPushButton("3", mLargePage, "3button");
 	pb3->setAutoDefault(false);
@@ -461,7 +463,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 		mInternalSpacing);
 	QGridLayout *largeBtnLayout = new QGridLayout(mLargePage, 5, 6, 0,
 		mInternalSpacing);
-		
+
 	QHBoxLayout *topLayout		= new QHBoxLayout();
 	QHBoxLayout *radioLayout	= new QHBoxLayout();
 	QHBoxLayout *btnLayout		= new QHBoxLayout();
@@ -470,7 +472,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	// bring them all together
 	QVBoxLayout *mainLayout = new QVBoxLayout(this, mInternalSpacing,
 		mInternalSpacing );
-		
+
 	mainLayout->addLayout(topLayout );
 	mainLayout->addLayout(radioLayout, 1);
 	mainLayout->addLayout(btnLayout);
@@ -1075,10 +1077,10 @@ void QtCalculator::keyReleaseEvent(QKeyEvent *e)
 {
 	bool oldKey = key_pressed;
 	key_pressed = false;
-	
+
 	switch (e->key())
 	{
-	case Key_Next:		
+	case Key_Next:
 		pbAC->setOn(false);
 		break;
 	case Key_Prior:
@@ -1275,7 +1277,7 @@ void QtCalculator::pbinvtoggled(bool myboolean)
 {
 	if(myboolean)
 		SetInverse();
-		
+
 	if(pbinv->isOn() && (!key_pressed))
 		pbinv->setOn(false);
 }
@@ -1287,7 +1289,7 @@ void QtCalculator::pbhyptoggled(bool myboolean)
 {
 	if(myboolean)
 		EnterHyp();
-		
+
 	if(pbhyp->isOn() && (!key_pressed))
 		pbhyp->setOn(false);
 }
@@ -1299,7 +1301,7 @@ void QtCalculator::pbMRtoggled(bool myboolean)
 {
 	if(myboolean)
 		MR();
-		
+
 	if(pbMR->isOn() && (!key_pressed))
 		pbMR->setOn(false);
 }
@@ -1308,10 +1310,10 @@ void QtCalculator::pbMRtoggled(bool myboolean)
 // Name: pbAtoggled(bool myboolean)
 //-------------------------------------------------------------------------
 void QtCalculator::pbAtoggled(bool myboolean)
-{	
+{
 	if(myboolean)
 		buttonA();
-		
+
 	if(pbA->isOn() && (!key_pressed))
 		pbA->setOn(false);
 }
@@ -1323,7 +1325,7 @@ void QtCalculator::pbSintoggled(bool myboolean)
 {
 	if(myboolean)
 		ExecSin();
-		
+
 	if(pbSin->isOn() && (!key_pressed))
 		pbSin->setOn(false);
 }
@@ -1347,7 +1349,7 @@ void QtCalculator::pbMplusminustoggled(bool myboolean)
 {
 	if(myboolean)
 		Mplusminus();
-		
+
 	if(pbMplusminus->isOn() && (!key_pressed))
 		pbMplusminus->setOn(false);
 }
@@ -1359,7 +1361,7 @@ void QtCalculator::pbBtoggled(bool myboolean)
 {
 	if(myboolean)
 		buttonB();
-		
+
 	if(pbB->isOn() && (!key_pressed))
 		pbB->setOn(false);
 }
@@ -1371,7 +1373,7 @@ void QtCalculator::pbCostoggled(bool myboolean)
 {
 	if(myboolean)
 		ExecCos();
-		
+
 	if(pbCos->isOn() && (!key_pressed))
 		pbCos->setOn(false);
 }
@@ -1383,7 +1385,7 @@ void QtCalculator::pbrecitoggled(bool myboolean)
 {
 	if(myboolean)
 		EnterRecip();
-		
+
 	if(pbreci->isOn() && (!key_pressed))
 		pbreci->setOn(false);
 }
@@ -1395,7 +1397,7 @@ void QtCalculator::pbCtoggled(bool myboolean)
 {
 	if(myboolean)
 		buttonC();
-		
+
 	if(pbC->isOn() && (!key_pressed))
 		pbC->setOn(false);
 }
@@ -1407,7 +1409,7 @@ void QtCalculator::pbTantoggled(bool myboolean)
 {
 	if(myboolean)
 		ExecTan();
-		
+
 	if(pbTan->isOn() && (!key_pressed))
 		pbTan->setOn(false);
 }
@@ -1419,7 +1421,7 @@ void QtCalculator::pbfactorialtoggled(bool myboolean)
 {
 	if(myboolean)
 		EnterFactorial();
-		
+
 	if(pbfactorial->isOn() && (!key_pressed))
 		pbfactorial->setOn(false);
 }
@@ -1431,7 +1433,7 @@ void QtCalculator::pbDtoggled(bool myboolean)
 {
 	if(myboolean)
 		buttonD();
-		
+
 	if(pbD->isOn() && (!key_pressed))
 		pbD->setOn(false);
 }
@@ -1443,7 +1445,7 @@ void QtCalculator::pblogtoggled(bool myboolean)
 {
 	if(myboolean)
 		EnterLogr();
-		
+
 	if(pblog->isOn() && (!key_pressed))
 		pblog->setOn(false);
 }
@@ -1455,7 +1457,7 @@ void QtCalculator::pbsquaretoggled(bool myboolean)
 {
 	if(myboolean)
 		EnterSquare();
-		
+
 	if(pbsquare->isOn() && (!key_pressed))
 		pbsquare->setOn(false);
 }
@@ -1469,7 +1471,7 @@ void QtCalculator::pbEtoggled(bool myboolean)
 	{
 		if(myboolean)
 			buttonE();
-	
+
 		if(pbE->isOn() && (!key_pressed))
 			pbE->setOn(false);
 	}
@@ -1484,7 +1486,7 @@ void QtCalculator::pblntoggled(bool myboolean)
 {
 	if(myboolean)
 		EnterLogn();
-		
+
 	if(pbln->isOn() && (!key_pressed))
 		pbln->setOn(false);
 }
@@ -1496,7 +1498,7 @@ void QtCalculator::pbpowertoggled(bool myboolean)
 {
 	if(myboolean)
 		Power();
-		
+
 	if(pbpower->isOn() && (!key_pressed))
 		pbpower->setOn(false);
 }
@@ -1508,7 +1510,7 @@ void QtCalculator::pbFtoggled(bool myboolean)
 {
 	if(myboolean)
 		buttonF();
-		
+
 	if(pbF->isOn() && (!key_pressed))
 		pbF->setOn(false);
 }
@@ -1520,7 +1522,7 @@ void QtCalculator::pbMCtoggled(bool myboolean)
 {
 	if(myboolean)
 		MC();
-		
+
 	if(pbMC->isOn() && (!key_pressed))
 		pbMC->setOn(false);
 }
@@ -1532,7 +1534,7 @@ void QtCalculator::pbCleartoggled(bool myboolean)
 {
 	if(myboolean)
 		Clear();
-		
+
 	if(pbClear->isOn() && (!key_pressed))
 		pbClear->setOn(false);
 }
@@ -1544,7 +1546,7 @@ void QtCalculator::pbACtoggled(bool myboolean)
 {
 	if(myboolean)
 		ClearAll();
-		
+
 	if(pbAC->isOn() && (!key_pressed))
 		pbAC->setOn(false);
 }
@@ -1556,7 +1558,7 @@ void QtCalculator::pb7toggled(bool myboolean)
 {
 	if(myboolean)
 		button7();
-		
+
 	if(pb7->isOn() && (!key_pressed))
 		pb7->setOn(false);
 }
@@ -1568,7 +1570,7 @@ void QtCalculator::pb8toggled(bool myboolean)
 {
 	if(myboolean)
 		button8();
-		
+
 	if(pb8->isOn() && (!key_pressed))
 		pb8->setOn(false);
 }
@@ -1580,7 +1582,7 @@ void QtCalculator::pb9toggled(bool myboolean)
 {
 	if(myboolean)
 		button9();
-		
+
 	if(pb9->isOn() && (!key_pressed))
 		pb9->setOn(false);
 }
@@ -1592,7 +1594,7 @@ void QtCalculator::pbparenopentoggled(bool myboolean)
 {
 	if(myboolean)
 		EnterOpenParen();
-		
+
 	if(pbparenopen->isOn() && (!key_pressed))
 		pbparenopen->setOn(false);
 }
@@ -1604,7 +1606,7 @@ void QtCalculator::pbparenclosetoggled(bool myboolean)
 {
 	if(myboolean)
 		EnterCloseParen();
-		
+
 	if(pbparenclose->isOn() && (!key_pressed))
 		pbparenclose->setOn(false);
 }
@@ -1616,7 +1618,7 @@ void QtCalculator::pbandtoggled(bool myboolean)
 {
 	if(myboolean)
 		And();
-		
+
 	if(pband->isOn() && (!key_pressed))
 		pband->setOn(false);
 }
@@ -1628,7 +1630,7 @@ void QtCalculator::pb4toggled(bool myboolean)
 {
 	if(myboolean)
 		button4();
-		
+
 	if(pb4->isOn() && (!key_pressed))
 		pb4->setOn(false);
 }
@@ -1640,7 +1642,7 @@ void QtCalculator::pb5toggled(bool myboolean)
 {
 	if(myboolean)
 		button5();
-		
+
 	if(pb5->isOn() && (!key_pressed))
 		pb5->setOn(false);
 }
@@ -1652,7 +1654,7 @@ void QtCalculator::pb6toggled(bool myboolean)
 {
 	if(myboolean)
 		button6();
-		
+
 	if(pb6->isOn() && (!key_pressed))
 		pb6->setOn(false);
 }
@@ -1664,19 +1666,19 @@ void QtCalculator::pbXtoggled(bool myboolean)
 {
 	if(myboolean)
 		Multiply();
-		
+
 	if(pbX->isOn() && (!key_pressed))
 		pbX->setOn(false);
 }
 
 //-------------------------------------------------------------------------
-// Name: 
+// Name:
 //-------------------------------------------------------------------------
 void QtCalculator::pbdivisiontoggled(bool myboolean)
 {
 	if(myboolean)
 		Divide();
-		
+
 	if(pbdivision->isOn() && (!key_pressed))
 		pbdivision->setOn(false);
 }
@@ -1688,7 +1690,7 @@ void QtCalculator::pbortoggled(bool myboolean)
 {
 	if(myboolean)
 		Or();
-		
+
 	if(pbor->isOn() && (!key_pressed))
 		pbor->setOn(false);
 }
@@ -1700,7 +1702,7 @@ void QtCalculator::pb1toggled(bool myboolean)
 {
 	if(myboolean)
 		button1();
-		
+
 	if(pb1->isOn() && (!key_pressed))
 		pb1->setOn(false);
 }
@@ -1724,7 +1726,7 @@ void QtCalculator::pb3toggled(bool myboolean)
 {
 	if(myboolean)
 		button3();
-		
+
 	if(pb3->isOn() && (!key_pressed))
 		pb3->setOn(false);
 }
@@ -1748,7 +1750,7 @@ void QtCalculator::pbminustoggled(bool myboolean)
 {
 	if(myboolean)
 		Minus();
-		
+
 	if(pbminus->isOn() && (!key_pressed))
 		pbminus->setOn(false);
 }
@@ -1760,7 +1762,7 @@ void QtCalculator::pbshifttoggled(bool myboolean)
 {
 	if(myboolean)
 		Shift();
-		
+
 	if(pbshift->isOn() && (!key_pressed))
 		pbshift->setOn(false);
 }
@@ -1772,7 +1774,7 @@ void QtCalculator::pbperiodtoggled(bool myboolean)
 {
 	if(myboolean)
 		EnterDecimal();
-		
+
 	if(pbperiod->isOn() && (!key_pressed))
 		pbperiod->setOn(false);
 }
@@ -1784,7 +1786,7 @@ void QtCalculator::pb0toggled(bool myboolean)
 {
 	if(myboolean)
 		button0();
-		
+
 	if(pb0->isOn() && (!key_pressed))
 		pb0->setOn(false);
 }
@@ -1796,7 +1798,7 @@ void QtCalculator::pbequaltoggled(bool myboolean)
 {
 	if(myboolean)
 		EnterEqual();
-		
+
 	if(pbequal->isOn() && (!key_pressed))
 		pbequal->setOn(false);
 }
@@ -1808,7 +1810,7 @@ void QtCalculator::pbpercenttoggled(bool myboolean)
 {
 	if(myboolean)
 		EnterPercent();
-		
+
 	if(pbpercent->isOn() && (!key_pressed))
 		pbpercent->setOn(false);
 }
@@ -1820,7 +1822,7 @@ void QtCalculator::pbnegatetoggled(bool myboolean)
 {
 	if(myboolean)
 		EnterNotCmp();
-		
+
 	if(pbnegate->isOn() && (!key_pressed))
 		pbnegate->setOn(false);
 }
@@ -1832,7 +1834,7 @@ void QtCalculator::pbmodtoggled(bool myboolean)
 {
 	if(myboolean)
 		Mod();
-		
+
 	if(pbmod->isOn() && (!key_pressed))
 		pbmod->setOn(false);
 }
@@ -1846,11 +1848,11 @@ void QtCalculator::configclicked()
 	{
 		mConfigureDialog = new ConfigureDialog( this, 0, false );
 		mConfigureDialog->setState( kcalcdefaults );
-	
+
 		connect( mConfigureDialog, SIGNAL( valueChanged(const DefStruct &)),
 			this, SLOT(configurationChanged(const DefStruct &)));
 	}
-	
+
 	mConfigureDialog->show();
 }
 
@@ -1870,7 +1872,7 @@ void QtCalculator::set_style()
 		pblog->setText( "Log" );
 		pbln ->setText( "Ln"  );
 		break;
-		
+
 	case 1:
 		pbhyp->setText( "N" );
 		pbSin->setText( "Mea" );
@@ -1879,7 +1881,7 @@ void QtCalculator::set_style()
 		pblog->setText( "Dat" );
 		pbln ->setText( "CSt"  );
 		break;
-	
+
 	default:
 		break;
 	}
@@ -1895,8 +1897,9 @@ void QtCalculator::readSettings()
 	KConfig *config = KGlobal::config();
 	config->setGroup("Font");
 
-	kcalcdefaults.font = config->readFontEntry("Font",
-		new QFont("helvetica",14,QFont::Bold));
+
+	QFont tmpFont("helvetica",14,QFont::Bold);
+	kcalcdefaults.font = config->readFontEntry("Font",&tmpFont);
 
 	config->setGroup("Colors");
 	QColor tmpC(189, 255, 180);
@@ -1924,7 +1927,7 @@ void QtCalculator::readSettings()
 	kcalcdefaults.precision	= config->readNumEntry("precision", (int)10);
 #endif
 
-	kcalcdefaults.fixedprecision = 
+	kcalcdefaults.fixedprecision =
 		config->readNumEntry("fixedprecision", (int)2);
 	kcalcdefaults.fixed = config->readBoolEntry("fixed", false);
 
@@ -1938,7 +1941,7 @@ void QtCalculator::readSettings()
 //-------------------------------------------------------------------------
 void QtCalculator::writeSettings()
 {
-	KConfig *config = KGlobal::config();		
+	KConfig *config = KGlobal::config();
 
 	config->setGroup("Font");
 	config->writeEntry("Font", kcalcdefaults.font);
@@ -1965,7 +1968,7 @@ void QtCalculator::writeSettings()
 	config->setGroup("General");
 	config->writeEntry("style",(int)kcalcdefaults.style);
 	config->writeEntry("beep", kcalcdefaults.beep);
-	
+
 	config->sync();
 }
 
@@ -2045,9 +2048,9 @@ void QtCalculator::invertColors()
 		tmpcolor = kcalcdefaults.backcolor;
 		kcalcdefaults.backcolor = kcalcdefaults.forecolor;
 		kcalcdefaults.forecolor = tmpcolor;
-		
+
 		set_colors();
-		
+
 		tmpcolor = kcalcdefaults.backcolor;
 		kcalcdefaults.backcolor = kcalcdefaults.forecolor;
 		kcalcdefaults.forecolor = tmpcolor;
@@ -2082,11 +2085,11 @@ void QtCalculator::set_colors()
 {
 	QPalette pal = calc_display->palette();
 	QPushButton *p = NULL;
-	
+
 	pal.setColor(QColorGroup::Text, kcalcdefaults.forecolor);
 	pal.setColor(QColorGroup::Foreground, kcalcdefaults.forecolor);
 	pal.setColor(QColorGroup::Background, kcalcdefaults.backcolor);
-	
+
 	calc_display->setPalette(pal);
 	calc_display->setBackgroundColor(kcalcdefaults.backcolor);
 
@@ -2171,8 +2174,8 @@ void QtCalculator::history_next()
 	{
 		KNotifyClient::beep();
 		return;
-	}  
-  
+	}
+
     last_input = RECALL;
     DISPLAY_AMOUNT = history_list[--history_index];
     UpdateDisplay();
@@ -2183,7 +2186,7 @@ void QtCalculator::history_next()
 //-------------------------------------------------------------------------
 void QtCalculator::history_prev()
 {
-	
+
 	if((history_list.empty()) || (history_index >= (history_list.size() - 1)))
 	{
 		KNotifyClient::beep();
@@ -2242,13 +2245,13 @@ bool QtCalculator::eventFilter(QObject *o, QEvent *e)
 			}
 			else
 				return false;
-	
+
 			QPalette pal(c, palette().active().background());
 
 			for(QPushButton *p = list->first(); p; p=list->next())
 				p->setPalette(pal);
 		}
-		
+
 		return true;
 	}
 	else
@@ -2275,10 +2278,10 @@ int main(int argc, char *argv[])
 		"(c) 1996-2000, Bernd Johannes Wuebben");
 
 	aboutData.addAuthor("Bernd Johannes Wuebben", 0, "wuebben@kde.org");
-	aboutData.addAuthor("Charles Samuels", 
+	aboutData.addAuthor("Charles Samuels",
 		I18N_NOOP("Support for the new Backspace Action"), "charles@altair.dhs.org");
 	aboutData.addAuthor("Evan Teran", 0, "emt3734@rit.edu");
-	
+
 	KCmdLineArgs::init(argc, argv, &aboutData);
 
 	KApplication app;
