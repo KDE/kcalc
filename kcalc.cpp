@@ -95,7 +95,8 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	input_count(0), decimal_point(0), precedence_base(0),
 	current_base(NB_DECIMAL), memory_num(0.0), history_index(0), 
 	selection_timer(new QTimer), key_pressed(false), 
-        mInternalSpacing(4), status_timer(new QTimer), mConfigureDialog(0)
+        mInternalSpacing(4), status_timer(new QTimer), mConfigureDialog(0),
+	last_input(DIGIT)
 {
 	// make sure the display_str is NULL terminated so we can
 	// user library string functions
@@ -1925,11 +1926,11 @@ void QtCalculator::readSettings()
 
 	kcalcdefaults.fixedprecision = 
 		config->readNumEntry("fixedprecision", (int)2);
-	kcalcdefaults.fixed = (bool)config->readNumEntry("fixed", (int)0);
+	kcalcdefaults.fixed = config->readBoolEntry("fixed", false);
 
 	config->setGroup("General");
 	kcalcdefaults.style	= config->readNumEntry("style", (int)0);
-	kcalcdefaults.beep	= config->readNumEntry("beep", (int)1);
+	kcalcdefaults.beep	= config->readBoolEntry("beep", true);
 }
 
 //-------------------------------------------------------------------------
@@ -1959,11 +1960,11 @@ void QtCalculator::writeSettings()
 	config->setGroup("Precision");
 	config->writeEntry("precision",  kcalcdefaults.precision);
 	config->writeEntry("fixedprecision",  kcalcdefaults.fixedprecision);
-	config->writeEntry("fixed",  (int)kcalcdefaults.fixed);
+	config->writeEntry("fixed",  kcalcdefaults.fixed);
 
 	config->setGroup("General");
 	config->writeEntry("style",(int)kcalcdefaults.style);
-	config->writeEntry("beep",(int)kcalcdefaults.beep);
+	config->writeEntry("beep", kcalcdefaults.beep);
 	
 	config->sync();
 }
