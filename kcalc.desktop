@@ -99,4 +99,4 @@ Comment[zh_CN.GB2312]=科学计算器
 Comment[zh_TW.Big5]=科學計算機
 Terminal=0
 Type=Application
-KDE-X-StartupNotify=true
+X-KDE-StartupNotify=true
