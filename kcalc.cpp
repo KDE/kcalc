@@ -1567,7 +1567,7 @@ void QtCalculator::configclicked(){
   label2->setAlignment(AlignLeft|WordBreak|ExpandTabs);
   label2->setText(labelstring2);
   
-  QPixmap pm( Icon("kcalclogo.xpm"));
+  QPixmap pm( BarIcon("kcalclogo"));
   QLabel *logo = new QLabel(box);
   logo->setPixmap(pm);
   logo->setGeometry(30, 20, pm.width(), pm.height());
