@@ -40,7 +40,7 @@
 #include <kaccel.h>
 #include <kaction.h>
 #include <kapplication.h>
-#include <kautoconfigdialog.h>
+#include <kconfigdialog.h>
 #include <kcmdlineargs.h>
 #include <kcolordrag.h>
 #include <kconfig.h>
@@ -1395,11 +1395,11 @@ void KCalculator::showSettings()
 {
 	// Check if there is already a dialog and if so bring
 	// it to the foreground.
-	if(KAutoConfigDialog::showDialog("settings"))
+	if(KConfigDialog::showDialog("settings"))
 		return;
   
 	// Create a new dialog with the same name as the above checking code.
-	KAutoConfigDialog *dialog = new KAutoConfigDialog(this, "settings", KDialogBase::IconList, KCalcSettings::self());
+	KConfigDialog *dialog = new KConfigDialog(this, "settings", KCalcSettings::self());
   
 	// Add the general page.  Store the settings in the General group and
 	// use the icon package_settings.
@@ -1410,8 +1410,7 @@ void KCalculator::showSettings()
 	int maxprec = 12 ;
 	#endif
 	general->kcfg_Precision->setMaxValue(maxprec);
-	dialog->addPage(general, i18n("General"),
-			"General", "package_settings", i18n("General Settings"));
+	dialog->addPage(general, i18n("General"), "package_settings", i18n("General Settings"));
 
 	QWidget *font = new QWidget();
 	QVBoxLayout *topLayout = new QVBoxLayout(font, 0, KDialog::spacingHint());
@@ -1420,12 +1419,11 @@ void KCalculator::showSettings()
 	QFont tmpFont(KGlobalSettings::generalFont().family() ,14 ,QFont::Bold);
 	mFontChooser->setFont(tmpFont);
 	topLayout->addWidget(mFontChooser);
-	dialog->addPage(font, i18n("Font"), "Font", "fonts", i18n("Select Display Font"));
+	dialog->addPage(font, i18n("Font"), "fonts", i18n("Select Display Font"));
  
 	Colors *color = new Colors(0, "Color");
 
-	dialog->addPage(color, i18n("Colors"),
-			"Colors", "colors", i18n("Button & Display Colors"));
+	dialog->addPage(color, i18n("Colors"), "colors", i18n("Button & Display Colors"));
  
 	// When the user clicks OK or Apply we want to update our settings.
 	connect(dialog, SIGNAL(settingsChanged()), this, SLOT(updateSettings()));
