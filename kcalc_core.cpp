@@ -344,11 +344,11 @@ void QtCalculator::RefreshCalculator()
 	display_error = false;
 	DISPLAY_AMOUNT = 0L;
 	inverse = false;
+	decimal_point = 0;
+	input_count = 0;
 	UpdateDisplay();
 	last_input = DIGIT; // must set last to DIGIT after Update Display in order
 						// not to get a display holding e.g. 0.000
-	input_count = 0;
-	decimal_point = 0;
 }
 
 //-------------------------------------------------------------------------
@@ -1646,7 +1646,7 @@ void QtCalculator::UpdateDisplay()
 		switch(current_base)
 		{
 		case NB_BINARY:
-			str_size = QtCalculator::cvb(display_str, boh_work, BIN_SIZE);
+			str_size = cvb(display_str, boh_work, BIN_SIZE);
 			break;
 
 		case NB_OCTAL:
@@ -1821,7 +1821,7 @@ int QtCalculator::cvb(char *out_str, long amount, int max_digits)
 //-------------------------------------------------------------------------
 // Name: UpdateStack(int run_precedence)
 //-------------------------------------------------------------------------
-int UpdateStack(int run_precedence)
+int QtCalculator::UpdateStack(int run_precedence)
 {
 	item_contents new_item;
 	item_contents *top_item;
@@ -1880,7 +1880,7 @@ int UpdateStack(int run_precedence)
 
 	if (return_value)
 		DISPLAY_AMOUNT = new_item.s_item_data.item_amount;
-
+   decimal_point=1;
 	return return_value;
 }
 
