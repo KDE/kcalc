@@ -3,15 +3,15 @@
 
     kCalculator, a scientific calculator for the X window system using the
     Qt widget libraries, available at no cost at http://www.troll.no
-    
-    The stack engine conatined in this file was take from 
+
+    The stack engine conatined in this file was take from
     Martin Bartlett's xfrmcalc
-   
-    portions:	Copyright (C) 1996 Bernd Johannes Wuebben   
+
+    portions:	Copyright (C) 1996 Bernd Johannes Wuebben
                                    wuebben@math.cornell.edu
 
     portions: 	Copyright (C) 1995 Martin Bartlett
-    
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -39,6 +39,7 @@
 #include <kapp.h>
 #include <klocale.h>
 #include <kmessagebox.h>
+#include <knotifyclient.h>
 
 #include "dlabel.h"
 #include "kcalc.h"
@@ -53,7 +54,7 @@
 int isinf(double x) { return !finite(x) && x==x; }
 #endif
 
-extern QList<CALCAMNT> temp_stack; 
+extern QList<CALCAMNT> temp_stack;
 last_input_type last_input;
 char		display_str[DSP_SIZE+1];
 
@@ -72,15 +73,15 @@ int    		input_count = 0;
 item_contents 	display_data;
 
 int 		display_size = DEC_SIZE;
- 
+
 int    		hyp_mode = 0;
 int    		angle_mode = ANG_DEGREE;
-int		refresh_display; // if 1 we start a new number 
+int		refresh_display; // if 1 we start a new number
 int		display_error = 0;
 int		decimal_point = 0;
 int		percent_mode = 0;
 bool 		eestate = false; // if true then we are in ee input mode
-    
+
 CALCAMNT 	pi;
 CALCAMNT	memory_num = 0.0;
 
@@ -120,50 +121,50 @@ int precedence[14] = { 0, 1, 2, 3, 4, 4, 5, 5, 6, 6, 6, 7, 7, 6 };
       "Reciprocal Power"
       "Integer Division"
     };
-    */    
+    */
     Arith      	Arith_ops[14] = { NULL,
-				  ExecOr, 
+				  ExecOr,
 				  ExecXor,  	
-				  ExecAnd,  
-				  ExecLsh,  
-				  ExecRsh,  
-				  ExecAdd, ExecSubtract, 
-				  ExecMultiply, 
+				  ExecAnd,
+				  ExecLsh,
+				  ExecRsh,
+				  ExecAdd, ExecSubtract,
+				  ExecMultiply,
 				  ExecDivide, ExecMod,
-				  ExecPower, ExecPwrRoot, 
+				  ExecPower, ExecPwrRoot,
 				  ExecIntDiv
     };	
 
     Prcnt     	Prcnt_ops[14] = { NULL,
-				  NULL, 
 				  NULL,
 				  NULL,
 				  NULL,
 				  NULL,
-				  ExecAddSubP,  ExecAddSubP,  
-				  ExecMultiplyP, 
+				  NULL,
+				  ExecAddSubP,  ExecAddSubP,
+				  ExecMultiplyP,
 				  ExecDivideP, ExecDivideP,
-				  ExecPowerP, ExecPwrRootP, 
+				  ExecPowerP, ExecPwrRootP,
 				  ExecDivideP
     };	
 
 
 void QtCalculator::InitializeCalculator(void) {
- 
+
   //
   // Basic initialization involves initializing the calcultion
   // stack, forcing the display to refresh to zero, and setting
   // up the floating point excetion signal handler to trap the
   // errors that the code can/has not been written to trap.
   //
-  // We also calculate pi as double the arc sine of 1. 
+  // We also calculate pi as double the arc sine of 1.
   //
 
   display_data.s_item_type = ITEM_AMOUNT;
   display_data.s_item_data.item_amount = 0.0;
   display_data.s_item_data.item_func_data.item_function = 0;
   display_data.s_item_data.item_func_data.item_precedence = 0;
-  
+
   void fpe_handler(int fpe_parm);
   struct sigaction  fpe_trap;
 
@@ -173,7 +174,7 @@ void QtCalculator::InitializeCalculator(void) {
 #endif
 
   sigaction(SIGFPE, &fpe_trap, NULL);
-  
+
   RefreshCalculator();
   pi = ASIN(1L) * 2L;
 }		
@@ -196,7 +197,7 @@ void QtCalculator::RefreshCalculator(void)
 	inverse = FALSE;
 	UpdateDisplay();
 	last_input = DIGIT; // must set last to DIGIT after Update Display in order
-	                    // not to get a display holding e.g. 0.000  
+	                    // not to get a display holding e.g. 0.000
 	input_count = 0;
 	decimal_point = 0;
 }		
@@ -214,7 +215,7 @@ void QtCalculator::EnterDigit(int data)
     return;
 
   }
-  
+
   last_input = DIGIT;
   if (refresh_display) {
     DISPLAY_AMOUNT = 0L;
@@ -225,13 +226,13 @@ void QtCalculator::EnterDigit(int data)
 
   if (!(input_limit && input_count >= input_limit))
     if (DISPLAY_AMOUNT < 0)
-      DISPLAY_AMOUNT = decimal_point ? 
-	DISPLAY_AMOUNT - ((CALCAMNT)data / 
+      DISPLAY_AMOUNT = decimal_point ?
+	DISPLAY_AMOUNT - ((CALCAMNT)data /
 			  POW(current_base, decimal_point++)) :
     (current_base * DISPLAY_AMOUNT) - data;
     else
-      DISPLAY_AMOUNT = decimal_point ? 
-	DISPLAY_AMOUNT + ((CALCAMNT)data / 
+      DISPLAY_AMOUNT = decimal_point ?
+	DISPLAY_AMOUNT + ((CALCAMNT)data /
 			  POW(current_base, decimal_point++)) :
     (current_base * DISPLAY_AMOUNT) + data;
 
@@ -249,14 +250,14 @@ void QtCalculator::EnterDigit(int data)
 void QtCalculator::SubtractDigit()
 {
 // This function could be better, possibly, but am I glad to see it!
-  
+
   if (DISPLAY_AMOUNT!=0)
   {
     QString num;
     num.setNum((double)DISPLAY_AMOUNT,'G',24);
 
     num=num.left(num.length()-1);
-    
+
     DISPLAY_AMOUNT= strtod(num.ascii() ,0);
 
   }
@@ -347,7 +348,7 @@ void QtCalculator::buttonA()
 void QtCalculator::buttonB()
 {
   if ((current_base == NB_BINARY) || (current_base == NB_OCTAL)
-      || (current_base == NB_DECIMAL)) 
+      || (current_base == NB_DECIMAL))
     return;
   EnterDigit(11);
 }
@@ -393,7 +394,7 @@ void QtCalculator::EnterDecimal()
 {
 
   if(eestate){
-    QApplication::beep();
+    KNotifyClient::beep();
     return;
   }
 
@@ -403,19 +404,19 @@ void QtCalculator::EnterDecimal()
     refresh_display = 0;
     input_count = 0;
   }
-  
+
   if (last_input == DIGIT && !strpbrk( display_str,".")){
-    
-    // if the last input was a DIGIT and we don't have already a period in our 
-    // display string then display a period 
-    
+
+    // if the last input was a DIGIT and we don't have already a period in our
+    // display string then display a period
+
     calc_display->setText(strcat(display_str, "."));
   }
   else {
-    
-    // the last input wasn't a DIGIT so we are about to 
+
+    // the last input wasn't a DIGIT so we are about to
     // input a new number in particular we neet do display a "0.".
-    
+
     DISPLAY_AMOUNT = 0L;
     refresh_display = 0;
     //	  decimal_point = 1;
@@ -450,7 +451,7 @@ void QtCalculator::And()
 void QtCalculator::Shift()
 {
   eestate = false;
-  last_input = OPERATION; 
+  last_input = OPERATION;
   if (inverse){
     EnterStackFunction(5);   // Rsh
     inverse = FALSE;
@@ -458,7 +459,7 @@ void QtCalculator::Shift()
   else {
     EnterStackFunction(4);   // Lsh
   }
- 
+
 }
 
 void QtCalculator::Plus()
@@ -506,7 +507,7 @@ void QtCalculator::Mod()
 void QtCalculator::Power()
 {
   eestate = false;
-  last_input = OPERATION;  
+  last_input = OPERATION;
   if (inverse){
     EnterStackFunction(12);   // InvPower
     inverse = FALSE;
@@ -514,7 +515,7 @@ void QtCalculator::Power()
   else {
     EnterStackFunction(11);   // Power
   }
-  
+
 }
 
 
@@ -673,7 +674,7 @@ void QtCalculator::EnterSquare()
   eestate = false;
 	if (!inverse){
 		DISPLAY_AMOUNT *= DISPLAY_AMOUNT;	
-	} 
+	}
 	else if (DISPLAY_AMOUNT < 0)
 	display_error = 1;
 	else
@@ -693,11 +694,11 @@ void QtCalculator::EnterNotCmp()
 
 	MODF(DISPLAY_AMOUNT, &boh_work_d);
 	if (FABS(boh_work_d) > LONG_MAX)
-		display_error = 1;    
+		display_error = 1;
 		else {
 		boh_work = (long int) boh_work_d;
 		DISPLAY_AMOUNT = ~boh_work;	
-			} 
+			}
 	refresh_display = 1;
 	last_input = OPERATION;
 	UpdateDisplay();
@@ -706,10 +707,10 @@ void QtCalculator::EnterNotCmp()
 
 void QtCalculator::EnterHyp()
 {
-  
+
   switch(kcalcdefaults.style){
   case 1:{
-    
+
     if(!inverse){
     eestate = false; // terminate ee input mode
     DISPLAY_AMOUNT =  stats.count();
@@ -732,7 +733,7 @@ void QtCalculator::EnterHyp()
   case 0: {
     // toggle between hyperbolic and standart trig functions
     hyp_mode = !hyp_mode;
-  
+
     if (hyp_mode){
       statusHYPLabel->setText(QString::fromLatin1("HYP"));
     }
@@ -754,9 +755,9 @@ void QtCalculator::ExecSin(){
     ComputeSin();
     break;
   }
-  
+
   case 1:{ // stats mode
-  
+
     ComputeMean();
     break;
   }
@@ -809,10 +810,10 @@ void QtCalculator::ComputeSin()
       inverse = FALSE;       // reset the inverse flag
     }
   }
-  else {  
+  else {
     // sine or arcsine
     if (!inverse){
-      // sine 
+      // sine
       switch (angle_mode) {
       case ANG_DEGREE:
 	work_amount = DEG2RAD(DISPLAY_AMOUNT);
@@ -846,9 +847,9 @@ void QtCalculator::ComputeSin()
       inverse = FALSE; 		// reset the inverse flag
     }
   }
- 
+
 // Now a cheat to help the weird case of COS 90 degrees not being 0!!!
-  
+
   if (DISPLAY_AMOUNT < POS_ZERO && DISPLAY_AMOUNT > NEG_ZERO)
     DISPLAY_AMOUNT=0;
   refresh_display = 1;
@@ -866,9 +867,9 @@ void QtCalculator::ExecCos(){
     ComputeCos();
     break;
   }
-  
+
   case 1:{ // stats mode
-  
+
     ComputeStd();
     break;
   }
@@ -916,7 +917,7 @@ void QtCalculator::ComputeCos()
   CALCAMNT	work_amount;
   eestate = false;
   work_amount = DISPLAY_AMOUNT;
-  
+
   if (hyp_mode){
     // cosh or arccosh
     if (!inverse){
@@ -929,10 +930,10 @@ void QtCalculator::ComputeCos()
       inverse = FALSE;       // reset the inverse flag
     }
   }
-  else {  
+  else {
     // cosine or arccosine
     if (!inverse){
-      // sine 
+      // sine
       switch (angle_mode) {
       case ANG_DEGREE:
 	work_amount = DEG2RAD(DISPLAY_AMOUNT);
@@ -960,7 +961,7 @@ void QtCalculator::ComputeCos()
 	work_amount = DISPLAY_AMOUNT;
 	break;
       }
-      
+
       DISPLAY_AMOUNT = work_amount;
 
       if (errno == EDOM || errno == ERANGE)
@@ -968,10 +969,10 @@ void QtCalculator::ComputeCos()
       inverse = FALSE; 		// reset the inverse flag
     }
   }
- 
+
 // Now a cheat to help the weird case of COS 90 degrees not being 0!!!
 
-  
+
   if (DISPLAY_AMOUNT < POS_ZERO && DISPLAY_AMOUNT > NEG_ZERO)
     DISPLAY_AMOUNT=0;
   refresh_display = 1;
@@ -989,9 +990,9 @@ void QtCalculator::ExecTan(){
     ComputeTan();
     break;
   }
-  
+
   case 1:{ // stats mode
-  
+
     ComputeMedean();
     break;
   }
@@ -1050,7 +1051,7 @@ void QtCalculator::ComputeTan()
       inverse = FALSE;       // reset the inverse flag
     }
   }
-  else {  
+  else {
     // tan or arctan
     if (!inverse){
       // tan
@@ -1083,7 +1084,7 @@ void QtCalculator::ComputeTan()
 	work_amount = DISPLAY_AMOUNT;
 	break;
       }
-      
+
       DISPLAY_AMOUNT = work_amount;
 
       if (errno == EDOM || errno == ERANGE)
@@ -1091,9 +1092,9 @@ void QtCalculator::ComputeTan()
       inverse = FALSE; 		// reset the inverse flag
     }
   }
- 
+
 // Now a cheat to help the weird case of COS 90 degrees not being 0!!!
-  
+
   if (DISPLAY_AMOUNT < POS_ZERO && DISPLAY_AMOUNT > NEG_ZERO)
     DISPLAY_AMOUNT=0;
   refresh_display = 1;
@@ -1118,12 +1119,12 @@ void QtCalculator::EnterLogr()
 
   switch(kcalcdefaults.style){
   case 1:{
-    
+
     if(!inverse){
       eestate = false; // terminate ee input mode
       stats.enterData(DISPLAY_AMOUNT);
       last_input = OPERATION;
-      refresh_display = 1;    
+      refresh_display = 1;
       DISPLAY_AMOUNT = stats.count();
       UpdateDisplay();
     }
@@ -1144,7 +1145,7 @@ void QtCalculator::EnterLogr()
 
     eestate = false;
     last_input = OPERATION;
-    
+
     if (!inverse) {
       if (DISPLAY_AMOUNT <= 0)
 	display_error = 1;
@@ -1168,7 +1169,7 @@ void QtCalculator::EnterLogn()
 
   switch(kcalcdefaults.style){
   case 1:{
-    
+
     if(!inverse){
 
       stats.clearAll();
@@ -1206,7 +1207,7 @@ void QtCalculator::EnterLogn()
 
 
 void QtCalculator::base_selected(int number){
-  
+
   switch(number){
   case 0:	
     SetHex();
@@ -1214,7 +1215,7 @@ void QtCalculator::base_selected(int number){
   case 1:	
     SetDec();
     break;
-  case 2:       
+  case 2:
     SetOct();
     break;
   case 3:
@@ -1227,7 +1228,7 @@ void QtCalculator::base_selected(int number){
 
 
 void QtCalculator::angle_selected(int number){
-  
+
   switch(number){
   case 0:	
     SetDeg();
@@ -1235,7 +1236,7 @@ void QtCalculator::angle_selected(int number){
   case 1:	
     SetRad();
     break;
-  case 2:       
+  case 2:
     SetGra();
     break;
   default: // we shouldn't ever end up here
@@ -1307,7 +1308,7 @@ void QtCalculator::SetBin() {
 	UpdateDisplay();
 }
 
-void QtCalculator::SetDec() 
+void QtCalculator::SetDec()
 {
 	/*
 	 * Set Dec Mode
@@ -1391,7 +1392,7 @@ void QtCalculator::EnterEqual()
 	
 	CALCAMNT* number ;
 
-	if(temp_stack.count() > TEMP_STACK_SIZE){ 
+	if(temp_stack.count() > TEMP_STACK_SIZE){
 
 	  number = temp_stack.getFirst();
 	  temp_stack.removeFirst();
@@ -1426,7 +1427,7 @@ void QtCalculator::Clear(){
     //    printf("LAST_INPUT = DIGIT\n");
     last_input = DIGIT;
   }
-             
+
 
   if( display_error){
     display_error = 0;
@@ -1456,7 +1457,7 @@ void QtCalculator::ClearAll()
 void QtCalculator::UpdateDisplay()
 {
 
-  // this needs to be rewritten based on whether we are currently 
+  // this needs to be rewritten based on whether we are currently
   // inputting a number so that the period and the 0 after a period
   // are correctly displayed.
 
@@ -1465,12 +1466,12 @@ void QtCalculator::UpdateDisplay()
 	int		str_size = 0;
 
 	if(eestate && (current_base == NB_DECIMAL)){
-	  
+	
 		calc_display->setText(display_str);
 		return;
 	}
-	  
-	if (current_base != NB_DECIMAL) { 
+	
+	if (current_base != NB_DECIMAL) {
 		MODF(DISPLAY_AMOUNT, &boh_work_d);
 		if (boh_work_d < LONG_MIN || boh_work_d > ULONG_MAX)
 		display_error = 1;
@@ -1480,9 +1481,9 @@ void QtCalculator::UpdateDisplay()
 	 * turn from positive to negative - if so then we do
          * just that, allowing boh negative numbers to be entered
          * as read (from dumps and the like!)
-         */    
+         */
 		else if (boh_work_d > LONG_MAX) {
-			DISPLAY_AMOUNT = 
+			DISPLAY_AMOUNT =
 				LONG_MIN+(boh_work_d-LONG_MAX-1);
 			boh_work = (long)DISPLAY_AMOUNT;
                 }
@@ -1495,12 +1496,12 @@ void QtCalculator::UpdateDisplay()
 	if (!display_error) {
 
 		if (current_base == NB_BINARY)
-			str_size = cvb(display_str, 
-			  	       boh_work, 
+			str_size = cvb(display_str,
+			  	       boh_work,
 				       BOH_SIZE);
 		else if (current_base == NB_OCTAL)
-			str_size = sprintf(display_str, 
-					   "%lo", 
+			str_size = sprintf(display_str,
+					   "%lo",
 					   boh_work);
 		else if (current_base == NB_DECIMAL) {
 
@@ -1510,13 +1511,13 @@ void QtCalculator::UpdateDisplay()
 		    // if I don't guard against the DISPLAY_AMOUNT being too large
 		    // kcalc will segfault on larger amount. Such as from typing
 		    // from 5*5*******
-		    
-		    str_size = sprintf(display_str, 
+		
+		    str_size = sprintf(display_str,
 
 #ifdef HAVE_LONG_DOUBLE
 				     "%.*Lg", // was *Lg
-				  
-				     kcalcdefaults.precision  +1, 
+				
+				     kcalcdefaults.precision  +1,
 #else
 					   "%.*g",
 
@@ -1526,12 +1527,12 @@ void QtCalculator::UpdateDisplay()
 		  }
 		  else{//fixed
 
-		  str_size = sprintf(display_str, 
+		  str_size = sprintf(display_str,
 
 #ifdef HAVE_LONG_DOUBLE
 				     "%.*Lf", // was *Lg
-				  
-				     kcalcdefaults.fixedprecision  , 
+				
+				     kcalcdefaults.fixedprecision  ,
 #else
 					   "%.*f",
 
@@ -1545,35 +1546,35 @@ void QtCalculator::UpdateDisplay()
 					   last_input == DIGIT   ) {
 
 #ifdef HAVE_LONG_DOUBLE
-		    str_size = sprintf(display_str, 
+		    str_size = sprintf(display_str,
 					   "%.*Lf",
-			    (kcalcdefaults.precision +1 > input_count)? 
+			    (kcalcdefaults.precision +1 > input_count)?
 			     input_count : kcalcdefaults.precision ,
 			     DISPLAY_AMOUNT);
 #else
-		    str_size = sprintf(display_str, 
+		    str_size = sprintf(display_str,
 					   "%.*f",
-			    (kcalcdefaults.precision +1 > input_count)? 
+			    (kcalcdefaults.precision +1 > input_count)?
 			     input_count : kcalcdefaults.precision ,
 			     DISPLAY_AMOUNT);
 #endif
 		  }
 
 		}
-		else 
+		else
 		  if (current_base == NB_HEX)
-			str_size = sprintf(display_str, 
-					   "%lX", 
+			str_size = sprintf(display_str,
+					   "%lX",
 					   boh_work);
 		  else
 			display_error = 1;
 	      }
 
-	if (display_error || str_size < 0) { 
+	if (display_error || str_size < 0) {
 	  display_error = 1;
 	  strcpy(display_str, i18n("Error").utf8());
 	  if(kcalcdefaults.beep)
-	    QApplication::beep();
+	    KNotifyClient::beep();
 	}
 	calc_display->setText(QString::fromUtf8(display_str));
 
@@ -1598,13 +1599,13 @@ void QtCalculator::UpdateDisplay()
 int cvb(char *out_str, long amount, int max_digits)
 {
 	/*
-	 * A routine that converts a long int to 
+	 * A routine that converts a long int to
 	 * binary display format
 	 */
 
 	char		work_str[(sizeof(amount) * CHAR_BIT) + 1];
-	int		work_char = 0, 
-			lead_zero = 1, 
+	int		work_char = 0,
+			lead_zero = 1,
 			lead_one = 1,
 			lead_one_count = 0,
 			work_size = sizeof(amount) * CHAR_BIT;
@@ -1619,7 +1620,7 @@ int cvb(char *out_str, long amount, int max_digits)
 			work_str[work_char++] = '1';
 		} else {
 			lead_one = 0;
-			if (!lead_zero) 
+			if (!lead_zero)
 				work_str[work_char++] = '0';
 		}
                 bit_mask >>= 1;
@@ -1630,12 +1631,12 @@ int cvb(char *out_str, long amount, int max_digits)
 	work_str[work_char] = '\0';
 
 	if (work_char-lead_one_count < max_digits)
-		return strlen(strcpy(out_str, 
-				      &work_str[lead_one_count ? 
+		return strlen(strcpy(out_str,
+				      &work_str[lead_one_count ?
 				      work_size - max_digits :
 				      0]));
 	else
-	   return -1; 
+	   return -1;
 }		
 
 int UpdateStack(int run_precedence)
@@ -1646,7 +1647,7 @@ int UpdateStack(int run_precedence)
 
 	new_item.s_item_type = ITEM_AMOUNT;
 	while ((top_function = TopTypeStack(ITEM_FUNCTION)) &&
-	top_function->s_item_data.item_func_data.item_precedence >= 
+	top_function->s_item_data.item_func_data.item_precedence >=
 	run_precedence) {
 
 		return_value = 1;
@@ -1657,11 +1658,11 @@ int UpdateStack(int run_precedence)
 		}
 		right_op = top_item->s_item_data.item_amount;
 
-		if (!((top_item = PopStack()) && 
+		if (!((top_item = PopStack()) &&
 		top_item->s_item_type == ITEM_FUNCTION))
 		  KMessageBox::error(0L, i18n("Stack processing error - function") );
 
-		op_function = 
+		op_function =
 			top_item->s_item_data.item_func_data.item_function;	
 
 		if (!((top_item = PopStack()) && top_item->s_item_type == ITEM_AMOUNT))
@@ -1669,28 +1670,28 @@ int UpdateStack(int run_precedence)
 
 		left_op = top_item->s_item_data.item_amount;
 	
-		new_item.s_item_data.item_amount = 
+		new_item.s_item_data.item_amount =
 			(Arith_ops[op_function])(left_op, right_op);
-		PushStack(&new_item); 
+		PushStack(&new_item);
 			
 	}	
-	if (return_value && 
-	    percent_mode && 
+	if (return_value &&
+	    percent_mode &&
 	    !display_error &&
 	    Prcnt_ops[op_function] != NULL){
 		new_item.s_item_data.item_amount =
 			(Prcnt_ops[op_function])(left_op,
-				right_op, 
-				new_item.s_item_data.item_amount); 
+				right_op,
+				new_item.s_item_data.item_amount);
 		PushStack(&new_item);
-	} 
+	}
 	if (return_value)
 		DISPLAY_AMOUNT = new_item.s_item_data.item_amount;
 
 	return return_value;
 }
 
-int isoddint(CALCAMNT input) 
+int isoddint(CALCAMNT input)
 {
 	CALCAMNT	dummy;
 	/*
@@ -1708,13 +1709,13 @@ CALCAMNT ExecOr(CALCAMNT left_op, CALCAMNT right_op)
 
 	MODF(left_op, &boh_work_d);
 	if (FABS(boh_work_d) > LONG_MAX) {
-		display_error = 1;    
+		display_error = 1;
 		return 0;
 	}
 	boh_work_l = (long int)boh_work_d;
 	MODF(right_op, &boh_work_d);
 	if (FABS(boh_work_d) > LONG_MAX) {
-		display_error = 1;    
+		display_error = 1;
 		return 0;
 	}
 	boh_work_r = (long int) boh_work_d;
@@ -1729,13 +1730,13 @@ CALCAMNT ExecXor(CALCAMNT left_op, CALCAMNT right_op)
 
 	MODF(left_op, &boh_work_d);
 	if (FABS(boh_work_d) > LONG_MAX) {
-		display_error = 1;    
+		display_error = 1;
 		return 0;
 	}
 	boh_work_l = (long int) boh_work_d;
 	MODF(right_op, &boh_work_d);
 	if (FABS(boh_work_d) > LONG_MAX) {
-		display_error = 1;    
+		display_error = 1;
 		return 0;
 	}
 	boh_work_r = (long int) boh_work_d;
@@ -1750,13 +1751,13 @@ CALCAMNT ExecAnd(CALCAMNT left_op, CALCAMNT right_op)
 
 	MODF(left_op, &boh_work_d);
 	if (FABS(boh_work_d) > LONG_MAX) {
-		display_error = 1;    
+		display_error = 1;
 		return 0;
 	}
 	boh_work_l = (long int ) boh_work_d;
 	MODF(right_op, &boh_work_d);
 	if (FABS(boh_work_d) > LONG_MAX) {
-		display_error = 1;    
+		display_error = 1;
 		return 0;
 	}
 	boh_work_r = (long int ) boh_work_d;
@@ -1771,13 +1772,13 @@ CALCAMNT ExecLsh(CALCAMNT left_op, CALCAMNT right_op)
 
 	MODF(left_op, &boh_work_d);
 	if (FABS(boh_work_d) > LONG_MAX) {
-		display_error = 1;    
+		display_error = 1;
 		return 0;
 	}
 	boh_work_l = (long int) boh_work_d;
 	MODF(right_op, &boh_work_d);
 	if (FABS(boh_work_d) > LONG_MAX) {
-		display_error = 1;    
+		display_error = 1;
 		return 0;
 	}
 	boh_work_r = (long int ) boh_work_d;
@@ -1792,13 +1793,13 @@ CALCAMNT ExecRsh(CALCAMNT left_op, CALCAMNT right_op)
 
 	MODF(left_op, &boh_work_d);
 	if (FABS(boh_work_d) > LONG_MAX) {
-		display_error = 1;    
+		display_error = 1;
 		return 0;
 	}
 	boh_work_l = (long int ) boh_work_d;
 	MODF(right_op, &boh_work_d);
 	if (FABS(boh_work_d) > LONG_MAX) {
-		display_error = 1;    
+		display_error = 1;
 		return 0;
 	}
 	boh_work_r = ( long int ) boh_work_d;
@@ -1829,7 +1830,7 @@ CALCAMNT ExecDivide(CALCAMNT left_op, CALCAMNT right_op)
 	if (right_op == 0) {
 		display_error = 1;
 		return 0L;
-	} else 
+	} else
 		return left_op / right_op;
 }
 
@@ -1848,7 +1849,7 @@ CALCAMNT ExecMod(CALCAMNT left_op, CALCAMNT right_op)
 
     temp = FMOD(left_op, right_op);
 
-    // let's make sure that -7 mod 3 = 2 and NOT -1. 
+    // let's make sure that -7 mod 3 = 2 and NOT -1.
     // In other words we wand x mod 3 to be a _positive_ number
     // that is 0,1 or 2.
 
@@ -1866,7 +1867,7 @@ CALCAMNT ExecIntDiv(CALCAMNT left_op, CALCAMNT right_op)
 		display_error = 1;
 		return 0L;
 	} else {
-		MODF(left_op / right_op, &left_op); 
+		MODF(left_op / right_op, &left_op);
 		return left_op;
 	}
 }
@@ -1877,14 +1878,14 @@ CALCAMNT ExecPower(CALCAMNT left_op, CALCAMNT right_op)
        // printf("ExecPowser %g left_op, %g right_op\n",left_op, right_op);
 	if (right_op == 0)
 		return 1L;
-	if (left_op < 0 && isoddint(1/right_op)) 
+	if (left_op < 0 && isoddint(1/right_op))
 		left_op = -1L * POW((-1L * left_op), right_op);
 	else
 		left_op = POW(left_op, right_op);
 	if (errno == EDOM || errno == ERANGE) {
 		display_error = 1;
 		return 0;
-	} else 
+	} else
 		return left_op;
 }
 
@@ -1896,15 +1897,15 @@ CALCAMNT ExecPwrRoot(CALCAMNT left_op, CALCAMNT right_op)
 		display_error = 1;
 		return 0L;
 	}
-	if (left_op < 0 && isoddint(right_op)) 
+	if (left_op < 0 && isoddint(right_op))
 		left_op = -1L * POW((-1L * left_op), (1L)/right_op);
 	else
 		left_op = POW(left_op, (1L)/right_op);
 	if (errno == EDOM || errno == ERANGE) {
 	  display_error = 1;
 	  return 0;
-	}   
-	else 
+	}
+	else
 	  return left_op;
 }
 
@@ -1917,7 +1918,7 @@ CALCAMNT ExecAddSubP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 	if (result == 0) {
 		display_error = 1;
 		return 0;
-	} else 
+	} else
 		return (result * 100L) / right_op;
 }
 
@@ -1954,7 +1955,7 @@ CALCAMNT ExecPwrRootP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 	if (right_op == 0) {
 		display_error = 1;
 		return 0;
-	} else 
+	} else
 		return ExecPower(left_op, (100L / right_op));
 }
 
@@ -1977,7 +1978,7 @@ void UnAllocStackItem (stack_ptr return_item) {
 	if (return_item != &process_stack[--stack_next])
 	  KMessageBox::error(0L, i18n("Stack Error!") );
 }
-void PushStack(item_contents *add_item) 
+void PushStack(item_contents *add_item)
 {
 	/*
 	 * Add an item to the stack
@@ -1985,13 +1986,13 @@ void PushStack(item_contents *add_item)
 
 	stack_ptr new_item = top_of_stack;
 
-	if (!(new_item && 
+	if (!(new_item &&
 	new_item->item_value.s_item_type == add_item->s_item_type)) {
 
 		new_item = AllocStackItem();	/* Get a new item    */
 
 		/*
-		 * Chain new item to existing stacks 
+		 * Chain new item to existing stacks
 		 */
 
 		new_item->prior_item = top_of_stack;
