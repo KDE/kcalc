@@ -39,33 +39,24 @@ class ConfigureDialog;
 class DLabel;
 class KPushButton;
 #include <kmainwindow.h>
-#include "stats.h"
 
+/*
+  Kcalc basically consist of a class for the GUI (here) and one for
+  the mathematics core (kcalc_core.h). When for example '+' is pressed
+  one sends the contents of the Display and the '+' to the core via
+  "core.Plus(DISPLAY_AMOUNT);".  The display is updated via
+  "UpdateDisplay(bool)". The argument says if the amount to display is
+  already stored in DISPLAY_AMOUNT (e.g. user is typing in a number)
+  or if it should be asked form the core(some function was computed).
+ */
 
 #ifdef HAVE_CONFIG_H
 	#include "../config.h"
 #endif
 
 // IMPORTANT this has to come after ../config.h
-#include "kcalctype.h"
+#include "kcalc_core.h"
 
-#define STACK_SIZE	100
-#define PRECEDENCE_INCR	20
-
-#define FUNC_NULL		0
-#define FUNC_OR			1
-#define FUNC_XOR		2
-#define FUNC_AND		3
-#define FUNC_LSH		4
-#define FUNC_RSH		5
-#define FUNC_ADD		6
-#define FUNC_SUBTRACT		7
-#define FUNC_MULTIPLY		8
-#define FUNC_DIVIDE		9
-#define FUNC_MOD		10
-#define FUNC_POWER		11
-#define FUNC_PWR_ROOT		12
-#define FUNC_INTDIV		13
 
 #define		HEX_SIZE	sizeof(KCALC_LONG)*2
 #define		OCT_SIZE	11
@@ -74,15 +65,7 @@ class KPushButton;
 
 #define		DSP_SIZE	50 // 25
 
-#define		POS_ZERO	 1e-19L	 /* What we consider zero is */
-#define		NEG_ZERO	-1e-19L	 /* anything between these two */
-
 #define DISPLAY_AMOUNT display_data
-
-
-typedef	CALCAMNT	(*Arith)(CALCAMNT, CALCAMNT);
-typedef	CALCAMNT	(*Prcnt)(CALCAMNT, CALCAMNT);
-typedef	CALCAMNT	(*Trig)(CALCAMNT);
 
 typedef enum _last_input_type
 {
@@ -106,13 +89,6 @@ typedef enum _angle_type
 	ANG_RADIAN = 1,
 	ANG_GRADIENT = 2
 } angle_type;
-
-typedef struct _func_data
-{
-	int item_function;
-	int item_precedence;
-} func_data;
-
 
 typedef struct _DefStruct
 {
@@ -156,19 +132,7 @@ private:
 	void set_style();
 	void history_next();
 	void history_prev();
-	void ComputeSin();
-	void ComputeCos();
-	void ComputeTan();
-	void ComputeLog10();
-	void ComputeNaturalLog();
-	void DisplayNumData();
-	void ComputeStd();
-	void ComputeMean();
-	void ComputeMedian();
-	void EnterStatData();
-	void ClearStatMem();
 
-	int UpdateStack(int run_precedence);
 protected slots:
     void configurationChanged(const DefStruct &state);
     void set_colors();
@@ -181,41 +145,16 @@ protected slots:
     void EnterDigit(int data);
     void SubtractDigit();
     void EnterDecimal();
-    void EnterStackFunction(int data);
     void EnterNegate();
-    void EnterOpenParen();
-    void EnterCloseParen();
-    void EnterRecip();
     void EnterInt();
-    void EnterFactorial();
-    void EnterSquare();
-    void EnterNotCmp();
-    void EnterHyp(bool flag);
-    void EnterPercent();
-    void deactivateInvButton();
-    void SetInverse(bool flag);
     void EnterEqual();
-    void Clear();
     void ClearAll();
     void RefreshCalculator();
-    void InitializeCalculator();
-    void UpdateDisplay();
+    void UpdateDisplay(bool get_new_data_from_core);
     void base_selected(int number);
-    void Or();
-    void And();
-    void Shift();
-    void Plus();
-    void Minus();
-    void Multiply();
-    void Divide();
-    void Mod();
-    void Power();
     void EE();
-    void MR();
-    void Mplusminus();
-    void MC();
-    void slotBaseSelected(int number);
     void slotAngleSelected(int number);
+    void slotBaseSelected(int number);
     void slotNumberclicked(int number_clicked);
     void slotEEclicked(void);
     void slotInvtoggled(bool myboolean);
@@ -254,8 +193,8 @@ protected slots:
     void slotStatMedianclicked(void);
     void slotStatDataInputclicked(void);
     void slotStatClearDataclicked(void);
-    void slotHyptoggled(bool myboolean);
-    void configclicked();
+    void slotHyptoggled(bool flag);
+    void slotConfigclicked(void);
 
 private:
      DefStruct kcalcdefaults;
@@ -283,23 +222,15 @@ public:
 	static CALCAMNT ExecDivideP(CALCAMNT left_op, CALCAMNT right_op);
 	static CALCAMNT ExecFunction(CALCAMNT left_op, int function, CALCAMNT right_op);
 
-public:
-	static CALCAMNT Deg2Rad(CALCAMNT x)	{ return (((2L * pi) / 360L) * x); }
-	static CALCAMNT Gra2Rad(CALCAMNT x)	{ return ((pi / 200L) * x); }
-	static CALCAMNT Rad2Deg(CALCAMNT x)	{ return ((360L / (2L * pi)) * x); }
-	static CALCAMNT Rad2Gra(CALCAMNT x)	{ return ((200L / pi) * x); }
-
 private:
 	bool inverse;
 	bool hyp_mode;
 	bool eestate;
-	bool refresh_display;
+	bool display_error;
 	int	display_size;
-	int	angle_mode;
 	int input_limit;
 	int input_count;
 	int decimal_point;
-	int precedence_base;
 	num_base current_base;
 	CALCAMNT memory_num;
 	last_input_type last_input;
@@ -379,9 +310,12 @@ private:
     QPtrList<QPushButton> mOperationButtonList;
 
     int				mInternalSpacing;
-    KStats			stats;
     QTimer			*status_timer;
     ConfigureDialog	*mConfigureDialog;
+
+    CALCAMNT	display_data;
+
+    CalcEngine core;
 };
 
-#endif  //QTCLAC_H
+#endif  //QTCALC_H

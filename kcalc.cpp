@@ -56,7 +56,6 @@
 #include "optiondialog.h"
 #include "version.h"
 
-// Initialize static members
 const CALCAMNT QtCalculator::pi = (ASIN(1L) * 2L);
 
 
@@ -79,11 +78,12 @@ extern bool		display_error;
 
 QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	: KMainWindow(parent, name), inverse(false), hyp_mode(false), eestate(false),
-	refresh_display(false), display_size(DEC_SIZE),  angle_mode(ANG_DEGREE),
-	input_limit(0), input_count(0), decimal_point(0), precedence_base(0),
-	current_base(NB_DECIMAL), memory_num(0.0), last_input(DIGIT),
+	display_error(false), display_size(DEC_SIZE),
+	input_limit(0), input_count(0), decimal_point(0),
+	current_base(NB_DECIMAL), memory_num(0.0),
 	history_index(0), selection_timer(new QTimer),
-	mInternalSpacing(4), status_timer(new QTimer), mConfigureDialog(0)
+	mInternalSpacing(4), status_timer(new QTimer), mConfigureDialog(0),
+	DISPLAY_AMOUNT(0.0), core()
 {
 	/* central widget to contain all the elements */
 	QWidget *central = new QWidget(this);
@@ -114,7 +114,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
             central, "configbutton");
 	mConfigButton->setAutoDefault(false);
 	QToolTip::add(mConfigButton, i18n("Click to configure KCalc"));
-	connect(mConfigButton, SIGNAL(clicked()), this, SLOT(configclicked()));
+	connect(mConfigButton, SIGNAL(clicked()), this, SLOT(slotConfigclicked()));
 	if (KGlobal::config()->isImmutable())
 	   mConfigButton->hide();
 
@@ -632,7 +632,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	set_precision();
 	set_style();
 	basebutton[1]->animateClick();
-	InitializeCalculator();
+	anglebutton[0]->animateClick();
 
 	updateGeometry();
 	setFixedSize(minimumSize());
@@ -748,7 +748,7 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
 		kapp->invokeHelp();
 		break;
 	case Key_F2:
-		configclicked();
+		slotConfigclicked();
 		break;
 	case Key_F3:
 		kcalcdefaults.style = !kcalcdefaults.style;
@@ -918,6 +918,62 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
     }
 }
 
+
+void QtCalculator::base_selected(int number)
+{
+	switch(number)
+	{
+	case 0:
+		current_base	= NB_HEX;
+		display_size	= HEX_SIZE;
+		decimal_point	= 0;
+		input_limit		= sizeof(KCALC_LONG)*2;
+		break;
+	case 1:
+		current_base	= NB_DECIMAL;
+		display_size	= DEC_SIZE;
+		input_limit		= 0;
+		break;
+	case 2:
+		current_base	= NB_OCTAL;
+		display_size	= OCT_SIZE;
+		decimal_point	= 0;
+		input_limit		= 11;
+		break;
+	case 3:
+		current_base	= NB_BINARY;
+		display_size	= BIN_SIZE;
+		decimal_point	= 0;
+		input_limit		= 32;
+		break;
+	default: // we shouldn't ever end up here
+		current_base	= NB_DECIMAL;
+		display_size	= DEC_SIZE;
+		input_limit		= 0;
+	}
+
+	UpdateDisplay(false);
+}
+
+
+void QtCalculator::slotAngleSelected(int number)
+{
+	switch(number)
+	{
+	case 0:
+		core.SetAngleMode(ANG_DEGREE);
+		break;
+	case 1:
+		core.SetAngleMode(ANG_RADIAN);
+		break;
+	case 2:
+		core.SetAngleMode(ANG_GRADIENT);
+		break;
+	default: // we shouldn't ever end up here
+		core.SetAngleMode(ANG_RADIAN);
+	}
+}
+
 void QtCalculator::slotEEclicked(void)
 {
 	if(!display_error)
@@ -928,15 +984,23 @@ void QtCalculator::slotEEclicked(void)
 		KNotifyClient::beep();
 }
 
-void QtCalculator::slotInvtoggled(bool myboolean)
+void QtCalculator::slotInvtoggled(bool flag)
 {
-	SetInverse(myboolean);
+	inverse = flag;
+
+	if (inverse)	statusINVLabel->setText("INV");
+	else		statusINVLabel->setText("NORM");
 }
 
-void QtCalculator::slotHyptoggled(bool myboolean)
+void QtCalculator::slotHyptoggled(bool flag)
 {
-	EnterHyp(myboolean);
-	if(myboolean)
+	// toggle between hyperbolic and standart trig functions
+	hyp_mode = flag;
+
+	if (hyp_mode)	statusHYPLabel->setText("HYP");
+	else 		statusHYPLabel->clear();
+
+	if(flag)
 	{
 		pbSin->setText("Sinh");
 		QToolTip::remove(pbSin);
@@ -962,26 +1026,58 @@ void QtCalculator::slotHyptoggled(bool myboolean)
 	}
 }
 
-void QtCalculator::deactivateInvButton()
-{
-	pbInv->setOn(false);
-}
+
 
 void QtCalculator::slotMRclicked(void)
 {
-	MR();
+	eestate			= false;
+	DISPLAY_AMOUNT	= memory_num;
+
+	UpdateDisplay(false);
+	last_input		= OPERATION;
 }
 
 void QtCalculator::slotNumberclicked(int number_clicked)
 {
-  Q_ASSERT(number_clicked < current_base);
+	Q_ASSERT(number_clicked < current_base);
 
-  EnterDigit(number_clicked);
+	EnterDigit(number_clicked);
 }
 
 void QtCalculator::slotSinclicked(void)
 {
-	ComputeSin();
+	eestate = false;
+	last_input = OPERATION;
+
+	if (hyp_mode)
+	{
+		// sinh or arcsinh
+		if (!inverse)
+			core.SinHyp(DISPLAY_AMOUNT);
+		else
+		{
+			core.AreaSinHyp(DISPLAY_AMOUNT);
+			pbInv->setOn(false);
+		}
+	}
+	else
+	{
+		// sine or arcsine
+		if (!inverse)
+			core.Sin(DISPLAY_AMOUNT);
+		else
+		{
+			// arcsine
+			core.ArcSin(DISPLAY_AMOUNT);
+			pbInv->setOn(false);
+		}
+	}
+
+	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
+	if (DISPLAY_AMOUNT < POS_ZERO && DISPLAY_AMOUNT > NEG_ZERO)
+		DISPLAY_AMOUNT = 0;
+
+	UpdateDisplay(true);
 }
 
 void QtCalculator::slotPlusMinusclicked(void)
@@ -991,57 +1087,222 @@ void QtCalculator::slotPlusMinusclicked(void)
 
 void QtCalculator::slotMPlusMinusclicked(void)
 {
-	Mplusminus();
+	eestate = false;
+	EnterEqual();
+
+	if (!inverse)	memory_num += DISPLAY_AMOUNT;
+	else 			memory_num -= DISPLAY_AMOUNT;
+
+	pbInv->setOn(false);
 }
 
 void QtCalculator::slotCosclicked(void)
 {
-	ComputeCos();
+	eestate = false;
+	last_input = OPERATION;
+
+	if (hyp_mode)
+	{
+		// cosh or arccosh
+		if (!inverse)
+			core.CosHyp(DISPLAY_AMOUNT);
+		else
+		{
+			core.AreaCosHyp(DISPLAY_AMOUNT);
+
+			pbInv->setOn(false);
+		}
+	}
+	else
+	{
+		// cosine or arccosine
+		if (!inverse)
+			core.Cos(DISPLAY_AMOUNT);
+		else
+		{
+			// arccosine
+			core.ArcCos(DISPLAY_AMOUNT);
+			pbInv->setOn(false);
+		}
+	}
+
+	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
+	if (DISPLAY_AMOUNT < POS_ZERO && DISPLAY_AMOUNT > NEG_ZERO)
+		DISPLAY_AMOUNT = 0;
+
+	UpdateDisplay(true);
 }
 
 void QtCalculator::slotReciclicked(void)
 {
-	EnterRecip();
+	eestate = false;
+	last_input = OPERATION;
+	core.Reciprocal(DISPLAY_AMOUNT);
+	UpdateDisplay(true);
 }
 
 void QtCalculator::slotTanclicked(void)
 {
-	ComputeTan();
+	eestate = false;
+	last_input = OPERATION;
+
+
+	if (hyp_mode)
+	{
+		// tanh or arctanh
+		if (!inverse)
+			core.TangensHyp(DISPLAY_AMOUNT);
+		else
+		{
+			core.AreaTangensHyp(DISPLAY_AMOUNT);
+			pbInv->setOn(false);
+		}
+	}
+	else
+	{
+		// tan or arctan
+		if (!inverse)
+		{
+			// tan
+			core.Tangens(DISPLAY_AMOUNT);
+		}
+		else
+		{
+			// arctan
+			core.ArcTangens(DISPLAY_AMOUNT);
+			pbInv->setOn(false);
+		}
+	}
+
+	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
+
+	if (DISPLAY_AMOUNT < POS_ZERO && DISPLAY_AMOUNT > NEG_ZERO)
+		DISPLAY_AMOUNT = 0;
+
+	UpdateDisplay(true);
 }
 
 void QtCalculator::slotFactorialclicked(void)
 {
-	EnterFactorial();
+	eestate = false;
+	last_input = OPERATION;
+
+	core.Factorial(DISPLAY_AMOUNT);
+
+	UpdateDisplay(true);
 }
 
 void QtCalculator::slotLogclicked(void)
 {
-	ComputeLog10();
+	eestate = false;
+	last_input		= OPERATION;
+
+	if (!inverse)
+		core.Log10(DISPLAY_AMOUNT);
+	else
+	{
+		core.Exp10(DISPLAY_AMOUNT);
+		pbInv->setOn(false);
+	}
+
+	UpdateDisplay(true);
 }
+
 
 void QtCalculator::slotSquareclicked(void)
 {
-	EnterSquare();
+	eestate = false;
+	last_input = OPERATION;
+
+	if (!inverse)
+		core.Square(DISPLAY_AMOUNT);
+	else
+	{
+		core.SquareRoot(DISPLAY_AMOUNT);
+		pbInv->setOn(false);
+	}
+
+	UpdateDisplay(true);
 }
 
 void QtCalculator::slotLnclicked(void)
 {
-	ComputeNaturalLog();
+	eestate = false;
+	last_input = OPERATION;
+	if (!inverse)
+		core.Ln(DISPLAY_AMOUNT);
+	else
+	{
+		core.Exp(DISPLAY_AMOUNT);
+		pbInv->setOn(false);
+	}
+
+	UpdateDisplay(true);
 }
 
 void QtCalculator::slotPowerclicked(void)
 {
-	Power();
+	eestate = false;
+	last_input = OPERATION;
+
+	if (inverse)
+	{
+		core.InvPower(DISPLAY_AMOUNT);
+		pbInv->setOn(false);
+	}
+	else
+	{
+		core.Power(DISPLAY_AMOUNT);
+	}
+
 }
 
 void QtCalculator::slotMCclicked(void)
 {
-	MC();
+	memory_num		= 0;
 }
 
 void QtCalculator::slotClearclicked(void)
 {
-	Clear();
+	eestate 		= false;
+
+	core.last_output(display_error);
+
+	if (display_error)
+	{
+		last_input = OPERATION;
+		UpdateDisplay(true);
+	}
+	else
+	{
+		last_input = DIGIT;
+		DISPLAY_AMOUNT = 0;
+		decimal_point	= 0;
+		UpdateDisplay(false);
+	}
+	// input_count		= 0;
+
+
+	// if (last_input == OPERATION)
+	//{
+	         //func_stack.pop();
+	          //last_input = DIGIT;
+	//}
+
+	//if(display_error)
+	//{
+	//	display_error	= false;
+	//}
+}
+
+void QtCalculator::ClearAll()
+{
+	eestate = false;
+	last_input = OPERATION;
+
+	core.Reset();
+
+	UpdateDisplay(true);
 }
 
 void QtCalculator::slotACclicked(void)
@@ -1051,52 +1312,119 @@ void QtCalculator::slotACclicked(void)
 
 void QtCalculator::slotParenOpenclicked(void)
 {
-	EnterOpenParen();
+	eestate = false;
+	last_input = OPERATION;
+
+	core.OpenParen(DISPLAY_AMOUNT);
 }
 
 void QtCalculator::slotParenCloseclicked(void)
 {
-	EnterCloseParen();
+	eestate = false;
+	last_input = OPERATION;
+
+	core.CloseParen(DISPLAY_AMOUNT);
+
+	UpdateDisplay(true);
 }
 
 void QtCalculator::slotANDclicked(void)
 {
-	And();
+	eestate = false;
+	last_input = OPERATION;
+
+	core.And(DISPLAY_AMOUNT);
+
+	UpdateDisplay(true);
 }
 
 void QtCalculator::slotXclicked(void)
 {
-	Multiply();
+	eestate = false;
+	last_input = OPERATION;
+
+	core.Multiply(DISPLAY_AMOUNT);
+
+	UpdateDisplay(true);
 }
 
 void QtCalculator::slotDivisionclicked(void)
 {
-	Divide();
+	eestate = false;
+	last_input = OPERATION;
+
+	core.Divide(DISPLAY_AMOUNT);
+
+	UpdateDisplay(true);
 }
 
 void QtCalculator::slotORclicked(void)
 {
-	Or();
+	eestate = false;
+	last_input = OPERATION;
+
+	if (inverse)
+	{
+		core.Xor(DISPLAY_AMOUNT);
+		pbInv->setOn(false);
+	}
+	else
+		core.Or(DISPLAY_AMOUNT);
+
+	UpdateDisplay(true);
 }
 
 void QtCalculator::slotPlusclicked(void)
 {
-	Plus();
+	eestate = false;
+	last_input = OPERATION;
+
+	core.Plus(DISPLAY_AMOUNT);
+
+	UpdateDisplay(true);
 }
 
 void QtCalculator::slotMinusclicked(void)
 {
-	Minus();
+	eestate = false;
+	last_input = OPERATION;
+
+	core.Minus(DISPLAY_AMOUNT);
+
+	UpdateDisplay(true);
 }
 
 void QtCalculator::slotShiftclicked(void)
 {
-	Shift();
+	eestate = false;
+	last_input = OPERATION;
+	if (inverse)
+	{
+		core.RShift(DISPLAY_AMOUNT);
+		pbInv->setOn(false);
+	}
+	else
+		core.LShift(DISPLAY_AMOUNT);
+
+	UpdateDisplay(true);
 }
 
 void QtCalculator::slotPeriodclicked(void)
 {
 	EnterDecimal();
+}
+
+void QtCalculator::EnterEqual()
+{
+	eestate		= false;
+	last_input	= OPERATION;
+
+	core.Equal(DISPLAY_AMOUNT);
+
+	UpdateDisplay(true);
+
+	// add this latest value to our history
+	history_list.insert(history_list.begin(), DISPLAY_AMOUNT);
 }
 
 void QtCalculator::slotEqualclicked(void)
@@ -1106,53 +1434,182 @@ void QtCalculator::slotEqualclicked(void)
 
 void QtCalculator::slotPercentclicked(void)
 {
-	EnterPercent();
+	eestate			= false;
+	last_input		= OPERATION;
+
+	core.Percent(DISPLAY_AMOUNT);
+
+	UpdateDisplay(true);
+
+	// add this latest value to our history
+	history_list.insert(history_list.begin(), DISPLAY_AMOUNT);
+
 }
 
 void QtCalculator::slotNegateclicked(void)
 {
-	EnterNotCmp();
+	eestate = false;
+	CALCAMNT boh_work_d;
+	KCALC_LONG boh_work;
+
+	MODF(DISPLAY_AMOUNT, &boh_work_d);
+
+	if (FABS(boh_work_d) > KCALC_LONG_MAX)
+		display_error = true;
+	else
+	{
+		boh_work = (KCALC_LONG)boh_work_d;
+		DISPLAY_AMOUNT = ~boh_work;
+	}
+
+	last_input = OPERATION;
+	UpdateDisplay(false);
 }
 
 void QtCalculator::slotModclicked(void)
 {
-	Mod();
+	eestate = false;
+	last_input = OPERATION;
+	if (inverse)
+	{
+		core.InvMod(DISPLAY_AMOUNT);
+		pbInv->setOn(false);
+	}
+	else
+	{
+		core.Mod(DISPLAY_AMOUNT);
+	}
+
+	UpdateDisplay(true);
 }
 
 void QtCalculator::slotStatNumclicked(void)
 {
-	DisplayNumData();
+	if(!inverse)
+	{
+		eestate = false; // terminate ee input mode
+		DISPLAY_AMOUNT =  core.stats.count();
+	}
+	else
+	{
+		pbInv->setOn(false);
+		eestate = false; // terminate ee input mode
+		DISPLAY_AMOUNT =  core.stats.sum();
+	}
+
+	last_input = OPERATION;
+	UpdateDisplay(false);
 }
 
 void QtCalculator::slotStatMeanclicked(void)
 {
-	ComputeMean();
+	eestate = false;
+
+	if(!inverse)
+		DISPLAY_AMOUNT = core.stats.mean();
+	else
+	{
+		pbInv->setOn(false);
+		DISPLAY_AMOUNT = core.stats.sum_of_squares();
+	}
+
+	if (core.stats.error())
+		display_error = true;
+	
+	last_input = OPERATION;
+	UpdateDisplay(false);
+
 }
 
 void QtCalculator::slotStatStdDevclicked(void)
 {
-	ComputeStd();
+	eestate = false;
+
+	if(!inverse)
+	{
+		// std (n-1)
+		DISPLAY_AMOUNT = core.stats.std();
+	}
+	else
+	{
+		// std (n)
+		pbInv->setOn(false);
+		DISPLAY_AMOUNT = core.stats.sample_std();
+	}
+
+	if (core.stats.error())
+		display_error = true;
+
+	last_input = OPERATION;
+	UpdateDisplay(false);
 }
 
 void QtCalculator::slotStatMedianclicked(void)
 {
-	ComputeMedian();
+	if(!inverse)
+	{
+		// std (n-1)
+		eestate = false;
+		DISPLAY_AMOUNT = core.stats.median();
+
+		if (core.stats.error())
+			display_error = true;
+
+		last_input = OPERATION;
+		UpdateDisplay(false);
+	}
+	else
+	{
+		// std (n)
+		pbInv->setOn(false);
+		eestate = false;
+		DISPLAY_AMOUNT = core.stats.median();
+
+		if (core.stats.error())
+			display_error = true;
+
+		last_input = OPERATION;
+		UpdateDisplay(false);
+
+	}
 }
 
 void QtCalculator::slotStatDataInputclicked(void)
 {
-	EnterStatData();
+	if(!inverse)
+	{
+		eestate = false; // terminate ee input mode
+		core.stats.enterData(DISPLAY_AMOUNT);
+		DISPLAY_AMOUNT = core.stats.count();
+	}
+	else
+	{
+		pbInv->setOn(false);
+		core.stats.clearLast();
+		setStatusLabel(i18n("Last stat item erased"));
+		DISPLAY_AMOUNT = core.stats.count();
+	}
+
+	last_input		= OPERATION;
+
+	UpdateDisplay(false);
 }
 
 void QtCalculator::slotStatClearDataclicked(void)
 {
-	ClearStatMem();
+        if(!inverse)
+	{
+		core.stats.clearAll();
+		setStatusLabel(i18n("Stat mem cleared"));
+	}
+	else
+	{
+		pbInv->setOn(false);
+		UpdateDisplay(false);
+	}
 }
 
-//-------------------------------------------------------------------------
-// Name: configclicked()
-//-------------------------------------------------------------------------
-void QtCalculator::configclicked()
+void QtCalculator::slotConfigclicked()
 {
 	if(mConfigureDialog == 0)
 	{
@@ -1166,10 +1623,6 @@ void QtCalculator::configclicked()
         mConfigureDialog->raise();
 }
 
-
-//-------------------------------------------------------------------------
-// Name: set_style()
-//-------------------------------------------------------------------------
 void QtCalculator::set_style()
 {
 	switch(kcalcdefaults.style)
@@ -1211,9 +1664,237 @@ void QtCalculator::set_style()
 	angle_group->setEnabled(kcalcdefaults.style == 0);
 }
 
-//-------------------------------------------------------------------------
-// Name: readSettings()
-//-------------------------------------------------------------------------
+void QtCalculator::RefreshCalculator()
+{
+	display_error = false;
+	DISPLAY_AMOUNT = 0L;
+	pbInv->setOn(false);
+	decimal_point = 0;
+	input_count = 0;
+	UpdateDisplay(false);
+	last_input = DIGIT; // must set last to DIGIT after Update Display in order
+						// not to get a display holding e.g. 0.000
+}
+
+void QtCalculator::EnterDecimal()
+{
+	Q_ASSERT(current_base == NB_DECIMAL);
+
+	if(eestate)
+	{
+		KNotifyClient::beep();
+		return;
+	}
+
+
+	if(last_input == DIGIT)
+	{
+		if (decimal_point==0)  //strpbrk() doesn't work in fixed precision mode
+		{
+			// if the last input was a DIGIT and we don't
+			// have already a period in our
+			// display string then display a period
+			if (strlen(display_str) >= DSP_SIZE)
+				return;
+
+			if (!kcalcdefaults.fixed)
+				calc_display->setText(strcat(display_str, "."));
+			decimal_point = 1;
+		}
+	}
+	else
+	{
+		// the last input wasn't a DIGIT so we are about to
+		// input a new number in particular we need to display a "0.".
+
+		if (decimal_point==0)  //strpbrk() doesn't work in fixed precision mode
+		{
+
+			DISPLAY_AMOUNT = 0L;
+			decimal_point = 1;
+
+			//input_count = 2;
+
+			if (!kcalcdefaults.fixed)
+				strcpy(display_str, "0.");
+			calc_display->setText(display_str);
+		}
+	}
+
+	last_input = DIGIT;
+
+	UpdateDisplay(false);
+}
+
+
+void QtCalculator::EnterInt()
+{
+	eestate = false;
+	CALCAMNT work_amount1 = 0;
+	CALCAMNT work_amount2 = 0;
+
+	last_input = OPERATION;
+
+	if (!inverse)
+	{
+		work_amount2 = MODF(DISPLAY_AMOUNT, &work_amount1);
+		DISPLAY_AMOUNT = work_amount2 ;
+	}
+	else
+	{
+		DISPLAY_AMOUNT = work_amount1;
+		pbInv->setOn(false);
+	}
+
+	UpdateDisplay(false);
+
+}
+
+
+void QtCalculator::SubtractDigit()
+{
+   // This function could be better, possibly, but am I glad to see it!
+   if (DISPLAY_AMOUNT != 0||decimal_point!=0)
+   {
+      if (current_base == NB_DECIMAL && (DISPLAY_AMOUNT != floor(DISPLAY_AMOUNT)))
+      {
+          if (decimal_point < 3)
+         {
+             decimal_point = 0;
+            DISPLAY_AMOUNT = floor(DISPLAY_AMOUNT);
+         }
+         else
+         {
+            --decimal_point;
+            DISPLAY_AMOUNT = floor(DISPLAY_AMOUNT * POW((CALCAMNT)current_base, decimal_point - 1)) /
+               POW((CALCAMNT)current_base, (decimal_point - 1));
+         }
+      }
+      else
+      {
+         DISPLAY_AMOUNT = floor(DISPLAY_AMOUNT / current_base);
+      }
+
+      if (input_count > 0)
+      {
+         --input_count;
+      }
+   }
+
+#ifdef MYDEBUG
+	printf("SubtractDigit()");
+#endif
+
+	UpdateDisplay(false);
+}
+
+void QtCalculator::EnterNegate()
+{
+	if(eestate)
+	{
+		QString str(display_str);
+		int pos = str.findRev('e');
+
+		if(pos == -1)
+			return;
+
+		if(display_str[pos+1] == '+')
+			display_str[pos+1] = '-';
+		else
+		{
+			if(display_str[pos+1] == '-')
+				display_str[pos+1] = '+';
+			else
+			{
+				str.insert(pos + 1, "-");
+				strncpy(display_str, str.latin1(), DSP_SIZE);
+			}
+		}
+
+		DISPLAY_AMOUNT = (CALCAMNT)STRTOD(display_str,0);
+		UpdateDisplay(false);
+	}
+	else
+	{
+		//    last_input = OPERATION;
+		if (DISPLAY_AMOUNT != 0)
+		{
+			DISPLAY_AMOUNT *= -1;
+			UpdateDisplay(false);
+		}
+	}
+
+	last_input = DIGIT;
+}
+
+void QtCalculator::EE()
+{
+	if(inverse)
+	{
+		DISPLAY_AMOUNT	= pi;
+		pbInv->setOn(false);
+
+		UpdateDisplay(false);
+	}
+	else
+	{
+		if (strlen(display_str) >= DSP_SIZE)
+		   return;
+
+		if(!eestate)
+			strcat(display_str,"e");
+
+		eestate = !eestate;
+
+		UpdateDisplay(false);
+	}
+}
+
+
+void QtCalculator::EnterDigit(int data)
+{
+	if(eestate) {
+		if (strlen(display_str) >= DSP_SIZE)
+			return;
+		QString string;
+		string.setNum(data);
+		strcat(display_str, string.latin1());
+		DISPLAY_AMOUNT = (CALCAMNT) STRTOD(display_str,0);
+		UpdateDisplay(false);
+		return;
+	}
+
+	if (last_input != DIGIT)
+	{
+		DISPLAY_AMOUNT = 0L;
+		decimal_point = 0;
+		input_count = 0;
+	}
+
+	last_input = DIGIT;
+
+	if (!(input_limit && input_count >= input_limit)) {
+		if (DISPLAY_AMOUNT < 0) {
+			DISPLAY_AMOUNT = decimal_point ?
+			DISPLAY_AMOUNT - ((CALCAMNT)data /
+			POW((CALCAMNT)current_base, decimal_point++)) :
+			(current_base * DISPLAY_AMOUNT) - data;
+		} else {
+			DISPLAY_AMOUNT = decimal_point ?
+			DISPLAY_AMOUNT + ((CALCAMNT)data /
+			POW((CALCAMNT)current_base, decimal_point++)) :
+			(current_base * DISPLAY_AMOUNT) + data;
+		}
+	}
+
+	if (decimal_point) {
+		input_count ++;
+	}
+
+	UpdateDisplay(false);
+}
+
+
 void QtCalculator::readSettings()
 {
 	QString str;
@@ -1261,9 +1942,6 @@ void QtCalculator::readSettings()
 	kcalcdefaults.capres	= config->readBoolEntry("captionresult",false);
 }
 
-//-------------------------------------------------------------------------
-// Name: writeSettings()
-//-------------------------------------------------------------------------
 void QtCalculator::writeSettings()
 {
 	KConfig *config = KGlobal::config();
@@ -1300,9 +1978,6 @@ void QtCalculator::writeSettings()
 	config->sync();
 }
 
-//-------------------------------------------------------------------------
-// Name: display_selected()
-//-------------------------------------------------------------------------
 void QtCalculator::display_selected()
 {
 	if(calc_display->Button() == LeftButton) {
@@ -1334,13 +2009,57 @@ void QtCalculator::display_selected()
 
 		last_input = PASTE;
 		DISPLAY_AMOUNT = result;
-		UpdateDisplay();
+		UpdateDisplay(false);
 	}
 }
 
-//-------------------------------------------------------------------------
-// Name: selection_timed_out()
-//-------------------------------------------------------------------------
+int QtCalculator::cvb(char *out_str, KCALC_LONG amount, int max_digits)
+{
+	/*
+	* A routine that converts a long int to
+	* binary display format
+	*/
+
+	bool hitOne		= false;
+	unsigned KCALC_LONG bit_mask =
+		((unsigned KCALC_LONG) 1 << (BIN_SIZE - 1));
+	unsigned KCALC_LONG bit_mask_mask = bit_mask - 1;
+	unsigned int count = 0 ;
+
+	while(bit_mask != 0 && max_digits > 0)
+	{
+		char tmp = (bit_mask & amount) ? '1' : '0';
+
+		// put a space every 4th digit
+		if (hitOne && ((count & 3) == 0))
+			*out_str++ = ' ';
+			
+		count++;
+
+		if(!hitOne && tmp == '1')
+			hitOne = true;
+
+		if(hitOne)
+			*out_str++ = tmp;
+
+		bit_mask >>= 1;
+
+		// this will fix a prob with some processors using an
+		// arithmetic right shift (which would maintain sign on
+		// negative numbers and cause a loop that's too long)
+		bit_mask &= bit_mask_mask; //Sven: Uwe's Alpha adition
+
+		max_digits--;
+	}
+
+	if(amount == 0)
+		*out_str++ = '0';
+
+	*out_str = '\0';
+
+	return count;
+}
+
 void QtCalculator::selection_timed_out()
 {
 	selection_timer->stop();
@@ -1348,28 +2067,18 @@ void QtCalculator::selection_timed_out()
 	invertColors();
 }
 
-//-------------------------------------------------------------------------
-// Name: clear_status_label()
-//-------------------------------------------------------------------------
 void QtCalculator::clear_status_label()
 {
 	statusERRORLabel->clear();
 	status_timer->stop();
 }
 
-//-------------------------------------------------------------------------
-// Name: setStatusLabel(const QString& string)
-//-------------------------------------------------------------------------
 void QtCalculator::setStatusLabel(const QString& string)
 {
 	statusERRORLabel->setText(string);
 	status_timer->start(3000, true);
 }
 
-
-//-------------------------------------------------------------------------
-// Name: invertColors()
-//-------------------------------------------------------------------------
 void QtCalculator::invertColors()
 {
 	QColor tmpcolor;
@@ -1390,28 +2099,18 @@ void QtCalculator::invertColors()
 		set_colors();
 }
 
-//-------------------------------------------------------------------------
-// Name: closeEvent(QCloseEvent *)
-//-------------------------------------------------------------------------
 void QtCalculator::closeEvent(QCloseEvent *)
 {
 	quitCalc();
 }
 
 
-//-------------------------------------------------------------------------
-// Name: quitCalc()
-//-------------------------------------------------------------------------
 void QtCalculator::quitCalc()
 {
 	writeSettings();
 	qApp->quit();
 }
 
-
-//-------------------------------------------------------------------------
-// Name: set_colors()
-//-------------------------------------------------------------------------
 void QtCalculator::set_colors()
 {
 	QPalette pal = calc_display->palette();
@@ -1486,18 +2185,12 @@ void QtCalculator::set_colors()
 	}
 }
 
-//-------------------------------------------------------------------------
-// Name: set_precision()
-//-------------------------------------------------------------------------
 void QtCalculator::set_precision()
 {
 	// TODO: make this do somthing!!
-	UpdateDisplay();
+	UpdateDisplay(false);
 }
 
-//-------------------------------------------------------------------------
-// Name: set_display_font()
-//-------------------------------------------------------------------------
 void QtCalculator::set_display_font()
 {
 	calc_display->setFont(kcalcdefaults.font);
@@ -1516,12 +2209,9 @@ void QtCalculator::history_next()
 
     last_input = RECALL;
     DISPLAY_AMOUNT = history_list[--history_index];
-    UpdateDisplay();
+    UpdateDisplay(false);
 }
 
-//-------------------------------------------------------------------------
-// Name: history_prev()
-//-------------------------------------------------------------------------
 void QtCalculator::history_prev()
 {
 
@@ -1533,7 +2223,7 @@ void QtCalculator::history_prev()
 
 	last_input = RECALL;
 	DISPLAY_AMOUNT = history_list[++history_index];
-	UpdateDisplay();
+	UpdateDisplay(false);
 }
 
 //-------------------------------------------------------------------------
@@ -1611,15 +2301,133 @@ bool QtCalculator::eventFilter(QObject *o, QEvent *e)
 }
 
 
+void QtCalculator::UpdateDisplay(bool get_new_data_from_core)
+{
+
+	// this needs to be rewritten based on whether we are currently
+	// inputting a number so that the period and the 0 after a period
+	// are correctly displayed.
+
+	CALCAMNT	boh_work_d;
+	KCALC_LONG	boh_work = 0;
+	int		str_size = 0;
+
+	if (get_new_data_from_core) {
+		DISPLAY_AMOUNT = core.last_output(display_error);
+		decimal_point = 0;
+		input_count = 0;
+	}
+
+	if(eestate && (current_base == NB_DECIMAL))
+	{
+		calc_display->setText(display_str);
+		return;
+	}
+
+	if (current_base != NB_DECIMAL)
+	{
+		MODF(DISPLAY_AMOUNT, &boh_work_d);
+
+		if (boh_work_d < KCALC_LONG_MIN || boh_work_d > KCALC_ULONG_MAX)
+			display_error = true;
+
+		//
+		// We may be in that never-never land where boh numbers
+		// turn from positive to negative - if so then we do
+		// just that, allowing boh negative numbers to be entered
+		// as read (from dumps and the like!)
+		//
+		else if (boh_work_d > KCALC_LONG_MAX)
+		{
+			DISPLAY_AMOUNT = KCALC_LONG_MIN + (boh_work_d - KCALC_LONG_MAX - 1);
+			boh_work = (KCALC_LONG)DISPLAY_AMOUNT;
+		}
+		else
+		{
+			DISPLAY_AMOUNT = boh_work_d;
+			boh_work = (KCALC_LONG)boh_work_d;
+		}
+	}
+
+	if (!display_error)
+	{
+		switch(current_base)
+		{
+		case NB_BINARY:
+			str_size = cvb(display_str, boh_work, DSP_SIZE);
+			break;
+
+		case NB_OCTAL:
+			str_size = snprintf(display_str, DSP_SIZE, PRINT_OCTAL, boh_work);
+			break;
+
+		case NB_HEX:
+			str_size = snprintf(display_str, DSP_SIZE, PRINT_HEX, boh_work);
+			break;
+
+		case NB_DECIMAL:
+			if (kcalcdefaults.fixed && DISPLAY_AMOUNT <= 1.0e+16) {
+				str_size = snprintf(display_str, DSP_SIZE,
+						PRINT_FLOAT,
+						kcalcdefaults.fixedprecision,
+						DISPLAY_AMOUNT);
+			} else if(last_input == DIGIT || DISPLAY_AMOUNT > 1.0e+16) {
+
+				// if I don't guard against the DISPLAY_AMOUNT being too large
+				// kcalc will segfault on larger amount. Such as from typing
+				// from 5*5*******
+				str_size = snprintf(display_str, DSP_SIZE,
+							PRINT_LONG_BIG,
+							kcalcdefaults.precision + 1,
+							DISPLAY_AMOUNT);
+			} else {
+				str_size = snprintf(display_str, DSP_SIZE, PRINT_LONG_BIG, kcalcdefaults.precision, DISPLAY_AMOUNT);
+			}
+
+			if (input_count > 0 && !strpbrk(display_str,"e") &&
+				last_input == DIGIT )
+			{
+				str_size = snprintf(display_str, DSP_SIZE,
+					PRINT_FLOAT,
+					(kcalcdefaults.precision +1 > input_count)?
+					input_count : kcalcdefaults.precision ,
+					DISPLAY_AMOUNT);
+			}
+			break;
+
+		default:
+			display_error = true;
+			break;
+		}
+	}
+
+	if (display_error || str_size < 0)
+	{
+		display_error = true;
+		strcpy(display_str, i18n("Error").utf8());
+
+		if(kcalcdefaults.beep)
+			KNotifyClient::beep();
+	}
+
+	if (hyp_mode)	statusHYPLabel->setText("HYP");
+	else			statusHYPLabel->clear();
+	calc_display->setText(display_str);
+	// Show the result in the app's caption in taskbar (wishlist - bug #52858)
+	if (kcalcdefaults.capres)
+		QtCalculator::setCaption(display_str);
+	else
+		QtCalculator::setCaption("");
+}
+
+
 ////////////////////////////////////////////////////////////////
 // Include the meta-object code for classes in this file
 //
 
 #include "kcalc.moc"
 
-//-------------------------------------------------------------------------
-// Name: main(int argc, char *argv[])
-//-------------------------------------------------------------------------
+
 int main(int argc, char *argv[])
 {
         QString precisionStatement;
@@ -1669,3 +2477,4 @@ int main(int argc, char *argv[])
 
 	return(exitCode);
 }
+

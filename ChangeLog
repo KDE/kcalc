@@ -1,3 +1,7 @@
+2003-04-08 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* finished the separation of gui-code from the calculating core.
+	  this still needs some clean-up
+	
 2003-02-11 Evan Teran <emt3734@rit.edu>
 	* replaced cheasy stack with STL stack classes (it really should have been
 	  two stacks, but was mushed into one with a linked list dividing content)
