@@ -54,12 +54,12 @@
 int isinf(double x) { return !finite(x) && x==x; }
 #endif
 
-extern QList<CALCAMNT> temp_stack;
+extern QPtrList<CALCAMNT> temp_stack;
 last_input_type last_input;
 char		display_str[DSP_SIZE+1];
 
-stack_ptr	top_of_stack = NULL;	
-stack_ptr	top_type_stack[2] = { NULL, NULL };	
+stack_ptr	top_of_stack = NULL;
+stack_ptr	top_type_stack[2] = { NULL, NULL };
 int 		stack_next, stack_last;
 stack_item	process_stack[STACK_SIZE];
 
@@ -124,7 +124,7 @@ int precedence[14] = { 0, 1, 2, 3, 4, 4, 5, 5, 6, 6, 6, 7, 7, 6 };
     */
     Arith      	Arith_ops[14] = { NULL,
 				  ExecOr,
-				  ExecXor,  	
+				  ExecXor,
 				  ExecAnd,
 				  ExecLsh,
 				  ExecRsh,
@@ -133,7 +133,7 @@ int precedence[14] = { 0, 1, 2, 3, 4, 4, 5, 5, 6, 6, 6, 7, 7, 6 };
 				  ExecDivide, ExecMod,
 				  ExecPower, ExecPwrRoot,
 				  ExecIntDiv
-    };	
+    };
 
     Prcnt     	Prcnt_ops[14] = { NULL,
 				  NULL,
@@ -146,7 +146,7 @@ int precedence[14] = { 0, 1, 2, 3, 4, 4, 5, 5, 6, 6, 6, 7, 7, 6 };
 				  ExecDivideP, ExecDivideP,
 				  ExecPowerP, ExecPwrRootP,
 				  ExecDivideP
-    };	
+    };
 
 
 void QtCalculator::InitializeCalculator(void) {
@@ -177,7 +177,7 @@ void QtCalculator::InitializeCalculator(void) {
 
   RefreshCalculator();
   pi = ASIN(1L) * 2L;
-}		
+}
 
 void fpe_handler(int fpe_parm)
 {
@@ -186,7 +186,7 @@ void fpe_handler(int fpe_parm)
   display_error = 1;
   DISPLAY_AMOUNT = 0L;
 
-}		
+}
 
 
 void QtCalculator::RefreshCalculator(void)
@@ -200,7 +200,7 @@ void QtCalculator::RefreshCalculator(void)
 	                    // not to get a display holding e.g. 0.000
 	input_count = 0;
 	decimal_point = 0;
-}		
+}
 
 void QtCalculator::EnterDigit(int data)
 {
@@ -615,7 +615,7 @@ void QtCalculator::EnterRecip()
 {
   eestate = false;
   last_input = OPERATION;
-  DISPLAY_AMOUNT = 1 / DISPLAY_AMOUNT;	
+  DISPLAY_AMOUNT = 1 / DISPLAY_AMOUNT;
   refresh_display = 1;
   UpdateDisplay();
 }
@@ -625,7 +625,7 @@ void QtCalculator::EnterInt()
   eestate = false;
 	CALCAMNT work_amount1 = 0, work_amount2 = 0;
 
-	last_input = OPERATION;	
+	last_input = OPERATION;
 	if (!inverse){
 	  work_amount2 = MODF(DISPLAY_AMOUNT, &work_amount1);
 	  DISPLAY_AMOUNT = work_amount2 ;
@@ -634,7 +634,7 @@ void QtCalculator::EnterInt()
 	  DISPLAY_AMOUNT = work_amount1;
 	  inverse = FALSE;
 	}
-	
+
 	refresh_display = 1;
 	UpdateDisplay();
 
@@ -673,15 +673,15 @@ void QtCalculator::EnterSquare()
 {
   eestate = false;
 	if (!inverse){
-		DISPLAY_AMOUNT *= DISPLAY_AMOUNT;	
+		DISPLAY_AMOUNT *= DISPLAY_AMOUNT;
 	}
 	else if (DISPLAY_AMOUNT < 0)
 	display_error = 1;
 	else
-		DISPLAY_AMOUNT = SQRT(DISPLAY_AMOUNT);	
+		DISPLAY_AMOUNT = SQRT(DISPLAY_AMOUNT);
 	refresh_display = 1;
 	inverse = FALSE;
-	last_input = OPERATION;	
+	last_input = OPERATION;
 	UpdateDisplay();
 
 }
@@ -697,7 +697,7 @@ void QtCalculator::EnterNotCmp()
 		display_error = 1;
 		else {
 		boh_work = (long int) boh_work_d;
-		DISPLAY_AMOUNT = ~boh_work;	
+		DISPLAY_AMOUNT = ~boh_work;
 			}
 	refresh_display = 1;
 	last_input = OPERATION;
@@ -1150,7 +1150,7 @@ void QtCalculator::EnterLogr()
       if (DISPLAY_AMOUNT <= 0)
 	display_error = 1;
       else
-	DISPLAY_AMOUNT = LOG_TEN(DISPLAY_AMOUNT);	
+	DISPLAY_AMOUNT = LOG_TEN(DISPLAY_AMOUNT);
       refresh_display = 1;
       UpdateDisplay();
     } else if (inverse) {
@@ -1190,11 +1190,11 @@ void QtCalculator::EnterLogn()
       if (DISPLAY_AMOUNT <= 0)
 	display_error = 1;
       else
-	DISPLAY_AMOUNT = LOG(DISPLAY_AMOUNT);	
+	DISPLAY_AMOUNT = LOG(DISPLAY_AMOUNT);
       refresh_display = 1;
       UpdateDisplay();
     } else if (inverse) {
-      DISPLAY_AMOUNT = EXP(DISPLAY_AMOUNT);	
+      DISPLAY_AMOUNT = EXP(DISPLAY_AMOUNT);
       refresh_display = 1;
       inverse =FALSE;
       UpdateDisplay();
@@ -1209,10 +1209,10 @@ void QtCalculator::EnterLogn()
 void QtCalculator::base_selected(int number){
 
   switch(number){
-  case 0:	
+  case 0:
     SetHex();
     break;
-  case 1:	
+  case 1:
     SetDec();
     break;
   case 2:
@@ -1230,10 +1230,10 @@ void QtCalculator::base_selected(int number){
 void QtCalculator::angle_selected(int number){
 
   switch(number){
-  case 0:	
+  case 0:
     SetDeg();
     break;
-  case 1:	
+  case 1:
     SetRad();
     break;
   case 2:
@@ -1356,7 +1356,7 @@ void QtCalculator::MR()
   UpdateDisplay();
 
 }
-	
+
 void QtCalculator::Mplusminus()
 {
 
@@ -1383,13 +1383,13 @@ void QtCalculator::EnterEqual()
 	last_input = OPERATION;
 	PushStack(&display_data);
 	refresh_display = 1;
-	
+
 	/*	if (UpdateStack(0))*/
 	            UpdateStack(0);
-	
+
 	UpdateDisplay();
 	precedence_base = 0;
-	
+
 	CALCAMNT* number ;
 
 	if(temp_stack.count() > TEMP_STACK_SIZE){
@@ -1399,7 +1399,7 @@ void QtCalculator::EnterEqual()
 
 	  if(number)
 	    free(number);
-	}	
+	}
 
 	number = (CALCAMNT*) malloc(sizeof(CALCAMNT));
 	*number = DISPLAY_AMOUNT;
@@ -1466,11 +1466,11 @@ void QtCalculator::UpdateDisplay()
 	int		str_size = 0;
 
 	if(eestate && (current_base == NB_DECIMAL)){
-	
+
 		calc_display->setText(display_str);
 		return;
 	}
-	
+
 	if (current_base != NB_DECIMAL) {
 		MODF(DISPLAY_AMOUNT, &boh_work_d);
 		if (boh_work_d < LONG_MIN || boh_work_d > ULONG_MAX)
@@ -1511,12 +1511,12 @@ void QtCalculator::UpdateDisplay()
 		    // if I don't guard against the DISPLAY_AMOUNT being too large
 		    // kcalc will segfault on larger amount. Such as from typing
 		    // from 5*5*******
-		
+
 		    str_size = sprintf(display_str,
 
 #ifdef HAVE_LONG_DOUBLE
 				     "%.*Lg", // was *Lg
-				
+
 				     kcalcdefaults.precision  +1,
 #else
 					   "%.*g",
@@ -1531,7 +1531,7 @@ void QtCalculator::UpdateDisplay()
 
 #ifdef HAVE_LONG_DOUBLE
 				     "%.*Lf", // was *Lg
-				
+
 				     kcalcdefaults.fixedprecision  ,
 #else
 					   "%.*f",
@@ -1637,7 +1637,7 @@ int cvb(char *out_str, long amount, int max_digits)
 				      0]));
 	else
 	   return -1;
-}		
+}
 
 int UpdateStack(int run_precedence)
 {
@@ -1663,18 +1663,18 @@ int UpdateStack(int run_precedence)
 		  KMessageBox::error(0L, i18n("Stack processing error - function") );
 
 		op_function =
-			top_item->s_item_data.item_func_data.item_function;	
+			top_item->s_item_data.item_func_data.item_function;
 
 		if (!((top_item = PopStack()) && top_item->s_item_type == ITEM_AMOUNT))
 		  KMessageBox::error(0L, i18n("Stack processing error - left_op") );
 
 		left_op = top_item->s_item_data.item_amount;
-	
+
 		new_item.s_item_data.item_amount =
 			(Arith_ops[op_function])(left_op, right_op);
 		PushStack(&new_item);
-			
-	}	
+
+	}
 	if (return_value &&
 	    percent_mode &&
 	    !display_error &&
@@ -1909,7 +1909,7 @@ CALCAMNT ExecPwrRoot(CALCAMNT left_op, CALCAMNT right_op)
 	  return left_op;
 }
 
-	
+
 CALCAMNT ExecAddSubP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 {
   // printf("ExecAddsubP\n");
@@ -2067,7 +2067,7 @@ item_contents *TopTypeStack(item_type rqstd_type)
 
 
 void InitStack (void) {
-	
+
 	stack_next = 0;
 	stack_last = STACK_SIZE - 1;
 	top_of_stack = top_type_stack[0] = top_type_stack[1] = NULL;

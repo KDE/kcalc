@@ -415,11 +415,11 @@ private:
     QPushButton* 	pbnegate;    
     QPushButton* 	pbmod;    
 
-    QList<QPushButton> mNumButtonList;
-    QList<QPushButton> mFunctionButtonList;
-    QList<QPushButton> mHexButtonList;
-    QList<QPushButton> mMemButtonList;
-    QList<QPushButton> mOperationButtonList;
+    QPtrList<QPushButton> mNumButtonList;
+    QPtrList<QPushButton> mFunctionButtonList;
+    QPtrList<QPushButton> mHexButtonList;
+    QPtrList<QPushButton> mMemButtonList;
+    QPtrList<QPushButton> mOperationButtonList;
 
     bool		key_pressed;
     int                 mInternalSpacing;

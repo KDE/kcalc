@@ -39,7 +39,7 @@
 #include <qfont.h>
 #include <qgroupbox.h>
 #include <qlabel.h>
-#include <qlist.h>
+#include <qptrlist.h>
 #include <qlistbox.h>
 #include <qpixmap.h>
 #include <qpushbutton.h>
@@ -73,7 +73,7 @@ extern last_input_type last_input;
 extern item_contents   display_data;
 extern num_base        current_base;
 extern int             display_error;
-QList<CALCAMNT>       temp_stack;
+QPtrList<CALCAMNT>       temp_stack;
 
 //
 // * ported to QLayout (mosfet 10/28/99)
@@ -1969,7 +1969,7 @@ bool QtCalculator::eventFilter( QObject *o, QEvent *e )
     QDropEvent *ev = (QDropEvent *)e;
     if( KColorDrag::decode( ev, c))
     {
-      QList<QPushButton> *list;
+      QPtrList<QPushButton> *list;
       if( mNumButtonList.findRef( (QPushButton*)o ) != -1 )
       {
 	list = &mNumButtonList;
