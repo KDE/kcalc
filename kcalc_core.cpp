@@ -44,6 +44,7 @@
 	#include <string.h>
 #endif
 
+#include <stdlib.h>
 #include <qvaluestack.h>
 #include <klocale.h>
 #include <kmessagebox.h>
