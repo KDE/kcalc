@@ -494,7 +494,10 @@ void QtCalculator::EnterStackFunction(int data)
 	item_contents 	new_item;
 	int		new_precedence;
 	int 		dummy;
-	
+
+	dummy = 0;
+
+	/*
 	if (inverse ) {
 	  dummy = 3;
 	  inverse = FALSE;
@@ -502,8 +505,11 @@ void QtCalculator::EnterStackFunction(int data)
 	else {
 	  dummy = 1;
 	}
+	*/
 
+	//	printf("data %d dummy %d\n",data,dummy);
 	data = adjust_op[data][dummy];
+	//	printf("data %d \n",data );
 
 	PushStack(&display_data);
 
@@ -1659,6 +1665,7 @@ int isoddint(CALCAMNT input)
 
 CALCAMNT ExecOr(CALCAMNT left_op, CALCAMNT right_op)
 {
+  // printf("ExecOr\n");
 	CALCAMNT	boh_work_d;
 	long 		boh_work_l, boh_work_r;
 
@@ -1679,6 +1686,7 @@ CALCAMNT ExecOr(CALCAMNT left_op, CALCAMNT right_op)
 
 CALCAMNT ExecXor(CALCAMNT left_op, CALCAMNT right_op)
 {
+  // printf("ExecXOr\n");
 	CALCAMNT	boh_work_d;
 	long 		boh_work_l, boh_work_r;
 
@@ -1699,6 +1707,7 @@ CALCAMNT ExecXor(CALCAMNT left_op, CALCAMNT right_op)
 
 CALCAMNT ExecAnd(CALCAMNT left_op, CALCAMNT right_op)
 {
+  // printf("ExecAnd\n");
 	CALCAMNT	boh_work_d;
 	long 		boh_work_l, boh_work_r;
 
@@ -1719,6 +1728,7 @@ CALCAMNT ExecAnd(CALCAMNT left_op, CALCAMNT right_op)
 
 CALCAMNT ExecLsh(CALCAMNT left_op, CALCAMNT right_op)
 {
+  // printf("ExecLsh\n");
 	CALCAMNT	boh_work_d;
 	long 		boh_work_l, boh_work_r;
 
@@ -1739,6 +1749,7 @@ CALCAMNT ExecLsh(CALCAMNT left_op, CALCAMNT right_op)
 
 CALCAMNT ExecRsh(CALCAMNT left_op, CALCAMNT right_op)
 {
+  // printf("ExecRsh\n");
 	CALCAMNT	boh_work_d;
 	long 		boh_work_l, boh_work_r;
 
@@ -1759,21 +1770,25 @@ CALCAMNT ExecRsh(CALCAMNT left_op, CALCAMNT right_op)
 
 CALCAMNT ExecAdd(CALCAMNT left_op, CALCAMNT right_op)
 {
+  // printf("ExecAdd\n");
 	return left_op + right_op;
 }
 
 CALCAMNT ExecSubtract(CALCAMNT left_op, CALCAMNT right_op)
 {
+  // printf("ExecSubtract\n");
 	return left_op - right_op;
 }
 
 CALCAMNT ExecMultiply(CALCAMNT left_op, CALCAMNT right_op)
 {
+  // printf("ExecMulti\n");
 	return left_op * right_op;
 }
 
 CALCAMNT ExecDivide(CALCAMNT left_op, CALCAMNT right_op)
 {
+  // printf("ExecDivide\n");
 	if (right_op == 0) {
 		display_error = 1;
 		return 0L;
@@ -1783,6 +1798,7 @@ CALCAMNT ExecDivide(CALCAMNT left_op, CALCAMNT right_op)
 
 CALCAMNT ExecMod(CALCAMNT left_op, CALCAMNT right_op)
 {
+  // printf("ExecMod\n");
 	if (right_op == 0) {
 		display_error = 1;
 		return 0L;
@@ -1792,6 +1808,7 @@ CALCAMNT ExecMod(CALCAMNT left_op, CALCAMNT right_op)
 
 CALCAMNT ExecIntDiv(CALCAMNT left_op, CALCAMNT right_op)
 {
+  // printf("IndDiv\n");
 	if (right_op == 0) {
 		display_error = 1;
 		return 0L;
@@ -1803,6 +1820,8 @@ CALCAMNT ExecIntDiv(CALCAMNT left_op, CALCAMNT right_op)
 
 CALCAMNT ExecPower(CALCAMNT left_op, CALCAMNT right_op)
 {
+
+       // printf("ExecPowser %g left_op, %g right_op\n",left_op, right_op);
 	if (right_op == 0)
 		return 1L;
 	if (left_op < 0 && isoddint(1/right_op)) 
@@ -1818,6 +1837,8 @@ CALCAMNT ExecPower(CALCAMNT left_op, CALCAMNT right_op)
 
 CALCAMNT ExecPwrRoot(CALCAMNT left_op, CALCAMNT right_op)
 {
+
+       // printf("ExecPwrRoot  %g left_op, %g right_op\n", left_op, right_op);
 	if (right_op == 0) {
 		display_error = 1;
 		return 0L;
@@ -1837,6 +1858,7 @@ CALCAMNT ExecPwrRoot(CALCAMNT left_op, CALCAMNT right_op)
 	
 CALCAMNT ExecAddSubP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 {
+  // printf("ExecAddsubP\n");
   (void) left_op;
 
 	if (result == 0) {
@@ -1848,6 +1870,7 @@ CALCAMNT ExecAddSubP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 
 CALCAMNT ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 {
+  // printf("ExecMultiplyP\n");
   (void) left_op;
   (void) right_op;
 
@@ -1856,6 +1879,7 @@ CALCAMNT ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 
 CALCAMNT ExecDivideP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 {
+  // printf("ExecDivideP\n");
   (void) left_op;
   (void) right_op;
 
@@ -1864,12 +1888,14 @@ CALCAMNT ExecDivideP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 
 CALCAMNT ExecPowerP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 {
+  // printf("ExecPowerP\n");
   (void) result;
 	return ExecPower(left_op, (right_op / 100L));
 }
 
 CALCAMNT ExecPwrRootP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
 {
+  // printf("ExePwrRootP\n");
   (void) result;
 
 	if (right_op == 0) {

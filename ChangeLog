@@ -1,3 +1,7 @@
+Sat Apr 18 16:26:52 1998  Bernd Johannes Wuebben  <wuebben@math.cornell.edu>
+
+	* Some inverse functions didn't compute right. Wonder who broke them.
+
 Sun Feb  8 16:11:34 1998  Bernd Johannes Wuebben  <wuebben@math.cornell.edu>
 
 	* removed a compiler warning
