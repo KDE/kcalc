@@ -934,33 +934,51 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
 
 	KCalcButton *tmp_pb;
 	tmp_pb = new KCalcButton("C1", parent, "Constant C1 - Button");
+	tmp_pb->setAccel(ALT + Key_1);
 	pbConstant.insert("C1", tmp_pb);
 	mConstButtonList.append(tmp_pb);
+	connect(this, SIGNAL(switchShowAccels(bool)),
+                tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC1clicked(void)));
 
 	tmp_pb = new KCalcButton("C2", parent, "Constant C2 - Button");
+        tmp_pb->setAccel(ALT + Key_2);
 	pbConstant.insert("C2", tmp_pb);
 	mConstButtonList.append(tmp_pb);
+	connect(this, SIGNAL(switchShowAccels(bool)),
+                tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC2clicked(void)));
 
 	tmp_pb = new KCalcButton("C3", parent, "Constant C3 - Button");
+        tmp_pb->setAccel(ALT + Key_3);
 	pbConstant.insert("C3", tmp_pb);
 	mConstButtonList.append(tmp_pb);
+	connect(this, SIGNAL(switchShowAccels(bool)),
+                tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC3clicked(void)));
 
 	tmp_pb = new KCalcButton("C4", parent, "Constant C4 - Button");
+        tmp_pb->setAccel(ALT + Key_4);
 	pbConstant.insert("C4", tmp_pb);
 	mConstButtonList.append(tmp_pb);
+	connect(this, SIGNAL(switchShowAccels(bool)),
+                tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC4clicked(void)));
 
 	tmp_pb = new KCalcButton("C5", parent, "Constant C5 - Button");
+        tmp_pb->setAccel(ALT + Key_5);
 	pbConstant.insert("C5", tmp_pb);
 	mConstButtonList.append(tmp_pb);
+	connect(this, SIGNAL(switchShowAccels(bool)),
+                tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC5clicked(void)));
 
 	tmp_pb = new KCalcButton("C6", parent, "Constant C6 - Button");
+        tmp_pb->setAccel(ALT + Key_6);
 	pbConstant.insert("C6", tmp_pb);
 	mConstButtonList.append(tmp_pb);
+	connect(this, SIGNAL(switchShowAccels(bool)),
+                tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC6clicked(void)));
 
 	changeButtonNames();
