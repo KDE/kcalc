@@ -30,7 +30,7 @@
 #ifndef KCALC_TYPE_H
 #define KCALC_TYPE_H
 
-#include <cmath>
+#include <math.h>
 
 // The following for all the poor devels out there who don't have long double math.
 // I guess it's time to switch to LINUX guys .....

@@ -27,7 +27,7 @@
 #define KSTATS_H
 
 #include <qlist.h>
-#include <cmath>
+#include <math.h>
 #include "kcalctype.h"
 
 class KStats

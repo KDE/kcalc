@@ -30,12 +30,11 @@
 
 
 
-#include <string>
-#include <sstream>
-#include <cerrno>
-#include <climits>
-#include <csignal>
-#include <cstdio>
+#include <string.h>
+#include <errno.h>
+#include <limits.h>
+#include <signal.h>
+#include <stdio.h>
 
 using namespace std;
 
@@ -52,7 +51,7 @@ using namespace std;
 	#ifdef HAVE_IEEEFP_H
 		#include <ieeefp.h>
 	#else
-		#include <cmath>
+		#include <math.h>
 #endif
 
 int isinf(double x) { return !finite(x) && x==x; }
@@ -360,10 +359,10 @@ void QtCalculator::RefreshCalculator()
 void QtCalculator::EnterDigit(int data)
 {
 	if(eestate)
-	{  
-		stringstream str("");
-		str << data;
-		strcat(display_str, str.str().c_str());
+	{
+		QString string;
+		string.setNum(data);
+		strcat(display_str, string.latin1());
 		DISPLAY_AMOUNT = (CALCAMNT) strtod(display_str,0);
 		UpdateDisplay();
 		return;
@@ -645,10 +644,10 @@ void QtCalculator::EnterNegate()
 {
 	if(eestate)
 	{
-		string str(display_str);
-		size_t pos = str.rfind('e');
+		QString str(display_str);
+		size_t pos = str.findRev('e');
 		
-		if(pos == string::npos)
+		if(pos == -1)
 			return;
 			
 		if(display_str[pos+1] == '+')
@@ -660,7 +659,7 @@ void QtCalculator::EnterNegate()
 			else
 			{
 				str.insert(pos + 1, "-");
-				strncpy(display_str, str.c_str(), DSP_SIZE);
+				strncpy(display_str, str.latin1(), DSP_SIZE);
 			}
 		}			
 		

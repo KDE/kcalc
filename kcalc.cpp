@@ -23,10 +23,10 @@
 */
 
 #include "../config.h"
-#include <cassert>
-#include <cctype>
-#include <cstdio>
-#include <cstdlib>
+#include <assert.h>
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 #include <qlayout.h>
@@ -88,13 +88,13 @@ extern bool				display_error;
 // Name: QtCalculator(QWidget *parent, const char *name)
 //-------------------------------------------------------------------------
 QtCalculator::QtCalculator(QWidget *parent, const char *name)
-	: KDialog(parent, name), mInternalSpacing(4), mConfigureDialog(0),
+	: KDialog(parent, name),
 	inverse(false), hyp_mode(false), eestate(false), refresh_display(false),
 	display_size(DEC_SIZE), angle_mode(ANG_DEGREE), input_limit(0),
 	input_count(0), decimal_point(0), precedence_base(0),
 	current_base(NB_DECIMAL), memory_num(0.0), history_index(0), 
-	key_pressed(false), selection_timer(new QTimer), status_timer(new QTimer)
-  
+	selection_timer(new QTimer), key_pressed(false), 
+        mInternalSpacing(4), status_timer(new QTimer), mConfigureDialog(0)
 {
 	// make sure the display_str is NULL terminated so we can
 	// user library string functions

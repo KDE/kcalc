@@ -1,5 +1,5 @@
 /* XPM */
-static char * kcalclogo[] = {
+static const char * kcalclogo[] = {
 "90 110 41 1",
 " 	c None",
 ".	c #000000",
