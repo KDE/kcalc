@@ -5,4 +5,4 @@
 * key groups for color configuration need to be rethought
 * better to handle keys with "accel" or with "keyPressEvent"?
 
-* labels on buttons need to be recentered after eye-candy was added
+* think about either doing RichText by hand on labels, or only draw visible buttons, to enhance startup time.
