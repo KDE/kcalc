@@ -26,7 +26,7 @@
 #include <qspinbox.h>
 #include <qpainter.h>
 
-#include <kcolordlg.h>
+#include <kcolordialog.h>
 #include <kcolordrag.h>
 #include <kfontdialog.h>
 #include <kiconloader.h>
