@@ -118,7 +118,7 @@ int maxPrecision = 12;
 	<entry name="valueConstant$(ConstIndex)" type="String" key="valueConstant$(ConstIndex)">
 	<label>List of user programmable constants</label>
 	<parameter name="ConstIndex" type="Int" max="5"/>
-	<default param="0">3.141592653589793238462643383279502884197</default>
+	<default param="0">0</default>
 	<default param="1">0</default>
 	<default param="2">0</default>
 	<default param="3">0</default>
