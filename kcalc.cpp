@@ -50,6 +50,8 @@
 #include "dlabel.h"
 #include "optiondialog.h"
 #include "version.h"
+#include <kapplication.h>
+#include <qpushbutton.h>
 
 
 static const char *description =
