@@ -289,7 +289,6 @@ public slots:
     void MR();
     void Mplusminus();
     void MC();
-    void exit();
     void EEtoggled(bool myboolean);
     void pbinvtoggled(bool myboolean);
     void pbMRtoggled(bool myboolean);

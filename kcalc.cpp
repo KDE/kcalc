@@ -65,17 +65,7 @@
 static const char *description = 
 	I18N_NOOP("KDE Calculator");
 
-static const char *version = KCALCVERSION "\n"
-"Copyright 1997 Bernd Johannes Wuebben"
-" <wuebben@kde.org>";
-
-
-// Undefine HAVE_LONG_DOUBLE for Beta 4 since RedHat 5.0 comes with a broken
-// glibc
-
-//#ifdef HAVE_LONG_DOUBLE
-//#undef HAVE_LONG_DOUBLE
-//#endif
+static const char *version = KCALCVERSION;
 
 extern last_input_type last_input;
 extern item_contents   display_data;
@@ -105,14 +95,8 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
 
   readSettings();
 
-  //QFont buttonfont("-misc-fixed-medium-*-semicondensed-*-13-*-*-*-*-*-*-*");
-  //buttonfont.setPointSize(12);
-  //buttonfont.setBold( true );
   QFont buttonfont = font();
   buttonfont.setRawMode( true );
-  //printf("1 fontName: %s\n", buttonfont.family().latin1() );
-  //QFontInfo info( buttonfont );
-  //printf("2 fontName: %s\n", info.family().latin1() );
 
   //
   // Detect color change
@@ -544,11 +528,6 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   set_precision();
   set_style();
   
-  /*    
-    paper = new QListBox(0,"paper");
-    paper->resize(200,400);
-    paper->show();
-  */
   InitializeCalculator();
 
   //
@@ -690,11 +669,8 @@ void QtCalculator::updateGeometry( void )
   //
   QButtonGroup *g;
   g = (QButtonGroup*)(anglebutton[0]->parentWidget());
-  //g->setMinimumSize( g->sizeHint());
   
   g = (QButtonGroup*)(basebutton[0]->parentWidget());
-  //g->setMinimumSize( g->sizeHint());
-
 
   //
   // Calculator buttons
@@ -739,14 +715,6 @@ void QtCalculator::updateGeometry( void )
   setFixedSize(minimumSize());
 }
 
-
-
-
-void QtCalculator::exit()
-{
-  QApplication::exit();
-}
-
 void QtCalculator::Hex_Selected()
 {
   basebutton[0]->setChecked(TRUE);
@@ -755,7 +723,6 @@ void QtCalculator::Hex_Selected()
   basebutton[3]->setChecked(FALSE);
   SetHex();
 }
-
 
 void QtCalculator::Dec_Selected()
 {
@@ -766,7 +733,6 @@ void QtCalculator::Dec_Selected()
   SetDec();
 }
 
-
 void QtCalculator::Oct_Selected()
 {
   basebutton[0]->setChecked(FALSE);
@@ -775,8 +741,6 @@ void QtCalculator::Oct_Selected()
   basebutton[3]->setChecked(FALSE);
   SetOct();
 }
-
-
 
 void QtCalculator::Bin_Selected()
 {
@@ -795,7 +759,6 @@ void QtCalculator::Deg_Selected()
   SetDeg();
 }
 
-
 void QtCalculator::Rad_Selected()
 {
   anglebutton[0]->setChecked(FALSE);
@@ -805,7 +768,6 @@ void QtCalculator::Rad_Selected()
   
 }
 
-
 void QtCalculator::Gra_Selected()
 {
   anglebutton[0]->setChecked(FALSE);
@@ -814,12 +776,10 @@ void QtCalculator::Gra_Selected()
   SetGra();
 }
 
-
 void QtCalculator::helpclicked()
 {
   kapp->invokeHelp( );
 }
-
 
 void QtCalculator::configurationChanged( const DefStruct &state )
 {
@@ -839,8 +799,6 @@ void QtCalculator::configurationChanged( const DefStruct &state )
   kapp->processOneEvent();
   setFixedSize(minimumSize());
 }
-
-
 
 void QtCalculator::keyPressEvent( QKeyEvent *e ){
   
@@ -1836,8 +1794,6 @@ void QtCalculator::temp_stack_next(){
     UpdateDisplay();
 
   }
-
-
 }
 
 void QtCalculator::temp_stack_prev(){
@@ -1862,7 +1818,6 @@ void QtCalculator::temp_stack_prev(){
     UpdateDisplay();
 
   }
-
 }
 
 
@@ -1882,7 +1837,7 @@ int main( int argc, char **argv )
   KAboutData aboutData( "kcalc", I18N_NOOP("KCalc"),
     version, description, KAboutData::License_GPL,
     "(c) 1996-2000, Bernd Johannes Wuebben");
-  aboutData.addAuthor("Bernd Johannes Wuebben",0, "wuebben@kde.org");
+  aboutData.addAuthor("Bernd Johannes Wuebben", 0, "wuebben@kde.org");
   aboutData.addAuthor("Charles Samuels", "Support for the new Backspace Action", "charles@altair.dhs.org");
   KCmdLineArgs::init( argc, argv, &aboutData );
 
@@ -1901,13 +1856,3 @@ int main( int argc, char **argv )
 
   return( exitCode );
 }
-
-
-
-
-
-
-
-
-
-
