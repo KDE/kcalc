@@ -42,8 +42,6 @@
 #include <signal.h>
 #include <stdio.h>
 
-using namespace std;
-
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <knotifyclient.h>
