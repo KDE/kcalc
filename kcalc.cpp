@@ -227,7 +227,6 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   pbA->setToggleButton(TRUE);
 
   pbSin = new QPushButton( mSmallPage, "Sinbutton" );
-  pbSin->setText( "Sin" );
   pbSin->setAutoDefault(false);
   connect( pbSin, SIGNAL(toggled(bool)), SLOT(pbSintoggled(bool)));
   pbSin->setToggleButton(TRUE);
@@ -245,7 +244,6 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   pbB->setToggleButton(TRUE);
 
   pbCos = new QPushButton( mSmallPage, "Cosbutton" );
-  pbCos->setText( "Cos" );
   pbCos->setAutoDefault(false);
   connect( pbCos, SIGNAL(toggled(bool)), SLOT(pbCostoggled(bool)));
   pbCos->setToggleButton(TRUE);
@@ -263,10 +261,10 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   pbC->setToggleButton(TRUE);
 
   pbTan = new QPushButton( mSmallPage, "Tanbutton" );
-  pbTan->setText( "Tan" );
   pbTan->setAutoDefault(false);
   connect(pbTan, SIGNAL(toggled(bool)),SLOT(pbTantoggled(bool)));
   pbTan->setToggleButton(TRUE);
+  setHypText(false);
 
   pbfactorial = new QPushButton( mSmallPage, "factorialbutton" );
   pbfactorial->setText( "x!" );
@@ -706,6 +704,21 @@ QtCalculator::~QtCalculator( void )
 }
 
 
+void QtCalculator::setHypText(bool hyp)
+{
+   if (hyp)
+   {
+      pbSin->setText( "Sinh" );
+      pbCos->setText( "Cosh" );
+      pbTan->setText( "Tanh" );
+   }
+   else
+   {
+      pbSin->setText( "Sin" );
+      pbCos->setText( "Cos" );
+      pbTan->setText( "Tan" );
+   };
+};
 
 void QtCalculator::updateGeometry( void )
 {
@@ -1089,6 +1102,27 @@ void QtCalculator::keyPressEvent( QKeyEvent *e ){
   case Key_R:
      key_pressed = TRUE;
      pbreci->setOn(TRUE);
+     break;
+  case Key_F5:
+     Hex_Selected();
+     break;
+  case Key_F6:
+     Dec_Selected();
+     break;
+  case Key_F7:
+     Oct_Selected();
+     break;
+  case Key_F8:
+     Bin_Selected();
+     break;
+  case Key_F9:
+     Deg_Selected();
+     break;
+  case Key_F10:
+     Rad_Selected();
+     break;
+  case Key_F11:
+     Gra_Selected();
      break;
   }
 }

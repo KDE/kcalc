@@ -353,6 +353,8 @@ public:
      DefStruct kcalcdefaults;
  
 private:
+    void setHypText(bool hyp);
+
     QWidget *mSmallPage;
     QWidget *mLargePage;
     

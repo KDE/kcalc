@@ -40,6 +40,7 @@
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <knotifyclient.h>
+#include <kdebug.h>
 
 #include "dlabel.h"
 #include "kcalc.h"
@@ -254,11 +255,18 @@ void QtCalculator::SubtractDigit()
   if (DISPLAY_AMOUNT!=0)
   {
     QString num;
-    num.setNum((double)DISPLAY_AMOUNT,'G',24);
+    if (current_base==NB_DECIMAL)
+       num.setNum((double)DISPLAY_AMOUNT,'G',24);
+    else
+       num.setNum((int)DISPLAY_AMOUNT,current_base);
 
     num=num.left(num.length()-1);
+    bool ok=true;
 
-    DISPLAY_AMOUNT= strtod(num.ascii() ,0);
+    if (current_base==NB_DECIMAL)
+       DISPLAY_AMOUNT= num.toDouble(&ok);
+    else
+       DISPLAY_AMOUNT= num.toLong(&ok,current_base);
 
   }
 
@@ -733,7 +741,7 @@ void QtCalculator::EnterHyp()
   case 0: {
     // toggle between hyperbolic and standart trig functions
     hyp_mode = !hyp_mode;
-
+    setHypText(hyp_mode);
     if (hyp_mode){
       statusHYPLabel->setText(QString::fromLatin1("HYP"));
     }
@@ -1278,6 +1286,7 @@ void QtCalculator::SetHex() {
 	display_size = BOH_SIZE;
 	decimal_point = 0;
 	input_limit = 8;
+   eestate=false;
 
 	UpdateDisplay();
 }
@@ -1291,6 +1300,7 @@ void QtCalculator::SetOct() {
 	display_size = BOH_SIZE;
 	decimal_point = 0;
 	input_limit = 11;
+   eestate=false;
 
 	UpdateDisplay();
 }
@@ -1304,6 +1314,7 @@ void QtCalculator::SetBin() {
 	display_size = BOH_SIZE;
 	decimal_point = 0;
 	input_limit = 16;
+   eestate=false;
 
 	UpdateDisplay();
 }
@@ -1317,6 +1328,7 @@ void QtCalculator::SetDec()
 	current_base = NB_DECIMAL;
 	display_size = DEC_SIZE;
 	input_limit = 0;
+   eestate=false;
 
 
 	UpdateDisplay();
@@ -1454,6 +1466,7 @@ void QtCalculator::ClearAll()
 
 
 
+
 void QtCalculator::UpdateDisplay()
 {
 
@@ -1466,7 +1479,6 @@ void QtCalculator::UpdateDisplay()
 	int		str_size = 0;
 
 	if(eestate && (current_base == NB_DECIMAL)){
-
 		calc_display->setText(display_str);
 		return;
 	}
