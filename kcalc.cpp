@@ -874,6 +874,7 @@ void QtCalculator::configurationChanged(const DefStruct &state)
 //-------------------------------------------------------------------------
 void QtCalculator::keyPressEvent(QKeyEvent *e)
 {
+    if ( ( e->state() & KeyButtonMask ) == 0 || ( e->state() & ShiftButton ) ) {
 	switch (e->key())
 	{
 	case Key_F1:
@@ -1105,6 +1106,7 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
 		pbreci->setOn(true);
 		break;
 	}
+    }
 }
 
 //-------------------------------------------------------------------------
