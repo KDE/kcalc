@@ -36,9 +36,9 @@
 // Undefine HAVE_LONG_DOUBLE for Beta 4 since RedHat 5.0 comes with a borken
 // glibc
 
-#ifdef HAVE_LONG_DOUBLE
-#undef HAVE_LONG_DOUBLE
-#endif
+//#ifdef HAVE_LONG_DOUBLE
+//#undef HAVE_LONG_DOUBLE
+//#endif
 
 #ifdef HAVE_LONG_DOUBLE
 

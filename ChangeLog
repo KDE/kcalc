@@ -1,3 +1,9 @@
+1999-08-22  Bernd Johannes Wuebben  <wuebben@math.cornell.edu>
+
+	* kcalc_core.cpp (UpdateDisplay): 
+	Re-enabled the use of long double. Most if not all distributions
+	come now with a working glib math library. 
+
 Mon Nov 16 18:05:01 1998  Mario Weilguni <mweilguni@kde.org>
 
 	* the standard deviation was completly wrong. Fixed.
