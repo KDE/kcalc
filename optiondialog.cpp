@@ -33,15 +33,6 @@
 #include "optiondialog.h"
 #include "version.h"
 
-//
-// Undefine HAVE_LONG_DOUBLE for Beta 4 since RedHat 5.0 comes with a broken
-// glibc
-
-//#ifdef HAVE_LONG_DOUBLE
-//#undef HAVE_LONG_DOUBLE
-//#endif
-
-
 ConfigureDialog::ConfigureDialog( QWidget *parent, char *name, bool modal )
   :KDialogBase( Tabbed, i18n("Configuration"), Help|Apply|Ok|Cancel,
 		Ok, parent, name, modal )
@@ -56,7 +47,6 @@ ConfigureDialog::ConfigureDialog( QWidget *parent, char *name, bool modal )
 ConfigureDialog::~ConfigureDialog( void )
 {
 }
-
 
 void ConfigureDialog::setState( const DefStruct &state )
 {
@@ -73,7 +63,6 @@ void ConfigureDialog::setState( const DefStruct &state )
   mFontChooser->setFont( mState.font );
 }
 
-
 DefStruct ConfigureDialog::state( void )
 {
   DefStruct state;
@@ -87,9 +76,8 @@ DefStruct ConfigureDialog::state( void )
   state.style          = mTrigRadio->isChecked() ? 0 : 1;
   state.font           = mFontChooser->font();
 
-  return( state );
+  return state;
 }
-
 
 void ConfigureDialog::slotOk( void )  
 {
@@ -97,13 +85,11 @@ void ConfigureDialog::slotOk( void )
   accept();
 }
 
-
 void ConfigureDialog::slotApply( void )  
 {
   mState = state();
   emit valueChanged( mState );
 }
-
 
 void ConfigureDialog::slotCancel( void )  
 {
@@ -111,7 +97,6 @@ void ConfigureDialog::slotCancel( void )
   emit valueChanged( mState );
   reject();
 }
-
 
 void ConfigureDialog::setupSettingPage( void )
 {
@@ -178,7 +163,6 @@ void ConfigureDialog::setupSettingPage( void )
   topLayout->activate();
 }
 
-
 void ConfigureDialog::setupFontPage( void )
 {
   QFrame *page = addPage( i18n("&Display Font") );
@@ -191,8 +175,6 @@ void ConfigureDialog::setupFontPage( void )
   topLayout->addWidget( mFontChooser );
   topLayout->activate();
 }
-
-
 
 void ConfigureDialog::setupAboutPage( void )
 {
@@ -242,6 +224,5 @@ void ConfigureDialog::setupAboutPage( void )
 
   topLayout->activate();
 }
-
 
 #include "optiondialog.moc"
