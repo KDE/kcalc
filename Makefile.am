@@ -23,6 +23,8 @@ icondir = $(kde_icondir)
 apps_DATA = kcalc.kdelnk
 appsdir = $(kde_appsdir)/Utilities
 
+EXTRA_DIST = $(pics_DATA) $(icon_DATA) $(apps_DATA) mini-kcalc.xpm
+
 install-data-local:
 	$(mkinstalldirs) $(kde_minidir)
 	$(INSTALL_DATA) mini-kcalc.xpm  $(kde_minidir)/kcalc.xpm
@@ -33,7 +35,7 @@ uninstall-local:
 
 messages:
 	@XGETTEXT@ -C -ki18n *.cpp -x../../kdelibs/po/kde.pot && mv messages.po ../po/kcalc.pot
-	
+
 kcalc.cpp:kcalc.moc
 kcalc.moc: kcalc.h
 	$(MOC) kcalc.h -o kcalc.moc
