@@ -2284,7 +2284,7 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
 	/* Klaus Niederkrueger */
 	aboutData.addAuthor("Klaus Niederkr" "\xc3\xbc" "ger", 0, "kniederk@math.uni-koeln.de");
 	/* Rene Merou */
-	aboutData.addAuthor("Ren" "\xc3\xa9" " M" "\xc3xa9"  "rou", 0, "ochominutosdearco@yahoo.es");
+	aboutData.addAuthor("Ren" "\xc3\xa9" " M" "\xc3\xa9"  "rou", 0, "ochominutosdearco@yahoo.es");
 	KCmdLineArgs::init(argc, argv, &aboutData);
 
 	KApplication app;
