@@ -1,3 +1,7 @@
+2004-08-29 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* backport of fix to BUG 74657
+	* backport of fix to BUG 78726
+
 2004-02-29 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* disable EE-button in Hex-mode (does not work)
 	

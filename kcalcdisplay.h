@@ -73,13 +73,12 @@
   TODO: Check overflows, number of digits and such...
 */
 
-typedef enum _num_base
-{
+enum NumBase {
 	NB_BINARY = 2,
 	NB_OCTAL = 8,
 	NB_DECIMAL = 10,
 	NB_HEX = 16
-} NumBase;
+};
 
 
 class KCalcDisplay : public QLabel
@@ -94,14 +93,14 @@ protected:
 	void  mousePressEvent ( QMouseEvent *);
 
 public:
-	void changeSign(void);
+	bool changeSign(void);
 	bool clearLastInput(void);
 	void deleteLastDigit(void);
 	CALCAMNT getAmount(void) const;
 	bool getError(void) const;
 	void newCharacter(char const new_char);
 	void Reset(void);
-        bool setAmount(CALCAMNT new_amount);
+	bool setAmount(CALCAMNT new_amount);
 	int setBase(NumBase new_base);
 	void setBeep(bool flag);
 	void setError(bool error);
