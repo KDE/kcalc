@@ -146,10 +146,10 @@ typedef struct stack_item
 	item_contents item_value;	// The value of the item
 } stack_item;
 
-void 	InitStack();
-void 	PushStack(item_contents *add_item);
-//int		UpdateStack(int run_precedence);
-item_contents	*PopStack();
+void 			InitStack();
+void 			PushStack(item_contents *add_item);
+//int			UpdateStack(int run_precedence);
+item_contents	*PopStack(item_type rqstd_type);
 item_contents	*TopOfStack();
 item_contents	*TopTypeStack(item_type rqstd_type);
 

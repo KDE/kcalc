@@ -29,15 +29,24 @@
 */
 
 
-
-#include <string.h>
-#include <errno.h>
-#include <limits.h>
-#include <signal.h>
-#include <stdio.h>
-#include <assert.h>
-
-using namespace std;
+#if defined(_ISOC99_SOURCE)
+	#include <cassert>
+	#include <cstdio>
+	#include <stack>
+	#include <climits>
+	#include <csignal>
+	#include <cerrno>
+	#include <cstring>
+	using namespace std;
+#else
+	#include <limits.h>
+	#include <stdio.h>
+	#include <assert.h>
+	#include <stack.h>
+	#include <signal.h>
+	#include <errno.h>
+	#include <string.h>
+#endif
 
 #include <klocale.h>
 #include <kmessagebox.h>
@@ -53,7 +62,7 @@ using namespace std;
 		#include <ieeefp.h>
 	#else
 		#include <math.h>
-#endif
+	#endif
 
 int isinf(double x) { return !finite(x) && x==x; }
 #endif
@@ -62,11 +71,6 @@ int isinf(double x) { return !finite(x) && x==x; }
 // and no, static members is not a good idea!
 bool display_error	= false;
 bool percent_mode	= false;
-
-stack_ptr	top_of_stack = NULL;
-stack_ptr	top_type_stack[2] = { NULL, NULL };
-int 		stack_next, stack_last;
-stack_item	process_stack[STACK_SIZE];
 
 #ifdef HAVE_LONG_DOUBLE
 	#define PRINT_FLOAT		"%.*Lf"
@@ -87,6 +91,8 @@ stack_item	process_stack[STACK_SIZE];
 #endif
 
 item_contents 	display_data;
+stack<item_contents> amount_stack;
+stack<item_contents> func_stack;
 
 int precedence[14] = { 0, 1, 2, 3, 4, 4, 5, 5, 6, 6, 6, 7, 7, 6 };
 
@@ -138,8 +144,8 @@ Prcnt Prcnt_ops[14] =
 	QtCalculator::ExecSubP,
 	QtCalculator::ExecMultiplyP,
 	QtCalculator::ExecDivideP,
-        NULL,
-        NULL,
+	NULL,
+	NULL,
 	NULL,
 	NULL
 };
@@ -313,7 +319,7 @@ void QtCalculator::InitializeCalculator()
 	void fpe_handler(int fpe_parm);
 	struct sigaction fpe_trap;
 
-        sigemptyset(&fpe_trap.sa_mask);
+	sigemptyset(&fpe_trap.sa_mask);
 	fpe_trap.sa_handler = &fpe_handler;
 #ifdef SA_RESTART
 	fpe_trap.sa_flags = SA_RESTART;
@@ -341,7 +347,6 @@ void fpe_handler(int fpe_parm)
 //-------------------------------------------------------------------------
 void QtCalculator::RefreshCalculator()
 {
-	InitStack();
 	display_error = false;
 	DISPLAY_AMOUNT = 0L;
 	inverse = false;
@@ -1544,7 +1549,6 @@ void QtCalculator::EnterEqual()
 
 	refresh_display = true;
 
-	//if (UpdateStack(0))
 	UpdateStack(0);
 
 	UpdateDisplay();
@@ -1567,7 +1571,7 @@ void QtCalculator::Clear()
 
 	if (last_input == OPERATION)
 	{
-		PopStack();
+		PopStack(ITEM_FUNCTION);
 		last_input = DIGIT;
 	}
 
@@ -1598,6 +1602,14 @@ void QtCalculator::ClearAll()
 
 	RefreshCalculator();
 	refresh_display = true;
+	
+	while(PopStack(ITEM_FUNCTION) != 0) {
+	; 
+	}
+	
+	while(PopStack(ITEM_AMOUNT) != 0) {
+	; 
+	}	
 }
 
 
@@ -1725,7 +1737,6 @@ int QtCalculator::cvb(char *out_str, KCALC_LONG amount, int max_digits)
 	* binary display format
 	*/
 
-	char *strPtr	= out_str;
 	bool hitOne		= false;
 	unsigned KCALC_LONG bit_mask =
 		((unsigned KCALC_LONG) 1 << (BIN_SIZE - 1));
@@ -1736,15 +1747,17 @@ int QtCalculator::cvb(char *out_str, KCALC_LONG amount, int max_digits)
 	{
 		char tmp = (bit_mask & amount) ? '1' : '0';
 
-		if (hitOne && (count%4==0))
-			*strPtr++ = ' ';
+		// put a space every 4th digit
+		if (hitOne && ((count & 3) == 0))
+			*out_str++ = ' ';
+			
 		count++;
 
 		if(!hitOne && tmp == '1')
 			hitOne = true;
 
 		if(hitOne)
-			*strPtr++ = tmp;
+			*out_str++ = tmp;
 
 		bit_mask >>= 1;
 
@@ -1757,11 +1770,11 @@ int QtCalculator::cvb(char *out_str, KCALC_LONG amount, int max_digits)
 	}
 
 	if(amount == 0)
-		*strPtr++ = '0';
+		*out_str++ = '0';
 
-	*strPtr = '\0';
+	*out_str = '\0';
 
-	return strlen(out_str);
+	return count;
 }
 
 //-------------------------------------------------------------------------
@@ -1786,37 +1799,32 @@ int QtCalculator::UpdateStack(int run_precedence)
 	{
 		return_value = 1;
 
-		if ((top_item = PopStack())->s_item_type != ITEM_AMOUNT)
-		{
+		if ((top_item = PopStack(ITEM_AMOUNT)) == NULL) {
 			KMessageBox::error(0L, i18n("Stack processing error - right_op"));
 		}
 
 		right_op = top_item->s_item_data.item_amount;
 
-		if (!((top_item = PopStack()) &&
-			top_item->s_item_type == ITEM_FUNCTION))
-		{
+		if ((top_item = PopStack(ITEM_FUNCTION)) == NULL) {
 			KMessageBox::error(0L, i18n("Stack processing error - function"));
 		}
 
 		op_function = top_item->s_item_data.item_func_data.item_function;
 
-		if (!((top_item = PopStack()) && top_item->s_item_type == ITEM_AMOUNT))
+		if ((top_item = PopStack(ITEM_AMOUNT)) == NULL) {
 			KMessageBox::error(0L, i18n("Stack processing error - left_op"));
+		}
 
 		left_op = top_item->s_item_data.item_amount;
 
-		if ( ! percent_mode || Prcnt_ops[op_function] == NULL )
-                {
-                    new_item.s_item_data.item_amount =
-			(Arith_ops[op_function])(left_op, right_op);
-                }
-                else
-                {
-                    new_item.s_item_data.item_amount =
-                        (Prcnt_ops[op_function])(left_op, right_op);
-                    percent_mode = false;
-                };
+		if (!percent_mode || Prcnt_ops[op_function] == NULL) {
+            new_item.s_item_data.item_amount =
+				(Arith_ops[op_function])(left_op, right_op);
+        } else {
+            new_item.s_item_data.item_amount =
+                (Prcnt_ops[op_function])(left_op, right_op);
+            percent_mode = false;
+        }
 
 		PushStack(&new_item);
 	}
@@ -1824,7 +1832,7 @@ int QtCalculator::UpdateStack(int run_precedence)
 	if (return_value)
 		DISPLAY_AMOUNT = new_item.s_item_data.item_amount;
 
-   decimal_point=1;
+	decimal_point = 1;
 	return return_value;
 }
 
@@ -2133,7 +2141,7 @@ CALCAMNT QtCalculator::ExecPwrRoot(CALCAMNT left_op, CALCAMNT right_op)
 //-------------------------------------------------------------------------
 CALCAMNT QtCalculator::ExecAddP(CALCAMNT left_op, CALCAMNT right_op)
 {
-    return (left_op + left_op * right_op/100 );
+    return (left_op + left_op * right_op / 100 );
 }
 
 //-------------------------------------------------------------------------
@@ -2141,7 +2149,7 @@ CALCAMNT QtCalculator::ExecAddP(CALCAMNT left_op, CALCAMNT right_op)
 //-------------------------------------------------------------------------
 CALCAMNT QtCalculator::ExecSubP(CALCAMNT left_op, CALCAMNT right_op)
 {
-    return (left_op - left_op * right_op/100 );
+    return (left_op - left_op * right_op / 100 );
 }
 
 //-------------------------------------------------------------------------
@@ -2149,7 +2157,7 @@ CALCAMNT QtCalculator::ExecSubP(CALCAMNT left_op, CALCAMNT right_op)
 //-------------------------------------------------------------------------
 CALCAMNT QtCalculator::ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op)
 {
-    return left_op*right_op/100;
+    return left_op*right_op / 100;
 }
 
 //-------------------------------------------------------------------------
@@ -2157,84 +2165,63 @@ CALCAMNT QtCalculator::ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op)
 //-------------------------------------------------------------------------
 CALCAMNT QtCalculator::ExecDivideP(CALCAMNT left_op, CALCAMNT right_op)
 {
-    return left_op*100/right_op;
+    return left_op * 100 / right_op;
 }
 
-//-------------------------------------------------------------------------
-// Name: AllocStackItem()
-//-------------------------------------------------------------------------
-stack_ptr AllocStackItem()
-{
-	assert(stack_next <= stack_last);
-	process_stack[stack_next].prior_item = NULL;
-	process_stack[stack_next].prior_type = NULL;
-	return (process_stack + (stack_next++));
-}
-
-//-------------------------------------------------------------------------
-// Name: UnAllocStackItem(stack_ptr return_item)
-//-------------------------------------------------------------------------
-void UnAllocStackItem(stack_ptr return_item)
-{
-	if (return_item != (process_stack + (--stack_next))) {
-		assert(false); // stack error
-	}
-}
+/*
+ * Stack storage management Data and Functions
+ */
 
 //-------------------------------------------------------------------------
 // Name: PushStack(item_contents *add_item)
 //-------------------------------------------------------------------------
 void PushStack(item_contents *add_item)
 {
-	// Add an item to the stack
-
-	stack_ptr new_item = top_of_stack;
-
-	if (!(new_item &&
-		new_item->item_value.s_item_type == add_item->s_item_type))
-	{
-		new_item = AllocStackItem();	// Get a new item
-
-		// Chain new item to existing stacks
-
-
-		new_item->prior_item = top_of_stack;
-		top_of_stack	     = new_item;
-		new_item->prior_type = top_type_stack[add_item->s_item_type];
-		top_type_stack[add_item->s_item_type] = new_item;
+	if(add_item != 0) {
+		switch(add_item->s_item_type) {
+		case ITEM_FUNCTION:
+			func_stack.push(*add_item);
+			break;
+		case ITEM_AMOUNT:
+			amount_stack.push(*add_item);
+			break;
+		default:
+			// somthing is pretty wrong if we get here...
+			assert(false);
+			break;
+		}
 	}
-
-	new_item->item_value  = *add_item;	// assign contents
-
 }
 
 //-------------------------------------------------------------------------
 // Name: PopStack()
 //-------------------------------------------------------------------------
-item_contents *PopStack()
+item_contents *PopStack(item_type rqstd_type)
 {
-	// Remove and return the top item in the stack
-
 	static item_contents return_item;
-
-	item_contents *return_item_ptr = NULL;
-	stack_ptr return_stack_ptr;
-
-	if ((return_stack_ptr = top_of_stack))
-	{
-		return_item = top_of_stack->item_value;
-
-		top_type_stack[return_item.s_item_type] =
-			top_of_stack->prior_type;
-
-		top_of_stack = top_of_stack->prior_item;
-
-		UnAllocStackItem(return_stack_ptr);
-
-		return_item_ptr = &return_item;
+	
+	switch(rqstd_type) {
+	case ITEM_FUNCTION:
+		if(func_stack.size() == 0) {
+			return 0;
+		}	
+		return_item = func_stack.top();
+		func_stack.pop();
+		break;
+	case ITEM_AMOUNT:
+		if(amount_stack.size() == 0) {
+			return 0;
+		}	
+		return_item = amount_stack.top();
+		amount_stack.pop();
+		break;
+	default:
+		// somthing is pretty wrong if we get here...
+		assert(false);	
+		break;
 	}
-
-	return return_item_ptr;
+	
+	return &return_item;
 }
 
 //-------------------------------------------------------------------------
@@ -2242,27 +2229,29 @@ item_contents *PopStack()
 //-------------------------------------------------------------------------
 item_contents *TopTypeStack(item_type rqstd_type)
 {
-	// Return the top item in the stack without removing
-
-	item_contents *return_item_ptr = NULL;
-
-	if (top_type_stack[rqstd_type])
-		return_item_ptr = &(top_type_stack[rqstd_type]->item_value);
-
-	return return_item_ptr;
+	static item_contents return_item;
+	
+	switch(rqstd_type) {
+	case ITEM_FUNCTION:
+		if(func_stack.size() == 0) {
+			return 0;
+		}
+		return_item = func_stack.top();
+		break;
+	case ITEM_AMOUNT:
+		if(amount_stack.size() == 0) {
+			return 0;
+		}
+		return_item = amount_stack.top();
+		break;
+	default:
+		// somthing is pretty wrong if we get here...
+		assert(false);
+		break;
+	}
+	
+	return &return_item;
 }
 
 
-/*
-* Stack storage management Data and Functions
-*/
 
-//-------------------------------------------------------------------------
-// Name: InitStack()
-//-------------------------------------------------------------------------
-void InitStack()
-{
-	stack_next = 0;
-	stack_last = STACK_SIZE - 1;
-	top_of_stack = top_type_stack[0] = top_type_stack[1] = NULL;
-}
