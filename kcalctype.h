@@ -33,8 +33,14 @@
 // The following for all the poor devels out there who don't have long double math.
 // I guess it's time to switch to LINUX guys .....
 
+// Undefine HAVE_LONG_DOUBLE for Beta 4 since RedHat 5.0 comes with a borken
+// glibc
 
-#ifdef HAVE_FABSL
+#ifdef HAVE_LONG_DOUBLE
+#undef HAVE_LONG_DOUBLE
+#endif
+
+#ifdef HAVE_LONG_DOUBLE
 
 /* should be detected by autoconf and defined in config.h
    Be carefull when modifying these lines. HAVE_FABSL
@@ -49,7 +55,7 @@
 #endif
 
 
-#ifdef HAVE_FABSL
+#ifdef HAVE_LONG_DOUBLE
 #define FABS(X)   	fabsl(X)
 #define MODF(X,Y)       modfl(X,Y)
 #define FMOD(X,Y)   	fmodl(X,Y)

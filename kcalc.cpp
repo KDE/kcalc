@@ -1515,29 +1515,39 @@ void QtCalculator::configclicked(){
 
   QGroupBox *box = new QGroupBox(about,"box");
   QLabel  *label = new QLabel(box,"label");
+  QLabel  *label2 = new QLabel(box,"label2");
   box->setGeometry(10,10,320,260);
 
   box->setTitle("About");
 
 
-  label->setGeometry(140,60,160,170);
+  label->setGeometry(140,30,160,170);
+  label2->setGeometry(20,150,280,100);
 
   QString labelstring = "KCalc "KCALCVERSION"\n"\
     "Bernd Johannes Wuebben\n"\
     "wuebben@math.cornell.edu\n"\
     "wuebben@kde.org\n"\
-    "Copyright (C) 1997\n"\
+    "Copyright (C) 1996-98\n"\
     "\n\n";
 
-   labelstring +=
-#ifdef HAVE_FABSL 
+  QString labelstring2 =
+#ifdef HAVE_LONG_DOUBLE
 		i18n( "Base type: long double\n");
 #else 
-		i18n( "Base type: double\n");
+		i18n( "Due to broken glibc's everywhere, "\
+		      "I had to reduce KCalc's precision from 'long double' "\
+		      "to 'double'. "\
+		      "Owners of systems with a working libc "\
+		      "should recompile KCalc with 'long double' precision "\
+		      "enabled. See the README for details.");
 #endif 
 
   label->setAlignment(AlignLeft|WordBreak|ExpandTabs);
   label->setText(labelstring.data());
+
+  label2->setAlignment(AlignLeft|WordBreak|ExpandTabs);
+  label2->setText(labelstring2.data());
   
   QString pixdir = mykapp->kde_datadir() + "/kcalc/pics/";
 
@@ -1545,7 +1555,7 @@ void QtCalculator::configclicked(){
   QPixmap pm((pixdir + "kcalclogo.xpm").data());
   QLabel *logo = new QLabel(box);
   logo->setPixmap(pm);
-  logo->setGeometry(30, 50, pm.width(), pm.height());
+  logo->setGeometry(30, 20, pm.width(), pm.height());
 
 
   DefStruct newdefstruct;
@@ -1637,7 +1647,7 @@ void QtCalculator::readSettings()
 
   config->setGroup("Precision");
 
-#ifdef HAVE_FABSL  
+#ifdef HAVE_LONG_DOUBLE
   kcalcdefaults.precision =  config->readNumEntry("precision",(int)14);
 #else
   kcalcdefaults.precision =  config->readNumEntry("precision",(int)10);

@@ -1460,7 +1460,7 @@ void QtCalculator::UpdateDisplay()
 		    
 		    str_size = sprintf(display_str, 
 
-#ifdef HAVE_FABSL
+#ifdef HAVE_LONG_DOUBLE
 				     "%.*Lg", // was *Lg
 				  
 				     kcalcdefaults.precision  +1, 
@@ -1475,7 +1475,7 @@ void QtCalculator::UpdateDisplay()
 
 		  str_size = sprintf(display_str, 
 
-#ifdef HAVE_FABSL
+#ifdef HAVE_LONG_DOUBLE
 				     "%.*Lf", // was *Lg
 				  
 				     kcalcdefaults.fixedprecision  , 
@@ -1491,7 +1491,7 @@ void QtCalculator::UpdateDisplay()
 		  if ( input_count > 0 && !strpbrk(display_str,"e") &&
 					   last_input == DIGIT   ) {
 
-#ifdef HAVE_FABSL
+#ifdef HAVE_LONG_DOUBLE
 		    str_size = sprintf(display_str, 
 					   "%.*Lf",
 			    (kcalcdefaults.precision +1 > input_count)? 

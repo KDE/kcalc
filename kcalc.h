@@ -57,15 +57,18 @@
 
 #include "dlabel.h"
 #include "stats.h"
-#include "kcalctype.h"
+
 
 #ifdef HAVE_CONFIG_H
 #include "../config.h"
 #endif
 
+// IMPORTANT this has to come after ../config.h
+#include "kcalctype.h"
+
 #define STACK_SIZE	100
-#define TEMP_STACK_SIZE 1000 // the number of number kept in the temp stack 
-                             // they are accessible with the up and down arrow
+#define TEMP_STACK_SIZE 1000 // the number of numbers kept in the temp stack 
+                             // which are accessible with the up and down arrow
                              // key
 
 #define PRECEDENCE_INCR	20

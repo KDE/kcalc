@@ -1,3 +1,34 @@
+
+How to enable long double precision for KCalc:
+==============================================
+
+If your machine supports the C data type 'long double' and if you
+have a working libc you can enable 'long double' precison for KCalc.
+
+( RedHat 5.0 users are out of luck -- I suggest
+  you get yourself a KDE friendly Linux distribution 
+  that has a working libc )
+
+Here is what to do:
+
+1) Check ../config.h and see whether HAVE_LONG_DOUBLE is define, ie
+you should be able to locate a line saying:
+
+#define HAVE_LONG_DOUBLE 1
+
+If you can't find such a line your system doesn't support long
+double IEEE precision. => Get Linux ;-)
+
+2) Edit the file kcalctype.h and remove the line
+#undef HAVE_LONG_DOUBLE
+
+3) recompile KCalc.
+
+Bernd
+
+--------------------------------------------------------
+
+
 IMPORTANT: On a number of systems including Linux systems using a certain 
 version of gcc (gcc-2.7.3 RedHat 5.0 for example) you will not get a working
 version of kcalc unless you undefine the preprosessor symbol FABSL in

@@ -87,7 +87,7 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
   label5->setText(i18n("Precision:"));
 
   int maxprec;
-#ifdef HAVE_FABSL 
+#ifdef HAVE_LONG_DOUBLE 
   maxprec = 16 ;
 #else 
   maxprec = 12 ;
@@ -110,7 +110,7 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
     cb->setChecked(true);
 
   int fixprec;
-#ifdef HAVE_FABSL 
+#ifdef HAVE_LONG_DOUBLE
   fixprec = 14 ;
 #else 
   fixprec = 10 ;
