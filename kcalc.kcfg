@@ -6,49 +6,49 @@
   <include>kglobalsettings.h</include>
   <include>config.h</include>
   <group name="Colors">
-    <entry name="ForeColor" type="QColor">
-      <desc>The foreground color of the display.</desc>
+    <entry name="ForeColor" type="Color">
+      <label>The foreground color of the display.</label>
       <default>#000000</default>
     </entry>
-    <entry name="BackColor" type="QColor">
-      <desc>The background color of the display.</desc>
+    <entry name="BackColor" type="Color">
+      <label>The background color of the display.</label>
       <default>#BDFFB4</default>
     </entry>
-    <entry name="NumberButtonsColor" type="QColor">
-      <desc>The color of number buttons.</desc>
+    <entry name="NumberButtonsColor" type="Color">
+      <label>The color of number buttons.</label>
       <code>QColor defaultButtonColor = kapp->palette().active().background();</code>
       <default code="true">defaultButtonColor</default>
     </entry>
-    <entry name="FunctionButtonsColor" type="QColor">
-      <desc>The color of function buttons.</desc>
+    <entry name="FunctionButtonsColor" type="Color">
+      <label>The color of function buttons.</label>
       <default code="true">defaultButtonColor</default>
     </entry>
-    <entry name="StatButtonsColor" type="QColor">
-      <desc>The color of statistical buttons.</desc>
+    <entry name="StatButtonsColor" type="Color">
+      <label>The color of statistical buttons.</label>
       <default code="true">defaultButtonColor</default>
     </entry>
-    <entry name="HexButtonsColor" type="QColor">
-      <desc>The color of hex buttons.</desc>
+    <entry name="HexButtonsColor" type="Color">
+      <label>The color of hex buttons.</label>
       <default code="true">defaultButtonColor</default>
     </entry>
-    <entry name="MemoryButtonsColor" type="QColor">
-      <desc>The color of memory buttons.</desc>
+    <entry name="MemoryButtonsColor" type="Color">
+      <label>The color of memory buttons.</label>
       <default code="true">defaultButtonColor</default>
     </entry>
-    <entry name="OperationButtonsColor" type="QColor">
-      <desc>The color of operation buttons.</desc>
+    <entry name="OperationButtonsColor" type="Color">
+      <label>The color of operation buttons.</label>
       <default code="true">defaultButtonColor</default>
     </entry>
   </group>
   <group name="Font">
-    <entry name="Font" type="QFont">
-      <desc>The font to use in the display.</desc>
+    <entry name="Font" type="Font">
+      <label>The font to use in the display.</label>
       <default code="true">QFont(KGlobalSettings::generalFont().family(), 14, QFont::Bold)</default>
     </entry>
   </group>
   <group name="Precision">
-    <entry name="Precision" type="int" key="precision">
-      <desc>Maximum number of digits.</desc>
+    <entry name="Precision" type="Int" key="precision">
+      <label>Maximum number of digits.</label>
       <code>
 #ifdef HAVE_LONG_DOUBLE
 int maxPrecision = 16;
@@ -58,22 +58,22 @@ int maxPrecision = 12;
       </code>
       <default code="true">maxPrecision</default>
     </entry>
-    <entry name="FixedPrecision" type="int" key="fixedprecision">
-      <desc>Number of fixed decimal places.</desc>
+    <entry name="FixedPrecision" type="Int" key="fixedprecision">
+      <label>Number of fixed decimal places.</label>
       <default>2</default>
     </entry>
-    <entry name="Fixed" type="bool" key="fixed">
-      <desc>Whether to use fixed decimal places.</desc>
+    <entry name="Fixed" type="Bool" key="fixed">
+      <label>Whether to use fixed decimal places.</label>
       <default>false</default>
     </entry>
   </group>
   <group name="General">
-    <entry name="Beep" type="bool" key="beep">
-      <desc>Whether to beep on error.</desc>
+    <entry name="Beep" type="Bool" key="beep">
+      <label>Whether to beep on error.</label>
       <default>true</default>
     </entry>
-    <entry name="CaptionResult" type="bool" key="captionresult">
-      <desc>Whether to show the result in the window title.</desc>
+    <entry name="CaptionResult" type="Bool" key="captionresult">
+      <label>Whether to show the result in the window title.</label>
       <default>false</default>
     </entry>
   </group>
