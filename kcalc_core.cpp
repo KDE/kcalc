@@ -52,6 +52,14 @@
 #include "kcalc.h"
 #include "dlabel.h"
 
+static void fpe_handler(int fpe_parm)
+{
+	UNUSED(fpe_parm);
+	//	display_error = true;
+	//tmp_number = 0L;
+}
+
+
 const CALCAMNT CalcEngine::pi = (ASIN(1L) * 2L);
 
 QValueStack<func_data>	func_stack;
@@ -370,7 +378,6 @@ CalcEngine::CalcEngine()
 	// written to trap.
 	//
 
-	void fpe_handler(int fpe_parm);
 	struct sigaction fpe_trap;
 
 	sigemptyset(&fpe_trap.sa_mask);
@@ -422,13 +429,6 @@ CALCAMNT CalcEngine::last_output(bool &error) const
 	return _last_result;
 }
 
-
-static void fpe_handler(int fpe_parm)
-{
-	UNUSED(fpe_parm);
-	//	display_error = true;
-	//tmp_number = 0L;
-}
 
 /*
 void CalcEngine::RefreshEngine()
