@@ -1538,12 +1538,13 @@ void QtCalculator::configclicked(){
   label->setGeometry(140,30,160,170);
   label2->setGeometry(20,150,280,100);
 
-  QString labelstring = "KCalc "KCALCVERSION"\n"\
-    "Bernd Johannes Wuebben\n"\
-    "wuebben@math.cornell.edu\n"\
-    "wuebben@kde.org\n"\
-    "Copyright (C) 1996-98\n"\
-    "\n\n";
+  QString labelstring;
+  labelstring.sprintf(i18n("KCalc %s\n"
+			   "Bernd Johannes Wuebben\n"
+			   "wuebben@math.cornell.edu\n"
+			   "wuebben@kde.org\n"
+			   "Copyright (C) 1996-98\n"
+			   "\n\n"), KCALCVERSION);
 
   QString labelstring2 =
 #ifdef HAVE_LONG_DOUBLE
@@ -1750,7 +1751,7 @@ void QtCalculator::clear_status_label(){
   status_timer->stop();
 }
 
-void QtCalculator::setStatusLabel(char* string){
+void QtCalculator::setStatusLabel(const char* string){
 
   statusERRORLabel->setText(string);
   status_timer->start(3000,TRUE);
@@ -1904,8 +1905,9 @@ int main( int argc, char **argv )
       argv++;
       for(int i = 1; i <= argc ;i++){
 	if(strcmp(*argv,"-v")==0 || strcmp(*argv, "-h")== 0){
-	  printf("KCalc "KCALCVERSION"\nCopyright 1997 Bernd Johannes Wuebben"\
-		 " <wuebben@kde.org>\n");
+	  printf(i18n("KCalc %s\n"
+		      "Copyright 1997 Bernd Johannes Wuebben"
+		      " <wuebben@kde.org>\n"), KCALCVERSION);
 	  exit(1);
 	}
 	argv++;

@@ -46,9 +46,9 @@
 #endif
 
 #ifndef HAVE_FUNC_ISINF
-int isinf(double x) {
-  return (log(fabs(x) + 1) > 240);
-}
+#include <ieeefp.h>
+
+int isinf(double x) { return !finite(x) && x==x; }
 #endif
 
 extern QList<CALCAMNT> temp_stack; 
@@ -1108,7 +1108,7 @@ void QtCalculator::EnterLogr()
       last_input = OPERATION;
       refresh_display = 1;
       stats.clearLast();
-      setStatusLabel("Last stat item erased");
+      setStatusLabel(i18n("Last stat item erased"));
       DISPLAY_AMOUNT = stats.count();
       UpdateDisplay();
 
@@ -1148,7 +1148,7 @@ void QtCalculator::EnterLogn()
     if(!inverse){
 
       stats.clearAll();
-      setStatusLabel((char*)i18n("Stat Mem cleared"));
+      setStatusLabel(i18n("Stat Mem cleared"));
 
     }
     else{
@@ -1623,16 +1623,16 @@ int UpdateStack(int run_precedence)
 		return_value = 1;
 
 		if ((top_item = PopStack())->s_item_type != ITEM_AMOUNT){
-		  QMessageBox::message( "Error", 
-					"Stack processing error - right_op", "O.K." );
+		  QMessageBox::message( i18n("Error"), 
+					i18n("Stack processing error - right_op"), i18n("OK") );
 
 		}
 		right_op = top_item->s_item_data.item_amount;
 
 		if (!((top_item = PopStack()) && 
 		top_item->s_item_type == ITEM_FUNCTION)) {
-		  QMessageBox::message( "Error", 
-					"Stack processing error - function", "O.K." );
+		  QMessageBox::message( i18n("Error"), 
+					i18n("Stack processing error - function"), i18n("OK") );
 
 		}
 		op_function = 
@@ -1640,8 +1640,8 @@ int UpdateStack(int run_precedence)
 
 		if (!((top_item = PopStack()) && 
 		top_item->s_item_type == ITEM_AMOUNT)) {
-		  QMessageBox::message( "Error", 
-					"Stack processing error - left_op", "O.K." );
+		  QMessageBox::message( i18n("Error"), 
+					i18n("Stack processing error - left_op"), i18n("OK") );
 		}
 		left_op = top_item->s_item_data.item_amount;
 	
@@ -1945,7 +1945,7 @@ stack_ptr AllocStackItem (void) {
 		return &process_stack[stack_next++];
 	}
 
-	QMessageBox::message( "Emergency", "Stack Error !", "O.K." );
+	QMessageBox::message( i18n("Emergency"), i18n("Stack Error!"), i18n("OK") );
 	return &process_stack[stack_next];
 }
 
@@ -1953,7 +1953,7 @@ void UnAllocStackItem (stack_ptr return_item) {
 
 	if (return_item != &process_stack[--stack_next]) {
 	
-	  QMessageBox::message( "Emergency", "Stack Error !", "O.K." );
+	  QMessageBox::message( i18n("Emergency"), i18n("Stack Error!"), i18n("OK") );
 	}	
 
 }

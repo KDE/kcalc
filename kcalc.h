@@ -232,7 +232,7 @@ public slots:
     void selection_timed_out();
     void clear_buttons();
     void clear_status_label();
-    void setStatusLabel(char*);
+    void setStatusLabel(const char*);
     void EnterDigit(int data);
     void EnterDecimal();
     void EnterStackFunction(int data);
