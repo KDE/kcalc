@@ -34,19 +34,23 @@ Q_OBJECT
 
   public:
 
-  KCalcConstButton(QWidget *parent, const char * name = 0)
-  : KCalcButton(parent, name)
-  {
-    addMode(ModeInverse, "Store", i18n("Write display data into memory"));
-  };
-    
-  KCalcConstButton(const QString &label, QWidget *parent, const char * name = 0,
-		   const QString &tooltip = QString())
-  : KCalcButton(label, parent, name, tooltip)
-  {
-    addMode(ModeInverse, "Store", i18n("Write display data into memory"));
-  };
+  KCalcConstButton(QWidget *parent, int but_num, const char * name = 0);
+  
+  KCalcConstButton(const QString &label, QWidget *parent, int but_num, const char * name = 0,
+		   const QString &tooltip = QString());
 
+  double toDouble(void) const;
+
+  void setName(void);
+
+  private slots:
+  void slotConfigureButton(int option);
+  
+  private:
+  void initPopupMenu(void);
+  
+  KPopupMenu* _popup;
+  int _button_num;
 };
 
 

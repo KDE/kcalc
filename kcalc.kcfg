@@ -102,33 +102,13 @@ int maxPrecision = 12;
     </entry>
   </group>
   <group name="Constants">
-	<entry name="nameConstant1" type="String">
-	<label>Name of constant C1</label>
-	<default>C1</default>
-	</entry>
-	<entry name="nameConstant2" type="String">
-	<label>Name of constant C2</label>
-	<default>C2</default>
-	</entry>
-	<entry name="nameConstant3" type="String">
-	<label>Name of constant C3</label>
-	<default>C3</default>	
-	</entry>
-	<entry name="nameConstant4" type="String">
-	<label>Name of constant C4</label>
-	<default>C4</default>
-	</entry>	
-	<entry name="nameConstant5" type="String">
-	<label>Name of constant C5</label>
-	<default>C5</default>
-	</entry>
-	<entry name="nameConstant6" type="String">
-	<label>Name of constant C6</label>
-	<default>C6</default>
+	<entry name="nameUserConstants" type="StringList">
+	<label>List of user programmable constants</label>
+	<default>Pi,C2,C3,C4,C5,C6</default>
 	</entry>
 	<entry name="valueUserConstants" type="StringList">
 	<label>List of user programmable constants</label>
-	<default>0,0,0,0,0,0</default>
+	<default>3.141592653589793238462643383279502884197,0,0,0,0,0</default>
 	</entry>
   </group>
 </kcfg>

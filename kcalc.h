@@ -179,7 +179,7 @@ private:
     QDict<KCalcButton>	pbTrig;
     QDict<KCalcButton>	pbExp;
     QDict<KCalcButton>	pbLogic;
-    QDict<KCalcConstButton>	pbConstant;
+    KCalcConstButton*	pbConstant[10];
     KCalcButton* 	pbAC;
     KCalcButton* 	pbAND;
     KCalcButton* 	pbClear;

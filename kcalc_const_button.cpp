@@ -19,7 +19,77 @@
 
 */
 
+#include <qstring.h>
+
+
+#include <kcmenumngr.h>
+#include <kinputdialog.h>
+#include <kpopupmenu.h>
+
 #include "kcalc_const_button.h"
+#include "kcalc_settings.h"
+
+
+KCalcConstButton::KCalcConstButton(QWidget *parent, int but_num, const char * name)
+  : KCalcButton(parent, name), _button_num(but_num)
+{
+  addMode(ModeInverse, "Store", i18n("Write display data into memory"));
+  
+  initPopupMenu();
+}
+
+
+KCalcConstButton::KCalcConstButton(const QString &label, QWidget *parent, int but_num,
+				   const char * name, const QString &tooltip)
+  : KCalcButton(label, parent, name, tooltip), _button_num(but_num)
+{
+  addMode(ModeInverse, "Store", i18n("Write display data into memory"));
+
+  initPopupMenu();
+}
+
+double KCalcConstButton::toDouble(void) const
+{
+  return (KCalcSettings::valueUserConstants())[_button_num].toDouble();
+}
+
+void KCalcConstButton::setName(void)
+{
+  QString new_label = ((KCalcSettings::nameUserConstants())[_button_num].isEmpty() ?
+		       QString("C") + QString().setNum(_button_num + 1) :
+		       (KCalcSettings::nameUserConstants())[_button_num]);
+  QString new_tooltip = new_label + "=" + (KCalcSettings::valueUserConstants())[_button_num];
+  
+  addMode(ModeNormal, new_label, new_tooltip);
+}
+
+void KCalcConstButton::initPopupMenu(void)
+{
+  _popup = new KPopupMenu(this, "set const-cutton");
+  _popup->insertItem(i18n("Set name"), 0);
+  //_popup->insertItem(i18n("Choose from list"), 1);
+
+  connect(_popup, SIGNAL(activated(int)), SLOT(slotConfigureButton(int)));
+
+  KContextMenuManager::insert(this, _popup);
+}
+
+void KCalcConstButton::slotConfigureButton(int option)
+{
+  if (option == 0)
+    {
+      bool yes_no;
+      QString input = KInputDialog::text(i18n("New name for constant"), i18n("New name:"),
+					 text(), &yes_no, this, "nameUserConstants-Dialog");
+      if(yes_no)
+	{
+	  QStringList tmp_list = KCalcSettings::nameUserConstants();
+	  tmp_list[_button_num] = input;
+	  KCalcSettings::setNameUserConstants(tmp_list);
+	  setName();
+	}
+    }
+}
 
 #include "kcalc_const_button.moc"
 

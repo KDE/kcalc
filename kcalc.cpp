@@ -253,42 +253,42 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	smallBtnLayout->addWidget(pbLogic["AND"], 0, 2);
 	smallBtnLayout->addWidget(pbPi, 0, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xA), 0, 4);
-	smallBtnLayout->addWidget(pbConstant["C1"], 0, 5);
+	smallBtnLayout->addWidget(pbConstant[0], 0, 5);
 
 	smallBtnLayout->addWidget(pbStat["Mean"], 1, 0);
 	smallBtnLayout->addWidget(pbTrig["Sine"], 1, 1);
 	smallBtnLayout->addWidget(pbLogic["OR"], 1, 2);
 	smallBtnLayout->addWidget(pbMod, 1, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xB), 1, 4);
-	smallBtnLayout->addWidget(pbConstant["C2"], 1, 5);
+	smallBtnLayout->addWidget(pbConstant[1], 1, 5);
 
 	smallBtnLayout->addWidget(pbStat["StandardDeviation"], 2, 0);
 	smallBtnLayout->addWidget(pbTrig["Cosine"], 2, 1);
 	smallBtnLayout->addWidget(pbLogic["XOR"], 2, 2);
 	smallBtnLayout->addWidget(pbReci, 2, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xC), 2, 4);
-	smallBtnLayout->addWidget(pbConstant["C3"], 2, 5);
+	smallBtnLayout->addWidget(pbConstant[2], 2, 5);
 
 	smallBtnLayout->addWidget(pbStat["Median"], 3, 0);
 	smallBtnLayout->addWidget(pbTrig["Tangent"], 3, 1);
 	smallBtnLayout->addWidget(pbLogic["LeftShift"], 3, 2);
 	smallBtnLayout->addWidget(pbFactorial, 3, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xD), 3, 4);
-	smallBtnLayout->addWidget(pbConstant["C4"], 3, 5);
+	smallBtnLayout->addWidget(pbConstant[3], 3, 5);
 
 	smallBtnLayout->addWidget(pbStat["InputData"], 4, 0);
 	smallBtnLayout->addWidget(pbExp["Log10"], 4, 1);
 	smallBtnLayout->addWidget(pbLogic["RightShift"], 4, 2);
 	smallBtnLayout->addWidget(pbSquare, 4, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xE), 4, 4);
-	smallBtnLayout->addWidget(pbConstant["C5"], 4, 5);
+	smallBtnLayout->addWidget(pbConstant[4], 4, 5);
 
 	smallBtnLayout->addWidget(pbStat["ClearData"], 5, 0);
 	smallBtnLayout->addWidget(pbExp["LogNatural"], 5, 1);
 	smallBtnLayout->addWidget(pbLogic["One-Complement"], 5, 2);
 	smallBtnLayout->addWidget(pbPower, 5, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xF), 5, 4);
-	smallBtnLayout->addWidget(pbConstant["C6"],5, 5);
+	smallBtnLayout->addWidget(pbConstant[5], 5, 5);
 
 	smallBtnLayout->setRowStretch(0, 0);
 	smallBtnLayout->setRowStretch(1, 0);
@@ -948,54 +948,54 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
 
 
 	KCalcConstButton *tmp_pb;
-	tmp_pb = new KCalcConstButton(parent, "Constant C1 - Button");
+	tmp_pb = new KCalcConstButton(parent, 0, "C1");
 	tmp_pb->setAccel(ALT + Key_1);
-	pbConstant.insert("C1", tmp_pb);
+	pbConstant[0] = tmp_pb;
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	ConstButtonGroup->insert(tmp_pb, 0);
 
-	tmp_pb = new KCalcConstButton(parent, "Constant C2 - Button");
+	tmp_pb = new KCalcConstButton(parent, 1, "C2");
         tmp_pb->setAccel(ALT + Key_2);
-	pbConstant.insert("C2", tmp_pb);
+	pbConstant[1] = tmp_pb;
 	connect(this, SIGNAL(switchShowAccels(bool)),
                 tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	ConstButtonGroup->insert(tmp_pb, 1);
 
-	tmp_pb = new KCalcConstButton(parent, "Constant C3 - Button");
+	tmp_pb = new KCalcConstButton(parent, 2, "C3");
         tmp_pb->setAccel(ALT + Key_3);
-	pbConstant.insert("C3", tmp_pb);
+	pbConstant[2] = tmp_pb;
 	connect(this, SIGNAL(switchShowAccels(bool)),
                 tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	ConstButtonGroup->insert(tmp_pb, 2);
 
-	tmp_pb = new KCalcConstButton(parent, "Constant C4 - Button");
+	tmp_pb = new KCalcConstButton(parent, 3, "C4");
         tmp_pb->setAccel(ALT + Key_4);
-	pbConstant.insert("C4", tmp_pb);
+	pbConstant[3] = tmp_pb;
 	connect(this, SIGNAL(switchShowAccels(bool)),
                 tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	ConstButtonGroup->insert(tmp_pb, 3);
 
-	tmp_pb = new KCalcConstButton(parent, "Constant C5 - Button");
+	tmp_pb = new KCalcConstButton(parent, 4, "C5");
         tmp_pb->setAccel(ALT + Key_5);
-	pbConstant.insert("C5", tmp_pb);
+	pbConstant[4] = tmp_pb;
 	connect(this, SIGNAL(switchShowAccels(bool)),
                 tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	ConstButtonGroup->insert(tmp_pb, 4);
 
-	tmp_pb = new KCalcConstButton(parent, "Constant C6 - Button");
+	tmp_pb = new KCalcConstButton(parent, 5, "C6");
         tmp_pb->setAccel(ALT + Key_6);
-	pbConstant.insert("C6", tmp_pb);
+	pbConstant[5]  = tmp_pb;
 	connect(this, SIGNAL(switchShowAccels(bool)),
                 tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
@@ -1739,17 +1739,18 @@ void KCalculator::slotStatClearDataclicked(void)
 
 void KCalculator::slotConstclicked(int button)
 {
-	QStringList tmp_list = KCalcSettings::valueUserConstants();
 	if(!inverse)
 	{
-		//set the display to the configured value of Constant C1
-		calc_display->setAmount(tmp_list[button].toDouble());
+		//set the display to the configured value of Constant Button
+		calc_display->setAmount(pbConstant[button]->toDouble());
 	}
 	else
 	{
+		QStringList tmp_list = KCalcSettings::valueUserConstants();
 		pbInv->setOn(false);
 		tmp_list[button] = QString::number(double(calc_display->getAmount()));
 		KCalcSettings::setValueUserConstants(tmp_list);
+		pbConstant[button]->setName();
 	}
 
 	UpdateDisplay(false);
@@ -1913,90 +1914,38 @@ void KCalculator::slotConstantsShow(bool toggled)
 {
 	if(toggled)
 	{
-		pbConstant["C1"]->show();
-		pbConstant["C2"]->show();
-		pbConstant["C3"]->show();
-		pbConstant["C4"]->show();
-		pbConstant["C5"]->show();
-		pbConstant["C6"]->show();
+		pbConstant[0]->show();
+		pbConstant[1]->show();
+		pbConstant[2]->show();
+		pbConstant[3]->show();
+		pbConstant[4]->show();
+		pbConstant[5]->show();
 
 	}
 	else
 	{
-		pbConstant["C1"]->hide();
-		pbConstant["C2"]->hide();
-		pbConstant["C3"]->hide();
-		pbConstant["C4"]->hide();
-		pbConstant["C5"]->hide();
-		pbConstant["C6"]->hide();
+		pbConstant[0]->hide();
+		pbConstant[1]->hide();
+		pbConstant[2]->hide();
+		pbConstant[3]->hide();
+		pbConstant[4]->hide();
+		pbConstant[5]->hide();
 	}
 	adjustSize();
 	setFixedSize(sizeHint());
 	KCalcSettings::setShowConstants(toggled);
 }
+
 // This function is for setting the constant names configured in the kcalc settings menue. If the user doesn't
 // enter a name for the constant C1 to C6 is used.
 void KCalculator::changeButtonNames()
 {
-	if(KCalcSettings::nameConstant1().isEmpty() )
-	{
-		pbConstant["C1"]->addMode(ModeNormal, "C1", i18n("Enter data"));
-	}
-	else
-	{
-		pbConstant["C1"]->addMode(ModeNormal, KCalcSettings::nameConstant1(),
-					i18n("Enter data"));
-	}
-
-	if(KCalcSettings::nameConstant2().isEmpty() )
-	{
-		pbConstant["C2"]->addMode(ModeNormal, "C2", i18n("Enter data"));
-	}
-	else
-	{
-		pbConstant["C2"]->addMode(ModeNormal, KCalcSettings::nameConstant2(),
-					i18n("Enter data"));
-	}
-
-	if(KCalcSettings::nameConstant3().isEmpty() )
-	{
-		pbConstant["C3"]->addMode(ModeNormal, "C3", i18n("Enter data"));
-	}
-	else
-	{
-		pbConstant["C3"]->addMode(ModeNormal, KCalcSettings::nameConstant3(),
-					i18n("Enter data"));
-	}
-
-	if(KCalcSettings::nameConstant4().isEmpty() )
-	{
-		pbConstant["C4"]->addMode(ModeNormal, "C4", i18n("Enter data"));
-	}
-	else
-	{
-		pbConstant["C4"]->addMode(ModeNormal, KCalcSettings::nameConstant4(),
-					i18n("Enter data"));
-	}
-
-	if(KCalcSettings::nameConstant5().isEmpty() )
-	{
-		pbConstant["C5"]->addMode(ModeNormal, "C5", i18n("Enter data"));
-	}
-	else
-	{
-		pbConstant["C5"]->addMode(ModeNormal, KCalcSettings::nameConstant5(),
-					i18n("Enter data"));
-	}
-
-	if(KCalcSettings::nameConstant6().isEmpty() )
-	{
-		pbConstant["C6"]->addMode(ModeNormal, "C6", i18n("Enter data"));
-	}
-	else
-	{
-		pbConstant["C6"]->addMode(ModeNormal, KCalcSettings::nameConstant6(),
-					i18n("Enter data"));
-	}
+	pbConstant[0]->setName();
+	pbConstant[1]->setName();
+	pbConstant[2]->setName();
+	pbConstant[3]->setName();
+	pbConstant[4]->setName();
+	pbConstant[5]->setName();
 }
 
 void KCalculator::slotShowAll(void)
