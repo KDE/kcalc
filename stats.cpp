@@ -147,7 +147,6 @@ CALCAMNT KStats::std_kernel(){
 
   CALCAMNT *dp;
   for ( dp=data.first(); dp != 0; dp=data.next() ){
-    
     result += (*dp - _mean) * (*dp - _mean);
 
   }
@@ -212,13 +211,11 @@ CALCAMNT KStats::std(){
     return 0.0;
   }
   
-  result = SQRT(std_kernel());
+  result = SQRT(std_kernel() / data.count());
 
 #ifdef DEBUG_STATS
   printf ("data.count %d\n",data.count());
 #endif
-
-  result = result/data.count();
 
 #ifdef DEBUG_STATS
   printf("std: %Lg\n",result);
@@ -237,8 +234,8 @@ CALCAMNT KStats::sample_std(){
     return 0.0;
   }
   
-  result = SQRT(std_kernel());
-  result = result/(data.count() - 1);
+  result = SQRT(std_kernel() / (data.count() - 1));
+  //  result = result/(data.count() - 1);
 #ifdef DEBUG_STATS
   printf("sample std: %Lg\n",result);
 #endif

@@ -1,5 +1,10 @@
 Mon Nov 16 18:05:01 1998  Mario Weilguni <mweilguni@kde.org>
 
+	* the standard deviation was completly wrong. Fixed.
+	* the population standard deviation had the same fault. Fixed.
+
+Mon Nov 16 18:05:01 1998  Mario Weilguni <mweilguni@kde.org>
+
 	* calculation the facturial of a too large number was delayed,
 	even though infinity was already reached. Now kcalc stops
 	calculation if infinity is reached and displays an error
