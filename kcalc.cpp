@@ -2278,7 +2278,7 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
                           precisionStatement.latin1());
 
 	aboutData.addAuthor("Bernd Johannes Wuebben", 0, "wuebben@kde.org");
-	aboutData.addAuthor("Evan Teran", 0, "emt3734@rit.edu");
+	aboutData.addAuthor("Evan Teran", 0, "eteran@alum.rit.edu");
 	aboutData.addAuthor("Espen Sand", 0, "espen@kde.org");
 	aboutData.addAuthor("Chris Howells", 0, "howells@kde.org");
 	aboutData.addAuthor("Aaron J. Seigo", 0, "aseigo@olympusproject.org");

@@ -1,3 +1,7 @@
+2005-03-08 Evan Teran <eteran@alum.rit.edu>
+	* updated about box to reflect my correct email address. This one is 
+	permanent and will never change again
+	  
 2005-02-05 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* fix BUG 98522: M- button did not work at least since KDE-3.2. Shame on me, and thanks to
 	  Bernd Brandstetter for reporting the bug.
