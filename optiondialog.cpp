@@ -182,11 +182,11 @@ void ConfigureDialog::setupSettingPage()
 
 	QVBoxLayout *vbox = new QVBoxLayout(group);
 
-	mTrigRadio = new QRadioButton(i18n("Trigonometrical Mode"), 
+	mTrigRadio = new QRadioButton(i18n("Trigonometrical mode"), 
 		group,"trigstyle");
 	vbox->addWidget(mTrigRadio);
 
-	mStatRadio = new QRadioButton(i18n("Statistical Mode"), 
+	mStatRadio = new QRadioButton(i18n("Statistical mode"), 
 		group,"statstyle");
 	vbox->addWidget(mStatRadio);
 	
