@@ -93,6 +93,7 @@ class CalcEngine
   void Exp(CALCAMNT input);
   void Exp10(CALCAMNT input);
   void Factorial(CALCAMNT input);
+  void InvertSign(CALCAMNT input);
   void InvMod(CALCAMNT input);
   void InvPower(CALCAMNT input);
   void Ln(CALCAMNT input);

@@ -104,6 +104,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// Create Button to select BaseMode
 	BaseChooseGroup = new QHButtonGroup(i18n("Base"), central);
 	connect(BaseChooseGroup, SIGNAL(clicked(int)), SLOT(slotBaseSelected(int)));
+	BaseChooseGroup->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed, false);
 
 
 	pbBaseChoose[0] =  new QRadioButton(i18n("&Hex"), BaseChooseGroup,
@@ -1073,27 +1074,27 @@ void KCalculator::slotBaseSelected(int base)
 {
 	int current_base;
 
-	// set display & statusbar
+	// set display & statusbar (if item exist in statusbar)
 	switch(base)
 	{
 	case 3:
 	  current_base = calc_display->setBase(NumBase(2));
-	  statusBar()->changeItem("BIN",1);
+	  if (statusBar()->hasItem(1)) statusBar()->changeItem("BIN",1);
 	  break;
 	case 2:
 	  current_base = calc_display->setBase(NumBase(8));
-	  statusBar()->changeItem("OCT",1);
+	  if (statusBar()->hasItem(1)) statusBar()->changeItem("OCT",1);
 	  break;
 	case 1:
 	  current_base = calc_display->setBase(NumBase(10));
-	  statusBar()->changeItem("DEC",1);
+	  if (statusBar()->hasItem(1)) statusBar()->changeItem("DEC",1);
 	  break;
 	case 0:
 	  current_base = calc_display->setBase(NumBase(16));
-	  statusBar()->changeItem("HEX",1);
+	  if (statusBar()->hasItem(1)) statusBar()->changeItem("HEX",1);
 	  break;
 	default:
-	  statusBar()->changeItem("Error",1);
+	  if (statusBar()->hasItem(1)) statusBar()->changeItem("Error",1);
 	  return;
 	}
 
@@ -1271,7 +1272,13 @@ void KCalculator::slotSinclicked(void)
 
 void KCalculator::slotPlusMinusclicked(void)
 {
-	calc_display->changeSign();
+	// display can only change sign, when in input mode, otherwise we
+	// need the core to do this.
+	if (!calc_display->changeSign())
+	{
+	    core.InvertSign(calc_display->getAmount());
+	    UpdateDisplay(true);
+	}
 }
 
 void KCalculator::slotMPlusMinusclicked(void)
