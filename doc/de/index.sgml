@@ -1,0 +1,390 @@
+<!doctype linuxdoc system>
+
+<!-- Das KCalc Handbuch.
+ -->
+
+<article>
+
+<!-- Title information -->
+
+<title>Das KCalc Handbuch
+<author>Bernd Johannes Wuebben, <tt/wuebben@kde.org/, übersetzt von
+Peter Gritsch, <tt/pegri@sbox.tu-graz.ac.at/ und Kalle Dalheimer <tt/kalle@kde.org/
+<date>Version 0.4, 20. September 1997
+<abstract>Dieses Handbuch beschreibt KCalc Version 0.4
+
+<!-- Table of contents -->
+<toc>
+
+<!-- Begin the document -->
+
+
+<sect>Einleitung<p>
+Dies ist Release 0.4 von KCalc. KCalc ist ein einfacher, aber hoffentlich
+nützlicher wissenschaftlicher Taschenrechner für das KDE Projekt.
+
+KCalc bietet viel mehr mathematische Funktionen, als auf den ersten Blick
+sichtbar sind. Bitte lesen Sie den Abschnitt über Tastenkürzel und -modi in
+diesem Handbuch, um mehr über die vielen verfügbaren Funktionen zu lernen.
+
+Über die Funktionalität, die von üblichen Taschenrechnern geboten wird,
+hinaus bietet KCalc eine Anzahl zusätzlicher Eigenschaften, die ich für
+wert halte, genannt zu werden.
+<p>
+<itemize>
+<item>KCalc erlaubt das Ausschneiden und Einfügen von Zahlen in der Anzeige.
+<item>KCalc besitzt einen ``Ergebnis-Stack'', mit dem Sie bequem
+frühere Resultate abrufen können.
+<item>Sie können die Farbe und den Zeichensatz in der Anzeige von
+kcalc konfigurieren.
+<item>Sie können KCalcs Genauigkeit und die Anzahl der Nachkommastellen
+konfigurieren.
+<item>
+KCalc bietet eine große Anzahl nützlicher Tastenbelegungen, welche die
+Verwendung von KCalc ohne Maus einfach machen.
+</itemize>
+
+Viel Spaß mit KCalc!
+
+<p>
+<tt>Bernd Johannes Wuebben</tt>
+
+<p>
+<htmlurl url="mailto:wuebben@math.cornell.edu" name="wuebben@math.cornell.edu"><p>
+
+
+<sect>Installation
+<p>
+<sect1>Wie sie KCalc bekommen
+<p>
+KCalc ist Teil des KDE Projekts <url url="http://www.kde.org">.
+Sie finden KCalc auf <url url="ftp://ftp.kde.org/pub/kde/">, dem
+Haupt-FTP-Server des KDE Projekts. 
+Die Homepage ist
+<htmlurl url="http://math.cornell.edu/~wuebben/kde.html"
+name="http://math.cornell.edu/~wuebben/kde.html">
+
+<sect1>Anforderungen
+<p>
+Um KCalc erfolgreich compilieren zu können, benötigen sie die neuesten
+Versionen von <tt>libkdecore</tt> und <tt>libkdeui</tt>. Alle benötigten
+Libraries wie auch KCalc selbst finden Sie auf 
+<url url="ftp://ftp.kde.org/pub/kde/">.
+
+<sect1>Übersetzung und Installation
+<p>
+Die Kompilation und Installation erfolgen auf die übliche Weist:
+
+<tscreen><verb>
+% ./configure
+% make
+% make install
+</verb></tscreen>
+
+Sollten sie auf Probleme stoßen, bitte ich Sie, mir diese zu melden.
+<p>
+
+<sect>Anwendung
+<p>
+Grundsätzlich ist die Anwendung einfach und ähnlich, wenn nicht gleich der
+Art, wie die meisten wissenschaftlichen Taschenrechner arbeiten.
+Klicken Sie auf die <bf>KCalc</bf>-Schaltfläche um den Konfigurationsdialog
+zu öffnen.
+<p>
+
+<sect1>Ergebnis-Stack
+<p>
+Wann immer sie auf den <bf>=</bf>-Button klicken, die <bf>=</bf>-,
+<bf>Enter</bf>- oder <bf>Return</bf>-Taste drücken, wird das Ergebnis auf
+KCalcs Ergebnis-Stack gelegt.
+Sie können diesen durch Drücken der <bf>Pfeil-Oben</bf>- und
+<bf>Pfeil-Unten</bf>-Tasten durchsuchen.
+
+<sect1>Prozentfunktion
+<p>
+Die Prozentfunktion arbeitet etwas anders als die der meisten
+Rechner. Wenn Sie sie aber einmal verstanden haben, beweist die verbesserte
+Funktionalität ihre Nützlichkeit. Lesen sie das Kapitel über die
+Prozentfunktion im Abschnitt ``Bemerkungen zu spezifischen
+Funktionen'', wenn Sie
+eine detailierte Erklärung der Prozent-Funktionalität benötigen.
+
+<sect1>Fixkomma
+<p>
+Klicken sie auf die Fixkomma-Checkbox im Konfigurationsdialog, wenn sie die 
+Anzahl der angezeigten Nachkommastellen festlegen wollen.
+<p>
+
+<sect1>Cut and Paste
+<p>
+<itemize>
+
+<item>Wenn Sie die linke Maustaste in KCalcs Display drücken, wird der
+angezeigte Wert in die Zwischenablage kopiert.
+
+<item>Das Drücken der rechten oder mittleren Maustaste in KCalcs Anzeige
+fügt den Inhalt der Zwischenablage in das Display ein, wenn dieser eine
+gültige Fließkommazahl ist.
+</itemize>
+<p>
+
+<sect>Modi
+<p>
+
+<sect1>Statistik-Modus
+<p>
+Um in den Statistik-Modus zu schalten, können sie
+<itemize>
+<item><bf>F4</bf> drücken
+</itemize>
+oder
+<itemize>
+<item>den Konfigurationsdialog öffnen, indem Sie auf <bf>F2</bf> oder die
+<bf>KCalc</bf>-Schaltfläche drücken und den entsprechenden Radiobutton
+anklicken.
+</itemize>
+
+<descrip>
+<tag/N / zeigt die Anzahl der eingegebenen Werte an.
+
+<tag/Inv N / zeigt die Summe der eingegebenen Werte an.
+
+<tag/Mea / zeigt das arithmetische Mittel der eingegebenen Werte an.
+
+<tag/Inv Mea / zeigt die Summer der Quadrate der eingegebenen Werte an.
+
+<tag/Std / zeigt die Standardabweichung mit Gesamtheitsparameter ``n''
+(Standardabweichung der Gesamtheit) an.
+
+<tag/Inv Std / zeigt die Standardabweichung mit Gesamtheitsparameter ``n-1''
+(Stichproben-Standardabweichung) an.
+
+<tag/Med / zeigt den Median (Zentralwert) an.
+
+<tag/Dat / gibt einen Wert ein.
+
+<tag/Inv Dat / löscht den letzten eingegebenen Wert.
+
+<tag/Cst / löscht alle eingegebenen Werte.
+
+</descrip>
+
+<sect1>Trigonometrie-Modus
+<p>
+Um in den Trigonometrie-Modus zu schalten können sie
+<itemize>
+<item><bf>F3</bf> drücken oder
+<item>den Konfigurationsdialog öffnen, indem Sie auf <bf>F2</bf> oder die
+<bf>KCalc</bf>-Schaltfläche drücken und den entsprechenden Radiobutton
+anklicken.
+</itemize>
+
+<descrip>
+
+<tag/Hyp/ schaltet in den ``Hyperbolischen'' Modus. Z.B. berechnet
+<bf>Hyp</bf> <bf>Sin</bf> den Sinus Hyperbolicus: sinh(x).
+
+<tag/Sin/ berechnet den Sinus.
+
+<tag/Inv Sin/ berechnet den Arcussinus.
+
+<tag/Cos/ berechnet den Cosinus.
+
+<tag/Inv Cos/ berechnet den Arcuscosinus.
+
+<tag/Tan/ berechnet den Tangens.
+
+<tag/Inv Tan/ berechnet den Arcustangens.
+
+<tag/Log/ berechnet den dekadischen Logarithmus.
+
+<tag/Inv Log/ berechnet 10 zur x-ten Potenz.
+
+<tag/Ln/ berechnet den natürlichen Logarithmus, also den Logarithmus zur
+Basis e.
+
+<tag/Inv Ln/ berechnet e zur x-ten Potenz.
+</descrip>
+
+<p>
+<sect>Tastenkürzel<p>
+<p>
+<descrip>
+<tag/F1 / ruft die Hilfe auf.
+<tag/F2 / öffnet den Konfigurationsdialog.
+<tag/F3 / schaltet in den Trigonometrie-Modus um.
+<tag/F4 / schaltet in den Statistik-Modus um.
+<tag/Pfeil oben / zeigt das vorherige Element des Result Stacks an.
+<tag/Pfeil unten / zeigt das nächste Element des Result Stacks an.
+<tag/Bild oben / löscht.
+<tag/Bild unten / löscht alles.
+<tag/ALT + d / setzt die Winkeleinheit auf Grad.
+<tag/ALT + r / setzt die Winkeleinheit auf Radiant.
+<tag/ALT + g / setzt die Winkeleinheit auf Neugrad.
+<tag/ALT + h / setzt das Zahlensystem auf Hexadezimal.
+<tag/ALT + e / setzt das Zahlensystem auf Dezimal.
+<tag/ALT + o / setzt das Zahlensystem auf Oktal.
+<tag/ALT + b / setzt das Zahlensystem auf Binär.
+<tag/s / <bf>Sin</bf>
+<tag/c / <bf>Cos</bf>
+<tag/t / <bf>Tan</bf>
+<tag/n / <bf>Ln</bf> berechnet den Logarithmus zur Basis e.
+<tag/l / <bf>Log</bf> berechnet den Logarithmus zur Basis 10.
+<tag/i / <bf>Inv</bf>, Invers; tippen sie z.B. ``i'' ``s'' um arcsin (x) zu
+berechnen.
+<tag/\\ / <bf>+/-</bf>
+<tag/&lsqb; / <bf>x&circ;2</bf> *************************************
+<tag/^ / <bf>x^y</bf>
+<tag/= / <bf>=</bf>
+<tag/! / <bf>x!</bf> berechnet die Faktorielle.
+<tag/&lt; / <bf>Lsh</bf> schiebt nach links.
+<tag/&gt; / <bf>Inv</bf> <bf>Lsh</bf> schiebt nach rechts.
+<tag/& / <bf>And</bf> berechnet die Konjunktion (logisches UND).
+<tag/* / <bf>X</bf> berechnet das Produkt.
+<tag/\/ <bf>/</bf> berechnet den Quotienten.
+<tag/d / <bf>Dat</bf> gibt (im Statistik-Modus) einen Wert ein.
+<tag/o / <bf>Or</bf> berechnet die Disjunktion (logisches ODER).
+<tag/i o / <bf>Inv</bf> <bf>Or</bf> berechnet die Antivalenz
+(ausschließendes ODER, Exklusiv-Oder)
+<tag/r / <bf>1/x</bf> berechnet den Reziproken Wert.
+<tag/Enter / <bf>=</bf>
+<tag/Return / <bf>=</bf>
+<tag/Backspace / <bf>AC</bf> löscht alles.
+<tag/Del / <bf>AC</bf> löscht alles.
+<tag/Esc / <bf>C</bf> löscht.
+<tag/h / <bf>Hyp</bf> schaltet in den ``Hyperbolischen'' Modus. Z.B.
+berechnet <bf>Hyp</bf> <bf>Sin</bf> den Sinus Hyperbolicus:
+sinh(x).
+</descrip>
+
+<sect>Bemerkungen zu spezifischen Funktionen
+<p>
+
+<sect1>Mod
+<p>
+Berechnet den Rest der Division der angezeigten Zahl durch die nächste
+eingegebene Zahl.
+
+<sect1>%
+<p>
+Die letzte Operation der aktuellen Berechnung wird folgendermaßen
+ausgeführt: 
+<itemize>
+
+Die Funktion der %-Taste entspricht der auf manchen
+CASIO-Taschenrechnern:
+
+<item>Wenn der letzte Operator die Addition ist, dann wird die
+prozentuale Zunahme des Ergebnisses gegenüber dem zweiten Operanden
+ausgegeben. 
+
+<item>Wenn der letzte Operator die Subtraktion ist, dann wird die
+prozentuale Abnahme des Ergebnisses gegenüber dem zweiten Operanden ausgegeben.
+
+<item>Wenn der letzte Operator die Multiplikation ist, dann wird der
+Prozentsatz des rechten Operanden auf Basis des linken Operanden ausgegeben.
+
+<item>Wenn der letzte Operator die Division oder die Restbildung ist,
+dann wird der Prozentsatz des linken Operanden aus Basis des rechten
+Operanden ausgegeben.
+
+<item>Wenn der letzte Operator die Potenzierung ist, dann wird der
+linke Operand, potenziert mit dem rechten Operanden geteilt durch 100
+ausgegeben. 
+
+<item>In allen anderen Fällen entspricht die %-Taste der =-Taste.
+
+</itemize>                              
+<sect2>Beispiele<p>
+<verb>
+
+Eingabe:             45 / 55 %
+Ausgabe:			 81.8181...
+Erklärung:		     45 ist 81.81...Prozent von 55
+
+Eingabe:             11 + 89 %
+Ausgabe:			 112.35.. 
+Erklärung:		     89 + 11 = 100, und 100 ist 112.35 Prozent von 89. 
+</verb>
+<p>
+
+<sect1>Lsh (Rsh)
+<p>
+Schiebe die angezeigte Zahl um n Stellen nach links (rechts), wobei n die
+nächste eingegebene Zahl ist. Rsh erhalten sie durch die Kombination
+<bf>Inv</bf> <bf>Lsh</bf>.
+<p>
+
+<sect>Fragen und Antworten
+<p>
+
+<sect1>Wie bekomme ich pi=3.141592...?
+<p>
+Drücken sie einfach <bf>Inv</bf> <bf>EE</bf>.
+<p>
+
+<sect1>Wie bekomme ich die Eulersche Zahl e?
+<p>
+Drücken sie <bf>Inv</bf> <bf>Ln</bf>.
+<p>
+
+<sect1>Wie bekomme ich genau zwei Nachkommastellen?
+<p>
+
+Drücken sie auf die <bf>KCalc</bf>-Schaltfläche, dies öffnet den
+Konfigurationsdialog. Drücken sie auf ``Set Fixed Precision'' und stellen
+sie das Spin Control auf den Wert 2.
+
+<sect1>Wie ist das mit der Genauigkeit?
+<p>
+Der bestimmende Faktor der Genauigkeit von KCalc ist die Unterstützung des C
+Datentyps <tt>long double</tt> durch Ihre <tt>libc</tt> und
+<tt>libmath</tt>. Wenn dies der Fall ist, wird es bei der Übersetzung
+erkannt, und KCalc verwendet ihn, um Zahlen intern darzustellen. Sie können
+dies im ``About''-Dialog von KCalc überprüfen.
+
+Wenn Sie nicht eine <tt>libc</tt> und <tt>libmath</tt> von ausnehmend hoher
+Qualität haben, werden Sie ``interessante'' Ergebnisse beobachten können,
+sollten Sie versuchen, Berechnungen wie 123.22~-~123.21, 2.01~-~2,
+123.88~-~123.87 und ähnliche durchzuführen. Wie auch immer, im Fall daß Sie
+annehmen, dies wäre eine schlechte Leistung von KCalc, bitte ich Sie,
+dieselben Berechnungen mit einem Windows(R)-Taschenrechner anzustellen.
+<p>
+Stellen sie die Genauigkeit in KCalcs Konfigurationsdialog so ein, daß die
+oben genannten Berechnungen korrekt erfolgen.
+Wenn der grundlegende Datentyp ihrer Kopie von KCalc <tt>long double</tt>
+ist, empfehle ich eine Genauigkeit von 14, andernfalls von acht oder zehn.
+
+<p>
+Beachten Sie: Eine höhere Genauigkeit führt nicht unbedingt zu besseren
+Ergebnissen. Spielen Sie mit der Genauigkeit, um zu sehen, was ich meine.
+<p>
+
+<sect>Lizenzbestimmungen
+<p>
+<tscreen><verb>
+
+KCalc Copyright 1996,1997 Bernd Johannes Wuebben
+                          wuebben@math.cornell.edu
+
+KCalc wurde von Martin Bartletts xfrmcalc angeregt, dessen Stack Engine
+noch immer ein Teil von KCalc ist.
+
+Dieses Program ist Freie Software; Sie können sie  weitergeben und/oder
+verändern entsprechend den Bestimmungen der GNU General Public License, wie
+diese von der Free Software Foundation veröffentlicht wurden, entweder
+entsprechend Version 2 der Bestimmungen oder (nach ihrer Wahl) jeder
+späteren Version.
+
+Dieses Programm wird in der Hoffnung, daß es nützlich ist, aber
+OHNE EINE GARANTIE verbreitet; sogar ohne die implizite Garantie der
+MARKTGÄNGIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Lesen sie die GNU
+General Public License um genauere Datails zu erfahren.
+
+Sie sollten eine Kopie der GNU General Public License zusammen mit diesem
+Programm erhalten haben; wenn nicht, so schreiben sie an die
+Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+</verb></tscreen>
+</article>
+

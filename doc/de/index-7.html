@@ -1,0 +1,62 @@
+<HTML>
+<HEAD>
+<TITLE>Das KCalc Handbuch: Fragen und Antworten</TITLE>
+</HEAD>
+<BODY>
+<A HREF="index-6.html">Previous</A>
+<A HREF="index-8.html">Next</A>
+<A HREF="index.html#toc7">Table of Contents</A>
+<HR>
+<H2><A NAME="s7">7. Fragen und Antworten</A></H2>
+
+
+
+<H2><A NAME="ss7.1">7.1 Wie bekomme ich pi=3.141592...?</A></H2>
+
+<P>Drücken sie einfach <B>Inv</B> <B>EE</B>.</P>
+
+
+
+<H2><A NAME="ss7.2">7.2 Wie bekomme ich die Eulersche Zahl e?</A></H2>
+
+<P>Drücken sie <B>Inv</B> <B>Ln</B>.</P>
+
+
+
+<H2><A NAME="ss7.3">7.3 Wie bekomme ich genau zwei Nachkommastellen?</A></H2>
+
+
+<P>Drücken sie auf die <B>KCalc</B>-Schaltfläche, dies öffnet den
+Konfigurationsdialog. Drücken sie auf ``Set Fixed Precision'' und stellen
+sie das Spin Control auf den Wert 2.</P>
+
+
+<H2><A NAME="ss7.4">7.4 Wie ist das mit der Genauigkeit?</A></H2>
+
+<P>Der bestimmende Faktor der Genauigkeit von KCalc ist die Unterstützung des C
+Datentyps <CODE>long double</CODE> durch Ihre <CODE>libc</CODE> und
+<CODE>libmath</CODE>. Wenn dies der Fall ist, wird es bei der Übersetzung
+erkannt, und KCalc verwendet ihn, um Zahlen intern darzustellen. Sie können
+dies im ``About''-Dialog von KCalc überprüfen.</P>
+<P>Wenn Sie nicht eine <CODE>libc</CODE> und <CODE>libmath</CODE> von ausnehmend hoher
+Qualität haben, werden Sie ``interessante'' Ergebnisse beobachten können,
+sollten Sie versuchen, Berechnungen wie 123.22&nbsp-&nbsp123.21, 2.01&nbsp-&nbsp2,
+123.88&nbsp-&nbsp123.87 und ähnliche durchzuführen. Wie auch immer, im Fall daß Sie
+annehmen, dies wäre eine schlechte Leistung von KCalc, bitte ich Sie,
+dieselben Berechnungen mit einem Windows(R)-Taschenrechner anzustellen.</P>
+<P>Stellen sie die Genauigkeit in KCalcs Konfigurationsdialog so ein, daß die
+oben genannten Berechnungen korrekt erfolgen.
+Wenn der grundlegende Datentyp ihrer Kopie von KCalc <CODE>long double</CODE>
+ist, empfehle ich eine Genauigkeit von 14, andernfalls von acht oder zehn.</P>
+
+<P>Beachten Sie: Eine höhere Genauigkeit führt nicht unbedingt zu besseren
+Ergebnissen. Spielen Sie mit der Genauigkeit, um zu sehen, was ich meine.</P>
+
+
+
+<HR>
+<A HREF="index-6.html">Previous</A>
+<A HREF="index-8.html">Next</A>
+<A HREF="index.html#toc7">Table of Contents</A>
+</BODY>
+</HTML>
