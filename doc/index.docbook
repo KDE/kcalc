@@ -372,9 +372,17 @@ you want arcsin(x) type <userinput>i s </userinput></entry></row>
 <entry><guibutton>AC</guibutton></entry>
 <entry>Clear all</entry></row>
 
+<row><entry><keycap>F1</keycap></entry>
+<entry><guibutton>?</guibutton></entry>
+<entry>Help, brings up this manual</entry></row>
+
 <row><entry><keycap>F2</keycap></entry>
 <entry><guibutton>Configure</guibutton></entry>
 <entry>Bring up the configure dialog</entry></row>
+
+<row><entry><keycap>F3</keycap></entry>
+<entry></entry>
+<entry>Switch between Trigonometric and Statistical modes</entry></row>
 
 </tbody></tgroup></informaltable>
 
@@ -418,7 +426,7 @@ current calculation as follows:</para>
 
 <para><itemizedlist>
 <listitem>
-<para>If the final operator is + or - the second argument is interpreted as percentage of the first operand.
+<para>If the final operator is + or - show the result as a percentage of the final operand.
 </para>
 </listitem>
 <listitem>
@@ -431,6 +439,11 @@ as a percentage of the right operand.
 </para>
 </listitem>
 <listitem>
+<para>If the final operator is x^y give the left operand 
+raised to the power of the (right operand / 100).
+</para>
+</listitem>
+<listitem>
 <para> In all other cases the &percnt; key gives identical results to the = key.
 </para>
 </listitem>
@@ -440,12 +453,15 @@ as a percentage of the right operand.
 <varlistentry>
 <term>Examples:</term>
 <listitem>
-<para><userinput>150 + 50 %</userinput> gives <emphasis>225</emphasis> (150 plus 50 percent of this amount)</para>
+<para><userinput>11 + 89 %</userinput> gives <emphasis>112.35..</emphasis> (89 +
+11 = 100, and 100 is 112.35 percent of 89)</para>
 <para><userinput>42 * 3 %</userinput> gives
 <emphasis>1.26</emphasis>  (42 * 3 / 100)</para>
 <para><userinput>45 / 55 %</userinput> gives
 <emphasis>81.81...</emphasis> (45 is 81.81.. percent of 55)</para>
-</listitem>
+<para><userinput>2 ^ 300 %</userinput> gives
+<emphasis>8</emphasis>  (2 to the power (300/100))</para>
+ </listitem>
 </varlistentry>
 </variablelist>
 
@@ -478,7 +494,7 @@ value (performs an integer divide by 2) n times.</term>
 </sect1>
 
 <sect1 id="and-or-xor">
-<title>Cmp, And, Or and Xor</title>
+<title>Cmp, And, Or and Inv Or</title>
 
 <para>The <guibutton>Cmp</guibutton>, <guibutton>And</guibutton> and 
 <guibutton>Or</guibutton> functions perform bitwise logical operations and
@@ -508,9 +524,9 @@ bits).</term>
 </varlistentry>
 
 <varlistentry>
-<term><guibutton>Xor</guibutton> performs the logical
+<term><guibutton>Inv</guibutton> <guibutton>Or</guibutton> performs the logical
 XOR (exclusive OR) operation.</term>
-<listitem><para><userinput>101 Xor 110 =</userinput> gives
+<listitem><para><userinput>101 Inv Or 110 =</userinput> gives
 <emphasis>11</emphasis></para> </listitem>
 </varlistentry>
 
@@ -524,6 +540,10 @@ XOR (exclusive OR) operation.</term>
 
 <qandaset>
 
+<qandaentry>
+<question><para>How do I get pi=3.1415926...?</para></question>
+<answer><para>Simply type <userinput>Inv EE</userinput>.</para></answer>
+</qandaentry>
 
 <qandaentry>
 <question><para>How do I get e, the Euler number?</para></question>
