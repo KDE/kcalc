@@ -561,8 +561,14 @@ void KCalcDisplay::deleteLastDigit(void)
 	updateDisplay();
 }
 
-void KCalcDisplay::changeSign(void)
+// change Sign of display. Problem: Only possible here, when in input
+// mode. Otherwise return 'false' so that the kcalc_core can handle
+// things.
+bool KCalcDisplay::changeSign(void)
 {
+	//stupid way, to see if in input_mode or display_mode
+	if (_str_int == "0") return false;
+
 	if(_eestate)
 	{
 		if(!_str_int_exp.isNull())
@@ -579,6 +585,8 @@ void KCalcDisplay::changeSign(void)
 	}
 	
 	updateDisplay();
+
+	return true;
 }
 
 bool KCalcDisplay::clearLastInput(void)

@@ -312,9 +312,14 @@ int isoddint(CALCAMNT input)
 
 static CALCAMNT ExecPower(CALCAMNT left_op, CALCAMNT right_op)
 {
-	// printf("ExecPowser %g left_op, %g right_op\n",left_op, right_op);
 	if (right_op == 0)
-		return 1L;
+		if (left_op == 0) // 0^0 not defined
+		{
+			_error = true;		
+			return 0L;
+		}
+		else
+			return 1L;
 
 	if (left_op < 0 && isoddint(1 / right_op))
 		left_op = -1L * POW((-1L * left_op), right_op);
@@ -324,7 +329,7 @@ static CALCAMNT ExecPower(CALCAMNT left_op, CALCAMNT right_op)
 	if (errno == EDOM || errno == ERANGE)
 	{
 		_error = true;
-		return 0;
+		return 0L;
 	}
 	else
 		return left_op;
@@ -643,6 +648,11 @@ void CalcEngine::Factorial(CALCAMNT input)
 
 	_last_result = _factorial(tmp_amount);
 
+}
+
+void CalcEngine::InvertSign(CALCAMNT input)
+{
+	_last_result = -input;
 }
 
 void CalcEngine::InvMod(CALCAMNT input)
