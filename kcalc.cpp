@@ -128,10 +128,10 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 		this, SLOT(slotLogicshow(bool)));
 
 
-	(void) new KAction(i18n("&Show all"), 0, this, SLOT(slotShowAll()),
+	(void) new KAction(i18n("&Show All"), 0, this, SLOT(slotShowAll()),
 			   actionCollection(), "show_all");
 
-	(void) new KAction(i18n("&Hide all"), 0, this, SLOT(slotHideAll()),
+	(void) new KAction(i18n("&Hide All"), 0, this, SLOT(slotHideAll()),
 			   actionCollection(), "hide_all");
 
 
