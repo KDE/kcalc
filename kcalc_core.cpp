@@ -452,7 +452,7 @@ void QtCalculator::EnterDecimal()
 
 	if(last_input == DIGIT)
 	{
-		if (!strpbrk(display_str,"."))
+      if (decimal_point==0)  //strpbrk() doesn't work in fixed precision mode
 		{
 			// if the last input was a DIGIT and we don't
 			// have already a period in our
@@ -460,16 +460,17 @@ void QtCalculator::EnterDecimal()
 			if (strlen(display_str) >= DSP_SIZE)
 			   return;
 
-			calc_display->setText(strcat(display_str, "."));
+         if (!kcalcdefaults.fixed)
+            calc_display->setText(strcat(display_str, "."));
 			decimal_point = 1;
 		}
 	}
 	else
 	{
 		// the last input wasn't a DIGIT so we are about to
-		// input a new number in particular we neet do display a "0.".
+		// input a new number in particular we need to display a "0.".
 
-		if (!strpbrk(display_str,"."))
+      if (decimal_point==0)  //strpbrk() doesn't work in fixed precision mode
 		{
 
 			DISPLAY_AMOUNT = 0L;
@@ -479,7 +480,8 @@ void QtCalculator::EnterDecimal()
 			//	  decimal_point = 1;
 			//	  input_count = 1;
 
-			strcpy(display_str, "0.");
+         if (!kcalcdefaults.fixed)
+            strcpy(display_str, "0.");
 			calc_display->setText(display_str);
 		}
 	}
