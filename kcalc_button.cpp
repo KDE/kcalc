@@ -29,25 +29,25 @@
 
 
 KCalcButton::KCalcButton(QWidget * parent, const char * name)
-  : KPushButton(parent, name), _inverse_mode(false), _show_accel_mode(false),
+  : KPushButton(parent, name), _show_accel_mode(false),
     _mode_flags(ModeNormal)
 {
   setAutoDefault(false);
 }
 
 KCalcButton::KCalcButton(const QString &label, QWidget * parent,
-			 const char * name)
-  : KPushButton(label, parent, name), _inverse_mode(false),
-    _show_accel_mode(false), _mode_flags(ModeNormal)
+			 const char * name, const QString &tooltip)
+  : KPushButton(label, parent, name), _show_accel_mode(false), _mode_flags(ModeNormal)
 {
   setAutoDefault(false);
-  setText(label);
+  addMode(ModeNormal, label, tooltip);
 }
 
-void KCalcButton::addMode(ButtonModeFlags mode, QString label,
-			  QString tooltip)
+void KCalcButton::addMode(ButtonModeFlags mode, QString label, QString tooltip, bool is_label_richtext)
 {
-  _mode[mode] = ButtonMode(label, tooltip);
+  Q_ASSERT( !_mode.contains(mode) );
+
+  _mode[mode] = ButtonMode(label, tooltip, is_label_richtext);
 
   // Need to put each button into default mode first
   if(mode == ModeNormal) slotSetMode(ModeNormal, true);
@@ -61,22 +61,25 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
   else  if (_mode_flags && mode) new_mode = ButtonModeFlags(_mode_flags - mode);
 
   if (_mode.contains(new_mode)) {
-    setText(_mode[new_mode].label);
+    // save accel, because setting label erases accel
+    QKeySequence _accel = accel();
+
+    if(_mode[new_mode].is_label_richtext)
+      setRichText(_mode[new_mode].label);
+    else
+      setText(_mode[new_mode].label);
     QToolTip::add(this, _mode[new_mode].tooltip);
     _mode_flags = new_mode;
-  }
-}
 
-void KCalcButton::slotSetInverseMode(bool flag)
-{
-  _inverse_mode = flag;
-  update();
+    // restore accel
+    setAccel(_accel);
+  }
 }
 
 static QString escape(QString str)
 {
   str.replace('&', "&&");
-        return str;
+  return str;
 }
 
 
@@ -86,19 +89,31 @@ void KCalcButton::slotSetAccelDisplayMode(bool flag)
 
   // save accel, because setting label erases accel
   QKeySequence _accel = accel();
+  
+  if (flag == true) {
+    setText(escape(QString(accel())));
+  } else {
+    setText(_mode[_mode_flags].label);
+  }
 
-  KPushButton::setText(escape(QString(accel())));
-  update();
-
-  // set back deleted accel
+  // restore accel
   setAccel(_accel);
 }
 
-void KCalcButton::setText(const QString &label)
+void KCalcButton::setRichText(const QString &label)
 {
   _label = "<qt type=\"page\"><center>" + label + "</center></qt>";
-  KPushButton::setText(_label);
-  update();
+}
+
+void KCalcButton::paintLabel(QPainter *paint)
+{
+  if (_mode[_mode_flags].is_label_richtext) {
+    QSimpleRichText _text(_label, font());
+    _text.draw(paint, width()/2-_text.width()/2, 0, childrenRegion(), colorGroup());
+  } else {
+    KPushButton::drawButtonLabel(paint);
+  }
+
 }
 
 void KCalcButton::drawButtonLabel(QPainter *paint)
@@ -108,11 +123,8 @@ void KCalcButton::drawButtonLabel(QPainter *paint)
   } else if(pixmap()) {
     KPushButton::drawButtonLabel(paint);
     return;
-  } else {
-    if (_inverse_mode == false) {
-      QSimpleRichText _text(_label, font());
-      _text.draw(paint, width()/2-_text.width()/2, 0, childrenRegion(), colorGroup());
-    }
+  } else if (_mode.contains(_mode_flags)) {
+    paintLabel(paint);
   }
 }
 

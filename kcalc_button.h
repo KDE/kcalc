@@ -26,6 +26,13 @@
 
 #include <kpushbutton.h>
 
+// The class KCalcButton is an overriden KPushButton. It offers extra
+// functionality e.g. labels can be richtext or the accels can be
+// shown in the label, but the most important thing is that the button
+// may have several modes with corresponding labels. When one switches
+// modes, the corresponding label is displayed.
+
+
 typedef enum {ModeNormal = 0, ModeInverse = 1, ModeHyperbolic = 2} ButtonModeFlags;
 
 class QDomNode;
@@ -36,10 +43,11 @@ class ButtonMode
 {
 public:
   ButtonMode(void) {};
-  ButtonMode(QString &label, QString &tooltip)
-    : label(label), tooltip(tooltip) { };
+  ButtonMode(QString &label, QString &tooltip, bool is_label_richtext)
+    : label(label), is_label_richtext(is_label_richtext), tooltip(tooltip) { };
 
   QString label;
+  bool is_label_richtext;
   QString tooltip;
 };
 
@@ -50,14 +58,14 @@ Q_OBJECT
 
 public:
  KCalcButton(QWidget *parent, const char * name = 0); 
- KCalcButton(const QString &label, QWidget *parent, const char * name = 0);
+ KCalcButton(const QString &label, QWidget *parent, const char * name = 0,
+	     const QString &tooltip = QString());
 
- void addMode(ButtonModeFlags mode, QString label, QString tooltip);
+ void addMode(ButtonModeFlags mode, QString label, QString tooltip, bool is_label_richtext = false);
 
- virtual void setText(const QString &label);
+ virtual void setRichText(const QString &label);
  
 public slots: 
-  void slotSetInverseMode(bool flag);
   void slotSetMode(ButtonModeFlags mode, bool flag); 
   void slotSetAccelDisplayMode(bool flag);
 
@@ -65,7 +73,8 @@ protected:
  virtual void drawButtonLabel(QPainter *paint);
 
 private:
- bool _inverse_mode;
+ void paintLabel(QPainter *paint);
+
  bool _show_accel_mode;
  QString _label;
 

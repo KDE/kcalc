@@ -1,3 +1,7 @@
+2004-05-16 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Refactored a bit the kcalc_button code. In particular use Richtext only, when needed (a bit faster,
+	  but a lot still to be done).
+	
 2004-05-04 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Masked "&" for the label of the AND button, when displaying the corresponding accel.
 	  Thanks to Sigrid from Trolltech.
