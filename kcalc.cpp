@@ -653,7 +653,7 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	connect(pbMR, SIGNAL(clicked(void)), SLOT(slotMRclicked(void)));
         pbMR->setDisabled(true); // At start, there is nothing in memory
 
-	pbMPlusMinus = new KCalcButton("M\xb1", mLargePage, "MPlusMinus-Button");
+	pbMPlusMinus = new KCalcButton("M" "\xb1", mLargePage, "MPlusMinus-Button");
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbMPlusMinus, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(pbMPlusMinus,SIGNAL(clicked(void)),SLOT(slotMPlusMinusclicked(void)));
@@ -886,8 +886,8 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
 
 	tmp_pb = new KCalcButton(parent, "Stat.NumData-Button");
 	tmp_pb->addMode(ModeNormal, "N", i18n("Number of data entered"));
-	tmp_pb->addMode(ModeInverse, QString::fromUtf8("Σx"),
-			i18n("Sum of all data items"));
+	tmp_pb->addMode(ModeInverse, QString::fromUtf8("\xce\xa3")
+			+ "x", i18n("Sum of all data items"));
 	pbStat.insert("NumData", tmp_pb);
         mStatButtonList.append(tmp_pb);
 	connect(this, SIGNAL(switchShowAccels(bool)),
@@ -907,7 +907,8 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
 
 	tmp_pb = new KCalcButton(parent, "Stat.Mean-Button");
 	tmp_pb->addMode(ModeNormal, "Mea", i18n("Mean"));
-	tmp_pb->addMode(ModeInverse, QString::fromUtf8("Σx<sup>2</sup>"),
+	tmp_pb->addMode(ModeInverse, QString::fromUtf8("\xce\xa3")
+			+ "x<sup>2</sup>",
 			i18n("Sum of all data items squared"), true);
 	pbStat.insert("Mean", tmp_pb);
         mStatButtonList.append(tmp_pb);
@@ -2280,8 +2281,10 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
 	aboutData.addAuthor("Chris Howells", 0, "howells@kde.org");
 	aboutData.addAuthor("Aaron J. Seigo", 0, "aseigo@olympusproject.org");
 	aboutData.addAuthor("Charles Samuels", 0, "charles@altair.dhs.org");
-	aboutData.addAuthor("Klaus Niederkrüger", 0, "kniederk@math.uni-koeln.de");
-	aboutData.addAuthor("René Mérou", 0, "ochominutosdearco@yahoo.es");
+	/* Klaus Niederkrueger */
+	aboutData.addAuthor("Klaus Niederkr" "\xc3\xbc" "ger", 0, "kniederk@math.uni-koeln.de");
+	/* Rene Merou */
+	aboutData.addAuthor("Ren" "\xc3\xa9" " M" "\xc3xa9"  "rou", 0, "ochominutosdearco@yahoo.es");
 	KCmdLineArgs::init(argc, argv, &aboutData);
 
 	KApplication app;
