@@ -11,8 +11,6 @@ INCLUDES= $(all_includes)
 LDFLAGS = $(all_libraries) $(KDE_RPATH)
 LDADD   = $(LIB_KDEUI) -lm
 
-SUBDIRS = doc
-
 pics_DATA = kcalclogo.xpm
 picsdir = $(kde_datadir)/kcalc/pics
 
