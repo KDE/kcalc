@@ -5,7 +5,6 @@
     
     Copyright (C) 1996-2000 Bernd Johannes Wuebben 
                             wuebben@kde.org
-                            wuebben@math.cornell.edu
               
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -1642,14 +1641,14 @@ void QtCalculator::readSettings()
 
   QString str;
 
-  KConfig *config = kapp->config();
+  KConfig *config = KGlobal::config();
   config->setGroup( "Font" );
     
   kcalcdefaults.font = config->readFontEntry("Font",
 	new QFont("helvetica",16,QFont::Bold));
 
   config->setGroup("Colors");
-  QColor tmpC(189, 255, 222);
+  QColor tmpC(189, 255, 180);
   QColor blackC(0,0,0);
 
   kcalcdefaults.forecolor = config->readColorEntry("ForeColor",&blackC);
@@ -1675,7 +1674,7 @@ void QtCalculator::readSettings()
 void QtCalculator::writeSettings()
 {
 
-  KConfig *config = kapp->config();		
+  KConfig *config = KGlobal::config();		
   
   config->setGroup( "Font" );
   config->writeEntry("Font",kcalcdefaults.font);
@@ -1722,7 +1721,6 @@ void QtCalculator::display_selected(){
     CALCAMNT result;
     const char *text = cb->text().ascii();
     result = (CALCAMNT) strtod( text?text:"0",0);
-    //    printf("%Lg\n",result);
     last_input = PASTE;
     DISPLAY_AMOUNT = result;
     UpdateDisplay();
@@ -1732,12 +1730,9 @@ void QtCalculator::display_selected(){
 
 void QtCalculator::selection_timed_out(){
 
-  //  printf("selection timed out\n");
   selection_timer->stop();
   calc_display->setLit(FALSE);
   invertColors();
-
-
 }
 
 
@@ -1770,7 +1765,6 @@ void QtCalculator::invertColors(){
   }
   else{
     set_colors();
-    //printf("normal Colors\n");
   }
 }
 
@@ -1837,7 +1831,6 @@ void QtCalculator::temp_stack_next(){
     return;
   }
   else{
-    //    printf("Number: %Lg\n",*number);
     last_input = RECALL;
     DISPLAY_AMOUNT = *number;
     UpdateDisplay();

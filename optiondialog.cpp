@@ -120,9 +120,9 @@ void ConfigureDialog::setupSettingPage( void )
   
   QGridLayout *topLayout = new QGridLayout( page, 9, 2, 0, spacingHint() );
   
-  QLabel *label = new QLabel( i18n("Foregrond color"), page );
+  QLabel *label = new QLabel( i18n("Foreground color:"), page );
   topLayout->addWidget( label, 0, 0 );
-  label = new QLabel( i18n("Backgrond color"), page );
+  label = new QLabel( i18n("Background color:"), page );
   topLayout->addWidget( label, 1, 0 );
 
   mFgColor = new KColorButton( page );
@@ -134,7 +134,7 @@ void ConfigureDialog::setupSettingPage( void )
 
   topLayout->addRowSpacing( 2, spacingHint() );
 
-  label = new QLabel( i18n("Precision"), page );
+  label = new QLabel( i18n("Precision:"), page );
   topLayout->addWidget( label, 3, 0 );
   mFixCheck = new QCheckBox( page );
   mFixCheck->setText(i18n("Set fixed precision") );
@@ -205,7 +205,6 @@ void ConfigureDialog::setupAboutPage( void )
   QString authorText = i18n(""
     "KCalc %1\n"
     "Bernd Johannes Wuebben\n"
-    "wuebben@math.cornell.edu\n"
     "wuebben@kde.org\n"
     "Copyright (C) 1996-98").arg(KCALCVERSION);
   
