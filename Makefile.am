@@ -22,10 +22,9 @@ picsdir = $(kde_datadir)/kcalc/pics
 
 KDE_ICON = kcalc
 
-apps_DATA = kcalc.desktop
-appsdir = $(kde_appsdir)/Utilities
+xdg_apps_DATA = kcalc.desktop
 
-EXTRA_DIST = $(pics_DATA) $(apps_DATA) 
+EXTRA_DIST = $(pics_DATA) $(xdg_apps_DATA) 
 
 messages:
 	$(XGETTEXT) *.cpp -o $(podir)/kcalc.pot
