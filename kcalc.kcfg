@@ -103,30 +103,16 @@ int maxPrecision = 12;
       <default>false</default>
     </entry>
   </group>
-  <group name="Constants">
-	<entry name="nameConstant1" type="String">
-	<label>Name of the first user programmable constant.</label>
-	<default>Pi</default>
-	</entry>
-	<entry name="nameConstant2" type="String">
-	<label>Name of the second user programmable constant.</label>
-	<default>C2</default>
-	</entry>
-	<entry name="nameConstant3" type="String">
-	<label>Name of the third user programmable constant.</label>
-	<default>C3</default>
-	</entry>
-	<entry name="nameConstant4" type="String">
-	<label>Name of the fourth user programmable constant.</label>
-	<default>C4</default>
-	</entry>
-	<entry name="nameConstant5" type="String">
-	<label>Name of the fifth user programmable constant.</label>
-	<default>C5</default>
-	</entry>
-	<entry name="nameConstant6" type="String">
-	<label>Name of the sixth user programmable constant.</label>
-	<default>C6</default>
+  <group name="UserConstants">
+	<entry name="nameConstant$(ConstIndex)" type="String" key="nameConstant$(ConstIndex)">
+	<label>Name of the user programmable constants.</label>
+	<parameter name="ConstIndex" type="Int" max="5"/>
+	<default param="0">C1</default>
+	<default param="1">C2</default>
+	<default param="2">C3</default>
+	<default param="3">C4</default>
+	<default param="4">C5</default>
+	<default param="5">C6</default>
 	</entry>
 
 	<entry name="valueUserConstants" type="StringList">

@@ -1,4 +1,7 @@
 2004-12-03 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* understood how kconfigxt handles indexed configuration options
+
+2004-12-03 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* moving through history is now done via undo/redo
 	  this implements wish BUG 93938
 	

@@ -52,7 +52,7 @@
                         </property>
                         <widget class="QLineEdit">
                             <property name="name">
-                                <cstring>kcfg_nameConstant1</cstring>
+                                <cstring>kcfg_nameConstant0</cstring>
                             </property>
                             <property name="maxLength">
                                 <number>6</number>
@@ -115,7 +115,7 @@
                         </property>
                         <widget class="QLineEdit">
                             <property name="name">
-                                <cstring>kcfg_nameConstant2</cstring>
+                                <cstring>kcfg_nameConstant1</cstring>
                             </property>
                             <property name="maxLength">
                                 <number>6</number>
@@ -178,7 +178,7 @@
                         </property>
                         <widget class="QLineEdit">
                             <property name="name">
-                                <cstring>kcfg_nameConstant3</cstring>
+                                <cstring>kcfg_nameConstant2</cstring>
                             </property>
                             <property name="maxLength">
                                 <number>6</number>
@@ -241,7 +241,7 @@
                         </property>
                         <widget class="QLineEdit">
                             <property name="name">
-                                <cstring>kcfg_nameConstant4</cstring>
+                                <cstring>kcfg_nameConstant3</cstring>
                             </property>
                             <property name="maxLength">
                                 <number>6</number>
@@ -304,7 +304,7 @@
                         </property>
                         <widget class="QLineEdit">
                             <property name="name">
-                                <cstring>kcfg_nameConstant5</cstring>
+                                <cstring>kcfg_nameConstant4</cstring>
                             </property>
                             <property name="maxLength">
                                 <number>6</number>
@@ -367,7 +367,7 @@
                         </property>
                         <widget class="QLineEdit">
                             <property name="name">
-                                <cstring>kcfg_nameConstant6</cstring>
+                                <cstring>kcfg_nameConstant5</cstring>
                             </property>
                             <property name="maxLength">
                                 <number>6</number>
