@@ -34,8 +34,11 @@
 #include <limits.h>
 #include <math.h>
 #include <signal.h>
+
 #include <kapp.h>
 #include <klocale.h>
+#include <kmessagebox.h>
+
 #include "kcalc.h"
 
 // Undefine HAVE_LONG_DOUBLE for Beta 4 since RedHat 5.0 comes with a borken
@@ -1547,7 +1550,7 @@ void QtCalculator::UpdateDisplay()
 
 	if (display_error || str_size < 0) { 
 	  display_error = 1;
-	  strcpy(display_str,"Error");
+	  strcpy(display_str, i18n("Error"));
 	  if(kcalcdefaults.beep)
 	    QApplication::beep();
 	}
@@ -1628,26 +1631,21 @@ int UpdateStack(int run_precedence)
 		return_value = 1;
 
 		if ((top_item = PopStack())->s_item_type != ITEM_AMOUNT){
-		  QMessageBox::critical(0L, i18n("Error"), 
-					i18n("Stack processing error - right_op"), i18n("OK") );
+		  KMessageBox::error(0L, i18n("Stack processing error - right_op"));
 
 		}
 		right_op = top_item->s_item_data.item_amount;
 
 		if (!((top_item = PopStack()) && 
-		top_item->s_item_type == ITEM_FUNCTION)) {
-		  QMessageBox::critical(0L, i18n("Error"), 
-					i18n("Stack processing error - function"), i18n("OK") );
+		top_item->s_item_type == ITEM_FUNCTION))
+		  KMessageBox::error(0L, i18n("Stack processing error - function") );
 
-		}
 		op_function = 
 			top_item->s_item_data.item_func_data.item_function;	
 
-		if (!((top_item = PopStack()) && 
-		top_item->s_item_type == ITEM_AMOUNT)) {
-		  QMessageBox::critical(0L, i18n("Error"), 
-					i18n("Stack processing error - left_op"), i18n("OK") );
-		}
+		if (!((top_item = PopStack()) && top_item->s_item_type == ITEM_AMOUNT))
+		  KMessageBox::error(0L, i18n("Stack processing error - left_op") );
+
 		left_op = top_item->s_item_data.item_amount;
 	
 		new_item.s_item_data.item_amount = 
@@ -1950,17 +1948,13 @@ stack_ptr AllocStackItem (void) {
 		return &process_stack[stack_next++];
 	}
 
-	QMessageBox::critical(0L, i18n("Emergency"), i18n("Stack Error!"), i18n("OK") );
+	KMessageBox::error(0L, i18n("Stack Error!") );
 	return &process_stack[stack_next];
 }
 
 void UnAllocStackItem (stack_ptr return_item) {
-
-	if (return_item != &process_stack[--stack_next]) {
-	
-	  QMessageBox::critical(0L, i18n("Emergency"), i18n("Stack Error!"), i18n("OK") );
-	}	
-
+	if (return_item != &process_stack[--stack_next])
+	  KMessageBox::error(0L, i18n("Stack Error!") );
 }
 void PushStack(item_contents *add_item) 
 {
@@ -2056,5 +2050,3 @@ void InitStack (void) {
 	stack_last = STACK_SIZE - 1;
 	top_of_stack = top_type_stack[0] = top_type_stack[1] = NULL;
 }
-
-	
