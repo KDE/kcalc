@@ -1,0 +1,72 @@
+hello.
+i'm running KDE on an alpha ev56 500Mhz. i'm running digital
+unix, OSF1 V4.0. i'm compiling the alpha 1.1 kde, and got some
+compilation errors when i compiled kcalc. it seems you call
+isinf(), which returns true if the number is inifinty. well, the
+problem is that there is no isinf() on my system. however, after
+a bit of looking, i found finite(), which appears to be the
+inverse of isinf(). i changed the following code:
+
+        (in the original code, !finite(work_amount1) was coded as
+        is_inf(work_amount1))
+        (in kcalc_core.cpp)
+   622          while (work_amount1 != 0 && work_amount2 != 0 &&
+!display_error) {
+   623                  work_amount1 *= work_amount2;
+   624                  work_amount2 -= incr;
+   625                  if(!finite(work_amount1)) {
+   626                    display_error=1;
+   627                     break;
+   628                  }
+   629          }
+ 
+
+
+the other thing i ran into, is i would get 'Error' when i tried
+to enter any binary number. kcalc_core.cpp has a routine called
+cvb() that converts a number to a binary string. part of this
+code is: bit_mask >>= 1; for some reason (i didn't delve into the
+system man pages), that bit shift didn't shift in a zero from the
+left, so my mask was growing as:
+80000000
+c0000000
+e0000000
+f0000000
+f8000000
+etc...
+
+so to fix it (and this probably isn't the best fix, but it
+works), i added the line as follows: 
+
+  1579          while (bit_mask) {
+  1580  
+  1581                  if (amount & bit_mask) {
+  1582                          if (lead_one)
+  1583                                  lead_one_count++;
+  1584                          lead_zero = 0;
+  1585                          work_str[work_char++] = '1';
+  1586                  } else {
+  1587                          lead_one = 0;
+  1588                          if (!lead_zero) 
+  1589                                  work_str[work_char++] =
+'0';
+  1590                  }
+  1591                  bit_mask >>= 1;
+  1592                  bit_mask &= 0x7fffffff; //added this line
+to get rid of leading 1
+  1593          }
+
+
+
+thanks a ton.
+i use kcalc constantly every day...
+
+nall.
+
+
+-- 
+jonathan n. nall
+nall@pa.dec.com
+650-853-6508
+DTN: 543-6508
+
