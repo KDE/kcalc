@@ -348,15 +348,23 @@ void KCalcDisplay::setText(QString const &string)
 		// Obtain decimal symbol and thousands separator
 		QString decimalSymbol = KGlobal::locale()->decimalSymbol();
 		QString thousandsSeparator = KGlobal::locale()->thousandsSeparator();
-	
 		// Replace dot with locale decimal separator
 		localizedString.replace(QChar('.'),decimalSymbol);
 	
 		// Insert the thousand separators
-		int i = localizedString.find(decimalSymbol) != -1? localizedString.find(decimalSymbol)-1: localizedString.length()-1;
-		for(int j=1;i>0;i--,j++)
-			if (j%3 == 0)
-				localizedString.insert(i,thousandsSeparator);
+                int decimalSymbolPos = localizedString.find(decimalSymbol);
+                int eSymbolPos = localizedString.find('e');
+                
+                if (-1 == decimalSymbolPos)
+                    decimalSymbolPos = localizedString.length();
+                if (-1 == eSymbolPos)
+                    eSymbolPos = localizedString.length();
+                
+                int pos = QMIN((decimalSymbolPos - 1), (eSymbolPos-1));
+                
+		for(int index=1;pos>0;pos--,index++)
+			if (index%3 == 0)
+				localizedString.insert(pos,thousandsSeparator);
 	}
 
 	QLabel::setText(localizedString);
