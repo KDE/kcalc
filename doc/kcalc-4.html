@@ -1,0 +1,50 @@
+<HTML>
+<HEAD>
+<TITLE>The KCalc Handbook: Questions and Answers</TITLE>
+</HEAD>
+<BODY>
+<A HREF="kcalc-3.html">Previous</A>
+Next
+<A HREF="kcalc.html#toc4">Table of Contents</A>
+<HR>
+<H2><A NAME="s4">4. Questions and Answers</A></H2>
+
+
+<H2><A NAME="ss4.1">4.1 What about Precision?</A></H2>
+
+<P>The main factor determining the precision of kcalc is whether your libc libmath
+support the C data type <CODE>long double</CODE>. If this is the case, kcalc will detect this
+at compile time and use it as it's fundamental data type to represent numbers.</P>
+
+<P>Nevertheless you will be able to observe some "interesting" results when trying
+to execute computations such as: 123.22 - 123.21; 2.01 - 2; 123.88 - 123.87 and
+similar. If you think this is bad I ask you to do the same computation on 
+the windows calculator. You will be in for a good laugh.</P>
+
+
+<P>The qualitiy of the results of these computations are directly
+determined by quality of your libc (printf formatting) and libmath (the math routines). 
+There is nothing I can do to improve the precision of kcalc and to get rid of the
+strange results such as the above mentioned 2.01 - 2. If you think all you need
+to do is to round the 2nd digit past the last visible one -- think again. 
+It won't work, at least not on Linux. I have tried everything I could think of
+in order to get this to work. I was unable to get it to work and made many horrible discoveries with regard to the quality of libmath
+and the printf formatting routines. Nevertheless I would love for you
+to prove me wrong and send me a solution that will work ( hopefully across
+different platforms )</P>
+
+
+<P>In future version I will
+give the user an options to specify the precision with which kcalc is to
+display the results in the display window. This way the user can adjust
+things in such a fashion that he will not longer see funny results such as
+2.01 - 2 = 0.0999999999999999.</P>
+
+
+
+<HR>
+<A HREF="kcalc-3.html">Previous</A>
+Next
+<A HREF="kcalc.html#toc4">Table of Contents</A>
+</BODY>
+</HTML>

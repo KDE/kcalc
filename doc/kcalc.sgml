@@ -1,0 +1,144 @@
+<!doctype linuxdoc system>
+
+<!-- The KCalc Handbook.
+
+ -->
+
+<article>
+
+<!-- Title information -->
+
+<title>The KCalc Handbook
+<author>Bernd Johannes Wuebben, <tt/wuebben@kde.org/
+<date>Version 0.2.2, 24 July 1997
+<abstract>This Handbook describes KCalc Version 0.2.2
+
+<!-- Table of contents -->
+<toc>
+
+<!-- Begin the document -->
+
+
+<sect>Introduction<p>
+This is release 2.2 of kcalc. Although I think that this  version is
+already quite useful, some important functionality is yet to be 
+implemented -- most notably EE mode. 
+Apart from some of the KeyAccels, usage is completely straightforward. 
+
+Have fun with KCalc!
+
+<p>
+<tt>Bernd Johannes Wuebben</tt>
+
+<p>
+<htmlurl url="mailto:wuebben@kde.org" name="wuebben@kde.org"><p>
+<htmlurl url="mailto:wuebben@math.cornell.edu" name="wuebben@math.cornell.edu">
+
+
+<sect>Installation
+<p>
+<sect1>How to obtain KCalc
+<p>
+KCalc is part  of the KDE project <url url="http://www.kde.org">.
+KCalc can be found on <url url="ftp://ftp.kde.org/pub/kde/">, the main ftp site
+of the KDE project. It's home site is
+<htmlurl url="http://math.cornell.edu/~wuebben/kde.html" name="http://math.cornell.edu/~wuebben/kde.html">
+
+<sect1>Requirements
+<p>
+In order to successfully compile KCalc, you need the latest versions of <tt> libkdecore</tt>
+. All required libraries as well as KCalc itself can be found
+on <url url="ftp://ftp.kde.org/pub/kde/">. 
+
+
+
+
+<sect1>Compilation and installation
+<p>
+
+The usual:
+
+<tscreen><verb>
+% ./configure
+% make
+% make install
+</verb></tscreen>
+
+
+Should you run into problems please report them to me.
+<p>
+
+<sect> Usage <p>
+<sect1> General Usage
+<p>
+Completely straigth forward. But I will have to say something about how
+to use the percent operation. It is non-standard. (TODO)
+<sect1>Command Line Options
+<p>
+
+<sect1>Key Accels<p>
+(TODO): This list is incomplete 
+
+<tscreen><verb>
+ALT + d    set trig-mode to deg
+ALT + r    set trig-mode to rad
+ALT + g    set trig-mode to grad
+ALT + e    set radix to decimal
+ALT + o    set radix to octal
+ALT + b    set radix to binary
+s          Sin 
+o          Cos 
+t          Tan
+i          Inv inverse, e.g. if you want arcsin(x) type i s 
+\          +/- 
+[          ^2 
+^          x^y 
+=          = 
+r          1/x r for reciproc 
+Enter      = 
+Return     = 
+Backspace  CA 
+Del        CA 
+Esc        C 
+h          Hyp (Hyperbolic) as e.g in Hyp Sin , the sinh(x) 
+</verb></tscreen>
+
+
+
+
+<sect>Questions and Answers<p>
+<sect1>What about Precision?<p>
+The main factor determining the precision of kcalc is whether your libc libmath
+support the C data type <tt>long double</tt>. If this is the case, kcalc will detect this
+at compile time and use it as it's fundamental data type to represent numbers.
+<p>
+
+Nevertheless you will be able to observe some "interesting" results when trying
+to execute computations such as: 123.22 - 123.21; 2.01 - 2; 123.88 - 123.87 and
+similar. If you think this is bad I ask you to do the same computation on 
+the windows calculator. You will be in for a good laugh.
+
+<p>
+
+The qualitiy of the results of these computations are directly
+determined by quality of your libc (printf formatting) and libmath (the math routines). 
+There is nothing I can do to improve the precision of kcalc and to get rid of the
+strange results such as the above mentioned 2.01 - 2. If you think all you need
+to do is to round the 2nd digit past the last visible one -- think again. 
+It won't work, at least not on Linux. I have tried everything I could think of
+in order to get this to work. I was unable to get it to work and made many horrible discoveries with regard to the quality of libmath
+and the printf formatting routines. Nevertheless I would love for you
+to prove me wrong and send me a solution that will work ( hopefully across
+different platforms )
+
+<p>
+
+In future version I will
+give the user an options to specify the precision with which kcalc is to
+display the results in the display window. This way the user can adjust
+things in such a fashion that he will not longer see funny results such as
+2.01 - 2 = 0.0999999999999999.
+
+<p>
+</article>
+
