@@ -1013,7 +1013,7 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
 
 	// add menu with scientific constants
 	KCalcConstMenu *tmp_menu = new KCalcConstMenu(this);
-	menuBar()->insertItem(i18n("&Constants"), tmp_menu);
+	menuBar()->insertItem(i18n("&Constants"), tmp_menu, -1, 2);
 	connect(tmp_menu, SIGNAL(activated(int)), this,
 		SLOT(slotConstantToDisplay(int)));
 }
