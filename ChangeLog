@@ -1,3 +1,8 @@
+2003-10-14 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* RadioButtons for Base and Angle converted to PopUpMenu+Button
+	* Layout changed
+	* Moved ENTER form keyPressedEvent to Accel()
+
 2003-10-10 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Number buttons look like numeric keyboard (on US-keyboards that is)
 	* Initialize ToggleActions correctly

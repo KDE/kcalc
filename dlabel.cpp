@@ -37,31 +37,6 @@ DispLogic::~DispLogic()
 {
 }
 
-int DispLogic::set_base(int number)
-{
-	NumBase num_base;
-
-  	switch(number)
-	{
-	case 0:
-		num_base	= NB_HEX;
-		break;
-	case 1:
-		num_base	= NB_DECIMAL;
-		break;
-	case 2:
-		num_base	= NB_OCTAL;
-		break;
-	case 3:
-		num_base	= NB_BINARY;
-		break;
-	default: // we shouldn't ever end up here
-		num_base	= NB_DECIMAL;
-	}
-
-	return setBase(num_base);
-}
-
 void DispLogic::changeSettings()
 {
 	QPalette pal = palette();

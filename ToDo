@@ -1,3 +1,6 @@
 == ToDo ==
 * find a real fix  for cos 90 != 0 bug (only in double version of compile)
 
+* get rid of dlabel.h & dlabel.cpp
+* use try/throw for errors instead of C-style
+

@@ -149,8 +149,8 @@ private:
     QWidget *mNumericPage;
 
     DispLogic*	calc_display; // for historic reasons in "dlabel.h"
-    QRadioButton*	anglebutton[3];
-    QRadioButton*	basebutton[4];
+    QPushButton*        pbBaseChoose;
+    QPushButton*        pbAngleChoose;
     QPushButton*        pbHyp;
     QPushButton* 	pbEE;
     QPushButton* 	pbPi;
@@ -190,8 +190,6 @@ private:
     QPushButton*        pbStatMedian;
     QPushButton*        pbStatDataInput;
     QPushButton*        pbStatClearData;
-    QButtonGroup*	angle_group;
-    QButtonGroup*	base_group;
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
     QButtonGroup*       NumButtonGroup;
 

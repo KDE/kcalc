@@ -47,7 +47,6 @@ public:
 	void EnterDigit(int data);
 	bool history_next(void);
 	bool history_prev(void);
-	int set_base(int number);
 	void update_from_core(CalcEngine const &core,
 			      bool store_result_in_history = false);
 

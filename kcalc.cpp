@@ -108,45 +108,37 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// This is not a nice solution.
 	toolBar()->close();
 
-	// Create Number Base Button Group
-	base_group = new QButtonGroup(4, Horizontal,  central, "base");
-	base_group->setTitle(i18n("Base"));
-	connect(base_group, SIGNAL(clicked(int)), SLOT(slotBaseSelected(int)));
+	// Create Button to select BaseMode
+	pbBaseChoose =  new QPushButton(i18n("&Base"),
+					central, "ChooseBase-Button");
+	QToolTip::add(pbBaseChoose, i18n("???"));
+	pbBaseChoose->setAutoDefault(false);
 
-	basebutton[0] = new QRadioButton(base_group);
-	basebutton[0]->setText("He&x");
-	QToolTip::add(basebutton[0], i18n("Hexadecimal"));
+	KPopupMenu *base_menu = new KPopupMenu(pbBaseChoose, "Base-Selection-Menu");
+	connect(base_menu, SIGNAL(activated(int)), SLOT(slotBaseSelected(int)));
+	base_menu->insertItem(i18n("Hexadecimal"), 16);
+	base_menu->insertItem(i18n("Decimal"), 10);
+	base_menu->insertItem(i18n("Octal"),  8);
+	base_menu->insertItem(i18n("Binary"),  2);
 
-	basebutton[1] = new QRadioButton(base_group);
-	basebutton[1]->setText("&Dec");
-	QToolTip::add(basebutton[1], i18n("Decimal"));
-	basebutton[1]->setChecked(true);
+	pbBaseChoose->setPopup(base_menu);
 
-	basebutton[2] = new QRadioButton(base_group);
-	basebutton[2]->setText("&Oct");
-	QToolTip::add(basebutton[2], i18n("Octal"));
 
-	basebutton[3] = new QRadioButton(base_group);
-	basebutton[3]->setText("&Bin");
-	QToolTip::add(basebutton[3], i18n("Binary"));
+	// Create Button to select AngleMode
+	pbAngleChoose =  new QPushButton(i18n("&Angle"),
+					 central, "ChooseAngleMode-Button");
+	QToolTip::add(pbAngleChoose, i18n("???"));
+	pbAngleChoose->setAutoDefault(false);
 
-	// create angle button group
-	angle_group = new QButtonGroup(3, Horizontal, central, "angle");
-	angle_group->setTitle(i18n( "Angle") );
-	connect(angle_group, SIGNAL(clicked(int)), SLOT(slotAngleSelected(int)));
+	base_menu = new KPopupMenu(pbAngleChoose, "AngleMode-Selection-Menu");
+	connect(base_menu, SIGNAL(activated(int)), SLOT(slotAngleSelected(int)));
+	base_menu->insertItem(i18n("Degrees"), 0);
+	base_menu->insertItem(i18n("Radians"), 1);
+	base_menu->insertItem(i18n("Gradians"), 2);
 
-	anglebutton[0] = new QRadioButton(angle_group);
-	anglebutton[0]->setText("D&eg");
-	QToolTip::add(anglebutton[0], i18n("Degrees"));
-	anglebutton[0]->setChecked(true);
+	pbAngleChoose->setPopup(base_menu);
 
-	anglebutton[1] = new QRadioButton(angle_group);
-	anglebutton[1]->setText("&Rad");
-	QToolTip::add(anglebutton[1], i18n("Radians"));
 
-	anglebutton[2] = new QRadioButton(angle_group);
-	anglebutton[2]->setText("&Gra");
-	QToolTip::add(anglebutton[2], i18n("Gradians"));
 
 	pbInv = new QPushButton("Inv", central, "Inverse-Button");
 	QToolTip::add(pbInv, i18n("Inverse mode"));
@@ -301,26 +293,25 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	//
 	QGridLayout *smallBtnLayout = new QGridLayout(mSmallPage, 6, 5, 0,
 		mInternalSpacing);
-	QGridLayout *largeBtnLayout = new QGridLayout(mLargePage, 5, 6, 0,
+	QGridLayout *largeBtnLayout = new QGridLayout(mLargePage, 5, 2, 0,
 		mInternalSpacing);
 
 	QHBoxLayout *topLayout		= new QHBoxLayout();
-	QHBoxLayout *radioLayout	= new QHBoxLayout();
 	QHBoxLayout *btnLayout		= new QHBoxLayout();
 
 	// bring them all together
 	QVBoxLayout *mainLayout = new QVBoxLayout(central, mInternalSpacing,
 		mInternalSpacing);
 
-	mainLayout->addLayout(topLayout );
-	mainLayout->addLayout(radioLayout, 1);
+	mainLayout->addLayout(topLayout);
 	mainLayout->addLayout(btnLayout);
 
 	// button layout
 	btnLayout->addWidget(mSmallPage, 0, AlignTop);
-	btnLayout->addSpacing(mInternalSpacing);
-	btnLayout->addWidget(mLargePage, 0, AlignTop);
+	btnLayout->addSpacing(2*mInternalSpacing);
 	btnLayout->addWidget(mNumericPage, 0, AlignTop);
+	btnLayout->addSpacing(2*mInternalSpacing);
+	btnLayout->addWidget(mLargePage, 0, AlignTop);
 
 	// small button layout
 	smallBtnLayout->addWidget(pbStatNum, 0, 0);
@@ -379,20 +370,11 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	largeBtnLayout->addWidget(pbMC, 4, 0);
 	largeBtnLayout->addWidget(pbPlusMinus, 4, 1);
 
-	largeBtnLayout->addColSpacing(0,10);
-	largeBtnLayout->addColSpacing(1,10);
-	largeBtnLayout->addColSpacing(2,10);
-	largeBtnLayout->addColSpacing(3,10);
-	largeBtnLayout->addColSpacing(4,10);
-
-
 	// top layout
+	topLayout->addWidget(pbAngleChoose);
+	topLayout->addWidget(pbBaseChoose);
+	topLayout->addWidget(pbInv);
 	topLayout->addWidget(calc_display, 10);
-
-	// radiobutton layout
-	radioLayout->addWidget(base_group);
-	radioLayout->addWidget(angle_group);
-	radioLayout->addWidget(pbInv);
 
 	mFunctionButtonList.append(pbHyp);
 	mFunctionButtonList.append(pbInv);
@@ -446,8 +428,9 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	calc_display->changeSettings();
 	set_precision();
 
-	basebutton[1]->animateClick();
-	anglebutton[0]->animateClick();
+	// Switch to decimal
+	slotBaseSelected(10);
+	slotAngleSelected(0);
 
 	updateGeometry();
 	setFixedSize(minimumSize());
@@ -618,6 +601,12 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	pbEqual = new QPushButton("=", thisPage, "Equal-Button");
 	QToolTip::add(pbEqual, i18n("Result"));
 	pbEqual->setAutoDefault(false);
+	accel()->insert("Entered Equal", i18n("Pressed Equal-Button"),
+			0, Qt::Key_Equal, pbEqual, SLOT(animateClick()));
+	accel()->insert("Entered Return", i18n("Pressed Equal-Button"),
+			0, Qt::Key_Return, pbEqual, SLOT(animateClick()));
+	accel()->insert("Entered Enter", i18n("Pressed Equal-Button"),
+			0, Qt::Key_Enter, pbEqual, SLOT(animateClick()));
 	connect(pbEqual, SIGNAL(clicked(void)), SLOT(slotEqualclicked(void)));
 
 
@@ -821,7 +810,8 @@ void KCalculator::updateGeometry(void)
 void KCalculator::slotBaseSelected(int base)
 {
 	// set_display
-	int current_base = calc_display->set_base(base);
+	int current_base = calc_display->setBase(NumBase(base));
+	Q_ASSERT(current_base == base);
 
 	// Enable the buttons not available in this base
 	for (int i=0; i<current_base; i++)
@@ -911,11 +901,6 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 	case Key_Period:
 	case Key_Comma:
 		pbPeriod->animateClick();
-		break;
-	case Key_Equal:
-	case Key_Return:
-	case Key_Enter:
-		pbEqual->animateClick();
 		break;
 	case Key_Percent:
 		pbPercent->animateClick();
@@ -1464,7 +1449,7 @@ void KCalculator::slotTrigshow(bool toggled)
 		pbSin->show();
 		pbCos->show();
 		pbTan->show();
-		angle_group->show();
+		pbAngleChoose->show();
 	}
 	else
 	{
@@ -1472,7 +1457,7 @@ void KCalculator::slotTrigshow(bool toggled)
 		pbSin->hide();
 		pbCos->hide();
 		pbTan->hide();
-		angle_group->hide();
+		pbAngleChoose->hide();
 	}
 }
 
@@ -1498,7 +1483,7 @@ void KCalculator::slotLogicshow(bool toggled)
 		pbOR->show();
 		pbNegate->show();
 		pbShift->show();
-		base_group->show();
+		pbBaseChoose->show();
 		for (int i=10; i<16; i++)
 			(NumButtonGroup->find(i))->show();
 	}
@@ -1509,8 +1494,8 @@ void KCalculator::slotLogicshow(bool toggled)
 		pbNegate->hide();
 		pbShift->hide();
 		// Hide Hex-Buttons, but first switch back to decimal
-		(base_group->find(1))->animateClick();
-		base_group->hide();
+		slotBaseSelected(10);
+		pbBaseChoose->hide();
 		for (int i=10; i<16; i++)
 			(NumButtonGroup->find(i))->hide();
 	}
