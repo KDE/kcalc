@@ -44,7 +44,7 @@ exit(result); }
 ])
 KDE_C_LONG_DOUBLE
 
-AC_CHECK_FUNC(asinl,
+AC_CHECK_FUNC(m, asinl,
   AC_DEFINE(HAVE_L_FUNCS,1,[Define if you have *l math functions (absl, ...)]),
 )
 
