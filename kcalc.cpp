@@ -243,7 +243,7 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   pbplusminus = new QPushButton( mSmallPage, "plusminusbutton" );
   pbplusminus->setText( "+/-" );
   pbplusminus->setAutoDefault(false);
-  connect(pbplusminus, SIGNAL(toggled(bool)), SLOT(pbplusminustoggled(bool)));
+  connect(pbplusminus, SIGNAL(toggled(bool)),SLOT(pbplusminustoggled(bool)));
   pbplusminus->setToggleButton(TRUE);    
 
   pbB = new QPushButton( mSmallPage, "Bbutton" );
@@ -278,7 +278,7 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   pbfactorial = new QPushButton( mSmallPage, "factorialbutton" );
   pbfactorial->setText( "x!" );
   pbfactorial->setAutoDefault(false);
-  connect(pbfactorial, SIGNAL(toggled(bool)), SLOT(pbfactorialtoggled(bool)));
+  connect(pbfactorial, SIGNAL(toggled(bool)),SLOT(pbfactorialtoggled(bool)));
   pbfactorial->setToggleButton(TRUE);
 
   pbD = new QPushButton( mSmallPage, "Dbutton" );
@@ -614,7 +614,7 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   largeBtnLayout->addWidget(pbX, 2, 3);
   largeBtnLayout->addWidget(pbdivision, 2, 4);
   largeBtnLayout->addWidget(pbor, 2, 5);
-  
+
   largeBtnLayout->addWidget(pb1, 3, 0);
   largeBtnLayout->addWidget(pb2, 3, 1);
   largeBtnLayout->addWidget(pb3, 3, 2);
@@ -628,6 +628,13 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   largeBtnLayout->addWidget(pbpercent, 4, 3);
   largeBtnLayout->addWidget(pbnegate, 4, 4);
   largeBtnLayout->addWidget(pbmod, 4, 5);
+
+  largeBtnLayout->addColSpacing(0,10);
+  largeBtnLayout->addColSpacing(1,10);
+  largeBtnLayout->addColSpacing(2,10);
+  largeBtnLayout->addColSpacing(3,10);
+  largeBtnLayout->addColSpacing(4,10);
+
 
   // top layout
   topLayout->addWidget(mConfigButton);
@@ -688,19 +695,20 @@ void QtCalculator::updateGeometry( void )
     }
   }
 
+  l = (QObjectList*)mLargePage->children(); // silence please
+
+
   int h1 = pbF->minimumSize().height();
   int h2 = (int)((((float)h1+4.0)/5.0)+0.5);
-
   s.setWidth( mLargePage->fontMetrics().width("MMMMM") );
   s.setHeight( h1+h2 );
 
-  l = (QObjectList*)mLargePage->children(); // silence please
   for( uint i=0; i < l->count(); i++ )
   {
     QObject *o = l->at(i);
     if( o->isWidgetType() )
     {
-      ((QWidget*)o)->setMinimumSize(s);
+      ((QWidget*)o)->setFixedSize(s);
     }
   }
 
