@@ -30,7 +30,7 @@ typedef enum {Mathematics, Electromagnetic, Nuclear, Thermodynamics, Gravitation
 
 struct science_constant{
   QString label;
-  QString name;
+  const char * name;
   QString whatsthis;
   QString value;
   ConstantCategory category;
