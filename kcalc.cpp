@@ -1017,8 +1017,10 @@ void QtCalculator::keyPressEvent( QKeyEvent *e ){
      pbsquare->setOn(TRUE);
      break;
  case Key_Backspace:
-     key_pressed = TRUE;
-     pbAC->setOn(TRUE);
+     /*** HEYA ***/
+     SubtractDigit();
+//     key_pressed = TRUE;
+//     pbAC->setOn(TRUE);
      break;
   case Key_R:
      key_pressed = TRUE;
@@ -1833,6 +1835,7 @@ int main( int argc, char **argv )
     version, description, KAboutData::License_GPL,
     "(c) 1996-2000, Bernd Johannes Wuebben");
   aboutData.addAuthor("Bernd Johannes Wuebben",0, "wuebben@kde.org");
+  aboutData.addAuthor("Charles Samuels", "Support for the new Backspace Action", "charles@altair.dhs.org");
   KCmdLineArgs::init( argc, argv, &aboutData );
 
   KApplication app;

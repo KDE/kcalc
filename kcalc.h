@@ -219,6 +219,7 @@ public slots:
     void clear_status_label();
     void setStatusLabel(const QString&);
     void EnterDigit(int data);
+    void SubtractDigit();
     void EnterDecimal();
     void EnterStackFunction(int data);
     void EnterNegate();

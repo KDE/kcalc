@@ -253,6 +253,28 @@ void QtCalculator::EnterDigit(int data)
   UpdateDisplay();
 }
 
+void QtCalculator::SubtractDigit()
+{
+// This function could be better, possibly, but am I glad to see it!
+  
+  if (DISPLAY_AMOUNT!=0)
+  {
+    QString num;
+    num.setNum((double)DISPLAY_AMOUNT,'G',24);
+
+    num=num.left(num.length()-1);
+    
+    DISPLAY_AMOUNT= strtod((const char*)num ,0);
+
+  }
+
+#ifdef MYDEBUG
+    printf("SubtractDigit()");
+#endif
+
+  UpdateDisplay();
+}
+
 void QtCalculator::button0()
 {
   EnterDigit(0);
