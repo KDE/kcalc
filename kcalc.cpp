@@ -626,7 +626,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	InitializeCalculator();
 
 	updateGeometry();
-	setFixedHeight(minimumHeight());
+	setFixedSize(minimumSize());
 }
 
 //-------------------------------------------------------------------------
