@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kcfg SYSTEM "http://www.kde.org/standards/kcfg/1.0/kcfg.dtd">
 <kcfg>
-  <kcfgfile name="kcalcrc"/>
   <include>kapplication.h</include>
   <include>kglobalsettings.h</include>
   <include>config.h</include>
+  <kcfgfile name="kcalcrc"/>
   <group name="Colors">
     <entry name="ForeColor" type="Color">
       <label>The foreground color of the display.</label>
