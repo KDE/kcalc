@@ -171,6 +171,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 
 	pbMod = new KCalcButton(mSmallPage, "Modulo-Button");
 	pbMod->addMode(ModeNormal, "Mod", i18n("Modulo"));
+	pbMod->addMode(ModeInverse, "IntDiv", i18n("Integer division"));
 	pbMod->setAccel(Key_Colon);
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 		pbMod, SLOT(slotSetMode(ButtonModeFlags,bool)));
@@ -885,10 +886,14 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
 
 	tmp_pb = new KCalcButton(parent, "Stat.NumData-Button");
 	tmp_pb->addMode(ModeNormal, "N", i18n("Number of data entered"));
+	tmp_pb->addMode(ModeInverse, QString::fromUtf8("Σx", -1),
+			i18n("Sum of all data items"));
 	pbStat.insert("NumData", tmp_pb);
         mStatButtonList.append(tmp_pb);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
+		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotStatNumclicked(void)));
 
 	tmp_pb = new KCalcButton(parent, "Stat.Median-Button");
@@ -902,10 +907,14 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
 
 	tmp_pb = new KCalcButton(parent, "Stat.Mean-Button");
 	tmp_pb->addMode(ModeNormal, "Mea", i18n("Mean"));
+	tmp_pb->addMode(ModeInverse, QString::fromUtf8("Σx<sup>2</sup>", -1),
+			i18n("Sum of all data items squared"), true);
 	pbStat.insert("Mean", tmp_pb);
         mStatButtonList.append(tmp_pb);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
+		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotStatMeanclicked(void)));
 
 	tmp_pb = new KCalcButton(parent, "Stat.StandardDeviation-Button");
@@ -918,10 +927,13 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
 
 	tmp_pb = new KCalcButton(parent, "Stat.DataInput-Button");
 	tmp_pb->addMode(ModeNormal, "Dat", i18n("Enter data"));
+	tmp_pb->addMode(ModeInverse, "CDat", i18n("Delete last data item"));
 	pbStat.insert("InputData", tmp_pb);
         mStatButtonList.append(tmp_pb);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
+		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotStatDataInputclicked(void)));
 
 	tmp_pb = new KCalcButton(parent, "Stat.ClearData-Button");
