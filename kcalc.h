@@ -70,6 +70,7 @@ private:
 	virtual bool eventFilter( QObject *o, QEvent *e );
 	void updateGeometry();
 	void setupMainActions(void);
+	void setupStatusbar(void);
 	QWidget *setupNumericKeys(QWidget *parent);
 	void keyPressEvent( QKeyEvent *e );
 	void set_precision();

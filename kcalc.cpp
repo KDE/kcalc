@@ -96,11 +96,10 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 
 	calc_display = new DispLogic(central, "display");
 
-	// Status bar contents
-	statusBar()->insertFixedItem(" NORM ", 0, true);
-	statusBar()->setItemAlignment(0, AlignCenter);
 
 	setupMainActions();
+
+	setupStatusbar();
 
 	createGUI();
 
@@ -489,6 +488,19 @@ void KCalculator::setupMainActions(void)
 	KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
 }
 
+void KCalculator::setupStatusbar(void)
+{
+	// Status bar contents
+	statusBar()->insertFixedItem(" NORM ", 0, true);
+	statusBar()->setItemAlignment(0, AlignCenter);
+
+	statusBar()->insertFixedItem(" HEX ", 1, true);
+	statusBar()->setItemAlignment(1, AlignCenter);
+
+	statusBar()->insertFixedItem(" DEG ", 2, true);
+	statusBar()->setItemAlignment(2, AlignCenter);
+}
+
 QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 {
 	QWidget *thisPage = new QWidget(parent);
@@ -813,6 +825,25 @@ void KCalculator::slotBaseSelected(int base)
 	int current_base = calc_display->setBase(NumBase(base));
 	Q_ASSERT(current_base == base);
 
+	// set statusbar
+	switch(base)
+	{
+	case 2:
+	  statusBar()->changeItem("BIN",1);
+	  break;
+	case 8:
+	  statusBar()->changeItem("OCT",1);
+	  break;
+	case 10:
+	  statusBar()->changeItem("DEC",1);
+	  break;
+	case 16:
+	  statusBar()->changeItem("HEX",1);
+	  break;
+	default:
+	  statusBar()->changeItem("Error",1);
+	}
+
 	// Enable the buttons not available in this base
 	for (int i=0; i<current_base; i++)
 	  NumButtonGroup->find(i)->setEnabled (true);
@@ -934,12 +965,15 @@ void KCalculator::slotAngleSelected(int number)
 	{
 	case 0:
 		core.SetAngleMode(ANG_DEGREE);
+		statusBar()->changeItem("DEG", 2);
 		break;
 	case 1:
 		core.SetAngleMode(ANG_RADIAN);
+		statusBar()->changeItem("RAD", 2);
 		break;
 	case 2:
 		core.SetAngleMode(ANG_GRADIENT);
+		statusBar()->changeItem("GRA", 2);
 		break;
 	default: // we shouldn't ever end up here
 		core.SetAngleMode(ANG_RADIAN);
@@ -1450,6 +1484,9 @@ void KCalculator::slotTrigshow(bool toggled)
 		pbCos->show();
 		pbTan->show();
 		pbAngleChoose->show();
+		statusBar()->insertFixedItem(" DEG ", 2, true);
+		statusBar()->setItemAlignment(2, AlignCenter);
+		slotAngleSelected(0);
 	}
 	else
 	{
@@ -1458,6 +1495,7 @@ void KCalculator::slotTrigshow(bool toggled)
 		pbCos->hide();
 		pbTan->hide();
 		pbAngleChoose->hide();
+		statusBar()->removeItem(2);
 	}
 }
 
@@ -1483,6 +1521,9 @@ void KCalculator::slotLogicshow(bool toggled)
 		pbOR->show();
 		pbNegate->show();
 		pbShift->show();
+		statusBar()->insertFixedItem(" HEX ", 1, true);
+		statusBar()->setItemAlignment(1, AlignCenter);
+		slotBaseSelected(10);
 		pbBaseChoose->show();
 		for (int i=10; i<16; i++)
 			(NumButtonGroup->find(i))->show();
@@ -1496,6 +1537,7 @@ void KCalculator::slotLogicshow(bool toggled)
 		// Hide Hex-Buttons, but first switch back to decimal
 		slotBaseSelected(10);
 		pbBaseChoose->hide();
+		statusBar()->removeItem(1);
 		for (int i=10; i<16; i++)
 			(NumButtonGroup->find(i))->hide();
 	}
