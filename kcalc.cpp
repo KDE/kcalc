@@ -52,11 +52,20 @@
 #include <kglobal.h>
 #include <kiconloader.h>
 #include <klocale.h>
+#include <kcmdlineargs.h>
 
 #include "dlabel.h"
 #include "kcalc.h"
 #include "optiondialog.h"
 #include "version.h"
+
+
+static const char *description = 
+	I18N_NOOP("KDE Calculator");
+
+static const char *version = KCALCVERSION "\n"
+"Copyright 1997 Bernd Johannes Wuebben"
+" <wuebben@kde.org>";
 
 
 // Undefine HAVE_LONG_DOUBLE for Beta 4 since RedHat 5.0 comes with a broken
@@ -1815,35 +1824,20 @@ void QtCalculator::temp_stack_prev(){
 
 int main( int argc, char **argv )
 {
-  KApplication *app = new KApplication (argc, argv, "kcalc" );
+  KCmdLineArgs::init(argc, argv, "kcalc", description, version);
+
+  KApplication app;
 #if 0    
   app->enableSessionManagement(TRUE);
   app->setWmCommand(argv[0]);
 #endif    
 
-  if( argc > 1 )
-  {
-    argv++;
-    for(int i = 1; i <= argc ;i++)
-    {
-      if(strcmp(*argv,"-v")==0 || strcmp(*argv, "-h")== 0)
-      {
-	printf(i18n("KCalc %s\n"
-		    "Copyright 1997 Bernd Johannes Wuebben"
-		    " <wuebben@kde.org>\n").ascii(), KCALCVERSION);
-	exit(1);
-      }
-      argv++;
-    }
-  }
-
   QtCalculator  *calc = new QtCalculator;
-  app->setTopWidget( calc );
+  app.setTopWidget( calc );
   calc->setCaption( QString::null );
   calc->show();
 
-  int exitCode = app->exec();
-  delete app;
+  int exitCode = app.exec();
 
   return( exitCode );
 }
