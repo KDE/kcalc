@@ -1,7 +1,6 @@
 # KDE Config File 
 [KDE Desktop Entry]
 Name=Calculator
-Name[br]=Jederez
 Name[ca]=Calculadora
 Name[cs]=Kalkulaèka
 Name[da]=Regnemaskine
@@ -24,7 +23,6 @@ Exec=kcalc  -caption "%c" %i %m
 Icon=kcalc.xpm
 DocPath=kcalc/index.html
 Comment=A Scientific Calculator
-Comment[br]=Ur jederez skiantel
 Comment[ca]=Una calculadora científica
 Comment[cs]=Vìdecká kalkulaèka
 Comment[da]=En videnskabelig regnemaskine
