@@ -211,13 +211,27 @@ static CALCAMNT ExecRsh(CALCAMNT left_op, CALCAMNT right_op)
 static CALCAMNT ExecAdd(CALCAMNT left_op, CALCAMNT right_op)
 {
 	// printf("ExecAdd\n");
-	return left_op + right_op;
+	CALCAMNT tmp_result = left_op + right_op;
+	// Set result to zero, when smaller than FPU-precision
+	CALCAMNT tmp_divisor = FABS(left_op) + FABS(right_op);
+	if (tmp_divisor != 0L  &&
+	    FABS(tmp_result)/tmp_divisor > 2*CALCAMNT_EPSILON)
+		return tmp_result;
+	else
+		return 0L;       
 }
 
 static CALCAMNT ExecSubtract(CALCAMNT left_op, CALCAMNT right_op)
 {
 	// printf("ExecSubtract\n");
-	return left_op - right_op;
+	CALCAMNT tmp_result = left_op - right_op;
+	// Set result to zero, when smaller than FPU-precision
+	CALCAMNT tmp_divisor = FABS(left_op) + FABS(right_op);
+	if (tmp_divisor != 0L  &&
+	    FABS(tmp_result)/tmp_divisor > 2*CALCAMNT_EPSILON)
+		return tmp_result;
+	else
+		return 0L;       
 }
 
 static CALCAMNT ExecMultiply(CALCAMNT left_op, CALCAMNT right_op)

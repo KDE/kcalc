@@ -31,6 +31,7 @@
 #define KCALC_TYPE_H
 
 #include <limits.h>
+#include <float.h>
 #include <math.h>
 
 #if defined(HAVE_LONG_DOUBLE) && defined(HAVE_L_FUNCS)
@@ -72,6 +73,7 @@
 	#define CBRT(X)		cbrtl(X)
 	#define ISINF(X)	isinfl(X)
 	#define STRTOD(X,Y)	strtold(X,Y)
+	#define CALCAMNT_EPSILON	LDBL_EPSILON
 #else
 	#define FABS(X)		fabs(X)
 	#define MODF(X,Y)	modf(X,Y)
@@ -96,6 +98,7 @@
 	#define CBRT(X)		cbrt(X)
 	#define ISINF(X)	isinf(X)
 	#define STRTOD(X,Y)	strtod(X,Y)
+	#define CALCAMNT_EPSILON	DBL_EPSILON
 #endif
 
 #undef HAVE_LONG_LONG
