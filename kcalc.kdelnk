@@ -1,6 +1,7 @@
 # KDE Config File 
 [KDE Desktop Entry]
 Name=Calculator
+Name[is_IS]=Reiknivél
 Name[es]=Calculadora
 Name[de]=Taschenrechner
 Name[no]=Kalkulator
@@ -19,6 +20,7 @@ Exec=kcalc  -caption "%c" %i %m
 Icon=kcalc.xpm
 DocPath=kcalc/index.html
 Comment=A Scientific Calculator
+Comment[is_IS]=kcalc:  Öflug reiknivél
 Comment[es]=Una calculadora científica
 Comment[no]=En vitenskaplig kalkulator
 Comment[de]=Ein wissenschaftlicher Taschenrechner
