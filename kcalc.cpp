@@ -103,6 +103,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// Create Button to select BaseMode
 	BaseChooseGroup = new QHButtonGroup(i18n("Base"), central);
 	connect(BaseChooseGroup, SIGNAL(clicked(int)), SLOT(slotBaseSelected(int)));
+	BaseChooseGroup->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed, false);
 
 
 	pbBaseChoose[0] =  new QRadioButton(i18n("&Hex"), BaseChooseGroup,
