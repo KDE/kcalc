@@ -27,7 +27,7 @@
 
 #include <kapp.h>
 #include <klocale.h>
-
+#include <qspinbox.h>
 #include <kmsgbox.h>
 #include "configdlg.h"
 #include "configdlg.moc"
@@ -101,8 +101,7 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
   maxprec = 12 ;
 #endif 
 
-  precspin = new KNumericSpinBox(this);
-  precspin->setRange(0,maxprec);
+  precspin = new QSpinBox(0, maxprec, 1, this);
   precspin->setGeometry(205,115,40,23);
 
   if( defst->precision <= maxprec)
@@ -124,8 +123,7 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
   fixprec = 10 ;
 #endif 
 
-  precspin2 = new KNumericSpinBox(this);
-  precspin2->setRange(0,fixprec);
+  precspin2 = new QSpinBox(0, fixprec, 1, this);
   precspin2->setGeometry(205,145,40,23);
 
   if( defst->fixedprecision <= fixprec)
@@ -174,8 +172,8 @@ void ConfigDlg::help(){
 
 void ConfigDlg::okButton(){
 
-  defst->precision = precspin->getValue();
-  defst->fixedprecision = precspin2->getValue();
+  defst->precision = precspin->value();
+  defst->fixedprecision = precspin2->value();
   defst->fixed = cb->isChecked();
   defst->beep = cb2->isChecked();
   
