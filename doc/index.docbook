@@ -105,8 +105,10 @@ special &kcalc; features:</para>
 <guibutton>=</guibutton> button or press your keyboard's
 <keycap>Enter</keycap> or <keysym>=</keysym> keys, the display result is
 written to &kcalc;'s result stack. You can navigate through the result
-stack with your keyboard's <keysym>Up</keysym> and <keysym>Down</keysym>
-arrow keys.</para> 
+stack with your keyboard's
+<keycombo action="simul">&Ctrl;<keycap>Z</keycap></keycombo>
+and <keycombo action="simul">&Ctrl; &Shift;<keycap>Z</keycap></keycombo>
+keys.</para> 
 </listitem>
 </varlistentry> 
 
