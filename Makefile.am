@@ -18,7 +18,7 @@ picsdir = $(kde_datadir)/kcalc/pics
 KDE_ICON = kcalc
 
 apps_DATA = kcalc.desktop
-appsdir = $(kde_appsdir)/Programs/Utilities
+appsdir = $(kde_appsdir)/Utilities
 
 EXTRA_DIST = $(pics_DATA) $(apps_DATA) 
 
