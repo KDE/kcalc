@@ -1145,11 +1145,6 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 	}
     }
 
-    if (e->state() & Keypad && ( e->key() != Key_Period ))
-    {
-        NumButtonGroup->find(e->text().toInt())->animateClick();
-    }
-
     if (e->key() == Key_Control)
 	emit switchShowAccels(true);
 }

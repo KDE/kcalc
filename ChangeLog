@@ -1,3 +1,6 @@
+2004-07-29 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Fixed BUG 67984 (thanks to André Wöbbeking)
+	
 2004-07-17 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Fixed BUG 85357
 	
