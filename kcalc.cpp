@@ -27,6 +27,8 @@
 
 #include <kapp.h>
 #include <klocale.h>
+#include <kglobal.h>
+#include <kiconloader.h>
 
 #include "kcalc.h"
 #include "configdlg.h"
@@ -1565,10 +1567,7 @@ void QtCalculator::configclicked(){
   label2->setAlignment(AlignLeft|WordBreak|ExpandTabs);
   label2->setText(labelstring2);
   
-  QString pixdir = mykapp->kde_datadir() + "/kcalc/pics/";
-
-
-  QPixmap pm((pixdir + "kcalclogo.xpm"));
+  QPixmap pm( Icon("kcalclogo.xpm"));
   QLabel *logo = new QLabel(box);
   logo->setPixmap(pm);
   logo->setGeometry(30, 20, pm.width(), pm.height());
