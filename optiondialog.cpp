@@ -322,7 +322,7 @@ void ConfigureDialog::setupColorPage()
     buttonGrid->addWidget(mColorFunctions, 0, 1);
     connect( mColorFunctions, SIGNAL( changed( const QColor &) ), this, SLOT( slotChanged() ) );
 
-    colorLable = new QLabel(i18n("St&atistic Functions:"), buttonGroup);
+    colorLable = new QLabel(i18n("St&atistic functions:"), buttonGroup);
     mColorStat = new KColorButton(buttonGroup);
     colorLable->setBuddy(mColorStat);
     buttonGrid->addWidget(colorLable, 1, 0);
