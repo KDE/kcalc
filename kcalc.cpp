@@ -2263,7 +2263,7 @@ int main(int argc, char *argv[])
 
 	aboutData.addAuthor("Bernd Johannes Wuebben", 0, "wuebben@kde.org");
 	aboutData.addAuthor("Charles Samuels", 
-		"Support for the new Backspace Action", "charles@altair.dhs.org");
+		I18N_NOOP("Support for the new Backspace Action"), "charles@altair.dhs.org");
 	aboutData.addAuthor("Evan Teran", 0, "emt3734@rit.edu");
 	
 	KCmdLineArgs::init(argc, argv, &aboutData);
