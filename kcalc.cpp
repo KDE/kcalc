@@ -149,27 +149,6 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	statusERRORLabel->setFrameStyle(QFrame::Panel | QFrame::Sunken);
 	statusERRORLabel->setAlignment(AlignLeft|AlignVCenter);
 
-	// create angle button group
-	QButtonGroup *angle_group = new QButtonGroup(3, Horizontal, this, "angle");
-	angle_group->setTitle(i18n( "Angle") );
-	connect( angle_group, SIGNAL(clicked(int)), SLOT(angle_selected(int)));
-
-	anglebutton[0] = new QRadioButton(angle_group);
-	anglebutton[0]->setText("&Deg");
-	anglebutton[0]->setChecked(true);
-	accel->connectItem(accel->insertItem(Key_D+ALT),
-		this, SLOT(Deg_Selected()));
-
-	anglebutton[1] = new QRadioButton(angle_group);
-	anglebutton[1]->setText("&Rad");
-	accel->connectItem(accel->insertItem(Key_R+ALT),
-		this, SLOT(Rad_Selected()));
-
-	anglebutton[2] = new QRadioButton(angle_group);
-	anglebutton[2]->setText( "&Gra" );
-	accel->connectItem(accel->insertItem(Key_G+ALT),
-		this, SLOT(Gra_Selected()));
-
 	// Create Number Base Button Group
 	QButtonGroup *base_group = new QButtonGroup(4, Horizontal,  this, "base");
 	base_group->setTitle(i18n("Base"));
@@ -195,6 +174,27 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	basebutton[3]->setText("&Bin");
 	accel->connectItem(accel->insertItem(Key_B+ALT),
 		this, SLOT(Bin_Selected()));
+
+	// create angle button group
+	QButtonGroup *angle_group = new QButtonGroup(3, Horizontal, this, "angle");
+	angle_group->setTitle(i18n( "Angle") );
+	connect( angle_group, SIGNAL(clicked(int)), SLOT(angle_selected(int)));
+
+	anglebutton[0] = new QRadioButton(angle_group);
+	anglebutton[0]->setText("&Deg");
+	anglebutton[0]->setChecked(true);
+	accel->connectItem(accel->insertItem(Key_D+ALT),
+		this, SLOT(Deg_Selected()));
+
+	anglebutton[1] = new QRadioButton(angle_group);
+	anglebutton[1]->setText("&Rad");
+	accel->connectItem(accel->insertItem(Key_R+ALT),
+		this, SLOT(Rad_Selected()));
+
+	anglebutton[2] = new QRadioButton(angle_group);
+	anglebutton[2]->setText( "&Gra" );
+	accel->connectItem(accel->insertItem(Key_G+ALT),
+		this, SLOT(Gra_Selected()));
 
 	//
 	//  Create Calculator Buttons
