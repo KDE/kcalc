@@ -1,6 +1,4 @@
 /*
-    $Id$
-
     kCalculator, a scientific calculator for the X window system using the
     Qt widget libraries, available at no cost at http://www.troll.no
 
@@ -1688,7 +1686,7 @@ void QtCalculator::UpdateDisplay()
 							kcalcdefaults.precision + 1,
 							DISPLAY_AMOUNT);
 			} else {
-				str_size = snprintf(display_str, DSP_SIZE, PRINT_LONG, DISPLAY_AMOUNT);
+				str_size = snprintf(display_str, DSP_SIZE, PRINT_LONG_BIG, kcalcdefaults.precision, DISPLAY_AMOUNT);
 			}
 
 			if (input_count > 0 && !strpbrk(display_str,"e") &&
