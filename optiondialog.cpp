@@ -265,13 +265,15 @@ void ConfigureDialog::setupColorPage()
     QGridLayout *displayGrid = new QGridLayout(displayGroup->layout(),
             2, 2, spacingHint());
 
-    QLabel* colorLable = new QLabel(i18n("Foreground:"), displayGroup);
+    QLabel* colorLable = new QLabel(i18n("&Foreground:"), displayGroup);
     mColorFGround = new KColorButton(displayGroup);
+    colorLable->setBuddy(mColorFGround);
     displayGrid->addWidget(colorLable, 0, 0);
     displayGrid->addWidget(mColorFGround, 0, 1);
 
-    colorLable = new QLabel(i18n("Background:"), displayGroup);
+    colorLable = new QLabel(i18n("&Background:"), displayGroup);
     mColorBGround = new KColorButton(displayGroup);
+    colorLable->setBuddy(mColorBGround);
     displayGrid->addWidget(colorLable, 1, 0);
     displayGrid->addWidget(mColorBGround, 1, 1);
 
@@ -286,28 +288,33 @@ void ConfigureDialog::setupColorPage()
     QGridLayout *buttonGrid = new QGridLayout(buttonGroup->layout(), 
             5, 2, spacingHint());
 
-    colorLable = new QLabel(i18n("Functions:"), buttonGroup);
+    colorLable = new QLabel(i18n("&Functions:"), buttonGroup);
     mColorFunctions = new KColorButton(buttonGroup);
+    colorLable->setBuddy(mColorFunctions);
     buttonGrid->addWidget(colorLable, 0, 0);
     buttonGrid->addWidget(mColorFunctions, 0, 1);
 
-    colorLable = new QLabel(i18n("Hexadecimals:"), buttonGroup);
+    colorLable = new QLabel(i18n("He&xadecimals:"), buttonGroup);
     mColorHexa = new KColorButton(buttonGroup);
+    colorLable->setBuddy(mColorHexa);
     buttonGrid->addWidget(colorLable, 1, 0);
     buttonGrid->addWidget(mColorHexa, 1, 1);
 
-    colorLable = new QLabel(i18n("Numbers:"), buttonGroup);
+    colorLable = new QLabel(i18n("&Numbers:"), buttonGroup);
     mColorNumbers = new KColorButton(buttonGroup);
+    colorLable->setBuddy(mColorNumbers);
     buttonGrid->addWidget(colorLable, 2, 0);
     buttonGrid->addWidget(mColorNumbers, 2, 1);
 
-    colorLable = new QLabel(i18n("Memory:"), buttonGroup);
+    colorLable = new QLabel(i18n("&Memory:"), buttonGroup);
     mColorMemory = new KColorButton(buttonGroup);
+    colorLable->setBuddy(mColorMemory);
     buttonGrid->addWidget(colorLable, 3, 0);
     buttonGrid->addWidget(mColorMemory, 3, 1);
 
-    colorLable = new QLabel(i18n("Operations:"), buttonGroup);
+    colorLable = new QLabel(i18n("O&perations:"), buttonGroup);
     mColorOperations = new KColorButton(buttonGroup);
+    colorLable->setBuddy(mColorOperations);
     buttonGrid->addWidget(colorLable, 4, 0);
     buttonGrid->addWidget(mColorOperations, 4, 1);
 
