@@ -1725,7 +1725,7 @@ void QtCalculator::display_selected(){
     QClipboard *cb = QApplication::clipboard();
     
     CALCAMNT result;
-    const char *text = cb->text();
+    const char *text = cb->text().ascii();
     result = (CALCAMNT) strtod( text?text:"0",0);
     //    printf("%Lg\n",result);
     last_input = PASTE;
@@ -1752,7 +1752,7 @@ void QtCalculator::clear_status_label(){
   status_timer->stop();
 }
 
-void QtCalculator::setStatusLabel(const char* string){
+void QtCalculator::setStatusLabel(const QString& string){
 
   statusERRORLabel->setText(string);
   status_timer->start(3000,TRUE);
@@ -1908,7 +1908,7 @@ int main( int argc, char **argv )
 	if(strcmp(*argv,"-v")==0 || strcmp(*argv, "-h")== 0){
 	  printf(i18n("KCalc %s\n"
 		      "Copyright 1997 Bernd Johannes Wuebben"
-		      " <wuebben@kde.org>\n"), KCALCVERSION);
+		      " <wuebben@kde.org>\n").ascii(), KCALCVERSION);
 	  exit(1);
 	}
 	argv++;
