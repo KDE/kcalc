@@ -1315,10 +1315,10 @@ void KCalculator::slotSinclicked(void)
 				core.ArcSinDeg(calc_display->getAmount());
 				break;
 			case RadMode:
-				core.ArcSinDeg(calc_display->getAmount());
+				core.ArcSinRad(calc_display->getAmount());
 				break;
 			case GradMode:
-				core.ArcSinDeg(calc_display->getAmount());
+				core.ArcSinGrad(calc_display->getAmount());
 				break;
 			}
 	}
