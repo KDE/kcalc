@@ -20,6 +20,9 @@
 
 */
 
+#include <qpainter.h>
+#include <qpixmap.h>
+
 #include "qdom.h"
 #include "kcalc_button.h"
 
@@ -32,9 +35,53 @@ KCalcButton::KCalcButton(QWidget * parent, const char * name)
 
 KCalcButton::KCalcButton(const QString &label, QWidget * parent,
 			 const char * name)
-  : KPushButton(label, parent, name)
+  : KPushButton(label, parent, name), _label(label)
 {
   setAutoDefault(false);
 }
 
+void KCalcButton::setExponent(const QString &exponent)
+{
+  _exponent = exponent;
+  update();
+}
+
+void KCalcButton::setText(const QString &label)
+{
+  _label = label;
+  KPushButton::setText(_label);
+  update();
+}
+
+void KCalcButton::setTextWithExponent(const QString &label,
+				      const QString &exponent)
+{
+  _label = label;
+  _exponent = exponent;
+  KPushButton::setText(_label);
+  update();
+}
+
+void KCalcButton::drawButtonLabel(QPainter *paint)
+{
+  if(pixmap()) {
+    KPushButton::drawButtonLabel(paint);
+    return;
+  }
+
+  // set either standard label or label with exponent
+  if(_exponent.isNull())  {
+    KPushButton::drawButtonLabel(paint);
+  } else {
+    QFont fontExponent = font();
+    int fontsizeExponent = fontExponent.pointSize() - 2;
+    fontExponent.setPointSize( fontsizeExponent );
+    fontExponent.setWeight( 0 );
+    paint->drawText( 18, 15, _label );
+    paint->setFont( fontExponent );
+    paint->drawText( 26, 11, _exponent );
+  }
+}
+
 #include "kcalc_button.moc"
+

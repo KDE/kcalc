@@ -32,11 +32,22 @@ class KCalcButton : public KPushButton
 {
 Q_OBJECT
 
- public:
-  KCalcButton(QWidget *parent, const char * name = 0); 
-  KCalcButton(const QString &label, QWidget *parent, const char * name = 0);
+public:
+ KCalcButton(QWidget *parent, const char * name = 0); 
+ KCalcButton(const QString &label, QWidget *parent, const char * name = 0);
 
- private:
+ void setExponent(const QString &exponent);
+ virtual void setText(const QString &label);
+ virtual void setTextWithExponent(const QString &label, const QString &exponent);
+
+ 
+protected:
+ virtual void drawButtonLabel(QPainter *paint);
+
+private:
+ QString _exponent;
+ QString _label;
+
 };
 
 
