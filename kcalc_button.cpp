@@ -75,6 +75,7 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
       _label = _mode[new_mode].label;
     else
       setText(_mode[new_mode].label);
+	QToolTip::remove(this);
     QToolTip::add(this, _mode[new_mode].tooltip);
     _mode_flags = new_mode;
 
