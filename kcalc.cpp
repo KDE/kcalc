@@ -89,7 +89,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 
   connect(mykapp,SIGNAL(kdisplayPaletteChanged()),this,SLOT(set_colors()));
 
-  setCaption( mykapp->getCaption() );
+  setCaption( mykapp->caption() );
 
   // create help button
 
@@ -1647,7 +1647,7 @@ void QtCalculator::readSettings()
 
   QString str;
 
-  KConfig *config = mykapp->getConfig();
+  KConfig *config = mykapp->config();
   config->setGroup( "Font" );
     
   kcalcdefaults.font = config->readFontEntry("Font",
@@ -1680,7 +1680,7 @@ void QtCalculator::readSettings()
 void QtCalculator::writeSettings()
 {
 
-  KConfig *config = mykapp->getConfig();		
+  KConfig *config = mykapp->config();		
   
   config->setGroup( "Font" );
   config->writeEntry("Font",kcalcdefaults.font);
