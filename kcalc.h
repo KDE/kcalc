@@ -39,6 +39,8 @@ class QPopupMenu;
 class KHelpMenu;
 class ConfigureDialog;
 class DLabel;
+class KPushButton;
+
 #include <kdialog.h>
 #include "stats.h"
 
@@ -387,8 +389,8 @@ private:
     QWidget *mSmallPage;
     QWidget *mLargePage;
 
-    QPushButton *mConfigButton;
-    QPushButton *mHelpButton;
+    KPushButton *mConfigButton;
+    KPushButton *mHelpButton;
 
     QTimer* selection_timer;
     QLabel* statusINVLabel;

@@ -31,25 +31,15 @@
 
 #include <qlayout.h>
 #include <qobjectlist.h>
-
 #include <qaccel.h>
 #include <qbuttongroup.h>
-#include <qcheckbox.h>
 #include <qclipboard.h>
-#include <qfont.h>
 #include <qgroupbox.h>
 #include <qlabel.h>
-#include <qptrlist.h>
-#include <qlistbox.h>
-#include <qpixmap.h>
-#include <qpushbutton.h>
 #include <qradiobutton.h>
 #include <qtimer.h>
 #include <qtooltip.h>
-#include <qwidget.h>
 #include <qstyle.h>
-#include <qpopupmenu.h>
-#include <kpopupmenu.h>
 
 #include <kapplication.h>
 #include <kcolordrag.h>
@@ -61,8 +51,8 @@
 #include <knotifyclient.h>
 #include <kaboutdata.h>
 #include <khelpmenu.h>
-
-#include <qfont.h>
+#include <kpushbutton.h>
+#include <kpopupmenu.h>
 
 #include "dlabel.h"
 #include "kcalc.h"
@@ -122,15 +112,15 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	accel->connectItem(accel->insertItem(Key_X+CTRL), this, SLOT(quitCalc()));
 
 	// Create uppermost bar with buttons and numberdisplay
-	mConfigButton = new QPushButton(i18n("Config&ure"), this, "configbutton");
+	mConfigButton = new KPushButton(KGuiItem( i18n("Config&ure"), "configure" ),
+            this, "configbutton");
 	mConfigButton->setAutoDefault(false);
 	QToolTip::add(mConfigButton, i18n("Click to configure KCalc"));
 	connect(mConfigButton, SIGNAL(clicked()), this, SLOT(configclicked()));
 
 	mHelpMenu = new KHelpMenu(this, KGlobal::instance()->aboutData());
 
-	mHelpButton = new QPushButton(this, "helpbutton");
-	mHelpButton->setText(i18n("Hel&p"));
+	mHelpButton = new KPushButton(KStdGuiItem::help(), this);
 	mHelpButton->setAutoDefault(false);
 	mHelpButton->setPopup(mHelpMenu->menu());
 
@@ -658,22 +648,6 @@ void QtCalculator::updateGeometry()
     QObjectList *l;
     QSize s;
     int margin;
-
-    //
-    // Uppermost bar
-    //
-    mHelpButton->setMinimumWidth(mHelpButton->fontMetrics().width("Help") +
-                                 QApplication::style().
-                                 pixelMetric(QStyle::PM_ButtonMargin,
-                                             mHelpButton)*2);
-    calc_display->setMinimumWidth(calc_display->fontMetrics().maxWidth() * 15);
-
-    //
-    // Button groups (base and angle)
-    //
-    //QButtonGroup *g;
-    //g = (QButtonGroup*)(anglebutton[0]->parentWidget());
-    //g = (QButtonGroup*)(basebutton[0]->parentWidget());
 
     //
     // Calculator buttons
