@@ -780,11 +780,10 @@ void QtCalculator::keyPressEvent( QKeyEvent *e ){
      configclicked();
      break;
   case Key_F3:
-     kcalcdefaults.style = 0;
-     set_style();
-     break;
-  case Key_F4:
-     kcalcdefaults.style = 1;
+    if(kcalcdefaults.style == 0)
+      kcalcdefaults.style = 1;
+    else 
+      kcalcdefaults.style = 0;
      set_style();
      break;
   case Key_Up:

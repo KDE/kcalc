@@ -50,32 +50,48 @@ on
 % make install
 </PRE>
 </CODE></BLOCKQUOTE>
-<P><B>IMPORTANT:</B> On a number of systems, including Linux systems using certain 
-version of gcc (gcc-2.7.3 RedHat 5.0 for example) will not get a working
-version of kcalc unless you undefine the preprosessor symbol FABSL in
-<BLOCKQUOTE><CODE>
-<PRE>
-../config.h
-</PRE>
-</CODE></BLOCKQUOTE>
-<P>that is change the line
-<BLOCKQUOTE><CODE>
-<PRE>
-#define FABSL
-</PRE>
-</CODE></BLOCKQUOTE>
-<P>to 
-<BLOCKQUOTE><CODE>
-<PRE>
-/*#define FABLS*/
-</PRE>
-</CODE></BLOCKQUOTE>
-<P>However, this will give you greatly reduced precision; kcalc's fundamental data
-type will be double instead of long double. Complain to the
-gnu people or to your distribution and ask them to ship a working version of 
-gcc.
+<P><B>IMPORTANT:</B> 
+<P><B>How to enable long double precision for KCalc:</B>
 <P>
-<P>Should you run into problems please report them to me.
+<P>If your machine supports the C data type 'long double' and if you
+have a working libc you can enable 'long double' precison for KCalc.
+<P>( RedHat 5.0 users are out of luck -- I suggest
+you get yourself a KDE friendly Linux distribution 
+that has a working libc )
+<P>Here is what to do:
+<P>
+<OL>
+<LI> Check ../config.h and see whether HAVE_LONG_DOUBLE is defined, ie
+you should be able to locate a line saying:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+#define HAVE_LONG_DOUBLE 1
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+If you can't find such a line your system doesn't support long
+double IEEE precision.
+<P>
+</LI>
+<LI> Edit the file kcalctype.h configdlg.cpp kcalc.cpp and kcalc_core.cpp and 
+remove the lines 
+
+<BLOCKQUOTE><CODE>
+<PRE>
+#ifdef HAVE_LONG_DOUBLE
+#undef HAVE_LONG_DOUBLE
+#endif
+</PRE>
+</CODE></BLOCKQUOTE>
+
+<P>
+</LI>
+<LI> recompile KCalc.
+<P>
+</LI>
+</OL>
 <P>
 <P>
 <P ALIGN="RIGHT">

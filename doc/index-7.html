@@ -21,35 +21,8 @@
 <H3><A NAME="s7">7. Tips and Tricks</A></H3>
 
 <P>
-<H3><A NAME="ss7.1">7.1 gcc-2.7.3</A>
-</H3>
-
-<P>On a number of systems, including Linux systems using certain 
-version of gcc (gcc-2.7.3 RedHat 5.0 for example) will not get a working
-version of kcalc unless you undefine the preprosessor symbol FABSL in
-<BLOCKQUOTE><CODE>
-<PRE>
-../config.h
-</PRE>
-</CODE></BLOCKQUOTE>
-<P>that is change the line
-<BLOCKQUOTE><CODE>
-<PRE>
-#define FABSL
-</PRE>
-</CODE></BLOCKQUOTE>
-<P>to 
 <P>
-<BLOCKQUOTE><CODE>
-<PRE>
-/*#define FABLS*/
-</PRE>
-</CODE></BLOCKQUOTE>
-<P>However, this will give you greatly reduced precision; kcalc's fundamental data
-type will be double instead of long double. Complain to the
-gnu people or to your distribution and pressure them to ship a working version
-of gcc.
-<H3><A NAME="ss7.2">7.2 Fonts</A>
+<H3><A NAME="ss7.1">7.1 Fonts</A>
 </H3>
 
 <P>I found that several distributions don't know how to set the FontPath right

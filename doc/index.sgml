@@ -79,31 +79,45 @@ The usual:
 % make install
 </verb></tscreen>
 
-<bf>IMPORTANT:</bf> On a number of systems, including Linux systems using certain 
-version of gcc (gcc-2.7.3 RedHat 5.0 for example) will not get a working
-version of kcalc unless you undefine the preprosessor symbol FABSL in
-<tscreen><verb>
-../config.h
-</verb></tscreen>
+<bf>IMPORTANT:</bf> 
 
-that is change the line
-<tscreen><verb>
-#define FABSL
-</verb></tscreen>
-
-to 
-<tscreen><verb>
-/*#define FABLS*/
-</verb></tscreen>
-
-However, this will give you greatly reduced precision; kcalc's fundamental data
-type will be double instead of long double. Complain to the
-gnu people or to your distribution and ask them to ship a working version of 
-gcc.
-
+<bf>How to enable long double precision for KCalc:</bf>
 <p>
-Should you run into problems please report them to me.
+
+If your machine supports the C data type 'long double' and if you
+have a working libc you can enable 'long double' precison for KCalc.
+
+( RedHat 5.0 users are out of luck -- I suggest
+  you get yourself a KDE friendly Linux distribution 
+  that has a working libc )
+
+Here is what to do:
+
+<enum>
+
+<item> Check ../config.h and see whether HAVE_LONG_DOUBLE is defined, ie
+you should be able to locate a line saying:
+
+<tscreen><verb>
+#define HAVE_LONG_DOUBLE 1
+</verb></tscreen>
+
+If you can't find such a line your system doesn't support long
+double IEEE precision.
 <p>
+<item> Edit the file kcalctype.h configdlg.cpp kcalc.cpp and kcalc_core.cpp and 
+remove the lines 
+
+<tscreen><verb>
+#ifdef HAVE_LONG_DOUBLE
+#undef HAVE_LONG_DOUBLE
+#endif
+</verb></tscreen>
+<p>
+<item> recompile KCalc.
+<p>
+</enum>
+
 
 <sect> Usage <p>
 General usage is straight forward and similar if not identical to the way
@@ -144,7 +158,7 @@ is a valid floating point number.
 <sect>Modes<p>
 
 <sect1>Statistical Mode<p>
-Press F4 or bring up the configuration dialog by pushing the KCALC button or
+Press F3 to toggle between statistical and trigonometry mode. Alternatively bring up the configuration dialog by pushing the KCALC button or
 by pressing F2 to switch into statistics mode.
 
 <descrip>
@@ -171,7 +185,7 @@ by pressing F2 to switch into statistics mode.
 </descrip>
 
 <sect1>Trigonometric Mode<p>
-Press F3 or bring up the configuration dialog by pushing the KCALC button or
+Press F3 to toggle between statistical and trigonometry mode. Alternatively bring up the configuration dialog by pushing the KCALC button or
 by pressing F2 to switch into trigonometric mode.
 
 <descrip>
@@ -258,7 +272,13 @@ h          Hyp (Hyperbolic) as e.g in Hyp Sin , the sinh(x)
 
 <sect1>Mod<p>
 Give the remainder of dividing the display number by the next input number.
-<sect1>%<p>
+<p>
+
+<sect1>Inv Mod<p>
+Integer divison of the display number by the next input number.
+<p>
+
+<sect1>&percnt<p>
 
 Interpret the final operation carried out in  the current 
 calculation as follows:
@@ -304,29 +324,7 @@ You get Rsh (right shift)  by pressing INV Lsh.
 <p>
 
 <sect>Tips and Tricks<p>
-<sect1>gcc-2.7.3<p>
-On a number of systems, including Linux systems using certain 
-version of gcc (gcc-2.7.3 RedHat 5.0 for example) will not get a working
-version of kcalc unless you undefine the preprosessor symbol FABSL in
-<tscreen><verb>
-../config.h
-</verb></tscreen>
 
-that is change the line
-<tscreen><verb>
-#define FABSL
-</verb></tscreen>
-
-to 
-
-<tscreen><verb>
-/*#define FABLS*/
-</verb></tscreen>
-
-However, this will give you greatly reduced precision; kcalc's fundamental data
-type will be double instead of long double. Complain to the
-gnu people or to your distribution and pressure them to ship a working version
-of gcc.
 <sect1>Fonts<p>
 I found that several distributions don't know how to set the FontPath right
 and which fonts to install in order to get great fonts under X11. I can't

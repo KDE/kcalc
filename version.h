@@ -1,1 +1,1 @@
-#define KCALCVERSION "1.2.0"
+#define KCALCVERSION "1.2.1"

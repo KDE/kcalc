@@ -11,7 +11,7 @@ have a working libc you can enable 'long double' precison for KCalc.
 
 Here is what to do:
 
-1) Check ../config.h and see whether HAVE_LONG_DOUBLE is define, ie
+1) Check ../config.h and see whether HAVE_LONG_DOUBLE is defined, ie
 you should be able to locate a line saying:
 
 #define HAVE_LONG_DOUBLE 1
