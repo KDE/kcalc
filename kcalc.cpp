@@ -1400,12 +1400,14 @@ void KCalculator::slotPowerclicked(void)
 {
 	if (inverse)
 	{
-		core.InvPower(calc_display->getAmount());
+		core.enterOperation(calc_display->getAmount(),
+				    CalcEngine::FUNC_PWR_ROOT);
 		pbInv->setOn(false);
 	}
 	else
 	{
-		core.Power(calc_display->getAmount());
+		core.enterOperation(calc_display->getAmount(),
+				    CalcEngine::FUNC_POWER);
 	}
 	// temp. work-around
 	CALCAMNT tmp_num = calc_display->getAmount();
@@ -1451,63 +1453,72 @@ void KCalculator::slotParenCloseclicked(void)
 
 void KCalculator::slotANDclicked(void)
 {
-	core.And(calc_display->getAmount());
+	core.enterOperation(calc_display->getAmount(),
+			    CalcEngine::FUNC_AND);
 
 	UpdateDisplay(true);
 }
 
 void KCalculator::slotXclicked(void)
 {
-	core.Multiply(calc_display->getAmount());
+	core.enterOperation(calc_display->getAmount(),
+			    CalcEngine::FUNC_MULTIPLY);
 
 	UpdateDisplay(true);
 }
 
 void KCalculator::slotDivisionclicked(void)
 {
-	core.Divide(calc_display->getAmount());
+	core.enterOperation(calc_display->getAmount(),
+			    CalcEngine::FUNC_DIVIDE);
 
 	UpdateDisplay(true);
 }
 
 void KCalculator::slotORclicked(void)
 {
-	core.Or(calc_display->getAmount());
+	core.enterOperation(calc_display->getAmount(),
+			    CalcEngine::FUNC_OR);
 
 	UpdateDisplay(true);
 }
 
 void KCalculator::slotXORclicked(void)
 {
-	core.Xor(calc_display->getAmount());
+	core.enterOperation(calc_display->getAmount(),
+			    CalcEngine::FUNC_XOR);
 
 	UpdateDisplay(true);
 }
 
 void KCalculator::slotPlusclicked(void)
 {
-	core.Plus(calc_display->getAmount());
+	core.enterOperation(calc_display->getAmount(),
+			    CalcEngine::FUNC_ADD);
 
 	UpdateDisplay(true);
 }
 
 void KCalculator::slotMinusclicked(void)
 {
-	core.Minus(calc_display->getAmount());
+	core.enterOperation(calc_display->getAmount(),
+			    CalcEngine::FUNC_SUBTRACT);
 
 	UpdateDisplay(true);
 }
 
 void KCalculator::slotLeftShiftclicked(void)
 {
-	core.ShiftLeft(calc_display->getAmount());
+	core.enterOperation(calc_display->getAmount(),
+			    CalcEngine::FUNC_LSH);
 
 	UpdateDisplay(true);
 }
 
 void KCalculator::slotRightShiftclicked(void)
 {
-	core.ShiftRight(calc_display->getAmount());
+	core.enterOperation(calc_display->getAmount(),
+			    CalcEngine::FUNC_RSH);
 
 	UpdateDisplay(true);
 }
@@ -1519,7 +1530,8 @@ void KCalculator::slotPeriodclicked(void)
 
 void KCalculator::EnterEqual()
 {
-	core.Equal(calc_display->getAmount());
+	core.enterOperation(calc_display->getAmount(),
+			    CalcEngine::FUNC_EQUAL);
 
 	UpdateDisplay(true, true);
 }
@@ -1531,7 +1543,8 @@ void KCalculator::slotEqualclicked(void)
 
 void KCalculator::slotPercentclicked(void)
 {
-	core.Percent(calc_display->getAmount());
+	core.enterOperation(calc_display->getAmount(),
+			    CalcEngine::FUNC_PERCENT);
 
 	UpdateDisplay(true);
 }
@@ -1546,9 +1559,11 @@ void KCalculator::slotNegateclicked(void)
 void KCalculator::slotModclicked(void)
 {
 	if (inverse)
-		core.InvMod(calc_display->getAmount());
+		core.enterOperation(calc_display->getAmount(),
+				    CalcEngine::FUNC_INTDIV);
 	else
-		core.Mod(calc_display->getAmount());
+		core.enterOperation(calc_display->getAmount(),
+				    CalcEngine::FUNC_MOD);
 
 	UpdateDisplay(true);
 }

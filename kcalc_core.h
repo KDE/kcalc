@@ -52,6 +52,7 @@ class CalcEngine
   // operations that can be stored in calculation stack 
   enum Operation {
     FUNC_EQUAL,
+    FUNC_PERCENT,
     FUNC_BRACKET,
     FUNC_OR,
     FUNC_XOR,
@@ -79,9 +80,8 @@ class CalcEngine
   
   CALCAMNT lastOutput(bool &error) const;
 
-  void Equal(CALCAMNT input);
-  
-  void And(CALCAMNT input);
+  void enterOperation(CALCAMNT num, Operation func);
+
   void ArcCos(CALCAMNT input);
   void ArcSin(CALCAMNT input);
   void ArcTangens(CALCAMNT input);
@@ -91,27 +91,15 @@ class CalcEngine
   void Complement(CALCAMNT input);
   void Cos(CALCAMNT input);
   void CosHyp(CALCAMNT input);
-  void Divide(CALCAMNT input);
   void Exp(CALCAMNT input);
   void Exp10(CALCAMNT input);
   void Factorial(CALCAMNT input);
   void InvertSign(CALCAMNT input);
-  void InvMod(CALCAMNT input);
-  void InvPower(CALCAMNT input);
   void Ln(CALCAMNT input);
   void Log10(CALCAMNT input);
-  void Minus(CALCAMNT input);
-  void Multiply(CALCAMNT input);
-  void Mod(CALCAMNT input);
-  void Or(CALCAMNT input);
   void ParenClose(CALCAMNT input);
   void ParenOpen(CALCAMNT input);
-  void Percent(CALCAMNT input);
-  void Plus(CALCAMNT input);
-  void Power(CALCAMNT input);
   void Reciprocal(CALCAMNT input);
-  void ShiftLeft(CALCAMNT input);
-  void ShiftRight(CALCAMNT input);
   void Sin(CALCAMNT input);
   void SinHyp(CALCAMNT input);
   void Square(CALCAMNT input);
@@ -128,7 +116,6 @@ class CalcEngine
   void StatSumSquares(CALCAMNT input);
   void Tangens(CALCAMNT input);
   void TangensHyp(CALCAMNT input);
-  void Xor(CALCAMNT input);
 
   void Reset();
   void setAngleMode(angle_type mode) { _angle_mode = mode; };
@@ -172,7 +159,6 @@ class CalcEngine
   Arith Arith_ops[20];
   Prcnt Prcnt_ops[20];
 
-  void enterOperation(Operation func, CALCAMNT num);
   bool evalStack(void);
 
   CALCAMNT evalOperation(CALCAMNT arg1, Operation operation, CALCAMNT arg2);

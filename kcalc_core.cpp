@@ -382,6 +382,10 @@ CalcEngine::CalcEngine()
 	Arith_ops[FUNC_EQUAL] = NULL;
 	Prcnt_ops[FUNC_EQUAL] = NULL;
 
+	_precedence_list[FUNC_PERCENT] = 0;
+	Arith_ops[FUNC_PERCENT] = NULL;
+	Prcnt_ops[FUNC_PERCENT] = NULL;
+
 	_precedence_list[FUNC_BRACKET] = 0;
 	Arith_ops[FUNC_BRACKET] = NULL;
 	Prcnt_ops[FUNC_BRACKET] = NULL;
@@ -446,11 +450,6 @@ CALCAMNT CalcEngine::lastOutput(bool &error) const
 {
 	error = _error;
 	return _last_number;
-}
-
-void CalcEngine::And(CALCAMNT input)
-{
-	enterOperation(FUNC_AND, input);
 }
 
 void CalcEngine::ArcCos(CALCAMNT input)
@@ -586,11 +585,6 @@ void CalcEngine::CosHyp(CALCAMNT input)
 	_last_number = COSH(input);
 }
 
-void CalcEngine::Divide(CALCAMNT input)
-{
-	enterOperation(FUNC_DIVIDE, input);
-}
-
 void CalcEngine::Exp(CALCAMNT input)
 {
 	_last_number = EXP(input);
@@ -647,16 +641,6 @@ void CalcEngine::InvertSign(CALCAMNT input)
 	_last_number = -input;
 }
 
-void CalcEngine::InvMod(CALCAMNT input)
-{
-	enterOperation(FUNC_INTDIV, input);
-}
-
-void CalcEngine::InvPower(CALCAMNT input)
-{
-	enterOperation(FUNC_PWR_ROOT, input);
-}
-
 void CalcEngine::Ln(CALCAMNT input)
 {
 	if (input <= 0.0)
@@ -671,26 +655,6 @@ void CalcEngine::Log10(CALCAMNT input)
 		_error = true;
 	else
 		_last_number = LOG_TEN(input);
-}
-
-void CalcEngine::Minus(CALCAMNT input)
-{
-	enterOperation(FUNC_SUBTRACT, input);
-}
-
-void CalcEngine::Mod(CALCAMNT input)
-{
-	enterOperation(FUNC_MOD, input);
-}
-
-void CalcEngine::Multiply(CALCAMNT input)
-{
-	enterOperation(FUNC_MULTIPLY, input);
-}
-
-void CalcEngine::Or(CALCAMNT input)
-{
-	enterOperation(FUNC_OR, input);
 }
 
 void CalcEngine::ParenClose(CALCAMNT input)
@@ -710,17 +674,7 @@ void CalcEngine::ParenClose(CALCAMNT input)
 
 void CalcEngine::ParenOpen(CALCAMNT input)
 {
-	enterOperation(FUNC_BRACKET, input);
-}
-
-void CalcEngine::Plus(CALCAMNT input)
-{
-	enterOperation(FUNC_ADD, input);
-}
-
-void CalcEngine::Power(CALCAMNT input)
-{
-	enterOperation(FUNC_POWER, input);
+	enterOperation(input, FUNC_BRACKET);
 }
 
 void CalcEngine::Reciprocal(CALCAMNT input)
@@ -731,16 +685,6 @@ void CalcEngine::Reciprocal(CALCAMNT input)
 		_last_number = 1/input;
 }
 		
-void CalcEngine::ShiftLeft(CALCAMNT input)
-{
-	enterOperation(FUNC_LSH, input);
-}
-
-void CalcEngine::ShiftRight(CALCAMNT input)
-{
-	enterOperation(FUNC_RSH, input);
-}
-
 void CalcEngine::Sin(CALCAMNT input)
 {
 	CALCAMNT tmp = input;
@@ -901,24 +845,6 @@ void CalcEngine::TangensHyp(CALCAMNT input)
 	_last_number = TANH(input);
 }
 
-void CalcEngine::Xor(CALCAMNT input)
-{
-	enterOperation(FUNC_XOR, input);
-}
-
-
-void CalcEngine::Equal(CALCAMNT input)
-{
-	enterOperation(FUNC_EQUAL, input);
-}
-
-void CalcEngine::Percent(CALCAMNT input)
-{
-	_percent_mode = true;
-	
-	Equal(input);
-}
-
 CALCAMNT CalcEngine::evalOperation(CALCAMNT arg1, Operation operation,
 				   CALCAMNT arg2)
 {
@@ -931,7 +857,7 @@ CALCAMNT CalcEngine::evalOperation(CALCAMNT arg1, Operation operation,
 	}
 }
 
-void CalcEngine::enterOperation(Operation func, CALCAMNT number)
+void CalcEngine::enterOperation(CALCAMNT number, Operation func)
 {
 	_node tmp_node;
 
@@ -941,16 +867,21 @@ void CalcEngine::enterOperation(Operation func, CALCAMNT number)
 		tmp_node.operation = FUNC_BRACKET;
 	
 		_stack.push(tmp_node);
+
+		return;
 	}
-	else
+	
+	if (func == FUNC_PERCENT)
 	{
-		tmp_node.number = number;
-		tmp_node.operation = func;
-
-		_stack.push(tmp_node);
-
-		evalStack();
+		_percent_mode = true;
 	}
+
+	tmp_node.number = number;
+	tmp_node.operation = func;
+	
+	_stack.push(tmp_node);
+
+	evalStack();
 }
 
 bool CalcEngine::evalStack(void)
@@ -980,7 +911,8 @@ bool CalcEngine::evalStack(void)
 		  
 	}
 
-	if(tmp_node.operation != FUNC_EQUAL) _stack.push(tmp_node);
+	if(tmp_node.operation != FUNC_EQUAL  &&  tmp_node.operation != FUNC_PERCENT)
+		_stack.push(tmp_node);
 
 	_last_number = tmp_node.number;
 	return true;

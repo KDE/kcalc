@@ -1,3 +1,7 @@
+2004-09-04 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* reduced the number of entry points into the CalcEngine
+	  Aim: enterOperation the only entry point
+
 2004-08-2? Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* added some labels and tooltips for inverse mode
 
