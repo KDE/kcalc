@@ -57,7 +57,8 @@ install:
 	[ -d $(BINDIR) ] || $(INSTALL_DIR) $(BINDIR)
 	$(INSTALL) $(TARGET) $(BINDIR)
 	[ -d $(DOCSDIR) ] || $(INSTALL_DIR) $(DOCSDIR)
-	$(INSTALL_DATA) ./doc/kcalc* $(DOCSDIR)
+	$(INSTALL_DATA) ./doc/kcalc.gif $(DOCSDIR)
+	$(INSTALL_DATA) ./doc/kcalc.html $(DOCSDIR)
 
 clean:
 	rm -f core *~ *.bak *.BAK $(SRCMETA) $(OBJS) $(TARGET)
