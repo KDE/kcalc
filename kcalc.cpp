@@ -1073,27 +1073,27 @@ void KCalculator::slotBaseSelected(int base)
 {
 	int current_base;
 
-	// set display & statusbar
+	// set display & statusbar (if item exist in statusbar)
 	switch(base)
 	{
 	case 3:
 	  current_base = calc_display->setBase(NumBase(2));
-	  statusBar()->changeItem("BIN",1);
+	  if (statusBar()->hasItem(1)) statusBar()->changeItem("BIN",1);
 	  break;
 	case 2:
 	  current_base = calc_display->setBase(NumBase(8));
-	  statusBar()->changeItem("OCT",1);
+	  if (statusBar()->hasItem(1)) statusBar()->changeItem("OCT",1);
 	  break;
 	case 1:
 	  current_base = calc_display->setBase(NumBase(10));
-	  statusBar()->changeItem("DEC",1);
+	  if (statusBar()->hasItem(1)) statusBar()->changeItem("DEC",1);
 	  break;
 	case 0:
 	  current_base = calc_display->setBase(NumBase(16));
-	  statusBar()->changeItem("HEX",1);
+	  if (statusBar()->hasItem(1)) statusBar()->changeItem("HEX",1);
 	  break;
 	default:
-	  statusBar()->changeItem("Error",1);
+	  if (statusBar()->hasItem(1)) statusBar()->changeItem("Error",1);
 	  return;
 	}
 
