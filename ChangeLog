@@ -1,3 +1,9 @@
+Mon Nov 16 18:05:01 1998  Mario Weilguni <mweilguni@kde.org>
+
+	* calculation the facturial of a too large number was delayed,
+	even though infinity was already reached. Now kcalc stops
+	calculation if infinity is reached and displays an error
+
 Mon May  4 06:28:09 1998  Bernd Johannes Wuebben  <wuebben@math.cornell.edu>
 
 	* Added the comma key as an accelerator for '.'

@@ -622,6 +622,10 @@ void QtCalculator::EnterFactorial()
 	while (work_amount1 != 0 && work_amount2 != 0 && !display_error) {
 		work_amount1 *= work_amount2;
 		work_amount2 -= incr;
+		if(isinf(work_amount1)) {
+		  display_error=1;
+		   break;
+		}
 	}
 
 	if( work_amount1 == 0.0)
