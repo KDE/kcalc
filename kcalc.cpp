@@ -1699,11 +1699,12 @@ void KCalculator::showSettings()
 	general->kcfg_Precision->setMaxValue(maxprec);
 	dialog->addPage(general, i18n("General"), "package_settings", i18n("General Settings"));
 
+	QWidget *fontWidget = new QWidget(0,"Font");
+	QVBoxLayout *fontLayout = new QVBoxLayout(fontWidget);
 	KFontChooser *mFontChooser =
-		new KFontChooser(this, "kcfg_Font", false, QStringList(), false, 6);
-	QFont tmpFont(KGlobalSettings::generalFont().family() ,14 ,QFont::Bold);
-	mFontChooser->setFont(tmpFont);
-	dialog->addPage(mFontChooser, i18n("Font"), "fonts", i18n("Select Display Font"));
+		new KFontChooser(fontWidget, "kcfg_Font", false, QStringList(), false, 6);
+	fontLayout->addWidget(mFontChooser);
+	dialog->addPage(fontWidget, i18n("Font"), "fonts", i18n("Select Display Font"));
 
 	Colors *color = new Colors(0, "Color");
 
