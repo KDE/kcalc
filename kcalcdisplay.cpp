@@ -74,12 +74,11 @@ void KCalcDisplay::slotCopy(void)
 		return;
 	}
 
+	QString txt = text();
 	if (_num_base == NB_HEX)
-		(QApplication::clipboard())->setText("0x" + text(),
-						     QClipboard::Selection);
-	else
-		(QApplication::clipboard())->setText(text(),
-						     QClipboard::Selection);
+		txt.prepend( "0x" );
+	(QApplication::clipboard())->setText(txt, QClipboard::Clipboard);
+	(QApplication::clipboard())->setText(txt, QClipboard::Selection);
 }
 
 void KCalcDisplay::slotPaste(void)
@@ -90,7 +89,7 @@ void KCalcDisplay::slotPaste(void)
 		return;
 	}
 
-	QString tmp_str = (QApplication::clipboard())->text(QClipboard::Selection);
+	QString tmp_str = (QApplication::clipboard())->text(QClipboard::Clipboard);
 
 	bool was_ok;
 	CALCAMNT tmp_result = (CALCAMNT) tmp_str.toDouble(&was_ok);
