@@ -1,7 +1,7 @@
 <!DOCTYPE kpartgui>
-<kpartgui name="kcalc" version="1.4">
+<kpartgui name="kcalc" version="15">
 <MenuBar>
-  <Menu name="settings">
+  <Menu name="settings" noMerge="1"><text>&amp;Settings</text>
     <Action name="show_trig"/>
     <Action name="show_stat"/>
     <Action name="show_logic"/>
@@ -9,6 +9,8 @@
     <Separator/>
     <Action name="show_all"/>
     <Action name="hide_all"/>
+    <Separator/>
+    <Action name="options_configure"/>
   </Menu>
 </MenuBar>
 
