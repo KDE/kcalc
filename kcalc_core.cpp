@@ -1724,6 +1724,8 @@ void QtCalculator::UpdateDisplay()
 	// Show the result in the app's caption in taskbar (wishlist - bug #52858)
 	if (kcalcdefaults.capres)
 		QtCalculator::setCaption(display_str);
+	else
+		QtCalculator::setCaption("");
 }
 
 //-------------------------------------------------------------------------
