@@ -69,6 +69,7 @@
 	#define LN(X)		logl(X)
 	#define LOG_TEN(X)	log10l(X)
 	#define SQRT(X)		sqrtl(X)
+	#define CBRT(X)		cbrtl(X)
 	#define ISINF(X)	isinfl(X)
 	#define STRTOD(X,Y)	strtold(X,Y)
 #else
@@ -92,6 +93,7 @@
 	#define LN(X)		log(X)
 	#define LOG_TEN(X)	log10(X)
 	#define SQRT(X)		sqrt(X)
+	#define CBRT(X)		cbrt(X)
 	#define ISINF(X)	isinf(X)
 	#define STRTOD(X,Y)	strtod(X,Y)
 #endif

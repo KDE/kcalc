@@ -584,6 +584,17 @@ void CalcEngine::CosHyp(CALCAMNT input)
 	_last_number = COSH(input);
 }
 
+void CalcEngine::Cube(CALCAMNT input)
+{
+	if (ISINF(_last_number = input*input*input))
+		_error = true;
+}
+
+void CalcEngine::CubeRoot(CALCAMNT input)
+{
+	_last_number = CBRT(input);
+}
+
 void CalcEngine::Exp(CALCAMNT input)
 {
 	_last_number = EXP(input);
@@ -683,7 +694,7 @@ void CalcEngine::Reciprocal(CALCAMNT input)
 	else
 		_last_number = 1/input;
 }
-		
+
 void CalcEngine::SinDeg(CALCAMNT input)
 {
 	CALCAMNT tmp = input;

@@ -108,7 +108,6 @@ protected slots:
     void slotBaseSelected(int number);
     void slotNumberclicked(int number_clicked);
     void slotEEclicked(void);
-    void slotPiclicked(void);
     void slotInvtoggled(bool myboolean);
     void slotMRclicked(void);
     void slotSinclicked(void);
@@ -139,6 +138,7 @@ protected slots:
     void slotPeriodclicked(void);
     void slotEqualclicked(void);
     void slotPercentclicked(void);
+    void slotRootclicked(void);
     void slotNegateclicked(void);
     void slotModclicked(void);
     void slotStatNumclicked(void);
@@ -171,8 +171,6 @@ private:
 	  GradMode
 	} _angle_mode;
 
-public:
-	static const CALCAMNT pi;
 
 private:
     QWidget *mSmallPage;
@@ -205,12 +203,12 @@ private:
     KCalcButton* 	pbParenOpen;
     KCalcButton* 	pbPercent;
     KCalcButton* 	pbPeriod;
-    KCalcButton* 	pbPi;
     KCalcButton* 	pbPlus;
     KCalcButton* 	pbPlusMinus;
     KCalcButton* 	pbPower;
     KCalcButton* 	pbReci;
-    KSquareButton* 	pbSquare;
+    KSquareButton* 	pbRoot;
+    KCalcButton* 	pbSquare;
     KCalcButton* 	pbX;
     KCalcButton* 	pbXOR;
 

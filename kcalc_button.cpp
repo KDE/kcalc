@@ -135,22 +135,20 @@ void KCalcButton::drawButtonLabel(QPainter *paint)
 
 void KSquareButton::paintLabel(QPainter *paint)
 {
+  int w = width();
+  int w2 = w/2 - 13;
+  int h = height();
+  int h2 = h/2 - 7;
+  // these statements are for the improved
+  // representation of the sqrt function
+  paint->drawLine(w2, 11 + h2, w2 + 2, 7 + h2);
+  paint->drawLine(w2 + 2, 7 + h2, w2 + 4, 14 + h2);
+  paint->drawLine(w2 + 4, 14 + h2, w2 + 6, 1 + h2);
+  paint->drawLine(w2 + 6, 1 + h2, w2 + 27, 1 + h2);
+  paint->drawLine(w2 + 27, 1 + h2, w2 + 27, 4 + h2);
+  // add a three for the cube root
   if (_mode_flags & ModeInverse) {
-    int w = width();
-    int w2 = w/2 - 13;
-    int h = height();
-    int h2 = h/2 - 7;
-    // these statements are for the improved
-    // representation of the sqrt function
-    paint->drawLine(w2, 11 + h2, w2 + 2, 7 + h2);
-    paint->drawLine(w2 + 2, 7 + h2, w2 + 4, 14 + h2);
-    paint->drawLine(w2 + 4, 14 + h2, w2 + 6, 1 + h2);
-    paint->drawLine(w2 + 6, 1 + h2, w2 + 27, 1 + h2);
-    paint->drawLine(w2 + 27, 1 + h2, w2 + 27, 4 + h2);
-  } else {
-    // Change the representation of x^2
-    setText("x<sup>2</sup>");
-    KCalcButton::paintLabel(paint);
+    paint->drawText(w2-2, 9 + h2, "³");
   }
 }
 

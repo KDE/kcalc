@@ -72,7 +72,6 @@
 
 #include "kcalc_settings.h"
 
-const CALCAMNT KCalculator::pi = (ASIN(1L) * 2L);
 
 
 static const char description[] = I18N_NOOP("KDE Calculator");
@@ -166,12 +165,6 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	setupTrigKeys(mSmallPage);
 	setupConstantsKeys(mSmallPage);
 
-	pbPi = new KCalcButton(mSmallPage, "Pi-Button");
-	pbPi->addMode(ModeNormal, QString::fromUtf8("π"), // Pi in utf8
-		      i18n("Pi=3.1415..."));
-	connect(this, SIGNAL(switchShowAccels(bool)),
-		pbPi, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(pbPi, SIGNAL(clicked(void)), SLOT(slotPiclicked(void)));
 
 	pbMod = new KCalcButton(mSmallPage, "Modulo-Button");
 	pbMod->addMode(ModeNormal, "Mod", i18n("Modulo"));
@@ -201,14 +194,24 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// changeRepresentation() that paints the letters When
 	// pressing the INV Button a sqrt symbol will be drawn on that
 	// button
-	pbSquare = new KSquareButton(mSmallPage, "Square-Button");
+	pbSquare = new KCalcButton(mSmallPage, "Square-Button");
 	pbSquare->addMode(ModeNormal, "x<sup>2</sup>", i18n("Square"), true);
-	pbSquare->addMode(ModeInverse, "sqrt(x)", i18n("Square root"));
+	pbSquare->addMode(ModeInverse, "x<sup>3</sup>", i18n("Third power"), true);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbSquare, SLOT(slotSetAccelDisplayMode(bool)));
         connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
                 pbSquare, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(pbSquare, SIGNAL(clicked(void)), SLOT(slotSquareclicked(void)));
+
+	pbRoot = new KSquareButton(mSmallPage, "Square-Button");
+	pbRoot->addMode(ModeNormal, "sqrt(x)", i18n("Square root"));
+	pbRoot->addMode(ModeInverse, "sqrt[3](x)", i18n("Cube root"));
+	connect(this, SIGNAL(switchShowAccels(bool)),
+		pbRoot, SLOT(slotSetAccelDisplayMode(bool)));
+        connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
+                pbRoot, SLOT(slotSetMode(ButtonModeFlags,bool)));
+	connect(pbRoot, SIGNAL(clicked(void)), SLOT(slotRootclicked(void)));
+
 
 	// Representation of x^y is moved to the function
 	// changeRepresentation() that paints the letters When
@@ -254,35 +257,35 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	smallBtnLayout->addWidget(pbStat["NumData"], 0, 0);
 	smallBtnLayout->addWidget(pbTrig["HypMode"], 0, 1);
 	smallBtnLayout->addWidget(pbLogic["AND"], 0, 2);
-	smallBtnLayout->addWidget(pbPi, 0, 3);
+	smallBtnLayout->addWidget(pbMod, 0, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xA), 0, 4);
 	smallBtnLayout->addWidget(pbConstant[0], 0, 5);
 
 	smallBtnLayout->addWidget(pbStat["Mean"], 1, 0);
 	smallBtnLayout->addWidget(pbTrig["Sine"], 1, 1);
 	smallBtnLayout->addWidget(pbLogic["OR"], 1, 2);
-	smallBtnLayout->addWidget(pbMod, 1, 3);
+	smallBtnLayout->addWidget(pbReci, 1, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xB), 1, 4);
 	smallBtnLayout->addWidget(pbConstant[1], 1, 5);
 
 	smallBtnLayout->addWidget(pbStat["StandardDeviation"], 2, 0);
 	smallBtnLayout->addWidget(pbTrig["Cosine"], 2, 1);
 	smallBtnLayout->addWidget(pbLogic["XOR"], 2, 2);
-	smallBtnLayout->addWidget(pbReci, 2, 3);
+	smallBtnLayout->addWidget(pbFactorial, 2, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xC), 2, 4);
 	smallBtnLayout->addWidget(pbConstant[2], 2, 5);
 
 	smallBtnLayout->addWidget(pbStat["Median"], 3, 0);
 	smallBtnLayout->addWidget(pbTrig["Tangent"], 3, 1);
 	smallBtnLayout->addWidget(pbLogic["LeftShift"], 3, 2);
-	smallBtnLayout->addWidget(pbFactorial, 3, 3);
+	smallBtnLayout->addWidget(pbSquare, 3, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xD), 3, 4);
 	smallBtnLayout->addWidget(pbConstant[3], 3, 5);
 
 	smallBtnLayout->addWidget(pbStat["InputData"], 4, 0);
 	smallBtnLayout->addWidget(pbExp["Log10"], 4, 1);
 	smallBtnLayout->addWidget(pbLogic["RightShift"], 4, 2);
-	smallBtnLayout->addWidget(pbSquare, 4, 3);
+	smallBtnLayout->addWidget(pbRoot, 4, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xE), 4, 4);
 	smallBtnLayout->addWidget(pbConstant[4], 4, 5);
 
@@ -323,7 +326,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 
 	mFunctionButtonList.append(pbTrig["HypMode"]);
 	mFunctionButtonList.append(pbInv);
-	mFunctionButtonList.append(pbPi);
+	mFunctionButtonList.append(pbRoot);
 	mFunctionButtonList.append(pbTrig["Sine"]);
 	mFunctionButtonList.append(pbPlusMinus);
 	mFunctionButtonList.append(pbTrig["Cosine"]);
@@ -1237,13 +1240,6 @@ void KCalculator::slotEEclicked(void)
 	calc_display->newCharacter('e');
 }
 
-void KCalculator::slotPiclicked(void)
-{
-	calc_display->setAmount(pi);
-
-	UpdateDisplay(false);
-}
-
 void KCalculator::slotInvtoggled(bool flag)
 {
 	inverse = flag;
@@ -1468,7 +1464,17 @@ void KCalculator::slotSquareclicked(void)
 	if (!inverse)
 		core.Square(calc_display->getAmount());
 	else
+		core.Cube(calc_display->getAmount());
+
+	UpdateDisplay(true);
+}
+
+void KCalculator::slotRootclicked(void)
+{
+	if (!inverse)
 		core.SquareRoot(calc_display->getAmount());
+	else
+		core.CubeRoot(calc_display->getAmount());
 
 	UpdateDisplay(true);
 }

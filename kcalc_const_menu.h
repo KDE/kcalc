@@ -26,7 +26,7 @@
 #include <qpopupmenu.h>
 #include <qstring.h>
 
-typedef enum {Mathematics, Physics, Chemistry} ConstantCategory;
+typedef enum {Mathematics, Electromagnetic, Nuclear, Thermodynamics, Gravitation} ConstantCategory;
 
 struct science_constant{
   QString label;

@@ -1,3 +1,7 @@
+2004-12-21 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* added some more contants and dropped Pi-button since not needed.
+	  Instead new cube and cube root button.
+
 2004-12-17 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* almost finished feature which allows to choose from list
 	  of scientific constants

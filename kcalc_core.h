@@ -93,6 +93,8 @@ class CalcEngine
   void CosRad(CALCAMNT input);
   void CosGrad(CALCAMNT input);
   void CosHyp(CALCAMNT input);
+  void Cube(CALCAMNT input);
+  void CubeRoot(CALCAMNT input);
   void Exp(CALCAMNT input);
   void Exp10(CALCAMNT input);
   void Factorial(CALCAMNT input);
