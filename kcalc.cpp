@@ -311,9 +311,10 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	largeBtnLayout->addWidget(pbParenOpen, 1, 0);
 	largeBtnLayout->addWidget(pbParenClose, 1, 1);
 
-	largeBtnLayout->addWidget(pbMR, 2, 0);
+	largeBtnLayout->addWidget(pbMemRecall, 2, 0);
+	largeBtnLayout->addWidget(pbMemStore, 2, 1);
 
-	largeBtnLayout->addWidget(pbMPlusMinus, 3, 0);
+	largeBtnLayout->addWidget(pbMemPlusMinus, 3, 0);
 	largeBtnLayout->addWidget(pbPercent, 3, 1);
 
 	largeBtnLayout->addWidget(pbMC, 4, 0);
@@ -340,8 +341,9 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	mFunctionButtonList.append(pbPower);
 
 	mMemButtonList.append(pbEE);
-	mMemButtonList.append(pbMR);
-	mMemButtonList.append(pbMPlusMinus);
+	mMemButtonList.append(pbMemRecall);
+	mMemButtonList.append(pbMemPlusMinus);
+	mMemButtonList.append(pbMemStore);
 	mMemButtonList.append(pbMC);
 	mMemButtonList.append(pbClear);
 	mMemButtonList.append(pbAC);
@@ -648,20 +650,29 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	thisLayout->addColSpacing(4,10);
 
 
-	pbMR = new KCalcButton("MR", mLargePage, "MemRecall-Button", i18n("Memory recall"));
+	pbMemRecall = new KCalcButton("MR", mLargePage, "MemRecall-Button", i18n("Memory recall"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
-		pbMR, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(pbMR, SIGNAL(clicked(void)), SLOT(slotMRclicked(void)));
-        pbMR->setDisabled(true); // At start, there is nothing in memory
+		pbMemRecall, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbMemRecall, SIGNAL(clicked(void)),
+		SLOT(slotMemRecallclicked(void)));
+        pbMemRecall->setDisabled(true); // At start, there is nothing in memory
 
-	pbMPlusMinus = new KCalcButton(mLargePage, "MPlusMinus-Button");
-	pbMPlusMinus->addMode(ModeNormal, "M+", i18n("Add display to memory"));
-	pbMPlusMinus->addMode(ModeInverse, "M-", i18n("Subtract from memory"));
+	pbMemPlusMinus = new KCalcButton(mLargePage, "MPlusMinus-Button");
+	pbMemPlusMinus->addMode(ModeNormal, "M+", i18n("Add display to memory"));
+	pbMemPlusMinus->addMode(ModeInverse, "M-", i18n("Subtract from memory"));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
-		pbMPlusMinus, SLOT(slotSetMode(ButtonModeFlags,bool)));
+		pbMemPlusMinus, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
-		pbMPlusMinus, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(pbMPlusMinus,SIGNAL(clicked(void)),SLOT(slotMPlusMinusclicked(void)));
+		pbMemPlusMinus, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbMemPlusMinus,SIGNAL(clicked(void)),
+		SLOT(slotMemPlusMinusclicked(void)));
+
+	pbMemStore = new KCalcButton("MS", mLargePage, "MemStore-Button",
+					i18n("Memory store"));
+	connect(this, SIGNAL(switchShowAccels(bool)),
+		pbMemStore, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbMemStore, SIGNAL(clicked(void)), SLOT(slotMemStoreclicked(void)));
+
 
 	pbMC = new KCalcButton("MC", mLargePage, "MemClear-Button", i18n("Clear memory"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
@@ -1272,13 +1283,23 @@ void KCalculator::slotHyptoggled(bool flag)
 
 
 
-void KCalculator::slotMRclicked(void)
+void KCalculator::slotMemRecallclicked(void)
 {
 	// temp. work-around
 	calc_display->sendEvent(KCalcDisplay::EventReset);
 
 	calc_display->setAmount(memory_num);
 	UpdateDisplay(false);
+}
+
+void KCalculator::slotMemStoreclicked(void)
+{
+	EnterEqual();
+
+	memory_num = calc_display->getAmount();
+	//calc_display->setStatusText(3, "M");
+	statusBar()->changeItem("M",3);
+	pbMemRecall->setEnabled(true);
 }
 
 void KCalculator::slotNumberclicked(int number_clicked)
@@ -1341,7 +1362,7 @@ void KCalculator::slotPlusMinusclicked(void)
 	}
 }
 
-void KCalculator::slotMPlusMinusclicked(void)
+void KCalculator::slotMemPlusMinusclicked(void)
 {
 	bool tmp_inverse = inverse; // store this, because next command deletes inverse
 	EnterEqual(); // finish calculation so far, to store result into MEM
@@ -1351,7 +1372,7 @@ void KCalculator::slotMPlusMinusclicked(void)
 
 	pbInv->setOn(false);
 	statusBar()->changeItem("M",3);
-        pbMR->setEnabled(true);
+        pbMemRecall->setEnabled(true);
 }
 
 void KCalculator::slotCosclicked(void)
@@ -1520,7 +1541,7 @@ void KCalculator::slotMCclicked(void)
 {
 	memory_num		= 0;
 	statusBar()->changeItem(" \xa0\xa0 ",3);
-        pbMR->setDisabled(true);
+        pbMemRecall->setDisabled(true);
 }
 
 void KCalculator::slotClearclicked(void)

@@ -109,10 +109,11 @@ protected slots:
     void slotNumberclicked(int number_clicked);
     void slotEEclicked(void);
     void slotInvtoggled(bool myboolean);
-    void slotMRclicked(void);
+    void slotMemRecallclicked(void);
+    void slotMemStoreclicked(void);
     void slotSinclicked(void);
     void slotPlusMinusclicked(void);
-    void slotMPlusMinusclicked(void);
+    void slotMemPlusMinusclicked(void);
     void slotCosclicked(void);
     void slotReciclicked(void);
     void slotTanclicked(void);
@@ -196,8 +197,9 @@ private:
     KCalcButton* 	pbMC;
     KCalcButton* 	pbMinus;
     KCalcButton* 	pbMod;
-    KCalcButton* 	pbMPlusMinus;
-    KCalcButton* 	pbMR;
+    KCalcButton* 	pbMemPlusMinus;
+    KCalcButton* 	pbMemRecall;
+    KCalcButton*	pbMemStore;
     KCalcButton* 	pbOR;
     KCalcButton* 	pbParenClose;
     KCalcButton* 	pbParenOpen;

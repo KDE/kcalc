@@ -1,4 +1,7 @@
-2005-02-05 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2005-03-30 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* added a Memory-Store button (contributed by Bernd Brandstetter)
+
+2005-03-29 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* fix M+/- button to change when inverse is pressed
 
 2005-03-08 Evan Teran <eteran@alum.rit.edu>
