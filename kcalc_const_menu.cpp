@@ -31,7 +31,7 @@ const struct science_constant KCalcConstMenu::Constants[] = {
   {"c", i18n("Light speed"), "", "2.99792458e8", Electromagnetic},
   {"h", i18n("Planck's constant"), "", "6.6260693e-34", Nuclear},
   {"G", i18n("Constant of gravitation"), "", "6.6742e-11", Gravitation},
-  {"g", i18n("Earth accelaration"), "", "9.80665", Gravitation},
+  {"g", i18n("Earth acceleration"), "", "9.80665", Gravitation},
   {"e", i18n("Elementary charge"), "", "1.60217653e-19", Electromagnetic},
   {"Z_0", i18n("Impedance of vacuum"), "", "376.730313461", Electromagnetic},
   {QString::fromUtf8("α"), i18n("Fine-structure constant"), "", "7.297352568e-3", Nuclear},
