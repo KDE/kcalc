@@ -6,7 +6,7 @@
 
 Mon Nov 16 18:05:01 1998  Mario Weilguni <mweilguni@kde.org>
 
-	* the standard deviation was completly wrong. Fixed.
+	* There was an error in the stdev forumal. Fixed.
 	* the population standard deviation had the same fault. Fixed.
 
 Mon Nov 16 18:05:01 1998  Mario Weilguni <mweilguni@kde.org>
