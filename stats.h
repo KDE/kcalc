@@ -47,6 +47,7 @@ public:
     CALCAMNT sum_of_squares();
     CALCAMNT mean();
     CALCAMNT median();
+    CALCAMNT std_kernel();
     CALCAMNT std();
     CALCAMNT sample_std();
     CALCAMNT getat(int,CALCAMNT array[],int bound);

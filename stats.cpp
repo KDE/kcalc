@@ -64,9 +64,12 @@ void KStats::enterData(CALCAMNT _data){
 
 void KStats::clearLast(){
 
-printf("count %d\n",data.count());
+
  data.removeLast();
+#ifdef DEBUG_STATS
 printf("count %d\n",data.count());
+#endif   
+
 
 }
  
@@ -192,6 +195,29 @@ CALCAMNT KStats::getat(int position,CALCAMNT array[],int bound){
 }
 
 
+CALCAMNT KStats::std_kernel(){
+
+  CALCAMNT result = 0.0;
+  CALCAMNT _mean;
+
+  _mean = mean();
+
+  CALCAMNT *dp;
+  for ( dp=data.first(); dp != 0; dp=data.next() ){
+    
+    result += (*dp - _mean) * (*dp - _mean);
+
+  }
+
+#ifdef DEBUG_STATS
+  printf("std_kernel %Lg\n",result);
+#endif
+
+  return result;
+
+}
+
+
 CALCAMNT KStats::sum_of_squares(){
 
   CALCAMNT result = 0.0;
@@ -243,7 +269,7 @@ CALCAMNT KStats::std(){
     return 0.0;
   }
   
-  result = SQRT(sum_of_squares());
+  result = SQRT(std_kernel());
 
 #ifdef DEBUG_STATS
   printf ("data.count %d\n",data.count());
@@ -268,7 +294,7 @@ CALCAMNT KStats::sample_std(){
     return 0.0;
   }
   
-  result = SQRT(sum_of_squares());
+  result = SQRT(std_kernel());
   result = result/(data.count() - 1);
 #ifdef DEBUG_STATS
   printf("sample std: %Lg\n",result);
