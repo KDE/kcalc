@@ -22,7 +22,7 @@ int main() {
 long double foo = 1.0;
 char buffer[10];
 /* On Ultrix 4.3 cc, long double is 4 and double is 8.  */
-int result = (sizeof(long double) < sizeof(double));
+int result = (sizeof(long double) <= sizeof(double));
 /* the following is needed for a broken printf in glibc2 */
 if (!result) {
     foo = foo * 3;
