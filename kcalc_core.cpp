@@ -90,9 +90,9 @@ bool percent_mode	= false;
 	#define PRINT_HEX	"%lX"
 #endif
 
-item_contents 	display_data;
-stack<item_contents> amount_stack;
-stack<item_contents> func_stack;
+CALCAMNT			display_data;
+stack<CALCAMNT>		amount_stack;
+stack<func_data>	func_stack;
 
 int precedence[14] = { 0, 1, 2, 3, 4, 4, 5, 5, 6, 6, 6, 7, 7, 6 };
 
@@ -311,10 +311,7 @@ void QtCalculator::InitializeCalculator()
 	// errors that the code can/has not been written to trap.
 	//
 
-	display_data.s_item_type = ITEM_AMOUNT;
-	display_data.s_item_data.item_amount = 0.0;
-	display_data.s_item_data.item_func_data.item_function = 0;
-	display_data.s_item_data.item_func_data.item_precedence = 0;
+	display_data = 0.0;
 
 	void fpe_handler(int fpe_parm);
 	struct sigaction fpe_trap;
@@ -628,7 +625,7 @@ void QtCalculator::Power()
 //-------------------------------------------------------------------------
 void QtCalculator::EnterStackFunction(int data)
 {
-	item_contents 	new_item;
+	func_data new_item;
 	int new_precedence;
 	int dummy = 0;
 
@@ -644,19 +641,18 @@ void QtCalculator::EnterStackFunction(int data)
 
 	data = adjust_op[data][dummy];
 
-	PushStack(&display_data);
-
-	new_item.s_item_type = ITEM_FUNCTION;
-	new_item.s_item_data.item_func_data.item_function = data;
-	new_item.s_item_data.item_func_data.item_precedence =
-		new_precedence = precedence[data] + precedence_base;
+	amount_stack.push(DISPLAY_AMOUNT);
+	
+	new_item.item_function = data;
+	new_item.item_precedence = new_precedence = 
+		(precedence[data] + precedence_base);
 
 	refresh_display = true;
 	if (UpdateStack(new_precedence)) {
 		UpdateDisplay();
 	}
 
-	PushStack(&new_item);
+	func_stack.push(new_item);
 }
 
 //-------------------------------------------------------------------------
@@ -667,7 +663,7 @@ void QtCalculator::EnterNegate()
 	if(eestate)
 	{
 		QString str(display_str);
-		size_t pos = str.findRev('e');
+		int pos = str.findRev('e');
 
 		if(pos == -1)
 			return;
@@ -719,7 +715,7 @@ void QtCalculator::EnterCloseParen()
 {
 	eestate = false;
 	last_input = OPERATION;
-	PushStack(&display_data);
+	amount_stack.push(DISPLAY_AMOUNT);
 	refresh_display = true;
 
 	if (UpdateStack(precedence_base))
@@ -1545,7 +1541,7 @@ void QtCalculator::EnterEqual()
 	eestate		= false;
 	last_input	= OPERATION;
 
-	PushStack(&display_data);
+	amount_stack.push(DISPLAY_AMOUNT);
 
 	refresh_display = true;
 
@@ -1571,7 +1567,7 @@ void QtCalculator::Clear()
 
 	if (last_input == OPERATION)
 	{
-		PopStack(ITEM_FUNCTION);
+		func_stack.pop();
 		last_input = DIGIT;
 	}
 
@@ -1603,12 +1599,14 @@ void QtCalculator::ClearAll()
 	RefreshCalculator();
 	refresh_display = true;
 	
-	while(PopStack(ITEM_FUNCTION) != 0) {
-	; 
-	}
+	// clear out the function stack
+	while(func_stack.size() != 0) {
+		func_stack.pop();
+	}	
 	
-	while(PopStack(ITEM_AMOUNT) != 0) {
-	; 
+	// clear out the amount stack
+	while(amount_stack.size() != 0) {
+		amount_stack.pop();
 	}	
 }
 
@@ -1663,7 +1661,7 @@ void QtCalculator::UpdateDisplay()
 		switch(current_base)
 		{
 		case NB_BINARY:
-			str_size = cvb(display_str, boh_work, BIN_SIZE);
+			str_size = cvb(display_str, boh_work, DSP_SIZE);
 			break;
 
 		case NB_OCTAL:
@@ -1782,55 +1780,51 @@ int QtCalculator::cvb(char *out_str, KCALC_LONG amount, int max_digits)
 //-------------------------------------------------------------------------
 int QtCalculator::UpdateStack(int run_precedence)
 {
-	item_contents new_item;
-	item_contents *top_item;
-	item_contents *top_function;
-
 	CALCAMNT left_op	= 0.0;
 	CALCAMNT right_op 	= 0.0;
+	CALCAMNT new_value	= 0.0;
 	int op_function		= 0;
 	int return_value	= 0;
 
-	new_item.s_item_type = ITEM_AMOUNT;
 
-	while ((top_function = TopTypeStack(ITEM_FUNCTION)) &&
-		top_function->s_item_data.item_func_data.item_precedence >=
-		run_precedence)
+	while ((func_stack.size() != 0) && 
+		(func_stack.top().item_precedence >= run_precedence))
 	{
 		return_value = 1;
 
-		if ((top_item = PopStack(ITEM_AMOUNT)) == NULL) {
+		if (amount_stack.size() == 0) {
 			KMessageBox::error(0L, i18n("Stack processing error - right_op"));
 		}
 
-		right_op = top_item->s_item_data.item_amount;
+		right_op = amount_stack.top();
+		amount_stack.pop();
 
-		if ((top_item = PopStack(ITEM_FUNCTION)) == NULL) {
+		if (func_stack.size() == 0) {
 			KMessageBox::error(0L, i18n("Stack processing error - function"));
 		}
 
-		op_function = top_item->s_item_data.item_func_data.item_function;
+		op_function = func_stack.top().item_function;
+		func_stack.pop();
 
-		if ((top_item = PopStack(ITEM_AMOUNT)) == NULL) {
+		if (amount_stack.size() == 0) {
 			KMessageBox::error(0L, i18n("Stack processing error - left_op"));
 		}
 
-		left_op = top_item->s_item_data.item_amount;
+		left_op = amount_stack.top();
+		amount_stack.pop();
 
 		if (!percent_mode || Prcnt_ops[op_function] == NULL) {
-            new_item.s_item_data.item_amount =
-				(Arith_ops[op_function])(left_op, right_op);
+            new_value = (Arith_ops[op_function])(left_op, right_op);
         } else {
-            new_item.s_item_data.item_amount =
-                (Prcnt_ops[op_function])(left_op, right_op);
+            new_value = (Prcnt_ops[op_function])(left_op, right_op);
             percent_mode = false;
         }
 
-		PushStack(&new_item);
+		amount_stack.push(new_value);
 	}
 
 	if (return_value)
-		DISPLAY_AMOUNT = new_item.s_item_data.item_amount;
+		DISPLAY_AMOUNT = new_value;
 
 	decimal_point = 1;
 	return return_value;
@@ -2168,90 +2162,6 @@ CALCAMNT QtCalculator::ExecDivideP(CALCAMNT left_op, CALCAMNT right_op)
     return left_op * 100 / right_op;
 }
 
-/*
- * Stack storage management Data and Functions
- */
-
-//-------------------------------------------------------------------------
-// Name: PushStack(item_contents *add_item)
-//-------------------------------------------------------------------------
-void PushStack(item_contents *add_item)
-{
-	if(add_item != 0) {
-		switch(add_item->s_item_type) {
-		case ITEM_FUNCTION:
-			func_stack.push(*add_item);
-			break;
-		case ITEM_AMOUNT:
-			amount_stack.push(*add_item);
-			break;
-		default:
-			// somthing is pretty wrong if we get here...
-			assert(false);
-			break;
-		}
-	}
-}
-
-//-------------------------------------------------------------------------
-// Name: PopStack()
-//-------------------------------------------------------------------------
-item_contents *PopStack(item_type rqstd_type)
-{
-	static item_contents return_item;
-	
-	switch(rqstd_type) {
-	case ITEM_FUNCTION:
-		if(func_stack.size() == 0) {
-			return 0;
-		}	
-		return_item = func_stack.top();
-		func_stack.pop();
-		break;
-	case ITEM_AMOUNT:
-		if(amount_stack.size() == 0) {
-			return 0;
-		}	
-		return_item = amount_stack.top();
-		amount_stack.pop();
-		break;
-	default:
-		// somthing is pretty wrong if we get here...
-		assert(false);	
-		break;
-	}
-	
-	return &return_item;
-}
-
-//-------------------------------------------------------------------------
-// Name: TopTypeStack(item_type rqstd_type)
-//-------------------------------------------------------------------------
-item_contents *TopTypeStack(item_type rqstd_type)
-{
-	static item_contents return_item;
-	
-	switch(rqstd_type) {
-	case ITEM_FUNCTION:
-		if(func_stack.size() == 0) {
-			return 0;
-		}
-		return_item = func_stack.top();
-		break;
-	case ITEM_AMOUNT:
-		if(amount_stack.size() == 0) {
-			return 0;
-		}
-		return_item = amount_stack.top();
-		break;
-	default:
-		// somthing is pretty wrong if we get here...
-		assert(false);
-		break;
-	}
-	
-	return &return_item;
-}
 
 
 

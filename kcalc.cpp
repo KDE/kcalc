@@ -66,8 +66,8 @@ const CALCAMNT QtCalculator::pi = (ASIN(1L) * 2L);
 static const char *description = I18N_NOOP("KDE Calculator");
 static const char *version = KCALCVERSION;
 
-extern item_contents	display_data;
-extern bool				display_error;
+extern CALCAMNT	display_data;
+extern bool		display_error;
 
 //
 // * ported to QLayout (mosfet 10/28/99)
@@ -880,10 +880,7 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
 		configclicked();
 		break;
 	case Key_F3:
-		if(kcalcdefaults.style == 0)
-			kcalcdefaults.style = 1;
-		else
-			kcalcdefaults.style = 0;
+		kcalcdefaults.style = !kcalcdefaults.style;
 		set_style();
 		break;
 	case Key_Up:

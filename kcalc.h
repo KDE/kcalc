@@ -26,8 +26,7 @@
 #ifndef QTCALC_H
 #define QTCALC_H
 
-#include <queue>
-using std::queue;
+#include <vector>
 
 class QLabel;
 class QListBox;
@@ -81,7 +80,7 @@ class KPushButton;
 #define		POS_ZERO	 1e-19L	 /* What we consider zero is */
 #define		NEG_ZERO	-1e-19L	 /* anything between these two */
 
-#define DISPLAY_AMOUNT display_data.s_item_data.item_amount
+#define DISPLAY_AMOUNT display_data
 
 
 typedef	CALCAMNT	(*Arith)(CALCAMNT, CALCAMNT);
@@ -111,47 +110,11 @@ typedef enum _angle_type
 	ANG_GRADIENT = 2
 } angle_type;
 
-typedef enum _item_type
-{
-	ITEM_FUNCTION,
-	ITEM_AMOUNT
-} item_type;
-
 typedef struct _func_data
 {
 	int item_function;
 	int item_precedence;
 } func_data;
-
-typedef	union  _item_data
-{
-	CALCAMNT	item_amount;	// an amount
-	func_data	item_func_data;	// or a function
-} item_data;
-
-typedef struct _item_contents
-{
-	item_type	s_item_type;	// a type flag
-	item_data	s_item_data; 	// and data
-} item_contents;
-
-typedef struct stack_item *stack_ptr;
-
-typedef struct stack_item
-{
-	// Contents of an item on the input stack
-
-	stack_ptr prior_item;		// Pointer to prior item
-	stack_ptr prior_type;		// Pointer to prior type
-	item_contents item_value;	// The value of the item
-} stack_item;
-
-void 			InitStack();
-void 			PushStack(item_contents *add_item);
-//int			UpdateStack(int run_precedence);
-item_contents	*PopStack(item_type rqstd_type);
-item_contents	*TopOfStack();
-item_contents	*TopTypeStack(item_type rqstd_type);
 
 
 typedef struct _DefStruct
@@ -348,10 +311,10 @@ public:
 	static CALCAMNT ExecPower(CALCAMNT left_op, CALCAMNT right_op);
 	static CALCAMNT ExecPwrRoot(CALCAMNT left_op, CALCAMNT right_op);
 	static CALCAMNT ExecIntDiv(CALCAMNT left_op, CALCAMNT right_op);
-        static CALCAMNT ExecAddP(CALCAMNT left_op, CALCAMNT right_op);
-        static CALCAMNT ExecSubP(CALCAMNT left_op, CALCAMNT right_op);
-        static CALCAMNT ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op);
-        static CALCAMNT ExecDivideP(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecAddP(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecSubP(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecDivideP(CALCAMNT left_op, CALCAMNT right_op);
 	static CALCAMNT ExecFunction(CALCAMNT left_op, int function, CALCAMNT right_op);
 
 public:
