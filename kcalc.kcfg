@@ -97,7 +97,7 @@ int maxPrecision = 12;
       <default>false</default>
     </entry>
 	<entry name="groupDigits" type="Bool">
-      <label>Wether to group digits in long numbers in dispaly.</label>
+      <label>Whether to group digits in long numbers in display.</label>
       <default>true</default>
     </entry>
   </group>
