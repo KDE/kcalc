@@ -43,7 +43,7 @@
 #ifdef HAVE_LONG_DOUBLE
 
 /* should be detected by autoconf and defined in config.h
-   Be carefull when modifying these lines. HAVE_FABSL
+   Be carefull when modifying these lines. HAVE_LONG_DOUBLE
    is used all over kcalc's sources to determine whether 
    long double of double is the fundamental data type for kcalc*/
 
