@@ -357,6 +357,26 @@ static CALCAMNT ExecDivideP(CALCAMNT left_op, CALCAMNT right_op)
 }
 
 
+// build precedence list
+const struct operator_data CalcEngine::Operator[] = {
+  {precedence: 0, arith_ptr: NULL, prcnt_ptr: NULL}, // FUNC_EQUAL
+  {precedence: 0, arith_ptr: NULL, prcnt_ptr: NULL}, // FUNC_PERCENT
+  {precedence: 0, arith_ptr: NULL, prcnt_ptr: NULL}, // FUNC_BRACKET
+  {precedence: 1, arith_ptr: ExecOr, prcnt_ptr: NULL}, // FUNC_OR
+  {precedence: 2, arith_ptr: ExecXor, prcnt_ptr: NULL}, // FUNC_XOR
+  {precedence: 3, arith_ptr: ExecAnd, prcnt_ptr: NULL}, // FUNC_AND
+  {precedence: 4, arith_ptr: ExecLsh, prcnt_ptr: NULL}, // FUNC_LSH
+  {precedence: 4, arith_ptr: ExecRsh, prcnt_ptr: NULL}, // FUNC_RSH
+  {precedence: 5, arith_ptr: ExecAdd, prcnt_ptr: ExecAddP}, // FUNC_ADD
+  {precedence: 5, arith_ptr: ExecSubtract, prcnt_ptr: ExecSubP}, // FUNC_SUBTRACT
+  {precedence: 6, arith_ptr: ExecMultiply, prcnt_ptr: ExecMultiplyP}, // FUNC_MULTIPLY
+  {precedence: 6, arith_ptr: ExecDivide, prcnt_ptr: ExecDivideP}, // FUNC_DIVIDE
+  {precedence: 6, arith_ptr: ExecMod, prcnt_ptr: NULL}, // FUNC_MOD
+  {precedence: 6, arith_ptr: ExecIntDiv, prcnt_ptr: NULL}, // FUNC_INTDIV
+  {precedence: 7, arith_ptr: ExecPower, prcnt_ptr: NULL}, // FUNC_POWER
+  {precedence: 7, arith_ptr: ExecPwrRoot, prcnt_ptr: NULL} // FUNC_PWR_ROOT
+};
+
 
 CalcEngine::CalcEngine()
   :   _percent_mode(false)
@@ -376,71 +396,6 @@ CalcEngine::CalcEngine()
 	fpe_trap.sa_flags = SA_RESTART;
 #endif
 	sigaction(SIGFPE, &fpe_trap, NULL);
-
-	// build precedence list
-	_precedence_list[FUNC_EQUAL] = 0;
-	Arith_ops[FUNC_EQUAL] = NULL;
-	Prcnt_ops[FUNC_EQUAL] = NULL;
-
-	_precedence_list[FUNC_PERCENT] = 0;
-	Arith_ops[FUNC_PERCENT] = NULL;
-	Prcnt_ops[FUNC_PERCENT] = NULL;
-
-	_precedence_list[FUNC_BRACKET] = 0;
-	Arith_ops[FUNC_BRACKET] = NULL;
-	Prcnt_ops[FUNC_BRACKET] = NULL;
-
-	_precedence_list[FUNC_OR] = 1;
-	Arith_ops[FUNC_OR] = ExecOr;
-	Prcnt_ops[FUNC_OR] = NULL;
-
-	_precedence_list[FUNC_XOR] = 2;
-	Arith_ops[FUNC_XOR] = ExecXor;
-	Prcnt_ops[FUNC_XOR] = NULL;
-
-	_precedence_list[FUNC_AND] = 3;
-	Arith_ops[FUNC_AND] = ExecAnd;
-	Prcnt_ops[FUNC_AND] = NULL;
-
-	_precedence_list[FUNC_LSH] = 4;
-	Arith_ops[FUNC_LSH] = ExecLsh;
-	Prcnt_ops[FUNC_LSH] = NULL;
-
-	_precedence_list[FUNC_RSH] = 4;
-	Arith_ops[FUNC_RSH] = ExecRsh;
-	Prcnt_ops[FUNC_RSH] = NULL;
-
-	_precedence_list[FUNC_ADD] = 5;
-	Arith_ops[FUNC_ADD] = ExecAdd;
-	Prcnt_ops[FUNC_ADD] = ExecAddP;
-
-	_precedence_list[FUNC_SUBTRACT] = 5;
-	Arith_ops[FUNC_SUBTRACT] = ExecSubtract;
-	Prcnt_ops[FUNC_SUBTRACT] = ExecSubP;
-
-	_precedence_list[FUNC_MULTIPLY] = 6;
-	Arith_ops[FUNC_MULTIPLY] = ExecMultiply;
-	Prcnt_ops[FUNC_MULTIPLY] = ExecMultiplyP;
-
-	_precedence_list[FUNC_DIVIDE] = 6;
-	Arith_ops[FUNC_DIVIDE] = ExecDivide;
-	Prcnt_ops[FUNC_DIVIDE] = ExecDivideP;
-
-	_precedence_list[FUNC_MOD] = 6;
-	Arith_ops[FUNC_MOD] = ExecMod;
-	Prcnt_ops[FUNC_MOD] = NULL;
-
-	_precedence_list[FUNC_POWER] = 7;
-	Arith_ops[FUNC_POWER] = ExecPower;
-	Prcnt_ops[FUNC_POWER] = NULL;
-
-	_precedence_list[FUNC_PWR_ROOT] = 7;
-	Arith_ops[FUNC_PWR_ROOT] = ExecPwrRoot;
-	Prcnt_ops[FUNC_PWR_ROOT] = NULL;
-	
-	_precedence_list[FUNC_INTDIV] = 6;
-	Arith_ops[FUNC_INTDIV] = ExecIntDiv;	
-	Prcnt_ops[FUNC_INTDIV] = NULL;
 
 	_last_number = 0L;
 	_error = false;
@@ -948,12 +903,12 @@ void CalcEngine::TangensHyp(CALCAMNT input)
 CALCAMNT CalcEngine::evalOperation(CALCAMNT arg1, Operation operation,
 				   CALCAMNT arg2)
 {
-	if (!_percent_mode || Prcnt_ops[operation] == NULL)
+	if (!_percent_mode || Operator[operation].prcnt_ptr == NULL)
 	{
-		return (Arith_ops[operation])(arg1, arg2);
+		return (Operator[operation].arith_ptr)(arg1, arg2);
 	} else {
 		_percent_mode = false;
-		return (Prcnt_ops[operation])(arg1, arg2);
+		return (Operator[operation].prcnt_ptr)(arg1, arg2);
 	}
 }
 
@@ -994,8 +949,8 @@ bool CalcEngine::evalStack(void)
 	while (! _stack.isEmpty())
 	{
 		_node tmp_node2 = _stack.pop();
-		if (_precedence_list[tmp_node.operation] <=
-		    _precedence_list[tmp_node2.operation])
+		if (Operator[tmp_node.operation].precedence <=
+		    Operator[tmp_node2.operation].precedence)
 		{
 			if (tmp_node2.operation == FUNC_BRACKET) continue;
 			CALCAMNT tmp_result =

@@ -35,16 +35,16 @@
 
 typedef	CALCAMNT	(*Arith)(CALCAMNT, CALCAMNT);
 typedef	CALCAMNT	(*Prcnt)(CALCAMNT, CALCAMNT);
-typedef	CALCAMNT	(*Trig)(CALCAMNT);
 
 #define UNUSED(x) ((void)(x))
 
 
 
-typedef struct {
-	int item_function;
-	int item_precedence;
-} func_data;
+struct operator_data {
+  int precedence;  // priority of operators in " enum Operation"
+  Arith arith_ptr;
+  Prcnt prcnt_ptr;
+};
 
 class CalcEngine
 {
@@ -64,9 +64,9 @@ class CalcEngine
     FUNC_MULTIPLY,
     FUNC_DIVIDE,
     FUNC_MOD,
+    FUNC_INTDIV,
     FUNC_POWER,
-    FUNC_PWR_ROOT,
-    FUNC_INTDIV
+    FUNC_PWR_ROOT
   };
 
   CalcEngine();
@@ -157,20 +157,19 @@ class CalcEngine
 
   bool _percent_mode;
 
-  int _precedence_list[20]; // priority of operators in " enum Operation"
+
   static const CALCAMNT pi;
 
-  Arith Arith_ops[20];
-  Prcnt Prcnt_ops[20];
+  static const struct operator_data Operator[];
 
   bool evalStack(void);
 
   CALCAMNT evalOperation(CALCAMNT arg1, Operation operation, CALCAMNT arg2);
 
-  CALCAMNT Deg2Rad(CALCAMNT x)	{ return (((2L * pi) / 360L) * x); }
-  CALCAMNT Gra2Rad(CALCAMNT x)	{ return ((pi / 200L) * x); }
-  CALCAMNT Rad2Deg(CALCAMNT x)	{ return ((360L / (2L * pi)) * x); }
-  CALCAMNT Rad2Gra(CALCAMNT x)	{ return ((200L / pi) * x); }
+  CALCAMNT Deg2Rad(CALCAMNT x) const	{ return (((2L * pi) / 360L) * x); }
+  CALCAMNT Gra2Rad(CALCAMNT x) const	{ return ((pi / 200L) * x); }
+  CALCAMNT Rad2Deg(CALCAMNT x) const	{ return ((360L / (2L * pi)) * x); }
+  CALCAMNT Rad2Gra(CALCAMNT x) const	{ return ((200L / pi) * x); }
 
 };
 
