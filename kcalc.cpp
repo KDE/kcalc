@@ -126,7 +126,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// Create Button to select AngleMode
 	pbAngleChoose =  new QPushButton(i18n("&Angle"),
 					 central, "ChooseAngleMode-Button");
-	QToolTip::add(pbAngleChoose, i18n("Allow you to choose the unit for the angle measure"));
+	QToolTip::add(pbAngleChoose, i18n("Choose the unit for the angle measure"));
 	pbAngleChoose->setAutoDefault(false);
 
 	KPopupMenu *base_menu = new KPopupMenu(pbAngleChoose, "AngleMode-Selection-Menu");
