@@ -858,7 +858,7 @@ void CalcEngine::StatSumSquares(CALCAMNT input)
 
 void CalcEngine::Tangens(CALCAMNT input)
 {
-	CALCAMNT tmp = input;
+	CALCAMNT aux, tmp = input;
 
 	switch (_angle_mode)
 	{
@@ -873,8 +873,15 @@ void CalcEngine::Tangens(CALCAMNT input)
 		break;
 	}
 
-	_last_result = TAN(tmp);
-
+	aux = tmp;
+	if (aux < 0) aux = -aux;
+	while (aux > pi) aux -= pi;
+	aux = aux - pi / 2;
+	if (aux < 1e-18L)
+		_error = true;
+	else
+		_last_result = TAN(tmp);
+	
 	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
 	if (_last_result < POS_ZERO && _last_result > NEG_ZERO)
 		_last_result = 0.0;
