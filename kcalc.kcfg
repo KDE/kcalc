@@ -108,7 +108,7 @@ int maxPrecision = 12;
 	</entry>
 	<entry name="nameConstant2" type="String">
 	<label>Name of constant C2</label>
-		<default>C2</default>
+	<default>C2</default>
 	</entry>
 	<entry name="nameConstant3" type="String">
 	<label>Name of constant C3</label>
