@@ -1,6 +1,7 @@
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook V3.1-Based Variant V1.0//EN" [
  <!ENTITY kcalc "<application>kcalc</application>">
 ]>
+
 <book lang="en">
 <bookinfo>
 <title>The KCalc Handbook</title>
@@ -8,14 +9,14 @@
 <author>
 <firstname>Bernd Johannes</firstname>
 <surname>Wuebben</surname>
-<affiliation><address><email><ulink url="mailto:wuebben@kde.org">wuebben@kde.org</ulink></email></address></affiliation>
+<affiliation><address><email>wuebben@kde.org</email></address></affiliation>
 </author>
 </authorgroup>
-<date>Version 0.4, 20 September 1997</date>
-<releaseinfo><!-- information about this particular version --></releaseinfo>
+<date>20/09/1997</date>
+<releaseinfo>0.04.00</releaseinfo>
 <abstract>
 <para>This Handbook describes KCalc Version 0.4</para>
-<para>The KCalc Handbook</para><!-- Merge this with the previous paragraph; it comes from <META NAME="description" CONTENT="..."> --></abstract>
+</abstract>
 <keywordset>
 <keyword>KDE</keyword>
 <keyword>KCalc</keyword>
