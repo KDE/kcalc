@@ -1725,7 +1725,8 @@ void QtCalculator::display_selected(){
     QClipboard *cb = QApplication::clipboard();
     
     CALCAMNT result;
-    result = (CALCAMNT) strtod( cb->text(),0);
+    const char *text = cb->text();
+    result = (CALCAMNT) strtod( text?text:"0",0);
     //    printf("%Lg\n",result);
     last_input = PASTE;
     DISPLAY_AMOUNT = result;
