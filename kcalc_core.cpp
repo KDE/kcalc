@@ -1646,7 +1646,7 @@ void QtCalculator::UpdateDisplay()
 		switch(current_base)
 		{
 		case NB_BINARY:
-			str_size = QtCalculator::cvb(display_str, boh_work, BIN_SIZE);
+			str_size = cvb(display_str, boh_work, BIN_SIZE);
 			break;
 
 		case NB_OCTAL:
@@ -1789,10 +1789,15 @@ int QtCalculator::cvb(char *out_str, long amount, int max_digits)
 	bool hitOne		= false;
 	unsigned long bit_mask =
 		((unsigned long) 1 << ((sizeof(amount) * CHAR_BIT) - 1));
+   unsigned int count = 0 ;
 
 	while(bit_mask != 0 && max_digits > 0)
 	{
 		char tmp = (bit_mask & amount) ? '1' : '0';
+
+      if (hitOne && (count%4==0))
+			*strPtr++ = ' ';
+      count++;
 
 		if(!hitOne && tmp == '1')
 			hitOne = true;
