@@ -1,4 +1,7 @@
-2004-12-03 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-12-06 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* further refactoring of configuration options for const buttons
+
+2004-12-05 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* understood how kconfigxt handles indexed configuration options
 
 2004-12-03 Klaus Niederkrüger <kniederk@math.uni-koeln.de>

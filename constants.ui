@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>534</width>
-            <height>480</height>
+            <height>596</height>
         </rect>
     </property>
     <property name="caption">
@@ -19,18 +19,9 @@
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <property name="margin">
-            <number>0</number>
-        </property>
         <widget class="QGroupBox">
             <property name="name">
                 <cstring>mainGroupBox</cstring>
-            </property>
-            <property name="frameShape">
-                <enum>GroupBoxPanel</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Sunken</enum>
             </property>
             <property name="title">
                 <string>Configure Constants</string>
@@ -41,7 +32,7 @@
                 </property>
                 <widget class="QGroupBox">
                     <property name="name">
-                        <cstring>groupBox1</cstring>
+                        <cstring>groupBox0</cstring>
                     </property>
                     <property name="title">
                         <string>C1</string>
@@ -60,7 +51,7 @@
                         </widget>
                         <spacer>
                             <property name="name">
-                                <cstring>spacer11_3_8_6</cstring>
+                                <cstring>spacer1</cstring>
                             </property>
                             <property name="orientation">
                                 <enum>Horizontal</enum>
@@ -70,41 +61,49 @@
                             </property>
                             <property name="sizeHint">
                                 <size>
-                                    <width>33</width>
+                                    <width>70</width>
+                                    <height>21</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>kcfg_valueConstant0</cstring>
+                            </property>
+                            <property name="maxLength">
+                                <number>40</number>
+                            </property>
+                        </widget>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer2</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>80</width>
                                     <height>21</height>
                                 </size>
                             </property>
                         </spacer>
                         <widget class="KPushButton">
                             <property name="name">
-                                <cstring>kPushButton1</cstring>
+                                <cstring>kPushButton0</cstring>
                             </property>
                             <property name="text">
                                 <string>Predefined</string>
                             </property>
                         </widget>
-                        <spacer>
-                            <property name="name">
-                                <cstring>spacer30_6</cstring>
-                            </property>
-                            <property name="orientation">
-                                <enum>Horizontal</enum>
-                            </property>
-                            <property name="sizeType">
-                                <enum>Expanding</enum>
-                            </property>
-                            <property name="sizeHint">
-                                <size>
-                                    <width>18</width>
-                                    <height>21</height>
-                                </size>
-                            </property>
-                        </spacer>
                     </hbox>
                 </widget>
                 <widget class="QGroupBox">
                     <property name="name">
-                        <cstring>groupBox2</cstring>
+                        <cstring>groupBox1</cstring>
                     </property>
                     <property name="title">
                         <string>C2</string>
@@ -123,7 +122,7 @@
                         </widget>
                         <spacer>
                             <property name="name">
-                                <cstring>spacer11_3_8_5</cstring>
+                                <cstring>spacer3</cstring>
                             </property>
                             <property name="orientation">
                                 <enum>Horizontal</enum>
@@ -133,41 +132,49 @@
                             </property>
                             <property name="sizeHint">
                                 <size>
-                                    <width>33</width>
+                                    <width>70</width>
+                                    <height>21</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>kcfg_valueConstant1</cstring>
+                            </property>
+                            <property name="maxLength">
+                                <number>40</number>
+                            </property>
+                        </widget>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer4</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>80</width>
                                     <height>21</height>
                                 </size>
                             </property>
                         </spacer>
                         <widget class="KPushButton">
                             <property name="name">
-                                <cstring>kPushButton2</cstring>
+                                <cstring>kPushButton1</cstring>
                             </property>
                             <property name="text">
                                 <string>Predefined</string>
                             </property>
                         </widget>
-                        <spacer>
-                            <property name="name">
-                                <cstring>spacer30_5</cstring>
-                            </property>
-                            <property name="orientation">
-                                <enum>Horizontal</enum>
-                            </property>
-                            <property name="sizeType">
-                                <enum>Expanding</enum>
-                            </property>
-                            <property name="sizeHint">
-                                <size>
-                                    <width>18</width>
-                                    <height>21</height>
-                                </size>
-                            </property>
-                        </spacer>
                     </hbox>
                 </widget>
                 <widget class="QGroupBox">
                     <property name="name">
-                        <cstring>groupBox3</cstring>
+                        <cstring>groupBox2</cstring>
                     </property>
                     <property name="title">
                         <string>C3</string>
@@ -186,7 +193,7 @@
                         </widget>
                         <spacer>
                             <property name="name">
-                                <cstring>spacer11_3_8_4</cstring>
+                                <cstring>spacer5</cstring>
                             </property>
                             <property name="orientation">
                                 <enum>Horizontal</enum>
@@ -196,41 +203,49 @@
                             </property>
                             <property name="sizeHint">
                                 <size>
-                                    <width>33</width>
+                                    <width>70</width>
+                                    <height>21</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>kcfg_valueConstant2</cstring>
+                            </property>
+                            <property name="maxLength">
+                                <number>40</number>
+                            </property>
+                        </widget>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer6</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>80</width>
                                     <height>21</height>
                                 </size>
                             </property>
                         </spacer>
                         <widget class="KPushButton">
                             <property name="name">
-                                <cstring>kPushButton3</cstring>
+                                <cstring>kPushButton2</cstring>
                             </property>
                             <property name="text">
                                 <string>Predefined</string>
                             </property>
                         </widget>
-                        <spacer>
-                            <property name="name">
-                                <cstring>spacer30_4</cstring>
-                            </property>
-                            <property name="orientation">
-                                <enum>Horizontal</enum>
-                            </property>
-                            <property name="sizeType">
-                                <enum>Expanding</enum>
-                            </property>
-                            <property name="sizeHint">
-                                <size>
-                                    <width>18</width>
-                                    <height>21</height>
-                                </size>
-                            </property>
-                        </spacer>
                     </hbox>
                 </widget>
                 <widget class="QGroupBox">
                     <property name="name">
-                        <cstring>groupBox4</cstring>
+                        <cstring>groupBox3</cstring>
                     </property>
                     <property name="title">
                         <string>C4</string>
@@ -249,7 +264,7 @@
                         </widget>
                         <spacer>
                             <property name="name">
-                                <cstring>spacer11_3_8_3</cstring>
+                                <cstring>spacer7</cstring>
                             </property>
                             <property name="orientation">
                                 <enum>Horizontal</enum>
@@ -259,41 +274,49 @@
                             </property>
                             <property name="sizeHint">
                                 <size>
-                                    <width>33</width>
+                                    <width>70</width>
+                                    <height>21</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>kcfg_valueConstant3</cstring>
+                            </property>
+                            <property name="maxLength">
+                                <number>40</number>
+                            </property>
+                        </widget>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer8</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>80</width>
                                     <height>21</height>
                                 </size>
                             </property>
                         </spacer>
                         <widget class="KPushButton">
                             <property name="name">
-                                <cstring>kPushButton4</cstring>
+                                <cstring>kPushButton3</cstring>
                             </property>
                             <property name="text">
                                 <string>Predefined</string>
                             </property>
                         </widget>
-                        <spacer>
-                            <property name="name">
-                                <cstring>spacer30_3</cstring>
-                            </property>
-                            <property name="orientation">
-                                <enum>Horizontal</enum>
-                            </property>
-                            <property name="sizeType">
-                                <enum>Expanding</enum>
-                            </property>
-                            <property name="sizeHint">
-                                <size>
-                                    <width>18</width>
-                                    <height>21</height>
-                                </size>
-                            </property>
-                        </spacer>
                     </hbox>
                 </widget>
                 <widget class="QGroupBox">
                     <property name="name">
-                        <cstring>groupBox5</cstring>
+                        <cstring>groupBox4</cstring>
                     </property>
                     <property name="title">
                         <string>C5</string>
@@ -312,7 +335,7 @@
                         </widget>
                         <spacer>
                             <property name="name">
-                                <cstring>spacer11_3_8_2</cstring>
+                                <cstring>spacer9</cstring>
                             </property>
                             <property name="orientation">
                                 <enum>Horizontal</enum>
@@ -322,41 +345,49 @@
                             </property>
                             <property name="sizeHint">
                                 <size>
-                                    <width>33</width>
+                                    <width>70</width>
+                                    <height>21</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>kcfg_valueConstant4</cstring>
+                            </property>
+                            <property name="maxLength">
+                                <number>40</number>
+                            </property>
+                        </widget>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer10</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>80</width>
                                     <height>21</height>
                                 </size>
                             </property>
                         </spacer>
                         <widget class="KPushButton">
                             <property name="name">
-                                <cstring>kPushButton5</cstring>
+                                <cstring>kPushButton4</cstring>
                             </property>
                             <property name="text">
                                 <string>Predefined</string>
                             </property>
                         </widget>
-                        <spacer>
-                            <property name="name">
-                                <cstring>spacer30_2</cstring>
-                            </property>
-                            <property name="orientation">
-                                <enum>Horizontal</enum>
-                            </property>
-                            <property name="sizeType">
-                                <enum>Expanding</enum>
-                            </property>
-                            <property name="sizeHint">
-                                <size>
-                                    <width>18</width>
-                                    <height>21</height>
-                                </size>
-                            </property>
-                        </spacer>
                     </hbox>
                 </widget>
                 <widget class="QGroupBox">
                     <property name="name">
-                        <cstring>groupBox6</cstring>
+                        <cstring>groupBox5</cstring>
                     </property>
                     <property name="title">
                         <string>C6</string>
@@ -375,7 +406,7 @@
                         </widget>
                         <spacer>
                             <property name="name">
-                                <cstring>spacer11_3_8</cstring>
+                                <cstring>spacer11</cstring>
                             </property>
                             <property name="orientation">
                                 <enum>Horizontal</enum>
@@ -385,43 +416,51 @@
                             </property>
                             <property name="sizeHint">
                                 <size>
-                                    <width>33</width>
+                                    <width>70</width>
+                                    <height>21</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>kcfg_valueConstant5</cstring>
+                            </property>
+                            <property name="maxLength">
+                                <number>40</number>
+                            </property>
+                        </widget>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer12</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>80</width>
                                     <height>21</height>
                                 </size>
                             </property>
                         </spacer>
                         <widget class="KPushButton">
                             <property name="name">
-                                <cstring>kPushButton6</cstring>
+                                <cstring>kPushButton5</cstring>
                             </property>
                             <property name="text">
                                 <string>Predefined</string>
                             </property>
                         </widget>
-                        <spacer>
-                            <property name="name">
-                                <cstring>spacer30</cstring>
-                            </property>
-                            <property name="orientation">
-                                <enum>Horizontal</enum>
-                            </property>
-                            <property name="sizeType">
-                                <enum>Expanding</enum>
-                            </property>
-                            <property name="sizeHint">
-                                <size>
-                                    <width>20</width>
-                                    <height>20</height>
-                                </size>
-                            </property>
-                        </spacer>
                     </hbox>
                 </widget>
             </vbox>
         </widget>
         <spacer>
             <property name="name">
-                <cstring>spacer18</cstring>
+                <cstring>spacer13</cstring>
             </property>
             <property name="orientation">
                 <enum>Vertical</enum>
@@ -432,17 +471,21 @@
             <property name="sizeHint">
                 <size>
                     <width>20</width>
-                    <height>90</height>
+                    <height>40</height>
                 </size>
             </property>
         </spacer>
     </vbox>
 </widget>
-<tabstops>
-    <tabstop>kcfg_nameConstant6</tabstop>
-</tabstops>
+<customwidgets>
+</customwidgets>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
 </includehints>
 </UI>

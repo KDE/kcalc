@@ -115,9 +115,15 @@ int maxPrecision = 12;
 	<default param="5">C6</default>
 	</entry>
 
-	<entry name="valueUserConstants" type="StringList">
+	<entry name="valueConstant$(ConstIndex)" type="String" key="valueConstant$(ConstIndex)">
 	<label>List of user programmable constants</label>
-	<default>3.141592653589793238462643383279502884197,0,0,0,0,0</default>
+	<parameter name="ConstIndex" type="Int" max="5"/>
+	<default param="0">3.141592653589793238462643383279502884197</default>
+	<default param="1">0</default>
+	<default param="2">0</default>
+	<default param="3">0</default>
+	<default param="4">0</default>
+	<default param="5">0</default>
 	</entry>
   </group>
 </kcfg>

@@ -1741,10 +1741,8 @@ void KCalculator::slotConstclicked(int button)
 	}
 	else
 	{
-		QStringList tmp_list = KCalcSettings::valueUserConstants();
 		pbInv->setOn(false);
-		tmp_list[button] = calc_display->text();
-		KCalcSettings::setValueUserConstants(tmp_list);
+		KCalcSettings::setValueConstant(button, calc_display->text());
 		// below set new tooltip
 		pbConstant[button]->setLabelAndTooltip();
 		// work around: after storing a number, pressing a digit should start
