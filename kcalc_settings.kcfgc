@@ -1,4 +1,5 @@
 # Code generation options for kconfig_compiler
+File=kcalc.kcfg
 ClassName=KCalcSettings
 Singleton=true
 # Inherits=KConfigSkeleton
