@@ -145,7 +145,7 @@ typedef struct stack_item
 
 void 	InitStack();
 void 	PushStack(item_contents *add_item);
-int		UpdateStack(int run_precedence);
+//int		UpdateStack(int run_precedence);
 item_contents	*PopStack();
 item_contents	*TopOfStack();
 item_contents	*TopTypeStack(item_type rqstd_type);
@@ -198,6 +198,7 @@ private:
 	void ComputeCos();
 	void ComputeMedean();
 	void ComputeTan();
+   int UpdateStack(int run_precedence);
 
 protected slots:
     void helpclicked();
