@@ -73,6 +73,7 @@
 	#define CBRT(X)		cbrtl(X)
 	#define ISINF(X)	isinfl(X)
 	#define STRTOD(X,Y)	strtold(X,Y)
+	#define ROUND(X)	roundl(X)
 	#define CALCAMNT_EPSILON	LDBL_EPSILON
 #else
 	#define FABS(X)		fabs(X)
@@ -98,6 +99,7 @@
 	#define CBRT(X)		cbrt(X)
 	#define ISINF(X)	isinf(X)
 	#define STRTOD(X,Y)	strtod(X,Y)
+	#define ROUND(X)	round(X)
 	#define CALCAMNT_EPSILON	DBL_EPSILON
 #endif
 

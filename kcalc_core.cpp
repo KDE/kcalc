@@ -212,26 +212,41 @@ static CALCAMNT ExecAdd(CALCAMNT left_op, CALCAMNT right_op)
 {
 	// printf("ExecAdd\n");
 	CALCAMNT tmp_result = left_op + right_op;
-	// Set result to zero, when smaller than FPU-precision
-	CALCAMNT tmp_divisor = FABS(left_op) + FABS(right_op);
-	if (tmp_divisor != 0L  &&
-	    FABS(tmp_result)/tmp_divisor > 2*CALCAMNT_EPSILON)
-		return tmp_result;
-	else
-		return 0L;       
+
+	// When operating with floating point numbers the following
+	// effect can happen: 1.0000001 + (-1.0) gives 1.0000232e-6
+	// instead of 1e-6. This looks very bad on a calculator (to
+	// the unexperienced eye). Hence we round in this case.
+	CALCAMNT max_precision = (FABS(left_op) + FABS(right_op))
+	  * CALCAMNT_EPSILON;
+	// we want to round to decimal digits, hence we need to find
+	// the number of valid digits
+	CALCAMNT digits = 1;
+	while (digits > max_precision)
+	  digits *= 0.1L;
+	digits *= 100.0L; // this number is experimental
+
+	return  digits * ROUND(tmp_result/digits);
 }
 
 static CALCAMNT ExecSubtract(CALCAMNT left_op, CALCAMNT right_op)
 {
 	// printf("ExecSubtract\n");
 	CALCAMNT tmp_result = left_op - right_op;
-	// Set result to zero, when smaller than FPU-precision
-	CALCAMNT tmp_divisor = FABS(left_op) + FABS(right_op);
-	if (tmp_divisor != 0L  &&
-	    FABS(tmp_result)/tmp_divisor > 2*CALCAMNT_EPSILON)
-		return tmp_result;
-	else
-		return 0L;       
+	// When operating with floating point numbers the following
+	// effect can happen: 1.0000001 + (-1.0) gives 1.0000232e-6
+	// instead of 1e-6. This looks very bad on a calculator (to
+	// the unexperienced eye). Hence we round in this case.
+	CALCAMNT max_precision = (FABS(left_op) + FABS(right_op))
+	  * CALCAMNT_EPSILON;
+	// we want to round to decimal digits, hence we need to find
+	// the number of valid digits
+	CALCAMNT digits = 1;
+	while (digits > max_precision)
+	  digits *= 0.1L;
+	digits *= 100.0L; // this number is experimental
+
+	return  digits * ROUND(tmp_result/digits);
 }
 
 static CALCAMNT ExecMultiply(CALCAMNT left_op, CALCAMNT right_op)
