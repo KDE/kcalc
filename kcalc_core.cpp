@@ -344,11 +344,11 @@ void QtCalculator::RefreshCalculator()
 	display_error = false;
 	DISPLAY_AMOUNT = 0L;
 	inverse = false;
+	decimal_point = 0;
+	input_count = 0;
 	UpdateDisplay();
 	last_input = DIGIT; // must set last to DIGIT after Update Display in order
 						// not to get a display holding e.g. 0.000
-	input_count = 0;
-	decimal_point = 0;
 }
 
 //-------------------------------------------------------------------------
