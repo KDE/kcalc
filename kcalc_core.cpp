@@ -44,10 +44,21 @@
 	#include <string.h>
 #endif
 
+#include <config.h>
 #include "kcalc_core.h"
 #include <stdlib.h>
 #include <klocale.h>
 #include <kmessagebox.h>
+
+#ifndef HAVE_FUNC_ISINF
+        #ifdef HAVE_IEEEFP_H
+                #include <ieeefp.h>
+        #else
+                #include <math.h>
+        #endif
+
+int isinf(double x) { return !finite(x) && x==x; }
+#endif
 
 
 static void fpe_handler(int fpe_parm)

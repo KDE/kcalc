@@ -58,16 +58,6 @@ typedef	CALCAMNT	(*Trig)(CALCAMNT);
 
 #define UNUSED(x) ((void)(x))
 
-#ifndef HAVE_FUNC_ISINF
-	#ifdef HAVE_IEEEFP_H
-		#include <ieeefp.h>
-	#else
-		#include <math.h>
-	#endif
-
-int isinf(double x) { return !finite(x) && x==x; }
-#endif
-
 typedef enum _angle_type
 {
 	ANG_DEGREE = 0,
