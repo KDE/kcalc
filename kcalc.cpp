@@ -1752,8 +1752,8 @@ extern "C" int kdemain(int argc, char *argv[])
 
 	KAboutData aboutData( "kcalc", I18N_NOOP("KCalc"),
 		version, description, KAboutData::License_GPL,
-		"(c) 1996-2000, Bernd Johannes Wuebben\n"
-		"(c) 2000-2003, The KDE Team",
+			      I18N_NOOP("(c) 1996-2000, Bernd Johannes Wuebben\n"
+			      "(c) 2000-2003, The KDE Team"),
                 precisionStatement.latin1());
 
 	aboutData.addAuthor("Bernd Johannes Wuebben", 0, "wuebben@kde.org");
