@@ -6,8 +6,12 @@ AC_DEFUN(KDE_C_LONG_DOUBLE,
 [
   AC_CACHE_CHECK(for long double, ac_cv_c_long_double,
   [
+    ac_save_LIBS="$LIBS"
+    LIBS="-lm $LIBS"
     AC_TRY_RUN(
     [
+#define _ISOC99_SOURCE	1
+#define _GNU_SOURCE	1
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -32,6 +36,7 @@ exit(result); }
     ac_cv_c_long_double=yes, ac_cv_c_long_double=no,
     ac_cv_c_long_double=no
     )
+    LIBS="$ac_save_LIBS"
   ])
   if test $ac_cv_c_long_double = yes; then
     AC_DEFINE(HAVE_LONG_DOUBLE, 1, [Define if you have support for long double in printf])

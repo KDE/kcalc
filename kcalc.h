@@ -70,7 +70,7 @@ class KPushButton;
 #define FUNC_PWR_ROOT	12
 #define FUNC_INTDIV		13
 
-#define		HEX_SIZE	8
+#define		HEX_SIZE	sizeof(KCALC_LONG)*2
 #define		OCT_SIZE	11
 #define		DEC_SIZE	19
 #define		BIN_SIZE	32
@@ -330,7 +330,7 @@ private:
      DefStruct kcalcdefaults;
 
 private:
-	static int cvb(char *out_str, long amount, int max_digits);
+	static int cvb(char *out_str, KCALC_LONG amount, int max_digits);
 
 public:
 	static CALCAMNT ExecOr(CALCAMNT left_op, CALCAMNT right_op);

@@ -1,3 +1,4 @@
+AM_CPPFLAGS=-D_GNU_SOURCE -D_ISOC99_SOURCE
 bin_PROGRAMS = kcalc
 lib_LTLIBRARIES = kcalc.la
 

@@ -78,6 +78,14 @@ stack_item	process_stack[STACK_SIZE];
 	#define PRINT_LONG		"%g"
 #endif
 
+#ifdef HAVE_LONG_LONG
+	#define PRINT_OCTAL	"%llo"
+	#define PRINT_HEX	"%llX"
+#else
+	#define PRINT_OCTAL	"%lo"
+	#define PRINT_HEX	"%lX"
+#endif
+
 item_contents 	display_data;
 
 int precedence[14] = { 0, 1, 2, 3, 4, 4, 5, 5, 6, 6, 6, 7, 7, 6 };
@@ -353,7 +361,7 @@ void QtCalculator::EnterDigit(int data)
 		QString string;
 		string.setNum(data);
 		strcat(display_str, string.latin1());
-		DISPLAY_AMOUNT = (CALCAMNT) strtod(display_str,0);
+		DISPLAY_AMOUNT = (CALCAMNT) STRTOD(display_str,0);
 		UpdateDisplay();
 		return;
 	}
@@ -670,7 +678,7 @@ void QtCalculator::EnterNegate()
 			}
 		}
 
-		DISPLAY_AMOUNT = (CALCAMNT)strtod(display_str,0);
+		DISPLAY_AMOUNT = (CALCAMNT)STRTOD(display_str,0);
 		UpdateDisplay();
 	}
 	else
@@ -814,15 +822,15 @@ void QtCalculator::EnterNotCmp()
 {
 	eestate = false;
 	CALCAMNT boh_work_d;
-	long boh_work;
+	KCALC_LONG boh_work;
 
 	MODF(DISPLAY_AMOUNT, &boh_work_d);
 
-	if (FABS(boh_work_d) > LONG_MAX)
+	if (FABS(boh_work_d) > KCALC_LONG_MAX)
 		display_error = true;
 	else
 	{
-		boh_work = (long int)boh_work_d;
+		boh_work = (KCALC_LONG)boh_work_d;
 		DISPLAY_AMOUNT = ~boh_work;
 	}
 
@@ -1393,7 +1401,7 @@ void QtCalculator::base_selected(int number)
 		current_base	= NB_HEX;
 		display_size	= HEX_SIZE;
 		decimal_point	= 0;
-		input_limit		= 8;
+		input_limit		= sizeof(KCALC_LONG)*2;
 		break;
 	case 1:
 		current_base	= NB_DECIMAL;
@@ -1602,8 +1610,8 @@ void QtCalculator::UpdateDisplay()
 	// are correctly displayed.
 
 	CALCAMNT	boh_work_d;
-	long 		boh_work = 0;
-	int			str_size = 0;
+	KCALC_LONG	boh_work = 0;
+	int		str_size = 0;
 
 	if(eestate && (current_base == NB_DECIMAL))
 	{
@@ -1615,7 +1623,7 @@ void QtCalculator::UpdateDisplay()
 	{
 		MODF(DISPLAY_AMOUNT, &boh_work_d);
 
-		if (boh_work_d < LONG_MIN || boh_work_d > ULONG_MAX)
+		if (boh_work_d < KCALC_LONG_MIN || boh_work_d > KCALC_ULONG_MAX)
 			display_error = true;
 
 		//
@@ -1624,15 +1632,15 @@ void QtCalculator::UpdateDisplay()
 		// just that, allowing boh negative numbers to be entered
 		// as read (from dumps and the like!)
 		//
-		else if (boh_work_d > LONG_MAX)
+		else if (boh_work_d > KCALC_LONG_MAX)
 		{
-			DISPLAY_AMOUNT = LONG_MIN + (boh_work_d - LONG_MAX - 1);
-			boh_work = (long)DISPLAY_AMOUNT;
+			DISPLAY_AMOUNT = KCALC_LONG_MIN + (boh_work_d - KCALC_LONG_MAX - 1);
+			boh_work = (KCALC_LONG)DISPLAY_AMOUNT;
 		}
 		else
 		{
 			DISPLAY_AMOUNT = boh_work_d;
-			boh_work = (long)boh_work_d;
+			boh_work = (KCALC_LONG)boh_work_d;
 		}
 	}
 
@@ -1645,11 +1653,11 @@ void QtCalculator::UpdateDisplay()
 			break;
 
 		case NB_OCTAL:
-			str_size = snprintf(display_str, DSP_SIZE, "%lo", boh_work);
+			str_size = snprintf(display_str, DSP_SIZE, PRINT_OCTAL, boh_work);
 			break;
 
 		case NB_HEX:
-			str_size = snprintf(display_str, DSP_SIZE, "%lX", boh_work);
+			str_size = snprintf(display_str, DSP_SIZE, PRINT_HEX, boh_work);
 			break;
 
 		case NB_DECIMAL:
@@ -1706,9 +1714,9 @@ void QtCalculator::UpdateDisplay()
 }
 
 //-------------------------------------------------------------------------
-// Name: cvb(char *out_str, long amount, int max_digits)
+// Name: cvb(char *out_str, KCALC_LONG amount, int max_digits)
 //-------------------------------------------------------------------------
-int QtCalculator::cvb(char *out_str, long amount, int max_digits)
+int QtCalculator::cvb(char *out_str, KCALC_LONG amount, int max_digits)
 {
 	/*
 	* A routine that converts a long int to
@@ -1722,7 +1730,7 @@ int QtCalculator::cvb(char *out_str, long amount, int max_digits)
 	lead_one = 1,
 	lead_one_count = 0,
 	work_size = sizeof(amount) * CHAR_BIT;
-	unsigned long	bit_mask = ((unsigned long) 1 << ((sizeof(amount) * CHAR_BIT) - 1));
+	unsigned KCALC_LONG bit_mask = ((unsigned KCALC_LONG) 1 << ((sizeof(amount) * CHAR_BIT) - 1));
 
 	while (bit_mask) {
 
@@ -1754,8 +1762,8 @@ int QtCalculator::cvb(char *out_str, long amount, int max_digits)
 
 	char *strPtr	= out_str;
 	bool hitOne		= false;
-	unsigned long bit_mask =
-		((unsigned long) 1 << ((sizeof(amount) * CHAR_BIT) - 1));
+	unsigned KCALC_LONG bit_mask =
+		((unsigned KCALC_LONG) 1 << ((sizeof(amount) * CHAR_BIT) - 1));
 	unsigned int count = 0 ;
 
 	while(bit_mask != 0 && max_digits > 0)
@@ -1875,26 +1883,26 @@ CALCAMNT QtCalculator::ExecOr(CALCAMNT left_op, CALCAMNT right_op)
 {
 	// printf("ExecOr\n");
 	CALCAMNT	boh_work_d;
-	long 		boh_work_l;
-	long		boh_work_r;
+	KCALC_LONG	boh_work_l;
+	KCALC_LONG	boh_work_r;
 
 	MODF(left_op, &boh_work_d);
-	if (FABS(boh_work_d) > LONG_MAX)
+	if (FABS(boh_work_d) > KCALC_LONG_MAX)
 	{
 		display_error = true;
 		return 0;
 	}
 
-	boh_work_l = (long int)boh_work_d;
+	boh_work_l = (KCALC_LONG)boh_work_d;
 	MODF(right_op, &boh_work_d);
 
-	if (FABS(boh_work_d) > LONG_MAX)
+	if (FABS(boh_work_d) > KCALC_LONG_MAX)
 	{
 		display_error = true;
 		return 0;
 	}
 
-	boh_work_r = (long int) boh_work_d;
+	boh_work_r = (KCALC_LONG) boh_work_d;
 	return (boh_work_l | boh_work_r);
 }
 
@@ -1905,26 +1913,26 @@ CALCAMNT QtCalculator::ExecXor(CALCAMNT left_op, CALCAMNT right_op)
 {
 	// printf("ExecXOr\n");
 	CALCAMNT	boh_work_d;
-	long 		boh_work_l;
-	long		boh_work_r;
+	KCALC_LONG	boh_work_l;
+	KCALC_LONG	boh_work_r;
 
 	MODF(left_op, &boh_work_d);
-	if (FABS(boh_work_d) > LONG_MAX)
+	if (FABS(boh_work_d) > KCALC_LONG_MAX)
 	{
 		display_error = true;
 		return 0;
 	}
 
-	boh_work_l = (long int)boh_work_d;
+	boh_work_l = (KCALC_LONG)boh_work_d;
 	MODF(right_op, &boh_work_d);
 
-	if (FABS(boh_work_d) > LONG_MAX)
+	if (FABS(boh_work_d) > KCALC_LONG_MAX)
 	{
 		display_error = true;
 		return 0;
 	}
 
-	boh_work_r = (long int)boh_work_d;
+	boh_work_r = (KCALC_LONG)boh_work_d;
 	return (boh_work_l ^ boh_work_r);
 }
 
@@ -1935,26 +1943,26 @@ CALCAMNT QtCalculator::ExecAnd(CALCAMNT left_op, CALCAMNT right_op)
 {
 	// printf("ExecAnd\n");
 	CALCAMNT	boh_work_d;
-	long 		boh_work_l;
-	long		boh_work_r;
+	KCALC_LONG	boh_work_l;
+	KCALC_LONG	boh_work_r;
 
 	MODF(left_op, &boh_work_d);
-	if (FABS(boh_work_d) > LONG_MAX)
+	if (FABS(boh_work_d) > KCALC_LONG_MAX)
 	{
 		display_error = true;
 		return 0;
 	}
 
-	boh_work_l = (long int)boh_work_d;
+	boh_work_l = (KCALC_LONG)boh_work_d;
 	MODF(right_op, &boh_work_d);
 
-	if (FABS(boh_work_d) > LONG_MAX)
+	if (FABS(boh_work_d) > KCALC_LONG_MAX)
 	{
 		display_error = true;
 		return 0;
 	}
 
-	boh_work_r = (long int)boh_work_d;
+	boh_work_r = (KCALC_LONG)boh_work_d;
 	return (boh_work_l & boh_work_r);
 }
 
@@ -1965,26 +1973,26 @@ CALCAMNT QtCalculator::ExecLsh(CALCAMNT left_op, CALCAMNT right_op)
 {
 	// printf("ExecLsh\n");
 	CALCAMNT	boh_work_d;
-	long 		boh_work_l;
-	long		boh_work_r;
+	KCALC_LONG	boh_work_l;
+	KCALC_LONG	boh_work_r;
 
 	MODF(left_op, &boh_work_d);
-	if (FABS(boh_work_d) > LONG_MAX)
+	if (FABS(boh_work_d) > KCALC_LONG_MAX)
 	{
 		display_error = true;
 		return 0;
 	}
 
-	boh_work_l = (long int) boh_work_d;
+	boh_work_l = (KCALC_LONG) boh_work_d;
 	MODF(right_op, &boh_work_d);
 
-	if (FABS(boh_work_d) > LONG_MAX)
+	if (FABS(boh_work_d) > KCALC_LONG_MAX)
 	{
 		display_error = true;
 		return 0;
 	}
 
-	boh_work_r = (long int ) boh_work_d;
+	boh_work_r = (KCALC_LONG) boh_work_d;
 	return (boh_work_l << boh_work_r);
 }
 
@@ -1995,26 +2003,26 @@ CALCAMNT QtCalculator::ExecRsh(CALCAMNT left_op, CALCAMNT right_op)
 {
 	// printf("ExecRsh\n");
 	CALCAMNT	boh_work_d;
-	long 		boh_work_l;
-	long		boh_work_r;
+	KCALC_LONG	boh_work_l;
+	KCALC_LONG	boh_work_r;
 
 	MODF(left_op, &boh_work_d);
-	if (FABS(boh_work_d) > LONG_MAX)
+	if (FABS(boh_work_d) > KCALC_LONG_MAX)
 	{
 		display_error = true;
 		return 0;
 	}
 
-	boh_work_l = (long int)boh_work_d;
+	boh_work_l = (KCALC_LONG)boh_work_d;
 	MODF(right_op, &boh_work_d);
 
-	if (FABS(boh_work_d) > LONG_MAX)
+	if (FABS(boh_work_d) > KCALC_LONG_MAX)
 	{
 		display_error = true;
 		return 0;
 	}
 
-	boh_work_r = (long int)boh_work_d;
+	boh_work_r = (KCALC_LONG)boh_work_d;
 	return (boh_work_l >> boh_work_r);
 }
 
