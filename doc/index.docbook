@@ -21,7 +21,7 @@
 <firstname>Pamela</firstname>
 <surname>Roberts</surname>
 <affiliation><jobtitle>Handbook maintainer</jobtitle>
-<address><email>pam.roberts@btinternet.com</email></address>
+<address><email>pamroberts@blueyonder.co.uk</email></address>
 </affiliation>
 </author>
 
@@ -638,7 +638,7 @@ whose stack engine is still part of &kcalc;.</para>
 <listitem><para>Bernd Johannes
 Wuebben <email>wuebben@kde.org</email></para></listitem>
 <listitem><para>Pamela Roberts
-<email>pam.roberts@btinternet.com</email></para></listitem>
+<email>pamroberts@blueyonder.co.uk</email></para></listitem>
 </itemizedlist>
 
 &underFDL;
