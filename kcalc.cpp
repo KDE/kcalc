@@ -1763,7 +1763,7 @@ void KCalculator::slotC1clicked(void)
 	else
 	{
 		pbInv->setOn(false);
-		KCalcSettings::setValueConstant1(QString::number(calc_display->getAmount()));
+		KCalcSettings::setValueConstant1(QString::number((double)calc_display->getAmount()));
 	}
 
 	UpdateDisplay(false);
@@ -1779,7 +1779,7 @@ void KCalculator::slotC2clicked(void)
 	else
 	{
 		pbInv->setOn(false);
-		KCalcSettings::setValueConstant2(QString::number(calc_display->getAmount()));
+		KCalcSettings::setValueConstant2(QString::number((double)calc_display->getAmount()));
 	}
 
 	UpdateDisplay(false);
@@ -1795,7 +1795,7 @@ void KCalculator::slotC3clicked(void)
 	else
 	{
 		pbInv->setOn(false);
-		KCalcSettings::setValueConstant3(QString::number(calc_display->getAmount()));
+		KCalcSettings::setValueConstant3(QString::number((double)calc_display->getAmount()));
 	}
 
 	UpdateDisplay(false);
@@ -1811,7 +1811,7 @@ void KCalculator::slotC4clicked(void)
 	else
 	{
 		pbInv->setOn(false);
-		KCalcSettings::setValueConstant4(QString::number(calc_display->getAmount()));
+		KCalcSettings::setValueConstant4(QString::number((double)calc_display->getAmount()));
 	}
 
 	UpdateDisplay(false);
@@ -1827,7 +1827,7 @@ void KCalculator::slotC5clicked(void)
 	else
 	{
 		pbInv->setOn(false);
-		KCalcSettings::setValueConstant5(QString::number(calc_display->getAmount()));
+		KCalcSettings::setValueConstant5(QString::number((double)calc_display->getAmount()));
 	}
 
 	UpdateDisplay(false);
@@ -1843,7 +1843,7 @@ void KCalculator::slotC6clicked(void)
 	else
 	{
 		pbInv->setOn(false);
-		KCalcSettings::setValueConstant6(QString::number(calc_display->getAmount()));
+		KCalcSettings::setValueConstant6(QString::number((double)calc_display->getAmount()));
 	}
 
 	UpdateDisplay(false);
