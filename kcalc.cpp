@@ -300,6 +300,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 
 	pbpower = new QPushButton("x^y", mSmallPage, "powerbutton");
 	pbpower->setAutoDefault(false);
+	QToolTip::add(pbpower, i18n("x to the power of y"));
 	connect(pbpower, SIGNAL(toggled(bool)), SLOT(pbpowertoggled(bool)));
 	pbpower->setToggleButton(true);
 
@@ -309,6 +310,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pbF->setToggleButton(true);
 
 	pbEE = new QPushButton("EE", mLargePage, "EEbutton");
+	QToolTip::add(pbEE, i18n("Exponent"));
 	pbEE->setToggleButton(true);
 	pbEE->setAutoDefault(false);
 	connect(pbEE, SIGNAL(toggled(bool)), SLOT(EEtoggled(bool)));
@@ -422,11 +424,13 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pb3->setToggleButton(true);
 
 	pbplus = new QPushButton("+", mLargePage, "plusbutton");
+	QToolTip::add(pbplus, i18n("Addition"));
 	pbplus->setAutoDefault(false);
 	connect(pbplus, SIGNAL(toggled(bool)), SLOT(pbplustoggled(bool)));
 	pbplus->setToggleButton(true);
 
 	pbminus = new QPushButton("-", mLargePage, "minusbutton");
+	QToolTip::add(pbminus, i18n("Subtraction"));
 	pbminus->setAutoDefault(false);
 	connect(pbminus, SIGNAL(toggled(bool)), SLOT(pbminustoggled(bool)));
 	pbminus->setToggleButton(true);
@@ -449,6 +453,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pb0->setToggleButton(true);
 
 	pbequal = new QPushButton("=", mLargePage, "equalbutton");
+	QToolTip::add(pbequal, i18n("Result"));
 	pbequal->setAutoDefault(false);
 	connect(pbequal, SIGNAL(toggled(bool)), SLOT(pbequaltoggled(bool)));
 	pbequal->setToggleButton(true);
@@ -1907,13 +1912,14 @@ void QtCalculator::set_style()
 		pbTan->setText( "Tan" );
 		QToolTip::add(pbTan, i18n("Tangent"));
 		pblog->setText( "Log" );
-		QToolTip::remove(pblog);
+		QToolTip::add(pblog, i18n("Logarithm to the basis of 10"));
 		pbln ->setText( "Ln"  );
 		QToolTip::add(pbln, i18n("Natural log"));
 		break;
 
 	case 1:
 		pbhyp->setText( "N" );
+		QToolTip::add(pbhyp, i18n("Number of data entered"));
 		pbSin->setText( "Mea" );
 		QToolTip::add(pbSin, i18n("Mean"));
 		pbCos->setText( "Std" );
