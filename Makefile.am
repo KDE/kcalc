@@ -5,7 +5,7 @@ lib_LTLIBRARIES =
 kdeinit_LTLIBRARIES = kcalc.la
 
 kcalc_la_SOURCES = kcalc.cpp kcalc_core.cpp kcalcdisplay.cpp dlabel.cpp \
-		   stats.cpp colors.ui general.ui kcalc_settings.kcfgc
+		   stats.cpp colors.ui general.ui constants.ui kcalc_settings.kcfgc
 
 METASOURCES = AUTO
 

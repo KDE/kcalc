@@ -6,6 +6,7 @@
     <Action name="show_stat"/>
     <Action name="show_logic"/>
     <Action name="show_explog"/>
+    <Action name="show_constants"/>
     <Separator/>
     <Action name="show_all"/>
     <Action name="hide_all"/>

@@ -72,6 +72,7 @@ private:
 	void setupLogExpKeys(QWidget *parent);
 	void setupTrigKeys(QWidget *parent);
 	void setupStatisticKeys(QWidget *parent);
+	void setupConstantsKeys(QWidget *parent);
 	void keyPressEvent( QKeyEvent *e );
 	void set_precision();
 	void set_style();
@@ -82,6 +83,7 @@ private:
 			   bool store_result_in_history = false);
 
 protected slots:
+    void changeButtonNames();
     void updateSettings();
     void set_colors();
     void EnterEqual();
@@ -91,6 +93,7 @@ protected slots:
     void slotTrigshow(bool toggled);
     void slotExpLogshow(bool toggled);
     void slotLogicshow(bool toggled);
+    void slotConstantsShow(bool toggled);   
     void slotShowAll(void);
     void slotHideAll(void);
     void slotAngleSelected(int number);
@@ -138,10 +141,18 @@ protected slots:
     void slotStatClearDataclicked(void);
     void slotHyptoggled(bool flag);
     void slotConfigureKeys();
+    void slotC1clicked(void);
+    void slotC2clicked(void);
+    void slotC3clicked(void);
+    void slotC4clicked(void);
+    void slotC5clicked(void);
+    void slotC6clicked(void);
+	
 private:
 	bool inverse;
 	bool hyp_mode;
 	CALCAMNT memory_num;
+	CALCAMNT setvalue;
 
 public:
 	static const CALCAMNT pi;
@@ -158,6 +169,7 @@ private:
     QDict<QPushButton>  pbTrig;
     QDict<QPushButton>  pbExp;
     QDict<QPushButton>  pbLogic;
+	QDict<QPushButton>  pbConstant;
     QPushButton* 	pbEE;
     QPushButton* 	pbPi;
     QPushButton* 	pbInv;
@@ -173,26 +185,38 @@ private:
     QPushButton* 	pbAC;
     QPushButton* 	pbParenOpen;
     QPushButton* 	pbParenClose;
+    QPushButton* 	pbAND;
     QPushButton* 	pbX;
     QPushButton* 	pbDivision;
+    QPushButton* 	pbOR;
+    QPushButton* 	pbXOR;
     QPushButton* 	pbPlus;
     QPushButton* 	pbMinus;
     QPushButton* 	pbPeriod;
     QPushButton* 	pbEqual;
     QPushButton* 	pbPercent;
     QPushButton* 	pbMod;
+    QPushButton* 	pbC1; 
+    QPushButton* 	pbC2; 		
+    QPushButton* 	pbC3; 
+    QPushButton* 	pbC4; 	
+    QPushButton* 	pbC5; 
+    QPushButton* 	pbC6;
+	
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
-    QButtonGroup*       NumButtonGroup;
+    QButtonGroup* 	NumButtonGroup;
 
     KToggleAction *actionStatshow;
     KToggleAction *actionTrigshow;
     KToggleAction *actionLogicshow;
     KToggleAction *actionExpLogshow;
+    KToggleAction *actionConstantsShow;
 
     QPtrList<QPushButton> mFunctionButtonList;
     QPtrList<QPushButton> mStatButtonList;
     QPtrList<QPushButton> mMemButtonList;
     QPtrList<QPushButton> mOperationButtonList;
+    QPtrList<QPushButton> mConstButtonList;
 
     int				mInternalSpacing;
 
