@@ -701,63 +701,34 @@ void QtCalculator::EnterNotCmp()
 	UpdateDisplay();
 }
 
-//-------------------------------------------------------------------------
-// Name: EnterHyp()
-//-------------------------------------------------------------------------
 void QtCalculator::EnterHyp()
 {
-	switch(kcalcdefaults.style)
-	{
-	case 1:
-		if(!inverse)
-		{
-			eestate = false; // terminate ee input mode
-			DISPLAY_AMOUNT =  stats.count();
-		}
-		else
-		{
-			inverse = false;
-			eestate = false; // terminate ee input mode
-			DISPLAY_AMOUNT =  stats.sum();
-		}
+	// toggle between hyperbolic and standart trig functions
+	hyp_mode = !hyp_mode;
 
-		last_input = OPERATION;
-		refresh_display = true;
-		UpdateDisplay();
-		break;
-
-	case 0:
-		// toggle between hyperbolic and standart trig functions
-		hyp_mode = !hyp_mode;
-
-		if (hyp_mode)	statusHYPLabel->setText("HYP");
-		else 			statusHYPLabel->clear();
-		break;
-	}
+	if (hyp_mode)	statusHYPLabel->setText("HYP");
+	else 			statusHYPLabel->clear();
 }
 
-//-------------------------------------------------------------------------
-// Name: ExecSin()
-//-------------------------------------------------------------------------
-void QtCalculator::ExecSin()
+void QtCalculator::DisplayNumData()
 {
-	switch(kcalcdefaults.style)
+	if(!inverse)
 	{
-	case 0:
-		// trig mode
-		ComputeSin();
-		break;
-
-	case 1:
-		// stats mode
-		ComputeMean();
-		break;
+		eestate = false; // terminate ee input mode
+		DISPLAY_AMOUNT =  stats.count();
 	}
+	else
+	{
+		inverse = false;
+		eestate = false; // terminate ee input mode
+		DISPLAY_AMOUNT =  stats.sum();
+	}
+
+	last_input = OPERATION;
+	refresh_display = true;
+	UpdateDisplay();
 }
 
-//-------------------------------------------------------------------------
-// Name: ComputeMean()
-//-------------------------------------------------------------------------
 void QtCalculator::ComputeMean()
 {
 	if(!inverse)
@@ -787,9 +758,6 @@ void QtCalculator::ComputeMean()
 	}
 }
 
-//-------------------------------------------------------------------------
-// Name: ComputeSin()
-//-------------------------------------------------------------------------
 void QtCalculator::ComputeSin()
 {
 	CALCAMNT work_amount = DISPLAY_AMOUNT;
@@ -872,28 +840,6 @@ void QtCalculator::ComputeSin()
 
 }
 
-//-------------------------------------------------------------------------
-// Name: ExecCos()
-//-------------------------------------------------------------------------
-void QtCalculator::ExecCos()
-{
-	switch(kcalcdefaults.style)
-	{
-	case 0:
-		// trig mode
-		ComputeCos();
-		break;
-
-	case 1:
-		// stats mode
-		ComputeStd();
-		break;
-	}
-}
-
-//-------------------------------------------------------------------------
-// Name: ComputeStd()
-//-------------------------------------------------------------------------
 void QtCalculator::ComputeStd()
 {
 	if(!inverse)
@@ -926,9 +872,6 @@ void QtCalculator::ComputeStd()
 	}
 }
 
-//-------------------------------------------------------------------------
-// Name: ComputeCos()
-//-------------------------------------------------------------------------
 void QtCalculator::ComputeCos()
 {
 	CALCAMNT work_amount = DISPLAY_AMOUNT;
@@ -1009,10 +952,7 @@ void QtCalculator::ComputeCos()
 	UpdateDisplay();
 }
 
-//-------------------------------------------------------------------------
-// Name: ComputeMedean()
-//-------------------------------------------------------------------------
-void QtCalculator::ComputeMedean()
+void QtCalculator::ComputeMedian()
 {
 	if(!inverse)
 	{
@@ -1045,9 +985,6 @@ void QtCalculator::ComputeMedean()
 	}
 }
 
-//-------------------------------------------------------------------------
-// Name: ComputeTan()
-//-------------------------------------------------------------------------
 void QtCalculator::ComputeTan()
 {
 	CALCAMNT work_amount = DISPLAY_AMOUNT;
@@ -1133,28 +1070,6 @@ void QtCalculator::ComputeTan()
 
 }
 
-//-------------------------------------------------------------------------
-// Name: ExecTan()
-//-------------------------------------------------------------------------
-void QtCalculator::ExecTan()
-{
-	switch(kcalcdefaults.style)
-	{
-	case 0:
-		// trig mode
-		ComputeTan();
-		break;
-
-	case 1:
-		// stats mode
-		ComputeMedean();
-		break;
-	}
-}
-
-//-------------------------------------------------------------------------
-// Name: EnterPercent()
-//-------------------------------------------------------------------------
 void QtCalculator::EnterPercent()
 {
 	eestate			= false;
@@ -1165,44 +1080,20 @@ void QtCalculator::EnterPercent()
 
 }
 
-//-------------------------------------------------------------------------
-// Name: EnterLogr()
-//-------------------------------------------------------------------------
-void QtCalculator::EnterLogr()
+void QtCalculator::EnterStatData()
 {
-	switch(kcalcdefaults.style)
+	if(!inverse)
 	{
-	case 1:
-		if(!inverse)
-		{
-			eestate = false; // terminate ee input mode
-			stats.enterData(DISPLAY_AMOUNT);
-			DISPLAY_AMOUNT = stats.count();
-		}
-		else
-		{
-			inverse = false;
-			stats.clearLast();
-			setStatusLabel(i18n("Last stat item erased"));
-			DISPLAY_AMOUNT = stats.count();
-		}
-		break;
-
-	case 0:
-		eestate = false;
-		if (!inverse)
-		{
-			if (DISPLAY_AMOUNT <= 0)
-				display_error = true;
-			else
-				DISPLAY_AMOUNT = LOG_TEN(DISPLAY_AMOUNT);
-		}
-		else
-		{
-			DISPLAY_AMOUNT = POW(10, DISPLAY_AMOUNT);
-			inverse = false;
-		}
-		break;
+		eestate = false; // terminate ee input mode
+		stats.enterData(DISPLAY_AMOUNT);
+		DISPLAY_AMOUNT = stats.count();
+	}
+	else
+	{
+		inverse = false;
+		stats.clearLast();
+		setStatusLabel(i18n("Last stat item erased"));
+		DISPLAY_AMOUNT = stats.count();
 	}
 
 	last_input		= OPERATION;
@@ -1210,51 +1101,62 @@ void QtCalculator::EnterLogr()
 	UpdateDisplay();
 }
 
-//-------------------------------------------------------------------------
-// Name: EnterLogn()
-//-------------------------------------------------------------------------
-void QtCalculator::EnterLogn()
+void QtCalculator::ComputeLog10()
 {
-	switch(kcalcdefaults.style)
+	eestate = false;
+	if (!inverse)
 	{
-	case 1:
-		if(!inverse)
-		{
-			stats.clearAll();
-			setStatusLabel(i18n("Stat mem cleared"));
-		}
+		if (DISPLAY_AMOUNT <= 0)
+			display_error = true;
 		else
-		{
-			inverse = false;
-			UpdateDisplay();
-		}
-		break;
+			DISPLAY_AMOUNT = LOG_TEN(DISPLAY_AMOUNT);
+	}
+	else
+	{
+		DISPLAY_AMOUNT = POW(10, DISPLAY_AMOUNT);
+		inverse = false;
+	}
 
-	case 0:
-		eestate = false;
-		last_input = OPERATION;
-		if (!inverse)
-		{
-			if (DISPLAY_AMOUNT <= 0)
-				display_error = true;
-			else
-				DISPLAY_AMOUNT = LOG(DISPLAY_AMOUNT);
-		}
-		else if (inverse)
-		{
-			DISPLAY_AMOUNT = EXP(DISPLAY_AMOUNT);
-			inverse = false;
-		}
+	last_input		= OPERATION;
+	refresh_display	= true;
+	UpdateDisplay();
+}
 
-		refresh_display = true;
+void QtCalculator::ClearStatMem()
+{
+        if(!inverse)
+	{
+	        stats.clearAll();
+		setStatusLabel(i18n("Stat mem cleared"));
+	}
+	else
+	{
+	        inverse = false;
 		UpdateDisplay();
-		break;
 	}
 }
 
-//-------------------------------------------------------------------------
-// Name: base_selected(int number)
-//-------------------------------------------------------------------------
+void QtCalculator::ComputeNaturalLog()
+{
+	eestate = false;
+	last_input = OPERATION;
+	if (!inverse)
+	{
+		if (DISPLAY_AMOUNT <= 0)
+			display_error = true;
+		else
+			DISPLAY_AMOUNT = LOG(DISPLAY_AMOUNT);
+	}
+	else if (inverse)
+	{
+		DISPLAY_AMOUNT = EXP(DISPLAY_AMOUNT);
+		inverse = false;
+	}
+
+	refresh_display = true;
+	UpdateDisplay();
+}
+
 void QtCalculator::base_selected(int number)
 {
 	switch(number)

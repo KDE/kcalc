@@ -120,6 +120,7 @@ typedef struct _DefStruct
 	QColor backcolor;
 	QColor numberButtonColor;
 	QColor functionButtonColor;
+	QColor statButtonColor;
 	QColor hexButtonColor;
 	QColor memoryButtonColor;
 	QColor operationButtonColor;
@@ -156,12 +157,17 @@ private:
 	void set_style();
 	void history_next();
 	void history_prev();
-	void ComputeMean();
 	void ComputeSin();
-	void ComputeStd();
 	void ComputeCos();
-	void ComputeMedean();
 	void ComputeTan();
+	void ComputeLog10();
+	void ComputeNaturalLog();
+	void DisplayNumData();
+	void ComputeStd();
+	void ComputeMean();
+	void ComputeMedian();
+	void EnterStatData();
+	void ClearStatMem();
 
 	int UpdateStack(int run_precedence);
 protected slots:
@@ -187,8 +193,6 @@ protected slots:
     void EnterNotCmp();
     void EnterHyp();
     void EnterPercent();
-    void EnterLogr();
-    void EnterLogn();
     void Deg_Selected();
     void Rad_Selected();
     void Gra_Selected();
@@ -204,9 +208,6 @@ protected slots:
     void RefreshCalculator();
     void InitializeCalculator();
     void UpdateDisplay();
-    void ExecSin();
-    void ExecCos();
-    void ExecTan();
     void base_selected(int number);
     void angle_selected(int number);
     void Or();
@@ -254,6 +255,12 @@ protected slots:
     void slotPercentclicked(void);
     void slotNegateclicked(void);
     void slotModclicked(void);
+    void slotStatNumclicked(void);
+    void slotStatMeanclicked(void);
+    void slotStatStdDevclicked(void);
+    void slotStatMedianclicked(void);
+    void slotStatDataInputclicked(void);
+    void slotStatClearDataclicked(void);
     void slotHyptoggled(bool myboolean);
     void configclicked();
 
@@ -361,6 +368,12 @@ private:
     QPushButton* 	pbPercent;
     QPushButton* 	pbNegate;
     QPushButton* 	pbMod;
+    QPushButton*        pbStatNum;
+    QPushButton*        pbStatMean;
+    QPushButton*        pbStatStdDev;
+    QPushButton*        pbStatMedian;
+    QPushButton*        pbStatDataInput;
+    QPushButton*        pbStatClearData;
     QButtonGroup*	angle_group;
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
     QButtonGroup*       NumButtonGroup;
@@ -368,6 +381,7 @@ private:
     KHelpMenu *mHelpMenu;
 
     QPtrList<QPushButton> mFunctionButtonList;
+    QPtrList<QPushButton> mStatButtonList;
     QPtrList<QPushButton> mMemButtonList;
     QPtrList<QPushButton> mOperationButtonList;
 

@@ -66,6 +66,7 @@ private:
 	KColorButton *mColorFGround;
     KColorButton *mColorBGround;
     KColorButton *mColorFunctions;
+    KColorButton *mColorStat;
     KColorButton *mColorHexa;
     KColorButton *mColorNumbers;
     KColorButton *mColorMemory;
