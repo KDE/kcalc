@@ -26,17 +26,7 @@
 #ifndef KSTATS_H
 #define KSTATS_H
 
-#if defined(_ISOC99_SOURCE)
-	#include <cmath>
-	#include <vector>
-	#include <algorithm>
-	using namespace std;
-#else
-	#include <cmath.h>
-	#include <vector.h>
-#endif
-
-#include <qptrlist.h>
+#include <qvaluevector.h>
 #include "kcalctype.h"
 
 class KStats {
@@ -60,7 +50,7 @@ public:
 	bool     error();
 
 private:
-    vector<CALCAMNT> mData;
+    QValueVector<CALCAMNT> mData;
     bool error_flag;
 
 };

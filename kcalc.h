@@ -26,8 +26,6 @@
 #ifndef QTCALC_H
 #define QTCALC_H
 
-#include <vector>
-
 class QLabel;
 class QListBox;
 class QTimer;
@@ -40,7 +38,7 @@ class KHelpMenu;
 class ConfigureDialog;
 class DLabel;
 class KPushButton;
-
+#include <qvaluevector.h>
 #include <kmainwindow.h>
 #include "stats.h"
 
@@ -346,7 +344,7 @@ private:
 	char display_str[DSP_SIZE + 1];
 
 private:
-	std::vector<CALCAMNT> history_list;
+	QValueVector<CALCAMNT> history_list;
 	int history_index;
 
 

@@ -30,7 +30,6 @@
 #if defined(_ISOC99_SOURCE)
 	#include <cassert>
 	#include <cstdio>
-	#include <stack>
 	#include <climits>
 	#include <csignal>
 	#include <cerrno>
@@ -39,13 +38,13 @@
 #else
 	#include <limits.h>
 	#include <stdio.h>
-	#include <assert.h>
-	#include <stack.h>
+	#include <assert.h>	
 	#include <signal.h>
 	#include <errno.h>
 	#include <string.h>
 #endif
 
+#include <qvaluestack.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <knotifyclient.h>
@@ -88,9 +87,9 @@ bool percent_mode	= false;
 	#define PRINT_HEX	"%lX"
 #endif
 
-CALCAMNT			display_data;
-stack<CALCAMNT>		amount_stack;
-stack<func_data>	func_stack;
+CALCAMNT				display_data;
+QValueStack<CALCAMNT>	amount_stack;
+QValueStack<func_data>	func_stack;
 
 int precedence[14] = { 0, 1, 2, 3, 4, 4, 5, 5, 6, 6, 6, 7, 7, 6 };
 
@@ -1599,15 +1598,8 @@ void QtCalculator::ClearAll()
 	RefreshCalculator();
 	refresh_display = true;
 	
-	// clear out the function stack
-	while(func_stack.size() != 0) {
-		func_stack.pop();
-	}	
-	
-	// clear out the amount stack
-	while(amount_stack.size() != 0) {
-		amount_stack.pop();
-	}	
+	amount_stack.clear();
+	func_stack.clear();
 }
 
 
@@ -1797,26 +1789,23 @@ int QtCalculator::UpdateStack(int run_precedence)
 	{
 		return_value = 1;
 
-		if (amount_stack.size() == 0) {
+		if (amount_stack.isEmpty()) {
 			KMessageBox::error(0L, i18n("Stack processing error - right_op"));
 		}
 
-		right_op = amount_stack.top();
-		amount_stack.pop();
+		right_op = amount_stack.pop();
 
-		if (func_stack.size() == 0) {
+		if (func_stack.isEmpty()) {
 			KMessageBox::error(0L, i18n("Stack processing error - function"));
 		}
 
-		op_function = func_stack.top().item_function;
-		func_stack.pop();
+		op_function = func_stack.pop().item_function;
 
-		if (amount_stack.size() == 0) {
+		if (amount_stack.isEmpty()) {
 			KMessageBox::error(0L, i18n("Stack processing error - left_op"));
 		}
 
-		left_op = amount_stack.top();
-		amount_stack.pop();
+		left_op = amount_stack.pop();
 
 		if (!percent_mode || Prcnt_ops[op_function] == NULL) {
             new_value = (Arith_ops[op_function])(left_op, right_op);
