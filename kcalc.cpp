@@ -67,7 +67,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
   
 // Set the window caption/title
 
-  setCaption( "kCalc" );
+  setCaption( mykapp->getCaption() );
 
 // create help button
 
