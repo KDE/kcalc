@@ -103,13 +103,13 @@ void KCalcDisplay::slotCopy(void)
 
 void KCalcDisplay::slotPaste(bool bClipboard)
 {
-	if(_error  &&  _beep)
+	QString tmp_str = (QApplication::clipboard())->text(bClipboard ? QClipboard::Clipboard : QClipboard::Selection);
+
+	if (_error  ||  tmp_str.isNull())
 	{
-		KNotifyClient::beep();
+		if (_beep)  KNotifyClient::beep();
 		return;
 	}
-
-	QString tmp_str = (QApplication::clipboard())->text(bClipboard ? QClipboard::Clipboard : QClipboard::Selection);
 
 	bool was_ok;
 	CALCAMNT tmp_result = toDouble(tmp_str, was_ok);
