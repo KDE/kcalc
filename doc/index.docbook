@@ -9,18 +9,44 @@
 <book lang="&language;">
 <bookinfo>
 <title>The &kcalc; Handbook</title>
+
 <authorgroup>
 <author>
 <firstname>Bernd Johannes</firstname>
 <surname>Wuebben</surname>
 <affiliation><address><email>wuebben@kde.org</email></address></affiliation>
 </author>
+
+<author>
+<firstname>Pamela</firstname>
+<surname>Roberts</surname>
+<affiliation>
+<address><email>pam.roberts@btinternet.com</email></address>
+</affiliation>
+</author>
+
+<othercredit role="reviewer">
+<firstname>Lauri</firstname>
+<surname>Watts</surname>
+<affiliation>
+<address><email>vampyr@atconnex.net</email></address>
+</affiliation>
+<contrib>Reviewer</contrib>
+</othercredit>
+
 </authorgroup>
 
-<date>14/12/2000</date>
-<releaseinfo>0.04.00</releaseinfo>
+<copyright>
+<year>2001</year>
+<holder>Bernd Johannes Wuebben, Pamela Roberts</holder>
+</copyright>
 
-<abstract><para>This Handbook describes &kcalc; Version 0.4</para></abstract>
+<legalnotice>&FDLNotice;</legalnotice>
+
+<date>21/01/2001</date>
+<releaseinfo>1.3.0</releaseinfo>
+
+<abstract><para>&kcalc; is a scientific calculator for &kde;</para></abstract>
 
 <keywordset>
 <keyword>KDE</keyword>
@@ -32,12 +58,11 @@
 <chapter id="introduction">
 <title>Introduction</title>
 
-<para>This is release 0.4 of &kcalc;. &kcalc; is a simple but hopefully useful scientific
-calculator for the KDE project. </para>
+<para>This document describes &kcalc; version 1.3.0.</para>
 
-<para>&kcalc; offers many more mathematical functions than meet the eye on a first glance.
-Please study the section on keyboard accelerators and  modes in this handbook to 
-learn more about the many functions available.</para>
+<para>&kcalc; offers many more mathematical functions than meet the eye on a
+first glance. Please study the section on keyboard accelerators and modes in
+this handbook to learn more about the many functions available.</para>
 
 <para>In addition to the usual functionality offered by most scientific calculators,
 &kcalc; offers a number of features, which I think are worthwhile pointing out:</para>
@@ -51,7 +76,7 @@ learn more about the many functions available.</para>
 from/into its display.</para>
 </listitem>
 <listitem>
-<para>&kcalc; features a 'results-stack' which let's
+<para>&kcalc; features a <quote>results-stack</quote> which let's
 you conveniently recall previous results. </para>
 </listitem>
 <listitem>
@@ -71,296 +96,315 @@ without using a pointing device easy.</para>
 
 <para>Have fun with &kcalc;!</para>
 
-<para><literal remap="tt">Bernd Johannes Wuebben</literal></para>
-
-<para><ulink url="mailto:wuebben@math.cornell.edu">wuebben@math.cornell.edu</ulink></para>
+<para>Bernd Johannes Wuebben</para>
 </chapter>
 
 
 <chapter id="usage">
-<title>Usage </title>
+<title>Usage</title>
 
-<para>General usage is straight forward and similar if not identical to the way
-most simple scientific calculators operate. Click on the <emphasis remap="bf">&kcalc;</emphasis>
-button to bring up the configuration dialog.</para>
+<para>General usage is straight forward and similar to the way
+most simple scientific calculators operate, but take note of the
+following special &kcalc; features:</para>
 
-<sect1 id="resultstack">
-<title>Result Stack</title>
+<variablelist>
+<varlistentry>
+<term>Result Stack</term>
+<listitem><para>Each time you &LMB; click on the <guibutton>=</guibutton> button
+or press your keyboard's <keycap>Enter</keycap> or <keysym>=</keysym> keys, the
+display result is written to &kcalc;'s result stack. You can navigate through
+the result stack with your keyboard's <keysym>Up</keysym> and
+<keysym>Down</keysym> arrow keys.</para> </listitem></varlistentry>
 
-<para>Each time you click the enter button or press the 'equal' or 'Enter' or 'Return'
-keys, the display result is written to &kcalc;'s result stack. You can navigate 
-through the result stack by pressing the up and down arrow keys.</para>
-</sect1>
-
-<sect1 id="percentfunction">
-<title>Percent Function</title>
-
-<para>The percent function works somewhat different from that of most calculators.
-However, once understood, its enhance functionality proves quite useful.
-See the section on the percent function in the "Comments on specific 
-functions" section for a details explanation of the percent functionality.</para>
-</sect1>
-
-<sect1 id="fixedprecision">
-<title>Fixed Precision</title>
-
-<para>Click the fixed precision check-box on the configure dialog if you whish
-to fix the number of digits which are displayed past the period.</para>
-</sect1>
-
-<sect1 id="cutandpaste">
-<title>Cut and Paste</title>
-
+<varlistentry>
+<term>Percent Function</term>
+<listitem>
+<para>The percent function works somewhat differently to that on most
+calculators. However, once understood, its enhanced functionality proves quite
+useful. See the section about the <link linkend="percent">percent</link>
+function for further details.</para> </listitem></varlistentry>
+      
+<varlistentry>
+<term>Cut and Paste</term>
+<listitem>
 <para><itemizedlist>
 <listitem>
-<para>Pressing the left mouse button on &kcalc;'s display will place the displayed
-number on to the clip-board.</para>
+<para>Pressing the &LMB; on &kcalc;'s display will place
+the displayed number on to the clipboard.</para>
 </listitem>
 <listitem>
-<para>Pressing the right or middle mouse button on &kcalc;'s display will paste
-the clip-board content into the display if the content of the clip-board
-is a valid floating point number.</para>
+<para>Pressing the <mousebutton>left</mousebutton> or &MMB; on &kcalc;'s display
+will paste the clipboard content into the display if the content of the
+clipboard is a valid floating point number.</para>
 </listitem>
 </itemizedlist>
-</para>
-</sect1>
-</chapter>
+</para></listitem></varlistentry>
 
-<chapter id="modes">
-<title>Modes</title>
+<varlistentry>
+<term>Statistical and Trigonometric Modes</term>
+<listitem>
+<para>&kcalc; can run in <link linkend="statistical-mode">Statistical</link>
+or <link linkend="trigonometric-mode">Trigonometric</link> mode. Pressing
+<keycap>F3</keycap> will toggle between the modes or you can set the mode
+with the <guilabel>Configuration</guilabel> dialog brought up by pressing
+the <guibutton>Configure</guibutton> button or with <keycap>F2</keycap>.</para>
+</listitem></varlistentry>
+</variablelist>
 
-<sect1 id="statisticalmode">
+<sect1 id="statistical-mode">
 <title>Statistical Mode</title>
 
-<para>Press F3 to toggle between statistical and trigonometry mode. Alternatively bring up the configuration dialog by pushing the KCALC button or
-by pressing F2 to switch into statistics mode.</para>
+<para>In this mode the left column of buttons is allocated to statistical
+functions:</para>
 
-<para><variablelist>
-<varlistentry>
-<term>N</term>
-<listitem>
-<para>Recall the number of data items entered</para>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>INV N </term>
-<listitem>
-<para>Display the sum of all data items entered</para>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>Mea </term>
-<listitem>
-<para>Display the mean of the data items entered</para>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>INV Mea </term>
-<listitem>
-<para>Display the sum of the square of all data items entered</para>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>Std </term>
-<listitem>
-<para>Display the standard deviation (n)</para>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>INV Std </term>
-<listitem>
-<para>Display the population standard deviation  (n-1)</para>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>Med </term>
-<listitem>
-<para>Display the median</para>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>Dat </term>
-<listitem>
-<para>Enter a data item</para>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>INV Dat </term>
-<listitem>
-<para>Clear last data item entered</para>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>Cst </term>
-<listitem>
-<para>Clear all data item entered</para>
-</listitem>
-</varlistentry>
-</variablelist>
-</para>
+<informaltable><tgroup cols="2">
+<thead>
+<row><entry>Buttons</entry>
+<entry>Function</entry></row></thead>
+
+<tbody>
+<row><entry><guibutton>N</guibutton></entry>
+<entry>Recall the number of data items entered</entry></row>
+
+<row><entry><guibutton>Inv</guibutton> <guibutton>N</guibutton></entry>
+<entry>Display the sum of all data items entered</entry></row>
+
+<row><entry><guibutton>Mea</guibutton></entry>
+<entry>Display the mean of the data items entered</entry></row>
+
+<row><entry><guibutton>Inv</guibutton> <guibutton>Mea</guibutton></entry>
+<entry>Display the sum of the square of all data items entered</entry></row>
+
+<row><entry><guibutton>Std</guibutton></entry>
+<entry>Display the standard deviation (n)</entry></row>
+
+<row><entry><guibutton>Inv</guibutton> <guibutton>Std</guibutton></entry>
+<entry>Display the population standard deviation (n-1)</entry></row>
+
+<row><entry><guibutton>Med</guibutton></entry>
+<entry>Display the median</entry></row>
+
+<row><entry><guibutton>Dat</guibutton></entry>
+<entry>Enter a data item</entry></row>
+
+<row><entry><guibutton>Inv</guibutton> <guibutton>Dat</guibutton></entry>
+<entry>Clear last data item entered</entry></row>
+
+<row><entry><guibutton>Cst</guibutton></entry>
+<entry>Clear the store of all data item entered</entry></row>
+
+</tbody></tgroup></informaltable>
+
+
 </sect1>
 
-<sect1 id="trigonometricmode">
+<sect1 id="trigonometric-mode">
 <title>Trigonometric Mode</title>
 
-<para>Press F3 to toggle between statistical and trigonometry mode. Alternatively bring up the configuration dialog by pushing the &kcalc; button or
-by pressing F2 to switch into trigonometric mode.</para>
+<para>In this mode the left column of buttons is allocated to trigonometric
+functions:</para>
 
-<para><variablelist>
-<varlistentry>
-<term>Hyp</term>
-<listitem>
-<para>Enter Hyperbolic sub mode. HYP SIN for example is the hyperbolic sine: sinh(x)</para>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>Sin</term>
-<listitem>
-<para>Compute the sine.</para>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>INV Sin</term>
-<listitem>
-<para>Compute the inverse sine.</para>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>Cos</term>
-<listitem>
-<para>Compute the cosine.</para>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>INV Cos</term>
-<listitem>
-<para>Compute the inverse cosine.</para>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>Tan</term>
-<listitem>
-<para>Compute the tangents.</para>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>INV Tan</term>
-<listitem>
-<para>Compute the inverse tangent.</para>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>Log</term>
-<listitem>
-<para>Compute the Log base 10</para>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>INV Log</term>
-<listitem>
-<para>Compute 10 to the power of x.</para>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>Ln</term>
-<listitem>
-<para>Compute the natural logarithm. That is the log with base e.</para>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>INV Ln</term>
-<listitem>
-<para>Compute e to the power of x.</para>
-</listitem>
-</varlistentry>
-</variablelist>
-</para>
+<informaltable><tgroup cols="2">
+<thead>
+<row><entry>Buttons</entry>
+<entry>Function</entry></row>
+</thead>
+<tbody>
+<row><entry><guibutton>Hyp</guibutton></entry>
+<entry>Enter Hyperbolic sub mode. Hyp Sin for example is the hyperbolic sine:
+sinh(x)</entry></row>
+
+<row><entry><guibutton>Sin</guibutton></entry>
+<entry>Compute the sine</entry></row>
+
+<row><entry><guibutton>Inv</guibutton> <guibutton>Sin</guibutton></entry>
+<entry>Compute the inverse sine</entry></row>
+
+<row><entry><guibutton>Cos</guibutton></entry>
+<entry>Compute the cosine</entry></row>
+
+<row><entry><guibutton>Inv</guibutton> <guibutton>Cos</guibutton></entry>
+<entry>Compute the inverse cosine</entry></row>
+
+<row><entry><guibutton>Tan</guibutton></entry>
+<entry>Compute the tangent</entry></row>
+
+<row><entry><guibutton>Inv</guibutton> <guibutton>Tan</guibutton></entry>
+<entry>Compute the inverse tangent</entry></row>
+
+<row><entry><guibutton>Log</guibutton></entry>
+<entry>Compute the Log base 10</entry></row>
+
+<row><entry><guibutton>Inv</guibutton> <guibutton>Log</guibutton></entry>
+<entry>Compute 10 to the power of x</entry></row>
+
+<row><entry><guibutton>Ln</guibutton></entry>
+<entry>Compute the natural logarithm. That is the log to base e</entry></row>
+
+<row><entry><guibutton>Inv</guibutton> <guibutton>Ln</guibutton></entry>
+<entry>Compute e to the power of x</entry></row>
+
+</tbody></tgroup></informaltable>
+
+</sect1>
+
+<sect1 id="key-accels">
+<title>Single Key Accelerators</title>
+
+<para>To simplify entering calculations from the keyboard &kcalc; has single key
+accelerators for most functions. For example entering <userinput>7R</userinput>
+or <userinput>7r</userinput> will calculate the reciprocal of 7 (1/7).</para>
+
+<informaltable><tgroup cols="3">
+<thead>
+<row><entry>Key</entry><entry>Function</entry><entry>Notes</entry></row>
+</thead>
+<tbody>
+<row><entry><keycap>H</keycap></entry>
+<entry>Hyp</entry>
+<entry>Hyperbolic as in <guibutton>Hyp</guibutton> <guibutton>Sin</guibutton> ,
+the sinh(x)</entry></row>
+<row><entry><keycap>S</keycap></entry>
+<entry><guibutton>Sin</guibutton></entry>
+<entry></entry></row>
+<row><entry><keycap>C</keycap></entry>
+<entry><guibutton>Cos</guibutton></entry>
+<entry></entry></row>
+<row><entry><keycap>T</keycap></entry>
+<entry><guibutton>Tan</guibutton></entry>
+<entry></entry></row>
+<row><entry><keycap>N</keycap></entry>
+<entry><guibutton>Ln</guibutton></entry>
+<entry>log base e</entry></row>
+<row><entry><keycap>L</keycap></entry>
+<entry><guibutton>Log</guibutton></entry>
+<entry>log base 10</entry></row>
+<row><entry><keycap>I</keycap></entry>
+<entry> <guibutton>Inv</guibutton></entry>
+<entry>Inverse, &eg; if
+you want arcsin(x) type <userinput>i s </userinput></entry></row>
+<row><entry><keysym>\</keysym></entry>
+<entry><guibutton>+/-</guibutton></entry>
+<entry>Change sign</entry></row>
+<row><entry><keysym>[</keysym></entry>
+<entry><guibutton>x^2</guibutton></entry>
+<entry></entry></row>
+<row><entry><keysym>^</keysym></entry>
+<entry><guibutton>x^y</guibutton></entry>
+<entry></entry></row>
+<row><entry><keysym>!</keysym></entry>
+<entry><guibutton>x!</guibutton></entry>
+<entry>Factorial</entry></row>
+<row><entry><keysym>&lt;</keysym></entry>
+<entry><guibutton>Lsh</guibutton></entry>
+<entry>Left shift</entry></row>
+<row><entry><keysym>&gt;</keysym></entry>
+<entry></entry>
+<entry>Right shift, same as <guibutton>Inv</guibutton>
+<guibutton>Lsh</guibutton></entry></row>
+<row><entry><keysym>&</keysym></entry>
+<entry>And</entry>
+<entry>Logical AND</entry></row>
+<row><entry><keysym>*</keysym></entry>
+<entry>*</entry>
+<entry>Multiply</entry></row>
+<row><entry><keysym>/</keysym></entry>
+<entry>/</entry>
+<entry>Divide</entry></row>
+<row><entry><keycap>D</keycap></entry>
+<entry>Dat</entry>
+<entry>Enter data item in statistical mode</entry></row>
+<row><entry><keycap>O</keycap></entry>
+<entry>Or</entry>
+<entry>Logical OR. Note: <guibutton>Inv</guibutton>
+<guibutton>Or</guibutton> is XOR</entry></row>
+<row><entry><keycap>R</keycap></entry>
+<entry>1/x</entry>
+<entry>Reciprocal</entry></row>
+
+<row><entry><keysym>=</keysym></entry>
+<entry><guibutton>=</guibutton></entry>
+<entry></entry></row>
+<row><entry><keycap>Enter</keycap></entry>
+<entry><guibutton>=</guibutton></entry>
+<entry></entry></row>
+<row><entry><keycap>Return</keycap></entry>
+<entry><guibutton>=</guibutton></entry>
+<entry></entry></row>
+
+<row><entry><keycap>Page Up</keycap></entry>
+<entry>C</entry>
+<entry>Clear</entry></row>
+<row><entry><keycap>Esc</keycap></entry>
+<entry>C</entry>
+<entry>Clear</entry></row>
+<row><entry><keycap>Prior</keycap></entry>
+<entry>C</entry>
+<entry>Clear</entry></row>
+
+<row><entry><keycap>Page Down</keycap></entry>
+<entry>AC</entry>
+<entry>Clear all</entry></row>
+<row><entry><keycap>Next</keycap></entry>
+<entry>AC</entry>
+<entry>Clear all</entry></row>
+<row><entry><keycap>Del</keycap></entry>
+<entry>AC</entry>
+<entry>Clear all</entry></row>
+
+<row><entry><keycap>F1</keycap></entry>
+<entry>?</entry>
+<entry>Bring up the configure dialog</entry></row>
+
+<row><entry><keycap>F2</keycap></entry>
+<entry>Configure</entry>
+<entry>Help, brings up this manual</entry></row>
+
+<row><entry><keycap>F3</keycap></entry>
+<entry></entry>
+<entry>Switch between Trigonometric and Statistical modes</entry></row>
+
+</tbody></tgroup></informaltable>
+
 </sect1>
 </chapter>
 
-<chapter id="keyaccels">
-<title>Key Accels</title>
-
-<para>(TODO): This list is probably incomplete. Check!</para>
-
-<para><screen>
-F1         Help
-F2         Config Dialog
-F3         Switch into Trigonometry Mode
-F4         Switch into Statistics Mode
-
-Up Key     display previous element of the result stack
-Down Key   display next element of the result stack
-Page UP    Clear
-Prior      Clear
-Page Down  Clear All
-Next       Clear All
-
-ALT + d    set trig-mode to deg
-ALT + r    set trig-mode to rad
-ALT + g    set trig-mode to grad
-ALT + e    set radix to decimal
-ALT + o    set radix to octal
-ALT + b    set radix to binary
-
-s          Sin 
-c          Cos 
-t          Tan
-n          ln  = log base e
-l          log = log base 10
-i          Inv inverse, e.g. if you want arcsin(x) type i s 
-\          +/- 
-[          ^2 
-^          x^y 
-=          = 
-!          factorial
-&lt;          left shift
-&gt;          right shift
-&          AND
-*          multiply
-/          divide
-
-d          enter stat data item ( in stat mode)
-
-o          OR
-INV o      XOR
-r          1/x r for reciproc 
-Enter      = 
-Return     = 
-Backspace  Clear All 
-Del        Clear All
-Esc        Clear
-h          Hyp (Hyperbolic) as e.g in Hyp Sin , the sinh(x) 
-</screen>
-</para>
-</chapter>
-
-<chapter id="commentsonspecificfunctions">
-<title>Comments on specific functions</title>
+<chapter id="comments-on-specific-functions">
+<title>Comments on Specific Functions</title>
 
 <sect1 id="mod">
-<title>Mod</title>
+<title>Mod and Inv Mod</title>
 
-<para>Give the remainder of dividing the display number by the next input number.</para>
+<variablelist>
+<varlistentry>
+<term><guibutton>Mod</guibutton> gives the remainder of dividing the displayed
+number by the next input number.</term>
+<listitem><para><userinput>22 Mod 8 = </userinput> will give the result
+<emphasis>6</emphasis></para>
+<para><userinput>22.345 Mod 8 = </userinput> will give the result
+<emphasis>6.345</emphasis></para>
+</listitem></varlistentry>
+
+<varlistentry>
+<term><guibutton>Inv</guibutton> <guibutton>Mod</guibutton> does integer
+divison of the displayed number by the next input number.</term>
+<listitem><para><userinput>22 Inv Mod 8 = </userinput> will give the result
+<emphasis>2</emphasis></para>
+<para><userinput>22.345 Mod 8 = </userinput> also gives <emphasis>2.</emphasis>
+</para></listitem></varlistentry>
+</variablelist>
+
 </sect1>
 
-<sect1 id="invmod">
-<title>Inv Mod</title>
-
-<para>Integer divison of the display number by the next input number.</para>
-</sect1>
 
 <sect1 id="percent">
 <title>&percnt;</title>
 
-<para>Interpret the final operation carried out in  the current 
-calculation as follows:</para>
+<para>Used instead of the <guibutton>=</guibutton> key,
+<guibutton>%</guibutton> interprets the final operation carried out in  the
+current calculation as follows:</para>
 
 <para><itemizedlist>
-<listitem>
-<para>The function of the &percnt; key is similar to the one found on some CASIO calculators:
-</para>
-</listitem>
 <listitem>
 <para>If the final operator is + give the percentage increase
 the result is over the second operand.
@@ -390,211 +434,233 @@ raised to the power of the (right operand / 100).
 <para> In all other cases the &percnt; key gives identical results to the = key.
 </para>
 </listitem>
-</itemizedlist>
-                              </para>
+</itemizedlist></para>
 
-<sect2 id="examples">
-<title>Examples</title>
+<variablelist>
+<varlistentry>
+<term>Examples:</term>
+<listitem>
+<para><userinput>45 / 55 %</userinput> gives
+<emphasis>81.81...</emphasis> (45 is 81.81.. percent of 55)</para>
+<para><userinput>11 + 89 %</userinput> gives <emphasis>112.35..</emphasis> (89 +
+11 = 100, and 100 is 112.35 percent of 89)</para> </listitem>
+</varlistentry>
+</variablelist>
 
-<para><programlisting>
-Type:             45 / 55 %
-Answer Displayed: 81.8181...
-Explanation:      45 is 81.81...percent of 55
-
-Type:             11 + 89 %
-Answer Displayed: 112.35.. 
-Explanation:      89 + 11 = 100 and  100 is 112.35 percent of 89. </programlisting>
-</para>
-</sect2>
 </sect1>
 
-<sect1 id="lshrsh">
-<title>Lsh (Rsh)</title>
+<sect1 id="lsh-rsh">
+<title>Lsh and Inv Lsh</title>
+<variablelist>
+<varlistentry>
+<term><guibutton>Lsh</guibutton> left shifts the integer part of the displayed
+value (multiplies it by 2) n times, where n is the next input number, and
+gives an integer result:</term>
+<listitem><para><userinput>10 Lsh 3 =</userinput> gives <emphasis>80</emphasis>
+(10 multiplied by 2 three times).</para>
+<para><userinput>10.345 Lsh 3 =</userinput> also gives
+<emphasis>80</emphasis>.</para></listitem>
+</varlistentry>
 
-<para>Left (right) shift the n times, where n is the next input number.
-You get Rsh (right shift)  by pressing INV Lsh.</para>
+<varlistentry>
+<term><guibutton>Inv</guibutton> <guibutton>Lsh</guibutton> right shifts the
+value (performs an integer divide by 2) n times.</term>
+<listitem><para><userinput>16 Inv Lsh 2 =</userinput> gives
+<emphasis>4</emphasis> (16 divided by 2 twice).</para>
+<para><userinput>16.999 Inv Lsh 2 =</userinput> also gives
+<emphasis>4</emphasis>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="and-or-xor">
+<title>Cmp, And, Or and Inv Or</title>
+
+
+<para>The <guibutton>Cmp</guibutton>, <guibutton>And</guibutton> and 
+<guibutton>Or</guibutton> functions perform bitwise logical operations and
+therefore appear more meaningful if the <guilabel>Base</guilabel> is set to
+<guilabel>Hex</guilabel>, <guilabel>Oct</guilabel> or <guilabel>Bin</guilabel>
+rather than <guilabel>Dec</guilabel>. In the following
+examples <guilabel>Base</guilabel> is set to <guilabel>Bin</guilabel>.</para>
+
+<variablelist>
+<varlistentry>
+<term><guibutton>Cmp</guibutton> performs a 1's complement (inverts the
+bits).</term>
+<listitem><para><userinput>101 Cmp</userinput> gives
+<emphasis>111...111010</emphasis></para> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guibutton>And</guibutton> does a logical AND.</term>
+<listitem><para><userinput>101 And 110 =</userinput> gives
+<emphasis>100</emphasis></para> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guibutton>Or</guibutton> does the logical OR.</term>
+<listitem><para><userinput>101 Or 110 =</userinput> gives
+<emphasis>111</emphasis></para> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guibutton>Inv</guibutton> <guibutton>Or</guibutton> performs the logical
+XOR (exclusive OR) operation.</term>
+<listitem><para><userinput>101 Inv Or 110 =</userinput> gives
+<emphasis>11</emphasis></para> </listitem>
+</varlistentry>
+
+</variablelist>
 </sect1>
 </chapter>
 
-<chapter id="tipsandtricks">
-<title>Tips and Tricks</title>
 
-<sect1 id="fonts">
-<title>Fonts</title>
-
-<para>I found that several distributions don't know how to set the FontPath right
-and which fonts to install in order to get great fonts under X11. I can't
-help you gather great fonts for X11, but I can show you what my FontPath in
-/etc/XF86Config looks like -- this will help you getting better results for xemacs as well as
-&kcalc;:</para>
-
-<para><screen>Section "Files"
-   RgbPath    "/usr/X11R6/lib/X11/rgb"
-   FontPath   "/usr/X11R6/lib/X11/fonts/misc:unscaled"
-   FontPath   "/usr/X11R6/lib/X11/fonts/75dpi:unscaled"
-   FontPath   "/usr/X11R6/lib/X11/fonts/100dpi:unscaled"
-   FontPath   "/usr/X11R6/lib/X11/fonts/Type1"
-   FontPath   "/usr/X11R6/lib/X11/fonts/Speedo"
-   FontPath   "/usr/X11R6/lib/X11/fonts/misc"
-   FontPath   "/usr/X11R6/lib/X11/fonts/75dpi"
-   FontPath   "/usr/X11R6/lib/X11/fonts/100dpi"
-   FontPath   "/usr/X11R6/lib/X11/fonts/cyrillic"
-EndSection
-</screen>
-</para>
-</sect1>
-</chapter>
-
-<chapter id="questionsandanswers">
+<chapter id="questions-and-answers">
 <title>Questions and Answers</title>
 
-<sect1 id="howdoigetpi31415926">
-<title>How do I get pi=3.1415926...?</title>
+<qandaset>
 
-<para>Simply type INV EE.</para>
-</sect1>
+<qandaentry>
+<question><para>How do I get pi=3.1415926...?</para></question>
+<answer><para>Simply type <userinput>Inv EE</userinput>.</para></answer>
+</qandaentry>
 
-<sect1 id="howdoigetetheeulernumber">
-<title>How do I get e, the Euler number?</title>
+<qandaentry>
+<question><para>How do I get e, the Euler number?</para></question>
+<answer><para>Type <userinput>1 Inv ln</userinput>.</para></answer>
+</qandaentry>
 
-<para>Type 1 INV ln.</para>
-</sect1>
+<qandaentry>
+<question><para>How do I get two fixed digits after the period?</para></question>
+<answer><para>Click on the <guibutton>Configure</guibutton> button, this will
+bring up the configuration dialog. Check <guilabel>Set fixed
+precision</guilabel> and adjust the spin control so that it shows a
+2.</para></answer> </qandaentry>
 
-<sect1 id="howdoigettwofixeddigitsaftertheperiod">
-<title>How do I get two fixed digits after the period?</title>
-
-<para>Click on the &kcalc; button, this will bring up the configuration dialog.
-Click on "Set Fixed Precision" and adjust the spin control so that it
-shows a 2.</para>
-</sect1>
-
-<sect1 id="whataboutprecision">
-<title>What about Precision?</title>
-
-<para>The main factor determining the precision of &kcalc; is whether your libc and libmath
+<qandaentry>
+<question><para>What about Precision?</para></question>
+<answer><para>The main factor determining the precision of &kcalc; is whether your libc and libmath
 supports the C data type <literal remap="tt">long double</literal>. If this is the case, &kcalc; will detect this
 at compile time and use it as its fundamental data type to represent numbers.
-Check &kcalc;'s about dialog in order to find out what the fundamental data type
-for your copy of &kcalc; is.</para>
+Check &kcalc;'s <guilabel>About</guilabel> dialog (in the
+<guibutton>Configure</guibutton> dialog box) in order to find out what the
+fundamental data type for your copy of &kcalc; is.</para>
 
 <para>Unless you have a libc and libmath of exceptionally high quality, you will
-be able to observe some "interesting" results when trying
-to execute computations such as: 123.22 - 123.21; 2.01 - 2; 123.88 - 123.87 and
-similar. However if you think this is bad I ask you to do the same computation on 
-the windows calculator.</para>
+be able to observe some <quote>interesting</quote> results when trying
+to execute computations such as: <userinput>123.22 - 123.21</userinput>,
+<userinput>2.01 - 2</userinput>, <userinput>123.88 - 123.87</userinput> and
+similar. However if you think this is bad I ask you to do the same computation
+on the windows calculator.</para>
 
-<para>Adjust the precision on &kcalc;'s configure dialog so that the above computation
-go through correctly. I recommend a precision of 14 if the fundamental data
-type for your copy of &kcalc; is long double, otherwise 8 or 10.</para>
+<para>Adjust the <guilabel>Precision</guilabel> in &kcalc;'s
+<guibutton>Configure</guibutton> dialog so that the above computations
+work correctly. I recommend a precision of 14 if the fundamental data type
+for your copy of &kcalc; is long double, otherwise 8 or 10.</para>
 
-<para>Note: Higher precision doesn't necessarily lead to better results. Play with
+<para>Higher precision doesn't necessarily lead to better results. Play with
 the precision and you will see what I mean.</para>
-</sect1>
+</answer>
+</qandaentry>
+
+</qandaset>
 </chapter>
 
 <chapter id="copyright">
-<title>Copyright</title>
+<title>Credits and License</title>
 
-<para><screen>
-&kcalc; Copyright 1996,1997 Bernd Johannes Wuebben 
-                          wuebben@math.cornell.edu
+<para>&kcalc; Program copyright 1996-2001 Bernd Johannes
+Wuebben.<email>wuebben@kde.org</email></para>
+<para>Additions by Epsen Sand. <email>epsen@kde.org</email></para>
 
-&kcalc; was inspired by Martin Bartlett's xfrmcalc, whose stack 
-engine is still part of &kcalc;.
+<para>&kcalc; was inspired by Martin Bartlett's xfrmcalc, whose stack
+engine is still part of &kcalc;.</para>
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+<para>Documentation copyright 2001:</para>
+<itemizedlist>
+<listitem><para>Bernd Johannes
+Wuebben. <email>wuebben@kde.org</email></para></listitem>
+<listitem><para>Pamela Roberts
+<email>pam.roberts@btinternet.com</email></para></listitem>
+</itemizedlist>
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+&underFDL;
+&underGPL;
 
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-
-</screen>
-</para>
 </chapter>
 
 <appendix id="installation">
 <title>Installation</title>
 
-<sect1 id="howtoobtainkcalc">
-<title>How to obtain &kcalc;</title>
+<para>&kcalc; is part of the kdeutils package within the &kde; project and will
+normally be provided as part of a &kde; installation. For more details about
+&kde; visit <ulink url="http://www.kde.org">http://www.kde.org</ulink>.</para>
 
-<para>&kcalc; is part  of the KDE project <ulink url="http://www.kde.org">http://www.kde.org</ulink>.
-&kcalc; can be found on <ulink url="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</ulink>, the main ftp site
-of the KDE project. It's home site is
-<ulink url="http://math.cornell.edu/~wuebben/kde.html">http://math.cornell.edu/~wuebben/kde.html</ulink></para>
-</sect1>
+<!--
+<para>&kcalc;'s home site is <ulink
+url="http://math.cornell.edu/~wuebben/kde.html">
+http://math.cornell.edu/~wuebben/kde.html</ulink></para>
+-->
 
-<sect1 id="requirements">
-<title>Requirements</title>
-
-<para>In order to successfully compile &kcalc;, you need the latest versions of <literal remap="tt"> libkdecore</literal> and <literal remap="tt"> libkdeui</literal>. All required libraries as well as &kcalc; itself can be found
-on <ulink url="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</ulink>. </para>
-</sect1>
-
-<sect1 id="compilationandinstallation">
+<sect1 id="compilation-and-installation">
 <title>Compilation and installation</title>
 
-<para>The usual:</para>
+<para>If you wish to compile &kcalc; by itself, source code can be found at
+<ulink url="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</ulink>, the
+main &FTP; site of the &kde; project.</para>
 
-<para><screen>% ./configure
-% make
-% make install
+<para>Compile and install with the usual:</para>
+
+<screen
+<prompt>%</prompt> <userinput><command>./configure</command></userinput>
+<prompt>%</prompt> <userinput><command>make</command></userinput>
+<prompt>%</prompt> <userinput><command>make</command> <option>install</option></userinput>
 </screen>
-</para>
+</sect1>
 
-<para><emphasis remap="bf">IMPORTANT:</emphasis> </para>
+<sect1 id="enable-long-double-precision">
+<title>How to enable long double precision for &kcalc;</title>
 
-<para><emphasis remap="bf">How to enable long double precision for &kcalc;:</emphasis></para>
-
-<para>If your machine supports the C data type 'long double' and if you
-have a working libc you can enable 'long double' precison for &kcalc;.</para>
-
-<para>( RedHat 5.0 users are out of luck -- I suggest
-you get yourself a KDE friendly Linux distribution 
-that has a working libc )</para>
+<para>If your machine supports the C data type <type>long double</type> and if you
+have a working libc you can enable <type>long double</type> precison for
+&kcalc;.</para>
 
 <para>Here is what to do:</para>
 
-<para><orderedlist><listitem>
-<para> Check ../config.h and see whether HAVE&lowbar;LONG&lowbar;DOUBLE is defined, ie
-you should be able to locate a line saying:
+<procedure>
+<step>
+<para> Check <filename>../config.h</filename> and see whether
+HAVE&lowbar;LONG&lowbar;DOUBLE is defined, &ie; you should be able to locate a
+line saying:</para>
 
-<screen>#define HAVE_LONG_DOUBLE 1
-</screen>
+<screen>#define HAVE_LONG_DOUBLE 1</screen>
 
+<para>If you can't find such a line your system doesn't support long double IEEE
+precision. </para>
+</step>
+<step>
+<para> Edit the file <filename class="headerfile">kcalctype.h</filename>
+<filename>configdlg.cpp</filename> <filename>kcalc.cpp</filename> and
+<filename>kcalc&lowbar;core.cpp</filename> and remove the lines: </para>
 
-If you can't find such a line your system doesn't support long
-double IEEE precision.
-</para>
-</listitem>
-<listitem>
-<para> Edit the file &kcalc;type.h configdlg.cpp &kcalc;.cpp and &kcalc;&lowbar;core.cpp and 
-remove the lines 
-
-<screen>#ifdef HAVE_LONG_DOUBLE
+<screen>
+#ifdef HAVE_LONG_DOUBLE
 #undef HAVE_LONG_DOUBLE
 #endif
 </screen>
 
-</para>
-</listitem>
-<listitem>
+</step>
+<step>
 <para> recompile &kcalc;.
 </para>
-</listitem>
-</orderedlist>
-</para>
+</step>
+</procedure>
+
 </sect1>
 </appendix>
-
 
 </book>
 <!--
