@@ -359,22 +359,22 @@ static CALCAMNT ExecDivideP(CALCAMNT left_op, CALCAMNT right_op)
 
 // build precedence list
 const struct operator_data CalcEngine::Operator[] = {
-  {precedence: 0, arith_ptr: NULL, prcnt_ptr: NULL}, // FUNC_EQUAL
-  {precedence: 0, arith_ptr: NULL, prcnt_ptr: NULL}, // FUNC_PERCENT
-  {precedence: 0, arith_ptr: NULL, prcnt_ptr: NULL}, // FUNC_BRACKET
-  {precedence: 1, arith_ptr: ExecOr, prcnt_ptr: NULL}, // FUNC_OR
-  {precedence: 2, arith_ptr: ExecXor, prcnt_ptr: NULL}, // FUNC_XOR
-  {precedence: 3, arith_ptr: ExecAnd, prcnt_ptr: NULL}, // FUNC_AND
-  {precedence: 4, arith_ptr: ExecLsh, prcnt_ptr: NULL}, // FUNC_LSH
-  {precedence: 4, arith_ptr: ExecRsh, prcnt_ptr: NULL}, // FUNC_RSH
-  {precedence: 5, arith_ptr: ExecAdd, prcnt_ptr: ExecAddP}, // FUNC_ADD
-  {precedence: 5, arith_ptr: ExecSubtract, prcnt_ptr: ExecSubP}, // FUNC_SUBTRACT
-  {precedence: 6, arith_ptr: ExecMultiply, prcnt_ptr: ExecMultiplyP}, // FUNC_MULTIPLY
-  {precedence: 6, arith_ptr: ExecDivide, prcnt_ptr: ExecDivideP}, // FUNC_DIVIDE
-  {precedence: 6, arith_ptr: ExecMod, prcnt_ptr: NULL}, // FUNC_MOD
-  {precedence: 6, arith_ptr: ExecIntDiv, prcnt_ptr: NULL}, // FUNC_INTDIV
-  {precedence: 7, arith_ptr: ExecPower, prcnt_ptr: NULL}, // FUNC_POWER
-  {precedence: 7, arith_ptr: ExecPwrRoot, prcnt_ptr: NULL} // FUNC_PWR_ROOT
+  { 0, NULL,     NULL}, // FUNC_EQUAL
+  { 0, NULL,     NULL}, // FUNC_PERCENT
+  { 0, NULL,     NULL}, // FUNC_BRACKET
+  { 1, ExecOr,   NULL}, // FUNC_OR
+  { 2, ExecXor,  NULL}, // FUNC_XOR
+  { 3, ExecAnd,  NULL}, // FUNC_AND
+  { 4, ExecLsh,  NULL}, // FUNC_LSH
+  { 4, ExecRsh,  NULL}, // FUNC_RSH
+  { 5, ExecAdd,  ExecAddP}, // FUNC_ADD
+  { 5, ExecSubtract, ExecSubP}, // FUNC_SUBTRACT
+  { 6, ExecMultiply, ExecMultiplyP}, // FUNC_MULTIPLY
+  { 6, ExecDivide,   ExecDivideP}, // FUNC_DIVIDE
+  { 6, ExecMod,  NULL}, // FUNC_MOD
+  { 6, ExecIntDiv, NULL}, // FUNC_INTDIV
+  { 7, ExecPower,  NULL}, // FUNC_POWER
+  { 7, ExecPwrRoot, NULL} // FUNC_PWR_ROOT
 };
 
 
