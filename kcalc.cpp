@@ -1212,7 +1212,7 @@ void KCalculator::slotParenOpenclicked(void)
 {
 	core.ParenOpen(calc_display->getAmount());
 
-	// What behaviour, if e.g.: "12(6*6)"??
+	// What behavior, if e.g.: "12(6*6)"??
 	//UpdateDisplay(true);
 }
 

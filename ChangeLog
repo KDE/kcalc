@@ -103,7 +103,7 @@
 	* made binary mode 32-bit
 	* reorganized UpdateDisplay code to make more sense
 	* found possible nasty memleak in EnterEqual
-	* now use my UNUSED macro to perform (void)var on unused paramters
+	* now use my UNUSED macro to perform (void)var on unused parameters
 	to avoid compile warnings, much more readable this way
 	* merged setXXX functions to angle_selected/base_selected
 	then removed the setXXX functions as they no longer have any purpose

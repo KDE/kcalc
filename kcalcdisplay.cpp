@@ -659,7 +659,7 @@ int KCalcDisplay::cvb(char *out_str, KCALC_LONG amount, int max_digits)
 void KCalcDisplay::Reset(void)
 {
 	// This updates display through setError.
-	// Should one explicitely call UpdateDisplay to be nicer?
+	// Should one explicitly call UpdateDisplay to be nicer?
 
 	_display_amount = 0.0;
 	_str_int = "0";

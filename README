@@ -45,7 +45,7 @@ to
 
 What this does effectively is tell kcalc to use the C data type
 'double' as its fundamental data type instead of 'long double'.
-So this proceedure will give you greatly reduced precision. Since
+So this procedure will give you greatly reduced precision. Since
 this is a compiler bug there is nothing I can do about it. 
 Complain to the gnu people or to your distribution and ask 
 them to get a working version of gcc out.
