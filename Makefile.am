@@ -4,12 +4,12 @@ bin_PROGRAMS =
 lib_LTLIBRARIES = 
 kdeinit_LTLIBRARIES = kcalc.la
 
-kcalc_la_SOURCES = kcalc.cpp kcalc_core.cpp kcalcdisplay.cpp dlabel.cpp \
+kcalc_la_SOURCES = kcalc.cpp kcalc_button.cpp kcalc_core.cpp kcalcdisplay.cpp dlabel.cpp \
 		   stats.cpp colors.ui general.ui constants.ui kcalc_settings.kcfgc
 
 METASOURCES = AUTO
 
-noinst_HEADERS  = kcalc.h kcalc_core.h kcalcdisplay.h dlabel.h stats.h kcalctype.h
+noinst_HEADERS  = kcalc.h kcalc_button.h kcalc_core.h kcalcdisplay.h dlabel.h stats.h kcalctype.h
 
 kcalc_la_LDFLAGS = $(all_libraries) -module -avoid-version
 kcalc_la_LIBADD = $(LIB_KDEUI) -lm

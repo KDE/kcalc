@@ -30,6 +30,7 @@ class QButtonGroup;
 class QHButtonGroup;
 class QWidget;
 class DispLogic;
+class KCalcButton;
 #include <kmainwindow.h>
 
 /*
@@ -168,47 +169,47 @@ private:
     DispLogic*	calc_display; // for historic reasons in "dlabel.h"
     QRadioButton*        pbBaseChoose[4];
     QPushButton*        pbAngleChoose;
-    QDict<QPushButton>  pbStat;
-    QDict<QPushButton>  pbTrig;
-    QDict<QPushButton>  pbExp;
-    QDict<QPushButton>  pbLogic;
-    QDict<QPushButton>  pbConstant;
-    QPushButton* 	pbEE;
-    QPushButton* 	pbPi;
-    QPushButton* 	pbInv;
-    QPushButton* 	pbMR;
-    QPushButton* 	pbPlusMinus;
-    QPushButton* 	pbMPlusMinus;
-    QPushButton* 	pbReci;
-    QPushButton* 	pbFactorial;
-    QPushButton* 	pbSquare;
-    QPushButton* 	pbPower;
-    QPushButton* 	pbMC;
-    QPushButton* 	pbClear;
-    QPushButton* 	pbAC;
-    QPushButton* 	pbParenOpen;
-    QPushButton* 	pbParenClose;
-    QPushButton* 	pbAND;
-    QPushButton* 	pbX;
-    QPushButton* 	pbDivision;
-    QPushButton* 	pbOR;
-    QPushButton* 	pbXOR;
-    QPushButton* 	pbPlus;
-    QPushButton* 	pbMinus;
-    QPushButton* 	pbPeriod;
-    QPushButton* 	pbEqual;
-    QPushButton* 	pbPercent;
-    QPushButton* 	pbMod;
-    QPushButton* 	pbC1; 
-    QPushButton* 	pbC2; 		
-    QPushButton* 	pbC3; 
-    QPushButton* 	pbC4; 	
-    QPushButton* 	pbC5; 
-    QPushButton* 	pbC6;
+    QDict<KCalcButton>  pbStat;
+    QDict<KCalcButton>  pbTrig;
+    QDict<KCalcButton>  pbExp;
+    QDict<KCalcButton>  pbLogic;
+    QDict<KCalcButton>  pbConstant;
+    KCalcButton* 	pbAC;
+    KCalcButton* 	pbAND;
+    KCalcButton* 	pbC1; 
+    KCalcButton* 	pbC2; 		
+    KCalcButton* 	pbC3; 
+    KCalcButton* 	pbC4; 	
+    KCalcButton* 	pbC5; 
+    KCalcButton* 	pbC6;
+    KCalcButton* 	pbClear;
+    KCalcButton* 	pbDivision;
+    KCalcButton* 	pbEE;
+    KCalcButton* 	pbEqual;
+    KCalcButton* 	pbFactorial;
+    KCalcButton* 	pbInv;
+    KCalcButton* 	pbMC;
+    KCalcButton* 	pbMinus;
+    KCalcButton* 	pbMod;
+    KCalcButton* 	pbMPlusMinus;
+    KCalcButton* 	pbMR;
+    KCalcButton* 	pbOR;
+    KCalcButton* 	pbParenClose;
+    KCalcButton* 	pbParenOpen;
+    KCalcButton* 	pbPercent;
+    KCalcButton* 	pbPeriod;
+    KCalcButton* 	pbPi;
+    KCalcButton* 	pbPlus;
+    KCalcButton* 	pbPlusMinus;
+    KCalcButton* 	pbPower;
+    KCalcButton* 	pbReci;
+    KCalcButton* 	pbSquare;
+    KCalcButton* 	pbX;
+    KCalcButton* 	pbXOR;
 	
-	QPainter buttonpainter;
-	QPixmap buttonpixmap;
-	QFont fontExponent;
+    QPainter buttonpainter;
+    QPixmap buttonpixmap;
+    QFont fontExponent;
 	
     QHButtonGroup*      BaseChooseGroup;
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
@@ -220,11 +221,11 @@ private:
     KToggleAction *actionExpLogshow;
     KToggleAction *actionConstantsShow;
 
-    QPtrList<QPushButton> mFunctionButtonList;
-    QPtrList<QPushButton> mStatButtonList;
-    QPtrList<QPushButton> mMemButtonList;
-    QPtrList<QPushButton> mOperationButtonList;
-    QPtrList<QPushButton> mConstButtonList;
+    QPtrList<KCalcButton> mFunctionButtonList;
+    QPtrList<KCalcButton> mStatButtonList;
+    QPtrList<KCalcButton> mMemButtonList;
+    QPtrList<KCalcButton> mOperationButtonList;
+    QPtrList<KCalcButton> mConstButtonList;
 
     int				mInternalSpacing;
 	int fontsizeExponent;
