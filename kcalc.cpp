@@ -3,8 +3,10 @@
 
     kCalculator, a simple scientific calculator for KDE
     
-    Copyright (C) 1996 Bernd Johannes Wuebben wuebben@math.cornell.edu
-
+    Copyright (C) 1996-2000 Bernd Johannes Wuebben 
+                            wuebben@kde.org
+                            wuebben@math.cornell.edu
+              
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -127,7 +129,8 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   // Create uppermost bar with buttons and numberdisplay
   //
   mConfigButton = new QPushButton( this, "configbutton" );
-  mConfigButton->setText( "Configuration" );
+  mConfigButton->setText( "KCalc" );
+  QToolTip::add( mConfigButton, i18n("Click to configure KCalc") );
   connect( mConfigButton, SIGNAL(clicked()), this, SLOT(configclicked()) );
 
   mHelpButton = new QPushButton( this, "helpbutton" );
@@ -139,6 +142,7 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   calc_display->setAlignment( AlignRight|AlignVCenter );
   calc_display->setFocus();
   calc_display->setFocusPolicy( QWidget::StrongFocus );
+
   connect(calc_display,SIGNAL(clicked()),this,SLOT(display_selected()));
 
   //
