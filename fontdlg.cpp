@@ -109,7 +109,7 @@ FontDlg::FontDlg(QWidget *parent, const char *name,
 
 void FontDlg::help(){
 
-  mykapp->invokeHTMLHelp("","");
+  mykapp->invokeHelp();
 
 }
 

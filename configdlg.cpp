@@ -165,7 +165,7 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
 
 void ConfigDlg::help(){
 
-  mykapp->invokeHTMLHelp("","");
+  mykapp->invokeHelp();
 
 }
 

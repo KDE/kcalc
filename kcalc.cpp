@@ -817,7 +817,7 @@ void QtCalculator::Gra_Selected()
 
 void QtCalculator::helpclicked()
 {
-  kapp->invokeHTMLHelp( "kcalc/index.html", "" );
+  kapp->invokeHelp( );
 }
 
 
