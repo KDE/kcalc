@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui>
-<kpartgui name="kcalc" version="15">
+<kpartgui name="kcalc" version="16">
 <MenuBar>
   <Menu name="settings" noMerge="1"><text>&amp;Settings</text>
     <Action name="show_trig"/>
@@ -11,6 +11,7 @@
     <Action name="hide_all"/>
     <Separator/>
     <Action name="options_configure"/>
+    <Action name="options_configure_keybinding"/>
   </Menu>
 </MenuBar>
 </kpartgui>

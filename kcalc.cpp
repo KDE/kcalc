@@ -56,6 +56,7 @@
 #include <kdialog.h>
 #include <kcolorbutton.h>
 #include <qspinbox.h>
+#include <kkeydialog.h>
 
 #include "dlabel.h"
 #include "kcalc.h"
@@ -453,10 +454,10 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	slotAngleSelected(0);
 
 	updateGeometry();
-	
+
 	adjustSize();
 	setFixedSize(sizeHint());
-	
+
 	UpdateDisplay(true);
 }
 
@@ -474,7 +475,7 @@ void KCalculator::setupMainActions(void)
 	KStdAction::cut(calc_display, SLOT(slotCut()), actionCollection());
 	KStdAction::copy(calc_display, SLOT(slotCopy()), actionCollection());
 	KStdAction::paste(calc_display, SLOT(slotPaste()), actionCollection());
-	
+
 	// settings menu
 	actionStatshow =  new KToggleAction(i18n("&Statistic Buttons"), 0,
 					    actionCollection(), "show_stat");
@@ -488,7 +489,7 @@ void KCalculator::setupMainActions(void)
 	actionExpLogshow->setChecked(true);
 	connect(actionExpLogshow, SIGNAL(toggled(bool)),
 		this, SLOT(slotExpLogshow(bool)));
-	
+
 	actionTrigshow = new KToggleAction(i18n("&Trigonometric Buttons"), 0,
 					   actionCollection(), "show_trig");
 	actionTrigshow->setChecked(true);
@@ -509,6 +510,7 @@ void KCalculator::setupMainActions(void)
 			   actionCollection(), "hide_all");
 
 	KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
+        KStdAction::keyBindings( this, SLOT( slotConfigureKeys() ), actionCollection() );
 }
 
 void KCalculator::setupStatusbar(void)
@@ -1008,7 +1010,7 @@ void KCalculator::slotEEclicked(void)
 void KCalculator::slotPiclicked(void)
 {
 	calc_display->setAmount(pi);
-	
+
 	UpdateDisplay(false);
 }
 
@@ -1371,7 +1373,7 @@ void KCalculator::slotStatMeanclicked(void)
 		pbInv->setOn(false);
 		core.StatSumSquares(0);
 	}
-	
+
 	UpdateDisplay(true);
 }
 
@@ -1445,10 +1447,10 @@ void KCalculator::showSettings()
 	// it to the foreground.
 	if(KConfigDialog::showDialog("settings"))
 		return;
-  
+
 	// Create a new dialog with the same name as the above checking code.
 	KConfigDialog *dialog = new KConfigDialog(this, "settings", KCalcSettings::self());
-  
+
 	// Add the general page.  Store the settings in the General group and
 	// use the icon package_settings.
 	General *general = new General(0, "General");
@@ -1462,20 +1464,20 @@ void KCalculator::showSettings()
 
 	QWidget *font = new QWidget();
 	QVBoxLayout *topLayout = new QVBoxLayout(font, 0, KDialog::spacingHint());
-	KFontChooser *mFontChooser = 
+	KFontChooser *mFontChooser =
 		new KFontChooser(font, "kcfg_Font", false, QStringList(), false, 6);
 	QFont tmpFont(KGlobalSettings::generalFont().family() ,14 ,QFont::Bold);
 	mFontChooser->setFont(tmpFont);
 	topLayout->addWidget(mFontChooser);
 	dialog->addPage(font, i18n("Font"), "fonts", i18n("Select Display Font"));
- 
+
 	Colors *color = new Colors(0, "Color");
 
 	dialog->addPage(color, i18n("Colors"), "colors", i18n("Button & Display Colors"));
- 
+
 	// When the user clicks OK or Apply we want to update our settings.
 	connect(dialog, SIGNAL(settingsChanged()), this, SLOT(updateSettings()));
-	
+
 	// Display the dialog.
 	dialog->show();
 }
@@ -1717,6 +1719,12 @@ void KCalculator::history_prev()
 		KNotifyClient::beep();
 }
 
+void KCalculator::slotConfigureKeys()
+{
+  KKeyDialog::configure( actionCollection(), this );
+}
+
+
 bool KCalculator::eventFilter(QObject *o, QEvent *e)
 {
 	if(e->type() == QEvent::DragEnter)
@@ -1744,7 +1752,7 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
 			   != -1)
 			{
 			  QPalette pal(c, palette().active().background());
-			  
+
 			  // Was it hex-button or normal digit??
 			  if (num_but <10)
 			    for(int i=0; i<10; i++)

@@ -137,7 +137,7 @@ protected slots:
     void slotStatDataInputclicked(void);
     void slotStatClearDataclicked(void);
     void slotHyptoggled(bool flag);
-
+    void slotConfigureKeys();
 private:
 	bool inverse;
 	bool hyp_mode;
