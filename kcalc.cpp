@@ -1742,7 +1742,7 @@ void KCalculator::slotConstclicked(int button)
 	if(!inverse)
 	{
 		//set the display to the configured value of Constant Button
-		calc_display->setAmount(pbConstant[button]->toDouble());
+		calc_display->setAmount(pbConstant[button]->constant());
 	}
 	else
 	{

@@ -104,6 +104,7 @@ public:
 	CALCAMNT getAmount(void) const;
 	bool getError(void) const;
 	void newCharacter(char const new_char);
+	bool setAmount(const QString &string);
 	bool setAmount(CALCAMNT new_amount);
 	int setBase(NumBase new_base);
 	void setBeep(bool flag);

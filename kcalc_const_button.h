@@ -39,7 +39,7 @@ Q_OBJECT
   KCalcConstButton(const QString &label, QWidget *parent, int but_num, const char * name = 0,
 		   const QString &tooltip = QString());
 
-  double toDouble(void) const;
+  QString constant(void) const;
 
   void setName(void);
 

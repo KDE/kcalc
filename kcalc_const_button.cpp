@@ -48,9 +48,9 @@ KCalcConstButton::KCalcConstButton(const QString &label, QWidget *parent, int bu
   initPopupMenu();
 }
 
-double KCalcConstButton::toDouble(void) const
+QString KCalcConstButton::constant(void) const
 {
-  return (KCalcSettings::valueUserConstants())[_button_num].toDouble();
+  return (KCalcSettings::valueUserConstants())[_button_num];
 }
 
 void KCalcConstButton::setName(void)

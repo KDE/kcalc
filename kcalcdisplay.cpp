@@ -146,25 +146,29 @@ void KCalcDisplay::slotPaste(bool bClipboard)
 		return;
 	}
 
-	bool was_ok;
-	CALCAMNT tmp_result;
-	
 	if (_num_base == NB_HEX  &&  ! tmp_str.startsWith("0x", false))
 	  tmp_str.prepend( "0x" );
-	
+
+	bool was_ok;
+	CALCAMNT tmp_result;
+
 	if ( (_num_base == NB_OCTAL || _num_base == NB_BINARY) &&
 	     !  tmp_str.startsWith("0x",false))
-	  tmp_result = CALCAMNT(tmp_str.toLongLong(& was_ok, _num_base));
-	else
-	  tmp_result = toDouble(tmp_str, was_ok);
-	
-	if (!was_ok)
 	{
-		tmp_result = (CALCAMNT) (0);
-		if(_beep) KNotifyClient::beep();		
+		tmp_result = CALCAMNT(tmp_str.toLongLong(& was_ok, _num_base));
+		if (!was_ok)
+		{
+			tmp_result = (CALCAMNT) (0);
+			if(_beep) KNotifyClient::beep();
+			return ;
+		}
+	  
+		setAmount(tmp_result);
+	} 
+	else
+	{
+		setAmount(tmp_str);
 	}
-
-	setAmount(tmp_result);
 }
 
 void KCalcDisplay::slotDisplaySelected(void)
@@ -237,6 +241,25 @@ void KCalcDisplay::setGroupDigits(bool flag)
 CALCAMNT KCalcDisplay::getAmount(void) const
 {
 	return _display_amount;
+}
+
+bool KCalcDisplay::setAmount(const QString &string)
+{
+	bool was_ok;
+	CALCAMNT tmp_result;
+
+	tmp_result = toDouble(string, was_ok);
+	
+	if (!was_ok)
+	{
+		tmp_result = (CALCAMNT) (0);
+		if(_beep) KNotifyClient::beep();
+		return false;
+	}
+	
+	setAmount(tmp_result);
+
+	return true;
 }
 
 bool KCalcDisplay::setAmount(CALCAMNT new_amount)
