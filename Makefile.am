@@ -3,27 +3,25 @@ bin_PROGRAMS = kcalc
 
 kcalc_SOURCES = kcalc.cpp kcalc_core.cpp configdlg.cpp fontdlg.cpp \
 	dlabel.cpp stats.cpp
-BUILTSOURCES = kcalc.moc configdlg.moc fontdlg.moc dlabel.moc
-DISTCLEANFILES = $(BUILTSOURCES)
+METASOURCES = kcalc.moc configdlg.moc fontdlg.moc dlabel.moc
 
 noinst_HEADERS  = kcalc.h configdlg.h fontdlg.h dlabel.h stats.h kcalctype.h
 
-INCLUDES = $(all_includes)
+INCLUDES= $(all_includes)
 LDFLAGS = $(all_libraries) $(KDE_RPATH)
-LDADD =       -lm $(LIB_KDEUI)
+LDADD   = $(LIB_KDEUI) -lm
 
 SUBDIRS = doc
 
 pics_DATA = kcalclogo.xpm
 picsdir = $(kde_datadir)/kcalc/pics
 
-icon_DATA = kcalc.xpm
-icondir = $(kde_icondir)
+kde_icon_DATA = kcalc.xpm
 
 apps_DATA = kcalc.kdelnk
 appsdir = $(kde_appsdir)/Utilities
 
-EXTRA_DIST = $(pics_DATA) $(icon_DATA) $(apps_DATA) mini-kcalc.xpm
+EXTRA_DIST = $(pics_DATA) $(kde_icon_DATA) $(apps_DATA) mini-kcalc.xpm
 
 install-data-local:
 	$(mkinstalldirs) $(kde_minidir)
@@ -32,25 +30,6 @@ install-data-local:
 uninstall-local:
 	rm -f $(MINIDIR)/kcalc.xpm
 
-
 messages:
 	$(XGETTEXT) -C -ki18n -x $(includedir)/kde.pot $(kcalc_SOURCES) && mv messages.po ../po/kcalc.pot
-
-kcalc.cpp:kcalc.moc
-kcalc.moc: kcalc.h
-	$(MOC) kcalc.h -o kcalc.moc
-
-configdlg.cpp:configdlg.moc
-configdlg.moc: configdlg.h
-	$(MOC) configdlg.h -o configdlg.moc
-
-fontdlg.cpp:fontdlg.moc
-fontdlg.moc: fontdlg.h
-	$(MOC) fontdlg.h -o fontdlg.moc
-
-dlabel.cpp:dlabel.moc
-dlabel.moc: dlabel.h
-	$(MOC) dlabel.h -o dlabel.moc
-
-
 
