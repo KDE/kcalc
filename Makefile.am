@@ -22,4 +22,4 @@ messages:
 	$(XGETTEXT) *.cpp -o $(podir)/kcalc.pot
 
 updatedir = $(kde_datadir)/kconf_update
-update_DATA = kcalcrc.upd kicker-3.1-properSizeSetting.pl
+update_DATA = kcalcrc.upd
