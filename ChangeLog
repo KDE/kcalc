@@ -1,3 +1,7 @@
+Sun Feb  8 16:11:34 1998  Bernd Johannes Wuebben  <wuebben@math.cornell.edu>
+
+	* removed a compiler warning
+
 Sat Nov 22 14:30:37 1997  Bernd Johannes Wuebben  <wuebben@petit.cornell.edu>
 
 	* stats.cpp: fixed some bugs in the stats module

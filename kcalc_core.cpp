@@ -1421,7 +1421,7 @@ void QtCalculator::UpdateDisplay()
                 }
 		else {
 			DISPLAY_AMOUNT = boh_work_d;
-			boh_work = boh_work_d;
+			boh_work = (long) boh_work_d;
 		}
 	}
 
