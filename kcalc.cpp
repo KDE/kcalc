@@ -47,6 +47,7 @@
 #include <qtimer.h>
 #include <qtooltip.h>
 #include <qwidget.h>
+#include <qstyle.h>
 
 #include <kapplication.h>
 #include <kcolordrag.h>
@@ -645,68 +646,76 @@ QtCalculator::~QtCalculator()
 //-------------------------------------------------------------------------
 void QtCalculator::updateGeometry()
 {
-	QSize s;
-	QObjectList *l;
+    QObjectList *l;
+    QSize s;
+    int margin;
 
-	//
-	// Uppermost bar
-	//
-	mHelpButton->setFixedWidth(mHelpButton->fontMetrics().width("MM"));
-	calc_display->setMinimumWidth(calc_display->fontMetrics().maxWidth() * 15);
+    //
+    // Uppermost bar
+    //
+    mHelpButton->setFixedWidth(mHelpButton->fontMetrics().width("MM") +
+                               QApplication::style().
+                               pixelMetric(QStyle::PM_ButtonMargin,
+                                           mHelpButton)*2);
+    calc_display->setMinimumWidth(calc_display->fontMetrics().maxWidth() * 15);
 
-	//
-	// Button groups (base and angle)
-	//
-	//QButtonGroup *g;
-	//g = (QButtonGroup*)(anglebutton[0]->parentWidget());
-	//g = (QButtonGroup*)(basebutton[0]->parentWidget());
+    //
+    // Button groups (base and angle)
+    //
+    //QButtonGroup *g;
+    //g = (QButtonGroup*)(anglebutton[0]->parentWidget());
+    //g = (QButtonGroup*)(basebutton[0]->parentWidget());
 
-	//
-	// Calculator buttons
-	//
-	s.setWidth(mSmallPage->fontMetrics().width("MMM"));
-	s.setHeight(mSmallPage->fontMetrics().lineSpacing() + 6);
+    //
+    // Calculator buttons
+    //
+    s.setWidth(mSmallPage->fontMetrics().width("MMM"));
+    s.setHeight(mSmallPage->fontMetrics().lineSpacing());
 
-	l = (QObjectList*)mSmallPage->children(); // silence please
+    l = (QObjectList*)mSmallPage->children(); // silence please
 
-	for(uint i=0; i < l->count(); i++)
-	{
-		QObject *o = l->at(i);
-		if( o->isWidgetType() )
-		{
-			((QWidget*)o)->setMinimumSize(s);
-			((QWidget*)o)->installEventFilter( this );
-			((QWidget*)o)->setAcceptDrops(true);
-		}
-	}
+    for(uint i=0; i < l->count(); i++)
+    {
+        QObject *o = l->at(i);
+        if( o->isWidgetType() )
+        {
+            margin = QApplication::style().
+                pixelMetric(QStyle::PM_ButtonMargin, ((QWidget *)o))*2;
+            ((QWidget*)o)->setMinimumSize(s.width()+margin, s.height()+margin);
+            ((QWidget*)o)->installEventFilter( this );
+            ((QWidget*)o)->setAcceptDrops(true);
+        }
+    }
 
-	l = (QObjectList*)mLargePage->children(); // silence please
+    l = (QObjectList*)mLargePage->children(); // silence please
 
-	int h1 = pbF->minimumSize().height();
-	int h2 = (int)((((float)h1 + 4.0) / 5.0));
-	s.setWidth( mLargePage->fontMetrics().width("MMM"));
-	s.setHeight(h1 + h2);
+    int h1 = pbF->minimumSize().height();
+    int h2 = (int)((((float)h1 + 4.0) / 5.0));
+    s.setWidth(mLargePage->fontMetrics().width("MMM") +
+               QApplication::style().
+               pixelMetric(QStyle::PM_ButtonMargin, pbF)*2);
+    s.setHeight(h1 + h2);
 
-	for(uint i = 0; i < l->count(); i++)
-	{
-		QObject *o = l->at(i);
-		if(o->isWidgetType())
-		{
-			((QWidget*)o)->setFixedSize(s);
-			((QWidget*)o)->installEventFilter(this);
-			((QWidget*)o)->setAcceptDrops(true);
-		}
-	}
+    for(uint i = 0; i < l->count(); i++)
+    {
+        QObject *o = l->at(i);
+        if(o->isWidgetType())
+        {
+            ((QWidget*)o)->setFixedSize(s);
+            ((QWidget*)o)->installEventFilter(this);
+            ((QWidget*)o)->setAcceptDrops(true);
+        }
+    }
 
-	//
-	// The status bar
-	//
-	s.setWidth( statusINVLabel->fontMetrics().width("NORM") +
-		statusINVLabel->frameWidth() * 2 + 10);
-	statusINVLabel->setMinimumWidth(s.width());
-	statusHYPLabel->setMinimumWidth(s.width());
+    //
+    // The status bar
+    //
+    s.setWidth( statusINVLabel->fontMetrics().width("NORM") +
+                statusINVLabel->frameWidth() * 2 + 10);
+    statusINVLabel->setMinimumWidth(s.width());
+    statusHYPLabel->setMinimumWidth(s.width());
 
-	//setFixedSize(minimumSize());
+    //setFixedSize(minimumSize());
 }
 
 //-------------------------------------------------------------------------
