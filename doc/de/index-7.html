@@ -20,6 +20,10 @@
 </P>
 <H3><A NAME="s7">7. Tips und Tricks</A></H3>
 
+<P>
+<H3><A NAME="ss7.1">7.1 gcc-2.7.3</A>
+</H3>
+
 <P>Sollten sie auf schwierigkeiten stossen, insbesondere von der Art, dass
 Kcalc umoegliche, zufallsartige Zahlen darstellt, dann habe sie warscheinlich
 eine nicht funktionsfaehige version von g++ dem C++ compiler. gcc-2.7.3
@@ -29,6 +33,35 @@ die Zeile #define HAVE_FABLS ind ../config.h aus. Diese wird jedoch
 dazu fuehren das KCalc double anstatt von long double als fundamentalen
 Daten Typ benutzt und die Praezision von KCalc wird sehr leiden.
 Beschweren Sie sich bei ihrer Linux Distribution.
+<P>
+<P>
+<H3><A NAME="ss7.2">7.2 Fonts</A>
+</H3>
+
+<P>I found that several distributions don't know how to set the FontPath right
+and which fonts to install in order to get great fonts under X11. I can't
+help you gather great fonts for X11, but I can show you what my FontPath in
+/etc/XF86Config looks like -- this will help you getting better results for xemacs as well as
+kcalc:
+<P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+Section "Files"
+   RgbPath    "/usr/X11R6/lib/X11/rgb"
+   FontPath   "/usr/X11R6/lib/X11/fonts/misc:unscaled"
+   FontPath   "/usr/X11R6/lib/X11/fonts/75dpi:unscaled"
+   FontPath   "/usr/X11R6/lib/X11/fonts/100dpi:unscaled"
+   FontPath   "/usr/X11R6/lib/X11/fonts/Type1"
+   FontPath   "/usr/X11R6/lib/X11/fonts/Speedo"
+   FontPath   "/usr/X11R6/lib/X11/fonts/misc"
+   FontPath   "/usr/X11R6/lib/X11/fonts/75dpi"
+   FontPath   "/usr/X11R6/lib/X11/fonts/100dpi"
+   FontPath   "/usr/X11R6/lib/X11/fonts/cyrillic"
+EndSection
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
 <P>
 <P>
 <P ALIGN="RIGHT">

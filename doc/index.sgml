@@ -304,7 +304,8 @@ You get Rsh (right shift)  by pressing INV Lsh.
 <p>
 
 <sect>Tips and Tricks<p>
-<bf>IMPORTANT:</bf> On a number of systems, including Linux systems using certain 
+<sect1>gcc-2.7.3<p>
+On a number of systems, including Linux systems using certain 
 version of gcc (gcc-2.7.3 RedHat 5.0 for example) will not get a working
 version of kcalc unless you undefine the preprosessor symbol FABSL in
 <tscreen><verb>
@@ -326,6 +327,27 @@ However, this will give you greatly reduced precision; kcalc's fundamental data
 type will be double instead of long double. Complain to the
 gnu people or to your distribution and pressure them to ship a working version
 of gcc.
+<sect1>Fonts<p>
+I found that several distributions don't know how to set the FontPath right
+and which fonts to install in order to get great fonts under X11. I can't
+help you gather great fonts for X11, but I can show you what my FontPath in
+/etc/XF86Config looks like -- this will help you getting better results for xemacs as well as
+kcalc:
+
+<tscreen><verb>
+Section "Files"
+   RgbPath    "/usr/X11R6/lib/X11/rgb"
+   FontPath   "/usr/X11R6/lib/X11/fonts/misc:unscaled"
+   FontPath   "/usr/X11R6/lib/X11/fonts/75dpi:unscaled"
+   FontPath   "/usr/X11R6/lib/X11/fonts/100dpi:unscaled"
+   FontPath   "/usr/X11R6/lib/X11/fonts/Type1"
+   FontPath   "/usr/X11R6/lib/X11/fonts/Speedo"
+   FontPath   "/usr/X11R6/lib/X11/fonts/misc"
+   FontPath   "/usr/X11R6/lib/X11/fonts/75dpi"
+   FontPath   "/usr/X11R6/lib/X11/fonts/100dpi"
+   FontPath   "/usr/X11R6/lib/X11/fonts/cyrillic"
+EndSection
+</verb></tscreen>
 
 <p>
 <sect>Questions and Answers<p>
