@@ -61,13 +61,13 @@
 // and this for all the poor devels out there who don't have long double math
 // I guess it's time to switch to LINUX guys .....
 
-#ifdef HAVE_POWL
+#ifdef HAVE_FABSL
 #define CALCAMNT        long double
 #else
 #define CALCAMNT        double
 #endif
 
-#ifdef HAVE_POWL 
+#ifdef HAVE_FABSL 
 #define FABS(X)   	fabsl(X)
 #define MODF(X,Y)       modfl(X,Y)
 #define FMOD(X,Y)   	fmodl(X,Y)
@@ -87,11 +87,7 @@
 #define POW(X,Y)	powl(X,Y)
 #define LOG(X)		logl(X)
 #define LOG_TEN(X)	log10l(X)
-#ifdef HAVE_SQRTL
 #define SQRT(X)		sqrtl(X)
-#else
-#define SQRT(X)		sqrt(X)
-#endif
 #else
 #define FABS(X)		fabs(X)
 #define MODF(X,Y)    	modf(X,Y)
