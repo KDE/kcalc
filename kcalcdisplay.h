@@ -73,8 +73,7 @@
   TODO: Check overflows, number of digits and such...
 */
 
-typedef enum _num_base
-{
+typedef enum {
 	NB_BINARY = 2,
 	NB_OCTAL = 8,
 	NB_DECIMAL = 10,

@@ -58,16 +58,14 @@ typedef	CALCAMNT	(*Trig)(CALCAMNT);
 
 #define UNUSED(x) ((void)(x))
 
-typedef enum _angle_type
-{
+typedef enum {
 	ANG_DEGREE = 0,
 	ANG_RADIAN = 1,
 	ANG_GRADIENT = 2
 } angle_type;
 
 
-typedef struct _func_data
-{
+typedef struct {
 	int item_function;
 	int item_precedence;
 } func_data;
