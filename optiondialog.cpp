@@ -31,6 +31,7 @@
 #include <kfontdialog.h>
 #include <kiconloader.h>
 #include <klocale.h>
+#include <kdebug.h>
 
 #include "optiondialog.h"
 #include "version.h"
@@ -85,6 +86,11 @@ void ConfigureDialog::setState(const DefStruct &state)
 	mTrigRadio->setChecked(mState.style == 0);
 	mStatRadio->setChecked(mState.style == 1);  
 	mFontChooser->setFont(mState.font);
+
+    kdDebug() << "mState.font.weight(): " << mState.font.weight() << endl;
+    kdDebug() << "mFontChooser->font().weight(): " << mFontChooser->font().weight() << endl;
+
+    fixCheckToggled( mState.fixed );
 }
 
 //-------------------------------------------------------------------------
@@ -135,8 +141,8 @@ void ConfigureDialog::slotApply()
 //-------------------------------------------------------------------------
 void ConfigureDialog::slotCancel()
 {
-	setState(mState);
-	emit valueChanged(mState);
+	//setState(mState);
+	//emit valueChanged(mState);
 	reject();
 }
 
@@ -156,16 +162,16 @@ void ConfigureDialog::setupSettingPage()
     int maxprec = 12 ;
 #endif 
 
-    QVBoxLayout* Form1Layout = new QVBoxLayout( page, 11, 6, "Form1Layout"); 
+    QVBoxLayout* Form1Layout = new QVBoxLayout( page, 0, spacingHint() ); 
 
     QGroupBox* GroupBox2 = new QGroupBox( page, "GroupBox2" );
     GroupBox2->setTitle( i18n( "Precision" ) );
     GroupBox2->setColumnLayout(0, Qt::Vertical );
-    GroupBox2->layout()->setSpacing( KDialog::spacingHint() );
-    GroupBox2->layout()->setMargin( KDialog::marginHint() );
-    QGridLayout* GroupBox2Layout = new QGridLayout( GroupBox2->layout() );
-    GroupBox2Layout->setAlignment( Qt::AlignTop );
-    QSpacerItem* spacer = new QSpacerItem( 31, 20, QSizePolicy::Fixed, QSizePolicy::Minimum );
+    QGridLayout* GroupBox2Layout = new QGridLayout( GroupBox2->layout(),
+            3, 4, spacingHint() );
+
+    QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Fixed, 
+            QSizePolicy::Minimum );
     GroupBox2Layout->addItem( spacer, 2, 0 );
 
     mFixSpin = new QSpinBox(0, 10, 1, GroupBox2, "mFixSpin" );
@@ -177,7 +183,7 @@ void ConfigureDialog::setupSettingPage()
 
     GroupBox2Layout->addWidget( mPrecSpin, 0, 3 );
 
-    QLabel* TextLabel2 = new QLabel( GroupBox2, "TextLabel2" );
+    TextLabel2 = new QLabel( GroupBox2, "TextLabel2" );
     TextLabel2->setText( i18n( "Decimal &places:" ) );
 
     GroupBox2Layout->addWidget( TextLabel2, 2, 1 );
@@ -191,7 +197,8 @@ void ConfigureDialog::setupSettingPage()
     TextLabel1->setText( i18n( "&Maximum number of digits:" ) );
 
     GroupBox2Layout->addMultiCellWidget( TextLabel1, 0, 0, 0, 2 );
-    QSpacerItem* spacer_2 = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+    QSpacerItem* spacer_2 = new QSpacerItem( 20, 20, QSizePolicy::Expanding, 
+            QSizePolicy::Minimum );
     GroupBox2Layout->addItem( spacer_2, 1, 4 );
     Form1Layout->addWidget( GroupBox2 );
 
@@ -225,16 +232,23 @@ void ConfigureDialog::setupSettingPage()
     mBeepCheck->setText( i18n( "&Beep on error" ) );
     GroupBox3Layout->addWidget( mBeepCheck );
     Form1Layout->addWidget( GroupBox3 );
-    QSpacerItem* spacer_3 = new QSpacerItem( 20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding );
+    QSpacerItem* spacer_3 = new QSpacerItem( 20, 20, QSizePolicy::Minimum, 
+            QSizePolicy::Expanding );
     Form1Layout->addItem( spacer_3 );
 
     // signals and slots connections
-    connect( mFixCheck, SIGNAL( toggled(bool) ), mFixSpin, SLOT( setEnabled(bool) ) );
-    connect( mFixCheck, SIGNAL( toggled(bool) ), TextLabel2, SLOT( setEnabled(bool) ) );
+    connect( mFixCheck, SIGNAL( toggled( bool ) ), 
+            SLOT( fixCheckToggled( bool ) ) );
 
     // buddies
     TextLabel2->setBuddy( mFixSpin );
     TextLabel1->setBuddy( mPrecSpin );
+}
+
+void ConfigureDialog::fixCheckToggled( bool b )
+{
+    TextLabel2->setEnabled( b );
+    mFixSpin->setEnabled( b );
 }
 
 //-------------------------------------------------------------------------
@@ -247,69 +261,63 @@ void ConfigureDialog::setupColorPage()
 
     QGroupBox* displayGroup = new QGroupBox(i18n("Display Colors"), page);
 
-    displayGroup->setFrameShape(QGroupBox::Box);
-    displayGroup->setFrameShadow(QGroupBox::Sunken);
     displayGroup->setColumnLayout(0, Qt::Horizontal);
-    displayGroup->layout()->setSpacing(spacingHint());
-    displayGroup->layout()->setMargin(marginHint());
-    QGridLayout *displayGrid = new QGridLayout(displayGroup->layout());
-    displayGrid->setAlignment(Qt::AlignTop);
+    QGridLayout *displayGrid = new QGridLayout(displayGroup->layout(),
+            2, 2, spacingHint());
 
-    QLabel* colorLable = new QLabel(i18n("Foreground"), displayGroup);
+    QLabel* colorLable = new QLabel(i18n("Foreground:"), displayGroup);
     mColorFGround = new KColorButton(displayGroup);
     displayGrid->addWidget(colorLable, 0, 0);
     displayGrid->addWidget(mColorFGround, 0, 1);
 
-    colorLable = new QLabel(i18n("Background"), displayGroup);
+    colorLable = new QLabel(i18n("Background:"), displayGroup);
     mColorBGround = new KColorButton(displayGroup);
     displayGrid->addWidget(colorLable, 1, 0);
     displayGrid->addWidget(mColorBGround, 1, 1);
 
-    QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+    QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, 
+            QSizePolicy::Minimum );
     displayGrid->addItem(spacer, 1, 2);
 
 
     QGroupBox* buttonGroup = new QGroupBox(i18n("Button Colors"), page);
-    buttonGroup->setFrameShape(QGroupBox::Box);
-    buttonGroup->setFrameShadow(QGroupBox::Sunken);
-    buttonGroup->setColumnLayout(0, Qt::Horizontal);
-    buttonGroup->layout()->setSpacing(spacingHint());
-    buttonGroup->layout()->setMargin(marginHint());
-    QGridLayout *buttonGrid = new QGridLayout(buttonGroup->layout());
-    buttonGrid->setAlignment(Qt::AlignTop);
 
-    colorLable = new QLabel(i18n("Functions"), buttonGroup);
+    buttonGroup->setColumnLayout(0, Qt::Horizontal);
+    QGridLayout *buttonGrid = new QGridLayout(buttonGroup->layout(), 
+            5, 2, spacingHint());
+
+    colorLable = new QLabel(i18n("Functions:"), buttonGroup);
     mColorFunctions = new KColorButton(buttonGroup);
     buttonGrid->addWidget(colorLable, 0, 0);
     buttonGrid->addWidget(mColorFunctions, 0, 1);
 
-    colorLable = new QLabel(i18n("Hexadecimals"), buttonGroup);
+    colorLable = new QLabel(i18n("Hexadecimals:"), buttonGroup);
     mColorHexa = new KColorButton(buttonGroup);
     buttonGrid->addWidget(colorLable, 1, 0);
     buttonGrid->addWidget(mColorHexa, 1, 1);
 
-    colorLable = new QLabel(i18n("Numbers"), buttonGroup);
+    colorLable = new QLabel(i18n("Numbers:"), buttonGroup);
     mColorNumbers = new KColorButton(buttonGroup);
     buttonGrid->addWidget(colorLable, 2, 0);
     buttonGrid->addWidget(mColorNumbers, 2, 1);
 
-    colorLable = new QLabel(i18n("Memory"), buttonGroup);
+    colorLable = new QLabel(i18n("Memory:"), buttonGroup);
     mColorMemory = new KColorButton(buttonGroup);
     buttonGrid->addWidget(colorLable, 3, 0);
     buttonGrid->addWidget(mColorMemory, 3, 1);
 
-    colorLable = new QLabel(i18n("Operations"), buttonGroup);
+    colorLable = new QLabel(i18n("Operations:"), buttonGroup);
     mColorOperations = new KColorButton(buttonGroup);
     buttonGrid->addWidget(colorLable, 4, 0);
     buttonGrid->addWidget(mColorOperations, 4, 1);
 
-    spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+    spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, 
+            QSizePolicy::Minimum );
     buttonGrid->addItem(spacer, 1, 2);
 
     topLayout->addWidget(displayGroup);
     topLayout->addWidget(buttonGroup);
-    QSpacerItem* spacer_3 = new QSpacerItem( 20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding );
-    topLayout->addItem( spacer_3 );
+    topLayout->addStretch( 1 );
 }
 
 //-------------------------------------------------------------------------

@@ -44,9 +44,10 @@ public:
 	DefStruct state();
 
 protected slots:
-	virtual void slotOk();
-	virtual void slotApply(); 
-	virtual void slotCancel(); 
+	void slotOk();
+	void slotApply(); 
+	void slotCancel(); 
+    void fixCheckToggled( bool );
 
 private:
 	void setupSettingPage();
@@ -60,14 +61,15 @@ private:
 	QCheckBox    *mBeepCheck;
 	QRadioButton *mTrigRadio;
 	QRadioButton *mStatRadio;
+    QLabel       *TextLabel2;
 	KFontChooser *mFontChooser;
 	KColorButton *mColorFGround; 
-        KColorButton *mColorBGround;
-        KColorButton *mColorFunctions;
-        KColorButton *mColorHexa;
-        KColorButton *mColorNumbers;
-        KColorButton *mColorMemory;
-        KColorButton *mColorOperations;
+    KColorButton *mColorBGround;
+    KColorButton *mColorFunctions;
+    KColorButton *mColorHexa;
+    KColorButton *mColorNumbers;
+    KColorButton *mColorMemory;
+    KColorButton *mColorOperations;
 
 	DefStruct    mState;
 
