@@ -1,3 +1,12 @@
+2001-10-18 Evan Teran <emt3734@rit.edu>
+	* removed configdlg.* from source tree as it is not part of the compile
+	* changed options dialog to use smarter layouts, and also fixed spinbox
+	size problem so they are now usable
+	* synced changed I made to the KDE 2.2.1 release version to match CVS
+	version which compiles under KDE 3.0 w/ QT 3.0.0
+	* made sure the clear (clear entry) button functioned properly, my minor
+	change before broke it in some situations
+
 
 2001-10-12 Evan Teran <emt3734@rit.edu>
 	* Reorganized code for all files, much more consistant now
@@ -35,11 +44,7 @@
 	datatype, however mine (Redhat 7.1) seems to only have the old double
 	versions, and have alternate names for these functions
 	* fixed the fact that the normal clear button seemingly did nothing
-	* removed configdlg.* from source tree as it is not part of the compile
-	* changed options dialog to use smarter layouts, and also fixed spinbox
-	size problem so they are now usable
-	* synced changed I made to the KDE 2.2.1 release version to match CVS
-	version which compiles under KDE 3.0 w/ QT 3.0.0
+
 
 1999-08-22  Bernd Johannes Wuebben  <wuebben@math.cornell.edu>
 
