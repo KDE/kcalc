@@ -1681,7 +1681,7 @@ void QtCalculator::selection_timed_out(){
 
 void QtCalculator::clear_status_label(){
 
-  statusERRORLabel->setText("");
+  statusERRORLabel->clear();
   status_timer->stop();
 }
 

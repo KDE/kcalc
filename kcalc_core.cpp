@@ -719,10 +719,10 @@ void QtCalculator::EnterHyp()
     hyp_mode = !hyp_mode;
   
     if (hyp_mode){
-      statusHYPLabel->setText("HYP");
+      statusHYPLabel->setText(QString::fromLatin1("HYP"));
     }
     else{
-      statusHYPLabel->setText("");
+      statusHYPLabel->clear();
     }
     break;
   }
@@ -1570,7 +1570,7 @@ void QtCalculator::UpdateDisplay()
     statusHYPLabel->setText("HYP");
   }
   else{
-    statusHYPLabel->setText("");
+    statusHYPLabel->clear();
   }
 
 
