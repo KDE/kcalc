@@ -37,9 +37,6 @@
                     <property name="text">
                         <string>Set &amp;decimal precision</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+D</string>
-                    </property>
                 </widget>
                 <widget class="QLabel" row="2" column="1">
                     <property name="name">
@@ -142,9 +139,6 @@
                     <property name="text">
                         <string>&amp;Beep on error</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+B</string>
-                    </property>
                     <property name="checked">
                         <bool>true</bool>
                     </property>
@@ -155,9 +149,6 @@
                     </property>
                     <property name="text">
                         <string>Show &amp;result in window title</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+R</string>
                     </property>
                 </widget>
             </vbox>
