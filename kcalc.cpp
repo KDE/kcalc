@@ -68,8 +68,8 @@
 const CALCAMNT KCalculator::pi = (ASIN(1L) * 2L);
 
 
-static const char *description = I18N_NOOP("KDE Calculator");
-static const char *version = KCALCVERSION;
+static const char description[] = I18N_NOOP("KDE Calculator");
+static const char version[] = KCALCVERSION;
 
 //
 // * ported to QLayout (mosfet 10/28/99)
