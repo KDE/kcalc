@@ -1953,7 +1953,10 @@ void QtCalculator::display_selected()
 	
 		if(calc_display->isLit()) {
 			QClipboard *cb = QApplication::clipboard();
+			bool oldMode = cb->selectionModeEnabled();
+			cb->setSelectionMode(true);
 			cb->setText(calc_display->text());
+			cb->setSelectionMode(oldMode);
 			selection_timer->start(100);
 		} else {
 			selection_timer->stop();
@@ -1962,10 +1965,13 @@ void QtCalculator::display_selected()
 		invertColors();
 	} else {
 		QClipboard *cb = QApplication::clipboard();
+		bool oldMode = cb->selectionModeEnabled();
+		cb->setSelectionMode(true);
 
 		CALCAMNT result;
 		bool was_ok;
 		result = (CALCAMNT) cb->text().toDouble(&was_ok);
+		cb->setSelectionMode(oldMode);
 
 		if (!was_ok)
 			result = (CALCAMNT) (0);
