@@ -42,6 +42,7 @@ prefix       = @prefix@
 BINDIR       = $(prefix)/bin
 PICSDIR      = $(prefix)/share/apps/kcalc/pics
 ICONDIR      = $(prefix)/share/icons
+MINIDIR      = $(prefix)/share/icons/mini
 DOCSDIR      = $(prefix)/share/doc/HTML/kcalc
 APPSDIR      = $(prefix)/share/applnk/Utilities
 
@@ -72,9 +73,11 @@ install-exec: all
 install-data:
 	(cd doc && $(MAKE) install)
 	$(INSTALL_DIR) $(PICSDIR)
+	$(INSTALL_DATA) kcalclogo.xpm  $(PICSDIR)
 	$(INSTALL_DIR) $(ICONDIR)
 	$(INSTALL_DATA) kcalc.xpm  $(ICONDIR)
-	$(INSTALL_DATA) kcalclogo.xpm  $(PICSDIR)
+	$(INSTALL_DIR) $(MINIDIR)
+	$(INSTALL_DATA) mini-kcalc.xpm  $(MINIDIR)/kcalc.xpm
 	$(INSTALL_DIR) $(APPSDIR)
 	$(INSTALL_DATA) kcalc.kdelnk  $(APPSDIR)
 
@@ -83,6 +86,7 @@ install: install-exec install-data
 uninstall:
 	rm -f $(BINDIR)/$(TARGET)
 	rm -f $(ICONDIR)/kcalc.xpm
+	rm -f $(MINIDIR)/kcalc.xpm
 	rm -f $(PICSDIR)/kcalclogo.xpm
 	rm -f $(APPSDIR)/kcalc.kdelnk
 	(cd doc && $(MAKE) uninstall)
