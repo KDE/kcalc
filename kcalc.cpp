@@ -94,14 +94,12 @@ extern bool				display_error;
 // Name: QtCalculator(QWidget *parent, const char *name)
 //-------------------------------------------------------------------------
 QtCalculator::QtCalculator(QWidget *parent, const char *name)
-	: KDialog(parent, name),
-	inverse(false), hyp_mode(false), eestate(false), refresh_display(false),
-	display_size(DEC_SIZE), angle_mode(ANG_DEGREE), input_limit(0),
-	input_count(0), decimal_point(0), precedence_base(0),
-	current_base(NB_DECIMAL), memory_num(0.0), history_index(0),
-	selection_timer(new QTimer), key_pressed(false),
-        mInternalSpacing(4), status_timer(new QTimer), mConfigureDialog(0),
-	last_input(DIGIT)
+	: KDialog(parent, name), inverse(false), hyp_mode(false), eestate(false), 
+	refresh_display(false), display_size(DEC_SIZE),  angle_mode(ANG_DEGREE), 
+	input_limit(0), input_count(0), decimal_point(0), precedence_base(0),
+	current_base(NB_DECIMAL), memory_num(0.0), last_input(DIGIT), 
+	history_index(0), selection_timer(new QTimer), key_pressed(false),
+	mInternalSpacing(4), status_timer(new QTimer), mConfigureDialog(0)
 {
 	// make sure the display_str is NULL terminated so we can
 	// user library string functions

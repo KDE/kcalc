@@ -68,7 +68,6 @@ class DLabel;
 #define FUNC_PWR_ROOT	12
 #define FUNC_INTDIV		13
 
-// CHANGED BY EVAN TERAN
 #define		HEX_SIZE	8
 #define		OCT_SIZE	11
 #define		DEC_SIZE	19

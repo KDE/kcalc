@@ -1,3 +1,10 @@
+2002-05-10 Evan Teran <emt3734@rit.edu>
+	* altered makefile to remove building of it as a library then linking that
+	to a dummy object file, this was silly and caused inclusion of an uneeded
+	source file
+	* bumped version to reflect new options dialog, next version will be 2.0.0
+	as it will have many new changes/features
+
 2002-03-11 Evan Teran <emt3734@rit.edu>
 	* started work on making calculator code _seperate_ from the
 	gui code, the goal here is the make the calculating core
