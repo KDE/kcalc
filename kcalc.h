@@ -42,7 +42,7 @@ class ConfigureDialog;
 class DLabel;
 class KPushButton;
 
-#include <kdialog.h>
+#include <kmainwindow.h>
 #include "stats.h"
 
 
@@ -173,7 +173,7 @@ typedef struct _DefStruct
 } DefStruct;
 
 
-class QtCalculator : public KDialog
+class QtCalculator : public KMainWindow
 {
     Q_OBJECT
 
