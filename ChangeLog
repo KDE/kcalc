@@ -1,3 +1,14 @@
+2004-09-25 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+        * fixed BUG 90009: the display does not resize in vertical direction anymore
+
+2004-09-24 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* fixed small bug: switching off Logic-mode tried to change item in statusbar,
+	  but item did not exist.
+
+2004-08-29 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* backport of fix to BUG 74657
+	* backport of fix to BUG 78726
+
 2004-07-30 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Square root button did not work correctly after pressing CTRL (Bug 86004)
 
