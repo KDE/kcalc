@@ -2050,7 +2050,6 @@ void QtCalculator::quitCalc()
 {
 	writeSettings();
 	qApp->quit();
-	delete this;
 }
 
 
@@ -2292,6 +2291,7 @@ int main(int argc, char *argv[])
 	calc->show();
 
 	int exitCode = app.exec();
+	delete calc;
 
 	return(exitCode);
 }

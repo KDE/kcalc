@@ -1,6 +1,3 @@
-KDE_CXXFLAGS = $(USE_EXCEPTIONS)
-
-
 bin_PROGRAMS = kcalc
 lib_LTLIBRARIES = kcalc.la
 

@@ -35,7 +35,7 @@
 #include <limits.h>
 #include <signal.h>
 #include <stdio.h>
-#include <stdexcept>
+#include <assert.h>
 
 using namespace std;
 
@@ -305,11 +305,11 @@ void QtCalculator::InitializeCalculator()
 	void fpe_handler(int fpe_parm);
 	struct sigaction fpe_trap;
 
+        sigemptyset(&fpe_trap.sa_mask);
 	fpe_trap.sa_handler = &fpe_handler;
 #ifdef SA_RESTART
 	fpe_trap.sa_flags = SA_RESTART;
 #endif
-
 	sigaction(SIGFPE, &fpe_trap, NULL);
 
 	RefreshCalculator();
@@ -457,6 +457,8 @@ void QtCalculator::EnterDecimal()
 			// if the last input was a DIGIT and we don't
 			// have already a period in our
 			// display string then display a period
+			if (strlen(display_str) >= DSP_SIZE)
+			   return;
 
 			calc_display->setText(strcat(display_str, "."));
 			decimal_point = 1;
@@ -1469,6 +1471,9 @@ void QtCalculator::EE()
 	}
 	else
 	{
+		if (strlen(display_str) >= DSP_SIZE)
+		   return;
+
 		if(!eestate)
 			strcat(display_str,"e");
 
@@ -1638,36 +1643,36 @@ void QtCalculator::UpdateDisplay()
 			break;
 
 		case NB_OCTAL:
-			str_size = sprintf(display_str, "%lo", boh_work);
+			str_size = snprintf(display_str, DSP_SIZE, "%lo", boh_work);
 			break;
 
 		case NB_HEX:
-			str_size = sprintf(display_str, "%lX", boh_work);
+			str_size = snprintf(display_str, DSP_SIZE, "%lX", boh_work);
 			break;
 
 		case NB_DECIMAL:
-            if (kcalcdefaults.fixed) {
-                    str_size = sprintf(display_str,
+			if (kcalcdefaults.fixed && DISPLAY_AMOUNT <= 1.0e+16) {
+				str_size = snprintf(display_str, DSP_SIZE,
 						PRINT_FLOAT,
 						kcalcdefaults.fixedprecision,
 						DISPLAY_AMOUNT);
-            } else if(last_input == DIGIT || DISPLAY_AMOUNT > 1.0e+16) {
+			} else if(last_input == DIGIT || DISPLAY_AMOUNT > 1.0e+16) {
 
 				// if I don't guard against the DISPLAY_AMOUNT being too large
 				// kcalc will segfault on larger amount. Such as from typing
 				// from 5*5*******
-				str_size = sprintf(display_str,
+				str_size = snprintf(display_str, DSP_SIZE,
 							PRINT_LONG_BIG,
 							kcalcdefaults.precision + 1,
 							DISPLAY_AMOUNT);
 			} else {
-				str_size = sprintf(display_str, PRINT_LONG, DISPLAY_AMOUNT);
+				str_size = snprintf(display_str, DSP_SIZE, PRINT_LONG, DISPLAY_AMOUNT);
 			}
 
 			if (input_count > 0 && !strpbrk(display_str,"e") &&
 				last_input == DIGIT )
 			{
-				str_size = sprintf(display_str,
+				str_size = snprintf(display_str, DSP_SIZE,
 					PRINT_FLOAT,
 					(kcalcdefaults.precision +1 > input_count)?
 					input_count : kcalcdefaults.precision ,
@@ -2222,17 +2227,10 @@ CALCAMNT QtCalculator::ExecPwrRootP(CALCAMNT left_op, CALCAMNT right_op, CALCAMN
 //-------------------------------------------------------------------------
 stack_ptr AllocStackItem()
 {
-	if (stack_next <= stack_last)
-	{
-		process_stack[stack_next].prior_item = NULL;
-		process_stack[stack_next].prior_type = NULL;
-		return (process_stack + (stack_next++));
-	}
-
-	throw runtime_error("stack error");
-
-	// never reached
-	return (process_stack + stack_next);
+	assert(stack_next <= stack_last);
+	process_stack[stack_next].prior_item = NULL;
+	process_stack[stack_next].prior_type = NULL;
+	return (process_stack + (stack_next++));
 }
 
 //-------------------------------------------------------------------------
@@ -2241,7 +2239,7 @@ stack_ptr AllocStackItem()
 void UnAllocStackItem(stack_ptr return_item)
 {
 	if (return_item != (process_stack + (--stack_next))) {
-		throw runtime_error("stack error");
+		assert(false); // stack error
 	}
 }
 
