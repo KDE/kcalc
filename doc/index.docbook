@@ -3,8 +3,6 @@
   <!ENTITY kappname "&kcalc;" > <!-- replace kapp here. This only *seems* redundant -->
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE" > <!-- change language only here -->
-  
-  
 ]>
 
 <book lang="&language;">
@@ -30,7 +28,7 @@
 <firstname>Lauri</firstname>
 <surname>Watts</surname>
 <affiliation>
-<address><email>vampyr@atconnex.net</email></address>
+<address><email>lauri@kde.org</email></address>
 </affiliation>
 <contrib>Reviewer</contrib>
 </othercredit>
@@ -61,14 +59,16 @@
 
 <para>This document describes &kcalc; version 1.3.0.</para>
 
-<para>&kcalc; offers many more mathematical functions than meet the eye on a
-first glance. Please study the section on keyboard accelerators and modes in
-this handbook to learn more about the many functions available.</para>
+<para>&kcalc; offers many more mathematical functions than meet the eye
+on a first glance. Please study the section on keyboard accelerators and
+modes in this handbook to learn more about the many functions
+available.</para>
 
-<para>In addition to the usual functionality offered by most scientific calculators,
-&kcalc; offers a number of features, which I think are worthwhile pointing out:</para>
+<para>In addition to the usual functionality offered by most scientific
+calculators, &kcalc; offers a number of features, which I think are
+worthwhile pointing out:</para>
 
-<para><itemizedlist>
+<itemizedlist>
 <listitem>
 <para>&kcalc; has a trigonometric and a statistics mode.</para>
 </listitem>
@@ -93,50 +93,54 @@ of digits after the period.</para>
 without using a pointing device easy.</para>
 </listitem>
 </itemizedlist>
-</para>
 
 <para>Have fun with &kcalc;!</para>
 
 <para>Bernd Johannes Wuebben</para>
+
 </chapter>
 
 
 <chapter id="usage">
 <title>Usage</title>
 
-<para>General usage is straight forward and similar to the way
-most simple scientific calculators operate, but take note of the
-following special &kcalc; features:</para>
+<para>General usage is straight forward and similar to the way most
+simple scientific calculators operate, but take note of the following
+special &kcalc; features:</para>
 
 <variablelist>
 <varlistentry>
 <term>Result Stack</term>
-<listitem><para>Each time you &LMB; click on the <guibutton>=</guibutton> button
-or press your keyboard's <keycap>Enter</keycap> or <keysym>=</keysym> keys, the
-display result is written to &kcalc;'s result stack. You can navigate through
-the result stack with your keyboard's <keysym>Up</keysym> and
-<keysym>Down</keysym> arrow keys.</para> </listitem></varlistentry>
+<listitem><para>Each time you &LMB; click on the
+<guibutton>=</guibutton> button or press your keyboard's
+<keycap>Enter</keycap> or <keysym>=</keysym> keys, the display result is
+written to &kcalc;'s result stack. You can navigate through the result
+stack with your keyboard's <keysym>Up</keysym> and <keysym>Down</keysym>
+arrow keys.</para> 
+</listitem>
+</varlistentry> 
 
 <varlistentry>
 <term>Percent Function</term>
 <listitem>
 <para>The percent function works somewhat differently to that on most
-calculators. However, once understood, its enhanced functionality proves quite
-useful. See the section about the <link linkend="percent">percent</link>
-function for further details.</para> </listitem></varlistentry>
+calculators. However, once understood, its enhanced functionality proves
+quite useful. See the section about the <link
+linkend="percent">percent</link> function for further details.</para>
+</listitem></varlistentry>
       
 <varlistentry>
 <term>Cut and Paste</term>
 <listitem>
 <para><itemizedlist>
 <listitem>
-<para>Pressing the &LMB; on &kcalc;'s display will place
-the displayed number on to the clipboard.</para>
+<para>Pressing the &LMB; on &kcalc;'s display will place the displayed
+number on to the clipboard.</para>
 </listitem>
 <listitem>
-<para>Pressing the <mousebutton>right</mousebutton> or &MMB; on &kcalc;'s display
-will paste the clipboard content into the display if the content of the
-clipboard is a valid floating point number.</para>
+<para>Pressing the <mousebutton>right</mousebutton> or &MMB; on
+&kcalc;'s display will paste the clipboard content into the display if
+the content of the clipboard is a valid floating point number.</para>
 </listitem>
 </itemizedlist>
 </para></listitem></varlistentry>
@@ -144,12 +148,15 @@ clipboard is a valid floating point number.</para>
 <varlistentry>
 <term>Statistical and Trigonometric Modes</term>
 <listitem>
-<para>&kcalc; can run in <link linkend="statistical-mode">Statistical</link>
-or <link linkend="trigonometric-mode">Trigonometric</link> mode. Pressing
-<keycap>F3</keycap> will toggle between the modes or you can set the mode
-with the <guilabel>Configuration</guilabel> dialog brought up by pressing
-the <guibutton>Configure</guibutton> button or with <keycap>F2</keycap>.</para>
-</listitem></varlistentry>
+<para>&kcalc; can run in <link
+linkend="statistical-mode">Statistical</link> or <link
+linkend="trigonometric-mode">Trigonometric</link> mode. Pressing
+<keycap>F3</keycap> will toggle between the modes or you can set the
+mode with the <guilabel>Configuration</guilabel> dialog brought up by
+pressing the <guibutton>Configure</guibutton> button or with
+<keycap>F2</keycap>.</para> 
+</listitem>
+</varlistentry>
 </variablelist>
 
 <sect1 id="statistical-mode">
@@ -475,7 +482,6 @@ value (performs an integer divide by 2) n times.</term>
 <sect1 id="and-or-xor">
 <title>Cmp, And, Or and Inv Or</title>
 
-
 <para>The <guibutton>Cmp</guibutton>, <guibutton>And</guibutton> and 
 <guibutton>Or</guibutton> functions perform bitwise logical operations and
 therefore appear more meaningful if the <guilabel>Base</guilabel> is set to
@@ -621,9 +627,9 @@ main &FTP; site of the &kde; project.</para>
 <sect1 id="enable-long-double-precision">
 <title>How to enable long double precision for &kcalc;</title>
 
-<para>If your machine supports the C data type <type>long double</type> and if you
-have a working libc you can enable <type>long double</type> precison for
-&kcalc;.</para>
+<para>If your machine supports the C data type <type>long double</type>
+and if you have a working libc you can enable <type>long double</type>
+precison for &kcalc;.</para>
 
 <para>Here is what to do:</para>
 
@@ -635,11 +641,11 @@ line saying:</para>
 
 <screen>#define HAVE_LONG_DOUBLE 1</screen>
 
-<para>If you can't find such a line your system doesn't support long double IEEE
-precision. </para>
+<para>If you can't find such a line your system doesn't support long
+double IEEE precision. </para>
 </step>
 <step>
-<para> Edit the file <filename class="headerfile">kcalctype.h</filename>
+<para>Edit the file <filename class="headerfile">kcalctype.h</filename>
 <filename>configdlg.cpp</filename> <filename>kcalc.cpp</filename> and
 <filename>kcalc&lowbar;core.cpp</filename> and remove the lines: </para>
 
@@ -660,11 +666,15 @@ precision. </para>
 </appendix>
 
 </book>
+
 <!--
 Local Variables:
 mode: sgml
-sgml-omittag: nil
-sgml-shorttag: t
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
 End:
--->
 
+// vim:ts=0:sw=2:tw=78:noet
+-->
