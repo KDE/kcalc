@@ -1650,7 +1650,7 @@ void QtCalculator::readSettings()
   config->setGroup( "Font" );
     
   kcalcdefaults.font = config->readFontEntry("Font",
-					     &QFont("helvetica",16,QFont::Bold));
+	new QFont("helvetica",16,QFont::Bold));
 
   config->setGroup("Colors");
   QColor tmpC(189, 255, 222);
