@@ -1,4 +1,9 @@
-2003-04-08 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2003-08-12 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* continued separation: now display is independent class and
+	  handles everything related to itself.
+	  GUI passes only information between core and display.
+	
+2003-08-04 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* finished the separation of gui-code from the calculating core.
 	  this still needs some clean-up
 	

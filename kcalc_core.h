@@ -68,23 +68,13 @@ typedef	CALCAMNT	(*Trig)(CALCAMNT);
 int isinf(double x) { return !finite(x) && x==x; }
 #endif
 
-#ifdef HAVE_LONG_DOUBLE
-	#define PRINT_FLOAT		"%.*Lf"
-	#define PRINT_LONG_BIG	"%.*Lg"
-	#define PRINT_LONG		"%Lg"
-#else
-	#define PRINT_FLOAT		"%.*f"
-	#define PRINT_LONG_BIG	"%.*g"
-	#define PRINT_LONG		"%g"
-#endif
+typedef enum _angle_type
+{
+	ANG_DEGREE = 0,
+	ANG_RADIAN = 1,
+	ANG_GRADIENT = 2
+} angle_type;
 
-#ifdef HAVE_LONG_LONG
-	#define PRINT_OCTAL	"%llo"
-	#define PRINT_HEX	"%llX"
-#else
-	#define PRINT_OCTAL	"%lo"
-	#define PRINT_HEX	"%lX"
-#endif
 
 typedef struct _func_data
 {
@@ -97,7 +87,6 @@ class CalcEngine
  public:
   CalcEngine();
   QValueStack<CALCAMNT>	amount_stack;
-  KStats	stats;
   
   CALCAMNT last_output(bool &error) const;
 
@@ -110,9 +99,9 @@ class CalcEngine
   void AreaCosHyp(CALCAMNT input);
   void AreaSinHyp(CALCAMNT input);
   void AreaTangensHyp(CALCAMNT input);
+  void Complement(CALCAMNT input);
   void Cos(CALCAMNT input);
   void CosHyp(CALCAMNT input);
-  void CloseParen(CALCAMNT input);
   void Divide(CALCAMNT input);
   void Exp(CALCAMNT input);
   void Exp10(CALCAMNT input);
@@ -121,21 +110,32 @@ class CalcEngine
   void InvPower(CALCAMNT input);
   void Ln(CALCAMNT input);
   void Log10(CALCAMNT input);
-  void LShift(CALCAMNT input);
   void Minus(CALCAMNT input);
   void Multiply(CALCAMNT input);
   void Mod(CALCAMNT input);
-  void OpenParen(CALCAMNT input);
   void Or(CALCAMNT input);
+  void ParenClose(CALCAMNT input);
+  void ParenOpen(CALCAMNT input);
   void Percent(CALCAMNT input);
   void Plus(CALCAMNT input);
   void Power(CALCAMNT input);
   void Reciprocal(CALCAMNT input);
-  void RShift(CALCAMNT input);
+  void ShiftLeft(CALCAMNT input);
+  void ShiftRight(CALCAMNT input);
   void Sin(CALCAMNT input);
   void SinHyp(CALCAMNT input);
   void Square(CALCAMNT input);
   void SquareRoot(CALCAMNT input);
+  void StatClearAll(CALCAMNT input);
+  void StatCount(CALCAMNT input);
+  void StatDataNew(CALCAMNT input);
+  void StatDataDel(CALCAMNT input);
+  void StatMean(CALCAMNT input);
+  void StatMedian(CALCAMNT input);
+  void StatStdDeviation(CALCAMNT input);
+  void StatStdSample(CALCAMNT input);
+  void StatSum(CALCAMNT input);
+  void StatSumSquares(CALCAMNT input);
   void Tangens(CALCAMNT input);
   void TangensHyp(CALCAMNT input);
   void Xor(CALCAMNT input);
@@ -143,6 +143,8 @@ class CalcEngine
   void Reset();
   void SetAngleMode(int mode) { _angle_mode = mode; };
  private:
+  KStats	stats;
+
   CALCAMNT _last_result;
   int _angle_mode;
 
@@ -161,6 +163,13 @@ class CalcEngine
   CALCAMNT Gra2Rad(CALCAMNT x)	{ return ((pi / 200L) * x); }
   CALCAMNT Rad2Deg(CALCAMNT x)	{ return ((360L / (2L * pi)) * x); }
   CALCAMNT Rad2Gra(CALCAMNT x)	{ return ((200L / pi) * x); }
+
+private:
+  QValueVector<CALCAMNT> history_list;
+  int history_index;
+public:
+  bool history_next();
+  bool history_prev();
 };
 
 

@@ -1,7 +1,5 @@
 /*
 
- $Id$
-
  KCalc 
 
  Copyright (C) Bernd Johannes Wuebben
@@ -25,31 +23,27 @@
  */
 
 
-#ifndef _D_LABEL_H_
-#define _D_LABEL_H_
+#ifndef _CONF_VALUES_H_
+#define _CONF_VALUES_H_
 
-#include "kcalcdisplay.h"
-#include "kcalctype.h"
-#include "confvalues.h"
-
-class CalcEngine;
-
-
-class DispLogic : public KCalcDisplay
+typedef struct _DefStruct
 {
-Q_OBJECT
+	QColor forecolor;
+	QColor backcolor;
+	QColor numberButtonColor;
+	QColor functionButtonColor;
+	QColor statButtonColor;
+	QColor hexButtonColor;
+	QColor memoryButtonColor;
+	QColor operationButtonColor;
 
-public:
-	DispLogic(QWidget *parent=0, const char *name=0);
-	~DispLogic();
+	int precision;
+	int fixedprecision;
+	int style;
+	bool fixed;
+	bool beep;
+	bool capres;
+	QFont font;
+} DefStruct;
 
-public:
-	int set_base(int number);
-	void changeSettings(DefStruct const &kcalcdefaults);
-	void update_from_core(CalcEngine const &core);
-	void EnterDigit(int data);
-private:
-	DefStruct ConfigSettings;
-};
-
-#endif
+#endif // _CONF_VALUES_H_

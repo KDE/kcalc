@@ -2,7 +2,6 @@
 
 * replace current gui code with ui files
 * fix cos 90 != 0 bug (only in double version of compile)
-* get rid of so much global variable/function usage
 * what is point of Dummy.h
 
 

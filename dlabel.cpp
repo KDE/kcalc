@@ -23,54 +23,133 @@
 
 */
 
+#include <klocale.h>
+#include "kcalc_core.h"
 #include "dlabel.h"
 #include "dlabel.moc"
 
-//-------------------------------------------------------------------------
-// Name: DLabel(QWidget *parent, const char *name)
-//-------------------------------------------------------------------------
-DLabel::DLabel(QWidget *parent, const char *name)
-	:QLabel(parent,name)
+DispLogic::DispLogic(QWidget *parent, const char *name)
+  :KCalcDisplay(parent,name)
 {
-	button = 0;
-	lit = false;
 }
 
-//-------------------------------------------------------------------------
-// Name: mousePressEvent(QMouseEvent *e)
-//-------------------------------------------------------------------------
-void DLabel::mousePressEvent(QMouseEvent *e)
+DispLogic::~DispLogic()
 {
-	if(e->button() == LeftButton) {
-		lit = !lit;
-		button = LeftButton;
-	} else {
-		button = MidButton;
+}
+
+int DispLogic::set_base(int number)
+{
+	NumBase num_base;
+
+  	switch(number)
+	{
+	case 0:
+		num_base	= NB_HEX;
+		break;
+	case 1:
+		num_base	= NB_DECIMAL;
+		break;
+	case 2:
+		num_base	= NB_OCTAL;
+		break;
+	case 3:
+		num_base	= NB_BINARY;
+		break;
+	default: // we shouldn't ever end up here
+		num_base	= NB_DECIMAL;
 	}
-	
-	emit clicked();
+
+	return setBase(num_base);
 }
 
-//-------------------------------------------------------------------------
-// Name: Button()
-//-------------------------------------------------------------------------
-int DLabel::Button()
+void DispLogic::changeSettings(DefStruct const &kcalcdefaults)
 {
-	return button;
+	ConfigSettings = kcalcdefaults;
+	QPalette pal = palette();
+
+	pal.setColor(QColorGroup::Text, ConfigSettings.forecolor);
+	pal.setColor(QColorGroup::Foreground, ConfigSettings.forecolor);
+	pal.setColor(QColorGroup::Background, ConfigSettings.backcolor);
+
+	setPalette(pal);
+	setBackgroundColor(ConfigSettings.backcolor);
+
+	setFont(ConfigSettings.font);
+
+	setPrecision(ConfigSettings.precision);
+
+	if(ConfigSettings.fixed == false) setFixedPrecision(-1);
+	else setFixedPrecision(ConfigSettings.fixedprecision);
+
+	setBeep(ConfigSettings.beep);
 }
 
-//-------------------------------------------------------------------------
-// Name: isLit()
-//-------------------------------------------------------------------------
-bool DLabel::isLit()
+void DispLogic::update_from_core(CalcEngine const &core)
 {
-	return lit;
+	bool tmp_error;
+	CALCAMNT output = core.last_output(tmp_error);
+	setError(tmp_error);
+	setAmount(output);
 }
 
-//-------------------------------------------------------------------------
-// Name: setLit(bool _lit)
-//-------------------------------------------------------------------------
-void DLabel::setLit(bool _lit)
+void DispLogic::EnterDigit(int data)
 {
-	lit = _lit;
+	char tmp;
+	switch(data)
+	{
+	case 0:
+	  tmp = '0';
+	  break;
+	case 1:
+	  tmp = '1';
+	  break;
+	case 2:
+	  tmp = '2';
+	  break;
+	case 3:
+	  tmp = '3';
+	  break;
+	case 4:
+	  tmp = '4';
+	  break;
+	case 5:
+	  tmp = '5';
+	  break;
+	case 6:
+	  tmp = '6';
+	  break;
+	case 7:
+	  tmp = '7';
+	  break;
+	case 8:
+	  tmp = '8';
+	  break;
+	case 9:
+	  tmp = '9';
+	  break;
+	case 0xA:
+	  tmp = 'A';
+	  break;
+	case 0xB:
+	  tmp = 'B';
+	  break;
+	case 0xC:
+	  tmp = 'C';
+	  break;
+	case 0xD:
+	  tmp = 'D';
+	  break;
+	case 0xE:
+	  tmp = 'E';
+	  break;
+	case 0xF:
+	  tmp = 'F';
+	  break;
+	default:
+	  tmp = '?';
+	  break;
+	}
+
+	newCharacter(tmp);
 }
+
