@@ -98,9 +98,6 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
 
   readSettings();
 
-  QFont buttonfont = font();
-  buttonfont.setRawMode( true );
-
   //
   // Detect color change
   //
@@ -143,25 +140,21 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   statusINVLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );
   statusINVLabel->setAlignment( AlignCenter );
   statusINVLabel->setText("NORM");
-  statusINVLabel->setFont(buttonfont);
 
   statusHYPLabel = new QLabel( this, "HYP" );
   CHECK_PTR( statusHYPLabel );
   statusHYPLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );
   statusHYPLabel->setAlignment( AlignCenter );
-  statusHYPLabel->setFont(buttonfont);
 
   statusERRORLabel = new QLabel( this, "ERROR" );
   CHECK_PTR( statusERRORLabel );
   statusERRORLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );
   statusERRORLabel->setAlignment( AlignLeft|AlignVCenter );
-  statusERRORLabel->setFont(buttonfont);
 
   //
   // create angle button group
   //
   QButtonGroup *angle_group = new QButtonGroup( 3, Horizontal, this, "angle");
-  angle_group->setFont(buttonfont);
   angle_group->setTitle(i18n( "Angle") );
   connect( angle_group, SIGNAL(clicked(int)), SLOT(angle_selected(int)) );
 
@@ -183,7 +176,6 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
 // Create Number Base Button Group
 //
   QButtonGroup *base_group = new QButtonGroup(4, Horizontal,  this, "base");
-  base_group->setFont(buttonfont);
   base_group->setTitle( i18n("Base") );
   connect( base_group, SIGNAL(clicked(int)), SLOT(base_selected(int)) );
 
@@ -214,10 +206,6 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   //
   mSmallPage = new QWidget( this );
   mLargePage = new QWidget( this );
-
-  mSmallPage->setFont( buttonfont );
-  mLargePage->setFont( buttonfont );
-
 
   pbhyp = new QPushButton( mSmallPage, "hypbutton" );
   pbhyp->setText( "Hyp" );
@@ -708,6 +696,7 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   InitializeCalculator();
 
   updateGeometry();
+  setFixedHeight(minimumHeight());
 }
 
 QtCalculator::~QtCalculator( void )
@@ -738,7 +727,7 @@ void QtCalculator::updateGeometry( void )
   //
   // Calculator buttons
   //
-  s.setWidth( mSmallPage->fontMetrics().width("MMMMM") );
+  s.setWidth( mSmallPage->fontMetrics().width("MMM") );
   s.setHeight( mSmallPage->fontMetrics().lineSpacing() + 6 );
 
   l = (QObjectList*)mSmallPage->children(); // silence please
@@ -755,10 +744,9 @@ void QtCalculator::updateGeometry( void )
 
   l = (QObjectList*)mLargePage->children(); // silence please
 
-
   int h1 = pbF->minimumSize().height();
-  int h2 = (int)((((float)h1+4.0)/5.0)+0.5);
-  s.setWidth( mLargePage->fontMetrics().width("MMMMM") );
+  int h2 = (int)((((float)h1+4.0)/5.0));
+  s.setWidth( mLargePage->fontMetrics().width("MMM") );
   s.setHeight( h1+h2 );
 
   for( uint i=0; i < l->count(); i++ )
@@ -865,7 +853,7 @@ void QtCalculator::configurationChanged( const DefStruct &state )
   // 1999-10-31 Espen Sand: Don't ask me why ;)
   //
   kapp->processOneEvent();
-  setFixedSize(minimumSize());
+  setFixedHeight(minimumHeight());
 }
 
 void QtCalculator::keyPressEvent( QKeyEvent *e ){
@@ -1766,8 +1754,10 @@ void QtCalculator::display_selected(){
     QClipboard *cb = QApplication::clipboard();
 
     CALCAMNT result;
-    const char *text = cb->text().ascii();
-    result = (CALCAMNT) strtod( text?text:"0",0);
+    bool was_ok;
+    result = (CALCAMNT) cb->text().toDouble(&was_ok);
+    if (!was_ok) result = (CALCAMNT) (0);
+    
     last_input = PASTE;
     DISPLAY_AMOUNT = result;
     UpdateDisplay();
