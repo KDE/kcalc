@@ -108,7 +108,6 @@ public:
 	void setPrecision(int precision);
 	void setText(QString const &string);
 	bool updateDisplay(void);
-    void setGroupDigits(bool grpdigits);
 private:
 	bool _beep;
 	int  _button;
@@ -131,9 +130,7 @@ private:
 	bool _neg_sign;
 	QString _str_int;
 	QString _str_int_exp;
-    QString _str_neg_sign; //Locale specific negative sign
-    QString _str_period; //Locale specific period (decimal point)
-    QString _str_seperator; //Locale specific thousands seperator
+
 	QTimer* selection_timer;
 
 signals:
@@ -148,8 +145,6 @@ public slots:
 private slots:
 	void slotSelectionTimedOut(void);
 	void slotDisplaySelected(void);
-protected:
-    bool _grpdigits;
 };
 
 #endif // _KCALCDISPLAY_H_

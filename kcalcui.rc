@@ -7,7 +7,6 @@
     <Action name="show_logic"/>
     <Action name="show_explog"/>
     <Action name="show_constants"/>
-    <Action name="digit_grouping"/>
     <Separator/>
     <Action name="show_all"/>
     <Action name="hide_all"/>

@@ -30,9 +30,6 @@
 
 #include <klocale.h>
 #include <knotifyclient.h>
-#include <klocale.h>
-#include <kglobal.h>
-#include <kmessagebox.h>
 #include "kcalcdisplay.h"
 #include "kcalcdisplay.moc"
 
@@ -63,12 +60,6 @@ KCalcDisplay::KCalcDisplay(QWidget *parent, const char *name)
 	setAlignment(AlignRight | AlignVCenter);
 	setFocus();
 	setFocusPolicy(QWidget::StrongFocus);
-    
-    //Set Locale specific stuff from the KDE config
-    KLocale * cur_locale = KGlobal::locale();
-    _str_neg_sign = cur_locale->negativeSign();
-    _str_period = cur_locale->decimalSymbol();
-    _str_seperator = cur_locale->thousandsSeparator();
 
 	connect(this, SIGNAL(clicked()), this, SLOT(slotDisplaySelected()));
 
@@ -258,26 +249,8 @@ bool KCalcDisplay::setAmount(CALCAMNT new_amount)
 			display_str = QCString().sprintf(PRINT_LONG_BIG, _precision + 1, _display_amount);
 		else
 			display_str = QCString().sprintf(PRINT_LONG_BIG, _precision, _display_amount);
-        //KMessageBox::sorry(0,i18n("display_str is %1").arg((double)_display_amount));
+
 		if (display_str.length() > DSP_SIZE) _error = true;
-        else if(_grpdigits == true)
-        {
-            int start = display_str.find(_str_period); //find decimal point
-            int end = display_str.length();
-            if (start == -1) //if no decimal point just start from end (RHS)
-                start = end;
-            int counter = 0;
-            for (int i = start;i > 0; i--)
-            {
-                if (counter == 3)
-                {
-                    display_str.insert(i, _str_seperator);
-                    counter = 1;
-                    i--;
-                }
-                counter++;
-            }
-        }
 	}
 
 	if(_error)
@@ -349,7 +322,7 @@ bool KCalcDisplay::updateDisplay(void)
 	// Put sign in front.
 	QString tmp_string;
 	if(_neg_sign == true)
-		tmp_string = _str_neg_sign + _str_int;
+		tmp_string = "-" + _str_int;
 	else
 		tmp_string = _str_int;
 
@@ -387,36 +360,10 @@ bool KCalcDisplay::updateDisplay(void)
 	case NB_DECIMAL:
 		if(_eestate == false)
 		{
-            if(_grpdigits == false)
-            {
-                Q_ASSERT(tmp_string.length() < DSP_SIZE);
-                setText(tmp_string);
-                _display_amount = toDouble(tmp_string, tmp_flag);
-                Q_ASSERT(tmp_flag == true);
-            }
-            else
-            {
-                Q_ASSERT(tmp_string.length() < DSP_SIZE);
-                setText(tmp_string);
-                _display_amount = toDouble(tmp_string, tmp_flag);
-                Q_ASSERT(tmp_flag == true);
-                int start = tmp_string.find(_str_period); //find decimal point
-                int end = tmp_string.length();
-                if (start == -1) //if no decimal point just start from end (RHS)
-                    start = end;
-                int counter = 0;
-                for (int i = start;i > 0; i--)
-                {
-                    if (counter == 3)
-                    {
-                        tmp_string.insert(i, _str_seperator);
-                        counter = 1;
-                        i--;
-                    }
-                    counter++;
-                }
-                setText(tmp_string);
-            }
+			Q_ASSERT(tmp_string.length() < DSP_SIZE);
+			setText(tmp_string);
+			_display_amount = toDouble(tmp_string, tmp_flag);
+			Q_ASSERT(tmp_flag == true);
 		}
 		else
 		{
@@ -461,7 +408,7 @@ void KCalcDisplay::newCharacter(char const new_char)
 		if(_beep) KNotifyClient::beep();
 		return;
 	}
-    char const cPeriod = (_str_period[0]).latin1();
+
 	// test if character is valid
 	switch(new_char)
 	{
@@ -475,6 +422,20 @@ void KCalcDisplay::newCharacter(char const new_char)
 		}
 		_eestate = true;
 		break;
+
+	case '.':
+		// Period can be set only once and only in decimal
+		// mode, also not in EE-mode
+		if (_num_base != NB_DECIMAL  ||
+		    _period == true  ||
+		    _eestate == true)
+		{
+			if(_beep) KNotifyClient::beep();
+			return;
+		}
+		_period = true;
+		break;
+
 	case 'F':
 	case 'E':
 	case 'D':
@@ -512,20 +473,7 @@ void KCalcDisplay::newCharacter(char const new_char)
 		break;
 
 	default:
-        if(new_char == cPeriod) //has to be in here - only literals allowed in case statement
-        {
-            // Period can be set only once and only in decimal
-            // mode, also not in EE-mode
-            if (_num_base != NB_DECIMAL  ||
-                _period == true  ||
-                _eestate == true)
-            {
-                if(_beep) KNotifyClient::beep();
-                return;
-            }
-            _period = true;
-        }
-        else KNotifyClient::beep();
+		if(_beep) KNotifyClient::beep();
 		return;
 	}
 
@@ -545,22 +493,18 @@ void KCalcDisplay::newCharacter(char const new_char)
 		{
 			switch(new_char)
 			{
+			case '.':
+				// display "0." not just "."
+				_str_int.append(new_char);
+				break;
 			case 'e':
 				// display "0e" not just "e"
 				// "0e" does not make sense either, but...
 				_str_int.append(new_char);
 				break;
 			default:
-                if(new_char == cPeriod) //only literals allowed in case statements
-                {
-                    // display "0." not just "."
-                    _str_int.append(new_char);
-                }
-                else
-                {
-                    // no leading '0's
-                    _str_int[0] = new_char;
-                }
+				// no leading '0's
+				_str_int[0] = new_char;
 			}
 		}
 		else
@@ -597,7 +541,7 @@ void KCalcDisplay::deleteLastDigit(void)
 		int length = _str_int.length();
 		if(length > 1)
 		{
-			if (_str_int[length-1] == _str_period[0])
+			if (_str_int[length-1] == '.')
 				_period = false;
 			_str_int.truncate(length-1);
 		}
@@ -673,13 +617,4 @@ void KCalcDisplay::Reset(void)
 	_neg_sign = false;
 
 	setError(false);
-}
-
-
-/*!
-    \fn KCalcDisplay::setGroupDigits(bool grpdigits)
- */
-void KCalcDisplay::setGroupDigits(bool grpdigits)
-{
-    _grpdigits = grpdigits;
 }
