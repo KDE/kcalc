@@ -1,5 +1,5 @@
-2004-10-20 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
-	* clean up of CalcButton code and finally fix Bug 86004
+2004-11-23 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* improved const buttons
 
 2004-10-20 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* clean up Const-Buttons. More work still required.

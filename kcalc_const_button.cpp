@@ -40,11 +40,11 @@ KCalcConstButton::KCalcConstButton(QWidget *parent, int but_num, const char * na
 
 
 KCalcConstButton::KCalcConstButton(const QString &label, QWidget *parent, int but_num,
-				   const char * name, const QString &tooltip)
+                                   const char * name, const QString &tooltip)
   : KCalcButton(label, parent, name, tooltip), _button_num(but_num)
 {
   addMode(ModeInverse, "Store", i18n("Write display data into memory"));
-
+  
   initPopupMenu();
 }
 
@@ -53,12 +53,35 @@ QString KCalcConstButton::constant(void) const
   return (KCalcSettings::valueUserConstants())[_button_num];
 }
 
-void KCalcConstButton::setName(void)
+void KCalcConstButton::setLabelAndTooltip(void)
 {
-  QString new_label = ((KCalcSettings::nameUserConstants())[_button_num].isEmpty() ?
-		       QString("C") + QString().setNum(_button_num + 1) :
-		       (KCalcSettings::nameUserConstants())[_button_num]);
-  QString new_tooltip = new_label + "=" + (KCalcSettings::valueUserConstants())[_button_num];
+  QString new_label = QString("C") + QString().setNum(_button_num + 1);
+  QString new_tooltip;
+  
+  // this is such a crappy work-around, because I don´t know how to
+  // access the constants in a generic way
+  switch(_button_num) {
+  case 0:
+    new_label = (KCalcSettings::nameConstant1().isNull() ? new_label : KCalcSettings::nameConstant1());
+    break;
+  case 1:
+    new_label = (KCalcSettings::nameConstant2().isNull() ? new_label : KCalcSettings::nameConstant2());
+    break;
+  case 2:
+    new_label = (KCalcSettings::nameConstant3().isNull() ? new_label : KCalcSettings::nameConstant3());
+    break;
+  case 3:
+    new_label = (KCalcSettings::nameConstant4().isNull() ? new_label : KCalcSettings::nameConstant4());
+    break;
+  case 4:
+    new_label = (KCalcSettings::nameConstant5().isNull() ? new_label : KCalcSettings::nameConstant5());
+    break;
+  case 5:
+    new_label = (KCalcSettings::nameConstant6().isNull() ? new_label : KCalcSettings::nameConstant6());
+    break;
+  }
+  
+  new_tooltip = new_label + "=" + (KCalcSettings::valueUserConstants())[_button_num];
   
   addMode(ModeNormal, new_label, new_tooltip);
 }
@@ -81,13 +104,31 @@ void KCalcConstButton::slotConfigureButton(int option)
       bool yes_no;
       QString input = KInputDialog::text(i18n("New name for constant"), i18n("New name:"),
 					 text(), &yes_no, this, "nameUserConstants-Dialog");
-      if(yes_no)
-	{
-	  QStringList tmp_list = KCalcSettings::nameUserConstants();
-	  tmp_list[_button_num] = input;
-	  KCalcSettings::setNameUserConstants(tmp_list);
-	  setName();
+      if(yes_no) {
+	// this is such a crappy work-around, because I don´t know how to
+	// access the constants in a generic way
+	switch(_button_num) {
+	case 0:
+	  KCalcSettings::setNameConstant1(input);
+	  break;
+	case 1:
+	  KCalcSettings::setNameConstant2(input);
+	  break;
+	case 2:
+	  KCalcSettings::setNameConstant3(input);
+	  break;
+	case 3:
+	  KCalcSettings::setNameConstant4(input);
+	  break;
+	case 4:
+	  KCalcSettings::setNameConstant5(input);
+	  break;
+	case 5:
+	  KCalcSettings::setNameConstant6(input);
+	  break;
 	}
+	setLabelAndTooltip();
+      }
     }
 }
 

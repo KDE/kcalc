@@ -41,7 +41,7 @@ Q_OBJECT
 
   QString constant(void) const;
 
-  void setName(void);
+  void setLabelAndTooltip(void);
 
   private slots:
   void slotConfigureButton(int option);

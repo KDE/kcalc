@@ -1751,7 +1751,7 @@ void KCalculator::slotConstclicked(int button)
 		tmp_list[button] = calc_display->text();
 		KCalcSettings::setValueUserConstants(tmp_list);
 		// below set new tooltip
-		pbConstant[button]->setName();
+		pbConstant[button]->setLabelAndTooltip();
 		// work around: after storing a number, pressing a digit should start
 		// a new number
 		calc_display->setAmount(calc_display->getAmount());
@@ -1944,12 +1944,12 @@ void KCalculator::slotConstantsShow(bool toggled)
 // enter a name for the constant C1 to C6 is used.
 void KCalculator::changeButtonNames()
 {
-	pbConstant[0]->setName();
-	pbConstant[1]->setName();
-	pbConstant[2]->setName();
-	pbConstant[3]->setName();
-	pbConstant[4]->setName();
-	pbConstant[5]->setName();
+	pbConstant[0]->setLabelAndTooltip();
+	pbConstant[1]->setLabelAndTooltip();
+	pbConstant[2]->setLabelAndTooltip();
+	pbConstant[3]->setLabelAndTooltip();
+	pbConstant[4]->setLabelAndTooltip();
+	pbConstant[5]->setLabelAndTooltip();
 }
 
 void KCalculator::slotShowAll(void)
