@@ -77,8 +77,8 @@ worthwhile pointing out:</para>
 from/into its display.</para>
 </listitem>
 <listitem>
-<para>&kcalc; features a <quote>results-stack</quote> which let's
-you conveniently recall previous results. </para>
+<para>&kcalc; features a <firstterm>results-stack</firstterm> which lets
+you conveniently recall previous results.</para>
 </listitem>
 <listitem>
 <para>You can
@@ -265,44 +265,58 @@ or <userinput>7r</userinput> will calculate the reciprocal of 7 (1/7).</para>
 
 <informaltable><tgroup cols="3">
 <thead>
-<row><entry>Key</entry><entry>Function</entry><entry>Notes</entry></row>
+<row><entry>Key</entry>
+<entry>Function</entry>
+<entry>Notes</entry></row>
 </thead>
 <tbody>
+
 <row><entry><keycap>H</keycap></entry>
 <entry>Hyp</entry>
 <entry>Hyperbolic as in <guibutton>Hyp</guibutton> <guibutton>Sin</guibutton> ,
 the sinh(x)</entry></row>
+
 <row><entry><keycap>S</keycap></entry>
 <entry><guibutton>Sin</guibutton></entry>
 <entry></entry></row>
+
 <row><entry><keycap>C</keycap></entry>
 <entry><guibutton>Cos</guibutton></entry>
 <entry></entry></row>
+
 <row><entry><keycap>T</keycap></entry>
 <entry><guibutton>Tan</guibutton></entry>
 <entry></entry></row>
+
 <row><entry><keycap>N</keycap></entry>
 <entry><guibutton>Ln</guibutton></entry>
 <entry>log base e</entry></row>
+
 <row><entry><keycap>L</keycap></entry>
 <entry><guibutton>Log</guibutton></entry>
 <entry>log base 10</entry></row>
+
 <row><entry><keycap>I</keycap></entry>
 <entry> <guibutton>Inv</guibutton></entry>
 <entry>Inverse, &eg; if
 you want arcsin(x) type <userinput>i s </userinput></entry></row>
+
 <row><entry><keysym>\</keysym></entry>
 <entry><guibutton>+/-</guibutton></entry>
 <entry>Change sign</entry></row>
+
 <row><entry><keysym>[</keysym></entry>
 <entry><guibutton>x^2</guibutton></entry>
 <entry></entry></row>
+
 <row><entry><keysym>^</keysym></entry>
 <entry><guibutton>x^y</guibutton></entry>
 <entry></entry></row>
+
 <row><entry><keysym>!</keysym></entry>
 <entry><guibutton>x!</guibutton></entry>
 <entry>Factorial</entry></row>
+
 <row><entry><keysym>&lt;</keysym></entry>
 <entry><guibutton>Lsh</guibutton></entry>
 <entry>Left shift. Note: <guibutton>Inv</guibutton>
@@ -311,59 +325,70 @@ you want arcsin(x) type <userinput>i s </userinput></entry></row>
 <row><entry><keysym>&amp;</keysym></entry>
 <entry><guibutton>And</guibutton></entry>
 <entry>Logical AND</entry></row>
+
 <row><entry><keysym>*</keysym></entry>
-<entry>*</entry>
+<entry><guibutton>X</guibutton></entry>
 <entry>Multiply</entry></row>
+
 <row><entry><keysym>/</keysym></entry>
-<entry>/</entry>
+<entry><guibutton>/</guibutton></entry>
 <entry>Divide</entry></row>
+
 <row><entry><keycap>D</keycap></entry>
-<entry>Dat</entry>
+<entry><guibutton>Dat</guibutton></entry>
 <entry>Enter data item in statistical mode</entry></row>
+
 <row><entry><keycap>O</keycap></entry>
-<entry>Or</entry>
+<entry><guibutton>Or</guibutton></entry>
 <entry>Logical OR. Note: <guibutton>Inv</guibutton>
 <guibutton>Or</guibutton> is XOR</entry></row>
+
 <row><entry><keycap>R</keycap></entry>
-<entry>1/x</entry>
+<entry><guibutton>1/x</guibutton></entry>
 <entry>Reciprocal</entry></row>
 
 <row><entry><keysym>=</keysym></entry>
 <entry><guibutton>=</guibutton></entry>
 <entry></entry></row>
+
 <row><entry><keycap>Enter</keycap></entry>
 <entry><guibutton>=</guibutton></entry>
 <entry></entry></row>
+
 <row><entry><keycap>Return</keycap></entry>
 <entry><guibutton>=</guibutton></entry>
 <entry></entry></row>
 
 <row><entry><keycap>Page Up</keycap></entry>
-<entry>C</entry>
+<entry><guibutton>C</guibutton></entry>
 <entry>Clear</entry></row>
+
 <row><entry><keycap>Esc</keycap></entry>
-<entry>C</entry>
+<entry><guibutton>C</guibutton></entry>
 <entry>Clear</entry></row>
+
 <row><entry><keycap>Prior</keycap></entry>
-<entry>C</entry>
+<entry><guibutton>C</guibutton></entry>
 <entry>Clear</entry></row>
 
 <row><entry><keycap>Page Down</keycap></entry>
-<entry>AC</entry>
+<entry><guibutton>AC</guibutton></entry>
 <entry>Clear all</entry></row>
+
 <row><entry><keycap>Next</keycap></entry>
-<entry>AC</entry>
+<entry><guibutton>AC</guibutton></entry>
 <entry>Clear all</entry></row>
+
 <row><entry><keycap>Del</keycap></entry>
-<entry>AC</entry>
+<entry><guibutton>AC</guibutton></entry>
 <entry>Clear all</entry></row>
 
 <row><entry><keycap>F1</keycap></entry>
-<entry>?</entry>
+<entry><guibutton>?</guibutton></entry>
 <entry>Help, brings up this manual</entry></row>
 
 <row><entry><keycap>F2</keycap></entry>
-<entry>Configure</entry>
+<entry><guibutton>Configure</guibutton></entry>
 <entry>Bring up the configure dialog</entry></row>
 
 <row><entry><keycap>F3</keycap></entry>
@@ -393,10 +418,10 @@ number by the next input number.</term>
 
 <varlistentry>
 <term><guibutton>Inv</guibutton> <guibutton>Mod</guibutton> does integer
-divison of the displayed number by the next input number.</term>
+division of the displayed number by the next input number.</term>
 <listitem><para><userinput>22 Inv Mod 8 = </userinput> will give the result
 <emphasis>2</emphasis></para>
-<para><userinput>22.345 Mod 8 = </userinput> also gives <emphasis>2.</emphasis>
+<para><userinput>22.345 Mod 8 = </userinput> also gives <emphasis>2</emphasis>
 </para></listitem></varlistentry>
 </variablelist>
 
@@ -557,12 +582,12 @@ be able to observe some <quote>interesting</quote> results when trying
 to execute computations such as: <userinput>123.22 - 123.21</userinput>,
 <userinput>2.01 - 2</userinput>, <userinput>123.88 - 123.87</userinput> and
 similar. However if you think this is bad I ask you to do the same computation
-on the windows calculator.</para>
+on the calculator provided with &Windows;.</para>
 
 <para>Adjust the <guilabel>Precision</guilabel> in &kcalc;'s
 <guibutton>Configure</guibutton> dialog so that the above computations
 work correctly. I recommend a precision of 14 if the fundamental data type
-for your copy of &kcalc; is long double, otherwise 8 or 10.</para>
+for your copy of &kcalc; is <type>long double</type>, otherwise 8 or 10.</para>
 
 <para>Higher precision doesn't necessarily lead to better results. Play with
 the precision and you will see what I mean.</para>
@@ -576,18 +601,18 @@ the precision and you will see what I mean.</para>
 <title>Credits and License</title>
 
 <para>&kcalc; Program copyright 1996-2001 Bernd Johannes
-Wuebben.<email>wuebben@kde.org</email></para>
+Wuebben <email>wuebben@kde.org</email>.</para>
 <para>Additions by Espen Sand. <email>espen@kde.org</email></para>
 
-<para>&kcalc; was inspired by Martin Bartlett's xfrmcalc, whose stack
-engine is still part of &kcalc;.</para>
+<para>&kcalc; was inspired by Martin Bartlett's <application>xfrmcalc</application>,
+whose stack engine is still part of &kcalc;.</para>
 
 <para>Documentation copyright 2001:</para>
 <itemizedlist>
 <listitem><para>Bernd Johannes
-Wuebben. <email>wuebben@kde.org</email></para></listitem>
+Wuebben <email>wuebben@kde.org</email>,</para></listitem>
 <listitem><para>Pamela Roberts
-<email>pam.roberts@btinternet.com</email></para></listitem>
+<email>pam.roberts@btinternet.com</email>.</para></listitem>
 </itemizedlist>
 
 &underFDL;
@@ -645,9 +670,9 @@ line saying:</para>
 double IEEE precision. </para>
 </step>
 <step>
-<para>Edit the file <filename class="headerfile">kcalctype.h</filename>
-<filename>configdlg.cpp</filename> <filename>kcalc.cpp</filename> and
-<filename>kcalc&lowbar;core.cpp</filename> and remove the lines: </para>
+<para>Edit the files <filename class="headerfile">kcalctype.h</filename>,
+<filename>configdlg.cpp</filename>, <filename>kcalc.cpp</filename> and
+<filename>kcalc&lowbar;core.cpp</filename> and remove the lines:</para>
 
 <screen>
 #ifdef HAVE_LONG_DOUBLE
@@ -675,6 +700,4 @@ sgml-general-insert-case:lower
 sgml-indent-step:0
 sgml-indent-data:nil
 End:
-
-// vim:ts=0:sw=2:tw=78:noet
 -->
