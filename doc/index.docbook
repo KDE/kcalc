@@ -43,8 +43,8 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>21/01/2001</date>
-<releaseinfo>1.3.0</releaseinfo>
+<date>11/02/2001</date>
+<releaseinfo>1.3.01</releaseinfo>
 
 <abstract><para>&kcalc; is a scientific calculator for &kde;</para></abstract>
 
@@ -133,7 +133,7 @@ function for further details.</para> </listitem></varlistentry>
 the displayed number on to the clipboard.</para>
 </listitem>
 <listitem>
-<para>Pressing the <mousebutton>left</mousebutton> or &MMB; on &kcalc;'s display
+<para>Pressing the <mousebutton>right</mousebutton> or &MMB; on &kcalc;'s display
 will paste the clipboard content into the display if the content of the
 clipboard is a valid floating point number.</para>
 </listitem>
@@ -297,13 +297,11 @@ you want arcsin(x) type <userinput>i s </userinput></entry></row>
 <entry>Factorial</entry></row>
 <row><entry><keysym>&lt;</keysym></entry>
 <entry><guibutton>Lsh</guibutton></entry>
-<entry>Left shift</entry></row>
-<row><entry><keysym>&gt;</keysym></entry>
+<entry>Left shift. Note: <guibutton>Inv</guibutton>
+<guibutton>Lsh</guibutton> is Right shift</entry></row>
+
+<row><entry><keysym>&amp;</keysym></entry>
 <entry></entry>
-<entry>Right shift, same as <guibutton>Inv</guibutton>
-<guibutton>Lsh</guibutton></entry></row>
-<row><entry><keysym>&</keysym></entry>
-<entry>And</entry>
 <entry>Logical AND</entry></row>
 <row><entry><keysym>*</keysym></entry>
 <entry>*</entry>
@@ -354,11 +352,11 @@ you want arcsin(x) type <userinput>i s </userinput></entry></row>
 
 <row><entry><keycap>F1</keycap></entry>
 <entry>?</entry>
-<entry>Bring up the configure dialog</entry></row>
+<entry>Help, brings up this manual</entry></row>
 
 <row><entry><keycap>F2</keycap></entry>
 <entry>Configure</entry>
-<entry>Help, brings up this manual</entry></row>
+<entry>Bring up the configure dialog</entry></row>
 
 <row><entry><keycap>F3</keycap></entry>
 <entry></entry>
@@ -406,13 +404,7 @@ current calculation as follows:</para>
 
 <para><itemizedlist>
 <listitem>
-<para>If the final operator is + give the percentage increase
-the result is over the second operand.
-</para>
-</listitem>
-<listitem>
-<para> If the final operator is - give the percentage decrease the result 
-is over the second operand.
+<para>If the final operator is + or - show the result as a percentage of the final operand.
 </para>
 </listitem>
 <listitem>
@@ -421,12 +413,12 @@ as a percentage of the left operand.
 </para>
 </listitem>
 <listitem>
-<para>If the final operator is / or Mod, give the left operand
+<para>If the final operator is / give the left operand
 as a percentage of the right operand.
 </para>
 </listitem>
 <listitem>
-<para>If the final operator is x**y give the left operand 
+<para>If the final operator is x^y give the left operand 
 raised to the power of the (right operand / 100).
 </para>
 </listitem>
@@ -530,7 +522,7 @@ XOR (exclusive OR) operation.</term>
 
 <qandaentry>
 <question><para>How do I get e, the Euler number?</para></question>
-<answer><para>Type <userinput>1 Inv ln</userinput>.</para></answer>
+<answer><para>Type <userinput>1 Inv Ln</userinput>.</para></answer>
 </qandaentry>
 
 <qandaentry>
@@ -574,7 +566,7 @@ the precision and you will see what I mean.</para>
 
 <para>&kcalc; Program copyright 1996-2001 Bernd Johannes
 Wuebben.<email>wuebben@kde.org</email></para>
-<para>Additions by Epsen Sand. <email>epsen@kde.org</email></para>
+<para>Additions by Espen Sand. <email>espen@kde.org</email></para>
 
 <para>&kcalc; was inspired by Martin Bartlett's xfrmcalc, whose stack
 engine is still part of &kcalc;.</para>
