@@ -5,7 +5,7 @@ lib_LTLIBRARIES =
 kdeinit_LTLIBRARIES = kcalc.la
 
 kcalc_la_SOURCES = kcalc.cpp kcalc_core.cpp kcalcdisplay.cpp dlabel.cpp \
-		   stats.cpp colors.ui general.ui kcalc_settings.cpp
+		   stats.cpp colors.ui general.ui kcalc_settings.kcfg-codegen
 
 METASOURCES = AUTO
 
@@ -17,6 +17,7 @@ kcalc_la_LIBADD = $(LIB_KDEUI) -lm
 KDE_ICON = kcalc
 
 xdg_apps_DATA = kcalc.desktop
+kde_kcfg_DATA = kcalc.kcfg
 
 rcdir = $(kde_datadir)/kcalc
 rc_DATA = kcalcui.rc
@@ -26,9 +27,3 @@ messages:
 
 updatedir = $(kde_datadir)/kconf_update
 update_DATA = kcalcrc.upd
-
-# avoid running the below command in parallel
-kcalc_settings.cpp: kcalc_settings.h
-kcalc_settings.cpp kcalc_settings.h: $(srcdir)/kcalc.kcfg $(srcdir)/kcalc_settings.kcfg-codegen
-	kconfig_compiler $(srcdir)/kcalc.kcfg $(srcdir)/kcalc_settings.kcfg-codegen
-
