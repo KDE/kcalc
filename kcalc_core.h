@@ -51,6 +51,7 @@ class CalcEngine
  public:
   // operations that can be stored in calculation stack 
   enum Operation {
+    FUNC_EQUAL,
     FUNC_BRACKET,
     FUNC_OR,
     FUNC_XOR,
@@ -168,8 +169,8 @@ class CalcEngine
   int _precedence_list[20]; // priority of operators in " enum Operation"
   static const CALCAMNT pi;
 
-  Arith Arith_ops[14];
-  Prcnt Prcnt_ops[14];
+  Arith Arith_ops[20];
+  Prcnt Prcnt_ops[20];
 
   void enterOperation(Operation func, CALCAMNT num);
   bool evalStack(void);

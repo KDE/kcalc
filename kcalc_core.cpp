@@ -378,50 +378,65 @@ CalcEngine::CalcEngine()
 	sigaction(SIGFPE, &fpe_trap, NULL);
 
 	// build precedence list
-	_precedence_list[FUNC_BRACKET] = 0,
-	  _precedence_list[FUNC_OR] = 1,
-	  _precedence_list[FUNC_XOR] = 2,
-	  _precedence_list[FUNC_AND] = 3,
-	  _precedence_list[FUNC_LSH] = 4,
-	  _precedence_list[FUNC_RSH] = 4,
-	  _precedence_list[FUNC_ADD] = 5,
-	  _precedence_list[FUNC_SUBTRACT] = 5,
-	  _precedence_list[FUNC_MULTIPLY] = 6,
-	  _precedence_list[FUNC_DIVIDE] = 6,
-	  _precedence_list[FUNC_MOD] = 6,
-	  _precedence_list[FUNC_POWER] = 7,
-	  _precedence_list[FUNC_PWR_ROOT] = 7,
-	  _precedence_list[FUNC_INTDIV] = 6;
-	
-	Arith_ops[0] = NULL,
-	  Arith_ops[1] = ExecOr,
-	  Arith_ops[2] = ExecXor,
-	  Arith_ops[3] = ExecAnd,
-	  Arith_ops[4] = ExecLsh,
-	  Arith_ops[5] = ExecRsh,
-	  Arith_ops[6] = ExecAdd,
-	  Arith_ops[7] = ExecSubtract,
-	  Arith_ops[8] = ExecMultiply,
-	  Arith_ops[9] = ExecDivide,
-	  Arith_ops[10] = ExecMod,
-	  Arith_ops[11] = ExecPower,
-	  Arith_ops[12] = ExecPwrRoot,
-	  Arith_ops[13] = ExecIntDiv;
+	_precedence_list[FUNC_EQUAL] = 0;
+	Arith_ops[FUNC_EQUAL] = NULL;
+	Prcnt_ops[FUNC_EQUAL] = NULL;
 
-	Prcnt_ops[0] = NULL,
-	  Prcnt_ops[1] = NULL,
-	  Prcnt_ops[2] = NULL,
-	  Prcnt_ops[3] = NULL,
-	  Prcnt_ops[4] = NULL,
-	  Prcnt_ops[5] = NULL,
-	  Prcnt_ops[6] = ExecAddP,
-	  Prcnt_ops[7] = ExecSubP,
-	  Prcnt_ops[8] = ExecMultiplyP,
-	  Prcnt_ops[9] = ExecDivideP,
-	  Prcnt_ops[10] = NULL,
-	  Prcnt_ops[11] = NULL,
-	  Prcnt_ops[12] = NULL,
-	  Prcnt_ops[13] = NULL;
+	_precedence_list[FUNC_BRACKET] = 0;
+	Arith_ops[FUNC_BRACKET] = NULL;
+	Prcnt_ops[FUNC_BRACKET] = NULL;
+
+	_precedence_list[FUNC_OR] = 1;
+	Arith_ops[FUNC_OR] = ExecOr;
+	Prcnt_ops[FUNC_OR] = NULL;
+
+	_precedence_list[FUNC_XOR] = 2;
+	Arith_ops[FUNC_XOR] = ExecXor;
+	Prcnt_ops[FUNC_XOR] = NULL;
+
+	_precedence_list[FUNC_AND] = 3;
+	Arith_ops[FUNC_AND] = ExecAnd;
+	Prcnt_ops[FUNC_AND] = NULL;
+
+	_precedence_list[FUNC_LSH] = 4;
+	Arith_ops[FUNC_LSH] = ExecLsh;
+	Prcnt_ops[FUNC_LSH] = NULL;
+
+	_precedence_list[FUNC_RSH] = 4;
+	Arith_ops[FUNC_RSH] = ExecRsh;
+	Prcnt_ops[FUNC_RSH] = NULL;
+
+	_precedence_list[FUNC_ADD] = 5;
+	Arith_ops[FUNC_ADD] = ExecAdd;
+	Prcnt_ops[FUNC_ADD] = ExecAddP;
+
+	_precedence_list[FUNC_SUBTRACT] = 5;
+	Arith_ops[FUNC_SUBTRACT] = ExecSubtract;
+	Prcnt_ops[FUNC_SUBTRACT] = ExecSubP;
+
+	_precedence_list[FUNC_MULTIPLY] = 6;
+	Arith_ops[FUNC_MULTIPLY] = ExecMultiply;
+	Prcnt_ops[FUNC_MULTIPLY] = ExecMultiplyP;
+
+	_precedence_list[FUNC_DIVIDE] = 6;
+	Arith_ops[FUNC_DIVIDE] = ExecDivide;
+	Prcnt_ops[FUNC_DIVIDE] = ExecDivideP;
+
+	_precedence_list[FUNC_MOD] = 6;
+	Arith_ops[FUNC_MOD] = ExecMod;
+	Prcnt_ops[FUNC_MOD] = NULL;
+
+	_precedence_list[FUNC_POWER] = 7;
+	Arith_ops[FUNC_POWER] = ExecPower;
+	Prcnt_ops[FUNC_POWER] = NULL;
+
+	_precedence_list[FUNC_PWR_ROOT] = 7;
+	Arith_ops[FUNC_PWR_ROOT] = ExecPwrRoot;
+	Prcnt_ops[FUNC_PWR_ROOT] = NULL;
+	
+	_precedence_list[FUNC_INTDIV] = 6;
+	Arith_ops[FUNC_INTDIV] = ExecIntDiv;	
+	Prcnt_ops[FUNC_INTDIV] = NULL;
 
 	_last_number = 0L;
 	_error = false;
@@ -894,17 +909,7 @@ void CalcEngine::Xor(CALCAMNT input)
 
 void CalcEngine::Equal(CALCAMNT input)
 {
- 	// evaluate whole stack
-	while (!_stack.isEmpty())
-	{
-		_node tmp_node = _stack.pop();
-		if (tmp_node.operation == FUNC_BRACKET)
-			continue;
-		input = evalOperation(tmp_node.number, tmp_node.operation,
-				      input);
-	}
-	_last_number = input;
-	return;
+	enterOperation(FUNC_EQUAL, input);
 }
 
 void CalcEngine::Percent(CALCAMNT input)
@@ -961,6 +966,7 @@ bool CalcEngine::evalStack(void)
 		if (_precedence_list[tmp_node.operation] <=
 		    _precedence_list[tmp_node2.operation])
 		{
+			if (tmp_node2.operation == FUNC_BRACKET) continue;
 			CALCAMNT tmp_result =
 			  evalOperation(tmp_node2.number, tmp_node2.operation,
 					tmp_node.number);
@@ -974,7 +980,7 @@ bool CalcEngine::evalStack(void)
 		  
 	}
 
-	_stack.push(tmp_node);
+	if(tmp_node.operation != FUNC_EQUAL) _stack.push(tmp_node);
 
 	_last_number = tmp_node.number;
 	return true;
