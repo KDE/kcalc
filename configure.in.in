@@ -44,6 +44,10 @@ exit(result); }
 ])
 KDE_C_LONG_DOUBLE
 
+AC_CHECK_FUNC(asinl,
+  AC_DEFINE(HAVE_L_FUNCS,1,[Define if you have *l math functions (absl, ...)]),
+)
+
 AC_LANG_C
 AC_CHECK_LIB(m, isinf, [
   AC_DEFINE_UNQUOTED(HAVE_FUNC_ISINF, 1, [Define if you have isinf])
