@@ -2242,7 +2242,6 @@ bool QtCalculator::eventFilter(QObject *o, QEvent *e)
 
 #include "kcalc.moc"
 
-#include <iostream>
 //-------------------------------------------------------------------------
 // Name: main(int argc, char *argv[])
 //-------------------------------------------------------------------------
