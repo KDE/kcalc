@@ -259,7 +259,7 @@ bool KStats::error(){
 
 }
 
-int MyList::compareItems(GCI item_1, GCI item_2){
+int MyList::compareItems(Item item_1, Item item_2){
   
   CALCAMNT *item1;
   CALCAMNT *item2;
