@@ -24,6 +24,7 @@
 */
 #include <errno.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 #include <qclipboard.h>
 
@@ -38,6 +39,13 @@ static CALCAMNT toDouble(const QString &s, bool &ok)
 	char *ptr = 0;
 	errno = 0;
 	CALCAMNT result = (CALCAMNT) STRTOD(s.latin1(),&ptr);
+
+	// find first non-space character for check below
+	while (ptr != 0 && *ptr != '\0' && isspace(*ptr)) {
+	// *ptr == 0 is also caught by isspace(*ptr), but you never know
+		ptr++;
+	}
+	// input contains more than a number or another error
 	ok = (errno == 0) && (ptr != 0) && (*ptr == 0);
 	return result;
 }
@@ -93,7 +101,7 @@ void KCalcDisplay::slotCopy(void)
 	(QApplication::clipboard())->setText(txt, QClipboard::Selection);
 }
 
-void KCalcDisplay::slotPaste(void)
+void KCalcDisplay::slotPaste(bool bClipboard)
 {
 	if(_error  &&  _beep)
 	{
@@ -101,7 +109,7 @@ void KCalcDisplay::slotPaste(void)
 		return;
 	}
 
-	QString tmp_str = (QApplication::clipboard())->text(QClipboard::Clipboard);
+	QString tmp_str = (QApplication::clipboard())->text(bClipboard ? QClipboard::Clipboard : QClipboard::Selection);
 
 	bool was_ok;
 	CALCAMNT tmp_result = toDouble(tmp_str, was_ok);
@@ -127,7 +135,7 @@ void KCalcDisplay::slotDisplaySelected(void)
 
 		invertColors();
 	} else {
-		slotPaste();
+		slotPaste(false); // Selection
 	}
 }
 
