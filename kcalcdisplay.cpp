@@ -24,6 +24,7 @@
 */
 #include <errno.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 #include <qclipboard.h>
 
@@ -38,6 +39,13 @@ static CALCAMNT toDouble(const QString &s, bool &ok)
 	char *ptr = 0;
 	errno = 0;
 	CALCAMNT result = (CALCAMNT) STRTOD(s.latin1(),&ptr);
+
+	// find first non-space character for check below
+	while (ptr != 0 && *ptr != '\0' && isspace(*ptr)) {
+	// *ptr == 0 is also caught by isspace(*ptr), but you never know
+		ptr++;
+	}
+	// input contains more than a number or another error
 	ok = (errno == 0) && (ptr != 0) && (*ptr == 0);
 	return result;
 }
@@ -93,15 +101,15 @@ void KCalcDisplay::slotCopy(void)
 	(QApplication::clipboard())->setText(txt, QClipboard::Selection);
 }
 
-void KCalcDisplay::slotPaste(void)
+void KCalcDisplay::slotPaste(bool bClipboard)
 {
-	if(_error  &&  _beep)
+	QString tmp_str = (QApplication::clipboard())->text(bClipboard ? QClipboard::Clipboard : QClipboard::Selection);
+
+	if (_error  ||  tmp_str.isNull())
 	{
-		KNotifyClient::beep();
+		if (_beep)  KNotifyClient::beep();
 		return;
 	}
-
-	QString tmp_str = (QApplication::clipboard())->text(QClipboard::Clipboard);
 
 	bool was_ok;
 	CALCAMNT tmp_result = toDouble(tmp_str, was_ok);
@@ -127,7 +135,7 @@ void KCalcDisplay::slotDisplaySelected(void)
 
 		invertColors();
 	} else {
-		slotPaste();
+		slotPaste(false); // Selection
 	}
 }
 
@@ -352,8 +360,9 @@ bool KCalcDisplay::updateDisplay(void)
 		Q_ASSERT(_period == false  && _eestate == false);
 		Q_ASSERT(tmp_string.length() < DSP_SIZE);
 		setText(tmp_string);
-		_display_amount = (CALCAMNT)tmp_string.toLong(&tmp_flag, 2);
-		Q_ASSERT("Overflow in binary" || tmp_flag == true);
+		_display_amount = STRTOUL(_str_int.latin1(), 0, 2);
+		if (_neg_sign)
+			_display_amount = -_display_amount;
 		//str_size = cvb(_str_int, boh_work, DSP_SIZE);
 		break;
 	  
@@ -361,16 +370,18 @@ bool KCalcDisplay::updateDisplay(void)
 		Q_ASSERT(_period == false  && _eestate == false);
 		Q_ASSERT(tmp_string.length() < DSP_SIZE);
 		setText(tmp_string);
-		_display_amount = (CALCAMNT)tmp_string.toLong(&tmp_flag, 8);
-		Q_ASSERT("Overflow in octal" || tmp_flag == true);
+		_display_amount = STRTOUL(_str_int.latin1(), 0, 8);
+		if (_neg_sign)
+			_display_amount = -_display_amount;
 		break;
 		
 	case NB_HEX:
 		Q_ASSERT(_period == false  && _eestate == false);
 		Q_ASSERT(tmp_string.length() < DSP_SIZE);
 		setText(tmp_string);
-		_display_amount = (CALCAMNT)tmp_string.toLong(&tmp_flag, 16);
-		Q_ASSERT("Overflow in hexa" || tmp_flag == true);
+		_display_amount = STRTOUL(_str_int.latin1(), 0, 16);
+		if (_neg_sign)
+			_display_amount = -_display_amount;
 		break;
 	  
 	case NB_DECIMAL:

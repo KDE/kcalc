@@ -1,10 +1,25 @@
-2003-21-06 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-02-29 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* disable EE-button in Hex-mode (does not work)
+	
+2004-02-18 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Fixed bug 75555. "<" and ">" keypress produced same result.
+	  There are probably similar errors for other system configurations.
+	
+2004-02-06 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Fixed bug 73437. Pasting empty clipboard made kcalc crash.
+	
+2004-01-27 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+        * Fix paste-function: Pasting e.g. "123  \n" did not work
+          because of the trailing spaces and returns.
+
+2003-12-06 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Fix problem with several identical labels in statusbar
 	  with the help of newly added statusbar->hasItem.
 
-2003-21-06 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2003-12-06 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Make Percent work the way it did in KDE-3.1 again (documentation
 	  was not updated to this KDE-version, which confused me on 2003/08/28)
+	  (bug 70180)
 	
 2003-11-04 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* More reorganization and preparation for getting accels right.
@@ -20,7 +35,7 @@
 2003-10-14 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* RadioButtons for Base and Angle converted to PopUpMenu+Button
 	* Layout changed
-	* Moved ENTER form keyPressedEvent to Accel()
+	* Moved ENTER from keyPressedEvent to Accel()
 
 2003-10-10 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Number buttons look like numeric keyboard (on US-keyboards that is)

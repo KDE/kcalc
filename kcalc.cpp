@@ -715,8 +715,7 @@ void KCalculator::setupLogicKeys(QWidget *parent)
 
 	tmp_pb = new QPushButton("Lsh", parent, "LeftBitShift-Button");
 	pbLogic.insert("LeftShift", tmp_pb);
-	accel()->insert("Apply left shift", i18n("Pressed '<'-Button"),
-			0, Key_Less, tmp_pb, SLOT(animateClick()));
+	tmp_pb->setAccel(Key_Less);
 	QToolTip::add(tmp_pb, i18n("Left bit shift"));
 	tmp_pb->setAutoDefault(false);
 	connect(tmp_pb, SIGNAL(clicked(void)),
@@ -724,8 +723,7 @@ void KCalculator::setupLogicKeys(QWidget *parent)
 
 	tmp_pb = new QPushButton("Rsh", parent, "RightBitShift-Button");
 	pbLogic.insert("RightShift", tmp_pb);
-	accel()->insert("Apply right shift", i18n("Pressed '>'-Button"),
-			0, Key_Greater, tmp_pb, SLOT(animateClick()));
+	tmp_pb->setAccel(Key_Greater);
 	QToolTip::add(tmp_pb, i18n("Right bit shift"));
 	tmp_pb->setAutoDefault(false);
 	connect(tmp_pb, SIGNAL(clicked(void)),
@@ -783,7 +781,7 @@ void KCalculator::setupTrigKeys(QWidget *parent)
 	QToolTip::add(tmp_pb, i18n("Cosine"));
 	tmp_pb->setAutoDefault(false);
 	accel()->insert("Apply Cosine", i18n("Pressed Cos-Button"),
-			0, Key_C, tmp_pb, SLOT(animateClick()));
+			0, KShortcut(), tmp_pb, SLOT(animateClick()));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotCosclicked(void)));
 
 	tmp_pb = new QPushButton("Tan", parent, "Tan-Button");
@@ -969,6 +967,8 @@ void KCalculator::slotBaseSelected(int base)
 
 	// Only enable the decimal point in decimal
 	pbPeriod->setEnabled(current_base == NB_DECIMAL);
+	// Only enable the x*10^y button in decimal
+	pbEE->setEnabled(current_base == NB_DECIMAL);
 
 	// Disable the "accels" for disabled buttons
 	if(current_base != NB_HEX)
@@ -1040,11 +1040,11 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 	case Key_Exclam:
 		pbFactorial->animateClick();
 		break;
+ 	case Key_C:
+		pbTrig["Cosine"]->animateClick(); // trig mode
+		break;
  	case Key_D:
-	  //if(kcalcdefaults.style == 0)
-	  //	(NumButtonGroup->find(0xD))->animateClick(); // trig mode
-	  //	else
-			pbStat["InputData"]->animateClick(); // stat mode
+		pbStat["InputData"]->animateClick(); // stat mode
 		break;
 	case Key_AsciiCircum:
 		pbPower->animateClick();
