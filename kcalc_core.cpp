@@ -1723,56 +1723,20 @@ int QtCalculator::cvb(char *out_str, KCALC_LONG amount, int max_digits)
 	* binary display format
 	*/
 
-	/*
-	char		work_str[(sizeof(amount) * CHAR_BIT) + 1];
-	int		work_char = 0,
-	lead_zero = 1,
-	lead_one = 1,
-	lead_one_count = 0,
-	work_size = sizeof(amount) * CHAR_BIT;
-	unsigned KCALC_LONG bit_mask = ((unsigned KCALC_LONG) 1 << ((sizeof(amount) * CHAR_BIT) - 1));
-
-	while (bit_mask) {
-
-	if (amount & bit_mask) {
-	if (lead_one)
-	lead_one_count++;
-	lead_zero = 0;
-	work_str[work_char++] = '1';
-	} else {
-	lead_one = 0;
-	if (!lead_zero)
-	work_str[work_char++] = '0';
-	}
-	bit_mask >>= 1;
-	bit_mask &= 0x7fffffff; //Sven: Uwe's Alpha adition
-	}
-	if (!work_char)
-	work_str[work_char++] = '0';
-	work_str[work_char] = '\0';
-
-	if (work_char-lead_one_count < max_digits)
-	return strlen(strcpy(out_str,
-	&work_str[lead_one_count ?
-	work_size - max_digits :
-	0]));
-	else
-	return -1;
-	*/
-
 	char *strPtr	= out_str;
 	bool hitOne		= false;
 	unsigned KCALC_LONG bit_mask =
 		((unsigned KCALC_LONG) 1 << ((sizeof(amount) * CHAR_BIT) - 1));
+	unsigned KCALC_LONG bit_mask_mask = bit_mask - 1;
 	unsigned int count = 0 ;
 
 	while(bit_mask != 0 && max_digits > 0)
 	{
 		char tmp = (bit_mask & amount) ? '1' : '0';
 
-      if (hitOne && (count%4==0))
+		if (hitOne && (count%4==0))
 			*strPtr++ = ' ';
-      count++;
+		count++;
 
 		if(!hitOne && tmp == '1')
 			hitOne = true;
@@ -1785,7 +1749,7 @@ int QtCalculator::cvb(char *out_str, KCALC_LONG amount, int max_digits)
 		// this will fix a prob with some processors using an
 		// arithmetic right shift (which would maintain sign on
 		// negative numbers and cause a loop that's too long)
-		bit_mask &= 0x7fffffff; //Sven: Uwe's Alpha adition
+		bit_mask &= bit_mask_mask; //Sven: Uwe's Alpha adition
 
 		max_digits--;
 	}
