@@ -1521,9 +1521,9 @@ void QtCalculator::configclicked(){
   QTabDialog * tabdialog;
   tabdialog = new QTabDialog(0,"tabdialog",TRUE);
 
-  tabdialog->setCaption( "KCalc Configuraton" );
+  tabdialog->setCaption( i18n("KCalc Configuraton") );
   tabdialog->resize( 350, 350 );
-  tabdialog->setCancelButton();
+  tabdialog->setCancelButton( i18n("Cancel") );
 
   QWidget *about = new QWidget(tabdialog,"about");
 
@@ -1532,7 +1532,7 @@ void QtCalculator::configclicked(){
   QLabel  *label2 = new QLabel(box,"label2");
   box->setGeometry(10,10,320,260);
 
-  box->setTitle("About");
+  box->setTitle(i18n("About"));
 
 
   label->setGeometry(140,30,160,170);
