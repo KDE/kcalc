@@ -23,7 +23,7 @@ CXXFLAGS  = @CXXFLAGS@
 CPPFLAGS  = @CPPFLAGS@
 CC	  = @CC@
 CFLAGS    = @CFLAGS@
-LDFLAGS   = @all_libraries@ -lkdecore -lqt -lX11 -lm
+LDFLAGS   = @all_libraries@ -lkdecore -lqt -lX11 -lXext -lm
 
 ############# Install ##############
 
