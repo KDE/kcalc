@@ -24,7 +24,6 @@ Name[sr]=Kalkulator
 Name[sv]=Miniräknare
 Exec=kcalc  -caption "%c" %i %m
 Icon=kcalc
-MiniIcon=kcalc
 DocPath=kcalc/index.html
 Comment=A Scientific Calculator
 Comment[ca]=Una calculadora científica
