@@ -1,3 +1,7 @@
+KCalc
+=====
+KCalc is currently covered under the GPL version 2.  A copy of this
+license can be found in a file named COPYING, in the toplevel directory.
 
 How to enable long double precision for KCalc:
 ==============================================
@@ -6,8 +10,7 @@ If your machine supports the C data type 'long double' and if you
 have a working libc you can enable 'long double' precison for KCalc.
 
 ( RedHat 5.0 users are out of luck -- I suggest
-  you get yourself a KDE friendly Linux distribution 
-  that has a working libc )
+  you get yourself something more KDE friendly )
 
 Here is what to do:
 
@@ -17,7 +20,8 @@ you should be able to locate a line saying:
 #define HAVE_LONG_DOUBLE 1
 
 If you can't find such a line your system doesn't support long
-double IEEE precision. => Get Linux ;-)
+double IEEE precision. => Contact your vendor if you have further
+questions.
 
 2) Edit the file kcalctype.h and remove the line
 #undef HAVE_LONG_DOUBLE
