@@ -1,3 +1,6 @@
+2003-09-30 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Fixed bug (unitialized pointers)
+	
 2003-09-26 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Moved all type of buttons to menubars, which can be hidden/showed
 	  via the menubar. This is quite experimental and full of bugs.

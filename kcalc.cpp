@@ -102,6 +102,10 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 
 	setupMainActions();
 
+	setupLogExpActions();
+	setupTrigActions();
+	setupStatActions();
+
 	createGUI();
 
 	// How can I make the toolBar not appear at all?
@@ -161,10 +165,6 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// First the widgets that are the parents of the buttons
 	mSmallPage = new QWidget(central);
 	mLargePage = new QWidget(central);
-
-	setupLogExpActions();
-	setupTrigActions();
-	setupStatActions();
 
 	pbPi = new QPushButton(QString::fromUtf8("π", -1), // Pi in utf8
 			       mSmallPage, "Pi-Button");
@@ -621,7 +621,7 @@ void KCalculator::setupMainActions(void)
 void KCalculator::setupLogExpActions(void)
 {
 	// Log-Button
-	pbLog = new QPushButton("Log", mSmallPage, "Log-Button");
+	pbLog = new QPushButton("Log", 0, "Log-Button");
 	QToolTip::add(pbLog, i18n("Logarithm to base 10"));
 	pbLog->setAutoDefault(false);
 	connect(pbLog, SIGNAL(clicked(void)), SLOT(slotLogclicked(void)));
@@ -631,7 +631,7 @@ void KCalculator::setupLogExpActions(void)
 				 actionCollection(), "log_action");
 
 	// Ln-Button
-	pbLn = new QPushButton("Ln", mSmallPage, "Ln-Button");
+	pbLn = new QPushButton("Ln", 0, "Ln-Button");
 	QToolTip::add(pbLn, i18n("Natural log"));
 	pbLn->setAutoDefault(false);
 	connect(pbLn, SIGNAL(clicked(void)), SLOT(slotLnclicked(void)));
@@ -645,7 +645,7 @@ void KCalculator::setupLogExpActions(void)
 void KCalculator::setupTrigActions(void)
 {
 	// Switch-Hyp-Button
-	pbHyp = new QPushButton("Hyp", mSmallPage, "Hyp-Button");
+	pbHyp = new QPushButton("Hyp", 0, "Hyp-Button");
 	QToolTip::add(pbHyp, i18n("Hyperbolic mode"));
 	pbHyp->setAutoDefault(false);
 	connect(pbHyp, SIGNAL(toggled(bool)), SLOT(slotHyptoggled(bool)));
@@ -656,7 +656,7 @@ void KCalculator::setupTrigActions(void)
 				 actionCollection(), "hyp_action");
 
 	// Sin-Button
-	pbSin = new QPushButton("Sin ", mSmallPage, "Sin-Button");
+	pbSin = new QPushButton("Sin ", 0, "Sin-Button");
 	QToolTip::add(pbSin, i18n("Sine"));
 	pbSin->setAutoDefault(false);
 	connect(pbSin, SIGNAL(clicked(void)), SLOT(slotSinclicked(void)));
@@ -666,7 +666,7 @@ void KCalculator::setupTrigActions(void)
 				 actionCollection(), "sin_action");
 
 	// Cos-Button
-	pbCos = new QPushButton("Cos ", mSmallPage, "Cos-Button");
+	pbCos = new QPushButton("Cos ", 0, "Cos-Button");
 	QToolTip::add(pbCos, i18n("Cosine"));
 	pbCos->setAutoDefault(false);
 	connect(pbCos, SIGNAL(clicked(void)), SLOT(slotCosclicked(void)));
@@ -675,7 +675,7 @@ void KCalculator::setupTrigActions(void)
 				 SLOT(animateClick(void)),
 				 actionCollection(), "cos_action");
 	// Tan-Button
-	pbTan = new QPushButton("Tan ", mSmallPage, "Tan-Button");
+	pbTan = new QPushButton("Tan ", 0, "Tan-Button");
 	QToolTip::add(pbTan, i18n("Tangent"));
 	pbTan->setAutoDefault(false);
 	connect(pbTan, SIGNAL(clicked(void)),SLOT(slotTanclicked(void)));
@@ -688,7 +688,7 @@ void KCalculator::setupTrigActions(void)
 void KCalculator::setupStatActions(void)
 {
 	// Number of StatEntries-Button
-	pbStatNum = new QPushButton("N", mSmallPage, "Stat.NumData-Button");
+	pbStatNum = new QPushButton("N", 0, "Stat.NumData-Button");
 	QToolTip::add(pbStatNum, i18n("Number of data entered"));
  	pbStatNum->setAutoDefault(false);
 	connect(pbStatNum, SIGNAL(clicked(void)), SLOT(slotStatNumclicked(void)));
@@ -698,7 +698,7 @@ void KCalculator::setupStatActions(void)
 				 actionCollection(), "stat_num_action");
 
 	// StatMean-Button
-	pbStatMean = new QPushButton("Mea", mSmallPage, "Stat.Mean-Button");
+	pbStatMean = new QPushButton("Mea", 0, "Stat.Mean-Button");
 	QToolTip::add(pbStatMean, i18n("Mean"));
 	pbStatMean->setAutoDefault(false);
 	connect(pbStatMean, SIGNAL(clicked(void)), SLOT(slotStatMeanclicked(void)));
@@ -708,7 +708,7 @@ void KCalculator::setupStatActions(void)
 				 actionCollection(), "stat_mean_action");
 
 	// StatStandardDeviation-Button
-	pbStatStdDev = new QPushButton("Std", mSmallPage,
+	pbStatStdDev = new QPushButton("Std", 0,
 				       "Stat.StandardDeviation-Button");
 	QToolTip::add(pbStatStdDev, i18n("Standard deviation"));
 	pbStatStdDev->setAutoDefault(false);
@@ -720,7 +720,7 @@ void KCalculator::setupStatActions(void)
 				 actionCollection(), "stat_deviation_action");
 
 	// StatDataInput-Button
-	pbStatDataInput = new QPushButton("Dat", mSmallPage, "Stat.DataInput-Button");
+	pbStatDataInput = new QPushButton("Dat", 0, "Stat.DataInput-Button");
 	QToolTip::add(pbStatDataInput, i18n("Enter data"));
 	pbStatDataInput->setAutoDefault(false);
 	connect(pbStatDataInput, SIGNAL(clicked(void)), SLOT(slotStatDataInputclicked(void)));
@@ -731,7 +731,7 @@ void KCalculator::setupStatActions(void)
 				 actionCollection(), "stat_input_action");
 
 	// StatMedian-Button
-	pbStatMedian = new QPushButton("Med", mSmallPage, "Stat.Median-Button");
+	pbStatMedian = new QPushButton("Med", 0, "Stat.Median-Button");
 	QToolTip::add(pbStatMedian, i18n("Median"));
 	pbStatMedian->setAutoDefault(false);
 	connect(pbStatMedian, SIGNAL(clicked(void)),SLOT(slotStatMedianclicked(void)));
@@ -742,7 +742,7 @@ void KCalculator::setupStatActions(void)
 				 actionCollection(), "stat_median_action");
 
 	// StatClearData-Button
-	pbStatClearData = new QPushButton("CSt", mSmallPage, "Stat.ClearData-Button");
+	pbStatClearData = new QPushButton("CSt", 0, "Stat.ClearData-Button");
 	QToolTip::add(pbStatClearData, i18n("Clear data store"));
 	pbStatClearData->setAutoDefault(false);
 	connect(pbStatClearData, SIGNAL(clicked(void)), SLOT(slotStatClearDataclicked(void)));
