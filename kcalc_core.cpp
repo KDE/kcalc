@@ -1826,7 +1826,7 @@ int QtCalculator::cvb(char *out_str, long amount, int max_digits)
 //-------------------------------------------------------------------------
 // Name: UpdateStack(int run_precedence)
 //-------------------------------------------------------------------------
-int UpdateStack(int run_precedence)
+int QtCalculator::UpdateStack(int run_precedence)
 {
 	item_contents new_item;
 	item_contents *top_item;
@@ -1886,6 +1886,7 @@ int UpdateStack(int run_precedence)
 	if (return_value)
 		DISPLAY_AMOUNT = new_item.s_item_data.item_amount;
 
+   decimal_point=1;
 	return return_value;
 }
 
