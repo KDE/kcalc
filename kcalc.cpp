@@ -152,7 +152,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	// Create Number Base Button Group
 	QButtonGroup *base_group = new QButtonGroup(4, Horizontal,  this, "base");
 	base_group->setTitle(i18n("Base"));
-	connect(base_group, SIGNAL(clicked(int)), SLOT(base_selected(int)));
+	connect(base_group, SIGNAL(clicked(int)), SLOT(Base_Selected(int)));
 
 	basebutton[0] = new QRadioButton(base_group);
 	basebutton[0]->setText("&Hex");
@@ -623,6 +623,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	set_display_font();
 	set_precision();
 	set_style();
+	Base_Selected(1);
 	InitializeCalculator();
 
 	updateGeometry();
@@ -702,6 +703,40 @@ void QtCalculator::updateGeometry()
 }
 
 //-------------------------------------------------------------------------
+// Name: Base_Selected()
+//-------------------------------------------------------------------------
+void QtCalculator::Base_Selected(int base)
+{
+	// Enable the hexit buttons if we're in hex mode
+	// (Base 0 == hexidecimal)
+
+	for(QPushButton *p = mHexButtonList.first(); p; p=mHexButtonList.next())
+	{
+		p->setEnabled(base == 0);
+	}
+
+	// Enable 8 & 9 if we're in dec mode or better
+	// (Base 1 == decimal)
+	pb9->setEnabled(base <= 1);
+	pb8->setEnabled(base <= 1);
+
+	// Enable 2,3,4,5,6,7 if we're in oct mode or better
+	// (Base 2 == decimal)
+	pb7->setEnabled(base <= 2);
+	pb6->setEnabled(base <= 2);
+	pb5->setEnabled(base <= 2);
+	pb4->setEnabled(base <= 2);
+	pb3->setEnabled(base <= 2);
+	pb2->setEnabled(base <= 2);
+
+	// Only enable the decimal point in decimal
+	pbperiod->setEnabled(base == 1);
+
+	// Call down to the core
+	base_selected(base);
+}
+
+//-------------------------------------------------------------------------
 // Name: Hex_Selected()
 //-------------------------------------------------------------------------
 void QtCalculator::Hex_Selected()
@@ -710,7 +745,7 @@ void QtCalculator::Hex_Selected()
 	basebutton[1]->setChecked(false);
 	basebutton[2]->setChecked(false);
 	basebutton[3]->setChecked(false);
-	base_selected(0);
+	Base_Selected(0);
 }
 
 //-------------------------------------------------------------------------
@@ -722,7 +757,7 @@ void QtCalculator::Dec_Selected()
 	basebutton[1]->setChecked(true);
 	basebutton[2]->setChecked(false);
 	basebutton[3]->setChecked(false);
-	base_selected(1);
+	Base_Selected(1);
 }
 
 //-------------------------------------------------------------------------
@@ -734,7 +769,7 @@ void QtCalculator::Oct_Selected()
 	basebutton[1]->setChecked(false);
 	basebutton[2]->setChecked(true);
 	basebutton[3]->setChecked(false);
-	base_selected(2);
+	Base_Selected(2);
 }
 
 //-------------------------------------------------------------------------
@@ -746,7 +781,7 @@ void QtCalculator::Bin_Selected()
 	basebutton[1]->setChecked(false);
 	basebutton[2]->setChecked(false);
 	basebutton[3]->setChecked(true);
-	base_selected(3);
+	Base_Selected(3);
 }
 
 //-------------------------------------------------------------------------

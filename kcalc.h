@@ -201,7 +201,7 @@ private:
 	void ComputeMedean();
 	void ComputeTan();
 
-   int UpdateStack(int run_precedence);
+	int UpdateStack(int run_precedence);
 protected slots:
     void configurationChanged(const DefStruct &state); 
     void set_colors();
@@ -231,6 +231,7 @@ protected slots:
     void Deg_Selected();
     void Rad_Selected();
     void Gra_Selected();
+    void Base_Selected(int number);
     void Hex_Selected();
     void Dec_Selected();
     void Oct_Selected();
