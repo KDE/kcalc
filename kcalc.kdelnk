@@ -2,9 +2,11 @@
 [KDE Desktop Entry]
 Name=Calculator
 Name[de]=Taschenrechner
+Name[pl]=Kalkulator
 Exec=kcalc
 Icon=kcalc.xpm
 DocPath=kcalc/kcalc.html
 Comment=A Scientific Calculator
+Comment[pl]=Kalkulator naukowy.
 Terminal=0
 Type=Application
