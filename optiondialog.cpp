@@ -155,7 +155,7 @@ void ConfigureDialog::setupSettingPage( void )
   QVBoxLayout *vbox = new QVBoxLayout( group, 0, spacingHint() );
 
   mTrigRadio = new QRadioButton( group,"trigstyle" );
-  mTrigRadio->setText(i18n("Trigonometry Mode"));
+  mTrigRadio->setText(i18n("Trignometry Mode"));
   vbox->addWidget(mTrigRadio);
 
   mStatRadio = new QRadioButton( group,"statstyle" );
