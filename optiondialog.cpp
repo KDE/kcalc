@@ -151,7 +151,7 @@ void ConfigureDialog::slotCancel()
 //-------------------------------------------------------------------------
 void ConfigureDialog::setupSettingPage()
 {
-    QFrame *page = addPage(i18n("General"), i18n("Generel KCalc Settings"), loadIcon("kcalc"));
+    QFrame *page = addPage(i18n("General"), i18n("General Settings"), loadIcon("kcalc"));
 
     if(!page)
         return;
