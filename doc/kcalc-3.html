@@ -9,23 +9,62 @@
 <HR>
 <H2><A NAME="s3">3. Usage </A></H2>
 
-
-<H2><A NAME="ss3.1">3.1 General Usage</A></H2>
-
-<P>Completely straigth forward. But I will have to say something about how
-to use the percent operation. It is non-standard. (TODO)</P>
-
-<H2><A NAME="ss3.2">3.2 Command Line Options</A></H2>
+<P>General usage is straight forward and similar if not identical to the way
+most simple scientific calculators operate. Click on the <B>KCalc</B>
+button to bring up the configuration dialog.</P>
 
 
+<H2><A NAME="ss3.1">3.1 Result Stack</A></H2>
+
+<P>Each time you click the enter button or press the 'equal' or 'Enter' or 'Return'
+keys, the display result is written to KCalc's result stack. You can navigate 
+through the result stack by pressing the up and down arrow keys.</P>
 
 
-<H2><A NAME="ss3.3">3.3 Key Accels</A></H2>
 
-<P>(TODO): This list is incomplete </P>
+<H2><A NAME="ss3.2">3.2 Percent Function</A></H2>
+
+<P>The percent function works somewhat different than on most calculators.
+However once understood it's enhance functionlity proves quite useful.
+See the section on the percent function in the "Comments on specific 
+functions" section for a details explanation of the precent functionality.</P>
+
+
+<H2><A NAME="ss3.3">3.3 Fixed Precision</A></H2>
+
+<P>Click the fixed precision checkbox on the configure dialog if you whish
+to fix the number of digits which are displayed past the preriod.</P>
+
+
+
+<H2><A NAME="ss3.4">3.4 Cut and Paste</A></H2>
+
+<P>
+<UL>
+<LI>Pressing the left mouse button on KCalc's display will place the displayed
+number on to the clip-board.</LI>
+<LI>Pressing the right or middle mouse button on KCalc's display will paste
+the clip-board content into the display if the content of the clip-board
+is a valid floating point number.</LI>
+</UL>
+</P>
+
+
+
+
+<H2><A NAME="ss3.5">3.5 Key Accels</A></H2>
+
+<P>(TODO): This list is probably incomplete. Check!</P>
 <P>
 <BLOCKQUOTE><CODE>
 <PRE>
+Up Key     display previous element of the result stack
+Down Key   display next element of the result stack
+Page UP    Clear
+Prior      Clear
+Page Down  Clear All
+Next       Clear All
+
 ALT + d    set trig-mode to deg
 ALT + r    set trig-mode to rad
 ALT + g    set trig-mode to grad
@@ -33,26 +72,33 @@ ALT + e    set radix to decimal
 ALT + o    set radix to octal
 ALT + b    set radix to binary
 s          Sin 
-o          Cos 
+c          Cos 
 t          Tan
+n          ln  = log base e
+l          log = log base 10
 i          Inv inverse, e.g. if you want arcsin(x) type i s 
 \          +/- 
 [          ^2 
 ^          x^y 
 =          = 
+!          factorial
+&lt;          left shift
+&gt;          right shift
+&          AND
+*          multiply
+/          divide
+o          OR
+INV o      XOR
 r          1/x r for reciproc 
 Enter      = 
 Return     = 
-Backspace  CA 
-Del        CA 
-Esc        C 
+Backspace  Clear All 
+Del        Clear All
+Esc        Clear
 h          Hyp (Hyperbolic) as e.g in Hyp Sin , the sinh(x) 
 </PRE>
 </CODE></BLOCKQUOTE>
 </P>
-
-
-
 
 
 <HR>

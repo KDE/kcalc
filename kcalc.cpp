@@ -4,13 +4,7 @@
     kCalculator, a scientific calculator for the X window system using the
     Qt widget libraries, available at no cost at http://www.troll.no
     
-    This Calculator was inspired by Martin Bartlett's xfrmcalc, the stack 
-    engine of which is still part of this code.
-   
-    portions:	Copyright (C) 1996 Bernd Johannes Wuebben   
-                                   wuebben@math.cornell.edu
-
-    portions: 	Copyright (C) 1995 Martin Bartlett
+    Copyright (C) 1996 Bernd Johannes Wuebben wuebben@math.cornell.edu
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,134 +22,150 @@
 
 */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
 
-#include <kapp.h>
-#include "kcalc.h"
 #include <assert.h>
-#include "version.h"
 #include <stdio.h>
 
-extern num_base current_base;
-KApplication *mykapp;
 
+#include "kcalc.h"
+#include "configdlg.h"
+#include "fontdlg.h"
+#include "version.h"
+
+extern last_input_type last_input;
+extern item_contents   display_data;
+extern num_base        current_base;
+KApplication           *mykapp;
+
+QList<CALCAMNT>       temp_stack; 
+QList<QPushButton>    blist; /*currently unused*/
 
 QtCalculator :: QtCalculator( QWidget *parent, const char *name )
   : QDialog( parent, name )
 {
 
-  myxmargin = 9;
-  myymargin = 9; 
-  bigbuttonwidth = 30; 
-  bigbuttonheight = 23;
-  smallbuttonwidth = 30;
-  smallbuttonheight = 20;
-  anglegroupheight = 36;
-  anglegroupwidth = 144;
-  basegroupwidth = 189;
-  basegroupheight = anglegroupheight;
-  helpbuttonwidth = 100;
-  helpbuttonheight = 25;
-  displaywidth = 233;
-  displayheight = helpbuttonheight;
-  radiobuttonwidth = 37;
-  radiobuttonheight = 15;
+  myxmargin 		= 9;
+  myymargin 		= 9; 
+  bigbuttonwidth 	= 30; 
+  bigbuttonheight 	= 23; 
+  smallbuttonwidth 	= 30; 
+  smallbuttonheight 	= 20;
+  anglegroupheight 	= 36;
+  anglegroupwidth 	= 144;
+  basegroupwidth 	= 189;
+  basegroupheight 	= anglegroupheight;
+  helpbuttonwidth 	= 100;
+  helpbuttonheight 	= 25;
+  displaywidth 		= 233;
+  displayheight 	= helpbuttonheight;
+  radiobuttonwidth 	= 37;
+  radiobuttonheight 		= 15;
+
   int x,y;
   key_pressed = FALSE;
+  selection_timer = new QTimer;
+  connect(selection_timer,SIGNAL(timeout()),this,SLOT(selection_timed_out()));
+
+  readSettings();
+ 
+  QFont buttonfont( "-misc-fixed-medium-*-semicondensed-*-13-*-*-*-*-*-*-*" );
+  buttonfont.setRawMode( TRUE );
   
-// Set the window caption/title
+  // Set the window caption/title
+
+  connect(mykapp,SIGNAL(kdisplayPaletteChanged()),this,SLOT(set_colors()));
 
   setCaption( mykapp->getCaption() );
 
-// create help button
+  // create help button
 
-   QPushButton *pb;
-   // QLabel *pb;
+  QPushButton *pb;
+
   pb = new QPushButton( this, "helpbutton" );
-  //  pb = new QLabel( this, "helpbutton" );
   pb->setText( "kCalc" );
-  //  pb->setFrameStyle( QFrame::Line | QFrame::Sunken );
-  //pb->setAlignment( AlignCenter );
   pb->setGeometry(myxmargin,myymargin, helpbuttonwidth,helpbuttonheight );
   pb->setFont( QFont("times",12,QFont::Bold,FALSE) );   
-  connect( pb, SIGNAL(clicked()), SLOT(helpbuttonclicked()) );
+  QToolTip::add( pb, "KCalc Setup/Help" );
 
-
+  connect( pb, SIGNAL(clicked()), SLOT(configclicked()) );
 
   // Create the display
     
-    
-    calc_display = new QLabel( this, "display" );
-    calc_display->setFrameStyle( QFrame::WinPanel | QFrame::Sunken );
-    calc_display->setAlignment( AlignRight|AlignVCenter );
-    calc_display->setGeometry( myxmargin + helpbuttonwidth + myxmargin , 
-			       myymargin , displaywidth ,displayheight );
-    //    calc_display->setFont( QFont("fixed",14) );
-    calc_display->setFont( QFont("helvetia",16,QFont::Bold) );
-    calc_display->setBackgroundColor(white);
+  calc_display = new DLabel( this, "display" );
+  calc_display->setFrameStyle( QFrame::WinPanel | QFrame::Sunken );
+  calc_display->setAlignment( AlignRight|AlignVCenter );
+  calc_display->setGeometry( myxmargin + helpbuttonwidth + myxmargin , 
+			     myymargin , displaywidth ,displayheight );
+  calc_display->setFocus();
+  calc_display->setFocusPolicy( QWidget::StrongFocus );
 
 
-    statusINVLabel = new QLabel( this, "INV" );
-    CHECK_PTR( statusINVLabel );
-    statusINVLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );
-    statusINVLabel->setAlignment( AlignCenter );
-    statusINVLabel->setGeometry(8,218,50 -1 , 20);   
-    statusINVLabel->setText("NORM");
+  connect(calc_display,SIGNAL(clicked()),this,SLOT(display_selected()));
+
+  statusINVLabel = new QLabel( this, "INV" );
+  CHECK_PTR( statusINVLabel );
+  statusINVLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );
+  statusINVLabel->setAlignment( AlignCenter );
+  statusINVLabel->setGeometry(8,218,50 -1 , 20);   
+  statusINVLabel->setText("NORM");
+  statusINVLabel->setFont(buttonfont);
  
-    statusHYPLabel = new QLabel( this, "HYP" );
-    CHECK_PTR( statusHYPLabel );
-    statusHYPLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );
-    statusHYPLabel->setAlignment( AlignCenter );
-    statusHYPLabel->setGeometry(58 ,218,50 -1, 20);   
+  statusHYPLabel = new QLabel( this, "HYP" );
+  CHECK_PTR( statusHYPLabel );
+  statusHYPLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );
+  statusHYPLabel->setAlignment( AlignCenter );
+  statusHYPLabel->setGeometry(58 ,218,50 -1, 20);   
+  statusHYPLabel->setFont(buttonfont);
     
-    statusERRORLabel = new QLabel( this, "ERROR" );
-    CHECK_PTR( statusERRORLabel );
-    statusERRORLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );
-    statusERRORLabel->setAlignment( AlignLeft|AlignVCenter );
-    statusERRORLabel->setGeometry(108 ,218,9 + 100 + 9 + 233 + 9 - 100 - 16, 20);   
-    
+  statusERRORLabel = new QLabel( this, "ERROR" );
+  CHECK_PTR( statusERRORLabel );
+  statusERRORLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );
+  statusERRORLabel->setAlignment( AlignLeft|AlignVCenter );
+  statusERRORLabel->setGeometry(108 ,218,9 + 100 + 9 + 233 + 9 - 100 - 16, 20);   
+  statusERRORLabel->setFont(buttonfont);  
 
   // create angle button group
 
-    x = myxmargin + basegroupwidth + myxmargin;
-    y = myymargin + displayheight + myymargin/2;
-
-
-    QAccel *accel = new QAccel( this );       
-    accel->connectItem( accel->insertItem(Key_Q+ALT),qApp,SLOT(quit()) );      
-    accel->connectItem( accel->insertItem(Key_X+ALT),qApp,SLOT(quit()) );      
-
-
-    QButtonGroup *angle_group = new QButtonGroup( this, "AngleButtons" );
-
-    angle_group->setTitle( "Angle" );
-
-    anglebutton[0] = new QRadioButton( angle_group );
-    anglebutton[0]->setText( "&Deg" )   ;
-    anglebutton[0]->setGeometry( 10,anglegroupheight/2 -2, 
-				 radiobuttonwidth,radiobuttonheight);
-    anglebutton[0]->setChecked(TRUE); 
-    accel->connectItem( accel->insertItem(Key_D + ALT), this , 
+  x = myxmargin + basegroupwidth + myxmargin;
+  y = myymargin + displayheight + myymargin/2;
+  
+  
+  QAccel *accel = new QAccel( this );       
+  accel->connectItem( accel->insertItem(Key_Q+ALT),this,SLOT(quitCalc()) );      
+  accel->connectItem( accel->insertItem(Key_X+ALT),this,SLOT(quitCalc()) );      
+  
+  
+  QButtonGroup *angle_group = new QButtonGroup( this, "AngleButtons" );
+  angle_group->setFont(buttonfont);
+  
+  angle_group->setTitle( "Angle" );
+  
+  anglebutton[0] = new QRadioButton( angle_group );
+  anglebutton[0]->setText( "&Deg" )   ;
+  anglebutton[0]->setGeometry( 10,anglegroupheight/2 -2, 
+			       radiobuttonwidth,radiobuttonheight);
+  anglebutton[0]->setChecked(	TRUE); 
+  accel->connectItem( accel->insertItem(Key_D + ALT), this , 
 			SLOT(Deg_Selected()) );       
 
-    anglebutton[1] = new QRadioButton( angle_group );
-    anglebutton[1]->setText( "&Rad" );
-    anglebutton[1]->setGeometry( 10  + radiobuttonwidth+ 8,anglegroupheight/2 - 2, 
-				 radiobuttonwidth,radiobuttonheight );
-    accel->connectItem( accel->insertItem(Key_R + ALT), this , 
+  anglebutton[1] = new QRadioButton( angle_group );
+  anglebutton[1]->setText( "&Rad" );
+  anglebutton[1]->setGeometry( 10  + radiobuttonwidth+ 8,anglegroupheight/2 - 2, 
+			       radiobuttonwidth,radiobuttonheight );
+  accel->connectItem( accel->insertItem(Key_R + ALT), this , 
 			SLOT(Rad_Selected()) );       
 
-    anglebutton[2] = new QRadioButton( angle_group );
-    anglebutton[2]->setText( "&Gra" );
-    anglebutton[2]->setGeometry( 10 +2* radiobuttonwidth+ 16 ,anglegroupheight/2 -2, 
-				 radiobuttonwidth, radiobuttonheight );
-    accel->connectItem( accel->insertItem(Key_G + ALT), this , 
+  anglebutton[2] = new QRadioButton( angle_group );
+  anglebutton[2]->setText( "&Gra" );
+  anglebutton[2]->setGeometry( 10 +2* radiobuttonwidth+ 16 ,anglegroupheight/2 -2, 
+			       radiobuttonwidth, radiobuttonheight );
+  accel->connectItem( accel->insertItem(Key_G + ALT), this , 
 			SLOT(Gra_Selected()) );       
-				 
-    angle_group->setGeometry( x, y, anglegroupwidth, anglegroupheight );
-    connect( angle_group, SIGNAL(clicked(int)), SLOT(angle_selected(int)) );
+
+  for(int u = 0;u <3;u++) anglebutton[u]->setFont(buttonfont);
+  
+  angle_group->setGeometry( x, y, anglegroupwidth, anglegroupheight );
+  connect( angle_group, SIGNAL(clicked(int)), SLOT(angle_selected(int)) );
 
 
 //////////////////////////////////////////////////////////////////////
@@ -166,6 +176,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 
 
     QButtonGroup *base_group = new QButtonGroup( this, "BaseButtons" );
+    base_group->setFont(buttonfont);
     
     base_group->setTitle( "Base" );
        
@@ -198,6 +209,8 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
     accel->connectItem( accel->insertItem(Key_B + ALT), this , 
 			SLOT(Bin_Selected()) );       
     
+    for(int u = 0;u <4;u++) basebutton[u]->setFont(buttonfont);
+
     myxmargin = 9;
     base_group->setGeometry( myxmargin,y, basegroupwidth,basegroupheight );
     connect( base_group, SIGNAL(clicked(int)), SLOT(base_selected(int)) );
@@ -218,13 +231,16 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
     pbhyp->setGeometry(buttonxmargin,y, smallbuttonwidth,smallbuttonheight );
     connect( pbhyp, SIGNAL(toggled(bool)), SLOT(pbhyptoggled(bool)));
     pbhyp->setToggleButton(TRUE);
-    
+    pbhyp->setFont(buttonfont);
+    blist.append(pbhyp);
+
     pbinv = new QPushButton( this, "InverseButton" );
     pbinv->setText( "Inv" );
     pbinv->setGeometry(buttonxmargin + buttonxmargin + smallbuttonwidth
 		       ,y, smallbuttonwidth,smallbuttonheight );
     connect( pbinv, SIGNAL(toggled(bool)), SLOT(pbinvtoggled(bool)));
     pbinv->setToggleButton(TRUE);
+    pbinv->setFont(buttonfont);
 
     pbA = new QPushButton( this, "Abutton" );
     pbA->setText( "A" );
@@ -232,6 +248,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, smallbuttonwidth,smallbuttonheight );
     connect( pbA, SIGNAL(toggled(bool)), SLOT(pbAtoggled(bool)));
     pbA->setToggleButton(TRUE);    
+    pbA->setFont(buttonfont);
 
     y = y + myymargin/2 + smallbuttonheight;
 
@@ -240,6 +257,8 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
     pbSin->setGeometry(buttonxmargin,y, smallbuttonwidth,smallbuttonheight );
     connect( pbSin, SIGNAL(toggled(bool)), SLOT(pbSintoggled(bool)));
     pbSin->setToggleButton(TRUE);
+    pbSin->setFont(buttonfont);
+
      
     pbplusminus = new QPushButton( this, "plusminusbutton" );
     pbplusminus->setText( "+/-" );
@@ -247,7 +266,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 			     ,y, smallbuttonwidth,smallbuttonheight );
     connect( pbplusminus, SIGNAL(toggled(bool)), SLOT(pbplusminustoggled(bool)));
     pbplusminus->setToggleButton(TRUE);    
-
+    pbplusminus->setFont(buttonfont);
 
     pbB = new QPushButton( this, "Bbutton" );
     pbB->setText( "B" );
@@ -255,6 +274,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, smallbuttonwidth,smallbuttonheight );
     connect( pbB, SIGNAL(toggled(bool)), SLOT(pbBtoggled(bool)));
     pbB->setToggleButton(TRUE);
+    pbB->setFont(buttonfont);
 
 
     y = y + myymargin/2 + smallbuttonheight;
@@ -264,6 +284,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
     pbCos->setGeometry(buttonxmargin,y, smallbuttonwidth,smallbuttonheight );
     connect( pbCos, SIGNAL(toggled(bool)), SLOT(pbCostoggled(bool)));
     pbCos->setToggleButton(TRUE);    
+    pbCos->setFont(buttonfont);
 
 
     pbreci = new QPushButton( this, "recibutton" );
@@ -272,6 +293,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 			   ,y, smallbuttonwidth,smallbuttonheight );
     connect( pbreci, SIGNAL(toggled(bool)), SLOT(pbrecitoggled(bool)));
     pbreci->setToggleButton(TRUE);    
+    pbreci->setFont(buttonfont);
 
     pbC = new QPushButton( this, "Cbutton" );
     pbC->setText( "C" );
@@ -279,6 +301,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, smallbuttonwidth,smallbuttonheight );
     connect( pbC, SIGNAL(toggled(bool)), SLOT(pbCtoggled(bool)));
     pbC->setToggleButton(TRUE);
+    pbC->setFont(buttonfont);
 
 
     y = y + myymargin/2 + smallbuttonheight;
@@ -288,6 +311,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
     pbTan->setGeometry(buttonxmargin,y, smallbuttonwidth,smallbuttonheight );
     connect( pbTan, SIGNAL(toggled(bool)), SLOT(pbTantoggled(bool)));
     pbTan->setToggleButton(TRUE);
+    pbTan->setFont(buttonfont);
 
     pbfactorial = new QPushButton( this, "factorialbutton" );
     pbfactorial->setText( "x!" );
@@ -295,6 +319,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 			     ,y, smallbuttonwidth,smallbuttonheight );
     connect( pbfactorial, SIGNAL(toggled(bool)), SLOT(pbfactorialtoggled(bool)));
     pbfactorial->setToggleButton(TRUE);
+    pbfactorial->setFont(buttonfont);
 
 
     pbD = new QPushButton( this, "Dbutton" );
@@ -303,6 +328,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, smallbuttonwidth,smallbuttonheight );
     connect( pbD, SIGNAL(toggled(bool)), SLOT(pbDtoggled(bool)));
     pbD->setToggleButton(TRUE);
+    pbD->setFont(buttonfont);
 
     y = y + myymargin/2 + smallbuttonheight;
 
@@ -311,13 +337,15 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
     pblog->setGeometry(buttonxmargin ,y, smallbuttonwidth,smallbuttonheight );
     connect( pblog, SIGNAL(toggled(bool)), SLOT(pblogtoggled(bool)));
     pblog->setToggleButton(TRUE);
-
+    pblog->setFont(buttonfont);
+    
     pbsquare = new QPushButton( this, "squarebutton" );
     pbsquare->setText( "x^2" );
     pbsquare->setGeometry(buttonxmargin  + buttonxmargin + smallbuttonwidth
 			  ,y, smallbuttonwidth,smallbuttonheight );
     connect( pbsquare, SIGNAL(toggled(bool)), SLOT(pbsquaretoggled(bool)));
     pbsquare->setToggleButton(TRUE);
+    pbsquare->setFont(buttonfont);
 
     pbE = new QPushButton( this, "Ebutton" );
     pbE->setText( "E" );
@@ -325,6 +353,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, smallbuttonwidth,smallbuttonheight );
     connect( pbE, SIGNAL(toggled(bool)), SLOT(pbEtoggled(bool)));
     pbE->setToggleButton(TRUE);
+    pbE->setFont(buttonfont);
 
     y = y + myymargin/2 + smallbuttonheight;
 
@@ -334,6 +363,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
     pbln->setGeometry(buttonxmargin,y, smallbuttonwidth,smallbuttonheight );
     connect( pbln, SIGNAL(toggled(bool)), SLOT(pblntoggled(bool)));
     pbln->setToggleButton(TRUE);
+    pbln->setFont(buttonfont);
 
     pbpower = new QPushButton( this, "powerbutton" );
     pbpower->setText( "x^y" );
@@ -341,6 +371,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, smallbuttonwidth,smallbuttonheight );
     connect( pbpower, SIGNAL(toggled(bool)), SLOT(pbpowertoggled(bool)));
     pbpower->setToggleButton(TRUE);
+    pbpower->setFont(buttonfont);
 
     pbF = new QPushButton( this, "Fbutton" );
     pbF->setText( "F" );
@@ -348,6 +379,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 			      ,y, smallbuttonwidth,smallbuttonheight );
     connect( pbF, SIGNAL(toggled(bool)), SLOT(pbFtoggled(bool)));
     pbF->setToggleButton(TRUE);
+    pbF->setFont(buttonfont);
 
 /////////////////////////////////////////////////////////////////////
 //   
@@ -366,6 +398,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     pbEE->setToggleButton(TRUE);
     connect( pbEE, SIGNAL(toggled(bool)), SLOT(EEtoggled(bool)));
+    pbEE->setFont(buttonfont);
 
     pbMR = new QPushButton( this, "MRbutton" );
     pbMR->setText( "MR" );
@@ -373,6 +406,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pbMR, SIGNAL(toggled(bool)), SLOT(pbMRtoggled(bool)));
     pbMR->setToggleButton(TRUE);
+    pbMR->setFont(buttonfont);
 
     pbMplusminus = new QPushButton( this, "Mplusminusbutton" );
     pbMplusminus->setText( "M+-" );
@@ -380,6 +414,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pbMplusminus, SIGNAL(toggled(bool)), SLOT(pbMplusminustoggled(bool)));
     pbMplusminus->setToggleButton(TRUE);
+    pbMplusminus->setFont(buttonfont);
 
     pbMC = new QPushButton( this, "MCbutton" );
     pbMC->setText( "MC" );
@@ -387,6 +422,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pbMC, SIGNAL(toggled(bool)), SLOT(pbMCtoggled(bool)));
     pbMC->setToggleButton(TRUE);
+    pbMC->setFont(buttonfont);
 
     pbClear = new QPushButton( this, "Clearbutton" );
     pbClear->setText( "C" );
@@ -394,6 +430,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pbClear, SIGNAL(toggled(bool)), SLOT(pbCleartoggled(bool)));
     pbClear->setToggleButton(TRUE);
+    pbClear->setFont(buttonfont);
 
     pbAC = new QPushButton( this, "ACbutton" );
     pbAC->setText( "AC" );
@@ -401,6 +438,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pbAC, SIGNAL(toggled(bool)), SLOT(pbACtoggled(bool)));
     pbAC->setToggleButton(TRUE);
+    pbAC->setFont(buttonfont);
 
 
 //////////////////////////////////////////////////////////////////////
@@ -416,6 +454,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pb7, SIGNAL(toggled(bool)), SLOT(pb7toggled(bool)));
     pb7->setToggleButton(TRUE);
+    pb7->setFont(buttonfont);
 
     pb8 = new QPushButton( this, "8button" );
     pb8->setText( "8" );
@@ -423,6 +462,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pb8, SIGNAL(toggled(bool)), SLOT(pb8toggled(bool)));
     pb8->setToggleButton(TRUE);
+    pb8->setFont(buttonfont);
 
     pb9 = new QPushButton( this, "9button" );
     pb9->setText( "9" );
@@ -430,6 +470,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pb9, SIGNAL(toggled(bool)), SLOT(pb9toggled(bool)));
     pb9->setToggleButton(TRUE);
+    pb9->setFont(buttonfont);
 
     pbparenopen = new QPushButton( this, "parenopenbutton" );
     pbparenopen->setText( "(" );
@@ -437,6 +478,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pbparenopen, SIGNAL(toggled(bool)), SLOT(pbparenopentoggled(bool)));
     pbparenopen->setToggleButton(TRUE);
+    pbparenopen->setFont(buttonfont);
 
     pbparenclose = new QPushButton( this, "parenclosebutton" );
     pbparenclose->setText( ")" );
@@ -444,6 +486,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pbparenclose, SIGNAL(toggled(bool)), SLOT(pbparenclosetoggled(bool)));
     pbparenclose->setToggleButton(TRUE);
+    pbparenclose->setFont(buttonfont);
 
     pband = new QPushButton( this, "andbutton" );
     pband->setText( "And" );
@@ -451,6 +494,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pband, SIGNAL(toggled(bool)), SLOT(pbandtoggled(bool)));
     pband->setToggleButton(TRUE);
+    pband->setFont(buttonfont);
 
 //////////////////////////////////////////////////////////////////////
 //
@@ -466,6 +510,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pb4, SIGNAL(toggled(bool)), SLOT(pb4toggled(bool)));
     pb4->setToggleButton(TRUE);
+    pb4->setFont(buttonfont);
 
     pb5 = new QPushButton( this, "5button" );
     pb5->setText( "5" );
@@ -473,6 +518,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pb5, SIGNAL(toggled(bool)), SLOT(pb5toggled(bool)));
     pb5->setToggleButton(TRUE);
+    pb5->setFont(buttonfont);
 
     pb6 = new QPushButton( this, "6button" );
     pb6->setText( "6" );
@@ -480,6 +526,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pb6, SIGNAL(toggled(bool)), SLOT(pb6toggled(bool)));
     pb6->setToggleButton(TRUE);
+    pb6->setFont(buttonfont);
 
     pbX = new QPushButton( this, "Multiplybutton" );
     pbX->setText( "X" );
@@ -487,6 +534,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pbX, SIGNAL(toggled(bool)), SLOT(pbXtoggled(bool)));
     pbX->setToggleButton(TRUE);
+    pbX->setFont(buttonfont);
 
     pbdivision = new QPushButton( this, "divisionbutton" );
     pbdivision->setText( "/" );
@@ -494,6 +542,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pbdivision, SIGNAL(toggled(bool)), SLOT(pbdivisiontoggled(bool)));
     pbdivision->setToggleButton(TRUE);
+    pbdivision->setFont(buttonfont);
 
     pbor = new QPushButton( this, "orbutton" );
     pbor->setText( "Or" );
@@ -501,6 +550,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pbor, SIGNAL(toggled(bool)), SLOT(pbortoggled(bool)));
     pbor->setToggleButton(TRUE);
+    pbor->setFont(buttonfont);
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -517,6 +567,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
     //connect( pb1, SIGNAL(clicked()), SLOT(button1()) );    
     connect( pb1, SIGNAL(toggled(bool)), SLOT(pb1toggled(bool)));
     pb1->setToggleButton(TRUE);	
+    pb1->setFont(buttonfont);
  
     pb2 = new QPushButton( this, "2button" );
     pb2->setText( "2" );
@@ -525,6 +576,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
     
     connect( pb2, SIGNAL(toggled(bool)), SLOT(pb2toggled(bool)));
     pb2->setToggleButton(TRUE);		
+    pb2->setFont(buttonfont);
 
     pb3 = new QPushButton( this, "3button" );
     pb3->setText( "3" );
@@ -532,6 +584,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pb3, SIGNAL(toggled(bool)), SLOT(pb3toggled(bool)));
     pb3->setToggleButton(TRUE);
+    pb3->setFont(buttonfont);
 
     pbplus = new QPushButton( this, "plusbutton" );
     pbplus->setText( "+" );
@@ -539,6 +592,8 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pbplus, SIGNAL(toggled(bool)), SLOT(pbplustoggled(bool)));
     pbplus->setToggleButton(TRUE);
+    pbplus->setFont(buttonfont);
+    blist.append(pbplus);
 
     pbminus = new QPushButton( this, "minusbutton" );
     pbminus->setText( "-" );
@@ -546,6 +601,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pbminus, SIGNAL(toggled(bool)), SLOT(pbminustoggled(bool)));
     pbminus->setToggleButton(TRUE);
+    pbminus->setFont(buttonfont);
 
     pbshift = new QPushButton( this, "shiftbutton" );
     pbshift->setText( "Lsh" );
@@ -553,6 +609,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pbshift, SIGNAL(toggled(bool)), SLOT(pbshifttoggled(bool)));
     pbshift->setToggleButton(TRUE);
+    pbshift->setFont(buttonfont);
 
 ///////////////////////////////////////////////////////////////////////////
 //
@@ -567,6 +624,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pbperiod, SIGNAL(toggled(bool)), SLOT(pbperiodtoggled(bool)));
     pbperiod->setToggleButton(TRUE);
+    pbperiod->setFont(buttonfont);
 
     pb0 = new QPushButton( this, "0button" );
     pb0->setText( "0" );
@@ -574,6 +632,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pb0, SIGNAL(toggled(bool)), SLOT(pb0toggled(bool)));
     pb0->setToggleButton(TRUE);
+    pb0->setFont(buttonfont);
 
     pbequal = new QPushButton( this, "equalbutton" );
     pbequal->setText( "=" );
@@ -581,6 +640,8 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pbequal, SIGNAL(toggled(bool)), SLOT(pbequaltoggled(bool)));
     pbequal->setToggleButton(TRUE);
+    pbequal->setFont(buttonfont);
+    blist.append(pbequal);
 
     pbpercent = new QPushButton( this, "percentbutton" );
     pbpercent->setText( "%" );
@@ -588,6 +649,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pbpercent, SIGNAL(toggled(bool)), SLOT(pbpercenttoggled(bool)));
     pbpercent->setToggleButton(TRUE);
+    pbpercent->setFont(buttonfont);
 
 
     pbnegate = new QPushButton( this, "OneComplementbutton" );
@@ -596,6 +658,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 			      ,y, bigbuttonwidth, bigbuttonheight );
     connect( pbnegate, SIGNAL(toggled(bool)), SLOT(pbnegatetoggled(bool))); 
     pbnegate->setToggleButton(TRUE);
+    pbnegate->setFont(buttonfont);
 
     pbmod = new QPushButton( this, "modbutton" );
     pbmod->setText( "Mod" );
@@ -603,6 +666,12 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 		     ,y, bigbuttonwidth,bigbuttonheight );
     connect( pbmod, SIGNAL(toggled(bool)), SLOT(pbmodtoggled(bool))); 
     pbmod->setToggleButton(TRUE);
+    pbmod->setFont(buttonfont);
+
+
+    set_colors();
+    set_display_font();
+    set_precision();
 
     InitializeCalculator();
 }
@@ -684,6 +753,22 @@ void QtCalculator::Gra_Selected()
 void QtCalculator::keyPressEvent( QKeyEvent *e ){
   
   switch (e->key() ){
+  case Key_Up:
+     temp_stack_prev();
+     break;
+  case Key_Down:
+     temp_stack_next();
+     break;
+
+  case Key_Next:
+     key_pressed = TRUE;
+     pbAC->setOn(TRUE);
+     break;
+  case Key_Prior:
+     key_pressed = TRUE;
+     pbClear->setOn(TRUE);
+     break;
+
   case Key_H:
      key_pressed = TRUE;
      pbhyp->setOn(TRUE);
@@ -695,6 +780,7 @@ void QtCalculator::keyPressEvent( QKeyEvent *e ){
   case Key_A:
      key_pressed = TRUE;
      pbA->setOn(TRUE);
+
      break;
   case Key_E:
      key_pressed = TRUE;
@@ -818,6 +904,10 @@ void QtCalculator::keyPressEvent( QKeyEvent *e ){
      key_pressed = TRUE;
      pbln->setOn(TRUE);
      break; 
+  case Key_L:
+     key_pressed = TRUE;
+     pblog->setOn(TRUE);
+     break; 
   case Key_AsciiCircum:
      key_pressed = TRUE;
      pbpower->setOn(TRUE);
@@ -834,10 +924,10 @@ void QtCalculator::keyPressEvent( QKeyEvent *e ){
      key_pressed = TRUE;
      pb0->setOn(TRUE);
      break;  
-  case Key_Equal:
+     case Key_Equal:
      key_pressed = TRUE;
      pbequal->setOn(TRUE);
-     break;  
+     break; 
   case Key_Return:
      key_pressed = TRUE;
      pbequal->setOn(TRUE);
@@ -875,6 +965,16 @@ void QtCalculator::keyPressEvent( QKeyEvent *e ){
 
 void QtCalculator::keyReleaseEvent( QKeyEvent *e ){
   switch (e->key() ){
+
+  case Key_Next:
+     key_pressed = FALSE;
+     pbAC->setOn(FALSE);
+     break;
+  case Key_Prior:
+     key_pressed = FALSE;
+     pbClear->setOn(FALSE);
+     break;
+
   case Key_H:
     key_pressed = FALSE;
      pbhyp->setOn(FALSE);
@@ -1009,6 +1109,10 @@ void QtCalculator::keyReleaseEvent( QKeyEvent *e ){
     key_pressed = FALSE;
      pbln->setOn(FALSE);
      break; 
+  case Key_L:
+    key_pressed = FALSE;
+     pblog->setOn(FALSE);
+     break; 
   case Key_AsciiCircum:
     key_pressed = FALSE;
      pbpower->setOn(FALSE);
@@ -1062,8 +1166,20 @@ void QtCalculator::keyReleaseEvent( QKeyEvent *e ){
      pbreci->setOn(FALSE);
      break;
   }
+
+  clear_buttons();
 }
 
+void QtCalculator::clear_buttons(){
+  /*
+  QPushButton* button;
+
+  for ( button=blist.first(); button != 0; button=blist.next() ){
+    if(button->isDown())
+      button->setOn(FALSE);
+  }
+  */
+}
 
 void QtCalculator::EEtoggled(bool myboolean){
 
@@ -1359,13 +1475,300 @@ void QtCalculator::pbmodtoggled(bool myboolean)  {
     pbmod->setOn(FALSE);
 }
 
-void QtCalculator::helpbuttonclicked(){
+void QtCalculator::configclicked(){
 
-  mykapp->invokeHTMLHelp("","");
+
+  QTabDialog * tabdialog;
+  tabdialog = new QTabDialog(0,"tabdialog",TRUE);
+
+  tabdialog->setCaption( "KCalc Configuraton" );
+  tabdialog->resize( 350, 350 );
+  tabdialog->setCancelButton();
+
+  QWidget *about = new QWidget(tabdialog,"about");
+
+  QGroupBox *box = new QGroupBox(about,"box");
+  QLabel  *label = new QLabel(box,"label");
+  box->setGeometry(10,10,320,260);
+
+  box->setTitle("About");
+
+
+  label->setGeometry(140,60,160,170);
+
+  QString labelstring = "KCalc "KCALCVERSION"\n"\
+    "Bernd Johannes Wuebben\n"\
+    "wuebben@math.cornell.edu\n"\
+    "wuebben@kde.org\n"\
+    "Copyright (C) 1997\n"\
+    "\n\n";
+
+   labelstring +=
+#ifdef HAVE_FABSL 
+		 "Base type: long double\n";
+#else 
+		 "Base type: double\n";
+#endif 
+
+  label->setAlignment(AlignLeft|WordBreak|ExpandTabs);
+  label->setText(labelstring.data());
+  
+  QString pixdir = mykapp->kdedir() + QString("/lib/pics/");  
+
+
+  QPixmap pm((pixdir + "kcalclogo.xpm").data());
+  QLabel *logo = new QLabel(box);
+  logo->setPixmap(pm);
+  logo->setGeometry(30, 50, pm.width(), pm.height());
+
+
+  DefStruct newdefstruct;
+  newdefstruct.forecolor  = kcalcdefaults.forecolor;
+  newdefstruct.backcolor  = kcalcdefaults.backcolor;
+  newdefstruct.font       = kcalcdefaults.font;
+  newdefstruct.precision  = kcalcdefaults.precision;
+  newdefstruct.fixedprecision  = kcalcdefaults.fixedprecision;
+  newdefstruct.fixed  = kcalcdefaults.fixed;
+  
+  ConfigDlg *configdlg;
+  configdlg = new ConfigDlg(tabdialog,"configdlg",mykapp,&newdefstruct);
+
+  FontDlg* fontdlg;
+  fontdlg = new FontDlg(tabdialog,"fontdlg",mykapp,&newdefstruct);
+
+  tabdialog->addTab(configdlg,"Defaults");
+  tabdialog->addTab(fontdlg,"Display Font");
+  tabdialog->addTab(about,"About");
+
+
+  if(tabdialog->exec() == QDialog::Accepted){
+
+
+    kcalcdefaults.forecolor  = newdefstruct.forecolor;
+    kcalcdefaults.backcolor  = newdefstruct.backcolor;
+    kcalcdefaults.font       = newdefstruct.font;
+    kcalcdefaults.precision  = newdefstruct.precision;
+    kcalcdefaults.fixedprecision  = newdefstruct.fixedprecision;
+    kcalcdefaults.fixed  = newdefstruct.fixed;
+
+    set_colors();
+    set_precision();
+    set_display_font();
+
+  }
 
 }
 
-/////////////////////////////////////////////////////////////////
+void QtCalculator::readSettings()
+{
+
+  QString str;
+
+  KConfig *config = mykapp->getConfig();
+  config->setGroup( "Font" );
+    
+  kcalcdefaults.font = config->readFontEntry("Font",
+					     &QFont("helvetica",16,QFont::Bold));
+
+  config->setGroup("Colors");
+  kcalcdefaults.forecolor = config->readColorEntry("ForeColor",&(QColor)black);
+  kcalcdefaults.backcolor = config->readColorEntry("BackColor",&(QColor(189,255,222)));
+
+  config->setGroup("Precision");
+
+#ifdef HAVE_FABSL  
+  kcalcdefaults.precision =  config->readNumEntry("precision",(int)14);
+#else
+  kcalcdefaults.precision =  config->readNumEntry("precision",(int)10);
+#endif
+
+  kcalcdefaults.fixedprecision =  config->readNumEntry("fixedprecision",(int)2);
+  kcalcdefaults.fixed = (bool) config->readNumEntry("fixed",(int)0);
+}
+
+void QtCalculator::writeSettings()
+{
+
+  KConfig *config = mykapp->getConfig();		
+  
+  config->setGroup( "Font" );
+  config->writeEntry("Font",kcalcdefaults.font);
+  
+  config->setGroup("Colors");
+  config->writeEntry("ForeColor",kcalcdefaults.forecolor);
+  config->writeEntry("BackColor",kcalcdefaults.backcolor);
+  
+  config->setGroup("Precision");
+  config->writeEntry("precision",  kcalcdefaults.precision);
+  config->writeEntry("fixedprecision",  kcalcdefaults.fixedprecision);
+  config->writeEntry("fixed",  (int)kcalcdefaults.fixed);
+
+  config->sync();
+
+}
+
+void QtCalculator::display_selected(){
+
+  if(calc_display->Button() == LeftButton){
+    
+    if(calc_display->isLit()){
+
+      QClipboard *cb = QApplication::clipboard();
+      cb->setText(calc_display->text());
+      selection_timer->start(100);
+    
+    }
+    else{
+
+      selection_timer->stop();
+
+    }
+
+    invertColors();
+  }
+  else{
+
+    QClipboard *cb = QApplication::clipboard();
+    
+    CALCAMNT result;
+    result = (CALCAMNT) strtod( cb->text(),0);
+    //    printf("%Lg\n",result);
+    last_input = PASTE;
+    DISPLAY_AMOUNT = result;
+    UpdateDisplay();
+  }
+
+}
+
+void QtCalculator::selection_timed_out(){
+
+  //  printf("selection timed out\n");
+  selection_timer->stop();
+  calc_display->setLit(false);
+  invertColors();
+
+
+}
+
+void QtCalculator::invertColors(){
+
+  QColor tmpcolor;
+
+  if(calc_display->isLit()){
+    tmpcolor = kcalcdefaults.backcolor;
+    kcalcdefaults.backcolor = kcalcdefaults.forecolor;
+    kcalcdefaults.forecolor = tmpcolor;
+    set_colors();
+    tmpcolor = kcalcdefaults.backcolor;
+    kcalcdefaults.backcolor = kcalcdefaults.forecolor;
+    kcalcdefaults.forecolor = tmpcolor;
+  }
+  else{
+    set_colors();
+    //printf("normal Colors\n");
+  }
+}
+
+void QtCalculator::closeEvent( QCloseEvent * ){
+  
+  quitCalc();
+
+}
+
+void QtCalculator::quitCalc(){
+
+  writeSettings();
+  qApp->quit();
+
+}
+
+void QtCalculator::set_colors(){
+
+
+  QPalette mypalette = (calc_display->palette()).copy();
+
+  QColorGroup cgrp = mypalette.normal();
+  QColorGroup ncgrp(kcalcdefaults.forecolor,
+		    cgrp.background(),
+		    cgrp.light(),
+		    cgrp.dark(),
+		    cgrp.mid(),
+		    kcalcdefaults.forecolor,
+		    kcalcdefaults.backcolor);
+
+  mypalette.setNormal(ncgrp);
+  mypalette.setDisabled(ncgrp);
+  mypalette.setActive(ncgrp);
+
+  calc_display->setPalette(mypalette);
+  calc_display->setBackgroundColor(kcalcdefaults.backcolor);
+
+}
+
+void QtCalculator::set_precision(){
+
+  UpdateDisplay();
+}
+
+void QtCalculator::set_display_font(){
+
+  calc_display->setFont(kcalcdefaults.font);
+
+}
+
+void QtCalculator::temp_stack_next(){
+
+  CALCAMNT *number;
+
+  if( temp_stack.current() == temp_stack.getLast()){
+        QApplication::beep();
+	return;
+  }
+
+  number = temp_stack.next();
+
+  if(number == NULL){
+       QApplication::beep();
+    return;
+  }
+  else{
+    //    printf("Number: %Lg\n",*number);
+    last_input = RECALL;
+    DISPLAY_AMOUNT = *number;
+    UpdateDisplay();
+
+  }
+
+
+}
+
+void QtCalculator::temp_stack_prev(){
+
+  CALCAMNT *number;
+
+  if( temp_stack.current() == temp_stack.getFirst()){
+        QApplication::beep();
+	return;
+  }
+
+  number = temp_stack.prev();
+
+  if(number == NULL){
+    QApplication::beep();
+    return;
+  }
+  else{
+    //    printf("Number: %Lg\n",*number);
+    last_input = RECALL;
+    DISPLAY_AMOUNT = *number;
+    UpdateDisplay();
+
+  }
+
+}
+
+
+////////////////////////////////////////////////////////////////
 // Include the meta-object code for classes in this file
 //
 
@@ -1381,9 +1784,10 @@ int main( int argc, char **argv )
 
     mykapp = new KApplication (argc, argv, "kcalc");
 
-    QFont font( "-misc-fixed-medium-*-semicondensed-*-13-*-*-*-*-*-*-*" );
-    font.setRawMode( TRUE );
-    mykapp->setFont(font);
+    /*QFont buttonfont( "-misc-fixed-medium-*-semicondensed-*-13-*-*-*-*-*-*-*" );
+      buttonfont.setRawMode( TRUE );
+      mykapp->setFont(font);
+    */
 
     if( argc >1 ){
       argv++;
@@ -1399,6 +1803,8 @@ int main( int argc, char **argv )
     }
 
     QtCalculator  *calc = new QtCalculator;
+
+
     mykapp->setMainWidget( calc );
 
     // calc->setGeometry(300, 100, 9 + 100 + 9 + 233 + 9, 220);   

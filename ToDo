@@ -1,6 +1,8 @@
 == ToDo ==
 
-* implement EE
 * implement the usual stat functions
-
+* optionally beep on error.
+* C and CA are not quite working they way one 
+  would expect it.
+  
 

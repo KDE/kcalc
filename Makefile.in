@@ -4,10 +4,10 @@
 
 ########## Files ##########
 
-SRCS    = kcalc.cpp kcalc_core.cpp
-OBJS    = kcalc.o   kcalc_core.o
-SRCMETA = kcalc.moc
-HDRS    = kcalc.h
+SRCS    = kcalc.cpp kcalc_core.cpp configdlg.cpp fontdlg.cpp dlabel.cpp
+OBJS    = kcalc.o   kcalc_core.o configdlg.o fontdlg.o dlabel.o
+SRCMETA = kcalc.moc configdlg.moc fontdlg.moc dlabel.moc
+HDRS    = kcalc.h configdlg.h fontdlg.h dlabel.h
 
 TARGET  = kcalc
 
@@ -23,7 +23,7 @@ CXXFLAGS  = @CXXFLAGS@
 CPPFLAGS  = @CPPFLAGS@
 CC	  = @CC@
 CFLAGS    = @CFLAGS@
-LDFLAGS   = @all_libraries@ -lkdecore -lqt -lX11 -lXext -lm
+LDFLAGS   = @all_libraries@ -lkdecore -lkdeui -lqt -lX11 -lXext -lm
 
 ############# Install ##############
 
@@ -65,6 +65,7 @@ install: all
 	$(INSTALL_DATA) ./doc/k* $(DOCSDIR)
 	$(INSTALL_DIR) $(PICSDIR)
 	$(INSTALL_DATA) kcalc.xpm  $(PICSDIR)
+	$(INSTALL_DATA) kcalclogo.xpm  $(PICSDIR)
 	$(INSTALL_DIR) $(APPSDIR)
 	$(INSTALL_DATA) kcalc.kdelnk  $(APPSDIR)
 

@@ -1,0 +1,62 @@
+X-RDate: Mon, 01 Sep 1997 07:45:22 -0400 (EDT)
+Return-Path: <knoll@daniel.mpi-hd.mpg.de>
+Received: from cornell.edu (cornell.edu [132.236.56.6]) by
+ postoffice2.mail.cornell.edu (8.8.5/8.8.5) with ESMTP id KAA06175 for
+ <bw18@POSTOFFICE2.MAIL.CORNELL.EDU>; Tue, 26 Aug 1997 10:56:10 -0400 (EDT)
+Received: (from daemon@localhost) by cornell.edu (8.8.5/8.8.5) id KAA25547 for
+ bw18@postoffice3.mail.cornell.edu; Tue, 26 Aug 1997 10:55:42 -0400 (EDT)
+Received: from polygon.math.cornell.edu (POLYGON.MATH.CORNELL.EDU
+ [128.84.234.110]) by cornell.edu (8.8.5/8.8.5) with SMTP id KAA25126 for
+ <bw18@cornell.edu>; Tue, 26 Aug 1997 10:55:15 -0400 (EDT)
+Received: from mpimail.mpi-hd.mpg.de by polygon.math.cornell.edu (5.x/SMI-SVR4)
+ id AA07964; Tue, 26 Aug 1997 10:54:56 -0400
+Received: from daniel.mpi-hd.mpg.de (daniel.mpi-hd.mpg.de [149.217.1.90]) by
+ mpimail.mpi-hd.mpg.de (8.8.2/8.8.2) with SMTP id QAA19532 for
+ <wuebben@math.cornell.edu>; Tue, 26 Aug 1997 16:54:56 +0200 (MET DST)
+Received: from localhost by daniel.mpi-hd.mpg.de
+ (5.65v4.0/1.1.10.5/31Jul97-0446PM) id AA04869; Tue, 26 Aug 1997 16:54:56 +0200
+Date: Tue, 26 Aug 1997 16:54:56 +0200 (MET DST)
+X-PH: V4.1@cornell.edu (Cornell Modified)
+Message-Id: <Pine.OSF.3.96.970826163314.32213A-100000@daniel.mpi-hd.mpg.de>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+XFMstatus: 0002
+From: Lars Knoll <Lars.Knoll@mpi-hd.mpg.de>
+To: wuebben@math.cornell.edu
+Subject: kcalc unter dec osf4.0
+
+Hi,
+
+ich hatte ein paar Probleme, kcalc auf einer dec alpha unter osf4.0
+zu kompilieren. Das Problem ist, dass bei diesem System 
+	sizeof(long double) = sizeof(double)
+ist, und dass Routinen namens asinl, fabsl, ... existieren, aber nicht
+in irgendwelchen headers definiert werden. 
+Zusaetzlich funktioniert fabsl() wie erwartet, asinl gibt aber leider
+immer nur 0. zurueck. Der folgende patch loest das Problem bei mir.
+
+Lars
+
+
+diff -c kcalc/kcalc.h kcalc.osf/kcalc.h
+*** kcalc/kcalc.h       Sun Aug  3 05:01:41 1997
+--- kcalc.osf/kcalc.h   Tue Aug 26 16:53:12 1997
+***************
+*** 63,68 ****
+--- 63,72 ----
+  
+  /* TAKE CARE OF TH HAVE_LONG_DOUBLE defines in core.cpp*/
+  
++ /* dec osf4.0 has fabsl, but not asinl... */
++ #ifdef __osf__ 
++ #undef HAVE_FABSL
++ #endif
+  
+  #ifdef HAVE_FABSL
+  #define CALCAMNT        long double
+
+
+
+---
+Lars Knoll                                 knoll@mpi-hd.mpg.de
+  PGP pub key [6DADF3D5]: finger knoll@pluto.mpi-hd.mpg.de 

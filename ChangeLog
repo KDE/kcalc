@@ -1,3 +1,14 @@
+Mon Sep 15 00:34:58 1997  Bernd Johannes Wuebben  <wuebben@petit.cornell.edu>
+
+	* added cut and pasted functionality
+	* implemented EE 
+	* implemented result stack
+	* implemented precision and fixed precision 
+	* added key bindings
+	* tooltips
+	* added configuration dialog
+	
+
 Sat Aug  2 22:06:59 1997  Bernd Johannes Wuebben  <wuebben@petit.cornell.edu>
 
 	* kcalc.h: clean up

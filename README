@@ -1,16 +1,13 @@
+kcalc 0.3
+=========
 
-kcalc 0.2.1
-===========
+kcalc is now mostly complete with regard to basic functionality. A few
+rough edges remain. Nevertheless, I believe kcalc will prove a useful
+little calculator.
 
-Please read the Makefile and comment out -DUSE_LONG_DOUBLE if you don't have
-long double math on your machine. Linux for example has long double math, 
-solaris doesn't seem to have it. If you have it, use -DUSE_LONG_DOUBLE
-This will give you higher precision. 
+Have fun with kcalc!
 
+Bernd
+wuebben@kde.org
 
-There is still so much to be done.....
-Comments and bug-reports are encouraged :-)
-
-regards, Bernd
-wuebben@math.cornell.edu
 
