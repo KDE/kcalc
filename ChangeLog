@@ -1,4 +1,7 @@
 2004-07-30 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Square root button did not work correctly after pressing CTRL (Bug 86004)
+
+2004-07-30 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Added Accels for Const-Buttons
 
 2004-07-29 Klaus Niederkrüger <kniederk@math.uni-koeln.de>

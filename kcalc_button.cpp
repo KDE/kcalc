@@ -22,6 +22,8 @@
 
 #include <qsimplerichtext.h>
 #include <qtooltip.h>
+#include <qpainter.h>
+
 
 #include "qdom.h"
 
@@ -119,16 +121,39 @@ void KCalcButton::paintLabel(QPainter *paint)
   } else {
     KPushButton::drawButtonLabel(paint);
   }
-
 }
 
 void KCalcButton::drawButtonLabel(QPainter *paint)
 {
   if (_show_accel_mode) {
     KPushButton::drawButtonLabel(paint);
-  } else if(pixmap()) {
+  } else if (_mode.contains(_mode_flags)) {
+    paintLabel(paint);
+  }
+}
+
+
+void KSquareButton::paintLabel(QPainter *paint)
+{
+  if (_mode_flags & ModeInverse) {
+    // these statements are for the improved
+    // representation of the sqrt function
+    paint->drawLine(8, 11+5,10, 7+5);
+    paint->drawLine(10, 7+5, 12, 14+5);
+    paint->drawLine(12, 14+5, 14, 1+5);
+    paint->drawLine(14,1+5, 35,1+5);
+    paint->drawLine(35,1+5, 35, 4+5);
+  } else {
+    // Change the representation of x^2
+    setText("x<sup>2</sup>");
+    KCalcButton::paintLabel(paint);
+  }
+}
+
+void KSquareButton::drawButtonLabel(QPainter *paint)
+{
+  if (_show_accel_mode) {
     KPushButton::drawButtonLabel(paint);
-    return;
   } else if (_mode.contains(_mode_flags)) {
     paintLabel(paint);
   }

@@ -71,10 +71,9 @@ public slots:
 
 protected:
  virtual void drawButtonLabel(QPainter *paint);
-
-private:
  void paintLabel(QPainter *paint);
 
+protected:
  bool _show_accel_mode;
  QString _label;
 
@@ -83,5 +82,20 @@ private:
  QMap<ButtonModeFlags, ButtonMode> _mode;
 };
 
+class KSquareButton : public KCalcButton
+{
+Q_OBJECT
+
+public:
+  KSquareButton(QWidget *parent, const char * name = 0)
+    : KCalcButton(parent, name) { }; 
+ KSquareButton(const QString &label, QWidget *parent, const char * name = 0,
+	       const QString &tooltip = QString())
+   : KCalcButton(label, parent, name, tooltip) { };
+
+protected:
+ virtual void drawButtonLabel(QPainter *paint);
+ void paintLabel(QPainter *paint);
+};
 
 #endif  // _KCALC_BUTTON_H

@@ -208,12 +208,9 @@ private:
     KCalcButton* 	pbPlusMinus;
     KCalcButton* 	pbPower;
     KCalcButton* 	pbReci;
-    KCalcButton* 	pbSquare;
+    KSquareButton* 	pbSquare;
     KCalcButton* 	pbX;
     KCalcButton* 	pbXOR;
-	
-    QPainter buttonpainter;
-    QPixmap buttonpixmap;
 	
     QHButtonGroup*      BaseChooseGroup;
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys

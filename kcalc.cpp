@@ -34,8 +34,6 @@
 #include <qradiobutton.h>
 #include <qtooltip.h>
 #include <qstyle.h>
-#include <qpainter.h>
-#include <qpixmap.h>
 #include <qfont.h>
 
 #include <kaboutdata.h>
@@ -198,10 +196,13 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// changeRepresentation() that paints the letters When
 	// pressing the INV Button a sqrt symbol will be drawn on that
 	// button
-	pbSquare = new KCalcButton(mSmallPage, "Square-Button");
+	pbSquare = new KSquareButton(mSmallPage, "Square-Button");
 	pbSquare->addMode(ModeNormal, "x<sup>2</sup>", i18n("Square"), true);
+	pbSquare->addMode(ModeInverse, "sqrt(x)", i18n("Square root"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbSquare, SLOT(slotSetAccelDisplayMode(bool)));
+        connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
+                pbSquare, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(pbSquare, SIGNAL(clicked(void)), SLOT(slotSquareclicked(void)));
 
 	// Representation of x^y is moved to the function
@@ -1215,24 +1216,10 @@ void KCalculator::slotInvtoggled(bool flag)
 	if (inverse)
 	{
 		statusBar()->changeItem("INV", 0);
-		// these statements are for the improved
-		// representation of the sqrt function
-		buttonpixmap.resize( 45, 15 );
-		buttonpixmap.fill( KCalcSettings::functionButtonsColor() );
-		buttonpainter.begin( &buttonpixmap );
-		buttonpainter.drawLine(8, 11,10, 7);
-		buttonpainter.drawLine(10, 7, 12, 14 );
-		buttonpainter.drawLine(12, 14, 14, 1);
-		buttonpainter.drawLine(14,1, 35,1);
-		buttonpainter.drawLine(35,1, 35, 4);
-		buttonpainter.end();
-		pbSquare->setPixmap( buttonpixmap );
 	}
 	else
 	{
 		statusBar()->changeItem("NORM", 0);
-		// Change the representation of x^2
-		pbSquare->setText("x<sup>2</sup>");
 	}
 }
 
