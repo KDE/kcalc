@@ -22,7 +22,7 @@ kde_kcfg_DATA = kcalc.kcfg
 rcdir = $(kde_datadir)/kcalc
 rc_DATA = kcalcui.rc
 
-messages:
+messages: rc.cpp
 	$(XGETTEXT) *.cpp -o $(podir)/kcalc.pot
 
 updatedir = $(kde_datadir)/kconf_update
