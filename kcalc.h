@@ -87,7 +87,11 @@
 #define POW(X,Y)	powl(X,Y)
 #define LOG(X)		logl(X)
 #define LOG_TEN(X)	log10l(X)
+#ifdef HAVE_SQRTL
 #define SQRT(X)		sqrtl(X)
+#else
+#define SQRT(X)		sqrt(X)
+#endif
 #else
 #define FABS(X)		fabs(X)
 #define MODF(X,Y)    	modf(X,Y)
