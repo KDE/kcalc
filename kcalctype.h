@@ -109,6 +109,33 @@
 	#define ISINF(X)	isinfl(X)
 #endif
 #else
+#if defined(__GNUC__) && __GNUC__ >= 3
+	/* Recent versions of gcc refuse to handle pow() because
+	 * of the ::pow() vs. std::pow() ambiguity.
+	 * Some inherently broken compilers can't handle ::pow() though,
+	 * so it must be #ifdef'ed.                                      */
+	#define FABS(X)		::fabs(X)
+	#define MODF(X,Y)	::modf(X,Y)
+	#define FMOD(X,Y)	::fmod(X,Y)
+	#define SIN(X)		::sin(X)
+	#define ASIN(X)		::asin(X)
+	#define SINH(X)		::sinh(X)
+	#define ASINH(X)	::asinh(X)
+	#define COS(X)		::cos(X)
+	#define COSH(X)		::cosh(X)
+	#define ACOS(X)		::acos(X)
+	#define ACOSH(X)	::acosh(X)
+	#define TAN(X)		::tan(X)
+	#define TANH(X)		::tanh(X)
+	#define ATAN(X)		::atan(X)
+	#define ATANH(X)	::atanh(X)
+	#define EXP(X)		::exp(X)
+	#define POW(X,Y)	::pow(X,Y)
+	#define LOG(X)		::log(X)
+	#define LOG_TEN(X)	::log10(X)
+	#define SQRT(X)		::sqrt(X)
+	#define ISINF(X)	::isinf(X)
+#else
 	#define FABS(X)		fabs(X)
 	#define MODF(X,Y)	modf(X,Y)
 	#define FMOD(X,Y)	fmod(X,Y)
@@ -130,6 +157,7 @@
 	#define LOG_TEN(X)	log10(X)
 	#define SQRT(X)		sqrt(X)
 	#define ISINF(X)	isinf(X)
+#endif
 #endif
 
 #endif 
