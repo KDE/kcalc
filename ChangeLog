@@ -1,3 +1,7 @@
+Mon May  4 06:28:09 1998  Bernd Johannes Wuebben  <wuebben@math.cornell.edu>
+
+	* Added the comma key as an accelerator for '.'
+
 Sat Apr 18 16:26:52 1998  Bernd Johannes Wuebben  <wuebben@math.cornell.edu>
 
 	* Some inverse functions didn't compute right. Wonder who broke them.

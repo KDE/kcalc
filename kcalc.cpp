@@ -956,6 +956,10 @@ void QtCalculator::keyPressEvent( QKeyEvent *e ){
      key_pressed = TRUE;
      pbperiod->setOn(TRUE);
      break;  
+  case Key_Comma:
+     key_pressed = TRUE;
+     pbperiod->setOn(TRUE);
+     break;  
   case Key_0:
      key_pressed = TRUE;
      pb0->setOn(TRUE);
@@ -1161,6 +1165,10 @@ void QtCalculator::keyReleaseEvent( QKeyEvent *e ){
      pbF->setOn(FALSE);
      break;  
   case Key_Period:
+    key_pressed = FALSE;
+     pbperiod->setOn(FALSE);
+     break;  
+  case Key_Comma:
     key_pressed = FALSE;
      pbperiod->setOn(FALSE);
      break;  
