@@ -231,11 +231,6 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// All these layouts are needed because all the groups have their
 	// own size per row so we can't use one huge QGridLayout (mosfet)
 	//
-	// 1999-10-31 Espen Sand:
-	// Some more modifications to the improved layout. Note: No need
-	// to "activate()" the layout at the end.
-	//
-	//
 	QGridLayout *smallBtnLayout = new QGridLayout(mSmallPage, 6, 4, 0,
 		mInternalSpacing);
 	QGridLayout *largeBtnLayout = new QGridLayout(mLargePage, 5, 2, 0,
@@ -612,6 +607,7 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	connect(pbPeriod, SIGNAL(clicked(void)), SLOT(slotPeriodclicked(void)));
 
 	pbEqual = new KCalcButton("<big>=</big>", thisPage, "Equal-Button");
+	pbEqual->setAccel(Key_Enter);
 	QToolTip::add(pbEqual, i18n("Result"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbEqual, SLOT(slotSetAccelDisplayMode(bool)));
@@ -619,8 +615,6 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 			0, Key_Equal, pbEqual, SLOT(animateClick()));
 	accel()->insert("Entered Return", i18n("Pressed Equal-Button"),
 			0, Key_Return, pbEqual, SLOT(animateClick()));
-	accel()->insert("Entered Enter", i18n("Pressed Equal-Button"),
-			0, Key_Enter, pbEqual, SLOT(animateClick()));
 	connect(pbEqual, SIGNAL(clicked(void)), SLOT(slotEqualclicked(void)));
 
 
@@ -678,16 +672,16 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 
 	pbClear = new KCalcButton("C", mLargePage, "Clear-Button");
 	QToolTip::add(pbClear, i18n("Clear"));
+	pbClear->setAccel(Key_Prior);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbClear, SLOT(slotSetAccelDisplayMode(bool)));
 	accel()->insert("Entered 'ESC'", i18n("Pressed ESC-Button"), 0,
 			Key_Escape, pbClear, SLOT(animateClick()));
-	accel()->insert("Entered 'Prior'", i18n("Pressed Prior-Button"), 0,
-			Key_Prior, pbClear, SLOT(animateClick()));
 	connect(pbClear, SIGNAL(clicked(void)), SLOT(slotClearclicked(void)));
 
 	pbAC = new KCalcButton("AC", mLargePage, "AC-Button");
 	QToolTip::add(pbAC, i18n("Clear all"));
+	pbAC->setAccel(Key_Delete);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbAC, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(pbAC, SIGNAL(clicked(void)), SLOT(slotACclicked(void)));
@@ -769,7 +763,7 @@ void KCalculator::setupLogicKeys(QWidget *parent)
 	tmp_pb = new KCalcButton("OR", parent, "OR-Button");
 	pbLogic.insert("OR", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Bitwise OR"));
-	tmp_pb->setAccel(Key_O);
+	tmp_pb->setAccel(Key_Bar);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotORclicked(void)));
@@ -784,8 +778,7 @@ void KCalculator::setupLogicKeys(QWidget *parent)
 	tmp_pb = new KCalcButton("Cmp", parent, "One-Complement-Button");
 	pbLogic.insert("One-Complement", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("One's complement"));
-	accel()->insert("Apply One-Complement", i18n("Pressed ~-Button"),
-			0, Key_AsciiTilde, tmp_pb, SLOT(animateClick()));
+	tmp_pb->setAccel(Key_AsciiTilde);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotNegateclicked(void)));
@@ -867,6 +860,7 @@ void KCalculator::setupTrigKeys(QWidget *parent)
 	tmp_pb = new KCalcButton("Cos", parent, "Cos-Button");
 	pbTrig.insert("Cosine", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Cosine"));
+	tmp_pb->setAccel(Key_C);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotCosclicked(void)));
@@ -1100,24 +1094,25 @@ void KCalculator::slotBaseSelected(int base)
 	// Only enable the x*10^y button in decimal
 	pbEE->setEnabled(current_base == NB_DECIMAL);
 
-	// Disable the "accels" for disabled buttons
-	if(current_base != NB_HEX)
+	// Disable buttons that make only sense with floating point
+	// numbers
+	if(current_base != NB_DECIMAL)
 	{
-		accel()->setEnabled("Entered A", false);
-		accel()->setEnabled("Entered B", false);
-		accel()->setEnabled("Entered C", false);
-		accel()->setEnabled("Entered D", false);
-		accel()->setEnabled("Entered E", false);
-		accel()->setEnabled("Entered F", false);
+	  pbTrig["HypMode"]->setEnabled(false);
+	  pbTrig["Sine"]->setEnabled(false);
+	  pbTrig["Cosine"]->setEnabled(false);
+	  pbTrig["Tangent"]->setEnabled(false);
+	  pbExp["LogNatural"]->setEnabled(false);
+	  pbExp["Log10"]->setEnabled(false);
 	}
 	else
 	{
-		accel()->setEnabled("Entered A", true);
-		accel()->setEnabled("Entered B", true);
-		accel()->setEnabled("Entered C", true);
-		accel()->setEnabled("Entered D", true);
-		accel()->setEnabled("Entered E", true);
-		accel()->setEnabled("Entered F", true);
+	  pbTrig["HypMode"]->setEnabled(true);
+	  pbTrig["Sine"]->setEnabled(true);
+	  pbTrig["Cosine"]->setEnabled(true);
+	  pbTrig["Tangent"]->setEnabled(true);
+	  pbExp["LogNatural"]->setEnabled(true);
+	  pbExp["Log10"]->setEnabled(true);
 	}
 }
 
@@ -1135,15 +1130,9 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 	case Key_Next:
 		pbAC->animateClick();
 		break;
-	case Key_Delete:
-		pbAC->animateClick();
-		break;
 	case Key_Slash:
         case Key_division:
 		pbDivision->animateClick();
-		break;
- 	case Key_C:
-		pbTrig["Cosine"]->animateClick(); // trig mode
 		break;
  	case Key_D:
 		pbStat["InputData"]->animateClick(); // stat mode

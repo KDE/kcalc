@@ -1,4 +1,10 @@
 2004-04-05 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Changed accel for OR-button from "O" to "|"
+	* More accels are visible, when "Ctrl" is used
+	* disable some buttons like "Sin", "Cos" etc., when not
+	  in decimal mode
+	
+2004-04-05 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Pasted numbers in Hex-Mode are now always interpreted as
 	  hex-numbers (BUG 65167).
 
