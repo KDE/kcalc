@@ -42,7 +42,7 @@ DOCSDIR      = $(prefix)/doc/HTML/kcalc
 .SUFFIXES: .cpp .c
 
 .cpp.o:
-	$(CC) $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CXXFLAGS) -c $<
+	$(CXX) $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CXXFLAGS) -c $<
 
 .c.o:
 	$(CC) $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CFLAGS) -c $<
