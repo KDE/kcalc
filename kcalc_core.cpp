@@ -1193,11 +1193,7 @@ void QtCalculator::base_selected(int number)
 	UpdateDisplay();
 }
 
-
-//-------------------------------------------------------------------------
-// Name: angle_selected(int number)
-//-------------------------------------------------------------------------
-void QtCalculator::angle_selected(int number)
+void QtCalculator::slotAngleSelected(int number)
 {
 	switch(number)
 	{

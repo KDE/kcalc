@@ -192,14 +192,6 @@ protected slots:
     void EnterNotCmp();
     void EnterHyp(bool flag);
     void EnterPercent();
-    void Deg_Selected();
-    void Rad_Selected();
-    void Gra_Selected();
-    void Base_Selected(int number);
-    void Hex_Selected();
-    void Dec_Selected();
-    void Oct_Selected();
-    void Bin_Selected();
     void deactivateInvButton();
     void SetInverse(bool flag);
     void EnterEqual();
@@ -209,7 +201,6 @@ protected slots:
     void InitializeCalculator();
     void UpdateDisplay();
     void base_selected(int number);
-    void angle_selected(int number);
     void Or();
     void And();
     void Shift();
@@ -223,6 +214,8 @@ protected slots:
     void MR();
     void Mplusminus();
     void MC();
+    void slotBaseSelected(int number);
+    void slotAngleSelected(int number);
     void slotNumberclicked(int number_clicked);
     void slotEEclicked(void);
     void slotInvtoggled(bool myboolean);

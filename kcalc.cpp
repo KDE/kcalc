@@ -152,56 +152,42 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	// Create Number Base Button Group
 	QButtonGroup *base_group = new QButtonGroup(4, Horizontal,  central, "base");
 	base_group->setTitle(i18n("Base"));
-	connect(base_group, SIGNAL(clicked(int)), SLOT(Base_Selected(int)));
+	connect(base_group, SIGNAL(clicked(int)), SLOT(slotBaseSelected(int)));
 
 	basebutton[0] = new QRadioButton(base_group);
 	basebutton[0]->setText("He&x");
 	QToolTip::add(basebutton[0], i18n("Hexadecimal"));
-	accel->connectItem(accel->insertItem(Key_X+ALT),
-		this, SLOT(Hex_Selected()));
 
 	basebutton[1] = new QRadioButton(base_group);
 	basebutton[1]->setText("&Dec");
 	QToolTip::add(basebutton[1], i18n("Decimal"));
 	basebutton[1]->setChecked(true);
-	accel->connectItem(accel->insertItem(Key_D+ALT),
-		this, SLOT(Dec_Selected()));
 
 	basebutton[2] = new QRadioButton(base_group);
 	basebutton[2]->setText("&Oct");
 	QToolTip::add(basebutton[2], i18n("Octal"));
-	accel->connectItem(accel->insertItem(Key_O+ALT),
-		this, SLOT(Oct_Selected()));
 
 	basebutton[3] = new QRadioButton(base_group);
 	basebutton[3]->setText("&Bin");
 	QToolTip::add(basebutton[3], i18n("Binary"));
-	accel->connectItem(accel->insertItem(Key_B+ALT),
-		this, SLOT(Bin_Selected()));
 
 	// create angle button group
 	angle_group = new QButtonGroup(3, Horizontal, central, "angle");
 	angle_group->setTitle(i18n( "Angle") );
-	connect( angle_group, SIGNAL(clicked(int)), SLOT(angle_selected(int)));
+	connect(angle_group, SIGNAL(clicked(int)), SLOT(slotAngleSelected(int)));
 
 	anglebutton[0] = new QRadioButton(angle_group);
 	anglebutton[0]->setText("D&eg");
 	QToolTip::add(anglebutton[0], i18n("Degrees"));
 	anglebutton[0]->setChecked(true);
-	accel->connectItem(accel->insertItem(Key_E+ALT),
-		this, SLOT(Deg_Selected()));
 
 	anglebutton[1] = new QRadioButton(angle_group);
 	anglebutton[1]->setText("&Rad");
 	QToolTip::add(anglebutton[1], i18n("Radians"));
-	accel->connectItem(accel->insertItem(Key_R+ALT),
-		this, SLOT(Rad_Selected()));
 
 	anglebutton[2] = new QRadioButton(angle_group);
 	anglebutton[2]->setText("&Gra");
 	QToolTip::add(anglebutton[2], i18n("Gradians"));
-	accel->connectItem(accel->insertItem(Key_G+ALT),
-		this, SLOT(Gra_Selected()));
 
 	//
 	//  Create Calculator Buttons
@@ -645,7 +631,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	set_display_font();
 	set_precision();
 	set_style();
-	Base_Selected(1);
+	basebutton[1]->animateClick();
 	InitializeCalculator();
 
 	updateGeometry();
@@ -717,7 +703,7 @@ void QtCalculator::updateGeometry()
     //setFixedSize(minimumSize());
 }
 
-void QtCalculator::Base_Selected(int base)
+void QtCalculator::slotBaseSelected(int base)
 {
 	// Call down to the core
 	base_selected(base);
@@ -732,66 +718,6 @@ void QtCalculator::Base_Selected(int base)
 
 	// Only enable the decimal point in decimal
 	pbPeriod->setEnabled(current_base == NB_DECIMAL);
-}
-
-void QtCalculator::Hex_Selected()
-{
-	basebutton[0]->setChecked(true);
-	basebutton[1]->setChecked(false);
-	basebutton[2]->setChecked(false);
-	basebutton[3]->setChecked(false);
-	Base_Selected(0);
-}
-
-void QtCalculator::Dec_Selected()
-{
-	basebutton[0]->setChecked(false);
-	basebutton[1]->setChecked(true);
-	basebutton[2]->setChecked(false);
-	basebutton[3]->setChecked(false);
-	Base_Selected(1);
-}
-
-void QtCalculator::Oct_Selected()
-{
-	basebutton[0]->setChecked(false);
-	basebutton[1]->setChecked(false);
-	basebutton[2]->setChecked(true);
-	basebutton[3]->setChecked(false);
-	Base_Selected(2);
-}
-
-void QtCalculator::Bin_Selected()
-{
-	basebutton[0]->setChecked(false);
-	basebutton[1]->setChecked(false);
-	basebutton[2]->setChecked(false);
-	basebutton[3]->setChecked(true);
-	Base_Selected(3);
-}
-
-void QtCalculator::Deg_Selected()
-{
-	anglebutton[0]->setChecked(true);
-	anglebutton[1]->setChecked(false);
-	anglebutton[2]->setChecked(false);
-	angle_selected(0);
-}
-
-void QtCalculator::Rad_Selected()
-{
-	anglebutton[0]->setChecked(false);
-	anglebutton[1]->setChecked(true);
-	anglebutton[2]->setChecked(false);
-	angle_selected(1);
-}
-
-void QtCalculator::Gra_Selected()
-{
-	anglebutton[0]->setChecked(false);
-	anglebutton[1]->setChecked(false);
-	anglebutton[2]->setChecked(true);
-	angle_selected(2);
 }
 
 void QtCalculator::configurationChanged(const DefStruct &state)
