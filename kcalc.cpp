@@ -96,7 +96,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	setCentralWidget(central);
 
 	// Detect color change
-	connect(kapp,SIGNAL(kdisplayPaletteChanged()), this, SLOT(set_colors()));
+	connect(kapp,SIGNAL(kdisplayPaletteChanged()), SLOT(set_colors()));
 
 	calc_display = new DispLogic(central, "display");
 
@@ -423,7 +423,7 @@ void KCalculator::setupMainActions(void)
 	actionStatshow =  new KToggleAction(i18n("&Statistic Buttons"), 0,
 					    actionCollection(), "show_stat");
 	actionStatshow->setChecked(true);
-	connect(actionStatshow, SIGNAL(toggled(bool)), this,
+	connect(actionStatshow, SIGNAL(toggled(bool)),
 		SLOT(slotStatshow(bool)));
 
 	actionExpLogshow = new KToggleAction(i18n("&Exp/Log-Buttons"), 0,
@@ -431,25 +431,25 @@ void KCalculator::setupMainActions(void)
 					     "show_explog");
 	actionExpLogshow->setChecked(true);
 	connect(actionExpLogshow, SIGNAL(toggled(bool)),
-		this, SLOT(slotExpLogshow(bool)));
+		SLOT(slotExpLogshow(bool)));
 
 	actionTrigshow = new KToggleAction(i18n("&Trigonometric Buttons"), 0,
 					   actionCollection(), "show_trig");
 	actionTrigshow->setChecked(true);
 	connect(actionTrigshow, SIGNAL(toggled(bool)),
-		this, SLOT(slotTrigshow(bool)));
+		SLOT(slotTrigshow(bool)));
 
 	actionLogicshow = new KToggleAction(i18n("&Logic Buttons"), 0,
 					    actionCollection(), "show_logic");
 	actionLogicshow->setChecked(true);
 	connect(actionLogicshow, SIGNAL(toggled(bool)),
-		this, SLOT(slotLogicshow(bool)));
+		SLOT(slotLogicshow(bool)));
 		
 	actionConstantsShow = new KToggleAction(i18n("&Constants Buttons"), 0,
 					    actionCollection(), "show_constants");
 	actionConstantsShow->setChecked(true);
 	connect(actionConstantsShow, SIGNAL(toggled(bool)),
-		this, SLOT(slotConstantsShow(bool)));	
+		SLOT(slotConstantsShow(bool)));	
 
 
 	(void) new KAction(i18n("&Show All"), 0, this, SLOT(slotShowAll()),
@@ -1674,14 +1674,11 @@ void KCalculator::showSettings()
 	general->kcfg_Precision->setMaxValue(maxprec);
 	dialog->addPage(general, i18n("General"), "package_settings", i18n("General Settings"));
 
-	QWidget *font = new QWidget();
-	QVBoxLayout *topLayout = new QVBoxLayout(font, 0, KDialog::spacingHint());
 	KFontChooser *mFontChooser =
-		new KFontChooser(font, "kcfg_Font", false, QStringList(), false, 6);
+		new KFontChooser(this, "kcfg_Font", false, QStringList(), false, 6);
 	QFont tmpFont(KGlobalSettings::generalFont().family() ,14 ,QFont::Bold);
 	mFontChooser->setFont(tmpFont);
-	topLayout->addWidget(mFontChooser);
-	dialog->addPage(font, i18n("Font"), "fonts", i18n("Select Display Font"));
+	dialog->addPage(mFontChooser, i18n("Font"), "fonts", i18n("Select Display Font"));
 
 	Colors *color = new Colors(0, "Color");
 
@@ -1691,7 +1688,7 @@ void KCalculator::showSettings()
 	dialog->addPage(constant, "Constants", i18n("Constants"));
 	
 	// When the user clicks OK or Apply we want to update our settings.
-	connect(dialog, SIGNAL(settingsChanged()), this, SLOT(updateSettings()));
+	connect(dialog, SIGNAL(settingsChanged()), SLOT(updateSettings()));
 
 	// Display the dialog.
 	dialog->show();
