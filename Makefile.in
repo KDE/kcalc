@@ -1,0 +1,78 @@
+#
+# Makefile for kcalc
+#
+
+########## Files ##########
+
+SRCS    = kcalc.cpp kcalc_core.cpp
+OBJS    = kcalc.o   kcalc_core.o
+SRCMETA = kcalc.moc
+HDRS    = kcalc.h
+
+TARGET  = kcalc
+
+###########################
+
+.SUFFIXES: .cpp
+
+INCLUDES  = @all_includes@ -I. -I@top_srcdir@
+DEFS      = @DEFS@
+MOC	  = @MOC@
+CXX	  = @CXX@
+CXXFLAGS  = @CXXFLAGS@
+CPPFLAGS  = @CPPFLAGS@
+CC	  = @CC@
+CFLAGS    = @CFLAGS@
+LDFLAGS   = @all_libraries@ -lqt -lX11 -lm
+
+############# Install ##############
+
+INSTALL      = @INSTALL@ -m 0755
+INSTALL_DATA = @INSTALL@ -m 0644
+INSTALL_DIR  = @INSTALL@ -d -m 0755
+
+prefix       = @prefix@
+BINDIR       = $(prefix)/bin
+LIBDIR       = $(prefix)/lib
+DOCSDIR      = $(prefix)/doc/HTML/kcalc
+
+########## Implicit Rules ##########
+
+.SUFFIXES: .cpp .c
+
+.cpp.o:
+	$(CXX) $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CXXFLAGS) -c $<
+	
+.c.o:
+	$(CC) $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CFLAGS) -c $<
+
+########## Build Rules ##########
+
+all: $(TARGET)
+
+$(TARGET): $(SRCMETA) $(OBJS)
+	$(CXX) -o $(TARGET) $(OBJS) $(LDFLAGS)
+
+install:
+	[ -d $(BINDIR) ] || $(INSTALL_DIR) $(BINDIR)
+	$(INSTALL) $(TARGET) $(BINDIR)
+	[ -d $(DOCSDIR) ] || $(INSTALL_DIR) $(DOCSDIR)
+	$(INSTALL_DATA) ./doc/kcalc* $(DOCSDIR)
+
+clean:
+	rm -f core *~ *.bak *.BAK $(SRCMETA) $(OBJS) $(TARGET)
+
+veryclean:
+	rm -f *~ *.bak *.BAK $(TARGET) $(SRCMETA) $(OBJS) core
+
+depend: $(SRCS)
+	@makedepend $(INCLUDES) $(SRCS) 2> /dev/null
+
+########## Meta objects ##########
+
+%.moc: %.h
+	$(MOC) $< -o $@
+
+##################################
+# DO NOT DELETE
+
