@@ -53,10 +53,10 @@ static CALCAMNT toDouble(const QString &s, bool &ok)
 }
 
 KCalcDisplay::KCalcDisplay(QWidget *parent, const char *name)
-  :QLabel(parent,name), _button(0), _lit(false),
+  :QLabel(parent,name), _beep(false), _groupdigits(false), _button(0), _lit(false),
    _num_base(NB_DECIMAL), _input_limit(0),
    _display_size(DEC_SIZE), _precision(9),
-   _fixed_precision(-1), selection_timer(new QTimer)
+   _fixed_precision(-1), _error(false), selection_timer(new QTimer)
 {
 	setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
 	setAlignment(AlignRight | AlignVCenter);
