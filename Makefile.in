@@ -42,7 +42,7 @@ DOCSDIR      = $(prefix)/doc/HTML/kcalc
 
 .cpp.o:
 	$(CXX) $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CXXFLAGS) -c $<
-	
+
 .c.o:
 	$(CC) $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CFLAGS) -c $<
 
@@ -59,6 +59,11 @@ install:
 	[ -d $(DOCSDIR) ] || $(INSTALL_DIR) $(DOCSDIR)
 	$(INSTALL_DATA) ./doc/kcalc.gif $(DOCSDIR)
 	$(INSTALL_DATA) ./doc/kcalc.html $(DOCSDIR)
+
+uninstall:
+	rm -f $(BINDIR)/$(TARGET)
+	rm -f $(DOCSDIR)/kcalc.gif
+	rm -f $(DOCSDIR)/kcalc.html 
 
 clean:
 	rm -f core *~ *.bak *.BAK $(SRCMETA) $(OBJS) $(TARGET)
