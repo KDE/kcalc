@@ -1540,16 +1540,18 @@ void QtCalculator::EnterEqual()
 //-------------------------------------------------------------------------
 void QtCalculator::Clear()
 {
-	refresh_display = true;	
+	
 	eestate 		= false;
 	input_count		= 0;
 	decimal_point	= 0;
 
-	if (last_input == OPERATION)
-		PopStack();
 	
-	last_input = DIGIT;
-
+	if (last_input == OPERATION)
+	{
+		PopStack();
+		last_input = DIGIT;
+	}
+	
 	if(display_error)
 	{
 		display_error	= false;
@@ -1562,8 +1564,7 @@ void QtCalculator::Clear()
 		UpdateDisplay();
 	}
 	
-	RefreshCalculator();
-	
+	//RefreshCalculator();	
 }
 
 //-------------------------------------------------------------------------
