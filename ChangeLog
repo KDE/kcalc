@@ -1,3 +1,7 @@
+2005-02-05 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* fix BUG 98522: M- button did not work at least since KDE-3.2. Shame on me, and thanks to
+	  Bernd Brandstetter for reporting the bug.
+
 2004-12-21 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* added some more contants and dropped Pi-button since not needed.
 	  Instead new cube and cube root button.
