@@ -159,14 +159,14 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	basebutton[0] = new QRadioButton(base_group);
 	basebutton[0]->setText("He&x");
 	QToolTip::add(basebutton[0], i18n("Hexadecimal"));
-	accel->connectItem(accel->insertItem(Key_H+ALT),
+	accel->connectItem(accel->insertItem(Key_X+ALT),
 		this, SLOT(Hex_Selected()));
 
 	basebutton[1] = new QRadioButton(base_group);
 	basebutton[1]->setText("&Dec");
 	QToolTip::add(basebutton[1], i18n("Decimal"));
 	basebutton[1]->setChecked(true);
-	accel->connectItem(accel->insertItem(Key_E+ALT),
+	accel->connectItem(accel->insertItem(Key_D+ALT),
 		this, SLOT(Dec_Selected()));
 
 	basebutton[2] = new QRadioButton(base_group);
@@ -190,7 +190,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	anglebutton[0]->setText("D&eg");
 	QToolTip::add(anglebutton[0], i18n("Degrees"));
 	anglebutton[0]->setChecked(true);
-	accel->connectItem(accel->insertItem(Key_D+ALT),
+	accel->connectItem(accel->insertItem(Key_E+ALT),
 		this, SLOT(Deg_Selected()));
 
 	anglebutton[1] = new QRadioButton(angle_group);
