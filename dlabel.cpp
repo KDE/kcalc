@@ -59,6 +59,7 @@ void DispLogic::changeSettings()
 
 	setBeep(KCalcSettings::beep());
 	setGroupDigits(KCalcSettings::groupDigits());
+	updateDisplay();
 }
 
 void DispLogic::update_from_core(CalcEngine const &core,
