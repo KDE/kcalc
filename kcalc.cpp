@@ -1275,7 +1275,13 @@ void KCalculator::slotSinclicked(void)
 
 void KCalculator::slotPlusMinusclicked(void)
 {
-	calc_display->changeSign();
+	// display can only change sign, when in input mode, otherwise we
+	// need the core to do this.
+	if (!calc_display->changeSign())
+	{
+	    core.InvertSign(calc_display->getAmount());
+	    UpdateDisplay(true);
+	}
 }
 
 void KCalculator::slotMPlusMinusclicked(void)

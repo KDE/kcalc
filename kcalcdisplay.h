@@ -93,7 +93,7 @@ protected:
 	void  mousePressEvent ( QMouseEvent *);
 
 public:
-	void changeSign(void);
+	bool changeSign(void);
 	bool clearLastInput(void);
 	void deleteLastDigit(void);
 	CALCAMNT getAmount(void) const;

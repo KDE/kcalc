@@ -645,6 +645,11 @@ void CalcEngine::Factorial(CALCAMNT input)
 
 }
 
+void CalcEngine::InvertSign(CALCAMNT input)
+{
+	_last_result = -input;
+}
+
 void CalcEngine::InvMod(CALCAMNT input)
 {
 	EnterStackFunction(FUNC_INTDIV, input);
