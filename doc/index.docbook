@@ -1,0 +1,597 @@
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook V3.1-Based Variant V1.0//EN" [
+ <!ENTITY kcalc "<application>kcalc</application>">
+]>
+<book lang="en">
+<bookinfo>
+<title>The KCalc Handbook</title>
+<authorgroup>
+<author>
+<firstname>Bernd Johannes</firstname>
+<surname>Wuebben</surname>
+<affiliation><address><email><ulink url="mailto:wuebben@kde.org">wuebben@kde.org</ulink></email></address></affiliation>
+</author>
+</authorgroup>
+<date>Version 0.4, 20 September 1997</date>
+<releaseinfo><!-- information about this particular version --></releaseinfo>
+<abstract>
+<para>This Handbook describes KCalc Version 0.4</para>
+<para>The KCalc Handbook</para><!-- Merge this with the previous paragraph; it comes from <META NAME="description" CONTENT="..."> --></abstract>
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>KCalc</keyword>
+<keyword>calculator</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title>Introduction</title>
+
+<para>This is release 0.4 of KCalc. KCalc is a simple but hopefully useful scientific
+calculator for the KDE project. </para>
+
+<para>KCalc offers many more mathematical functions than meet the eye on a first glance.
+Please study the section on keyboard accelerators and  modes in this handbook to 
+learn more about the many functions available.</para>
+
+<para>In addition to the usual functionality offered by most scientific calculators,
+KCalc offers a number of features, which I think are worthwhile pointing out:</para>
+
+<para><itemizedlist>
+<listitem>
+<para>KCalc has a trigonometric and a statistics mode.</para>
+</listitem>
+<listitem>
+<para>KCalc allows you to cut and paste numbers
+from/into its display.</para>
+</listitem>
+<listitem>
+<para>KCalc features a 'results-stack' which let's
+you conveniently recall previous results. </para>
+</listitem>
+<listitem>
+<para>You can
+configure KCalc's display colors and font.</para>
+</listitem>
+<listitem>
+<para>You can configure KCalc's  precision and the number
+of digits after the period.</para>
+</listitem>
+<listitem>
+<para> KCalc offers a great number of useful key-bindings, which make using KCalc
+without using a pointing device easy.</para>
+</listitem>
+</itemizedlist>
+</para>
+
+<para>Have fun with KCalc!</para>
+
+<para><literal remap="tt">Bernd Johannes Wuebben</literal></para>
+
+<para><ulink url="mailto:wuebben@math.cornell.edu">wuebben@math.cornell.edu</ulink></para>
+</chapter>
+
+<chapter id="installation">
+<title>Installation</title>
+
+<sect1 id="howtoobtainkcalc">
+<title>How to obtain KCalc</title>
+
+<para>KCalc is part  of the KDE project <ulink url="http://www.kde.org">http://www.kde.org</ulink>.
+KCalc can be found on <ulink url="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</ulink>, the main ftp site
+of the KDE project. It's home site is
+<ulink url="http://math.cornell.edu/~wuebben/kde.html">http://math.cornell.edu/~wuebben/kde.html</ulink></para>
+</sect1>
+
+<sect1 id="requirements">
+<title>Requirements</title>
+
+<para>In order to successfully compile KCalc, you need the latest versions of <literal remap="tt"> libkdecore</literal> and <literal remap="tt"> libkdeui</literal>. All required libraries as well as KCalc itself can be found
+on <ulink url="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</ulink>. </para>
+</sect1>
+
+<sect1 id="compilationandinstallation">
+<title>Compilation and installation</title>
+
+<para>The usual:</para>
+
+<para><screen>% ./configure
+% make
+% make install
+</screen>
+</para>
+
+<para><emphasis remap="bf">IMPORTANT:</emphasis> </para>
+
+<para><emphasis remap="bf">How to enable long double precision for KCalc:</emphasis></para>
+
+<para>If your machine supports the C data type 'long double' and if you
+have a working libc you can enable 'long double' precison for KCalc.</para>
+
+<para>( RedHat 5.0 users are out of luck -- I suggest
+you get yourself a KDE friendly Linux distribution 
+that has a working libc )</para>
+
+<para>Here is what to do:</para>
+
+<para><orderedlist><listitem>
+<para> Check ../config.h and see whether HAVE&lowbar;LONG&lowbar;DOUBLE is defined, ie
+you should be able to locate a line saying:
+
+<screen>#define HAVE_LONG_DOUBLE 1
+</screen>
+
+
+If you can't find such a line your system doesn't support long
+double IEEE precision.
+</para>
+</listitem>
+<listitem>
+<para> Edit the file kcalctype.h configdlg.cpp kcalc.cpp and kcalc&lowbar;core.cpp and 
+remove the lines 
+
+<screen>#ifdef HAVE_LONG_DOUBLE
+#undef HAVE_LONG_DOUBLE
+#endif
+</screen>
+
+</para>
+</listitem>
+<listitem>
+<para> recompile KCalc.
+</para>
+</listitem>
+</orderedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="usage">
+<title>Usage </title>
+
+<para>General usage is straight forward and similar if not identical to the way
+most simple scientific calculators operate. Click on the <emphasis remap="bf">KCalc</emphasis>
+button to bring up the configuration dialog.</para>
+
+<sect1 id="resultstack">
+<title>Result Stack</title>
+
+<para>Each time you click the enter button or press the 'equal' or 'Enter' or 'Return'
+keys, the display result is written to KCalc's result stack. You can navigate 
+through the result stack by pressing the up and down arrow keys.</para>
+</sect1>
+
+<sect1 id="percentfunction">
+<title>Percent Function</title>
+
+<para>The percent function works somewhat different from that of most calculators.
+However, once understood, its enhance functionality proves quite useful.
+See the section on the percent function in the "Comments on specific 
+functions" section for a details explanation of the percent functionality.</para>
+</sect1>
+
+<sect1 id="fixedprecision">
+<title>Fixed Precision</title>
+
+<para>Click the fixed precision check-box on the configure dialog if you whish
+to fix the number of digits which are displayed past the period.</para>
+</sect1>
+
+<sect1 id="cutandpaste">
+<title>Cut and Paste</title>
+
+<para><itemizedlist>
+<listitem>
+<para>Pressing the left mouse button on KCalc's display will place the displayed
+number on to the clip-board.</para>
+</listitem>
+<listitem>
+<para>Pressing the right or middle mouse button on KCalc's display will paste
+the clip-board content into the display if the content of the clip-board
+is a valid floating point number.</para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="modes">
+<title>Modes</title>
+
+<sect1 id="statisticalmode">
+<title>Statistical Mode</title>
+
+<para>Press F3 to toggle between statistical and trigonometry mode. Alternatively bring up the configuration dialog by pushing the KCALC button or
+by pressing F2 to switch into statistics mode.</para>
+
+<para><variablelist>
+<varlistentry>
+<term>N</term>
+<listitem>
+<para>Recall the number of data items entered</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>INV N </term>
+<listitem>
+<para>Display the sum of all data items entered</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Mea </term>
+<listitem>
+<para>Display the mean of the data items entered</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>INV Mea </term>
+<listitem>
+<para>Display the sum of the square of all data items entered</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Std </term>
+<listitem>
+<para>Display the standard deviation (n)</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>INV Std </term>
+<listitem>
+<para>Display the population standard deviation  (n-1)</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Med </term>
+<listitem>
+<para>Display the median</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Dat </term>
+<listitem>
+<para>Enter a data item</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>INV Dat </term>
+<listitem>
+<para>Clear last data item entered</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Cst </term>
+<listitem>
+<para>Clear all data item entered</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</para>
+</sect1>
+
+<sect1 id="trigonometricmode">
+<title>Trigonometric Mode</title>
+
+<para>Press F3 to toggle between statistical and trigonometry mode. Alternatively bring up the configuration dialog by pushing the KCALC button or
+by pressing F2 to switch into trigonometric mode.</para>
+
+<para><variablelist>
+<varlistentry>
+<term>Hyp</term>
+<listitem>
+<para>Enter Hyperbolic sub mode. HYP SIN for example is the hyperbolic sine: sinh(x)</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Sin</term>
+<listitem>
+<para>Compute the sine.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>INV Sin</term>
+<listitem>
+<para>Compute the inverse sine.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Cos</term>
+<listitem>
+<para>Compute the cosine.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>INV Cos</term>
+<listitem>
+<para>Compute the inverse cosine.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Tan</term>
+<listitem>
+<para>Compute the tangents.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>INV Tan</term>
+<listitem>
+<para>Compute the inverse tangent.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Log</term>
+<listitem>
+<para>Compute the Log base 10</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>INV Log</term>
+<listitem>
+<para>Compute 10 to the power of x.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Ln</term>
+<listitem>
+<para>Compute the natural logarithm. That is the log with base e.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>INV Ln</term>
+<listitem>
+<para>Compute e to the power of x.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="keyaccels">
+<title>Key Accels</title>
+
+<para>(TODO): This list is probably incomplete. Check!</para>
+
+<para><screen>
+F1         Help
+F2         Config Dialog
+F3         Switch into Trigonometry Mode
+F4         Switch into Statistics Mode
+
+Up Key     display previous element of the result stack
+Down Key   display next element of the result stack
+Page UP    Clear
+Prior      Clear
+Page Down  Clear All
+Next       Clear All
+
+ALT + d    set trig-mode to deg
+ALT + r    set trig-mode to rad
+ALT + g    set trig-mode to grad
+ALT + e    set radix to decimal
+ALT + o    set radix to octal
+ALT + b    set radix to binary
+
+s          Sin 
+c          Cos 
+t          Tan
+n          ln  = log base e
+l          log = log base 10
+i          Inv inverse, e.g. if you want arcsin(x) type i s 
+\          +/- 
+[          ^2 
+^          x^y 
+=          = 
+!          factorial
+&lt;          left shift
+&gt;          right shift
+&          AND
+*          multiply
+/          divide
+
+d          enter stat data item ( in stat mode)
+
+o          OR
+INV o      XOR
+r          1/x r for reciproc 
+Enter      = 
+Return     = 
+Backspace  Clear All 
+Del        Clear All
+Esc        Clear
+h          Hyp (Hyperbolic) as e.g in Hyp Sin , the sinh(x) 
+</screen>
+</para>
+</chapter>
+
+<chapter id="commentsonspecificfunctions">
+<title>Comments on specific functions</title>
+
+<sect1 id="mod">
+<title>Mod</title>
+
+<para>Give the remainder of dividing the display number by the next input number.</para>
+</sect1>
+
+<sect1 id="invmod">
+<title>Inv Mod</title>
+
+<para>Integer divison of the display number by the next input number.</para>
+</sect1>
+
+<sect1 id="percent">
+<title>&percnt;</title>
+
+<para>Interpret the final operation carried out in  the current 
+calculation as follows:</para>
+
+<para><itemizedlist>
+<listitem>
+<para>The function of the &percnt; key is similar to the one found on some CASIO calculators:
+</para>
+</listitem>
+<listitem>
+<para>If the final operator is + give the percentage increase
+the result is over the second operand.
+</para>
+</listitem>
+<listitem>
+<para> If the final operator is - give the percentage decrease the result 
+is over the second operand.
+</para>
+</listitem>
+<listitem>
+<para>If the final operator is * give the right operand 
+as a percentage of the left operand.
+</para>
+</listitem>
+<listitem>
+<para>If the final operator is / or Mod, give the left operand
+as a percentage of the right operand.
+</para>
+</listitem>
+<listitem>
+<para>If the final operator is x**y give the left operand 
+raised to the power of the (right operand / 100).
+</para>
+</listitem>
+<listitem>
+<para> In all other cases the &percnt; key gives identical results to the = key.
+</para>
+</listitem>
+</itemizedlist>
+                              </para>
+
+<sect2 id="examples">
+<title>Examples</title>
+
+<para><programlisting>
+Type:             45 / 55 %
+Answer Displayed: 81.8181...
+Explanation:      45 is 81.81...percent of 55
+
+Type:             11 + 89 %
+Answer Displayed: 112.35.. 
+Explanation:      89 + 11 = 100 and  100 is 112.35 percent of 89. </programlisting>
+</para>
+</sect2>
+</sect1>
+
+<sect1 id="lshrsh">
+<title>Lsh (Rsh)</title>
+
+<para>Left (right) shift the n times, where n is the next input number.
+You get Rsh (right shift)  by pressing INV Lsh.</para>
+</sect1>
+</chapter>
+
+<chapter id="tipsandtricks">
+<title>Tips and Tricks</title>
+
+<sect1 id="fonts">
+<title>Fonts</title>
+
+<para>I found that several distributions don't know how to set the FontPath right
+and which fonts to install in order to get great fonts under X11. I can't
+help you gather great fonts for X11, but I can show you what my FontPath in
+/etc/XF86Config looks like -- this will help you getting better results for xemacs as well as
+kcalc:</para>
+
+<para><screen>Section "Files"
+   RgbPath    "/usr/X11R6/lib/X11/rgb"
+   FontPath   "/usr/X11R6/lib/X11/fonts/misc:unscaled"
+   FontPath   "/usr/X11R6/lib/X11/fonts/75dpi:unscaled"
+   FontPath   "/usr/X11R6/lib/X11/fonts/100dpi:unscaled"
+   FontPath   "/usr/X11R6/lib/X11/fonts/Type1"
+   FontPath   "/usr/X11R6/lib/X11/fonts/Speedo"
+   FontPath   "/usr/X11R6/lib/X11/fonts/misc"
+   FontPath   "/usr/X11R6/lib/X11/fonts/75dpi"
+   FontPath   "/usr/X11R6/lib/X11/fonts/100dpi"
+   FontPath   "/usr/X11R6/lib/X11/fonts/cyrillic"
+EndSection
+</screen>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="questionsandanswers">
+<title>Questions and Answers</title>
+
+<sect1 id="howdoigetpi31415926">
+<title>How do I get pi=3.1415926...?</title>
+
+<para>Simply type INV EE.</para>
+</sect1>
+
+<sect1 id="howdoigetetheeulernumber">
+<title>How do I get e, the Euler number?</title>
+
+<para>Type 1 INV ln.</para>
+</sect1>
+
+<sect1 id="howdoigettwofixeddigitsaftertheperiod">
+<title>How do I get two fixed digits after the period?</title>
+
+<para>Click on the KCalc button, this will bring up the configuration dialog.
+Click on "Set Fixed Precision" and adjust the spin control so that it
+shows a 2.</para>
+</sect1>
+
+<sect1 id="whataboutprecision">
+<title>What about Precision?</title>
+
+<para>The main factor determining the precision of kcalc is whether your libc and libmath
+supports the C data type <literal remap="tt">long double</literal>. If this is the case, kcalc will detect this
+at compile time and use it as its fundamental data type to represent numbers.
+Check KCalc's about dialog in order to find out what the fundamental data type
+for your copy of KCalc is.</para>
+
+<para>Unless you have a libc and libmath of exceptionally high quality, you will
+be able to observe some "interesting" results when trying
+to execute computations such as: 123.22 - 123.21; 2.01 - 2; 123.88 - 123.87 and
+similar. However if you think this is bad I ask you to do the same computation on 
+the windows calculator.</para>
+
+<para>Adjust the precision on KCalc's configure dialog so that the above computation
+go through correctly. I recommend a precision of 14 if the fundamental data
+type for your copy of KCalc is long double, otherwise 8 or 10.</para>
+
+<para>Note: Higher precision doesn't necessarily lead to better results. Play with
+the precision and you will see what I mean.</para>
+</sect1>
+</chapter>
+
+<chapter id="copyright">
+<title>Copyright</title>
+
+<para><screen>
+KCalc Copyright 1996,1997 Bernd Johannes Wuebben 
+                          wuebben@math.cornell.edu
+
+KCalc was inspired by Martin Bartlett's xfrmcalc, whose stack 
+engine is still part of KCalc.
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+</screen>
+</para>
+</chapter>
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-omittag: nil
+sgml-shorttag: t
+End:
+-->
