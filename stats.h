@@ -26,7 +26,7 @@
 #ifndef KSTATS_H
 #define KSTATS_H
 
-#include <qlist.h>
+#include <qptrlist.h>
 #include <math.h>
 #include "kcalctype.h"
 
@@ -55,17 +55,17 @@ public:
 
 private:
 
-    QList<CALCAMNT> data;
+    QPtrList<CALCAMNT> data;
     bool error_flag;
 
 };
 
-class MyList : public  QList<CALCAMNT> 
+class MyList : public  QPtrList<CALCAMNT> 
 {
 
 public:
 
-  MyList() : QList<CALCAMNT>() {};
+  MyList() : QPtrList<CALCAMNT>() {};
   
 protected:
   int compareItems(Item item1,Item item2);

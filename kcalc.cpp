@@ -39,7 +39,7 @@
 #include <qfont.h>
 #include <qgroupbox.h>
 #include <qlabel.h>
-#include <qlist.h>
+#include <qptrlist.h>
 #include <qlistbox.h>
 #include <qpixmap.h>
 #include <qpushbutton.h>
@@ -136,18 +136,18 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 
 	// Status bar contents
 	statusINVLabel = new QLabel( this, "INV" );
-	CHECK_PTR(statusINVLabel);
+	Q_CHECK_PTR(statusINVLabel);
 	statusINVLabel->setFrameStyle(QFrame::Panel | QFrame::Sunken);
 	statusINVLabel->setAlignment(AlignCenter);
 	statusINVLabel->setText("NORM");
 
 	statusHYPLabel = new QLabel(this, "HYP");
-	CHECK_PTR(statusHYPLabel);
+	Q_CHECK_PTR(statusHYPLabel);
 	statusHYPLabel->setFrameStyle(QFrame::Panel | QFrame::Sunken);
 	statusHYPLabel->setAlignment(AlignCenter);
 
 	statusERRORLabel = new QLabel(this, "ERROR");
-	CHECK_PTR(statusERRORLabel);
+	Q_CHECK_PTR(statusERRORLabel);
 	statusERRORLabel->setFrameStyle(QFrame::Panel | QFrame::Sunken);
 	statusERRORLabel->setAlignment(AlignLeft|AlignVCenter);
 
@@ -2206,7 +2206,7 @@ bool QtCalculator::eventFilter(QObject *o, QEvent *e)
 		QDropEvent *ev = (QDropEvent *)e;
 		if( KColorDrag::decode(ev, c))
 		{
-			QList<QPushButton> *list;
+			QPtrList<QPushButton> *list;
 			if( mNumButtonList.findRef((QPushButton*)o) != -1)
 			{
 				list = &mNumButtonList;
