@@ -23,6 +23,7 @@
 */
 
 #include "../config.h"
+
 #include <assert.h>
 #include <ctype.h>
 #include <stdio.h>
@@ -34,8 +35,6 @@
 #include <qaccel.h>
 #include <qbuttongroup.h>
 #include <qclipboard.h>
-#include <qgroupbox.h>
-#include <qlabel.h>
 #include <qradiobutton.h>
 #include <qtimer.h>
 #include <qtooltip.h>
@@ -44,9 +43,6 @@
 #include <kapplication.h>
 #include <kcolordrag.h>
 #include <kconfig.h>
-#include <kglobal.h>
-#include <kiconloader.h>
-#include <klocale.h>
 #include <kcmdlineargs.h>
 #include <knotifyclient.h>
 #include <kaboutdata.h>

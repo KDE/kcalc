@@ -29,8 +29,6 @@ class KColorButton;
 class KFontChooser;
 
 #include <kdialogbase.h>
-#include <klistbox.h>
-
 #include "kcalc.h"
 
 class ConfigureDialog : public KDialogBase

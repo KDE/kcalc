@@ -24,9 +24,7 @@
 #include <qlayout.h>
 #include <qradiobutton.h>
 #include <qspinbox.h>
-#include <qpainter.h>
 
-#include <kaboutdata.h>
 #include <kcolorbutton.h>
 #include <kfontdialog.h>
 #include <kiconloader.h>
@@ -34,7 +32,6 @@
 #include <kdebug.h>
 
 #include "optiondialog.h"
-#include "version.h"
 
 // little helper:
 static inline QPixmap loadIcon( const char * name )

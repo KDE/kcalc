@@ -38,7 +38,6 @@ class KHelpMenu;
 class ConfigureDialog;
 class DLabel;
 class KPushButton;
-#include <qvaluevector.h>
 #include <kmainwindow.h>
 #include "stats.h"
 
