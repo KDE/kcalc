@@ -829,10 +829,10 @@ void KCalculator::setupTrigKeys(QWidget *parent)
 	tmp_pb = new KCalcButton(parent, "Sin-Button");
 	pbTrig.insert("Sine", tmp_pb);
 	tmp_pb->addMode(ModeNormal, "Sin", i18n("Sine"));
-	tmp_pb->addMode(ModeInverse, "Arcsin", i18n("Arc sine"));
+	tmp_pb->addMode(ModeInverse, "Asin", i18n("Arc sine"));
 	tmp_pb->addMode(ModeHyperbolic, "Sinh", i18n("Hyperbolic sine"));
 	tmp_pb->addMode(ButtonModeFlags(ModeInverse | ModeHyperbolic),
-			"Arsinh", i18n("Hyperbolic area sine"));
+			"Asinh", i18n("Inverse hyperbolic sine"));
 	tmp_pb->setAccel(Key_S);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
@@ -843,10 +843,10 @@ void KCalculator::setupTrigKeys(QWidget *parent)
 	tmp_pb = new KCalcButton(parent, "Cos-Button");
 	pbTrig.insert("Cosine", tmp_pb);
 	tmp_pb->addMode(ModeNormal, "Cos", i18n("Cosine"));
-	tmp_pb->addMode(ModeInverse, "Arccos", i18n("Arc cosine"));
+	tmp_pb->addMode(ModeInverse, "Acos", i18n("Arc cosine"));
 	tmp_pb->addMode(ModeHyperbolic, "Cosh", i18n("Hyperbolic cosine"));
 	tmp_pb->addMode(ButtonModeFlags(ModeInverse | ModeHyperbolic),
-			"Arcosh", i18n("Hyperbolic area cosine"));
+			"Acosh", i18n("Inverse hyperbolic cosine"));
 	tmp_pb->setAccel(Key_C);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
@@ -857,10 +857,10 @@ void KCalculator::setupTrigKeys(QWidget *parent)
 	tmp_pb = new KCalcButton(parent, "Tan-Button");
 	pbTrig.insert("Tangent", tmp_pb);
 	tmp_pb->addMode(ModeNormal, "Tan", i18n("Tangent"));
-	tmp_pb->addMode(ModeInverse, "Arctan", i18n("Arc tangent"));
+	tmp_pb->addMode(ModeInverse, "Atan", i18n("Arc tangent"));
 	tmp_pb->addMode(ModeHyperbolic, "Tanh", i18n("Hyperbolic tangent"));
 	tmp_pb->addMode(ButtonModeFlags(ModeInverse | ModeHyperbolic),
-			"Artanh", i18n("Hyperbolic area tangent"));
+			"Atanh", i18n("Inverse hyperbolic tangent"));
 	tmp_pb->setAccel(Key_T);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
