@@ -169,11 +169,11 @@ by pressing F2 to switch into trigonometric mode.
 
 <tag/Log/ Compute the Log base 10
 
-<tag/INV Log/ Compute the 10 to the power of x
+<tag/INV Log/ Compute 10 to the power of x.
 
 <tag/Ln/ Compute the natural logarithm. That is the log with base e.
 
-<tag/INV Ln/ Compute the natural logarithm. That is the log with base e.
+<tag/INV Ln/ Compute e to the power of x.
 
 </descrip>
 
