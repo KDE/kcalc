@@ -405,7 +405,7 @@ void QtCalculator::EnterDigit(int data)
 void QtCalculator::SubtractDigit()
 {
 	// This function could be better, possibly, but am I glad to see it!
-	if (DISPLAY_AMOUNT != 0)
+	if (DISPLAY_AMOUNT != 0 || decimal_point!=0)
 	{
                 if (current_base == NB_DECIMAL && (DISPLAY_AMOUNT != floor(DISPLAY_AMOUNT)))
                 {
