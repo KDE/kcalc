@@ -1029,6 +1029,11 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 		break;
 	}
     }
+    
+    if (e->state() & Keypad)
+    {
+	NumButtonGroup->find(e->text().toInt())->animateClick();
+    }
 }
 
 
