@@ -147,7 +147,7 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
   stylegroup->setGeometry(20,190,170,60);
   stylegroup->setFrameStyle(QFrame::NoFrame);
 
-  trigstyle = new QRadioButton(i18n("Trignometry Mode"),stylegroup,"trigstyle");
+  trigstyle = new QRadioButton(i18n("Trigonometrical Mode"),stylegroup,"trigstyle");
   trigstyle->move(10,15);
   trigstyle->adjustSize();
   trigstyle->setChecked(defst->style == 0);
