@@ -30,8 +30,10 @@ install-data-local:
 uninstall-local:
 	rm -f $(MINIDIR)/kcalc.xpm
 
-messages:
 
+messages:
+	@XGETTEXT@ -C -ki18n *.cpp -x../../kdelibs/po/kde.pot && mv messages.po ../po/kcalc.pot
+	
 kcalc.cpp:kcalc.moc
 kcalc.moc: kcalc.h
 	$(MOC) kcalc.h -o kcalc.moc

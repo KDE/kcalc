@@ -25,9 +25,10 @@
 
  */
 
+#include <kapp.h>
+#include <klocale.h>
 
 #include <kmsgbox.h>
-
 #include "configdlg.h"
 #include "configdlg.moc"
 
@@ -44,12 +45,12 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
 
   box = new QGroupBox(this, "box");
   box->setGeometry(10,10,320,260);
-  box->setTitle("Defaults");
+  box->setTitle(i18n("Defaults"));
 
 
   label1 = new QLabel(this);
   label1->setGeometry(30,40,135,25);
-  label1->setText("Foreground Color:");
+  label1->setText(i18n("Foreground Color:"));
 
 
   qframe1 = new QFrame(this);
@@ -60,13 +61,13 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
 
   button1 = new QPushButton(this);
   button1->setGeometry(205,40,100,25);
-  button1->setText("Change");
+  button1->setText(i18n("Change"));
 
   connect(button1,SIGNAL(clicked()),this,SLOT(set_fore_color()));
 
   label2 = new QLabel(this);
   label2->setGeometry(30,75,135,25);
-  label2->setText("Background Color:");
+  label2->setText(i18n("Background Color:"));
 
 
   qframe2 = new QFrame(this);
@@ -76,14 +77,14 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
 
   button2 = new QPushButton(this);
   button2->setGeometry(205,75,100,25);
-  button2->setText("Change");
+  button2->setText(i18n("Change"));
 
   connect(button2,SIGNAL(clicked()),this,SLOT(set_background_color()));
 
 
   label5 = new QLabel(this);
   label5->setGeometry(30,115,100,25);
-  label5->setText("Precision:");
+  label5->setText(i18n("Precision:"));
 
   int maxprec;
 #ifdef HAVE_FABSL 
@@ -104,7 +105,7 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
 
   cb = new QCheckBox(this);
   cb->setGeometry(30,145,130,25);
-  cb->setText("Set Fixed Precision at:");
+  cb->setText(i18n("Set Fixed Precision at:"));
   if(defst->fixed)
     cb->setChecked(true);
 
@@ -127,13 +128,13 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
   
   button3 = new QPushButton(this);
   button3->setGeometry(205,225,100,25);
-  button3->setText("Help");
+  button3->setText(i18n("Help"));
 
   connect(button3,SIGNAL(clicked()),this,SLOT(help()));
 
   cb2 = new QCheckBox(this);
   cb2->setGeometry(30,170,130,25);
-  cb2->setText("Beep on Error");
+  cb2->setText(i18n("Beep on Error"));
   if(defst->beep)
     cb2->setChecked(true);
 
@@ -141,12 +142,12 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
   stylegroup->setGeometry(20,190,170,60);
   stylegroup->setFrameStyle(QFrame::NoFrame);
 
-  trigstyle = new QRadioButton("Trigonometry Mode",stylegroup,"trigstyle");
+  trigstyle = new QRadioButton(i18n("Trigonometry Mode"),stylegroup,"trigstyle");
   trigstyle->move(10,15);
   trigstyle->adjustSize();
   trigstyle->setChecked(defst->style == 0);
 
-  statstyle = new QRadioButton("Statistical Mode",stylegroup,"Stats");
+  statstyle = new QRadioButton(i18n("Statistical Mode"),stylegroup,"Stats");
   statstyle->move(10,40);
   statstyle->adjustSize();
   statstyle->setChecked(defst->style ==1);

@@ -25,6 +25,8 @@
 #include <assert.h>
 #include <stdio.h>
 
+#include <kapp.h>
+#include <klocale.h>
 
 #include "kcalc.h"
 #include "configdlg.h"
@@ -87,7 +89,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
   pb->setText( "kCalc" );
   pb->setGeometry(myxmargin,myymargin, helpbuttonwidth,helpbuttonheight );
   pb->setFont( QFont("times",12,QFont::Bold,FALSE) );   
-  QToolTip::add( pb, "KCalc Setup/Help" );
+  QToolTip::add( pb, i18n("KCalc Setup/Help") );
 
   connect( pb, SIGNAL(clicked()), SLOT(configclicked()) );
 
@@ -140,7 +142,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
   QButtonGroup *angle_group = new QButtonGroup( this, "AngleButtons" );
   angle_group->setFont(buttonfont);
   
-  angle_group->setTitle( "Angle" );
+  angle_group->setTitle(i18n( "Angle") );
   
   anglebutton[0] = new QRadioButton( angle_group );
   anglebutton[0]->setText( "&Deg" )   ;
@@ -180,7 +182,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
     QButtonGroup *base_group = new QButtonGroup( this, "BaseButtons" );
     base_group->setFont(buttonfont);
     
-    base_group->setTitle( "Base" );
+    base_group->setTitle( i18n("Base") );
        
     basebutton[0] = new QRadioButton( base_group );
     basebutton[0]->setText( "&Hex" );
@@ -1529,9 +1531,9 @@ void QtCalculator::configclicked(){
 
    labelstring +=
 #ifdef HAVE_FABSL 
-		 "Base type: long double\n";
+		i18n( "Base type: long double\n");
 #else 
-		 "Base type: double\n";
+		i18n( "Base type: double\n");
 #endif 
 
   label->setAlignment(AlignLeft|WordBreak|ExpandTabs);
@@ -1562,9 +1564,9 @@ void QtCalculator::configclicked(){
   FontDlg* fontdlg;
   fontdlg = new FontDlg(tabdialog,"fontdlg",mykapp,&newdefstruct);
 
-  tabdialog->addTab(configdlg,"Defaults");
-  tabdialog->addTab(fontdlg,"Display Font");
-  tabdialog->addTab(about,"About");
+  tabdialog->addTab(configdlg,i18n("Defaults"));
+  tabdialog->addTab(fontdlg,i18n("Display Font"));
+  tabdialog->addTab(about,i18n("About"));
 
 
   if(tabdialog->exec() == QDialog::Accepted){

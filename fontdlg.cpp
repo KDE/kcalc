@@ -26,7 +26,8 @@
  */
 
 #include <kfontdialog.h>
-
+#include <kapp.h>
+#include <klocale.h>
 #include "fontdlg.h"
 #include "fontdlg.moc"
 
@@ -40,16 +41,16 @@ FontDlg::FontDlg(QWidget *parent, const char *name,
 
   box = new QGroupBox(this, "box");
   box->setGeometry(10,10,320,260);
-  box->setTitle("Set Default Font");
+  box->setTitle(i18n("Set Default Font"));
 
   button = new QPushButton(this);
   button->setGeometry(205,225,100,25);
-  button->setText("Change");
+  button->setText(i18n("Change"));
   connect(button,SIGNAL(clicked()),this,SLOT(setFont()));
 
   familylabel = new QLabel(this);
   familylabel->setGeometry(30,40,135,25);
-  familylabel->setText("Family:");
+  familylabel->setText(i18n("Family:"));
 
   familylabeldisp = new QLabel(this);
   familylabeldisp->setGeometry(130,40,150,23);	
@@ -59,7 +60,7 @@ FontDlg::FontDlg(QWidget *parent, const char *name,
 
   sizelabel = new QLabel(this);
   sizelabel->setGeometry(30,75,100,25);
-  sizelabel->setText("Point Size:");
+  sizelabel->setText(i18n("Point Size:"));
 
   sizelabeldisp = new QLabel(this);
   sizelabeldisp->setGeometry(130,75,60,23);	
@@ -72,7 +73,7 @@ FontDlg::FontDlg(QWidget *parent, const char *name,
 
   stylelabel = new QLabel(this);
   stylelabel->setGeometry(30,110,80,25);
-  stylelabel->setText("Style:");
+  stylelabel->setText(i18n("Style:"));
 
 
   stylelabeldisp = new QLabel(this);
@@ -81,13 +82,13 @@ FontDlg::FontDlg(QWidget *parent, const char *name,
 //  stylelabeldisp->setBackgroundColor(white);
 
   if(defst->font.italic())
-    stylelabeldisp->setText("Italic");
+    stylelabeldisp->setText(i18n("Italic"));
   else
-    stylelabeldisp->setText("Roman");
+    stylelabeldisp->setText(i18n("Roman"));
 
   weightlabel = new QLabel(this);
   weightlabel->setGeometry(30,145,80,25);
-  weightlabel->setText("Weight:");
+  weightlabel->setText(i18n("Weight:"));
 
 
 
@@ -97,9 +98,9 @@ FontDlg::FontDlg(QWidget *parent, const char *name,
 //  weightlabeldisp->setBackgroundColor(white);
 
   if(defst->font.bold())
-    weightlabeldisp->setText("Bold");
+    weightlabeldisp->setText(i18n("Bold"));
   else
-    weightlabeldisp->setText("Normal");
+    weightlabeldisp->setText(i18n("Normal"));
 
   connect(parent,SIGNAL(applyButtonPressed()),SLOT(okButton()));
 
@@ -130,14 +131,14 @@ void FontDlg::setFont(){
   familylabeldisp->setText(defst->font.family());
 
   if(defst->font.bold())
-    weightlabeldisp->setText("Bold");
+    weightlabeldisp->setText(i18n("Bold"));
   else
-    weightlabeldisp->setText("Normal");
+    weightlabeldisp->setText(i18n("Normal"));
 
   if(defst->font.italic())
-    stylelabeldisp->setText("Italic");
+    stylelabeldisp->setText(i18n("Italic"));
   else
-    stylelabeldisp->setText("Roman");
+    stylelabeldisp->setText(i18n("Roman"));
 
   QString size;
   size.setNum(defst->font.pointSize());

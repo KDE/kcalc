@@ -34,7 +34,8 @@
 #include <limits.h>
 #include <math.h>
 #include <signal.h>
-
+#include <kapp.h>
+#include <klocale.h>
 #include "kcalc.h"
 
 
@@ -1121,7 +1122,7 @@ void QtCalculator::EnterLogn()
     if(!inverse){
 
       stats.clearAll();
-      setStatusLabel("Stat Mem cleared");
+      setStatusLabel((char*)i18n("Stat Mem cleared"));
 
     }
     else{
