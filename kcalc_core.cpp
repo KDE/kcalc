@@ -1609,7 +1609,7 @@ int cvb(char *out_str, long amount, int max_digits)
 			lead_one = 1,
 			lead_one_count = 0,
 			work_size = sizeof(amount) * CHAR_BIT;
-	unsigned long	bit_mask = (1 << ((sizeof(amount) * CHAR_BIT) - 1));
+	unsigned long	bit_mask = ((unsigned long) 1 << ((sizeof(amount) * CHAR_BIT) - 1));
 
 	while (bit_mask) {
 
