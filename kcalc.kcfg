@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE kcfg SYSTEM "http://www.kde.org/standards/kcfg/1.0/kcfg.dtd">
+<kcfg>
+  <kcfgfile name="kcalcrc"/>
+  <include>kapplication.h</include>
+  <include>kglobalsettings.h</include>
+  <include>config.h</include>
+  <group name="Colors">
+    <entry name="ForeColor" type="QColor">
+      <desc>The foreground color of the display.</desc>
+      <default>#000000</default>
+    </entry>
+    <entry name="BackColor" type="QColor">
+      <desc>The background color of the display.</desc>
+      <default>#BDFFB4</default>
+    </entry>
+    <entry name="NumberButtonsColor" type="QColor">
+      <desc>The color of number buttons.</desc>
+      <code>QColor defaultButtonColor = kapp->palette().active().background();</code>
+      <default code="true">defaultButtonColor</default>
+    </entry>
+    <entry name="FunctionButtonsColor" type="QColor">
+      <desc>The color of function buttons.</desc>
+      <default code="true">defaultButtonColor</default>
+    </entry>
+    <entry name="StatButtonsColor" type="QColor">
+      <desc>The color of statistical buttons.</desc>
+      <default code="true">defaultButtonColor</default>
+    </entry>
+    <entry name="HexButtonsColor" type="QColor">
+      <desc>The color of hex buttons.</desc>
+      <default code="true">defaultButtonColor</default>
+    </entry>
+    <entry name="MemoryButtonsColor" type="QColor">
+      <desc>The color of memory buttons.</desc>
+      <default code="true">defaultButtonColor</default>
+    </entry>
+    <entry name="OperationButtonsColor" type="QColor">
+      <desc>The color of operation buttons.</desc>
+      <default code="true">defaultButtonColor</default>
+    </entry>
+  </group>
+  <group name="Font">
+    <entry name="Font" type="QFont">
+      <desc>The font to use in the display.</desc>
+      <default code="true">QFont(KGlobalSettings::generalFont().family(), 14, QFont::Bold)</default>
+    </entry>
+  </group>
+  <group name="Precision">
+    <entry name="Precision" type="int" key="precision">
+      <desc>Maximum number of digits.</desc>
+      <code>
+#ifdef HAVE_LONG_DOUBLE
+int maxPrecision = 16;
+#else
+int maxPrecision = 12;
+#endif
+      </code>
+      <default code="true">maxPrecision</default>
+    </entry>
+    <entry name="FixedPrecision" type="int" key="fixedprecision">
+      <desc>Number of fixed decimal places.</desc>
+      <default>2</default>
+    </entry>
+    <entry name="Fixed" type="bool" key="fixed">
+      <desc>Whether to use fixed decimal places.</desc>
+      <default>false</default>
+    </entry>
+  </group>
+  <group name="General">
+    <entry name="Beep" type="bool" key="beep">
+      <desc>Whether to beep on error.</desc>
+      <default>true</default>
+    </entry>
+    <entry name="CaptionResult" type="bool" key="captionresult">
+      <desc>Whether to show the result in the window title.</desc>
+      <default>false</default>
+    </entry>
+  </group>
+</kcfg>

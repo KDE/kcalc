@@ -23,6 +23,7 @@
 
 */
 
+#include "kcalc_settings.h"
 #include "kcalc_core.h"
 #include "dlabel.h"
 #include "dlabel.moc"
@@ -61,26 +62,27 @@ int DispLogic::set_base(int number)
 	return setBase(num_base);
 }
 
-void DispLogic::changeSettings(DefStruct const &kcalcdefaults)
+void DispLogic::changeSettings()
 {
-	ConfigSettings = kcalcdefaults;
 	QPalette pal = palette();
 
-	pal.setColor(QColorGroup::Text, ConfigSettings.forecolor);
-	pal.setColor(QColorGroup::Foreground, ConfigSettings.forecolor);
-	pal.setColor(QColorGroup::Background, ConfigSettings.backcolor);
+	pal.setColor(QColorGroup::Text, KCalcSettings::foreColor());
+	pal.setColor(QColorGroup::Foreground, KCalcSettings::foreColor());
+	pal.setColor(QColorGroup::Background, KCalcSettings::backColor());
 
 	setPalette(pal);
-	setBackgroundColor(ConfigSettings.backcolor);
+	setBackgroundColor(KCalcSettings::backColor());
 
-	setFont(ConfigSettings.font);
+	setFont(KCalcSettings::font());
 
-	setPrecision(ConfigSettings.precision);
+	setPrecision(KCalcSettings::precision());
 
-	if(ConfigSettings.fixed == false) setFixedPrecision(-1);
-	else setFixedPrecision(ConfigSettings.fixedprecision);
+	if(KCalcSettings::fixed() == false)
+		setFixedPrecision(-1);
+	else
+		setFixedPrecision(KCalcSettings::fixedPrecision());
 
-	setBeep(ConfigSettings.beep);
+	setBeep(KCalcSettings::beep());
 }
 
 void DispLogic::update_from_core(CalcEngine const &core,

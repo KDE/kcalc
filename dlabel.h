@@ -31,7 +31,6 @@
 #include <qvaluevector.h>
 #include "kcalcdisplay.h"
 #include "kcalctype.h"
-#include "confvalues.h"
 
 class CalcEngine;
 
@@ -44,7 +43,7 @@ public:
 	DispLogic(QWidget *parent=0, const char *name=0);
 	~DispLogic();
 
-	void changeSettings(DefStruct const &kcalcdefaults);
+	void changeSettings();
 	void EnterDigit(int data);
 	bool history_next(void);
 	bool history_prev(void);
@@ -53,8 +52,6 @@ public:
 			      bool store_result_in_history = false);
 
 private:
-	DefStruct ConfigSettings;
-
 	QValueVector<CALCAMNT> _history_list;
 	int _history_index;
 

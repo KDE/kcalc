@@ -39,8 +39,8 @@
 #include <kaboutdata.h>
 #include <kaccel.h>
 #include <kaction.h>
-#include <kautoconfigdialog.h>
 #include <kapplication.h>
+#include <kautoconfigdialog.h>
 #include <kcmdlineargs.h>
 #include <kcolordrag.h>
 #include <kconfig.h>
@@ -62,6 +62,8 @@
 #include "version.h"
 #include "general.h"
 #include "colors.h"
+
+#include "kcalc_settings.h"
 
 const CALCAMNT KCalculator::pi = (ASIN(1L) * 2L);
 
@@ -88,8 +90,6 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	/* central widget to contain all the elements */
 	QWidget *central = new QWidget(this);
 	setCentralWidget(central);
-
-	loadSettings();
 
 	// Detect color change
 	connect(kapp,SIGNAL(kdisplayPaletteChanged()), this, SLOT(set_colors()));
@@ -551,11 +551,11 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 
 	set_colors();
 	// Show the result in the app's caption in taskbar (wishlist - bug #52858)
-	if (kcalcdefaults.capres == true)
+	if (KCalcSettings::captionResult() == true)
 		connect(calc_display,
 			SIGNAL(changedText(const QString &)),
 			SLOT(setCaption(const QString &)));
-	calc_display->changeSettings(kcalcdefaults);
+	calc_display->changeSettings();
 	set_precision();
 
 	basebutton[1]->animateClick();
@@ -1399,7 +1399,7 @@ void KCalculator::showSettings()
 		return;
   
 	// Create a new dialog with the same name as the above checking code.
-	KAutoConfigDialog *dialog = new KAutoConfigDialog(this, "settings");
+	KAutoConfigDialog *dialog = new KAutoConfigDialog(this, "settings", KDialogBase::IconList, KCalcSettings::self());
   
 	// Add the general page.  Store the settings in the General group and
 	// use the icon package_settings.
@@ -1409,33 +1409,26 @@ void KCalculator::showSettings()
 	#else
 	int maxprec = 12 ;
 	#endif
-	general->precision->setMaxValue(maxprec);
+	general->kcfg_Precision->setMaxValue(maxprec);
 	dialog->addPage(general, i18n("General"),
 			"General", "package_settings", i18n("General Settings"));
 
-	QWidget *font = new QWidget(0, "Font");
+	QWidget *font = new QWidget();
 	QVBoxLayout *topLayout = new QVBoxLayout(font, 0, KDialog::spacingHint());
 	KFontChooser *mFontChooser = 
-		new KFontChooser(font, "Font", false, QStringList(), false, 6);
+		new KFontChooser(font, "kcfg_Font", false, QStringList(), false, 6);
 	QFont tmpFont(KGlobalSettings::generalFont().family() ,14 ,QFont::Bold);
 	mFontChooser->setFont(tmpFont);
 	topLayout->addWidget(mFontChooser);
 	dialog->addPage(font, i18n("Font"), "Font", "fonts", i18n("Select Display Font"));
  
 	Colors *color = new Colors(0, "Color");
-	// This is done at run time sense it uses a system color
-	QColor defaultButtonColor = palette().active().background();
-	color->FunctionButtonsColor->setColor(defaultButtonColor);
-	color->StatButtonsColor->setColor(defaultButtonColor);
-	color->HexButtonsColor->setColor(defaultButtonColor);
-	color->NumberButtonsColor->setColor(defaultButtonColor);
-	color->MemoryButtonsColor->setColor(defaultButtonColor);
-	color->OperationButtonsColor->setColor(defaultButtonColor);
+
 	dialog->addPage(color, i18n("Colors"),
 			"Colors", "colors", i18n("Button & Display Colors"));
  
 	// When the user clicks OK or Apply we want to update our settings.
-	connect(dialog, SIGNAL(settingsChanged()), this, SLOT(loadSettings()));
+	connect(dialog, SIGNAL(settingsChanged()), this, SLOT(updateSettings()));
 	
 	// Display the dialog.
 	dialog->show();
@@ -1535,67 +1528,24 @@ void KCalculator::RefreshCalculator()
 	calc_display->Reset();
 }
 
-void KCalculator::loadSettings()
+void KCalculator::updateSettings()
 {
-	QString str;
-
-	KConfig *config = KGlobal::config();
-	config->setGroup("Font");
-	QFont tmpFont(KGlobalSettings::generalFont().family() ,14 ,QFont::Bold);
-	kcalcdefaults.font = config->readFontEntry("Font",&tmpFont);
-
-	config->setGroup("Colors");
-	QColor tmpC(189, 255, 180);
-	QColor blackC(0, 0, 0);
-	QColor defaultButtonColor = palette().active().background();
-
-	kcalcdefaults.forecolor = config->readColorEntry("ForeColor", &blackC);
-	kcalcdefaults.backcolor = config->readColorEntry("BackColor", &tmpC);
-	kcalcdefaults.numberButtonColor  =
-		config->readColorEntry("NumberButtonsColor",&defaultButtonColor);
-	kcalcdefaults.functionButtonColor =
-		config->readColorEntry("FunctionButtonsColor", &defaultButtonColor);
-	kcalcdefaults.statButtonColor =
-		config->readColorEntry("StatButtonsColor", &defaultButtonColor);
-	kcalcdefaults.hexButtonColor =
-		config->readColorEntry("HexButtonsColor",&defaultButtonColor);
-	kcalcdefaults.memoryButtonColor =
-		config->readColorEntry("MemoryButtonsColor",&defaultButtonColor);
-	kcalcdefaults.operationButtonColor =
-		config->readColorEntry("OperationButtonsColor",&defaultButtonColor);
-
-	config->setGroup("General");
-
-#ifdef HAVE_LONG_DOUBLE
-	kcalcdefaults.precision	= config->readNumEntry("precision", (int)14);
-#else
-	kcalcdefaults.precision	= config->readNumEntry("precision", (int)10);
-#endif
-
-	kcalcdefaults.fixedprecision =
-		config->readNumEntry("fixedprecision", (int)2);
-	kcalcdefaults.fixed = config->readBoolEntry("fixed", false);
-
-	kcalcdefaults.beep	= config->readBoolEntry("beep", true);
-	kcalcdefaults.capres	= config->readBoolEntry("captionresult",false);
-
-	// Don't do the rest if called from the constructor
-	if(!calc_display) return;
-	
 	set_colors();
 	set_precision();
 	// Show the result in the app's caption in taskbar (wishlist - bug #52858)
-	if (kcalcdefaults.capres)
+	disconnect(calc_display, SIGNAL(changedText(const QString &)),
+		   this, 0);
+	if (KCalcSettings::captionResult())
+	{
 		connect(calc_display,
 			SIGNAL(changedText(const QString &)),
 			SLOT(setCaption(const QString &)));
+	}
 	else
 	{
-		disconnect(calc_display, SIGNAL(changedText(const QString &)),
-			   this, 0);
 		setCaption(QString::null);
 	}
-	calc_display->changeSettings(kcalcdefaults);
+	calc_display->changeSettings();
 
 	updateGeometry();
 	resize(minimumSize());
@@ -1627,43 +1577,43 @@ void KCalculator::set_colors()
 {
 	QPushButton *p = NULL;
 
-	calc_display->changeSettings(kcalcdefaults);
+	calc_display->changeSettings();
 
 	QColor bg = palette().active().background();
 
-	QPalette numPal(kcalcdefaults.numberButtonColor, bg);
+	QPalette numPal(KCalcSettings::numberButtonsColor(), bg);
 	for(int i=0; i<10; i++)
 	{
 		(NumButtonGroup->find(i))->setPalette(numPal);
 	}
 
-	QPalette funcPal(kcalcdefaults.functionButtonColor, bg);
+	QPalette funcPal(KCalcSettings::functionButtonsColor(), bg);
 	for(p = mFunctionButtonList.first(); p;
 		p=mFunctionButtonList.next())
 	{
 		p->setPalette(funcPal);
 	}
 
-	QPalette statPal(kcalcdefaults.statButtonColor, bg);
+	QPalette statPal(KCalcSettings::statButtonsColor(), bg);
 	for(p = mStatButtonList.first(); p;
 		p=mStatButtonList.next())
 	{
 		p->setPalette(statPal);
 	}
 
-	QPalette hexPal(kcalcdefaults.hexButtonColor, bg);
+	QPalette hexPal(KCalcSettings::hexButtonsColor(), bg);
 	for(int i=10; i<16; i++)
 	{
 		(NumButtonGroup->find(i))->setPalette(hexPal);
 	}
 
-	QPalette memPal(kcalcdefaults.memoryButtonColor, bg);
+	QPalette memPal(KCalcSettings::memoryButtonsColor(), bg);
 	for(p = mMemButtonList.first(); p; p=mMemButtonList.next())
 	{
 		p->setPalette(memPal);
 	}
 
-	QPalette opPal(kcalcdefaults.operationButtonColor, bg);
+	QPalette opPal(KCalcSettings::operationButtonsColor(), bg);
 	for(p = mOperationButtonList.first(); p;
 	p=mOperationButtonList.next())
 	{
@@ -1679,13 +1629,13 @@ void KCalculator::set_precision()
 
 void KCalculator::history_next()
 {
-	if(!calc_display->history_next()  &&  kcalcdefaults.beep)
+	if(!calc_display->history_next()  &&  KCalcSettings::beep())
 		KNotifyClient::beep();
 }
 
 void KCalculator::history_prev()
 {
-	if(!calc_display->history_prev()  &&  kcalcdefaults.beep)
+	if(!calc_display->history_prev()  &&  KCalcSettings::beep())
 		KNotifyClient::beep();
 }
 

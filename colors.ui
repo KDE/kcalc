@@ -38,7 +38,7 @@
                         <string>&amp;Forground:</string>
                     </property>
                     <property name="buddy" stdset="0">
-                        <cstring>ForeColor</cstring>
+                        <cstring>kcfg_ForeColor</cstring>
                     </property>
                 </widget>
                 <widget class="QLabel" row="1" column="0">
@@ -49,7 +49,7 @@
                         <string>&amp;Background:</string>
                     </property>
                     <property name="buddy" stdset="0">
-                        <cstring>BackColor</cstring>
+                        <cstring>kcfg_BackColor</cstring>
                     </property>
                 </widget>
                 <spacer row="1" column="3">
@@ -71,7 +71,7 @@
                 </spacer>
                 <widget class="KColorButton" row="1" column="2">
                     <property name="name">
-                        <cstring>BackColor</cstring>
+                        <cstring>kcfg_BackColor</cstring>
                     </property>
                     <property name="text">
                         <string></string>
@@ -86,7 +86,7 @@
                 </widget>
                 <widget class="KColorButton" row="0" column="2">
                     <property name="name">
-                        <cstring>ForeColor</cstring>
+                        <cstring>kcfg_ForeColor</cstring>
                     </property>
                     <property name="text">
                         <string></string>
@@ -120,7 +120,7 @@
                         <string>&amp;Functions:</string>
                     </property>
                     <property name="buddy" stdset="0">
-                        <cstring>FunctionButtonsColor</cstring>
+                        <cstring>kcfg_FunctionButtonsColor</cstring>
                     </property>
                 </widget>
                 <widget class="QLabel" row="2" column="0" rowspan="1" colspan="2">
@@ -131,7 +131,7 @@
                         <string>He&amp;xadecimals:</string>
                     </property>
                     <property name="buddy" stdset="0">
-                        <cstring>HexButtonsColor</cstring>
+                        <cstring>kcfg_HexButtonsColor</cstring>
                     </property>
                 </widget>
                 <widget class="QLabel" row="5" column="0" rowspan="1" colspan="2">
@@ -142,12 +142,12 @@
                         <string>O&amp;perations:</string>
                     </property>
                     <property name="buddy" stdset="0">
-                        <cstring>OperationButtonsColor</cstring>
+                        <cstring>kcfg_OperationButtonsColor</cstring>
                     </property>
                 </widget>
                 <widget class="KColorButton" row="0" column="2">
                     <property name="name">
-                        <cstring>FunctionButtonsColor</cstring>
+                        <cstring>kcfg_FunctionButtonsColor</cstring>
                     </property>
                     <property name="text">
                         <string></string>
@@ -155,7 +155,7 @@
                 </widget>
                 <widget class="KColorButton" row="1" column="2">
                     <property name="name">
-                        <cstring>StatButtonsColor</cstring>
+                        <cstring>kcfg_StatButtonsColor</cstring>
                     </property>
                     <property name="text">
                         <string></string>
@@ -163,7 +163,7 @@
                 </widget>
                 <widget class="KColorButton" row="4" column="2">
                     <property name="name">
-                        <cstring>MemoryButtonsColor</cstring>
+                        <cstring>kcfg_MemoryButtonsColor</cstring>
                     </property>
                     <property name="text">
                         <string></string>
@@ -188,7 +188,7 @@
                 </spacer>
                 <widget class="KColorButton" row="5" column="2">
                     <property name="name">
-                        <cstring>OperationButtonsColor</cstring>
+                        <cstring>kcfg_OperationButtonsColor</cstring>
                     </property>
                     <property name="text">
                         <string></string>
@@ -196,7 +196,7 @@
                 </widget>
                 <widget class="KColorButton" row="2" column="2">
                     <property name="name">
-                        <cstring>HexButtonsColor</cstring>
+                        <cstring>kcfg_HexButtonsColor</cstring>
                     </property>
                     <property name="text">
                         <string></string>
@@ -210,12 +210,12 @@
                         <string>&amp;Numbers:</string>
                     </property>
                     <property name="buddy" stdset="0">
-                        <cstring>NumberButtonsColor</cstring>
+                        <cstring>kcfg_NumberButtonsColor</cstring>
                     </property>
                 </widget>
                 <widget class="KColorButton" row="3" column="2">
                     <property name="name">
-                        <cstring>NumberButtonsColor</cstring>
+                        <cstring>kcfg_NumberButtonsColor</cstring>
                     </property>
                     <property name="text">
                         <string></string>
@@ -229,7 +229,7 @@
                         <string>St&amp;atistic functions:</string>
                     </property>
                     <property name="buddy" stdset="0">
-                        <cstring>StatButtonsColor</cstring>
+                        <cstring>kcfg_StatButtonsColor</cstring>
                     </property>
                 </widget>
                 <widget class="QLabel" row="4" column="0" rowspan="1" colspan="2">
@@ -240,7 +240,7 @@
                         <string>&amp;Memory:</string>
                     </property>
                     <property name="buddy" stdset="0">
-                        <cstring>MemoryButtonsColor</cstring>
+                        <cstring>kcfg_MemoryButtonsColor</cstring>
                     </property>
                 </widget>
             </grid>
@@ -265,14 +265,14 @@
     </vbox>
 </widget>
 <tabstops>
-    <tabstop>ForeColor</tabstop>
-    <tabstop>BackColor</tabstop>
-    <tabstop>FunctionButtonsColor</tabstop>
-    <tabstop>StatButtonsColor</tabstop>
-    <tabstop>HexButtonsColor</tabstop>
-    <tabstop>NumberButtonsColor</tabstop>
-    <tabstop>MemoryButtonsColor</tabstop>
-    <tabstop>OperationButtonsColor</tabstop>
+    <tabstop>kcfg_ForeColor</tabstop>
+    <tabstop>kcfg_BackColor</tabstop>
+    <tabstop>kcfg_FunctionButtonsColor</tabstop>
+    <tabstop>kcfg_StatButtonsColor</tabstop>
+    <tabstop>kcfg_HexButtonsColor</tabstop>
+    <tabstop>kcfg_NumberButtonsColor</tabstop>
+    <tabstop>kcfg_MemoryButtonsColor</tabstop>
+    <tabstop>kcfg_OperationButtonsColor</tabstop>
 </tabstops>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

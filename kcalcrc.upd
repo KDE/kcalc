@@ -1,8 +1,4 @@
 Id=KDE_3_2_0
 File=kcalcrc
-Group=Precision,General
-Key=fixed
-Key=fixedprecision
-Key=precision
 Group=General
 Key=style,Statistical

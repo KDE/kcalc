@@ -57,7 +57,6 @@ class DispLogic;
 
 // IMPORTANT this has to come after ../config.h
 #include "kcalc_core.h"
-#include "confvalues.h"
 
 class KCalculator : public KMainWindow
 {
@@ -84,7 +83,7 @@ private:
 			   bool store_result_in_history = false);
 
 protected slots:
-    void loadSettings();
+    void updateSettings();
     void set_colors();
     void EnterEqual();
     void showSettings();
@@ -136,9 +135,6 @@ protected slots:
     void slotStatDataInputclicked(void);
     void slotStatClearDataclicked(void);
     void slotHyptoggled(bool flag);
-
-private:
-     DefStruct kcalcdefaults;
 
 private:
 	bool inverse;
