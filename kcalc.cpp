@@ -80,13 +80,17 @@ extern bool		display_error;
 // Name: QtCalculator(QWidget *parent, const char *name)
 //-------------------------------------------------------------------------
 QtCalculator::QtCalculator(QWidget *parent, const char *name)
-	: KMainWindow(parent, name), inverse(false), hyp_mode(false), eestate(false), 
+	: KMainWindow(parent, name), inverse(false), hyp_mode(false), eestate(false),
 	refresh_display(false), display_size(DEC_SIZE),  angle_mode(ANG_DEGREE),
 	input_limit(0), input_count(0), decimal_point(0), precedence_base(0),
-	current_base(NB_DECIMAL), memory_num(0.0), last_input(DIGIT), 
+	current_base(NB_DECIMAL), memory_num(0.0), last_input(DIGIT),
 	history_index(0), selection_timer(new QTimer), key_pressed(false),
 	mInternalSpacing(4), status_timer(new QTimer), mConfigureDialog(0)
 {
+	/* central widget to contain all the elements */
+	QWidget *central = new QWidget(this);
+	setCentralWidget(central);
+
 	// make sure the display_str is NULL terminated so we can
 	// use library string functions
 	display_str[0] = '\0';
@@ -103,26 +107,26 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	connect(kapp,SIGNAL(kdisplayPaletteChanged()), this, SLOT(set_colors()));
 
 	// Accelerators to exit the program
-	QAccel *accel = new QAccel(this);
+	QAccel *accel = new QAccel(central);
 	accel->connectItem(accel->insertItem(Key_Q+CTRL), this, SLOT(quitCalc()));
 	accel->connectItem(accel->insertItem(Key_X+CTRL), this, SLOT(quitCalc()));
 
 	// Create uppermost bar with buttons and numberdisplay
 	mConfigButton = new KPushButton(KGuiItem( i18n("Config&ure"), "configure" ),
-            this, "configbutton");
+            central, "configbutton");
 	mConfigButton->setAutoDefault(false);
 	QToolTip::add(mConfigButton, i18n("Click to configure KCalc"));
 	connect(mConfigButton, SIGNAL(clicked()), this, SLOT(configclicked()));
 	if (KGlobal::config()->isImmutable())
 	   mConfigButton->hide();
 
-	mHelpMenu = new KHelpMenu(this, KGlobal::instance()->aboutData());
+	mHelpMenu = new KHelpMenu(central, KGlobal::instance()->aboutData());
 
-	mHelpButton = new KPushButton(KStdGuiItem::help(), this);
+	mHelpButton = new KPushButton(KStdGuiItem::help(), central);
 	mHelpButton->setAutoDefault(false);
 	mHelpButton->setPopup(mHelpMenu->menu());
 
-	calc_display = new DLabel(this, "display");
+	calc_display = new DLabel(central, "display");
 	calc_display->setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
 	calc_display->setAlignment(AlignRight | AlignVCenter);
 	calc_display->setFocus();
@@ -131,24 +135,24 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	connect(calc_display, SIGNAL(clicked()), this, SLOT(display_selected()));
 
 	// Status bar contents
-	statusINVLabel = new QLabel( this, "INV" );
+	statusINVLabel = new QLabel( central, "INV" );
 	Q_CHECK_PTR(statusINVLabel);
 	statusINVLabel->setFrameStyle(QFrame::Panel | QFrame::Sunken);
 	statusINVLabel->setAlignment(AlignCenter);
 	statusINVLabel->setText("NORM");
 
-	statusHYPLabel = new QLabel(this, "HYP");
+	statusHYPLabel = new QLabel(central, "HYP");
 	Q_CHECK_PTR(statusHYPLabel);
 	statusHYPLabel->setFrameStyle(QFrame::Panel | QFrame::Sunken);
 	statusHYPLabel->setAlignment(AlignCenter);
 
-	statusERRORLabel = new QLabel(this, "ERROR");
+	statusERRORLabel = new QLabel(central, "ERROR");
 	Q_CHECK_PTR(statusERRORLabel);
 	statusERRORLabel->setFrameStyle(QFrame::Panel | QFrame::Sunken);
 	statusERRORLabel->setAlignment(AlignLeft|AlignVCenter);
 
 	// Create Number Base Button Group
-	QButtonGroup *base_group = new QButtonGroup(4, Horizontal,  this, "base");
+	QButtonGroup *base_group = new QButtonGroup(4, Horizontal,  central, "base");
 	base_group->setTitle(i18n("Base"));
 	connect(base_group, SIGNAL(clicked(int)), SLOT(Base_Selected(int)));
 
@@ -178,7 +182,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 		this, SLOT(Bin_Selected()));
 
 	// create angle button group
-	angle_group = new QButtonGroup(3, Horizontal, this, "angle");
+	angle_group = new QButtonGroup(3, Horizontal, central, "angle");
 	angle_group->setTitle(i18n( "Angle") );
 	connect( angle_group, SIGNAL(clicked(int)), SLOT(angle_selected(int)));
 
@@ -206,8 +210,8 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	//
 
 	// First the widgets that are the parents of the buttons
-	mSmallPage = new QWidget(this);
-	mLargePage = new QWidget(this);
+	mSmallPage = new QWidget(central);
+	mLargePage = new QWidget(central);
 
 	pbhyp = new QPushButton("Hyp", mSmallPage, "hypbutton");
 	pbhyp->setAutoDefault(false);
@@ -492,8 +496,8 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	QHBoxLayout *statusLayout	= new QHBoxLayout();
 
 	// bring them all together
-	QVBoxLayout *mainLayout = new QVBoxLayout(this, mInternalSpacing,
-		mInternalSpacing );
+	QVBoxLayout *mainLayout = new QVBoxLayout(central, mInternalSpacing,
+		mInternalSpacing);
 
 	mainLayout->addLayout(topLayout );
 	mainLayout->addLayout(radioLayout, 1);
@@ -1884,9 +1888,7 @@ void QtCalculator::configclicked()
 		connect( mConfigureDialog, SIGNAL( valueChanged(const DefStruct &)),
 			this, SLOT(configurationChanged(const DefStruct &)));
 	}
-
 	mConfigureDialog->show();
-        mConfigureDialog->setActiveWindow();
         mConfigureDialog->raise();
 }
 
