@@ -1910,7 +1910,7 @@ void QtCalculator::set_style()
 		pbTan->setText( "Tan" );
 		QToolTip::add(pbTan, i18n("Tangent"));
 		pblog->setText( "Log" );
-		QToolTip::add(pblog, i18n("Logarithm to the basis of 10"));
+		QToolTip::add(pblog, i18n("Logarithm to base 10"));
 		pbln ->setText( "Ln"  );
 		QToolTip::add(pbln, i18n("Natural log"));
 		break;
