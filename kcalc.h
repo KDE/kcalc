@@ -380,7 +380,7 @@ private:
 	char display_str[DSP_SIZE + 1];
 	
 private:
-	vector<CALCAMNT> history_list;
+	std::vector<CALCAMNT> history_list;
 	int history_index;
 	
  
