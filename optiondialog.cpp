@@ -82,13 +82,15 @@ void ConfigureDialog::setState(const DefStruct &state)
 	mBeepCheck->setChecked(mState.beep);
 	mCaptionResult->setChecked(mState.capres);
 	mTrigRadio->setChecked(mState.style == 0);
-	mStatRadio->setChecked(mState.style == 1);  
+	mStatRadio->setChecked(mState.style == 1);
 	mFontChooser->setFont(mState.font);
 
     kdDebug() << "mState.font.weight(): " << mState.font.weight() << endl;
     kdDebug() << "mFontChooser->font().weight(): " << mFontChooser->font().weight() << endl;
 
     fixCheckToggled( mState.fixed );
+	enableButton( Apply, false );
+	dataChanged = false;
 }
 
 //-------------------------------------------------------------------------
@@ -122,7 +124,8 @@ DefStruct ConfigureDialog::state()
 //-------------------------------------------------------------------------
 void ConfigureDialog::slotOk()
 {
-	slotApply();
+	if( dataChanged )
+		slotApply();
 	accept();
 }
 
@@ -133,6 +136,8 @@ void ConfigureDialog::slotApply()
 {
 	mState = state();
 	emit valueChanged(mState);
+	enableButton( Apply, false );
+	dataChanged = false;
 }
 
 //-------------------------------------------------------------------------
@@ -146,6 +151,15 @@ void ConfigureDialog::slotCancel()
 }
 
 //-------------------------------------------------------------------------
+// Name: slotChanged()
+//-------------------------------------------------------------------------
+void ConfigureDialog::slotChanged()
+{
+	enableButton( Apply, true );
+	dataChanged = true;
+}
+
+//-------------------------------------------------------------------------
 // Name: setupSettingPage()
 //-------------------------------------------------------------------------
 void ConfigureDialog::setupSettingPage()
@@ -155,13 +169,13 @@ void ConfigureDialog::setupSettingPage()
     if(!page)
         return;
 
-#ifdef HAVE_LONG_DOUBLE 
-    int maxprec = 16;	
-#else 
+#ifdef HAVE_LONG_DOUBLE
+    int maxprec = 16;
+#else
     int maxprec = 12 ;
-#endif 
+#endif
 
-    QVBoxLayout* Form1Layout = new QVBoxLayout( page, 0, spacingHint() ); 
+    QVBoxLayout* Form1Layout = new QVBoxLayout( page, 0, spacingHint() );
 
     QGroupBox* GroupBox2 = new QGroupBox( page, "GroupBox2" );
     GroupBox2->setTitle( i18n( "Precision" ) );
@@ -169,16 +183,18 @@ void ConfigureDialog::setupSettingPage()
     QGridLayout* GroupBox2Layout = new QGridLayout( GroupBox2->layout(),
             3, 4, spacingHint() );
 
-    QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Fixed, 
+    QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Fixed,
             QSizePolicy::Minimum );
     GroupBox2Layout->addItem( spacer, 2, 0 );
 
     mFixSpin = new QSpinBox(0, 10, 1, GroupBox2, "mFixSpin" );
     mFixSpin->setValue( 2 );
+    connect( mFixSpin, SIGNAL( valueChanged ( int ) ), this, SLOT( slotChanged() ) );
 
     GroupBox2Layout->addMultiCellWidget( mFixSpin, 2, 2, 2, 3 );
 
     mPrecSpin = new QSpinBox(0, maxprec, 1, GroupBox2, "mPrecSpin" );
+    connect( mPrecSpin, SIGNAL( valueChanged ( int ) ), this, SLOT( slotChanged() ) );
 
     GroupBox2Layout->addWidget( mPrecSpin, 0, 3 );
 
@@ -189,6 +205,7 @@ void ConfigureDialog::setupSettingPage()
 
     mFixCheck = new QCheckBox( GroupBox2, "mFixCheck" );
     mFixCheck->setText( i18n( "Set &decimal precision" ) );
+    connect( mFixCheck, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
 
     GroupBox2Layout->addMultiCellWidget( mFixCheck, 1, 1, 0, 2 );
 
@@ -196,7 +213,7 @@ void ConfigureDialog::setupSettingPage()
     TextLabel1->setText( i18n( "&Maximum number of digits:" ) );
 
     GroupBox2Layout->addMultiCellWidget( TextLabel1, 0, 0, 0, 2 );
-    QSpacerItem* spacer_2 = new QSpacerItem( 20, 20, QSizePolicy::Expanding, 
+    QSpacerItem* spacer_2 = new QSpacerItem( 20, 20, QSizePolicy::Expanding,
             QSizePolicy::Minimum );
     GroupBox2Layout->addItem( spacer_2, 1, 4 );
     Form1Layout->addWidget( GroupBox2 );
@@ -213,11 +230,13 @@ void ConfigureDialog::setupSettingPage()
     mTrigRadio->setText( i18n( "&Trigonometric" ) );
     mTrigRadio->setChecked( TRUE );
     GroupBox1Layout->addWidget( mTrigRadio );
+    connect( mTrigRadio, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
 
     mStatRadio = new QRadioButton( GroupBox1, "mStatRadio" );
     mStatRadio->setText( i18n( "&Statistical" ) );
     GroupBox1Layout->addWidget( mStatRadio );
     Form1Layout->addWidget( GroupBox1 );
+    connect( mStatRadio, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
 
     QGroupBox* GroupBox3 = new QGroupBox( page, "GroupBox3" );
     GroupBox3->setTitle( i18n( "Misc" ) );
@@ -229,17 +248,19 @@ void ConfigureDialog::setupSettingPage()
 
     mBeepCheck = new QCheckBox( GroupBox3, "mBeepCheck" );
     mBeepCheck->setText( i18n( "&Beep on error" ) );
+    connect( mBeepCheck, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
     GroupBox3Layout->addWidget( mBeepCheck );
     mCaptionResult = new QCheckBox( GroupBox3, "mCaptionResult" );
     mCaptionResult->setText( i18n( "Show &result in window title" ) );
+    connect( mCaptionResult, SIGNAL( toggled( bool ) ), this, SLOT( slotChanged() ) );
     GroupBox3Layout->addWidget( mCaptionResult );
     Form1Layout->addWidget( GroupBox3 );
-    QSpacerItem* spacer_3 = new QSpacerItem( 20, 20, QSizePolicy::Minimum, 
+    QSpacerItem* spacer_3 = new QSpacerItem( 20, 20, QSizePolicy::Minimum,
             QSizePolicy::Expanding );
     Form1Layout->addItem( spacer_3 );
 
     // signals and slots connections
-    connect( mFixCheck, SIGNAL( toggled( bool ) ), 
+    connect( mFixCheck, SIGNAL( toggled( bool ) ),
             SLOT( fixCheckToggled( bool ) ) );
 
     // buddies
@@ -272,12 +293,14 @@ void ConfigureDialog::setupColorPage()
     colorLable->setBuddy(mColorFGround);
     displayGrid->addWidget(colorLable, 0, 0);
     displayGrid->addWidget(mColorFGround, 0, 1);
+    connect( mColorFGround, SIGNAL( changed( const QColor &) ), this, SLOT( slotChanged() ) );
 
     colorLable = new QLabel(i18n("&Background:"), displayGroup);
     mColorBGround = new KColorButton(displayGroup);
     colorLable->setBuddy(mColorBGround);
     displayGrid->addWidget(colorLable, 1, 0);
     displayGrid->addWidget(mColorBGround, 1, 1);
+    connect( mColorBGround, SIGNAL( changed( const QColor &) ), this, SLOT( slotChanged() ) );
 
     QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, 
             QSizePolicy::Minimum );
@@ -295,32 +318,37 @@ void ConfigureDialog::setupColorPage()
     colorLable->setBuddy(mColorFunctions);
     buttonGrid->addWidget(colorLable, 0, 0);
     buttonGrid->addWidget(mColorFunctions, 0, 1);
+    connect( mColorFunctions, SIGNAL( changed( const QColor &) ), this, SLOT( slotChanged() ) );
 
     colorLable = new QLabel(i18n("He&xadecimals:"), buttonGroup);
     mColorHexa = new KColorButton(buttonGroup);
     colorLable->setBuddy(mColorHexa);
     buttonGrid->addWidget(colorLable, 1, 0);
     buttonGrid->addWidget(mColorHexa, 1, 1);
+    connect( mColorHexa, SIGNAL( changed( const QColor &) ), this, SLOT( slotChanged() ) );
 
     colorLable = new QLabel(i18n("&Numbers:"), buttonGroup);
     mColorNumbers = new KColorButton(buttonGroup);
     colorLable->setBuddy(mColorNumbers);
     buttonGrid->addWidget(colorLable, 2, 0);
     buttonGrid->addWidget(mColorNumbers, 2, 1);
+    connect( mColorNumbers, SIGNAL( changed( const QColor &) ), this, SLOT( slotChanged() ) );
 
     colorLable = new QLabel(i18n("&Memory:"), buttonGroup);
     mColorMemory = new KColorButton(buttonGroup);
     colorLable->setBuddy(mColorMemory);
     buttonGrid->addWidget(colorLable, 3, 0);
     buttonGrid->addWidget(mColorMemory, 3, 1);
+    connect( mColorMemory, SIGNAL( changed( const QColor &) ), this, SLOT( slotChanged() ) );
 
     colorLable = new QLabel(i18n("O&perations:"), buttonGroup);
     mColorOperations = new KColorButton(buttonGroup);
     colorLable->setBuddy(mColorOperations);
     buttonGrid->addWidget(colorLable, 4, 0);
     buttonGrid->addWidget(mColorOperations, 4, 1);
+    connect( mColorOperations, SIGNAL( changed( const QColor &) ), this, SLOT( slotChanged() ) );
 
-    spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, 
+    spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding,
             QSizePolicy::Minimum );
     buttonGrid->addItem(spacer, 1, 2);
 
@@ -342,9 +370,9 @@ void ConfigureDialog::setupFontPage()
 	if( topLayout == 0 )
 		return;
 
-	mFontChooser = new KFontChooser(page, "fonts", 
+	mFontChooser = new KFontChooser(page, "fonts",
 		false, QStringList(), false, 6);
-		
+	connect( mFontChooser, SIGNAL( fontSelected( const QFont &) ), this, SLOT( slotChanged() ) );
 	topLayout->addWidget(mFontChooser);
 	topLayout->activate();
 }

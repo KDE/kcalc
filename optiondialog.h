@@ -46,6 +46,7 @@ protected slots:
 	void slotApply(); 
 	void slotCancel(); 
     void fixCheckToggled( bool );
+	void slotChanged();
 
 private:
 	void setupSettingPage();
@@ -62,7 +63,7 @@ private:
 	QRadioButton *mStatRadio;
     QLabel       *TextLabel2;
 	KFontChooser *mFontChooser;
-	KColorButton *mColorFGround; 
+	KColorButton *mColorFGround;
     KColorButton *mColorBGround;
     KColorButton *mColorFunctions;
     KColorButton *mColorHexa;
@@ -71,6 +72,7 @@ private:
     KColorButton *mColorOperations;
 
 	DefStruct    mState;
+	bool dataChanged;
 
 signals:
 	void valueChanged(const DefStruct &state);
