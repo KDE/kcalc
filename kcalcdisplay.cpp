@@ -365,8 +365,11 @@ void KCalcDisplay::setText(QString const &string)
 
 QString KCalcDisplay::text() const
 {
-	if (_num_base != NB_DECIMAL || _error || _groupdigits)
+	if (_num_base != NB_DECIMAL || _error)
 		return QLabel::text();
+
+	return QCString().sprintf(PRINT_LONG_BIG, 40, _display_amount);
+
 	
 	QString unlocalizedString = QLabel::text();
 	
