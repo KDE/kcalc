@@ -176,7 +176,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 		this, SLOT(Bin_Selected()));
 
 	// create angle button group
-	QButtonGroup *angle_group = new QButtonGroup(3, Horizontal, this, "angle");
+	angle_group = new QButtonGroup(3, Horizontal, this, "angle");
 	angle_group->setTitle(i18n( "Angle") );
 	connect( angle_group, SIGNAL(clicked(int)), SLOT(angle_selected(int)));
 
@@ -210,6 +210,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pbhyp->setToggleButton(true);
 
 	pbinv = new QPushButton("Inv", mSmallPage, "InverseButton");
+	QToolTip::add(pbinv, i18n("Inverse mode"));
 	pbinv->setAutoDefault(false);
 	connect(pbinv, SIGNAL(toggled(bool)), SLOT(pbinvtoggled(bool)));
 	pbinv->setToggleButton(true);
@@ -225,6 +226,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pbSin->setToggleButton(true);
 
 	pbplusminus = new QPushButton("+/-", mSmallPage, "plusminusbutton");
+	QToolTip::add(pbplusminus, i18n("Change sign"));
 	pbplusminus->setAutoDefault(false);
 	connect(pbplusminus, SIGNAL(toggled(bool)), SLOT(pbplusminustoggled(bool)));
 	pbplusminus->setToggleButton(true);
@@ -240,6 +242,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pbCos->setToggleButton(true);
 
 	pbreci = new QPushButton("1/x", mSmallPage, "recibutton");
+	QToolTip::add(pbreci, i18n("Reciprocal"));
 	pbreci->setAutoDefault(false);
 	connect(pbreci, SIGNAL(toggled(bool)), SLOT(pbrecitoggled(bool)));
 	pbreci->setToggleButton(true);
@@ -255,6 +258,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pbTan->setToggleButton(true);
 
 	pbfactorial = new QPushButton("x!", mSmallPage, "factorialbutton");
+	QToolTip::add(pbfactorial, i18n("Factorial"));
 	pbfactorial->setAutoDefault(false);
 	connect(pbfactorial, SIGNAL(toggled(bool)),SLOT(pbfactorialtoggled(bool)));
 	pbfactorial->setToggleButton(true);
@@ -270,6 +274,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pblog->setToggleButton(true);
 
 	pbsquare = new QPushButton("x^2", mSmallPage, "squarebutton");
+	QToolTip::add(pbsquare, i18n("Square"));
 	pbsquare->setAutoDefault(false);
 	connect(pbsquare, SIGNAL(toggled(bool)), SLOT(pbsquaretoggled(bool)));
 	pbsquare->setToggleButton(true);
@@ -300,6 +305,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	connect(pbEE, SIGNAL(toggled(bool)), SLOT(EEtoggled(bool)));
 
 	pbMR = new QPushButton("MR", mLargePage, "MRbutton");
+	QToolTip::add(pbMR, i18n("Memory recall"));
 	pbMR->setAutoDefault(false);
 	connect(pbMR, SIGNAL(toggled(bool)), SLOT(pbMRtoggled(bool)));
 	pbMR->setToggleButton(true);
@@ -310,16 +316,19 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pbMplusminus->setToggleButton(true);
 
 	pbMC = new QPushButton("MC", mLargePage, "MCbutton");
+	QToolTip::add(pbMC, i18n("Clear memory"));
 	pbMC->setAutoDefault(false);
 	connect(pbMC, SIGNAL(toggled(bool)), SLOT(pbMCtoggled(bool)));
 	pbMC->setToggleButton(true);
 
 	pbClear = new QPushButton("C", mLargePage, "Clearbutton");
+	QToolTip::add(pbClear, i18n("Clear"));
 	pbClear->setAutoDefault(false);
 	connect(pbClear, SIGNAL(toggled(bool)), SLOT(pbCleartoggled(bool)));
 	pbClear->setToggleButton(true);
 
 	pbAC = new QPushButton("AC", mLargePage, "ACbutton");
+	QToolTip::add(pbAC, i18n("Clear all"));
 	pbAC->setAutoDefault(false);
 	connect(pbAC, SIGNAL(toggled(bool)), SLOT(pbACtoggled(bool)));
 	pbAC->setToggleButton(true);
@@ -350,6 +359,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pbparenclose->setToggleButton(true);
 
 	pband = new QPushButton("And", mLargePage, "andbutton");
+	QToolTip::add(pband, i18n("Bitwise AND"));
 	pband->setAutoDefault(false);
 	connect(pband, SIGNAL(toggled(bool)), SLOT(pbandtoggled(bool)));
 	pband->setToggleButton(true);
@@ -370,16 +380,19 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pb6->setToggleButton(true);
 
 	pbX = new QPushButton("X", mLargePage, "Multiplybutton");
+	QToolTip::add(pbX, i18n("Multiplication"));
 	pbX->setAutoDefault(false);
 	connect(pbX, SIGNAL(toggled(bool)), SLOT(pbXtoggled(bool)));
 	pbX->setToggleButton(true);
 
 	pbdivision = new QPushButton("/", mLargePage, "divisionbutton");
+	QToolTip::add(pbdivision, i18n("Division"));
 	pbdivision->setAutoDefault(false);
 	connect(pbdivision, SIGNAL(toggled(bool)), SLOT(pbdivisiontoggled(bool)));
 	pbdivision->setToggleButton(true);
 
 	pbor = new QPushButton("Or", mLargePage, "orbutton");
+	QToolTip::add(pbor, i18n("Bitwise OR"));
 	pbor->setAutoDefault(false);
 	connect(pbor, SIGNAL(toggled(bool)), SLOT(pbortoggled(bool)));
 	pbor->setToggleButton(true);
@@ -410,11 +423,13 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pbminus->setToggleButton(true);
 
 	pbshift = new QPushButton("Lsh", mLargePage, "shiftbutton");
+	QToolTip::add(pbshift, i18n("Bit shift"));
 	pbshift->setAutoDefault(false);
 	connect(pbshift, SIGNAL(toggled(bool)), SLOT(pbshifttoggled(bool)));
 	pbshift->setToggleButton(true);
 
 	pbperiod = new QPushButton(".", mLargePage, "periodbutton");
+	QToolTip::add(pbperiod, i18n("Decimal point"));
 	pbperiod->setAutoDefault(false);
 	connect(pbperiod, SIGNAL(toggled(bool)), SLOT(pbperiodtoggled(bool)));
 	pbperiod->setToggleButton(true);
@@ -430,16 +445,19 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pbequal->setToggleButton(true);
 
 	pbpercent = new QPushButton("%", mLargePage, "percentbutton");
+	QToolTip::add(pbpercent, i18n("Percent"));
 	pbpercent->setAutoDefault(false);
 	connect(pbpercent, SIGNAL(toggled(bool)), SLOT(pbpercenttoggled(bool)));
 	pbpercent->setToggleButton(true);
 
 	pbnegate = new QPushButton("Cmp", mLargePage, "OneComplementbutton");
+	QToolTip::add(pbnegate, i18n("One's complement"));
 	pbnegate->setAutoDefault(false);
 	connect(pbnegate, SIGNAL(toggled(bool)), SLOT(pbnegatetoggled(bool)));
 	pbnegate->setToggleButton(true);
 
 	pbmod = new QPushButton("Mod", mLargePage, "modbutton");
+	QToolTip::add(pbmod, i18n("Modulo"));
 	pbmod->setAutoDefault(false);
 	connect(pbmod, SIGNAL(toggled(bool)), SLOT(pbmodtoggled(bool)));
 	pbmod->setToggleButton(true);
@@ -1875,25 +1893,38 @@ void QtCalculator::set_style()
 	{
 	case  0:
 		pbhyp->setText( "Hyp" );
+		QToolTip::add(pbhyp, i18n("Hyperbolic mode"));
 		pbSin->setText( "Sin" );
+		QToolTip::add(pbSin, i18n("Sine"));
 		pbCos->setText( "Cos" );
+		QToolTip::add(pbCos, i18n("Cosine"));
 		pbTan->setText( "Tan" );
+		QToolTip::add(pbTan, i18n("Tangent"));
 		pblog->setText( "Log" );
+		QToolTip::remove(pblog);
 		pbln ->setText( "Ln"  );
+		QToolTip::add(pbln, i18n("Natural log"));
 		break;
 
 	case 1:
 		pbhyp->setText( "N" );
 		pbSin->setText( "Mea" );
+		QToolTip::add(pbSin, i18n("Mean"));
 		pbCos->setText( "Std" );
+		QToolTip::add(pbCos, i18n("Standard deviation"));
 		pbTan->setText( "Med" );
+		QToolTip::add(pbTan, i18n("Median"));
 		pblog->setText( "Dat" );
+		QToolTip::add(pblog, i18n("Enter data"));
 		pbln ->setText( "CSt"  );
+		QToolTip::add(pbln, i18n("Clear data store"));
 		break;
 
 	default:
 		break;
 	}
+
+	angle_group->setEnabled(kcalcdefaults.style == 0);
 }
 
 //-------------------------------------------------------------------------

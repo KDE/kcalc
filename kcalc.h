@@ -34,6 +34,7 @@ class QListBox;
 class QTimer;
 class QPushButton;
 class QRadioButton;
+class QButtonGroup;
 class QWidget;
 class QPopupMenu;
 class KHelpMenu;
@@ -448,6 +449,7 @@ private:
     QPushButton* 	pbpercent;    
     QPushButton* 	pbnegate;    
     QPushButton* 	pbmod;    
+    QButtonGroup*	angle_group;
 
     KHelpMenu *mHelpMenu;
 
