@@ -1594,7 +1594,8 @@ int cvb(char *out_str, long amount, int max_digits)
 			if (!lead_zero) 
 				work_str[work_char++] = '0';
 		}
-		bit_mask >>= 1;
+                bit_mask >>= 1;
+                bit_mask &= 0x7fffffff; //Sven: Uwe's Alpha adition
 	}
 	if (!work_char)
 		work_str[work_char++] = '0';
