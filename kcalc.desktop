@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=KCalc
-Name[af]=kcalc
+Name[af]=Kcalc
 Name[be]=Калькулятар
 Name[eo]=Kalkulilo
 Name[lv]=KKalk
@@ -16,7 +16,7 @@ Exec=kcalc  -caption "%c" %i %m
 Icon=kcalc
 DocPath=kcalc/index.html
 GenericName=Scientific Calculator
-GenericName[af]=wetenskaplike sakrekenaar
+GenericName[af]=Wetenskaplike Sakrekenaar
 GenericName[ar]=آلة حاسبة علمية
 GenericName[be]=Навуковы калькулятар
 GenericName[bg]=Научен Калкулатор
