@@ -32,7 +32,7 @@
 <chapter id="introduction">
 <title>Introduction</title>
 
-<para>This is release 0.4 of &Kcalc;. &kcalc; is a simple but hopefully useful scientific
+<para>This is release 0.4 of &kcalc;. &kcalc; is a simple but hopefully useful scientific
 calculator for the KDE project. </para>
 
 <para>&kcalc; offers many more mathematical functions than meet the eye on a first glance.
@@ -203,7 +203,7 @@ by pressing F2 to switch into statistics mode.</para>
 <sect1 id="trigonometricmode">
 <title>Trigonometric Mode</title>
 
-<para>Press F3 to toggle between statistical and trigonometry mode. Alternatively bring up the configuration dialog by pushing the &KCALC; button or
+<para>Press F3 to toggle between statistical and trigonometry mode. Alternatively bring up the configuration dialog by pushing the &kcalc; button or
 by pressing F2 to switch into trigonometric mode.</para>
 
 <para><variablelist>
