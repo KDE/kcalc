@@ -34,7 +34,7 @@
 // I guess it's time to switch to LINUX guys .....
 
 
-#ifdef HAVE_FABSL 
+#ifdef HAVE_LONG_DOUBLE
 
 /* should be detected by autoconf and defined in config.h
    Be carefull when modifying these lines. HAVE_FABSL
@@ -49,7 +49,7 @@
 #endif
 
 
-#ifdef HAVE_FABSL
+#ifdef HAVE_LONG_DOUBLE
 #define FABS(X)   	fabsl(X)
 #define MODF(X,Y)       modfl(X,Y)
 #define FMOD(X,Y)   	fmodl(X,Y)
