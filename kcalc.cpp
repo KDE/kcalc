@@ -163,7 +163,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	setupConstantsKeys(mSmallPage);
 
 	pbPi = new KCalcButton(mSmallPage, "Pi-Button");
-	pbPi->addMode(ModeNormal, QString::fromUtf8("π", -1), // Pi in utf8
+	pbPi->addMode(ModeNormal, QString::fromUtf8("π"), // Pi in utf8
 		      i18n("Pi=3.1415..."));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbPi, SLOT(slotSetAccelDisplayMode(bool)));
@@ -886,7 +886,7 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
 
 	tmp_pb = new KCalcButton(parent, "Stat.NumData-Button");
 	tmp_pb->addMode(ModeNormal, "N", i18n("Number of data entered"));
-	tmp_pb->addMode(ModeInverse, QString::fromUtf8("Σx", -1),
+	tmp_pb->addMode(ModeInverse, QString::fromUtf8("Σx"),
 			i18n("Sum of all data items"));
 	pbStat.insert("NumData", tmp_pb);
         mStatButtonList.append(tmp_pb);
@@ -907,7 +907,7 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
 
 	tmp_pb = new KCalcButton(parent, "Stat.Mean-Button");
 	tmp_pb->addMode(ModeNormal, "Mea", i18n("Mean"));
-	tmp_pb->addMode(ModeInverse, QString::fromUtf8("Σx<sup>2</sup>", -1),
+	tmp_pb->addMode(ModeInverse, QString::fromUtf8("Σx<sup>2</sup>"),
 			i18n("Sum of all data items squared"), true);
 	pbStat.insert("Mean", tmp_pb);
         mStatButtonList.append(tmp_pb);
@@ -2261,9 +2261,10 @@ extern "C" int kdemain(int argc, char *argv[])
 	aboutData.addAuthor("Evan Teran", 0, "emt3734@rit.edu");
 	aboutData.addAuthor("Espen Sand", 0, "espen@kde.org");
 	aboutData.addAuthor("Chris Howells", 0, "howells@kde.org");
-    aboutData.addAuthor("Aaron J. Seigo", 0, "aseigo@olympusproject.org");
-    aboutData.addAuthor("Charles Samuels", 0, "charles@altair.dhs.org");
-    aboutData.addAuthor("Klaus Niederkrüger", 0, "kniederk@math.uni-koeln.de");
+	aboutData.addAuthor("Aaron J. Seigo", 0, "aseigo@olympusproject.org");
+	aboutData.addAuthor("Charles Samuels", 0, "charles@altair.dhs.org");
+	aboutData.addAuthor("Klaus Niederkrüger", 0, "kniederk@math.uni-koeln.de");
+	aboutData.addAuthor("René Mérou", 0, "ochominutosdearco@yahoo.es");
 	KCmdLineArgs::init(argc, argv, &aboutData);
 
 	KApplication app;
