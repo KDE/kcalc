@@ -1799,11 +1799,27 @@ CALCAMNT ExecDivide(CALCAMNT left_op, CALCAMNT right_op)
 CALCAMNT ExecMod(CALCAMNT left_op, CALCAMNT right_op)
 {
   // printf("ExecMod\n");
-	if (right_op == 0) {
-		display_error = 1;
-		return 0L;
-	} else 
-		return FMOD(left_op, right_op);
+  CALCAMNT temp =0.0;
+
+  if (right_op == 0) {
+    display_error = 1;
+    return 0L;
+  } else {
+
+    // x mod y should be the same as x mod -y, thus:
+    right_op = FABS(right_op);
+
+    temp = FMOD(left_op, right_op);
+
+    // let's make sure that -7 mod 3 = 2 and NOT -1. 
+    // In other words we wand x mod 3 to be a _positive_ number
+    // that is 0,1 or 2.
+
+    if( temp < 0 ) temp = right_op + temp;
+    temp = FABS(temp);
+
+    return temp;
+  }
 }
 
 CALCAMNT ExecIntDiv(CALCAMNT left_op, CALCAMNT right_op)
