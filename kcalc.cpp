@@ -472,6 +472,9 @@ void KCalculator::setupStatusbar(void)
 
 	statusBar()->insertFixedItem(" DEG ", 2, true);
 	statusBar()->setItemAlignment(2, AlignCenter);
+
+	statusBar()->insertFixedItem(" \xa0\xa0 ", 3, true); // Memory indicator
+	statusBar()->setItemAlignment(3, AlignCenter);
 }
 
 QWidget* KCalculator::setupNumericKeys(QWidget *parent)
@@ -1282,6 +1285,8 @@ void KCalculator::slotMPlusMinusclicked(void)
 	else 			memory_num -= calc_display->getAmount();
 
 	pbInv->setOn(false);
+	statusBar()->changeItem("M",3);
+
 }
 
 void KCalculator::slotCosclicked(void)
@@ -1393,6 +1398,7 @@ void KCalculator::slotPowerclicked(void)
 void KCalculator::slotMCclicked(void)
 {
 	memory_num		= 0;
+	statusBar()->changeItem(" \xa0\xa0 ",3);
 }
 
 void KCalculator::slotClearclicked(void)
