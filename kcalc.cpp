@@ -781,7 +781,7 @@ void KCalculator::setupTrigKeys(QWidget *parent)
 	QToolTip::add(tmp_pb, i18n("Cosine"));
 	tmp_pb->setAutoDefault(false);
 	accel()->insert("Apply Cosine", i18n("Pressed Cos-Button"),
-			0, Key_C, tmp_pb, SLOT(animateClick()));
+			0, KShortcut(), tmp_pb, SLOT(animateClick()));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotCosclicked(void)));
 
 	tmp_pb = new QPushButton("Tan", parent, "Tan-Button");
@@ -1040,11 +1040,11 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 	case Key_Exclam:
 		pbFactorial->animateClick();
 		break;
+ 	case Key_C:
+		pbTrig["Cosine"]->animateClick(); // trig mode
+		break;
  	case Key_D:
-	  //if(kcalcdefaults.style == 0)
-	  //	(NumButtonGroup->find(0xD))->animateClick(); // trig mode
-	  //	else
-			pbStat["InputData"]->animateClick(); // stat mode
+		pbStat["InputData"]->animateClick(); // stat mode
 		break;
 	case Key_AsciiCircum:
 		pbPower->animateClick();
