@@ -1,0 +1,7 @@
+[KDE Desktop Entry]
+Exec=kcalc
+Icon=kcalc.xpm
+DocPath=kcalc/kcalc.html
+Info=A Scientific Calculator
+Terminal=0
+Type=Application
