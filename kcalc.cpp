@@ -548,7 +548,7 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
         NumButtonGroup->insert(tmp_pb, 9);
 
 	pbEE = new KCalcButton(thisPage, "EE-Button");
-	pbEE->addMode(ModeNormal, "x<small>10</small><sup>y</sup>",
+	pbEE->addMode(ModeNormal, "x<small>" "\xb7" "10</small><sup>y</sup>",
 			i18n("Exponent"), true);
 	pbEE->setAccel(Key_E);
 	connect(this, SIGNAL(switchShowAccels(bool)),
@@ -648,7 +648,7 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 		pbMR, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(pbMR, SIGNAL(clicked(void)), SLOT(slotMRclicked(void)));
 
-	pbMPlusMinus = new KCalcButton("M", mLargePage, "MPlusMinus-Button");
+	pbMPlusMinus = new KCalcButton("M\xb1", mLargePage, "MPlusMinus-Button");
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbMPlusMinus, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(pbMPlusMinus,SIGNAL(clicked(void)),SLOT(slotMPlusMinusclicked(void)));
@@ -684,7 +684,7 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 		pbPercent, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(pbPercent, SIGNAL(clicked(void)), SLOT(slotPercentclicked(void)));
 
-	pbPlusMinus = new KCalcButton("", mLargePage, "Sign-Button", i18n("Change sign"));
+	pbPlusMinus = new KCalcButton("\xb1", mLargePage, "Sign-Button", i18n("Change sign"));
 	pbPlusMinus->setAccel(Key_Backslash);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbPlusMinus, SLOT(slotSetAccelDisplayMode(bool)));
