@@ -75,8 +75,6 @@ private:
 	void keyPressEvent( QKeyEvent *e );
 	void set_precision();
 	void set_style();
-	void history_next();
-	void history_prev();
 
 	void UpdateDisplay(bool get_amount_from_core = false,
 			   bool store_result_in_history = false);
@@ -137,7 +135,10 @@ protected slots:
     void slotStatDataInputclicked(void);
     void slotStatClearDataclicked(void);
     void slotHyptoggled(bool flag);
-    void slotConfigureKeys();
+    void slotConfigureKeys(void);
+    void history_next(void);
+    void history_prev(void);
+
 private:
 	bool inverse;
 	bool hyp_mode;

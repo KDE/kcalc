@@ -169,26 +169,38 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	pbMod = new QPushButton("Mod", mSmallPage, "Modulo-Button");
 	QToolTip::add(pbMod, i18n("Modulo"));
 	pbMod->setAutoDefault(false);
+	accel()->insert("Modulo", i18n("Pressed ':'-Button"),
+			0, Key_Colon, pbMod, SLOT(animateClick()));
 	connect(pbMod, SIGNAL(clicked(void)), SLOT(slotModclicked(void)));
 
 	pbReci = new QPushButton("1/x", mSmallPage, "Reciprocal-Button");
 	QToolTip::add(pbReci, i18n("Reciprocal"));
 	pbReci->setAutoDefault(false);
+	accel()->insert("Reciprocal", i18n("Pressed R-Button"),
+			0, Key_R, pbReci, SLOT(animateClick()));
 	connect(pbReci, SIGNAL(clicked(void)), SLOT(slotReciclicked(void)));
 
 	pbFactorial = new QPushButton("x!", mSmallPage, "Factorial-Button");
 	QToolTip::add(pbFactorial, i18n("Factorial"));
 	pbFactorial->setAutoDefault(false);
+	accel()->insert("Factorial", i18n("Pressed '!'-Button"),
+			0, Key_Exclam, pbFactorial, SLOT(animateClick()));
 	connect(pbFactorial, SIGNAL(clicked(void)),SLOT(slotFactorialclicked(void)));
 
 	pbSquare = new QPushButton("x^2", mSmallPage, "Square-Button");
 	QToolTip::add(pbSquare, i18n("Square"));
 	pbSquare->setAutoDefault(false);
+	accel()->insert("Square", i18n("Pressed '['-Button"),
+			0, Key_BracketLeft, pbSquare, SLOT(animateClick()));
+	accel()->insert("Square", i18n("Pressed '²'-Button"),
+			0, Key_twosuperior, pbSquare, SLOT(animateClick()));
 	connect(pbSquare, SIGNAL(clicked(void)), SLOT(slotSquareclicked(void)));
 
 	pbPower = new QPushButton("x^y", mSmallPage, "Power-Button");
 	pbPower->setAutoDefault(false);
 	QToolTip::add(pbPower, i18n("x to the power of y"));
+	accel()->insert("TakePower", i18n("Pressed '^'-Button"),
+			0, Key_AsciiCircum, pbPower, SLOT(animateClick()));
 	connect(pbPower, SIGNAL(clicked(void)), SLOT(slotPowerclicked(void)));
 
 
@@ -372,6 +384,11 @@ void KCalculator::setupMainActions(void)
 	// file menu
 	KStdAction::quit(this, SLOT(close()), actionCollection());
 
+	// go-menu (somehow history-menu would be better)
+	KStdAction::back(this, SLOT(history_prev()), actionCollection());
+	KStdAction::forward(this, SLOT(history_next()), actionCollection());
+	// <--- this should also be done with disableAction etc.
+
 	// edit menu
 	KStdAction::cut(calc_display, SLOT(slotCut()), actionCollection());
 	KStdAction::copy(calc_display, SLOT(slotCopy()), actionCollection());
@@ -409,6 +426,7 @@ void KCalculator::setupMainActions(void)
 
 	(void) new KAction(i18n("&Hide All"), 0, this, SLOT(slotHideAll()),
 			   actionCollection(), "hide_all");
+
 
 	KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
 
@@ -505,6 +523,8 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	pbEE = new QPushButton("EE", thisPage, "EE-Button");
 	QToolTip::add(pbEE, i18n("Exponent"));
 	pbEE->setAutoDefault(false);
+	accel()->insert("Exponent", i18n("Pressed E-Button"),
+			0, Key_E, pbEE, SLOT(animateClick()));
 	connect(pbEE, SIGNAL(clicked(void)), SLOT(slotEEclicked(void)));
 
 	pbParenClose = new QPushButton(")", mLargePage, "ParenClose-Button");
@@ -516,11 +536,19 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	pbX = new QPushButton("X", thisPage, "Multiply-Button");
 	QToolTip::add(pbX, i18n("Multiplication"));
 	pbX->setAutoDefault(false);
+	accel()->insert("Multiply", i18n("Pressed '*'-Button"), 0,
+			Key_Asterisk, pbX, SLOT(animateClick()));
+	accel()->insert("Multiply", i18n("Pressed '?'-Button"), 0,
+			Key_multiply, pbX, SLOT(animateClick()));
 	connect(pbX, SIGNAL(clicked(void)), SLOT(slotXclicked(void)));
 
 	pbDivision = new QPushButton("/", thisPage, "Division-Button");
 	QToolTip::add(pbDivision, i18n("Division"));
 	pbDivision->setAutoDefault(false);
+	accel()->insert("Division", i18n("Pressed '/'-Button"), 0,
+			Key_Slash, pbDivision, SLOT(animateClick()));
+	accel()->insert("Division", i18n("Pressed '?'-Button"), 0,
+			Key_division, pbDivision, SLOT(animateClick()));
 	connect(pbDivision, SIGNAL(clicked(void)), SLOT(slotDivisionclicked(void)));
 
 	pbPlus = new QPushButton("+", thisPage, "Plus-Button");
@@ -615,6 +643,8 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	pbAC = new QPushButton("AC", mLargePage, "AC-Button");
 	QToolTip::add(pbAC, i18n("Clear all"));
 	pbAC->setAutoDefault(false);
+	accel()->insert("AllClear", i18n("Pressed 'Del'-Button"), 0,
+			Key_Delete, pbAC, SLOT(animateClick()));
 	connect(pbAC, SIGNAL(clicked(void)), SLOT(slotACclicked(void)));
 
 	pbParenOpen = new QPushButton("(", mLargePage, "ParenOpen-Button");
@@ -626,13 +656,16 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	pbPercent = new QPushButton("%", mLargePage, "Percent-Button");
 	QToolTip::add(pbPercent, i18n("Percent"));
 	pbPercent->setAutoDefault(false);
+	accel()->insert("Percent", i18n("Pressed '%'-Button"), 0,
+			Key_Percent, pbPercent, SLOT(animateClick()));
 	connect(pbPercent, SIGNAL(clicked(void)), SLOT(slotPercentclicked(void)));
 
 	pbPlusMinus = new QPushButton("±", mLargePage, "Sign-Button");
 	QToolTip::add(pbPlusMinus, i18n("Change sign"));
 	pbPlusMinus->setAutoDefault(false);
+	accel()->insert("Change Sign", i18n("Pressed '\'-Button"), 0,
+			Key_Backslash, pbPlusMinus, SLOT(animateClick()));
 	connect(pbPlusMinus, SIGNAL(clicked(void)), SLOT(slotPlusMinusclicked(void)));
-
 
 	tmp_pb = new QPushButton("A", mSmallPage, "A-Button");
 	tmp_pb->setAutoDefault(false);
@@ -682,7 +715,7 @@ void KCalculator::setupLogicKeys(QWidget *parent)
 	tmp_pb = new QPushButton("AND", parent, "AND-Button");
 	pbLogic.insert("AND", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Bitwise AND"));
-	accel()->insert("Apply AND", i18n("Pressed Ampersand-Button"),
+	accel()->insert("AND", i18n("Pressed Ampersand-Button"),
 			0, Key_Ampersand, tmp_pb, SLOT(animateClick()));
 	tmp_pb->setAutoDefault(false);
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotANDclicked(void)));
@@ -690,26 +723,30 @@ void KCalculator::setupLogicKeys(QWidget *parent)
 	tmp_pb = new QPushButton("OR", parent, "OR-Button");
 	pbLogic.insert("OR", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Bitwise OR"));
+	accel()->insert("OR", i18n("Pressed O-Button"),
+			0, Key_O, tmp_pb, SLOT(animateClick()));
 	tmp_pb->setAutoDefault(false);
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotORclicked(void)));
 
 	tmp_pb = new QPushButton("XOR", parent, "XOR-Button");
 	pbLogic.insert("XOR", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Bitwise XOR"));
+	accel()->insert("XOR", i18n("Pressed X-Button"),
+			0, Key_X, tmp_pb, SLOT(animateClick()));
 	tmp_pb->setAutoDefault(false);
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotXORclicked(void)));
 
 	tmp_pb = new QPushButton("Cmp", parent, "One-Complement-Button");
 	pbLogic.insert("One-Complement", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("One's complement"));
-	accel()->insert("Apply One-Complement", i18n("Pressed ~-Button"),
+	accel()->insert("One-Complement", i18n("Pressed ~-Button"),
 			0, Key_AsciiTilde, tmp_pb, SLOT(animateClick()));
 	tmp_pb->setAutoDefault(false);
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotNegateclicked(void)));
 
 	tmp_pb = new QPushButton("Lsh", parent, "LeftBitShift-Button");
 	pbLogic.insert("LeftShift", tmp_pb);
-	accel()->insert("Apply left shift", i18n("Pressed '<'-Button"),
+	accel()->insert("LeftBitShift", i18n("Pressed '<'-Button"),
 			0, Key_Less, tmp_pb, SLOT(animateClick()));
 	QToolTip::add(tmp_pb, i18n("Left bit shift"));
 	tmp_pb->setAutoDefault(false);
@@ -718,7 +755,7 @@ void KCalculator::setupLogicKeys(QWidget *parent)
 
 	tmp_pb = new QPushButton("Rsh", parent, "RightBitShift-Button");
 	pbLogic.insert("RightShift", tmp_pb);
-	accel()->insert("Apply right shift", i18n("Pressed '>'-Button"),
+	accel()->insert("RightBitShift", i18n("Pressed '>'-Button"),
 			0, Key_Greater, tmp_pb, SLOT(animateClick()));
 	QToolTip::add(tmp_pb, i18n("Right bit shift"));
 	tmp_pb->setAutoDefault(false);
@@ -736,7 +773,7 @@ void KCalculator::setupLogExpKeys(QWidget *parent)
 	pbExp.insert("LogNatural", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Natural log"));
 	tmp_pb->setAutoDefault(false);
-	accel()->insert("Apply Natural Log", i18n("Pressed Ln-Button"),
+	accel()->insert("Natural Log", i18n("Pressed Ln-Button"),
 			0, Key_N, tmp_pb, SLOT(animateClick()));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotLnclicked(void)));
 
@@ -744,7 +781,7 @@ void KCalculator::setupLogExpKeys(QWidget *parent)
 	pbExp.insert("Log10", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Logarithm to base 10"));
 	tmp_pb->setAutoDefault(false);
-	accel()->insert("Apply Logarithm", i18n("Pressed Log-Button"),
+	accel()->insert("Logarithm", i18n("Pressed Log-Button"),
 			0, Key_L, tmp_pb, SLOT(animateClick()));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotLogclicked(void)));
 }
@@ -768,7 +805,7 @@ void KCalculator::setupTrigKeys(QWidget *parent)
 	pbTrig.insert("Sine", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Sine"));
 	tmp_pb->setAutoDefault(false);
-	accel()->insert("Apply Sine", i18n("Pressed Sin-Button"),
+	accel()->insert("Sine", i18n("Pressed Sin-Button"),
 			0, Key_S, tmp_pb, SLOT(animateClick()));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotSinclicked(void)));
 
@@ -776,7 +813,7 @@ void KCalculator::setupTrigKeys(QWidget *parent)
 	pbTrig.insert("Cosine", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Cosine"));
 	tmp_pb->setAutoDefault(false);
-	accel()->insert("Apply Cosine", i18n("Pressed Cos-Button"),
+	accel()->insert("Cosine", i18n("Pressed Cos-Button"),
 			0, Key_C, tmp_pb, SLOT(animateClick()));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotCosclicked(void)));
 
@@ -784,7 +821,7 @@ void KCalculator::setupTrigKeys(QWidget *parent)
 	pbTrig.insert("Tangent", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Tangent"));
 	tmp_pb->setAutoDefault(false);
-	accel()->insert("Apply Tangent", i18n("Pressed Tan-Button"),
+	accel()->insert("Tangent", i18n("Pressed Tan-Button"),
 			0, Key_T, tmp_pb, SLOT(animateClick()));
 	connect(tmp_pb, SIGNAL(clicked(void)),SLOT(slotTanclicked(void)));
 
@@ -990,49 +1027,14 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
     if ( ( e->state() & KeyButtonMask ) == 0 || ( e->state() & ShiftButton ) ) {
 	switch (e->key())
 	{
-	case Key_F2:
-		showSettings();
-		break;
-	case Key_Up:
-		history_prev();
-		break;
-	case Key_Down:
-		history_next();
-		break;
 	case Key_Next:
 		pbAC->animateClick();
 		break;
 	case Key_Prior:
 		pbClear->animateClick();
 		break;
-	case Key_E:
-	  //if (current_base == NB_HEX)
-	  //		(NumButtonGroup->find(0xE))->animateClick();
-			//else
-			pbEE->animateClick();
-		break;
 	case Key_Escape:
 		pbClear->animateClick();
-		break;
-	case Key_Delete:
-		pbAC->animateClick();
-		break;
-	case Key_Backslash:
-		pbPlusMinus->animateClick();
-		break;
-	case Key_Asterisk:
-        case Key_multiply:
-		pbX->animateClick();
-		break;
-	case Key_Slash:
-        case Key_division:
-		pbDivision->animateClick();
-		break;
-	case Key_O:
-		pbOR->animateClick();
-		break;
-	case Key_Exclam:
-		pbFactorial->animateClick();
 		break;
 	case Key_D:
 	  //if(kcalcdefaults.style == 0)
@@ -1040,33 +1042,19 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 	  //	else
 			pbStat["InputData"]->animateClick(); // stat mode
 		break;
-	case Key_AsciiCircum:
-		pbPower->animateClick();
-		break;
-	case Key_Percent:
-		pbPercent->animateClick();
-		break;
-	case Key_Colon:
-		pbMod->animateClick();
-		break;
-	case Key_BracketLeft:
-        case Key_twosuperior:
-		pbSquare->animateClick();
-		break;
 	case Key_Backspace:
 		calc_display->deleteLastDigit();
 		// pbAC->animateClick();
 		break;
-	case Key_R:
-		pbReci->animateClick();
-		break;
 	}
     }
 
+#if 0      // This produces bugs. Some keys activate several buttons.
     if (e->state() & Keypad)
     {
 	NumButtonGroup->find(e->text().toInt())->animateClick();
     }
+#nedif
 }
 
 
@@ -1600,9 +1588,13 @@ void KCalculator::slotTrigshow(bool toggled)
 	if(toggled)
 	{
 	        pbTrig["HypMode"]->show();
+		accel()->setEnabled("Toggle HypMode", true);
 		pbTrig["Sine"]->show();
+		accel()->setEnabled("Sine", true);
 		pbTrig["Cosine"]->show();
+		accel()->setEnabled("Cosine", true);
 		pbTrig["Tangent"]->show();
+		accel()->setEnabled("Tangent", true);
 		pbAngleChoose->show();
 		statusBar()->insertFixedItem(" DEG ", 2, true);
 		statusBar()->setItemAlignment(2, AlignCenter);
@@ -1611,9 +1603,13 @@ void KCalculator::slotTrigshow(bool toggled)
 	else
 	{
 	        pbTrig["HypMode"]->hide();
+		accel()->setEnabled("Toggle HypMode", false);
 		pbTrig["Sine"]->hide();
+		accel()->setEnabled("Sine", false);
 		pbTrig["Cosine"]->hide();
+		accel()->setEnabled("Cosine", false);
 		pbTrig["Tangent"]->hide();
+		accel()->setEnabled("Tangent", false);
 		pbAngleChoose->hide();
 		statusBar()->removeItem(2);
 	}
@@ -1627,12 +1623,16 @@ void KCalculator::slotExpLogshow(bool toggled)
 	if(toggled)
 	{
 		pbExp["Log10"]->show();
+		accel()->setEnabled("Logarithm", true);
 		pbExp["LogNatural"]->show();
+		accel()->setEnabled("Natural Log", true);
 	}
 	else
 	{
 		pbExp["Log10"]->hide();
+		accel()->setEnabled("Logarithm", false);
 		pbExp["LogNatural"]->hide();
+		accel()->setEnabled("Natural Log", false);
 	}
 	adjustSize();
 	setFixedSize(sizeHint());
@@ -1644,11 +1644,17 @@ void KCalculator::slotLogicshow(bool toggled)
 	if(toggled)
 	{
 	        pbLogic["AND"]->show();
+		accel()->setEnabled("AND", true);
 		pbLogic["OR"]->show();
+		accel()->setEnabled("OR", true);
 		pbLogic["XOR"]->show();
+		accel()->setEnabled("XOR", true);
 		pbLogic["One-Complement"]->show();
+		accel()->setEnabled("One-Complement", true);
 		pbLogic["LeftShift"]->show();
+		accel()->setEnabled("LeftBitShift", true);
 		pbLogic["RightShift"]->show();
+		accel()->setEnabled("RightBitShift", true);
 		statusBar()->insertFixedItem(" HEX ", 1, true);
 		statusBar()->setItemAlignment(1, AlignCenter);
 		slotBaseSelected(10);
@@ -1659,11 +1665,17 @@ void KCalculator::slotLogicshow(bool toggled)
 	else
 	{
 	        pbLogic["AND"]->hide();
+		accel()->setEnabled("AND", true);
 		pbLogic["OR"]->hide();
+		accel()->setEnabled("OR", true);
 		pbLogic["XOR"]->hide();
+		accel()->setEnabled("XOR", true);
 		pbLogic["One-Complement"]->hide();
+		accel()->setEnabled("One-Complement", true);
 		pbLogic["LeftShift"]->hide();
+		accel()->setEnabled("LeftBitShift", true);
 		pbLogic["RightShift"]->hide();
+		accel()->setEnabled("RightBitShift", true);
 		// Hide Hex-Buttons, but first switch back to decimal
 		slotBaseSelected(10);
 		pbBaseChoose->hide();
