@@ -1,3 +1,9 @@
+2004-03-19 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Labels like e.g. "x^y" are drawn with QSimpleRichText
+	  Need to center the labels better!!
+	* KCalcButton supports now two different labels, one for normal, one
+	  for inverse mode. Switch between the two happens via a signal.
+	
 2004-03-11 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Moved functions that paint e.g. "x^y" to the KCalcButton-class.
 	

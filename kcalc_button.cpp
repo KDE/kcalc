@@ -20,44 +20,42 @@
 
 */
 
-#include <qpainter.h>
-#include <qpixmap.h>
+#include <qsimplerichtext.h>
 
 #include "qdom.h"
 #include "kcalc_button.h"
 
 
 KCalcButton::KCalcButton(QWidget * parent, const char * name)
-  : KPushButton(parent, name)
+  : KPushButton(parent, name), _inverse_mode(false)
 {
   setAutoDefault(false);
 }
 
 KCalcButton::KCalcButton(const QString &label, QWidget * parent,
 			 const char * name)
-  : KPushButton(label, parent, name), _label(label)
+  : KPushButton(label, parent, name), _inverse_mode(false)
 {
   setAutoDefault(false);
+  setText(label);
 }
 
-void KCalcButton::setExponent(const QString &exponent)
+void KCalcButton::setInverseMode(bool flag)
 {
-  _exponent = exponent;
+  _inverse_mode = flag;
   update();
 }
 
 void KCalcButton::setText(const QString &label)
 {
-  _label = label;
+  _label = "<qt type=\"page\"><center>     " + label + "     </center></qt>";
   KPushButton::setText(_label);
   update();
 }
 
-void KCalcButton::setTextWithExponent(const QString &label,
-				      const QString &exponent)
+void KCalcButton::setInvText(const QString &label)
 {
-  _label = label;
-  _exponent = exponent;
+  _inv_label = "<qt type=\"page\"><center>     " + label + "     </center></qt>";
   KPushButton::setText(_label);
   update();
 }
@@ -67,19 +65,14 @@ void KCalcButton::drawButtonLabel(QPainter *paint)
   if(pixmap()) {
     KPushButton::drawButtonLabel(paint);
     return;
-  }
-
-  // set either standard label or label with exponent
-  if(_exponent.isNull())  {
-    KPushButton::drawButtonLabel(paint);
   } else {
-    QFont fontExponent = font();
-    int fontsizeExponent = fontExponent.pointSize() - 2;
-    fontExponent.setPointSize( fontsizeExponent );
-    fontExponent.setWeight( 0 );
-    paint->drawText( 18, 15, _label );
-    paint->setFont( fontExponent );
-    paint->drawText( 26, 11, _exponent );
+    if (_inverse_mode == false  || _inv_label.isNull()) {
+      QSimpleRichText _text(_label, font());
+      _text.draw(paint, 0, 0, childrenRegion(), colorGroup());
+    } else {
+      QSimpleRichText _text(_inv_label, font());
+      _text.draw(paint, 0, 0, childrenRegion(), colorGroup());
+    }
   }
 }
 

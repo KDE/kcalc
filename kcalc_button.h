@@ -36,18 +36,20 @@ public:
  KCalcButton(QWidget *parent, const char * name = 0); 
  KCalcButton(const QString &label, QWidget *parent, const char * name = 0);
 
- void setExponent(const QString &exponent);
  virtual void setText(const QString &label);
- virtual void setTextWithExponent(const QString &label, const QString &exponent);
+ // set label for inverse mode!!
+ void setInvText(const QString &label);
 
- 
+public slots: 
+  void setInverseMode(bool flag);
+
 protected:
  virtual void drawButtonLabel(QPainter *paint);
 
 private:
- QString _exponent;
+ bool _inverse_mode;
  QString _label;
-
+ QString _inv_label;
 };
 
 

@@ -64,6 +64,9 @@ public:
 	KCalculator(QWidget *parent = 0, const char *name = 0);
 	~KCalculator();
 
+signals:
+	void switchInverse(bool);
+
 private:
 	virtual bool eventFilter( QObject *o, QEvent *e );
 	void updateGeometry();

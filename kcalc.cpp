@@ -197,7 +197,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// pressing the INV Button a sqrt symbol will be drawn on that
 	// button
 	pbSquare = new KCalcButton(mSmallPage, "Square-Button");
-	pbSquare->setTextWithExponent("x", "2");
+	pbSquare->setText("x<sup>2</sup>");
 	QToolTip::add(pbSquare, i18n("Square"));
 	connect(pbSquare, SIGNAL(clicked(void)), SLOT(slotSquareclicked(void)));
 
@@ -205,7 +205,9 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// changeRepresentation() that paints the letters When
 	// pressing the INV Button y^x will be drawn on that button
 	pbPower = new KCalcButton(mSmallPage, "Power-Button");
-	pbPower->setTextWithExponent("x", "y");
+	pbPower->setText("x<sup>y</sup>");
+	pbPower->setInvText("x<sup>1/y</sup>");
+	connect(this, SIGNAL(switchInverse(bool)), pbPower, SLOT(setInverseMode(bool)));
 	pbPower->setAccel(Key_AsciiCircum);
 	QToolTip::add(pbPower, i18n("x to the power of y"));
 	connect(pbPower, SIGNAL(clicked(void)), SLOT(slotPowerclicked(void)));
@@ -724,17 +726,24 @@ void KCalculator::setupLogExpKeys(QWidget *parent)
 
 	KCalcButton *tmp_pb;
 
-	tmp_pb = new KCalcButton("Ln", parent, "Ln-Button");
+	tmp_pb = new KCalcButton(parent, "Ln-Button");
+	tmp_pb->setText("Ln");
+	tmp_pb->setInvText("e<sup> x </sup>");
 	pbExp.insert("LogNatural", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Natural log"));
 	tmp_pb->setAccel(Key_N);
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotLnclicked(void)));
+	connect(this, SIGNAL(switchInverse(bool)), tmp_pb, SLOT(setInverseMode(bool)));
 
-	tmp_pb = new KCalcButton("Log", parent, "Log-Button");
+	tmp_pb = new KCalcButton(parent, "Log-Button");
+	tmp_pb->setText("Log");
+	tmp_pb->setInvText("10<sup> x </sup>");
 	pbExp.insert("Log10", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Logarithm to base 10"));
 	tmp_pb->setAccel(Key_L);
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotLogclicked(void)));
+	connect(this, SIGNAL(switchInverse(bool)), tmp_pb, SLOT(setInverseMode(bool)));
+
 }
 
 void KCalculator::setupTrigKeys(QWidget *parent)
@@ -1079,6 +1088,8 @@ void KCalculator::slotPiclicked(void)
 void KCalculator::slotInvtoggled(bool flag)
 {
 	inverse = flag;
+	
+	emit switchInverse(flag);
 
 	if (inverse)
 	{
@@ -1095,16 +1106,12 @@ void KCalculator::slotInvtoggled(bool flag)
 		buttonpainter.drawLine(35,1, 35, 4);
 		buttonpainter.end();
 		pbSquare->setPixmap( buttonpixmap );
-		// Change the representation of y^x
-		pbPower->setTextWithExponent("x", "1/y");
 	}
 	else
 	{
 		statusBar()->changeItem("NORM", 0);
 		// Change the representation of x^2
-		pbSquare->setTextWithExponent("x", "2");
-		// Change the representation of x^y
-		pbPower->setTextWithExponent("x", "y");
+		pbSquare->setText("x<sup>2</sup>");
 	}
 }
 
