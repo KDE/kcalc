@@ -43,6 +43,7 @@
 extern last_input_type last_input;
 extern item_contents   display_data;
 extern num_base        current_base;
+extern int             display_error;
 KApplication           *mykapp;
 
 QList<CALCAMNT>       temp_stack; 
@@ -1222,11 +1223,13 @@ void QtCalculator::clear_buttons(){
 }
 
 void QtCalculator::EEtoggled(bool myboolean){
-
-  if(myboolean)
-    EE();
-  if(pbEE->isOn() && (!key_pressed))
-    pbEE->setOn(FALSE);
+  if(!display_error) {
+    if(myboolean)
+      EE();
+    if(pbEE->isOn() && (!key_pressed))
+      pbEE->setOn(FALSE);
+  } else
+    QApplication::beep();
 }
 
 void QtCalculator::pbinvtoggled(bool myboolean){
@@ -1329,10 +1332,13 @@ void QtCalculator::pbsquaretoggled(bool myboolean){
     pbsquare->setOn(FALSE);
 }
 void QtCalculator::pbEtoggled(bool myboolean){
-  if(myboolean)
-    buttonE();
-  if(pbE->isOn() && (!key_pressed))
-    pbE->setOn(FALSE);
+  if(!display_error) {
+    if(myboolean)
+      buttonE();
+    if(pbE->isOn() && (!key_pressed))
+      pbE->setOn(FALSE);
+  } else
+    QApplication::beep();
 }
 void QtCalculator::pblntoggled(bool myboolean){
   if(myboolean)
