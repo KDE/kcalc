@@ -1,9 +1,10 @@
 
 bin_PROGRAMS = kcalc
 
-kcalc_SOURCES = kcalc.cpp kcalc_core.cpp configdlg.cpp fontdlg.cpp \
-	dlabel.cpp stats.cpp
-METASOURCES = kcalc.moc configdlg.moc fontdlg.moc dlabel.moc
+kcalc_SOURCES = kcalc.cpp kcalc_core.cpp dlabel.cpp stats.cpp \
+	optiondialog.cpp
+METASOURCES = kcalc.moc configdlg.moc fontdlg.moc dlabel.moc \
+	optiondialog.moc
 
 noinst_HEADERS  = kcalc.h configdlg.h fontdlg.h dlabel.h stats.h kcalctype.h
 

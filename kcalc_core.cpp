@@ -29,16 +29,18 @@
 */
 
 
-#include <stdio.h>
 #include <errno.h>
 #include <limits.h>
 #include <math.h>
 #include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include <kapp.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 
+#include "dlabel.h"
 #include "kcalc.h"
 
 // Undefine HAVE_LONG_DOUBLE for Beta 4 since RedHat 5.0 comes with a borken

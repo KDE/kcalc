@@ -26,35 +26,17 @@
 #ifndef QTCALC_H
 #define QTCALC_H
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <ctype.h>
+class QLabel;
+class QListBox;
+class QTimer;
+class QPushButton;
+class QRadioButton;
+class QWidget;
 
-#include <qlistbox.h>
-#include <qclipboard.h> 
-#include <qlist.h>
-#include <qaccel.h>
-#include <qtabdialog.h>
-#include <qwidget.h>
-#include <qtimer.h>
-#include <qdialog.h>
-#include <qpixmap.h>
-#include <qapplication.h>
-#include <qfont.h>
-#include <qlabel.h>
-#include <qbuttongroup.h>
-#include <qcheckbox.h>
-#include <qframe.h>
-#include <qgroupbox.h>
-#include <qlineedit.h>
-#include <qpushbutton.h>
-#include <qradiobutton.h>
-#include <qtooltip.h>
+class ConfigureDialog;
+class DLabel;
 
-#include <kapp.h>
-
-
-#include "dlabel.h"
+#include <kdialog.h>
 #include "stats.h"
 
 
@@ -68,7 +50,7 @@
 #define STACK_SIZE	100
 #define TEMP_STACK_SIZE 1000 // the number of numbers kept in the temp stack 
                              // which are accessible with the up and down arrow
-                             // key
+                            // key
 
 #define PRECEDENCE_INCR	20
 
@@ -196,17 +178,20 @@ typedef struct _DefStruct{
 }DefStruct;
 
 
-class QtCalculator : public QDialog
+class QtCalculator : public KDialog
 {
     Q_OBJECT
 
 public:
 
     QtCalculator( QWidget *parent=0, const char *name=0 );
+    ~QtCalculator( void );
+
+    void updateGeometry( void );
 
     void keyPressEvent( QKeyEvent *e );    
     void keyReleaseEvent( QKeyEvent *e );
-    void  closeEvent( QCloseEvent *e );
+    void closeEvent( QCloseEvent *e );
     void writeSettings();
     void readSettings();
     void set_precision();
@@ -224,6 +209,7 @@ public:
 public slots:
 
     void helpclicked();
+    void configurationChanged( const DefStruct &state ); 
     void set_colors();
     void display_selected();
     void invertColors();
@@ -353,12 +339,19 @@ public slots:
     void pbhyptoggled(bool myboolean);
     void configclicked();
 
+
+
 public:
 
      DefStruct kcalcdefaults;
  
 private:
-
+    QWidget *mSmallPage;
+    QWidget *mLargePage;
+    
+    QPushButton *mConfigButton;
+    QPushButton *mHelpButton;
+    
     QTimer* selection_timer;
     QLabel* statusINVLabel;
     QLabel* statusHYPLabel;
@@ -416,17 +409,12 @@ private:
     QPushButton* 	pbmod;    
     
     bool		key_pressed;
-    int 		buttonxmargin;
-    int			myxmargin, myymargin, bigbuttonwidth, smallbuttonwidth;
-    int		        bigbuttonheight, smallbuttonheight;
-    int 		anglegroupheight, anglegroupwidth;
-    int			basegroupheight, basegroupwidth;
-    int			helpbuttonwidth, helpbuttonheight;
-    int			displaywidth, displayheight;
-    int 		radiobuttonwidth, radiobuttonheight;
+    int                 mInternalSpacing;
     KStats		stats;
     QListBox            *paper;
     QTimer		*status_timer;
+    ConfigureDialog     *mConfigureDialog;
+
 };
 
 #endif  //QTCLAC_H

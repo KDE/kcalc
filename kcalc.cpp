@@ -23,21 +23,43 @@
 
 #include "../config.h"
 #include <assert.h>
+#include <ctype.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#include <qlayout.h>
+#include <qobjectlist.h>
+
+#include <qaccel.h>
+#include <qbuttongroup.h>
+#include <qcheckbox.h>
+#include <qclipboard.h> 
+#include <qfont.h>
+#include <qgroupbox.h>
+#include <qlabel.h>
+#include <qlist.h>
+#include <qlistbox.h>
+#include <qpixmap.h>
+#include <qpushbutton.h>
+#include <qradiobutton.h>
+#include <qtimer.h>
+#include <qtooltip.h>
+#include <qwidget.h>
 
 #include <kapp.h>
-#include <klocale.h>
+#include <kconfig.h>
 #include <kglobal.h>
 #include <kiconloader.h>
+#include <klocale.h>
 
+#include "dlabel.h"
 #include "kcalc.h"
-#include "configdlg.h"
-#include "fontdlg.h"
+#include "optiondialog.h"
 #include "version.h"
-#include <kconfig.h>
-#include <qlayout.h>
 
-// Undefine HAVE_LONG_DOUBLE for Beta 4 since RedHat 5.0 comes with a borken
+
+// Undefine HAVE_LONG_DOUBLE for Beta 4 since RedHat 5.0 comes with a broken
 // glibc
 
 //#ifdef HAVE_LONG_DOUBLE
@@ -47,25 +69,21 @@
 extern last_input_type last_input;
 extern item_contents   display_data;
 extern num_base        current_base;
-KApplication           *mykapp;
-
 QList<CALCAMNT>       temp_stack; 
 
-// ported to QLayout (mosfet 10/28/99)
-QtCalculator :: QtCalculator( QWidget *parent, const char *name )
-  : QDialog( parent, name )
+//
+// * ported to QLayout (mosfet 10/28/99)
+// 
+// * 1999-10-31 Espen Sand: More modifications. 
+//   All fixed sizes removed.
+//   New config dialog.
+//   To exit: Key_Q+ALT => Key_Q+CTRL,  Key_X+ALT => Key_X+CTRL
+//   Look in updateGeometry() for size settings.
+//
+
+QtCalculator::QtCalculator( QWidget *parent, const char *name )
+  : KDialog( parent, name ), mInternalSpacing(4),mConfigureDialog(0)
 {
-  int u = 0;
-
-  bigbuttonwidth 	= 30;
-  bigbuttonheight 	= 23;
-  smallbuttonwidth 	= 30;
-  smallbuttonheight 	= 20;
-  helpbuttonwidth 	= 100;
-  helpbuttonheight 	= 25;
-  displaywidth 		= 233;
-  displayheight 	= helpbuttonheight;
-
   key_pressed = false;
   selection_timer = new QTimer;
   status_timer = new QTimer;
@@ -75,45 +93,52 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
 
   readSettings();
 
-  //QFont buttonfont( "-misc-fixed-medium-*-semicondensed-*-13-*-*-*-*-*-*-*" );
+  //QFont buttonfont("-misc-fixed-medium-*-semicondensed-*-13-*-*-*-*-*-*-*");
+  //buttonfont.setPointSize(12);
+  //buttonfont.setBold( true );
   QFont buttonfont = font();
-  buttonfont.setPointSize(12);
   buttonfont.setRawMode( true );
+  //printf("1 fontName: %s\n", buttonfont.family().latin1() );
+  //QFontInfo info( buttonfont );
+  //printf("2 fontName: %s\n", info.family().latin1() );
 
-  // Set the window caption/title
+  //
+  // Detect color change
+  //
+  connect(kapp,SIGNAL(kdisplayPaletteChanged()),this,SLOT(set_colors()));
 
-  connect(mykapp,SIGNAL(kdisplayPaletteChanged()),this,SLOT(set_colors()));
+  //
+  // Accelerators to exit the program
+  //
+  QAccel *accel = new QAccel( this );       
+  accel->connectItem( accel->insertItem(Key_Q+CTRL),this,SLOT(quitCalc()) );
+  accel->connectItem( accel->insertItem(Key_X+CTRL),this,SLOT(quitCalc()) );
 
-  setCaption( mykapp->caption() );
+  //
+  // Create uppermost bar with buttons and numberdisplay
+  //
+  mConfigButton = new QPushButton( this, "configbutton" );
+  mConfigButton->setText( "Configuration" );
+  connect( mConfigButton, SIGNAL(clicked()), this, SLOT(configclicked()) );
 
-  // create help button
+  mHelpButton = new QPushButton( this, "helpbutton" );
+  mHelpButton->setText( "?" );
+  connect( mHelpButton, SIGNAL(clicked()), this, SLOT(helpclicked()) );
 
-  QPushButton *pb;
-
-  pb = new QPushButton( this, "helpbutton" );
-  pb->setText( "kCalc" );
-  pb->setMinimumSize(helpbuttonwidth,helpbuttonheight );
-  pb->setFont( QFont("times",12,QFont::Bold,FALSE) );   
-  QToolTip::add( pb, i18n("KCalc Setup/Help") );
-
-  connect( pb, SIGNAL(clicked()), SLOT(configclicked()) );
-
-  // Create the display
-    
   calc_display = new DLabel( this, "display" );
   calc_display->setFrameStyle( QFrame::WinPanel | QFrame::Sunken );
   calc_display->setAlignment( AlignRight|AlignVCenter );
-  calc_display->setMinimumSize(displaywidth ,displayheight );
   calc_display->setFocus();
   calc_display->setFocusPolicy( QWidget::StrongFocus );
-
   connect(calc_display,SIGNAL(clicked()),this,SLOT(display_selected()));
 
+  //
+  // Status bar contents
+  //
   statusINVLabel = new QLabel( this, "INV" );
   CHECK_PTR( statusINVLabel );
   statusINVLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );
   statusINVLabel->setAlignment( AlignCenter );
-  statusINVLabel->setMinimumSize(49, 20);
   statusINVLabel->setText("NORM");
   statusINVLabel->setFont(buttonfont);  
  
@@ -121,574 +146,538 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
   CHECK_PTR( statusHYPLabel );
   statusHYPLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );
   statusHYPLabel->setAlignment( AlignCenter );
-  statusHYPLabel->setMinimumSize(49, 20);
   statusHYPLabel->setFont(buttonfont);  
     
   statusERRORLabel = new QLabel( this, "ERROR" );
   CHECK_PTR( statusERRORLabel );
   statusERRORLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );
   statusERRORLabel->setAlignment( AlignLeft|AlignVCenter );
-  statusERRORLabel->setFont(QFont("Hevetica",12));  
+  statusERRORLabel->setFont(buttonfont);  
 
+  //
   // create angle button group
-  
-  QAccel *accel = new QAccel( this );       
-  accel->connectItem( accel->insertItem(Key_Q+ALT),this,SLOT(quitCalc()) );      
-  accel->connectItem( accel->insertItem(Key_X+ALT),this,SLOT(quitCalc()) );      
-  
-
-  QButtonGroup *angle_group = new QButtonGroup( 3, Horizontal, this,
-                                                "AngleButtons" );
+  //
+  QButtonGroup *angle_group = new QButtonGroup( 3, Horizontal, this, "angle");
   angle_group->setFont(buttonfont);
-  
   angle_group->setTitle(i18n( "Angle") );
+  connect( angle_group, SIGNAL(clicked(int)), SLOT(angle_selected(int)) );
   
   anglebutton[0] = new QRadioButton( angle_group );
-  anglebutton[0]->setText( "&Deg" )   ;
-  anglebutton[0]->setChecked(	TRUE); 
-  accel->connectItem( accel->insertItem(Key_D + ALT), this , 
-			SLOT(Deg_Selected()) );       
+  anglebutton[0]->setText( "&Deg" );
+  anglebutton[0]->setChecked(TRUE); 
+  accel->connectItem(accel->insertItem(Key_D+ALT),this,SLOT(Deg_Selected()));
 
   anglebutton[1] = new QRadioButton( angle_group );
   anglebutton[1]->setText( "&Rad" );
-  accel->connectItem( accel->insertItem(Key_R + ALT), this , 
-			SLOT(Rad_Selected()) );       
+  accel->connectItem(accel->insertItem(Key_R+ALT),this,SLOT(Rad_Selected()));
 
   anglebutton[2] = new QRadioButton( angle_group );
   anglebutton[2]->setText( "&Gra" );
-  accel->connectItem( accel->insertItem(Key_G + ALT), this , 
-			SLOT(Gra_Selected()) );       
-
-  for(u = 0;u <3;u++) anglebutton[u]->setFont(buttonfont);
-  
-  connect( angle_group, SIGNAL(clicked(int)), SLOT(angle_selected(int)) );
-  angle_group->setMinimumSize(angle_group->sizeHint());
+  accel->connectItem(accel->insertItem(Key_G+ALT),this,SLOT(Gra_Selected()));
 
 //////////////////////////////////////////////////////////////////////
 //
 // Create Number Base Button Group
 //
-
-
-
-  QButtonGroup *base_group = new QButtonGroup(4, Horizontal,  this,
-                                              "BaseButtons" );
-    base_group->setFont(buttonfont);
-    
-    base_group->setTitle( i18n("Base") );
+  QButtonGroup *base_group = new QButtonGroup(4, Horizontal,  this, "base");
+  base_group->setFont(buttonfont);
+  base_group->setTitle( i18n("Base") );
+  connect( base_group, SIGNAL(clicked(int)), SLOT(base_selected(int)) );
        
-    basebutton[0] = new QRadioButton( base_group );
-    basebutton[0]->setText( "&Hex" );
-    accel->connectItem( accel->insertItem(Key_H + ALT), this , 
- 		SLOT(Hex_Selected()) );       
-    
-    basebutton[1] = new QRadioButton( base_group );
-    basebutton[1]->setText( "D&ec" );
-    basebutton[1]->setChecked(TRUE);
-    accel->connectItem( accel->insertItem(Key_E + ALT), this , 
-			SLOT(Dec_Selected()) );       
+  basebutton[0] = new QRadioButton( base_group );
+  basebutton[0]->setText( "&Hex" );
+  accel->connectItem(accel->insertItem(Key_H+ALT),this,SLOT(Hex_Selected()));
 
-    basebutton[2] = new QRadioButton( base_group );
-    basebutton[2]->setText( "&Oct" );
-    accel->connectItem( accel->insertItem(Key_O + ALT), this , 
-                        SLOT(Oct_Selected()) );
-   
-    basebutton[3] = new QRadioButton( base_group);
-    basebutton[3]->setText( "&Bin" );
-    accel->connectItem( accel->insertItem(Key_B + ALT), this , 
-			SLOT(Bin_Selected()) );       
-    
-    for(u = 0;u <4;u++) basebutton[u]->setFont(buttonfont);
+  basebutton[1] = new QRadioButton( base_group );
+  basebutton[1]->setText( "D&ec" );
+  basebutton[1]->setChecked(TRUE);
+  accel->connectItem(accel->insertItem(Key_E+ALT),this,SLOT(Dec_Selected()));
 
-    myxmargin = 9;
-    connect( base_group, SIGNAL(clicked(int)), SLOT(base_selected(int)) );
-    base_group->setMinimumSize(base_group->sizeHint());
+  basebutton[2] = new QRadioButton( base_group );
+  basebutton[2]->setText( "&Oct" );
+  accel->connectItem(accel->insertItem(Key_O+ALT),this,SLOT(Oct_Selected()));
+
+  basebutton[3] = new QRadioButton( base_group );
+  basebutton[3]->setText( "&Bin" );
+  accel->connectItem(accel->insertItem(Key_B+ALT),this,SLOT(Bin_Selected()));
 
 ////////////////////////////////////////////////////////////////////////
 //
 //  Create Calculator Buttons
 //    
-    
-    pbhyp = new QPushButton( this, "hypbutton" );
-    pbhyp->setText( "Hyp" );
-    pbhyp->setMinimumSize(smallbuttonwidth, smallbuttonheight);
-    connect( pbhyp, SIGNAL(toggled(bool)), SLOT(pbhyptoggled(bool)));
-    pbhyp->setToggleButton(TRUE);
-    pbhyp->setFont(buttonfont);
 
-    pbinv = new QPushButton( this, "InverseButton" );
-    pbinv->setText( "Inv" );
-    pbinv->setMinimumSize(smallbuttonwidth, smallbuttonheight);
-    connect( pbinv, SIGNAL(toggled(bool)), SLOT(pbinvtoggled(bool)));
-    pbinv->setToggleButton(TRUE);
-    pbinv->setFont(buttonfont);
+  //
+  // First the widgets that are the parents of the buttons
+  //
+  mSmallPage = new QWidget( this );
+  mLargePage = new QWidget( this );
+  
+  mSmallPage->setFont( buttonfont );
+  mLargePage->setFont( buttonfont );
 
-    pbA = new QPushButton( this, "Abutton" );
-    pbA->setText( "A" );
-    pbA->setMinimumSize(smallbuttonwidth, smallbuttonheight);
-    connect( pbA, SIGNAL(toggled(bool)), SLOT(pbAtoggled(bool)));
-    pbA->setToggleButton(TRUE);    
-    pbA->setFont(buttonfont);
 
-    pbSin = new QPushButton( this, "Sinbutton" );
-    pbSin->setText( "Sin" );
-    pbSin->setMinimumSize(smallbuttonwidth, smallbuttonheight);
-    connect( pbSin, SIGNAL(toggled(bool)), SLOT(pbSintoggled(bool)));
-    pbSin->setToggleButton(TRUE);
-    pbSin->setFont(buttonfont);
+  pbhyp = new QPushButton( mSmallPage, "hypbutton" );
+  pbhyp->setText( "Hyp" );
+  connect( pbhyp, SIGNAL(toggled(bool)), SLOT(pbhyptoggled(bool)));
+  pbhyp->setToggleButton(TRUE);
 
+  pbinv = new QPushButton( mSmallPage, "InverseButton" );
+  pbinv->setText( "Inv" );
+  connect( pbinv, SIGNAL(toggled(bool)), SLOT(pbinvtoggled(bool)));
+  pbinv->setToggleButton(TRUE);
+
+  pbA = new QPushButton( mSmallPage, "Abutton" );
+  pbA->setText( "A" );
+  connect( pbA, SIGNAL(toggled(bool)), SLOT(pbAtoggled(bool)));
+  pbA->setToggleButton(TRUE);    
+
+  pbSin = new QPushButton( mSmallPage, "Sinbutton" );
+  pbSin->setText( "Sin" );
+  connect( pbSin, SIGNAL(toggled(bool)), SLOT(pbSintoggled(bool)));
+  pbSin->setToggleButton(TRUE);
      
-    pbplusminus = new QPushButton( this, "plusminusbutton" );
-    pbplusminus->setText( "+/-" );
-    pbplusminus->setMinimumSize(smallbuttonwidth, smallbuttonheight);
-    connect( pbplusminus, SIGNAL(toggled(bool)), SLOT(pbplusminustoggled(bool)));
-    pbplusminus->setToggleButton(TRUE);    
-    pbplusminus->setFont(buttonfont);
+  pbplusminus = new QPushButton( mSmallPage, "plusminusbutton" );
+  pbplusminus->setText( "+/-" );
+  connect(pbplusminus, SIGNAL(toggled(bool)), SLOT(pbplusminustoggled(bool)));
+  pbplusminus->setToggleButton(TRUE);    
 
-    pbB = new QPushButton( this, "Bbutton" );
-    pbB->setText( "B" );
-    pbB->setMinimumSize(smallbuttonwidth, smallbuttonheight);
-    connect( pbB, SIGNAL(toggled(bool)), SLOT(pbBtoggled(bool)));
-    pbB->setToggleButton(TRUE);
-    pbB->setFont(buttonfont);
+  pbB = new QPushButton( mSmallPage, "Bbutton" );
+  pbB->setText( "B" );
+  connect( pbB, SIGNAL(toggled(bool)), SLOT(pbBtoggled(bool)));
+  pbB->setToggleButton(TRUE);
 
+  pbCos = new QPushButton( mSmallPage, "Cosbutton" );
+  pbCos->setText( "Cos" );
+  connect( pbCos, SIGNAL(toggled(bool)), SLOT(pbCostoggled(bool)));
+  pbCos->setToggleButton(TRUE);    
 
-    pbCos = new QPushButton( this, "Cosbutton" );
-    pbCos->setText( "Cos" );
-    pbCos->setMinimumSize(smallbuttonwidth, smallbuttonheight);
-    connect( pbCos, SIGNAL(toggled(bool)), SLOT(pbCostoggled(bool)));
-    pbCos->setToggleButton(TRUE);    
-    pbCos->setFont(buttonfont);
+  pbreci = new QPushButton( mSmallPage, "recibutton" );
+  pbreci->setText( "1/x" );
+  connect( pbreci, SIGNAL(toggled(bool)), SLOT(pbrecitoggled(bool)));
+  pbreci->setToggleButton(TRUE);    
 
+  pbC = new QPushButton( mSmallPage, "Cbutton" );
+  pbC->setText( "C" );
+  connect( pbC, SIGNAL(toggled(bool)), SLOT(pbCtoggled(bool)));
+  pbC->setToggleButton(TRUE);
 
-    pbreci = new QPushButton( this, "recibutton" );
-    pbreci->setText( "1/x" );
-    pbreci->setMinimumSize(smallbuttonwidth, smallbuttonheight);
-    connect( pbreci, SIGNAL(toggled(bool)), SLOT(pbrecitoggled(bool)));
-    pbreci->setToggleButton(TRUE);    
-    pbreci->setFont(buttonfont);
+  pbTan = new QPushButton( mSmallPage, "Tanbutton" );
+  pbTan->setText( "Tan" );
+  pbTan->setToggleButton(TRUE);
 
-    pbC = new QPushButton( this, "Cbutton" );
-    pbC->setText( "C" );
-    pbC->setMinimumSize(smallbuttonwidth, smallbuttonheight);
-    connect( pbC, SIGNAL(toggled(bool)), SLOT(pbCtoggled(bool)));
-    pbC->setToggleButton(TRUE);
-    pbC->setFont(buttonfont);
+  pbfactorial = new QPushButton( mSmallPage, "factorialbutton" );
+  pbfactorial->setText( "x!" );
+  connect(pbfactorial, SIGNAL(toggled(bool)), SLOT(pbfactorialtoggled(bool)));
+  pbfactorial->setToggleButton(TRUE);
 
+  pbD = new QPushButton( mSmallPage, "Dbutton" );
+  pbD->setText( "D" );
+  connect( pbD, SIGNAL(toggled(bool)), SLOT(pbDtoggled(bool)));
+  pbD->setToggleButton(TRUE);
 
-    pbTan = new QPushButton( this, "Tanbutton" );
-    pbTan->setText( "Tan" );
-    pbTan->setMinimumSize(smallbuttonwidth, smallbuttonheight);
-    pbTan->setToggleButton(TRUE);
-    pbTan->setFont(buttonfont);
+  pblog = new QPushButton( mSmallPage, "logbutton" );
+  pblog->setText( "Log" );
+  pblog->setToggleButton(TRUE);
+  
+  pbsquare = new QPushButton( mSmallPage, "squarebutton" );
+  pbsquare->setText( "x^2" );
+  connect( pbsquare, SIGNAL(toggled(bool)), SLOT(pbsquaretoggled(bool)));
+  pbsquare->setToggleButton(TRUE);
 
-    pbfactorial = new QPushButton( this, "factorialbutton" );
-    pbfactorial->setText( "x!" );
-    pbfactorial->setMinimumSize(smallbuttonwidth, smallbuttonheight);
-    connect( pbfactorial, SIGNAL(toggled(bool)), SLOT(pbfactorialtoggled(bool)));
-    pbfactorial->setToggleButton(TRUE);
-    pbfactorial->setFont(buttonfont);
+  pbE = new QPushButton( mSmallPage, "Ebutton" );
+  pbE->setText( "E" );
+  connect( pbE, SIGNAL(toggled(bool)), SLOT(pbEtoggled(bool)));
+  pbE->setToggleButton(TRUE);
 
+  pbln = new QPushButton( mSmallPage, "lnbutton" );
+  pbln->setText( "Ln" );
+  connect( pbln, SIGNAL(toggled(bool)), SLOT(pblntoggled(bool)));
+  pbln->setToggleButton(TRUE);
 
-    pbD = new QPushButton( this, "Dbutton" );
-    pbD->setText( "D" );
-    pbD->setMinimumSize(smallbuttonwidth, smallbuttonheight);
-    connect( pbD, SIGNAL(toggled(bool)), SLOT(pbDtoggled(bool)));
-    pbD->setToggleButton(TRUE);
-    pbD->setFont(buttonfont);
-
-    pblog = new QPushButton( this, "logbutton" );
-    pblog->setText( "Log" );
-    pblog->setMinimumSize(smallbuttonwidth, smallbuttonheight);
-    pblog->setToggleButton(TRUE);
-    pblog->setFont(buttonfont);
-    
-    pbsquare = new QPushButton( this, "squarebutton" );
-    pbsquare->setText( "x^2" );
-    pbsquare->setMinimumSize(smallbuttonwidth, smallbuttonheight);
-    connect( pbsquare, SIGNAL(toggled(bool)), SLOT(pbsquaretoggled(bool)));
-    pbsquare->setToggleButton(TRUE);
-    pbsquare->setFont(buttonfont);
-
-    pbE = new QPushButton( this, "Ebutton" );
-    pbE->setText( "E" );
-    pbE->setMinimumSize(smallbuttonwidth, smallbuttonheight);
-    connect( pbE, SIGNAL(toggled(bool)), SLOT(pbEtoggled(bool)));
-    pbE->setToggleButton(TRUE);
-    pbE->setFont(buttonfont);
-
-    pbln = new QPushButton( this, "lnbutton" );
-    pbln->setText( "Ln" );
-    pbln->setMinimumSize(smallbuttonwidth, smallbuttonheight);
-    connect( pbln, SIGNAL(toggled(bool)), SLOT(pblntoggled(bool)));
-    pbln->setToggleButton(TRUE);
-    pbln->setFont(buttonfont);
-
-    pbpower = new QPushButton( this, "powerbutton" );
-    pbpower->setText( "x^y" );
-    pbpower->setMinimumSize(smallbuttonwidth, smallbuttonheight);
-    connect( pbpower, SIGNAL(toggled(bool)), SLOT(pbpowertoggled(bool)));
-    pbpower->setToggleButton(TRUE);
-    pbpower->setFont(buttonfont);
-
-    pbF = new QPushButton( this, "Fbutton" );
-    pbF->setText( "F" );
-    pbF->setMinimumSize(smallbuttonwidth, smallbuttonheight);
-    connect( pbF, SIGNAL(toggled(bool)), SLOT(pbFtoggled(bool)));
-    pbF->setToggleButton(TRUE);
-    pbF->setFont(buttonfont);
+  pbpower = new QPushButton( mSmallPage, "powerbutton" );
+  pbpower->setText( "x^y" );
+  connect( pbpower, SIGNAL(toggled(bool)), SLOT(pbpowertoggled(bool)));
+  pbpower->setToggleButton(TRUE);
+  
+  pbF = new QPushButton( mSmallPage, "Fbutton" );
+  pbF->setText( "F" );
+  connect( pbF, SIGNAL(toggled(bool)), SLOT(pbFtoggled(bool)));
+  pbF->setToggleButton(TRUE);
 
 /////////////////////////////////////////////////////////////////////
 //   
 //
+  pbEE = new QPushButton( mLargePage, "EEbutton" );
+  pbEE->setText( "EE" );
+  pbEE->setToggleButton(TRUE);
+  connect( pbEE, SIGNAL(toggled(bool)), SLOT(EEtoggled(bool)));
 
+  pbMR = new QPushButton( mLargePage, "MRbutton" );
+  pbMR->setText( "MR" );
+  connect( pbMR, SIGNAL(toggled(bool)), SLOT(pbMRtoggled(bool)));
+  pbMR->setToggleButton(TRUE);
 
-    pbEE = new QPushButton( this, "EEbutton" );
-    pbEE->setText( "EE" );
-    pbEE->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    pbEE->setToggleButton(TRUE);
-    connect( pbEE, SIGNAL(toggled(bool)), SLOT(EEtoggled(bool)));
-    pbEE->setFont(buttonfont);
+  pbMplusminus = new QPushButton( mLargePage, "Mplusminusbutton" );
+  pbMplusminus->setText( "M+-" );
+  connect(pbMplusminus,SIGNAL(toggled(bool)),SLOT(pbMplusminustoggled(bool)));
+  pbMplusminus->setToggleButton(TRUE);
 
-    pbMR = new QPushButton( this, "MRbutton" );
-    pbMR->setText( "MR" );
-    pbMR->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pbMR, SIGNAL(toggled(bool)), SLOT(pbMRtoggled(bool)));
-    pbMR->setToggleButton(TRUE);
-    pbMR->setFont(buttonfont);
+  pbMC = new QPushButton( mLargePage, "MCbutton" );
+  pbMC->setText( "MC" );
+  connect( pbMC, SIGNAL(toggled(bool)), SLOT(pbMCtoggled(bool)));
+  pbMC->setToggleButton(TRUE);
 
-    pbMplusminus = new QPushButton( this, "Mplusminusbutton" );
-    pbMplusminus->setText( "M+-" );
-    pbMplusminus->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pbMplusminus, SIGNAL(toggled(bool)), SLOT(pbMplusminustoggled(bool)));
-    pbMplusminus->setToggleButton(TRUE);
-    pbMplusminus->setFont(buttonfont);
+  pbClear = new QPushButton( mLargePage, "Clearbutton" );
+  pbClear->setText( "C" );
+  connect( pbClear, SIGNAL(toggled(bool)), SLOT(pbCleartoggled(bool)));
+  pbClear->setToggleButton(TRUE);
 
-    pbMC = new QPushButton( this, "MCbutton" );
-    pbMC->setText( "MC" );
-    pbMC->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pbMC, SIGNAL(toggled(bool)), SLOT(pbMCtoggled(bool)));
-    pbMC->setToggleButton(TRUE);
-    pbMC->setFont(buttonfont);
-
-    pbClear = new QPushButton( this, "Clearbutton" );
-    pbClear->setText( "C" );
-    pbClear->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pbClear, SIGNAL(toggled(bool)), SLOT(pbCleartoggled(bool)));
-    pbClear->setToggleButton(TRUE);
-    pbClear->setFont(buttonfont);
-
-    pbAC = new QPushButton( this, "ACbutton" );
-    pbAC->setText( "AC" );
-    pbAC->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pbAC, SIGNAL(toggled(bool)), SLOT(pbACtoggled(bool)));
-    pbAC->setToggleButton(TRUE);
-    pbAC->setFont(buttonfont);
-
+  pbAC = new QPushButton( mLargePage, "ACbutton" );
+  pbAC->setText( "AC" );
+  connect( pbAC, SIGNAL(toggled(bool)), SLOT(pbACtoggled(bool)));
+  pbAC->setToggleButton(TRUE);
+  
 
 //////////////////////////////////////////////////////////////////////
 //
 //
   
 
-    pb7 = new QPushButton( this, "7button" );
-    pb7->setText( "7" );
-    pb7->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pb7, SIGNAL(toggled(bool)), SLOT(pb7toggled(bool)));
-    pb7->setToggleButton(TRUE);
-    pb7->setFont(buttonfont);
+  pb7 = new QPushButton( mLargePage, "7button" );
+  pb7->setText( "7" );
+  connect( pb7, SIGNAL(toggled(bool)), SLOT(pb7toggled(bool)));
+  pb7->setToggleButton(TRUE);
 
-    pb8 = new QPushButton( this, "8button" );
-    pb8->setText( "8" );
-    pb8->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pb8, SIGNAL(toggled(bool)), SLOT(pb8toggled(bool)));
-    pb8->setToggleButton(TRUE);
-    pb8->setFont(buttonfont);
+  pb8 = new QPushButton( mLargePage, "8button" );
+  pb8->setText( "8" );
+  connect( pb8, SIGNAL(toggled(bool)), SLOT(pb8toggled(bool)));
+  pb8->setToggleButton(TRUE);
 
-    pb9 = new QPushButton( this, "9button" );
-    pb9->setText( "9" );
-    pb9->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pb9, SIGNAL(toggled(bool)), SLOT(pb9toggled(bool)));
-    pb9->setToggleButton(TRUE);
-    pb9->setFont(buttonfont);
+  pb9 = new QPushButton( mLargePage, "9button" );
+  pb9->setText( "9" );
+  connect( pb9, SIGNAL(toggled(bool)), SLOT(pb9toggled(bool)));
+  pb9->setToggleButton(TRUE);
 
-    pbparenopen = new QPushButton( this, "parenopenbutton" );
-    pbparenopen->setText( "(" );
-    pbparenopen->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pbparenopen, SIGNAL(toggled(bool)), SLOT(pbparenopentoggled(bool)));
-    pbparenopen->setToggleButton(TRUE);
-    pbparenopen->setFont(buttonfont);
+  pbparenopen = new QPushButton( mLargePage, "parenopenbutton" );
+  pbparenopen->setText( "(" );
+  connect( pbparenopen, SIGNAL(toggled(bool)),SLOT(pbparenopentoggled(bool)));
+  pbparenopen->setToggleButton(TRUE);
 
-    pbparenclose = new QPushButton( this, "parenclosebutton" );
-    pbparenclose->setText( ")" );
-    pbparenclose->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pbparenclose, SIGNAL(toggled(bool)), SLOT(pbparenclosetoggled(bool)));
-    pbparenclose->setToggleButton(TRUE);
-    pbparenclose->setFont(buttonfont);
+  pbparenclose = new QPushButton( mLargePage, "parenclosebutton" );
+  pbparenclose->setText( ")" );
+  connect(pbparenclose,SIGNAL(toggled(bool)),SLOT(pbparenclosetoggled(bool)));
+  pbparenclose->setToggleButton(TRUE);
 
-    pband = new QPushButton( this, "andbutton" );
-    pband->setText( "And" );
-    pband->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pband, SIGNAL(toggled(bool)), SLOT(pbandtoggled(bool)));
-    pband->setToggleButton(TRUE);
-    pband->setFont(buttonfont);
-
+  pband = new QPushButton( mLargePage, "andbutton" );
+  pband->setText( "And" );
+  connect( pband, SIGNAL(toggled(bool)), SLOT(pbandtoggled(bool)));
+  pband->setToggleButton(TRUE);
+    
 //////////////////////////////////////////////////////////////////////
 //
 //
 
+  pb4 = new QPushButton( mLargePage, "4button" );
+  pb4->setText( "4" );
+  connect( pb4, SIGNAL(toggled(bool)), SLOT(pb4toggled(bool)));
+  pb4->setToggleButton(TRUE);
 
-    pb4 = new QPushButton( this, "4button" );
-    pb4->setText( "4" );
-    pb4->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pb4, SIGNAL(toggled(bool)), SLOT(pb4toggled(bool)));
-    pb4->setToggleButton(TRUE);
-    pb4->setFont(buttonfont);
+  pb5 = new QPushButton( mLargePage, "5button" );
+  pb5->setText( "5" );
+  connect( pb5, SIGNAL(toggled(bool)), SLOT(pb5toggled(bool)));
+  pb5->setToggleButton(TRUE);
 
-    pb5 = new QPushButton( this, "5button" );
-    pb5->setText( "5" );
-    pb5->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pb5, SIGNAL(toggled(bool)), SLOT(pb5toggled(bool)));
-    pb5->setToggleButton(TRUE);
-    pb5->setFont(buttonfont);
+  pb6 = new QPushButton( mLargePage, "6button" );
+  pb6->setText( "6" );
+  connect( pb6, SIGNAL(toggled(bool)), SLOT(pb6toggled(bool)));
+  pb6->setToggleButton(TRUE);
 
-    pb6 = new QPushButton( this, "6button" );
-    pb6->setText( "6" );
-    pb6->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pb6, SIGNAL(toggled(bool)), SLOT(pb6toggled(bool)));
-    pb6->setToggleButton(TRUE);
-    pb6->setFont(buttonfont);
-
-    pbX = new QPushButton( this, "Multiplybutton" );
-    pbX->setText( "X" );
-    pbX->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pbX, SIGNAL(toggled(bool)), SLOT(pbXtoggled(bool)));
-    pbX->setToggleButton(TRUE);
-    pbX->setFont(buttonfont);
-
-    pbdivision = new QPushButton( this, "divisionbutton" );
-    pbdivision->setText( "/" );
-    pbdivision->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pbdivision, SIGNAL(toggled(bool)), SLOT(pbdivisiontoggled(bool)));
-    pbdivision->setToggleButton(TRUE);
-    pbdivision->setFont(buttonfont);
-
-    pbor = new QPushButton( this, "orbutton" );
-    pbor->setText( "Or" );
-    pbor->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pbor, SIGNAL(toggled(bool)), SLOT(pbortoggled(bool)));
-    pbor->setToggleButton(TRUE);
-    pbor->setFont(buttonfont);
+  pbX = new QPushButton( mLargePage, "Multiplybutton" );
+  pbX->setText( "X" );
+  connect( pbX, SIGNAL(toggled(bool)), SLOT(pbXtoggled(bool)));
+  pbX->setToggleButton(TRUE);
+  
+  pbdivision = new QPushButton( mLargePage, "divisionbutton" );
+  pbdivision->setText( "/" );
+  connect( pbdivision, SIGNAL(toggled(bool)), SLOT(pbdivisiontoggled(bool)));
+  pbdivision->setToggleButton(TRUE);
+  
+  pbor = new QPushButton( mLargePage, "orbutton" );
+  pbor->setText( "Or" );
+  connect( pbor, SIGNAL(toggled(bool)), SLOT(pbortoggled(bool)));
+  pbor->setToggleButton(TRUE);
 
 /////////////////////////////////////////////////////////////////////////////
 //
 //
 
-
-    pb1 = new QPushButton( this, "1button" );
-    pb1->setText( "1" );
-    pb1->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    //connect( pb1, SIGNAL(clicked()), SLOT(button1()) );    
-    connect( pb1, SIGNAL(toggled(bool)), SLOT(pb1toggled(bool)));
-    pb1->setToggleButton(TRUE);	
-    pb1->setFont(buttonfont);
+  pb1 = new QPushButton( mLargePage, "1button" );
+  pb1->setText( "1" );   
+  connect( pb1, SIGNAL(toggled(bool)), SLOT(pb1toggled(bool)));
+  pb1->setToggleButton(TRUE);	
  
-    pb2 = new QPushButton( this, "2button" );
-    pb2->setText( "2" );
-    pb2->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    
-    connect( pb2, SIGNAL(toggled(bool)), SLOT(pb2toggled(bool)));
-    pb2->setToggleButton(TRUE);		
-    pb2->setFont(buttonfont);
+  pb2 = new QPushButton( mLargePage, "2button" );
+  pb2->setText( "2" );
+  connect( pb2, SIGNAL(toggled(bool)), SLOT(pb2toggled(bool)));
+  pb2->setToggleButton(TRUE);		
+  
+  pb3 = new QPushButton( mLargePage, "3button" );
+  pb3->setText( "3" );
+  connect( pb3, SIGNAL(toggled(bool)), SLOT(pb3toggled(bool)));
+  pb3->setToggleButton(TRUE);
+  
+  pbplus = new QPushButton( mLargePage, "plusbutton" );
+  pbplus->setText( "+" );
+  connect( pbplus, SIGNAL(toggled(bool)), SLOT(pbplustoggled(bool)));
+  pbplus->setToggleButton(TRUE);
+  
+  pbminus = new QPushButton( mLargePage, "minusbutton" );
+  pbminus->setText( "-" );
+  connect( pbminus, SIGNAL(toggled(bool)), SLOT(pbminustoggled(bool)));
+  pbminus->setToggleButton(TRUE);
 
-    pb3 = new QPushButton( this, "3button" );
-    pb3->setText( "3" );
-    pb3->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pb3, SIGNAL(toggled(bool)), SLOT(pb3toggled(bool)));
-    pb3->setToggleButton(TRUE);
-    pb3->setFont(buttonfont);
-
-    pbplus = new QPushButton( this, "plusbutton" );
-    pbplus->setText( "+" );
-    pbplus->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pbplus, SIGNAL(toggled(bool)), SLOT(pbplustoggled(bool)));
-    pbplus->setToggleButton(TRUE);
-    pbplus->setFont(buttonfont);
-
-    
-    pbminus = new QPushButton( this, "minusbutton" );
-    pbminus->setText( "-" );
-    pbminus->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pbminus, SIGNAL(toggled(bool)), SLOT(pbminustoggled(bool)));
-    pbminus->setToggleButton(TRUE);
-    pbminus->setFont(buttonfont);
-
-    pbshift = new QPushButton( this, "shiftbutton" );
-    pbshift->setText( "Lsh" );
-    pbshift->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pbshift, SIGNAL(toggled(bool)), SLOT(pbshifttoggled(bool)));
-    pbshift->setToggleButton(TRUE);
-    pbshift->setFont(buttonfont);
+  pbshift = new QPushButton( mLargePage, "shiftbutton" );
+  pbshift->setText( "Lsh" );
+  connect( pbshift, SIGNAL(toggled(bool)), SLOT(pbshifttoggled(bool)));
+  pbshift->setToggleButton(TRUE);
 
 ///////////////////////////////////////////////////////////////////////////
 //
 //
 
-    pbperiod = new QPushButton( this, "periodbutton" );
-    pbperiod->setText( "." );
-    pbperiod->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pbperiod, SIGNAL(toggled(bool)), SLOT(pbperiodtoggled(bool)));
-    pbperiod->setToggleButton(TRUE);
-    pbperiod->setFont(buttonfont);
+  pbperiod = new QPushButton( mLargePage, "periodbutton" );
+  pbperiod->setText( "." );
+  connect( pbperiod, SIGNAL(toggled(bool)), SLOT(pbperiodtoggled(bool)));
+  pbperiod->setToggleButton(TRUE);
+  
+  pb0 = new QPushButton( mLargePage, "0button" );
+  pb0->setText( "0" );
+  connect( pb0, SIGNAL(toggled(bool)), SLOT(pb0toggled(bool)));
+  pb0->setToggleButton(TRUE);
 
-    pb0 = new QPushButton( this, "0button" );
-    pb0->setText( "0" );
-    pb0->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pb0, SIGNAL(toggled(bool)), SLOT(pb0toggled(bool)));
-    pb0->setToggleButton(TRUE);
-    pb0->setFont(buttonfont);
+  pbequal = new QPushButton( mLargePage, "equalbutton" );
+  pbequal->setText( "=" );
+  connect( pbequal, SIGNAL(toggled(bool)), SLOT(pbequaltoggled(bool)));
+  pbequal->setToggleButton(TRUE);
 
-    pbequal = new QPushButton( this, "equalbutton" );
-    pbequal->setText( "=" );
-    pbequal->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pbequal, SIGNAL(toggled(bool)), SLOT(pbequaltoggled(bool)));
-    pbequal->setToggleButton(TRUE);
-    pbequal->setFont(buttonfont);
+  pbpercent = new QPushButton( mLargePage, "percentbutton" );
+  pbpercent->setText( "%" );
+  connect( pbpercent, SIGNAL(toggled(bool)), SLOT(pbpercenttoggled(bool)));
+  pbpercent->setToggleButton(TRUE);
 
-    pbpercent = new QPushButton( this, "percentbutton" );
-    pbpercent->setText( "%" );
-    pbpercent->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pbpercent, SIGNAL(toggled(bool)), SLOT(pbpercenttoggled(bool)));
-    pbpercent->setToggleButton(TRUE);
-    pbpercent->setFont(buttonfont);
+  pbnegate = new QPushButton( mLargePage, "OneComplementbutton" );
+  pbnegate->setText( "Cmp" );
+  connect( pbnegate, SIGNAL(toggled(bool)), SLOT(pbnegatetoggled(bool))); 
+  pbnegate->setToggleButton(TRUE);
 
-
-    pbnegate = new QPushButton( this, "OneComplementbutton" );
-    pbnegate->setText( "Cmp" );
-    pbnegate->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pbnegate, SIGNAL(toggled(bool)), SLOT(pbnegatetoggled(bool))); 
-    pbnegate->setToggleButton(TRUE);
-    pbnegate->setFont(buttonfont);
-
-    pbmod = new QPushButton( this, "modbutton" );
-    pbmod->setText( "Mod" );
-    pbmod->setMinimumSize(bigbuttonwidth,bigbuttonheight);
-    connect( pbmod, SIGNAL(toggled(bool)), SLOT(pbmodtoggled(bool))); 
-    pbmod->setToggleButton(TRUE);
-    pbmod->setFont(buttonfont);
+  pbmod = new QPushButton( mLargePage, "modbutton" );
+  pbmod->setText( "Mod" );
+  connect( pbmod, SIGNAL(toggled(bool)), SLOT(pbmodtoggled(bool))); 
+  pbmod->setToggleButton(TRUE);
 
 
-    set_colors();
-    set_display_font();
-    set_precision();
-    set_style();
-
-    /*    paper = new QListBox(0,"paper");
+  set_colors();
+  set_display_font();
+  set_precision();
+  set_style();
+  
+  /*    
+    paper = new QListBox(0,"paper");
     paper->resize(200,400);
-    paper->show();*/
-    InitializeCalculator();
+    paper->show();
+  */
+  InitializeCalculator();
 
-    // All these layouts are needed because all the groups have their
-    // own size per row so we can't use one huge QGridLayout (mosfet)
-    QGridLayout *smallBtnLayout = new QGridLayout(6, 3, 4);
-    QGridLayout *largeBtnLayout = new QGridLayout(5, 6, 4);
-    QHBoxLayout *topLayout = new QHBoxLayout(4);
-    QHBoxLayout *radioLayout = new QHBoxLayout(4);
-    QHBoxLayout *btnLayout = new QHBoxLayout(4);
-    QHBoxLayout *statusLayout = new QHBoxLayout(4);
+  //
+  // All these layouts are needed because all the groups have their
+  // own size per row so we can't use one huge QGridLayout (mosfet)
+  // 
+  // 1999-10-31 Espen Sand:
+  // Some more modifications to the improved layout. Note: No need 
+  // to "activate()" the layout at the end.
+  //
+  //
+  QGridLayout *smallBtnLayout = new QGridLayout(mSmallPage, 6, 3, 0, 
+						mInternalSpacing);
+  QGridLayout *largeBtnLayout = new QGridLayout(mLargePage, 5, 6, 0,
+						mInternalSpacing);
+  QHBoxLayout *topLayout = new QHBoxLayout();
+  QHBoxLayout *radioLayout = new QHBoxLayout();
+  QHBoxLayout *btnLayout = new QHBoxLayout();
+  QHBoxLayout *statusLayout = new QHBoxLayout();
 
-    // bring them all together
-    QVBoxLayout *mainLayout = new QVBoxLayout(this, 4);
-    mainLayout->addLayout(topLayout);
-    mainLayout->addLayout(radioLayout);
-    mainLayout->addLayout(btnLayout);
-    mainLayout->addLayout(statusLayout);
+  // bring them all together
+  QVBoxLayout *mainLayout = new QVBoxLayout(this, mInternalSpacing, 
+					    mInternalSpacing );
+  mainLayout->addLayout(topLayout );
+  mainLayout->addLayout(radioLayout );
+  mainLayout->addLayout(btnLayout  );
+  mainLayout->addLayout(statusLayout );
 
-    // button layout
-    btnLayout->addLayout(smallBtnLayout);
-    btnLayout->addSpacing(4);
-    btnLayout->addLayout(largeBtnLayout);
-    btnLayout->addStretch(1);
+  // button layout
+  btnLayout->addWidget(mSmallPage,0,AlignTop);
+  btnLayout->addSpacing( mInternalSpacing );
+  btnLayout->addWidget(mLargePage,0,AlignTop);
+  
+  // small button layout
+  smallBtnLayout->addWidget(pbhyp, 0, 0);
+  smallBtnLayout->addWidget(pbinv, 0, 1);
+  smallBtnLayout->addWidget(pbA, 0, 2);
+  
+  smallBtnLayout->addWidget(pbSin, 1, 0);
+  smallBtnLayout->addWidget(pbplusminus, 1, 1);
+  smallBtnLayout->addWidget(pbB, 1, 2);
+  
+  smallBtnLayout->addWidget(pbCos, 2, 0);
+  smallBtnLayout->addWidget(pbreci, 2, 1);
+  smallBtnLayout->addWidget(pbC, 2, 2);
+  
+  smallBtnLayout->addWidget(pbTan, 3, 0);
+  smallBtnLayout->addWidget(pbfactorial, 3, 1);
+  smallBtnLayout->addWidget(pbD, 3, 2);
+  
+  smallBtnLayout->addWidget(pblog, 4, 0);
+  smallBtnLayout->addWidget(pbsquare, 4, 1);
+  smallBtnLayout->addWidget(pbE, 4, 2);
+  
+  smallBtnLayout->addWidget(pbln, 5, 0);
+  smallBtnLayout->addWidget(pbpower, 5, 1);
+  smallBtnLayout->addWidget(pbF, 5, 2);
 
-    // small button layout
-    smallBtnLayout->addWidget(pbhyp, 0, 0);
-    smallBtnLayout->addWidget(pbinv, 0, 1);
-    smallBtnLayout->addWidget(pbA, 0, 2);
-    
-    smallBtnLayout->addWidget(pbSin, 1, 0);
-    smallBtnLayout->addWidget(pbplusminus, 1, 1);
-    smallBtnLayout->addWidget(pbB, 1, 2);
+  smallBtnLayout->setRowStretch( 0, 0 );
+  smallBtnLayout->setRowStretch( 1, 0 );
+  smallBtnLayout->setRowStretch( 2, 0 );
+  smallBtnLayout->setRowStretch( 3, 0 );
+  smallBtnLayout->setRowStretch( 4, 0 );
+  smallBtnLayout->setRowStretch( 5, 0 );
 
-    smallBtnLayout->addWidget(pbCos, 2, 0);
-    smallBtnLayout->addWidget(pbreci, 2, 1);
-    smallBtnLayout->addWidget(pbC, 2, 2);
+  // large button layout
+  largeBtnLayout->addWidget(pbEE, 0, 0);
+  largeBtnLayout->addWidget(pbMR, 0, 1);
+  largeBtnLayout->addWidget(pbMplusminus, 0, 2);
+  largeBtnLayout->addWidget(pbMC, 0, 3);
+  largeBtnLayout->addWidget(pbClear, 0, 4);
+  largeBtnLayout->addWidget(pbAC, 0, 5);
 
-    smallBtnLayout->addWidget(pbTan, 3, 0);
-    smallBtnLayout->addWidget(pbfactorial, 3, 1);
-    smallBtnLayout->addWidget(pbD, 3, 2);
+  largeBtnLayout->addWidget(pb7, 1, 0);
+  largeBtnLayout->addWidget(pb8, 1, 1);
+  largeBtnLayout->addWidget(pb9, 1, 2);
+  largeBtnLayout->addWidget(pbparenopen, 1, 3);
+  largeBtnLayout->addWidget(pbparenclose, 1, 4);
+  largeBtnLayout->addWidget(pband, 1, 5);
+  
+  largeBtnLayout->addWidget(pb4, 2, 0);
+  largeBtnLayout->addWidget(pb5, 2, 1);
+  largeBtnLayout->addWidget(pb6, 2, 2);
+  largeBtnLayout->addWidget(pbX, 2, 3);
+  largeBtnLayout->addWidget(pbdivision, 2, 4);
+  largeBtnLayout->addWidget(pbor, 2, 5);
+  
+  largeBtnLayout->addWidget(pb1, 3, 0);
+  largeBtnLayout->addWidget(pb2, 3, 1);
+  largeBtnLayout->addWidget(pb3, 3, 2);
+  largeBtnLayout->addWidget(pbplus, 3, 3);
+  largeBtnLayout->addWidget(pbminus, 3, 4);
+  largeBtnLayout->addWidget(pbshift, 3, 5);
+  
+  largeBtnLayout->addWidget(pbperiod, 4, 0);
+  largeBtnLayout->addWidget(pb0, 4, 1);
+  largeBtnLayout->addWidget(pbequal, 4, 2);
+  largeBtnLayout->addWidget(pbpercent, 4, 3);
+  largeBtnLayout->addWidget(pbnegate, 4, 4);
+  largeBtnLayout->addWidget(pbmod, 4, 5);
 
-    smallBtnLayout->addWidget(pblog, 4, 0);
-    smallBtnLayout->addWidget(pbsquare, 4, 1);
-    smallBtnLayout->addWidget(pbE, 4, 2);
+  // top layout
+  topLayout->addWidget(mConfigButton);
+  topLayout->addWidget(mHelpButton);
+  topLayout->addWidget(calc_display, 10);
 
-    smallBtnLayout->addWidget(pbln, 5, 0);
-    smallBtnLayout->addWidget(pbpower, 5, 1);
-    smallBtnLayout->addWidget(pbF, 5, 2);
+  // radiobutton layout
+  radioLayout->addWidget(base_group);
+  radioLayout->addWidget(angle_group);
 
-    // large button layout
-    largeBtnLayout->addWidget(pbEE, 0, 0);
-    largeBtnLayout->addWidget(pbMR, 0, 1);
-    largeBtnLayout->addWidget(pbMplusminus, 0, 2);
-    largeBtnLayout->addWidget(pbMC, 0, 3);
-    largeBtnLayout->addWidget(pbClear, 0, 4);
-    largeBtnLayout->addWidget(pbAC, 0, 5);
-    
-    largeBtnLayout->addWidget(pb7, 1, 0);
-    largeBtnLayout->addWidget(pb8, 1, 1);
-    largeBtnLayout->addWidget(pb9, 1, 2);
-    largeBtnLayout->addWidget(pbparenopen, 1, 3);
-    largeBtnLayout->addWidget(pbparenclose, 1, 4);
-    largeBtnLayout->addWidget(pband, 1, 5);
-    
-    largeBtnLayout->addWidget(pb4, 2, 0);
-    largeBtnLayout->addWidget(pb5, 2, 1);
-    largeBtnLayout->addWidget(pb6, 2, 2);
-    largeBtnLayout->addWidget(pbX, 2, 3);
-    largeBtnLayout->addWidget(pbdivision, 2, 4);
-    largeBtnLayout->addWidget(pbor, 2, 5);
-    
-    largeBtnLayout->addWidget(pb1, 3, 0);
-    largeBtnLayout->addWidget(pb2, 3, 1);
-    largeBtnLayout->addWidget(pb3, 3, 2);
-    largeBtnLayout->addWidget(pbplus, 3, 3);
-    largeBtnLayout->addWidget(pbminus, 3, 4);
-    largeBtnLayout->addWidget(pbshift, 3, 5);
-    
-    largeBtnLayout->addWidget(pbperiod, 4, 0);
-    largeBtnLayout->addWidget(pb0, 4, 1);
-    largeBtnLayout->addWidget(pbequal, 4, 2);
-    largeBtnLayout->addWidget(pbpercent, 4, 3);
-    largeBtnLayout->addWidget(pbnegate, 4, 4);
-    largeBtnLayout->addWidget(pbmod, 4, 5);
+  // status layout
+  statusLayout->addWidget(statusINVLabel);
+  statusLayout->addWidget(statusHYPLabel);
+  statusLayout->addWidget(statusERRORLabel, 10 );
 
-    // top layout
-    topLayout->addWidget(pb);
-    topLayout->addStretch(1);
-    topLayout->addWidget(calc_display);
-
-    // radiobutton layout
-    radioLayout->addWidget(base_group);
-    radioLayout->addWidget(angle_group);
-    radioLayout->addStretch(1);
-
-
-    // status layout
-    statusLayout->addWidget(statusINVLabel);
-    statusLayout->addWidget(statusHYPLabel);
-    statusLayout->addWidget(statusERRORLabel, 1);
-
-    mainLayout->activate(); // whew!
+  updateGeometry();
 }
+
+QtCalculator::~QtCalculator( void )
+{
+  delete mConfigureDialog;
+}
+
+
+
+void QtCalculator::updateGeometry( void )
+{
+  QSize s;
+  QObjectList *l;
+
+  //
+  // Uppermost bar
+  //
+  mHelpButton->setFixedWidth( mHelpButton->fontMetrics().width("MM") );
+  calc_display->setMinimumWidth( calc_display->fontMetrics().maxWidth()*15 );
+
+  //
+  // Button groups (base and angle)
+  //
+  QButtonGroup *g;
+  g = (QButtonGroup*)(anglebutton[0]->parentWidget());
+  //g->setMinimumSize( g->sizeHint());
+  
+  g = (QButtonGroup*)(basebutton[0]->parentWidget());
+  //g->setMinimumSize( g->sizeHint());
+
+
+  //
+  // Calculator buttons
+  //
+  s.setWidth( mSmallPage->fontMetrics().width("MMMMM") );
+  s.setHeight( mSmallPage->fontMetrics().lineSpacing() + 6 );
+
+  l = (QObjectList*)mSmallPage->children(); // silence please
+  for( uint i=0; i < l->count(); i++ )
+  {
+    QObject *o = l->at(i);
+    if( o->isWidgetType() )
+    {
+      ((QWidget*)o)->setMinimumSize(s);
+    }
+  }
+
+  int h1 = pbF->minimumSize().height();
+  int h2 = (int)((((float)h1+4.0)/5.0)+0.5);
+
+  s.setWidth( mLargePage->fontMetrics().width("MMMMM") );
+  s.setHeight( h1+h2 );
+
+  l = (QObjectList*)mLargePage->children(); // silence please
+  for( uint i=0; i < l->count(); i++ )
+  {
+    QObject *o = l->at(i);
+    if( o->isWidgetType() )
+    {
+      ((QWidget*)o)->setMinimumSize(s);
+    }
+  }
+
+  //
+  // The status bar
+  //
+  s.setWidth( statusINVLabel->fontMetrics().width("NORM") + 
+	      statusINVLabel->frameWidth()*2 + 10 );
+  statusINVLabel->setMinimumWidth( s.width() );
+  statusHYPLabel->setMinimumWidth( s.width() );
+
+  setFixedSize(minimumSize());
+}
+
+
+
 
 void QtCalculator::exit()
 {
@@ -763,11 +752,32 @@ void QtCalculator::Gra_Selected()
 }
 
 
-void QtCalculator::helpclicked(){
-
-  mykapp->invokeHTMLHelp("","");
-
+void QtCalculator::helpclicked()
+{
+  kapp->invokeHTMLHelp( "kcalc/index.html", "" );
 }
+
+
+void QtCalculator::configurationChanged( const DefStruct &state )
+{
+  kcalcdefaults = state;
+
+  set_colors();
+  set_precision();
+  set_display_font();
+  set_style();
+
+  updateGeometry();
+  resize(minimumSize());
+
+  //
+  // 1999-10-31 Espen Sand: Don't ask me why ;)
+  //
+  kapp->processOneEvent();
+  setFixedSize(minimumSize());
+}
+
+
 
 void QtCalculator::keyPressEvent( QKeyEvent *e ){
   
@@ -1515,104 +1525,21 @@ void QtCalculator::pbmodtoggled(bool myboolean)  {
     pbmod->setOn(FALSE);
 }
 
-void QtCalculator::configclicked(){
-
-
-  QTabDialog * tabdialog;
-  tabdialog = new QTabDialog(0,"tabdialog",TRUE);
-
-  tabdialog->setCaption( i18n("KCalc Configuraton") );
-  tabdialog->resize( 350, 350 );
-  tabdialog->setCancelButton( i18n("Cancel") );
-
-  QWidget *about = new QWidget(tabdialog,"about");
-
-  QGroupBox *box = new QGroupBox(about,"box");
-  QLabel  *label = new QLabel(box,"label");
-  QLabel  *label2 = new QLabel(box,"label2");
-  box->setGeometry(10,10,320,260);
-
-  box->setTitle(i18n("About"));
-
-
-  label->setGeometry(140,30,160,170);
-  label2->setGeometry(20,150,280,100);
-
-  QString labelstring;
-  labelstring = i18n("KCalc %1\n"
-			   "Bernd Johannes Wuebben\n"
-			   "wuebben@math.cornell.edu\n"
-			   "wuebben@kde.org\n"
-			   "Copyright (C) 1996-98\n"
-			   "\n\n").arg(KCALCVERSION);
-
-  QString labelstring2 =
-#ifdef HAVE_LONG_DOUBLE
-		i18n( "Base type: long double\n");
-#else 
-		i18n( "Due to broken glibc's everywhere, "\
-		      "I had to reduce KCalc's precision from 'long double' "\
-		      "to 'double'. "\
-		      "Owners of systems with a working libc "\
-		      "should recompile KCalc with 'long double' precision "\
-		      "enabled. See the README for details.");
-#endif 
-
-  label->setAlignment(AlignLeft|WordBreak|ExpandTabs);
-  label->setText(labelstring);
-
-  label2->setAlignment(AlignLeft|WordBreak|ExpandTabs);
-  label2->setText(labelstring2);
-  
-  QPixmap pm( BarIcon("kcalclogo"));
-  QLabel *logo = new QLabel(box);
-  logo->setPixmap(pm);
-  logo->setGeometry(30, 20, pm.width(), pm.height());
-
-
-  DefStruct newdefstruct;
-  newdefstruct.forecolor  = kcalcdefaults.forecolor;
-  newdefstruct.backcolor  = kcalcdefaults.backcolor;
-  newdefstruct.font       = kcalcdefaults.font;
-  newdefstruct.precision  = kcalcdefaults.precision;
-  newdefstruct.fixedprecision  = kcalcdefaults.fixedprecision;
-  newdefstruct.fixed  = kcalcdefaults.fixed;
-  newdefstruct.style  = kcalcdefaults.style;
-  newdefstruct.beep  = kcalcdefaults.beep;
-  
-  ConfigDlg *configdlg;
-  configdlg = new ConfigDlg(tabdialog,"configdlg",mykapp,&newdefstruct);
-
-  FontDlg* fontdlg;
-  fontdlg = new FontDlg(tabdialog,"fontdlg",mykapp,&newdefstruct);
-
-  tabdialog->addTab(configdlg,i18n("Defaults"));
-  tabdialog->addTab(fontdlg,i18n("Display Font"));
-  tabdialog->addTab(about,i18n("About"));
-
-
-  if(tabdialog->exec() == QDialog::Accepted){
-
-
-    kcalcdefaults.forecolor  = newdefstruct.forecolor;
-    kcalcdefaults.backcolor  = newdefstruct.backcolor;
-    kcalcdefaults.font       = newdefstruct.font;
-    kcalcdefaults.precision  = newdefstruct.precision;
-    kcalcdefaults.fixedprecision  = newdefstruct.fixedprecision;
-    kcalcdefaults.fixed  = newdefstruct.fixed;
-    kcalcdefaults.style  = newdefstruct.style;
-    kcalcdefaults.beep  = newdefstruct.beep;
-
-    set_colors();
-    set_precision();
-    set_display_font();
-    set_style();
+void QtCalculator::configclicked()
+{
+  if( mConfigureDialog == 0 )
+  {
+    mConfigureDialog = new ConfigureDialog( this, 0, false );
+    mConfigureDialog->setState( kcalcdefaults );
+    connect( mConfigureDialog, SIGNAL( valueChanged(const DefStruct &)),
+	     this, SLOT(configurationChanged(const DefStruct &)));
   }
-
+  mConfigureDialog->show();
 }
 
 
-void QtCalculator::set_style(){
+void QtCalculator::set_style()
+{
 
   switch(kcalcdefaults.style){
   case  0:{
@@ -1644,7 +1571,7 @@ void QtCalculator::readSettings()
 
   QString str;
 
-  KConfig *config = mykapp->config();
+  KConfig *config = kapp->config();
   config->setGroup( "Font" );
     
   kcalcdefaults.font = config->readFontEntry("Font",
@@ -1677,7 +1604,7 @@ void QtCalculator::readSettings()
 void QtCalculator::writeSettings()
 {
 
-  KConfig *config = mykapp->config();		
+  KConfig *config = kapp->config();		
   
   config->setGroup( "Font" );
   config->writeEntry("Font",kcalcdefaults.font);
@@ -1888,38 +1815,37 @@ void QtCalculator::temp_stack_prev(){
 
 int main( int argc, char **argv )
 {
-
-    mykapp = new KApplication (argc, argv, "kcalc");
-
+  KApplication *app = new KApplication (argc, argv, "kcalc" );
 #if 0    
-    mykapp->enableSessionManagement(TRUE);
-    mykapp->setWmCommand(argv[0]);
+  app->enableSessionManagement(TRUE);
+  app->setWmCommand(argv[0]);
 #endif    
 
-    if( argc >1 ){
-      argv++;
-      for(int i = 1; i <= argc ;i++){
-	if(strcmp(*argv,"-v")==0 || strcmp(*argv, "-h")== 0){
-	  printf(i18n("KCalc %s\n"
-		      "Copyright 1997 Bernd Johannes Wuebben"
-		      " <wuebben@kde.org>\n").ascii(), KCALCVERSION);
-	  exit(1);
-	}
-	argv++;
+  if( argc > 1 )
+  {
+    argv++;
+    for(int i = 1; i <= argc ;i++)
+    {
+      if(strcmp(*argv,"-v")==0 || strcmp(*argv, "-h")== 0)
+      {
+	printf(i18n("KCalc %s\n"
+		    "Copyright 1997 Bernd Johannes Wuebben"
+		    " <wuebben@kde.org>\n").ascii(), KCALCVERSION);
+	exit(1);
       }
-
+      argv++;
     }
+  }
 
-    QtCalculator  *calc = new QtCalculator;
+  QtCalculator  *calc = new QtCalculator;
+  app->setTopWidget( calc );
+  calc->setCaption( QString::null );
+  calc->show();
 
-    mykapp->setTopWidget( calc );
+  int exitCode = app->exec();
+  delete app;
 
-    // calc->setGeometry(300, 100, 9 + 100 + 9 + 233 + 9, 220);   
-
-    //calc->setFixedSize( 9 + 100 + 9 + 233 + 9, 239);
-    calc->setFixedSize(calc->minimumSize());
-    calc->show();
-    return mykapp->exec();
+  return( exitCode );
 }
 
 
