@@ -1,5 +1,5 @@
-IMPORTANT: On a number of systems including Linux systems using certain 
-version of gcc (gcc-2.7.3 RedHat 5.0 for example) will not get a working
+IMPORTANT: On a number of systems including Linux systems using a certain 
+version of gcc (gcc-2.7.3 RedHat 5.0 for example) you will not get a working
 version of kcalc unless you undefine the preprosessor symbol FABSL in
 ../config.h
 
@@ -8,9 +8,12 @@ that is change the line
 to 
 /*#define FABLS*/
 
-However this will give you greatly reduced precision. Complain to the
-gnu people or to your distribution and pressure them to get a working
-version of gcc out.
+What this does effectively is tell kcalc to use the C data type
+'double' as its fundamental data type instead of 'long double'.
+So this proceedure will give you greatly reduced precision. Since
+this is a compiler bug there is nothing I can do about it. 
+Complain to the gnu people or to your distribution and ask 
+them to get a working version of gcc out.
 
 thanks,
 Bernd
