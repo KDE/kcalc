@@ -1,3 +1,9 @@
+Sat Nov 22 14:30:37 1997  Bernd Johannes Wuebben  <wuebben@petit.cornell.edu>
+
+	* stats.cpp: fixed some bugs in the stats module
+	  mean should now be correct
+	  std  shoudl now be correct too.
+
 Sat Sep 20 23:59:30 1997  Bernd Johannes Wuebben  <wuebben@petit.cornell.edu>
 
 	* kcalc.cpp: Added statistical functions

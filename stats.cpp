@@ -102,85 +102,13 @@ CALCAMNT KStats::median(){
     array[l] = 0.0;
 
   CALCAMNT *dp;
-  int j = 0;
   int bound = 0;
-
-  for ( dp=data.first(); dp != 0; dp=data.next() ){
-
-#ifdef DEBUG_STATS
-    printf("%d %Lg\n",j,*dp);
-#endif
-
-    bool already_there= false;
-
-    for(int i = 0; i < j;i++){
-      if(*dp == array[i]){
-
-#ifdef DEBUG_STATS
-	printf("%Lg is already there\n",*dp);
-#endif
-
-	already_there = true;
-      }
-    }
-    
-    if(!already_there) {
-      array[bound] = *dp;
-      bound ++;
-      already_there = false;
-    }
-
-    j ++;
-  }
-
-  // at this point array contains a list of all unique data items.
-  // eg 1 2 2 5 6 7 7  will be turned in to 1 2 5 6 7
-  // and we have 'bound' items ( 5 in the above example)
-
-#ifdef DEBUG_STATS
-  for(int k = 0;k < bound ; k++)
-    printf("array: %Lg\n",array[k]);
-#endif
-
-  if (bound == 0){
-    error_flag = true;
-    return 0.0;
-  }
-  
-  if ( bound == 1)
-    return array[bound -1];
-
-
-  if( bound % 2){  // odd
-     
-    index = (bound - 1 )/2 + 1;
-    result =  getat(index,array,bound);
-  }
-  else { // even
-    
-    index = bound /2;
-    result = (getat(index,array,bound) +  getat(index +1,array,bound))/2;
- }
-
-  return result;
-
-}
-
-
-CALCAMNT KStats::getat(int position,CALCAMNT array[],int bound){ 
-
-  // return the 'position' largest element in array
-
-#ifdef DEBUG_STATS
-  printf("k = %d\n",position);
-#endif
-
 
   MyList list;
 
-  for(int i=0; i<bound;i++){
-    list.inSort(&array[i]);
-  }  
+  for ( dp=data.first(); dp != 0; dp=data.next() ){
+    list.inSort(dp);
+  }
 
 #ifdef DEBUG_STATS
   for(int l = 0; l < (int)list.count();l++){
@@ -190,9 +118,31 @@ CALCAMNT KStats::getat(int position,CALCAMNT array[],int bound){
   }
 #endif
 
-  return *list.at(position-1);
+  bound = list.count();
+
+  if (bound == 0){
+    error_flag = true;
+    return 0.0;
+  }
+  
+  if ( bound == 1)
+    return *list.at(0);
+
+  if( bound % 2){  // odd
+     
+    index = (bound - 1 ) / 2 + 1;
+    result =  *list.at(index - 1 );
+  }
+  else { // even
+    
+    index = bound / 2;
+    result = ((*list.at(index - 1))  + (*list.at(index)))/2;
+ }
+
+  return result;
 
 }
+
 
 
 CALCAMNT KStats::std_kernel(){
