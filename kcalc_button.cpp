@@ -72,7 +72,7 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
     QKeySequence _accel = accel();
 
     if(_mode[new_mode].is_label_richtext)
-      setRichText(_mode[new_mode].label);
+      _label = _mode[new_mode].label;
     else
       setText(_mode[new_mode].label);
     QToolTip::add(this, _mode[new_mode].tooltip);
@@ -81,6 +81,11 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
     // restore accel
     setAccel(_accel);
   }
+
+  // this is necessary for people pressing CTRL and changing mode at
+  // the same time...
+  if (_show_accel_mode) slotSetAccelDisplayMode(true);
+  
   update();
 }
 
@@ -106,11 +111,6 @@ void KCalcButton::slotSetAccelDisplayMode(bool flag)
 
   // restore accel
   setAccel(_accel);
-}
-
-void KCalcButton::setRichText(const QString &label)
-{
-  _label = "<qt type=\"page\"><center>" + label + "</center></qt>";
 }
 
 void KCalcButton::paintLabel(QPainter *paint)

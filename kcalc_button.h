@@ -44,7 +44,13 @@ class ButtonMode
 public:
   ButtonMode(void) {};
   ButtonMode(QString &label, QString &tooltip, bool is_label_richtext)
-    : label(label), is_label_richtext(is_label_richtext), tooltip(tooltip) { };
+    : is_label_richtext(is_label_richtext), tooltip(tooltip)
+  {
+    if (is_label_richtext)
+      this->label = "<qt type=\"page\"><center>" + label + "</center></qt>";
+    else
+      this->label = label;
+  };
 
   QString label;
   bool is_label_richtext;
@@ -63,8 +69,6 @@ public:
 
  void addMode(ButtonModeFlags mode, QString label, QString tooltip, bool is_label_richtext = false);
 
- virtual void setRichText(const QString &label);
- 
 public slots: 
   void slotSetMode(ButtonModeFlags mode, bool flag); 
   void slotSetAccelDisplayMode(bool flag);
