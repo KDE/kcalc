@@ -9,6 +9,9 @@
 
     portions:	Copyright (C) 1996 Bernd Johannes Wuebben
                                    wuebben@math.cornell.edu
+								   
+    portions:	Copyright (C) 2001 Evan Teran
+                                   emt3734@rit.edu
 
     portions: 	Copyright (C) 1995 Martin Bartlett
 
@@ -30,15 +33,18 @@
 
 
 
-#include <string.h>
-#include <errno.h>
-#include <limits.h>
-#include <signal.h>
-#include <stdio.h>
+#include <cstring>
+#include <cerrno>
+#include <csignal>
+#include <cstdio>
+#include <exception>
+
+using std::runtime_error;
 
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <knotifyclient.h>
+#include <kpushbutton.h>
 
 #include "kcalc.h"
 #include "dlabel.h"
@@ -60,10 +66,7 @@ int isinf(double x) { return !finite(x) && x==x; }
 bool display_error	= false;
 bool percent_mode	= false;
 
-stack_ptr	top_of_stack = NULL;	
-stack_ptr	top_type_stack[2] = { NULL, NULL };	
-int 		stack_next, stack_last;
-stack_item	process_stack[STACK_SIZE];
+
 
 item_contents 	display_data;
 
@@ -87,42 +90,22 @@ int adjust_op[14][3] =
 	{FUNC_INTDIV,   FUNC_INTDIV,   FUNC_INTDIV},
 };
 
-/*
-char *function_desc[] = 
-{
-	"Null",
-	"Or",
-	"Exclusive Or",
-	"And",
-	"Left Shift",
-	"Right Shift",
-	"Add",
-	"Subtract",
-	"Multiply",
-	"Divide",
-	"Modulus"
-	"Power"
-	"Reciprocal Power"
-	"Integer Division"
-};
-*/
-
 Arith Arith_ops[14] = 
 {
 	NULL,
-	QtCalculator::ExecOr,
-	QtCalculator::ExecXor,  	
-	QtCalculator::ExecAnd,
-	QtCalculator::ExecLsh,
-	QtCalculator::ExecRsh,
-	QtCalculator::ExecAdd, 
-	QtCalculator::ExecSubtract,
-	QtCalculator::ExecMultiply,
-	QtCalculator::ExecDivide, 
-	QtCalculator::ExecMod,
-	QtCalculator::ExecPower, 
-	QtCalculator::ExecPwrRoot,
-	QtCalculator::ExecIntDiv
+	Calculator::ExecOr,
+	Calculator::ExecXor,  	
+	Calculator::ExecAnd,
+	Calculator::ExecLsh,
+	Calculator::ExecRsh,
+	Calculator::ExecAdd, 
+	Calculator::ExecSubtract,
+	Calculator::ExecMultiply,
+	Calculator::ExecDivide, 
+	Calculator::ExecMod,
+	Calculator::ExecPower, 
+	Calculator::ExecPwrRoot,
+	Calculator::ExecIntDiv
 };	
 
 Prcnt Prcnt_ops[14] = 
@@ -133,14 +116,14 @@ Prcnt Prcnt_ops[14] =
 	NULL,
 	NULL,
 	NULL,
-	QtCalculator::ExecAddSubP,
-	QtCalculator::ExecAddSubP,
-	QtCalculator::ExecMultiplyP,
-	QtCalculator::ExecDivideP,
-	QtCalculator::ExecDivideP,
-	QtCalculator::ExecPowerP,
-	QtCalculator::ExecPwrRootP,
-	QtCalculator::ExecDivideP
+	Calculator::ExecAddSubP,
+	Calculator::ExecAddSubP,
+	Calculator::ExecMultiplyP,
+	Calculator::ExecDivideP,
+	Calculator::ExecDivideP,
+	Calculator::ExecPowerP,
+	Calculator::ExecPwrRootP,
+	Calculator::ExecDivideP
 };
 	
 
@@ -340,7 +323,7 @@ void fpe_handler(int fpe_parm)
 //-------------------------------------------------------------------------
 void QtCalculator::RefreshCalculator()
 {
-	InitStack();
+	Calculator::InitStack();
 	display_error = false;
 	DISPLAY_AMOUNT = 0L;
 	inverse = false;
@@ -639,7 +622,7 @@ void QtCalculator::EnterStackFunction(int data)
 	data = adjust_op[data][dummy];
 	//	printf("data %d \n",data );
 
-	PushStack(&display_data);
+	Calculator::PushStack(&display_data);
 
 	new_item.s_item_type = ITEM_FUNCTION;
 	new_item.s_item_data.item_func_data.item_function = data;
@@ -649,7 +632,7 @@ void QtCalculator::EnterStackFunction(int data)
 	refresh_display = true;
 	if (UpdateStack(new_precedence))
 		UpdateDisplay();
-	PushStack(&new_item);
+	Calculator::PushStack(&new_item);
 }
 
 //-------------------------------------------------------------------------
@@ -712,7 +695,7 @@ void QtCalculator::EnterCloseParen()
 {
 	eestate = false;
 	last_input = OPERATION;
-	PushStack(&display_data);
+	Calculator::PushStack(&display_data);
 	refresh_display = true;
 
 	if (UpdateStack(precedence_base))
@@ -1402,28 +1385,92 @@ void QtCalculator::base_selected(int number)
 		display_size	= HEX_SIZE;
 		decimal_point	= 0;
 		input_limit		= 8;
+		pb1->setEnabled(true);
+		pb2->setEnabled(true);
+		pb3->setEnabled(true);
+		pb4->setEnabled(true);
+		pb5->setEnabled(true);
+		pb6->setEnabled(true);
+		pb7->setEnabled(true);
+		pb8->setEnabled(true);
+		pb9->setEnabled(true);
+		pbA->setEnabled(true);
+		pbB->setEnabled(true);
+		pbC->setEnabled(true);
+		pbD->setEnabled(true);
+		pbE->setEnabled(true);
+		pbF->setEnabled(true);
+		pbperiod->setEnabled(false);
 		break;
-	case 1:	
-		current_base	= NB_DECIMAL;
-		display_size	= DEC_SIZE;
-		input_limit		= 0;
-		break;
+
 	case 2:
 		current_base	= NB_OCTAL;
 		display_size	= OCT_SIZE;
 		decimal_point	= 0;
 		input_limit		= 11;
+		pb1->setEnabled(true);
+		pb2->setEnabled(true);
+		pb3->setEnabled(true);
+		pb4->setEnabled(true);
+		pb5->setEnabled(true);
+		pb6->setEnabled(true);
+		pb7->setEnabled(true);
+		pb8->setEnabled(false);
+		pb9->setEnabled(false);
+		pbA->setEnabled(false);
+		pbB->setEnabled(false);
+		pbC->setEnabled(false);
+		pbD->setEnabled(false);
+		pbE->setEnabled(false);
+		pbF->setEnabled(false);
+		pbperiod->setEnabled(false);
 		break;
+		
 	case 3:
 		current_base	= NB_BINARY;
 		display_size	= BIN_SIZE;
 		decimal_point	= 0;
 		input_limit		= 32;
+		pb1->setEnabled(true);
+		pb1->setEnabled(true);
+		pb2->setEnabled(false);
+		pb3->setEnabled(false);
+		pb4->setEnabled(false);
+		pb5->setEnabled(false);
+		pb6->setEnabled(false);
+		pb7->setEnabled(false);
+		pb8->setEnabled(false);
+		pb9->setEnabled(false);
+		pbA->setEnabled(false);
+		pbB->setEnabled(false);
+		pbC->setEnabled(false);
+		pbD->setEnabled(false);
+		pbE->setEnabled(false);
+		pbF->setEnabled(false);
+		pbperiod->setEnabled(false);
 		break;
-	default: // we shouldn't ever end up here
+		
+	case 1:	
+	default:	// default to decimal
 		current_base	= NB_DECIMAL;
 		display_size	= DEC_SIZE;
 		input_limit		= 0;
+		pb1->setEnabled(true);
+		pb2->setEnabled(true);
+		pb3->setEnabled(true);
+		pb4->setEnabled(true);
+		pb5->setEnabled(true);
+		pb6->setEnabled(true);
+		pb7->setEnabled(true);
+		pb8->setEnabled(true);
+		pb9->setEnabled(true);
+		pbA->setEnabled(false);
+		pbB->setEnabled(false);
+		pbC->setEnabled(false);
+		pbD->setEnabled(false);
+		pbE->setEnabled(false);
+		pbF->setEnabled(false);
+		pbperiod->setEnabled(true);
 	}
 	
 	UpdateDisplay();
@@ -1535,7 +1582,7 @@ void QtCalculator::EnterEqual()
 	eestate		= false;
 	last_input	= OPERATION;
 	
-	PushStack(&display_data);
+	Calculator::PushStack(&display_data);
 	
 	refresh_display = true;
 
@@ -1562,7 +1609,18 @@ void QtCalculator::Clear()
 	
 	if (last_input == OPERATION)
 	{
-		PopStack();
+#if 0
+		try
+		{
+#endif		
+			Calculator::PopStack();
+#if 0
+		}
+		catch(const exception &err)
+		{
+			KMessageBox::error(0L, i18n(err.what()));
+		}
+#endif
 		last_input = DIGIT;
 	}
 	
@@ -1834,20 +1892,20 @@ int UpdateStack(int run_precedence)
 
 	new_item.s_item_type = ITEM_AMOUNT;
 	
-	while ((top_function = TopTypeStack(ITEM_FUNCTION)) &&
+	while ((top_function = Calculator::TopTypeStack(ITEM_FUNCTION)) &&
 		top_function->s_item_data.item_func_data.item_precedence >=
 		run_precedence)
 	{
 		return_value = 1;
 
-		if ((top_item = PopStack())->s_item_type != ITEM_AMOUNT)
+		if ((top_item = Calculator::PopStack())->s_item_type != ITEM_AMOUNT)
 		{
 			KMessageBox::error(0L, i18n("Stack processing error - right_op"));
 		}
 		
 		right_op = top_item->s_item_data.item_amount;
 
-		if (!((top_item = PopStack()) && 
+		if (!((top_item = Calculator::PopStack()) && 
 			top_item->s_item_type == ITEM_FUNCTION))
 		{
 			KMessageBox::error(0L, i18n("Stack processing error - function"));
@@ -1855,15 +1913,15 @@ int UpdateStack(int run_precedence)
 
 		op_function = top_item->s_item_data.item_func_data.item_function;	
 
-		if (!((top_item = PopStack()) && top_item->s_item_type == ITEM_AMOUNT))
+		if (!((top_item = Calculator::PopStack()) && top_item->s_item_type == ITEM_AMOUNT))
 			KMessageBox::error(0L, i18n("Stack processing error - left_op"));
 
 		left_op = top_item->s_item_data.item_amount;
 
 		new_item.s_item_data.item_amount = 
-			(Arith_ops[op_function])(left_op, right_op);
+			(Arith_ops[op_function])(left_op, right_op, display_error);
 
-		PushStack(&new_item);
+		Calculator::PushStack(&new_item);
 	}
 	
 	if (return_value && 
@@ -1873,9 +1931,9 @@ int UpdateStack(int run_precedence)
 	{
 		new_item.s_item_data.item_amount = 
 			(Prcnt_ops[op_function])
-				(left_op, right_op, new_item.s_item_data.item_amount);
+				(left_op, right_op, new_item.s_item_data.item_amount, display_error);
 				
-		PushStack(&new_item);
+		Calculator::PushStack(&new_item);
 	}
 	
 	if (return_value)
@@ -1884,480 +1942,14 @@ int UpdateStack(int run_precedence)
 	return return_value;
 }
 
-//-------------------------------------------------------------------------
-// Name: isoddint(CALCAMNT input)
-//-------------------------------------------------------------------------
-int isoddint(CALCAMNT input)
-{
-	CALCAMNT	dummy;
-	
-	// Routine to check if CALCAMNT is an Odd integer
-	return (MODF(input, &dummy) == 0.0 && MODF(input / 2, &dummy) == 0.5);
-}
-
-//-------------------------------------------------------------------------
-// Name: ExecOr(CALCAMNT left_op, CALCAMNT right_op)
-//-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecOr(CALCAMNT left_op, CALCAMNT right_op)
-{
-	// printf("ExecOr\n");
-	CALCAMNT	boh_work_d;
-	long 		boh_work_l;
-	long		boh_work_r;
-
-	MODF(left_op, &boh_work_d);
-	if (FABS(boh_work_d) > LONG_MAX)
-	{
-		display_error = true;
-		return 0;
-	}
-	
-	boh_work_l = (long int)boh_work_d;
-	MODF(right_op, &boh_work_d);
-	
-	if (FABS(boh_work_d) > LONG_MAX)
-	{
-		display_error = true;
-		return 0;
-	}
-	
-	boh_work_r = (long int) boh_work_d;
-	return (boh_work_l | boh_work_r);
-}
-
-//-------------------------------------------------------------------------
-// Name: ExecXor(CALCAMNT left_op, CALCAMNT right_op)
-//-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecXor(CALCAMNT left_op, CALCAMNT right_op)
-{
-	// printf("ExecXOr\n");
-	CALCAMNT	boh_work_d;
-	long 		boh_work_l;
-	long		boh_work_r;
-
-	MODF(left_op, &boh_work_d);
-	if (FABS(boh_work_d) > LONG_MAX)
-	{
-		display_error = true;
-		return 0;
-	}
-	
-	boh_work_l = (long int)boh_work_d;
-	MODF(right_op, &boh_work_d);
-	
-	if (FABS(boh_work_d) > LONG_MAX)
-	{
-		display_error = true;
-		return 0;
-	}
-	
-	boh_work_r = (long int)boh_work_d;
-	return (boh_work_l ^ boh_work_r);
-}
-
-//-------------------------------------------------------------------------
-// Name: ExecAnd(CALCAMNT left_op, CALCAMNT right_op)
-//-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecAnd(CALCAMNT left_op, CALCAMNT right_op)
-{
-	// printf("ExecAnd\n");
-	CALCAMNT	boh_work_d;
-	long 		boh_work_l;
-	long		boh_work_r;
-
-	MODF(left_op, &boh_work_d);
-	if (FABS(boh_work_d) > LONG_MAX)
-	{
-		display_error = true;
-		return 0;
-	}
-	
-	boh_work_l = (long int)boh_work_d;
-	MODF(right_op, &boh_work_d);
-	
-	if (FABS(boh_work_d) > LONG_MAX)
-	{
-		display_error = true;
-		return 0;
-	}
-	
-	boh_work_r = (long int)boh_work_d;
-	return (boh_work_l & boh_work_r);
-}
-
-//-------------------------------------------------------------------------
-// Name: ExecLsh(CALCAMNT left_op, CALCAMNT right_op)
-//-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecLsh(CALCAMNT left_op, CALCAMNT right_op)
-{
-	// printf("ExecLsh\n");
-	CALCAMNT	boh_work_d;
-	long 		boh_work_l;
-	long		boh_work_r;
-
-	MODF(left_op, &boh_work_d);
-	if (FABS(boh_work_d) > LONG_MAX)
-	{
-		display_error = true;
-		return 0;
-	}
-	
-	boh_work_l = (long int) boh_work_d;
-	MODF(right_op, &boh_work_d);
-	
-	if (FABS(boh_work_d) > LONG_MAX)
-	{
-		display_error = true;
-		return 0;
-	}
-	
-	boh_work_r = (long int ) boh_work_d;
-	return (boh_work_l << boh_work_r);
-}
-
-//-------------------------------------------------------------------------
-// Name: ExecRsh(CALCAMNT left_op, CALCAMNT right_op)
-//-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecRsh(CALCAMNT left_op, CALCAMNT right_op)
-{
-	// printf("ExecRsh\n");
-	CALCAMNT	boh_work_d;
-	long 		boh_work_l;
-	long		boh_work_r;
-
-	MODF(left_op, &boh_work_d);
-	if (FABS(boh_work_d) > LONG_MAX)
-	{
-		display_error = true;
-		return 0;
-	}
-	
-	boh_work_l = (long int)boh_work_d;
-	MODF(right_op, &boh_work_d);
-	
-	if (FABS(boh_work_d) > LONG_MAX)
-	{
-		display_error = true;
-		return 0;
-	}
-	
-	boh_work_r = (long int)boh_work_d;
-	return (boh_work_l >> boh_work_r);
-}
-
-//-------------------------------------------------------------------------
-// Name: ExecAdd(CALCAMNT left_op, CALCAMNT right_op)
-//-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecAdd(CALCAMNT left_op, CALCAMNT right_op)
-{
-	// printf("ExecAdd\n");
-	return left_op + right_op;
-}
-
-//-------------------------------------------------------------------------
-// Name: ExecSubtract(CALCAMNT left_op, CALCAMNT right_op)
-//-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecSubtract(CALCAMNT left_op, CALCAMNT right_op)
-{
-	// printf("ExecSubtract\n");
-	return left_op - right_op;
-}
-
-//-------------------------------------------------------------------------
-// Name: ExecMultiply(CALCAMNT left_op, CALCAMNT right_op)
-//-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecMultiply(CALCAMNT left_op, CALCAMNT right_op)
-{
-	// printf("ExecMulti\n");
-	return left_op * right_op;
-}
-
-//-------------------------------------------------------------------------
-// Name: ExecMod(CALCAMNT left_op, CALCAMNT right_op)
-//-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecDivide(CALCAMNT left_op, CALCAMNT right_op)
-{
-	// printf("ExecDivide\n");
-	if (right_op == 0)
-	{
-		display_error = true;
-		return 0L;
-	}
-	else
-		return left_op / right_op;
-}
-
-//-------------------------------------------------------------------------
-// Name: QExecMod(CALCAMNT left_op, CALCAMNT right_op)
-//-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecMod(CALCAMNT left_op, CALCAMNT right_op)
-{
-	// printf("ExecMod\n");
-	CALCAMNT temp = 0.0;
-
-	if (right_op == 0)
-	{
-		display_error = true;
-		return 0L;
-	}
-	else
-	{
-		// x mod y should be the same as x mod -y, thus:
-		right_op = FABS(right_op);
-
-		temp = FMOD(left_op, right_op);
-
-		// let's make sure that -7 mod 3 = 2 and NOT -1.
-		// In other words we wand x mod 3 to be a _positive_ number
-		// that is 0,1 or 2.
-		if( temp < 0 )
-			temp = right_op + temp;
-
-		return FABS(temp);
-	}
-}
-
-//-------------------------------------------------------------------------
-// Name: ExecIntDiv(CALCAMNT left_op, CALCAMNT right_op)
-//-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecIntDiv(CALCAMNT left_op, CALCAMNT right_op)
-{
-	// printf("IndDiv\n");
-	if (right_op == 0)
-	{
-		display_error = true;
-		return 0L;
-	}
-	else 
-	{
-		MODF(left_op / right_op, &left_op);
-		return left_op;
-	}
-}
-
-//-------------------------------------------------------------------------
-// Name: ExecPower(CALCAMNT left_op, CALCAMNT right_op)
-//-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecPower(CALCAMNT left_op, CALCAMNT right_op)
-{
-	// printf("ExecPowser %g left_op, %g right_op\n",left_op, right_op);
-	if (right_op == 0)
-		return 1L;
-		
-	if (left_op < 0 && isoddint(1 / right_op))
-		left_op = -1L * POW((-1L * left_op), right_op);
-	else
-		left_op = POW(left_op, right_op);
-		
-	if (errno == EDOM || errno == ERANGE)
-	{
-		display_error = true;
-		return 0;
-	}
-	else
-		return left_op;
-}
-
-//-------------------------------------------------------------------------
-// Name: ExecPwrRoot(CALCAMNT left_op, CALCAMNT right_op)
-//-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecPwrRoot(CALCAMNT left_op, CALCAMNT right_op)
-{
-	// printf("ExecPwrRoot  %g left_op, %g right_op\n", left_op, right_op);
-	if (right_op == 0)
-	{
-		display_error = true;
-		return 0L;
-	}
-	
-	if (left_op < 0 && isoddint(right_op))
-		left_op = -1L * POW((-1L * left_op), (1L)/right_op);
-	else
-		left_op = POW(left_op, (1L)/right_op);
-		
-	if (errno == EDOM || errno == ERANGE)
-	{
-		display_error = true;
-		return 0;
-	}
-	else
-		return left_op;
-}
-
-//-------------------------------------------------------------------------
-// Name: ExecAddSubP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
-//-------------------------------------------------------------------------	
-CALCAMNT QtCalculator::ExecAddSubP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
-{
-	// printf("ExecAddsubP\n");
-	UNUSED(left_op);
-
-	if (result == 0)
-	{
-		display_error = true;
-		return 0;
-	} 
-	else
-		return (result * 100L) / right_op;
-}
-
-//-------------------------------------------------------------------------
-// Name: ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
-//-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
-{
-	// printf("ExecMultiplyP\n");
-	UNUSED(left_op);
-	UNUSED(right_op);
-	return (result / 100L);
-}
-
-//-------------------------------------------------------------------------
-// Name: ExecPowerP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
-//-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecDivideP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
-{
-	// printf("ExecDivideP\n");
-	UNUSED(left_op);
-	UNUSED(right_op);
-	return (result * 100L);
-}
-
-//-------------------------------------------------------------------------
-// Name: ExecPowerP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
-//-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecPowerP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
-{
-	// printf("ExecPowerP\n");
-	UNUSED(result);
-	return ExecPower(left_op, (right_op / 100L));
-}
-
-//-------------------------------------------------------------------------
-// Name: ExecPwrRootP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
-//-------------------------------------------------------------------------
-CALCAMNT QtCalculator::ExecPwrRootP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result)
-{
-	// printf("ExePwrRootP\n");
-	UNUSED(result);
-
-	if (right_op == 0)
-	{
-		display_error = true;
-		return 0;
-	}
-	else
-		return ExecPower(left_op, (100L / right_op));
-}
 
 
-//-------------------------------------------------------------------------
-// Name: AllocStackItem()
-//-------------------------------------------------------------------------
-stack_ptr AllocStackItem()
-{
-	if (stack_next <= stack_last)
-	{
-		process_stack[stack_next].prior_item = NULL;
-		process_stack[stack_next].prior_type = NULL;
-		return (process_stack + (stack_next++));
-	}
-
-	KMessageBox::error(0L, i18n("Stack Error!") );
-	return (process_stack + stack_next);
-}
-
-//-------------------------------------------------------------------------
-// Name: UnAllocStackItem(stack_ptr return_item)
-//-------------------------------------------------------------------------
-void UnAllocStackItem(stack_ptr return_item)
-{
-	if (return_item != (process_stack + (--stack_next)))
-		KMessageBox::error(0L, i18n("Stack Error!") );
-}
-
-//-------------------------------------------------------------------------
-// Name: PushStack(item_contents *add_item)
-//-------------------------------------------------------------------------
-void PushStack(item_contents *add_item)
-{
-	// Add an item to the stack
-
-	stack_ptr new_item = top_of_stack;
-
-	if (!(new_item && 
-		new_item->item_value.s_item_type == add_item->s_item_type))
-	{
-		new_item = AllocStackItem();	// Get a new item
-
-		// Chain new item to existing stacks
 
 
-		new_item->prior_item = top_of_stack;
-		top_of_stack	     = new_item;
-		new_item->prior_type = top_type_stack[add_item->s_item_type];
-		top_type_stack[add_item->s_item_type] = new_item;
-	}
-
-	new_item->item_value  = *add_item;	// assign contents
-
-}
-
-//-------------------------------------------------------------------------
-// Name: PopStack()
-//-------------------------------------------------------------------------
-item_contents *PopStack()
-{
-	// Remove and return the top item in the stack
-
-	static item_contents return_item;
-	
-	item_contents *return_item_ptr = NULL;
-	stack_ptr return_stack_ptr;
-
-	if ((return_stack_ptr = top_of_stack))
-	{
-		return_item = top_of_stack->item_value;
-
-		top_type_stack[return_item.s_item_type] = 
-			top_of_stack->prior_type;
-	
-		top_of_stack = top_of_stack->prior_item;
-
-		UnAllocStackItem(return_stack_ptr);
-	
-		return_item_ptr = &return_item;
-	}
-
-	return return_item_ptr;
-}
-
-//-------------------------------------------------------------------------
-// Name: TopTypeStack(item_type rqstd_type)
-//-------------------------------------------------------------------------
-item_contents *TopTypeStack(item_type rqstd_type)
-{
-	// Return the top item in the stack without removing
-
-	item_contents *return_item_ptr = NULL;
-
-	if (top_type_stack[rqstd_type])
-		return_item_ptr = &(top_type_stack[rqstd_type]->item_value);
-
-	return return_item_ptr;
-}
 
 
-/*
-* Stack storage management Data and Functions
-*/
 
-//-------------------------------------------------------------------------
-// Name: InitStack()
-//-------------------------------------------------------------------------
-void InitStack()
-{
-	stack_next = 0;
-	stack_last = STACK_SIZE - 1;
-	top_of_stack = top_type_stack[0] = top_type_stack[1] = NULL;
-}
+
+
+
+

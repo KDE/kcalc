@@ -1,3 +1,15 @@
+2002-03-11 Evan Teran <emt3734@rit.edu>
+	* started work on making calculator code _seperate_ from the
+	gui code, the goal here is the make the calculating core
+	replacable with any library (hopfully with better precision) simply by
+	wrapping it in a class
+	* made it some many buttons are disabled when unavailabled (A-F) not enabled
+	unless we are in HEX mode, less confusion for users who arent familiar with
+	different bases
+	* removed some code that is never getting called
+	* why oh why are exceptions disabled in the standard config, I would like to
+	use them :(
+	
 2001-10-18 Evan Teran <emt3734@rit.edu>
 	* removed configdlg.* from source tree as it is not part of the compile
 	* changed options dialog to use smarter layouts, and also fixed spinbox

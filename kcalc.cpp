@@ -189,7 +189,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	basebutton[1] = new QRadioButton(base_group);
 	basebutton[1]->setText("D&ec");
 	basebutton[1]->setChecked(true);
-	accel->connectItem(accel->insertItem(Key_E+ALT),
+	accel->connectItem(accel->insertItem(Key_E+ALT), 
 		this, SLOT(Dec_Selected()));
 
 	basebutton[2] = new QRadioButton(base_group);
@@ -629,6 +629,9 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	set_display_font();
 	set_precision();
 	set_style();
+	
+	base_selected(1);
+	
 	InitializeCalculator();
 
 	updateGeometry();
@@ -726,10 +729,6 @@ void QtCalculator::updateGeometry()
 //-------------------------------------------------------------------------
 void QtCalculator::Hex_Selected()
 {
-	basebutton[0]->setChecked(true);
-	basebutton[1]->setChecked(false);
-	basebutton[2]->setChecked(false);
-	basebutton[3]->setChecked(false);
 	base_selected(0);
 }
 
@@ -738,10 +737,6 @@ void QtCalculator::Hex_Selected()
 //-------------------------------------------------------------------------
 void QtCalculator::Dec_Selected()
 {
-	basebutton[0]->setChecked(false);
-	basebutton[1]->setChecked(true);
-	basebutton[2]->setChecked(false);
-	basebutton[3]->setChecked(false);
 	base_selected(1);
 }
 
@@ -750,10 +745,6 @@ void QtCalculator::Dec_Selected()
 //-------------------------------------------------------------------------
 void QtCalculator::Oct_Selected()
 {
-	basebutton[0]->setChecked(false);
-	basebutton[1]->setChecked(false);
-	basebutton[2]->setChecked(true);
-	basebutton[3]->setChecked(false);
 	base_selected(2);
 }
 
@@ -762,10 +753,6 @@ void QtCalculator::Oct_Selected()
 //-------------------------------------------------------------------------
 void QtCalculator::Bin_Selected()
 {
-	basebutton[0]->setChecked(false);
-	basebutton[1]->setChecked(false);
-	basebutton[2]->setChecked(false);
-	basebutton[3]->setChecked(true);
 	base_selected(3);
 }
 
@@ -774,9 +761,6 @@ void QtCalculator::Bin_Selected()
 //-------------------------------------------------------------------------
 void QtCalculator::Deg_Selected()
 {
-	anglebutton[0]->setChecked(true);
-	anglebutton[1]->setChecked(false);
-	anglebutton[2]->setChecked(false);
 	angle_selected(0);
 }
 
@@ -785,9 +769,6 @@ void QtCalculator::Deg_Selected()
 //-------------------------------------------------------------------------
 void QtCalculator::Rad_Selected()
 {
-	anglebutton[0]->setChecked(false);
-	anglebutton[1]->setChecked(true);
-	anglebutton[2]->setChecked(false);
 	angle_selected(1);
 }
 
@@ -796,9 +777,6 @@ void QtCalculator::Rad_Selected()
 //-------------------------------------------------------------------------
 void QtCalculator::Gra_Selected()
 {
-	anglebutton[0]->setChecked(false);
-	anglebutton[1]->setChecked(false);
-	anglebutton[2]->setChecked(true);
 	angle_selected(2);
 }
 
