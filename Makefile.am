@@ -23,5 +23,5 @@ appsdir = $(kde_appsdir)/Utilities
 EXTRA_DIST = $(pics_DATA) $(apps_DATA) 
 
 messages:
-	$(XGETTEXT) -C -ki18n -x $(includedir)/kde.pot $(kcalc_SOURCES) && mv messages.po ../po/kcalc.pot
+	$(XGETTEXT) -C -ki18n -x $(includedir)/kde.pot $(kcalc_SOURCES) && mv messages.po $(podir)/kcalc.pot
 
