@@ -540,7 +540,7 @@ precision</guilabel> and adjust the spin control so that it shows a
 <qandaentry>
 <question><para>What about Precision?</para></question>
 <answer><para>The main factor determining the precision of &kcalc; is whether your libc and libmath
-supports the C data type <literal remap="tt">long double</literal>. If this is the case, &kcalc; will detect this
+supports the C data type <type>long double</type>. If this is the case, &kcalc; will detect this
 at compile time and use it as its fundamental data type to represent numbers.
 Check &kcalc;'s <guilabel>About</guilabel> dialog (in the
 <guibutton>Configure</guibutton> dialog box) in order to find out what the
