@@ -27,6 +27,7 @@
 class QPushButton;
 class QRadioButton;
 class QButtonGroup;
+class QHButtonGroup;
 class QWidget;
 class DispLogic;
 #include <kmainwindow.h>
@@ -78,6 +79,8 @@ private:
 	void set_style();
 	void history_next();
 	void history_prev();
+	void resetBase(void) { (BaseChooseGroup->find(1))->animateClick();};
+
 
 	void UpdateDisplay(bool get_amount_from_core = false,
 			   bool store_result_in_history = false);
@@ -163,7 +166,7 @@ private:
     QWidget *mNumericPage;
 
     DispLogic*	calc_display; // for historic reasons in "dlabel.h"
-    QPushButton*        pbBaseChoose;
+    QRadioButton*        pbBaseChoose[4];
     QPushButton*        pbAngleChoose;
     QDict<QPushButton>  pbStat;
     QDict<QPushButton>  pbTrig;
@@ -203,6 +206,7 @@ private:
     QPushButton* 	pbC5; 
     QPushButton* 	pbC6;
 	
+    QHButtonGroup*      BaseChooseGroup;
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
     QButtonGroup* 	NumButtonGroup;
 

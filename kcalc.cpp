@@ -30,6 +30,7 @@
 #include <qlayout.h>
 #include <qobjectlist.h>
 #include <qbuttongroup.h>
+#include <qhbuttongroup.h>
 #include <qradiobutton.h>
 #include <qtooltip.h>
 #include <qstyle.h>
@@ -108,20 +109,26 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	toolBar()->close();
 
 	// Create Button to select BaseMode
-	pbBaseChoose =  new QPushButton(i18n("&Base"),
-					central, "ChooseBase-Button");
-	QToolTip::add(pbBaseChoose, i18n("???"));
-	pbBaseChoose->setAutoDefault(false);
+	BaseChooseGroup = new QHButtonGroup(i18n("Base"), central);
+	connect(BaseChooseGroup, SIGNAL(clicked(int)), SLOT(slotBaseSelected(int)));
 
-	KPopupMenu *base_menu = new KPopupMenu(pbBaseChoose, "Base-Selection-Menu");
-	connect(base_menu, SIGNAL(activated(int)), SLOT(slotBaseSelected(int)));
-	base_menu->insertItem(i18n("Hexadecimal"), 16);
-	base_menu->insertItem(i18n("Decimal"), 10);
-	base_menu->insertItem(i18n("Octal"),  8);
-	base_menu->insertItem(i18n("Binary"),  2);
 
-	pbBaseChoose->setPopup(base_menu);
+	pbBaseChoose[0] =  new QRadioButton(i18n("&Hex"), BaseChooseGroup,
+					    "Hexadecimal-Switch");
+	QToolTip::add(pbBaseChoose[0], i18n("Switch base to hexadecimal."));
 
+	pbBaseChoose[1] =  new QRadioButton(i18n("&Dec"), BaseChooseGroup,
+					    "Decimal-Switch");
+	QToolTip::add(pbBaseChoose[1], i18n("Switch base to decimal."));
+
+	pbBaseChoose[2] =  new QRadioButton(i18n("&Oct"), BaseChooseGroup,
+					    "Octal-Switch");
+	QToolTip::add(pbBaseChoose[2], i18n("Switch base to octal."));
+
+	pbBaseChoose[3] =  new QRadioButton(i18n("&Bin"), BaseChooseGroup,
+					    "Binary-Switch");
+	QToolTip::add(pbBaseChoose[3], i18n("Switch base to binary."));
+	
 
 	// Create Button to select AngleMode
 	pbAngleChoose =  new QPushButton(i18n("&Angle"),
@@ -129,7 +136,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	QToolTip::add(pbAngleChoose, i18n("???"));
 	pbAngleChoose->setAutoDefault(false);
 
-	base_menu = new KPopupMenu(pbAngleChoose, "AngleMode-Selection-Menu");
+	KPopupMenu *base_menu = new KPopupMenu(pbAngleChoose, "AngleMode-Selection-Menu");
 	connect(base_menu, SIGNAL(activated(int)), SLOT(slotAngleSelected(int)));
 	base_menu->insertItem(i18n("Degrees"), 0);
 	base_menu->insertItem(i18n("Radians"), 1);
@@ -298,7 +305,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 
 	// top layout
 	topLayout->addWidget(pbAngleChoose);
-	topLayout->addWidget(pbBaseChoose);
+	topLayout->addWidget(BaseChooseGroup);
 	topLayout->addWidget(pbInv);
 	topLayout->addWidget(calc_display, 10);
 
@@ -357,7 +364,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	set_precision();
 
 	// Switch to decimal
-	slotBaseSelected(10);
+	resetBase();
 	slotAngleSelected(0);
 
 	updateGeometry();
@@ -1019,27 +1026,30 @@ void KCalculator::updateGeometry(void)
 
 void KCalculator::slotBaseSelected(int base)
 {
-	// set_display
-	int current_base = calc_display->setBase(NumBase(base));
-	Q_ASSERT(current_base == base);
+	int current_base;
 
-	// set statusbar
+	// set display & statusbar
 	switch(base)
 	{
-	case 2:
+	case 3:
+	  current_base = calc_display->setBase(NumBase(2));
 	  statusBar()->changeItem("BIN",1);
 	  break;
-	case 8:
+	case 2:
+	  current_base = calc_display->setBase(NumBase(8));
 	  statusBar()->changeItem("OCT",1);
 	  break;
-	case 10:
+	case 1:
+	  current_base = calc_display->setBase(NumBase(10));
 	  statusBar()->changeItem("DEC",1);
 	  break;
-	case 16:
+	case 0:
+	  current_base = calc_display->setBase(NumBase(16));
 	  statusBar()->changeItem("HEX",1);
 	  break;
 	default:
 	  statusBar()->changeItem("Error",1);
+	  return;
 	}
 
 	// Enable the buttons not available in this base
@@ -1758,8 +1768,8 @@ void KCalculator::slotLogicshow(bool toggled)
 		if(!statusBar()->hasItem(1))
 			statusBar()->insertFixedItem(" HEX ", 1, true);
 		statusBar()->setItemAlignment(1, AlignCenter);
-		slotBaseSelected(10);
-		pbBaseChoose->show();
+		resetBase();
+		BaseChooseGroup->show();
 		for (int i=10; i<16; i++)
 			(NumButtonGroup->find(i))->show();
 	}
@@ -1772,8 +1782,8 @@ void KCalculator::slotLogicshow(bool toggled)
 		pbLogic["LeftShift"]->hide();
 		pbLogic["RightShift"]->hide();
 		// Hide Hex-Buttons, but first switch back to decimal
-		slotBaseSelected(10);
-		pbBaseChoose->hide();
+		resetBase();
+		BaseChooseGroup->hide();
 		if(statusBar()->hasItem(1))
 			statusBar()->removeItem(1);
 		for (int i=10; i<16; i++)
