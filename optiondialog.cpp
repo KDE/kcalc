@@ -46,7 +46,7 @@ ConfigureDialog::ConfigureDialog( QWidget *parent, char *name, bool modal )
   :KDialogBase( Tabbed, i18n("Configuration"), Help|Apply|Ok|Cancel,
 		Ok, parent, name, modal )
 {
-  setHelp( "kcalc/index.html", QString::null, QString::null );
+  setHelp( "kcalc/index.html", QString::null );
  
   setupSettingPage();
   setupFontPage();
