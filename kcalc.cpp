@@ -59,6 +59,7 @@
 #include <kcolorbutton.h>
 #include <qspinbox.h>
 #include <kkeydialog.h>
+#include <knumvalidator.h>
 
 #include "dlabel.h"
 #include "kcalc.h"
@@ -132,7 +133,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	pbBaseChoose[3] =  new QRadioButton(i18n("&Bin"), BaseChooseGroup,
 					    "Binary-Switch");
 	QToolTip::add(pbBaseChoose[3], i18n("Switch base to binary."));
-	
+
 
 	// Create Button to select AngleMode
 	pbAngleChoose =  new QPushButton(i18n("&Angle"),
@@ -295,7 +296,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	smallBtnLayout->addWidget(pbPower, 5, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xF), 5, 4);
 	smallBtnLayout->addWidget(pbConstant["C6"],5, 5);
-	
+
 	smallBtnLayout->setRowStretch(0, 0);
 	smallBtnLayout->setRowStretch(1, 0);
 	smallBtnLayout->setRowStretch(2, 0);
@@ -361,14 +362,14 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	mOperationButtonList.append(pbPercent);
 	mOperationButtonList.append(pbLogic["One-Complement"]);
 	mOperationButtonList.append(pbMod);
-	
+
 	mConstButtonList.append(pbConstant["C1"]);
 	mConstButtonList.append(pbConstant["C2"]);
 	mConstButtonList.append(pbConstant["C3"]);
 	mConstButtonList.append(pbConstant["C4"]);
 	mConstButtonList.append(pbConstant["C5"]);
 	mConstButtonList.append(pbConstant["C6"]);
-	
+
 	set_colors();
 	// Show the result in the app's caption in taskbar (wishlist - bug #52858)
 	if (KCalcSettings::captionResult() == true)
@@ -402,7 +403,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 
 	actionLogicshow->setChecked(KCalcSettings::showLogic());
 	slotLogicshow(KCalcSettings::showLogic());
-	
+
 	actionConstantsShow->setChecked(KCalcSettings::showConstants());
 	slotConstantsShow(KCalcSettings::showConstants());
 }
@@ -448,12 +449,12 @@ void KCalculator::setupMainActions(void)
 	actionLogicshow->setChecked(true);
 	connect(actionLogicshow, SIGNAL(toggled(bool)),
 		SLOT(slotLogicshow(bool)));
-		
+
 	actionConstantsShow = new KToggleAction(i18n("&Constants Buttons"), 0,
 					    actionCollection(), "show_constants");
 	actionConstantsShow->setChecked(true);
 	connect(actionConstantsShow, SIGNAL(toggled(bool)),
-		SLOT(slotConstantsShow(bool)));	
+		SLOT(slotConstantsShow(bool)));
 
 
 	(void) new KAction(i18n("&Show All"), 0, this, SLOT(slotShowAll()),
@@ -939,32 +940,32 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
 	tmp_pb = new KCalcButton("C1", parent, "Constant C1 - Button");
 	pbConstant.insert("C1", tmp_pb);
 	mConstButtonList.append(tmp_pb);
-	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC1clicked(void)));	
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC1clicked(void)));
 
 	tmp_pb = new KCalcButton("C2", parent, "Constant C2 - Button");
 	pbConstant.insert("C2", tmp_pb);
 	mConstButtonList.append(tmp_pb);
-	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC2clicked(void)));	
-	
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC2clicked(void)));
+
 	tmp_pb = new KCalcButton("C3", parent, "Constant C3 - Button");
 	pbConstant.insert("C3", tmp_pb);
 	mConstButtonList.append(tmp_pb);
-	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC3clicked(void)));	
-	
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC3clicked(void)));
+
 	tmp_pb = new KCalcButton("C4", parent, "Constant C4 - Button");
 	pbConstant.insert("C4", tmp_pb);
 	mConstButtonList.append(tmp_pb);
-	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC4clicked(void)));	
-	
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC4clicked(void)));
+
 	tmp_pb = new KCalcButton("C5", parent, "Constant C5 - Button");
 	pbConstant.insert("C5", tmp_pb);
 	mConstButtonList.append(tmp_pb);
-	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC5clicked(void)));	
-	
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC5clicked(void)));
+
 	tmp_pb = new KCalcButton("C6", parent, "Constant C6 - Button");
 	pbConstant.insert("C6", tmp_pb);
 	mConstButtonList.append(tmp_pb);
-	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC6clicked(void)));	
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC6clicked(void)));
 
 	changeButtonNames();
 }
@@ -1199,7 +1200,7 @@ void KCalculator::slotPiclicked(void)
 void KCalculator::slotInvtoggled(bool flag)
 {
 	inverse = flag;
-	
+
 	emit switchInverse(flag);
 
 	if (inverse)
@@ -1662,7 +1663,7 @@ void KCalculator::slotC2clicked(void)
 	UpdateDisplay(false);
 }
 void KCalculator::slotC3clicked(void)
-{	
+{
 	//set the display to the configured value of Constant C3
 	calc_display->setAmount(KCalcSettings::valueConstant3().toDouble());
 
@@ -1677,14 +1678,14 @@ void KCalculator::slotC4clicked(void)
 }
 void KCalculator::slotC5clicked(void)
 {
-	//set the display to the configured value of Constant C5	
+	//set the display to the configured value of Constant C5
 	calc_display->setAmount(KCalcSettings::valueConstant5().toDouble());
 
 	UpdateDisplay(false);
 }
 void KCalculator::slotC6clicked(void)
 {;
-	//set the display to the configured value of Constant C6	
+	//set the display to the configured value of Constant C6
 	calc_display->setAmount(KCalcSettings::valueConstant6().toDouble());
 
 	UpdateDisplay(false);
@@ -1723,8 +1724,16 @@ void KCalculator::showSettings()
 	dialog->addPage(color, i18n("Colors"), "colors", i18n("Button & Display Colors"));
 
 	Constants *constant = new Constants(0, "Constant" );
+        KDoubleValidator *valid = new KDoubleValidator( this );
+        constant->kcfg_valueConstant1->setValidator( valid );
+        constant->kcfg_valueConstant2->setValidator( valid );
+        constant->kcfg_valueConstant3->setValidator( valid );
+        constant->kcfg_valueConstant4->setValidator( valid );
+        constant->kcfg_valueConstant5->setValidator( valid );
+        constant->kcfg_valueConstant6->setValidator( valid );
+
 	dialog->addPage(constant, "Constants", i18n("Constants"));
-	
+
 	// When the user clicks OK or Apply we want to update our settings.
 	connect(dialog, SIGNAL(settingsChanged()), SLOT(updateSettings()));
 
@@ -1852,7 +1861,7 @@ void KCalculator::slotConstantsShow(bool toggled)
 		pbConstant["C4"]->show();
 		pbConstant["C5"]->show();
 		pbConstant["C6"]->show();
-		
+
 	}
 	else
 	{
@@ -1879,7 +1888,7 @@ void KCalculator::changeButtonNames()
 	{
 		pbConstant["C1"]->setText(KCalcSettings::nameConstant1());
 	}
-	
+
 	if(KCalcSettings::nameConstant2().isEmpty() )
 	{
 		pbConstant["C2"]->setText("C2");
@@ -1888,7 +1897,7 @@ void KCalculator::changeButtonNames()
 	{
 		pbConstant["C2"]->setText(KCalcSettings::nameConstant2());
 	}
-	
+
 	if(KCalcSettings::nameConstant3().isEmpty() )
 	{
 		pbConstant["C3"]->setText("C3");
@@ -1897,7 +1906,7 @@ void KCalculator::changeButtonNames()
 	{
 		pbConstant["C3"]->setText(KCalcSettings::nameConstant3());
 	}
-	
+
 	if(KCalcSettings::nameConstant4().isEmpty() )
 	{
 		pbConstant["C4"]->setText("C4");
@@ -1906,7 +1915,7 @@ void KCalculator::changeButtonNames()
 	{
 		pbConstant["C4"]->setText(KCalcSettings::nameConstant4());
 	}
-	
+
 	if(KCalcSettings::nameConstant5().isEmpty() )
 	{
 		pbConstant["C5"]->setText("C5");
@@ -1915,7 +1924,7 @@ void KCalculator::changeButtonNames()
 	{
 		pbConstant["C5"]->setText(KCalcSettings::nameConstant5());
 	}
-	
+
 	if(KCalcSettings::nameConstant6().isEmpty() )
 	{
 		pbConstant["C6"]->setText("C6");
@@ -1923,7 +1932,7 @@ void KCalculator::changeButtonNames()
 	else
 	{
 		pbConstant["C6"]->setText(KCalcSettings::nameConstant6());
-	}				
+	}
 }
 
 void KCalculator::slotShowAll(void)
@@ -1943,7 +1952,7 @@ void KCalculator::slotHideAll(void)
 	if(actionTrigshow->isChecked()) actionTrigshow->activate();
 	if(actionExpLogshow->isChecked()) actionExpLogshow->activate();
 	if(actionLogicshow->isChecked()) actionLogicshow->activate();
-	if(actionConstantsShow->isChecked()) actionConstantsShow->activate();	
+	if(actionConstantsShow->isChecked()) actionConstantsShow->activate();
 }
 
 void KCalculator::RefreshCalculator()
