@@ -208,7 +208,7 @@ void QtCalculator::EnterDigit(int data)
 
     QString string;
     string.setNum(data);
-    strcat(display_str,string.data());
+    strcat(display_str,string.ascii());
     DISPLAY_AMOUNT = (CALCAMNT) strtod(display_str,0);
     UpdateDisplay();
     return;
@@ -257,7 +257,7 @@ void QtCalculator::SubtractDigit()
 
     num=num.left(num.length()-1);
     
-    DISPLAY_AMOUNT= strtod((const char*)num ,0);
+    DISPLAY_AMOUNT= strtod(num.ascii() ,0);
 
   }
 
@@ -572,7 +572,7 @@ void QtCalculator::EnterNegate()
 	display_str[pos+1] = '+';
       else{
 	string.insert(pos +1,'-');
-	strncpy(display_str,string.data(),DSP_SIZE);
+	strncpy(display_str,string.ascii(),DSP_SIZE);
       }
     }
     DISPLAY_AMOUNT = (CALCAMNT)strtod(display_str,0);
@@ -1571,11 +1571,11 @@ void QtCalculator::UpdateDisplay()
 
 	if (display_error || str_size < 0) { 
 	  display_error = 1;
-	  strcpy(display_str, i18n("Error"));
+	  strcpy(display_str, i18n("Error").utf8());
 	  if(kcalcdefaults.beep)
 	    QApplication::beep();
 	}
-	calc_display->setText(display_str);
+	calc_display->setText(QString::fromUtf8(display_str));
 
 
   if (inverse){
