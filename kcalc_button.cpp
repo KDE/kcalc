@@ -57,8 +57,13 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
 {
   ButtonModeFlags new_mode;
 
-  if (flag) new_mode = ButtonModeFlags(_mode_flags | mode);
-  else  if (_mode_flags && mode) new_mode = ButtonModeFlags(_mode_flags - mode);
+  if (flag) { // if the specified mode is to be set (i.e. flag = true)
+  	new_mode = ButtonModeFlags(_mode_flags | mode);
+  } else if (_mode_flags && mode) { // if the specified mode is to be cleared (i.e. flag = false)
+  	new_mode = ButtonModeFlags(_mode_flags - mode);
+  } else {
+  	return; // nothing to do
+  }
 
   if (_mode.contains(new_mode)) {
     // save accel, because setting label erases accel
