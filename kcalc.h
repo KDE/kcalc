@@ -68,6 +68,10 @@ private:
 	void setupMainActions(void);
 	void setupStatusbar(void);
 	QWidget *setupNumericKeys(QWidget *parent);
+	void setupLogicKeys(QWidget *parent);
+	void setupLogExpKeys(QWidget *parent);
+	void setupTrigKeys(QWidget *parent);
+	void setupStatisticKeys(QWidget *parent);
 	void keyPressEvent( QKeyEvent *e );
 	void set_precision();
 	void set_style();
@@ -150,6 +154,7 @@ private:
     DispLogic*	calc_display; // for historic reasons in "dlabel.h"
     QPushButton*        pbBaseChoose;
     QPushButton*        pbAngleChoose;
+    QDict<QPushButton>  pbStat;
     QPushButton*        pbHyp;
     QPushButton* 	pbEE;
     QPushButton* 	pbPi;
@@ -185,12 +190,6 @@ private:
     QPushButton* 	pbPercent;
     QPushButton* 	pbNegate;
     QPushButton* 	pbMod;
-    QPushButton*        pbStatNum;
-    QPushButton*        pbStatMean;
-    QPushButton*        pbStatStdDev;
-    QPushButton*        pbStatMedian;
-    QPushButton*        pbStatDataInput;
-    QPushButton*        pbStatClearData;
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
     QButtonGroup*       NumButtonGroup;
 

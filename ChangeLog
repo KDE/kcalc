@@ -1,3 +1,7 @@
+2003-10-31 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Split Constructor into more subfunctions.
+	  To be continued.
+	
 2003-10-20 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* At last the calculator window resizes, when buttons are hidden/shown
 	* Added a few extra buttons to "fill gaps".
