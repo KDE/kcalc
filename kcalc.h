@@ -169,7 +169,7 @@ private:
     QDict<QPushButton>  pbTrig;
     QDict<QPushButton>  pbExp;
     QDict<QPushButton>  pbLogic;
-	QDict<QPushButton>  pbConstant;
+    QDict<QPushButton>  pbConstant;
     QPushButton* 	pbEE;
     QPushButton* 	pbPi;
     QPushButton* 	pbInv;
