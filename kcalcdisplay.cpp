@@ -60,6 +60,7 @@ KCalcDisplay::KCalcDisplay(QWidget *parent, const char *name)
 	setAlignment(AlignRight | AlignVCenter);
 	setFocus();
 	setFocusPolicy(QWidget::StrongFocus);
+	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed, false);
 
 	connect(this, SIGNAL(clicked()), this, SLOT(slotDisplaySelected()));
 
