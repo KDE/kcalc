@@ -1,7 +1,8 @@
 
 bin_PROGRAMS = kcalc
+lib_LTLIBRARIES = kcalc.la
 
-kcalc_SOURCES = kcalc.cpp kcalc_core.cpp dlabel.cpp stats.cpp \
+kcalc_la_SOURCES = kcalc.cpp kcalc_core.cpp dlabel.cpp stats.cpp \
 	optiondialog.cpp
 METASOURCES = kcalc.moc configdlg.moc fontdlg.moc dlabel.moc \
 	optiondialog.moc
@@ -9,8 +10,12 @@ METASOURCES = kcalc.moc configdlg.moc fontdlg.moc dlabel.moc \
 noinst_HEADERS  = kcalc.h configdlg.h fontdlg.h dlabel.h stats.h kcalctype.h
 
 INCLUDES= $(all_includes)
-LDFLAGS = $(all_libraries) $(KDE_RPATH)
-LDADD   = $(LIB_KDEUI) -lm
+kcalc_la_LDFLAGS = $(all_libraries) -module -avoid-version
+kcalc_la_LIBADD = $(LIB_KDEUI) -lm
+
+kcalc_SOURCES = dummy.cpp
+kcalc_LDADD = kcalc.la
+kcalc_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 pics_DATA = kcalclogo.png
 picsdir = $(kde_datadir)/kcalc/pics
@@ -25,3 +30,5 @@ EXTRA_DIST = $(pics_DATA) $(apps_DATA)
 messages:
 	$(XGETTEXT) $(kcalc_SOURCES) -o $(podir)/kcalc.pot
 
+dummy.cpp:
+	echo > dummy.cpp
