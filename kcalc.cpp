@@ -1894,13 +1894,10 @@ int main( int argc, char **argv )
 
     mykapp = new KApplication (argc, argv, "kcalc");
 
+#if 0    
     mykapp->enableSessionManagement(TRUE);
     mykapp->setWmCommand(argv[0]);
-
-    /*QFont buttonfont( "-misc-fixed-medium-*-semicondensed-*-13-*-*-*-*-*-*-*" );
-      buttonfont.setRawMode( TRUE );
-      mykapp->setFont(font);
-    */
+#endif    
 
     if( argc >1 ){
       argv++;
