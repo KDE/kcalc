@@ -759,7 +759,6 @@ void KCalculator::setupTrigKeys(QWidget *parent)
 	tmp_pb = new KCalcButton("Cos", parent, "Cos-Button");
 	pbTrig.insert("Cosine", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Cosine"));
-	tmp_pb->setAccel(Key_C);
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotCosclicked(void)));
 
 	tmp_pb = new KCalcButton("Tan", parent, "Tan-Button");
@@ -1019,11 +1018,11 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
         case Key_division:
 		pbDivision->animateClick();
 		break;
+ 	case Key_C:
+		pbTrig["Cosine"]->animateClick(); // trig mode
+		break;
  	case Key_D:
-	  //if(kcalcdefaults.style == 0)
-	  //	(NumButtonGroup->find(0xD))->animateClick(); // trig mode
-	  //	else
-			pbStat["InputData"]->animateClick(); // stat mode
+		pbStat["InputData"]->animateClick(); // stat mode
 		break;
 	case Key_BracketLeft:
         case Key_twosuperior:
@@ -1139,7 +1138,6 @@ void KCalculator::slotHyptoggled(bool flag)
 
 	// changing the label, deletes the accel, hence renew it
 	pbTrig["Sine"]->setAccel(Key_S);
-	pbTrig["Cosine"]->setAccel(Key_C);
 	pbTrig["Tangent"]->setAccel(Key_T);
 }
 
