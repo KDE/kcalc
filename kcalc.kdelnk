@@ -1,4 +1,7 @@
+# KDE Config File 
 [KDE Desktop Entry]
+Name=Calculator
+Name[de]=Taschenrechner
 Exec=kcalc
 Icon=kcalc.xpm
 DocPath=kcalc/kcalc.html
