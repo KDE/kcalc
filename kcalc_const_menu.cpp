@@ -56,7 +56,7 @@ KCalcConstMenu::KCalcConstMenu(QWidget * parent, const char * name)
 
   insertItem(i18n("Mathematics"), math_menu);
   insertItem(i18n("Electromagnetism"), em_menu);
-  insertItem(i18n("Atomic & Nuclear"), nuclear_menu);
+  insertItem(i18n("Atomic && Nuclear"), nuclear_menu);
   insertItem(i18n("Thermodynamics"), thermo_menu);
   insertItem(i18n("Gravitation"), gravitation_menu);
 
