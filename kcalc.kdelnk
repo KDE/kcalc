@@ -7,6 +7,6 @@ Exec=kcalc
 Icon=kcalc.xpm
 DocPath=kcalc/kcalc.html
 Comment=A Scientific Calculator
-Comment[pl]=Kalkulator naukowy.
+Comment[pl]=Kalkulator naukowy
 Terminal=0
 Type=Application
