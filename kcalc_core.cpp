@@ -371,12 +371,12 @@ void QtCalculator::EnterDigit(int data)
 		if (DISPLAY_AMOUNT < 0) {
 			DISPLAY_AMOUNT = decimal_point ?
 			DISPLAY_AMOUNT - ((CALCAMNT)data /
-			POW(current_base, decimal_point++)) :
+			POW((CALCAMNT)current_base, decimal_point++)) :
 			(current_base * DISPLAY_AMOUNT) - data;
 		} else {
 			DISPLAY_AMOUNT = decimal_point ?
 			DISPLAY_AMOUNT + ((CALCAMNT)data /
-			POW(current_base, decimal_point++)) :
+			POW((CALCAMNT)current_base, decimal_point++)) :
 			(current_base * DISPLAY_AMOUNT) + data;
 		}
 	}
@@ -393,26 +393,33 @@ void QtCalculator::EnterDigit(int data)
 //-------------------------------------------------------------------------
 void QtCalculator::SubtractDigit()
 {
-	// This function could be better, possibly, but am I glad to see it!
-	if (DISPLAY_AMOUNT != 0) {
-		if (current_base == NB_DECIMAL && (DISPLAY_AMOUNT !=
-		floor(DISPLAY_AMOUNT))) {
-			if (decimal_point < 3) {
-				decimal_point = 0;
-				DISPLAY_AMOUNT = floor(DISPLAY_AMOUNT);
-			} else {
-				--decimal_point;
-				DISPLAY_AMOUNT = floor(DISPLAY_AMOUNT * POW(current_base, decimal_point - 1)) /
-				POW(current_base, (decimal_point - 1));
-			}
-		} else {
-			DISPLAY_AMOUNT = floor(DISPLAY_AMOUNT / current_base);
-		}
+   // This function could be better, possibly, but am I glad to see it!
+   if (DISPLAY_AMOUNT != 0)
+   {
+      if (current_base == NB_DECIMAL && (DISPLAY_AMOUNT != floor(DISPLAY_AMOUNT)))
+      {
+         if (decimal_point < 3)
+         {
+            decimal_point = 0;
+            DISPLAY_AMOUNT = floor(DISPLAY_AMOUNT);
+         }
+         else
+         {
+            --decimal_point;
+            DISPLAY_AMOUNT = floor(DISPLAY_AMOUNT * POW((CALCAMNT)current_base, decimal_point - 1)) /
+               POW((CALCAMNT)current_base, (decimal_point - 1));
+         }
+      }
+      else
+      {
+         DISPLAY_AMOUNT = floor(DISPLAY_AMOUNT / current_base);
+      }
 
-		if (input_count > 0) {
-			--input_count;
-		}
-	}
+      if (input_count > 0)
+      {
+         --input_count;
+      }
+   }
 
 #ifdef MYDEBUG
 	printf("SubtractDigit()");
