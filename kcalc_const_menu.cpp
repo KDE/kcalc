@@ -36,7 +36,7 @@ const struct science_constant KCalcConstMenu::Constants[] = {
   {"Z_0", i18n("Impedance of vacuum"), "", "376.730313461", Electromagnetic},
   {QString::fromUtf8("α"), i18n("Fine-structure constant"), "", "7.297352568e-3", Nuclear},
   {"e", i18n("Elementary charge"), "", "1.60217653e-19", Nuclear},
-  {"�_0", i18n("Permeability of vacuum"), "", "1.2566370614e-6", Electromagnetic},
+  {"_0", i18n("Permeability of vacuum"), "", "1.2566370614e-6", Electromagnetic},
   {QString::fromUtf8("ε")+"_0", i18n("Permittivity of vacuum"), "", "8.854187817e-12", Electromagnetic},
   {"k", i18n("Boltzmann constant"), "", "1.3806505e-23", Thermodynamics},
   {"1u", i18n("Atomic mass unit"), "", "1.66053886e-27", Thermodynamics},
@@ -56,7 +56,7 @@ KCalcConstMenu::KCalcConstMenu(QWidget * parent, const char * name)
 
   insertItem(i18n("Mathematics"), math_menu);
   insertItem(i18n("Electromagnetism"), em_menu);
-  insertItem(i18n("Atomic and nuclear"), nuclear_menu);
+  insertItem(i18n("Atomic & Nuclear"), nuclear_menu);
   insertItem(i18n("Thermodynamics"), thermo_menu);
   insertItem(i18n("Gravitation"), gravitation_menu);
 

@@ -71,8 +71,8 @@ void KCalcConstButton::initPopupMenu(void)
   KCalcConstMenu *tmp_menu = new KCalcConstMenu(this);
   
   _popup = new KPopupMenu(this, "set const-cutton");
-  _popup->insertItem(i18n("Set name"), 0);
-  _popup->insertItem(i18n("Choose from list"), tmp_menu, 1);
+  _popup->insertItem(i18n("Set Name"), 0);
+  _popup->insertItem(i18n("Choose From List"), tmp_menu, 1);
   
   connect(_popup, SIGNAL(activated(int)), SLOT(slotConfigureButton(int)));
   connect(tmp_menu, SIGNAL(activated(int)), SLOT(slotChooseScientificConst(int)));
@@ -85,7 +85,7 @@ void KCalcConstButton::slotConfigureButton(int option)
   if (option == 0)
     {
       bool yes_no;
-      QString input = KInputDialog::text(i18n("New name for constant"), i18n("New name:"),
+      QString input = KInputDialog::text(i18n("New Name for Constant"), i18n("New name:"),
 					 text(), &yes_no, this, "nameUserConstants-Dialog");
       if(yes_no) {
 	KCalcSettings::setNameConstant(_button_num, input);
