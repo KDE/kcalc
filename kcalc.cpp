@@ -715,8 +715,7 @@ void KCalculator::setupLogicKeys(QWidget *parent)
 
 	tmp_pb = new QPushButton("Lsh", parent, "LeftBitShift-Button");
 	pbLogic.insert("LeftShift", tmp_pb);
-	accel()->insert("Apply left shift", i18n("Pressed '<'-Button"),
-			0, Key_Less, tmp_pb, SLOT(animateClick()));
+	tmp_pb->setAccel(Key_Less);
 	QToolTip::add(tmp_pb, i18n("Left bit shift"));
 	tmp_pb->setAutoDefault(false);
 	connect(tmp_pb, SIGNAL(clicked(void)),
@@ -724,8 +723,7 @@ void KCalculator::setupLogicKeys(QWidget *parent)
 
 	tmp_pb = new QPushButton("Rsh", parent, "RightBitShift-Button");
 	pbLogic.insert("RightShift", tmp_pb);
-	accel()->insert("Apply right shift", i18n("Pressed '>'-Button"),
-			0, Key_Greater, tmp_pb, SLOT(animateClick()));
+	tmp_pb->setAccel(Key_Greater);
 	QToolTip::add(tmp_pb, i18n("Right bit shift"));
 	tmp_pb->setAutoDefault(false);
 	connect(tmp_pb, SIGNAL(clicked(void)),
