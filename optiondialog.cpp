@@ -256,7 +256,7 @@ void ConfigureDialog::fixCheckToggled( bool b )
 //-------------------------------------------------------------------------
 void ConfigureDialog::setupColorPage()
 {
-    QFrame *page = addPage(i18n("Colors"), i18n("Button and display colors"), loadIcon("colors"));
+    QFrame *page = addPage(i18n("Colors"), i18n("Button and Display Colors"), loadIcon("colors"));
     QVBoxLayout *topLayout = new QVBoxLayout(page, 0, spacingHint());
 
     QGroupBox* displayGroup = new QGroupBox(i18n("Display Colors"), page);
@@ -332,7 +332,7 @@ void ConfigureDialog::setupColorPage()
 //-------------------------------------------------------------------------
 void ConfigureDialog::setupFontPage()
 {
-	QFrame *page = addPage(i18n("Font"), i18n("Select a display font"), loadIcon("fonts"));
+	QFrame *page = addPage(i18n("Font"), i18n("Select a Display Font"), loadIcon("fonts"));
 	if( page == 0 )
 		return;
 
