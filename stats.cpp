@@ -94,13 +94,6 @@ CALCAMNT KStats::median(){
 
   int index;
   CALCAMNT result;
-
-
-  CALCAMNT *array = (CALCAMNT*) malloc(data.count()*sizeof(CALCAMNT)+2);
-
-  for (int l = 0; l < (int)data.count(); l++)
-    array[l] = 0.0;
-
   CALCAMNT *dp;
   int bound = 0;
 
