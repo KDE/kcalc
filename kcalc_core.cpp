@@ -723,6 +723,8 @@ void QtCalculator::EnterCloseParen()
 
 	if ((precedence_base -= PRECEDENCE_INCR) < 0)
 		precedence_base = 0;
+
+	amount_stack.pop(); // Wild guess
 }
 
 //-------------------------------------------------------------------------
