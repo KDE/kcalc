@@ -25,7 +25,7 @@ EXTRA_DIST = $(pics_DATA) $(kde_icon_DATA) $(apps_DATA) mini-kcalc.xpm
 
 install-data-local:
 	$(mkinstalldirs) $(kde_minidir)
-	$(INSTALL_DATA) mini-kcalc.xpm  $(kde_minidir)/kcalc.xpm
+	$(INSTALL_DATA) $(srcdir)/mini-kcalc.xpm  $(kde_minidir)/kcalc.xpm
 
 uninstall-local:
 	rm -f $(MINIDIR)/kcalc.xpm
