@@ -1607,7 +1607,8 @@ void KCalculator::slotTrigshow(bool toggled)
 		pbTrig["Cosine"]->show();
 		pbTrig["Tangent"]->show();
 		pbAngleChoose->show();
-		statusBar()->insertFixedItem(" DEG ", 2, true);
+		if(!statusBar()->hasItem(2))
+			statusBar()->insertFixedItem(" DEG ", 2, true);
 		statusBar()->setItemAlignment(2, AlignCenter);
 		slotAngleSelected(0);
 	}
@@ -1618,7 +1619,8 @@ void KCalculator::slotTrigshow(bool toggled)
 		pbTrig["Cosine"]->hide();
 		pbTrig["Tangent"]->hide();
 		pbAngleChoose->hide();
-		statusBar()->removeItem(2);
+		if(statusBar()->hasItem(2))
+			statusBar()->removeItem(2);
 	}
 	adjustSize();
 	setFixedSize(sizeHint());
@@ -1652,7 +1654,8 @@ void KCalculator::slotLogicshow(bool toggled)
 		pbLogic["One-Complement"]->show();
 		pbLogic["LeftShift"]->show();
 		pbLogic["RightShift"]->show();
-		statusBar()->insertFixedItem(" HEX ", 1, true);
+		if(!statusBar()->hasItem(1))
+			statusBar()->insertFixedItem(" HEX ", 1, true);
 		statusBar()->setItemAlignment(1, AlignCenter);
 		slotBaseSelected(10);
 		pbBaseChoose->show();
@@ -1670,7 +1673,8 @@ void KCalculator::slotLogicshow(bool toggled)
 		// Hide Hex-Buttons, but first switch back to decimal
 		slotBaseSelected(10);
 		pbBaseChoose->hide();
-		statusBar()->removeItem(1);
+		if(statusBar()->hasItem(1))
+			statusBar()->removeItem(1);
 		for (int i=10; i<16; i++)
 			(NumButtonGroup->find(i))->hide();
 	}
