@@ -30,33 +30,28 @@
 
 #include <qlabel.h>
 
-
-class DLabel : public QLabel {
-
+class DLabel : public QLabel
+{
 Q_OBJECT
 
 public:
-
-DLabel(QWidget *parent=0, const char *name=0);
-
-  ~DLabel() {}
+	DLabel(QWidget *parent=0, const char *name=0);
+	~DLabel() {}
 
 protected:
-  
-  void  mousePressEvent ( QMouseEvent *);
+	void  mousePressEvent ( QMouseEvent *);
 
 public:
-  bool isLit();
-  void setLit(bool _lit);
-  int Button();
+	bool isLit();
+	void setLit(bool _lit);
+	int Button();
 
 private:
-  int button;
-  bool lit;
+	int button;
+	bool lit;
 
 signals:
-  void clicked();
-
+	void clicked();
 };
 
 

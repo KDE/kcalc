@@ -24,11 +24,13 @@
 */
 
 #ifdef HAVE_CONFIG_H
-#include "../config.h"
+	#include "../config.h"
 #endif
 
 #ifndef KCALC_TYPE_H
 #define KCALC_TYPE_H
+
+#include <cmath>
 
 // The following for all the poor devels out there who don't have long double math.
 // I guess it's time to switch to LINUX guys .....
@@ -49,57 +51,58 @@
 
 
 
-#define CALCAMNT        long double
+	typedef long double CALCAMNT;
 #else
-#define CALCAMNT        double
+	typedef double CALCAMNT;
 #endif
+
 
 
 #ifdef HAVE_LONG_DOUBLE
-#define FABS(X)   	fabsl(X)
-#define MODF(X,Y)       modfl(X,Y)
-#define FMOD(X,Y)   	fmodl(X,Y)
-#define SIN(X)		sinl(X)
-#define ASIN(X)		asinl(X)
-#define SINH(X)		sinhl(X)
-#define ASINH(X)	asinhl(X)
-#define COS(X)		cosl(X)
-#define COSH(X)		coshl(X)
-#define ACOS(X)		acosl(X)
-#define ACOSH(X)	acoshl(X)
-#define TAN(X)		tanl(X)
-#define TANH(X)		tanhl(X)
-#define ATAN(X)		atanl(X)
-#define ATANH(X)	atanhl(X)
-#define EXP(X)		expl(X)
-#define POW(X,Y)	powl(X,Y)
-#define LOG(X)		logl(X)
-#define LOG_TEN(X)	log10l(X)
-#define SQRT(X)		sqrtl(X)
-#define ISINF(X)	isinfl(X)
-#else
-#define FABS(X)		fabs(X)
-#define MODF(X,Y)    	modf(X,Y)
-#define FMOD(X,Y)   	fmod(X,Y)
-#define SIN(X)		sin(X)
-#define ASIN(X)		asin(X)
-#define SINH(X)		sinh(X)
-#define ASINH(X)	asinh(X)
-#define COS(X)		cos(X)
-#define COSH(X)		cosh(X)
-#define ACOS(X)		acos(X)
-#define ACOSH(X)	acosh(X)
-#define TAN(X)		tan(X)
-#define TANH(X)		tanh(X)
-#define ATAN(X)		atan(X)
-#define ATANH(X)	atanh(X)
-#define EXP(X)		exp(X)
-#define POW(X,Y)	pow(X,Y)
-#define LOG(X)		log(X)
-#define LOG_TEN(X)	log10(X)
-#define SQRT(X)		sqrt(X)
-#define ISINF(X)	isinf(X)
-#endif
+	#define FABS(X)		fabsl(X)
+	#define MODF(X,Y)	modfl(X,Y)
+	#define FMOD(X,Y)	fmodl(X,Y)
+	#define SIN(X)		sinl(X)
+	#define ASIN(X)		asinl(X)
+	#define SINH(X)		sinhl(X)
+	#define ASINH(X)	asinhl(X)
+	#define COS(X)		cosl(X)
+	#define COSH(X)		coshl(X)
+	#define ACOS(X)		acosl(X)
+	#define ACOSH(X)	acoshl(X)
+	#define TAN(X)		tanl(X)
+	#define TANH(X)		tanhl(X)
+	#define ATAN(X)		atanl(X)
+	#define ATANH(X)	atanhl(X)
+	#define EXP(X)		expl(X)
+	#define POW(X,Y)	powl(X,Y)
+	#define LOG(X)		logl(X)
+	#define LOG_TEN(X)	log10l(X)
+	#define SQRT(X)		sqrtl(X)
+	#define ISINF(X)	isinfl(X)
 
+#else
+	#define FABS(X)		fabs(X)
+	#define MODF(X,Y)	modf(X,Y)
+	#define FMOD(X,Y)	fmod(X,Y)
+	#define SIN(X)		sin(X)
+	#define ASIN(X)		asin(X)
+	#define SINH(X)		sinh(X)
+	#define ASINH(X)	asinh(X)
+	#define COS(X)		cos(X)
+	#define COSH(X)		cosh(X)
+	#define ACOS(X)		acos(X)
+	#define ACOSH(X)	acosh(X)
+	#define TAN(X)		tan(X)
+	#define TANH(X)		tanh(X)
+	#define ATAN(X)		atan(X)
+	#define ATANH(X)	atanh(X)
+	#define EXP(X)		exp(X)
+	#define POW(X,Y)	pow(X,Y)
+	#define LOG(X)		log(X)
+	#define LOG_TEN(X)	log10(X)
+	#define SQRT(X)		sqrt(X)
+	#define ISINF(X)	isinf(X)
+#endif
 
 #endif 

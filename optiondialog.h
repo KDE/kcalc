@@ -83,40 +83,39 @@ class ColorListItem : public QListBoxItem
 
 class ConfigureDialog : public KDialogBase
 {
-  Q_OBJECT
-  
-  public:
-    ConfigureDialog( QWidget *parent=0, char *name=0, bool modal=true );
-    ~ConfigureDialog( void );
+	Q_OBJECT
+public:
+	ConfigureDialog(QWidget *parent = 0, char *name = 0, bool modal = true);
+	~ConfigureDialog();
 
-    void setState( const DefStruct &state );
-    DefStruct state( void );
-    
-  protected slots:
-    virtual void slotOk( void );
-    virtual void slotApply( void ); 
-    virtual void slotCancel( void ); 
+	void setState(const DefStruct &state);
+	DefStruct state();
 
-  private:
-    void setupSettingPage( void );
-    void setupFontPage( void );
-    void setupColorPage( void );
-    void setupAboutPage( void );
+protected slots:
+	virtual void slotOk();
+	virtual void slotApply(); 
+	virtual void slotCancel(); 
 
-  private:
-    QCheckBox    *mFixCheck;
-    QSpinBox     *mPrecSpin;
-    QSpinBox     *mFixSpin;
-    QCheckBox    *mBeepCheck;
-    QRadioButton *mTrigRadio;
-    QRadioButton *mStatRadio;
-    KFontChooser *mFontChooser;
-    ColorListBox *mColorList; 
+private:
+	void setupSettingPage();
+	void setupFontPage();
+	void setupColorPage();
+	void setupAboutPage();
 
-    DefStruct    mState;
+private:
+	QCheckBox    *mFixCheck;
+	QSpinBox     *mPrecSpin;
+	QSpinBox     *mFixSpin;
+	QCheckBox    *mBeepCheck;
+	QRadioButton *mTrigRadio;
+	QRadioButton *mStatRadio;
+	KFontChooser *mFontChooser;
+	ColorListBox *mColorList; 
 
-  signals:
-    void valueChanged( const DefStruct &state );
+	DefStruct    mState;
+
+signals:
+	void valueChanged(const DefStruct &state);
 };
 
 #endif

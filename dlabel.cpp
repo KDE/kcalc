@@ -26,38 +26,55 @@
 #include "dlabel.h"
 #include "dlabel.moc"
 
+//-------------------------------------------------------------------------
+// Name: DLabel(QWidget *parent, const char *name)
+//-------------------------------------------------------------------------
 DLabel::DLabel(QWidget *parent, const char *name)
-  :QLabel(parent,name){
-
-    button = 0;
-    lit = false;
+	:QLabel(parent,name)
+{
+	button = 0;
+	lit = false;
 }
 
-void DLabel::mousePressEvent(QMouseEvent *e){
+//-------------------------------------------------------------------------
+// Name: mousePressEvent(QMouseEvent *e)
+//-------------------------------------------------------------------------
+void DLabel::mousePressEvent(QMouseEvent *e)
+{
+	if(e->button() == LeftButton)
+	{
+		lit = !lit;
+		button = LeftButton;
+	}
+	else
+	{
+		button = MidButton;
+	}
 
-  if(e->button() == LeftButton){
-    lit = !lit;
-    button = LeftButton;
-  }
-  else{
-    button = MidButton;
-  }
 
-
-  emit clicked();
+	emit clicked();
 }
 
-
-int DLabel::Button(){
-  return button;
+//-------------------------------------------------------------------------
+// Name: Button()
+//-------------------------------------------------------------------------
+int DLabel::Button()
+{
+	return button;
 }
 
-bool DLabel::isLit(){
-
-  return lit;
-
+//-------------------------------------------------------------------------
+// Name: isLit()
+//-------------------------------------------------------------------------
+bool DLabel::isLit()
+{
+	return lit;
 }
 
-void DLabel::setLit(bool _lit){
-  lit = _lit;
+//-------------------------------------------------------------------------
+// Name: setLit(bool _lit)
+//-------------------------------------------------------------------------
+void DLabel::setLit(bool _lit)
+{
+	lit = _lit;
 }

@@ -26,6 +26,9 @@
 #ifndef QTCALC_H
 #define QTCALC_H
 
+#include <queue>
+using std::queue;
+
 class QLabel;
 class QListBox;
 class QTimer;
@@ -41,147 +44,131 @@ class DLabel;
 
 
 #ifdef HAVE_CONFIG_H
-#include "../config.h"
+	#include "../config.h"
 #endif
 
 // IMPORTANT this has to come after ../config.h
 #include "kcalctype.h"
 
 #define STACK_SIZE	100
-#define TEMP_STACK_SIZE 1000 // the number of numbers kept in the temp stack 
-                             // which are accessible with the up and down arrow
-                            // key
-
 #define PRECEDENCE_INCR	20
 
-#define FUNC_NULL	0
-#define FUNC_OR		1
-#define FUNC_XOR	2
-#define FUNC_AND	3
-#define FUNC_LSH	4
-#define FUNC_RSH	5
-#define FUNC_ADD	6
+#define FUNC_NULL		0
+#define FUNC_OR			1
+#define FUNC_XOR		2
+#define FUNC_AND		3
+#define FUNC_LSH		4
+#define FUNC_RSH		5
+#define FUNC_ADD		6
 #define FUNC_SUBTRACT	7
 #define FUNC_MULTIPLY	8
-#define FUNC_DIVIDE	9
-#define FUNC_MOD	10
-#define FUNC_POWER	11
+#define FUNC_DIVIDE		9
+#define FUNC_MOD		10
+#define FUNC_POWER		11
 #define FUNC_PWR_ROOT	12
-#define FUNC_INTDIV	13
+#define FUNC_INTDIV		13
 
+// CHANGED BY EVAN TERAN
+#define		HEX_SIZE	8
+#define		OCT_SIZE	11
 #define		DEC_SIZE	19
-#define		BOH_SIZE	16
-#define		DSP_SIZE	50 //25
+#define		BIN_SIZE	32
 
-#define		DEG2RAD(x)	(((2L*pi)/360L)*x)
-#define		GRA2RAD(x)	((pi/200L)*x)
-#define		RAD2DEG(x)	((360L/(2L*pi))*x)
-#define		RAD2GRA(x)	((200L/pi)*x)
-#define		POS_ZERO	 1e-19L	 /* What we consider zero is   */
+#define		DSP_SIZE	50 // 25
+
+#define		POS_ZERO	 1e-19L	 /* What we consider zero is */
 #define		NEG_ZERO	-1e-19L	 /* anything between these two */
 
+#define DISPLAY_AMOUNT display_data.s_item_data.item_amount
 
-typedef	CALCAMNT  (*Arith)(CALCAMNT, CALCAMNT); 
-typedef	CALCAMNT  (*Prcnt)(CALCAMNT, CALCAMNT, CALCAMNT); 
-typedef	CALCAMNT  (*Trig)(CALCAMNT); 
 
-typedef enum _last_input_type {
-  DIGIT = 1, OPERATION = 2, RECALL = 3, PASTE = 4
+typedef	CALCAMNT	(*Arith)(CALCAMNT, CALCAMNT); 
+typedef	CALCAMNT	(*Prcnt)(CALCAMNT, CALCAMNT, CALCAMNT); 
+typedef	CALCAMNT	(*Trig)(CALCAMNT); 
+
+typedef enum _last_input_type
+{
+	DIGIT = 1,
+	OPERATION = 2,
+	RECALL = 3,
+	PASTE = 4
 } last_input_type;
 
-typedef enum   _num_base	{ 
-	NB_BINARY = 2, NB_OCTAL = 8, NB_DECIMAL = 10, NB_HEX = 16 
+typedef enum _num_base
+{ 
+	NB_BINARY = 2,
+	NB_OCTAL = 8,
+	NB_DECIMAL = 10,
+	NB_HEX = 16 
 } num_base;
 
-typedef enum   _angle_type	{ 
-	ANG_DEGREE = 0, ANG_RADIAN = 1, ANG_GRADIENT = 2
+typedef enum _angle_type
+{ 
+	ANG_DEGREE = 0, 
+	ANG_RADIAN = 1, 
+	ANG_GRADIENT = 2
 } angle_type;
 
-typedef enum   _item_type	{ 
-	ITEM_FUNCTION, ITEM_AMOUNT 
+typedef enum _item_type
+{ 
+	ITEM_FUNCTION, 
+	ITEM_AMOUNT 
 } item_type;
 
-typedef struct   _func_data	{ 
-	int		item_function;
-	int		item_precedence;
+typedef struct _func_data
+{ 
+	int item_function;
+	int item_precedence;
 } func_data;
 
-typedef	union  _item_data 	{	/* The item data	 */
-	CALCAMNT	item_amount;	/*	an amount	 */
-	func_data	item_func_data;	/*	or a function	 */
-} item_data;				/* called item_data      */
+typedef	union  _item_data
+{
+	CALCAMNT	item_amount;	// an amount
+	func_data	item_func_data;	// or a function
+} item_data;
 
-typedef struct _item_contents	{	/* The item contents	 */
-	item_type	s_item_type;	/* 	a type flag      */
-	item_data	s_item_data; 	/*      and data	 */
+typedef struct _item_contents
+{
+	item_type	s_item_type;	// a type flag
+	item_data	s_item_data; 	// and data
 } item_contents;
 
-typedef struct stack_item	*stack_ptr;
+typedef struct stack_item *stack_ptr;
 
-typedef struct stack_item {
+typedef struct stack_item
+{
+	// Contents of an item on the input stack
 
-	/* Contents of an item on the input stack */
+	stack_ptr prior_item;		// Pointer to prior item
+	stack_ptr prior_type;		// Pointer to prior type
+	item_contents item_value;	// The value of the item
+} stack_item;
 
-	stack_ptr	prior_item;		/* Pointer to prior item */
-	stack_ptr	prior_type;		/* Pointer to prior type */
-	item_contents	item_value;		/* The value of the item */
-
-} stack_item;					/* all called stack_item */
-
-
-CALCAMNT ExecOr(CALCAMNT left_op, CALCAMNT right_op);
-CALCAMNT ExecXor(CALCAMNT left_op, CALCAMNT right_op);
-CALCAMNT ExecAnd(CALCAMNT left_op, CALCAMNT right_op);
-CALCAMNT ExecLsh(CALCAMNT left_op, CALCAMNT right_op);
-CALCAMNT ExecRsh(CALCAMNT left_op, CALCAMNT right_op);
-CALCAMNT ExecAdd(CALCAMNT left_op, CALCAMNT right_op);
-CALCAMNT ExecSubtract(CALCAMNT left_op, CALCAMNT right_op);
-CALCAMNT ExecMultiply(CALCAMNT left_op, CALCAMNT right_op);
-CALCAMNT ExecDivide(CALCAMNT left_op, CALCAMNT right_op);
-CALCAMNT ExecMod(CALCAMNT left_op, CALCAMNT right_op);
-CALCAMNT ExecPower(CALCAMNT left_op, CALCAMNT right_op);
-CALCAMNT ExecPwrRoot(CALCAMNT left_op, CALCAMNT right_op);
-CALCAMNT ExecIntDiv(CALCAMNT left_op, CALCAMNT right_op);
-
-CALCAMNT ExecAddSubP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
-CALCAMNT ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
-CALCAMNT ExecDivideP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
-CALCAMNT ExecPowerP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
-CALCAMNT ExecPwrRootP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
-
-
-int 		UpdateStack(int run_precedence);
-CALCAMNT 	ExecFunction(CALCAMNT left_op, int function, CALCAMNT right_op);
-int 		cvb(char *out_str, long amount, int max_out);
-
-void 		PrintStack(void);
-void 		InitStack(void);
-void 		PushStack(item_contents *add_item);
-item_contents 	*PopStack(void);
-item_contents 	*TopOfStack(void);
-item_contents 	*TopTypeStack(item_type rqstd_type);
+void 	InitStack();
+void 	PushStack(item_contents *add_item);
+int		UpdateStack(int run_precedence);
+item_contents	*PopStack();
+item_contents	*TopOfStack();
+item_contents	*TopTypeStack(item_type rqstd_type);
 
  
-#define		DISPLAY_AMOUNT	display_data.s_item_data.item_amount
+typedef struct _DefStruct
+{
+	QColor forecolor;
+	QColor backcolor;
+	QColor numberButtonColor;
+	QColor functionButtonColor;
+	QColor hexButtonColor;
+	QColor memoryButtonColor;
+	QColor operationButtonColor;
 
-
-
-typedef struct _DefStruct{
-  QColor forecolor;
-  QColor backcolor;
-  QColor numberButtonColor;
-  QColor functionButtonColor;
-  QColor hexButtonColor;
-  QColor memoryButtonColor;
-  QColor operationButtonColor;
-
-  int precision;
-  int fixedprecision;
-  int style;
-  bool fixed;
-  bool beep;
-  QFont   font;
-}DefStruct;
+	int precision;
+	int fixedprecision;
+	int style;
+	bool fixed;
+	bool beep;
+	QFont font;
+} DefStruct;
 
 
 class QtCalculator : public KDialog
@@ -189,34 +176,33 @@ class QtCalculator : public KDialog
     Q_OBJECT
 
 public:
+	QtCalculator(QWidget *parent = 0, const char *name = 0);
+	~QtCalculator();
 
-    QtCalculator( QWidget *parent=0, const char *name=0 );
-    ~QtCalculator( void );
+private:
+	virtual bool eventFilter( QObject *o, QEvent *e );
+	void updateGeometry();
 
-    virtual bool eventFilter( QObject *o, QEvent *e );
-    void updateGeometry( void );
+	void keyPressEvent( QKeyEvent *e );    
+	void keyReleaseEvent( QKeyEvent *e );
+	void closeEvent( QCloseEvent *e );
+	void writeSettings();
+	void readSettings();
+	void set_precision();
+	void set_display_font();
+	void set_style();
+	void history_next();
+	void history_prev();
+	void ComputeMean();
+	void ComputeSin();
+	void ComputeStd();
+	void ComputeCos();
+	void ComputeMedean();
+	void ComputeTan();
 
-    void keyPressEvent( QKeyEvent *e );    
-    void keyReleaseEvent( QKeyEvent *e );
-    void closeEvent( QCloseEvent *e );
-    void writeSettings();
-    void readSettings();
-    void set_precision();
-    void set_display_font();
-    void set_style();
-    void temp_stack_next();
-    void temp_stack_prev();
-    void ComputeMean();
-    void ComputeSin();
-    void ComputeStd();
-    void ComputeCos();
-    void ComputeMedean();
-    void ComputeTan();
-
-public slots:
-
+protected slots:
     void helpclicked();
-    void configurationChanged( const DefStruct &state ); 
+    void configurationChanged(const DefStruct &state); 
     void set_colors();
     void display_selected();
     void invertColors();
@@ -241,13 +227,6 @@ public slots:
     void EnterPercent();
     void EnterLogr();
     void EnterLogn();
-    void SetDeg();
-    void SetGra();
-    void SetRad();
-    void SetHex();
-    void SetOct();
-    void SetBin();
-    void SetDec();
     void Deg_Selected();
     void Rad_Selected();
     void Gra_Selected();
@@ -259,8 +238,8 @@ public slots:
     void EnterEqual();
     void Clear();
     void ClearAll();
-    void RefreshCalculator(void);
-    void InitializeCalculator(void);
+    void RefreshCalculator();
+    void InitializeCalculator();
     void UpdateDisplay();
     void ExecSin();
     void ExecCos();
@@ -324,7 +303,7 @@ public slots:
     void pb9toggled(bool myboolean);
     void pbparenopentoggled(bool myboolean);
     void pbparenclosetoggled(bool myboolean);
-    void pbandtoggled(bool myboolean);
+    void pbandtoggled(bool myprivateboolean);
     void pb4toggled(bool myboolean);
     void pb5toggled(bool myboolean);
     void pb6toggled(bool myboolean);
@@ -336,7 +315,7 @@ public slots:
     void pb3toggled(bool myboolean);    
     void pbplustoggled(bool myboolean);
     void pbminustoggled(bool myboolean);
-    void pbshifttoggled(bool myboolean);
+    void pbshifttoggled(bool privatemyboolean);
     void pbperiodtoggled(bool myboolean);
     void pb0toggled(bool myboolean);    
     void pbequaltoggled(bool myboolean);
@@ -346,15 +325,66 @@ public slots:
     void pbhyptoggled(bool myboolean);
     void configclicked();
 
-
-
-public:
-
+private:
      DefStruct kcalcdefaults;
+	 
+private:
+	static int cvb(char *out_str, long amount, int max_digits);
+	
+public:
+	static CALCAMNT ExecOr(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecXor(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecAnd(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecLsh(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecRsh(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecAdd(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecSubtract(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecMultiply(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecDivide(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecMod(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecPower(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecPwrRoot(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecIntDiv(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecAddSubP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
+	static CALCAMNT ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
+	static CALCAMNT ExecDivideP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
+	static CALCAMNT ExecPowerP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
+	static CALCAMNT ExecPwrRootP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
+	static CALCAMNT ExecFunction(CALCAMNT left_op, int function, CALCAMNT right_op);
+	
+public:
+	static CALCAMNT Deg2Rad(CALCAMNT x)	{ return (((2L * pi) / 360L) * x); }
+	static CALCAMNT Gra2Rad(CALCAMNT x)	{ return ((pi / 200L) * x); }
+	static CALCAMNT Rad2Deg(CALCAMNT x)	{ return ((360L / (2L * pi)) * x); }
+	static CALCAMNT Rad2Gra(CALCAMNT x)	{ return ((200L / pi) * x); }
+
+private:
+	bool inverse;
+	bool hyp_mode;
+	bool eestate;
+	bool refresh_display;
+	int	display_size;
+	int	angle_mode;
+	int input_limit;
+	int input_count;
+	int decimal_point;
+	int precedence_base;
+	num_base current_base;
+	CALCAMNT memory_num;
+	last_input_type last_input;
+	
+public:
+	static const CALCAMNT pi;
+	
+private:
+	char display_str[DSP_SIZE + 1];
+	
+private:
+	vector<CALCAMNT> history_list;
+	int history_index;
+	
  
 private:
-    void setHypText(bool hyp);
-
     QWidget *mSmallPage;
     QWidget *mLargePage;
     
@@ -417,18 +447,18 @@ private:
     QPushButton* 	pbnegate;    
     QPushButton* 	pbmod;    
 
-    QPtrList<QPushButton> mNumButtonList;
-    QPtrList<QPushButton> mFunctionButtonList;
-    QPtrList<QPushButton> mHexButtonList;
-    QPtrList<QPushButton> mMemButtonList;
-    QPtrList<QPushButton> mOperationButtonList;
+    QList<QPushButton> mNumButtonList;
+    QList<QPushButton> mFunctionButtonList;
+    QList<QPushButton> mHexButtonList;
+    QList<QPushButton> mMemButtonList;
+    QList<QPushButton> mOperationButtonList;
 
-    bool		key_pressed;
-    int                 mInternalSpacing;
-    KStats		stats;
-    QListBox            *paper;
-    QTimer		*status_timer;
-    ConfigureDialog     *mConfigureDialog;
+    bool			key_pressed;
+    int				mInternalSpacing;
+    KStats			stats;
+    QListBox		*paper;
+    QTimer			*status_timer;
+    ConfigureDialog	*mConfigureDialog;
 
 };
 

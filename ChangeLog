@@ -1,3 +1,46 @@
+
+2001-10-12 Evan Teran <emt3734@rit.edu>
+	* Reorganized code for all files, much more consistant now
+	* completely reworked the cvb (convert to binary) function
+	it now is sane, the last one did a rediculous amount of
+	unneeded work
+	* changed C/C++ headers to use new style as per ANSI/ISO 
+	standard
+	* removed fontdlg.cpp/h from tree, not even used in compile :P
+	* made binary mode 32-bit
+	* reorganized UpdateDisplay code to make more sense
+	* found possible nasty memleak in EnterEqual
+	* now use my UNUSED macro to perform (void)var on unused paramters
+	to avoid compile warnings, much more readable this way
+	* merged setXXX functions to angle_selected/base_selected
+	then removed the setXXX functions as they no longer have any purpose
+	* changed a ton of code to use true C++ bools, makes logic
+	more clear
+	* made cvb a static member of QtCalculator instead of an ugly global
+	function
+	* changed history to use a simple vectory object instead of the storing
+	the values in a dynamically allocated QList, it was clearly leaking memory
+	as it was almost never released, this could have been fixed by enabling the
+	autodelete feature of QList...but why dynamically allocate when we are
+	storing numerical values?!? simple array with an int as an iterator :)
+	* changed error trapping from C style signal trapping, rather use exceptions
+	much cleaner that way
+	* removed un-used TopOfStack function
+	* fixed ability to enter a decimal point when in hex/oct/bin mode, those are
+	integer value only modes
+	* fixed problem with entering multiple decimal points in decimal mode
+	* changed CALCAMNT to be defined by a typedef, I did notice that at least my
+	C++ math headers are broken...functions like cos should (by newest
+	standards) use float, double, or long double versions automatically based on
+	datatype, however mine (Redhat 7.1) seems to only have the old double
+	versions, and have alternate names for these functions
+	* fixed the fact that the normal clear button seemingly did nothing
+	* removed configdlg.* from source tree as it is not part of the compile
+	* changed options dialog to use smarter layouts, and also fixed spinbox
+	size problem so they are now usable
+	* synced changed I made to the KDE 2.2.1 release version to match CVS
+	version which compiles under KDE 3.0 w/ QT 3.0.0
+
 1999-08-22  Bernd Johannes Wuebben  <wuebben@math.cornell.edu>
 
 	* kcalc_core.cpp (UpdateDisplay): 
