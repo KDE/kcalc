@@ -50,10 +50,13 @@ DOCSDIR      = $(prefix)/doc/HTML/kcalc
 
 all: $(TARGET)
 
+Makefile: Makefile.in
+	cd .. && CONFIG_FILES=kcalc/$@ CONFIG_HEADERS= $(SHELL) ./config.status
+
 $(TARGET): $(SRCMETA) $(OBJS)
 	$(CXX) -o $(TARGET) $(OBJS) $(LDFLAGS)
 
-install:
+install: all
 	[ -d $(BINDIR) ] || $(INSTALL_DIR) $(BINDIR)
 	$(INSTALL) $(TARGET) $(BINDIR)
 	[ -d $(DOCSDIR) ] || $(INSTALL_DIR) $(DOCSDIR)
