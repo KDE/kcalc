@@ -83,6 +83,7 @@ void ConfigureDialog::setState(const DefStruct &state)
 	mPrecSpin->setValue(QMIN( mPrecSpin->maxValue(), mState.precision ));
 	mFixSpin->setValue(mState.fixedprecision);
 	mBeepCheck->setChecked(mState.beep);
+	mCaptionResult->setChecked(mState.capres);
 	mTrigRadio->setChecked(mState.style == 0);
 	mStatRadio->setChecked(mState.style == 1);  
 	mFontChooser->setFont(mState.font);
@@ -112,6 +113,7 @@ DefStruct ConfigureDialog::state()
 	state.precision      = mPrecSpin->value();
 	state.fixedprecision = mFixSpin->value();
 	state.beep           = mBeepCheck->isChecked();
+	state.capres         = mCaptionResult->isChecked();
 	state.style          = mTrigRadio->isChecked() ? 0 : 1;
 	state.font           = mFontChooser->font();
 
@@ -231,6 +233,9 @@ void ConfigureDialog::setupSettingPage()
     mBeepCheck = new QCheckBox( GroupBox3, "mBeepCheck" );
     mBeepCheck->setText( i18n( "&Beep on error" ) );
     GroupBox3Layout->addWidget( mBeepCheck );
+    mCaptionResult = new QCheckBox( GroupBox3, "mCaptionResult" );
+    mCaptionResult->setText( i18n( "Show &result in window title" ) );
+    GroupBox3Layout->addWidget( mCaptionResult );
     Form1Layout->addWidget( GroupBox3 );
     QSpacerItem* spacer_3 = new QSpacerItem( 20, 20, QSizePolicy::Minimum, 
             QSizePolicy::Expanding );

@@ -59,6 +59,7 @@ private:
 	QSpinBox     *mPrecSpin;
 	QSpinBox     *mFixSpin;
 	QCheckBox    *mBeepCheck;
+	QCheckBox    *mCaptionResult;
 	QRadioButton *mTrigRadio;
 	QRadioButton *mStatRadio;
     QLabel       *TextLabel2;

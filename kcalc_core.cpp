@@ -1721,6 +1721,9 @@ void QtCalculator::UpdateDisplay()
 	if (hyp_mode)	statusHYPLabel->setText("HYP");
 	else			statusHYPLabel->clear();
 	calc_display->setText(display_str);
+	// Show the result in the app's caption in taskbar (wishlist - bug #52858)
+	if (kcalcdefaults.capres)
+		QtCalculator::setCaption(display_str);
 }
 
 //-------------------------------------------------------------------------

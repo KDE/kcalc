@@ -92,7 +92,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	mInternalSpacing(4), status_timer(new QTimer), mConfigureDialog(0)
 {
 	// make sure the display_str is NULL terminated so we can
-	// user library string functions
+	// use library string functions
 	display_str[0] = '\0';
 
 	connect(status_timer, SIGNAL(timeout()),
@@ -1978,6 +1978,7 @@ void QtCalculator::readSettings()
 	config->setGroup("General");
 	kcalcdefaults.style	= config->readNumEntry("style", (int)0);
 	kcalcdefaults.beep	= config->readBoolEntry("beep", true);
+	kcalcdefaults.capres	= config->readBoolEntry("captionresult",false);
 }
 
 //-------------------------------------------------------------------------
@@ -2012,6 +2013,7 @@ void QtCalculator::writeSettings()
 	config->setGroup("General");
 	config->writeEntry("style",(int)kcalcdefaults.style);
 	config->writeEntry("beep", kcalcdefaults.beep);
+	config->writeEntry("captionresult", kcalcdefaults.capres);
 
 	config->sync();
 }

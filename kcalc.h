@@ -62,12 +62,12 @@ class KPushButton;
 #define FUNC_LSH		4
 #define FUNC_RSH		5
 #define FUNC_ADD		6
-#define FUNC_SUBTRACT	7
-#define FUNC_MULTIPLY	8
+#define FUNC_SUBTRACT		7
+#define FUNC_MULTIPLY		8
 #define FUNC_DIVIDE		9
 #define FUNC_MOD		10
 #define FUNC_POWER		11
-#define FUNC_PWR_ROOT	12
+#define FUNC_PWR_ROOT		12
 #define FUNC_INTDIV		13
 
 #define		HEX_SIZE	sizeof(KCALC_LONG)*2
@@ -132,6 +132,7 @@ typedef struct _DefStruct
 	int style;
 	bool fixed;
 	bool beep;
+	bool capres;
 	QFont font;
 } DefStruct;
 
