@@ -455,7 +455,9 @@ void KCalculator::setupMainActions(void)
 
 	KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
 
-	KStdAction::keyBindings( this, SLOT( slotConfigureKeys() ), actionCollection() );
+	KStdAction::keyBindings(guiFactory(), SLOT(configureShortcuts()), 
+actionCollection());
+   
 }
 
 void KCalculator::setupStatusbar(void)
@@ -2041,12 +2043,6 @@ void KCalculator::history_prev()
 	if(!calc_display->history_prev()  &&  KCalcSettings::beep())
 		KNotifyClient::beep();
 }
-
-void KCalculator::slotConfigureKeys()
-{
-  KKeyDialog::configure( actionCollection(), this );
-}
-
 
 bool KCalculator::eventFilter(QObject *o, QEvent *e)
 {

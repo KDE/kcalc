@@ -150,7 +150,6 @@ protected slots:
     void slotStatDataInputclicked(void);
     void slotStatClearDataclicked(void);
     void slotHyptoggled(bool flag);
-    void slotConfigureKeys();
     void slotC1clicked(void);
     void slotC2clicked(void);
     void slotC3clicked(void);
