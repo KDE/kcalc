@@ -21,8 +21,6 @@ KDE_ICON = kcalc
 
 xdg_apps_DATA = kcalc.desktop
 
-EXTRA_DIST = $(pics_DATA) $(xdg_apps_DATA) 
-
 messages:
 	$(XGETTEXT) *.cpp -o $(podir)/kcalc.pot
 
