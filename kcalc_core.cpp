@@ -387,20 +387,19 @@ void QtCalculator::EnterDigit(int data)
 
 	UpdateDisplay();
 }
-
 //-------------------------------------------------------------------------
 // Name: SubtractDigit()
 //-------------------------------------------------------------------------
 void QtCalculator::SubtractDigit()
 {
    // This function could be better, possibly, but am I glad to see it!
-   if (DISPLAY_AMOUNT != 0)
+   if (DISPLAY_AMOUNT != 0||decimal_point!=0)
    {
       if (current_base == NB_DECIMAL && (DISPLAY_AMOUNT != floor(DISPLAY_AMOUNT)))
       {
-         if (decimal_point < 3)
+          if (decimal_point < 3)
          {
-            decimal_point = 0;
+             decimal_point = 0;
             DISPLAY_AMOUNT = floor(DISPLAY_AMOUNT);
          }
          else
@@ -637,7 +636,7 @@ void QtCalculator::EnterStackFunction(int data)
 	if (UpdateStack(new_precedence)) {
 		UpdateDisplay();
 	}
-	
+
 	PushStack(&new_item);
 }
 
@@ -1648,7 +1647,7 @@ void QtCalculator::UpdateDisplay()
 
 		case NB_DECIMAL:
             if (kcalcdefaults.fixed) {
-                    str_size = sprintf(display_str, 
+                    str_size = sprintf(display_str,
 						PRINT_FLOAT,
 						kcalcdefaults.fixedprecision,
 						DISPLAY_AMOUNT);
@@ -2231,7 +2230,7 @@ stack_ptr AllocStackItem()
 	}
 
 	throw runtime_error("stack error");
-	
+
 	// never reached
 	return (process_stack + stack_next);
 }
