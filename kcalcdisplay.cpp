@@ -360,7 +360,6 @@ bool KCalcDisplay::updateDisplay(void)
 		Q_ASSERT(_period == false  && _eestate == false);
 		Q_ASSERT(tmp_string.length() < DSP_SIZE);
 		setText(tmp_string);
-		_display_amount = (CALCAMNT)tmp_string.toLongLong(&tmp_flag, 2);
 		_display_amount = STRTOUL(_str_int.latin1(), 0, 2);
 		if (_neg_sign)
 			_display_amount = -_display_amount;
