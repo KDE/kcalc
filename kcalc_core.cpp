@@ -537,12 +537,13 @@ void QtCalculator::EnterNegate()
     UpdateDisplay();
   }
   else{
-    last_input = OPERATION;
+    //    last_input = OPERATION;
     if (DISPLAY_AMOUNT != 0) {
       DISPLAY_AMOUNT *= -1;
       UpdateDisplay();
+    }
   }
-  }
+  last_input = DIGIT;
 }
 
 void QtCalculator::EnterOpenParen()
@@ -1356,12 +1357,23 @@ void QtCalculator::EnterEqual()
 
 }
 
-void QtCalculator::Clear()
-{
+void QtCalculator::Clear(){
+
   eestate = false;
-  last_input = OPERATION;
+
   input_count = 0;
   decimal_point = 0;
+
+  if(last_input == OPERATION){
+    //    printf("LAST_INPUT = OPERATION\n");
+    last_input = DIGIT;
+    PopStack();
+  }
+  else{
+    //    printf("LAST_INPUT = DIGIT\n");
+    last_input = DIGIT;
+  }
+             
 
   if( display_error){
     display_error = 0;
@@ -1379,7 +1391,8 @@ void QtCalculator::ClearAll()
 {
 
   eestate = false;
-  last_input = OPERATION;
+  // last_input = OPERATION;
+  last_input = DIGIT;
   RefreshCalculator();
   refresh_display = 1;
 
