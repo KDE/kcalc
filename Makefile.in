@@ -39,12 +39,12 @@ INSTALL_DATA = @INSTALL@ -m 0644
 INSTALL_DIR  = @INSTALL@ -d -m 0755
 
 prefix       = @prefix@
-BINDIR       = $(prefix)/bin
-PICSDIR      = $(prefix)/share/apps/kcalc/pics
-ICONDIR      = $(prefix)/share/icons
-MINIDIR      = $(prefix)/share/icons/mini
-DOCSDIR      = $(prefix)/share/doc/HTML/kcalc
-APPSDIR      = $(prefix)/share/applnk/Utilities
+install_root = @install_root@
+BINDIR       = @kde_bindir@
+PICSDIR      = @kde_datadir@/kcalc/pics
+ICONDIR      = @kde_icondir@
+MINIDIR      = @kde_minidir@
+APPSDIR      = @kde_appsdir@/Utilities
 
 ########## Implicit Rules ##########
 
