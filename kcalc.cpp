@@ -1017,6 +1017,9 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 			//else
 			pbEE->animateClick();
 		break;
+        case Key_Period:
+            pbPeriod->animateClick();
+            break;
 	case Key_Escape:
 		pbClear->animateClick();
 		break;
@@ -1066,7 +1069,7 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 	}
     }
 
-    if (e->state() & Keypad)
+    if (e->state() & Keypad && ( e->key() != Key_Period ))
     {
         NumButtonGroup->find(e->text().toInt())->animateClick();
     }
