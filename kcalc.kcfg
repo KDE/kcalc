@@ -126,29 +126,9 @@ int maxPrecision = 12;
 	<label>Name of constant C6</label>
 	<default>C6</default>
 	</entry>
-	<entry name="valueConstant1" type="String">
-	<label>Value of constant C1</label>
-	<default>0</default>
+	<entry name="valueUserConstants" type="StringList">
+	<label>List of user programmable constants</label>
+	<default>0,0,0,0,0,0</default>
 	</entry>
-	<entry name="valueConstant2" type="String">
-	<label>Value of constant C2</label>
-	<default>0</default>
-	</entry>
-	<entry name="valueConstant3" type="String">
-	<label>Value of constant C3</label>
-	<default>0</default>
-	</entry>
-	<entry name="valueConstant4" type="String">
-	<label>Value of constant C4</label>
-	<default>0</default>
-	</entry>	
-	<entry name="valueConstant5" type="String">
-	<label>Value of constant C5</label>
-	<default>0</default>
-	</entry>
-	<entry name="valueConstant6" type="String">
-	<label>Value of constant C6</label>
-	<default>0</default>
-	</entry>		
   </group>
 </kcfg>

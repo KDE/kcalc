@@ -950,6 +950,10 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
 {
 	Q_CHECK_PTR(parent);
 
+	ConstButtonGroup = new QButtonGroup(0, "Const-Button-Group");
+	connect(ConstButtonGroup, SIGNAL(clicked(int)), SLOT(slotConstclicked(int)));
+
+
 	KCalcButton *tmp_pb;
 	tmp_pb = new KCalcButton(parent, "Constant C1 - Button");
 	tmp_pb->addMode(ModeInverse, "Store", i18n("Write display data into memory"));
@@ -960,7 +964,7 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC1clicked(void)));
+	ConstButtonGroup->insert(tmp_pb, 0);
 
 	tmp_pb = new KCalcButton(parent, "Constant C2 - Button");
 	tmp_pb->addMode(ModeInverse, "Store", i18n("Write display data into memory"));
@@ -971,7 +975,7 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
                 tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC2clicked(void)));
+	ConstButtonGroup->insert(tmp_pb, 1);
 
 	tmp_pb = new KCalcButton(parent, "Constant C3 - Button");
 	tmp_pb->addMode(ModeInverse, "Store", i18n("Write display data into memory"));
@@ -982,8 +986,7 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
                 tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
-
-	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC3clicked(void)));
+	ConstButtonGroup->insert(tmp_pb, 2);
 
 	tmp_pb = new KCalcButton(parent, "Constant C4 - Button");
 	tmp_pb->addMode(ModeInverse, "Store", i18n("Write display data into memory"));
@@ -994,7 +997,7 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
                 tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC4clicked(void)));
+	ConstButtonGroup->insert(tmp_pb, 3);
 
 	tmp_pb = new KCalcButton(parent, "Constant C5 - Button");
 	tmp_pb->addMode(ModeInverse, "Store", i18n("Write display data into memory"));
@@ -1005,7 +1008,7 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
                 tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC5clicked(void)));
+	ConstButtonGroup->insert(tmp_pb, 4);
 
 	tmp_pb = new KCalcButton(parent, "Constant C6 - Button");
 	tmp_pb->addMode(ModeInverse, "Store", i18n("Write display data into memory"));
@@ -1016,7 +1019,7 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
                 tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotC6clicked(void)));
+	ConstButtonGroup->insert(tmp_pb, 5);
 
 	changeButtonNames();
 }
@@ -1753,97 +1756,19 @@ void KCalculator::slotStatClearDataclicked(void)
 	}
 }
 
-void KCalculator::slotC1clicked(void)
+void KCalculator::slotConstclicked(int button)
 {
+	QStringList tmp_list = KCalcSettings::valueUserConstants();
 	if(!inverse)
 	{
 		//set the display to the configured value of Constant C1
-		calc_display->setAmount(KCalcSettings::valueConstant1().toDouble());
+		calc_display->setAmount(tmp_list[button].toDouble());
 	}
 	else
 	{
 		pbInv->setOn(false);
-		KCalcSettings::setValueConstant1(QString::number((double)calc_display->getAmount()));
-	}
-
-	UpdateDisplay(false);
-}
-
-void KCalculator::slotC2clicked(void)
-{
-	if(!inverse)
-	{
-		//set the display to the configured value of Constant C2
-		calc_display->setAmount(KCalcSettings::valueConstant2().toDouble());
-	}
-	else
-	{
-		pbInv->setOn(false);
-		KCalcSettings::setValueConstant2(QString::number((double)calc_display->getAmount()));
-	}
-
-	UpdateDisplay(false);
-}
-
-void KCalculator::slotC3clicked(void)
-{
-	if(!inverse)
-	{
-		//set the display to the configured value of Constant C3
-		calc_display->setAmount(KCalcSettings::valueConstant3().toDouble());
-	}
-	else
-	{
-		pbInv->setOn(false);
-		KCalcSettings::setValueConstant3(QString::number((double)calc_display->getAmount()));
-	}
-
-	UpdateDisplay(false);
-}
-
-void KCalculator::slotC4clicked(void)
-{
-	if(!inverse)
-	{
-		//set the display to the configured value of Constant C4
-		calc_display->setAmount(KCalcSettings::valueConstant4().toDouble());
-	}
-	else
-	{
-		pbInv->setOn(false);
-		KCalcSettings::setValueConstant4(QString::number((double)calc_display->getAmount()));
-	}
-
-	UpdateDisplay(false);
-}
-
-void KCalculator::slotC5clicked(void)
-{
-	if(!inverse)
-	{
-		//set the display to the configured value of Constant C5
-		calc_display->setAmount(KCalcSettings::valueConstant5().toDouble());
-	}
-	else
-	{
-		pbInv->setOn(false);
-		KCalcSettings::setValueConstant5(QString::number((double)calc_display->getAmount()));
-	}
-
-	UpdateDisplay(false);
-}
-
-void KCalculator::slotC6clicked(void)
-{
-	if(!inverse)
-	{
-		//set the display to the configured value of Constant C6
-		calc_display->setAmount(KCalcSettings::valueConstant6().toDouble());
-	}
-	else
-	{
-		pbInv->setOn(false);
-		KCalcSettings::setValueConstant6(QString::number((double)calc_display->getAmount()));
+		tmp_list[button] = QString::number(double(calc_display->getAmount()));
+		KCalcSettings::setValueUserConstants(tmp_list);
 	}
 
 	UpdateDisplay(false);

@@ -1,3 +1,6 @@
+2004-10-20 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* clean up Const-Buttons. More work still required.
+
 2004-10-16 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* improve Const-Buttons: set value by using INV-Button instead of config-menu
 

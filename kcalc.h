@@ -149,12 +149,7 @@ protected slots:
     void slotStatDataInputclicked(void);
     void slotStatClearDataclicked(void);
     void slotHyptoggled(bool flag);
-    void slotC1clicked(void);
-    void slotC2clicked(void);
-    void slotC3clicked(void);
-    void slotC4clicked(void);
-    void slotC5clicked(void);
-    void slotC6clicked(void);
+    void slotConstclicked(int);
 	
 private:
 	bool inverse;
@@ -221,6 +216,8 @@ private:
     QHButtonGroup*      BaseChooseGroup;
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
     QButtonGroup* 	NumButtonGroup;
+    // ConstButtonGroup C1-C6
+    QButtonGroup*	ConstButtonGroup;
 
     KToggleAction *actionStatshow;
     KToggleAction *actionTrigshow;
