@@ -3,10 +3,10 @@
 
     KCalc, a scientific calculator for the X window system using the
     Qt widget libraries, available at no cost at http://www.troll.no
-   
+
     Copyright (C) 1996 Bernd Johannes Wuebben
                        wuebben@math.cornell.edu
-    
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -38,7 +38,6 @@ class QWidget;
 
 class ConfigureDialog;
 class DLabel;
-class QAccel;
 #include <kdialog.h>
 #include "stats.h"
 
@@ -82,9 +81,9 @@ class QAccel;
 #define DISPLAY_AMOUNT display_data.s_item_data.item_amount
 
 
-typedef	CALCAMNT	(*Arith)(CALCAMNT, CALCAMNT); 
-typedef	CALCAMNT	(*Prcnt)(CALCAMNT, CALCAMNT, CALCAMNT); 
-typedef	CALCAMNT	(*Trig)(CALCAMNT); 
+typedef	CALCAMNT	(*Arith)(CALCAMNT, CALCAMNT);
+typedef	CALCAMNT	(*Prcnt)(CALCAMNT, CALCAMNT, CALCAMNT);
+typedef	CALCAMNT	(*Trig)(CALCAMNT);
 
 typedef enum _last_input_type
 {
@@ -95,28 +94,28 @@ typedef enum _last_input_type
 } last_input_type;
 
 typedef enum _num_base
-{ 
+{
 	NB_BINARY = 2,
 	NB_OCTAL = 8,
 	NB_DECIMAL = 10,
-	NB_HEX = 16 
+	NB_HEX = 16
 } num_base;
 
 typedef enum _angle_type
-{ 
-	ANG_DEGREE = 0, 
-	ANG_RADIAN = 1, 
+{
+	ANG_DEGREE = 0,
+	ANG_RADIAN = 1,
 	ANG_GRADIENT = 2
 } angle_type;
 
 typedef enum _item_type
-{ 
-	ITEM_FUNCTION, 
-	ITEM_AMOUNT 
+{
+	ITEM_FUNCTION,
+	ITEM_AMOUNT
 } item_type;
 
 typedef struct _func_data
-{ 
+{
 	int item_function;
 	int item_precedence;
 } func_data;
@@ -151,7 +150,7 @@ item_contents	*PopStack();
 item_contents	*TopOfStack();
 item_contents	*TopTypeStack(item_type rqstd_type);
 
- 
+
 typedef struct _DefStruct
 {
 	QColor forecolor;
@@ -183,7 +182,7 @@ private:
 	virtual bool eventFilter( QObject *o, QEvent *e );
 	void updateGeometry();
 
-	void keyPressEvent( QKeyEvent *e );    
+	void keyPressEvent( QKeyEvent *e );
 	void keyReleaseEvent( QKeyEvent *e );
 	void closeEvent( QCloseEvent *e );
 	void writeSettings();
@@ -202,7 +201,7 @@ private:
 
 protected slots:
     void helpclicked();
-    void configurationChanged(const DefStruct &state); 
+    void configurationChanged(const DefStruct &state);
     void set_colors();
     void display_selected();
     void invertColors();
@@ -278,7 +277,7 @@ protected slots:
     void EEtoggled(bool myboolean);
     void pbinvtoggled(bool myboolean);
     void pbMRtoggled(bool myboolean);
-    void pbAtoggled(bool myboolean);	
+    void pbAtoggled(bool myboolean);
     void pbSintoggled(bool myboolean);
     void pbplusminustoggled(bool myboolean);
     void pbMplusminustoggled(bool myboolean);
@@ -294,9 +293,9 @@ protected slots:
     void pbEtoggled(bool myboolean);
     void pblntoggled(bool myboolean);
     void pbpowertoggled(bool myboolean);
-    void pbFtoggled(bool myboolean); 
+    void pbFtoggled(bool myboolean);
     void pbMCtoggled(bool myboolean);
-    void pbCleartoggled(bool myboolean);  
+    void pbCleartoggled(bool myboolean);
     void pbACtoggled(bool myboolean);
     void pb7toggled(bool myboolean);
     void pb8toggled(bool myboolean);
@@ -312,25 +311,25 @@ protected slots:
     void pbortoggled(bool myboolean);
     void pb1toggled(bool myboolean);
     void pb2toggled(bool myboolean);
-    void pb3toggled(bool myboolean);    
+    void pb3toggled(bool myboolean);
     void pbplustoggled(bool myboolean);
     void pbminustoggled(bool myboolean);
     void pbshifttoggled(bool privatemyboolean);
     void pbperiodtoggled(bool myboolean);
-    void pb0toggled(bool myboolean);    
+    void pb0toggled(bool myboolean);
     void pbequaltoggled(bool myboolean);
-    void pbpercenttoggled(bool myboolean);    
-    void pbnegatetoggled(bool myboolean);    
-    void pbmodtoggled(bool myboolean);    
+    void pbpercenttoggled(bool myboolean);
+    void pbnegatetoggled(bool myboolean);
+    void pbmodtoggled(bool myboolean);
     void pbhyptoggled(bool myboolean);
     void configclicked();
 
 private:
      DefStruct kcalcdefaults;
-	 
+
 private:
 	static int cvb(char *out_str, long amount, int max_digits);
-	
+
 public:
 	static CALCAMNT ExecOr(CALCAMNT left_op, CALCAMNT right_op);
 	static CALCAMNT ExecXor(CALCAMNT left_op, CALCAMNT right_op);
@@ -351,7 +350,7 @@ public:
 	static CALCAMNT ExecPowerP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
 	static CALCAMNT ExecPwrRootP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
 	static CALCAMNT ExecFunction(CALCAMNT left_op, int function, CALCAMNT right_op);
-	
+
 public:
 	static CALCAMNT Deg2Rad(CALCAMNT x)	{ return (((2L * pi) / 360L) * x); }
 	static CALCAMNT Gra2Rad(CALCAMNT x)	{ return ((pi / 200L) * x); }
@@ -372,25 +371,25 @@ private:
 	num_base current_base;
 	CALCAMNT memory_num;
 	last_input_type last_input;
-	
+
 public:
 	static const CALCAMNT pi;
-	
+
 private:
 	char display_str[DSP_SIZE + 1];
-	
+
 private:
 	std::vector<CALCAMNT> history_list;
 	int history_index;
-	
- 
+
+
 private:
     QWidget *mSmallPage;
     QWidget *mLargePage;
-    
+
     QPushButton *mConfigButton;
     QPushButton *mHelpButton;
-    
+
     QTimer* selection_timer;
     QLabel* statusINVLabel;
     QLabel* statusHYPLabel;
@@ -398,7 +397,7 @@ private:
     DLabel*		calc_display;
     QRadioButton*	anglebutton[3];
     QRadioButton*	basebutton[4];
-    QPushButton*        pbhyp;    
+    QPushButton*        pbhyp;
     QPushButton* 	pbEE;
     QPushButton* 	pbinv;
     QPushButton* 	pbMR;
@@ -418,9 +417,9 @@ private:
     QPushButton* 	pbE;
     QPushButton* 	pbln;
     QPushButton* 	pbpower;
-    QPushButton* 	pbF; 
+    QPushButton* 	pbF;
     QPushButton* 	pbMC;
-    QPushButton* 	pbClear;  
+    QPushButton* 	pbClear;
     QPushButton* 	pbAC;
     QPushButton* 	pb7;
     QPushButton* 	pb8;
@@ -436,16 +435,16 @@ private:
     QPushButton* 	pbor;
     QPushButton* 	pb1;
     QPushButton* 	pb2;
-    QPushButton* 	pb3;    
+    QPushButton* 	pb3;
     QPushButton* 	pbplus;
     QPushButton* 	pbminus;
     QPushButton* 	pbshift;
     QPushButton* 	pbperiod;
-    QPushButton* 	pb0;    
+    QPushButton* 	pb0;
     QPushButton* 	pbequal;
-    QPushButton* 	pbpercent;    
-    QPushButton* 	pbnegate;    
-    QPushButton* 	pbmod;    
+    QPushButton* 	pbpercent;
+    QPushButton* 	pbnegate;
+    QPushButton* 	pbmod;
 
     QPtrList<QPushButton> mNumButtonList;
     QPtrList<QPushButton> mFunctionButtonList;
@@ -459,7 +458,6 @@ private:
     QListBox		*paper;
     QTimer			*status_timer;
     ConfigureDialog	*mConfigureDialog;
-    QAccel *accel;
 };
 
 #endif  //QTCLAC_H

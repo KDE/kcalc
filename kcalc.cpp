@@ -116,7 +116,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	connect(kapp,SIGNAL(kdisplayPaletteChanged()), this, SLOT(set_colors()));
 
 	// Accelerators to exit the program
-	accel = new QAccel(this);
+	QAccel *accel = new QAccel(this);
 	accel->connectItem(accel->insertItem(Key_Q+CTRL), this, SLOT(quitCalc()));
 	accel->connectItem(accel->insertItem(Key_X+CTRL), this, SLOT(quitCalc()));
 
@@ -643,7 +643,6 @@ QtCalculator::~QtCalculator()
 	delete mConfigureDialog;
 	delete selection_timer;
 	delete status_timer;
-	delete accel;
 }
 
 
