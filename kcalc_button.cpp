@@ -36,3 +36,5 @@ KCalcButton::KCalcButton(const QString &label, QWidget * parent,
 {
   setAutoDefault(false);
 }
+
+#include "kcalc_button.moc"
