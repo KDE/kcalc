@@ -173,11 +173,8 @@ private:
     QPushButton* 	pbAC;
     QPushButton* 	pbParenOpen;
     QPushButton* 	pbParenClose;
-    QPushButton* 	pbAND;
     QPushButton* 	pbX;
     QPushButton* 	pbDivision;
-    QPushButton* 	pbOR;
-    QPushButton* 	pbXOR;
     QPushButton* 	pbPlus;
     QPushButton* 	pbMinus;
     QPushButton* 	pbPeriod;

@@ -694,6 +694,8 @@ void KCalculator::setupLogicKeys(QWidget *parent)
 	tmp_pb = new QPushButton("OR", parent, "OR-Button");
 	pbLogic.insert("OR", tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Bitwise OR"));
+	accel()->insert("Apply OR", i18n("Pressed O-Button"),
+			0, Key_O, tmp_pb, SLOT(animateClick()));
 	tmp_pb->setAutoDefault(false);
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotORclicked(void)));
 
@@ -1031,9 +1033,6 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 	case Key_Slash:
         case Key_division:
 		pbDivision->animateClick();
-		break;
-	case Key_O:
-		pbOR->animateClick();
 		break;
 	case Key_Exclam:
 		pbFactorial->animateClick();
