@@ -1,3 +1,7 @@
+2003-21-06 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Make Percent work the way it did in KDE-3.1 again (documentation
+	  was not updated to this KDE-version, which confused me on 2003/08/28)
+	
 2003-11-04 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* More reorganization and preparation for getting accels right.
 
