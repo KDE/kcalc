@@ -111,6 +111,9 @@ void KCalcDisplay::slotPaste(bool bClipboard)
 		return;
 	}
 
+	if (_num_base == NB_HEX)
+		tmp_str.prepend( "0x" );
+
 	bool was_ok;
 	CALCAMNT tmp_result = toDouble(tmp_str, was_ok);
 
