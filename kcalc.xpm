@@ -1,0 +1,70 @@
+/* XPM */
+static char *kcalc[] = {
+/* width height num_colors chars_per_pixel */
+"    32    32       23            1",
+/* colors */
+". c #000000",
+"# c #800000",
+"a c #008000",
+"b c #008080",
+"c c #c0c0c0",
+"d c #fff0d4",
+"e c #ffe2b1",
+"f c #ffd48e",
+"g c #b97a00",
+"h c #dc0000",
+"i c #ffb1c7",
+"j c #d4d4ff",
+"k c #8eabff",
+"l c #007ab9",
+"m c #00dcdc",
+"n c #005050",
+"o c #48ff48",
+"p c #f2f2f2",
+"q c #cecece",
+"r c #626262",
+"s c #808080",
+"t c #00ff00",
+"u c #ffffff",
+/* pixels */
+"aaaaaaaa...................aaaaa",
+"aaaaaaa.uuujuuujuuujuuujuu..aaaa",
+"aaaaaaa.uuujuuujuuujuuujuu.u.aaa",
+"aaaaaaa.jjjjjjjjjjjjjjjjjj.uj.aa",
+"a................pcs...juu.juu.a",
+".mmmmmmmmmmmmmmmm..gdd.suu......",
+".mbbbbbbbbbbbbbbn..gffd.uuussss.",
+".mbnnnnnnnnnnnnbn.s.gfd.sjjjcck.",
+".mbn.t.tt.o...mbn.s.gffd.uujuuu.",
+".mbn.t.t...t..mbn.ss.gfd.sujuuu.",
+".mbn.t..t.tt..mbn.ss.gffd.ujuuu.",
+".mbmmmmmmmmmmmmbn.lks.gfd.sjjjj.",
+".mbbbbbbbbbbbbbbn.scs.gffd.juuu.",
+".mbccccccccccccbn.sccs.gfd.suuu.",
+".mbcrr.crr.crr.bn.sccs.gffd.uuu.",
+".mbcrr.crr.crr.bn.lkjks.gfd.sjj.",
+".mb............bn.scucs.gffd.uu.",
+".mbccccccccccccbn.scuucs.gfd.su.",
+".mbcrr.crr.crr.bn.scuucs.gffd.u.",
+".mbcrr.crr.crr.bn.lkjjjks.gfd.c.",
+".mb............bn.scuuuks.gffd..",
+".mbcccccccciiiibn.scuuujcs.gdu..",
+".mbcrr.crr.ihh.bn.scuuujcs.geu#.",
+".mbcrr.crr.ihh.bn.lkjjjjjks..##.",
+".mb............bn.scuuujuccss...",
+".nbbbbbbbbbbbbbbn.scuuujuuckcss.",
+".nnnnnnnnnnnnnnnn.scuuujuuujccc.",
+"a................llkjjjjjjjjjjj.",
+"aaaaaaa.ssslssslssckuuujuuujuuu.",
+"aaaaaaa.qqqkqqqkqqcjuuujuuujuuu.",
+"aaaaaaa.uuujuuujuuujuuujuuujuuu.",
+"aaaaaaaa.......................a"
+};
+SIMPLE  =                    T
+BITPIX  =                    8
+NAXIS   =                    2
+NAXIS1  =                   32
+NAXIS2  =                   32
+HISTORY Written by XV 3.10a
+END
+

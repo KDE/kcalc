@@ -58,15 +58,15 @@ $(TARGET): $(SRCMETA) $(OBJS)
 	$(CXX) -o $(TARGET) $(OBJS) $(LDFLAGS)
 
 install: all
-	[ -d $(BINDIR) ] || $(INSTALL_DIR) $(BINDIR)
+	$(INSTALL_DIR) $(BINDIR)
 	$(INSTALL) $(TARGET) $(BINDIR)
-	[ -d $(DOCSDIR) ] || $(INSTALL_DIR) $(DOCSDIR)
+	$(INSTALL_DIR) $(DOCSDIR)
 	$(INSTALL_DATA) ./doc/k* $(DOCSDIR)
+	$(INSTALL_DIR) $(PICSDIR)
+	$(INSTALL_DATA) kcalc.xpm  $(PICSDIR)
 
 uninstall:
 	rm -f $(BINDIR)/$(TARGET)
-	rm -f $(DOCSDIR)/kcalc.gif
-	rm -f $(DOCSDIR)/kcalc.html 
 
 clean:
 	rm -f core *~ *.bak *.BAK $(SRCMETA) $(OBJS) $(TARGET)
