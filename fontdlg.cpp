@@ -26,7 +26,7 @@
  */
 
 #include <kfontdialog.h>
-#include <kapp.h>
+#include <kapplication.h>
 #include <klocale.h>
 #include "fontdlg.h"
 #include "fontdlg.moc"

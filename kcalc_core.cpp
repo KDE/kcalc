@@ -36,11 +36,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <kapp.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <knotifyclient.h>
-#include <kdebug.h>
 
 #include "dlabel.h"
 #include "kcalc.h"

@@ -34,24 +34,13 @@
 
 #include <qaccel.h>
 #include <qbuttongroup.h>
-#include <qcheckbox.h>
 #include <qclipboard.h>
-#include <qfont.h>
-#include <qgroupbox.h>
-#include <qlabel.h>
-#include <qptrlist.h>
-#include <qlistbox.h>
-#include <qpixmap.h>
-#include <qpushbutton.h>
 #include <qradiobutton.h>
 #include <qtimer.h>
 #include <qtooltip.h>
-#include <qwidget.h>
 
-#include <kapp.h>
 #include <kcolordrag.h>
 #include <kconfig.h>
-#include <kglobal.h>
 #include <kiconloader.h>
 #include <klocale.h>
 #include <kcmdlineargs.h>
@@ -59,7 +48,6 @@
 #include <kaboutdata.h>
 
 #include "dlabel.h"
-#include "kcalc.h"
 #include "optiondialog.h"
 #include "version.h"
 

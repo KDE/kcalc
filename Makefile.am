@@ -4,10 +4,10 @@ lib_LTLIBRARIES = kcalc.la
 
 kcalc_la_SOURCES = kcalc.cpp kcalc_core.cpp dlabel.cpp stats.cpp \
 	optiondialog.cpp
-METASOURCES = kcalc.moc configdlg.moc fontdlg.moc dlabel.moc \
+METASOURCES = kcalc.moc fontdlg.moc dlabel.moc \
 	optiondialog.moc
 
-noinst_HEADERS  = kcalc.h configdlg.h fontdlg.h dlabel.h stats.h kcalctype.h
+noinst_HEADERS  = kcalc.h fontdlg.h dlabel.h stats.h kcalctype.h
 
 INCLUDES= $(all_includes)
 kcalc_la_LDFLAGS = $(all_libraries) -module -avoid-version
