@@ -25,13 +25,13 @@ EXTRA_DIST = $(pics_DATA) $(kde_icon_DATA) $(apps_DATA) mini-kcalc.xpm
 
 install-data-local:
 	$(mkinstalldirs) $(kde_minidir)
-	$(INSTALL_DATA) $(srcdir)/mini-kcalc.xpm  $(kde_minidir)/kcalc.xpm
-	$(mkinstalldirs) $(kde_minidir)/../large
-	$(INSTALL_DATA) $(srcdir)/large-kcalc.xpm  $(kde_minidir)/../large/kcalc.xpm
+	$(INSTALL_DATA) $(srcdir)/mini-kcalc.xpm  $(kde_icondir)alc.xpm
+	$(mkinstalldirs) $(kde_icondir)/large
+	$(INSTALL_DATA) $(srcdir)/large-kcalc.xpm  $(kde_icondir)/large/kcalc.xpm
 
 uninstall-local:
-	rm -f $(MINIDIR)/kcalc.xpm
-	rm -f $(MINIDIR)/../large/kcalc.xpm
+	rm -f $(kde_minidir)/kcalc.xpm
+	rm -f $(kde_icondir)/large/kcalc.xpm
 
 messages:
 	$(XGETTEXT) -C -ki18n -x $(includedir)/kde.pot $(kcalc_SOURCES) && mv messages.po ../po/kcalc.pot
