@@ -275,6 +275,7 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   pbTan = new QPushButton( mSmallPage, "Tanbutton" );
   pbTan->setText( "Tan" );
   pbTan->setAutoDefault(false);
+  connect(pbTan, SIGNAL(toggled(bool)),SLOT(pbTantoggled(bool)));
   pbTan->setToggleButton(TRUE);
 
   pbfactorial = new QPushButton( mSmallPage, "factorialbutton" );
@@ -292,6 +293,7 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   pblog = new QPushButton( mSmallPage, "logbutton" );
   pblog->setText( "Log" );
   pblog->setAutoDefault(false);
+  connect( pblog, SIGNAL(toggled(bool)), SLOT(pblogtoggled(bool)));
   pblog->setToggleButton(TRUE);
   
   pbsquare = new QPushButton( mSmallPage, "squarebutton" );
