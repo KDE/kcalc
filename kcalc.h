@@ -61,7 +61,7 @@
 // and this for all the poor devels out there who don't have long double math
 // I guess it's time to switch to LINUX guys .....
 
-#ifdef HAVE_DOUBLE_LONG
+#ifdef HAVE_POWL
 #define CALCAMNT        long double
 #else
 #define CALCAMNT        double
