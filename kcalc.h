@@ -35,7 +35,8 @@ class QTimer;
 class QPushButton;
 class QRadioButton;
 class QWidget;
-
+class QPopupMenu;
+class KHelpMenu;
 class ConfigureDialog;
 class DLabel;
 #include <kdialog.h>
@@ -201,8 +202,7 @@ private:
 
    int UpdateStack(int run_precedence);
 protected slots:
-    void helpclicked();
-    void configurationChanged(const DefStruct &state);
+    void configurationChanged(const DefStruct &state); 
     void set_colors();
     void display_selected();
     void invertColors();
@@ -443,9 +443,11 @@ private:
     QPushButton* 	pbperiod;
     QPushButton* 	pb0;
     QPushButton* 	pbequal;
-    QPushButton* 	pbpercent;
-    QPushButton* 	pbnegate;
-    QPushButton* 	pbmod;
+    QPushButton* 	pbpercent;    
+    QPushButton* 	pbnegate;    
+    QPushButton* 	pbmod;    
+
+    KHelpMenu *mHelpMenu;
 
     QPtrList<QPushButton> mNumButtonList;
     QPtrList<QPushButton> mFunctionButtonList;

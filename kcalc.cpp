@@ -48,6 +48,8 @@
 #include <qtooltip.h>
 #include <qwidget.h>
 #include <qstyle.h>
+#include <qpopupmenu.h>
+#include <kpopupmenu.h>
 
 #include <kapplication.h>
 #include <kcolordrag.h>
@@ -58,6 +60,7 @@
 #include <kcmdlineargs.h>
 #include <knotifyclient.h>
 #include <kaboutdata.h>
+#include <khelpmenu.h>
 
 #include <qfont.h>
 
@@ -121,14 +124,17 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	accel->connectItem(accel->insertItem(Key_X+CTRL), this, SLOT(quitCalc()));
 
 	// Create uppermost bar with buttons and numberdisplay
-	mConfigButton = new QPushButton(i18n("Configure"), this, "configbutton");
+	mConfigButton = new QPushButton(i18n("Config&ure"), this, "configbutton");
 	mConfigButton->setAutoDefault(false);
 	QToolTip::add(mConfigButton, i18n("Click to configure KCalc"));
 	connect(mConfigButton, SIGNAL(clicked()), this, SLOT(configclicked()));
 
-	mHelpButton = new QPushButton("?", this, "helpbutton");
+	mHelpMenu = new KHelpMenu(this, KGlobal::instance()->aboutData());
+
+	mHelpButton = new QPushButton(this, "helpbutton");
+	mHelpButton->setText(i18n("Hel&p"));
 	mHelpButton->setAutoDefault(false);
-	connect(mHelpButton, SIGNAL(clicked()), this, SLOT(helpclicked()));
+	mHelpButton->setPopup(mHelpMenu->menu());
 
 	calc_display = new DLabel(this, "display");
 	calc_display->setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
@@ -658,10 +664,10 @@ void QtCalculator::updateGeometry()
     //
     // Uppermost bar
     //
-    mHelpButton->setFixedWidth(mHelpButton->fontMetrics().width("MM") +
-                               QApplication::style().
-                               pixelMetric(QStyle::PM_ButtonMargin,
-                                           mHelpButton)*2);
+    mHelpButton->setMinimumWidth(mHelpButton->fontMetrics().width("Help") +
+                                 QApplication::style().
+                                 pixelMetric(QStyle::PM_ButtonMargin,
+                                             mHelpButton)*2);
     calc_display->setMinimumWidth(calc_display->fontMetrics().maxWidth() * 15);
 
     //
@@ -805,14 +811,6 @@ void QtCalculator::Gra_Selected()
 }
 
 //-------------------------------------------------------------------------
-// Name: helpclicked()
-//-------------------------------------------------------------------------
-void QtCalculator::helpclicked()
-{
-	kapp->invokeHelp();
-}
-
-//-------------------------------------------------------------------------
 // Name: configurationChanged(const DefStruct &state)
 //-------------------------------------------------------------------------
 void QtCalculator::configurationChanged(const DefStruct &state)
@@ -842,7 +840,7 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
 	switch (e->key())
 	{
 	case Key_F1:
-		helpclicked();
+		kapp->invokeHelp();
 		break;
 	case Key_F2:
 		configclicked();
@@ -1848,7 +1846,7 @@ void QtCalculator::configclicked()
 {
 	if(mConfigureDialog == 0)
 	{
-		mConfigureDialog = new ConfigureDialog( this, 0, false );
+		mConfigureDialog = new ConfigureDialog( 0, 0, false );
 		mConfigureDialog->setState( kcalcdefaults );
 
 		connect( mConfigureDialog, SIGNAL( valueChanged(const DefStruct &)),
@@ -1856,6 +1854,8 @@ void QtCalculator::configclicked()
 	}
 
 	mConfigureDialog->show();
+        mConfigureDialog->setActiveWindow();
+        mConfigureDialog->raise();
 }
 
 
@@ -1898,8 +1898,6 @@ void QtCalculator::readSettings()
 
 	KConfig *config = KGlobal::config();
 	config->setGroup("Font");
-
-
 	QFont tmpFont("helvetica",14,QFont::Bold);
 	kcalcdefaults.font = config->readFontEntry("Font",&tmpFont);
 
@@ -2270,21 +2268,40 @@ bool QtCalculator::eventFilter(QObject *o, QEvent *e)
 
 #include "kcalc.moc"
 
-
+#include <iostream>
 //-------------------------------------------------------------------------
 // Name: main(int argc, char *argv[])
 //-------------------------------------------------------------------------
 int main(int argc, char *argv[])
 {
+        QString precisionStatement;
+        
+#ifdef HAVE_LONG_DOUBLE
+        precisionStatement = QString(I18N_NOOP("Built with %1 bit (long double) precision"))
+                                     .arg(sizeof(long double) * 8);
+#else
+        precisionStatement =  QString(I18N_NOOP("Built with %1 bit precision"
+                                         "\n\nNote: Due to a broken C library, KCalc's precision \n"
+                                         "was conditionally reduced at compile time from\n"
+                                         "'long double' to 'double'. \n\n"
+                                         "Owners of systems with a working libc may \n"
+                                         "want to recompile KCalc with 'long double' \n"
+                                         "precision enabled. See the README for details."))
+                                     .arg(sizeof(long) * 8);
+#endif
+
 	KAboutData aboutData( "kcalc", I18N_NOOP("KCalc"),
 		version, description, KAboutData::License_GPL,
-		"(c) 1996-2000, Bernd Johannes Wuebben");
+		"(c) 1996-2000, Bernd Johannes Wuebben\n"
+		"(c) 2000-2002, The KDE Team",
+                precisionStatement.latin1());
 
 	aboutData.addAuthor("Bernd Johannes Wuebben", 0, "wuebben@kde.org");
-	aboutData.addAuthor("Charles Samuels",
-		I18N_NOOP("Support for the new Backspace Action"), "charles@altair.dhs.org");
 	aboutData.addAuthor("Evan Teran", 0, "emt3734@rit.edu");
-
+	aboutData.addAuthor("Espen Sand", 0, "espen@kde.org");
+	aboutData.addAuthor("Chris Howells", 0, "howells@kde.org");	
+        aboutData.addAuthor("Aaron J. Seigo", 0, "aseigo@olympusproject.org");
+        aboutData.addAuthor("Charles Samuels", 0, "charles@altair.dhs.org");
 	KCmdLineArgs::init(argc, argv, &aboutData);
 
 	KApplication app;

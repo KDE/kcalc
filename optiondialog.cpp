@@ -26,22 +26,27 @@
 #include <qspinbox.h>
 #include <qpainter.h>
 
-#include <kcolordialog.h>
-#include <kcolordrag.h>
+#include <kaboutdata.h>
+#include <kcolorbutton.h>
 #include <kfontdialog.h>
 #include <kiconloader.h>
 #include <klocale.h>
 
-#include "kcalclogo.xpm"
-
 #include "optiondialog.h"
 #include "version.h"
+
+// little helper:
+static inline QPixmap loadIcon( const char * name )
+{
+  return KGlobal::instance()->iconLoader()
+      ->loadIcon( QString::fromLatin1(name), KIcon::NoGroup, KIcon::SizeMedium );
+}
 
 //-------------------------------------------------------------------------
 // Name: ConfigureDialog(QWidget *parent, char *name, bool modal)
 //-------------------------------------------------------------------------
 ConfigureDialog::ConfigureDialog(QWidget *parent, char *name, bool modal)
-	: KDialogBase( Tabbed, i18n("Configuration"), Help|Apply|Ok|Cancel,
+	: KDialogBase( IconList, i18n("Configure KCalc"), Help|Apply|Ok|Cancel,
 		Ok, parent, name, modal )
 {
 	setHelp("kcalc/index.html", QString::null);
@@ -49,7 +54,6 @@ ConfigureDialog::ConfigureDialog(QWidget *parent, char *name, bool modal)
 	setupSettingPage();
 	setupFontPage();
 	setupColorPage();
-	setupAboutPage();
 }
 
 //-------------------------------------------------------------------------
@@ -66,14 +70,13 @@ void ConfigureDialog::setState(const DefStruct &state)
 {
 	mState = state;
 
-	// Careful with the sequence (search for SEQ to find other locations)
-	mColorList->setColor(0, state.forecolor);
-	mColorList->setColor(1, state.backcolor);
-	mColorList->setColor(2, state.functionButtonColor);
-	mColorList->setColor(3, state.hexButtonColor);
-	mColorList->setColor(4, state.numberButtonColor);
-	mColorList->setColor(5, state.memoryButtonColor);
-	mColorList->setColor(6, state.operationButtonColor);
+	mColorFGround->setColor(state.forecolor);
+	mColorBGround->setColor(state.backcolor);
+	mColorFunctions->setColor(state.functionButtonColor);
+	mColorHexa->setColor(state.hexButtonColor);
+	mColorNumbers->setColor(state.numberButtonColor);
+	mColorMemory->setColor(state.memoryButtonColor);
+	mColorOperations->setColor(state.operationButtonColor);
 
 	mFixCheck->setChecked(mState.fixed);
 	mPrecSpin->setValue(QMIN( mPrecSpin->maxValue(), mState.precision ));
@@ -91,14 +94,13 @@ DefStruct ConfigureDialog::state()
 {
 	DefStruct state;
 
-	// Careful with the sequence (search for SEQ to find other locations)
-	state.forecolor            = mColorList->color(0);
-	state.backcolor            = mColorList->color(1);
-	state.functionButtonColor  = mColorList->color(2);
-	state.hexButtonColor       = mColorList->color(3);
-	state.numberButtonColor    = mColorList->color(4);
-	state.memoryButtonColor    = mColorList->color(5);
-	state.operationButtonColor = mColorList->color(6);
+	state.forecolor            = mColorFGround->color();
+	state.backcolor            = mColorBGround->color();
+	state.functionButtonColor  = mColorFunctions->color();
+	state.hexButtonColor       = mColorHexa->color();
+	state.numberButtonColor    = mColorNumbers->color();
+	state.memoryButtonColor    = mColorMemory->color();
+	state.operationButtonColor = mColorOperations->color();
 
 	state.fixed          = mFixCheck->isChecked();
 	state.precision      = mPrecSpin->value();
@@ -143,56 +145,96 @@ void ConfigureDialog::slotCancel()
 //-------------------------------------------------------------------------
 void ConfigureDialog::setupSettingPage()
 {
-	QFrame *page = addPage(i18n("Settings"));
+    QFrame *page = addPage(i18n("General"), i18n("Generel KCalc Settings"), loadIcon("kcalc"));
 
-	if(page == NULL)
-		return;
-		
-	// create our layouts	
-	QVBoxLayout *topLayout = new QVBoxLayout(page);
-	QHBoxLayout *hLayout1 = new QHBoxLayout(topLayout);
-	QHBoxLayout *hLayout2 = new QHBoxLayout(topLayout);
-	
-	QLabel *label = new QLabel(i18n("Precision:"), page);
-	hLayout1->addWidget(label);
-	
-	mFixCheck = new QCheckBox(i18n("Set fixed precision"), page);
-	hLayout2->addWidget(mFixCheck);
+    if(!page)
+        return;
 
 #ifdef HAVE_LONG_DOUBLE 
-	int maxprec = 16;	
+    int maxprec = 16;	
 #else 
-	int maxprec = 12 ;
+    int maxprec = 12 ;
 #endif 
 
-	mPrecSpin = new QSpinBox(0, maxprec, 1, page);
-	hLayout1->addWidget(mPrecSpin);
-	
-	mFixSpin = new QSpinBox(0, 10, 1, page );
-	hLayout2->addWidget(mFixSpin);
-	
-	topLayout->addSpacing(10);
+    QVBoxLayout* Form1Layout = new QVBoxLayout( page, 11, 6, "Form1Layout"); 
 
-	mBeepCheck = new QCheckBox(i18n("Beep on error"), page);
-	topLayout->addWidget(mBeepCheck);
+    QGroupBox* GroupBox2 = new QGroupBox( page, "GroupBox2" );
+    GroupBox2->setTitle( i18n( "Precision" ) );
+    GroupBox2->setColumnLayout(0, Qt::Vertical );
+    GroupBox2->layout()->setSpacing( KDialog::spacingHint() );
+    GroupBox2->layout()->setMargin( KDialog::marginHint() );
+    QGridLayout* GroupBox2Layout = new QGridLayout( GroupBox2->layout() );
+    GroupBox2Layout->setAlignment( Qt::AlignTop );
+    QSpacerItem* spacer = new QSpacerItem( 31, 20, QSizePolicy::Fixed, QSizePolicy::Minimum );
+    GroupBox2Layout->addItem( spacer, 2, 0 );
 
-	QButtonGroup *group = new QButtonGroup(page, "stylegroup");
-	group->setFrameStyle(QFrame::NoFrame);
-	topLayout->addWidget(group);
+    mFixSpin = new QSpinBox(0, 10, 1, GroupBox2, "mFixSpin" );
+    mFixSpin->setValue( 2 );
 
-	QVBoxLayout *vbox = new QVBoxLayout(group);
+    GroupBox2Layout->addMultiCellWidget( mFixSpin, 2, 2, 2, 3 );
 
-	mTrigRadio = new QRadioButton(i18n("Trigonometrical mode"), 
-		group,"trigstyle");
-	vbox->addWidget(mTrigRadio);
+    mPrecSpin = new QSpinBox(0, maxprec, 1, GroupBox2, "mPrecSpin" );
 
-	mStatRadio = new QRadioButton(i18n("Statistical mode"), 
-		group,"statstyle");
-	vbox->addWidget(mStatRadio);
-	
-	topLayout->addStretch();
+    GroupBox2Layout->addWidget( mPrecSpin, 0, 3 );
 
-	topLayout->activate();
+    QLabel* TextLabel2 = new QLabel( GroupBox2, "TextLabel2" );
+    TextLabel2->setText( i18n( "Decimal &places:" ) );
+
+    GroupBox2Layout->addWidget( TextLabel2, 2, 1 );
+
+    mFixCheck = new QCheckBox( GroupBox2, "mFixCheck" );
+    mFixCheck->setText( i18n( "Set &decimal precision" ) );
+
+    GroupBox2Layout->addMultiCellWidget( mFixCheck, 1, 1, 0, 2 );
+
+    QLabel* TextLabel1 = new QLabel( GroupBox2, "TextLabel1" );
+    TextLabel1->setText( i18n( "&Maximum number of digits:" ) );
+
+    GroupBox2Layout->addMultiCellWidget( TextLabel1, 0, 0, 0, 2 );
+    QSpacerItem* spacer_2 = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+    GroupBox2Layout->addItem( spacer_2, 1, 4 );
+    Form1Layout->addWidget( GroupBox2 );
+
+    QButtonGroup* GroupBox1 = new QButtonGroup( page, "GroupBox1" );
+    GroupBox1->setTitle( i18n( "Mode" ) );
+    GroupBox1->setColumnLayout(0, Qt::Vertical );
+    GroupBox1->layout()->setSpacing( KDialog::spacingHint() );
+    GroupBox1->layout()->setMargin( KDialog::marginHint() );
+    QVBoxLayout* GroupBox1Layout = new QVBoxLayout( GroupBox1->layout() );
+    GroupBox1Layout->setAlignment( Qt::AlignTop );
+
+    mTrigRadio = new QRadioButton( GroupBox1, "mTrigRadio" );
+    mTrigRadio->setText( i18n( "&Trigonometric" ) );
+    mTrigRadio->setChecked( TRUE );
+    GroupBox1Layout->addWidget( mTrigRadio );
+
+    mStatRadio = new QRadioButton( GroupBox1, "mStatRadio" );
+    mStatRadio->setText( i18n( "&Statistical" ) );
+    GroupBox1Layout->addWidget( mStatRadio );
+    Form1Layout->addWidget( GroupBox1 );
+
+    QGroupBox* GroupBox3 = new QGroupBox( page, "GroupBox3" );
+    GroupBox3->setTitle( i18n( "Misc" ) );
+    GroupBox3->setColumnLayout(0, Qt::Vertical );
+    GroupBox3->layout()->setSpacing( KDialog::spacingHint() );
+    GroupBox3->layout()->setMargin( KDialog::marginHint() );
+    QVBoxLayout* GroupBox3Layout = new QVBoxLayout( GroupBox3->layout() );
+    GroupBox3Layout->setAlignment( Qt::AlignTop );
+
+    mBeepCheck = new QCheckBox( GroupBox3, "mBeepCheck" );
+    mBeepCheck->setText( i18n( "&Beep on error" ) );
+    GroupBox3Layout->addWidget( mBeepCheck );
+    Form1Layout->addWidget( GroupBox3 );
+    QSpacerItem* spacer_3 = new QSpacerItem( 20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding );
+    Form1Layout->addItem( spacer_3 );
+
+    // signals and slots connections
+    connect( mFixCheck, SIGNAL( toggled(bool) ), mFixSpin, SLOT( setEnabled(bool) ) );
+    connect( mFixCheck, SIGNAL( toggled(bool) ), TextLabel2, SLOT( setEnabled(bool) ) );
+
+    // buddies
+    TextLabel2->setBuddy( mFixSpin );
+    TextLabel1->setBuddy( mPrecSpin );
 }
 
 //-------------------------------------------------------------------------
@@ -200,39 +242,82 @@ void ConfigureDialog::setupSettingPage()
 //-------------------------------------------------------------------------
 void ConfigureDialog::setupColorPage()
 {
-	QFrame *page = addPage(i18n("Colors"));
-	QVBoxLayout *topLayout = new QVBoxLayout(page, 0, spacingHint());
+    QFrame *page = addPage(i18n("Colors"), i18n("Button and display colors"), loadIcon("colors"));
+    QVBoxLayout *topLayout = new QVBoxLayout(page, 0, spacingHint());
 
-	// Careful with the sequence (search for SEQ to find other locations)
-	QStringList modeList;
-	modeList.append(i18n("Display Foreground"));
-	modeList.append(i18n("Display Background"));
-	modeList.append(i18n("Function Buttons"));
-	modeList.append(i18n("Hexadecimal Buttons"));
-	modeList.append(i18n("Number buttons"));
-	modeList.append(i18n("Memory Buttons"));
-	modeList.append(i18n("Operation Buttons"));
+    QGroupBox* displayGroup = new QGroupBox(i18n("Display Colors"), page);
 
-	mColorList = new ColorListBox(page);
-	topLayout->addWidget(mColorList, 10);
-	
-	for(uint i = 0; i < 7; i++)
-	{
-		ColorListItem *listItem = new ColorListItem(modeList[i]);
-		mColorList->insertItem(listItem);
-	}
-	
-	mColorList->setCurrentItem(0);
+    displayGroup->setFrameShape(QGroupBox::Box);
+    displayGroup->setFrameShadow(QGroupBox::Sunken);
+    displayGroup->setColumnLayout(0, Qt::Horizontal);
+    displayGroup->layout()->setSpacing(spacingHint());
+    displayGroup->layout()->setMargin(marginHint());
+    QGridLayout *displayGrid = new QGridLayout(displayGroup->layout());
+    displayGrid->setAlignment(Qt::AlignTop);
+
+    QLabel* colorLable = new QLabel(i18n("Foreground"), displayGroup);
+    mColorFGround = new KColorButton(displayGroup);
+    displayGrid->addWidget(colorLable, 0, 0);
+    displayGrid->addWidget(mColorFGround, 0, 1);
+
+    colorLable = new QLabel(i18n("Background"), displayGroup);
+    mColorBGround = new KColorButton(displayGroup);
+    displayGrid->addWidget(colorLable, 1, 0);
+    displayGrid->addWidget(mColorBGround, 1, 1);
+
+    QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+    displayGrid->addItem(spacer, 1, 2);
+
+
+    QGroupBox* buttonGroup = new QGroupBox(i18n("Button Colors"), page);
+    buttonGroup->setFrameShape(QGroupBox::Box);
+    buttonGroup->setFrameShadow(QGroupBox::Sunken);
+    buttonGroup->setColumnLayout(0, Qt::Horizontal);
+    buttonGroup->layout()->setSpacing(spacingHint());
+    buttonGroup->layout()->setMargin(marginHint());
+    QGridLayout *buttonGrid = new QGridLayout(buttonGroup->layout());
+    buttonGrid->setAlignment(Qt::AlignTop);
+
+    colorLable = new QLabel(i18n("Functions"), buttonGroup);
+    mColorFunctions = new KColorButton(buttonGroup);
+    buttonGrid->addWidget(colorLable, 0, 0);
+    buttonGrid->addWidget(mColorFunctions, 0, 1);
+
+    colorLable = new QLabel(i18n("Hexadecimals"), buttonGroup);
+    mColorHexa = new KColorButton(buttonGroup);
+    buttonGrid->addWidget(colorLable, 1, 0);
+    buttonGrid->addWidget(mColorHexa, 1, 1);
+
+    colorLable = new QLabel(i18n("Numbers"), buttonGroup);
+    mColorNumbers = new KColorButton(buttonGroup);
+    buttonGrid->addWidget(colorLable, 2, 0);
+    buttonGrid->addWidget(mColorNumbers, 2, 1);
+
+    colorLable = new QLabel(i18n("Memory"), buttonGroup);
+    mColorMemory = new KColorButton(buttonGroup);
+    buttonGrid->addWidget(colorLable, 3, 0);
+    buttonGrid->addWidget(mColorMemory, 3, 1);
+
+    colorLable = new QLabel(i18n("Operations"), buttonGroup);
+    mColorOperations = new KColorButton(buttonGroup);
+    buttonGrid->addWidget(colorLable, 4, 0);
+    buttonGrid->addWidget(mColorOperations, 4, 1);
+
+    spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+    buttonGrid->addItem(spacer, 1, 2);
+
+    topLayout->addWidget(displayGroup);
+    topLayout->addWidget(buttonGroup);
+    QSpacerItem* spacer_3 = new QSpacerItem( 20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding );
+    topLayout->addItem( spacer_3 );
 }
-
-
 
 //-------------------------------------------------------------------------
 // Name: setupFontPage()
 //-------------------------------------------------------------------------
 void ConfigureDialog::setupFontPage()
 {
-	QFrame *page = addPage(i18n("Display Font"));
+	QFrame *page = addPage(i18n("Font"), i18n("Select a display font"), loadIcon("fonts"));
 	if( page == 0 )
 		return;
 
@@ -246,269 +331,5 @@ void ConfigureDialog::setupFontPage()
 	topLayout->addWidget(mFontChooser);
 	topLayout->activate();
 }
-
-//-------------------------------------------------------------------------
-// Name: setupAboutPage()
-//-------------------------------------------------------------------------
-void ConfigureDialog::setupAboutPage()
-{
-	QFrame *page = addPage(i18n("About"));
-
-	if(page == 0)
-		return;
-
-	QVBoxLayout *topLayout = new QVBoxLayout(page, 0, spacingHint());
-	
-	if(topLayout == 0)
-		return;
-
-	QString authorText = i18n(""
-		"KCalc %1\n"
-		"Bernd Johannes Wuebben\n"
-		"wuebben@kde.org\n"
-		"Copyright (C) 1996-98\n\n"
-		"Additions by Espen Sand\n"
-		"espen@kde.org, 2000\n\n"
-		"Additions by Evan Teran\n"
-		"emt3734@rit.edu, 2001\n").arg(KCALCVERSION);
-
-#ifdef HAVE_LONG_DOUBLE
-	QString baseText = i18n("Base type: long double");
-#else 
-	QString baseText = i18n(""
-		"Due to broken glibc's everywhere, I had to\n"
-		"reduce KCalc's precision from 'long double'\n"
-		"to 'double'. Owners of systems with a\n"
-		"working libc should recompile KCalc with\n"
-		"'long double' precision enabled. See the\n"
-		"README for details.");
-#endif
-
-	topLayout->addSpacing(spacingHint());
-
-	QHBoxLayout *hbox = new QHBoxLayout();
-	topLayout->addLayout(hbox);
-
-	hbox->addSpacing(spacingHint());
-
-	QLabel *logo = new QLabel(page);
-	logo->setPixmap(QPixmap(kcalclogo));
-	hbox->addWidget(logo);
-
-	QLabel *label = new QLabel(authorText, page);
-	hbox->addWidget(label, 10, AlignHCenter);
-	label->setAlignment(AlignVCenter);
-
-	label = new QLabel(baseText, page);
-	topLayout->addWidget(label, 10, AlignHCenter);
-	label->setAlignment(AlignVCenter);
-
-	topLayout->activate();
-}
-
-
-//
-// 2000-07-15 (espen): The ColorListBox and the ColorListItem will
-// be moved to kdeui after KDE 2.0. The same code is used in khexedit and
-// kmail. If you read this after KDE 2.0, feel free to send me a reminder :)
-//
-
-
-//-------------------------------------------------------------------------
-// Name: ColorListBox(QWidget *parent, const char *name, WFlags f)
-//-------------------------------------------------------------------------
-ColorListBox::ColorListBox(QWidget *parent, const char *name, WFlags f)
-  :KListBox(parent, name, f), mCurrentOnDragEnter(-1)
-{
-	connect(this, SIGNAL(selected(int)), this, SLOT(newColor(int)));
-	setAcceptDrops(true);
-}
-
-//-------------------------------------------------------------------------
-// Name: setEnabled(bool state)
-//-------------------------------------------------------------------------
-void ColorListBox::setEnabled(bool state)
-{
-	if(state == isEnabled())
-		return;
-
-	QListBox::setEnabled(state);
-	for(uint i = 0; i < count(); i++)
-	{
-		updateItem(i);
-	}
-}
-
-//-------------------------------------------------------------------------
-// Name: setColor(uint index, const QColor &color)
-//-------------------------------------------------------------------------
-void ColorListBox::setColor(uint index, const QColor &color)
-{
-	if(index < count())
-	{
-		ColorListItem *colorItem = (ColorListItem*)item(index);
-		colorItem->setColor(color);
-		updateItem(colorItem);
-	}
-}
-
-//-------------------------------------------------------------------------
-// Name: color(uint index)
-//-------------------------------------------------------------------------
-const QColor ColorListBox::color(uint index)
-{
-	if(index < count())
-	{
-		ColorListItem *colorItem = (ColorListItem*)item(index);
-		return(colorItem->color());
-	}
-	else
-	{
-		return(black);
-	}
-}
-
-//-------------------------------------------------------------------------
-// Name: newColor(int index)
-//-------------------------------------------------------------------------
-void ColorListBox::newColor(int index)
-{
-	if(isEnabled() == false)
-		return;
-
-	if((uint)index < count())
-	{
-		QColor c = color(index);
-		if(KColorDialog::getColor(c, this) != QDialog::Rejected)
-		{
-			setColor(index, c);
-		}
-	}
-}
-
-//-------------------------------------------------------------------------
-// Name: dragEnterEvent(QDragEnterEvent *e)
-//-------------------------------------------------------------------------
-void ColorListBox::dragEnterEvent(QDragEnterEvent *e)
-{
-	if(KColorDrag::canDecode(e) && isEnabled())
-	{
-		mCurrentOnDragEnter = currentItem();
-		e->accept(true);
-	}
-	else
-	{
-		mCurrentOnDragEnter = -1;
-		e->accept(false);
-	}
-}
-
-//-------------------------------------------------------------------------
-// Name: dragLeaveEvent(QDragLeaveEvent *)
-//-------------------------------------------------------------------------
-void ColorListBox::dragLeaveEvent(QDragLeaveEvent *)
-{
-	if(mCurrentOnDragEnter != -1)
-	{
-		setCurrentItem(mCurrentOnDragEnter);
-		mCurrentOnDragEnter = -1;
-	}
-}
-
-//-------------------------------------------------------------------------
-// Name: dragMoveEvent(QDragMoveEvent *e)
-//-------------------------------------------------------------------------
-void ColorListBox::dragMoveEvent(QDragMoveEvent *e)
-{
-	if(KColorDrag::canDecode(e) && isEnabled())
-	{
-		ColorListItem *item = (ColorListItem*)itemAt(e->pos());
-		if(item != 0)
-		{
-			setCurrentItem(item);
-		}
-	}
-}
-
-//-------------------------------------------------------------------------
-// Name: dropEvent(QDropEvent *e)
-//-------------------------------------------------------------------------
-void ColorListBox::dropEvent(QDropEvent *e)
-{
-	QColor color;
-	if( KColorDrag::decode(e, color))
-	{
-		int index = currentItem();
-		if(index != -1)
-		{
-		ColorListItem *colorItem = (ColorListItem*)item(index);
-		colorItem->setColor(color);
-		triggerUpdate(false); // Redraw item
-		}
-		mCurrentOnDragEnter = -1;
-	}
-}
-
-
-//-------------------------------------------------------------------------
-// Name: ColorListItem(const QString &text, const QColor &color)
-//-------------------------------------------------------------------------
-ColorListItem::ColorListItem(const QString &text, const QColor &color)
-	: QListBoxItem(), mColor(color), mBoxWidth(30)
-{
-	setText(text);
-}
-
-
-//-------------------------------------------------------------------------
-// Name: color()
-//-------------------------------------------------------------------------
-const QColor &ColorListItem::color()
-{
-	return mColor;
-}
-
-//-------------------------------------------------------------------------
-// Name: setColor(const QColor &color)
-//-------------------------------------------------------------------------
-void ColorListItem::setColor(const QColor &color)
-{
-	mColor = color;
-}
-
-//-------------------------------------------------------------------------
-// Name: paint(QPainter *p)
-//-------------------------------------------------------------------------
-void ColorListItem::paint(QPainter *p)
-{
-	QFontMetrics fm = p->fontMetrics();
-	int h = fm.height();
-
-	p->drawText(mBoxWidth + 3 * 2, fm.ascent() + fm.leading() / 2, text());
-
-	p->setPen(Qt::black);
-	p->drawRect(3, 1, mBoxWidth, h - 1);
-	p->fillRect(4, 2, mBoxWidth - 2, h - 3, mColor);
-}
-
-//-------------------------------------------------------------------------
-// Name: height(const QListBox *lb) const
-//-------------------------------------------------------------------------
-int ColorListItem::height(const QListBox *lb) const
-{
-	return(lb->fontMetrics().lineSpacing() + 1);
-}
-
-
-//-------------------------------------------------------------------------
-// Name: width(const QListBox *lb) const
-//-------------------------------------------------------------------------
-int ColorListItem::width(const QListBox *lb) const
-{
-	return(mBoxWidth + lb->fontMetrics().width(text()) + 6);
-}
-
-
-
 
 #include "optiondialog.moc"
