@@ -396,6 +396,9 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 
 	actionConstantsShow->setChecked(KCalcSettings::showConstants());
 	slotConstantsShow(KCalcSettings::showConstants());
+    
+    actionGroupDigits->setChecked(KCalcSettings::groupDigits());
+	slotGroupDigits(KCalcSettings::groupDigits());
 }
 
 KCalculator::~KCalculator()
@@ -445,6 +448,12 @@ void KCalculator::setupMainActions(void)
 	actionConstantsShow->setChecked(true);
 	connect(actionConstantsShow, SIGNAL(toggled(bool)),
 		SLOT(slotConstantsShow(bool)));
+        
+    actionGroupDigits = new KToggleAction(i18n("&Digit Grouping"), 0,
+					    actionCollection(), "digit_grouping");
+	actionGroupDigits->setChecked(true);
+	connect(actionGroupDigits, SIGNAL(toggled(bool)),
+		SLOT(slotGroupDigits(bool)));
 
 
 	(void) new KAction(i18n("&Show All"), 0, this, SLOT(slotShowAll()),
@@ -2174,3 +2183,14 @@ extern "C" int kdemain(int argc, char *argv[])
 	return(exitCode);
 }
 
+
+
+/*!
+    \fn KCalculator::slotGroupDigits(bool toggled)
+ */
+void KCalculator::slotGroupDigits(bool toggled)
+{
+    KCalcSettings::setGroupDigits(toggled);
+    calc_display->setGroupDigits(toggled);
+    calc_display->setAmount(calc_display->getAmount());
+}

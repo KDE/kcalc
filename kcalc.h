@@ -156,6 +156,7 @@ protected slots:
     void slotC4clicked(void);
     void slotC5clicked(void);
     void slotC6clicked(void);
+    void slotGroupDigits(bool toggled);
 	
 private:
 	bool inverse;
@@ -224,6 +225,7 @@ private:
     KToggleAction *actionLogicshow;
     KToggleAction *actionExpLogshow;
     KToggleAction *actionConstantsShow;
+    KToggleAction *actionGroupDigits;
 
     QPtrList<KCalcButton> mFunctionButtonList;
     QPtrList<KCalcButton> mStatButtonList;

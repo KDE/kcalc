@@ -96,6 +96,10 @@ int maxPrecision = 12;
       <label>Whether to show constant buttons.</label>
       <default>false</default>
     </entry>
+	<entry name="groupDigits" type="Bool">
+      <label>Wether to group digits in long numbers in dispaly.</label>
+      <default>true</default>
+    </entry>
   </group>
   <group name="Constants">
 	<entry name="nameConstant1" type="String">
