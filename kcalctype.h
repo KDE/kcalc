@@ -59,6 +59,33 @@
 
 
 #ifdef HAVE_LONG_DOUBLE
+#if defined(__GNUC__) && __GNUC__ >= 3
+	/* Recent versions of gcc refuse to handle pow() because
+	 * of the ::pow() vs. std::pow() ambiguity.
+	 * Some inherently broken compilers can't handle ::pow() though,
+	 * so it must be #ifdef'ed.                                      */
+	#define FABS(X)		::fabsl(X)
+	#define MODF(X,Y)	::modfl(X,Y)
+	#define FMOD(X,Y)	::fmodl(X,Y)
+	#define SIN(X)		::sinl(X)
+	#define ASIN(X)		::asinl(X)
+	#define SINH(X)		::sinhl(X)
+	#define ASINH(X)	::asinhl(X)
+	#define COS(X)		::cosl(X)
+	#define COSH(X)		::coshl(X)
+	#define ACOS(X)		::acosl(X)
+	#define ACOSH(X)	::acoshl(X)
+	#define TAN(X)		::tanl(X)
+	#define TANH(X)		::tanhl(X)
+	#define ATAN(X)		::atanl(X)
+	#define ATANH(X)	::atanhl(X)
+	#define EXP(X)		::expl(X)
+	#define POW(X,Y)	::powl(X,Y)
+	#define LOG(X)		::logl(X)
+	#define LOG_TEN(X)	::log10l(X)
+	#define SQRT(X)		::sqrtl(X)
+	#define ISINF(X)	::isinfl(X)
+#else
 	#define FABS(X)		fabsl(X)
 	#define MODF(X,Y)	modfl(X,Y)
 	#define FMOD(X,Y)	fmodl(X,Y)
@@ -80,7 +107,7 @@
 	#define LOG_TEN(X)	log10l(X)
 	#define SQRT(X)		sqrtl(X)
 	#define ISINF(X)	isinfl(X)
-
+#endif
 #else
 	#define FABS(X)		fabs(X)
 	#define MODF(X,Y)	modf(X,Y)
