@@ -1862,6 +1862,9 @@ int main( int argc, char **argv )
 
     mykapp = new KApplication (argc, argv, "kcalc");
 
+    mykapp->enableSessionManagement(true);
+    mykapp->setWmCommand(argv[0]);
+
     /*QFont buttonfont( "-misc-fixed-medium-*-semicondensed-*-13-*-*-*-*-*-*-*" );
       buttonfont.setRawMode( TRUE );
       mykapp->setFont(font);
@@ -1882,8 +1885,7 @@ int main( int argc, char **argv )
 
     QtCalculator  *calc = new QtCalculator;
 
-
-    mykapp->setMainWidget( calc );
+    mykapp->setTopWidget( calc );
 
     // calc->setGeometry(300, 100, 9 + 100 + 9 + 233 + 9, 220);   
 
