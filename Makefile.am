@@ -4,8 +4,7 @@ lib_LTLIBRARIES = kcalc.la
 
 kcalc_la_SOURCES = kcalc.cpp kcalc_core.cpp dlabel.cpp stats.cpp \
 	optiondialog.cpp
-METASOURCES = kcalc.moc fontdlg.moc dlabel.moc \
-	optiondialog.moc
+METASOURCES = kcalc.moc dlabel.moc optiondialog.moc
 
 noinst_HEADERS  = kcalc.h fontdlg.h dlabel.h stats.h kcalctype.h
 
@@ -17,7 +16,7 @@ kcalc_SOURCES = dummy.cpp
 kcalc_LDADD = kcalc.la
 kcalc_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
-pics_DATA = kcalclogo.png
+pics_DATA = 
 picsdir = $(kde_datadir)/kcalc/pics
 
 KDE_ICON = kcalc
