@@ -169,6 +169,12 @@ item_contents 	*TopTypeStack(item_type rqstd_type);
 typedef struct _DefStruct{
   QColor forecolor;
   QColor backcolor;
+  QColor numberButtonColor;
+  QColor functionButtonColor;
+  QColor hexButtonColor;
+  QColor memoryButtonColor;
+  QColor operationButtonColor;
+
   int precision;
   int fixedprecision;
   int style;
@@ -187,6 +193,7 @@ public:
     QtCalculator( QWidget *parent=0, const char *name=0 );
     ~QtCalculator( void );
 
+    virtual bool eventFilter( QObject *o, QEvent *e );
     void updateGeometry( void );
 
     void keyPressEvent( QKeyEvent *e );    
@@ -407,7 +414,13 @@ private:
     QPushButton* 	pbpercent;    
     QPushButton* 	pbnegate;    
     QPushButton* 	pbmod;    
-    
+
+    QList<QPushButton> mNumButtonList;
+    QList<QPushButton> mFunctionButtonList;
+    QList<QPushButton> mHexButtonList;
+    QList<QPushButton> mMemButtonList;
+    QList<QPushButton> mOperationButtonList;
+
     bool		key_pressed;
     int                 mInternalSpacing;
     KStats		stats;

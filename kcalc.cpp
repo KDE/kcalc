@@ -49,6 +49,7 @@
 #include <qwidget.h>
 
 #include <kapp.h>
+#include <kcolordrag.h>
 #include <kconfig.h>
 #include <kglobal.h>
 #include <kiconloader.h>
@@ -82,6 +83,7 @@ QList<CALCAMNT>       temp_stack;
 //   To exit: Key_Q+ALT => Key_Q+CTRL,  Key_X+ALT => Key_X+CTRL
 //   Look in updateGeometry() for size settings.
 //
+
 
 QtCalculator::QtCalculator( QWidget *parent, const char *name )
   : KDialog( parent, name ), mInternalSpacing(4),mConfigureDialog(0)
@@ -523,13 +525,6 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   connect( pbmod, SIGNAL(toggled(bool)), SLOT(pbmodtoggled(bool))); 
   pbmod->setToggleButton(TRUE);
 
-  set_colors();
-  set_display_font();
-  set_precision();
-  set_style();
-  
-  InitializeCalculator();
-
   //
   // All these layouts are needed because all the groups have their
   // own size per row so we can't use one huge QGridLayout (mosfet)
@@ -552,7 +547,7 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   QVBoxLayout *mainLayout = new QVBoxLayout(this, mInternalSpacing, 
 					    mInternalSpacing );
   mainLayout->addLayout(topLayout );
-  mainLayout->addLayout(radioLayout );
+  mainLayout->addLayout(radioLayout, 1 );
   mainLayout->addLayout(btnLayout  );
   mainLayout->addLayout(statusLayout );
 
@@ -650,6 +645,65 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   statusLayout->addWidget(statusHYPLabel);
   statusLayout->addWidget(statusERRORLabel, 10 );
 
+  mNumButtonList.append( pb0 );
+  mNumButtonList.append( pb1 );
+  mNumButtonList.append( pb2 );
+  mNumButtonList.append( pb3 );
+  mNumButtonList.append( pb4 );
+  mNumButtonList.append( pb5 );
+  mNumButtonList.append( pb6 );
+  mNumButtonList.append( pb7 );
+  mNumButtonList.append( pb8 );
+  mNumButtonList.append( pb9 );
+
+  mFunctionButtonList.append(pbhyp);
+  mFunctionButtonList.append(pbinv);
+  mFunctionButtonList.append(pbSin);
+  mFunctionButtonList.append(pbplusminus);
+  mFunctionButtonList.append(pbCos);
+  mFunctionButtonList.append(pbreci);
+  mFunctionButtonList.append(pbTan);
+  mFunctionButtonList.append(pbfactorial);
+  mFunctionButtonList.append(pblog);
+  mFunctionButtonList.append(pbsquare);
+  mFunctionButtonList.append(pbln);
+  mFunctionButtonList.append(pbpower);
+
+  mHexButtonList.append(pbA);
+  mHexButtonList.append(pbB);
+  mHexButtonList.append(pbC);
+  mHexButtonList.append(pbD);
+  mHexButtonList.append(pbE);
+  mHexButtonList.append(pbF);
+
+  mMemButtonList.append(pbEE);
+  mMemButtonList.append(pbMR);
+  mMemButtonList.append(pbMplusminus);
+  mMemButtonList.append(pbMC);
+  mMemButtonList.append(pbClear);
+  mMemButtonList.append(pbAC);
+
+  mOperationButtonList.append(pbX);
+  mOperationButtonList.append(pbparenopen);
+  mOperationButtonList.append(pbparenclose);
+  mOperationButtonList.append(pband);
+  mOperationButtonList.append(pbdivision);
+  mOperationButtonList.append(pbor);
+  mOperationButtonList.append(pbplus);
+  mOperationButtonList.append(pbminus);
+  mOperationButtonList.append(pbshift);
+  mOperationButtonList.append(pbperiod);
+  mOperationButtonList.append(pbequal);
+  mOperationButtonList.append(pbpercent);
+  mOperationButtonList.append(pbnegate);
+  mOperationButtonList.append(pbmod);
+
+  set_colors();
+  set_display_font();
+  set_precision();
+  set_style();
+  InitializeCalculator();
+
   updateGeometry();
 }
 
@@ -674,10 +728,9 @@ void QtCalculator::updateGeometry( void )
   //
   // Button groups (base and angle)
   //
-  QButtonGroup *g;
-  g = (QButtonGroup*)(anglebutton[0]->parentWidget());
-  
-  g = (QButtonGroup*)(basebutton[0]->parentWidget());
+  //QButtonGroup *g;
+  //g = (QButtonGroup*)(anglebutton[0]->parentWidget());
+  //g = (QButtonGroup*)(basebutton[0]->parentWidget());
 
   //
   // Calculator buttons
@@ -692,6 +745,8 @@ void QtCalculator::updateGeometry( void )
     if( o->isWidgetType() )
     {
       ((QWidget*)o)->setMinimumSize(s);
+      ((QWidget*)o)->installEventFilter( this );
+      ((QWidget*)o)->setAcceptDrops(true);
     }
   }
 
@@ -709,6 +764,8 @@ void QtCalculator::updateGeometry( void )
     if( o->isWidgetType() )
     {
       ((QWidget*)o)->setFixedSize(s);
+      ((QWidget*)o)->installEventFilter( this );
+      ((QWidget*)o)->setAcceptDrops(true);
     }
   }
 
@@ -720,7 +777,7 @@ void QtCalculator::updateGeometry( void )
   statusINVLabel->setMinimumWidth( s.width() );
   statusHYPLabel->setMinimumWidth( s.width() );
 
-  setFixedSize(minimumSize());
+  //setFixedSize(minimumSize());
 }
 
 void QtCalculator::Hex_Selected()
@@ -1616,9 +1673,20 @@ void QtCalculator::readSettings()
   config->setGroup("Colors");
   QColor tmpC(189, 255, 180);
   QColor blackC(0,0,0);
+  QColor defaultButtonColor = palette().active().background();
 
   kcalcdefaults.forecolor = config->readColorEntry("ForeColor",&blackC);
   kcalcdefaults.backcolor = config->readColorEntry("BackColor",&tmpC);
+  kcalcdefaults.numberButtonColor  =
+    config->readColorEntry("NumberButtonsColor",&defaultButtonColor);
+  kcalcdefaults.functionButtonColor = 
+    config->readColorEntry("FunctionButtonsColor", &defaultButtonColor);
+  kcalcdefaults.hexButtonColor = 
+    config->readColorEntry("HexButtonsColor",&defaultButtonColor);
+  kcalcdefaults.memoryButtonColor = 
+    config->readColorEntry("MemoryButtonsColor",&defaultButtonColor);
+  kcalcdefaults.operationButtonColor = 
+    config->readColorEntry("OperationButtonsColor",&defaultButtonColor);
 
   config->setGroup("Precision");
 
@@ -1648,6 +1716,16 @@ void QtCalculator::writeSettings()
   config->setGroup("Colors");
   config->writeEntry("ForeColor",kcalcdefaults.forecolor);
   config->writeEntry("BackColor",kcalcdefaults.backcolor);
+  config->writeEntry( "NumberButtonsColor", 
+    mNumButtonList.first()->palette().active().button() );
+  config->writeEntry( "FunctionButtonsColor", 
+    mFunctionButtonList.first()->palette().active().button() );
+  config->writeEntry( "HexButtonsColor", 
+    mHexButtonList.first()->palette().active().button() );
+  config->writeEntry( "MemoryButtonsColor", 
+    mMemButtonList.first()->palette().active().button() );
+  config->writeEntry( "OperationButtonsColor", 
+    mOperationButtonList.first()->palette().active().button() );
   
   config->setGroup("Precision");
   config->writeEntry("precision",  kcalcdefaults.precision);
@@ -1720,7 +1798,8 @@ void QtCalculator::invertColors(){
 
   QColor tmpcolor;
 
-  if(calc_display->isLit()){
+  if(calc_display->isLit())
+  {
     tmpcolor = kcalcdefaults.backcolor;
     kcalcdefaults.backcolor = kcalcdefaults.forecolor;
     kcalcdefaults.forecolor = tmpcolor;
@@ -1729,7 +1808,8 @@ void QtCalculator::invertColors(){
     kcalcdefaults.backcolor = kcalcdefaults.forecolor;
     kcalcdefaults.forecolor = tmpcolor;
   }
-  else{
+  else
+  {
     set_colors();
   }
 }
@@ -1747,9 +1827,15 @@ void QtCalculator::quitCalc(){
 
 }
 
-void QtCalculator::set_colors(){
+void QtCalculator::set_colors()
+{
+  QPalette pal = calc_display->palette();
+  pal.setColor( QColorGroup::Text, kcalcdefaults.forecolor );
+  pal.setColor( QColorGroup::Background, kcalcdefaults.backcolor );
+  calc_display->setPalette(pal);
+  calc_display->setBackgroundColor(kcalcdefaults.backcolor);
 
-
+  /*
   QPalette mypalette = (calc_display->palette()).copy();
 
   QColorGroup cgrp = mypalette.normal();
@@ -1767,6 +1853,42 @@ void QtCalculator::set_colors(){
 
   calc_display->setPalette(mypalette);
   calc_display->setBackgroundColor(kcalcdefaults.backcolor);
+  */
+
+  QColor bg = palette().active().background();
+
+  QPalette numPal( kcalcdefaults.numberButtonColor, bg );
+  for( QPushButton *p = mNumButtonList.first(); p; p=mNumButtonList.next() )
+  {
+    p->setPalette(numPal);
+  }
+  
+  QPalette funcPal( kcalcdefaults.functionButtonColor, bg );
+  for( QPushButton *p = mFunctionButtonList.first(); p; 
+       p=mFunctionButtonList.next() )
+  {
+    p->setPalette(funcPal);
+  }
+
+  QPalette hexPal( kcalcdefaults.hexButtonColor, bg );
+  for( QPushButton *p = mHexButtonList.first(); p; p=mHexButtonList.next() )
+  {
+    p->setPalette(hexPal);
+  }
+
+  QPalette memPal( kcalcdefaults.memoryButtonColor, bg );
+  for( QPushButton *p = mMemButtonList.first(); p; p=mMemButtonList.next() )
+  {
+    p->setPalette(memPal);
+  }
+
+  QPalette opPal( kcalcdefaults.operationButtonColor, bg );
+  for( QPushButton *p = mOperationButtonList.first(); p; 
+       p=mOperationButtonList.next() )
+  {
+    p->setPalette(opPal);
+  }
+
 
 }
 
@@ -1827,6 +1949,73 @@ void QtCalculator::temp_stack_prev(){
 
   }
 }
+
+
+bool QtCalculator::eventFilter( QObject *o, QEvent *e )
+{
+  if( e->type() == QEvent::DragEnter )
+  {
+    QDragEnterEvent *ev = (QDragEnterEvent *)e;
+    ev->accept( KColorDrag::canDecode(ev) );
+    return true;
+  }
+  else if( e->type() == QEvent::DragLeave )
+  {
+    return true;
+  }
+  else if( e->type() == QEvent::Drop )
+  {
+    if( !o->isA("QPushButton") )
+    {
+      return false;
+    }
+
+    QColor c;
+    QDropEvent *ev = (QDropEvent *)e;
+    if( KColorDrag::decode( ev, c)) 
+    {
+      QList<QPushButton> *list;
+      if( mNumButtonList.findRef( (QPushButton*)o ) != -1 )
+      {
+	list = &mNumButtonList;
+      }
+      else if( mFunctionButtonList.findRef( (QPushButton*)o ) != -1 )
+      {
+	list = &mFunctionButtonList;
+      }
+      else if( mHexButtonList.findRef( (QPushButton*)o ) != -1 )
+      {
+	list = &mHexButtonList;
+      }
+      else if( mMemButtonList.findRef( (QPushButton*)o ) != -1 )
+      {
+	list = &mMemButtonList;
+      }
+      else if( mOperationButtonList.findRef( (QPushButton*)o ) != -1 )
+      {
+	list = &mOperationButtonList;
+      }
+      else
+      {
+	return false;
+      }	
+
+      QPalette pal( c, palette().active().background() );
+      for( QPushButton *p = list->first(); p; p=list->next() )
+      {
+	p->setPalette(pal);
+      }
+    }
+    return true;
+  }
+  else
+  {
+    return KDialog::eventFilter( o, e );
+  }
+}
+
+
+
 
 
 ////////////////////////////////////////////////////////////////

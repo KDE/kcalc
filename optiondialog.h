@@ -25,12 +25,61 @@ class QCheckBox;
 class QLabel;
 class QRadioButton;
 class QSpinBox;
-class KColorButton;
 class KFontChooser;
 
 #include <kdialogbase.h>
+#include <klistbox.h>
 
 #include "kcalc.h"
+
+
+
+class ColorListBox : public KListBox
+{
+  Q_OBJECT
+
+  public:
+    ColorListBox( QWidget *parent=0, const char * name=0, WFlags f=0 );
+    void setColor( uint index, const QColor &color );
+    const QColor color( uint index );
+
+  public slots:
+    virtual void setEnabled( bool state );
+
+  protected:
+    void dragEnterEvent( QDragEnterEvent *e );
+    void dragLeaveEvent( QDragLeaveEvent *e );
+    void dragMoveEvent( QDragMoveEvent *e );
+    void dropEvent( QDropEvent *e );
+
+  private slots:
+    void newColor( int index );
+
+  private:
+    int mCurrentOnDragEnter;
+
+};
+
+
+class ColorListItem : public QListBoxItem
+{
+  public:
+    ColorListItem( const QString &text, const QColor &color=Qt::black );
+    const QColor &color( void );
+    void  setColor( const QColor &color );
+  
+  protected:
+    virtual void paint( QPainter * );
+    virtual int height( const QListBox * ) const;
+    virtual int width( const QListBox * ) const;
+
+  private:
+    QColor mColor;
+    int mBoxWidth;
+};
+
+
+
 
 class ConfigureDialog : public KDialogBase
 {
@@ -51,11 +100,10 @@ class ConfigureDialog : public KDialogBase
   private:
     void setupSettingPage( void );
     void setupFontPage( void );
+    void setupColorPage( void );
     void setupAboutPage( void );
 
   private:
-    KColorButton *mFgColor;
-    KColorButton *mBgColor;
     QCheckBox    *mFixCheck;
     QSpinBox     *mPrecSpin;
     QSpinBox     *mFixSpin;
@@ -63,6 +111,7 @@ class ConfigureDialog : public KDialogBase
     QRadioButton *mTrigRadio;
     QRadioButton *mStatRadio;
     KFontChooser *mFontChooser;
+    ColorListBox *mColorList; 
 
     DefStruct    mState;
 
