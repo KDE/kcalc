@@ -148,7 +148,6 @@ private:
 	void updateGeometry();
 
 	void keyPressEvent( QKeyEvent *e );
-	void keyReleaseEvent( QKeyEvent *e );
 	void closeEvent( QCloseEvent *e );
 	void writeSettings();
 	void readSettings();
@@ -191,7 +190,7 @@ protected slots:
     void EnterFactorial();
     void EnterSquare();
     void EnterNotCmp();
-    void EnterHyp();
+    void EnterHyp(bool flag);
     void EnterPercent();
     void Deg_Selected();
     void Rad_Selected();
@@ -201,7 +200,8 @@ protected slots:
     void Dec_Selected();
     void Oct_Selected();
     void Bin_Selected();
-    void SetInverse();
+    void deactivateInvButton();
+    void SetInverse(bool flag);
     void EnterEqual();
     void Clear();
     void ClearAll();
@@ -385,7 +385,6 @@ private:
     QPtrList<QPushButton> mMemButtonList;
     QPtrList<QPushButton> mOperationButtonList;
 
-    bool			key_pressed;
     int				mInternalSpacing;
     KStats			stats;
     QTimer			*status_timer;

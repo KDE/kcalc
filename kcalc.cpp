@@ -82,7 +82,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	refresh_display(false), display_size(DEC_SIZE),  angle_mode(ANG_DEGREE),
 	input_limit(0), input_count(0), decimal_point(0), precedence_base(0),
 	current_base(NB_DECIMAL), memory_num(0.0), last_input(DIGIT),
-	history_index(0), selection_timer(new QTimer), key_pressed(false),
+	history_index(0), selection_timer(new QTimer),
 	mInternalSpacing(4), status_timer(new QTimer), mConfigureDialog(0)
 {
 	/* central widget to contain all the elements */
@@ -228,7 +228,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	connect(pbInv, SIGNAL(toggled(bool)), SLOT(slotInvtoggled(bool)));
 	pbInv->setToggleButton(true);
 
-	pbSin = new QPushButton("Sin", mSmallPage, "Sin-Button");
+	pbSin = new QPushButton("Sin ", mSmallPage, "Sin-Button");
 	QToolTip::add(pbSin, i18n("Sine"));
 	pbSin->setAutoDefault(false);
 	connect(pbSin, SIGNAL(clicked(void)), SLOT(slotSinclicked(void)));
@@ -243,7 +243,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pbPlusMinus->setAutoDefault(false);
 	connect(pbPlusMinus, SIGNAL(clicked(void)), SLOT(slotPlusMinusclicked(void)));
 
-	pbCos = new QPushButton("Cos", mSmallPage, "Cos-Button");
+	pbCos = new QPushButton("Cos ", mSmallPage, "Cos-Button");
 	QToolTip::add(pbCos, i18n("Cosine"));
 	pbCos->setAutoDefault(false);
 	connect(pbCos, SIGNAL(clicked(void)), SLOT(slotCosclicked(void)));
@@ -259,7 +259,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pbReci->setAutoDefault(false);
 	connect(pbReci, SIGNAL(clicked(void)), SLOT(slotReciclicked(void)));
 
-	pbTan = new QPushButton("Tan", mSmallPage, "Tan-Button");
+	pbTan = new QPushButton("Tan ", mSmallPage, "Tan-Button");
 	QToolTip::add(pbTan, i18n("Tangent"));
 	pbTan->setAutoDefault(false);
 	connect(pbTan, SIGNAL(clicked(void)),SLOT(slotTanclicked(void)));
@@ -659,7 +659,6 @@ QtCalculator::~QtCalculator()
 	delete status_timer;
 }
 
-
 void QtCalculator::updateGeometry()
 {
     QObjectList *l;
@@ -842,12 +841,10 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
 		pbClear->animateClick();
 		break;
 	case Key_H:
-		key_pressed = true;
-		pbHyp->setOn(true);
+		pbHyp->toggle();
 		break;
 	case Key_I:
-		key_pressed = true;
-		pbInv->setOn(true);
+		pbInv->toggle();
 		break;
 	case Key_A:
 	        (NumButtonGroup->find(0xA))->animateClick();
@@ -995,24 +992,6 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
     }
 }
 
-void QtCalculator::keyReleaseEvent(QKeyEvent *e)
-{
-	key_pressed = false;
-
-	switch (e->key())
-	{
-	case Key_H:
-		pbHyp->setOn(false);
-		break;
-	case Key_I:
-		pbInv->setOn(false);
-		break;
-	default:
-	        break;
-	}
-
-}
-
 void QtCalculator::slotEEclicked(void)
 {
 	if(!display_error)
@@ -1025,20 +1004,41 @@ void QtCalculator::slotEEclicked(void)
 
 void QtCalculator::slotInvtoggled(bool myboolean)
 {
-	if(myboolean)
-		SetInverse();
-
-	if(pbInv->isOn() && (!key_pressed))
-		pbInv->setOn(false);
+	SetInverse(myboolean);
 }
 
 void QtCalculator::slotHyptoggled(bool myboolean)
 {
+	EnterHyp(myboolean);
 	if(myboolean)
-		EnterHyp();
+	{
+		pbSin->setText("Sinh");
+		QToolTip::remove(pbSin);
+		QToolTip::add(pbSin, i18n("Hyperbolic Sine"));
+		pbCos->setText("Cosh");
+		QToolTip::remove(pbCos);
+		QToolTip::add(pbCos, i18n("Hyperbolic Cosine"));
+		pbTan->setText("Tanh");
+		QToolTip::remove(pbTan);
+		QToolTip::add(pbTan, i18n("Hyperbolic Tangent"));
+	}
+	else
+	{
+		pbSin->setText("Sin");
+		QToolTip::remove(pbSin);
+		QToolTip::add(pbSin, i18n("Sine"));
+		pbCos->setText("Cos");
+		QToolTip::remove(pbCos);
+		QToolTip::add(pbCos, i18n("Cosine"));
+		pbTan->setText("Tan");
+		QToolTip::remove(pbTan);
+		QToolTip::add(pbTan, i18n("Tangent"));
+	}
+}
 
-	if(pbHyp->isOn() && (!key_pressed))
-		pbHyp->setOn(false);
+void QtCalculator::deactivateInvButton()
+{
+	pbInv->setOn(false);
 }
 
 void QtCalculator::slotMRclicked(void)

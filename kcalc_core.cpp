@@ -197,7 +197,7 @@ void QtCalculator::RefreshCalculator()
 {
 	display_error = false;
 	DISPLAY_AMOUNT = 0L;
-	inverse = false;
+	deactivateInvButton();
 	decimal_point = 0;
 	input_count = 0;
 	UpdateDisplay();
@@ -359,7 +359,7 @@ void QtCalculator::Or()
 	if (inverse)
 	{
 		EnterStackFunction(2);   // XOR
-		inverse = false;
+		deactivateInvButton();
 	}
 	else
 		EnterStackFunction(1);   // OR
@@ -388,7 +388,7 @@ void QtCalculator::Shift()
 	if (inverse)
 	{
 		EnterStackFunction(5);   // Rsh
-		inverse = false;
+		deactivateInvButton();
 	}
 	else
 		EnterStackFunction(4);   // Lsh
@@ -444,7 +444,7 @@ void QtCalculator::Mod()
 	if (inverse)
 	{
 		EnterStackFunction(13);   // InvMod
-		inverse = false;
+		deactivateInvButton();
 	}
 	else
 	{
@@ -462,7 +462,7 @@ void QtCalculator::Power()
 	if (inverse)
 	{
 		EnterStackFunction(12);   // InvPower
-		inverse = false;
+		deactivateInvButton();
 	}
 	else
 	{
@@ -609,7 +609,7 @@ void QtCalculator::EnterInt()
 	else
 	{
 		DISPLAY_AMOUNT = work_amount1;
-		inverse = false;
+		deactivateInvButton();
 	}
 
 	refresh_display = true;
@@ -671,7 +671,7 @@ void QtCalculator::EnterSquare()
 	else							DISPLAY_AMOUNT = SQRT(DISPLAY_AMOUNT);
 
 	refresh_display = true;
-	inverse = false;
+	deactivateInvButton();
 	last_input = OPERATION;
 	UpdateDisplay();
 
@@ -701,10 +701,10 @@ void QtCalculator::EnterNotCmp()
 	UpdateDisplay();
 }
 
-void QtCalculator::EnterHyp()
+void QtCalculator::EnterHyp(bool flag)
 {
 	// toggle between hyperbolic and standart trig functions
-	hyp_mode = !hyp_mode;
+	hyp_mode = flag;
 
 	if (hyp_mode)	statusHYPLabel->setText("HYP");
 	else 			statusHYPLabel->clear();
@@ -719,7 +719,7 @@ void QtCalculator::DisplayNumData()
 	}
 	else
 	{
-		inverse = false;
+		deactivateInvButton();
 		eestate = false; // terminate ee input mode
 		DISPLAY_AMOUNT =  stats.sum();
 	}
@@ -745,7 +745,7 @@ void QtCalculator::ComputeMean()
 	}
 	else
 	{
-		inverse = false;
+		deactivateInvButton();
 		eestate = false;
 		DISPLAY_AMOUNT = stats.sum_of_squares();
 
@@ -778,7 +778,7 @@ void QtCalculator::ComputeSin()
 				display_error = true;
 
 			// reset the inverse flag
-			inverse = false;
+			deactivateInvButton();
 		}
 	}
 	else
@@ -826,7 +826,7 @@ void QtCalculator::ComputeSin()
 				display_error = true;
 
 			// reset the inverse flag
-			inverse = false;
+			deactivateInvButton();
 		}
 	}
 
@@ -845,7 +845,7 @@ void QtCalculator::ComputeStd()
 	if(!inverse)
 	{
 		// std (n-1)
-		inverse = false;
+		deactivateInvButton();
 		eestate = false;
 		DISPLAY_AMOUNT = stats.std();
 
@@ -859,7 +859,7 @@ void QtCalculator::ComputeStd()
 	else
 	{
 		// std (n)
-		inverse = false;
+		deactivateInvButton();
 		eestate = false;
 		DISPLAY_AMOUNT = stats.sample_std();
 
@@ -890,8 +890,8 @@ void QtCalculator::ComputeCos()
 
 			if (errno == EDOM || errno == ERANGE)
 				display_error = true;
-
-			inverse = false;       // reset the inverse flag
+			// reset the inverse flag
+			deactivateInvButton();
 		}
 	}
 	else
@@ -939,7 +939,7 @@ void QtCalculator::ComputeCos()
 				display_error = true;
 
 			// reset the inverse flag
-			inverse = false;
+			deactivateInvButton();
 		}
 	}
 
@@ -957,7 +957,7 @@ void QtCalculator::ComputeMedian()
 	if(!inverse)
 	{
 		// std (n-1)
-		inverse = false;
+		deactivateInvButton();
 		eestate = false;
 		DISPLAY_AMOUNT = stats.median();
 
@@ -971,7 +971,7 @@ void QtCalculator::ComputeMedian()
 	else
 	{
 		// std (n)
-		inverse = false;
+		deactivateInvButton();
 		eestate = false;
 		DISPLAY_AMOUNT = stats.median();
 
@@ -1004,7 +1004,7 @@ void QtCalculator::ComputeTan()
 				display_error = true;
 
 			// reset the inverse flag
-			inverse = false;
+			deactivateInvButton();
 		}
 	}
 	else
@@ -1055,7 +1055,7 @@ void QtCalculator::ComputeTan()
 				display_error = true;
 
 			// reset the inverse flag
-			inverse = false;
+			deactivateInvButton();
 		}
 	}
 
@@ -1090,7 +1090,7 @@ void QtCalculator::EnterStatData()
 	}
 	else
 	{
-		inverse = false;
+		deactivateInvButton();
 		stats.clearLast();
 		setStatusLabel(i18n("Last stat item erased"));
 		DISPLAY_AMOUNT = stats.count();
@@ -1114,7 +1114,7 @@ void QtCalculator::ComputeLog10()
 	else
 	{
 		DISPLAY_AMOUNT = POW(10, DISPLAY_AMOUNT);
-		inverse = false;
+		deactivateInvButton();
 	}
 
 	last_input		= OPERATION;
@@ -1131,7 +1131,7 @@ void QtCalculator::ClearStatMem()
 	}
 	else
 	{
-	        inverse = false;
+		deactivateInvButton();
 		UpdateDisplay();
 	}
 }
@@ -1150,7 +1150,7 @@ void QtCalculator::ComputeNaturalLog()
 	else if (inverse)
 	{
 		DISPLAY_AMOUNT = EXP(DISPLAY_AMOUNT);
-		inverse = false;
+		deactivateInvButton();
 	}
 
 	refresh_display = true;
@@ -1215,12 +1215,9 @@ void QtCalculator::angle_selected(int number)
 	}
 }
 
-//-------------------------------------------------------------------------
-// Name: SetInverse()
-//-------------------------------------------------------------------------
-void QtCalculator::SetInverse()
+void QtCalculator::SetInverse(bool flag)
 {
-	inverse = ! inverse;
+	inverse = flag;
 
 	if (inverse)	statusINVLabel->setText("INV");
 	else			statusINVLabel->setText("NORM");
@@ -1234,7 +1231,7 @@ void QtCalculator::EE()
 	if(inverse)
 	{
 		DISPLAY_AMOUNT	= pi;
-		inverse			= false;
+		deactivateInvButton();
 		refresh_display	= true;
 
 		UpdateDisplay();
@@ -1282,7 +1279,7 @@ void QtCalculator::Mplusminus()
 	if (!inverse)	memory_num += DISPLAY_AMOUNT;
 	else 			memory_num -= DISPLAY_AMOUNT;
 
-	inverse = false;
+	deactivateInvButton();
 }
 
 //-------------------------------------------------------------------------
@@ -1470,9 +1467,6 @@ void QtCalculator::UpdateDisplay()
 		if(kcalcdefaults.beep)
 			KNotifyClient::beep();
 	}
-
-	if (inverse)	statusINVLabel->setText("INV");
-	else			statusINVLabel->setText("NORM");
 
 	if (hyp_mode)	statusHYPLabel->setText("HYP");
 	else			statusHYPLabel->clear();
