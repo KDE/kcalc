@@ -26,8 +26,6 @@
 #ifndef QTCALC_H
 #define QTCALC_H
 
-
-
 #include <queue>
 using std::queue;
 
@@ -52,27 +50,23 @@ class DLabel;
 // IMPORTANT this has to come after ../config.h
 #include "kcalctype.h"
 
-#include "calculator.h"
-
-
+#define STACK_SIZE	100
 #define PRECEDENCE_INCR	20
 
-enum FUNCTION_TYPES {
-	FUNC_NULL = 0,
-	FUNC_OR,
-	FUNC_XOR,
-	FUNC_AND,
-	FUNC_LSH,
-	FUNC_RSH,
-	FUNC_ADD,
-	FUNC_SUBTRACT,
-	FUNC_MULTIPLY,
-	FUNC_DIVIDE,
-	FUNC_MOD,
-	FUNC_POWER,
-	FUNC_PWR_ROOT,
-	FUNC_INTDIV
-};
+#define FUNC_NULL		0
+#define FUNC_OR			1
+#define FUNC_XOR		2
+#define FUNC_AND		3
+#define FUNC_LSH		4
+#define FUNC_RSH		5
+#define FUNC_ADD		6
+#define FUNC_SUBTRACT	7
+#define FUNC_MULTIPLY	8
+#define FUNC_DIVIDE		9
+#define FUNC_MOD		10
+#define FUNC_POWER		11
+#define FUNC_PWR_ROOT	12
+#define FUNC_INTDIV		13
 
 // CHANGED BY EVAN TERAN
 #define		HEX_SIZE	8
@@ -88,8 +82,9 @@ enum FUNCTION_TYPES {
 #define DISPLAY_AMOUNT display_data.s_item_data.item_amount
 
 
-typedef	CALCAMNT	(*Arith)(CALCAMNT, CALCAMNT, bool&); 
-typedef	CALCAMNT	(*Prcnt)(CALCAMNT, CALCAMNT, CALCAMNT, bool&); 
+typedef	CALCAMNT	(*Arith)(CALCAMNT, CALCAMNT); 
+typedef	CALCAMNT	(*Prcnt)(CALCAMNT, CALCAMNT, CALCAMNT); 
+typedef	CALCAMNT	(*Trig)(CALCAMNT); 
 
 typedef enum _last_input_type
 {
@@ -114,7 +109,48 @@ typedef enum _angle_type
 	ANG_GRADIENT = 2
 } angle_type;
 
-int UpdateStack(int run_precedence);
+typedef enum _item_type
+{ 
+	ITEM_FUNCTION, 
+	ITEM_AMOUNT 
+} item_type;
+
+typedef struct _func_data
+{ 
+	int item_function;
+	int item_precedence;
+} func_data;
+
+typedef	union  _item_data
+{
+	CALCAMNT	item_amount;	// an amount
+	func_data	item_func_data;	// or a function
+} item_data;
+
+typedef struct _item_contents
+{
+	item_type	s_item_type;	// a type flag
+	item_data	s_item_data; 	// and data
+} item_contents;
+
+typedef struct stack_item *stack_ptr;
+
+typedef struct stack_item
+{
+	// Contents of an item on the input stack
+
+	stack_ptr prior_item;		// Pointer to prior item
+	stack_ptr prior_type;		// Pointer to prior type
+	item_contents item_value;	// The value of the item
+} stack_item;
+
+void 	InitStack();
+void 	PushStack(item_contents *add_item);
+int		UpdateStack(int run_precedence);
+item_contents	*PopStack();
+item_contents	*TopOfStack();
+item_contents	*TopTypeStack(item_type rqstd_type);
+
  
 typedef struct _DefStruct
 {
@@ -294,6 +330,27 @@ private:
 	 
 private:
 	static int cvb(char *out_str, long amount, int max_digits);
+	
+public:
+	static CALCAMNT ExecOr(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecXor(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecAnd(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecLsh(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecRsh(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecAdd(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecSubtract(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecMultiply(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecDivide(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecMod(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecPower(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecPwrRoot(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecIntDiv(CALCAMNT left_op, CALCAMNT right_op);
+	static CALCAMNT ExecAddSubP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
+	static CALCAMNT ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
+	static CALCAMNT ExecDivideP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
+	static CALCAMNT ExecPowerP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
+	static CALCAMNT ExecPwrRootP(CALCAMNT left_op, CALCAMNT right_op, CALCAMNT result);
+	static CALCAMNT ExecFunction(CALCAMNT left_op, int function, CALCAMNT right_op);
 	
 public:
 	static CALCAMNT Deg2Rad(CALCAMNT x)	{ return (((2L * pi) / 360L) * x); }

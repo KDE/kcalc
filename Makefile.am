@@ -3,11 +3,11 @@ bin_PROGRAMS = kcalc
 lib_LTLIBRARIES = kcalc.la
 
 kcalc_la_SOURCES = kcalc.cpp kcalc_core.cpp dlabel.cpp stats.cpp \
-	           optiondialog.cpp calculator.cpp
+	           optiondialog.cpp
 
 METASOURCES = AUTO
 
-noinst_HEADERS  = kcalc.h dlabel.h stats.h kcalctype.h calculator.h
+noinst_HEADERS  = kcalc.h dlabel.h stats.h kcalctype.h
 
 INCLUDES= $(all_includes)
 kcalc_la_LDFLAGS = $(all_libraries) -module -avoid-version
