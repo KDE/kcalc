@@ -85,7 +85,7 @@ extern bool		display_error;
 //-------------------------------------------------------------------------
 QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	: KMainWindow(parent, name), inverse(false), hyp_mode(false), eestate(false), 
-	refresh_display(false), display_size(DEC_SIZE),  angle_mode(ANG_DEGREE), 
+	refresh_display(false), display_size(DEC_SIZE),  angle_mode(ANG_DEGREE),
 	input_limit(0), input_count(0), decimal_point(0), precedence_base(0),
 	current_base(NB_DECIMAL), memory_num(0.0), last_input(DIGIT), 
 	history_index(0), selection_timer(new QTimer), key_pressed(false),
@@ -157,13 +157,13 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	connect(base_group, SIGNAL(clicked(int)), SLOT(Base_Selected(int)));
 
 	basebutton[0] = new QRadioButton(base_group);
-	basebutton[0]->setText("&Hex");
+	basebutton[0]->setText("He&x");
 	QToolTip::add(basebutton[0], i18n("Hexadecimal"));
 	accel->connectItem(accel->insertItem(Key_H+ALT),
 		this, SLOT(Hex_Selected()));
 
 	basebutton[1] = new QRadioButton(base_group);
-	basebutton[1]->setText("D&ec");
+	basebutton[1]->setText("&Dec");
 	QToolTip::add(basebutton[1], i18n("Decimal"));
 	basebutton[1]->setChecked(true);
 	accel->connectItem(accel->insertItem(Key_E+ALT),
@@ -187,7 +187,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	connect( angle_group, SIGNAL(clicked(int)), SLOT(angle_selected(int)));
 
 	anglebutton[0] = new QRadioButton(angle_group);
-	anglebutton[0]->setText("&Deg");
+	anglebutton[0]->setText("D&eg");
 	QToolTip::add(anglebutton[0], i18n("Degrees"));
 	anglebutton[0]->setChecked(true);
 	accel->connectItem(accel->insertItem(Key_D+ALT),
