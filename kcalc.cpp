@@ -131,12 +131,14 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   // Create uppermost bar with buttons and numberdisplay
   //
   mConfigButton = new QPushButton( this, "configbutton" );
-  mConfigButton->setText( "KCalc" );
+  mConfigButton->setText( i18n("Configure") );
+  mConfigButton->setAutoDefault(false);
   QToolTip::add( mConfigButton, i18n("Click to configure KCalc") );
   connect( mConfigButton, SIGNAL(clicked()), this, SLOT(configclicked()) );
 
   mHelpButton = new QPushButton( this, "helpbutton" );
-  mHelpButton->setText( "?" );
+  mHelpButton->setText("?");
+  mHelpButton->setAutoDefault(false);
   connect( mHelpButton, SIGNAL(clicked()), this, SLOT(helpclicked()) );
 
   calc_display = new DLabel( this, "display" );
@@ -233,89 +235,107 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
 
   pbhyp = new QPushButton( mSmallPage, "hypbutton" );
   pbhyp->setText( "Hyp" );
+  pbhyp->setAutoDefault(false);
   connect( pbhyp, SIGNAL(toggled(bool)), SLOT(pbhyptoggled(bool)));
   pbhyp->setToggleButton(TRUE);
 
   pbinv = new QPushButton( mSmallPage, "InverseButton" );
   pbinv->setText( "Inv" );
+  pbinv->setAutoDefault(false);
   connect( pbinv, SIGNAL(toggled(bool)), SLOT(pbinvtoggled(bool)));
   pbinv->setToggleButton(TRUE);
 
   pbA = new QPushButton( mSmallPage, "Abutton" );
   pbA->setText( "A" );
+  pbA->setAutoDefault(false);
   connect( pbA, SIGNAL(toggled(bool)), SLOT(pbAtoggled(bool)));
   pbA->setToggleButton(TRUE);    
 
   pbSin = new QPushButton( mSmallPage, "Sinbutton" );
   pbSin->setText( "Sin" );
+  pbSin->setAutoDefault(false);
   connect( pbSin, SIGNAL(toggled(bool)), SLOT(pbSintoggled(bool)));
   pbSin->setToggleButton(TRUE);
      
   pbplusminus = new QPushButton( mSmallPage, "plusminusbutton" );
   pbplusminus->setText( "+/-" );
+  pbplusminus->setAutoDefault(false);
   connect(pbplusminus, SIGNAL(toggled(bool)), SLOT(pbplusminustoggled(bool)));
   pbplusminus->setToggleButton(TRUE);    
 
   pbB = new QPushButton( mSmallPage, "Bbutton" );
   pbB->setText( "B" );
+  pbB->setAutoDefault(false);
   connect( pbB, SIGNAL(toggled(bool)), SLOT(pbBtoggled(bool)));
   pbB->setToggleButton(TRUE);
 
   pbCos = new QPushButton( mSmallPage, "Cosbutton" );
   pbCos->setText( "Cos" );
+  pbCos->setAutoDefault(false);
   connect( pbCos, SIGNAL(toggled(bool)), SLOT(pbCostoggled(bool)));
   pbCos->setToggleButton(TRUE);    
 
   pbreci = new QPushButton( mSmallPage, "recibutton" );
   pbreci->setText( "1/x" );
+  pbreci->setAutoDefault(false);
   connect( pbreci, SIGNAL(toggled(bool)), SLOT(pbrecitoggled(bool)));
   pbreci->setToggleButton(TRUE);    
 
   pbC = new QPushButton( mSmallPage, "Cbutton" );
   pbC->setText( "C" );
+  pbC->setAutoDefault(false);
   connect( pbC, SIGNAL(toggled(bool)), SLOT(pbCtoggled(bool)));
   pbC->setToggleButton(TRUE);
 
   pbTan = new QPushButton( mSmallPage, "Tanbutton" );
   pbTan->setText( "Tan" );
+  pbTan->setAutoDefault(false);
   pbTan->setToggleButton(TRUE);
 
   pbfactorial = new QPushButton( mSmallPage, "factorialbutton" );
   pbfactorial->setText( "x!" );
+  pbfactorial->setAutoDefault(false);
   connect(pbfactorial, SIGNAL(toggled(bool)), SLOT(pbfactorialtoggled(bool)));
   pbfactorial->setToggleButton(TRUE);
 
   pbD = new QPushButton( mSmallPage, "Dbutton" );
   pbD->setText( "D" );
+  pbD->setAutoDefault(false);
   connect( pbD, SIGNAL(toggled(bool)), SLOT(pbDtoggled(bool)));
   pbD->setToggleButton(TRUE);
 
   pblog = new QPushButton( mSmallPage, "logbutton" );
   pblog->setText( "Log" );
+  pblog->setAutoDefault(false);
   pblog->setToggleButton(TRUE);
   
   pbsquare = new QPushButton( mSmallPage, "squarebutton" );
   pbsquare->setText( "x^2" );
+  pbsquare->setAutoDefault(false);
   connect( pbsquare, SIGNAL(toggled(bool)), SLOT(pbsquaretoggled(bool)));
   pbsquare->setToggleButton(TRUE);
 
   pbE = new QPushButton( mSmallPage, "Ebutton" );
   pbE->setText( "E" );
+  pbE->setAutoDefault(false);
   connect( pbE, SIGNAL(toggled(bool)), SLOT(pbEtoggled(bool)));
   pbE->setToggleButton(TRUE);
 
   pbln = new QPushButton( mSmallPage, "lnbutton" );
   pbln->setText( "Ln" );
+  pbln->setAutoDefault(false);
   connect( pbln, SIGNAL(toggled(bool)), SLOT(pblntoggled(bool)));
   pbln->setToggleButton(TRUE);
 
   pbpower = new QPushButton( mSmallPage, "powerbutton" );
   pbpower->setText( "x^y" );
+  pbpower->setAutoDefault(false);
   connect( pbpower, SIGNAL(toggled(bool)), SLOT(pbpowertoggled(bool)));
   pbpower->setToggleButton(TRUE);
   
   pbF = new QPushButton( mSmallPage, "Fbutton" );
   pbF->setText( "F" );
+  pbF->setAutoDefault(false);
   connect( pbF, SIGNAL(toggled(bool)), SLOT(pbFtoggled(bool)));
   pbF->setToggleButton(TRUE);
 
@@ -325,30 +345,36 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   pbEE = new QPushButton( mLargePage, "EEbutton" );
   pbEE->setText( "EE" );
   pbEE->setToggleButton(TRUE);
+  pbEE->setAutoDefault(false);
   connect( pbEE, SIGNAL(toggled(bool)), SLOT(EEtoggled(bool)));
 
   pbMR = new QPushButton( mLargePage, "MRbutton" );
   pbMR->setText( "MR" );
+  pbMR->setAutoDefault(false);
   connect( pbMR, SIGNAL(toggled(bool)), SLOT(pbMRtoggled(bool)));
   pbMR->setToggleButton(TRUE);
 
   pbMplusminus = new QPushButton( mLargePage, "Mplusminusbutton" );
   pbMplusminus->setText( "M+-" );
+  pbMplusminus->setAutoDefault(false);
   connect(pbMplusminus,SIGNAL(toggled(bool)),SLOT(pbMplusminustoggled(bool)));
   pbMplusminus->setToggleButton(TRUE);
 
   pbMC = new QPushButton( mLargePage, "MCbutton" );
   pbMC->setText( "MC" );
+  pbMC->setAutoDefault(false);
   connect( pbMC, SIGNAL(toggled(bool)), SLOT(pbMCtoggled(bool)));
   pbMC->setToggleButton(TRUE);
 
   pbClear = new QPushButton( mLargePage, "Clearbutton" );
   pbClear->setText( "C" );
+  pbClear->setAutoDefault(false);
   connect( pbClear, SIGNAL(toggled(bool)), SLOT(pbCleartoggled(bool)));
   pbClear->setToggleButton(TRUE);
 
   pbAC = new QPushButton( mLargePage, "ACbutton" );
   pbAC->setText( "AC" );
+  pbAC->setAutoDefault(false);
   connect( pbAC, SIGNAL(toggled(bool)), SLOT(pbACtoggled(bool)));
   pbAC->setToggleButton(TRUE);
   
@@ -360,31 +386,37 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
 
   pb7 = new QPushButton( mLargePage, "7button" );
   pb7->setText( "7" );
+  pb7->setAutoDefault(false);
   connect( pb7, SIGNAL(toggled(bool)), SLOT(pb7toggled(bool)));
   pb7->setToggleButton(TRUE);
 
   pb8 = new QPushButton( mLargePage, "8button" );
   pb8->setText( "8" );
+  pb8->setAutoDefault(false);
   connect( pb8, SIGNAL(toggled(bool)), SLOT(pb8toggled(bool)));
   pb8->setToggleButton(TRUE);
 
   pb9 = new QPushButton( mLargePage, "9button" );
   pb9->setText( "9" );
+  pb9->setAutoDefault(false);
   connect( pb9, SIGNAL(toggled(bool)), SLOT(pb9toggled(bool)));
   pb9->setToggleButton(TRUE);
 
   pbparenopen = new QPushButton( mLargePage, "parenopenbutton" );
   pbparenopen->setText( "(" );
+  pbparenopen->setAutoDefault(false);
   connect( pbparenopen, SIGNAL(toggled(bool)),SLOT(pbparenopentoggled(bool)));
   pbparenopen->setToggleButton(TRUE);
 
   pbparenclose = new QPushButton( mLargePage, "parenclosebutton" );
   pbparenclose->setText( ")" );
+  pbparenclose->setAutoDefault(false);
   connect(pbparenclose,SIGNAL(toggled(bool)),SLOT(pbparenclosetoggled(bool)));
   pbparenclose->setToggleButton(TRUE);
 
   pband = new QPushButton( mLargePage, "andbutton" );
   pband->setText( "And" );
+  pband->setAutoDefault(false);
   connect( pband, SIGNAL(toggled(bool)), SLOT(pbandtoggled(bool)));
   pband->setToggleButton(TRUE);
     
@@ -394,31 +426,37 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
 
   pb4 = new QPushButton( mLargePage, "4button" );
   pb4->setText( "4" );
+  pb4->setAutoDefault(false);
   connect( pb4, SIGNAL(toggled(bool)), SLOT(pb4toggled(bool)));
   pb4->setToggleButton(TRUE);
 
   pb5 = new QPushButton( mLargePage, "5button" );
   pb5->setText( "5" );
+  pb5->setAutoDefault(false);
   connect( pb5, SIGNAL(toggled(bool)), SLOT(pb5toggled(bool)));
   pb5->setToggleButton(TRUE);
 
   pb6 = new QPushButton( mLargePage, "6button" );
   pb6->setText( "6" );
+  pb6->setAutoDefault(false);
   connect( pb6, SIGNAL(toggled(bool)), SLOT(pb6toggled(bool)));
   pb6->setToggleButton(TRUE);
 
   pbX = new QPushButton( mLargePage, "Multiplybutton" );
   pbX->setText( "X" );
+  pbX->setAutoDefault(false);
   connect( pbX, SIGNAL(toggled(bool)), SLOT(pbXtoggled(bool)));
   pbX->setToggleButton(TRUE);
   
   pbdivision = new QPushButton( mLargePage, "divisionbutton" );
   pbdivision->setText( "/" );
+  pbdivision->setAutoDefault(false);
   connect( pbdivision, SIGNAL(toggled(bool)), SLOT(pbdivisiontoggled(bool)));
   pbdivision->setToggleButton(TRUE);
   
   pbor = new QPushButton( mLargePage, "orbutton" );
   pbor->setText( "Or" );
+  pbor->setAutoDefault(false);
   connect( pbor, SIGNAL(toggled(bool)), SLOT(pbortoggled(bool)));
   pbor->setToggleButton(TRUE);
 
@@ -427,32 +465,38 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
 //
 
   pb1 = new QPushButton( mLargePage, "1button" );
-  pb1->setText( "1" );   
+  pb1->setText( "1" );
+  pb1->setAutoDefault(false);
   connect( pb1, SIGNAL(toggled(bool)), SLOT(pb1toggled(bool)));
   pb1->setToggleButton(TRUE);	
  
   pb2 = new QPushButton( mLargePage, "2button" );
   pb2->setText( "2" );
+  pb2->setAutoDefault(false);
   connect( pb2, SIGNAL(toggled(bool)), SLOT(pb2toggled(bool)));
   pb2->setToggleButton(TRUE);		
   
   pb3 = new QPushButton( mLargePage, "3button" );
   pb3->setText( "3" );
+  pb3->setAutoDefault(false);
   connect( pb3, SIGNAL(toggled(bool)), SLOT(pb3toggled(bool)));
   pb3->setToggleButton(TRUE);
   
   pbplus = new QPushButton( mLargePage, "plusbutton" );
   pbplus->setText( "+" );
+  pbplus->setAutoDefault(false);
   connect( pbplus, SIGNAL(toggled(bool)), SLOT(pbplustoggled(bool)));
   pbplus->setToggleButton(TRUE);
   
   pbminus = new QPushButton( mLargePage, "minusbutton" );
   pbminus->setText( "-" );
+  pbminus->setAutoDefault(false);
   connect( pbminus, SIGNAL(toggled(bool)), SLOT(pbminustoggled(bool)));
   pbminus->setToggleButton(TRUE);
 
   pbshift = new QPushButton( mLargePage, "shiftbutton" );
   pbshift->setText( "Lsh" );
+  pbshift->setAutoDefault(false);
   connect( pbshift, SIGNAL(toggled(bool)), SLOT(pbshifttoggled(bool)));
   pbshift->setToggleButton(TRUE);
 
@@ -462,34 +506,39 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
 
   pbperiod = new QPushButton( mLargePage, "periodbutton" );
   pbperiod->setText( "." );
+  pbperiod->setAutoDefault(false);
   connect( pbperiod, SIGNAL(toggled(bool)), SLOT(pbperiodtoggled(bool)));
   pbperiod->setToggleButton(TRUE);
   
   pb0 = new QPushButton( mLargePage, "0button" );
   pb0->setText( "0" );
+  pb0->setAutoDefault(false);
   connect( pb0, SIGNAL(toggled(bool)), SLOT(pb0toggled(bool)));
   pb0->setToggleButton(TRUE);
 
   pbequal = new QPushButton( mLargePage, "equalbutton" );
   pbequal->setText( "=" );
+  pbequal->setAutoDefault(false);
   connect( pbequal, SIGNAL(toggled(bool)), SLOT(pbequaltoggled(bool)));
   pbequal->setToggleButton(TRUE);
 
   pbpercent = new QPushButton( mLargePage, "percentbutton" );
   pbpercent->setText( "%" );
+  pbpercent->setAutoDefault(false);
   connect( pbpercent, SIGNAL(toggled(bool)), SLOT(pbpercenttoggled(bool)));
   pbpercent->setToggleButton(TRUE);
 
   pbnegate = new QPushButton( mLargePage, "OneComplementbutton" );
   pbnegate->setText( "Cmp" );
+  pbnegate->setAutoDefault(false);
   connect( pbnegate, SIGNAL(toggled(bool)), SLOT(pbnegatetoggled(bool))); 
   pbnegate->setToggleButton(TRUE);
 
   pbmod = new QPushButton( mLargePage, "modbutton" );
   pbmod->setText( "Mod" );
+  pbmod->setAutoDefault(false);
   connect( pbmod, SIGNAL(toggled(bool)), SLOT(pbmodtoggled(bool))); 
   pbmod->setToggleButton(TRUE);
-
 
   set_colors();
   set_display_font();
@@ -512,10 +561,10 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   // to "activate()" the layout at the end.
   //
   //
-  QGridLayout *smallBtnLayout = new QGridLayout(mSmallPage, 6, 3, 0, 
-						mInternalSpacing);
+  QGridLayout *smallBtnLayout = new QGridLayout(mSmallPage, 6, 3, 0,
+						mInternalSpacing );
   QGridLayout *largeBtnLayout = new QGridLayout(mLargePage, 5, 6, 0,
-						mInternalSpacing);
+						mInternalSpacing );
   QHBoxLayout *topLayout = new QHBoxLayout();
   QHBoxLayout *radioLayout = new QHBoxLayout();
   QHBoxLayout *btnLayout = new QHBoxLayout();
