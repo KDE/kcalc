@@ -114,7 +114,7 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   // Create uppermost bar with buttons and numberdisplay
   //
   mConfigButton = new QPushButton( this, "configbutton" );
-  mConfigButton->setText( i18n("Configure") );
+  mConfigButton->setText( i18n("Configure...") );
   mConfigButton->setAutoDefault(false);
   QToolTip::add( mConfigButton, i18n("Click to configure KCalc") );
   connect( mConfigButton, SIGNAL(clicked()), this, SLOT(configclicked()) );
@@ -122,6 +122,7 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   mHelpButton = new QPushButton( this, "helpbutton" );
   mHelpButton->setText("?");
   mHelpButton->setAutoDefault(false);
+  QToolTip::add( mHelpButton, i18n("Help") );
   connect( mHelpButton, SIGNAL(clicked()), this, SLOT(helpclicked()) );
 
   calc_display = new DLabel( this, "display" );
@@ -479,18 +480,18 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
 ///////////////////////////////////////////////////////////////////////////
 //
 //
+//
+  pb0 = new QPushButton( mLargePage, "0button" );
+  pb0->setText( "0" );
+  pb0->setAutoDefault(false);
+  connect( pb0, SIGNAL(toggled(bool)), SLOT(pb0toggled(bool)));
+  pb0->setToggleButton(TRUE);
 
   pbperiod = new QPushButton( mLargePage, "periodbutton" );
   pbperiod->setText( "." );
   pbperiod->setAutoDefault(false);
   connect( pbperiod, SIGNAL(toggled(bool)), SLOT(pbperiodtoggled(bool)));
   pbperiod->setToggleButton(TRUE);
-
-  pb0 = new QPushButton( mLargePage, "0button" );
-  pb0->setText( "0" );
-  pb0->setAutoDefault(false);
-  connect( pb0, SIGNAL(toggled(bool)), SLOT(pb0toggled(bool)));
-  pb0->setToggleButton(TRUE);
 
   pbequal = new QPushButton( mLargePage, "equalbutton" );
   pbequal->setText( "=" );
@@ -608,8 +609,8 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   largeBtnLayout->addWidget(pbminus, 3, 4);
   largeBtnLayout->addWidget(pbshift, 3, 5);
 
-  largeBtnLayout->addWidget(pbperiod, 4, 0);
-  largeBtnLayout->addWidget(pb0, 4, 1);
+  largeBtnLayout->addWidget(pb0, 4, 0);
+  largeBtnLayout->addWidget(pbperiod, 4, 1);
   largeBtnLayout->addWidget(pbequal, 4, 2);
   largeBtnLayout->addWidget(pbpercent, 4, 3);
   largeBtnLayout->addWidget(pbnegate, 4, 4);
