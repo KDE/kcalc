@@ -107,6 +107,7 @@ public:
 	void setFixedPrecision(int precision);
 	void setPrecision(int precision);
 	void setText(QString const &string);
+	QString text() const;
 	bool updateDisplay(void);
 private:
 	bool _beep;

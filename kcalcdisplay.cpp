@@ -28,6 +28,7 @@
 
 #include <qclipboard.h>
 
+#include <kglobal.h>
 #include <klocale.h>
 #include <knotifyclient.h>
 #include "kcalcdisplay.h"
@@ -275,8 +276,55 @@ bool KCalcDisplay::setAmount(CALCAMNT new_amount)
 
 void KCalcDisplay::setText(QString const &string)
 {
-	QLabel::setText(string);
-	emit changedText(string);
+	QString localizedString = string;
+	
+	// If we aren't in decimal mode, we don't need to modify the string
+	if (_num_base == NB_DECIMAL)
+	{
+		// Obtain decimal symbol and thousands separator
+		QString decimalSymbol = KGlobal::locale()->decimalSymbol();
+		QString thousandsSeparator = KGlobal::locale()->thousandsSeparator();
+	
+		// Replace dot with locale decimal separator
+		localizedString.replace(QChar('.'),decimalSymbol);
+	
+		// Insert the thousand separators
+		int i = localizedString.find(decimalSymbol) != -1? localizedString.find(decimalSymbol)-1: localizedString.length()-1;
+		for(int j=1;i>0;i--,j++)
+			if (j%3 == 0)
+				localizedString.insert(i,thousandsSeparator);
+	}
+
+	QLabel::setText(localizedString);
+	emit changedText(localizedString);
+}
+
+QString KCalcDisplay::text() const
+{
+	if (_num_base != NB_DECIMAL)
+		return QLabel::text();
+	
+	QString unlocalizedString = QLabel::text();
+	
+	// Obtain decimal symbol and thousands separator
+	QString decimalSymbol = KGlobal::locale()->decimalSymbol();
+	QString thousandsSeparator = KGlobal::locale()->thousandsSeparator();
+
+	// TODO: This may cause problems if the user
+	// sets decimalSymbol == thousandsSeparator
+	// Since text() is only used for prepending
+	// other text in NB_HEX mode and measuring
+	// the display lenght, this is not a big
+	// problem. Anyway, we should find a 
+	// better way of doing this.
+
+	// Delete thousands separators	
+	unlocalizedString.remove(thousandsSeparator);
+	
+	// Replace decimalSymbol with '.'
+	unlocalizedString.replace(decimalSymbol,QChar('.'));
+	
+	return unlocalizedString;
 }
 
 /* change representation of display to new base (i.e. binary, decimal,
