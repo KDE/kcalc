@@ -2145,7 +2145,7 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
 #include "kcalc.moc"
 
 
-extern "C" int kdemain(int argc, char *argv[])
+extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
 {
         QString precisionStatement;
 
