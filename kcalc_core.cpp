@@ -1368,7 +1368,7 @@ void QtCalculator::EnterLogn()
 		if(!inverse)
 		{
 			stats.clearAll();
-			setStatusLabel(i18n("Stat Mem cleared"));
+			setStatusLabel(i18n("Stat mem cleared"));
 		}
 		else
 		{
