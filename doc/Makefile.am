@@ -6,5 +6,8 @@ data_DATA = index-1.html index-2.html index-3.html index-4.html \
 
 datadir = $(kde_htmldir)/en/kcalc
 
-EXTRA_DIST = $(data_DATA)
+EXTRA_DIST = $(data_DATA) index.sgml index.nif
+
+doc: index.sgml index.nif
+	ksgml2html index en
 
