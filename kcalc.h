@@ -150,6 +150,7 @@ protected slots:
     void slotHyptoggled(bool flag);
     void slotConstclicked(int);
 
+    void slotConstantToDisplay(int constant);
     void slotChooseScientificConst0(int option);
     void slotChooseScientificConst1(int option);
     void slotChooseScientificConst2(int option);

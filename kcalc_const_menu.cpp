@@ -23,12 +23,18 @@
 
 #include "kcalc_const_menu.h"
 
-#define NUM_CONST 3
+#define NUM_CONST 9
 
 const struct science_constant KCalcConstMenu::Constants[] = {
-  {"Pi", i18n("Pi"), "", "3.14", Mathematics},
-  {"e", i18n("Euler number"), "", "2.71", Mathematics},
-  {"c", i18n("Light speed"), "", "3e8", Physics}
+  {QString::fromUtf8("Ï€"), i18n("Pi"), "", "3.14159265358979323846264338327950288", Mathematics},
+  {"e", i18n("Euler number"), "", "2.71828182845904523536028747135266249", Mathematics},
+  {"c", i18n("Light speed"), "", "2.99792458e8", Physics},
+  {"h", i18n("Planck's constant"), "", "6.6260693e-34", Physics},
+  {"G", i18n("Constant of gravitation"), "", "6.6742e-11", Physics},
+  {"e", i18n("Elementary charge"), "", "1.60217653e-19", Physics},
+  {"µ0", i18n("Permeability of vacuum"), "", "1.2566370614e-6", Physics},
+  {QString::fromUtf8("\0x3B5"), i18n("Permittivity of vacuum"), "", "8.854187817e-12", Physics},
+  {"NA", i18n("Avogadro's number"), "", "6.0221415e23", Chemistry}
 };
 
 KCalcConstMenu::KCalcConstMenu(QWidget * parent, const char * name)

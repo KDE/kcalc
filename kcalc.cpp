@@ -54,6 +54,7 @@
 #include <kglobal.h>
 #include <kglobalsettings.h>
 #include <kkeydialog.h>
+#include <kmenubar.h>
 #include <knotifyclient.h>
 #include <knumvalidator.h>
 #include <kpopupmenu.h>
@@ -1005,6 +1006,19 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
 	ConstButtonGroup->insert(tmp_pb, 5);
 
 	changeButtonNames();
+
+	// add menu with scientific constants
+	KCalcConstMenu *tmp_menu = new KCalcConstMenu(this);
+	menuBar()->insertItem(i18n("&Constants"), tmp_menu);
+	connect(tmp_menu, SIGNAL(activated(int)), this,
+		SLOT(slotConstantToDisplay(int)));
+}
+
+void KCalculator::slotConstantToDisplay(int constant)
+{
+	calc_display->setAmount(KCalcConstMenu::Constants[constant].value);
+
+	UpdateDisplay(false);
 }
 
 void KCalculator::updateGeometry(void)
@@ -2017,8 +2031,9 @@ void KCalculator::slotConstantsShow(bool toggled)
 	KCalcSettings::setShowConstants(toggled);
 }
 
-// This function is for setting the constant names configured in the kcalc settings menue. If the user doesn't
-// enter a name for the constant C1 to C6 is used.
+// This function is for setting the constant names configured in the
+// kcalc settings menu. If the user doesn't enter a name for the
+// constant C1 to C6 is used.
 void KCalculator::changeButtonNames()
 {
 	pbConstant[0]->setLabelAndTooltip();
