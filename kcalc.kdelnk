@@ -2,6 +2,7 @@
 [KDE Desktop Entry]
 Name=Calculator
 Name[de]=Taschenrechner
+Name[no]=Kalkulator
 Name[pl]=Kalkulator
 Name[fi]=Laskin
 Name[fr]=Calculatrice
@@ -15,6 +16,7 @@ Exec=kcalc  -caption "%c" %i %m
 Icon=kcalc.xpm
 DocPath=kcalc/index.html
 Comment=A Scientific Calculator
+Comment[no]=En vitenskaplig kalkulator
 Comment[de]=Ein wissenschaftlicher Taschenrechner
 Comment[pl]=Kalkulator naukowy
 Comment[fi]=Tieteellinen laskin
