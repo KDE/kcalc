@@ -5,6 +5,6 @@ Name[de]=Taschenrechner
 Exec=kcalc
 Icon=kcalc.xpm
 DocPath=kcalc/kcalc.html
-Info=A Scientific Calculator
+Comment=A Scientific Calculator
 Terminal=0
 Type=Application
