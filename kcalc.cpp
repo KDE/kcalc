@@ -650,6 +650,7 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbMR, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(pbMR, SIGNAL(clicked(void)), SLOT(slotMRclicked(void)));
+        pbMR->setDisabled(true); // At start, there is nothing in memory
 
 	pbMPlusMinus = new KCalcButton("M\xb1", mLargePage, "MPlusMinus-Button");
 	connect(this, SIGNAL(switchShowAccels(bool)),
@@ -1286,7 +1287,7 @@ void KCalculator::slotMPlusMinusclicked(void)
 
 	pbInv->setOn(false);
 	statusBar()->changeItem("M",3);
-
+        pbMR->setEnabled(true);
 }
 
 void KCalculator::slotCosclicked(void)
@@ -1399,6 +1400,7 @@ void KCalculator::slotMCclicked(void)
 {
 	memory_num		= 0;
 	statusBar()->changeItem(" \xa0\xa0 ",3);
+        pbMR->setDisabled(true);
 }
 
 void KCalculator::slotClearclicked(void)
