@@ -31,7 +31,6 @@
 #include <qtimer.h>
 #include "kcalctype.h"
 
-class CalcEngine;
 
 #ifdef HAVE_LONG_DOUBLE
 	#define PRINT_FLOAT		"%.*Lf"

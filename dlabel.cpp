@@ -23,7 +23,6 @@
 
 */
 
-#include <klocale.h>
 #include "kcalc_core.h"
 #include "dlabel.h"
 #include "dlabel.moc"

@@ -44,13 +44,11 @@
 	#include <string.h>
 #endif
 
+#include "kcalc_core.h"
 #include <stdlib.h>
 #include <klocale.h>
 #include <kmessagebox.h>
-#include <knotifyclient.h>
 
-#include "kcalc.h"
-#include "dlabel.h"
 
 static void fpe_handler(int fpe_parm)
 {

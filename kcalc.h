@@ -26,16 +26,11 @@
 #ifndef KCALC_H
 #define KCALC_H
 
-class QLabel;
-class QListBox;
 class QPushButton;
 class QRadioButton;
 class QButtonGroup;
 class QWidget;
-class QPopupMenu;
-class KHelpMenu;
 class DispLogic;
-class KPushButton;
 #include <kmainwindow.h>
 
 /*
@@ -194,8 +189,6 @@ private:
     QButtonGroup*	angle_group;
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
     QButtonGroup*       NumButtonGroup;
-
-    QPopupMenu *mHelpMenu;
 
     QPtrList<QPushButton> mFunctionButtonList;
     QPtrList<QPushButton> mStatButtonList;
