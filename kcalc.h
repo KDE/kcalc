@@ -30,7 +30,6 @@ class QButtonGroup;
 class QHButtonGroup;
 class QWidget;
 class DispLogic;
-class KCalcButton;
 #include <kmainwindow.h>
 
 /*
@@ -56,6 +55,7 @@ class KCalcButton;
 // IMPORTANT this has to come after ../config.h
 #include "kcalc_core.h"
 #include "kcalc_button.h"
+#include "kcalc_const_button.h"
 
 class KCalculator : public KMainWindow
 {
@@ -173,21 +173,15 @@ private:
     QWidget *mNumericPage;
 
     DispLogic*	calc_display; // for historic reasons in "dlabel.h"
-    QRadioButton*        pbBaseChoose[4];
-    QPushButton*        pbAngleChoose;
-    QDict<KCalcButton>  pbStat;
-    QDict<KCalcButton>  pbTrig;
-    QDict<KCalcButton>  pbExp;
-    QDict<KCalcButton>  pbLogic;
-    QDict<KCalcButton>  pbConstant;
+    QRadioButton*	pbBaseChoose[4];
+    QPushButton*	pbAngleChoose;
+    QDict<KCalcButton>	pbStat;
+    QDict<KCalcButton>	pbTrig;
+    QDict<KCalcButton>	pbExp;
+    QDict<KCalcButton>	pbLogic;
+    QDict<KCalcConstButton>	pbConstant;
     KCalcButton* 	pbAC;
     KCalcButton* 	pbAND;
-    KCalcButton* 	pbC1; 
-    KCalcButton* 	pbC2; 		
-    KCalcButton* 	pbC3; 
-    KCalcButton* 	pbC4; 	
-    KCalcButton* 	pbC5; 
-    KCalcButton* 	pbC6;
     KCalcButton* 	pbClear;
     KCalcButton* 	pbDivision;
     KCalcButton* 	pbEE;
@@ -229,7 +223,6 @@ private:
     QPtrList<KCalcButton> mStatButtonList;
     QPtrList<KCalcButton> mMemButtonList;
     QPtrList<KCalcButton> mOperationButtonList;
-    QPtrList<KCalcButton> mConstButtonList;
 
     int				mInternalSpacing;
 

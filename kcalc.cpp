@@ -356,13 +356,6 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	mOperationButtonList.append(pbLogic["One-Complement"]);
 	mOperationButtonList.append(pbMod);
 
-	mConstButtonList.append(pbConstant["C1"]);
-	mConstButtonList.append(pbConstant["C2"]);
-	mConstButtonList.append(pbConstant["C3"]);
-	mConstButtonList.append(pbConstant["C4"]);
-	mConstButtonList.append(pbConstant["C5"]);
-	mConstButtonList.append(pbConstant["C6"]);
-
 	set_colors();
 	// Show the result in the app's caption in taskbar (wishlist - bug #52858)
 	if (KCalcSettings::captionResult() == true)
@@ -954,67 +947,55 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
 	connect(ConstButtonGroup, SIGNAL(clicked(int)), SLOT(slotConstclicked(int)));
 
 
-	KCalcButton *tmp_pb;
-	tmp_pb = new KCalcButton(parent, "Constant C1 - Button");
-	tmp_pb->addMode(ModeInverse, "Store", i18n("Write display data into memory"));
+	KCalcConstButton *tmp_pb;
+	tmp_pb = new KCalcConstButton(parent, "Constant C1 - Button");
 	tmp_pb->setAccel(ALT + Key_1);
 	pbConstant.insert("C1", tmp_pb);
-	mConstButtonList.append(tmp_pb);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	ConstButtonGroup->insert(tmp_pb, 0);
 
-	tmp_pb = new KCalcButton(parent, "Constant C2 - Button");
-	tmp_pb->addMode(ModeInverse, "Store", i18n("Write display data into memory"));
+	tmp_pb = new KCalcConstButton(parent, "Constant C2 - Button");
         tmp_pb->setAccel(ALT + Key_2);
 	pbConstant.insert("C2", tmp_pb);
-	mConstButtonList.append(tmp_pb);
 	connect(this, SIGNAL(switchShowAccels(bool)),
                 tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	ConstButtonGroup->insert(tmp_pb, 1);
 
-	tmp_pb = new KCalcButton(parent, "Constant C3 - Button");
-	tmp_pb->addMode(ModeInverse, "Store", i18n("Write display data into memory"));
+	tmp_pb = new KCalcConstButton(parent, "Constant C3 - Button");
         tmp_pb->setAccel(ALT + Key_3);
 	pbConstant.insert("C3", tmp_pb);
-	mConstButtonList.append(tmp_pb);
 	connect(this, SIGNAL(switchShowAccels(bool)),
                 tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	ConstButtonGroup->insert(tmp_pb, 2);
 
-	tmp_pb = new KCalcButton(parent, "Constant C4 - Button");
-	tmp_pb->addMode(ModeInverse, "Store", i18n("Write display data into memory"));
+	tmp_pb = new KCalcConstButton(parent, "Constant C4 - Button");
         tmp_pb->setAccel(ALT + Key_4);
 	pbConstant.insert("C4", tmp_pb);
-	mConstButtonList.append(tmp_pb);
 	connect(this, SIGNAL(switchShowAccels(bool)),
                 tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	ConstButtonGroup->insert(tmp_pb, 3);
 
-	tmp_pb = new KCalcButton(parent, "Constant C5 - Button");
-	tmp_pb->addMode(ModeInverse, "Store", i18n("Write display data into memory"));
+	tmp_pb = new KCalcConstButton(parent, "Constant C5 - Button");
         tmp_pb->setAccel(ALT + Key_5);
 	pbConstant.insert("C5", tmp_pb);
-	mConstButtonList.append(tmp_pb);
 	connect(this, SIGNAL(switchShowAccels(bool)),
                 tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	ConstButtonGroup->insert(tmp_pb, 4);
 
-	tmp_pb = new KCalcButton(parent, "Constant C6 - Button");
-	tmp_pb->addMode(ModeInverse, "Store", i18n("Write display data into memory"));
+	tmp_pb = new KCalcConstButton(parent, "Constant C6 - Button");
         tmp_pb->setAccel(ALT + Key_6);
 	pbConstant.insert("C6", tmp_pb);
-	mConstButtonList.append(tmp_pb);
 	connect(this, SIGNAL(switchShowAccels(bool)),
                 tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
