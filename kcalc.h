@@ -30,6 +30,7 @@ class QButtonGroup;
 class QHButtonGroup;
 class QWidget;
 class DispLogic;
+class Constants;
 #include <kmainwindow.h>
 
 /*
@@ -211,6 +212,10 @@ private:
     KSquareButton* 	pbSquare;
     KCalcButton* 	pbX;
     KCalcButton* 	pbXOR;
+
+    Constants * tmp_const; // this is the dialog for configuring const
+			   // buttons would like to remove this, but
+			   // don't know how
 	
     QHButtonGroup*      BaseChooseGroup;
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys

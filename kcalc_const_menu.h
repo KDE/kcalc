@@ -26,18 +26,30 @@
 #include <qpopupmenu.h>
 #include <qstring.h>
 
+typedef enum {Mathematics, Physics, Chemistry} ConstantCategory;
+
 struct science_constant{
+  QString label;
   QString name;
-  QString description;
+  QString whatsthis;
   QString value;
+  ConstantCategory category;
 };
 
 class KCalcConstMenu : public QPopupMenu
 {
+Q_OBJECT 
+
  public:
   KCalcConstMenu(QWidget * parent = 0, const char * name = 0);
 
   static const struct science_constant Constants[];
+
+public slots:
+  void slotPassActivate(int item)
+  {
+    emit activated(item);
+  };
 };
 
 #endif  // _KCALC_CONST_MENU_H

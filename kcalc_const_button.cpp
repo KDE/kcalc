@@ -100,7 +100,7 @@ void KCalcConstButton::slotChooseScientificConst(int option)
 				  KCalcConstMenu::Constants[option].value);
 
   KCalcSettings::setNameConstant(_button_num,
-				 KCalcConstMenu::Constants[option].name);
+				 KCalcConstMenu::Constants[option].label);
   
   setLabelAndTooltip();
 }

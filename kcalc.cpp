@@ -1792,6 +1792,7 @@ void KCalculator::showSettings()
 	// constant settings
 
 	Constants *constant = new Constants(0, "Constant" );
+	tmp_const = constant;
 
 	KCalcConstMenu *tmp_menu = new KCalcConstMenu(this);
 	connect(tmp_menu, SIGNAL(activated(int)),
@@ -1839,44 +1840,44 @@ void KCalculator::showSettings()
 // Settingvalues themselves!!
 void KCalculator::slotChooseScientificConst0(int option)
 {
-  KCalcSettings::setValueConstant(0, KCalcConstMenu::Constants[option].value);
+  (tmp_const->kcfg_valueConstant0)->setText(KCalcConstMenu::Constants[option].value);
   
-  KCalcSettings::setNameConstant(0, KCalcConstMenu::Constants[option].name);
+  (tmp_const->kcfg_nameConstant0)->setText(KCalcConstMenu::Constants[option].label);
 }
 
 void KCalculator::slotChooseScientificConst1(int option)
 {
-  KCalcSettings::setValueConstant(1, KCalcConstMenu::Constants[option].value);
+  (tmp_const->kcfg_valueConstant1)->setText(KCalcConstMenu::Constants[option].value);
   
-  KCalcSettings::setNameConstant(1, KCalcConstMenu::Constants[option].name);
+  (tmp_const->kcfg_nameConstant1)->setText(KCalcConstMenu::Constants[option].label);
 }
 
 void KCalculator::slotChooseScientificConst2(int option)
 {
-  KCalcSettings::setValueConstant(2, KCalcConstMenu::Constants[option].value);
+  (tmp_const->kcfg_valueConstant2)->setText(KCalcConstMenu::Constants[option].value);
   
-  KCalcSettings::setNameConstant(2, KCalcConstMenu::Constants[option].name);
+  (tmp_const->kcfg_nameConstant2)->setText(KCalcConstMenu::Constants[option].label);
 }
 
 void KCalculator::slotChooseScientificConst3(int option)
 {
-  KCalcSettings::setValueConstant(3, KCalcConstMenu::Constants[option].value);
+  (tmp_const->kcfg_valueConstant3)->setText(KCalcConstMenu::Constants[option].value);
   
-  KCalcSettings::setNameConstant(3, KCalcConstMenu::Constants[option].name);
+  (tmp_const->kcfg_nameConstant3)->setText(KCalcConstMenu::Constants[option].label);
 }
 
 void KCalculator::slotChooseScientificConst4(int option)
 {
-  KCalcSettings::setValueConstant(4, KCalcConstMenu::Constants[option].value);
+  (tmp_const->kcfg_valueConstant4)->setText(KCalcConstMenu::Constants[option].value);
   
-  KCalcSettings::setNameConstant(4, KCalcConstMenu::Constants[option].name);
+  (tmp_const->kcfg_nameConstant4)->setText(KCalcConstMenu::Constants[option].label);
 }
 
 void KCalculator::slotChooseScientificConst5(int option)
 {
-  KCalcSettings::setValueConstant(5, KCalcConstMenu::Constants[option].value);
+  (tmp_const->kcfg_valueConstant5)->setText(KCalcConstMenu::Constants[option].value);
   
-  KCalcSettings::setNameConstant(5, KCalcConstMenu::Constants[option].name);
+  (tmp_const->kcfg_nameConstant5)->setText(KCalcConstMenu::Constants[option].label);
 }
 
 
