@@ -34,7 +34,6 @@ class QButtonGroup;
 class QWidget;
 class QPopupMenu;
 class KHelpMenu;
-class ConfigureDialog;
 class DispLogic;
 class KPushButton;
 #include <kmainwindow.h>
@@ -78,9 +77,6 @@ private:
 	void updateGeometry();
 
 	void keyPressEvent( QKeyEvent *e );
-	bool queryExit(void);
-	void writeSettings();
-	void readSettings();
 	void set_precision();
 	void set_style();
 	void history_next();
@@ -90,10 +86,10 @@ private:
 			   bool store_result_in_history = false);
 
 protected slots:
-    void configurationChanged(const DefStruct &state);
+    void loadSettings();
     void set_colors();
     void EnterEqual();
-    void slotConfig(void);
+    void showSettings();
     void RefreshCalculator();
     void slotAngleSelected(int number);
     void slotBaseSelected(int number);
@@ -207,7 +203,6 @@ private:
     QPtrList<QPushButton> mOperationButtonList;
 
     int				mInternalSpacing;
-    ConfigureDialog	*mConfigureDialog;
 
     CalcEngine core;
 };

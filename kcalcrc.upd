@@ -1,0 +1,8 @@
+Id=kde_3_2_475
+File=kcalcrc
+Group=Precision,General
+Key=fixed
+Key=fixedprecision
+Key=precision
+Group=General
+Key=style,Statistical

@@ -5,7 +5,7 @@ lib_LTLIBRARIES =
 kdeinit_LTLIBRARIES = kcalc.la
 
 kcalc_la_SOURCES = kcalc.cpp kcalc_core.cpp kcalcdisplay.cpp dlabel.cpp \
-		   stats.cpp optiondialog.cpp
+		   stats.cpp colors.ui general.ui
 
 METASOURCES = AUTO
 
@@ -20,3 +20,6 @@ xdg_apps_DATA = kcalc.desktop
 
 messages:
 	$(XGETTEXT) *.cpp -o $(podir)/kcalc.pot
+
+updatedir = $(kde_datadir)/kconf_update
+update_DATA = kcalcrc.upd kicker-3.1-properSizeSetting.pl

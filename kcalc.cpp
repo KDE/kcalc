@@ -38,6 +38,7 @@
 
 #include <kaboutdata.h>
 #include <kaccel.h>
+#include <kautoconfigdialog.h>
 #include <kapplication.h>
 #include <kcmdlineargs.h>
 #include <kcolordrag.h>
@@ -49,11 +50,17 @@
 #include <kpopupmenu.h>
 #include <kstatusbar.h>
 #include <kstdaction.h>
+#include <kfontdialog.h>
+#include <qlayout.h>
+#include <kdialog.h>
+#include <kcolorbutton.h>
+#include <qspinbox.h>
 
 #include "dlabel.h"
 #include "kcalc.h"
-#include "optiondialog.h"
 #include "version.h"
+#include "general.h"
+#include "colors.h"
 
 const CALCAMNT KCalculator::pi = (ASIN(1L) * 2L);
 
@@ -73,16 +80,15 @@ static const char *version = KCALCVERSION;
 
 KCalculator::KCalculator(QWidget *parent, const char *name)
 	: KMainWindow(parent, name), inverse(false),
-	  hyp_mode(false), memory_num(0.0),
+	  hyp_mode(false), memory_num(0.0),calc_display(NULL),
 	  mInternalSpacing(4),
-	  mConfigureDialog(0),
 	  core()
 {
 	/* central widget to contain all the elements */
 	QWidget *central = new QWidget(this);
 	setCentralWidget(central);
 
-	readSettings();
+	loadSettings();
 
 	// Detect color change
 	connect(kapp,SIGNAL(kdisplayPaletteChanged()), this, SLOT(set_colors()));
@@ -103,7 +109,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	KStdAction::paste(calc_display, SLOT(slotPaste()), actionCollection());
 	
 	// preferences
-	KStdAction::preferences(this, SLOT(slotConfig()), actionCollection());
+	KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
 	
 	createGUI();
 
@@ -642,7 +648,6 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 
 KCalculator::~KCalculator()
 {
-	delete mConfigureDialog;
 	delete calc_display;
 }
 
@@ -712,43 +717,13 @@ void KCalculator::slotBaseSelected(int base)
 	pbPeriod->setEnabled(current_base == NB_DECIMAL);
 }
 
-void KCalculator::configurationChanged(const DefStruct &state)
-{
-	kcalcdefaults = state;
-
-	set_colors();
-	set_precision();
-	// Show the result in the app's caption in taskbar (wishlist - bug #52858)
-	if (kcalcdefaults.capres)
-		connect(calc_display,
-			SIGNAL(changedText(const QString &)),
-			SLOT(setCaption(const QString &)));
-	else
-	{
-		disconnect(calc_display, SIGNAL(changedText(const QString &)),
-			   this, 0);
-		setCaption(QString::null);
-	}
-	calc_display->changeSettings(state);
-	set_style();
-
-	updateGeometry();
-	resize(minimumSize());
-
-	//
-	// 1999-10-31 Espen Sand: Don't ask me why ;)
-	//
-	kapp->processOneEvent();
-	setFixedHeight(minimumHeight());
-}
-
 void KCalculator::keyPressEvent(QKeyEvent *e)
 {
     if ( ( e->state() & KeyButtonMask ) == 0 || ( e->state() & ShiftButton ) ) {
 	switch (e->key())
 	{
 	case Key_F2:
-		slotConfig();
+		showSettings();
 		break;
 	case Key_F3:
 		kcalcdefaults.style = !kcalcdefaults.style;
@@ -1333,18 +1308,54 @@ void KCalculator::slotStatClearDataclicked(void)
 	}
 }
 
-void KCalculator::slotConfig()
+void KCalculator::showSettings()
 {
-	if(mConfigureDialog == 0)
-	{
-		mConfigureDialog = new ConfigureDialog( 0, 0, false);
-		mConfigureDialog->setState( kcalcdefaults );
+	// Check if there is already a dialog and if so bring
+	// it to the foreground.
+	if(KAutoConfigDialog::showDialog("settings"))
+		return;
+  
+	// Create a new dialog with the same name as the above checking code.
+	KAutoConfigDialog *dialog = new KAutoConfigDialog(this, "settings");
+  
+	// Add the general page.  Store the settings in the General group and
+	// use the icon package_settings.
+	General *general = new General(0, "General");
+	#ifdef HAVE_LONG_DOUBLE
+	int maxprec = 16;
+	#else
+	int maxprec = 12 ;
+	#endif
+	general->precision->setMaxValue(maxprec);
+	dialog->addPage(general, i18n("General"),
+			"General", "package_settings", i18n("General Settings"));
 
-		connect( mConfigureDialog, SIGNAL( valueChanged(const DefStruct &)),
-			this, SLOT(configurationChanged(const DefStruct &)));
-	}
-	mConfigureDialog->show();
-        mConfigureDialog->raise();
+	QWidget *font = new QWidget(0, "Font");
+	QVBoxLayout *topLayout = new QVBoxLayout(font, 0, KDialog::spacingHint());
+	KFontChooser *mFontChooser = 
+		new KFontChooser(font, "Font", false, QStringList(), false, 6);
+	QFont tmpFont(KGlobalSettings::generalFont().family() ,14 ,QFont::Bold);
+	mFontChooser->setFont(tmpFont);
+	topLayout->addWidget(mFontChooser);
+	dialog->addPage(font, i18n("Font"), "Font", "fonts", i18n("Select Display Font"));
+ 
+	Colors *color = new Colors(0, "Color");
+	// This is done at run time sense it uses a system color
+	QColor defaultButtonColor = palette().active().background();
+	color->FunctionButtonsColor->setColor(defaultButtonColor);
+	color->StatButtonsColor->setColor(defaultButtonColor);
+	color->HexButtonsColor->setColor(defaultButtonColor);
+	color->NumberButtonsColor->setColor(defaultButtonColor);
+	color->MemoryButtonsColor->setColor(defaultButtonColor);
+	color->OperationButtonsColor->setColor(defaultButtonColor);
+	dialog->addPage(color, i18n("Colors"),
+			"Colors", "colors", i18n("Button & Display Colors"));
+ 
+	// When the user clicks OK or Apply we want to update our settings.
+	connect(dialog, SIGNAL(settingsChanged()), this, SLOT(loadSettings()));
+	
+	// Display the dialog.
+	dialog->show();
 }
 
 void KCalculator::set_style()
@@ -1394,7 +1405,7 @@ void KCalculator::RefreshCalculator()
 	calc_display->Reset();
 }
 
-void KCalculator::readSettings()
+void KCalculator::loadSettings()
 {
 	QString str;
 
@@ -1423,7 +1434,7 @@ void KCalculator::readSettings()
 	kcalcdefaults.operationButtonColor =
 		config->readColorEntry("OperationButtonsColor",&defaultButtonColor);
 
-	config->setGroup("Precision");
+	config->setGroup("General");
 
 #ifdef HAVE_LONG_DOUBLE
 	kcalcdefaults.precision	= config->readNumEntry("precision", (int)14);
@@ -1435,46 +1446,39 @@ void KCalculator::readSettings()
 		config->readNumEntry("fixedprecision", (int)2);
 	kcalcdefaults.fixed = config->readBoolEntry("fixed", false);
 
-	config->setGroup("General");
-	kcalcdefaults.style	= config->readNumEntry("style", (int)0);
+	kcalcdefaults.style = config->readBoolEntry("Statistical", false);
+		config->readNumEntry("style", (int)0);
+	
 	kcalcdefaults.beep	= config->readBoolEntry("beep", true);
 	kcalcdefaults.capres	= config->readBoolEntry("captionresult",false);
-}
 
-void KCalculator::writeSettings()
-{
-	KConfig *config = KGlobal::config();
+	// Don't do the rest if called from the constructor
+	if(!calc_display) return;
+	
+	set_colors();
+	set_precision();
+	// Show the result in the app's caption in taskbar (wishlist - bug #52858)
+	if (kcalcdefaults.capres)
+		connect(calc_display,
+			SIGNAL(changedText(const QString &)),
+			SLOT(setCaption(const QString &)));
+	else
+	{
+		disconnect(calc_display, SIGNAL(changedText(const QString &)),
+			   this, 0);
+		setCaption(QString::null);
+	}
+	calc_display->changeSettings(kcalcdefaults);
+	set_style();
 
-	config->setGroup("Font");
-	config->writeEntry("Font", kcalcdefaults.font);
+	updateGeometry();
+	resize(minimumSize());
 
-	config->setGroup("Colors");
-	config->writeEntry("ForeColor",kcalcdefaults.forecolor);
-	config->writeEntry("BackColor",kcalcdefaults.backcolor);
-	config->writeEntry("NumberButtonsColor",
-		(NumButtonGroup->find(0))->palette().active().button());
-	config->writeEntry("FunctionButtonsColor",
-		mFunctionButtonList.first()->palette().active().button());
-	config->writeEntry("StatButtonsColor",
-		mStatButtonList.first()->palette().active().button());
-	config->writeEntry("HexButtonsColor",
-		(NumButtonGroup->find(0xA))->palette().active().button());
-	config->writeEntry("MemoryButtonsColor",
-		mMemButtonList.first()->palette().active().button());
-	config->writeEntry("OperationButtonsColor",
-		mOperationButtonList.first()->palette().active().button());
-
-	config->setGroup("Precision");
-	config->writeEntry("precision",  kcalcdefaults.precision);
-	config->writeEntry("fixedprecision",  kcalcdefaults.fixedprecision);
-	config->writeEntry("fixed",  kcalcdefaults.fixed);
-
-	config->setGroup("General");
-	config->writeEntry("style",(int)kcalcdefaults.style);
-	config->writeEntry("beep", kcalcdefaults.beep);
-	config->writeEntry("captionresult", kcalcdefaults.capres);
-
-	config->sync();
+	//
+	// 1999-10-31 Espen Sand: Don't ask me why ;)
+	//
+	kapp->processOneEvent();
+	setFixedHeight(minimumHeight());
 }
 
 void KCalculator::UpdateDisplay(bool get_amount_from_core,
@@ -1492,13 +1496,6 @@ void KCalculator::UpdateDisplay(bool get_amount_from_core,
 	pbInv->setOn(false);
 
 }
-
-bool KCalculator::queryExit(void)
-{
-	writeSettings();
-	return true;
-}
-
 
 void KCalculator::set_colors()
 {
