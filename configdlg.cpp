@@ -28,7 +28,6 @@
 #include <kapp.h>
 #include <klocale.h>
 #include <qspinbox.h>
-#include <kmsgbox.h>
 #include "configdlg.h"
 #include "configdlg.moc"
 
