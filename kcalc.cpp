@@ -164,6 +164,17 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	mSmallPage = new QWidget(central);
 	mLargePage = new QWidget(central);
 
+	pbHyp = new QPushButton("Hyp", mSmallPage, "Hyp-Button");
+	QToolTip::add(pbHyp, i18n("Hyperbolic mode"));
+	pbHyp->setAutoDefault(false);
+	connect(pbHyp, SIGNAL(toggled(bool)), SLOT(slotHyptoggled(bool)));
+	pbHyp->setToggleButton(true);
+
+	pbStatNum = new QPushButton("N", mSmallPage, "Stat.NumData-Button");
+	QToolTip::add(pbStatNum, i18n("Number of data entered"));
+ 	pbStatNum->setAutoDefault(false);
+	connect(pbStatNum, SIGNAL(clicked(void)), SLOT(slotStatNumclicked(void)));
+
 	pbPi = new QPushButton(QString::fromUtf8("π", -1), // Pi in utf8
 			       mSmallPage, "Pi-Button");
 	QToolTip::add(pbPi, i18n("Pi=3.1415..."));
@@ -469,7 +480,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// to "activate()" the layout at the end.
 	//
 	//
-	QGridLayout *smallBtnLayout = new QGridLayout(mSmallPage, 6, 2, 0,
+	QGridLayout *smallBtnLayout = new QGridLayout(mSmallPage, 6, 4, 0,
 		mInternalSpacing);
 	QGridLayout *largeBtnLayout = new QGridLayout(mLargePage, 5, 6, 0,
 		mInternalSpacing);
@@ -492,23 +503,35 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	btnLayout->addWidget(mLargePage,0,AlignTop);
 
 	// small button layout
-	smallBtnLayout->addWidget(pbPi, 0, 0);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xA), 0, 1);
+	smallBtnLayout->addWidget(pbStatNum, 0, 0);
+	smallBtnLayout->addWidget(pbHyp, 0, 1);
+	smallBtnLayout->addWidget(pbPi, 0, 2);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xA), 0, 3);
 
-	smallBtnLayout->addWidget(pbPlusMinus, 1, 0);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xB), 1, 1);
+	smallBtnLayout->addWidget(pbStatMean, 1, 0);
+	smallBtnLayout->addWidget(pbSin, 1, 1);
+	smallBtnLayout->addWidget(pbPlusMinus, 1, 2);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xB), 1, 3);
 
-	smallBtnLayout->addWidget(pbReci, 2, 0);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xC), 2, 1);
+	smallBtnLayout->addWidget(pbStatStdDev, 2, 0);
+	smallBtnLayout->addWidget(pbCos, 2, 1);
+	smallBtnLayout->addWidget(pbReci, 2, 2);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xC), 2, 3);
 
-	smallBtnLayout->addWidget(pbFactorial, 3, 0);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xD), 3, 1);
+	smallBtnLayout->addWidget(pbStatMedian, 3, 0);
+	smallBtnLayout->addWidget(pbTan, 3, 1);
+	smallBtnLayout->addWidget(pbFactorial, 3, 2);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xD), 3, 3);
 
-	smallBtnLayout->addWidget(pbSquare, 4, 0);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xE), 4, 1);
+	smallBtnLayout->addWidget(pbStatDataInput, 4, 0);
+	smallBtnLayout->addWidget(pbLog, 4, 1);
+	smallBtnLayout->addWidget(pbSquare, 4, 2);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xE), 4, 3);
 
-	smallBtnLayout->addWidget(pbPower, 5, 0);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xF), 5, 1);
+	smallBtnLayout->addWidget(pbStatClearData, 5, 0);
+	smallBtnLayout->addWidget(pbLn, 5, 1);
+	smallBtnLayout->addWidget(pbPower, 5, 2);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xF), 5, 3);
 
 	smallBtnLayout->setRowStretch(0, 0);
 	smallBtnLayout->setRowStretch(1, 0);
