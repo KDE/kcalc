@@ -1,4 +1,4 @@
-;/*
+/*
     $Id$
 
     kCalculator, a scientific calculator for the X window system using the
@@ -407,20 +407,37 @@ void QtCalculator::EnterDigit(int data)
 void QtCalculator::SubtractDigit()
 {
 	// This function could be better, possibly, but am I glad to see it!
-
 	if (DISPLAY_AMOUNT != 0)
 	{
-		QString num;
-		num.setNum((double)DISPLAY_AMOUNT,'G',24);
-		num = num.left(num.length() - 1);
-
-		DISPLAY_AMOUNT = strtod(num.ascii() ,0);
+                if (current_base == NB_DECIMAL && (DISPLAY_AMOUNT != floor(DISPLAY_AMOUNT)))
+                {
+                        if (decimal_point < 3)
+                        {
+                            decimal_point = 0;
+                            DISPLAY_AMOUNT = floor(DISPLAY_AMOUNT);
+                        }
+                        else
+                        {
+                            --decimal_point;
+                            DISPLAY_AMOUNT = floor(DISPLAY_AMOUNT * POW(current_base, decimal_point - 1)) / 
+                                             POW(current_base, (decimal_point - 1));
+                        }
+                }
+                else
+                {
+                        DISPLAY_AMOUNT = floor(DISPLAY_AMOUNT / current_base);
+                }
+                
+                if (input_count > 0)
+                {
+                        --input_count;
+                }
 	}
 
 #ifdef MYDEBUG
 	printf("SubtractDigit()");
 #endif
-
+ 
 	UpdateDisplay();
 }
 
@@ -1643,16 +1660,26 @@ void QtCalculator::UpdateDisplay()
 			break;
 			
 		case NB_DECIMAL:
-			if(!kcalcdefaults.fixed || last_input == DIGIT
-				|| (DISPLAY_AMOUNT > 1.0e+16))
+                        if (kcalcdefaults.fixed)
+                        {
+                                str_size = sprintf(display_str,
+
+#ifdef HAVE_LONG_DOUBLE
+                                        "%.*Lf", // was *Lg
+                                        kcalcdefaults.fixedprecision,
+#else
+                                        "%.*f",
+                                        kcalcdefaults.fixedprecision,
+#endif
+                                        DISPLAY_AMOUNT);
+                        }
+			else if(last_input == DIGIT || DISPLAY_AMOUNT > 1.0e+16)
 			{
 
 				// if I don't guard against the DISPLAY_AMOUNT being too large
 				// kcalc will segfault on larger amount. Such as from typing
 				// from 5*5*******
-
 				str_size = sprintf(display_str,
-
 #ifdef HAVE_LONG_DOUBLE
 					"%.*Lg", // was *Lg
 					kcalcdefaults.precision + 1,
@@ -1662,23 +1689,18 @@ void QtCalculator::UpdateDisplay()
 #endif
 					DISPLAY_AMOUNT);
 			}
-			else // fixed
-			{
-				str_size = sprintf(display_str,
-
+                        else
+                        {
 #ifdef HAVE_LONG_DOUBLE
-					"%.*Lf", // was *Lg
-					kcalcdefaults.fixedprecision,
+                            str_size = sprintf(display_str, "%Lg", DISPLAY_AMOUNT);
 #else
-					"%.*f",
-					kcalcdefaults.fixedprecision,
+                            str_size = sprintf(display_str, "%g", DISPLAY_AMOUNT);
 #endif
-					DISPLAY_AMOUNT);
-			} // fixed
+                        }
 
 			if (input_count > 0 && !strpbrk(display_str,"e") && 
 				last_input == DIGIT )
-			{
+			{ 
 #ifdef HAVE_LONG_DOUBLE
 				str_size = sprintf(display_str,
 					"%.*Lf",
@@ -1715,7 +1737,6 @@ void QtCalculator::UpdateDisplay()
 
 	if (hyp_mode)	statusHYPLabel->setText("HYP");
 	else			statusHYPLabel->clear();
-	
 	calc_display->setText(display_str);
 }
 
@@ -1843,7 +1864,7 @@ int UpdateStack(int run_precedence)
 
 		new_item.s_item_data.item_amount = 
 			(Arith_ops[op_function])(left_op, right_op);
-	
+
 		PushStack(&new_item);
 	}
 	
