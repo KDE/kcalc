@@ -1414,11 +1414,15 @@ void QtCalculator::UpdateDisplay()
          * just that, allowing boh negative numbers to be entered
          * as read (from dumps and the like!)
          */    
-		else if (boh_work_d > LONG_MAX) 
-			boh_work = (long) DISPLAY_AMOUNT = 
+		else if (boh_work_d > LONG_MAX) {
+			DISPLAY_AMOUNT = 
 				LONG_MIN+(boh_work_d-LONG_MAX-1);
-		else 
-			boh_work = (long) DISPLAY_AMOUNT = boh_work_d;
+			boh_work = (long)DISPLAY_AMOUNT;
+                }
+		else {
+			DISPLAY_AMOUNT = boh_work_d;
+			boh_work = boh_work_d;
+		}
 	}
 
 	if (!display_error) {

@@ -21,7 +21,7 @@
 
 */
 
-
+#include "../config.h"
 #include <assert.h>
 #include <stdio.h>
 
@@ -41,6 +41,7 @@ QList<CALCAMNT>       temp_stack;
 QtCalculator :: QtCalculator( QWidget *parent, const char *name )
   : QDialog( parent, name )
 {
+  int u = 0;
 
   myxmargin 		= 9;
   myymargin 		= 9; 
@@ -60,7 +61,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
   radiobuttonheight 		= 15;
 
   int x,y;
-  key_pressed = FALSE;
+  key_pressed = false;
   selection_timer = new QTimer;
   status_timer = new QTimer;
 
@@ -70,7 +71,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
   readSettings();
  
   QFont buttonfont( "-misc-fixed-medium-*-semicondensed-*-13-*-*-*-*-*-*-*" );
-  buttonfont.setRawMode( TRUE );
+  buttonfont.setRawMode( true );
   
   // Set the window caption/title
 
@@ -163,7 +164,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
   accel->connectItem( accel->insertItem(Key_G + ALT), this , 
 			SLOT(Gra_Selected()) );       
 
-  for(int u = 0;u <3;u++) anglebutton[u]->setFont(buttonfont);
+  for(u = 0;u <3;u++) anglebutton[u]->setFont(buttonfont);
   
   angle_group->setGeometry( x, y, anglegroupwidth, anglegroupheight );
   connect( angle_group, SIGNAL(clicked(int)), SLOT(angle_selected(int)) );
@@ -210,7 +211,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
     accel->connectItem( accel->insertItem(Key_B + ALT), this , 
 			SLOT(Bin_Selected()) );       
     
-    for(int u = 0;u <4;u++) basebutton[u]->setFont(buttonfont);
+    for(u = 0;u <4;u++) basebutton[u]->setFont(buttonfont);
 
     myxmargin = 9;
     base_group->setGeometry( myxmargin,y, basegroupwidth,basegroupheight );
@@ -1626,8 +1627,11 @@ void QtCalculator::readSettings()
 					     &QFont("helvetica",16,QFont::Bold));
 
   config->setGroup("Colors");
-  kcalcdefaults.forecolor = config->readColorEntry("ForeColor",&(QColor)black);
-  kcalcdefaults.backcolor = config->readColorEntry("BackColor",&(QColor(189,255,222)));
+  QColor tmpC(189, 255, 222);
+  QColor blackC(0,0,0);
+
+  kcalcdefaults.forecolor = config->readColorEntry("ForeColor",&blackC);
+  kcalcdefaults.backcolor = config->readColorEntry("BackColor",&tmpC);
 
   config->setGroup("Precision");
 
@@ -1707,7 +1711,7 @@ void QtCalculator::selection_timed_out(){
 
   //  printf("selection timed out\n");
   selection_timer->stop();
-  calc_display->setLit(false);
+  calc_display->setLit(FALSE);
   invertColors();
 
 
@@ -1862,7 +1866,7 @@ int main( int argc, char **argv )
 
     mykapp = new KApplication (argc, argv, "kcalc");
 
-    mykapp->enableSessionManagement(true);
+    mykapp->enableSessionManagement(TRUE);
     mykapp->setWmCommand(argv[0]);
 
     /*QFont buttonfont( "-misc-fixed-medium-*-semicondensed-*-13-*-*-*-*-*-*-*" );

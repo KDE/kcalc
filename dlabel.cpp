@@ -25,6 +25,7 @@
 
 #include "dlabel.h"
 #include "dlabel.moc"
+#include "kcalc.h"
 
 DLabel::DLabel(QWidget *parent, const char *name)
   :QLabel(parent,name){

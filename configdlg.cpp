@@ -31,8 +31,8 @@
 #include "configdlg.h"
 #include "configdlg.moc"
 
-ConfigDlg::ConfigDlg(QWidget *parent=0, const char *name=0,
-		     KApplication *_mykapp=NULL,DefStruct *defstruct=NULL)
+ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
+		     KApplication *_mykapp, DefStruct *defstruct)
   : QDialog(parent, name)
 {
 

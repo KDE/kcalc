@@ -392,7 +392,7 @@ private:
     QPushButton* 	pb8;
     QPushButton* 	pb9;
     QPushButton* 	pbparenopen;
-    QPushButton* 	pbparenclose;;
+    QPushButton* 	pbparenclose;
     QPushButton* 	pband;
     QPushButton* 	pb4;
     QPushButton* 	pb5;
