@@ -1540,12 +1540,12 @@ void QtCalculator::configclicked(){
   label2->setGeometry(20,150,280,100);
 
   QString labelstring;
-  labelstring.sprintf(i18n("KCalc %s\n"
+  labelstring = i18n("KCalc %1\n"
 			   "Bernd Johannes Wuebben\n"
 			   "wuebben@math.cornell.edu\n"
 			   "wuebben@kde.org\n"
 			   "Copyright (C) 1996-98\n"
-			   "\n\n"), KCALCVERSION);
+			   "\n\n").arg(KCALCVERSION);
 
   QString labelstring2 =
 #ifdef HAVE_LONG_DOUBLE
@@ -1560,15 +1560,15 @@ void QtCalculator::configclicked(){
 #endif 
 
   label->setAlignment(AlignLeft|WordBreak|ExpandTabs);
-  label->setText(labelstring.data());
+  label->setText(labelstring);
 
   label2->setAlignment(AlignLeft|WordBreak|ExpandTabs);
-  label2->setText(labelstring2.data());
+  label2->setText(labelstring2);
   
   QString pixdir = mykapp->kde_datadir() + "/kcalc/pics/";
 
 
-  QPixmap pm((pixdir + "kcalclogo.xpm").data());
+  QPixmap pm((pixdir + "kcalclogo.xpm"));
   QLabel *logo = new QLabel(box);
   logo->setPixmap(pm);
   logo->setGeometry(30, 20, pm.width(), pm.height());
