@@ -100,6 +100,8 @@ veryclean:
 depend: $(SRCS)
 	@makedepend $(INCLUDES) $(SRCS) 2> /dev/null
 
+messages:
+
 ########## Meta objects ##########
 
 .h.moc: 
