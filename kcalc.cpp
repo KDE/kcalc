@@ -1502,7 +1502,7 @@ void KCalculator::slotRightShiftclicked(void)
 
 void KCalculator::slotPeriodclicked(void)
 {
-	calc_display->newCharacter( KGlobal::locale()->decimalSymbol().at(0).latin1());
+	calc_display->newCharacter('.');
 }
 
 void KCalculator::EnterEqual()
