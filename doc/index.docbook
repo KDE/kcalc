@@ -93,6 +93,8 @@ the corresponding key-binding.</para>
 
 <chapter id="usage">
 <title>Usage</title>
+<sect1 id="general-usage">
+<title>General Usage</title>
 
 <para>General usage is straight forward and similar to the way most
 simple scientific calculators operate, but take note of the following
@@ -154,6 +156,7 @@ It is for example possible to choose
 </listitem>
 </varlistentry>
 </variablelist>
+</sect1>
 
 <sect1 id="statistical-mode">
 <title>Statistical Mode</title>
