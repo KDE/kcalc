@@ -2,6 +2,13 @@
 # Makefile for kcalc
 #
 
+# this variables are needed for rpath support
+kde_libraries = @kde_libraries@
+qt_libraries = @qt_libraries@
+top_builddir = ..
+LIBTOOL = @LIBTOOL@
+KDE_RPATH = @KDE_RPATH@
+
 ########## Files ##########
 
 SRCS    = kcalc.cpp kcalc_core.cpp configdlg.cpp fontdlg.cpp dlabel.cpp stats.cpp
@@ -56,7 +63,7 @@ Makefile: Makefile.in
 	cd .. && CONFIG_FILES=kcalc/$@ CONFIG_HEADERS= $(SHELL) ./config.status
 
 $(TARGET): $(SRCMETA) $(OBJS)
-	$(CXX) -o $(TARGET) $(OBJS) $(LDFLAGS)
+	$(LIBTOOL) --mode=link $(CXX) -o $(TARGET) $(OBJS) $(LDFLAGS) $(KDE_RPATH)
 
 install-exec: all
 	$(INSTALL_DIR) $(BINDIR)
