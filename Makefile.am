@@ -16,7 +16,7 @@ picsdir = $(kde_datadir)/kcalc/pics
 
 kde_icon_DATA = kcalc.xpm
 
-apps_DATA = kcalc.kdelnk
+apps_DATA = kcalc.desktop
 appsdir = $(kde_appsdir)/Utilities
 
 EXTRA_DIST = $(pics_DATA) $(kde_icon_DATA) $(apps_DATA) mini-kcalc.xpm
