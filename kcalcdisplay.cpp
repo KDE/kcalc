@@ -369,29 +369,6 @@ QString KCalcDisplay::text() const
 		return QLabel::text();
 
 	return QCString().sprintf(PRINT_LONG_BIG, 40, _display_amount);
-
-	
-	QString unlocalizedString = QLabel::text();
-	
-	// Obtain decimal symbol and thousands separator
-	QString decimalSymbol = KGlobal::locale()->decimalSymbol();
-	QString thousandsSeparator = KGlobal::locale()->thousandsSeparator();
-
-	// TODO: This may cause problems if the user
-	// sets decimalSymbol == thousandsSeparator
-	// Since text() is only used for prepending
-	// other text in NB_HEX mode and measuring
-	// the display lenght, this is not a big
-	// problem. Anyway, we should find a 
-	// better way of doing this.
-
-	// Delete thousands separators	
-	unlocalizedString.remove(thousandsSeparator);
-	
-	// Replace decimalSymbol with '.'
-	unlocalizedString.replace(decimalSymbol,QChar('.'));
-	
-	return unlocalizedString;
 }
 
 /* change representation of display to new base (i.e. binary, decimal,
