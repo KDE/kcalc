@@ -654,7 +654,11 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	connect(pbMR, SIGNAL(clicked(void)), SLOT(slotMRclicked(void)));
         pbMR->setDisabled(true); // At start, there is nothing in memory
 
-	pbMPlusMinus = new KCalcButton("M" "\xb1", mLargePage, "MPlusMinus-Button");
+	pbMPlusMinus = new KCalcButton(mLargePage, "MPlusMinus-Button");
+	pbMPlusMinus->addMode(ModeNormal, "M+", i18n("Add display to memory"));
+	pbMPlusMinus->addMode(ModeInverse, "M-", i18n("Subtract from memory"));
+	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
+		pbMPlusMinus, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbMPlusMinus, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(pbMPlusMinus,SIGNAL(clicked(void)),SLOT(slotMPlusMinusclicked(void)));
@@ -2277,14 +2281,14 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
                                     "(c) 2000-2003, The KDE Team"),
                           precisionStatement.latin1());
 
+	/* Klaus Niederkrueger */
+	aboutData.addAuthor("Klaus Niederkr" "\xc3\xbc" "ger", 0, "kniederk@math.uni-koeln.de");
 	aboutData.addAuthor("Bernd Johannes Wuebben", 0, "wuebben@kde.org");
 	aboutData.addAuthor("Evan Teran", 0, "eteran@alum.rit.edu");
 	aboutData.addAuthor("Espen Sand", 0, "espen@kde.org");
 	aboutData.addAuthor("Chris Howells", 0, "howells@kde.org");
 	aboutData.addAuthor("Aaron J. Seigo", 0, "aseigo@olympusproject.org");
 	aboutData.addAuthor("Charles Samuels", 0, "charles@altair.dhs.org");
-	/* Klaus Niederkrueger */
-	aboutData.addAuthor("Klaus Niederkr" "\xc3\xbc" "ger", 0, "kniederk@math.uni-koeln.de");
 	/* Rene Merou */
 	aboutData.addAuthor("Ren" "\xc3\xa9" " M" "\xc3\xa9"  "rou", 0, "ochominutosdearco@yahoo.es");
 	KCmdLineArgs::init(argc, argv, &aboutData);
