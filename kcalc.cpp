@@ -63,6 +63,7 @@
 
 #include "dlabel.h"
 #include "kcalc.h"
+#include "kcalc_const_menu.h"
 #include "version.h"
 #include "general.h"
 #include "colors.h"
@@ -438,7 +439,7 @@ void KCalculator::setupMainActions(void)
 		SLOT(slotLogicshow(bool)));
 
 	actionConstantsShow = new KToggleAction(i18n("&Constants Buttons"), 0,
-					    actionCollection(), "show_constants");
+						actionCollection(), "show_constants");
 	actionConstantsShow->setChecked(true);
 	connect(actionConstantsShow, SIGNAL(toggled(bool)),
 		SLOT(slotConstantsShow(bool)));
@@ -1782,13 +1783,48 @@ void KCalculator::showSettings()
 	fontLayout->addWidget(mFontChooser);
 	dialog->addPage(fontWidget, i18n("Font"), "fonts", i18n("Select Display Font"));
 
+	// color settings
+
 	Colors *color = new Colors(0, "Color");
 
 	dialog->addPage(color, i18n("Colors"), "colors", i18n("Button & Display Colors"));
 
+	// constant settings
+
 	Constants *constant = new Constants(0, "Constant" );
 
+	KCalcConstMenu *tmp_menu = new KCalcConstMenu(this);
+	connect(tmp_menu, SIGNAL(activated(int)),
+		SLOT(slotChooseScientificConst0(int)));
+	(constant->kPushButton0)->setPopup(tmp_menu);
+	
+	tmp_menu = new KCalcConstMenu(this);
+	connect(tmp_menu, SIGNAL(activated(int)),
+		SLOT(slotChooseScientificConst1(int)));
+	(constant->kPushButton1)->setPopup(tmp_menu);
+	
+	tmp_menu = new KCalcConstMenu(this);
+	connect(tmp_menu, SIGNAL(activated(int)),
+		SLOT(slotChooseScientificConst2(int)));
+	(constant->kPushButton2)->setPopup(tmp_menu);
+	
+	tmp_menu = new KCalcConstMenu(this);
+	connect(tmp_menu, SIGNAL(activated(int)),
+		SLOT(slotChooseScientificConst3(int)));
+	(constant->kPushButton3)->setPopup(tmp_menu);
+	
+	tmp_menu = new KCalcConstMenu(this);
+	connect(tmp_menu, SIGNAL(activated(int)),
+		SLOT(slotChooseScientificConst4(int)));
+	(constant->kPushButton4)->setPopup(tmp_menu);
+	
+	tmp_menu = new KCalcConstMenu(this);
+	connect(tmp_menu, SIGNAL(activated(int)),
+		SLOT(slotChooseScientificConst5(int)));
+	(constant->kPushButton5)->setPopup(tmp_menu);
+
 	dialog->addPage(constant, i18n("Constants"), "constants");
+
 
 	// When the user clicks OK or Apply we want to update our settings.
 	connect(dialog, SIGNAL(settingsChanged()), SLOT(updateSettings()));
@@ -1796,6 +1832,53 @@ void KCalculator::showSettings()
 	// Display the dialog.
 	dialog->show();
 }
+
+
+// these 6 slots are just a quick hack, instead of setting the
+// TextEdit fields in the configuration dialog, we are setting the
+// Settingvalues themselves!!
+void KCalculator::slotChooseScientificConst0(int option)
+{
+  KCalcSettings::setValueConstant(0, KCalcConstMenu::Constants[option].value);
+  
+  KCalcSettings::setNameConstant(0, KCalcConstMenu::Constants[option].name);
+}
+
+void KCalculator::slotChooseScientificConst1(int option)
+{
+  KCalcSettings::setValueConstant(1, KCalcConstMenu::Constants[option].value);
+  
+  KCalcSettings::setNameConstant(1, KCalcConstMenu::Constants[option].name);
+}
+
+void KCalculator::slotChooseScientificConst2(int option)
+{
+  KCalcSettings::setValueConstant(2, KCalcConstMenu::Constants[option].value);
+  
+  KCalcSettings::setNameConstant(2, KCalcConstMenu::Constants[option].name);
+}
+
+void KCalculator::slotChooseScientificConst3(int option)
+{
+  KCalcSettings::setValueConstant(3, KCalcConstMenu::Constants[option].value);
+  
+  KCalcSettings::setNameConstant(3, KCalcConstMenu::Constants[option].name);
+}
+
+void KCalculator::slotChooseScientificConst4(int option)
+{
+  KCalcSettings::setValueConstant(4, KCalcConstMenu::Constants[option].value);
+  
+  KCalcSettings::setNameConstant(4, KCalcConstMenu::Constants[option].name);
+}
+
+void KCalculator::slotChooseScientificConst5(int option)
+{
+  KCalcSettings::setValueConstant(5, KCalcConstMenu::Constants[option].value);
+  
+  KCalcSettings::setNameConstant(5, KCalcConstMenu::Constants[option].name);
+}
+
 
 void KCalculator::slotStatshow(bool toggled)
 {

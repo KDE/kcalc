@@ -1,3 +1,6 @@
+2004-12-17 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+        * started implementation of a list of scientific constants
+
 2004-12-06 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* further refactoring of configuration options for const buttons
 

@@ -148,7 +148,14 @@ protected slots:
     void slotStatClearDataclicked(void);
     void slotHyptoggled(bool flag);
     void slotConstclicked(int);
-	
+
+    void slotChooseScientificConst0(int option);
+    void slotChooseScientificConst1(int option);
+    void slotChooseScientificConst2(int option);
+    void slotChooseScientificConst3(int option);
+    void slotChooseScientificConst4(int option);
+    void slotChooseScientificConst5(int option);
+
 private:
 	bool inverse;
 	bool hyp_mode;

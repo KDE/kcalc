@@ -27,6 +27,7 @@
 #include <kpopupmenu.h>
 
 #include "kcalc_const_button.h"
+#include "kcalc_const_menu.h"
 #include "kcalc_settings.h"
 
 
@@ -67,11 +68,14 @@ void KCalcConstButton::setLabelAndTooltip(void)
 
 void KCalcConstButton::initPopupMenu(void)
 {
+  KCalcConstMenu *tmp_menu = new KCalcConstMenu(this);
+  
   _popup = new KPopupMenu(this, "set const-cutton");
   _popup->insertItem(i18n("Set name"), 0);
-  //_popup->insertItem(i18n("Choose from list"), 1);
-
+  _popup->insertItem(i18n("Choose from list"), tmp_menu, 1);
+  
   connect(_popup, SIGNAL(activated(int)), SLOT(slotConfigureButton(int)));
+  connect(tmp_menu, SIGNAL(activated(int)), SLOT(slotChooseScientificConst(int)));
 
   KContextMenuManager::insert(this, _popup);
 }
@@ -88,6 +92,17 @@ void KCalcConstButton::slotConfigureButton(int option)
 	setLabelAndTooltip();
       }
     }
+}
+
+void KCalcConstButton::slotChooseScientificConst(int option)
+{
+  KCalcSettings::setValueConstant(_button_num,
+				  KCalcConstMenu::Constants[option].value);
+
+  KCalcSettings::setNameConstant(_button_num,
+				 KCalcConstMenu::Constants[option].name);
+  
+  setLabelAndTooltip();
 }
 
 #include "kcalc_const_button.moc"

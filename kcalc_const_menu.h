@@ -2,8 +2,7 @@
     KCalc, a scientific calculator for the X window system using the
     Qt widget libraries, available at no cost at http://www.troll.no
 
-    Copyright (C) 1996 Bernd Johannes Wuebben
-                       wuebben@math.cornell.edu
+    Copyright (C) 2004 Klaus Niederkruger
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,38 +20,24 @@
 
 */
 
-#ifndef _KCALC_CONST_BUTTON_H
-#define _KCALC_CONST_BUTTON_H
+#ifndef _KCALC_CONST_MENU_H
+#define _KCALC_CONST_MENU_H
 
-#include <klocale.h>
-#include "kcalc_button.h"
+#include <qpopupmenu.h>
+#include <qstring.h>
 
-
-class KCalcConstButton : public KCalcButton
-{
-Q_OBJECT
-
-  public:
-
-  KCalcConstButton(QWidget *parent, int but_num, const char * name = 0);
-  
-  KCalcConstButton(const QString &label, QWidget *parent, int but_num, const char * name = 0,
-		   const QString &tooltip = QString());
-
-  QString constant(void) const;
-
-  void setLabelAndTooltip(void);
-
-  private slots:
-  void slotConfigureButton(int option);
-  void slotChooseScientificConst(int option);
-
-  private:
-  void initPopupMenu(void);
-  
-  KPopupMenu* _popup;
-  int _button_num;
+struct science_constant{
+  QString name;
+  QString description;
+  QString value;
 };
 
+class KCalcConstMenu : public QPopupMenu
+{
+ public:
+  KCalcConstMenu(QWidget * parent = 0, const char * name = 0);
 
-#endif  // _KCALC_CONST_BUTTON_H
+  static const struct science_constant Constants[];
+};
+
+#endif  // _KCALC_CONST_MENU_H
