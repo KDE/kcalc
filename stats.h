@@ -26,49 +26,43 @@
 #ifndef KSTATS_H
 #define KSTATS_H
 
+#if defined(_ISOC99_SOURCE)
+	#include <cmath>
+	#include <vector>
+	#include <algorithm>
+	using namespace std;
+#else
+	#include <cmath.h>
+	#include <vector.h>
+#endif
+
 #include <qptrlist.h>
-#include <math.h>
 #include "kcalctype.h"
 
-class KStats
-{
+class KStats {
 
 public:
-
-    KStats();
-    ~KStats();
+	KStats();
+	~KStats();
 
 public:
-
-    void clearAll();
-    void enterData(CALCAMNT data);
-    void clearLast();
-    CALCAMNT sum();
-    CALCAMNT sum_of_squares();
-    CALCAMNT mean();
-    CALCAMNT median();
-    CALCAMNT std_kernel();
-    CALCAMNT std();
-    CALCAMNT sample_std();
-    int	     count();
-    bool     error();
+	void clearAll();
+	void enterData(CALCAMNT data);
+	void clearLast();
+	CALCAMNT sum();
+	CALCAMNT sum_of_squares();
+	CALCAMNT mean();
+	CALCAMNT median();
+	CALCAMNT std_kernel();
+	CALCAMNT std();
+	CALCAMNT sample_std();
+	int	     count();
+	bool     error();
 
 private:
-
-    QPtrList<CALCAMNT> data;
+    vector<CALCAMNT> mData;
     bool error_flag;
 
-};
-
-class MyList : public  QPtrList<CALCAMNT> 
-{
-
-public:
-
-  MyList() : QPtrList<CALCAMNT>() {};
-  
-protected:
-  int compareItems(Item item1,Item item2);
 };
 
 

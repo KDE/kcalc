@@ -94,6 +94,7 @@ stack<func_data>	func_stack;
 
 int precedence[14] = { 0, 1, 2, 3, 4, 4, 5, 5, 6, 6, 6, 7, 7, 6 };
 
+/*
 int adjust_op[14][3] =
 {
 	{FUNC_NULL,     FUNC_NULL,     FUNC_NULL},
@@ -111,6 +112,7 @@ int adjust_op[14][3] =
 	{FUNC_PWR_ROOT, FUNC_PWR_ROOT, FUNC_PWR_ROOT},
 	{FUNC_INTDIV,   FUNC_INTDIV,   FUNC_INTDIV},
 };
+*/
 
 Arith Arith_ops[14] =
 {
@@ -625,9 +627,9 @@ void QtCalculator::EnterStackFunction(int data)
 {
 	func_data new_item;
 	int new_precedence;
+	/*
 	int dummy = 0;
 
-	/*
 	if (inverse ) {
 	  dummy = 3;
 	  inverse = false;
@@ -635,9 +637,9 @@ void QtCalculator::EnterStackFunction(int data)
 	else {
 	  dummy = 1;
 	}
-	*/
-
+	
 	data = adjust_op[data][dummy];
+	*/
 
 	amount_stack.push(DISPLAY_AMOUNT);
 	

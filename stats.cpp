@@ -26,255 +26,232 @@
 
 #include "stats.h"
 #include <stdio.h>
-#include <stdlib.h>
 
-KStats::KStats(){
-
-  error_flag = FALSE;
-  data.setAutoDelete(TRUE);
-
+//-------------------------------------------------------------------------
+// Name: KStats()
+//-------------------------------------------------------------------------
+KStats::KStats() {
+	error_flag = false;
 }
 
-KStats::~KStats(){
-
-  data.clear();
-
+//-------------------------------------------------------------------------
+// Name: ~KStats()
+//-------------------------------------------------------------------------
+KStats::~KStats() {
 }
 
-void KStats::clearAll(){
-
-  data.clear();
-
+//-------------------------------------------------------------------------
+// Name: clearAll()
+//-------------------------------------------------------------------------
+void KStats::clearAll() {
+	mData.clear();
 }
  
-void KStats::enterData(CALCAMNT _data){
+//-------------------------------------------------------------------------
+// Name: enterData(CALCAMNT _data
+//-------------------------------------------------------------------------
+void KStats::enterData(CALCAMNT _data) {
 
-  CALCAMNT *newdata;
-  newdata = new CALCAMNT;
-  *newdata = _data;
-  data.append(newdata);
-
+	mData.push_back(_data);
 #ifdef DEBUG_STATS
-  printf("Added %Lg\n",*newdata);
-  printf("count %d\n",data.count());
+	printf("Added %Lg\n", _data);
+	printf("count %d\n", mData.size());
 #endif
 
 }
 
+//-------------------------------------------------------------------------
+// Name: clearLast()
+//-------------------------------------------------------------------------
+void KStats::clearLast() {
 
-void KStats::clearLast(){
-
-
- data.removeLast();
+	mData.pop_back();
 #ifdef DEBUG_STATS
-printf("count %d\n",data.count());
+	printf("count %d\n",mData.size());
 #endif   
 
 
 }
- 
-CALCAMNT KStats::sum(){
 
-  CALCAMNT result = 0.0;
-  CALCAMNT *dp;
-  for ( dp=data.first(); dp != 0; dp=data.next() ){
-    
-    result += *dp;
+//-------------------------------------------------------------------------
+// Name: sum()
+//-------------------------------------------------------------------------
+CALCAMNT KStats::sum() {
 
-  }
+	CALCAMNT result = 0.0;
+	vector<CALCAMNT>::iterator p;
 
+	for(p = mData.begin(); p != mData.end(); p++) {
+		result += *p;
+	}
+	
 #ifdef DEBUG_STATS
-  printf("Sum %Lg\n",result);
+	printf("Sum %Lg\n", result);
 #endif
 
-  return result;
+	return result;
 }
 
-CALCAMNT KStats::median(){
+//-------------------------------------------------------------------------
+// Name: median()
+//-------------------------------------------------------------------------
+CALCAMNT KStats::median() {
 
-  int index;
-  CALCAMNT result;
-  CALCAMNT *dp;
-  int bound = 0;
-
-  MyList list;
-
-  for ( dp=data.first(); dp != 0; dp=data.next() ){
-    list.inSort(dp);
-  }
+	CALCAMNT result = 0.0;
+	size_t bound;
+	size_t index;
+	sort(mData.begin(), mData.end());
 
 #ifdef DEBUG_STATS
-  for(int l = 0; l < (int)list.count();l++){
-
-    printf("Sorted %Lg\n",*list.at(l));
-
-  }
+	vector<CALCAMNT>::iterator p;
+	for(p = mData.begin(); p != mData.end(); p++) {
+		printf("Sorted %Lg\n", *p)
+	}
 #endif
 
-  bound = list.count();
+	bound = count();
 
-  if (bound == 0){
-    error_flag = TRUE;
-    return 0.0;
-  }
+	if (bound == 0){
+		error_flag = true;
+		return 0.0;
+	}
+
+	if (bound == 1)
+		return mData.at(0);
+
+	if( bound & 1) {  // odd
+		index = (bound - 1 ) / 2 + 1;
+		result =  mData.at(index - 1);
+	} else { // even
+		index = bound / 2;
+		result = ((mData.at(index - 1))  + (mData.at(index))) / 2;
+	}
+
+	return result;
+}
+
+//-------------------------------------------------------------------------
+// Name: std_kernel()
+//-------------------------------------------------------------------------
+CALCAMNT KStats::std_kernel() {
+
+	CALCAMNT result = 0.0;
+	CALCAMNT _mean;
+	vector<CALCAMNT>::iterator p;
+
+	_mean = mean();
+
+	for(p = mData.begin(); p != mData.end(); p++) {
+		result += (*p - _mean) * (*p - _mean);
+	}
+
+
+#ifdef DEBUG_STATS
+	printf("std_kernel %Lg\n",result);
+#endif
+
+	return result;
+}
+
+//-------------------------------------------------------------------------
+// Name: sum_of_squares()
+//-------------------------------------------------------------------------
+CALCAMNT KStats::sum_of_squares() {
+
+	CALCAMNT result = 0.0;
+	vector<CALCAMNT>::iterator p;
   
-  if ( bound == 1)
-    return *list.at(0);
-
-  if( bound % 2){  // odd
-     
-    index = (bound - 1 ) / 2 + 1;
-    result =  *list.at(index - 1 );
-  }
-  else { // even
-    
-    index = bound / 2;
-    result = ((*list.at(index - 1))  + (*list.at(index)))/2;
- }
-
-  return result;
-
-}
-
-
-
-CALCAMNT KStats::std_kernel(){
-
-  CALCAMNT result = 0.0;
-  CALCAMNT _mean;
-
-  _mean = mean();
-
-  CALCAMNT *dp;
-  for ( dp=data.first(); dp != 0; dp=data.next() ){
-    result += (*dp - _mean) * (*dp - _mean);
-
-  }
+	for(p = mData.begin(); p != mData.end(); p++) {
+		result += ((*p) * (*p));
+	}
 
 #ifdef DEBUG_STATS
-  printf("std_kernel %Lg\n",result);
+	printf("Sum of Squares %Lg\n",result);
+#endif
+
+	return result;
+}
+
+//-------------------------------------------------------------------------
+// Name: mean()
+//-------------------------------------------------------------------------
+CALCAMNT KStats::mean() {
+
+	CALCAMNT result = 0.0;
+
+	if(count() == 0){
+		error_flag = true;
+		return 0.0;
+	}
+
+	result = sum() / count();
+
+#ifdef DEBUG_STATS
+	printf("mean: %Lg\n", result);
+#endif
+
+	return result;
+}
+
+//-------------------------------------------------------------------------
+// Name: std()
+//-------------------------------------------------------------------------
+CALCAMNT KStats::std() {
+
+	CALCAMNT result = 0.0;
+
+	if(count() == 0){
+		error_flag = true;
+		return 0.0;
+	}
+
+	result = SQRT(std_kernel() / count());
+
+#ifdef DEBUG_STATS
+	printf("data.count %d\n", count());
+	printf("std: %Lg\n", result);
 #endif
 
   return result;
 
 }
 
+//-------------------------------------------------------------------------
+// Name: sample_std()
+//-------------------------------------------------------------------------
+CALCAMNT KStats::sample_std() {
+	CALCAMNT result = 0.0;
 
-CALCAMNT KStats::sum_of_squares(){
+	if(count() < 2 ){
+		error_flag = true;
+		return 0.0;
+	}
 
-  CALCAMNT result = 0.0;
-  CALCAMNT *dp;
-  for ( dp=data.first(); dp != 0; dp=data.next() ){
-    
-    result += (*dp) * (*dp);
-
-  }
-
+	result = SQRT(std_kernel() / (count() - 1));
+	
+	//  result = result/(count() - 1);
 #ifdef DEBUG_STATS
-  printf("Sum of Squares %Lg\n",result);
+	printf("sample std: %Lg\n",result);
 #endif
 
-  return result;
-
+	return result;
 }
 
-CALCAMNT KStats::mean(){
-
-  CALCAMNT result = 0.0;
-
-  if(data.count() == 0){
-    error_flag = TRUE;
-    return 0.0;
-  }
-  
-  result = sum()/data.count();
-
-#ifdef DEBUG_STATS
-  printf("mean: %Lg\n",result);
-#endif
-
-  return result;
-
+//-------------------------------------------------------------------------
+// Name: count()
+//-------------------------------------------------------------------------
+int KStats::count() {
+	return mData.size();
 }
 
-CALCAMNT KStats::std(){
+//-------------------------------------------------------------------------
+// Name: error()
+//-------------------------------------------------------------------------
+bool KStats::error() {
 
-  CALCAMNT result = 0.0;
-
-  if(data.count() == 0){
-    error_flag = TRUE;
-
-#ifdef DEBUG_STATS
-    printf("set stats error\n");
-#endif
-
-    return 0.0;
-  }
-  
-  result = SQRT(std_kernel() / data.count());
-
-#ifdef DEBUG_STATS
-  printf ("data.count %d\n",data.count());
-#endif
-
-#ifdef DEBUG_STATS
-  printf("std: %Lg\n",result);
-#endif
-
-  return result;
-
-}
-
-CALCAMNT KStats::sample_std(){
-
-  CALCAMNT result = 0.0;
-
-  if(data.count() < 2 ){
-    error_flag = TRUE;
-    return 0.0;
-  }
-  
-  result = SQRT(std_kernel() / (data.count() - 1));
-  //  result = result/(data.count() - 1);
-#ifdef DEBUG_STATS
-  printf("sample std: %Lg\n",result);
-#endif
-  return result;
-
-}
-
-int  KStats::count(){
-
-  return data.count();
-
-}
-
-bool KStats::error(){
-
-  bool value;
-  value = error_flag;
-  error_flag = FALSE;
-
+  bool value = error_flag;
+  error_flag = false;
   return value;
-
-}
-
-int MyList::compareItems(Item item_1, Item item_2){
-  
-  CALCAMNT *item1;
-  CALCAMNT *item2;
-  
-  item1 = (CALCAMNT*) item_1;
-  item2 = (CALCAMNT*) item_2;
-
-  if(*item1 > *item2)
-    return 1;
-
-  if(*item2 > *item1)
-    return -1;
-
-  return 0;
-
 }
 
 

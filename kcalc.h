@@ -425,7 +425,6 @@ private:
     bool			key_pressed;
     int				mInternalSpacing;
     KStats			stats;
-    QListBox		*paper;
     QTimer			*status_timer;
     ConfigureDialog	*mConfigureDialog;
 };

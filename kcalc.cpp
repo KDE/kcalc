@@ -2236,7 +2236,7 @@ void QtCalculator::history_next()
 void QtCalculator::history_prev()
 {
 
-	if((history_list.empty()) || (history_index >= (history_list.size() - 1)))
+	if((history_list.empty()) || (history_index >= ((int)history_list.size() - 1)))
 	{
 		KNotifyClient::beep();
 		return;
