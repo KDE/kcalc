@@ -2,7 +2,7 @@ AC_CHECK_HEADERS(ieeefp.h)
 
 AC_CHECK_FUNCS(fabsl)
 
-AC_DEFUN(KDE_C_LONG_DOUBLE,
+AC_DEFUN([KDE_C_LONG_DOUBLE],
 [
   AC_CACHE_CHECK(for long double, ac_cv_c_long_double,
   [
@@ -43,6 +43,10 @@ exit(result); }
   fi
 ])
 KDE_C_LONG_DOUBLE
+
+AC_CHECK_FUNC(m, asinl,
+  AC_DEFINE(HAVE_L_FUNCS,1,[Define if you have *l math functions (absl, ...)]),
+)
 
 AC_LANG_C
 AC_CHECK_LIB(m, isinf, [

@@ -33,17 +33,7 @@
 #include <limits.h>
 #include <math.h>
 
-// The following for all the poor devels out there who don't have long double math.
-// I guess it's time to switch to LINUX guys .....
-
-// Undefine HAVE_LONG_DOUBLE for Beta 4 since RedHat 5.0 comes with a borken
-// glibc
-
-//#ifdef HAVE_LONG_DOUBLE
-//#undef HAVE_LONG_DOUBLE
-//#endif
-
-#ifdef HAVE_LONG_DOUBLE
+#if defined(HAVE_LONG_DOUBLE) && defined(HAVE_L_FUNCS)
 /* should be detected by autoconf and defined in config.h
    Be carefull when modifying these lines. HAVE_LONG_DOUBLE
    is used all over kcalc's sources to determine whether 
@@ -58,7 +48,7 @@
 
 
 
-#ifdef HAVE_LONG_DOUBLE
+#if defined(HAVE_LONG_DOUBLE) && defined(HAVE_L_FUNCS)
 	#define FABS(X)		fabsl(X)
 	#define MODF(X,Y)	modfl(X,Y)
 	#define FMOD(X,Y)	fmodl(X,Y)
@@ -113,6 +103,7 @@
 #define KCALC_ULONG_MAX	ULLONG_MAX
 #define KCALC_LONG	long long
 #define HAVE_LONG_LONG
+#define STRTOUL         strtoull
 #else
 #if defined(LONG_LONG_MAX) && defined(HAVE_LONG_DOUBLE)
 #define KCALC_LONG_MIN	LONG_LONG_MIN
@@ -120,11 +111,13 @@
 #define KCALC_ULONG_MAX	ULONG_LONG_MAX
 #define KCALC_LONG	long long
 #define HAVE_LONG_LONG
+#define STRTOUL         strtoull
 #else
 #define KCALC_LONG_MIN	LONG_MIN
 #define KCALC_LONG_MAX	LONG_MAX
 #define KCALC_ULONG_MAX	ULONG_MAX
 #define KCALC_LONG	long
+#define STRTOUL         strtoul
 #endif
 #endif
 #endif 
