@@ -24,7 +24,6 @@
 
 #include "../config.h"
 
-#include <assert.h>
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -32,30 +31,31 @@
 
 #include <qlayout.h>
 #include <qobjectlist.h>
-#include <qaccel.h>
 #include <qbuttongroup.h>
 #include <qradiobutton.h>
 #include <qtooltip.h>
 #include <qstyle.h>
 
+#include <kaboutdata.h>
+#include <kaccel.h>
 #include <kapplication.h>
+#include <kcmdlineargs.h>
 #include <kcolordrag.h>
 #include <kconfig.h>
-#include <kcmdlineargs.h>
+#include <kglobal.h>
+#include <kglobalsettings.h>
 #include <knotifyclient.h>
-#include <kaboutdata.h>
-#include <khelpmenu.h>
 #include <kpushbutton.h>
 #include <kpopupmenu.h>
 #include <kstatusbar.h>
-#include <kglobalsettings.h>
+#include <kstdaction.h>
 
 #include "dlabel.h"
 #include "kcalc.h"
 #include "optiondialog.h"
 #include "version.h"
 
-const CALCAMNT QtCalculator::pi = (ASIN(1L) * 2L);
+const CALCAMNT KCalculator::pi = (ASIN(1L) * 2L);
 
 
 static const char *description = I18N_NOOP("KDE Calculator");
@@ -67,12 +67,11 @@ static const char *version = KCALCVERSION;
 // * 1999-10-31 Espen Sand: More modifications.
 //   All fixed sizes removed.
 //   New config dialog.
-//   To exit: Key_Q+ALT => Key_Q+CTRL,  Key_X+ALT => Key_X+CTRL
 //   Look in updateGeometry() for size settings.
 //
 
 
-QtCalculator::QtCalculator(QWidget *parent, const char *name)
+KCalculator::KCalculator(QWidget *parent, const char *name)
 	: KMainWindow(parent, name), inverse(false),
 	  hyp_mode(false), memory_num(0.0),
 	  mInternalSpacing(4),
@@ -88,10 +87,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	// Detect color change
 	connect(kapp,SIGNAL(kdisplayPaletteChanged()), this, SLOT(set_colors()));
 
-	// Accelerators to exit the program
-	QAccel *accel = new QAccel(central);
-	accel->connectItem(accel->insertItem(Key_Q+CTRL), this, SLOT(quitCalc()));
-	accel->connectItem(accel->insertItem(Key_X+CTRL), this, SLOT(quitCalc()));
+	KStdAction::quit(this, SLOT(close()), actionCollection());
 
 	// Create uppermost bar with buttons and numberdisplay
 	mConfigButton = new KPushButton(KGuiItem( i18n("Config&ure"), "configure" ),
@@ -102,24 +98,16 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	if (KGlobal::config()->isImmutable())
 	   mConfigButton->hide();
 
-	mHelpMenu = new KHelpMenu(central, KGlobal::instance()->aboutData());
-
+	mHelpMenu = helpMenu();
 	mHelpButton = new KPushButton(KStdGuiItem::help(), central);
 	mHelpButton->setAutoDefault(false);
-	mHelpButton->setPopup(mHelpMenu->menu());
+	mHelpButton->setPopup(mHelpMenu);
 
 	calc_display = new DispLogic(central, "display");
 
 	// Status bar contents
 	statusBar()->insertFixedItem(" NORM ", 0, true);
 	statusBar()->setItemAlignment(0, AlignCenter);
-
-	statusBar()->insertFixedItem(" NORM ", 1, true);
-	statusBar()->setItemAlignment(1, AlignCenter);
-	statusBar()->changeItem("", 1);
-
-	//statusBar()->insertItem("NORM", 2, 10, true);
-	//statusBar()->setItemAlignment(2, AlignLeft|AlignVCenter);
 
 	// Create Number Base Button Group
 	QButtonGroup *base_group = new QButtonGroup(4, Horizontal,  central, "base");
@@ -161,6 +149,12 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	anglebutton[2]->setText("&Gra");
 	QToolTip::add(anglebutton[2], i18n("Gradians"));
 
+	pbInv = new QPushButton("Inv", central, "Inverse-Button");
+	QToolTip::add(pbInv, i18n("Inverse mode"));
+	pbInv->setAutoDefault(false);
+	connect(pbInv, SIGNAL(toggled(bool)), SLOT(slotInvtoggled(bool)));
+	pbInv->setToggleButton(true);
+
 	//
 	//  Create Calculator Buttons
 	//
@@ -180,11 +174,11 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
  	pbStatNum->setAutoDefault(false);
 	connect(pbStatNum, SIGNAL(clicked(void)), SLOT(slotStatNumclicked(void)));
 
-	pbInv = new QPushButton("Inv", mSmallPage, "Inverse-Button");
-	QToolTip::add(pbInv, i18n("Inverse mode"));
-	pbInv->setAutoDefault(false);
-	connect(pbInv, SIGNAL(toggled(bool)), SLOT(slotInvtoggled(bool)));
-	pbInv->setToggleButton(true);
+	pbPi = new QPushButton(QString::fromUtf8("π", -1), // Pi in utf8
+			       mSmallPage, "Pi-Button");
+	QToolTip::add(pbPi, i18n("Pi=3.1415..."));
+	pbPi->setAutoDefault(false);
+	connect(pbPi, SIGNAL(clicked(void)), SLOT(slotPiclicked(void)));
 
 	pbSin = new QPushButton("Sin ", mSmallPage, "Sin-Button");
 	QToolTip::add(pbSin, i18n("Sine"));
@@ -328,66 +322,99 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	tmp_pb = new QPushButton("0", mLargePage, "0-Button");
 	tmp_pb->setAutoDefault(false);
         NumButtonGroup->insert(tmp_pb, 0);
+	accel()->insert("Entered 0", i18n("Pressed 0-Button"),
+			0, Qt::Key_0, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("1", mLargePage, "1-Button");
 	tmp_pb->setAutoDefault(false);
         NumButtonGroup->insert(tmp_pb, 1);
+	accel()->insert("Entered 1", i18n("Pressed 1-Button"),
+			0, Qt::Key_1, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("2", mLargePage, "2-Button");
 	tmp_pb->setAutoDefault(false);
         NumButtonGroup->insert(tmp_pb, 2);
+	accel()->insert("Entered 2", i18n("Pressed 2-Button"),
+			0, Qt::Key_2, tmp_pb, SLOT(animateClick()));
+
 
 	tmp_pb = new QPushButton("3", mLargePage, "3-Button");
 	tmp_pb->setAutoDefault(false);
         NumButtonGroup->insert(tmp_pb, 3);
+	accel()->insert("Entered 3", i18n("Pressed 3-Button"),
+			0, Qt::Key_3, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("4", mLargePage, "4-Button");
 	tmp_pb->setAutoDefault(false);
         NumButtonGroup->insert(tmp_pb, 4);
+	accel()->insert("Entered 4", i18n("Pressed 4-Button"),
+			0, Qt::Key_4, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("5", mLargePage, "5-Button");
 	tmp_pb->setAutoDefault(false);
         NumButtonGroup->insert(tmp_pb, 5);
+	accel()->insert("Entered 5", i18n("Pressed 5-Button"),
+			0, Qt::Key_5, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("6", mLargePage, "6-Button");
 	tmp_pb->setAutoDefault(false);
         NumButtonGroup->insert(tmp_pb, 6);
+	accel()->insert("Entered 6", i18n("Pressed 6-Button"),
+			0, Qt::Key_6, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("7", mLargePage, "7-Button");
 	tmp_pb->setAutoDefault(false);
         NumButtonGroup->insert(tmp_pb, 7);
+	accel()->insert("Entered 7", i18n("Pressed 7-Button"),
+			0, Qt::Key_7, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("8", mLargePage, "8-Button");
 	tmp_pb->setAutoDefault(false);
         NumButtonGroup->insert(tmp_pb, 8);
+	accel()->insert("Entered 8", i18n("Pressed 8-Button"),
+			0, Qt::Key_8, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("9", mLargePage, "9-Button");
 	tmp_pb->setAutoDefault(false);
         NumButtonGroup->insert(tmp_pb, 9);
+	accel()->insert("Entered 9", i18n("Pressed 9-Button"),
+			0, Qt::Key_9, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("A", mSmallPage, "A-Button");
 	tmp_pb->setAutoDefault(false);
         NumButtonGroup->insert(tmp_pb, 0xA);
+	accel()->insert("Entered A", i18n("Pressed A-Button"),
+			0, Qt::Key_A, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("B", mSmallPage, "B-Button");
 	tmp_pb->setAutoDefault(false);
         NumButtonGroup->insert(tmp_pb, 0xB);
+	accel()->insert("Entered B", i18n("Pressed B-Button"),
+			0, Qt::Key_B, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("C", mSmallPage, "C-Button");
 	tmp_pb->setAutoDefault(false);
         NumButtonGroup->insert(tmp_pb, 0xC);
+	accel()->insert("Entered C", i18n("Pressed C-Button"),
+			0, Qt::Key_C, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("D", mSmallPage, "D-Button");
 	tmp_pb->setAutoDefault(false);
         NumButtonGroup->insert(tmp_pb, 0xD);
+	accel()->insert("Entered D", i18n("Pressed D-Button"),
+			0, Qt::Key_D, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("E", mSmallPage, "E-Button");
 	tmp_pb->setAutoDefault(false);
         NumButtonGroup->insert(tmp_pb, 0xE);
+	accel()->insert("Entered E", i18n("Pressed E-Button"),
+			0, Qt::Key_E, tmp_pb, SLOT(animateClick()));
 
 	tmp_pb = new QPushButton("F", mSmallPage, "F-Button");
 	tmp_pb->setAutoDefault(false);
         NumButtonGroup->insert(tmp_pb, 0xF);
+	accel()->insert("Entered F", i18n("Pressed F-Button"),
+			0, Qt::Key_F, tmp_pb, SLOT(animateClick()));
 
 	pbPlus = new QPushButton("+", mLargePage, "Plus-Button");
 	QToolTip::add(pbPlus, i18n("Addition"));
@@ -399,12 +426,12 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	pbMinus->setAutoDefault(false);
 	connect(pbMinus, SIGNAL(clicked(void)), SLOT(slotMinusclicked(void)));
 
-	pbShift = new QPushButton("Lsh", mLargePage, "Shift-Button");
+	pbShift = new QPushButton("Lsh", mLargePage, "Bitshift-Button");
 	QToolTip::add(pbShift, i18n("Bit shift"));
 	pbShift->setAutoDefault(false);
 	connect(pbShift, SIGNAL(clicked(void)), SLOT(slotShiftclicked(void)));
 
-	pbPeriod = new QPushButton(".", mLargePage, "Period-Button");
+	pbPeriod = new QPushButton(KGlobal::locale()->decimalSymbol(), mLargePage, "Period-Button");
 	QToolTip::add(pbPeriod, i18n("Decimal point"));
 	pbPeriod->setAutoDefault(false);
 	connect(pbPeriod, SIGNAL(clicked(void)), SLOT(slotPeriodclicked(void)));
@@ -463,7 +490,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	// small button layout
 	smallBtnLayout->addWidget(pbHyp, 0, 0);
 	smallBtnLayout->addWidget(pbStatNum, 0, 0);
-	smallBtnLayout->addWidget(pbInv, 0, 1);
+	smallBtnLayout->addWidget(pbPi, 0, 1);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xA), 0, 2);
 
 	smallBtnLayout->addWidget(pbSin, 1, 0);
@@ -549,9 +576,11 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	// radiobutton layout
 	radioLayout->addWidget(base_group);
 	radioLayout->addWidget(angle_group);
+	radioLayout->addWidget(pbInv);
 
 	mFunctionButtonList.append(pbHyp);
 	mFunctionButtonList.append(pbInv);
+	mFunctionButtonList.append(pbPi);
 	mFunctionButtonList.append(pbSin);
 	mFunctionButtonList.append(pbPlusMinus);
 	mFunctionButtonList.append(pbCos);
@@ -593,9 +622,15 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	mOperationButtonList.append(pbMod);
 
 	set_colors();
+	// Show the result in the app's caption in taskbar (wishlist - bug #52858)
+	if (kcalcdefaults.capres == true)
+		connect(calc_display,
+			SIGNAL(changedText(const QString &)),
+			SLOT(setCaption(const QString &)));
 	calc_display->changeSettings(kcalcdefaults);
 	set_precision();
 	set_style();
+
 	basebutton[1]->animateClick();
 	anglebutton[0]->animateClick();
 
@@ -605,13 +640,13 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	UpdateDisplay(true);
 }
 
-QtCalculator::~QtCalculator()
+KCalculator::~KCalculator()
 {
 	delete mConfigureDialog;
 	delete calc_display;
 }
 
-void QtCalculator::updateGeometry()
+void KCalculator::updateGeometry()
 {
     QObjectList *l;
     QSize s;
@@ -658,23 +693,9 @@ void QtCalculator::updateGeometry()
         }
     }
 
-    //
-    // The status bar
-    //
-    //    s.setWidth( statusINVLabel->fontMetrics().width("NORM") +
-    //            statusINVLabel->frameWidth() * 2 + 10);
-    //statusINVLabel->setMinimumWidth(s.width());
-    //statusHYPLabel->setMinimumWidth(s.width());
-
-    //    s.setWidth(statusBar()->fontMetrics().width("NORM") +
-    //	       statusBar->frameWidth() * 2 + 10);
-//statusBar->Item(0)->setMinimumWidth(s.width());
-//    statusHYPLabel->setMinimumWidth(s.width());
-
-    //setFixedSize(minimumSize());
 }
 
-void QtCalculator::slotBaseSelected(int base)
+void KCalculator::slotBaseSelected(int base)
 {
 	// set_display
 	int current_base = calc_display->set_base(base);
@@ -691,12 +712,23 @@ void QtCalculator::slotBaseSelected(int base)
 	pbPeriod->setEnabled(current_base == NB_DECIMAL);
 }
 
-void QtCalculator::configurationChanged(const DefStruct &state)
+void KCalculator::configurationChanged(const DefStruct &state)
 {
 	kcalcdefaults = state;
 
 	set_colors();
 	set_precision();
+	// Show the result in the app's caption in taskbar (wishlist - bug #52858)
+	if (kcalcdefaults.capres)
+		connect(calc_display,
+			SIGNAL(changedText(const QString &)),
+			SLOT(setCaption(const QString &)));
+	else
+	{
+		disconnect(calc_display, SIGNAL(changedText(const QString &)),
+			   this, 0);
+		setCaption(QString::null);
+	}
 	calc_display->changeSettings(state);
 	set_style();
 
@@ -710,7 +742,7 @@ void QtCalculator::configurationChanged(const DefStruct &state)
 	setFixedHeight(minimumHeight());
 }
 
-void QtCalculator::keyPressEvent(QKeyEvent *e)
+void KCalculator::keyPressEvent(QKeyEvent *e)
 {
     if ( ( e->state() & KeyButtonMask ) == 0 || ( e->state() & ShiftButton ) ) {
 	switch (e->key())
@@ -743,12 +775,9 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
 	case Key_I:
 		pbInv->toggle();
 		break;
-	case Key_A:
-	        (NumButtonGroup->find(0xA))->animateClick();
-		break;
 	case Key_E:
 	  //if (current_base == NB_HEX)
-			(NumButtonGroup->find(0xE))->animateClick();
+	  //		(NumButtonGroup->find(0xE))->animateClick();
 			//else
 			pbEE->animateClick();
 		break;
@@ -767,15 +796,6 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
 	case Key_B:
 		(NumButtonGroup->find(0xB))->animateClick();
 		break;
-	case Key_7:
-		(NumButtonGroup->find(7))->animateClick();
-		break;
-	case Key_8:
-		(NumButtonGroup->find(8))->animateClick();
-		break;
-	case Key_9:
-		(NumButtonGroup->find(9))->animateClick();
-		break;
 	case Key_ParenLeft:
 		pbParenOpen->animateClick();
 		break;
@@ -787,18 +807,9 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
 		break;
 	case Key_C:
 	  //if (current_base == NB_HEX)
-			(NumButtonGroup->find(0xC))->animateClick();
+	  //		(NumButtonGroup->find(0xC))->animateClick();
 			//else
 			pbCos->animateClick();
-		break;
-	case Key_4:
-		(NumButtonGroup->find(4))->animateClick();
-		break;
-	case Key_5:
-		(NumButtonGroup->find(5))->animateClick();
-		break;
-	case Key_6:
-		(NumButtonGroup->find(6))->animateClick();
 		break;
 	case Key_Asterisk:
         case Key_multiply:
@@ -818,19 +829,10 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
 		pbFactorial->animateClick();
 		break;
 	case Key_D:
-		if(kcalcdefaults.style == 0)
-			(NumButtonGroup->find(0xD))->animateClick(); // trig mode
-		else
+	  //if(kcalcdefaults.style == 0)
+	  //	(NumButtonGroup->find(0xD))->animateClick(); // trig mode
+	  //	else
 			pbStatDataInput->animateClick(); // stat mode
-		break;
-	case Key_1:
-		(NumButtonGroup->find(1))->animateClick();
-		break;
-	case Key_2:
-		(NumButtonGroup->find(2))->animateClick();
-		break;
-	case Key_3:
-		(NumButtonGroup->find(3))->animateClick();
 		break;
 	case Key_Plus:
 		pbPlus->animateClick();
@@ -850,15 +852,9 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
 	case Key_AsciiCircum:
 		pbPower->animateClick();
 		break;
-	case Key_F:
-		(NumButtonGroup->find(0xF))->animateClick();
-		break;
 	case Key_Period:
 	case Key_Comma:
 		pbPeriod->animateClick();
-		break;
-	case Key_0:
-		(NumButtonGroup->find(0))->animateClick();
 		break;
 	case Key_Equal:
 	case Key_Return:
@@ -891,7 +887,7 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
 
 
 
-void QtCalculator::slotAngleSelected(int number)
+void KCalculator::slotAngleSelected(int number)
 {
 	switch(number)
 	{
@@ -909,21 +905,19 @@ void QtCalculator::slotAngleSelected(int number)
 	}
 }
 
-void QtCalculator::slotEEclicked(void)
+void KCalculator::slotEEclicked(void)
 {
-	if(inverse)
-	{
-		calc_display->setAmount(pi);
-
-		UpdateDisplay(false);
-	}
-	else
-	{
-		calc_display->newCharacter('e');
-	}
+	calc_display->newCharacter('e');
 }
 
-void QtCalculator::slotInvtoggled(bool flag)
+void KCalculator::slotPiclicked(void)
+{
+	calc_display->setAmount(pi);
+	
+	UpdateDisplay(false);
+}
+
+void KCalculator::slotInvtoggled(bool flag)
 {
 	inverse = flag;
 
@@ -931,13 +925,10 @@ void QtCalculator::slotInvtoggled(bool flag)
 	else		statusBar()->changeItem("NORM", 0);
 }
 
-void QtCalculator::slotHyptoggled(bool flag)
+void KCalculator::slotHyptoggled(bool flag)
 {
 	// toggle between hyperbolic and standart trig functions
 	hyp_mode = flag;
-
-	if (hyp_mode)	statusBar()->changeItem("HYP", 1);
-	else 		statusBar()->changeItem("", 1);
 
 	if(flag)
 	{
@@ -967,7 +958,7 @@ void QtCalculator::slotHyptoggled(bool flag)
 
 
 
-void QtCalculator::slotMRclicked(void)
+void KCalculator::slotMRclicked(void)
 {
 	// temp. work-around
 	calc_display->Reset();
@@ -976,12 +967,12 @@ void QtCalculator::slotMRclicked(void)
 	UpdateDisplay(false);
 }
 
-void QtCalculator::slotNumberclicked(int number_clicked)
+void KCalculator::slotNumberclicked(int number_clicked)
 {
 	calc_display->EnterDigit(number_clicked);
 }
 
-void QtCalculator::slotSinclicked(void)
+void KCalculator::slotSinclicked(void)
 {
 	if (hyp_mode)
 	{
@@ -1000,19 +991,15 @@ void QtCalculator::slotSinclicked(void)
 			core.ArcSin(calc_display->getAmount());
 	}
 
-	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
-	if (calc_display->getAmount() < POS_ZERO && calc_display->getAmount() > NEG_ZERO)
-		calc_display->setAmount(0.0);
-
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotPlusMinusclicked(void)
+void KCalculator::slotPlusMinusclicked(void)
 {
 	calc_display->changeSign();
 }
 
-void QtCalculator::slotMPlusMinusclicked(void)
+void KCalculator::slotMPlusMinusclicked(void)
 {
 	EnterEqual();
 
@@ -1022,7 +1009,7 @@ void QtCalculator::slotMPlusMinusclicked(void)
 	pbInv->setOn(false);
 }
 
-void QtCalculator::slotCosclicked(void)
+void KCalculator::slotCosclicked(void)
 {
 	if (hyp_mode)
 	{
@@ -1041,20 +1028,16 @@ void QtCalculator::slotCosclicked(void)
 			core.ArcCos(calc_display->getAmount());
 	}
 
-	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
-	if (calc_display->getAmount() < POS_ZERO && calc_display->getAmount() > NEG_ZERO)
-		calc_display->setAmount(0.0);
-
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotReciclicked(void)
+void KCalculator::slotReciclicked(void)
 {
 	core.Reciprocal(calc_display->getAmount());
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotTanclicked(void)
+void KCalculator::slotTanclicked(void)
 {
 	if (hyp_mode)
 	{
@@ -1073,22 +1056,17 @@ void QtCalculator::slotTanclicked(void)
 			core.ArcTangens(calc_display->getAmount());
 	}
 
-	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
-
-	if (calc_display->getAmount() < POS_ZERO && calc_display->getAmount() > NEG_ZERO)
-		calc_display->setAmount(0.0);
-
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotFactorialclicked(void)
+void KCalculator::slotFactorialclicked(void)
 {
 	core.Factorial(calc_display->getAmount());
 
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotLogclicked(void)
+void KCalculator::slotLogclicked(void)
 {
 	if (!inverse)
 		core.Log10(calc_display->getAmount());
@@ -1099,7 +1077,7 @@ void QtCalculator::slotLogclicked(void)
 }
 
 
-void QtCalculator::slotSquareclicked(void)
+void KCalculator::slotSquareclicked(void)
 {
 	if (!inverse)
 		core.Square(calc_display->getAmount());
@@ -1109,7 +1087,7 @@ void QtCalculator::slotSquareclicked(void)
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotLnclicked(void)
+void KCalculator::slotLnclicked(void)
 {
 	if (!inverse)
 		core.Ln(calc_display->getAmount());
@@ -1119,7 +1097,7 @@ void QtCalculator::slotLnclicked(void)
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotPowerclicked(void)
+void KCalculator::slotPowerclicked(void)
 {
 	if (inverse)
 	{
@@ -1137,17 +1115,17 @@ void QtCalculator::slotPowerclicked(void)
 	UpdateDisplay(false);
 }
 
-void QtCalculator::slotMCclicked(void)
+void KCalculator::slotMCclicked(void)
 {
 	memory_num		= 0;
 }
 
-void QtCalculator::slotClearclicked(void)
+void KCalculator::slotClearclicked(void)
 {
 	calc_display->clearLastInput();
 }
 
-void QtCalculator::ClearAll()
+void KCalculator::ClearAll()
 {
 	core.Reset();
 	calc_display->Reset();
@@ -1155,12 +1133,12 @@ void QtCalculator::ClearAll()
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotACclicked(void)
+void KCalculator::slotACclicked(void)
 {
 	ClearAll();
 }
 
-void QtCalculator::slotParenOpenclicked(void)
+void KCalculator::slotParenOpenclicked(void)
 {
 	core.ParenOpen(calc_display->getAmount());
 
@@ -1168,35 +1146,35 @@ void QtCalculator::slotParenOpenclicked(void)
 	//UpdateDisplay(true);
 }
 
-void QtCalculator::slotParenCloseclicked(void)
+void KCalculator::slotParenCloseclicked(void)
 {
 	core.ParenClose(calc_display->getAmount());
 
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotANDclicked(void)
+void KCalculator::slotANDclicked(void)
 {
 	core.And(calc_display->getAmount());
 
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotXclicked(void)
+void KCalculator::slotXclicked(void)
 {
 	core.Multiply(calc_display->getAmount());
 
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotDivisionclicked(void)
+void KCalculator::slotDivisionclicked(void)
 {
 	core.Divide(calc_display->getAmount());
 
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotORclicked(void)
+void KCalculator::slotORclicked(void)
 {
 	if (inverse)
 		core.Xor(calc_display->getAmount());
@@ -1206,21 +1184,21 @@ void QtCalculator::slotORclicked(void)
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotPlusclicked(void)
+void KCalculator::slotPlusclicked(void)
 {
 	core.Plus(calc_display->getAmount());
 
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotMinusclicked(void)
+void KCalculator::slotMinusclicked(void)
 {
 	core.Minus(calc_display->getAmount());
 
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotShiftclicked(void)
+void KCalculator::slotShiftclicked(void)
 {
 	if (inverse)
 		core.ShiftRight(calc_display->getAmount());
@@ -1230,38 +1208,38 @@ void QtCalculator::slotShiftclicked(void)
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotPeriodclicked(void)
+void KCalculator::slotPeriodclicked(void)
 {
 	calc_display->newCharacter('.');
 }
 
-void QtCalculator::EnterEqual()
+void KCalculator::EnterEqual()
 {
 	core.Equal(calc_display->getAmount());
 
-	UpdateDisplay(true);
+	UpdateDisplay(true, true);
 }
 
-void QtCalculator::slotEqualclicked(void)
+void KCalculator::slotEqualclicked(void)
 {
 	EnterEqual();
 }
 
-void QtCalculator::slotPercentclicked(void)
+void KCalculator::slotPercentclicked(void)
 {
 	core.Percent(calc_display->getAmount());
 
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotNegateclicked(void)
+void KCalculator::slotNegateclicked(void)
 {
 	core.Complement(calc_display->getAmount());
 
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotModclicked(void)
+void KCalculator::slotModclicked(void)
 {
 	if (inverse)
 		core.InvMod(calc_display->getAmount());
@@ -1271,7 +1249,7 @@ void QtCalculator::slotModclicked(void)
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotStatNumclicked(void)
+void KCalculator::slotStatNumclicked(void)
 {
 	if(!inverse)
 	{
@@ -1286,7 +1264,7 @@ void QtCalculator::slotStatNumclicked(void)
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotStatMeanclicked(void)
+void KCalculator::slotStatMeanclicked(void)
 {
 	if(!inverse)
 		core.StatMean(0);
@@ -1299,7 +1277,7 @@ void QtCalculator::slotStatMeanclicked(void)
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotStatStdDevclicked(void)
+void KCalculator::slotStatStdDevclicked(void)
 {
 	if(!inverse)
 	{
@@ -1316,7 +1294,7 @@ void QtCalculator::slotStatStdDevclicked(void)
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotStatMedianclicked(void)
+void KCalculator::slotStatMedianclicked(void)
 {
 	if(!inverse)
 	{
@@ -1333,7 +1311,7 @@ void QtCalculator::slotStatMedianclicked(void)
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotStatDataInputclicked(void)
+void KCalculator::slotStatDataInputclicked(void)
 {
 	if(!inverse)
 	{
@@ -1349,7 +1327,7 @@ void QtCalculator::slotStatDataInputclicked(void)
 	UpdateDisplay(true);
 }
 
-void QtCalculator::slotStatClearDataclicked(void)
+void KCalculator::slotStatClearDataclicked(void)
 {
         if(!inverse)
 	{
@@ -1363,11 +1341,11 @@ void QtCalculator::slotStatClearDataclicked(void)
 	}
 }
 
-void QtCalculator::slotConfigclicked()
+void KCalculator::slotConfigclicked()
 {
 	if(mConfigureDialog == 0)
 	{
-		mConfigureDialog = new ConfigureDialog( 0, 0, false );
+		mConfigureDialog = new ConfigureDialog( 0, 0, true);
 		mConfigureDialog->setState( kcalcdefaults );
 
 		connect( mConfigureDialog, SIGNAL( valueChanged(const DefStruct &)),
@@ -1377,7 +1355,7 @@ void QtCalculator::slotConfigclicked()
         mConfigureDialog->raise();
 }
 
-void QtCalculator::set_style()
+void KCalculator::set_style()
 {
 	switch(kcalcdefaults.style)
 	{
@@ -1418,13 +1396,13 @@ void QtCalculator::set_style()
 	angle_group->setEnabled(kcalcdefaults.style == 0);
 }
 
-void QtCalculator::RefreshCalculator()
+void KCalculator::RefreshCalculator()
 {
 	pbInv->setOn(false);
 	calc_display->Reset();
 }
 
-void QtCalculator::readSettings()
+void KCalculator::readSettings()
 {
 	QString str;
 
@@ -1471,7 +1449,7 @@ void QtCalculator::readSettings()
 	kcalcdefaults.capres	= config->readBoolEntry("captionresult",false);
 }
 
-void QtCalculator::writeSettings()
+void KCalculator::writeSettings()
 {
 	KConfig *config = KGlobal::config();
 
@@ -1507,11 +1485,12 @@ void QtCalculator::writeSettings()
 	config->sync();
 }
 
-void QtCalculator::UpdateDisplay(bool get_amount_from_core)
+void KCalculator::UpdateDisplay(bool get_amount_from_core,
+				 bool store_result_in_history)
 {
 	if(get_amount_from_core)
 	{
-		calc_display->update_from_core(core);
+		calc_display->update_from_core(core, store_result_in_history);
 	}
 	else
 	{
@@ -1520,27 +1499,16 @@ void QtCalculator::UpdateDisplay(bool get_amount_from_core)
 
 	pbInv->setOn(false);
 
-	// Show the result in the app's caption in taskbar (wishlist - bug #52858)
-	if (kcalcdefaults.capres)
-		QtCalculator::setCaption(calc_display->text());
-	else
-		QtCalculator::setCaption("");
 }
 
-
-void QtCalculator::closeEvent(QCloseEvent *)
-{
-	quitCalc();
-}
-
-
-void QtCalculator::quitCalc()
+bool KCalculator::queryExit(void)
 {
 	writeSettings();
-	qApp->quit();
+	return true;
 }
 
-void QtCalculator::set_colors()
+
+void KCalculator::set_colors()
 {
 	QPushButton *p = NULL;
 
@@ -1588,29 +1556,25 @@ void QtCalculator::set_colors()
 	}
 }
 
-void QtCalculator::set_precision()
+void KCalculator::set_precision()
 {
 	// TODO: make this do something!!
 	UpdateDisplay(false);
 }
 
-void QtCalculator::history_next()
+void KCalculator::history_next()
 {
-	if(core.history_next())
-		UpdateDisplay(true);
-	else if(kcalcdefaults.beep)
+	if(!calc_display->history_next()  &&  kcalcdefaults.beep)
 		KNotifyClient::beep();
 }
 
-void QtCalculator::history_prev()
+void KCalculator::history_prev()
 {
-	if(core.history_prev())
-		UpdateDisplay(true);
-	else if(kcalcdefaults.beep)
+	if(!calc_display->history_prev()  &&  kcalcdefaults.beep)
 		KNotifyClient::beep();
 }
 
-bool QtCalculator::eventFilter(QObject *o, QEvent *e)
+bool KCalculator::eventFilter(QObject *o, QEvent *e)
 {
 	if(e->type() == QEvent::DragEnter)
 	{
@@ -1730,13 +1694,12 @@ extern "C" int kdemain(int argc, char *argv[])
 	app->setWmCommand(argv[0]);
 #endif
 
-	QtCalculator *calc = new QtCalculator;
+	KCalculator *calc = new KCalculator;
 	app.setTopWidget(calc);
 	calc->setCaption(QString::null);
 	calc->show();
 
 	int exitCode = app.exec();
-	delete calc;
 
 	return(exitCode);
 }

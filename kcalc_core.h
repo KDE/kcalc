@@ -86,7 +86,6 @@ class CalcEngine
 {
  public:
   CalcEngine();
-  QValueStack<CALCAMNT>	amount_stack;
   
   CALCAMNT last_output(bool &error) const;
 
@@ -148,6 +147,9 @@ class CalcEngine
   CALCAMNT _last_result;
   int _angle_mode;
 
+  QValueStack<CALCAMNT>	amount_stack;
+  QValueStack<func_data> func_stack;
+
   int precedence_base;
   bool percent_mode;
 
@@ -164,12 +166,6 @@ class CalcEngine
   CALCAMNT Rad2Deg(CALCAMNT x)	{ return ((360L / (2L * pi)) * x); }
   CALCAMNT Rad2Gra(CALCAMNT x)	{ return ((200L / pi) * x); }
 
-private:
-  QValueVector<CALCAMNT> history_list;
-  int history_index;
-public:
-  bool history_next();
-  bool history_prev();
 };
 
 

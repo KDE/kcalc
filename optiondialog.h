@@ -29,7 +29,7 @@ class KColorButton;
 class KFontChooser;
 
 #include <kdialogbase.h>
-#include "kcalc.h"
+#include "confvalues.h"
 
 class ConfigureDialog : public KDialogBase
 {

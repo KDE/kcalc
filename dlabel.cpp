@@ -29,7 +29,7 @@
 #include "dlabel.moc"
 
 DispLogic::DispLogic(QWidget *parent, const char *name)
-  :KCalcDisplay(parent,name)
+  :KCalcDisplay(parent,name), _history_index(0)
 {
 }
 
@@ -84,12 +84,18 @@ void DispLogic::changeSettings(DefStruct const &kcalcdefaults)
 	setBeep(ConfigSettings.beep);
 }
 
-void DispLogic::update_from_core(CalcEngine const &core)
+void DispLogic::update_from_core(CalcEngine const &core,
+				 bool store_result_in_history)
 {
 	bool tmp_error;
 	CALCAMNT output = core.last_output(tmp_error);
 	setError(tmp_error);
-	setAmount(output);
+	if (setAmount(output)  &&  store_result_in_history  &&
+	    output != 0)
+	{
+	  // add this latest value to our history
+	  _history_list.insert(_history_list.begin(), output);
+	}
 }
 
 void DispLogic::EnterDigit(int data)
@@ -151,5 +157,21 @@ void DispLogic::EnterDigit(int data)
 	}
 
 	newCharacter(tmp);
+}
+
+bool DispLogic::history_next()
+{
+  	if((_history_list.empty()) || (_history_index <= 0))
+		return false;
+
+	return setAmount(_history_list[--_history_index]);
+}
+
+bool DispLogic::history_prev()
+{
+	if((_history_list.empty()) || (_history_index >= ((int)_history_list.size() - 1)))
+		return false;
+
+	return setAmount(_history_list[++_history_index]);
 }
 

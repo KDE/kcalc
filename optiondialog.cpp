@@ -40,30 +40,21 @@ static inline QPixmap loadIcon( const char * name )
       ->loadIcon( QString::fromLatin1(name), KIcon::NoGroup, KIcon::SizeMedium );
 }
 
-//-------------------------------------------------------------------------
-// Name: ConfigureDialog(QWidget *parent, char *name, bool modal)
-//-------------------------------------------------------------------------
 ConfigureDialog::ConfigureDialog(QWidget *parent, char *name, bool modal)
 	: KDialogBase( IconList, i18n("Configure KCalc"), Help|Apply|Ok|Cancel,
 		Ok, parent, name, modal, true )
 {
 	setHelp("kcalc/index.html", QString::null);
-
+	
 	setupSettingPage();
 	setupFontPage();
 	setupColorPage();
 }
 
-//-------------------------------------------------------------------------
-// Name: ~ConfigureDialog()
-//-------------------------------------------------------------------------
 ConfigureDialog::~ConfigureDialog()
 {
 }
 
-//-------------------------------------------------------------------------
-// Name: setState(const DefStruct &state)
-//-------------------------------------------------------------------------
 void ConfigureDialog::setState(const DefStruct &state)
 {
 	mState = state;
@@ -94,9 +85,6 @@ void ConfigureDialog::setState(const DefStruct &state)
 	dataChanged = false;
 }
 
-//-------------------------------------------------------------------------
-// Name: state()
-//-------------------------------------------------------------------------
 DefStruct ConfigureDialog::state()
 {
 	DefStruct state;
@@ -121,9 +109,6 @@ DefStruct ConfigureDialog::state()
 	return state;
 }
 
-//-------------------------------------------------------------------------
-// Name: slotOk()
-//-------------------------------------------------------------------------
 void ConfigureDialog::slotOk()
 {
 	if( dataChanged )
@@ -131,9 +116,6 @@ void ConfigureDialog::slotOk()
 	accept();
 }
 
-//-------------------------------------------------------------------------
-// Name: slotApply()
-//-------------------------------------------------------------------------
 void ConfigureDialog::slotApply()
 {
 	mState = state();
@@ -142,9 +124,6 @@ void ConfigureDialog::slotApply()
 	dataChanged = false;
 }
 
-//-------------------------------------------------------------------------
-// Name: slotCancel()
-//-------------------------------------------------------------------------
 void ConfigureDialog::slotCancel()
 {
 	//setState(mState);
@@ -152,18 +131,12 @@ void ConfigureDialog::slotCancel()
 	reject();
 }
 
-//-------------------------------------------------------------------------
-// Name: slotChanged()
-//-------------------------------------------------------------------------
 void ConfigureDialog::slotChanged()
 {
 	enableButton( Apply, true );
 	dataChanged = true;
 }
 
-//-------------------------------------------------------------------------
-// Name: setupSettingPage()
-//-------------------------------------------------------------------------
 void ConfigureDialog::setupSettingPage()
 {
     QFrame *page = addPage(i18n("General"), i18n("General Settings"), loadIcon("kcalc"));

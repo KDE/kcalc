@@ -1,8 +1,8 @@
 == ToDo ==
 
 * replace current gui code with ui files
-* fix cos 90 != 0 bug (only in double version of compile)
-* what is point of Dummy.h
+* find a real fix  for cos 90 != 0 bug (only in double version of compile)
+
 
 
   

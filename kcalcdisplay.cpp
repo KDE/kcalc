@@ -240,6 +240,12 @@ bool KCalcDisplay::setAmount(CALCAMNT new_amount)
 	
 }
 
+void KCalcDisplay::setText(QString const &string)
+{
+	QLabel::setText(string);
+	emit changedText(string);
+}
+
 /* change representation of display to new base (i.e. binary, decimal,
    octal, hexadecimal). The amount being displayed is changed to this
    base, but for now this amount can not be modified anymore (like
@@ -613,6 +619,7 @@ int KCalcDisplay::cvb(char *out_str, KCALC_LONG amount, int max_digits)
 
 	return count;
 }
+
 
 void KCalcDisplay::Reset(void)
 {

@@ -1,3 +1,18 @@
+2003-08-28 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* created Pi-button and moved Inv-button to make space for it
+	* label of "."-button is now localized
+	* Caption is set via signal/slots
+	* Fixed "%"-mode to make it again more conformant with documentation.
+	  "x^y%" does still not work. Did it ever?
+	* Number-keys are now handled by KAccel instead of keyPressEvent
+	* ConfigDialog is modal
+
+2003-08-27 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* moved result_history from CalcEngine into DispLogic
+	* reactivation of rounding towards zero for cos(90) etc.
+	* quit is done in a more KDE conformant way
+	* Caption is set via slots etc.
+	
 2003-08-12 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* continued separation: now display is independent class and
 	  handles everything related to itself.

@@ -62,8 +62,6 @@ static void fpe_handler(int fpe_parm)
 
 const CALCAMNT CalcEngine::pi = (ASIN(1L) * 2L);
 
-QValueStack<func_data>	func_stack;
-
 int precedence[14] = { 0, 1, 2, 3, 4, 4, 5, 5, 6, 6, 6, 7, 7, 6 };
 
 /*
@@ -348,12 +346,12 @@ static CALCAMNT ExecPwrRoot(CALCAMNT left_op, CALCAMNT right_op)
 
 static CALCAMNT ExecAddP(CALCAMNT left_op, CALCAMNT right_op)
 {
-    return (left_op + left_op * right_op / 100 );
+    return (left_op * 100.0) / right_op + 100;
 }
 
 static CALCAMNT ExecSubP(CALCAMNT left_op, CALCAMNT right_op)
 {
-    return (left_op - left_op * right_op / 100 );
+    return (left_op * 100.0) / right_op - 100;
 }
 
 static CALCAMNT ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op)
@@ -369,7 +367,7 @@ static CALCAMNT ExecDivideP(CALCAMNT left_op, CALCAMNT right_op)
 
 
 CalcEngine::CalcEngine()
-  :   precedence_base(0), percent_mode(false), history_index(0)
+  :   precedence_base(0), percent_mode(false)
 {
 	//
 	// Basic initialization involves initializing the calcultion
@@ -569,6 +567,10 @@ void CalcEngine::Cos(CALCAMNT input)
 
 	_last_result = COS(tmp);
 
+	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
+	if (_last_result < POS_ZERO && _last_result > NEG_ZERO)
+		_last_result = 0.0;
+
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
 }
@@ -747,6 +749,10 @@ void CalcEngine::Sin(CALCAMNT input)
 
 	_last_result = SIN(tmp);
 
+	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
+	if (_last_result < POS_ZERO && _last_result > NEG_ZERO)
+		_last_result = 0.0;
+
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
 }
@@ -860,6 +866,10 @@ void CalcEngine::Tangens(CALCAMNT input)
 
 	_last_result = TAN(tmp);
 
+	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
+	if (_last_result < POS_ZERO && _last_result > NEG_ZERO)
+		_last_result = 0.0;
+
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
 }
@@ -878,9 +888,6 @@ void CalcEngine::Equal(CALCAMNT input)
 	UpdateStack(0);
 
 	precedence_base = 0;
-
-	// add this latest value to our history
-	history_list.insert(history_list.begin(), _last_result);
 }
 
 void CalcEngine::Percent(CALCAMNT input)
@@ -976,20 +983,3 @@ int CalcEngine::UpdateStack(int run_precedence)
 	return return_value;
 }
 
-bool CalcEngine::history_next()
-{
-  	if((history_list.empty()) || (history_index <= 0))
-		return false;
-
-	_last_result = history_list[--history_index];
-	return true;
-}
-
-bool CalcEngine::history_prev()
-{
-	if((history_list.empty()) || (history_index >= ((int)history_list.size() - 1)))
-		return false;
-
-	_last_result = history_list[++history_index];
-	return true;
-}

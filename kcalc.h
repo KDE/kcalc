@@ -23,8 +23,8 @@
 
 */
 
-#ifndef QTCALC_H
-#define QTCALC_H
+#ifndef KCALC_H
+#define KCALC_H
 
 class QLabel;
 class QListBox;
@@ -65,20 +65,20 @@ class KPushButton;
 #include "kcalc_core.h"
 #include "confvalues.h"
 
-class QtCalculator : public KMainWindow
+class KCalculator : public KMainWindow
 {
     Q_OBJECT
 
 public:
-	QtCalculator(QWidget *parent = 0, const char *name = 0);
-	~QtCalculator();
+	KCalculator(QWidget *parent = 0, const char *name = 0);
+	~KCalculator();
 
 private:
 	virtual bool eventFilter( QObject *o, QEvent *e );
 	void updateGeometry();
 
 	void keyPressEvent( QKeyEvent *e );
-	void closeEvent( QCloseEvent *e );
+	bool queryExit(void);
 	void writeSettings();
 	void readSettings();
 	void set_precision();
@@ -86,12 +86,12 @@ private:
 	void history_next();
 	void history_prev();
 
-	void UpdateDisplay(bool get_amount_from_core);
+	void UpdateDisplay(bool get_amount_from_core = false,
+			   bool store_result_in_history = false);
 
 protected slots:
     void configurationChanged(const DefStruct &state);
     void set_colors();
-    void quitCalc();
     void EnterEqual();
     void ClearAll();
     void RefreshCalculator();
@@ -99,6 +99,7 @@ protected slots:
     void slotBaseSelected(int number);
     void slotNumberclicked(int number_clicked);
     void slotEEclicked(void);
+    void slotPiclicked(void);
     void slotInvtoggled(bool myboolean);
     void slotMRclicked(void);
     void slotSinclicked(void);
@@ -161,6 +162,7 @@ private:
     QRadioButton*	basebutton[4];
     QPushButton*        pbHyp;
     QPushButton* 	pbEE;
+    QPushButton* 	pbPi;
     QPushButton* 	pbInv;
     QPushButton* 	pbMR;
     QPushButton* 	pbSin;
@@ -201,7 +203,7 @@ private:
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
     QButtonGroup*       NumButtonGroup;
 
-    KHelpMenu *mHelpMenu;
+    QPopupMenu *mHelpMenu;
 
     QPtrList<QPushButton> mFunctionButtonList;
     QPtrList<QPushButton> mStatButtonList;
@@ -214,4 +216,4 @@ private:
     CalcEngine core;
 };
 
-#endif  //QTCALC_H
+#endif  // KCALC_H

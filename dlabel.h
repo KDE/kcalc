@@ -28,6 +28,7 @@
 #ifndef _D_LABEL_H_
 #define _D_LABEL_H_
 
+#include <qvaluevector.h>
 #include "kcalcdisplay.h"
 #include "kcalctype.h"
 #include "confvalues.h"
@@ -43,13 +44,20 @@ public:
 	DispLogic(QWidget *parent=0, const char *name=0);
 	~DispLogic();
 
-public:
-	int set_base(int number);
 	void changeSettings(DefStruct const &kcalcdefaults);
-	void update_from_core(CalcEngine const &core);
 	void EnterDigit(int data);
+	bool history_next(void);
+	bool history_prev(void);
+	int set_base(int number);
+	void update_from_core(CalcEngine const &core,
+			      bool store_result_in_history = false);
+
 private:
 	DefStruct ConfigSettings;
+
+	QValueVector<CALCAMNT> _history_list;
+	int _history_index;
+
 };
 
 #endif

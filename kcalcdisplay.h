@@ -109,6 +109,7 @@ public:
 	void setError(bool error);
 	void setFixedPrecision(int precision);
 	void setPrecision(int precision);
+	void setText(QString const &string);
 	bool updateDisplay(void);
 private:
 	bool _beep;
@@ -135,8 +136,11 @@ private:
 	QString _str_int_exp;
 
 	QTimer* selection_timer;
+
 signals:
-	void clicked();
+	void clicked(void);
+	void changedText(QString const &);
+
 private slots:
 	void slotSelectionTimedOut(void);
 	void slotDisplaySelected(void);
