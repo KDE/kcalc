@@ -2428,7 +2428,7 @@ void QtCalculator::UpdateDisplay(bool get_new_data_from_core)
 #include "kcalc.moc"
 
 
-int kdemain(int argc, char *argv[])
+extern "C" int kdemain(int argc, char *argv[])
 {
         QString precisionStatement;
 
