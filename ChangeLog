@@ -1,4 +1,10 @@
 2003-09-11 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Button groups can be switch on/off via actions.
+	  This is not yet the final GUI-Layout (yes, it looks broken).
+	* Accordingly the Stat/Trig-mode has been deleted from
+	  configure window.
+
+2003-09-11 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* deleted a few #includes
 	
 2003-09-02 Klaus Niederkrüger <kniederk@math.uni-koeln.de>

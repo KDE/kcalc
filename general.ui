@@ -124,44 +124,6 @@
                 </widget>
             </grid>
         </widget>
-        <widget class="QButtonGroup">
-            <property name="name">
-                <cstring>buttonGroup1</cstring>
-            </property>
-            <property name="title">
-                <string>Mode</string>
-            </property>
-            <vbox>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <widget class="QRadioButton">
-                    <property name="name">
-                        <cstring>Trigonometric</cstring>
-                    </property>
-                    <property name="text">
-                        <string>&amp;Trigonometric</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+T</string>
-                    </property>
-                    <property name="checked">
-                        <bool>true</bool>
-                    </property>
-                </widget>
-                <widget class="QRadioButton">
-                    <property name="name">
-                        <cstring>Statistical</cstring>
-                    </property>
-                    <property name="text">
-                        <string>&amp;Statistical</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+S</string>
-                    </property>
-                </widget>
-            </vbox>
-        </widget>
         <widget class="QGroupBox">
             <property name="name">
                 <cstring>groupBox2</cstring>
@@ -237,7 +199,6 @@
     <tabstop>precision</tabstop>
     <tabstop>fixed</tabstop>
     <tabstop>fixedprecision</tabstop>
-    <tabstop>Trigonometric</tabstop>
     <tabstop>beep</tabstop>
     <tabstop>captionresult</tabstop>
 </tabstops>

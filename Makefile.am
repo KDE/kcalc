@@ -18,6 +18,9 @@ KDE_ICON = kcalc
 
 xdg_apps_DATA = kcalc.desktop
 
+rcdir = $(kde_datadir)/kcalc
+rc_DATA = kcalcui.rc
+
 messages:
 	$(XGETTEXT) *.cpp -o $(podir)/kcalc.pot
 

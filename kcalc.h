@@ -86,6 +86,11 @@ protected slots:
     void EnterEqual();
     void showSettings();
     void RefreshCalculator();
+    void slotStatshow(bool toggled);
+    void slotTrigshow(bool toggled);
+    void slotLogicshow(bool toggled);
+    void slotShowAll(void);
+    void slotHideAll(void);
     void slotAngleSelected(int number);
     void slotBaseSelected(int number);
     void slotNumberclicked(int number_clicked);
@@ -187,8 +192,13 @@ private:
     QPushButton*        pbStatDataInput;
     QPushButton*        pbStatClearData;
     QButtonGroup*	angle_group;
+    QButtonGroup*	base_group;
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
     QButtonGroup*       NumButtonGroup;
+
+    KToggleAction *actionStatshow;
+    KToggleAction *actionTrigshow;
+    KToggleAction *actionLogicshow;
 
     QPtrList<QPushButton> mFunctionButtonList;
     QPtrList<QPushButton> mStatButtonList;

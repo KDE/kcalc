@@ -39,7 +39,6 @@ typedef struct _DefStruct
 
 	int precision;
 	int fixedprecision;
-	int style;
 	bool fixed;
 	bool beep;
 	bool capres;

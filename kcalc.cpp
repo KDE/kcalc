@@ -38,6 +38,7 @@
 
 #include <kaboutdata.h>
 #include <kaccel.h>
+#include <kaction.h>
 #include <kautoconfigdialog.h>
 #include <kapplication.h>
 #include <kcmdlineargs.h>
@@ -108,9 +109,32 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	KStdAction::copy(calc_display, SLOT(slotCopy()), actionCollection());
 	KStdAction::paste(calc_display, SLOT(slotPaste()), actionCollection());
 	
-	// preferences
+	// settings menu
 	KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
+
+	actionStatshow =  new KToggleAction(i18n("&Statistic Buttons"), 0,
+					actionCollection(), "show_stat");
+	connect(actionStatshow, SIGNAL(toggled(bool)), this,
+		SLOT(slotStatshow(bool)));
 	
+	actionTrigshow = new KToggleAction(i18n("&Trigonometric Buttons"), 0,
+					   actionCollection(), "show_trig");
+	connect(actionTrigshow, SIGNAL(toggled(bool)),
+		this, SLOT(slotTrigshow(bool)));
+
+	actionLogicshow = new KToggleAction(i18n("&Logic Buttons"), 0,
+					    actionCollection(), "show_logic");
+	connect(actionLogicshow, SIGNAL(toggled(bool)),
+		this, SLOT(slotLogicshow(bool)));
+
+
+	(void) new KAction(i18n("&Show all"), 0, this, SLOT(slotShowAll()),
+			   actionCollection(), "show_all");
+
+	(void) new KAction(i18n("&Hide all"), 0, this, SLOT(slotHideAll()),
+			   actionCollection(), "hide_all");
+
+
 	createGUI();
 
 	// How can I make the toolBar not appear at all?
@@ -118,7 +142,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	toolBar()->close();
 
 	// Create Number Base Button Group
-	QButtonGroup *base_group = new QButtonGroup(4, Horizontal,  central, "base");
+	base_group = new QButtonGroup(4, Horizontal,  central, "base");
 	base_group->setTitle(i18n("Base"));
 	connect(base_group, SIGNAL(clicked(int)), SLOT(slotBaseSelected(int)));
 
@@ -473,7 +497,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// to "activate()" the layout at the end.
 	//
 	//
-	QGridLayout *smallBtnLayout = new QGridLayout(mSmallPage, 6, 3, 0,
+	QGridLayout *smallBtnLayout = new QGridLayout(mSmallPage, 6, 4, 0,
 		mInternalSpacing);
 	QGridLayout *largeBtnLayout = new QGridLayout(mLargePage, 5, 6, 0,
 		mInternalSpacing);
@@ -496,35 +520,35 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	btnLayout->addWidget(mLargePage,0,AlignTop);
 
 	// small button layout
-	smallBtnLayout->addWidget(pbHyp, 0, 0);
 	smallBtnLayout->addWidget(pbStatNum, 0, 0);
-	smallBtnLayout->addWidget(pbPi, 0, 1);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xA), 0, 2);
+	smallBtnLayout->addWidget(pbHyp, 0, 1);
+	smallBtnLayout->addWidget(pbPi, 0, 2);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xA), 0, 3);
 
-	smallBtnLayout->addWidget(pbSin, 1, 0);
 	smallBtnLayout->addWidget(pbStatMean, 1, 0);
-	smallBtnLayout->addWidget(pbPlusMinus, 1, 1);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xB), 1, 2);
+	smallBtnLayout->addWidget(pbSin, 1, 1);
+	smallBtnLayout->addWidget(pbPlusMinus, 1, 2);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xB), 1, 3);
 
-	smallBtnLayout->addWidget(pbCos, 2, 0);
 	smallBtnLayout->addWidget(pbStatStdDev, 2, 0);
-	smallBtnLayout->addWidget(pbReci, 2, 1);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xC), 2, 2);
+	smallBtnLayout->addWidget(pbCos, 2, 1);
+	smallBtnLayout->addWidget(pbReci, 2, 2);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xC), 2, 3);
 
-	smallBtnLayout->addWidget(pbTan, 3, 0);
 	smallBtnLayout->addWidget(pbStatMedian, 3, 0);
-	smallBtnLayout->addWidget(pbFactorial, 3, 1);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xD), 3, 2);
+	smallBtnLayout->addWidget(pbTan, 3, 1);
+	smallBtnLayout->addWidget(pbFactorial, 3, 2);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xD), 3, 3);
 
-	smallBtnLayout->addWidget(pbLog, 4, 0);
 	smallBtnLayout->addWidget(pbStatDataInput, 4, 0);
-	smallBtnLayout->addWidget(pbSquare, 4, 1);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xE), 4, 2);
+	smallBtnLayout->addWidget(pbLog, 4, 1);
+	smallBtnLayout->addWidget(pbSquare, 4, 2);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xE), 4, 3);
 
-	smallBtnLayout->addWidget(pbLn, 5, 0);
 	smallBtnLayout->addWidget(pbStatClearData, 5, 0);
-	smallBtnLayout->addWidget(pbPower, 5, 1);
-	smallBtnLayout->addWidget(NumButtonGroup->find(0xF), 5, 2);
+	smallBtnLayout->addWidget(pbLn, 5, 1);
+	smallBtnLayout->addWidget(pbPower, 5, 2);
+	smallBtnLayout->addWidget(NumButtonGroup->find(0xF), 5, 3);
 
 	smallBtnLayout->setRowStretch(0, 0);
 	smallBtnLayout->setRowStretch(1, 0);
@@ -566,8 +590,9 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	largeBtnLayout->addWidget(pbPeriod, 4, 1);
 	largeBtnLayout->addWidget(pbEqual, 4, 2);
 	largeBtnLayout->addWidget(pbPercent, 4, 3);
-	largeBtnLayout->addWidget(pbNegate, 4, 4);
-	largeBtnLayout->addWidget(pbMod, 4, 5);
+	largeBtnLayout->addWidget(pbMod, 4, 4);
+	largeBtnLayout->addWidget(pbNegate, 4, 5);
+
 
 	largeBtnLayout->addColSpacing(0,10);
 	largeBtnLayout->addColSpacing(1,10);
@@ -635,7 +660,6 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 			SLOT(setCaption(const QString &)));
 	calc_display->changeSettings(kcalcdefaults);
 	set_precision();
-	set_style();
 
 	basebutton[1]->animateClick();
 	anglebutton[0]->animateClick();
@@ -724,10 +748,6 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 	{
 	case Key_F2:
 		showSettings();
-		break;
-	case Key_F3:
-		kcalcdefaults.style = !kcalcdefaults.style;
-		set_style();
 		break;
 	case Key_Up:
 		history_prev();
@@ -1358,45 +1378,90 @@ void KCalculator::showSettings()
 	dialog->show();
 }
 
-void KCalculator::set_style()
+void KCalculator::slotStatshow(bool toggled)
 {
-	switch(kcalcdefaults.style)
+	if(toggled)
 	{
-	case  0:
-	        pbHyp->show();
-		pbSin->show();
-		pbCos->show();
-		pbTan->show();
-		pbLog->show();
-		pbLn->show();
-		pbStatNum->hide();
-		pbStatMean->hide();
-		pbStatStdDev->hide();
-		pbStatMedian->hide();
-		pbStatDataInput->hide();
-		pbStatClearData->hide();
-		break;
-
-	case 1:
-	        pbHyp->hide();
-		pbSin->hide();
-		pbCos->hide();
-		pbTan->hide();
-		pbLog->hide();
-		pbLn ->hide();
 		pbStatNum->show();
 		pbStatMean->show();
 		pbStatStdDev->show();
 		pbStatMedian->show();
 		pbStatDataInput->show();
 		pbStatClearData->show();
-		break;
-
-	default:
-		break;
 	}
+	else
+	{
+		pbStatNum->hide();
+		pbStatMean->hide();
+		pbStatStdDev->hide();
+		pbStatMedian->hide();
+		pbStatDataInput->hide();
+		pbStatClearData->hide();
+	}
+}
 
-	angle_group->setEnabled(kcalcdefaults.style == 0);
+void KCalculator::slotTrigshow(bool toggled)
+{
+	if(toggled)
+	{
+	        pbHyp->show();
+		pbSin->show();
+		pbCos->show();
+		pbTan->show();
+		pbLog->show();
+		pbLn->show();
+		angle_group->show();
+	}
+	else
+	{
+	        pbHyp->hide();
+		pbSin->hide();
+		pbCos->hide();
+		pbTan->hide();
+		pbLog->hide();
+		pbLn ->hide();
+		angle_group->hide();
+	}
+}
+
+void KCalculator::slotLogicshow(bool toggled)
+{
+	if(toggled)
+	{
+	        pbAND->show();
+		pbOR->show();
+		pbNegate->show();
+		pbShift->show();
+		base_group->show();
+		for (int i=10; i<16; i++)
+			(NumButtonGroup->find(i))->show();
+	}
+	else
+	{
+	        pbAND->hide();
+		pbOR->hide();
+		pbNegate->hide();
+		pbShift->hide();
+		// Hide Hex-Buttons, but first switch back to decimal
+		(base_group->find(1))->animateClick();
+		base_group->hide();
+		for (int i=10; i<16; i++)
+			(NumButtonGroup->find(i))->hide();
+	}
+}
+
+void KCalculator::slotShowAll(void)
+{
+	if(!actionStatshow->isChecked()) actionStatshow->activate();
+	if(!actionTrigshow->isChecked()) actionTrigshow->activate();
+	if(!actionLogicshow->isChecked()) actionLogicshow->activate();
+}
+
+void KCalculator::slotHideAll(void)
+{
+	if(actionStatshow->isChecked()) actionStatshow->activate();
+	if(actionTrigshow->isChecked()) actionTrigshow->activate();
+	if(actionLogicshow->isChecked()) actionLogicshow->activate();
 }
 
 void KCalculator::RefreshCalculator()
@@ -1446,9 +1511,6 @@ void KCalculator::loadSettings()
 		config->readNumEntry("fixedprecision", (int)2);
 	kcalcdefaults.fixed = config->readBoolEntry("fixed", false);
 
-	kcalcdefaults.style = config->readBoolEntry("Statistical", false);
-		config->readNumEntry("style", (int)0);
-	
 	kcalcdefaults.beep	= config->readBoolEntry("beep", true);
 	kcalcdefaults.capres	= config->readBoolEntry("captionresult",false);
 
@@ -1469,7 +1531,6 @@ void KCalculator::loadSettings()
 		setCaption(QString::null);
 	}
 	calc_display->changeSettings(kcalcdefaults);
-	set_style();
 
 	updateGeometry();
 	resize(minimumSize());
