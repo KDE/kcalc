@@ -1,5 +1,11 @@
 /*
+<<<<<<< kcalc_core.cpp
+
     $Id$
+=======
+
+    $Id$
+>>>>>>> 1.41
 
     kCalculator, a scientific calculator for the X window system using the
     Qt widget libraries, available at no cost at http://www.troll.no
