@@ -23,7 +23,8 @@ if (!result) {
     foo = powl(fabsl(foo), 1);
 }
 exit(result); }],
-ac_cv_c_long_double=yes, ac_cv_c_long_double=no)
+ac_cv_c_long_double=yes, ac_cv_c_long_double=no,
+ac_cv_c_long_double=no
 ])
 if test $ac_cv_c_long_double = yes; then
   AC_DEFINE(HAVE_LONG_DOUBLE)
