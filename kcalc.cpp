@@ -55,6 +55,7 @@
 #include <kiconloader.h>
 #include <klocale.h>
 #include <kcmdlineargs.h>
+#include <kaboutdata.h>
 
 #include "dlabel.h"
 #include "kcalc.h"
@@ -1828,7 +1829,11 @@ void QtCalculator::temp_stack_prev(){
 
 int main( int argc, char **argv )
 {
-  KCmdLineArgs::init(argc, argv, "kcalc", description, version);
+  KAboutData aboutData( "kcalc", I18N_NOOP("KCalc"),
+    version, description, KAboutData::License_GPL,
+    "(c) 1996-2000, Bernd Johannes Wuebben");
+  aboutData.addAuthor("Bernd Johannes Wuebben",0, "wuebben@kde.org");
+  KCmdLineArgs::init( argc, argv, &aboutData );
 
   KApplication app;
 #if 0    
