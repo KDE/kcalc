@@ -1628,7 +1628,7 @@ int UpdateStack(int run_precedence)
 		return_value = 1;
 
 		if ((top_item = PopStack())->s_item_type != ITEM_AMOUNT){
-		  QMessageBox::message( i18n("Error"), 
+		  QMessageBox::critical(0L, i18n("Error"), 
 					i18n("Stack processing error - right_op"), i18n("OK") );
 
 		}
@@ -1636,7 +1636,7 @@ int UpdateStack(int run_precedence)
 
 		if (!((top_item = PopStack()) && 
 		top_item->s_item_type == ITEM_FUNCTION)) {
-		  QMessageBox::message( i18n("Error"), 
+		  QMessageBox::critical(0L, i18n("Error"), 
 					i18n("Stack processing error - function"), i18n("OK") );
 
 		}
@@ -1645,7 +1645,7 @@ int UpdateStack(int run_precedence)
 
 		if (!((top_item = PopStack()) && 
 		top_item->s_item_type == ITEM_AMOUNT)) {
-		  QMessageBox::message( i18n("Error"), 
+		  QMessageBox::critical(0L, i18n("Error"), 
 					i18n("Stack processing error - left_op"), i18n("OK") );
 		}
 		left_op = top_item->s_item_data.item_amount;
@@ -1950,7 +1950,7 @@ stack_ptr AllocStackItem (void) {
 		return &process_stack[stack_next++];
 	}
 
-	QMessageBox::message( i18n("Emergency"), i18n("Stack Error!"), i18n("OK") );
+	QMessageBox::critical(0L, i18n("Emergency"), i18n("Stack Error!"), i18n("OK") );
 	return &process_stack[stack_next];
 }
 
@@ -1958,7 +1958,7 @@ void UnAllocStackItem (stack_ptr return_item) {
 
 	if (return_item != &process_stack[--stack_next]) {
 	
-	  QMessageBox::message( i18n("Emergency"), i18n("Stack Error!"), i18n("OK") );
+	  QMessageBox::critical(0L, i18n("Emergency"), i18n("Stack Error!"), i18n("OK") );
 	}	
 
 }
