@@ -104,7 +104,7 @@
 #endif
 
 #if !defined(HAVE_FUNC_ROUND) && !defined(HAVE_FUNC_ROUNDL)
-	#undef	ROUND(X)
+	#undef	ROUND
 	#define ROUND(X)	rint(X)
 #endif
 
