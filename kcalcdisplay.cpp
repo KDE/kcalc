@@ -279,7 +279,7 @@ void KCalcDisplay::setText(QString const &string)
 	QString localizedString = string;
 	
 	// If we aren't in decimal mode, we don't need to modify the string
-	if (_num_base == NB_DECIMAL)
+	if (_num_base == NB_DECIMAL && !_error)
 	{
 		// Obtain decimal symbol and thousands separator
 		QString decimalSymbol = KGlobal::locale()->decimalSymbol();
@@ -301,7 +301,7 @@ void KCalcDisplay::setText(QString const &string)
 
 QString KCalcDisplay::text() const
 {
-	if (_num_base != NB_DECIMAL)
+	if (_num_base != NB_DECIMAL || _error)
 		return QLabel::text();
 	
 	QString unlocalizedString = QLabel::text();
