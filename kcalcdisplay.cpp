@@ -22,6 +22,8 @@
     Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
+#include <errno.h>
+#include <stdlib.h>
 
 #include <qclipboard.h>
 
@@ -29,6 +31,16 @@
 #include <knotifyclient.h>
 #include "kcalcdisplay.h"
 #include "kcalcdisplay.moc"
+
+// We can't use QString::toDouble because it uses DOUBLE and use LONG DOUBLE!!
+static CALCAMNT toDouble(const QString &s, bool &ok)
+{
+	char *ptr = 0;
+	errno = 0;
+	CALCAMNT result = (CALCAMNT) STRTOD(s.latin1(),&ptr);
+	ok = (errno == 0) && (ptr != 0) && (*ptr == 0);
+	return result;
+}
 
 KCalcDisplay::KCalcDisplay(QWidget *parent, const char *name)
   :QLabel(parent,name), _button(0), _lit(false),
@@ -92,7 +104,7 @@ void KCalcDisplay::slotPaste(void)
 	QString tmp_str = (QApplication::clipboard())->text(QClipboard::Clipboard);
 
 	bool was_ok;
-	CALCAMNT tmp_result = (CALCAMNT) tmp_str.toDouble(&was_ok);
+	CALCAMNT tmp_result = toDouble(tmp_str, was_ok);
 
 	if (!was_ok)
 	{
@@ -366,7 +378,7 @@ bool KCalcDisplay::updateDisplay(void)
 		{
 			Q_ASSERT(tmp_string.length() < DSP_SIZE);
 			setText(tmp_string);
-			_display_amount = (CALCAMNT)tmp_string.toDouble(&tmp_flag);
+			_display_amount = toDouble(tmp_string, tmp_flag);
 			Q_ASSERT(tmp_flag == true);
 		}
 		else
@@ -375,7 +387,7 @@ bool KCalcDisplay::updateDisplay(void)
 			{
 				// add 'e0' to display but not to conversion
 				Q_ASSERT(tmp_string.length()+2 < DSP_SIZE);
-				_display_amount = (CALCAMNT)tmp_string.toDouble(&tmp_flag);
+				_display_amount = toDouble(tmp_string, tmp_flag);
 				Q_ASSERT(tmp_flag == true);
 				setText(tmp_string + "e0");
 			}
@@ -384,7 +396,7 @@ bool KCalcDisplay::updateDisplay(void)
 				tmp_string +=  'e' + _str_int_exp;
 				Q_ASSERT(tmp_string.length() < DSP_SIZE);
 				setText(tmp_string);
-				_display_amount = (CALCAMNT)tmp_string.toDouble(&tmp_flag);
+				_display_amount = toDouble(tmp_string, tmp_flag);
 				Q_ASSERT(tmp_flag == true);
 			}
 		}
