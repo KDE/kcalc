@@ -3,4 +3,6 @@
 
 * get rid of dlabel.h & dlabel.cpp
 * use try/throw for errors instead of C-style
-
+* key groups for color configuration need to be rethought
+* better to handle keys with "accel" or with "keyPressEvent"?
+* It would be nice to press for example "shift" and see, the accel for each button (as a Tooltip or something).

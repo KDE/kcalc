@@ -260,26 +260,43 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	QToolTip::add(pbPower, i18n("x to the power of y"));
 	connect(pbPower, SIGNAL(clicked(void)), SLOT(slotPowerclicked(void)));
 
-	pbAND = new QPushButton("And", mSmallPage, "AND-Button");
+	pbAND = new QPushButton("AND", mSmallPage, "AND-Button");
 	QToolTip::add(pbAND, i18n("Bitwise AND"));
 	pbAND->setAutoDefault(false);
 	connect(pbAND, SIGNAL(clicked(void)), SLOT(slotANDclicked(void)));
 
-	pbOR = new QPushButton("Or", mSmallPage, "OR-Button");
+	pbOR = new QPushButton("OR", mSmallPage, "OR-Button");
 	QToolTip::add(pbOR, i18n("Bitwise OR"));
 	pbOR->setAutoDefault(false);
 	connect(pbOR, SIGNAL(clicked(void)), SLOT(slotORclicked(void)));
+
+	pbXOR = new QPushButton("XOR", mSmallPage, "XOR-Button");
+	QToolTip::add(pbXOR, i18n("Bitwise XOR"));
+	pbXOR->setAutoDefault(false);
+	connect(pbXOR, SIGNAL(clicked(void)), SLOT(slotXORclicked(void)));
 
 	pbNegate = new QPushButton("Cmp", mSmallPage, "OneComplement-Button");
 	QToolTip::add(pbNegate, i18n("One's complement"));
 	pbNegate->setAutoDefault(false);
 	connect(pbNegate, SIGNAL(clicked(void)), SLOT(slotNegateclicked(void)));
 
-	pbShift = new QPushButton("Lsh", mSmallPage, "Bitshift-Button");
-	QToolTip::add(pbShift, i18n("Bit shift"));
-	pbShift->setAutoDefault(false);
-	connect(pbShift, SIGNAL(clicked(void)), SLOT(slotShiftclicked(void)));
+	pbLeftShift = new QPushButton("Lsh", mSmallPage,
+				      "LeftBitShift-Button");
+	accel()->insert("Apply left shift", i18n("Pressed '<'-Button"),
+			0, Qt::Key_Less, pbLeftShift, SLOT(animateClick()));
+	QToolTip::add(pbLeftShift, i18n("Left bit shift"));
+	pbLeftShift->setAutoDefault(false);
+	connect(pbLeftShift, SIGNAL(clicked(void)),
+		SLOT(slotLeftShiftclicked(void)));
 
+	pbRightShift = new QPushButton("Rsh", mSmallPage,
+				       "RightBitShift-Button");
+	accel()->insert("Apply right shift", i18n("Pressed '>'-Button"),
+			0, Qt::Key_Greater, pbRightShift, SLOT(animateClick()));
+	QToolTip::add(pbRightShift, i18n("Right bit shift"));
+	pbRightShift->setAutoDefault(false);
+	connect(pbRightShift, SIGNAL(clicked(void)),
+		SLOT(slotRightShiftclicked(void)));
 
 	//
 	// All these layouts are needed because all the groups have their
@@ -327,23 +344,25 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 
 	smallBtnLayout->addWidget(pbStatStdDev, 2, 0);
 	smallBtnLayout->addWidget(pbCos, 2, 1);
-	smallBtnLayout->addWidget(pbShift, 2, 2);
+	smallBtnLayout->addWidget(pbXOR, 2, 2);
 	smallBtnLayout->addWidget(pbReci, 2, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xC), 2, 4);
 
 	smallBtnLayout->addWidget(pbStatMedian, 3, 0);
 	smallBtnLayout->addWidget(pbTan, 3, 1);
-	smallBtnLayout->addWidget(pbNegate, 3, 2);
+	smallBtnLayout->addWidget(pbLeftShift, 3, 2);
 	smallBtnLayout->addWidget(pbFactorial, 3, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xD), 3, 4);
 
 	smallBtnLayout->addWidget(pbStatDataInput, 4, 0);
 	smallBtnLayout->addWidget(pbLog, 4, 1);
+	smallBtnLayout->addWidget(pbRightShift, 4, 2);
 	smallBtnLayout->addWidget(pbSquare, 4, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xE), 4, 4);
 
 	smallBtnLayout->addWidget(pbStatClearData, 5, 0);
 	smallBtnLayout->addWidget(pbLn, 5, 1);
+	smallBtnLayout->addWidget(pbNegate, 5, 2);
 	smallBtnLayout->addWidget(pbPower, 5, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xF), 5, 4);
 
@@ -409,9 +428,11 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	mOperationButtonList.append(pbAND);
 	mOperationButtonList.append(pbDivision);
 	mOperationButtonList.append(pbOR);
+	mOperationButtonList.append(pbXOR);
 	mOperationButtonList.append(pbPlus);
 	mOperationButtonList.append(pbMinus);
-	mOperationButtonList.append(pbShift);
+	mOperationButtonList.append(pbLeftShift);
+	mOperationButtonList.append(pbRightShift);
 	mOperationButtonList.append(pbPeriod);
 	mOperationButtonList.append(pbEqual);
 	mOperationButtonList.append(pbPercent);
@@ -432,8 +453,10 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	slotAngleSelected(0);
 
 	updateGeometry();
-	setFixedSize(minimumSize());
-
+	
+	adjustSize();
+	setFixedSize(sizeHint());
+	
 	UpdateDisplay(true);
 }
 
@@ -923,9 +946,6 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 	  //	else
 			pbStatDataInput->animateClick(); // stat mode
 		break;
-	case Key_Less:
-		pbShift->animateClick();
-		break;
 	case Key_AsciiCircum:
 		pbPower->animateClick();
 		break;
@@ -1246,10 +1266,14 @@ void KCalculator::slotDivisionclicked(void)
 
 void KCalculator::slotORclicked(void)
 {
-	if (inverse)
-		core.Xor(calc_display->getAmount());
-	else
-		core.Or(calc_display->getAmount());
+	core.Or(calc_display->getAmount());
+
+	UpdateDisplay(true);
+}
+
+void KCalculator::slotXORclicked(void)
+{
+	core.Xor(calc_display->getAmount());
 
 	UpdateDisplay(true);
 }
@@ -1268,12 +1292,16 @@ void KCalculator::slotMinusclicked(void)
 	UpdateDisplay(true);
 }
 
-void KCalculator::slotShiftclicked(void)
+void KCalculator::slotLeftShiftclicked(void)
 {
-	if (inverse)
-		core.ShiftRight(calc_display->getAmount());
-	else
-		core.ShiftLeft(calc_display->getAmount());
+	core.ShiftLeft(calc_display->getAmount());
+
+	UpdateDisplay(true);
+}
+
+void KCalculator::slotRightShiftclicked(void)
+{
+	core.ShiftRight(calc_display->getAmount());
 
 	UpdateDisplay(true);
 }
@@ -1472,7 +1500,8 @@ void KCalculator::slotStatshow(bool toggled)
 		pbStatDataInput->hide();
 		pbStatClearData->hide();
 	}
-
+	adjustSize();
+	setFixedSize(sizeHint());
 }
 
 void KCalculator::slotTrigshow(bool toggled)
@@ -1497,6 +1526,8 @@ void KCalculator::slotTrigshow(bool toggled)
 		pbAngleChoose->hide();
 		statusBar()->removeItem(2);
 	}
+	adjustSize();
+	setFixedSize(sizeHint());
 }
 
 void KCalculator::slotExpLogshow(bool toggled)
@@ -1511,6 +1542,8 @@ void KCalculator::slotExpLogshow(bool toggled)
 		pbLog->hide();
 		pbLn ->hide();
 	}
+	adjustSize();
+	setFixedSize(sizeHint());
 }
 
 void KCalculator::slotLogicshow(bool toggled)
@@ -1519,8 +1552,10 @@ void KCalculator::slotLogicshow(bool toggled)
 	{
 	        pbAND->show();
 		pbOR->show();
+		pbXOR->show();
 		pbNegate->show();
-		pbShift->show();
+		pbLeftShift->show();
+		pbRightShift->show();
 		statusBar()->insertFixedItem(" HEX ", 1, true);
 		statusBar()->setItemAlignment(1, AlignCenter);
 		slotBaseSelected(10);
@@ -1532,8 +1567,10 @@ void KCalculator::slotLogicshow(bool toggled)
 	{
 	        pbAND->hide();
 		pbOR->hide();
+		pbXOR->hide();
 		pbNegate->hide();
-		pbShift->hide();
+		pbLeftShift->hide();
+		pbRightShift->hide();
 		// Hide Hex-Buttons, but first switch back to decimal
 		slotBaseSelected(10);
 		pbBaseChoose->hide();
@@ -1541,6 +1578,8 @@ void KCalculator::slotLogicshow(bool toggled)
 		for (int i=10; i<16; i++)
 			(NumButtonGroup->find(i))->hide();
 	}
+	adjustSize();
+	setFixedSize(sizeHint());
 }
 
 void KCalculator::slotShowAll(void)

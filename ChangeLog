@@ -1,3 +1,7 @@
+2003-10-20 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* At last the calculator window resizes, when buttons are hidden/shown
+	* Added a few extra buttons to "fill gaps".
+	
 2003-10-14 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* RadioButtons for Base and Angle converted to PopUpMenu+Button
 	* Layout changed

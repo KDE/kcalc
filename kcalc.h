@@ -120,9 +120,11 @@ protected slots:
     void slotXclicked(void);
     void slotDivisionclicked(void);
     void slotORclicked(void);
+    void slotXORclicked(void);
     void slotPlusclicked(void);
     void slotMinusclicked(void);
-    void slotShiftclicked(void);
+    void slotLeftShiftclicked(void);
+    void slotRightShiftclicked(void);
     void slotPeriodclicked(void);
     void slotEqualclicked(void);
     void slotPercentclicked(void);
@@ -177,9 +179,11 @@ private:
     QPushButton* 	pbX;
     QPushButton* 	pbDivision;
     QPushButton* 	pbOR;
+    QPushButton* 	pbXOR;
     QPushButton* 	pbPlus;
     QPushButton* 	pbMinus;
-    QPushButton* 	pbShift;
+    QPushButton* 	pbLeftShift;
+    QPushButton* 	pbRightShift;
     QPushButton* 	pbPeriod;
     QPushButton* 	pbEqual;
     QPushButton* 	pbPercent;
