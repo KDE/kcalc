@@ -35,6 +35,9 @@
 #include <limits.h>
 #include <signal.h>
 #include <stdio.h>
+#include <stdexcept>
+
+using namespace std;
 
 #include <klocale.h>
 #include <kmessagebox.h>
@@ -65,6 +68,16 @@ stack_ptr	top_type_stack[2] = { NULL, NULL };
 int 		stack_next, stack_last;
 stack_item	process_stack[STACK_SIZE];
 
+#ifdef HAVE_LONG_DOUBLE
+	#define PRINT_FLOAT		"%.*Lf"
+	#define PRINT_LONG_BIG	"%.*Lg"
+	#define PRINT_LONG		"%Lg"
+#else
+	#define PRINT_FLOAT		"%.*f"
+	#define PRINT_LONG_BIG	"%.*g"
+	#define PRINT_LONG		"%g"
+#endif
+
 item_contents 	display_data;
 
 int precedence[14] = { 0, 1, 2, 3, 4, 4, 5, 5, 6, 6, 6, 7, 7, 6 };
@@ -86,26 +99,6 @@ int adjust_op[14][3] =
 	{FUNC_PWR_ROOT, FUNC_PWR_ROOT, FUNC_PWR_ROOT},
 	{FUNC_INTDIV,   FUNC_INTDIV,   FUNC_INTDIV},
 };
-
-/*
-char *function_desc[] =
-{
-	"Null",
-	"Or",
-	"Exclusive Or",
-	"And",
-	"Left Shift",
-	"Right Shift",
-	"Add",
-	"Subtract",
-	"Multiply",
-	"Divide",
-	"Modulus"
-	"Power"
-	"Reciprocal Power"
-	"Integer Division"
-};
-*/
 
 Arith Arith_ops[14] =
 {
@@ -356,8 +349,7 @@ void QtCalculator::RefreshCalculator()
 //-------------------------------------------------------------------------
 void QtCalculator::EnterDigit(int data)
 {
-	if(eestate)
-	{
+	if(eestate) {
 		QString string;
 		string.setNum(data);
 		strcat(display_str, string.latin1());
@@ -368,33 +360,30 @@ void QtCalculator::EnterDigit(int data)
 
 	last_input = DIGIT;
 
-	if (refresh_display)
-	{
+	if (refresh_display) {
 		DISPLAY_AMOUNT = 0L;
 		decimal_point = 0;
 		refresh_display = false;
 		input_count = 0;
 	}
 
-	if (!(input_limit && input_count >= input_limit))
-		if (DISPLAY_AMOUNT < 0)
+	if (!(input_limit && input_count >= input_limit)) {
+		if (DISPLAY_AMOUNT < 0) {
 			DISPLAY_AMOUNT = decimal_point ?
 			DISPLAY_AMOUNT - ((CALCAMNT)data /
 			POW(current_base, decimal_point++)) :
 			(current_base * DISPLAY_AMOUNT) - data;
-		else
+		} else {
 			DISPLAY_AMOUNT = decimal_point ?
 			DISPLAY_AMOUNT + ((CALCAMNT)data /
 			POW(current_base, decimal_point++)) :
 			(current_base * DISPLAY_AMOUNT) + data;
-
-		if (decimal_point)
-		{
-			input_count ++;
-#ifdef MYDEBUG
-	printf("EnterDigit() inc dec.point:%d\n",input_count);
-#endif
 		}
+	}
+
+	if (decimal_point) {
+		input_count ++;
+	}
 
 	UpdateDisplay();
 }
@@ -405,31 +394,24 @@ void QtCalculator::EnterDigit(int data)
 void QtCalculator::SubtractDigit()
 {
 	// This function could be better, possibly, but am I glad to see it!
-	if (DISPLAY_AMOUNT != 0)
-	{
-                if (current_base == NB_DECIMAL && (DISPLAY_AMOUNT != floor(DISPLAY_AMOUNT)))
-                {
-                        if (decimal_point < 3)
-                        {
-                            decimal_point = 0;
-                            DISPLAY_AMOUNT = floor(DISPLAY_AMOUNT);
-                        }
-                        else
-                        {
-                            --decimal_point;
-                            DISPLAY_AMOUNT = floor(DISPLAY_AMOUNT * POW(current_base, decimal_point - 1)) /
-                                             POW(current_base, (decimal_point - 1));
-                        }
-                }
-                else
-                {
-                        DISPLAY_AMOUNT = floor(DISPLAY_AMOUNT / current_base);
-                }
+	if (DISPLAY_AMOUNT != 0) {
+		if (current_base == NB_DECIMAL && (DISPLAY_AMOUNT !=
+		floor(DISPLAY_AMOUNT))) {
+			if (decimal_point < 3) {
+				decimal_point = 0;
+				DISPLAY_AMOUNT = floor(DISPLAY_AMOUNT);
+			} else {
+				--decimal_point;
+				DISPLAY_AMOUNT = floor(DISPLAY_AMOUNT * POW(current_base, decimal_point - 1)) /
+				POW(current_base, (decimal_point - 1));
+			}
+		} else {
+			DISPLAY_AMOUNT = floor(DISPLAY_AMOUNT / current_base);
+		}
 
-                if (input_count > 0)
-                {
-                        --input_count;
-                }
+		if (input_count > 0) {
+			--input_count;
+		}
 	}
 
 #ifdef MYDEBUG
@@ -635,9 +617,7 @@ void QtCalculator::EnterStackFunction(int data)
 	}
 	*/
 
-	//	printf("data %d dummy %d\n",data,dummy);
 	data = adjust_op[data][dummy];
-	//	printf("data %d \n",data );
 
 	PushStack(&display_data);
 
@@ -647,8 +627,10 @@ void QtCalculator::EnterStackFunction(int data)
 		new_precedence = precedence[data] + precedence_base;
 
 	refresh_display = true;
-	if (UpdateStack(new_precedence))
+	if (UpdateStack(new_precedence)) {
 		UpdateDisplay();
+	}
+	
 	PushStack(&new_item);
 }
 
@@ -1658,60 +1640,32 @@ void QtCalculator::UpdateDisplay()
 			break;
 
 		case NB_DECIMAL:
-                        if (kcalcdefaults.fixed)
-                        {
-                                str_size = sprintf(display_str,
-
-#ifdef HAVE_LONG_DOUBLE
-                                        "%.*Lf", // was *Lg
-                                        kcalcdefaults.fixedprecision,
-#else
-                                        "%.*f",
-                                        kcalcdefaults.fixedprecision,
-#endif
-                                        DISPLAY_AMOUNT);
-                        }
-			else if(last_input == DIGIT || DISPLAY_AMOUNT > 1.0e+16)
-			{
+            if (kcalcdefaults.fixed) {
+                    str_size = sprintf(display_str, 
+						PRINT_FLOAT,
+						kcalcdefaults.fixedprecision,
+						DISPLAY_AMOUNT);
+            } else if(last_input == DIGIT || DISPLAY_AMOUNT > 1.0e+16) {
 
 				// if I don't guard against the DISPLAY_AMOUNT being too large
 				// kcalc will segfault on larger amount. Such as from typing
 				// from 5*5*******
 				str_size = sprintf(display_str,
-#ifdef HAVE_LONG_DOUBLE
-					"%.*Lg", // was *Lg
-					kcalcdefaults.precision + 1,
-#else
-					"%.*g",
-					kcalcdefaults.precision + 1,
-#endif
-					DISPLAY_AMOUNT);
+							PRINT_LONG_BIG,
+							kcalcdefaults.precision + 1,
+							DISPLAY_AMOUNT);
+			} else {
+				str_size = sprintf(display_str, PRINT_LONG, DISPLAY_AMOUNT);
 			}
-                        else
-                        {
-#ifdef HAVE_LONG_DOUBLE
-                            str_size = sprintf(display_str, "%Lg", DISPLAY_AMOUNT);
-#else
-                            str_size = sprintf(display_str, "%g", DISPLAY_AMOUNT);
-#endif
-                        }
 
 			if (input_count > 0 && !strpbrk(display_str,"e") &&
 				last_input == DIGIT )
 			{
-#ifdef HAVE_LONG_DOUBLE
 				str_size = sprintf(display_str,
-					"%.*Lf",
+					PRINT_FLOAT,
 					(kcalcdefaults.precision +1 > input_count)?
 					input_count : kcalcdefaults.precision ,
 					DISPLAY_AMOUNT);
-#else
-				str_size = sprintf(display_str,
-					"%.*f",
-					(kcalcdefaults.precision +1 > input_count)?
-					input_count : kcalcdefaults.precision ,
-					DISPLAY_AMOUNT);
-#endif
 			}
 			break;
 
@@ -1789,7 +1743,7 @@ int QtCalculator::cvb(char *out_str, long amount, int max_digits)
 	bool hitOne		= false;
 	unsigned long bit_mask =
 		((unsigned long) 1 << ((sizeof(amount) * CHAR_BIT) - 1));
-   unsigned int count = 0 ;
+	unsigned int count = 0 ;
 
 	while(bit_mask != 0 && max_digits > 0)
 	{
@@ -2269,7 +2223,9 @@ stack_ptr AllocStackItem()
 		return (process_stack + (stack_next++));
 	}
 
-	KMessageBox::error(0L, i18n("Stack Error!") );
+	throw runtime_error("stack error");
+	
+	// never reached
 	return (process_stack + stack_next);
 }
 
@@ -2278,8 +2234,9 @@ stack_ptr AllocStackItem()
 //-------------------------------------------------------------------------
 void UnAllocStackItem(stack_ptr return_item)
 {
-	if (return_item != (process_stack + (--stack_next)))
-		KMessageBox::error(0L, i18n("Stack Error!") );
+	if (return_item != (process_stack + (--stack_next))) {
+		throw runtime_error("stack error");
+	}
 }
 
 //-------------------------------------------------------------------------

@@ -41,17 +41,13 @@ DLabel::DLabel(QWidget *parent, const char *name)
 //-------------------------------------------------------------------------
 void DLabel::mousePressEvent(QMouseEvent *e)
 {
-	if(e->button() == LeftButton)
-	{
+	if(e->button() == LeftButton) {
 		lit = !lit;
 		button = LeftButton;
-	}
-	else
-	{
+	} else {
 		button = MidButton;
 	}
-
-
+	
 	emit clicked();
 }
 

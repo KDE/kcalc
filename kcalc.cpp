@@ -1975,21 +1975,18 @@ void QtCalculator::writeSettings()
 //-------------------------------------------------------------------------
 void QtCalculator::display_selected()
 {
-	if(calc_display->Button() == LeftButton)
-	{
-		if(calc_display->isLit())
-		{
+	if(calc_display->Button() == LeftButton) {
+	
+		if(calc_display->isLit()) {
 			QClipboard *cb = QApplication::clipboard();
 			cb->setText(calc_display->text());
 			selection_timer->start(100);
-		}
-		else
+		} else {
 			selection_timer->stop();
+		}
 
 		invertColors();
-	}
-	else
-	{
+	} else {
 		QClipboard *cb = QApplication::clipboard();
 
 		CALCAMNT result;
