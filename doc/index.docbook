@@ -46,7 +46,7 @@
 <chapter id="introduction">
 <title>Introduction</title>
 
-<para>This document describes &kcalc; version 1.3.2.</para>
+<para>This document describes &kcalc; version 1.6.</para>
 
 <para>&kcalc; offers many more mathematical functions than meet the eye
 on a first glance. Please study the section on keyboard accelerators and
@@ -59,27 +59,28 @@ worthwhile pointing out:</para>
 
 <itemizedlist>
 <listitem>
-<para>&kcalc; has a trigonometric and a statistics mode.</para>
+<para>&kcalc; provides trigonometric functions, logic operations, and it is
+able to do statistical calculations.</para>
 </listitem>
 <listitem>
-<para>&kcalc; allows you to cut and paste numbers
-from/into its display.</para>
+<para>&kcalc; allows you to cut and paste numbers from/into its display.</para>
 </listitem>
 <listitem>
 <para>&kcalc; features a <firstterm>results-stack</firstterm> which lets
 you conveniently recall previous results.</para>
 </listitem>
 <listitem>
-<para>You can
-configure &kcalc;'s display colors and font.</para>
+<para>You can configure &kcalc;'s display colors and font.</para>
 </listitem>
 <listitem>
 <para>You can configure &kcalc;'s  precision and the number
 of digits after the period.</para>
 </listitem>
 <listitem>
-<para> &kcalc; offers a great number of useful key-bindings, which make using &kcalc;
-without using a pointing device easy.</para>
+<para> &kcalc; offers a great number of useful  <link linkend="key-accels">
+key-bindings</link>, which make using &kcalc; without using a pointing device easy.</para>
+<para>Hint: Pressing (and holding) the <keycap>&Ctrl;</keycap>-key, displays on every button,
+the corresponding key-binding.</para>
 </listitem>
 </itemizedlist>
 
@@ -123,27 +124,31 @@ linkend="percent">percent</link> function for further details.</para>
 <listitem>
 <para><itemizedlist>
 <listitem>
-<para>Pressing the &LMB; on &kcalc;'s display will place the displayed
-number on to the clipboard.</para>
+<para>Pressing <keycombo action="simul">&Ctrl;<keycap>C</keycap></keycombo>
+will place the displayed number on to the clipboard.</para>
 </listitem>
 <listitem>
-<para>Pressing the <mousebutton>right</mousebutton> or &MMB; on
-&kcalc;'s display will paste the clipboard content into the display if
-the content of the clipboard is a valid floating point number.</para>
+<para>Pressing <keycombo action="simul">&Ctrl;<keycap>V</keycap></keycombo>
+will paste the clipboard content into the display if the content of the
+clipboard is a valid floating point number.</para>
+</listitem>
+<listitem>
+<para>It is still possible to copy/paste by clicking on &kcalc;'s display,
+but this may disappear in future versions.</para>
 </listitem>
 </itemizedlist>
 </para></listitem></varlistentry>
 
 <varlistentry>
-<term>Statistical and Trigonometric Modes</term>
+<term>Advanced functions</term>
 <listitem>
-<para>&kcalc; can run in <link
-linkend="statistical-mode">Statistical</link> or <link
-linkend="trigonometric-mode">Trigonometric</link> mode. Pressing
-<keycap>F3</keycap> will toggle between the modes or you can set the
-mode with the <guilabel>Configuration</guilabel> dialog brought up by
-pressing the <guibutton>Configure</guibutton> button or with
-<keycap>F2</keycap>.</para> 
+<para>When you start &kcalc; for the first time, the calculator will only
+display buttons for basic arithmetic computations.</para>
+<para>Under the menu entry <guimenu>Settings</guimenu> it is possible to
+open extra buttons for &kcalc;:
+It is for example possible to choose
+<link linkend="statistical-mode">Statistical</link> or
+<link linkend="trigonometric-mode">Trigonometric</link> buttons.</para> 
 </listitem>
 </varlistentry>
 </variablelist>
@@ -251,6 +256,9 @@ sinh(x)</entry></row>
 <para>To simplify entering calculations from the keyboard &kcalc; has single key
 accelerators for most functions. For example entering <userinput>7R</userinput>
 or <userinput>7r</userinput> will calculate the reciprocal of 7 (1/7).</para>
+
+<para>During a computation, you can always press <keycap>&Ctrl;</keycap> to make each
+button display its key-binding.</para>
 
 <informaltable><tgroup cols="3">
 <thead>
@@ -371,10 +379,6 @@ you want arcsin(x) type <userinput>i s </userinput></entry></row>
 <row><entry><keycap>Del</keycap></entry>
 <entry><guibutton>AC</guibutton></entry>
 <entry>Clear all</entry></row>
-
-<row><entry><keycap>F2</keycap></entry>
-<entry><guibutton>Configure</guibutton></entry>
-<entry>Bring up the configure dialog</entry></row>
 
 </tbody></tgroup></informaltable>
 
@@ -571,7 +575,7 @@ the precision and you will see what I mean.</para>
 
 <para>&kcalc; Program Copyright &copy;:</para>
 <para>Bernd Johannes Wuebben 1996-2000</para>
-<para>The &kde; Team 2000-2002</para>
+<para>The &kde; Team 2000-2004</para>
 
 <itemizedlist>
 <listitem><para>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para></listitem>
