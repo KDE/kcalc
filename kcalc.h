@@ -98,7 +98,6 @@ protected slots:
     void set_colors();
     void EnterEqual();
     void showSettings();
-    void RefreshCalculator();
     void slotStatshow(bool toggled);
     void slotTrigshow(bool toggled);
     void slotExpLogshow(bool toggled);

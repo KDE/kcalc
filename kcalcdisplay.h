@@ -93,17 +93,20 @@ protected:
 	void  mousePressEvent ( QMouseEvent *);
 
 public:
-	bool changeSign(void);
-	bool clearLastInput(void);
+	enum Event {
+	  EventReset, // resets display
+	  EventClear, // if no _error reset display
+	  EventError,
+	  EventChangeSign
+	};
+	bool sendEvent(Event const event);
 	void deleteLastDigit(void);
 	CALCAMNT getAmount(void) const;
 	bool getError(void) const;
 	void newCharacter(char const new_char);
-	void Reset(void);
 	bool setAmount(CALCAMNT new_amount);
 	int setBase(NumBase new_base);
 	void setBeep(bool flag);
-	void setError(bool error);
 	void setFixedPrecision(int precision);
 	void setPrecision(int precision);
 	void setText(QString const &string);
@@ -123,6 +126,7 @@ private:
 	bool _error;
 	CALCAMNT _display_amount;
 private:
+	bool changeSign(void);
 	void invertColors(void);
 
 	// only used for input of new numbers

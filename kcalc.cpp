@@ -1183,19 +1183,19 @@ void KCalculator::slotAngleSelected(int number)
 	switch(number)
 	{
 	case 0:
-		core.SetAngleMode(ANG_DEGREE);
+		core.setAngleMode(CalcEngine::AngleDegree);
 		statusBar()->changeItem("DEG", 2);
 		break;
 	case 1:
-		core.SetAngleMode(ANG_RADIAN);
+		core.setAngleMode(CalcEngine::AngleRadian);
 		statusBar()->changeItem("RAD", 2);
 		break;
 	case 2:
-		core.SetAngleMode(ANG_GRADIENT);
+		core.setAngleMode(CalcEngine::AngleGradient);
 		statusBar()->changeItem("GRA", 2);
 		break;
 	default: // we shouldn't ever end up here
-		core.SetAngleMode(ANG_RADIAN);
+		core.setAngleMode(CalcEngine::AngleRadian);
 	}
 }
 
@@ -1240,7 +1240,7 @@ void KCalculator::slotHyptoggled(bool flag)
 void KCalculator::slotMRclicked(void)
 {
 	// temp. work-around
-	calc_display->Reset();
+	calc_display->sendEvent(KCalcDisplay::EventReset);
 
 	calc_display->setAmount(memory_num);
 	UpdateDisplay(false);
@@ -1277,7 +1277,7 @@ void KCalculator::slotPlusMinusclicked(void)
 {
 	// display can only change sign, when in input mode, otherwise we
 	// need the core to do this.
-	if (!calc_display->changeSign())
+	if (!calc_display->sendEvent(KCalcDisplay::EventChangeSign))
 	{
 	    core.InvertSign(calc_display->getAmount());
 	    UpdateDisplay(true);
@@ -1397,7 +1397,7 @@ void KCalculator::slotPowerclicked(void)
 	}
 	// temp. work-around
 	CALCAMNT tmp_num = calc_display->getAmount();
-	calc_display->Reset();
+	calc_display->sendEvent(KCalcDisplay::EventReset);
 	calc_display->setAmount(tmp_num);
 	UpdateDisplay(false);
 }
@@ -1411,13 +1411,13 @@ void KCalculator::slotMCclicked(void)
 
 void KCalculator::slotClearclicked(void)
 {
-	calc_display->clearLastInput();
+	calc_display->sendEvent(KCalcDisplay::EventClear);
 }
 
 void KCalculator::slotACclicked(void)
 {
 	core.Reset();
-	calc_display->Reset();
+	calc_display->sendEvent(KCalcDisplay::EventReset);
 
 	UpdateDisplay(true);
 }
@@ -1941,12 +1941,6 @@ void KCalculator::slotHideAll(void)
 	if(actionConstantsShow->isChecked()) actionConstantsShow->activate();
 }
 
-void KCalculator::RefreshCalculator()
-{
-	pbInv->setOn(false);
-	calc_display->Reset();
-}
-
 void KCalculator::updateSettings()
 {
 	changeButtonNames();
@@ -1978,7 +1972,7 @@ void KCalculator::updateSettings()
 }
 
 void KCalculator::UpdateDisplay(bool get_amount_from_core,
-				 bool store_result_in_history)
+				bool store_result_in_history)
 {
 	if(get_amount_from_core)
 	{

@@ -67,13 +67,46 @@ KCalcDisplay::KCalcDisplay(QWidget *parent, const char *name)
 	connect(selection_timer, SIGNAL(timeout()),
 		this, SLOT(slotSelectionTimedOut()));
 
-	Reset();
+	sendEvent(EventReset);
 }
 
 KCalcDisplay::~KCalcDisplay()
 {
 	delete selection_timer;
 }
+
+bool KCalcDisplay::sendEvent(Event const event)
+{
+	switch(event)
+	{
+	case EventReset:
+		_error = false;
+		_display_amount = 0.0;
+		_str_int = "0";
+		_str_int_exp = (char *)0;
+
+		_eestate = false;
+		_period = false;
+		_neg_sign = false;
+
+		updateDisplay();
+
+		return true;
+	case EventClear:
+		if (! _error) return sendEvent(EventReset);
+		return false;
+	case EventChangeSign:
+		return changeSign();
+	case EventError:
+		_error = true;
+		updateDisplay();
+
+		return true;
+	default:
+		return false;
+	}
+}
+
 
 void KCalcDisplay::slotCut(void)
 {
@@ -84,7 +117,7 @@ void KCalcDisplay::slotCut(void)
 	}
 
 	slotCopy();
-	Reset();
+	sendEvent(EventReset);
 }
 
 void KCalcDisplay::slotCopy(void)
@@ -202,8 +235,7 @@ CALCAMNT KCalcDisplay::getAmount(void) const
 
 bool KCalcDisplay::setAmount(CALCAMNT new_amount)
 {
-	if(_error)
-		return false;
+	if(_error) return false;
 
 	QString display_str;
 
@@ -223,7 +255,10 @@ bool KCalcDisplay::setAmount(CALCAMNT new_amount)
 		MODF(_display_amount, &tmp_round);
 
 		if (tmp_round < KCALC_LONG_MIN || tmp_round > KCALC_ULONG_MAX)
-			_error = true;
+		{
+			sendEvent(EventError);
+			return false;
+		}
 
 		//
 		// We may be in that never-never land where boh numbers
@@ -243,7 +278,11 @@ bool KCalcDisplay::setAmount(CALCAMNT new_amount)
 		}
 
 		display_str = QString::number(rounded_num, _num_base).upper();
-		if (display_str.length() > DSP_SIZE) _error = true;
+		if (display_str.length() > DSP_SIZE)
+		{
+			sendEvent(EventError);
+			return false;
+		}
 	}
 	else // _num_base == NB_DECIMAL
 	{
@@ -257,20 +296,16 @@ bool KCalcDisplay::setAmount(CALCAMNT new_amount)
 		else
 			display_str = QCString().sprintf(PRINT_LONG_BIG, _precision, _display_amount);
 
-		if (display_str.length() > DSP_SIZE) _error = true;
+		if (display_str.length() > DSP_SIZE)
+		{
+			sendEvent(EventError);
+			return false;
+		}
 	}
 
-	if(_error)
-	{
-		if(_beep) KNotifyClient::beep();
-		setText(i18n("Error"));
-		return false;
-	}
-	else
-	{
-		setText(display_str);
-		return true;
-	}
+	Q_ASSERT(_error == false);
+	setText(display_str);
+	return true;
 	
 }
 
@@ -637,46 +672,7 @@ bool KCalcDisplay::changeSign(void)
 	return true;
 }
 
-bool KCalcDisplay::clearLastInput(void)
-{
-	if (_error)
-	{
-		return updateDisplay();
-	}
-	else
-	{
-		_period	= false;
-		_eestate = false;
-		_neg_sign = false;
-		_str_int = "0";
-		_str_int_exp = (char *)0;
-		return updateDisplay();
-	}
-}
-
-void KCalcDisplay::setError(bool error)
-{
-	_error = error;
-	updateDisplay();
-}
-
 bool KCalcDisplay::getError(void) const
 {
 	return _error;
-}
-
-void KCalcDisplay::Reset(void)
-{
-	// This updates display through setError.
-	// Should one explicitly call UpdateDisplay to be nicer?
-
-	_display_amount = 0.0;
-	_str_int = "0";
-	_str_int_exp = (char *)0;
-
-	_eestate = false;
-	_period = false;
-	_neg_sign = false;
-
-	setError(false);
 }

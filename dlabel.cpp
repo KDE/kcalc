@@ -64,8 +64,8 @@ void DispLogic::update_from_core(CalcEngine const &core,
 				 bool store_result_in_history)
 {
 	bool tmp_error;
-	CALCAMNT output = core.last_output(tmp_error);
-	setError(tmp_error);
+	CALCAMNT output = core.lastOutput(tmp_error);
+	if(tmp_error) sendEvent(EventError);
 	if (setAmount(output)  &&  store_result_in_history  &&
 	    output != 0)
 	{

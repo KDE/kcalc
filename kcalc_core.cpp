@@ -71,28 +71,6 @@ static void fpe_handler(int fpe_parm)
 
 const CALCAMNT CalcEngine::pi = (ASIN(1L) * 2L);
 
-int precedence[14] = { 0, 1, 2, 3, 4, 4, 5, 5, 6, 6, 6, 7, 7, 6 };
-
-/*
-int adjust_op[14][3] =
-{
-	{FUNC_NULL,     FUNC_NULL,     FUNC_NULL},
-	{FUNC_OR,       FUNC_OR,       FUNC_XOR },
-	{FUNC_XOR,      FUNC_XOR,      FUNC_XOR },
-	{FUNC_AND,      FUNC_AND,      FUNC_AND },
-	{FUNC_LSH,      FUNC_LSH,      FUNC_RSH },
-	{FUNC_RSH,      FUNC_RSH,      FUNC_RSH },
-	{FUNC_ADD,      FUNC_ADD,      FUNC_ADD },
-	{FUNC_SUBTRACT, FUNC_SUBTRACT, FUNC_SUBTRACT},
-	{FUNC_MULTIPLY, FUNC_MULTIPLY, FUNC_MULTIPLY},
-	{FUNC_DIVIDE,   FUNC_DIVIDE,   FUNC_DIVIDE},
-	{FUNC_MOD,      FUNC_MOD,      FUNC_INTDIV },
-	{FUNC_POWER,    FUNC_POWER,    FUNC_PWR_ROOT},
-	{FUNC_PWR_ROOT, FUNC_PWR_ROOT, FUNC_PWR_ROOT},
-	{FUNC_INTDIV,   FUNC_INTDIV,   FUNC_INTDIV},
-};
-*/
-
 static CALCAMNT _error;
 
 static CALCAMNT ExecOr(CALCAMNT left_op, CALCAMNT right_op)
@@ -376,7 +354,7 @@ static CALCAMNT ExecDivideP(CALCAMNT left_op, CALCAMNT right_op)
 
 
 CalcEngine::CalcEngine()
-  :   precedence_base(0), percent_mode(false)
+  :   _percent_mode(false)
 {
 	//
 	// Basic initialization involves initializing the calcultion
@@ -394,8 +372,22 @@ CalcEngine::CalcEngine()
 #endif
 	sigaction(SIGFPE, &fpe_trap, NULL);
 
-	//	RefreshEngine();
-
+	// build precedence list
+	_precedence_list[FUNC_BRACKET] = 0,
+	  _precedence_list[FUNC_OR] = 1,
+	  _precedence_list[FUNC_XOR] = 2,
+	  _precedence_list[FUNC_AND] = 3,
+	  _precedence_list[FUNC_LSH] = 4,
+	  _precedence_list[FUNC_RSH] = 4,
+	  _precedence_list[FUNC_ADD] = 5,
+	  _precedence_list[FUNC_SUBTRACT] = 5,
+	  _precedence_list[FUNC_MULTIPLY] = 6,
+	  _precedence_list[FUNC_DIVIDE] = 6,
+	  _precedence_list[FUNC_MOD] = 6,
+	  _precedence_list[FUNC_POWER] = 7,
+	  _precedence_list[FUNC_PWR_ROOT] = 7,
+	  _precedence_list[FUNC_INTDIV] = 6;
+	
 	Arith_ops[0] = NULL,
 	  Arith_ops[1] = ExecOr,
 	  Arith_ops[2] = ExecXor,
@@ -426,34 +418,19 @@ CalcEngine::CalcEngine()
 	  Prcnt_ops[12] = NULL,
 	  Prcnt_ops[13] = NULL;
 
-	_last_result = 0L;
+	_last_number = 0L;
 	_error = false;
 }
 
-CALCAMNT CalcEngine::last_output(bool &error) const
+CALCAMNT CalcEngine::lastOutput(bool &error) const
 {
 	error = _error;
-	return _last_result;
+	return _last_number;
 }
-
-
-/*
-void CalcEngine::RefreshEngine()
-{
-	display_error = false;
-	DISPLAY_AMOUNT = 0L;
-	decimal_point = 0;
-	input_count = 0;
-	UpdateDisplay();
-	last_input = DIGIT; // must set last to DIGIT after Update Display in order
-						// not to get a display holding e.g. 0.000
-}
-*/
-
 
 void CalcEngine::And(CALCAMNT input)
 {
-	EnterStackFunction(FUNC_AND, input);
+	enterOperation(FUNC_AND, input);
 }
 
 void CalcEngine::ArcCos(CALCAMNT input)
@@ -462,14 +439,14 @@ void CalcEngine::ArcCos(CALCAMNT input)
 
 	switch (_angle_mode)
 	{
-	case ANG_DEGREE:
-		_last_result = Rad2Deg(tmp);
+	case AngleDegree:
+		_last_number = Rad2Deg(tmp);
 		break;
-	case ANG_GRADIENT:
-		_last_result = Rad2Gra(tmp);
+	case AngleGradient:
+		_last_number = Rad2Gra(tmp);
 		break;
-	case ANG_RADIAN:
-		_last_result = tmp;
+	case AngleRadian:
+		_last_number = tmp;
 		break;
 	}
 
@@ -483,14 +460,14 @@ void CalcEngine::ArcSin(CALCAMNT input)
 
 	switch (_angle_mode)
 	{
-	case ANG_DEGREE:
-		_last_result = Rad2Deg(tmp);
+	case AngleDegree:
+		_last_number = Rad2Deg(tmp);
 		break;
-	case ANG_GRADIENT:
-		_last_result = Rad2Gra(tmp);
+	case AngleGradient:
+		_last_number = Rad2Gra(tmp);
 		break;
-	case ANG_RADIAN:
-		_last_result = tmp;
+	case AngleRadian:
+		_last_number = tmp;
 		break;
 	}
 
@@ -504,14 +481,14 @@ void CalcEngine::ArcTangens(CALCAMNT input)
 
 	switch (_angle_mode)
 	{
-	case ANG_DEGREE:
-		_last_result = Rad2Deg(tmp);
+	case AngleDegree:
+		_last_number = Rad2Deg(tmp);
 		break;
-	case ANG_GRADIENT:
-		_last_result = Rad2Gra(tmp);
+	case AngleGradient:
+		_last_number = Rad2Gra(tmp);
 		break;
-	case ANG_RADIAN:
-		_last_result = tmp;
+	case AngleRadian:
+		_last_number = tmp;
 		break;
 	}
 
@@ -521,21 +498,21 @@ void CalcEngine::ArcTangens(CALCAMNT input)
 
 void CalcEngine::AreaCosHyp(CALCAMNT input)
 {
-	_last_result = ACOSH(input);
+	_last_number = ACOSH(input);
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
 }
 
 void CalcEngine::AreaSinHyp(CALCAMNT input)
 {
-	_last_result = ASINH(input);
+	_last_number = ASINH(input);
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
 }
 
 void CalcEngine::AreaTangensHyp(CALCAMNT input)
 {
-	_last_result = ATANH(input);
+	_last_number = ATANH(input);
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
 }
@@ -554,7 +531,7 @@ void CalcEngine::Complement(CALCAMNT input)
 
 	KCALC_LONG boh_work = (KCALC_LONG)boh_work_d;
 
-	_last_result = ~boh_work;
+	_last_number = ~boh_work;
 }
 
 void CalcEngine::Cos(CALCAMNT input)
@@ -563,22 +540,22 @@ void CalcEngine::Cos(CALCAMNT input)
 
 	switch (_angle_mode)
 	{
-	case ANG_DEGREE:
+	case AngleDegree:
 		tmp = Deg2Rad(input);
 		break;
-	case ANG_GRADIENT:
+	case AngleGradient:
 		tmp = Gra2Rad(input);
 		break;
-	case ANG_RADIAN:
+	case AngleRadian:
 		tmp = input;
 		break;
 	}
 
-	_last_result = COS(tmp);
+	_last_number = COS(tmp);
 
 	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
-	if (_last_result < POS_ZERO && _last_result > NEG_ZERO)
-		_last_result = 0.0;
+	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
+		_last_number = 0.0;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
@@ -586,22 +563,22 @@ void CalcEngine::Cos(CALCAMNT input)
 
 void CalcEngine::CosHyp(CALCAMNT input)
 {
-	_last_result = COSH(input);
+	_last_number = COSH(input);
 }
 
 void CalcEngine::Divide(CALCAMNT input)
 {
-	EnterStackFunction(FUNC_DIVIDE, input);
+	enterOperation(FUNC_DIVIDE, input);
 }
 
 void CalcEngine::Exp(CALCAMNT input)
 {
-	_last_result = EXP(input);
+	_last_number = EXP(input);
 }
 
 void CalcEngine::Exp10(CALCAMNT input)
 {
-	_last_result = POW(10, input);
+	_last_number = POW(10, input);
 }
 
 static CALCAMNT _factorial(CALCAMNT input)
@@ -641,23 +618,23 @@ void CalcEngine::Factorial(CALCAMNT input)
 
 	MODF(input, &tmp_amount);
 
-	_last_result = _factorial(tmp_amount);
+	_last_number = _factorial(tmp_amount);
 
 }
 
 void CalcEngine::InvertSign(CALCAMNT input)
 {
-	_last_result = -input;
+	_last_number = -input;
 }
 
 void CalcEngine::InvMod(CALCAMNT input)
 {
-	EnterStackFunction(FUNC_INTDIV, input);
+	enterOperation(FUNC_INTDIV, input);
 }
 
 void CalcEngine::InvPower(CALCAMNT input)
 {
-	EnterStackFunction(FUNC_PWR_ROOT, input);
+	enterOperation(FUNC_PWR_ROOT, input);
 }
 
 void CalcEngine::Ln(CALCAMNT input)
@@ -665,7 +642,7 @@ void CalcEngine::Ln(CALCAMNT input)
 	if (input <= 0.0)
 		_error = true;
 	else
-		_last_result = LN(input);
+		_last_number = LN(input);
 }
 
 void CalcEngine::Log10(CALCAMNT input)
@@ -673,57 +650,57 @@ void CalcEngine::Log10(CALCAMNT input)
 	if (input <= 0.0)
 		_error = true;
 	else
-		_last_result = LOG_TEN(input);
+		_last_number = LOG_TEN(input);
 }
 
 void CalcEngine::Minus(CALCAMNT input)
 {
-	EnterStackFunction(FUNC_SUBTRACT, input);
+	enterOperation(FUNC_SUBTRACT, input);
 }
 
 void CalcEngine::Mod(CALCAMNT input)
 {
-	EnterStackFunction(FUNC_MOD, input);
+	enterOperation(FUNC_MOD, input);
 }
 
 void CalcEngine::Multiply(CALCAMNT input)
 {
-	EnterStackFunction(FUNC_MULTIPLY, input);
+	enterOperation(FUNC_MULTIPLY, input);
 }
 
 void CalcEngine::Or(CALCAMNT input)
 {
-	EnterStackFunction(FUNC_OR, input);
+	enterOperation(FUNC_OR, input);
 }
 
 void CalcEngine::ParenClose(CALCAMNT input)
 {
-	amount_stack.push(input);
-
-	UpdateStack(precedence_base);
-
-	if ((precedence_base -= PRECEDENCE_INCR) < 0)
-		precedence_base = 0;
-
-	// sad, but necessary: pushing once above and once in
-	// UpdateStack
-	amount_stack.pop();
+ 	// evaluate stack until corresponding opening bracket
+	while (!_stack.isEmpty())
+	{
+		_node tmp_node = _stack.pop();
+		if (tmp_node.operation == FUNC_BRACKET)
+			break;
+		input = evalOperation(tmp_node.number, tmp_node.operation,
+				      input);
+	}
+	_last_number = input;
+	return;
 }
 
 void CalcEngine::ParenOpen(CALCAMNT input)
 {
-	UNUSED(input);
-	precedence_base += PRECEDENCE_INCR;
+	enterOperation(FUNC_BRACKET, input);
 }
 
 void CalcEngine::Plus(CALCAMNT input)
 {
-	EnterStackFunction(FUNC_ADD, input);
+	enterOperation(FUNC_ADD, input);
 }
 
 void CalcEngine::Power(CALCAMNT input)
 {
-	EnterStackFunction(FUNC_POWER, input);
+	enterOperation(FUNC_POWER, input);
 }
 
 void CalcEngine::Reciprocal(CALCAMNT input)
@@ -731,17 +708,17 @@ void CalcEngine::Reciprocal(CALCAMNT input)
 	if (input == 0.0)
 		_error = true;
 	else
-		_last_result = 1/input;
+		_last_number = 1/input;
 }
 		
 void CalcEngine::ShiftLeft(CALCAMNT input)
 {
-	EnterStackFunction(FUNC_LSH, input);
+	enterOperation(FUNC_LSH, input);
 }
 
 void CalcEngine::ShiftRight(CALCAMNT input)
 {
-	EnterStackFunction(FUNC_RSH, input);
+	enterOperation(FUNC_RSH, input);
 }
 
 void CalcEngine::Sin(CALCAMNT input)
@@ -750,22 +727,22 @@ void CalcEngine::Sin(CALCAMNT input)
 
 	switch (_angle_mode)
 	{
-	case ANG_DEGREE:
+	case AngleDegree:
 		tmp = Deg2Rad(input);
 		break;
-	case ANG_GRADIENT:
+	case AngleGradient:
 		tmp = Gra2Rad(input);
 		break;
-	case ANG_RADIAN:
+	case AngleRadian:
 		tmp = input;
 		break;
 	}
 
-	_last_result = SIN(tmp);
+	_last_number = SIN(tmp);
 
 	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
-	if (_last_result < POS_ZERO && _last_result > NEG_ZERO)
-		_last_result = 0.0;
+	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
+		_last_number = 0.0;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
@@ -773,12 +750,12 @@ void CalcEngine::Sin(CALCAMNT input)
 
 void CalcEngine::SinHyp(CALCAMNT input)
 {
-	_last_result = SINH(input);
+	_last_number = SINH(input);
 }
 
 void CalcEngine::Square(CALCAMNT input)
 {
-	if (ISINF(_last_result = input*input))
+	if (ISINF(_last_number = input*input))
 		_error = true;
 }
 
@@ -787,7 +764,7 @@ void CalcEngine::SquareRoot(CALCAMNT input)
 	if (input < 0.0)
 		_error = true;
 	else
-		_last_result = SQRT(input);
+		_last_number = SQRT(input);
 }
 
 void CalcEngine::StatClearAll(CALCAMNT input)
@@ -799,26 +776,26 @@ void CalcEngine::StatClearAll(CALCAMNT input)
 void CalcEngine::StatCount(CALCAMNT input)
 {
 	UNUSED(input);
-	_last_result = stats.count();
+	_last_number = stats.count();
 }
 
 void CalcEngine::StatDataNew(CALCAMNT input)
 {
 	stats.enterData(input);
-	_last_result = stats.count();
+	_last_number = stats.count();
 }
 
 void CalcEngine::StatDataDel(CALCAMNT input)
 {
 	UNUSED(input);
 	stats.clearLast();
-	_last_result = 0L;
+	_last_number = 0L;
 }
 
 void CalcEngine::StatMean(CALCAMNT input)
 {
 	UNUSED(input);
-	_last_result = stats.mean();
+	_last_number = stats.mean();
 
 	_error = stats.error();
 }
@@ -826,7 +803,7 @@ void CalcEngine::StatMean(CALCAMNT input)
 void CalcEngine::StatMedian(CALCAMNT input)
 {
 	UNUSED(input);
-	_last_result = stats.median();
+	_last_number = stats.median();
 
 	_error = stats.error();
 }
@@ -834,7 +811,7 @@ void CalcEngine::StatMedian(CALCAMNT input)
 void CalcEngine::StatStdDeviation(CALCAMNT input)
 {
 	UNUSED(input);
-	_last_result = stats.std();
+	_last_number = stats.std();
 
 	_error = stats.error();
 }
@@ -842,7 +819,7 @@ void CalcEngine::StatStdDeviation(CALCAMNT input)
 void CalcEngine::StatStdSample(CALCAMNT input)
 {
 	UNUSED(input);
-	_last_result = stats.sample_std();
+	_last_number = stats.sample_std();
 
 	_error = stats.error();
 }
@@ -850,13 +827,13 @@ void CalcEngine::StatStdSample(CALCAMNT input)
 void CalcEngine::StatSum(CALCAMNT input)
 {
 	UNUSED(input);
-	_last_result = stats.sum();
+	_last_number = stats.sum();
 }
 
 void CalcEngine::StatSumSquares(CALCAMNT input)
 {
 	UNUSED(input);
-	_last_result = stats.sum_of_squares();
+	_last_number = stats.sum_of_squares();
 
 	_error = stats.error();
 }
@@ -867,13 +844,13 @@ void CalcEngine::Tangens(CALCAMNT input)
 
 	switch (_angle_mode)
 	{
-	case ANG_DEGREE:
+	case AngleDegree:
 		tmp = Deg2Rad(input);
 		break;
-	case ANG_GRADIENT:
+	case AngleGradient:
 		tmp = Gra2Rad(input);
 		break;
-	case ANG_RADIAN:
+	case AngleRadian:
 		tmp = input;
 		break;
 	}
@@ -889,11 +866,11 @@ void CalcEngine::Tangens(CALCAMNT input)
 	if ( (aux - pi/2 < POS_ZERO * 10) && (aux - pi/2 > NEG_ZERO * 10) )
 		_error = true;
 	else
-		_last_result = TAN(tmp);
+		_last_number = TAN(tmp);
 
 	// Now a cheat to help the weird case of TAN 0 degrees not being 0!!!
-	if (_last_result < POS_ZERO && _last_result > NEG_ZERO)
-		_last_result = 0.0;
+	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
+		_last_number = 0.0;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
@@ -901,110 +878,109 @@ void CalcEngine::Tangens(CALCAMNT input)
 
 void CalcEngine::TangensHyp(CALCAMNT input)
 {
-	_last_result = TANH(input);
+	_last_number = TANH(input);
+}
+
+void CalcEngine::Xor(CALCAMNT input)
+{
+	enterOperation(FUNC_XOR, input);
 }
 
 
 void CalcEngine::Equal(CALCAMNT input)
 {
-	amount_stack.push(input);
-	_last_result = input;
-
-	UpdateStack(0);
-
-	precedence_base = 0;
+ 	// evaluate whole stack
+	while (!_stack.isEmpty())
+	{
+		_node tmp_node = _stack.pop();
+		if (tmp_node.operation == FUNC_BRACKET)
+			continue;
+		input = evalOperation(tmp_node.number, tmp_node.operation,
+				      input);
+	}
+	_last_number = input;
+	return;
 }
 
 void CalcEngine::Percent(CALCAMNT input)
 {
-	percent_mode = true;
+	_percent_mode = true;
 	
 	Equal(input);
 }
 
-void CalcEngine::EnterStackFunction(int func, CALCAMNT number)
+CALCAMNT CalcEngine::evalOperation(CALCAMNT arg1, Operation operation,
+				   CALCAMNT arg2)
 {
-	func_data new_item;
-	int new_precedence;
-
-	_last_result = number;
-
-	amount_stack.push(number);
-	
-	new_item.item_function = func;
-	new_item.item_precedence = new_precedence = 
-		(precedence[func] + precedence_base);
-
-	//	refresh_display = true;
-	if (UpdateStack(new_precedence)) {
-	  ;//	UpdateDisplay();
+	if (!_percent_mode || Prcnt_ops[operation] == NULL)
+	{
+		return (Arith_ops[operation])(arg1, arg2);
+	} else {
+		_percent_mode = false;
+		return (Prcnt_ops[operation])(arg1, arg2);
 	}
-
-	func_stack.push(new_item);
 }
 
-void CalcEngine::Xor(CALCAMNT input)
+void CalcEngine::enterOperation(Operation func, CALCAMNT number)
 {
-	EnterStackFunction(FUNC_XOR, input);
+	_node tmp_node;
+
+	if (func == FUNC_BRACKET)
+	{
+		tmp_node.number = 0;
+		tmp_node.operation = FUNC_BRACKET;
+	
+		_stack.push(tmp_node);
+	}
+	else
+	{
+		tmp_node.number = number;
+		tmp_node.operation = func;
+
+		_stack.push(tmp_node);
+
+		evalStack();
+	}
+}
+
+bool CalcEngine::evalStack(void)
+{
+	// this should never happen
+	if (_stack.isEmpty()) KMessageBox::error(0L, i18n("Stack processing error - empty stack"));
+
+	_node tmp_node = _stack.pop();
+
+	while (! _stack.isEmpty())
+	{
+		_node tmp_node2 = _stack.pop();
+		if (_precedence_list[tmp_node.operation] <=
+		    _precedence_list[tmp_node2.operation])
+		{
+			CALCAMNT tmp_result =
+			  evalOperation(tmp_node2.number, tmp_node2.operation,
+					tmp_node.number);
+			tmp_node.number = tmp_result;
+		}
+		else
+		{
+			_stack.push(tmp_node2);
+			break;
+		}  
+		  
+	}
+
+	_stack.push(tmp_node);
+
+	_last_number = tmp_node.number;
+	return true;
 }
 
 void CalcEngine::Reset()
 {
 	_error = false;
-	_last_result = 0L;
-	//decimal_point = 0;
-	//input_count = 0;
+	_last_number = 0L;
 
-	amount_stack.clear();
-	func_stack.clear();
+	_stack.clear();
 }
 
-int CalcEngine::UpdateStack(int run_precedence)
-{
-	CALCAMNT left_op	= 0.0;
-	CALCAMNT right_op 	= 0.0;
-	CALCAMNT new_value	= 0.0;
-	int op_function		= 0;
-	int return_value	= 0;
-
-
-	while ((func_stack.size() != 0) && 
-		(func_stack.top().item_precedence >= run_precedence))
-	{
-		return_value = 1;
-
-		if (amount_stack.isEmpty()) {
-			KMessageBox::error(0L, i18n("Stack processing error - right_op"));
-		}
-
-		right_op = amount_stack.pop();
-
-		if (func_stack.isEmpty()) {
-			KMessageBox::error(0L, i18n("Stack processing error - function"));
-		}
-
-		op_function = func_stack.pop().item_function;
-
-		if (amount_stack.isEmpty()) {
-			KMessageBox::error(0L, i18n("Stack processing error - left_op"));
-		}
-
-		left_op = amount_stack.pop();
-
-		if (!percent_mode || Prcnt_ops[op_function] == NULL) {
-			new_value = (Arith_ops[op_function])(left_op, right_op);
-		} else {
-			new_value = (Prcnt_ops[op_function])(left_op, right_op);
-			percent_mode = false;
-		}
-
-		amount_stack.push(new_value);
-	}
-
-	if (return_value)
-		_last_result = new_value;
-
-	//decimal_point = 1;
-	return return_value;
-}
 

@@ -29,25 +29,6 @@
 #include <qvaluestack.h>
 #include "kcalctype.h"
 
-#define STACK_SIZE	100
-#define PRECEDENCE_INCR	20
-
-#define FUNC_NULL		0
-#define FUNC_OR			1
-#define FUNC_XOR		2
-#define FUNC_AND		3
-#define FUNC_LSH		4
-#define FUNC_RSH		5
-#define FUNC_ADD		6
-#define FUNC_SUBTRACT		7
-#define FUNC_MULTIPLY		8
-#define FUNC_DIVIDE		9
-#define FUNC_MOD		10
-#define FUNC_POWER		11
-#define FUNC_PWR_ROOT		12
-#define FUNC_INTDIV		13
-
-
 #define		POS_ZERO	 1e-19L	 /* What we consider zero is */
 #define		NEG_ZERO	-1e-19L	 /* anything between these two */
 
@@ -58,11 +39,6 @@ typedef	CALCAMNT	(*Trig)(CALCAMNT);
 
 #define UNUSED(x) ((void)(x))
 
-typedef enum {
-	ANG_DEGREE = 0,
-	ANG_RADIAN = 1,
-	ANG_GRADIENT = 2
-} angle_type;
 
 
 typedef struct {
@@ -73,9 +49,34 @@ typedef struct {
 class CalcEngine
 {
  public:
+  // operations that can be stored in calculation stack 
+  enum Operation {
+    FUNC_BRACKET,
+    FUNC_OR,
+    FUNC_XOR,
+    FUNC_AND,
+    FUNC_LSH,
+    FUNC_RSH,
+    FUNC_ADD,
+    FUNC_SUBTRACT,
+    FUNC_MULTIPLY,
+    FUNC_DIVIDE,
+    FUNC_MOD,
+    FUNC_POWER,
+    FUNC_PWR_ROOT,
+    FUNC_INTDIV
+  };
+
+  // angle modes for trigonometric values
+  typedef enum {
+    AngleDegree,
+    AngleRadian,
+    AngleGradient
+  } angle_type;
+
   CalcEngine();
   
-  CALCAMNT last_output(bool &error) const;
+  CALCAMNT lastOutput(bool &error) const;
 
   void Equal(CALCAMNT input);
   
@@ -129,26 +130,51 @@ class CalcEngine
   void Xor(CALCAMNT input);
 
   void Reset();
-  void SetAngleMode(int mode) { _angle_mode = mode; };
+  void setAngleMode(angle_type mode) { _angle_mode = mode; };
  private:
   KStats	stats;
 
-  CALCAMNT _last_result;
-  int _angle_mode;
+  typedef struct {
+    CALCAMNT number;
+    Operation operation;
+  } _node;
 
-  QValueStack<CALCAMNT>	amount_stack;
-  QValueStack<func_data> func_stack;
+  // Stack holds all operations and numbers that have not yet been
+  // processed, e.g. user types "2+3*", the calculation can not be
+  // executed, because "*" has a higher precedence than "+", so we
+  // need to wait for the next number.
+  //
+  // In the stack this would be stored as ((2,+),(3,*),...)
+  //
+  // "enterOperation": If the introduced Operation has lower priority
+  // than the preceding operations in the stack, then we can start to
+  // evaluate the stack (with "evalStack"). Otherwise we append the new
+  // Operation and number to the stack.
+  //
+  // E.g. "2*3+" evaluates to "6+", but "2+3*" can not be evaluated
+  // yet.
+  //
+  // We also take care of brackets, by writing a marker "FUNC_BRACKET"
+  // into the stack, each time the user opens one.  When a bracket is
+  // closed, everything in the stack is evaluated until the first
+  // marker "FUNC_BRACKET" found.
+  QValueStack<_node> _stack;
 
-  int precedence_base;
-  bool percent_mode;
+  CALCAMNT _last_number;
 
+  angle_type _angle_mode;
+  bool _percent_mode;
+
+  int _precedence_list[20]; // priority of operators in " enum Operation"
   static const CALCAMNT pi;
 
   Arith Arith_ops[14];
   Prcnt Prcnt_ops[14];
 
-  void EnterStackFunction(int func, CALCAMNT num);
-  int UpdateStack(int run_precedence);
+  void enterOperation(Operation func, CALCAMNT num);
+  bool evalStack(void);
+
+  CALCAMNT evalOperation(CALCAMNT arg1, Operation operation, CALCAMNT arg2);
 
   CALCAMNT Deg2Rad(CALCAMNT x)	{ return (((2L * pi) / 360L) * x); }
   CALCAMNT Gra2Rad(CALCAMNT x)	{ return ((pi / 200L) * x); }
