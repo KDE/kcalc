@@ -360,8 +360,10 @@ bool KCalcDisplay::updateDisplay(void)
 		Q_ASSERT(_period == false  && _eestate == false);
 		Q_ASSERT(tmp_string.length() < DSP_SIZE);
 		setText(tmp_string);
-		_display_amount = (CALCAMNT)tmp_string.toLong(&tmp_flag, 2);
-		Q_ASSERT("Overflow in binary" || tmp_flag == true);
+		_display_amount = (CALCAMNT)tmp_string.toLongLong(&tmp_flag, 2);
+		_display_amount = STRTOUL(_str_int.latin1(), 0, 2);
+		if (_neg_sign)
+			_display_amount = -_display_amount;
 		//str_size = cvb(_str_int, boh_work, DSP_SIZE);
 		break;
 	  
@@ -369,16 +371,18 @@ bool KCalcDisplay::updateDisplay(void)
 		Q_ASSERT(_period == false  && _eestate == false);
 		Q_ASSERT(tmp_string.length() < DSP_SIZE);
 		setText(tmp_string);
-		_display_amount = (CALCAMNT)tmp_string.toLong(&tmp_flag, 8);
-		Q_ASSERT("Overflow in octal" || tmp_flag == true);
+		_display_amount = STRTOUL(_str_int.latin1(), 0, 8);
+		if (_neg_sign)
+			_display_amount = -_display_amount;
 		break;
 		
 	case NB_HEX:
 		Q_ASSERT(_period == false  && _eestate == false);
 		Q_ASSERT(tmp_string.length() < DSP_SIZE);
 		setText(tmp_string);
-		_display_amount = (CALCAMNT)tmp_string.toLong(&tmp_flag, 16);
-		Q_ASSERT("Overflow in hexa" || tmp_flag == true);
+		_display_amount = STRTOUL(_str_int.latin1(), 0, 16);
+		if (_neg_sign)
+			_display_amount = -_display_amount;
 		break;
 	  
 	case NB_DECIMAL:
