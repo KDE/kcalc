@@ -1,4 +1,4 @@
-/*
+;/*
     $Id$
 
     kCalculator, a scientific calculator for the X window system using the
@@ -659,7 +659,7 @@ void QtCalculator::EnterFactorial()
 	while (work_amount1 != 0 && work_amount2 != 0 && !display_error) {
 		work_amount1 *= work_amount2;
 		work_amount2 -= incr;
-		if(isinf(work_amount1)) {
+		if(ISINF(work_amount1)) {
 		  display_error=1;
 		   break;
 		}
@@ -1334,7 +1334,11 @@ void QtCalculator::EE()
   if(inverse){
     DISPLAY_AMOUNT = pi;
     inverse = FALSE;
+    refresh_display = 1;
     UpdateDisplay();
+  }
+  else if (refresh_display){
+    //TODO: toggle between exponential and normal display
   }
   else{
     if(eestate == true)
