@@ -1198,10 +1198,11 @@ void KCalculator::slotPlusMinusclicked(void)
 
 void KCalculator::slotMPlusMinusclicked(void)
 {
-	EnterEqual();
+	bool tmp_inverse = inverse; // store this, because next command deletes inverse
+	EnterEqual(); // finish calculation so far, to store result into MEM
 
-	if (!inverse)	memory_num += calc_display->getAmount();
-	else 			memory_num -= calc_display->getAmount();
+	if (!tmp_inverse)	memory_num += calc_display->getAmount();
+	else			memory_num -= calc_display->getAmount();
 
 	pbInv->setOn(false);
 }
