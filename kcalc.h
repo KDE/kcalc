@@ -85,8 +85,6 @@ private:
 	void keyReleaseEvent(QKeyEvent *e);
 	void set_precision();
 	void set_style();
-	void history_next();
-	void history_prev();
 	void resetBase(void) { (BaseChooseGroup->find(1))->animateClick();};
 
 	void UpdateDisplay(bool get_amount_from_core = false,

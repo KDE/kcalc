@@ -33,27 +33,33 @@
 #include "kcalctype.h"
 
 class CalcEngine;
-
+class KAction;
+class KActionCollection;
 
 class DispLogic : public KCalcDisplay
 {
 Q_OBJECT
 
 public:
-	DispLogic(QWidget *parent=0, const char *name=0);
+	DispLogic(QWidget *parent, const char *name,
+		  KActionCollection *coll);
 	~DispLogic();
 
 	void changeSettings();
 	void EnterDigit(int data);
-	bool history_next(void);
-	bool history_prev(void);
 	void update_from_core(CalcEngine const &core,
 			      bool store_result_in_history = false);
+
+private slots:
+	void history_back(void);
+	void history_forward(void);
 
 private:
 	QValueVector<CALCAMNT> _history_list;
 	int _history_index;
 
+	KAction *_forward;
+	KAction *_back;
 };
 
 #endif

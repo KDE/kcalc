@@ -27,37 +27,39 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+
+#include <qbuttongroup.h>
+#include <qfont.h>
+#include <qhbuttongroup.h>
 #include <qlayout.h>
 #include <qobjectlist.h>
-#include <qbuttongroup.h>
-#include <qhbuttongroup.h>
 #include <qradiobutton.h>
-#include <qtooltip.h>
+#include <qspinbox.h>
 #include <qstyle.h>
-#include <qfont.h>
+#include <qtooltip.h>
+
+
 
 #include <kaboutdata.h>
 #include <kaccel.h>
 #include <kaction.h>
 #include <kapplication.h>
-#include <kconfigdialog.h>
 #include <kcmdlineargs.h>
+#include <kcolorbutton.h>
 #include <kcolordrag.h>
 #include <kconfig.h>
+#include <kconfigdialog.h>
+#include <kdialog.h>
+#include <kfontdialog.h>
 #include <kglobal.h>
 #include <kglobalsettings.h>
+#include <kkeydialog.h>
 #include <knotifyclient.h>
-#include <kpushbutton.h>
+#include <knumvalidator.h>
 #include <kpopupmenu.h>
+#include <kpushbutton.h>
 #include <kstatusbar.h>
 #include <kstdaction.h>
-#include <kfontdialog.h>
-#include <qlayout.h>
-#include <kdialog.h>
-#include <kcolorbutton.h>
-#include <qspinbox.h>
-#include <kkeydialog.h>
-#include <knumvalidator.h>
 
 #include "dlabel.h"
 #include "kcalc.h"
@@ -87,8 +89,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// Detect color change
 	connect(kapp,SIGNAL(kdisplayPaletteChanged()), SLOT(set_colors()));
 
-	calc_display = new DispLogic(central, "display");
-
+	calc_display = new DispLogic(central, "display", actionCollection());
 
 	setupMainActions();
 
@@ -409,7 +410,7 @@ void KCalculator::setupMainActions(void)
 	KStdAction::cut(calc_display, SLOT(slotCut()), actionCollection());
 	KStdAction::copy(calc_display, SLOT(slotCopy()), actionCollection());
 	KStdAction::paste(calc_display, SLOT(slotPaste()), actionCollection());
-
+	
 	// settings menu
 	actionStatshow =  new KToggleAction(i18n("&Statistic Buttons"), 0,
 					    actionCollection(), "show_stat");
@@ -1157,12 +1158,6 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
     if ( ( e->state() & KeyButtonMask ) == 0 || ( e->state() & ShiftButton ) ) {
 	switch (e->key())
 	{
-	case Key_Up:
-		history_prev();
-		break;
-	case Key_Down:
-		history_next();
-		break;
 	case Key_Next:
 		pbAC->animateClick();
 		break;
@@ -2069,18 +2064,6 @@ void KCalculator::set_precision()
 {
 	// TODO: make this do something!!
 	UpdateDisplay(false);
-}
-
-void KCalculator::history_next()
-{
-	if(!calc_display->history_next()  &&  KCalcSettings::beep())
-		KNotifyClient::beep();
-}
-
-void KCalculator::history_prev()
-{
-	if(!calc_display->history_prev()  &&  KCalcSettings::beep())
-		KNotifyClient::beep();
 }
 
 bool KCalculator::eventFilter(QObject *o, QEvent *e)

@@ -1,3 +1,7 @@
+2004-12-03 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* moving through history is now done via undo/redo
+	  this implements wish BUG 93938
+	
 2004-11-23 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* improved const buttons
 

@@ -23,14 +23,26 @@
 
 */
 
+#include <qglobal.h>
+#include <kactioncollection.h>
+#include <kstdaction.h>
+
 #include "kcalc_settings.h"
 #include "kcalc_core.h"
 #include "dlabel.h"
 #include "dlabel.moc"
 
-DispLogic::DispLogic(QWidget *parent, const char *name)
+
+
+DispLogic::DispLogic(QWidget *parent, const char *name,
+		     KActionCollection *coll)
   :KCalcDisplay(parent,name), _history_index(0)
 {
+	_back = KStdAction::undo(this, SLOT(history_back()), coll);
+	_forward = KStdAction::redo(this, SLOT(history_forward()), coll);
+
+	_forward->setEnabled(false);
+	_back->setEnabled(false);
 }
 
 DispLogic::~DispLogic()
@@ -73,6 +85,9 @@ void DispLogic::update_from_core(CalcEngine const &core,
 	{
 	  // add this latest value to our history
 	  _history_list.insert(_history_list.begin(), output);
+	  _history_index = 0;
+	  _back->setEnabled(true);
+	  _forward->setEnabled(false);
 	}
 }
 
@@ -137,19 +152,30 @@ void DispLogic::EnterDigit(int data)
 	newCharacter(tmp);
 }
 
-bool DispLogic::history_next()
+void DispLogic::history_forward()
 {
-  	if((_history_list.empty()) || (_history_index <= 0))
-		return false;
+	Q_ASSERT(! _history_list.empty());
+	Q_ASSERT(_history_index > 0);
 
-	return setAmount(_history_list[--_history_index]);
+	_history_index --;
+
+	setAmount(_history_list[_history_index]);
+
+	if(_history_index == 0) _forward->setEnabled(false);
+
+	_back->setEnabled(true);
 }
 
-bool DispLogic::history_prev()
+void DispLogic::history_back()
 {
-	if((_history_list.empty()) || (_history_index >= ((int)_history_list.size() - 1)))
-		return false;
+	Q_ASSERT(! _history_list.empty());
+	Q_ASSERT(_history_index < int(_history_list.size()));
 
-	return setAmount(_history_list[++_history_index]);
+	setAmount(_history_list[_history_index]);
+
+	_history_index ++;
+	
+	if(_history_index == int(_history_list.size())) _back->setEnabled(false);
+	_forward->setEnabled(true);
 }
 
