@@ -69,7 +69,7 @@
 #include "general.h"
 #include "colors.h"
 #include "constants.h"
-
+#include <kaccelmanager.h>
 #include "kcalc_settings.h"
 
 
@@ -86,6 +86,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	/* central widget to contain all the elements */
 	QWidget *central = new QWidget(this);
 	setCentralWidget(central);
+        KAcceleratorManager::setNoAccel( central );
 
 	// Detect color change
 	connect(kapp,SIGNAL(kdisplayPaletteChanged()), SLOT(set_colors()));
@@ -415,7 +416,7 @@ void KCalculator::setupMainActions(void)
 	KStdAction::cut(calc_display, SLOT(slotCut()), actionCollection());
 	KStdAction::copy(calc_display, SLOT(slotCopy()), actionCollection());
 	KStdAction::paste(calc_display, SLOT(slotPaste()), actionCollection());
-	
+
 	// settings menu
 	actionStatshow =  new KToggleAction(i18n("&Statistic Buttons"), 0,
 					    actionCollection(), "show_stat");
@@ -457,9 +458,9 @@ void KCalculator::setupMainActions(void)
 
 	KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
 
-	KStdAction::keyBindings(guiFactory(), SLOT(configureShortcuts()), 
+	KStdAction::keyBindings(guiFactory(), SLOT(configureShortcuts()),
 actionCollection());
-   
+
 }
 
 void KCalculator::setupStatusbar(void)
@@ -1213,7 +1214,7 @@ void KCalculator::slotAngleSelected(int number)
 	pbAngleChoose->popup()->setItemChecked(0, false);
 	pbAngleChoose->popup()->setItemChecked(1, false);
 	pbAngleChoose->popup()->setItemChecked(2, false);
-	
+
 	switch(number)
 	{
 	case 0:
@@ -1262,7 +1263,7 @@ void KCalculator::slotHyptoggled(bool flag)
 	// toggle between hyperbolic and standart trig functions
 	hyp_mode = flag;
 
-	emit switchMode(ModeHyperbolic, flag); 
+	emit switchMode(ModeHyperbolic, flag);
 }
 
 
@@ -1819,27 +1820,27 @@ void KCalculator::showSettings()
 	connect(tmp_menu, SIGNAL(activated(int)),
 		SLOT(slotChooseScientificConst0(int)));
 	(constant->kPushButton0)->setPopup(tmp_menu);
-	
+
 	tmp_menu = new KCalcConstMenu(this);
 	connect(tmp_menu, SIGNAL(activated(int)),
 		SLOT(slotChooseScientificConst1(int)));
 	(constant->kPushButton1)->setPopup(tmp_menu);
-	
+
 	tmp_menu = new KCalcConstMenu(this);
 	connect(tmp_menu, SIGNAL(activated(int)),
 		SLOT(slotChooseScientificConst2(int)));
 	(constant->kPushButton2)->setPopup(tmp_menu);
-	
+
 	tmp_menu = new KCalcConstMenu(this);
 	connect(tmp_menu, SIGNAL(activated(int)),
 		SLOT(slotChooseScientificConst3(int)));
 	(constant->kPushButton3)->setPopup(tmp_menu);
-	
+
 	tmp_menu = new KCalcConstMenu(this);
 	connect(tmp_menu, SIGNAL(activated(int)),
 		SLOT(slotChooseScientificConst4(int)));
 	(constant->kPushButton4)->setPopup(tmp_menu);
-	
+
 	tmp_menu = new KCalcConstMenu(this);
 	connect(tmp_menu, SIGNAL(activated(int)),
 		SLOT(slotChooseScientificConst5(int)));
@@ -1862,42 +1863,42 @@ void KCalculator::showSettings()
 void KCalculator::slotChooseScientificConst0(int option)
 {
   (tmp_const->kcfg_valueConstant0)->setText(KCalcConstMenu::Constants[option].value);
-  
+
   (tmp_const->kcfg_nameConstant0)->setText(KCalcConstMenu::Constants[option].label);
 }
 
 void KCalculator::slotChooseScientificConst1(int option)
 {
   (tmp_const->kcfg_valueConstant1)->setText(KCalcConstMenu::Constants[option].value);
-  
+
   (tmp_const->kcfg_nameConstant1)->setText(KCalcConstMenu::Constants[option].label);
 }
 
 void KCalculator::slotChooseScientificConst2(int option)
 {
   (tmp_const->kcfg_valueConstant2)->setText(KCalcConstMenu::Constants[option].value);
-  
+
   (tmp_const->kcfg_nameConstant2)->setText(KCalcConstMenu::Constants[option].label);
 }
 
 void KCalculator::slotChooseScientificConst3(int option)
 {
   (tmp_const->kcfg_valueConstant3)->setText(KCalcConstMenu::Constants[option].value);
-  
+
   (tmp_const->kcfg_nameConstant3)->setText(KCalcConstMenu::Constants[option].label);
 }
 
 void KCalculator::slotChooseScientificConst4(int option)
 {
   (tmp_const->kcfg_valueConstant4)->setText(KCalcConstMenu::Constants[option].value);
-  
+
   (tmp_const->kcfg_nameConstant4)->setText(KCalcConstMenu::Constants[option].label);
 }
 
 void KCalculator::slotChooseScientificConst5(int option)
 {
   (tmp_const->kcfg_valueConstant5)->setText(KCalcConstMenu::Constants[option].value);
-  
+
   (tmp_const->kcfg_nameConstant5)->setText(KCalcConstMenu::Constants[option].label);
 }
 
