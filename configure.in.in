@@ -34,12 +34,12 @@ exit(result); }
     )
   ])
   if test $ac_cv_c_long_double = yes; then
-    AC_DEFINE(HAVE_LONG_DOUBLE)
+    AC_DEFINE(HAVE_LONG_DOUBLE, 1, [Define if you have support for long double in printf])
   fi
 ])
 KDE_C_LONG_DOUBLE
 
 AC_LANG_C
 AC_CHECK_LIB(m, isinf, [
-  AC_DEFINE_UNQUOTED(HAVE_FUNC_ISINF)
+  AC_DEFINE_UNQUOTED(HAVE_FUNC_ISINF, 1, [Define if you have isinf])
 ])
