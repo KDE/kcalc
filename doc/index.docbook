@@ -12,33 +12,21 @@
 
 <authorgroup>
 <author>
-<firstname>Bernd Johannes</firstname>
-<surname>Wuebben</surname>
-<affiliation><address><email>wuebben@kde.org</email></address></affiliation>
+&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;
 </author>
 
 <author>
-<firstname>Pamela</firstname>
-<surname>Roberts</surname>
-<affiliation><jobtitle>Handbook maintainer</jobtitle>
-<address><email>pamroberts@blueyonder.co.uk</email></address>
-</affiliation>
+&Pamela.Roberts;&Pamela.Roberts.mail;
+<!-- <affiliation><jobtitle>Handbook maintainer</jobtitle>
+</affiliation> -->
 </author>
 
-<othercredit role="reviewer">
-<firstname>Lauri</firstname>
-<surname>Watts</surname>
-<affiliation>
-<address><email>lauri@kde.org</email></address>
-</affiliation>
-<contrib>Reviewer</contrib>
-</othercredit>
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
 
 <copyright>
 <year>2001</year> <year>2002</year>
-<holder>Bernd Johannes Wuebben, Pamela Roberts</holder>
+<holder>&Bernd.Johannes.Wuebben;, &Pamela.Roberts;</holder>
 </copyright>
 
 <legalnotice>&FDLNotice;</legalnotice>
@@ -601,44 +589,26 @@ the precision and you will see what I mean.</para>
 <chapter id="copyright">
 <title>Credits and License</title>
 
-<para>&kcalc; Program copyright:</para>
+<para>&kcalc; Program Copyright &copy;:</para>
 <para>Bernd Johannes Wuebben 1996-2000</para>
 <para>The &kde; Team 2000-2002</para>
 
 <itemizedlist>
-<listitem><para>
-Bernd Johannes Wuebben <email>wuebben@kde.org</email>
-</para></listitem>
-
-<listitem><para>
-Evan Teran <email>emt3734@rit.edu</email>
-</para></listitem>
-
-<listitem><para>
-Espen Sand <email>espen@kde.org</email>
-</para></listitem>
-
-<listitem><para>
-Chris Howells <email>howells@kde.org</email>
-</para></listitem>
-
-<listitem><para>
-Aaron J. Seigo <email>aseigo@olympusproject.org</email>
-</para></listitem>
-
-<listitem><para>
-Charles Samuels <email>charles@altair.dhs.org</email>
-</para></listitem>
+<listitem><para>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para></listitem>
+<listitem><para>&Evan.Teran; &Evan.Teran.mail;</para></listitem>
+<listitem><para>&Espen.Sand; &Espen.Sand.mail;</para></listitem>
+<listitem><para>&Chris.Howells; &Chris.Howells.mail;</para></listitem>
+<listitem><para>&Aaron.J.Seigo; &Aaron.J.Seigo.mail;</para></listitem>
+<listitem><para>&Charles.Samuels; &Charles.Samuels.mail;</para></listitem>
 </itemizedlist>
-<para>&kcalc; was inspired by Martin Bartlett's <application>xfrmcalc</application>,
+
+<para>&kcalc; was inspired by <personname><firstname>Martin</firstname> <surname>Bartlett</surname></personname>'s <application>xfrmcalc</application>,
 whose stack engine is still part of &kcalc;.</para>
 
-<para>Documentation copyright 2001,2002:</para>
+<para>Documentation Copyright &copy; 2001,2002:</para>
 <itemizedlist>
-<listitem><para>Bernd Johannes
-Wuebben <email>wuebben@kde.org</email></para></listitem>
-<listitem><para>Pamela Roberts
-<email>pamroberts@blueyonder.co.uk</email></para></listitem>
+<listitem><para>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para></listitem>
+<listitem><para>&Pamela.Roberts; &Pamela.Roberts.mail;</para></listitem>
 </itemizedlist>
 
 &underFDL;
@@ -672,7 +642,7 @@ http://math.cornell.edu/~wuebben/kde.html</ulink></para>
 
 <para>If your machine supports the C data type <type>long double</type>
 and if you have a working libc you can enable <type>long double</type>
-precison for &kcalc;.</para>
+precision for &kcalc;.</para>
 
 <para>Here is what to do:</para>
 
