@@ -102,10 +102,6 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 
 	setupMainActions();
 
-	setupLogExpActions();
-	setupTrigActions();
-	setupStatActions();
-
 	createGUI();
 
 	// How can I make the toolBar not appear at all?
@@ -165,6 +161,10 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// First the widgets that are the parents of the buttons
 	mSmallPage = new QWidget(central);
 	mLargePage = new QWidget(central);
+
+	setupLogExpActions();
+	setupTrigActions();
+	setupStatActions();
 
 	pbPi = new QPushButton(QString::fromUtf8("π", -1), // Pi in utf8
 			       mSmallPage, "Pi-Button");
