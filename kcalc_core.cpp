@@ -624,6 +624,9 @@ void QtCalculator::EnterFactorial()
 		work_amount2 -= incr;
 	}
 
+	if( work_amount1 == 0.0)
+	  work_amount1 = 1.0;
+
 	DISPLAY_AMOUNT = work_amount1;
 	refresh_display = 1;
 	last_input = OPERATION;
