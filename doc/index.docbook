@@ -1,5 +1,5 @@
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook V3.1-Based Variant V1.0//EN" [
-  <!ENTITY kappname "&kcalc;">
+  <!ENTITY kappname "&kcalc;" -- replace kapp here. This only *seems* redundant -->
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE" -- change language only here -->
   <!ENTITY % ents PUBLIC "-//KDE//ENTITIES Documentation V1.0//EN">
@@ -43,7 +43,7 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>11/02/2001</date>
+<date>11/03/2001</date>
 <releaseinfo>1.03.01</releaseinfo>
 
 <abstract><para>&kcalc; is a scientific calculator for &kde;</para></abstract>
@@ -301,7 +301,7 @@ you want arcsin(x) type <userinput>i s </userinput></entry></row>
 <guibutton>Lsh</guibutton> is Right shift</entry></row>
 
 <row><entry><keysym>&amp;</keysym></entry>
-<entry></entry>
+<entry><guibutton>And</guibutton></entry>
 <entry>Logical AND</entry></row>
 <row><entry><keysym>*</keysym></entry>
 <entry>*</entry>
@@ -408,8 +408,7 @@ current calculation as follows:</para>
 </para>
 </listitem>
 <listitem>
-<para>If the final operator is * give the right operand 
-as a percentage of the left operand.
+<para>If the final operator is * divide the result of the multiplication by 100.
 </para>
 </listitem>
 <listitem>
@@ -432,10 +431,15 @@ raised to the power of the (right operand / 100).
 <varlistentry>
 <term>Examples:</term>
 <listitem>
+<para><userinput>11 + 89 %</userinput> gives <emphasis>112.35..</emphasis> (89 +
+11 = 100, and 100 is 112.35 percent of 89)</para>
+<para><userinput>42 * 3 %</userinput> gives
+<emphasis>1.26</emphasis>  (42 * 3 / 100)</para>
 <para><userinput>45 / 55 %</userinput> gives
 <emphasis>81.81...</emphasis> (45 is 81.81.. percent of 55)</para>
-<para><userinput>11 + 89 %</userinput> gives <emphasis>112.35..</emphasis> (89 +
-11 = 100, and 100 is 112.35 percent of 89)</para> </listitem>
+<para><userinput>2 / 300 %</userinput> gives
+<emphasis>8</emphasis>  (2 to the power (300/100))</para>
+ </listitem>
 </varlistentry>
 </variablelist>
 
@@ -646,7 +650,7 @@ precision. </para>
 
 </step>
 <step>
-<para> recompile &kcalc;.
+<para> Recompile &kcalc;.
 </para>
 </step>
 </procedure>
