@@ -3,10 +3,12 @@
 Name=Calculator
 Name[de]=Taschenrechner
 Name[pl]=Kalkulator
+Name[fi]=Laskin
 Exec=kcalc
 Icon=kcalc.xpm
 DocPath=kcalc/index.html
 Comment=A Scientific Calculator
 Comment[pl]=Kalkulator naukowy
+Comment[fi]=Tieteellinen laskin
 Terminal=0
 Type=Application
