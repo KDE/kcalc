@@ -73,6 +73,13 @@ void KCalcButton::slotSetInverseMode(bool flag)
   update();
 }
 
+static QString escape(QString str)
+{
+  str.replace('&', "&&");
+        return str;
+}
+
+
 void KCalcButton::slotSetAccelDisplayMode(bool flag)
 {
   _show_accel_mode = flag;
@@ -80,7 +87,7 @@ void KCalcButton::slotSetAccelDisplayMode(bool flag)
   // save accel, because setting label erases accel
   QKeySequence _accel = accel();
 
-  KPushButton::setText(QString(accel()));
+  KPushButton::setText(escape(QString(accel())));
   update();
 
   // set back deleted accel

@@ -1,3 +1,7 @@
+2004-05-04 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Masked "&" for the label of the AND button, when displaying the corresponding accel.
+	  Thanks to Sigrid from Trolltech.
+	
 2004-04-27 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Buttons have now their own modes (like inverse Mode etc.)
 	This allows moving tooltips and labels into kcalc_button.cpp
