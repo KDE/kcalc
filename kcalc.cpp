@@ -1917,6 +1917,7 @@ void QtCalculator::set_style()
 
 	case 1:
 		pbhyp->setText( "N" );
+		QToolTip::remove(pbhyp);
 		pbSin->setText( "Mea" );
 		QToolTip::add(pbSin, i18n("Mean"));
 		pbCos->setText( "Std" );
