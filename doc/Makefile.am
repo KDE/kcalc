@@ -1,8 +1,8 @@
 
-data_DATA = kcalc-1.html kcalc-2.html kcalc-3.html kcalc-4.html \
-	kcalc-5.html kcalc-6.html kcalc-7.html kcalc-8.html \
-	kcalc.gif kcalc.html kcalc.sgml \
+data_DATA = index-1.html index-2.html index-3.html index-4.html \
+	index-5.html index-6.html index-7.html index-8.html \
+	kcalc.gif index.html \
 	kcalc_on_Aix.txt kcalc_on_OSF.txt kcalclogo.tif 
 
-datadir = @prefix@/share/doc/HTML/kcalc
+datadir = @prefix@/share/doc/HTML/en/kcalc
 

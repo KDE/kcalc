@@ -32,11 +32,12 @@
 #include "configdlg.moc"
 
 ConfigDlg::ConfigDlg(QWidget *parent=0, const char *name=0,
-		     KApplication *mykapp=NULL,DefStruct *defstruct=NULL)
+		     KApplication *_mykapp=NULL,DefStruct *defstruct=NULL)
   : QDialog(parent, name)
 {
 
-  mykapp = kapp;
+    // Torben
+  mykapp = _mykapp;
   defst = defstruct;
 
 
@@ -158,7 +159,7 @@ ConfigDlg::ConfigDlg(QWidget *parent=0, const char *name=0,
 
 void ConfigDlg::help(){
 
-  mykapp->invokeHTMLHelp("kcalc/kcalc.html","");
+  mykapp->invokeHTMLHelp("","");
 
 }
 
