@@ -1,3 +1,6 @@
+2004-02-29 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* disable EE-button in Hex-mode (does not work)
+	
 2004-02-18 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Fixed bug 75555. "<" and ">" keypress produced same result.
 	  There are probably similar errors for other system configurations.

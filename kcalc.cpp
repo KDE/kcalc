@@ -967,6 +967,8 @@ void KCalculator::slotBaseSelected(int base)
 
 	// Only enable the decimal point in decimal
 	pbPeriod->setEnabled(current_base == NB_DECIMAL);
+	// Only enable the x*10^y button in decimal
+	pbEE->setEnabled(current_base == NB_DECIMAL);
 
 	// Disable the "accels" for disabled buttons
 	if(current_base != NB_HEX)
