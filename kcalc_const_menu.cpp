@@ -27,22 +27,22 @@
 
 const struct science_constant KCalcConstMenu::Constants[] = {
   {QString::fromUtf8("π"), i18n("Pi"), "", "3.14159265358979323846264338327950288", Mathematics},
-  {"e", i18n("Euler number"), "", "2.71828182845904523536028747135266249", Mathematics},
-  {"c", i18n("Light speed"), "", "2.99792458e8", Electromagnetic},
-  {"h", i18n("Planck's constant"), "", "6.6260693e-34", Nuclear},
-  {"G", i18n("Constant of gravitation"), "", "6.6742e-11", Gravitation},
-  {"g", i18n("Earth acceleration"), "", "9.80665", Gravitation},
-  {"e", i18n("Elementary charge"), "", "1.60217653e-19", Electromagnetic},
-  {"Z_0", i18n("Impedance of vacuum"), "", "376.730313461", Electromagnetic},
-  {QString::fromUtf8("α"), i18n("Fine-structure constant"), "", "7.297352568e-3", Nuclear},
-  {"e", i18n("Elementary charge"), "", "1.60217653e-19", Nuclear},
-  {"_0", i18n("Permeability of vacuum"), "", "1.2566370614e-6", Electromagnetic},
+  {"e", i18n("Euler Number"), "", "2.71828182845904523536028747135266249", Mathematics},
+  {"c", i18n("Light Speed"), "", "2.99792458e8", Electromagnetic},
+  {"h", i18n("Planck's Constant"), "", "6.6260693e-34", Nuclear},
+  {"G", i18n("Constant of Gravitation"), "", "6.6742e-11", Gravitation},
+  {"g", i18n("Earth Acceleration"), "", "9.80665", Gravitation},
+  {"e", i18n("Elementary Charge"), "", "1.60217653e-19", Electromagnetic},
+  {"Z_0", i18n("Impedance of Vacuum"), "", "376.730313461", Electromagnetic},
+  {QString::fromUtf8("α"), i18n("Fine-Structure Constant"), "", "7.297352568e-3", Nuclear},
+  {"e", i18n("Elementary Charge"), "", "1.60217653e-19", Nuclear},
+  {"_0", i18n("Permeability of Vacuum"), "", "1.2566370614e-6", Electromagnetic},
   {QString::fromUtf8("ε")+"_0", i18n("Permittivity of vacuum"), "", "8.854187817e-12", Electromagnetic},
-  {"k", i18n("Boltzmann constant"), "", "1.3806505e-23", Thermodynamics},
-  {"1u", i18n("Atomic mass unit"), "", "1.66053886e-27", Thermodynamics},
-  {"R", i18n("Molar gas constant"), "", "8.314472", Thermodynamics},
-  {QString::fromUtf8("σ"), i18n("Stefan-Boltzmann constant"), "", "8.314472", Thermodynamics},
-  {"N_A", i18n("Avogadro's number"), "", "6.0221415e23", Thermodynamics}
+  {"k", i18n("Boltzmann Constant"), "", "1.3806505e-23", Thermodynamics},
+  {"1u", i18n("Atomic Mass Unit"), "", "1.66053886e-27", Thermodynamics},
+  {"R", i18n("Molar Gas Constant"), "", "8.314472", Thermodynamics},
+  {QString::fromUtf8("σ"), i18n("Stefan-Boltzmann Constant"), "", "8.314472", Thermodynamics},
+  {"N_A", i18n("Avogadro's Number"), "", "6.0221415e23", Thermodynamics}
 };
 
 KCalcConstMenu::KCalcConstMenu(QWidget * parent, const char * name)
@@ -65,7 +65,7 @@ KCalcConstMenu::KCalcConstMenu(QWidget * parent, const char * name)
   connect(nuclear_menu, SIGNAL(activated(int)), this, SLOT(slotPassActivate(int)));
   connect(thermo_menu, SIGNAL(activated(int)), this, SLOT(slotPassActivate(int)));
   connect(gravitation_menu, SIGNAL(activated(int)), this, SLOT(slotPassActivate(int)));
-  
+
 
   for (int i = 0; i<NUM_CONST; i++)
     switch (Constants[i].category)
