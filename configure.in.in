@@ -56,3 +56,9 @@ AC_LANG_C
 AC_CHECK_LIB(m, isinf, [
   AC_DEFINE_UNQUOTED(HAVE_FUNC_ISINF, 1, [Define if you have isinf])
 ])
+AC_CHECK_LIB(m, round, [
+  AC_DEFINE_UNQUOTED(HAVE_FUNC_ROUND, 1, [Define if you have round])
+])
+AC_CHECK_LIB(m, roundl, [
+  AC_DEFINE_UNQUOTED(HAVE_FUNC_ROUNDL, 1, [Define if you have round])
+])

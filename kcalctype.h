@@ -103,6 +103,11 @@
 	#define CALCAMNT_EPSILON	DBL_EPSILON
 #endif
 
+#if !defined(HAVE_FUNC_ROUND) && !defined(HAVE_FUNC_ROUNDL)
+	#undef	ROUND(X)
+	#define ROUND(X)	rint(X)
+#endif
+
 #undef HAVE_LONG_LONG
 #if defined(LLONG_MAX) && defined(HAVE_LONG_DOUBLE)
 #define KCALC_LONG_MIN	LLONG_MIN
