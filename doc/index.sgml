@@ -79,7 +79,29 @@ The usual:
 % make install
 </verb></tscreen>
 
+<bf>IMPORTANT:</bf> On a number of systems, including Linux systems using certain 
+version of gcc (gcc-2.7.3 RedHat 5.0 for example) will not get a working
+version of kcalc unless you undefine the preprosessor symbol FABSL in
+<tscreen><verb>
+../config.h
+</verb></tscreen>
 
+that is change the line
+<tscreen><verb>
+#define FABSL
+</verb></tscreen>
+
+to 
+<tscreen><verb>
+/*#define FABLS*/
+</verb></tscreen>
+
+However, this will give you greatly reduced precision; kcalc's fundamental data
+type will be double instead of long double. Complain to the
+gnu people or to your distribution and ask them to ship a working version of 
+gcc.
+
+<p>
 Should you run into problems please report them to me.
 <p>
 
@@ -281,6 +303,31 @@ You get Rsh (right shift)  by pressing INV Lsh.
 
 <p>
 
+<sect>Tips and Tricks<p>
+<bf>IMPORTANT:</bf> On a number of systems, including Linux systems using certain 
+version of gcc (gcc-2.7.3 RedHat 5.0 for example) will not get a working
+version of kcalc unless you undefine the preprosessor symbol FABSL in
+<tscreen><verb>
+../config.h
+</verb></tscreen>
+
+that is change the line
+<tscreen><verb>
+#define FABSL
+</verb></tscreen>
+
+to 
+
+<tscreen><verb>
+/*#define FABLS*/
+</verb></tscreen>
+
+However, this will give you greatly reduced precision; kcalc's fundamental data
+type will be double instead of long double. Complain to the
+gnu people or to your distribution and pressure them to ship a working version
+of gcc.
+
+<p>
 <sect>Questions and Answers<p>
 <sect1>How do I get pi=3.1415926...?<p>
 Simply type INV EE.

@@ -1,43 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<TITLE>The KCalc Handbook: Copyright</TITLE>
+<TITLE>The KCalc Handbook: Questions and Answers</TITLE>
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="keywords" CONTENT="">
+<META NAME="description" CONTENT="">
 </HEAD>
-<BODY>
+<BODY BGCOLOR="#ffffff" LINK="#aa0000" TEXT="#000000" > 
+<FONT FACE="Helvetica">
+<A HREF="http://www.kde.org/"><IMG SRC="logotp3.gif" BORDER="0" ALT="The K Desktop Environment"></A>
+<HR WIDTH="100%" SIZE=2 ALIGN="CENTER" NOSHADE>
+
+ 
+<P ALIGN="RIGHT">
+
+<A HREF="index-9.html">Next</A>
 <A HREF="index-7.html">Previous</A>
-Next
 <A HREF="index.html#toc8">Table of Contents</A>
-<HR>
-<H2><A NAME="s8">8. Copyright</A></H2>
+</P>
+<H3><A NAME="s8">8. Questions and Answers</A></H3>
 
 <P>
-<BLOCKQUOTE><CODE>
-<PRE>
+<H3><A NAME="ss8.1">8.1 How do I get pi=3.1415926...?</A>
+</H3>
 
-KCalc Copyright 1996,1997 Bernd Johannes Wuebben 
-                          wuebben@math.cornell.edu
+<P>Simply type INV EE.
+<P>
+<H3><A NAME="ss8.2">8.2 How do I get e, the Euler number?</A>
+</H3>
 
-KCalc was inspired by Martin Bartlett's xfrmcalc, whose stack 
-engine is still part of KCalc.
+<P>Type 1 INV ln.
+<P>
+<P>
+<P>
+<H3><A NAME="ss8.3">8.3 How do I get two fixed digits after the period?</A>
+</H3>
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+<P>Click on the KCalc button, this will bring up the configuration dialog.
+Click on "Set Fixed Precision" and adjust the spin control so that it
+shows a 2.
+<P>
+<P>
+<H3><A NAME="ss8.4">8.4 What about Precision?</A>
+</H3>
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+<P>The main factor determining the precision of kcalc is whether your libc and libmath
+supports the C data type <CODE>long double</CODE>. If this is the case, kcalc will detect this
+at compile time and use it as its fundamental data type to represent numbers.
+Check KCalc's about dialog in order to find out what the fundamental data type
+for your copy of KCalc is.
+<P>
+<P>Unless you have a libc and libmath of exceptionally high quality, you will
+be able to observe some "interesting" results when trying
+to execute computations such as: 123.22 - 123.21; 2.01 - 2; 123.88 - 123.87 and
+similar. However if you think this is bad I ask you to do the same computation on 
+the windows calculator.
+<P>Adjust the precision on KCalc's configure dialog so that the above computation
+go through correctly. I recommend a precision of 14 if the fundamental data
+type for your copy of KCalc is long double, otherwise 8 or 10.
+<P>Note: Higher precision doesn't necessarily lead to better results. Play with
+the precision and you will see what I mean.
+<P>
+<P>
+<P ALIGN="RIGHT">
 
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-</PRE>
-</CODE></BLOCKQUOTE>
-</P>
-<HR>
+<A HREF="index-9.html">Next</A>
 <A HREF="index-7.html">Previous</A>
-Next
 <A HREF="index.html#toc8">Table of Contents</A>
+</P>
+<CENTER>
+<HR WIDTH="100%" SIZE=3 ALIGN=CENTER NOSHADE>
+</CENTER>    
+</FONT>
+
+ 
 </BODY>
 </HTML>

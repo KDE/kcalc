@@ -33,6 +33,7 @@
 // The following for all the poor devels out there who don't have long double math.
 // I guess it's time to switch to LINUX guys .....
 
+
 #ifdef HAVE_FABSL 
 
 /* should be detected by autoconf and defined in config.h
@@ -40,10 +41,13 @@
    is used all over kcalc's sources to determine whether 
    long double of double is the fundamental data type for kcalc*/
 
+
+
 #define CALCAMNT        long double
 #else
 #define CALCAMNT        double
 #endif
+
 
 #ifdef HAVE_FABSL
 #define FABS(X)   	fabsl(X)

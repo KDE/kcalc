@@ -81,6 +81,17 @@ Die Kompilation und Installation erfolgen auf die übliche Weist:
 % make install
 </verb></tscreen>
 
+<p>
+Sollten sie auf schwierigkeiten stossen, insbesondere von der Art, dass
+Kcalc umoegliche, zufallsartige Zahlen darstellt, dann habe sie warscheinlich
+eine nicht funktionsfaehige version von g++ dem C++ compiler. gcc-2.7.3
+ist z.B untauglich. Uebersetzen sie Kcalc erneut, jedoch dieses mal
+mit dem Paeprozessorsymbol FABLS undefiniert. D.h. kommentieren sie
+die Zeile #define HAVE_FABLS ind ../config.h aus. Diese wird jedoch 
+dazu fuehren das KCalc double anstatt von long double als fundamentalen
+Daten Typ benutzt und die Praezision von KCalc wird sehr leiden.
+Beschweren Sie sich bei ihrer Linux Distribution.
+<p>
 Sollten sie auf Probleme stoßen, bitte ich Sie, mir diese zu melden.
 <p>
 
@@ -313,6 +324,19 @@ Erklärung:		     89 + 11 = 100, und 100 ist 112.35 Prozent von 89.
 Schiebe die angezeigte Zahl um n Stellen nach links (rechts), wobei n die
 nächste eingegebene Zahl ist. Rsh erhalten sie durch die Kombination
 <bf>Inv</bf> <bf>Lsh</bf>.
+<p>
+
+<sect>Tips und Tricks
+<p>
+Sollten sie auf schwierigkeiten stossen, insbesondere von der Art, dass
+Kcalc umoegliche, zufallsartige Zahlen darstellt, dann habe sie warscheinlich
+eine nicht funktionsfaehige version von g++ dem C++ compiler. gcc-2.7.3
+ist z.B untauglich. Uebersetzen sie Kcalc erneut, jedoch dieses mal
+mit dem Paeprozessorsymbol FABLS undefiniert. D.h. kommentieren sie
+die Zeile #define HAVE_FABLS ind ../config.h aus. Diese wird jedoch 
+dazu fuehren das KCalc double anstatt von long double als fundamentalen
+Daten Typ benutzt und die Praezision von KCalc wird sehr leiden.
+Beschweren Sie sich bei ihrer Linux Distribution.
 <p>
 
 <sect>Fragen und Antworten

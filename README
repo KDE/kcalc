@@ -1,3 +1,21 @@
+IMPORTANT: On a number of systems including Linux systems using certain 
+version of gcc (gcc-2.7.3 RedHat 5.0 for example) will not get a working
+version of kcalc unless you undefine the preprosessor symbol FABSL in
+../config.h
+
+that is change the line
+#define FABSL
+to 
+/*#define FABLS*/
+
+However this will give you greatly reduced precision. Complain to the
+gnu people or to your distribution and pressure them to get a working
+version of gcc out.
+
+thanks,
+Bernd
+
+
 kcalc 0.4
 =========
 

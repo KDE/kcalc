@@ -1,36 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
 <TITLE>The KCalc Handbook: Installation</TITLE>
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="keywords" CONTENT="">
+<META NAME="description" CONTENT="">
 </HEAD>
-<BODY>
-<A HREF="index-1.html">Previous</A>
+<BODY BGCOLOR="#ffffff" LINK="#aa0000" TEXT="#000000" > 
+<FONT FACE="Helvetica">
+<A HREF="http://www.kde.org/"><IMG SRC="logotp3.gif" BORDER="0" ALT="The K Desktop Environment"></A>
+<HR WIDTH="100%" SIZE=2 ALIGN="CENTER" NOSHADE>
+
+ 
+<P ALIGN="RIGHT">
+
 <A HREF="index-3.html">Next</A>
+<A HREF="index-1.html">Previous</A>
 <A HREF="index.html#toc2">Table of Contents</A>
-<HR>
-<H2><A NAME="s2">2. Installation</A></H2>
+</P>
+<H3><A NAME="s2">2. Installation</A></H3>
 
-
-<H2><A NAME="ss2.1">2.1 How to obtain KCalc</A></H2>
+<P>
+<H3><A NAME="ss2.1">2.1 How to obtain KCalc</A>
+</H3>
 
 <P>KCalc is part  of the KDE project 
 <A HREF="http://www.kde.org">http://www.kde.org</A>.
 KCalc can be found on 
 <A HREF="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</A>, the main ftp site
 of the KDE project. It's home site is
-<A HREF="http://math.cornell.edu/~wuebben/kde.html">http://math.cornell.edu/~wuebben/kde.html</A></P>
-
-
-<H2><A NAME="ss2.2">2.2 Requirements</A></H2>
+<A HREF="http://math.cornell.edu/~wuebben/kde.html">http://math.cornell.edu/~wuebben/kde.html</A><P>
+<H3><A NAME="ss2.2">2.2 Requirements</A>
+</H3>
 
 <P>In order to successfully compile KCalc, you need the latest versions of <CODE> libkdecore</CODE> and <CODE> libkdeui</CODE>. All required libraries as well as KCalc itself can be found
 on 
-<A HREF="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</A>. </P>
+<A HREF="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</A>. 
+<P>
+<H3><A NAME="ss2.3">2.3 Compilation and installation</A>
+</H3>
 
-
-<H2><A NAME="ss2.3">2.3 Compilation and installation</A></H2>
-
-
-<P>The usual:</P>
+<P>
+<P>The usual:
 <P>
 <BLOCKQUOTE><CODE>
 <PRE>
@@ -39,15 +50,45 @@ on
 % make install
 </PRE>
 </CODE></BLOCKQUOTE>
-</P>
+<P><B>IMPORTANT:</B> On a number of systems, including Linux systems using certain 
+version of gcc (gcc-2.7.3 RedHat 5.0 for example) will not get a working
+version of kcalc unless you undefine the preprosessor symbol FABSL in
+<BLOCKQUOTE><CODE>
+<PRE>
+../config.h
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>that is change the line
+<BLOCKQUOTE><CODE>
+<PRE>
+#define FABSL
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>to 
+<BLOCKQUOTE><CODE>
+<PRE>
+/*#define FABLS*/
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>However, this will give you greatly reduced precision; kcalc's fundamental data
+type will be double instead of long double. Complain to the
+gnu people or to your distribution and ask them to ship a working version of 
+gcc.
+<P>
+<P>Should you run into problems please report them to me.
+<P>
+<P>
+<P ALIGN="RIGHT">
 
-<P>Should you run into problems please report them to me.</P>
-
-
-
-<HR>
-<A HREF="index-1.html">Previous</A>
 <A HREF="index-3.html">Next</A>
+<A HREF="index-1.html">Previous</A>
 <A HREF="index.html#toc2">Table of Contents</A>
+</P>
+<CENTER>
+<HR WIDTH="100%" SIZE=3 ALIGN=CENTER NOSHADE>
+</CENTER>    
+</FONT>
+
+ 
 </BODY>
 </HTML>

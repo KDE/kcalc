@@ -1,16 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
 <TITLE>Das KCalc Handbuch: Installation</TITLE>
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="keywords" CONTENT="">
+<META NAME="description" CONTENT="">
 </HEAD>
-<BODY>
-<A HREF="index-1.html">Previous</A>
+<BODY BGCOLOR="#ffffff" LINK="#aa0000" TEXT="#000000" > 
+<FONT FACE="Helvetica">
+<A HREF="http://www.kde.org/"><IMG SRC="logotp3.gif" BORDER="0" ALT="The K Desktop Environment"></A>
+<HR WIDTH="100%" SIZE=2 ALIGN="CENTER" NOSHADE>
+
+ 
+<P ALIGN="RIGHT">
+
 <A HREF="index-3.html">Next</A>
+<A HREF="index-1.html">Previous</A>
 <A HREF="index.html#toc2">Table of Contents</A>
-<HR>
-<H2><A NAME="s2">2. Installation</A></H2>
+</P>
+<H3><A NAME="s2">2. Installation</A></H3>
 
-
-<H2><A NAME="ss2.1">2.1 Wie sie KCalc bekommen</A></H2>
+<P>
+<H3><A NAME="ss2.1">2.1 Wie sie KCalc bekommen</A>
+</H3>
 
 <P>KCalc ist Teil des KDE Projekts 
 <A HREF="http://www.kde.org">http://www.kde.org</A>.
@@ -18,20 +30,19 @@ Sie finden KCalc auf
 <A HREF="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</A>, dem
 Haupt-FTP-Server des KDE Projekts. 
 Die Homepage ist
-<A HREF="http://math.cornell.edu/~wuebben/kde.html">http://math.cornell.edu/~wuebben/kde.html</A></P>
-
-
-<H2><A NAME="ss2.2">2.2 Anforderungen</A></H2>
+<A HREF="http://math.cornell.edu/~wuebben/kde.html">http://math.cornell.edu/~wuebben/kde.html</A><P>
+<H3><A NAME="ss2.2">2.2 Anforderungen</A>
+</H3>
 
 <P>Um KCalc erfolgreich compilieren zu können, benötigen sie die neuesten
 Versionen von <CODE>libkdecore</CODE> und <CODE>libkdeui</CODE>. Alle benötigten
 Libraries wie auch KCalc selbst finden Sie auf 
-<A HREF="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</A>.</P>
+<A HREF="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</A>.
+<P>
+<H3><A NAME="ss2.3">2.3 Übersetzung und Installation</A>
+</H3>
 
-
-<H2><A NAME="ss2.3">2.3 Übersetzung und Installation</A></H2>
-
-<P>Die Kompilation und Installation erfolgen auf die übliche Weist:</P>
+<P>Die Kompilation und Installation erfolgen auf die übliche Weist:
 <P>
 <BLOCKQUOTE><CODE>
 <PRE>
@@ -40,14 +51,30 @@ Libraries wie auch KCalc selbst finden Sie auf
 % make install
 </PRE>
 </CODE></BLOCKQUOTE>
-</P>
-<P>Sollten sie auf Probleme stoßen, bitte ich Sie, mir diese zu melden.</P>
+<P>
+<P>Sollten sie auf schwierigkeiten stossen, insbesondere von der Art, dass
+Kcalc umoegliche, zufallsartige Zahlen darstellt, dann habe sie warscheinlich
+eine nicht funktionsfaehige version von g++ dem C++ compiler. gcc-2.7.3
+ist z.B untauglich. Uebersetzen sie Kcalc erneut, jedoch dieses mal
+mit dem Paeprozessorsymbol FABLS undefiniert. D.h. kommentieren sie
+die Zeile #define HAVE_FABLS ind ../config.h aus. Diese wird jedoch 
+dazu fuehren das KCalc double anstatt von long double als fundamentalen
+Daten Typ benutzt und die Praezision von KCalc wird sehr leiden.
+Beschweren Sie sich bei ihrer Linux Distribution.
+<P>Sollten sie auf Probleme stoßen, bitte ich Sie, mir diese zu melden.
+<P>
+<P>
+<P ALIGN="RIGHT">
 
-
-
-<HR>
-<A HREF="index-1.html">Previous</A>
 <A HREF="index-3.html">Next</A>
+<A HREF="index-1.html">Previous</A>
 <A HREF="index.html#toc2">Table of Contents</A>
+</P>
+<CENTER>
+<HR WIDTH="100%" SIZE=3 ALIGN=CENTER NOSHADE>
+</CENTER>    
+</FONT>
+
+ 
 </BODY>
 </HTML>

@@ -1,44 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<TITLE>Das KCalc Handbuch: Lizenzbestimmungen</TITLE>
+<TITLE>Das KCalc Handbuch: Fragen und Antworten</TITLE>
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="keywords" CONTENT="">
+<META NAME="description" CONTENT="">
 </HEAD>
-<BODY>
+<BODY BGCOLOR="#ffffff" LINK="#aa0000" TEXT="#000000" > 
+<FONT FACE="Helvetica">
+<A HREF="http://www.kde.org/"><IMG SRC="logotp3.gif" BORDER="0" ALT="The K Desktop Environment"></A>
+<HR WIDTH="100%" SIZE=2 ALIGN="CENTER" NOSHADE>
+
+ 
+<P ALIGN="RIGHT">
+
+<A HREF="index-9.html">Next</A>
 <A HREF="index-7.html">Previous</A>
-Next
 <A HREF="index.html#toc8">Table of Contents</A>
-<HR>
-<H2><A NAME="s8">8. Lizenzbestimmungen</A></H2>
+</P>
+<H3><A NAME="s8">8. Fragen und Antworten</A></H3>
 
 <P>
-<BLOCKQUOTE><CODE>
-<PRE>
+<P>
+<H3><A NAME="ss8.1">8.1 Wie bekomme ich pi=3.141592...?</A>
+</H3>
 
-KCalc Copyright 1996,1997 Bernd Johannes Wuebben
-                          wuebben@math.cornell.edu
+<P>Drücken sie einfach <B>Inv</B> <B>EE</B>.
+<P>
+<P>
+<H3><A NAME="ss8.2">8.2 Wie bekomme ich die Eulersche Zahl e?</A>
+</H3>
 
-KCalc wurde von Martin Bartletts xfrmcalc angeregt, dessen Stack Engine
-noch immer ein Teil von KCalc ist.
+<P>Drücken sie <B>Inv</B> <B>Ln</B>.
+<P>
+<P>
+<H3><A NAME="ss8.3">8.3 Wie bekomme ich genau zwei Nachkommastellen?</A>
+</H3>
 
-Dieses Program ist Freie Software; Sie können sie  weitergeben und/oder
-verändern entsprechend den Bestimmungen der GNU General Public License, wie
-diese von der Free Software Foundation veröffentlicht wurden, entweder
-entsprechend Version 2 der Bestimmungen oder (nach ihrer Wahl) jeder
-späteren Version.
+<P>
+<P>Drücken sie auf die <B>KCalc</B>-Schaltfläche, dies öffnet den
+Konfigurationsdialog. Drücken sie auf ``Set Fixed Precision'' und stellen
+sie das Spin Control auf den Wert 2.
+<P>
+<H3><A NAME="ss8.4">8.4 Wie ist das mit der Genauigkeit?</A>
+</H3>
 
-Dieses Programm wird in der Hoffnung, daß es nützlich ist, aber
-OHNE EINE GARANTIE verbreitet; sogar ohne die implizite Garantie der
-MARKTGÄNGIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Lesen sie die GNU
-General Public License um genauere Datails zu erfahren.
+<P>Der bestimmende Faktor der Genauigkeit von KCalc ist die Unterstützung des C
+Datentyps <CODE>long double</CODE> durch Ihre <CODE>libc</CODE> und
+<CODE>libmath</CODE>. Wenn dies der Fall ist, wird es bei der Übersetzung
+erkannt, und KCalc verwendet ihn, um Zahlen intern darzustellen. Sie können
+dies im ``About''-Dialog von KCalc überprüfen.
+<P>Wenn Sie nicht eine <CODE>libc</CODE> und <CODE>libmath</CODE> von ausnehmend hoher
+Qualität haben, werden Sie ``interessante'' Ergebnisse beobachten können,
+sollten Sie versuchen, Berechnungen wie 123.22&nbsp;-&nbsp;123.21, 2.01&nbsp;-&nbsp;2,
+123.88&nbsp;-&nbsp;123.87 und ähnliche durchzuführen. Wie auch immer, im Fall daß Sie
+annehmen, dies wäre eine schlechte Leistung von KCalc, bitte ich Sie,
+dieselben Berechnungen mit einem Windows(R)-Taschenrechner anzustellen.
+<P>Stellen sie die Genauigkeit in KCalcs Konfigurationsdialog so ein, daß die
+oben genannten Berechnungen korrekt erfolgen.
+Wenn der grundlegende Datentyp ihrer Kopie von KCalc <CODE>long double</CODE>
+ist, empfehle ich eine Genauigkeit von 14, andernfalls von acht oder zehn.
+<P>
+<P>Beachten Sie: Eine höhere Genauigkeit führt nicht unbedingt zu besseren
+Ergebnissen. Spielen Sie mit der Genauigkeit, um zu sehen, was ich meine.
+<P>
+<P>
+<P ALIGN="RIGHT">
 
-Sie sollten eine Kopie der GNU General Public License zusammen mit diesem
-Programm erhalten haben; wenn nicht, so schreiben sie an die
-Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-</PRE>
-</CODE></BLOCKQUOTE>
-</P>
-<HR>
+<A HREF="index-9.html">Next</A>
 <A HREF="index-7.html">Previous</A>
-Next
 <A HREF="index.html#toc8">Table of Contents</A>
+</P>
+<CENTER>
+<HR WIDTH="100%" SIZE=3 ALIGN=CENTER NOSHADE>
+</CENTER>    
+</FONT>
+
+ 
 </BODY>
 </HTML>

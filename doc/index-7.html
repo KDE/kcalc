@@ -1,59 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<TITLE>The KCalc Handbook: Questions and Answers</TITLE>
+<TITLE>The KCalc Handbook: Tips and Tricks</TITLE>
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="keywords" CONTENT="">
+<META NAME="description" CONTENT="">
 </HEAD>
-<BODY>
-<A HREF="index-6.html">Previous</A>
+<BODY BGCOLOR="#ffffff" LINK="#aa0000" TEXT="#000000" > 
+<FONT FACE="Helvetica">
+<A HREF="http://www.kde.org/"><IMG SRC="logotp3.gif" BORDER="0" ALT="The K Desktop Environment"></A>
+<HR WIDTH="100%" SIZE=2 ALIGN="CENTER" NOSHADE>
+
+ 
+<P ALIGN="RIGHT">
+
 <A HREF="index-8.html">Next</A>
-<A HREF="index.html#toc7">Table of Contents</A>
-<HR>
-<H2><A NAME="s7">7. Questions and Answers</A></H2>
-
-
-<H2><A NAME="ss7.1">7.1 How do I get pi=3.1415926...?</A></H2>
-
-<P>Simply type INV EE.</P>
-
-
-<H2><A NAME="ss7.2">7.2 How do I get e, the Euler number?</A></H2>
-
-<P>Type 1 INV ln.</P>
-
-
-
-
-<H2><A NAME="ss7.3">7.3 How do I get two fixed digits after the period?</A></H2>
-
-<P>Click on the KCalc button, this will bring up the configuration dialog.
-Click on "Set Fixed Precision" and adjust the spin control so that it
-shows a 2.</P>
-
-
-
-<H2><A NAME="ss7.4">7.4 What about Precision?</A></H2>
-
-<P>The main factor determining the precision of kcalc is whether your libc and libmath
-supports the C data type <CODE>long double</CODE>. If this is the case, kcalc will detect this
-at compile time and use it as its fundamental data type to represent numbers.
-Check KCalc's about dialog in order to find out what the fundamental data type
-for your copy of KCalc is.</P>
-
-<P>Unless you have a libc and libmath of exceptionally high quality, you will
-be able to observe some "interesting" results when trying
-to execute computations such as: 123.22 - 123.21; 2.01 - 2; 123.88 - 123.87 and
-similar. However if you think this is bad I ask you to do the same computation on 
-the windows calculator.</P>
-<P>Adjust the precision on KCalc's configure dialog so that the above computation
-go through correctly. I recommend a precision of 14 if the fundamental data
-type for your copy of KCalc is long double, otherwise 8 or 10.</P>
-<P>Note: Higher precision doesn't necessarily lead to better results. Play with
-the precision and you will see what I mean.</P>
-
-
-
-<HR>
 <A HREF="index-6.html">Previous</A>
-<A HREF="index-8.html">Next</A>
 <A HREF="index.html#toc7">Table of Contents</A>
+</P>
+<H3><A NAME="s7">7. Tips and Tricks</A></H3>
+
+<P><B>IMPORTANT:</B> On a number of systems, including Linux systems using certain 
+version of gcc (gcc-2.7.3 RedHat 5.0 for example) will not get a working
+version of kcalc unless you undefine the preprosessor symbol FABSL in
+<BLOCKQUOTE><CODE>
+<PRE>
+../config.h
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>that is change the line
+<BLOCKQUOTE><CODE>
+<PRE>
+#define FABSL
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>to 
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+/*#define FABLS*/
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>However, this will give you greatly reduced precision; kcalc's fundamental data
+type will be double instead of long double. Complain to the
+gnu people or to your distribution and pressure them to ship a working version
+of gcc.
+<P>
+<P>
+<P ALIGN="RIGHT">
+
+<A HREF="index-8.html">Next</A>
+<A HREF="index-6.html">Previous</A>
+<A HREF="index.html#toc7">Table of Contents</A>
+</P>
+<CENTER>
+<HR WIDTH="100%" SIZE=3 ALIGN=CENTER NOSHADE>
+</CENTER>    
+</FONT>
+
+ 
 </BODY>
 </HTML>
