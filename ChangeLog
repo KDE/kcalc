@@ -1,3 +1,7 @@
+2004-06-05 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* It was not possible to paste a hex-number starting with "0x" in hex-mode, because hex-mode
+	  prepended automatically "0x" leading to "0x0x...".
+	
 2004-05-16 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Refactored a bit the kcalc_button code. In particular use Richtext only, when needed (a bit faster,
 	  but a lot still to be done).

@@ -111,7 +111,7 @@ void KCalcDisplay::slotPaste(bool bClipboard)
 		return;
 	}
 
-	if (_num_base == NB_HEX)
+	if (_num_base == NB_HEX  &&  ! tmp_str.startsWith("0x", false))
 		tmp_str.prepend( "0x" );
 
 	bool was_ok;
