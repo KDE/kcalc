@@ -1,3 +1,6 @@
+2003-11-04 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* More reorganization and preparation for getting accels right.
+
 2003-10-31 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Split Constructor into more subfunctions.
 	  To be continued.

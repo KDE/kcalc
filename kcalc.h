@@ -155,21 +155,18 @@ private:
     QPushButton*        pbBaseChoose;
     QPushButton*        pbAngleChoose;
     QDict<QPushButton>  pbStat;
-    QPushButton*        pbHyp;
+    QDict<QPushButton>  pbTrig;
+    QDict<QPushButton>  pbExp;
+    QDict<QPushButton>  pbLogic;
     QPushButton* 	pbEE;
     QPushButton* 	pbPi;
     QPushButton* 	pbInv;
     QPushButton* 	pbMR;
-    QPushButton* 	pbSin;
     QPushButton* 	pbPlusMinus;
     QPushButton* 	pbMPlusMinus;
-    QPushButton* 	pbCos;
     QPushButton* 	pbReci;
-    QPushButton* 	pbTan;
     QPushButton* 	pbFactorial;
-    QPushButton* 	pbLog;
     QPushButton* 	pbSquare;
-    QPushButton* 	pbLn;
     QPushButton* 	pbPower;
     QPushButton* 	pbMC;
     QPushButton* 	pbClear;
@@ -183,12 +180,9 @@ private:
     QPushButton* 	pbXOR;
     QPushButton* 	pbPlus;
     QPushButton* 	pbMinus;
-    QPushButton* 	pbLeftShift;
-    QPushButton* 	pbRightShift;
     QPushButton* 	pbPeriod;
     QPushButton* 	pbEqual;
     QPushButton* 	pbPercent;
-    QPushButton* 	pbNegate;
     QPushButton* 	pbMod;
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
     QButtonGroup*       NumButtonGroup;

@@ -225,38 +225,38 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 
 	// small button layout
 	smallBtnLayout->addWidget(pbStat["NumData"], 0, 0);
-	smallBtnLayout->addWidget(pbHyp, 0, 1);
-	smallBtnLayout->addWidget(pbAND, 0, 2);
+	smallBtnLayout->addWidget(pbTrig["HypMode"], 0, 1);
+	smallBtnLayout->addWidget(pbLogic["AND"], 0, 2);
 	smallBtnLayout->addWidget(pbPi, 0, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xA), 0, 4);
 
 	smallBtnLayout->addWidget(pbStat["Mean"], 1, 0);
-	smallBtnLayout->addWidget(pbSin, 1, 1);
-	smallBtnLayout->addWidget(pbOR, 1, 2);
+	smallBtnLayout->addWidget(pbTrig["Sine"], 1, 1);
+	smallBtnLayout->addWidget(pbLogic["OR"], 1, 2);
 	smallBtnLayout->addWidget(pbMod, 1, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xB), 1, 4);
 
 	smallBtnLayout->addWidget(pbStat["StandardDeviation"], 2, 0);
-	smallBtnLayout->addWidget(pbCos, 2, 1);
-	smallBtnLayout->addWidget(pbXOR, 2, 2);
+	smallBtnLayout->addWidget(pbTrig["Cosine"], 2, 1);
+	smallBtnLayout->addWidget(pbLogic["XOR"], 2, 2);
 	smallBtnLayout->addWidget(pbReci, 2, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xC), 2, 4);
 
 	smallBtnLayout->addWidget(pbStat["Median"], 3, 0);
-	smallBtnLayout->addWidget(pbTan, 3, 1);
-	smallBtnLayout->addWidget(pbLeftShift, 3, 2);
+	smallBtnLayout->addWidget(pbTrig["Tangent"], 3, 1);
+	smallBtnLayout->addWidget(pbLogic["LeftShift"], 3, 2);
 	smallBtnLayout->addWidget(pbFactorial, 3, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xD), 3, 4);
 
 	smallBtnLayout->addWidget(pbStat["InputData"], 4, 0);
-	smallBtnLayout->addWidget(pbLog, 4, 1);
-	smallBtnLayout->addWidget(pbRightShift, 4, 2);
+	smallBtnLayout->addWidget(pbExp["Log10"], 4, 1);
+	smallBtnLayout->addWidget(pbLogic["RightShift"], 4, 2);
 	smallBtnLayout->addWidget(pbSquare, 4, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xE), 4, 4);
 
 	smallBtnLayout->addWidget(pbStat["ClearData"], 5, 0);
-	smallBtnLayout->addWidget(pbLn, 5, 1);
-	smallBtnLayout->addWidget(pbNegate, 5, 2);
+	smallBtnLayout->addWidget(pbExp["LogNatural"], 5, 1);
+	smallBtnLayout->addWidget(pbLogic["One-Complement"], 5, 2);
 	smallBtnLayout->addWidget(pbPower, 5, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xF), 5, 4);
 
@@ -288,18 +288,18 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	topLayout->addWidget(pbInv);
 	topLayout->addWidget(calc_display, 10);
 
-	mFunctionButtonList.append(pbHyp);
+	mFunctionButtonList.append(pbTrig["HypMode"]);
 	mFunctionButtonList.append(pbInv);
 	mFunctionButtonList.append(pbPi);
-	mFunctionButtonList.append(pbSin);
+	mFunctionButtonList.append(pbTrig["Sine"]);
 	mFunctionButtonList.append(pbPlusMinus);
-	mFunctionButtonList.append(pbCos);
+	mFunctionButtonList.append(pbTrig["Cosine"]);
 	mFunctionButtonList.append(pbReci);
-	mFunctionButtonList.append(pbTan);
+	mFunctionButtonList.append(pbTrig["Tangent"]);
 	mFunctionButtonList.append(pbFactorial);
-	mFunctionButtonList.append(pbLog);
+	mFunctionButtonList.append(pbExp["Log10"]);
 	mFunctionButtonList.append(pbSquare);
-	mFunctionButtonList.append(pbLn);
+	mFunctionButtonList.append(pbExp["LogNatural"]);
 	mFunctionButtonList.append(pbPower);
 
 	mMemButtonList.append(pbEE);
@@ -312,18 +312,18 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	mOperationButtonList.append(pbX);
 	mOperationButtonList.append(pbParenOpen);
 	mOperationButtonList.append(pbParenClose);
-	mOperationButtonList.append(pbAND);
+	mOperationButtonList.append(pbLogic["AND"]);
 	mOperationButtonList.append(pbDivision);
-	mOperationButtonList.append(pbOR);
-	mOperationButtonList.append(pbXOR);
+	mOperationButtonList.append(pbLogic["OR"]);
+	mOperationButtonList.append(pbLogic["XOR"]);
 	mOperationButtonList.append(pbPlus);
 	mOperationButtonList.append(pbMinus);
-	mOperationButtonList.append(pbLeftShift);
-	mOperationButtonList.append(pbRightShift);
+	mOperationButtonList.append(pbLogic["LeftShift"]);
+	mOperationButtonList.append(pbLogic["RightShift"]);
 	mOperationButtonList.append(pbPeriod);
 	mOperationButtonList.append(pbEqual);
 	mOperationButtonList.append(pbPercent);
-	mOperationButtonList.append(pbNegate);
+	mOperationButtonList.append(pbLogic["One-Complement"]);
 	mOperationButtonList.append(pbMod);
 
 	set_colors();
@@ -669,40 +669,52 @@ void KCalculator::setupLogicKeys(QWidget *parent)
 {
 	Q_CHECK_PTR(parent);
 
-	pbAND = new QPushButton("AND", parent, "AND-Button");
-	QToolTip::add(pbAND, i18n("Bitwise AND"));
-	pbAND->setAutoDefault(false);
-	connect(pbAND, SIGNAL(clicked(void)), SLOT(slotANDclicked(void)));
+	QPushButton *tmp_pb;
 
-	pbOR = new QPushButton("OR", parent, "OR-Button");
-	QToolTip::add(pbOR, i18n("Bitwise OR"));
-	pbOR->setAutoDefault(false);
-	connect(pbOR, SIGNAL(clicked(void)), SLOT(slotORclicked(void)));
+	tmp_pb = new QPushButton("AND", parent, "AND-Button");
+	pbLogic.insert("AND", tmp_pb);
+	QToolTip::add(tmp_pb, i18n("Bitwise AND"));
+	accel()->insert("Apply AND", i18n("Pressed Ampersand-Button"),
+			0, Qt::Key_Ampersand, tmp_pb, SLOT(animateClick()));
+	tmp_pb->setAutoDefault(false);
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotANDclicked(void)));
 
-	pbXOR = new QPushButton("XOR", parent, "XOR-Button");
-	QToolTip::add(pbXOR, i18n("Bitwise XOR"));
-	pbXOR->setAutoDefault(false);
-	connect(pbXOR, SIGNAL(clicked(void)), SLOT(slotXORclicked(void)));
+	tmp_pb = new QPushButton("OR", parent, "OR-Button");
+	pbLogic.insert("OR", tmp_pb);
+	QToolTip::add(tmp_pb, i18n("Bitwise OR"));
+	tmp_pb->setAutoDefault(false);
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotORclicked(void)));
 
-	pbNegate = new QPushButton("Cmp", parent, "One-Complement-Button");
-	QToolTip::add(pbNegate, i18n("One's complement"));
-	pbNegate->setAutoDefault(false);
-	connect(pbNegate, SIGNAL(clicked(void)), SLOT(slotNegateclicked(void)));
+	tmp_pb = new QPushButton("XOR", parent, "XOR-Button");
+	pbLogic.insert("XOR", tmp_pb);
+	QToolTip::add(tmp_pb, i18n("Bitwise XOR"));
+	tmp_pb->setAutoDefault(false);
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotXORclicked(void)));
 
-	pbLeftShift = new QPushButton("Lsh", parent, "LeftBitShift-Button");
+	tmp_pb = new QPushButton("Cmp", parent, "One-Complement-Button");
+	pbLogic.insert("One-Complement", tmp_pb);
+	QToolTip::add(tmp_pb, i18n("One's complement"));
+	accel()->insert("Apply One-Complement", i18n("Pressed ~-Button"),
+			0, Qt::Key_AsciiTilde, tmp_pb, SLOT(animateClick()));
+	tmp_pb->setAutoDefault(false);
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotNegateclicked(void)));
+
+	tmp_pb = new QPushButton("Lsh", parent, "LeftBitShift-Button");
+	pbLogic.insert("LeftShift", tmp_pb);
 	accel()->insert("Apply left shift", i18n("Pressed '<'-Button"),
-			0, Qt::Key_Less, pbLeftShift, SLOT(animateClick()));
-	QToolTip::add(pbLeftShift, i18n("Left bit shift"));
-	pbLeftShift->setAutoDefault(false);
-	connect(pbLeftShift, SIGNAL(clicked(void)),
+			0, Qt::Key_Less, tmp_pb, SLOT(animateClick()));
+	QToolTip::add(tmp_pb, i18n("Left bit shift"));
+	tmp_pb->setAutoDefault(false);
+	connect(tmp_pb, SIGNAL(clicked(void)),
 		SLOT(slotLeftShiftclicked(void)));
 
-	pbRightShift = new QPushButton("Rsh", parent, "RightBitShift-Button");
+	tmp_pb = new QPushButton("Rsh", parent, "RightBitShift-Button");
+	pbLogic.insert("RightShift", tmp_pb);
 	accel()->insert("Apply right shift", i18n("Pressed '>'-Button"),
-			0, Qt::Key_Greater, pbRightShift, SLOT(animateClick()));
-	QToolTip::add(pbRightShift, i18n("Right bit shift"));
-	pbRightShift->setAutoDefault(false);
-	connect(pbRightShift, SIGNAL(clicked(void)),
+			0, Qt::Key_Greater, tmp_pb, SLOT(animateClick()));
+	QToolTip::add(tmp_pb, i18n("Right bit shift"));
+	tmp_pb->setAutoDefault(false);
+	connect(tmp_pb, SIGNAL(clicked(void)),
 		SLOT(slotRightShiftclicked(void)));
 }
 
@@ -710,51 +722,63 @@ void KCalculator::setupLogExpKeys(QWidget *parent)
 {
 	Q_CHECK_PTR(parent);
 
-	pbLn = new QPushButton("Ln", parent, "Ln-Button");
-	QToolTip::add(pbLn, i18n("Natural log"));
-	pbLn->setAutoDefault(false);
-	accel()->insert("Apply Natural Log", i18n("Pressed Ln-Button"),
-			0, Qt::Key_N, pbLn, SLOT(animateClick()));
-	connect(pbLn, SIGNAL(clicked(void)), SLOT(slotLnclicked(void)));
+	QPushButton *tmp_pb;
 
-	pbLog = new QPushButton("Log", parent, "Log-Button");
-	QToolTip::add(pbLog, i18n("Logarithm to base 10"));
-	pbLog->setAutoDefault(false);
+	tmp_pb = new QPushButton("Ln", parent, "Ln-Button");
+	pbExp.insert("LogNatural", tmp_pb);
+	QToolTip::add(tmp_pb, i18n("Natural log"));
+	tmp_pb->setAutoDefault(false);
+	accel()->insert("Apply Natural Log", i18n("Pressed Ln-Button"),
+			0, Qt::Key_N, tmp_pb, SLOT(animateClick()));
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotLnclicked(void)));
+
+	tmp_pb = new QPushButton("Log", parent, "Log-Button");
+	pbExp.insert("Log10", tmp_pb);
+	QToolTip::add(tmp_pb, i18n("Logarithm to base 10"));
+	tmp_pb->setAutoDefault(false);
 	accel()->insert("Apply Logarithm", i18n("Pressed Log-Button"),
-			0, Qt::Key_L, pbLog, SLOT(animateClick()));
-	connect(pbLog, SIGNAL(clicked(void)), SLOT(slotLogclicked(void)));
+			0, Qt::Key_L, tmp_pb, SLOT(animateClick()));
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotLogclicked(void)));
 }
 
 void KCalculator::setupTrigKeys(QWidget *parent)
 {
 	Q_CHECK_PTR(parent);
 
-	pbHyp = new QPushButton("Hyp", mSmallPage, "Hyp-Button");
-	QToolTip::add(pbHyp, i18n("Hyperbolic mode"));
-	pbHyp->setAutoDefault(false);
-	connect(pbHyp, SIGNAL(toggled(bool)), SLOT(slotHyptoggled(bool)));
-	pbHyp->setToggleButton(true);
+	QPushButton *tmp_pb;
 
-	pbSin = new QPushButton("Sin", mSmallPage, "Sin-Button");
-	QToolTip::add(pbSin, i18n("Sine"));
-	pbSin->setAutoDefault(false);
+	tmp_pb = new QPushButton("Hyp", parent, "Hyp-Button");
+	pbTrig.insert("HypMode", tmp_pb);
+	QToolTip::add(tmp_pb, i18n("Hyperbolic mode"));
+	tmp_pb->setAutoDefault(false);
+	connect(tmp_pb, SIGNAL(toggled(bool)), SLOT(slotHyptoggled(bool)));
+	tmp_pb->setToggleButton(true);
+	accel()->insert("Toggle HypMode", i18n("Changed Hyp-Mode"),
+			0, Qt::Key_H, tmp_pb, SLOT(toggle()));
+
+	tmp_pb = new QPushButton("Sin", parent, "Sin-Button");
+	pbTrig.insert("Sine", tmp_pb);
+	QToolTip::add(tmp_pb, i18n("Sine"));
+	tmp_pb->setAutoDefault(false);
 	accel()->insert("Apply Sine", i18n("Pressed Sin-Button"),
-			0, Qt::Key_S, pbSin, SLOT(animateClick()));
-	connect(pbSin, SIGNAL(clicked(void)), SLOT(slotSinclicked(void)));
+			0, Qt::Key_S, tmp_pb, SLOT(animateClick()));
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotSinclicked(void)));
 
-	pbCos = new QPushButton("Cos", mSmallPage, "Cos-Button");
-	QToolTip::add(pbCos, i18n("Cosine"));
-	pbCos->setAutoDefault(false);
+	tmp_pb = new QPushButton("Cos", parent, "Cos-Button");
+	pbTrig.insert("Cosine", tmp_pb);
+	QToolTip::add(tmp_pb, i18n("Cosine"));
+	tmp_pb->setAutoDefault(false);
 	accel()->insert("Apply Cosine", i18n("Pressed Cos-Button"),
-			0, Qt::Key_C, pbCos, SLOT(animateClick()));
-	connect(pbCos, SIGNAL(clicked(void)), SLOT(slotCosclicked(void)));
+			0, Qt::Key_C, tmp_pb, SLOT(animateClick()));
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotCosclicked(void)));
 
-	pbTan = new QPushButton("Tan", mSmallPage, "Tan-Button");
-	QToolTip::add(pbTan, i18n("Tangent"));
-	pbTan->setAutoDefault(false);
+	tmp_pb = new QPushButton("Tan", parent, "Tan-Button");
+	pbTrig.insert("Tangent", tmp_pb);
+	QToolTip::add(tmp_pb, i18n("Tangent"));
+	tmp_pb->setAutoDefault(false);
 	accel()->insert("Apply Tangent", i18n("Pressed Tan-Button"),
-			0, Qt::Key_T, pbTan, SLOT(animateClick()));
-	connect(pbTan, SIGNAL(clicked(void)),SLOT(slotTanclicked(void)));
+			0, Qt::Key_T, tmp_pb, SLOT(animateClick()));
+	connect(tmp_pb, SIGNAL(clicked(void)),SLOT(slotTanclicked(void)));
 
 }
 
@@ -953,9 +977,6 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 	case Key_Prior:
 		pbClear->animateClick();
 		break;
-	case Key_H:
-		pbHyp->toggle();
-		break;
 	case Key_E:
 	  //if (current_base == NB_HEX)
 	  //		(NumButtonGroup->find(0xE))->animateClick();
@@ -976,9 +997,6 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 		break;
 	case Key_ParenRight:
 		pbParenClose->animateClick();
-		break;
-	case Key_Ampersand:
-		pbAND->animateClick();
 		break;
 	case Key_Asterisk:
         case Key_multiply:
@@ -1010,9 +1028,6 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 	case Key_Percent:
 		pbPercent->animateClick();
 		break;
-	case Key_AsciiTilde:
-		pbNegate->animateClick();
-		break;
 	case Key_Colon:
 		pbMod->animateClick();
 		break;
@@ -1029,7 +1044,7 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 		break;
 	}
     }
-    
+
     if (e->state() & Keypad)
     {
 	NumButtonGroup->find(e->text().toInt())->animateClick();
@@ -1084,29 +1099,27 @@ void KCalculator::slotHyptoggled(bool flag)
 	// toggle between hyperbolic and standart trig functions
 	hyp_mode = flag;
 
+	QToolTip::remove(pbTrig["Sine"]);
+	QToolTip::remove(pbTrig["Cosine"]);
+	QToolTip::remove(pbTrig["Tangent"]);
+
 	if(flag)
 	{
-		pbSin->setText("Sinh");
-		QToolTip::remove(pbSin);
-		QToolTip::add(pbSin, i18n("Hyperbolic Sine"));
-		pbCos->setText("Cosh");
-		QToolTip::remove(pbCos);
-		QToolTip::add(pbCos, i18n("Hyperbolic Cosine"));
-		pbTan->setText("Tanh");
-		QToolTip::remove(pbTan);
-		QToolTip::add(pbTan, i18n("Hyperbolic Tangent"));
+		pbTrig["Sine"]->setText("Sinh");
+		QToolTip::add(pbTrig["Sine"], i18n("Hyperbolic Sine"));
+		pbTrig["Cosine"]->setText("Cosh");
+		QToolTip::add(pbTrig["Cosine"], i18n("Hyperbolic Cosine"));
+		pbTrig["Tangent"]->setText("Tanh");
+		QToolTip::add(pbTrig["Tangent"], i18n("Hyperbolic Tangent"));
 	}
 	else
 	{
-		pbSin->setText("Sin");
-		QToolTip::remove(pbSin);
-		QToolTip::add(pbSin, i18n("Sine"));
-		pbCos->setText("Cos");
-		QToolTip::remove(pbCos);
-		QToolTip::add(pbCos, i18n("Cosine"));
-		pbTan->setText("Tan");
-		QToolTip::remove(pbTan);
-		QToolTip::add(pbTan, i18n("Tangent"));
+		pbTrig["Sine"]->setText("Sin");
+		QToolTip::add(pbTrig["Sine"], i18n("Sine"));
+		pbTrig["Cosine"]->setText("Cos");
+		QToolTip::add(pbTrig["Cosine"], i18n("Cosine"));
+		pbTrig["Tangent"]->setText("Tan");
+		QToolTip::add(pbTrig["Tangent"], i18n("Tangent"));
 	}
 }
 
@@ -1130,7 +1143,7 @@ void KCalculator::slotSinclicked(void)
 {
 	if (hyp_mode)
 	{
-		// sinh or arcsinh
+		// sinh or arsinh
 		if (!inverse)
 			core.SinHyp(calc_display->getAmount());
 		else
@@ -1167,7 +1180,7 @@ void KCalculator::slotCosclicked(void)
 {
 	if (hyp_mode)
 	{
-		// cosh or arccosh
+		// cosh or arcosh
 		if (!inverse)
 			core.CosHyp(calc_display->getAmount());
 		else
@@ -1195,7 +1208,7 @@ void KCalculator::slotTanclicked(void)
 {
 	if (hyp_mode)
 	{
-		// tanh or arctanh
+		// tanh or artanh
 		if (!inverse)
 			core.TangensHyp(calc_display->getAmount());
 		else
@@ -1568,10 +1581,10 @@ void KCalculator::slotTrigshow(bool toggled)
 {
 	if(toggled)
 	{
-	        pbHyp->show();
-		pbSin->show();
-		pbCos->show();
-		pbTan->show();
+	        pbTrig["HypMode"]->show();
+		pbTrig["Sine"]->show();
+		pbTrig["Cosine"]->show();
+		pbTrig["Tangent"]->show();
 		pbAngleChoose->show();
 		statusBar()->insertFixedItem(" DEG ", 2, true);
 		statusBar()->setItemAlignment(2, AlignCenter);
@@ -1579,10 +1592,10 @@ void KCalculator::slotTrigshow(bool toggled)
 	}
 	else
 	{
-	        pbHyp->hide();
-		pbSin->hide();
-		pbCos->hide();
-		pbTan->hide();
+	        pbTrig["HypMode"]->hide();
+		pbTrig["Sine"]->hide();
+		pbTrig["Cosine"]->hide();
+		pbTrig["Tangent"]->hide();
 		pbAngleChoose->hide();
 		statusBar()->removeItem(2);
 	}
@@ -1595,13 +1608,13 @@ void KCalculator::slotExpLogshow(bool toggled)
 {
 	if(toggled)
 	{
-		pbLog->show();
-		pbLn->show();
+		pbExp["Log10"]->show();
+		pbExp["LogNatural"]->show();
 	}
 	else
 	{
-		pbLog->hide();
-		pbLn ->hide();
+		pbExp["Log10"]->hide();
+		pbExp["LogNatural"]->hide();
 	}
 	adjustSize();
 	setFixedSize(sizeHint());
@@ -1612,12 +1625,12 @@ void KCalculator::slotLogicshow(bool toggled)
 {
 	if(toggled)
 	{
-	        pbAND->show();
-		pbOR->show();
-		pbXOR->show();
-		pbNegate->show();
-		pbLeftShift->show();
-		pbRightShift->show();
+	        pbLogic["AND"]->show();
+		pbLogic["OR"]->show();
+		pbLogic["XOR"]->show();
+		pbLogic["One-Complement"]->show();
+		pbLogic["LeftShift"]->show();
+		pbLogic["RightShift"]->show();
 		statusBar()->insertFixedItem(" HEX ", 1, true);
 		statusBar()->setItemAlignment(1, AlignCenter);
 		slotBaseSelected(10);
@@ -1627,12 +1640,12 @@ void KCalculator::slotLogicshow(bool toggled)
 	}
 	else
 	{
-	        pbAND->hide();
-		pbOR->hide();
-		pbXOR->hide();
-		pbNegate->hide();
-		pbLeftShift->hide();
-		pbRightShift->hide();
+	        pbLogic["AND"]->hide();
+		pbLogic["OR"]->hide();
+		pbLogic["XOR"]->hide();
+		pbLogic["One-Complement"]->hide();
+		pbLogic["LeftShift"]->hide();
+		pbLogic["RightShift"]->hide();
 		// Hide Hex-Buttons, but first switch back to decimal
 		slotBaseSelected(10);
 		pbBaseChoose->hide();
