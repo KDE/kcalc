@@ -117,6 +117,8 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	mConfigButton->setAutoDefault(false);
 	QToolTip::add(mConfigButton, i18n("Click to configure KCalc"));
 	connect(mConfigButton, SIGNAL(clicked()), this, SLOT(configclicked()));
+	if (KGlobal::config()->isImmutable())
+	   mConfigButton->hide();
 
 	mHelpMenu = new KHelpMenu(this, KGlobal::instance()->aboutData());
 
