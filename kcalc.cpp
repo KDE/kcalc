@@ -1704,7 +1704,7 @@ void KCalculator::showSettings()
         constant->kcfg_valueConstant5->setValidator( valid );
         constant->kcfg_valueConstant6->setValidator( valid );
 
-	dialog->addPage(constant, "Constants", i18n("Constants"));
+	dialog->addPage(constant, i18n("Constants"), "constants");
 
 	// When the user clicks OK or Apply we want to update our settings.
 	connect(dialog, SIGNAL(settingsChanged()), SLOT(updateSettings()));
