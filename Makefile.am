@@ -24,8 +24,8 @@ apps_DATA = kcalc.kdelnk
 appsdir = $(kde_appsdir)/Utilities
 
 install-data-local:
-	$(mkinstalldirs) $(MINIDIR)
-	$(INSTALL_DATA) mini-kcalc.xpm  $(MINIDIR)/kcalc.xpm
+	$(mkinstalldirs) $(kde_minidir)
+	$(INSTALL_DATA) mini-kcalc.xpm  $(kde_minidir)/kcalc.xpm
 
 uninstall-local:
 	rm -f $(MINIDIR)/kcalc.xpm
