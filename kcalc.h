@@ -61,13 +61,13 @@
 // and this for all the poor devels out there who don't have long double math
 // I guess it's time to switch to LINUX guys .....
 
-#ifdef HAVE_LONG_DOUBLE
+#ifdef HAVE_POWL && HAVE_DOUBLE_LONG
 #define CALCAMNT	long double
 #else
 #define CALCAMNT        double
 #endif
 
-#ifdef HAVE_LONG_DOUBLE
+#ifdef HAVE_POWL // if having powl, having all
 #define FABS(X)   	fabsl(X)
 #define MODF(X,Y)       modfl(X,Y)
 #define FMOD(X,Y)   	fmodl(X,Y)
