@@ -46,7 +46,11 @@
 #endif
 
 #ifndef HAVE_FUNC_ISINF
+#ifdef HAVE_IEEEFP_H
 #include <ieeefp.h>
+#else
+#include <math.h>
+#endif
 
 int isinf(double x) { return !finite(x) && x==x; }
 #endif
