@@ -55,7 +55,7 @@ FontDlg::FontDlg(QWidget *parent=0, const char *name=0,
   familylabeldisp->setGeometry(130,40,150,23);	
   familylabeldisp->setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
   familylabeldisp->setText(defst->font.family());
-  familylabeldisp->setBackgroundColor(white);
+//  familylabeldisp->setBackgroundColor(white);
 
   sizelabel = new QLabel(this);
   sizelabel->setGeometry(30,75,100,25);
@@ -64,7 +64,7 @@ FontDlg::FontDlg(QWidget *parent=0, const char *name=0,
   sizelabeldisp = new QLabel(this);
   sizelabeldisp->setGeometry(130,75,60,23);	
   sizelabeldisp->setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
-  sizelabeldisp->setBackgroundColor(white);
+//  sizelabeldisp->setBackgroundColor(white);
   QString size;
   size.setNum(defst->font.pointSize());
   sizelabeldisp->setText(size);
@@ -78,7 +78,7 @@ FontDlg::FontDlg(QWidget *parent=0, const char *name=0,
   stylelabeldisp = new QLabel(this);
   stylelabeldisp->setGeometry(130,110,80,23);
   stylelabeldisp->setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
-  stylelabeldisp->setBackgroundColor(white);
+//  stylelabeldisp->setBackgroundColor(white);
 
   if(defst->font.italic())
     stylelabeldisp->setText("Italic");
@@ -94,7 +94,7 @@ FontDlg::FontDlg(QWidget *parent=0, const char *name=0,
   weightlabeldisp = new QLabel(this);
   weightlabeldisp->setGeometry(130,145,80,23);
   weightlabeldisp->setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
-  weightlabeldisp->setBackgroundColor(white);
+//  weightlabeldisp->setBackgroundColor(white);
 
   if(defst->font.bold())
     weightlabeldisp->setText("Bold");
