@@ -35,7 +35,7 @@
                         <cstring>textLabel3</cstring>
                     </property>
                     <property name="text">
-                        <string>&amp;Forground:</string>
+                        <string>&amp;Foreground:</string>
                     </property>
                     <property name="buddy" stdset="0">
                         <cstring>kcfg_ForeColor</cstring>
