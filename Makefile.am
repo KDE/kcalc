@@ -34,7 +34,7 @@ uninstall-local:
 
 
 messages:
-	@XGETTEXT@ -C -ki18n *.cpp -x../../kdelibs/po/kde.pot && mv messages.po ../po/kcalc.pot
+	$(XGETTEXT) -C -ki18n -x $(includedir)/kde.pot $(kcalc_SOURCES) && mv messages.po ../po/kcalc.pot
 
 kcalc.cpp:kcalc.moc
 kcalc.moc: kcalc.h
