@@ -522,8 +522,8 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	largeBtnLayout->addWidget(pbMinus, 3, 4);
 	largeBtnLayout->addWidget(pbShift, 3, 5);
 
-	largeBtnLayout->addWidget(pbPeriod, 4, 0);
-	largeBtnLayout->addWidget(pb0, 4, 1);
+	largeBtnLayout->addWidget(pb0, 4, 0);
+	largeBtnLayout->addWidget(pbPeriod, 4, 1);
 	largeBtnLayout->addWidget(pbEqual, 4, 2);
 	largeBtnLayout->addWidget(pbPercent, 4, 3);
 	largeBtnLayout->addWidget(pbNegate, 4, 4);
