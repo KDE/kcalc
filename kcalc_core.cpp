@@ -1359,6 +1359,8 @@ void QtCalculator::Clear()
 {
   eestate = false;
   last_input = OPERATION;
+  input_count = 0;
+  decimal_point = 0;
 
   if( display_error){
     display_error = 0;
