@@ -48,7 +48,7 @@ static inline QPixmap loadIcon( const char * name )
 //-------------------------------------------------------------------------
 ConfigureDialog::ConfigureDialog(QWidget *parent, char *name, bool modal)
 	: KDialogBase( IconList, i18n("Configure KCalc"), Help|Apply|Ok|Cancel,
-		Ok, parent, name, modal )
+		Ok, parent, name, modal, true )
 {
 	setHelp("kcalc/index.html", QString::null);
 
