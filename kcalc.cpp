@@ -137,18 +137,18 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   // Status bar contents
   //
   statusINVLabel = new QLabel( this, "INV" );
-  CHECK_PTR( statusINVLabel );
+  Q_CHECK_PTR( statusINVLabel );
   statusINVLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );
   statusINVLabel->setAlignment( AlignCenter );
   statusINVLabel->setText("NORM");
 
   statusHYPLabel = new QLabel( this, "HYP" );
-  CHECK_PTR( statusHYPLabel );
+  Q_CHECK_PTR( statusHYPLabel );
   statusHYPLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );
   statusHYPLabel->setAlignment( AlignCenter );
 
   statusERRORLabel = new QLabel( this, "ERROR" );
-  CHECK_PTR( statusERRORLabel );
+  Q_CHECK_PTR( statusERRORLabel );
   statusERRORLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );
   statusERRORLabel->setAlignment( AlignLeft|AlignVCenter );
 
@@ -445,13 +445,13 @@ QtCalculator::QtCalculator( QWidget *parent, const char *name )
   pb1->setText( "1" );
   pb1->setAutoDefault(false);
   connect( pb1, SIGNAL(toggled(bool)), SLOT(pb1toggled(bool)));
-  pb1->setToggleButton(TRUE);	
+  pb1->setToggleButton(TRUE);
 
   pb2 = new QPushButton( mLargePage, "2button" );
   pb2->setText( "2" );
   pb2->setAutoDefault(false);
   connect( pb2, SIGNAL(toggled(bool)), SLOT(pb2toggled(bool)));
-  pb2->setToggleButton(TRUE);		
+  pb2->setToggleButton(TRUE);
 
   pb3 = new QPushButton( mLargePage, "3button" );
   pb3->setText( "3" );
@@ -1341,7 +1341,7 @@ void QtCalculator::pbMRtoggled(bool myboolean){
     pbMR->setOn(FALSE);
 }
 
-void QtCalculator::pbAtoggled(bool myboolean){	
+void QtCalculator::pbAtoggled(bool myboolean){
   if(myboolean)
     buttonA();
     if(pbA->isOn() && (!key_pressed))
@@ -1700,7 +1700,7 @@ void QtCalculator::readSettings()
 void QtCalculator::writeSettings()
 {
 
-  KConfig *config = KGlobal::config();		
+  KConfig *config = KGlobal::config();
 
   config->setGroup( "Font" );
   config->writeEntry("Font",kcalcdefaults.font);
@@ -1758,7 +1758,7 @@ void QtCalculator::display_selected(){
     bool was_ok;
     result = (CALCAMNT) cb->text().toDouble(&was_ok);
     if (!was_ok) result = (CALCAMNT) (0);
-    
+
     last_input = PASTE;
     DISPLAY_AMOUNT = result;
     UpdateDisplay();
@@ -1993,7 +1993,7 @@ bool QtCalculator::eventFilter( QObject *o, QEvent *e )
       else
       {
 	return false;
-      }	
+      }
 
       QPalette pal( c, palette().active().background() );
       for( QPushButton *p = list->first(); p; p=list->next() )

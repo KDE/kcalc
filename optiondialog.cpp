@@ -24,12 +24,14 @@
 #include <qlayout.h>
 #include <qradiobutton.h>
 #include <qspinbox.h>
+#include <qpainter.h>
 
 #include <kcolordlg.h>
 #include <kcolordrag.h>
 #include <kfontdialog.h>
 #include <kiconloader.h>
 #include <klocale.h>
+
 
 #include "optiondialog.h"
 #include "version.h"
@@ -39,7 +41,7 @@ ConfigureDialog::ConfigureDialog( QWidget *parent, char *name, bool modal )
 		Ok, parent, name, modal )
 {
   setHelp( "kcalc/index.html", QString::null );
- 
+
   setupSettingPage();
   setupFontPage();
   setupColorPage();
@@ -68,7 +70,7 @@ void ConfigureDialog::setState( const DefStruct &state )
   mFixSpin->setValue( mState.fixedprecision );
   mBeepCheck->setChecked( mState.beep );
   mTrigRadio->setChecked( mState.style == 0 );
-  mStatRadio->setChecked( mState.style == 1 );  
+  mStatRadio->setChecked( mState.style == 1 );
   mFontChooser->setFont( mState.font );
 }
 
@@ -95,19 +97,19 @@ DefStruct ConfigureDialog::state( void )
   return state;
 }
 
-void ConfigureDialog::slotOk( void )  
+void ConfigureDialog::slotOk( void )
 {
   slotApply();
   accept();
 }
 
-void ConfigureDialog::slotApply( void )  
+void ConfigureDialog::slotApply( void )
 {
   mState = state();
   emit valueChanged( mState );
 }
 
-void ConfigureDialog::slotCancel( void )  
+void ConfigureDialog::slotCancel( void )
 {
   setState( mState );
   emit valueChanged( mState );
@@ -118,8 +120,8 @@ void ConfigureDialog::setupSettingPage( void )
 {
   QFrame *page = addPage( i18n("Settings") );
   if( page == 0 ) { return; }
-  
-  
+
+
   QGridLayout *topLayout = new QGridLayout( page, 7, 2, 0, spacingHint() );
 
   QLabel *label = new QLabel( i18n("Precision:"), page );
@@ -129,11 +131,11 @@ void ConfigureDialog::setupSettingPage( void )
   topLayout->addWidget( mFixCheck, 2, 0 );
 
   int maxprec;
-#ifdef HAVE_LONG_DOUBLE 
+#ifdef HAVE_LONG_DOUBLE
   maxprec = 16 ;
-#else 
+#else
   maxprec = 12 ;
-#endif 
+#endif
 
   mPrecSpin = new QSpinBox(0, maxprec, 1, page );
   mPrecSpin->setFixedWidth( fontMetrics().maxWidth() * 4 );
@@ -161,7 +163,7 @@ void ConfigureDialog::setupSettingPage( void )
   mStatRadio = new QRadioButton( group,"statstyle" );
   mStatRadio->setText(i18n("Statistical Mode"));
   vbox->addWidget(mStatRadio);
-  
+
   topLayout->setRowStretch(6, 10);
   topLayout->activate();
 }
@@ -223,10 +225,10 @@ void ConfigureDialog::setupAboutPage( void )
     "Copyright (C) 1996-98\n\n"
     "Additions by Espen Sand\n"
     "espen@kde.org, 2000").arg(KCALCVERSION);
-  
+
 #ifdef HAVE_LONG_DOUBLE
   QString baseText = i18n("Base type: long double");
-#else 
+#else
   QString baseText = i18n(""
     "Due to broken glibc's everywhere, I had to\n"
     "reduce KCalc's precision from 'long double'\n"
@@ -292,12 +294,12 @@ void ColorListBox::setEnabled( bool state )
 void ColorListBox::setColor( uint index, const QColor &color )
 {
   if( index < count() )
-  { 
+  {
     ColorListItem *colorItem = (ColorListItem*)item(index);
     colorItem->setColor(color);
     updateItem( colorItem );
   }
-} 
+}
 
 
 const QColor ColorListBox::color( uint index )
@@ -314,7 +316,7 @@ const QColor ColorListBox::color( uint index )
 }
 
 
-void ColorListBox::newColor( int index ) 
+void ColorListBox::newColor( int index )
 {
   if( isEnabled() == false )
   {
@@ -347,7 +349,7 @@ void ColorListBox::dragEnterEvent( QDragEnterEvent *e )
 }
 
 
-void ColorListBox::dragLeaveEvent( QDragLeaveEvent * ) 
+void ColorListBox::dragLeaveEvent( QDragLeaveEvent * )
 {
   if( mCurrentOnDragEnter != -1 )
   {
@@ -359,7 +361,7 @@ void ColorListBox::dragLeaveEvent( QDragLeaveEvent * )
 
 void ColorListBox::dragMoveEvent( QDragMoveEvent *e )
 {
-  if( KColorDrag::canDecode(e) && isEnabled() ) 
+  if( KColorDrag::canDecode(e) && isEnabled() )
   {
     ColorListItem *item = (ColorListItem*)itemAt( e->pos() );
     if( item != 0 )
@@ -373,7 +375,7 @@ void ColorListBox::dragMoveEvent( QDragMoveEvent *e )
 void ColorListBox::dropEvent( QDropEvent *e )
 {
   QColor color;
-  if( KColorDrag::decode( e, color ) ) 
+  if( KColorDrag::decode( e, color ) )
   {
     int index = currentItem();
     if( index != -1 )
