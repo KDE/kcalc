@@ -2,7 +2,7 @@
 File=kcalc.kcfg
 ClassName=KCalcSettings
 Singleton=true
-Mutators=ShowStat,ShowExpLog,ShowTrig,ShowLogic,ShowConstants
+Mutators=ShowStat,ShowExpLog,ShowTrig,ShowLogic,ShowConstants,valueConstant1,valueConstant2,valueConstant3,valueConstant4,valueConstant5,valueConstant6
 # Inherits=KConfigSkeleton
 # IncludeFiles=libkdepim/kpimprefs.h
 # MemberVariables=public

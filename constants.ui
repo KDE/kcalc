@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>Constants</class>
 <widget class="QWidget">
     <property name="name">
@@ -339,34 +339,6 @@
                         </size>
                     </property>
                 </spacer>
-                <spacer row="6" column="7">
-                    <property name="name">
-                        <cstring>spacer30</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Horizontal</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Expanding</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>30</width>
-                            <height>21</height>
-                        </size>
-                    </property>
-                </spacer>
-                <widget class="QLabel" row="0" column="6">
-                    <property name="name">
-                        <cstring>textLabel13_2</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Value</string>
-                    </property>
-                    <property name="alignment">
-                        <set>AlignCenter</set>
-                    </property>
-                </widget>
                 <widget class="QLineEdit" row="1" column="2" rowspan="1" colspan="2">
                     <property name="name">
                         <cstring>kcfg_nameConstant1</cstring>
@@ -418,54 +390,6 @@
                         <number>6</number>
                     </property>
                 </widget>
-                <widget class="QLineEdit" row="1" column="5" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>kcfg_valueConstant1</cstring>
-                    </property>
-                    <property name="text">
-                        <string></string>
-                    </property>
-                    <property name="maxLength">
-                        <number>10</number>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="2" column="5" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>kcfg_valueConstant2</cstring>
-                    </property>
-                    <property name="maxLength">
-                        <number>10</number>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="3" column="5" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>kcfg_valueConstant3</cstring>
-                    </property>
-                    <property name="maxLength">
-                        <number>10</number>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="4" column="5" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>kcfg_valueConstant4</cstring>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="5" column="5" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>kcfg_valueConstant5</cstring>
-                    </property>
-                    <property name="maxLength">
-                        <number>10</number>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="6" column="5" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>kcfg_valueConstant6</cstring>
-                    </property>
-                    <property name="maxLength">
-                        <number>10</number>
-                    </property>
-                </widget>
                 <spacer row="5" column="4">
                     <property name="name">
                         <cstring>spacer11_3_7</cstring>
@@ -506,17 +430,11 @@
 </widget>
 <tabstops>
     <tabstop>kcfg_nameConstant1</tabstop>
-    <tabstop>kcfg_valueConstant1</tabstop>
     <tabstop>kcfg_nameConstant2</tabstop>
-    <tabstop>kcfg_valueConstant2</tabstop>
     <tabstop>kcfg_nameConstant3</tabstop>
-    <tabstop>kcfg_valueConstant3</tabstop>
     <tabstop>kcfg_nameConstant4</tabstop>
-    <tabstop>kcfg_valueConstant4</tabstop>
     <tabstop>kcfg_nameConstant5</tabstop>
-    <tabstop>kcfg_valueConstant5</tabstop>
     <tabstop>kcfg_nameConstant6</tabstop>
-    <tabstop>kcfg_valueConstant6</tabstop>
 </tabstops>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>
