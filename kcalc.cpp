@@ -946,10 +946,12 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
 		pb6->setOn(true);
 		break;
 	case Key_Asterisk:
+        case Key_multiply:
 		key_pressed = true;
 		pbX->setOn(true);
 		break;
 	case Key_Slash:
+        case Key_division:
 		key_pressed = true;
 		pbdivision->setOn(true);
 		break;
@@ -1049,6 +1051,7 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
 		pbmod->setOn(true);
 		break;
 	case Key_BracketLeft:
+        case Key_twosuperior:
 		key_pressed = true;
 		pbsquare->setOn(true);
 		break;
