@@ -412,7 +412,7 @@ void KCalculator::setupMainActions(void)
 
 	KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
 
-        KStdAction::keyBindings( this, SLOT( slotConfigureKeys() ), actionCollection() );
+    KStdAction::keyBindings( this, SLOT( slotConfigureKeys() ), actionCollection() );
 }
 
 void KCalculator::setupStatusbar(void)
@@ -516,11 +516,15 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	pbX = new QPushButton("X", thisPage, "Multiply-Button");
 	QToolTip::add(pbX, i18n("Multiplication"));
 	pbX->setAutoDefault(false);
+    accel()->insert("Pressed 'x'", i18n("Pressed Multiplication-Button"),
+                    0, Key_Asterisk, pbX, SLOT(animateClick()));
 	connect(pbX, SIGNAL(clicked(void)), SLOT(slotXclicked(void)));
 
 	pbDivision = new QPushButton("/", thisPage, "Division-Button");
 	QToolTip::add(pbDivision, i18n("Division"));
 	pbDivision->setAutoDefault(false);
+    accel()->insert("Pressed '/'", i18n("Pressed Division-Button"),
+                    0, Key_Slash, pbDivision, SLOT(animateClick()));
 	connect(pbDivision, SIGNAL(clicked(void)), SLOT(slotDivisionclicked(void)));
 
 	pbPlus = new QPushButton("+", thisPage, "Plus-Button");
@@ -539,9 +543,9 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 
 	pbPeriod = new QPushButton(KGlobal::locale()->decimalSymbol(), thisPage, "Period-Button");
 	QToolTip::add(pbPeriod, i18n("Decimal point"));
-	accel()->insert("Decimal Point", i18n("Pressed Decimal Point"),
+	accel()->insert("Decimal Point (Period)", i18n("Pressed Decimal Point"),
 			0, Key_Period, pbPeriod, SLOT(animateClick()));
-	accel()->insert("Decimal Point", i18n("Pressed Decimal Point"),
+	accel()->insert("Decimal Point (Comma)", i18n("Pressed Decimal Point"),
 			0, Key_Comma, pbPeriod, SLOT(animateClick()));
 	pbPeriod->setAutoDefault(false);
 	connect(pbPeriod, SIGNAL(clicked(void)), SLOT(slotPeriodclicked(void)));
@@ -1034,7 +1038,7 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 	case Key_Exclam:
 		pbFactorial->animateClick();
 		break;
-	case Key_D:
+ 	case Key_D:
 	  //if(kcalcdefaults.style == 0)
 	  //	(NumButtonGroup->find(0xD))->animateClick(); // trig mode
 	  //	else
@@ -1061,6 +1065,11 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
 		pbReci->animateClick();
 		break;
 	}
+    }
+
+    if (e->state() & Keypad)
+    {
+        NumButtonGroup->find(e->text().toInt())->animateClick();
     }
 }
 
@@ -1911,18 +1920,18 @@ extern "C" int kdemain(int argc, char *argv[])
 #endif
 
 	KAboutData aboutData( "kcalc", I18N_NOOP("KCalc"),
-		version, description, KAboutData::License_GPL,
-			      I18N_NOOP("(c) 1996-2000, Bernd Johannes Wuebben\n"
-			      "(c) 2000-2003, The KDE Team"),
-                precisionStatement.latin1());
+                          version, description, KAboutData::License_GPL,
+                          I18N_NOOP("(c) 1996-2000, Bernd Johannes Wuebben\n"
+                                    "(c) 2000-2003, The KDE Team"),
+                          precisionStatement.latin1());
 
 	aboutData.addAuthor("Bernd Johannes Wuebben", 0, "wuebben@kde.org");
 	aboutData.addAuthor("Evan Teran", 0, "emt3734@rit.edu");
 	aboutData.addAuthor("Espen Sand", 0, "espen@kde.org");
 	aboutData.addAuthor("Chris Howells", 0, "howells@kde.org");
-        aboutData.addAuthor("Aaron J. Seigo", 0, "aseigo@olympusproject.org");
-        aboutData.addAuthor("Charles Samuels", 0, "charles@altair.dhs.org");
-        aboutData.addAuthor("Klaus Niederkrüger", 0, "kniederk@math.uni-koeln.de");
+    aboutData.addAuthor("Aaron J. Seigo", 0, "aseigo@olympusproject.org");
+    aboutData.addAuthor("Charles Samuels", 0, "charles@altair.dhs.org");
+    aboutData.addAuthor("Klaus Niederkrüger", 0, "kniederk@math.uni-koeln.de");
 	KCmdLineArgs::init(argc, argv, &aboutData);
 
 	KApplication app;
