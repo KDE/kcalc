@@ -1,8 +1,8 @@
 AM_CPPFLAGS=-D_GNU_SOURCE -D_ISOC99_SOURCE
 bin_PROGRAMS = kcalc
-lib_LTLIBRARIES = kdeinit_kcalc.la
+lib_LTLIBRARIES = kcalc.la
 
-kdeinit_kcalc_la_SOURCES = kcalc.cpp kcalc_core.cpp dlabel.cpp stats.cpp \
+kcalc_la_SOURCES = kcalc.cpp kcalc_core.cpp dlabel.cpp stats.cpp \
 	           optiondialog.cpp
 
 METASOURCES = AUTO
@@ -10,11 +10,11 @@ METASOURCES = AUTO
 noinst_HEADERS  = kcalc.h dlabel.h stats.h kcalctype.h
 
 INCLUDES= $(all_includes)
-kdeinit_kcalc_la_LDFLAGS = $(all_libraries) -module -avoid-version
-kdeinit_kcalc_la_LIBADD = $(LIB_KDEUI) -lm
+kcalc_la_LDFLAGS = $(all_libraries) -module -avoid-version
+kcalc_la_LIBADD = $(LIB_KDEUI) -lm
 
 kcalc_SOURCES = dummy.cpp
-kcalc_LDADD = kdeinit_kcalc.la
+kcalc_LDADD = kcalc.la
 kcalc_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 pics_DATA = 
