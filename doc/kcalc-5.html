@@ -1,55 +1,69 @@
 <HTML>
 <HEAD>
-<TITLE>The KCalc Handbook: Questions and Answers</TITLE>
+<TITLE>The KCalc Handbook: Key Accels</TITLE>
 </HEAD>
 <BODY>
 <A HREF="kcalc-4.html">Previous</A>
 <A HREF="kcalc-6.html">Next</A>
 <A HREF="kcalc.html#toc5">Table of Contents</A>
 <HR>
-<H2><A NAME="s5">5. Questions and Answers</A></H2>
+<H2><A NAME="s5">5. Key Accels</A></H2>
 
+<P>(TODO): This list is probably incomplete. Check!</P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
 
-<H2><A NAME="ss5.1">5.1 How do I get pi=3.1415926...?</A></H2>
+F1         Help
+F2         Config Dialog
+F3         Switch into Trigonometry Mode
+F4         Switch into Statistics Mode
 
-<P>Simply type INV EE.</P>
+Up Key     display previous element of the result stack
+Down Key   display next element of the result stack
+Page UP    Clear
+Prior      Clear
+Page Down  Clear All
+Next       Clear All
 
+ALT + d    set trig-mode to deg
+ALT + r    set trig-mode to rad
+ALT + g    set trig-mode to grad
+ALT + e    set radix to decimal
+ALT + o    set radix to octal
+ALT + b    set radix to binary
 
-<H2><A NAME="ss5.2">5.2 How do I get e, the Euler number?</A></H2>
+s          Sin 
+c          Cos 
+t          Tan
+n          ln  = log base e
+l          log = log base 10
+i          Inv inverse, e.g. if you want arcsin(x) type i s 
+\          +/- 
+[          ^2 
+^          x^y 
+=          = 
+!          factorial
+&lt;          left shift
+&gt;          right shift
+&          AND
+*          multiply
+/          divide
 
-<P>Type 1 INV ln.</P>
+d          enter stat data item ( in stat mode)
 
-
-
-
-<H2><A NAME="ss5.3">5.3 How do I get two fixed digits after the period?</A></H2>
-
-<P>Click on the KCalc button, this will bring up the configuration dialog.
-Click on "Set Fixed Precision" and adjust the spin control so that it
-shows a 2.</P>
-
-
-
-<H2><A NAME="ss5.4">5.4 What about Precision?</A></H2>
-
-<P>The main factor determining the precision of kcalc is whether your libc libmath
-supports the C data type <CODE>long double</CODE>. If this is the case, kcalc will detect this
-at compile time and use it as it's fundamental data type to represent numbers.
-Check KCalc's about dialog in order to find out what the fundamental data type
-for your copy of KCalc is.</P>
-
-<P>Unless you have a libc and libmath of exceptionally high quality, you will
-be able to observe some "interesting" results when trying
-to execute computations such as: 123.22 - 123.21; 2.01 - 2; 123.88 - 123.87 and
-similar. However if you think this is bad I ask you to do the same computation on 
-the windows calculator.</P>
-<P>Adjust the precision on KCalc's configure dialog so that the above computation
-go through correctly. I recommend a precision of 14 if the fundamental data
-type for your copy of KCalc is long double, otherwise 8 or 10.</P>
-<P>Note: Higher precision doesn't necesarily lead to better results. Play with
-the precision and you will see what I mean.</P>
-
-
+o          OR
+INV o      XOR
+r          1/x r for reciproc 
+Enter      = 
+Return     = 
+Backspace  Clear All 
+Del        Clear All
+Esc        Clear
+h          Hyp (Hyperbolic) as e.g in Hyp Sin , the sinh(x) 
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
 
 <HR>
 <A HREF="kcalc-4.html">Previous</A>

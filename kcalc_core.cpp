@@ -60,14 +60,14 @@ int 		display_size = DEC_SIZE;
  
 int    		hyp_mode = 0;
 int    		angle_mode = ANG_DEGREE;
-int		refresh_display;
+int		refresh_display; // if 1 we start a new number 
 int		display_error = 0;
 int		decimal_point = 0;
 int		percent_mode = 0;
-bool 		eestate = false;
+bool 		eestate = false; // if true then we are in ee input mode
     
 CALCAMNT 	pi;
-CALCAMNT	memory_num = 0L;
+CALCAMNT	memory_num = 0.0;
 
 int precedence[14] = { 0, 1, 2, 3, 4, 4, 5, 5, 6, 6, 6, 7, 7, 6 };
 
@@ -179,7 +179,6 @@ void QtCalculator::RefreshCalculator(void)
 	display_error = 0;
 	DISPLAY_AMOUNT = 0L;
 	inverse = FALSE;
-	memory_num = 0;
 	UpdateDisplay();
 	last_input = DIGIT; // must set last to DIGIT after Update Display in order
 	                    // not to get a display holding e.g. 0.000  
@@ -656,21 +655,92 @@ void QtCalculator::EnterNotCmp()
 
 void QtCalculator::EnterHyp()
 {
-  // toggle between hyperbolic and standart trig functions
-
-  hyp_mode = !hyp_mode;
   
-  if (hyp_mode){
-    statusHYPLabel->setText("HYP");
+  switch(kcalcdefaults.style){
+  case 1:{
+    
+    if(!inverse){
+    eestate = false; // terminate ee input mode
+    DISPLAY_AMOUNT =  stats.count();
+    last_input = OPERATION;
+    refresh_display = 1;
+    UpdateDisplay();
+    }
+    else{
+    inverse = false;
+    eestate = false; // terminate ee input mode
+    DISPLAY_AMOUNT =  stats.sum();
+    last_input = OPERATION;
+    refresh_display = 1;
+    UpdateDisplay();
+    }
+
+    break;
   }
-  else{
-    statusHYPLabel->setText("");
+
+  case 0: {
+    // toggle between hyperbolic and standart trig functions
+    hyp_mode = !hyp_mode;
+  
+    if (hyp_mode){
+      statusHYPLabel->setText("HYP");
+    }
+    else{
+      statusHYPLabel->setText("");
+    }
+    break;
+  }
+  }
+}
+
+
+void QtCalculator::ExecSin(){
+
+  switch(kcalcdefaults.style){
+
+  case 0:{ // trig mode
+
+    ComputeSin();
+    break;
+  }
+  
+  case 1:{ // stats mode
+  
+    ComputeMean();
+    break;
+  }
+
   }
 
 }
 
+void QtCalculator::ComputeMean(){
 
-void QtCalculator::ExecSin()
+  if(!inverse){
+    eestate = false;
+    DISPLAY_AMOUNT = stats.mean();
+    if (stats.error())
+      display_error = 1;
+
+    refresh_display = 1;
+    last_input = OPERATION;
+    UpdateDisplay();
+  }
+  else{
+    inverse = false;
+    eestate = false;
+    DISPLAY_AMOUNT = stats.sum_of_squares();
+    if (stats.error())
+      display_error = 1;
+    refresh_display = 1;
+    last_input = OPERATION;
+    UpdateDisplay();
+
+  }
+
+}
+
+void QtCalculator::ComputeSin()
 {
   CALCAMNT	work_amount;
   eestate = false;
@@ -736,7 +806,61 @@ void QtCalculator::ExecSin()
 
 }
 
-void QtCalculator::ExecCos()
+void QtCalculator::ExecCos(){
+
+  switch(kcalcdefaults.style){
+
+  case 0:{ // trig mode
+
+    ComputeCos();
+    break;
+  }
+  
+  case 1:{ // stats mode
+  
+    ComputeStd();
+    break;
+  }
+
+  }
+
+}
+
+void QtCalculator::ComputeStd(){
+
+  if(!inverse){ // std (n-1)
+    inverse = false;
+    eestate = false;
+    DISPLAY_AMOUNT = stats.std();
+
+    if (stats.error()){
+      display_error = 1;
+    }
+
+    refresh_display = 1;
+    last_input = OPERATION;
+    UpdateDisplay();
+  }
+  else{ // std (n)
+
+    inverse = false;
+    eestate = false;
+    DISPLAY_AMOUNT = stats.sample_std();
+
+    if (stats.error())
+      display_error = 1;
+
+    refresh_display = 1;
+    last_input = OPERATION;
+    UpdateDisplay();
+
+
+
+  }
+
+}
+
+void QtCalculator::ComputeCos()
 {
   CALCAMNT	work_amount;
   eestate = false;
@@ -805,7 +929,59 @@ void QtCalculator::ExecCos()
 
 }
 
-void QtCalculator::ExecTan()
+void QtCalculator::ExecTan(){
+
+  switch(kcalcdefaults.style){
+
+  case 0:{ // trig mode
+
+    ComputeTan();
+    break;
+  }
+  
+  case 1:{ // stats mode
+  
+    ComputeMedean();
+    break;
+  }
+
+  }
+
+}
+
+void QtCalculator::ComputeMedean(){
+
+  if(!inverse){ // std (n-1)
+    inverse = false;
+    eestate = false;
+    DISPLAY_AMOUNT = stats.median();
+
+    if (stats.error()){
+      display_error = 1;
+    }
+
+    refresh_display = 1;
+    last_input = OPERATION;
+    UpdateDisplay();
+  }
+  else{ // std (n)
+
+    inverse = false;
+    eestate = false;
+    DISPLAY_AMOUNT = stats.median();
+
+    if (stats.error())
+      display_error = 1;
+
+    refresh_display = 1;
+    last_input = OPERATION;
+    UpdateDisplay();
+
+  }
+}
+
+
+void QtCalculator::ComputeTan()
 {
   CALCAMNT	work_amount;
   eestate = false;
@@ -879,51 +1055,101 @@ void QtCalculator::ExecTan()
 void QtCalculator::EnterPercent()
 {
   eestate = false;
-	last_input = OPERATION;
-	percent_mode = 1;
-	EnterEqual();
-	percent_mode = 0;
+  last_input = OPERATION;
+  percent_mode = 1;
+  EnterEqual();
+  percent_mode = 0;
 
 }
 
 void QtCalculator::EnterLogr()
 {
-  eestate = false;
-	last_input = OPERATION;
 
-	if (!inverse) {
-	  	if (DISPLAY_AMOUNT <= 0)
-	  	display_error = 1;
-	  else
-			DISPLAY_AMOUNT = LOG_TEN(DISPLAY_AMOUNT);	
-		refresh_display = 1;
-		UpdateDisplay();
-	} else if (inverse) {
-		DISPLAY_AMOUNT = POW(10, DISPLAY_AMOUNT);
-		refresh_display = 1;
-		inverse = FALSE;
-		UpdateDisplay();
-	}
+  switch(kcalcdefaults.style){
+  case 1:{
+    
+    if(!inverse){
+      eestate = false; // terminate ee input mode
+      stats.enterData(DISPLAY_AMOUNT);
+      last_input = OPERATION;
+      refresh_display = 1;    
+      DISPLAY_AMOUNT = stats.count();
+      UpdateDisplay();
+    }
+    else{
+      inverse = false;
+      last_input = OPERATION;
+      refresh_display = 1;
+      stats.clearLast();
+      setStatusLabel("Last stat item erased");
+      DISPLAY_AMOUNT = stats.count();
+      UpdateDisplay();
 
+    }
+
+    break;
+  }
+  case 0:{
+
+    eestate = false;
+    last_input = OPERATION;
+    
+    if (!inverse) {
+      if (DISPLAY_AMOUNT <= 0)
+	display_error = 1;
+      else
+	DISPLAY_AMOUNT = LOG_TEN(DISPLAY_AMOUNT);	
+      refresh_display = 1;
+      UpdateDisplay();
+    } else if (inverse) {
+      DISPLAY_AMOUNT = POW(10, DISPLAY_AMOUNT);
+      refresh_display = 1;
+      inverse = FALSE;
+      UpdateDisplay();
+    }
+    break;
+  }
+  }
 }
 
 void QtCalculator::EnterLogn()
 {
-  eestate = false;
-	last_input = OPERATION;
-	if (!inverse) {
-		if (DISPLAY_AMOUNT <= 0)
-			display_error = 1;
-		else
-			DISPLAY_AMOUNT = LOG(DISPLAY_AMOUNT);	
-		refresh_display = 1;
-		UpdateDisplay();
-	} else if (inverse) {
-		DISPLAY_AMOUNT = EXP(DISPLAY_AMOUNT);	
-		refresh_display = 1;
-		inverse =FALSE;
-		UpdateDisplay();
-	}
+
+  switch(kcalcdefaults.style){
+  case 1:{
+    
+    if(!inverse){
+
+      stats.clearAll();
+      setStatusLabel("Stat Mem cleared");
+
+    }
+    else{
+      inverse = false;
+      UpdateDisplay();
+    }
+
+    break;
+  }
+  case 0:{
+    eestate = false;
+    last_input = OPERATION;
+    if (!inverse) {
+      if (DISPLAY_AMOUNT <= 0)
+	display_error = 1;
+      else
+	DISPLAY_AMOUNT = LOG(DISPLAY_AMOUNT);	
+      refresh_display = 1;
+      UpdateDisplay();
+    } else if (inverse) {
+      DISPLAY_AMOUNT = EXP(DISPLAY_AMOUNT);	
+      refresh_display = 1;
+      inverse =FALSE;
+      UpdateDisplay();
+    }
+    break;
+  }
+  }
 
 }
 
@@ -1068,23 +1294,24 @@ void QtCalculator::EE()
 void QtCalculator::MR()
 {
   eestate = false;
-	last_input = OPERATION;
-	DISPLAY_AMOUNT = memory_num;
-	refresh_display = 1;
-	UpdateDisplay();
+  last_input = OPERATION;
+  DISPLAY_AMOUNT = memory_num;
+  refresh_display = 1;
+  UpdateDisplay();
 
 }
 	
 void QtCalculator::Mplusminus()
 {
+
   eestate = false;
-	EnterEqual();
-		if (!inverse)
-			memory_num += DISPLAY_AMOUNT;
-		else {
-			memory_num -= DISPLAY_AMOUNT;
-			inverse = FALSE;
-		}
+  EnterEqual();
+  if (!inverse)
+    memory_num += DISPLAY_AMOUNT;
+  else {
+    memory_num -= DISPLAY_AMOUNT;
+    inverse = FALSE;
+  }
 }
 
 void QtCalculator::MC()
@@ -1131,20 +1358,27 @@ void QtCalculator::EnterEqual()
 void QtCalculator::Clear()
 {
   eestate = false;
-	last_input = OPERATION;
-	if (!refresh_display) {
-		DISPLAY_AMOUNT = 0L;
-		UpdateDisplay();
-	}
+  last_input = OPERATION;
+
+  if( display_error){
+    display_error = 0;
+    refresh_display = 0;
+  }
+
+  if (!refresh_display) {
+    DISPLAY_AMOUNT = 0L;
+    UpdateDisplay();
+  }
 
 }
 
 void QtCalculator::ClearAll()
 {
+
   eestate = false;
-	last_input = OPERATION;
-	RefreshCalculator();
-	refresh_display = 1;
+  last_input = OPERATION;
+  RefreshCalculator();
+  refresh_display = 1;
 
 }
 
@@ -1263,12 +1497,13 @@ void QtCalculator::UpdateDisplay()
 			display_error = 1;
 	      }
 
-		if (display_error || str_size < 0) { 
-   //		if (display_error || /* str_size > display_size*/ || str_size < 0) { 
-		display_error = 1;
-		strcpy(display_str,"Error");
-	       }
-		calc_display->setText(display_str);
+	if (display_error || str_size < 0) { 
+	  display_error = 1;
+	  strcpy(display_str,"Error");
+	  if(kcalcdefaults.beep)
+	    QApplication::beep();
+	}
+	calc_display->setText(display_str);
 
 
   if (inverse){
@@ -1627,9 +1862,6 @@ stack_ptr AllocStackItem (void) {
 
 		process_stack[stack_next].prior_item = NULL;
 		process_stack[stack_next].prior_type = NULL;
-
-//printf("Stack next %d\n",stack_next +1);
-
 		return &process_stack[stack_next++];
 	}
 

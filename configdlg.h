@@ -111,11 +111,18 @@ private:
 
 
   QGroupBox *gbox;
-  QCheckBox *cb;
+  QCheckBox *cb;  
+  QCheckBox *cb2;
   KNumericSpinBox* precspin;
   KNumericSpinBox* precspin2;  
   QCheckBox *mybox;
   QCheckBox *frame3d;
 
+  QButtonGroup *stylegroup;
+  QLabel *stylelabel;
+  QRadioButton *trigstyle;
+  QRadioButton *statstyle;
+
 };
 #endif
+

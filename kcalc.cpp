@@ -1,8 +1,7 @@
 /*
     $Id$
 
-    kCalculator, a scientific calculator for the X window system using the
-    Qt widget libraries, available at no cost at http://www.troll.no
+    kCalculator, a simple scientific calculator for KDE
     
     Copyright (C) 1996 Bernd Johannes Wuebben wuebben@math.cornell.edu
 
@@ -38,7 +37,6 @@ extern num_base        current_base;
 KApplication           *mykapp;
 
 QList<CALCAMNT>       temp_stack; 
-QList<QPushButton>    blist; /*currently unused*/
 
 QtCalculator :: QtCalculator( QWidget *parent, const char *name )
   : QDialog( parent, name )
@@ -64,6 +62,9 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
   int x,y;
   key_pressed = FALSE;
   selection_timer = new QTimer;
+  status_timer = new QTimer;
+
+  connect(status_timer,SIGNAL(timeout()),this,SLOT(clear_status_label()));
   connect(selection_timer,SIGNAL(timeout()),this,SLOT(selection_timed_out()));
 
   readSettings();
@@ -108,21 +109,21 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
   statusINVLabel->setAlignment( AlignCenter );
   statusINVLabel->setGeometry(8,218,50 -1 , 20);   
   statusINVLabel->setText("NORM");
-  statusINVLabel->setFont(buttonfont);
+  statusINVLabel->setFont(buttonfont);  
  
   statusHYPLabel = new QLabel( this, "HYP" );
   CHECK_PTR( statusHYPLabel );
   statusHYPLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );
   statusHYPLabel->setAlignment( AlignCenter );
   statusHYPLabel->setGeometry(58 ,218,50 -1, 20);   
-  statusHYPLabel->setFont(buttonfont);
+  statusHYPLabel->setFont(buttonfont);  
     
   statusERRORLabel = new QLabel( this, "ERROR" );
   CHECK_PTR( statusERRORLabel );
   statusERRORLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );
   statusERRORLabel->setAlignment( AlignLeft|AlignVCenter );
   statusERRORLabel->setGeometry(108 ,218,9 + 100 + 9 + 233 + 9 - 100 - 16, 20);   
-  statusERRORLabel->setFont(buttonfont);  
+  statusERRORLabel->setFont(QFont("Hevetica",12));  
 
   // create angle button group
 
@@ -232,7 +233,7 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
     connect( pbhyp, SIGNAL(toggled(bool)), SLOT(pbhyptoggled(bool)));
     pbhyp->setToggleButton(TRUE);
     pbhyp->setFont(buttonfont);
-    blist.append(pbhyp);
+
 
     pbinv = new QPushButton( this, "InverseButton" );
     pbinv->setText( "Inv" );
@@ -593,8 +594,8 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
     connect( pbplus, SIGNAL(toggled(bool)), SLOT(pbplustoggled(bool)));
     pbplus->setToggleButton(TRUE);
     pbplus->setFont(buttonfont);
-    blist.append(pbplus);
 
+    
     pbminus = new QPushButton( this, "minusbutton" );
     pbminus->setText( "-" );
     pbminus->setGeometry(x + 4* bigbuttonwidth + 4* buttonxmargin
@@ -641,7 +642,6 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
     connect( pbequal, SIGNAL(toggled(bool)), SLOT(pbequaltoggled(bool)));
     pbequal->setToggleButton(TRUE);
     pbequal->setFont(buttonfont);
-    blist.append(pbequal);
 
     pbpercent = new QPushButton( this, "percentbutton" );
     pbpercent->setText( "%" );
@@ -672,7 +672,11 @@ QtCalculator :: QtCalculator( QWidget *parent, const char *name )
     set_colors();
     set_display_font();
     set_precision();
+    set_style();
 
+    /*    paper = new QListBox(0,"paper");
+    paper->resize(200,400);
+    paper->show();*/
     InitializeCalculator();
 }
 
@@ -749,10 +753,30 @@ void QtCalculator::Gra_Selected()
 }
 
 
+void QtCalculator::helpclicked(){
+
+  mykapp->invokeHTMLHelp("kcalc/kcalc.html","");
+
+}
 
 void QtCalculator::keyPressEvent( QKeyEvent *e ){
   
   switch (e->key() ){
+
+  case Key_F1:
+     helpclicked();
+     break;
+  case Key_F2:
+     configclicked();
+     break;
+  case Key_F3:
+     kcalcdefaults.style = 0;
+     set_style();
+     break;
+  case Key_F4:
+     kcalcdefaults.style = 1;
+     set_style();
+     break;
   case Key_Up:
      temp_stack_prev();
      break;
@@ -873,9 +897,12 @@ void QtCalculator::keyPressEvent( QKeyEvent *e ){
      pbfactorial->setOn(TRUE);
      break;
   case Key_D:
-     key_pressed = TRUE;
-     pbD->setOn(TRUE);
-     break;
+     key_pressed = TRUE; 
+     if(kcalcdefaults.style == 0)
+       pbD->setOn(TRUE); // trig mode
+     else
+       pblog->setOn(TRUE); // stat mode
+    break;
   case Key_1:
      key_pressed = TRUE;
      pb1->setOn(TRUE);
@@ -1079,7 +1106,10 @@ void QtCalculator::keyReleaseEvent( QKeyEvent *e ){
      break;
   case Key_D:
     key_pressed = FALSE;
-     pbD->setOn(FALSE);
+    if(kcalcdefaults.style == 0)
+      pbD->setOn(FALSE); // trig mode
+    else
+      pblog->setOn(FALSE);// stat mode
      break;
   case Key_1:
     key_pressed = FALSE;
@@ -1171,14 +1201,7 @@ void QtCalculator::keyReleaseEvent( QKeyEvent *e ){
 }
 
 void QtCalculator::clear_buttons(){
-  /*
-  QPushButton* button;
 
-  for ( button=blist.first(); button != 0; button=blist.next() ){
-    if(button->isDown())
-      button->setOn(FALSE);
-  }
-  */
 }
 
 void QtCalculator::EEtoggled(bool myboolean){
@@ -1513,7 +1536,7 @@ void QtCalculator::configclicked(){
   label->setAlignment(AlignLeft|WordBreak|ExpandTabs);
   label->setText(labelstring.data());
   
-  QString pixdir = mykapp->kdedir() + QString("/lib/pics/");  
+  QString pixdir = mykapp->kdedir() + QString("/share/apps/kcalc/pics/");  
 
 
   QPixmap pm((pixdir + "kcalclogo.xpm").data());
@@ -1529,6 +1552,8 @@ void QtCalculator::configclicked(){
   newdefstruct.precision  = kcalcdefaults.precision;
   newdefstruct.fixedprecision  = kcalcdefaults.fixedprecision;
   newdefstruct.fixed  = kcalcdefaults.fixed;
+  newdefstruct.style  = kcalcdefaults.style;
+  newdefstruct.beep  = kcalcdefaults.beep;
   
   ConfigDlg *configdlg;
   configdlg = new ConfigDlg(tabdialog,"configdlg",mykapp,&newdefstruct);
@@ -1550,13 +1575,43 @@ void QtCalculator::configclicked(){
     kcalcdefaults.precision  = newdefstruct.precision;
     kcalcdefaults.fixedprecision  = newdefstruct.fixedprecision;
     kcalcdefaults.fixed  = newdefstruct.fixed;
+    kcalcdefaults.style  = newdefstruct.style;
+    kcalcdefaults.beep  = newdefstruct.beep;
 
     set_colors();
     set_precision();
     set_display_font();
-
+    set_style();
   }
 
+}
+
+
+void QtCalculator::set_style(){
+
+  switch(kcalcdefaults.style){
+  case  0:{
+    pbhyp->setText( "Hyp" );
+    pbSin->setText( "Sin" );
+    pbCos->setText( "Cos" );
+    pbTan->setText( "Tan" );
+    pblog->setText( "Log" );
+    pbln ->setText( "Ln"  );
+    break;
+  }
+  case 1:{
+    pbhyp->setText( "N" );
+    pbSin->setText( "Mea" );
+    pbCos->setText( "Std" );
+    pbTan->setText( "Med" );
+    pblog->setText( "Dat" );
+    pbln ->setText( "CSt"  );
+    break;
+  }
+
+  default:
+    break;
+  }
 }
 
 void QtCalculator::readSettings()
@@ -1584,6 +1639,11 @@ void QtCalculator::readSettings()
 
   kcalcdefaults.fixedprecision =  config->readNumEntry("fixedprecision",(int)2);
   kcalcdefaults.fixed = (bool) config->readNumEntry("fixed",(int)0);
+
+  config->setGroup("General");
+  kcalcdefaults.style          = config->readNumEntry("style",(int)0);
+  kcalcdefaults.beep          = config->readNumEntry("beep",(int)1);
+
 }
 
 void QtCalculator::writeSettings()
@@ -1603,6 +1663,9 @@ void QtCalculator::writeSettings()
   config->writeEntry("fixedprecision",  kcalcdefaults.fixedprecision);
   config->writeEntry("fixed",  (int)kcalcdefaults.fixed);
 
+  config->setGroup("General");
+  config->writeEntry("style",(int)kcalcdefaults.style);
+  config->writeEntry("beep",(int)kcalcdefaults.beep);
   config->sync();
 
 }
@@ -1649,6 +1712,21 @@ void QtCalculator::selection_timed_out(){
 
 
 }
+
+
+void QtCalculator::clear_status_label(){
+
+  statusERRORLabel->setText("");
+  status_timer->stop();
+}
+
+void QtCalculator::setStatusLabel(char* string){
+
+  statusERRORLabel->setText(string);
+  status_timer->start(3000,TRUE);
+
+}
+
 
 void QtCalculator::invertColors(){
 

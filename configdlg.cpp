@@ -130,7 +130,26 @@ ConfigDlg::ConfigDlg(QWidget *parent=0, const char *name=0,
 
   connect(button3,SIGNAL(clicked()),this,SLOT(help()));
 
+  cb2 = new QCheckBox(this);
+  cb2->setGeometry(30,170,130,25);
+  cb2->setText("Beep on Error");
+  if(defst->beep)
+    cb2->setChecked(true);
 
+  stylegroup = new QButtonGroup(this,"stylegroup");
+  stylegroup->setGeometry(20,190,170,60);
+  stylegroup->setFrameStyle(QFrame::NoFrame);
+
+  trigstyle = new QRadioButton("Trigonometry Mode",stylegroup,"trigstyle");
+  trigstyle->move(10,15);
+  trigstyle->adjustSize();
+  trigstyle->setChecked(defst->style == 0);
+
+  statstyle = new QRadioButton("Statistical Mode",stylegroup,"Stats");
+  statstyle->move(10,40);
+  statstyle->adjustSize();
+  statstyle->setChecked(defst->style ==1);
+  
   connect(parent,SIGNAL(applyButtonPressed()),SLOT(okButton()));
 
 }
@@ -148,6 +167,13 @@ void ConfigDlg::okButton(){
   defst->precision = precspin->getValue();
   defst->fixedprecision = precspin2->getValue();
   defst->fixed = cb->isChecked();
+  defst->beep = cb2->isChecked();
+  
+
+  if( trigstyle->isChecked())
+    defst->style = 0;
+  else
+    defst->style = 1;
 
 }
 void ConfigDlg::cancelbutton() {

@@ -4,10 +4,10 @@
 
 ########## Files ##########
 
-SRCS    = kcalc.cpp kcalc_core.cpp configdlg.cpp fontdlg.cpp dlabel.cpp
-OBJS    = kcalc.o   kcalc_core.o configdlg.o fontdlg.o dlabel.o
+SRCS    = kcalc.cpp kcalc_core.cpp configdlg.cpp fontdlg.cpp dlabel.cpp stats.cpp
+OBJS    = kcalc.o   kcalc_core.o configdlg.o fontdlg.o dlabel.o stats.o
 SRCMETA = kcalc.moc configdlg.moc fontdlg.moc dlabel.moc
-HDRS    = kcalc.h configdlg.h fontdlg.h dlabel.h
+HDRS    = kcalc.h configdlg.h fontdlg.h dlabel.h stats.h kcalctype.h
 
 TARGET  = kcalc
 

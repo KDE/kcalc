@@ -30,11 +30,13 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+#include <qlistbox.h>
 #include <qclipbrd.h> 
 #include <qlist.h>
 #include <qaccel.h>
 #include <qtabdlg.h>
 #include <qwidget.h>
+#include <qtimer.h>
 #include <qdialog.h>
 #include <qmsgbox.h>
 #include <qpixmap.h>
@@ -52,7 +54,10 @@
 
 #include <kapp.h>
 
+
 #include "dlabel.h"
+#include "stats.h"
+#include "kcalctype.h"
 
 #ifdef HAVE_CONFIG_H
 #include "../config.h"
@@ -62,64 +67,6 @@
 #define TEMP_STACK_SIZE 1000 // the number of number kept in the temp stack 
                              // they are accessible with the up and down arrow
                              // key
-
-// The following for all the poor devels out there who don't have long double math.
-// I guess it's time to switch to LINUX guys .....
-
-#ifdef HAVE_FABSL // should be detected by autoconf and defined in config.h
-                  // Be carefull when modifying these lines. HAVE_FABSL
-                  // is used all over kcalc's sources to determine whether 
-                  // long double of double is the fundamental data type for kcalc
-
-#define CALCAMNT        long double
-#else
-#define CALCAMNT        double
-#endif
-
-#ifdef HAVE_FABSL
-#define FABS(X)   	fabsl(X)
-#define MODF(X,Y)       modfl(X,Y)
-#define FMOD(X,Y)   	fmodl(X,Y)
-#define SIN(X)		sinl(X)
-#define ASIN(X)		asinl(X)
-#define SINH(X)		sinhl(X)
-#define ASINH(X)	asinhl(X)
-#define COS(X)		cosl(X)
-#define COSH(X)		coshl(X)
-#define ACOS(X)		acosl(X)
-#define ACOSH(X)	acoshl(X)
-#define TAN(X)		tanl(X)
-#define TANH(X)		tanhl(X)
-#define ATAN(X)		atanl(X)
-#define ATANH(X)	atanhl(X)
-#define EXP(X)		expl(X)
-#define POW(X,Y)	powl(X,Y)
-#define LOG(X)		logl(X)
-#define LOG_TEN(X)	log10l(X)
-#define SQRT(X)		sqrtl(X)
-#else
-#define FABS(X)		fabs(X)
-#define MODF(X,Y)    	modf(X,Y)
-#define FMOD(X,Y)   	fmod(X,Y)
-#define SIN(X)		sin(X)
-#define ASIN(X)		asin(X)
-#define SINH(X)		sinh(X)
-#define ASINH(X)	asinh(X)
-#define COS(X)		cos(X)
-#define COSH(X)		cosh(X)
-#define ACOS(X)		acos(X)
-#define ACOSH(X)	acosh(X)
-#define TAN(X)		tan(X)
-#define TANH(X)		tanh(X)
-#define ATAN(X)		atan(X)
-#define ATANH(X)	atanh(X)
-#define EXP(X)		exp(X)
-#define POW(X,Y)	pow(X,Y)
-#define LOG(X)		log(X)
-#define LOG_TEN(X)	log10(X)
-#define SQRT(X)		sqrt(X)
-#endif
-
 
 #define PRECEDENCE_INCR	20
 
@@ -235,42 +182,14 @@ item_contents 	*TopTypeStack(item_type rqstd_type);
 
 
 
-
-class KIntLineEdit : public QLineEdit
-{
-  Q_OBJECT;
-
-public:
-  KIntLineEdit( QWidget *parent = 0, const char *name = 0 ) 
-    : QLineEdit( parent, name ) {};
-  
-  int getValue() { return atoi( text() ); };
-
-protected:
-	
-  void keyPressEvent( QKeyEvent *e ) {
-    char key = e->ascii();
-    
-    if( isdigit( key ) 
-	|| ( e->key() == Key_Return) || ( e->key() == Key_Enter    )
-	|| ( e->key() == Key_Delete) || ( e->key() == Key_Backspace)
-	|| ( e->key() == Key_Left  ) || ( e->key() == Key_Right    )){
-
-      QLineEdit::keyPressEvent( e );
-      return;
-    } else {
-      e->ignore();
-      return;
-    }
-  };
-};
-
 typedef struct _DefStruct{
   QColor forecolor;
   QColor backcolor;
   int precision;
   int fixedprecision;
+  int style;
   bool fixed;
+  bool beep;
   QFont   font;
 }DefStruct;
 
@@ -290,18 +209,27 @@ public:
     void readSettings();
     void set_precision();
     void set_display_font();
+    void set_style();
     void temp_stack_next();
     void temp_stack_prev();
+    void ComputeMean();
+    void ComputeSin();
+    void ComputeStd();
+    void ComputeCos();
+    void ComputeMedean();
+    void ComputeTan();
 
 public slots:
 
+    void helpclicked();
     void set_colors();
     void display_selected();
     void invertColors();
     void quitCalc();
     void selection_timed_out();
     void clear_buttons();
-
+    void clear_status_label();
+    void setStatusLabel(char*);
     void EnterDigit(int data);
     void EnterDecimal();
     void EnterStackFunction(int data);
@@ -494,7 +422,9 @@ private:
     int			helpbuttonwidth, helpbuttonheight;
     int			displaywidth, displayheight;
     int 		radiobuttonwidth, radiobuttonheight;
-
+    KStats		stats;
+    QListBox            *paper;
+    QTimer		*status_timer;
 };
 
 #endif  //QTCLAC_H

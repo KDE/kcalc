@@ -1,69 +1,76 @@
 <HTML>
 <HEAD>
-<TITLE>The KCalc Handbook: Comments on specific functions</TITLE>
+<TITLE>The KCalc Handbook: Modes</TITLE>
 </HEAD>
 <BODY>
 <A HREF="kcalc-3.html">Previous</A>
 <A HREF="kcalc-5.html">Next</A>
 <A HREF="kcalc.html#toc4">Table of Contents</A>
 <HR>
-<H2><A NAME="s4">4. Comments on specific functions</A></H2>
+<H2><A NAME="s4">4. Modes</A></H2>
 
 
 
-<H2><A NAME="ss4.1">4.1 Mod</A></H2>
+<H2><A NAME="ss4.1">4.1 Statistical Mode</A></H2>
 
-<P>Give the remainder of dividing the display number by the next input number.</P>
-
-<H2><A NAME="ss4.2">4.2 %</A></H2>
-
-
-<P>Interpret the final operation carried out in  the current 
-calculation as follows:</P>
+<P>Press F4 or bring up the configuration dialog by pushing the KCALC button or
+by pressing F2 to switch into statistics mode.</P>
 <P>
-<UL>
-<LI>The function of the % key is similar to the one found on some CASIO calculators:
-</LI>
-<LI>If the final operator is + give the percentage increase
-the result is over the second operand.
-</LI>
-<LI> If the final operator is - give the percentage decrease the result 
-is over the second operand.
-</LI>
-<LI>If the final operator is * give the right operand 
-as a percentage of the left operand.
-</LI>
-<LI>If the final operator is / or Mod, give the left operand
-as a percentage of the right operand.
-</LI>
-<LI>If the final operator is x**y give the left operand 
-raised to the power of the (right operand / 100).
-</LI>
-<LI> In all other cases the % key gives identical results to the = key.
-</LI>
-</UL>
-                              </P>
-<H3>Examples</H3>
+<DL>
+<DT><B>N</B><DD><P>Recall the number of data items entered</P>
 
-<P>
-<PRE>
+<DT><B>INV N </B><DD><P>Display the sum of all data items entered</P>
 
-Type:             45 / 55 %
-Answer Displayed: 81.8181...
-Explanation:      45 is 81.81...percent of 55
+<DT><B>Mea </B><DD><P>Display the mean of the data items entered</P>
 
-Type:             11 + 89 %
-Answer Displayed: 112.35.. 
-Explanation:      89 + 11 = 100 and  100 is 112.35 percent of 89. 
-</PRE>
+<DT><B>INV Mea </B><DD><P>Display the sum of the square of all data items entered</P>
+
+<DT><B>Std </B><DD><P>Display the standard deviation (n)</P>
+
+<DT><B>INV Std </B><DD><P>Display the population standard deviation  (n-1)</P>
+
+<DT><B>Med </B><DD><P>Display the median</P>
+
+<DT><B>Dat </B><DD><P>Enter a data item</P>
+
+<DT><B>INV Dat </B><DD><P>Clear last data item entered</P>
+
+<DT><B>Cst </B><DD><P>Clear all data item entered</P>
+
+</DL>
 </P>
 
 
-<H2><A NAME="ss4.3">4.3 Lsh (Rsh)</A></H2>
+<H2><A NAME="ss4.2">4.2 Trigonometric Mode</A></H2>
 
-<P>Left (right) shift the n times, where n is the next input number.
-You get Rsh (right shift)  by pressing INV Lsh.</P>
+<P>Press F3 or bring up the configuration dialog by pushing the KCALC button or
+by pressing F2 to switch into trigonometric mode.</P>
+<P>
+<DL>
+<DT><B>Hyp</B><DD><P>Enter Hyperbolic sub mode. HYP SIN for example is the hyperbolic sine: sinh(x)</P>
 
+<DT><B>Sin</B><DD><P>Compute the sine.</P>
+
+<DT><B>INV Sin</B><DD><P>Compute the inverse sine.</P>
+
+<DT><B>Cos</B><DD><P>Compute the cosine.</P>
+
+<DT><B>INV Cos</B><DD><P>Compute the inverse cosine.</P>
+
+<DT><B>Tan</B><DD><P>Compute the tangents.</P>
+
+<DT><B>INV Tan</B><DD><P>Compute the inverse tangent.</P>
+
+<DT><B>Log</B><DD><P>Compute the Log base 10</P>
+
+<DT><B>INV Log</B><DD><P>Compute the 10 to the power of x</P>
+
+<DT><B>Ln</B><DD><P>Compute the natural logarithm. That is the log with base e.</P>
+
+<DT><B>INV Ln</B><DD><P>Compute the natural logarithm. That is the log with base e.</P>
+
+</DL>
+</P>
 
 
 

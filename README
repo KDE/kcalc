@@ -1,3 +1,10 @@
+kcalc 0.4
+=========
+
+Added statistical functions. Use F3 and F4 to switch between them.
+If you have trouble with the mathematical functions used, have a
+look at kcalctype.h and make the necessary changes.
+
 kcalc 0.3
 =========
 

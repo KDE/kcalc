@@ -1,3 +1,7 @@
+Sat Sep 20 23:59:30 1997  Bernd Johannes Wuebben  <wuebben@petit.cornell.edu>
+
+	* kcalc.cpp: Added statistical functions
+
 Mon Sep 15 00:34:58 1997  Bernd Johannes Wuebben  <wuebben@petit.cornell.edu>
 
 	* added cut and pasted functionality
