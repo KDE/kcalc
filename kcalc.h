@@ -38,7 +38,7 @@ class QWidget;
 
 class ConfigureDialog;
 class DLabel;
-
+class QAccel;
 #include <kdialog.h>
 #include "stats.h"
 
@@ -459,7 +459,7 @@ private:
     QListBox		*paper;
     QTimer			*status_timer;
     ConfigureDialog	*mConfigureDialog;
-
+    QAccel *accel;
 };
 
 #endif  //QTCLAC_H
