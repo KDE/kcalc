@@ -56,7 +56,7 @@
 #include "optiondialog.h"
 #include "version.h"
 
-// Initalize static members
+// Initialize static members
 const CALCAMNT QtCalculator::pi = (ASIN(1L) * 2L);
 
 
