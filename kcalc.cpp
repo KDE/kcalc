@@ -84,7 +84,7 @@ extern bool				display_error;
 // Name: QtCalculator(QWidget *parent, const char *name)
 //-------------------------------------------------------------------------
 QtCalculator::QtCalculator(QWidget *parent, const char *name)
-	: KDialog(parent, name), inverse(false), hyp_mode(false), eestate(false), 
+	: KMainWindow(parent, name), inverse(false), hyp_mode(false), eestate(false), 
 	refresh_display(false), display_size(DEC_SIZE),  angle_mode(ANG_DEGREE), 
 	input_limit(0), input_count(0), decimal_point(0), precedence_base(0),
 	current_base(NB_DECIMAL), memory_num(0.0), last_input(DIGIT), 
@@ -117,6 +117,8 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	mConfigButton->setAutoDefault(false);
 	QToolTip::add(mConfigButton, i18n("Click to configure KCalc"));
 	connect(mConfigButton, SIGNAL(clicked()), this, SLOT(configclicked()));
+	if (KGlobal::config()->isImmutable())
+	   mConfigButton->hide();
 
 	mHelpMenu = new KHelpMenu(this, KGlobal::instance()->aboutData());
 
@@ -1915,6 +1917,7 @@ void QtCalculator::set_style()
 
 	case 1:
 		pbhyp->setText( "N" );
+		QToolTip::remove(pbhyp);
 		pbSin->setText( "Mea" );
 		QToolTip::add(pbSin, i18n("Mean"));
 		pbCos->setText( "Std" );
@@ -2304,7 +2307,7 @@ bool QtCalculator::eventFilter(QObject *o, QEvent *e)
 	}
 	else
 	{
-		return KDialog::eventFilter(o, e);
+		return KMainWindow::eventFilter(o, e);
 	}
 }
 
