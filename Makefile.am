@@ -28,7 +28,7 @@ appsdir = $(kde_appsdir)/Utilities
 EXTRA_DIST = $(pics_DATA) $(apps_DATA) 
 
 messages:
-	$(XGETTEXT) $(kcalc_SOURCES) -o $(podir)/kcalc.pot
+	$(XGETTEXT) *.cpp -o $(podir)/kcalc.pot
 
 dummy.cpp:
 	echo > dummy.cpp
