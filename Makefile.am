@@ -10,7 +10,7 @@ noinst_HEADERS  = kcalc.h configdlg.h fontdlg.h dlabel.h stats.h kcalctype.h
 
 INCLUDES = $(all_includes)
 LDFLAGS = $(all_libraries) $(KDE_RPATH)
-LDADD = -lkdecore -lkdeui -lqt -lX11 -lXext -lm $(LIBSOCKET)
+LDADD = -lkdeui -lkdecore -lqt -lXext -lX11 -lm $(LIBSOCKET)
 
 SUBDIRS = doc
 
