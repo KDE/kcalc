@@ -332,7 +332,7 @@ void ConfigureDialog::setupColorPage()
 //-------------------------------------------------------------------------
 void ConfigureDialog::setupFontPage()
 {
-	QFrame *page = addPage(i18n("Font"), i18n("Select a Display Font"), loadIcon("fonts"));
+	QFrame *page = addPage(i18n("Font"), i18n("Select Display Font"), loadIcon("fonts"));
 	if( page == 0 )
 		return;
 
