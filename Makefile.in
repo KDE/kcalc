@@ -30,7 +30,7 @@ CXXFLAGS  = @CXXFLAGS@
 CPPFLAGS  = @CPPFLAGS@
 CC	  = @CC@
 CFLAGS    = @CFLAGS@
-LDFLAGS   = @all_libraries@ -lkdecore -lkdeui -lqt -lX11 -lXext -lm
+LDFLAGS   = @all_libraries@ -lkdecore -lkdeui -lqt -lX11 -lXext -lm @LIBSOCKET@
 
 ############# Install ##############
 
