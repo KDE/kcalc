@@ -1,3 +1,6 @@
+2004-02-06 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Fixed bug 73437. Pasting empty clipboard made kcalc crash.
+
 2004-02-04 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Moved more accels from keyPressEvent into accels
 	
