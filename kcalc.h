@@ -80,7 +80,7 @@ private:
 	void history_next();
 	void history_prev();
 	void resetBase(void) { (BaseChooseGroup->find(1))->animateClick();};
-
+	QPixmap changeRepresentation( QString base, QString exponent);
 
 	void UpdateDisplay(bool get_amount_from_core = false,
 			   bool store_result_in_history = false);
@@ -206,6 +206,10 @@ private:
     QPushButton* 	pbC5; 
     QPushButton* 	pbC6;
 	
+	QPainter buttonpainter;
+	QPixmap buttonpixmap;
+	QFont fontExponent;
+	
     QHButtonGroup*      BaseChooseGroup;
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
     QButtonGroup* 	NumButtonGroup;
@@ -223,6 +227,7 @@ private:
     QPtrList<QPushButton> mConstButtonList;
 
     int				mInternalSpacing;
+	int fontsizeExponent;
 
     CalcEngine core;
 };

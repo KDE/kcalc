@@ -1,7 +1,12 @@
+2004-02-25 Thomas Weber
+	* "x^2" and "x^y"-buttons have now superscripted labels
+	* pressing "INV"-button changes "x^2"-button to square-root etc.
+	
 2004-02-25 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Changed many accels from "accel()->insert()" to
 	  "button->addAccel()". Fixes BUG 75555.
-	  
+	* deactivate EE-button, when Base != DEC  
+	
 2004-02-10 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* First step to fix bug 66397. Changing Basemode via Popupmenu is
 	  too clumsy for most programmers. Maybe backport to KDE 3.2 later,

@@ -34,6 +34,9 @@
 #include <qradiobutton.h>
 #include <qtooltip.h>
 #include <qstyle.h>
+#include <qpainter.h>
+#include <qpixmap.h>
+#include <qfont.h>
 
 #include <kaboutdata.h>
 #include <kaccel.h>
@@ -193,12 +196,22 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	pbFactorial->setAccel(Key_Exclam);
 	connect(pbFactorial, SIGNAL(clicked(void)),SLOT(slotFactorialclicked(void)));
 
-	pbSquare = new QPushButton("x^2", mSmallPage, "Square-Button");
+	// Representation of x^2 is moved to the function
+	// changeRepresentation() that paints the letters When
+	// pressing the INV Button a sqrt symbol will be drawn on that
+	// button
+	pbSquare = new QPushButton(mSmallPage, "Square-Button");
+	pbSquare->setPixmap( changeRepresentation( "x", "2" ) );
+	pbSquare->setPixmap( buttonpixmap );
 	QToolTip::add(pbSquare, i18n("Square"));
 	pbSquare->setAutoDefault(false);
 	connect(pbSquare, SIGNAL(clicked(void)), SLOT(slotSquareclicked(void)));
 
-	pbPower = new QPushButton("x^y", mSmallPage, "Power-Button");
+	// Representation of x^y is moved to the function
+	// changeRepresentation() that paints the letters When
+	// pressing the INV Button y^x will be drawn on that button
+	pbPower = new QPushButton(mSmallPage, "Power-Button");
+	pbPower->setPixmap( changeRepresentation( "x", "y" ) );
 	pbPower->setAutoDefault(false);
 	pbPower->setAccel(Key_AsciiCircum);
 	QToolTip::add(pbPower, i18n("x to the power of y"));
@@ -902,6 +915,23 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
 	changeButtonNames();
 }
 
+//Function for changing the representation of x^2 and x^y and x^(1/y)
+QPixmap KCalculator::changeRepresentation( QString base, QString exponent )
+{
+	fontExponent = KCalcSettings::font();
+	fontsizeExponent = fontExponent.pointSize() - 6;
+	fontExponent.setPointSize( fontsizeExponent );
+	fontExponent.setWeight( 0 );
+	buttonpixmap.resize( 45, 15 );
+	buttonpixmap.fill( KCalcSettings::functionButtonsColor() );
+	buttonpainter.begin( &buttonpixmap );
+	buttonpainter.drawText( 17, 13, base );
+	buttonpainter.setFont( fontExponent );
+	buttonpainter.drawText( 25, 8, exponent );
+	buttonpainter.end();
+	return buttonpixmap;
+}
+
 void KCalculator::updateGeometry(void)
 {
     QObjectList *l;
@@ -1131,8 +1161,31 @@ void KCalculator::slotInvtoggled(bool flag)
 {
 	inverse = flag;
 
-	if (inverse)	statusBar()->changeItem("INV", 0);
-	else		statusBar()->changeItem("NORM", 0);
+	if (inverse)
+	{
+		statusBar()->changeItem("INV", 0);
+		// these statements are for the improved representation of the sqrt function
+		buttonpixmap.resize( 45, 15 );
+		buttonpixmap.fill( KCalcSettings::functionButtonsColor() );
+		buttonpainter.begin( &buttonpixmap );
+		buttonpainter.drawLine(8, 11,10, 7);
+		buttonpainter.drawLine(10, 7, 12, 14 );
+		buttonpainter.drawLine(12, 14, 14, 1);
+		buttonpainter.drawLine(14,1, 35,1);
+		buttonpainter.drawLine(35,1, 35, 4);
+		buttonpainter.end();
+		pbSquare->setPixmap( buttonpixmap );
+		// Change the representation of y^x
+		pbPower->setPixmap( changeRepresentation( "x", "1/y" ) );
+	}
+	else
+	{
+		statusBar()->changeItem("NORM", 0);
+// Change the representation of x^2
+		pbSquare->setPixmap( changeRepresentation( "x", "2" ) );
+// Change the representation of x^y
+		pbPower->setPixmap( changeRepresentation( "x", "y" ) );
+	}
 }
 
 void KCalculator::slotHyptoggled(bool flag)
