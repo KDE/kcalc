@@ -422,7 +422,7 @@ number by the next input number.</term>
 division of the displayed number by the next input number.</term>
 <listitem><para><userinput>22 Inv Mod 8 = </userinput> will give the result
 <emphasis>2</emphasis></para>
-<para><userinput>22.345 Mod 8 = </userinput> also gives <emphasis>2</emphasis>
+<para><userinput>22.345 Inv Mod 8 = </userinput> also gives <emphasis>2</emphasis>
 </para></listitem></varlistentry>
 </variablelist>
 
