@@ -32,22 +32,22 @@
 #include "kcalctype.h"
 
 
-#ifdef HAVE_LONG_DOUBLE
-	#define PRINT_FLOAT		"%.*Lf"
-	#define PRINT_LONG_BIG	"%.*Lg"
-	#define PRINT_LONG		"%Lg"
+#if defined HAVE_LONG_DOUBLE && defined HAVE_L_FUNCS
+	#define PRINT_FLOAT     "%.*Lf"
+	#define PRINT_LONG_BIG  "%.*Lg"
+	#define PRINT_LONG      "%Lg"
 #else
-	#define PRINT_FLOAT		"%.*f"
-	#define PRINT_LONG_BIG	"%.*g"
-	#define PRINT_LONG		"%g"
+	#define PRINT_FLOAT     "%.*f"
+	#define PRINT_LONG_BIG  "%.*g"
+	#define PRINT_LONG      "%g"
 #endif
 
 #ifdef HAVE_LONG_LONG
-	#define PRINT_OCTAL	"%llo"
-	#define PRINT_HEX	"%llX"
+	#define PRINT_OCTAL  "%llo"
+	#define PRINT_HEX    "%llX"
 #else
-	#define PRINT_OCTAL	"%lo"
-	#define PRINT_HEX	"%lX"
+	#define PRINT_OCTAL  "%lo"
+	#define PRINT_HEX    "%lX"
 #endif
 
 #define		HEX_SIZE	sizeof(KCALC_LONG)*2
@@ -73,12 +73,12 @@
   TODO: Check overflows, number of digits and such...
 */
 
-typedef enum {
+enum NumBase {
 	NB_BINARY = 2,
 	NB_OCTAL = 8,
 	NB_DECIMAL = 10,
 	NB_HEX = 16
-} NumBase;
+};
 
 
 class KCalcDisplay : public QLabel
@@ -100,7 +100,7 @@ public:
 	bool getError(void) const;
 	void newCharacter(char const new_char);
 	void Reset(void);
-        bool setAmount(CALCAMNT new_amount);
+	bool setAmount(CALCAMNT new_amount);
 	int setBase(NumBase new_base);
 	void setBeep(bool flag);
 	void setError(bool error);
@@ -122,7 +122,6 @@ private:
 	bool _error;
 	CALCAMNT _display_amount;
 private:
-	int cvb(char *out_str, KCALC_LONG amount, int max_digits);
 	void invertColors(void);
 
 	// only used for input of new numbers

@@ -198,7 +198,7 @@ bool KCalcDisplay::setAmount(CALCAMNT new_amount)
 	if(_error)
 		return false;
 
-	char display_str[DSP_SIZE+1];
+	QString display_str;
 
 	_str_int = "0";
 	_str_int_exp = (char *)0;
@@ -212,7 +212,6 @@ bool KCalcDisplay::setAmount(CALCAMNT new_amount)
 	{
 		CALCAMNT	tmp_round;
 		KCALC_LONG	rounded_num = 0;
-		int str_size;
 
 		MODF(_display_amount, &tmp_round);
 
@@ -236,51 +235,22 @@ bool KCalcDisplay::setAmount(CALCAMNT new_amount)
 			rounded_num = (KCALC_LONG)_display_amount;
 		}
 
-		switch(_num_base)
-		{
-		case NB_BINARY:
-			str_size = cvb(display_str, rounded_num, DSP_SIZE);
-			break;
-
-		case NB_OCTAL:
-			str_size = snprintf(display_str, DSP_SIZE, PRINT_OCTAL, rounded_num);
-			break;
-
-		case NB_HEX:
-			str_size = snprintf(display_str, DSP_SIZE, PRINT_HEX, rounded_num);
-			break;
-		default:
-			_error = true;
-			str_size = -1;
-			break;
-		}
-
-		if (str_size == -1) _error = true;
+		display_str = QString::number(rounded_num, _num_base).upper();
+		if (display_str.length() > DSP_SIZE) _error = true;
 	}
 	else // _num_base == NB_DECIMAL
 	{
-		int str_size;
+		// We need to use QCString here since it uses the systems native ::sprintf()
+		// implementation which is more flexible than QString's.
 
-		if (_fixed_precision != -1 && _display_amount <= 1.0e+16) {
-			str_size = snprintf(display_str, DSP_SIZE,
-					    PRINT_FLOAT,
-					    _fixed_precision,
-					    _display_amount);
-		} else if(_display_amount > 1.0e+16) {
-			// guard against _display_amount too large
-			// to prevent segfault. Such as from typing
-			// from 5*5*******
-			str_size = snprintf(display_str, DSP_SIZE,
-					    PRINT_LONG_BIG,
-					    _precision + 1,
-					    _display_amount);
-		} else {
-			str_size = snprintf(display_str, DSP_SIZE,
-					    PRINT_LONG_BIG, _precision,
-					    _display_amount);
-		}
+		if (_fixed_precision != -1 && _display_amount <= 1.0e+16)
+			display_str = QCString().sprintf(PRINT_FLOAT, _fixed_precision, _display_amount);
+		else if (_display_amount > 1.0e+16)
+			display_str = QCString().sprintf(PRINT_LONG_BIG, _precision + 1, _display_amount);
+		else
+			display_str = QCString().sprintf(PRINT_LONG_BIG, _precision, _display_amount);
 
-		if (str_size == -1) _error = true;
+		if (display_str.length() > DSP_SIZE) _error = true;
 	}
 
 	if(_error)
@@ -632,54 +602,6 @@ bool KCalcDisplay::getError(void) const
 {
 	return _error;
 }
-
-int KCalcDisplay::cvb(char *out_str, KCALC_LONG amount, int max_digits)
-{
-	/*
-	* A routine that converts a long int to
-	* binary display format
-	*/
-
-	bool hitOne		= false;
-	unsigned KCALC_LONG bit_mask =
-		((unsigned KCALC_LONG) 1 << (BIN_SIZE - 1));
-	unsigned KCALC_LONG bit_mask_mask = bit_mask - 1;
-	unsigned int count = 0 ;
-
-	while(bit_mask != 0 && max_digits > 0)
-	{
-		char tmp = (bit_mask & amount) ? '1' : '0';
-
-		// put a space every 4th digit
-		if (hitOne && ((count & 3) == 0))
-			*out_str++ = ' ';
-			
-		count++;
-
-		if(!hitOne && tmp == '1')
-			hitOne = true;
-
-		if(hitOne)
-			*out_str++ = tmp;
-
-		bit_mask >>= 1;
-
-		// this will fix a prob with some processors using an
-		// arithmetic right shift (which would maintain sign on
-		// negative numbers and cause a loop that's too long)
-		bit_mask &= bit_mask_mask; //Sven: Uwe's Alpha adition
-
-		max_digits--;
-	}
-
-	if(amount == 0)
-		*out_str++ = '0';
-
-	*out_str = '\0';
-
-	return count;
-}
-
 
 void KCalcDisplay::Reset(void)
 {
