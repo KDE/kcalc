@@ -77,9 +77,6 @@ extern bool		display_error;
 //
 
 
-//-------------------------------------------------------------------------
-// Name: QtCalculator(QWidget *parent, const char *name)
-//-------------------------------------------------------------------------
 QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	: KMainWindow(parent, name), inverse(false), hyp_mode(false), eestate(false),
 	refresh_display(false), display_size(DEC_SIZE),  angle_mode(ANG_DEGREE),
@@ -214,268 +211,222 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	mSmallPage = new QWidget(central);
 	mLargePage = new QWidget(central);
 
-	pbhyp = new QPushButton("Hyp", mSmallPage, "hypbutton");
-	pbhyp->setAutoDefault(false);
-	connect(pbhyp, SIGNAL(toggled(bool)), SLOT(pbhyptoggled(bool)));
-	pbhyp->setToggleButton(true);
+	pbHyp = new QPushButton("Hyp", mSmallPage, "Hyp-Button");
+	pbHyp->setAutoDefault(false);
+	connect(pbHyp, SIGNAL(toggled(bool)), SLOT(slotHyptoggled(bool)));
+	pbHyp->setToggleButton(true);
 
-	pbinv = new QPushButton("Inv", mSmallPage, "InverseButton");
-	QToolTip::add(pbinv, i18n("Inverse mode"));
-	pbinv->setAutoDefault(false);
-	connect(pbinv, SIGNAL(toggled(bool)), SLOT(pbinvtoggled(bool)));
-	pbinv->setToggleButton(true);
+	pbInv = new QPushButton("Inv", mSmallPage, "Inverse-Button");
+	QToolTip::add(pbInv, i18n("Inverse mode"));
+	pbInv->setAutoDefault(false);
+	connect(pbInv, SIGNAL(toggled(bool)), SLOT(slotInvtoggled(bool)));
+	pbInv->setToggleButton(true);
 
-	pbA = new QPushButton("A", mSmallPage, "Abutton");
+	pbA = new QPushButton("A", mSmallPage, "A-Button");
 	pbA->setAutoDefault(false);
-	connect(pbA, SIGNAL(toggled(bool)), SLOT(pbAtoggled(bool)));
-	pbA->setToggleButton(true);
+	connect(pbA, SIGNAL(clicked(void)), SLOT(slotAclicked(void)));
 
-	pbSin = new QPushButton("Sin", mSmallPage, "Sinbutton");
+	pbSin = new QPushButton("Sin", mSmallPage, "Sin-Button");
 	pbSin->setAutoDefault(false);
-	connect(pbSin, SIGNAL(toggled(bool)), SLOT(pbSintoggled(bool)));
-	pbSin->setToggleButton(true);
+	connect(pbSin, SIGNAL(clicked(void)), SLOT(slotSinclicked(void)));
 
-	pbplusminus = new QPushButton("+/-", mSmallPage, "plusminusbutton");
-	QToolTip::add(pbplusminus, i18n("Change sign"));
-	pbplusminus->setAutoDefault(false);
-	connect(pbplusminus, SIGNAL(toggled(bool)), SLOT(pbplusminustoggled(bool)));
-	pbplusminus->setToggleButton(true);
+	pbPlusMinus = new QPushButton("+/-", mSmallPage, "Sign-Button");
+	QToolTip::add(pbPlusMinus, i18n("Change sign"));
+	pbPlusMinus->setAutoDefault(false);
+	connect(pbPlusMinus, SIGNAL(clicked(void)), SLOT(slotPlusMinusclicked(void)));
 
-	pbB = new QPushButton("B", mSmallPage, "Bbutton");
+	pbB = new QPushButton("B", mSmallPage, "B-Button");
 	pbB->setAutoDefault(false);
-	connect(pbB, SIGNAL(toggled(bool)), SLOT(pbBtoggled(bool)));
-	pbB->setToggleButton(true);
+	connect(pbB, SIGNAL(clicked(void)), SLOT(slotBclicked(void)));
 
-	pbCos = new QPushButton("Cos", mSmallPage, "Cosbutton");
+	pbCos = new QPushButton("Cos", mSmallPage, "Cos-Button");
 	pbCos->setAutoDefault(false);
-	connect(pbCos, SIGNAL(toggled(bool)), SLOT(pbCostoggled(bool)));
-	pbCos->setToggleButton(true);
+	connect(pbCos, SIGNAL(clicked(void)), SLOT(slotCosclicked(void)));
 
-	pbreci = new QPushButton("1/x", mSmallPage, "recibutton");
-	QToolTip::add(pbreci, i18n("Reciprocal"));
-	pbreci->setAutoDefault(false);
-	connect(pbreci, SIGNAL(toggled(bool)), SLOT(pbrecitoggled(bool)));
-	pbreci->setToggleButton(true);
+	pbReci = new QPushButton("1/x", mSmallPage, "Reciprocal-Button");
+	QToolTip::add(pbReci, i18n("Reciprocal"));
+	pbReci->setAutoDefault(false);
+	connect(pbReci, SIGNAL(clicked(void)), SLOT(slotReciclicked(void)));
 
-	pbC = new QPushButton("C", mSmallPage, "Cbutton");
+	pbC = new QPushButton("C", mSmallPage, "C-Button");
 	pbC->setAutoDefault(false);
-	connect(pbC, SIGNAL(toggled(bool)), SLOT(pbCtoggled(bool)));
-	pbC->setToggleButton(true);
+	connect(pbC, SIGNAL(clicked(void)), SLOT(slotCclicked(void)));
 
-	pbTan = new QPushButton("Tan", mSmallPage, "Tanbutton");
+	pbTan = new QPushButton("Tan", mSmallPage, "Tan-Button");
 	pbTan->setAutoDefault(false);
-	connect(pbTan, SIGNAL(toggled(bool)),SLOT(pbTantoggled(bool)));
-	pbTan->setToggleButton(true);
+	connect(pbTan, SIGNAL(clicked(void)),SLOT(slotTanclicked(void)));
 
-	pbfactorial = new QPushButton("x!", mSmallPage, "factorialbutton");
-	QToolTip::add(pbfactorial, i18n("Factorial"));
-	pbfactorial->setAutoDefault(false);
-	connect(pbfactorial, SIGNAL(toggled(bool)),SLOT(pbfactorialtoggled(bool)));
-	pbfactorial->setToggleButton(true);
+	pbFactorial = new QPushButton("x!", mSmallPage, "Factorial-Button");
+	QToolTip::add(pbFactorial, i18n("Factorial"));
+	pbFactorial->setAutoDefault(false);
+	connect(pbFactorial, SIGNAL(clicked(void)),SLOT(slotFactorialclicked(void)));
 
-	pbD = new QPushButton("D", mSmallPage, "Dbutton");
+	pbD = new QPushButton("D", mSmallPage, "D-Button");
 	pbD->setAutoDefault(false);
-	connect(pbD, SIGNAL(toggled(bool)), SLOT(pbDtoggled(bool)));
-	pbD->setToggleButton(true);
+	connect(pbD, SIGNAL(clicked(void)), SLOT(slotDclicked(void)));
 
-	pblog = new QPushButton("Log", mSmallPage, "logbutton");
-	pblog->setAutoDefault(false);
-	connect(pblog, SIGNAL(toggled(bool)), SLOT(pblogtoggled(bool)));
-	pblog->setToggleButton(true);
+	pbLog = new QPushButton("Log", mSmallPage, "Log-Button");
+	pbLog->setAutoDefault(false);
+	connect(pbLog, SIGNAL(clicked(void)), SLOT(slotLogclicked(void)));
 
-	pbsquare = new QPushButton("x^2", mSmallPage, "squarebutton");
-	QToolTip::add(pbsquare, i18n("Square"));
-	pbsquare->setAutoDefault(false);
-	connect(pbsquare, SIGNAL(toggled(bool)), SLOT(pbsquaretoggled(bool)));
-	pbsquare->setToggleButton(true);
+	pbSquare = new QPushButton("x^2", mSmallPage, "Square-Button");
+	QToolTip::add(pbSquare, i18n("Square"));
+	pbSquare->setAutoDefault(false);
+	connect(pbSquare, SIGNAL(clicked(void)), SLOT(slotSquareclicked(void)));
 
-	pbE = new QPushButton("E", mSmallPage, "Ebutton");
+	pbE = new QPushButton("E", mSmallPage, "E-Button");
 	pbE->setAutoDefault(false);
-	connect(pbE, SIGNAL(toggled(bool)), SLOT(pbEtoggled(bool)));
-	pbE->setToggleButton(true);
+	connect(pbE, SIGNAL(clicked(void)), SLOT(slotEclicked(void)));
 
-	pbln = new QPushButton("Ln", mSmallPage, "lnbutton");
-	pbln->setAutoDefault(false);
-	connect(pbln, SIGNAL(toggled(bool)), SLOT(pblntoggled(bool)));
-	pbln->setToggleButton(true);
+	pbLn = new QPushButton("Ln", mSmallPage, "Ln-Button");
+	pbLn->setAutoDefault(false);
+	connect(pbLn, SIGNAL(clicked(void)), SLOT(slotLnclicked(void)));
 
-	pbpower = new QPushButton("x^y", mSmallPage, "powerbutton");
-	pbpower->setAutoDefault(false);
-	QToolTip::add(pbpower, i18n("x to the power of y"));
-	connect(pbpower, SIGNAL(toggled(bool)), SLOT(pbpowertoggled(bool)));
-	pbpower->setToggleButton(true);
+	pbPower = new QPushButton("x^y", mSmallPage, "Power-Button");
+	pbPower->setAutoDefault(false);
+	QToolTip::add(pbPower, i18n("x to the power of y"));
+	connect(pbPower, SIGNAL(clicked(void)), SLOT(slotPowerclicked(void)));
 
-	pbF = new QPushButton("F", mSmallPage, "Fbutton");
+	pbF = new QPushButton("F", mSmallPage, "F-Button");
 	pbF->setAutoDefault(false);
-	connect(pbF, SIGNAL(toggled(bool)), SLOT(pbFtoggled(bool)));
-	pbF->setToggleButton(true);
+	connect(pbF, SIGNAL(clicked(void)), SLOT(slotFclicked(void)));
 
-	pbEE = new QPushButton("EE", mLargePage, "EEbutton");
+	pbEE = new QPushButton("EE", mLargePage, "EE-Button");
 	QToolTip::add(pbEE, i18n("Exponent"));
-	pbEE->setToggleButton(true);
 	pbEE->setAutoDefault(false);
-	connect(pbEE, SIGNAL(toggled(bool)), SLOT(EEtoggled(bool)));
+	connect(pbEE, SIGNAL(clicked(void)), SLOT(slotEEclicked(void)));
 
-	pbMR = new QPushButton("MR", mLargePage, "MRbutton");
+	pbMR = new QPushButton("MR", mLargePage, "MemRecall-Button");
 	QToolTip::add(pbMR, i18n("Memory recall"));
 	pbMR->setAutoDefault(false);
-	connect(pbMR, SIGNAL(toggled(bool)), SLOT(pbMRtoggled(bool)));
-	pbMR->setToggleButton(true);
+	connect(pbMR, SIGNAL(clicked(void)), SLOT(slotMRclicked(void)));
 
-	pbMplusminus = new QPushButton("M+-", mLargePage, "Mplusminusbutton");
-	pbMplusminus->setAutoDefault(false);
-	connect(pbMplusminus,SIGNAL(toggled(bool)),SLOT(pbMplusminustoggled(bool)));
-	pbMplusminus->setToggleButton(true);
+	pbMPlusMinus = new QPushButton("M+-", mLargePage, "MPlusMinus-Button");
+	pbMPlusMinus->setAutoDefault(false);
+	connect(pbMPlusMinus,SIGNAL(clicked(void)),SLOT(slotMPlusMinusclicked(void)));
 
-	pbMC = new QPushButton("MC", mLargePage, "MCbutton");
+	pbMC = new QPushButton("MC", mLargePage, "MemClear-Button");
 	QToolTip::add(pbMC, i18n("Clear memory"));
 	pbMC->setAutoDefault(false);
-	connect(pbMC, SIGNAL(toggled(bool)), SLOT(pbMCtoggled(bool)));
-	pbMC->setToggleButton(true);
+	connect(pbMC, SIGNAL(clicked(void)), SLOT(slotMCclicked(void)));
 
-	pbClear = new QPushButton("C", mLargePage, "Clearbutton");
+	pbClear = new QPushButton("C", mLargePage, "Clear-Button");
 	QToolTip::add(pbClear, i18n("Clear"));
 	pbClear->setAutoDefault(false);
-	connect(pbClear, SIGNAL(toggled(bool)), SLOT(pbCleartoggled(bool)));
-	pbClear->setToggleButton(true);
+	connect(pbClear, SIGNAL(clicked(void)), SLOT(slotClearclicked(void)));
 
-	pbAC = new QPushButton("AC", mLargePage, "ACbutton");
+	pbAC = new QPushButton("AC", mLargePage, "AC-Button");
 	QToolTip::add(pbAC, i18n("Clear all"));
 	pbAC->setAutoDefault(false);
-	connect(pbAC, SIGNAL(toggled(bool)), SLOT(pbACtoggled(bool)));
-	pbAC->setToggleButton(true);
+	connect(pbAC, SIGNAL(clicked(void)), SLOT(slotACclicked(void)));
 
-	pb7 = new QPushButton("7", mLargePage, "7button");
+	pb7 = new QPushButton("7", mLargePage, "7-Button");
 	pb7->setAutoDefault(false);
-	connect(pb7, SIGNAL(toggled(bool)), SLOT(pb7toggled(bool)));
-	pb7->setToggleButton(true);
+	connect(pb7, SIGNAL(clicked(void)), SLOT(slot7clicked(void)));
 
-	pb8 = new QPushButton("8", mLargePage, "8button");
+	pb8 = new QPushButton("8", mLargePage, "8-Button");
 	pb8->setAutoDefault(false);
-	connect(pb8, SIGNAL(toggled(bool)), SLOT(pb8toggled(bool)));
-	pb8->setToggleButton(true);
+	connect(pb8, SIGNAL(clicked(void)), SLOT(slot8clicked(void)));
 
-	pb9 = new QPushButton("9", mLargePage, "9button");
+	pb9 = new QPushButton("9", mLargePage, "9-Button");
 	pb9->setAutoDefault(false);
-	connect(pb9, SIGNAL(toggled(bool)), SLOT(pb9toggled(bool)));
-	pb9->setToggleButton(true);
+	connect(pb9, SIGNAL(clicked(void)), SLOT(slot9clicked(void)));
 
-	pbparenopen = new QPushButton("(", mLargePage, "parenopenbutton");
-	pbparenopen->setAutoDefault(false);
-	connect(pbparenopen, SIGNAL(toggled(bool)),SLOT(pbparenopentoggled(bool)));
-	pbparenopen->setToggleButton(true);
+	pbParenOpen = new QPushButton("(", mLargePage, "ParenOpen-Button");
+	pbParenOpen->setAutoDefault(false);
+	connect(pbParenOpen, SIGNAL(clicked(void)),SLOT(slotParenOpenclicked(void)));
 
-	pbparenclose = new QPushButton(")", mLargePage, "parenclosebutton");
-	pbparenclose->setAutoDefault(false);
-	connect(pbparenclose,SIGNAL(toggled(bool)),SLOT(pbparenclosetoggled(bool)));
-	pbparenclose->setToggleButton(true);
+	pbParenClose = new QPushButton(")", mLargePage, "ParenClose-Button");
+	pbParenClose->setAutoDefault(false);
+	connect(pbParenClose,SIGNAL(clicked(void)),SLOT(slotParenCloseclicked(void)));
 
-	pband = new QPushButton("And", mLargePage, "andbutton");
-	QToolTip::add(pband, i18n("Bitwise AND"));
-	pband->setAutoDefault(false);
-	connect(pband, SIGNAL(toggled(bool)), SLOT(pbandtoggled(bool)));
-	pband->setToggleButton(true);
+	pbAND = new QPushButton("And", mLargePage, "AND-Button");
+	QToolTip::add(pbAND, i18n("Bitwise AND"));
+	pbAND->setAutoDefault(false);
+	connect(pbAND, SIGNAL(clicked(void)), SLOT(slotANDclicked(void)));
 
-	pb4 = new QPushButton("4", mLargePage, "4button");
+	pb4 = new QPushButton("4", mLargePage, "4-Button");
 	pb4->setAutoDefault(false);
-	connect(pb4, SIGNAL(toggled(bool)), SLOT(pb4toggled(bool)));
-	pb4->setToggleButton(true);
+	connect(pb4, SIGNAL(clicked(void)), SLOT(slot4clicked(void)));
 
-	pb5 = new QPushButton("5", mLargePage, "5button");
+	pb5 = new QPushButton("5", mLargePage, "5-Button");
 	pb5->setAutoDefault(false);
-	connect(pb5, SIGNAL(toggled(bool)), SLOT(pb5toggled(bool)));
-	pb5->setToggleButton(true);
+	connect(pb5, SIGNAL(clicked(void)), SLOT(slot5clicked(void)));
 
-	pb6 = new QPushButton("6", mLargePage, "6button");
+	pb6 = new QPushButton("6", mLargePage, "6-Button");
 	pb6->setAutoDefault(false);
-	connect(pb6, SIGNAL(toggled(bool)), SLOT(pb6toggled(bool)));
-	pb6->setToggleButton(true);
+	connect(pb6, SIGNAL(clicked(void)), SLOT(slot6clicked(void)));
 
-	pbX = new QPushButton("X", mLargePage, "Multiplybutton");
+	pbX = new QPushButton("X", mLargePage, "Multiply-Button");
 	QToolTip::add(pbX, i18n("Multiplication"));
 	pbX->setAutoDefault(false);
-	connect(pbX, SIGNAL(toggled(bool)), SLOT(pbXtoggled(bool)));
-	pbX->setToggleButton(true);
+	connect(pbX, SIGNAL(clicked(void)), SLOT(slotXclicked(void)));
 
-	pbdivision = new QPushButton("/", mLargePage, "divisionbutton");
-	QToolTip::add(pbdivision, i18n("Division"));
-	pbdivision->setAutoDefault(false);
-	connect(pbdivision, SIGNAL(toggled(bool)), SLOT(pbdivisiontoggled(bool)));
-	pbdivision->setToggleButton(true);
+	pbDivision = new QPushButton("/", mLargePage, "Division-Button");
+	QToolTip::add(pbDivision, i18n("Division"));
+	pbDivision->setAutoDefault(false);
+	connect(pbDivision, SIGNAL(clicked(void)), SLOT(slotDivisionclicked(void)));
 
-	pbor = new QPushButton("Or", mLargePage, "orbutton");
-	QToolTip::add(pbor, i18n("Bitwise OR"));
-	pbor->setAutoDefault(false);
-	connect(pbor, SIGNAL(toggled(bool)), SLOT(pbortoggled(bool)));
-	pbor->setToggleButton(true);
+	pbOR = new QPushButton("Or", mLargePage, "OR-Button");
+	QToolTip::add(pbOR, i18n("Bitwise OR"));
+	pbOR->setAutoDefault(false);
+	connect(pbOR, SIGNAL(clicked(void)), SLOT(slotORclicked(void)));
 
-	pb1 = new QPushButton("1", mLargePage, "1button");
+	pb1 = new QPushButton("1", mLargePage, "1-Button");
 	pb1->setAutoDefault(false);
-	connect(pb1, SIGNAL(toggled(bool)), SLOT(pb1toggled(bool)));
-	pb1->setToggleButton(true);
+	connect(pb1, SIGNAL(clicked(void)), SLOT(slot1clicked(void)));
 
-	pb2 = new QPushButton("2", mLargePage, "2button");
+	pb2 = new QPushButton("2", mLargePage, "2-Button");
 	pb2->setAutoDefault(false);
-	connect(pb2, SIGNAL(toggled(bool)), SLOT(pb2toggled(bool)));
-	pb2->setToggleButton(true);
+	connect(pb2, SIGNAL(clicked(void)), SLOT(slot2clicked(void)));
 
-	pb3 = new QPushButton("3", mLargePage, "3button");
+	pb3 = new QPushButton("3", mLargePage, "3-Button");
 	pb3->setAutoDefault(false);
-	connect(pb3, SIGNAL(toggled(bool)), SLOT(pb3toggled(bool)));
-	pb3->setToggleButton(true);
+	connect(pb3, SIGNAL(clicked(void)), SLOT(slot3clicked(void)));
 
-	pbplus = new QPushButton("+", mLargePage, "plusbutton");
-	QToolTip::add(pbplus, i18n("Addition"));
-	pbplus->setAutoDefault(false);
-	connect(pbplus, SIGNAL(toggled(bool)), SLOT(pbplustoggled(bool)));
-	pbplus->setToggleButton(true);
+	pbPlus = new QPushButton("+", mLargePage, "Plus-Button");
+	QToolTip::add(pbPlus, i18n("Addition"));
+	pbPlus->setAutoDefault(false);
+	connect(pbPlus, SIGNAL(clicked(void)), SLOT(slotPlusclicked(void)));
 
-	pbminus = new QPushButton("-", mLargePage, "minusbutton");
-	QToolTip::add(pbminus, i18n("Subtraction"));
-	pbminus->setAutoDefault(false);
-	connect(pbminus, SIGNAL(toggled(bool)), SLOT(pbminustoggled(bool)));
-	pbminus->setToggleButton(true);
+	pbMinus = new QPushButton("-", mLargePage, "Minus-Button");
+	QToolTip::add(pbMinus, i18n("Subtraction"));
+	pbMinus->setAutoDefault(false);
+	connect(pbMinus, SIGNAL(clicked(void)), SLOT(slotMinusclicked(void)));
 
-	pbshift = new QPushButton("Lsh", mLargePage, "shiftbutton");
-	QToolTip::add(pbshift, i18n("Bit shift"));
-	pbshift->setAutoDefault(false);
-	connect(pbshift, SIGNAL(toggled(bool)), SLOT(pbshifttoggled(bool)));
-	pbshift->setToggleButton(true);
+	pbShift = new QPushButton("Lsh", mLargePage, "Shift-Button");
+	QToolTip::add(pbShift, i18n("Bit shift"));
+	pbShift->setAutoDefault(false);
+	connect(pbShift, SIGNAL(clicked(void)), SLOT(slotShiftclicked(void)));
 
-	pbperiod = new QPushButton(".", mLargePage, "periodbutton");
-	QToolTip::add(pbperiod, i18n("Decimal point"));
-	pbperiod->setAutoDefault(false);
-	connect(pbperiod, SIGNAL(toggled(bool)), SLOT(pbperiodtoggled(bool)));
-	pbperiod->setToggleButton(true);
+	pbPeriod = new QPushButton(".", mLargePage, "Period-Button");
+	QToolTip::add(pbPeriod, i18n("Decimal point"));
+	pbPeriod->setAutoDefault(false);
+	connect(pbPeriod, SIGNAL(clicked(void)), SLOT(slotPeriodclicked(void)));
 
-	pb0 = new QPushButton("0", mLargePage, "0button");
+	pb0 = new QPushButton("0", mLargePage, "0-Button");
 	pb0->setAutoDefault(false);
-	connect(pb0, SIGNAL(toggled(bool)), SLOT(pb0toggled(bool)));
-	pb0->setToggleButton(true);
+	connect(pb0, SIGNAL(clicked(void)), SLOT(slot0clicked(void)));
 
-	pbequal = new QPushButton("=", mLargePage, "equalbutton");
-	QToolTip::add(pbequal, i18n("Result"));
-	pbequal->setAutoDefault(false);
-	connect(pbequal, SIGNAL(toggled(bool)), SLOT(pbequaltoggled(bool)));
-	pbequal->setToggleButton(true);
+	pbEqual = new QPushButton("=", mLargePage, "Equal-Button");
+	QToolTip::add(pbEqual, i18n("Result"));
+	pbEqual->setAutoDefault(false);
+	connect(pbEqual, SIGNAL(clicked(void)), SLOT(slotEqualclicked(void)));
 
-	pbpercent = new QPushButton("%", mLargePage, "percentbutton");
-	QToolTip::add(pbpercent, i18n("Percent"));
-	pbpercent->setAutoDefault(false);
-	connect(pbpercent, SIGNAL(toggled(bool)), SLOT(pbpercenttoggled(bool)));
-	pbpercent->setToggleButton(true);
+	pbPercent = new QPushButton("%", mLargePage, "Percent-Button");
+	QToolTip::add(pbPercent, i18n("Percent"));
+	pbPercent->setAutoDefault(false);
+	connect(pbPercent, SIGNAL(clicked(void)), SLOT(slotPercentclicked(void)));
 
-	pbnegate = new QPushButton("Cmp", mLargePage, "OneComplementbutton");
-	QToolTip::add(pbnegate, i18n("One's complement"));
-	pbnegate->setAutoDefault(false);
-	connect(pbnegate, SIGNAL(toggled(bool)), SLOT(pbnegatetoggled(bool)));
-	pbnegate->setToggleButton(true);
+	pbNegate = new QPushButton("Cmp", mLargePage, "OneComplement-Button");
+	QToolTip::add(pbNegate, i18n("One's complement"));
+	pbNegate->setAutoDefault(false);
+	connect(pbNegate, SIGNAL(clicked(void)), SLOT(slotNegateclicked(void)));
 
-	pbmod = new QPushButton("Mod", mLargePage, "modbutton");
-	QToolTip::add(pbmod, i18n("Modulo"));
-	pbmod->setAutoDefault(false);
-	connect(pbmod, SIGNAL(toggled(bool)), SLOT(pbmodtoggled(bool)));
-	pbmod->setToggleButton(true);
+	pbMod = new QPushButton("Mod", mLargePage, "Modulo-Button");
+	QToolTip::add(pbMod, i18n("Modulo"));
+	pbMod->setAutoDefault(false);
+	connect(pbMod, SIGNAL(clicked(void)), SLOT(slotModclicked(void)));
 
 	//
 	// All these layouts are needed because all the groups have their
@@ -511,28 +462,28 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	btnLayout->addWidget(mLargePage,0,AlignTop);
 
 	// small button layout
-	smallBtnLayout->addWidget(pbhyp, 0, 0);
-	smallBtnLayout->addWidget(pbinv, 0, 1);
+	smallBtnLayout->addWidget(pbHyp, 0, 0);
+	smallBtnLayout->addWidget(pbInv, 0, 1);
 	smallBtnLayout->addWidget(pbA, 0, 2);
 
 	smallBtnLayout->addWidget(pbSin, 1, 0);
-	smallBtnLayout->addWidget(pbplusminus, 1, 1);
+	smallBtnLayout->addWidget(pbPlusMinus, 1, 1);
 	smallBtnLayout->addWidget(pbB, 1, 2);
 
 	smallBtnLayout->addWidget(pbCos, 2, 0);
-	smallBtnLayout->addWidget(pbreci, 2, 1);
+	smallBtnLayout->addWidget(pbReci, 2, 1);
 	smallBtnLayout->addWidget(pbC, 2, 2);
 
 	smallBtnLayout->addWidget(pbTan, 3, 0);
-	smallBtnLayout->addWidget(pbfactorial, 3, 1);
+	smallBtnLayout->addWidget(pbFactorial, 3, 1);
 	smallBtnLayout->addWidget(pbD, 3, 2);
 
-	smallBtnLayout->addWidget(pblog, 4, 0);
-	smallBtnLayout->addWidget(pbsquare, 4, 1);
+	smallBtnLayout->addWidget(pbLog, 4, 0);
+	smallBtnLayout->addWidget(pbSquare, 4, 1);
 	smallBtnLayout->addWidget(pbE, 4, 2);
 
-	smallBtnLayout->addWidget(pbln, 5, 0);
-	smallBtnLayout->addWidget(pbpower, 5, 1);
+	smallBtnLayout->addWidget(pbLn, 5, 0);
+	smallBtnLayout->addWidget(pbPower, 5, 1);
 	smallBtnLayout->addWidget(pbF, 5, 2);
 
 	smallBtnLayout->setRowStretch(0, 0);
@@ -545,7 +496,7 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	// large button layout
 	largeBtnLayout->addWidget(pbEE, 0, 0);
 	largeBtnLayout->addWidget(pbMR, 0, 1);
-	largeBtnLayout->addWidget(pbMplusminus, 0, 2);
+	largeBtnLayout->addWidget(pbMPlusMinus, 0, 2);
 	largeBtnLayout->addWidget(pbMC, 0, 3);
 	largeBtnLayout->addWidget(pbClear, 0, 4);
 	largeBtnLayout->addWidget(pbAC, 0, 5);
@@ -553,30 +504,30 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	largeBtnLayout->addWidget(pb7, 1, 0);
 	largeBtnLayout->addWidget(pb8, 1, 1);
 	largeBtnLayout->addWidget(pb9, 1, 2);
-	largeBtnLayout->addWidget(pbparenopen, 1, 3);
-	largeBtnLayout->addWidget(pbparenclose, 1, 4);
-	largeBtnLayout->addWidget(pband, 1, 5);
+	largeBtnLayout->addWidget(pbParenOpen, 1, 3);
+	largeBtnLayout->addWidget(pbParenClose, 1, 4);
+	largeBtnLayout->addWidget(pbAND, 1, 5);
 
 	largeBtnLayout->addWidget(pb4, 2, 0);
 	largeBtnLayout->addWidget(pb5, 2, 1);
 	largeBtnLayout->addWidget(pb6, 2, 2);
 	largeBtnLayout->addWidget(pbX, 2, 3);
-	largeBtnLayout->addWidget(pbdivision, 2, 4);
-	largeBtnLayout->addWidget(pbor, 2, 5);
+	largeBtnLayout->addWidget(pbDivision, 2, 4);
+	largeBtnLayout->addWidget(pbOR, 2, 5);
 
 	largeBtnLayout->addWidget(pb1, 3, 0);
 	largeBtnLayout->addWidget(pb2, 3, 1);
 	largeBtnLayout->addWidget(pb3, 3, 2);
-	largeBtnLayout->addWidget(pbplus, 3, 3);
-	largeBtnLayout->addWidget(pbminus, 3, 4);
-	largeBtnLayout->addWidget(pbshift, 3, 5);
+	largeBtnLayout->addWidget(pbPlus, 3, 3);
+	largeBtnLayout->addWidget(pbMinus, 3, 4);
+	largeBtnLayout->addWidget(pbShift, 3, 5);
 
-	largeBtnLayout->addWidget(pbperiod, 4, 0);
+	largeBtnLayout->addWidget(pbPeriod, 4, 0);
 	largeBtnLayout->addWidget(pb0, 4, 1);
-	largeBtnLayout->addWidget(pbequal, 4, 2);
-	largeBtnLayout->addWidget(pbpercent, 4, 3);
-	largeBtnLayout->addWidget(pbnegate, 4, 4);
-	largeBtnLayout->addWidget(pbmod, 4, 5);
+	largeBtnLayout->addWidget(pbEqual, 4, 2);
+	largeBtnLayout->addWidget(pbPercent, 4, 3);
+	largeBtnLayout->addWidget(pbNegate, 4, 4);
+	largeBtnLayout->addWidget(pbMod, 4, 5);
 
 	largeBtnLayout->addColSpacing(0,10);
 	largeBtnLayout->addColSpacing(1,10);
@@ -610,18 +561,18 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	mNumButtonList.append(pb8);
 	mNumButtonList.append(pb9);
 
-	mFunctionButtonList.append(pbhyp);
-	mFunctionButtonList.append(pbinv);
+	mFunctionButtonList.append(pbHyp);
+	mFunctionButtonList.append(pbInv);
 	mFunctionButtonList.append(pbSin);
-	mFunctionButtonList.append(pbplusminus);
+	mFunctionButtonList.append(pbPlusMinus);
 	mFunctionButtonList.append(pbCos);
-	mFunctionButtonList.append(pbreci);
+	mFunctionButtonList.append(pbReci);
 	mFunctionButtonList.append(pbTan);
-	mFunctionButtonList.append(pbfactorial);
-	mFunctionButtonList.append(pblog);
-	mFunctionButtonList.append(pbsquare);
-	mFunctionButtonList.append(pbln);
-	mFunctionButtonList.append(pbpower);
+	mFunctionButtonList.append(pbFactorial);
+	mFunctionButtonList.append(pbLog);
+	mFunctionButtonList.append(pbSquare);
+	mFunctionButtonList.append(pbLn);
+	mFunctionButtonList.append(pbPower);
 
 	mHexButtonList.append(pbA);
 	mHexButtonList.append(pbB);
@@ -632,25 +583,25 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 
 	mMemButtonList.append(pbEE);
 	mMemButtonList.append(pbMR);
-	mMemButtonList.append(pbMplusminus);
+	mMemButtonList.append(pbMPlusMinus);
 	mMemButtonList.append(pbMC);
 	mMemButtonList.append(pbClear);
 	mMemButtonList.append(pbAC);
 
 	mOperationButtonList.append(pbX);
-	mOperationButtonList.append(pbparenopen);
-	mOperationButtonList.append(pbparenclose);
-	mOperationButtonList.append(pband);
-	mOperationButtonList.append(pbdivision);
-	mOperationButtonList.append(pbor);
-	mOperationButtonList.append(pbplus);
-	mOperationButtonList.append(pbminus);
-	mOperationButtonList.append(pbshift);
-	mOperationButtonList.append(pbperiod);
-	mOperationButtonList.append(pbequal);
-	mOperationButtonList.append(pbpercent);
-	mOperationButtonList.append(pbnegate);
-	mOperationButtonList.append(pbmod);
+	mOperationButtonList.append(pbParenOpen);
+	mOperationButtonList.append(pbParenClose);
+	mOperationButtonList.append(pbAND);
+	mOperationButtonList.append(pbDivision);
+	mOperationButtonList.append(pbOR);
+	mOperationButtonList.append(pbPlus);
+	mOperationButtonList.append(pbMinus);
+	mOperationButtonList.append(pbShift);
+	mOperationButtonList.append(pbPeriod);
+	mOperationButtonList.append(pbEqual);
+	mOperationButtonList.append(pbPercent);
+	mOperationButtonList.append(pbNegate);
+	mOperationButtonList.append(pbMod);
 
 	set_colors();
 	set_display_font();
@@ -663,9 +614,6 @@ QtCalculator::QtCalculator(QWidget *parent, const char *name)
 	setFixedSize(minimumSize());
 }
 
-//-------------------------------------------------------------------------
-// Name: ~QtCalculator()
-//-------------------------------------------------------------------------
 QtCalculator::~QtCalculator()
 {
 	delete mConfigureDialog;
@@ -674,9 +622,6 @@ QtCalculator::~QtCalculator()
 }
 
 
-//-------------------------------------------------------------------------
-// Name: updateGeometry()
-//-------------------------------------------------------------------------
 void QtCalculator::updateGeometry()
 {
     QObjectList *l;
@@ -735,9 +680,6 @@ void QtCalculator::updateGeometry()
     //setFixedSize(minimumSize());
 }
 
-//-------------------------------------------------------------------------
-// Name: Base_Selected()
-//-------------------------------------------------------------------------
 void QtCalculator::Base_Selected(int base)
 {
 	// Enable the hexit buttons if we're in hex mode
@@ -763,15 +705,12 @@ void QtCalculator::Base_Selected(int base)
 	pb2->setEnabled(base <= 2);
 
 	// Only enable the decimal point in decimal
-	pbperiod->setEnabled(base == 1);
+	pbPeriod->setEnabled(base == 1);
 
 	// Call down to the core
 	base_selected(base);
 }
 
-//-------------------------------------------------------------------------
-// Name: Hex_Selected()
-//-------------------------------------------------------------------------
 void QtCalculator::Hex_Selected()
 {
 	basebutton[0]->setChecked(true);
@@ -781,9 +720,6 @@ void QtCalculator::Hex_Selected()
 	Base_Selected(0);
 }
 
-//-------------------------------------------------------------------------
-// Name: Dec_Selected()
-//-------------------------------------------------------------------------
 void QtCalculator::Dec_Selected()
 {
 	basebutton[0]->setChecked(false);
@@ -793,9 +729,6 @@ void QtCalculator::Dec_Selected()
 	Base_Selected(1);
 }
 
-//-------------------------------------------------------------------------
-// Name: Oct_Selected()
-//-------------------------------------------------------------------------
 void QtCalculator::Oct_Selected()
 {
 	basebutton[0]->setChecked(false);
@@ -805,9 +738,6 @@ void QtCalculator::Oct_Selected()
 	Base_Selected(2);
 }
 
-//-------------------------------------------------------------------------
-// Name: Bin_Selected()
-//-------------------------------------------------------------------------
 void QtCalculator::Bin_Selected()
 {
 	basebutton[0]->setChecked(false);
@@ -817,9 +747,6 @@ void QtCalculator::Bin_Selected()
 	Base_Selected(3);
 }
 
-//-------------------------------------------------------------------------
-// Name: Deg_Selected()
-//-------------------------------------------------------------------------
 void QtCalculator::Deg_Selected()
 {
 	anglebutton[0]->setChecked(true);
@@ -828,9 +755,6 @@ void QtCalculator::Deg_Selected()
 	angle_selected(0);
 }
 
-//-------------------------------------------------------------------------
-// Name: Rad_Selected()
-//-------------------------------------------------------------------------
 void QtCalculator::Rad_Selected()
 {
 	anglebutton[0]->setChecked(false);
@@ -839,9 +763,6 @@ void QtCalculator::Rad_Selected()
 	angle_selected(1);
 }
 
-//-------------------------------------------------------------------------
-// Name: Gra_Selected()
-//-------------------------------------------------------------------------
 void QtCalculator::Gra_Selected()
 {
 	anglebutton[0]->setChecked(false);
@@ -850,9 +771,6 @@ void QtCalculator::Gra_Selected()
 	angle_selected(2);
 }
 
-//-------------------------------------------------------------------------
-// Name: configurationChanged(const DefStruct &state)
-//-------------------------------------------------------------------------
 void QtCalculator::configurationChanged(const DefStruct &state)
 {
 	kcalcdefaults = state;
@@ -872,9 +790,6 @@ void QtCalculator::configurationChanged(const DefStruct &state)
 	setFixedHeight(minimumHeight());
 }
 
-//-------------------------------------------------------------------------
-// Name: keyPressEvent(QKeyEvent *e)
-//-------------------------------------------------------------------------
 void QtCalculator::keyPressEvent(QKeyEvent *e)
 {
 	switch (e->key())
@@ -896,984 +811,436 @@ void QtCalculator::keyPressEvent(QKeyEvent *e)
 		history_next();
 		break;
 	case Key_Next:
-		key_pressed = true;
-		pbAC->setOn(true);
+		pbAC->animateClick();
 		break;
 	case Key_Prior:
-		key_pressed = true;
-		pbClear->setOn(true);
+		pbClear->animateClick();
 		break;
 	case Key_H:
 		key_pressed = true;
-		pbhyp->setOn(true);
+		pbHyp->setOn(true);
 		break;
 	case Key_I:
 		key_pressed = true;
-		pbinv->setOn(true);
+		pbInv->setOn(true);
 		break;
 	case Key_A:
-		key_pressed = true;
-		pbA->setOn(true);
+		pbA->animateClick();
 		break;
 	case Key_E:
-		key_pressed = true;
 		if (current_base == NB_HEX)
-			pbE->setOn(true);
+			pbE->animateClick();
 		else
-			pbEE->setOn(true);
+			pbEE->animateClick();
 		break;
 	case Key_Escape:
-		key_pressed = true;
-		pbClear->setOn(true);
+		pbClear->animateClick();
 		break;
 	case Key_Delete:
-		key_pressed = true;
-		pbAC->setOn(true);
+		pbAC->animateClick();
 		break;
 	case Key_S:
-		key_pressed = true;
-		pbSin->setOn(true);
+		pbSin->animateClick();
 		break;
 	case Key_Backslash:
-		key_pressed = true;
-		pbplusminus->setOn(true);
+		pbPlusMinus->animateClick();
 		break;
 	case Key_B:
-		key_pressed = true;
-		pbB->setOn(true);
+		pbB->animateClick();
 		break;
 	case Key_7:
-		key_pressed = true;
-		pb7->setOn(true);
+		pb7->animateClick();
 		break;
 	case Key_8:
-		key_pressed = true;
-		pb8->setOn(true);
+		pb8->animateClick();
 		break;
 	case Key_9:
-		key_pressed = true;
-		pb9->setOn(true);
+		pb9->animateClick();
 		break;
 	case Key_ParenLeft:
-		key_pressed = true;
-		pbparenopen->setOn(true);
+		pbParenOpen->animateClick();
 		break;
 	case Key_ParenRight:
-		key_pressed = true;
-		pbparenclose->setOn(true);
+		pbParenClose->animateClick();
 		break;
 	case Key_Ampersand:
-		key_pressed = true;
-		pband->setOn(true);
+		pbAND->animateClick();
 		break;
 	case Key_C:
-		key_pressed = true;
 		if (current_base == NB_HEX)
-			pbC->setOn(true);
+			pbC->animateClick();
 		else
-			pbCos->setOn(true);
+			pbCos->animateClick();
 		break;
 	case Key_4:
-		key_pressed = true;
-		pb4->setOn(true);
+		pb4->animateClick();
 		break;
 	case Key_5:
-		key_pressed = true;
-		pb5->setOn(true);
+		pb5->animateClick();
 		break;
 	case Key_6:
-		key_pressed = true;
-		pb6->setOn(true);
+		pb6->animateClick();
 		break;
 	case Key_Asterisk:
         case Key_multiply:
-		key_pressed = true;
-		pbX->setOn(true);
+		pbX->animateClick();
 		break;
 	case Key_Slash:
         case Key_division:
-		key_pressed = true;
-		pbdivision->setOn(true);
+		pbDivision->animateClick();
 		break;
 	case Key_O:
-		key_pressed = true;
-		pbor->setOn(true);
+		pbOR->animateClick();
 		break;
 	case Key_T:
-		key_pressed = true;
-		pbTan->setOn(true);
+		pbTan->animateClick();
 		break;
 	case Key_Exclam:
-		key_pressed = true;
-		pbfactorial->setOn(true);
+		pbFactorial->animateClick();
 		break;
 	case Key_D:
-		key_pressed = true;
 		if(kcalcdefaults.style == 0)
-			pbD->setOn(true); // trig mode
+			pbD->animateClick(); // trig mode
 		else
-			pblog->setOn(true); // stat mode
+			pbLog->animateClick(); // stat mode
 		break;
 	case Key_1:
-		key_pressed = true;
-		pb1->setOn(true);
+		pb1->animateClick();
 		break;
 	case Key_2:
-		key_pressed = true;
-		pb2->setOn(true);
+		pb2->animateClick();
 		break;
 	case Key_3:
-		key_pressed = true;
-		pb3->setOn(true);
+		pb3->animateClick();
 		break;
 	case Key_Plus:
-		key_pressed = true;
-		pbplus->setOn(true);
+		pbPlus->animateClick();
 		break;
 	case Key_Minus:
-		key_pressed = true;
-		pbminus->setOn(true);
+		pbMinus->animateClick();
 		break;
 	case Key_Less:
-		key_pressed = true;
-		pbshift->setOn(true);
+		pbShift->animateClick();
 		break;
 	case Key_N:
-		key_pressed = true;
-		pbln->setOn(true);
+		pbLn->animateClick();
 		break;
 	case Key_L:
-		key_pressed = true;
-		pblog->setOn(true);
+		pbLog->animateClick();
 		break;
 	case Key_AsciiCircum:
-		key_pressed = true;
-		pbpower->setOn(true);
+		pbPower->animateClick();
 		break;
 	case Key_F:
-		key_pressed = true;
-		pbF->setOn(true);
+		pbF->animateClick();
 		break;
 	case Key_Period:
-		key_pressed = true;
-		pbperiod->setOn(true);
-		break;
 	case Key_Comma:
-		key_pressed = true;
-		pbperiod->setOn(true);
+		pbPeriod->animateClick();
 		break;
 	case Key_0:
-		key_pressed = true;
-		pb0->setOn(true);
+		pb0->animateClick();
 		break;
 	case Key_Equal:
-		key_pressed = true;
-		pbequal->setOn(true);
-		break;
 	case Key_Return:
-		key_pressed = true;
-		pbequal->setOn(true);
-		break;
 	case Key_Enter:
-		key_pressed = true;
-		pbequal->setOn(true);
+		pbEqual->animateClick();
 		break;
 	case Key_Percent:
-		key_pressed = true;
-		pbpercent->setOn(true);
+		pbPercent->animateClick();
 		break;
 	case Key_AsciiTilde:
-		key_pressed = true;
-		pbnegate->setOn(true);
+		pbNegate->animateClick();
 		break;
 	case Key_Colon:
-		key_pressed = true;
-		pbmod->setOn(true);
+		pbMod->animateClick();
 		break;
 	case Key_BracketLeft:
         case Key_twosuperior:
-		key_pressed = true;
-		pbsquare->setOn(true);
+		pbSquare->animateClick();
 		break;
 	case Key_Backspace:
 		SubtractDigit();
-		// key_pressed = true;
-		// pbAC->setOn(true);
+		// pbAC->animateClick();
 		break;
 	case Key_R:
-		key_pressed = true;
-		pbreci->setOn(true);
+		pbReci->animateClick();
 		break;
 	}
 }
 
-//-------------------------------------------------------------------------
-// Name: keyReleaseEvent(QKeyEvent *e)
-//-------------------------------------------------------------------------
 void QtCalculator::keyReleaseEvent(QKeyEvent *e)
 {
-	bool oldKey = key_pressed;
 	key_pressed = false;
 
 	switch (e->key())
 	{
-	case Key_Next:
-		pbAC->setOn(false);
-		break;
-	case Key_Prior:
-		pbClear->setOn(false);
-		break;
 	case Key_H:
-		pbhyp->setOn(false);
+		pbHyp->setOn(false);
 		break;
 	case Key_I:
-		pbinv->setOn(false);
-		break;
-	case Key_A:
-		pbA->setOn(false);
-		break;
-	case Key_E:
-		if (current_base == NB_HEX)
-			pbE->setOn(false);
-		else
-			pbEE->setOn(false);
-		break;
-	case Key_Escape:
-		pbClear->setOn(false);
-		break;
-	case Key_Delete:
-		pbAC->setOn(false);
-		break;
-	case Key_S:
-		pbSin->setOn(false);
-		break;
-	case Key_Backslash:
-		pbplusminus->setOn(false);
-		break;
-	case Key_B:
-		pbB->setOn(false);
-		break;
-	case Key_7:
-		pb7->setOn(false);
-		break;
-	case Key_8:
-		pb8->setOn(false);
-		break;
-	case Key_9:
-		pb9->setOn(false);
-		break;
-	case Key_ParenLeft:
-		pbparenopen->setOn(false);
-		break;
-	case Key_ParenRight:
-		pbparenclose->setOn(false);
-		break;
-	case Key_Ampersand:
-		pband->setOn(false);
-		break;
-	case Key_C:
-		if (current_base == NB_HEX)
-			pbC->setOn(false);
-		else
-			pbCos->setOn(false);
-		break;
-	case Key_4:
-		pb4->setOn(false);
-		break;
-	case Key_5:
-		pb5->setOn(false);
-		break;
-	case Key_6:
-		pb6->setOn(false);
-		break;
-	case Key_Asterisk:
-		pbX->setOn(false);
-		break;
-	case Key_Slash:
-		pbdivision->setOn(false);
-		break;
-	case Key_O:
-		pbor->setOn(false);
-		break;
-	case Key_T:
-		pbTan->setOn(false);
-		break;
-	case Key_Exclam:
-		pbfactorial->setOn(false);
-		break;
-	case Key_D:
-		if(kcalcdefaults.style == 0)
-			pbD->setOn(false);		// trig mode
-		else
-			pblog->setOn(false);	// stat mode
-		break;
-	case Key_1:
-		pb1->setOn(false);
-		break;
-	case Key_2:
-		pb2->setOn(false);
-		break;
-	case Key_3:
-		pb3->setOn(false);
-		break;
-	case Key_Plus:
-		pbplus->setOn(false);
-		break;
-	case Key_Minus:
-		pbminus->setOn(false);
-		break;
-	case Key_Less:
-		pbshift->setOn(false);
-		break;
-	case Key_N:
-		pbln->setOn(false);
-		break;
-	case Key_L:
-		key_pressed = false;
-		pblog->setOn(false);
-		break;
-	case Key_AsciiCircum:
-		pbpower->setOn(false);
-		break;
-	case Key_F:
-		pbF->setOn(false);
-		break;
-	case Key_Period:
-		pbperiod->setOn(false);
-		break;
-	case Key_Comma:
-		pbperiod->setOn(false);
-		break;
-	case Key_0:
-		pb0->setOn(false);
-		break;
-	case Key_Equal:
-		pbequal->setOn(false);
-		break;
-	case Key_Return:
-		pbequal->setOn(false);
-		break;
-	case Key_Enter:
-		pbequal->setOn(false);
-		break;
-	case Key_Percent:
-		key_pressed = false;
-		pbpercent->setOn(false);
-		break;
-	case Key_AsciiTilde:
-		pbnegate->setOn(false);
-		break;
-	case Key_Colon:
-		pbmod->setOn(false);
-		break;
-	case Key_BracketLeft:
-		pbsquare->setOn(false);
-		break;
-	case Key_Backspace:
-		pbAC->setOn(false);
-		break;
-	case Key_R:
-		pbreci->setOn(false);
+		pbInv->setOn(false);
 		break;
 	default:
-		key_pressed = oldKey;
+	        break;
 	}
 
-	clear_buttons();
 }
 
-//-------------------------------------------------------------------------
-// Name: clear_buttons()
-//-------------------------------------------------------------------------
-void QtCalculator::clear_buttons()
-{
-	//TODO: does this do anything?
-}
-
-//-------------------------------------------------------------------------
-// Name: EEtoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::EEtoggled(bool myboolean)
+void QtCalculator::slotEEclicked(void)
 {
 	if(!display_error)
 	{
-		if(myboolean)
-			EE();
-
-		if(pbEE->isOn() && (!key_pressed))
-			pbEE->setOn(false);
+		EE();
 	}
 	else
 		KNotifyClient::beep();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbinvtoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbinvtoggled(bool myboolean)
+void QtCalculator::slotInvtoggled(bool myboolean)
 {
 	if(myboolean)
 		SetInverse();
 
-	if(pbinv->isOn() && (!key_pressed))
-		pbinv->setOn(false);
+	if(pbInv->isOn() && (!key_pressed))
+		pbInv->setOn(false);
 }
 
-//-------------------------------------------------------------------------
-// Name: pbhyptoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbhyptoggled(bool myboolean)
+void QtCalculator::slotHyptoggled(bool myboolean)
 {
 	if(myboolean)
 		EnterHyp();
 
-	if(pbhyp->isOn() && (!key_pressed))
-		pbhyp->setOn(false);
+	if(pbHyp->isOn() && (!key_pressed))
+		pbHyp->setOn(false);
 }
 
-//-------------------------------------------------------------------------
-// Name: pbMRtoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbMRtoggled(bool myboolean)
+void QtCalculator::slotMRclicked(void)
 {
-	if(myboolean)
-		MR();
-
-	if(pbMR->isOn() && (!key_pressed))
-		pbMR->setOn(false);
+	MR();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbAtoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbAtoggled(bool myboolean)
+void QtCalculator::slotAclicked(void)
 {
-	if(myboolean)
-		buttonA();
-
-	if(pbA->isOn() && (!key_pressed))
-		pbA->setOn(false);
+	buttonA();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbSintoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbSintoggled(bool myboolean)
+void QtCalculator::slotSinclicked(void)
 {
-	if(myboolean)
-		ExecSin();
-
-	if(pbSin->isOn() && (!key_pressed))
-		pbSin->setOn(false);
+	ExecSin();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbplusminustoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbplusminustoggled(bool myboolean)
+void QtCalculator::slotPlusMinusclicked(void)
 {
-	if(myboolean)
-		EnterNegate();
-
-	if(pbplusminus->isOn() && (!key_pressed))
-		pbplusminus->setOn(false);
+	EnterNegate();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbMplusminustoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbMplusminustoggled(bool myboolean)
+void QtCalculator::slotMPlusMinusclicked(void)
 {
-	if(myboolean)
-		Mplusminus();
-
-	if(pbMplusminus->isOn() && (!key_pressed))
-		pbMplusminus->setOn(false);
+	Mplusminus();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbBtoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbBtoggled(bool myboolean)
+void QtCalculator::slotBclicked(void)
 {
-	if(myboolean)
-		buttonB();
-
-	if(pbB->isOn() && (!key_pressed))
-		pbB->setOn(false);
+	buttonB();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbCostoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbCostoggled(bool myboolean)
+void QtCalculator::slotCosclicked(void)
 {
-	if(myboolean)
-		ExecCos();
-
-	if(pbCos->isOn() && (!key_pressed))
-		pbCos->setOn(false);
+	ExecCos();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbrecitoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbrecitoggled(bool myboolean)
+void QtCalculator::slotReciclicked(void)
 {
-	if(myboolean)
-		EnterRecip();
-
-	if(pbreci->isOn() && (!key_pressed))
-		pbreci->setOn(false);
+	EnterRecip();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbCtoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbCtoggled(bool myboolean)
+void QtCalculator::slotCclicked(void)
 {
-	if(myboolean)
-		buttonC();
-
-	if(pbC->isOn() && (!key_pressed))
-		pbC->setOn(false);
+	buttonC();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbTantoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbTantoggled(bool myboolean)
+void QtCalculator::slotTanclicked(void)
 {
-	if(myboolean)
-		ExecTan();
-
-	if(pbTan->isOn() && (!key_pressed))
-		pbTan->setOn(false);
+	ExecTan();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbfactorialtoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbfactorialtoggled(bool myboolean)
+void QtCalculator::slotFactorialclicked(void)
 {
-	if(myboolean)
-		EnterFactorial();
-
-	if(pbfactorial->isOn() && (!key_pressed))
-		pbfactorial->setOn(false);
+	EnterFactorial();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbDtoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbDtoggled(bool myboolean)
+void QtCalculator::slotDclicked(void)
 {
-	if(myboolean)
-		buttonD();
-
-	if(pbD->isOn() && (!key_pressed))
-		pbD->setOn(false);
+	buttonD();
 }
 
-//-------------------------------------------------------------------------
-// Name: pblogtoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pblogtoggled(bool myboolean)
+void QtCalculator::slotLogclicked(void)
 {
-	if(myboolean)
-		EnterLogr();
-
-	if(pblog->isOn() && (!key_pressed))
-		pblog->setOn(false);
+	EnterLogr();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbsquaretoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbsquaretoggled(bool myboolean)
+void QtCalculator::slotSquareclicked(void)
 {
-	if(myboolean)
-		EnterSquare();
-
-	if(pbsquare->isOn() && (!key_pressed))
-		pbsquare->setOn(false);
+	EnterSquare();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbEtoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbEtoggled(bool myboolean)
+void QtCalculator::slotEclicked(void)
 {
 	if(!display_error)
-	{
-		if(myboolean)
-			buttonE();
-
-		if(pbE->isOn() && (!key_pressed))
-			pbE->setOn(false);
-	}
+		buttonE();
 	else
 		KNotifyClient::beep();
 }
 
-//-------------------------------------------------------------------------
-// Name: pblntoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pblntoggled(bool myboolean)
+void QtCalculator::slotLnclicked(void)
 {
-	if(myboolean)
-		EnterLogn();
-
-	if(pbln->isOn() && (!key_pressed))
-		pbln->setOn(false);
+	EnterLogn();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbpowertoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbpowertoggled(bool myboolean)
+void QtCalculator::slotPowerclicked(void)
 {
-	if(myboolean)
-		Power();
-
-	if(pbpower->isOn() && (!key_pressed))
-		pbpower->setOn(false);
+	Power();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbFtoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbFtoggled(bool myboolean)
+void QtCalculator::slotFclicked(void)
 {
-	if(myboolean)
-		buttonF();
-
-	if(pbF->isOn() && (!key_pressed))
-		pbF->setOn(false);
+	buttonF();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbMCtoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbMCtoggled(bool myboolean)
+void QtCalculator::slotMCclicked(void)
 {
-	if(myboolean)
-		MC();
-
-	if(pbMC->isOn() && (!key_pressed))
-		pbMC->setOn(false);
+	MC();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbCleartoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbCleartoggled(bool myboolean)
+void QtCalculator::slotClearclicked(void)
 {
-	if(myboolean)
-		Clear();
-
-	if(pbClear->isOn() && (!key_pressed))
-		pbClear->setOn(false);
+	Clear();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbACtoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbACtoggled(bool myboolean)
+void QtCalculator::slotACclicked(void)
 {
-	if(myboolean)
-		ClearAll();
-
-	if(pbAC->isOn() && (!key_pressed))
-		pbAC->setOn(false);
+	ClearAll();
 }
 
-//-------------------------------------------------------------------------
-// Name: pb7toggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pb7toggled(bool myboolean)
+void QtCalculator::slot7clicked(void)
 {
-	if(myboolean)
-		button7();
-
-	if(pb7->isOn() && (!key_pressed))
-		pb7->setOn(false);
+	button7();
 }
 
-//-------------------------------------------------------------------------
-// Name: pb8toggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pb8toggled(bool myboolean)
+void QtCalculator::slot8clicked(void)
 {
-	if(myboolean)
-		button8();
-
-	if(pb8->isOn() && (!key_pressed))
-		pb8->setOn(false);
+	button8();
 }
 
-//-------------------------------------------------------------------------
-// Name: pb9toggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pb9toggled(bool myboolean)
+void QtCalculator::slot9clicked(void)
 {
-	if(myboolean)
-		button9();
-
-	if(pb9->isOn() && (!key_pressed))
-		pb9->setOn(false);
+	button9();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbparenopentoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbparenopentoggled(bool myboolean)
+void QtCalculator::slotParenOpenclicked(void)
 {
-	if(myboolean)
-		EnterOpenParen();
-
-	if(pbparenopen->isOn() && (!key_pressed))
-		pbparenopen->setOn(false);
+	EnterOpenParen();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbparenclosetoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbparenclosetoggled(bool myboolean)
+void QtCalculator::slotParenCloseclicked(void)
 {
-	if(myboolean)
-		EnterCloseParen();
-
-	if(pbparenclose->isOn() && (!key_pressed))
-		pbparenclose->setOn(false);
+	EnterCloseParen();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbandtoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbandtoggled(bool myboolean)
+void QtCalculator::slotANDclicked(void)
 {
-	if(myboolean)
-		And();
-
-	if(pband->isOn() && (!key_pressed))
-		pband->setOn(false);
+	And();
 }
 
-//-------------------------------------------------------------------------
-// Name: pb4toggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pb4toggled(bool myboolean)
+void QtCalculator::slot4clicked(void)
 {
-	if(myboolean)
-		button4();
-
-	if(pb4->isOn() && (!key_pressed))
-		pb4->setOn(false);
+	button4();
 }
 
-//-------------------------------------------------------------------------
-// Name: pb5toggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pb5toggled(bool myboolean)
+void QtCalculator::slot5clicked(void)
 {
-	if(myboolean)
-		button5();
-
-	if(pb5->isOn() && (!key_pressed))
-		pb5->setOn(false);
+	button5();
 }
 
-//-------------------------------------------------------------------------
-// Name: pb6toggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pb6toggled(bool myboolean)
+void QtCalculator::slot6clicked(void)
 {
-	if(myboolean)
-		button6();
-
-	if(pb6->isOn() && (!key_pressed))
-		pb6->setOn(false);
+	button6();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbXtoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbXtoggled(bool myboolean)
+void QtCalculator::slotXclicked(void)
 {
-	if(myboolean)
-		Multiply();
-
-	if(pbX->isOn() && (!key_pressed))
-		pbX->setOn(false);
+	Multiply();
 }
 
-//-------------------------------------------------------------------------
-// Name:
-//-------------------------------------------------------------------------
-void QtCalculator::pbdivisiontoggled(bool myboolean)
+void QtCalculator::slotDivisionclicked(void)
 {
-	if(myboolean)
-		Divide();
-
-	if(pbdivision->isOn() && (!key_pressed))
-		pbdivision->setOn(false);
+	Divide();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbortoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbortoggled(bool myboolean)
+void QtCalculator::slotORclicked(void)
 {
-	if(myboolean)
-		Or();
-
-	if(pbor->isOn() && (!key_pressed))
-		pbor->setOn(false);
+	Or();
 }
 
-//-------------------------------------------------------------------------
-// Name: pb1toggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pb1toggled(bool myboolean)
+void QtCalculator::slot1clicked(void)
 {
-	if(myboolean)
-		button1();
-
-	if(pb1->isOn() && (!key_pressed))
-		pb1->setOn(false);
+	button1();
 }
 
-//-------------------------------------------------------------------------
-// Name: pb2toggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pb2toggled(bool myboolean)
+void QtCalculator::slot2clicked(void)
 {
-	if(myboolean)
-		button2();
-
-	if(pb2->isOn() && (!key_pressed))
-		pb2->setOn(false);
+	button2();
 }
 
-//-------------------------------------------------------------------------
-// Name: pb3toggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pb3toggled(bool myboolean)
+void QtCalculator::slot3clicked(void)
 {
-	if(myboolean)
-		button3();
-
-	if(pb3->isOn() && (!key_pressed))
-		pb3->setOn(false);
+	button3();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbplustoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbplustoggled(bool myboolean)
+void QtCalculator::slotPlusclicked(void)
 {
-	if(myboolean)
-		Plus();
-
-	if(pbplus->isOn() && (!key_pressed))
-		pbplus->setOn(false);
+	Plus();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbminustoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbminustoggled(bool myboolean)
+void QtCalculator::slotMinusclicked(void)
 {
-	if(myboolean)
-		Minus();
-
-	if(pbminus->isOn() && (!key_pressed))
-		pbminus->setOn(false);
+	Minus();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbshifttoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbshifttoggled(bool myboolean)
+void QtCalculator::slotShiftclicked(void)
 {
-	if(myboolean)
-		Shift();
-
-	if(pbshift->isOn() && (!key_pressed))
-		pbshift->setOn(false);
+	Shift();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbperiodtoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbperiodtoggled(bool myboolean)
+void QtCalculator::slotPeriodclicked(void)
 {
-	if(myboolean)
-		EnterDecimal();
-
-	if(pbperiod->isOn() && (!key_pressed))
-		pbperiod->setOn(false);
+	EnterDecimal();
 }
 
-//-------------------------------------------------------------------------
-// Name: pb0toggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pb0toggled(bool myboolean)
+void QtCalculator::slot0clicked(void)
 {
-	if(myboolean)
-		button0();
-
-	if(pb0->isOn() && (!key_pressed))
-		pb0->setOn(false);
+	button0();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbequaltoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbequaltoggled(bool myboolean)
+void QtCalculator::slotEqualclicked(void)
 {
-	if(myboolean)
-		EnterEqual();
-
-	if(pbequal->isOn() && (!key_pressed))
-		pbequal->setOn(false);
+	EnterEqual();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbpercenttoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbpercenttoggled(bool myboolean)
+void QtCalculator::slotPercentclicked(void)
 {
-	if(myboolean)
-		EnterPercent();
-
-	if(pbpercent->isOn() && (!key_pressed))
-		pbpercent->setOn(false);
+	EnterPercent();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbnegatetoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbnegatetoggled(bool myboolean)
+void QtCalculator::slotNegateclicked(void)
 {
-	if(myboolean)
-		EnterNotCmp();
-
-	if(pbnegate->isOn() && (!key_pressed))
-		pbnegate->setOn(false);
+	EnterNotCmp();
 }
 
-//-------------------------------------------------------------------------
-// Name: pbmodtoggled(bool myboolean)
-//-------------------------------------------------------------------------
-void QtCalculator::pbmodtoggled(bool myboolean)
+void QtCalculator::slotModclicked(void)
 {
-	if(myboolean)
-		Mod();
-
-	if(pbmod->isOn() && (!key_pressed))
-		pbmod->setOn(false);
+	Mod();
 }
 
 //-------------------------------------------------------------------------
@@ -1902,33 +1269,33 @@ void QtCalculator::set_style()
 	switch(kcalcdefaults.style)
 	{
 	case  0:
-		pbhyp->setText( "Hyp" );
-		QToolTip::add(pbhyp, i18n("Hyperbolic mode"));
+		pbHyp->setText( "Hyp" );
+		QToolTip::add(pbHyp, i18n("Hyperbolic mode"));
 		pbSin->setText( "Sin" );
 		QToolTip::add(pbSin, i18n("Sine"));
 		pbCos->setText( "Cos" );
 		QToolTip::add(pbCos, i18n("Cosine"));
 		pbTan->setText( "Tan" );
 		QToolTip::add(pbTan, i18n("Tangent"));
-		pblog->setText( "Log" );
-		QToolTip::add(pblog, i18n("Logarithm to base 10"));
-		pbln ->setText( "Ln"  );
-		QToolTip::add(pbln, i18n("Natural log"));
+		pbLog->setText( "Log" );
+		QToolTip::add(pbLog, i18n("Logarithm to base 10"));
+		pbLn ->setText( "Ln"  );
+		QToolTip::add(pbLn, i18n("Natural log"));
 		break;
 
 	case 1:
-		pbhyp->setText( "N" );
-		QToolTip::add(pbhyp, i18n("Number of data entered"));
+		pbHyp->setText( "N" );
+		QToolTip::add(pbHyp, i18n("Number of data entered"));
 		pbSin->setText( "Mea" );
 		QToolTip::add(pbSin, i18n("Mean"));
 		pbCos->setText( "Std" );
 		QToolTip::add(pbCos, i18n("Standard deviation"));
 		pbTan->setText( "Med" );
 		QToolTip::add(pbTan, i18n("Median"));
-		pblog->setText( "Dat" );
-		QToolTip::add(pblog, i18n("Enter data"));
-		pbln ->setText( "CSt"  );
-		QToolTip::add(pbln, i18n("Clear data store"));
+		pbLog->setText( "Dat" );
+		QToolTip::add(pbLog, i18n("Enter data"));
+		pbLn ->setText( "CSt"  );
+		QToolTip::add(pbLn, i18n("Clear data store"));
 		break;
 
 	default:
