@@ -70,9 +70,6 @@ private:
 	virtual bool eventFilter( QObject *o, QEvent *e );
 	void updateGeometry();
 	void setupMainActions(void);
-	void setupLogExpActions(void);
-	void setupTrigActions(void);
-	void setupStatActions(void);
 	void keyPressEvent( QKeyEvent *e );
 	void set_precision();
 	void set_style();
@@ -90,6 +87,7 @@ protected slots:
     void RefreshCalculator();
     void slotStatshow(bool toggled);
     void slotTrigshow(bool toggled);
+    void slotExpLogshow(bool toggled);
     void slotLogicshow(bool toggled);
     void slotShowAll(void);
     void slotHideAll(void);
@@ -195,10 +193,10 @@ private:
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
     QButtonGroup*       NumButtonGroup;
 
-    KToggleToolBarAction *actionStatshow;
-    KToggleToolBarAction *actionTrigshow;
+    KToggleAction *actionStatshow;
+    KToggleAction *actionTrigshow;
     KToggleAction *actionLogicshow;
-    KToggleToolBarAction *actionExpLogshow;
+    KToggleAction *actionExpLogshow;
 
     QPtrList<QPushButton> mFunctionButtonList;
     QPtrList<QPushButton> mStatButtonList;

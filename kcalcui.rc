@@ -13,26 +13,4 @@
     <Action name="options_configure"/>
   </Menu>
 </MenuBar>
-
-<ToolBar name="TrigToolBar" fullWidth="false" newline="false" position="left">
-    <Action name="hyp_action"/>
-    <Action name="sin_action"/>
-    <Action name="cos_action"/>
-    <Action name="tan_action"/>
-</ToolBar>
-
-<ToolBar name="ExpLogToolBar" fullWidth="false" newline="false" position="left">
-    <Action name="log_action"/>
-    <Action name="ln_action"/>
-</ToolBar>
-
-<ToolBar name="StatToolBar" fullWidth="false" newline="false" position="left">
-    <Action name="stat_num_action"/>
-    <Action name="stat_mean_action"/>
-    <Action name="stat_deviation_action"/>
-    <Action name="stat_input_action"/>
-    <Action name="stat_median_action"/>
-    <Action name="stat_clear_action"/>
-</ToolBar>
-
 </kpartgui>
