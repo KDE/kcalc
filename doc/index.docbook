@@ -603,7 +603,7 @@ http://math.cornell.edu/~wuebben/kde.html</ulink></para>
 -->
 
 <sect1 id="compilation-and-installation">
-<title>Compilation and installation</title>
+<title>Compilation and Installation</title>
 
 <para>If you wish to compile &kcalc; by itself, source code can be found at
 <ulink url="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</ulink>, the
