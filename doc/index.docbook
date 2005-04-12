@@ -20,19 +20,18 @@
 <!-- <affiliation><jobtitle>Handbook maintainer</jobtitle>
 </affiliation> -->
 </author>
-
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
 
 <copyright>
-<year>2001</year> <year>2002</year>
+<year>2001</year> <year>2002</year> <year>2005</year>	
 <holder>&Bernd.Johannes.Wuebben;, &Pamela.Roberts;</holder>
 </copyright>
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2002-09-28</date>
-<releaseinfo>1.03.02</releaseinfo>
+<date>2005-04-12</date>
+<releaseinfo>1.8</releaseinfo>
 
 <abstract><para>&kcalc; is a scientific calculator for &kde;</para></abstract>
 
@@ -46,7 +45,7 @@
 <chapter id="introduction">
 <title>Introduction</title>
 
-<para>This document describes &kcalc; version 1.6.</para>
+<para>This document describes &kcalc; version 1.8.</para>
 
 <para>&kcalc; offers many more mathematical functions than meet the eye
 on a first glance. Please study the section on keyboard accelerators and
@@ -163,6 +162,14 @@ It is for example possible to choose
 
 <para>In this mode the left column of buttons is allocated to statistical
 functions:</para>
+<para> Most of the functionality in this mode is centered around the <guibutton>Dat</guibutton>
+ button. To create a data list of numbers, enter a number into the calculator and press
+ <guibutton>Dat</guibutton>. A sequentially increasing number is shown on the display indicating
+ which position in the Data <quote>list</quote> the number occupies. A traditional calculator only
+ stores three values for statistical functions: The number of discrete items in a list, the sum of
+ the data items entered and the sum of the square of all data items in the list. &kcalc; differs by
+ actually storing each discrete value, allowing you to calculate the median value of the data.
+</para>
 
 <informaltable><tgroup cols="2">
 <thead>
@@ -594,10 +601,11 @@ the precision and you will see what I mean.</para>
 <para>&kcalc; was inspired by <personname><firstname>Martin</firstname> <surname>Bartlett</surname></personname>'s <application>xfrmcalc</application>,
 whose stack engine is still part of &kcalc;.</para>
 
-<para>Documentation Copyright &copy; 2001,2002:</para>
+<para>Documentation Copyright &copy; 2001,2002,2005:</para>
 <itemizedlist>
 <listitem><para>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para></listitem>
 <listitem><para>&Pamela.Roberts; &Pamela.Roberts.mail;</para></listitem>
+<listitem><para>&J.Hall;&J.Hall.mail;</para></listitem>
 </itemizedlist>
 
 &underFDL;
