@@ -41,7 +41,7 @@ static CALCAMNT toDouble(const QString &s, bool &ok)
 {
 	char *ptr = 0;
 	errno = 0;
-	CALCAMNT result = (CALCAMNT) STRTOD(s.latin1(),&ptr);
+	CALCAMNT result = static_cast<CALCAMNT>(STRTOD(s.latin1(),&ptr));
 
 	// find first non-space character for check below
 	while (ptr != 0 && *ptr != '\0' && isspace(*ptr)) {
@@ -86,7 +86,7 @@ bool KCalcDisplay::sendEvent(Event const event)
 		_error = false;
 		_display_amount = 0.0;
 		_str_int = "0";
-		_str_int_exp = (char *)0;
+		_str_int_exp = QString::null;
 
 		_eestate = false;
 		_period = false;
@@ -254,7 +254,7 @@ bool KCalcDisplay::setAmount(const QString &string)
 	
 	if (!was_ok)
 	{
-		tmp_result = (CALCAMNT) (0);
+		tmp_result = static_cast<CALCAMNT>(0);
 		if(_beep) KNotifyClient::beep();
 		return false;
 	}
@@ -271,7 +271,7 @@ bool KCalcDisplay::setAmount(CALCAMNT new_amount)
 	QString display_str;
 
 	_str_int = "0";
-	_str_int_exp = (char *)0;
+	_str_int_exp = QString::null;
 	_period = false;
 	_neg_sign = false;
 	_eestate = false;
@@ -300,12 +300,12 @@ bool KCalcDisplay::setAmount(CALCAMNT new_amount)
 		else if (tmp_round > KCALC_LONG_MAX)
 		{
 			_display_amount = KCALC_LONG_MIN + (tmp_round - KCALC_LONG_MAX - 1);
-			rounded_num = (KCALC_LONG)_display_amount;
+			rounded_num = static_cast<KCALC_LONG>(_display_amount);
 		}
 		else
 		{
 			_display_amount = tmp_round;
-			rounded_num = (KCALC_LONG)_display_amount;
+			rounded_num = static_cast<KCALC_LONG>(_display_amount);
 		}
 
 		display_str = QString::number(rounded_num, _num_base).upper();

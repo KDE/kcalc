@@ -87,7 +87,7 @@ static CALCAMNT ExecOr(CALCAMNT left_op, CALCAMNT right_op)
 		return 0;
 	}
 
-	boh_work_l = (KCALC_LONG)boh_work_d;
+	boh_work_l = static_cast<KCALC_LONG>(boh_work_d);
 	MODF(right_op, &boh_work_d);
 
 	if (FABS(boh_work_d) > KCALC_LONG_MAX)
@@ -96,7 +96,7 @@ static CALCAMNT ExecOr(CALCAMNT left_op, CALCAMNT right_op)
 		return 0;
 	}
 
-	boh_work_r = (KCALC_LONG) boh_work_d;
+	boh_work_r = static_cast<KCALC_LONG>(boh_work_d);
 	return (boh_work_l | boh_work_r);
 }
 
@@ -114,7 +114,7 @@ static CALCAMNT ExecXor(CALCAMNT left_op, CALCAMNT right_op)
 		return 0;
 	}
 
-	boh_work_l = (KCALC_LONG)boh_work_d;
+	boh_work_l = static_cast<KCALC_LONG>(boh_work_d);
 	MODF(right_op, &boh_work_d);
 
 	if (FABS(boh_work_d) > KCALC_LONG_MAX)
@@ -123,7 +123,7 @@ static CALCAMNT ExecXor(CALCAMNT left_op, CALCAMNT right_op)
 		return 0;
 	}
 
-	boh_work_r = (KCALC_LONG)boh_work_d;
+	boh_work_r = static_cast<KCALC_LONG>(boh_work_d);
 	return (boh_work_l ^ boh_work_r);
 }
 
@@ -141,7 +141,7 @@ static CALCAMNT ExecAnd(CALCAMNT left_op, CALCAMNT right_op)
 		return 0;
 	}
 
-	boh_work_l = (KCALC_LONG)boh_work_d;
+	boh_work_l = static_cast<KCALC_LONG>(boh_work_d);
 	MODF(right_op, &boh_work_d);
 
 	if (FABS(boh_work_d) > KCALC_LONG_MAX)
@@ -150,7 +150,7 @@ static CALCAMNT ExecAnd(CALCAMNT left_op, CALCAMNT right_op)
 		return 0;
 	}
 
-	boh_work_r = (KCALC_LONG)boh_work_d;
+	boh_work_r = static_cast<KCALC_LONG>(boh_work_d);
 	return (boh_work_l & boh_work_r);
 }
 
@@ -168,7 +168,7 @@ static CALCAMNT ExecLsh(CALCAMNT left_op, CALCAMNT right_op)
 		return 0;
 	}
 
-	boh_work_l = (KCALC_LONG) boh_work_d;
+	boh_work_l = static_cast<KCALC_LONG>(boh_work_d);
 	MODF(right_op, &boh_work_d);
 
 	if (FABS(boh_work_d) > KCALC_LONG_MAX)
@@ -177,7 +177,7 @@ static CALCAMNT ExecLsh(CALCAMNT left_op, CALCAMNT right_op)
 		return 0;
 	}
 
-	boh_work_r = (KCALC_LONG) boh_work_d;
+	boh_work_r = static_cast<KCALC_LONG>(boh_work_d);
 	return (boh_work_l << boh_work_r);
 }
 
@@ -195,7 +195,7 @@ static CALCAMNT ExecRsh(CALCAMNT left_op, CALCAMNT right_op)
 		return 0;
 	}
 
-	boh_work_l = (KCALC_LONG)boh_work_d;
+	boh_work_l = static_cast<KCALC_LONG>(boh_work_d);
 	MODF(right_op, &boh_work_d);
 
 	if (FABS(boh_work_d) > KCALC_LONG_MAX)
@@ -204,7 +204,7 @@ static CALCAMNT ExecRsh(CALCAMNT left_op, CALCAMNT right_op)
 		return 0;
 	}
 
-	boh_work_r = (KCALC_LONG)boh_work_d;
+	boh_work_r = static_cast<KCALC_LONG>(boh_work_d);
 	return (boh_work_l >> boh_work_r);
 }
 
@@ -557,7 +557,7 @@ void CalcEngine::Complement(CALCAMNT input)
 		return;
 	}
 
-	KCALC_LONG boh_work = (KCALC_LONG)boh_work_d;
+	KCALC_LONG boh_work = static_cast<KCALC_LONG>(boh_work_d);
 
 	_last_number = ~boh_work;
 }

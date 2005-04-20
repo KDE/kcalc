@@ -33,7 +33,7 @@
 // modes, the corresponding label is displayed.
 
 
-typedef enum {ModeNormal = 0, ModeInverse = 1, ModeHyperbolic = 2} ButtonModeFlags;
+enum ButtonModeFlags {ModeNormal = 0, ModeInverse = 1, ModeHyperbolic = 2};
 
 class QDomNode;
 

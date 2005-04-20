@@ -169,13 +169,14 @@ void DispLogic::history_forward()
 void DispLogic::history_back()
 {
 	Q_ASSERT(! _history_list.empty());
-	Q_ASSERT(_history_index < int(_history_list.size()));
+	Q_ASSERT( _history_index < static_cast<int>(_history_list.size()) );
 
 	setAmount(_history_list[_history_index]);
 
 	_history_index ++;
 	
-	if(_history_index == int(_history_list.size())) _back->setEnabled(false);
+	if( _history_index == static_cast<int>(_history_list.size()) )
+		_back->setEnabled(false);
 	_forward->setEnabled(true);
 }
 

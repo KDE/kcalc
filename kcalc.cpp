@@ -1053,26 +1053,29 @@ void KCalculator::updateGeometry(void)
     s.setWidth(mSmallPage->fontMetrics().width("MMMM"));
     s.setHeight(mSmallPage->fontMetrics().lineSpacing());
 
-    l = (QObjectList*)mSmallPage->children(); // silence please
+    // why this stupid cast!
+    l = const_cast<QObjectList *>(mSmallPage->children());
 
     for(uint i=0; i < l->count(); i++)
     {
         QObject *o = l->at(i);
         if( o->isWidgetType() )
         {
+            QWidget *tmp_widget = dynamic_cast<QWidget *>(o);
             margin = QApplication::style().
-                pixelMetric(QStyle::PM_ButtonMargin, ((QWidget *)o))*2;
-            ((QWidget*)o)->setFixedSize(s.width()+margin, s.height()+margin);
-            //((QWidget*)o)->setMinimumSize(s.width()+margin, s.height()+margin);
-            ((QWidget*)o)->installEventFilter( this );
-            ((QWidget*)o)->setAcceptDrops(true);
+                pixelMetric(QStyle::PM_ButtonMargin, (tmp_widget))*2;
+            tmp_widget->setFixedSize(s.width()+margin, s.height()+margin);
+            //tmp_widget->setMinimumSize(s.width()+margin, s.height()+margin);
+            tmp_widget->installEventFilter( this );
+            tmp_widget->setAcceptDrops(true);
         }
     }
 
-    l = (QObjectList*)mLargePage->children(); // silence please
+    // why this stupic cast !!
+    l = const_cast<QObjectList*>(mLargePage->children());
 
     int h1 = (NumButtonGroup->find(0x0F))->minimumSize().height();
-    int h2 = (int)((((float)h1 + 4.0) / 5.0));
+    int h2 = static_cast<int>( (static_cast<float>(h1) + 4.0) / 5.0 );
     s.setWidth(mLargePage->fontMetrics().width("MMM") +
                QApplication::style().
                pixelMetric(QStyle::PM_ButtonMargin, NumButtonGroup->find(0x0F))*2);
@@ -1083,9 +1086,10 @@ void KCalculator::updateGeometry(void)
         QObject *o = l->at(i);
         if(o->isWidgetType())
         {
-            ((QWidget*)o)->setFixedSize(s);
-            ((QWidget*)o)->installEventFilter(this);
-            ((QWidget*)o)->setAcceptDrops(true);
+            QWidget *tmp_widget = dynamic_cast<QWidget *>(o);
+            tmp_widget->setFixedSize(s);
+            tmp_widget->installEventFilter(this);
+            tmp_widget->setAcceptDrops(true);
         }
     }
 
@@ -1109,9 +1113,10 @@ void KCalculator::updateGeometry(void)
         QObject *o = l->at(i);
         if(o->isWidgetType())
         {
-            ((QWidget*)o)->setFixedSize(s);
-            ((QWidget*)o)->installEventFilter(this);
-            ((QWidget*)o)->setAcceptDrops(true);
+            QWidget *tmp_widget = dynamic_cast<QWidget *>(o);
+            tmp_widget->setFixedSize(s);
+            tmp_widget->installEventFilter(this);
+            tmp_widget->setAcceptDrops(true);
         }
     }
 
