@@ -935,11 +935,16 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotStatMeanclicked(void)));
 
 	tmp_pb = new KCalcButton(parent, "Stat.StandardDeviation-Button");
-	tmp_pb->addMode(ModeNormal, "Std", i18n("Standard deviation"));
+	tmp_pb->addMode(ModeNormal, QString::fromUtf8("σ",-1) +  "<sub>N-1</sub>",
+			i18n("Sample standard deviation"), true);
+	tmp_pb->addMode(ModeInverse, QString::fromUtf8("σ",-1) +  "<sub>N</sub>",
+			i18n("Standard deviation"), true);
 	pbStat.insert("StandardDeviation", tmp_pb);
         mStatButtonList.append(tmp_pb);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
+		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotStatStdDevclicked(void)));
 
 	tmp_pb = new KCalcButton(parent, "Stat.DataInput-Button");
@@ -1736,15 +1741,15 @@ void KCalculator::slotStatMeanclicked(void)
 
 void KCalculator::slotStatStdDevclicked(void)
 {
-	if(!inverse)
+	if(inverse)
 	{
 		// std (n-1)
 		core.StatStdDeviation(0);
+		pbInv->setOn(false);
 	}
 	else
 	{
 		// std (n)
-		pbInv->setOn(false);
 		core.StatStdSample(0);
 	}
 

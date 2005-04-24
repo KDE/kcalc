@@ -1,3 +1,6 @@
+2005-04-25 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+        * Fix BUG 99817.
+
 2005-04-20 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Change C-style casts for C++ casts, removed some C-style typedefs
 
