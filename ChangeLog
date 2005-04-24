@@ -1,4 +1,7 @@
 2005-03-31 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Fix BUG 99817.
+
+2005-03-31 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* GUI: included last changes from HEAD, which were all minor (Mem-Buttons)
 
 2005-02-05 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
