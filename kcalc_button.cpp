@@ -138,6 +138,7 @@ void KSquareButton::paintLabel(QPainter *paint)
   if (_mode_flags & ModeInverse) {
     // these statements are for the improved
     // representation of the sqrt function
+    paint->setPen(foregroundColor());
     paint->drawLine(8, 11+5,10, 7+5);
     paint->drawLine(10, 7+5, 12, 14+5);
     paint->drawLine(12, 14+5, 14, 1+5);
