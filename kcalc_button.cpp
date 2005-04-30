@@ -139,6 +139,8 @@ void KSquareButton::paintLabel(QPainter *paint)
   int w2 = w/2 - 13;
   int h = height();
   int h2 = h/2 - 7;
+  // in some KDE-styles (.NET, Phase,...) we have to set the painter back to the right color
+  paint->setPen(foregroundColor());
   // these statements are for the improved
   // representation of the sqrt function
   paint->drawLine(w2, 11 + h2, w2 + 2, 7 + h2);
