@@ -2309,7 +2309,7 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
         QString precisionStatement;
 		
 #ifdef HAVE_LONG_DOUBLE
-	    size_t pbit = sizof(long double);
+	    size_t pbit = sizeof(long double);
 #else
 	    size_t pbit = sizeof(double);
 #endif
