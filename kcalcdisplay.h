@@ -53,9 +53,9 @@
 #define		HEX_SIZE	sizeof(KCALC_LONG)*2
 #define		OCT_SIZE	11
 #define		DEC_SIZE	19
-#define		BIN_SIZE	32
+#define		BIN_SIZE	sizeof(KCALC_LONG)*8
 
-#define		DSP_SIZE	50 // 25
+#define		DSP_SIZE	64 // 25
 
 #define		NUM_STATUS_TEXT 4
 
