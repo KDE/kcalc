@@ -2326,7 +2326,7 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
                           version, description, KAboutData::License_GPL,
                           I18N_NOOP("(c) 1996-2000, Bernd Johannes Wuebben\n"
                                     "(c) 2000-2003, The KDE Team"),
-                          precisionStatement.latin1());
+                          precisionStatement.utf8());
 
 	/* Klaus Niederkrueger */
 	aboutData.addAuthor("Klaus Niederkr" "\xc3\xbc" "ger", 0, "kniederk@math.uni-koeln.de");
