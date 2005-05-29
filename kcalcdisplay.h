@@ -51,8 +51,7 @@
 #endif
 
 #define		HEX_SIZE	sizeof(KCALC_LONG)*2
-// it really should be 2.75 i think but a little extra can't hurt..
-#define		OCT_SIZE	sizeof(KCALC_LONG)*3 
+#define		OCT_SIZE	(int)(sizeof(KCALC_LONG) * 2.75)
 // unsure how to properly deside how many decimal digits we can enter
 // so we'll just go with same as BIN to be safe..
 #define		DEC_SIZE	sizeof(KCALC_LONG)*8
