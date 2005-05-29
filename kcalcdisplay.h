@@ -51,11 +51,15 @@
 #endif
 
 #define		HEX_SIZE	sizeof(KCALC_LONG)*2
-#define		OCT_SIZE	11
-#define		DEC_SIZE	19
+// it really should be 2.75 i think but a little extra can't hurt..
+#define		OCT_SIZE	sizeof(KCALC_LONG)*3 
+// unsure how to properly deside how many decimal digits we can enter
+// so we'll just go with same as BIN to be safe..
+#define		DEC_SIZE	sizeof(KCALC_LONG)*8
 #define		BIN_SIZE	sizeof(KCALC_LONG)*8
 
-#define		DSP_SIZE	64 // 25
+// DSP_SIZE should be == BIN_SIZE as BIN_SIZE is the largest one..
+#define		DSP_SIZE	BIN_SIZE // 25
 
 #define		NUM_STATUS_TEXT 4
 
@@ -125,7 +129,6 @@ private:
 	int  _button;
 	bool _lit;
 	NumBase _num_base;
-	int _input_limit;
 	int _display_size;
 
 	int _precision;
