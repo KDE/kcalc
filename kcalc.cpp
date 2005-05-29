@@ -2307,19 +2307,38 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
 extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
 {
         QString precisionStatement;
+		
+#ifdef HAVE_LONG_DOUBLE
+	    size_t pbit = sizof(long double);
+#else
+	    size_t pbit = sizeof(double);
+#endif
+
+        switch (pbit) {
+			case 4:
+				precisionStatement = QString(I18N_NOOP("Built with 32 bit precision"));
+				break;
+			case 8:
+				precisionStatement = QString(I18N_NOOP("Built with 64 bit precision"));
+				break;
+			case 12:
+				precisionStatement = QString(I18N_NOOP("Built with 96 bit precision"));
+				break;
+			default:
+				// untranslatable!
+				precisionStatement = QString(I18N_NOOP("Built with %1 bit precision")).arg(pbit * 8);
+				break;
+		}
 
 #ifdef HAVE_LONG_DOUBLE
-        precisionStatement = QString(I18N_NOOP("Built with %1 bit (long double) precision"))
-                                     .arg(sizeof(long double) * 8);
+        precisionStatement += QString(" " I18N_NOOP("(long double)"));
 #else
-        precisionStatement =  QString(I18N_NOOP("Built with %1 bit precision"
-                                         "\n\nNote: Due to a broken C library, KCalc's precision \n"
+        precisionStatement += QString("\n\n" I18N_NOOP("Note: Due to a broken C library, KCalc's precision \n"
                                          "was conditionally reduced at compile time from\n"
                                          "'long double' to 'double'. \n\n"
                                          "Owners of systems with a working libc may \n"
                                          "want to recompile KCalc with 'long double' \n"
-                                         "precision enabled. See the README for details."))
-                                     .arg(sizeof(long) * 8);
+                                         "precision enabled. See the README for details."));
 #endif
 
 	KAboutData aboutData( "kcalc", I18N_NOOP("KCalc"),
