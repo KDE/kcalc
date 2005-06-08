@@ -213,6 +213,9 @@ static CALCAMNT ExecAdd(CALCAMNT left_op, CALCAMNT right_op)
 	// printf("ExecAdd\n");
 	CALCAMNT tmp_result = left_op + right_op;
 
+	if (!tmp_result)
+		return 0;
+
 	// When operating with floating point numbers the following
 	// effect can happen: 1.0000001 + (-1.0) gives 1.0000232e-6
 	// instead of 1e-6. This looks very bad on a calculator (to
@@ -233,6 +236,10 @@ static CALCAMNT ExecSubtract(CALCAMNT left_op, CALCAMNT right_op)
 {
 	// printf("ExecSubtract\n");
 	CALCAMNT tmp_result = left_op - right_op;
+
+	if (!tmp_result)
+		return 0;
+
 	// When operating with floating point numbers the following
 	// effect can happen: 1.0000001 + (-1.0) gives 1.0000232e-6
 	// instead of 1e-6. This looks very bad on a calculator (to
