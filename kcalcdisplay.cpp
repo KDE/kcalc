@@ -343,35 +343,10 @@ bool KCalcDisplay::setAmount(CALCAMNT new_amount)
 void KCalcDisplay::setText(QString const &string)
 {
 	QString localizedString = string;
-
-	// Only treat digits (skip the sign)
-	int first_digit = localizedString.find(QRegExp("\\d"));
 	
 	// If we aren't in decimal mode, we don't need to modify the string
-	if (_num_base == NB_DECIMAL  &&  !_error
-	    &&  _groupdigits  &&  first_digit != -1)
-	{
-		// Obtain decimal symbol and thousands separator
-		QString decimalSymbol = KGlobal::locale()->decimalSymbol();
-		QString thousandsSeparator = KGlobal::locale()->thousandsSeparator();
-		// Replace dot with locale decimal separator
-		localizedString.replace(QChar('.'),decimalSymbol);
-	
-		// Insert the thousand separators
-                int decimalSymbolPos = localizedString.find(decimalSymbol);
-                int eSymbolPos = localizedString.find('e');
-
-                if (-1 == decimalSymbolPos)
-                    decimalSymbolPos = localizedString.length();
-                if (-1 == eSymbolPos)
-                    eSymbolPos = localizedString.length();
-
-                int pos = QMIN((decimalSymbolPos - 1), (eSymbolPos-1));
-                
-		for(int index=1;pos>first_digit;pos--,index++)
-			if (index%3 == 0)
-				localizedString.insert(pos,thousandsSeparator);
-	}
+	if (_num_base == NB_DECIMAL  &&  !_error  &&  _groupdigits)
+	  localizedString = KGlobal::locale()->formatNumber(string, false, 0); // Note: rounding happened already above!
 
 	QLabel::setText(localizedString);
 	emit changedText(localizedString);
