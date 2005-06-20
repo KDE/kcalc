@@ -67,7 +67,7 @@ KCalcDisplay::KCalcDisplay(QWidget *parent, const char *name)
 	setFrameStyle(Q3Frame::WinPanel | Q3Frame::Sunken);
 	setAlignment(AlignRight | AlignVCenter);
 	setFocus();
-	setFocusPolicy(QWidget::StrongFocus);
+	setFocusPolicy(Qt::StrongFocus);
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed, false);
 
 	connect(this, SIGNAL(clicked()), this, SLOT(slotDisplaySelected()));
@@ -180,7 +180,7 @@ void KCalcDisplay::slotPaste(bool bClipboard)
 
 void KCalcDisplay::slotDisplaySelected(void)
 {
-	if(_button == LeftButton) {
+	if(_button == Qt::LeftButton) {
 		if(_lit) {
 			slotCopy();
 			selection_timer->start(100);
@@ -212,9 +212,9 @@ void KCalcDisplay::invertColors()
 
 void KCalcDisplay::mousePressEvent(QMouseEvent *e)
 {
-	if(e->button() == LeftButton) {
+	if(e->button() == Qt::LeftButton) {
 		_lit = !_lit;
-		_button = LeftButton;
+		_button = Qt::LeftButton;
 	} else {
 		_button = MidButton;
 	}
