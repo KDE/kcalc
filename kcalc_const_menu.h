@@ -23,7 +23,7 @@
 #ifndef _KCALC_CONST_MENU_H
 #define _KCALC_CONST_MENU_H
 
-#include <qpopupmenu.h>
+#include <q3popupmenu.h>
 #include <qstring.h>
 
 enum ConstantCategory {Mathematics, Electromagnetic, Nuclear, Thermodynamics, Gravitation};
@@ -36,7 +36,7 @@ struct science_constant{
   ConstantCategory category;
 };
 
-class KCalcConstMenu : public QPopupMenu
+class KCalcConstMenu : public Q3PopupMenu
 {
 Q_OBJECT 
 

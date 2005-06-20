@@ -1,3 +1,7 @@
+//Added by qt3to4:
+#include <QKeyEvent>
+#include <QEvent>
+#include <Q3PtrList>
 /*
     KCalc, a scientific calculator for the X window system using the
     Qt widget libraries, available at no cost at http://www.troll.no
@@ -26,8 +30,8 @@
 
 class QPushButton;
 class QRadioButton;
-class QButtonGroup;
-class QHButtonGroup;
+class Q3ButtonGroup;
+class Q3HButtonGroup;
 class QWidget;
 class DispLogic;
 class Constants;
@@ -181,10 +185,10 @@ private:
     DispLogic*	calc_display; // for historic reasons in "dlabel.h"
     QRadioButton*	pbBaseChoose[4];
     QPushButton*	pbAngleChoose;
-    QDict<KCalcButton>	pbStat;
-    QDict<KCalcButton>	pbTrig;
-    QDict<KCalcButton>	pbExp;
-    QDict<KCalcButton>	pbLogic;
+    Q3Dict<KCalcButton>	pbStat;
+    Q3Dict<KCalcButton>	pbTrig;
+    Q3Dict<KCalcButton>	pbExp;
+    Q3Dict<KCalcButton>	pbLogic;
     KCalcConstButton*	pbConstant[10];
     KCalcButton* 	pbAC;
     KCalcButton* 	pbAND;
@@ -218,11 +222,11 @@ private:
 			   // buttons would like to remove this, but
 			   // don't know how
 	
-    QHButtonGroup*      BaseChooseGroup;
+    Q3HButtonGroup*      BaseChooseGroup;
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
-    QButtonGroup* 	NumButtonGroup;
+    Q3ButtonGroup* 	NumButtonGroup;
     // ConstButtonGroup C1-C6
-    QButtonGroup*	ConstButtonGroup;
+    Q3ButtonGroup*	ConstButtonGroup;
 
     KToggleAction *actionStatshow;
     KToggleAction *actionTrigshow;
@@ -230,10 +234,10 @@ private:
     KToggleAction *actionExpLogshow;
     KToggleAction *actionConstantsShow;
 
-    QPtrList<KCalcButton> mFunctionButtonList;
-    QPtrList<KCalcButton> mStatButtonList;
-    QPtrList<KCalcButton> mMemButtonList;
-    QPtrList<KCalcButton> mOperationButtonList;
+    Q3PtrList<KCalcButton> mFunctionButtonList;
+    Q3PtrList<KCalcButton> mStatButtonList;
+    Q3PtrList<KCalcButton> mMemButtonList;
+    Q3PtrList<KCalcButton> mOperationButtonList;
 
     int				mInternalSpacing;
 

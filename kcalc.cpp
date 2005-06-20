@@ -28,15 +28,24 @@
 #include <unistd.h>
 
 
-#include <qbuttongroup.h>
+#include <q3buttongroup.h>
 #include <qfont.h>
 #include <qhbuttongroup.h>
 #include <qlayout.h>
-#include <qobjectlist.h>
+#include <qobject.h>
 #include <qradiobutton.h>
 #include <qspinbox.h>
 #include <qstyle.h>
 #include <qtooltip.h>
+//Added by qt3to4:
+#include <QGridLayout>
+#include <Q3PtrList>
+#include <QKeyEvent>
+#include <QEvent>
+#include <QHBoxLayout>
+#include <QDropEvent>
+#include <QVBoxLayout>
+#include <QDragEnterEvent>
 
 
 
@@ -104,7 +113,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	toolBar()->close();
 
 	// Create Button to select BaseMode
-	BaseChooseGroup = new QHButtonGroup(i18n("Base"), central);
+	BaseChooseGroup = new Q3HButtonGroup(i18n("Base"), central);
 	connect(BaseChooseGroup, SIGNAL(clicked(int)), SLOT(slotBaseSelected(int)));
 	BaseChooseGroup->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed, false);
 
@@ -490,7 +499,7 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 
 	KCalcButton *tmp_pb;
 
-	NumButtonGroup = new QButtonGroup(0, "Num-Button-Group");
+	NumButtonGroup = new Q3ButtonGroup(0, "Num-Button-Group");
 	connect(NumButtonGroup, SIGNAL(clicked(int)),
 		SLOT(slotNumberclicked(int)));
 
@@ -971,7 +980,7 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
 {
 	Q_CHECK_PTR(parent);
 
-	ConstButtonGroup = new QButtonGroup(0, "Const-Button-Group");
+	ConstButtonGroup = new Q3ButtonGroup(0, "Const-Button-Group");
 	connect(ConstButtonGroup, SIGNAL(clicked(int)), SLOT(slotConstclicked(int)));
 
 
@@ -1208,34 +1217,34 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
     if ( ( e->state() & KeyButtonMask ) == 0 || ( e->state() & ShiftButton ) ) {
 	switch (e->key())
 	{
-	case Key_Next:
+	case Qt::Key_PageDown:
 		pbAC->animateClick();
 		break;
-	case Key_Slash:
-        case Key_division:
+	case Qt::Key_Slash:
+        case Qt::Key_division:
 		pbDivision->animateClick();
 		break;
- 	case Key_D:
+ 	case Qt::Key_D:
 		pbStat["InputData"]->animateClick(); // stat mode
 		break;
-	case Key_BracketLeft:
-        case Key_twosuperior:
+	case Qt::Key_BracketLeft:
+        case Qt::Key_twosuperior:
 		pbSquare->animateClick();
 		break;
-	case Key_Backspace:
+	case Qt::Key_Backspace:
 		calc_display->deleteLastDigit();
 		// pbAC->animateClick();
 		break;
 	}
     }
 
-    if (e->key() == Key_Control)
+    if (e->key() == Qt::Key_Control)
 	emit switchShowAccels(true);
 }
 
 void KCalculator::keyReleaseEvent(QKeyEvent *e)
 {
-    if (e->key() == Key_Control)
+    if (e->key() == Qt::Key_Control)
 	emit switchShowAccels(false);
 }
 
@@ -2244,7 +2253,7 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
 		QDropEvent *ev = (QDropEvent *)e;
 		if( KColorDrag::decode(ev, c))
 		{
-		        QPtrList<KCalcButton> *list;
+		        Q3PtrList<KCalcButton> *list;
 			int num_but;
 			if((num_but = NumButtonGroup->id((KCalcButton*)o))
 			   != -1)

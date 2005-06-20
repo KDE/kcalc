@@ -29,6 +29,8 @@
 #include <stdlib.h>
 #include <qlabel.h>
 #include <qtimer.h>
+//Added by qt3to4:
+#include <QMouseEvent>
 #include "kcalctype.h"
 
 

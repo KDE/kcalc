@@ -81,7 +81,7 @@ void KStats::clearLast() {
 CALCAMNT KStats::sum() {
 
 	CALCAMNT result = 0.0;
-	QValueVector<CALCAMNT>::iterator p;
+	Q3ValueVector<CALCAMNT>::iterator p;
 
 	for(p = mData.begin(); p != mData.end(); ++p) {
 		result += *p;
@@ -105,7 +105,7 @@ CALCAMNT KStats::median() {
 	qHeapSort(mData);
 
 #ifdef DEBUG_STATS
-	QValueVector<CALCAMNT>::iterator p;
+	Q3ValueVector<CALCAMNT>::iterator p;
 	for(p = mData.begin(); p != mData.end(); ++p) {
 		printf("Sorted %Lg\n", *p)
 	}
@@ -139,7 +139,7 @@ CALCAMNT KStats::std_kernel() {
 
 	CALCAMNT result = 0.0;
 	CALCAMNT _mean;
-	QValueVector<CALCAMNT>::iterator p;
+	Q3ValueVector<CALCAMNT>::iterator p;
 
 	_mean = mean();
 
@@ -161,7 +161,7 @@ CALCAMNT KStats::std_kernel() {
 CALCAMNT KStats::sum_of_squares() {
 
 	CALCAMNT result = 0.0;
-	QValueVector<CALCAMNT>::iterator p;
+	Q3ValueVector<CALCAMNT>::iterator p;
   
 	for(p = mData.begin(); p != mData.end(); ++p) {
 		result += ((*p) * (*p));
