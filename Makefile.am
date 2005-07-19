@@ -1,22 +1,30 @@
 AM_CPPFLAGS=-D_GNU_SOURCE -D_ISOC99_SOURCE $(all_includes)
 
+SUBDIRS = tests
+
 bin_PROGRAMS =
 lib_LTLIBRARIES = 
-kdeinit_LTLIBRARIES = kcalc.la
+kdeinit_LTLIBRARIES = kcalc.la knumber.la
 
 kcalc_la_SOURCES = kcalc.cpp kcalc_button.cpp kcalc_const_button.cpp \
 			kcalc_const_menu.cpp kcalc_core.cpp kcalcdisplay.cpp \
 			dlabel.cpp stats.cpp colors.ui general.ui \
 			constants.ui kcalc_settings.kcfgc
 
+knumber_la_SOURCES = knumber.cpp knumber_priv.cpp
+
 METASOURCES = AUTO
 
 noinst_HEADERS  = kcalc.h kcalc_button.h kcalc_const_button.h \
 			kcalc_const_menu.h kcalc_core.h kcalcdisplay.h \
-			dlabel.h stats.h kcalctype.h
+			kcalctype.h knumber.h knumber_priv.h dlabel.h \
+			stats.h
 
 kcalc_la_LDFLAGS = $(all_libraries) -module -avoid-version
 kcalc_la_LIBADD = $(LIB_KDEUI) -lm
+
+knumber_la_LDFLAGS = -module -avoid-version
+knumber_la_LIBADD = -L/usr/lib/qt3/lib $(LIB_QT) -lgmp -lm
 
 KDE_ICON = kcalc
 
