@@ -262,6 +262,48 @@ sinh(x)</entry></row>
 
 </sect1>
 
+<sect1 id="memory-operations">
+<title>Memory Operations</title>
+
+<para>&kcalc; can remember results of operations for you, and re-use them in
+later calculations.  You can access these functions via several buttons
+labelled <guibutton>MR</guibutton>, <guibutton>MS</guibutton>,
+<guibutton>M+</guibutton> and <guibutton>MC</guibutton>.</para>
+
+<variablelist>
+<varlistentry>
+<term><guibutton>MS</guibutton></term>
+<listitem><para>The <guibutton>MS</guibutton> button stores the currently
+displayed result in memory.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guibutton>M+</guibutton></term>
+<listitem><para>The <guibutton>M+</guibutton> adds the current result to the
+one in memory. So, if you had stored a 20, and the current result is a 5,
+your memory would contain 25 when you press it. If the memory is empty, it
+acts like <guibutton>MS</guibutton> and simply stores the
+result.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guibutton>MR</guibutton></term>
+<listitem><para>The <guibutton>MR</guibutton> button gets the value stored
+in memory and puts it in the display.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guibutton>MC</guibutton></term>
+<listitem><para>The <guibutton>MC</guibutton> button clears the
+memory.</para></listitem>
+</varlistentry>
+</variablelist>
+
+<para>If a value is stored in memory a <guilabel>M</guilabel> will appear in
+the status bar, next to the calculator mode indicator</para>
+
+</sect1>
+
 <sect1 id="key-accels">
 <title>Single Key Accelerators</title>
 
