@@ -178,6 +178,60 @@ _knumber * _knumfloat::abs(void) const
 
 
 
+_knumber * _knuminteger::sqrt(void) const
+{
+  if (mpz_perfect_square_p(_mpz)) {
+    _knuminteger * tmp_num = new _knuminteger();
+    
+    mpz_sqrt(tmp_num->_mpz, _mpz);
+
+    return tmp_num;
+  } else {
+    _knumfloat * tmp_num = new _knumfloat();
+    mpf_set_z(tmp_num->_mpf, _mpz);
+    mpf_sqrt(tmp_num->_mpf, tmp_num->_mpf);
+    
+    return tmp_num;
+  }
+}
+
+_knumber * _knumfraction::sqrt(void) const
+{
+  if (mpz_perfect_square_p(mpq_numref(_mpq))
+      &&  mpz_perfect_square_p(mpq_denref(_mpq))) {
+    _knumfraction * tmp_num = new _knumfraction();
+    mpq_set(tmp_num->_mpq, _mpq);
+    mpz_sqrt(mpq_numref(tmp_num->_mpq), mpq_numref(tmp_num->_mpq));
+    mpz_sqrt(mpq_denref(tmp_num->_mpq), mpq_denref(tmp_num->_mpq));
+
+    return tmp_num;
+  } else {
+    _knumfloat * tmp_num = new _knumfloat();
+    mpf_set_q(tmp_num->_mpf, _mpq);
+    mpf_sqrt(tmp_num->_mpf, tmp_num->_mpf);
+    
+    return tmp_num;
+  }
+
+  _knumfraction * tmp_num = new _knumfraction();
+  
+#warning implement sqrt
+  //  mpq_sqrt(tmp_num->_mpq, _mpq);
+  
+  return tmp_num;
+}
+
+_knumber * _knumfloat::sqrt(void) const
+{
+  _knumfloat * tmp_num = new _knumfloat();
+  
+  mpf_sqrt(tmp_num->_mpf, _mpf);
+  
+  return tmp_num;
+}
+
+
+
 _knumber * _knuminteger::change_sign(void) const
 {
   _knuminteger * tmp_num = new _knuminteger();
@@ -372,6 +426,17 @@ _knumber *_knumfloat::divide(_knumber const & arg2) const
   _knumfloat * tmp_num = new _knumfloat(arg2);
 
   mpf_div(tmp_num->_mpf, _mpf, tmp_num->_mpf);
+  
+  return tmp_num;
+}
+
+
+_knuminteger * _knuminteger::mod(_knuminteger const &arg2) const
+{
+#warning test if dividing by zero  
+  _knuminteger * tmp_num = new _knuminteger();
+
+  mpz_mod(tmp_num->_mpz, _mpz, arg2._mpz);
   
   return tmp_num;
 }

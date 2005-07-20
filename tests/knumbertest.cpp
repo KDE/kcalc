@@ -119,6 +119,7 @@ void testingMultiplications(void)
 
 void testingDivisions(void)
 {
+#warning test for division by zero
   std::cout << "Testing divisions:\n";
   
   checkResult("KNumber(5) / KNumber(2)", KNumber(5) / KNumber(2), "5/2", KNumber::FractionType);
@@ -135,6 +136,17 @@ void testingDivisions(void)
 
 }
 
+void testingModulus(void)
+{
+  std::cout << "Testing modulus:\n";
+  
+  checkResult("KNumber(23) % KNumber(4)", KNumber(23) % KNumber(4), "3", KNumber::IntegerType);
+  checkResult("KNumber(12) % KNumber(-5)", KNumber(12) % KNumber(-5), "2", KNumber::IntegerType);
+
+#warning test for other types, division by zero
+
+}
+
 
 void testingAbs(void)
 {
@@ -148,6 +160,20 @@ void testingAbs(void)
   checkResult("KNumber(\"-2/3\").abs()", KNumber("-2/3").abs(), "2/3", KNumber::FractionType);
   checkResult("KNumber(\"-2.3\").abs()", KNumber("-2.3").abs(), "2.3", KNumber::FloatType);
 }
+
+
+void testingSqrt(void)
+{
+  std::cout << "Testing square root:\n";
+  
+  checkResult("KNumber(16).sqrt()", KNumber(16).sqrt(), "4", KNumber::IntegerType);
+  checkResult("KNumber(\"16/9\").sqrt()", KNumber("16/9").sqrt(), "4/3", KNumber::FractionType);
+  checkResult("KNumber(2).sqrt()", KNumber(2).sqrt(), "1.4142136", KNumber::FloatType);
+  //  checkResult("KNumber(\"2/3\").abs()", KNumber("2/3").abs(), "2/3", KNumber::FractionType);
+  checkResult("KNumber(\"0.25\").sqrt()", KNumber("0.25").sqrt(), "0.5", KNumber::FloatType);
+  
+}
+
 
 
 int main(void)
@@ -177,9 +203,10 @@ int main(void)
   testingSubtractions();
   testingMultiplications();
   testingDivisions();
- 
+  testingModulus(); 
 
   testingAbs();
+  testingSqrt();
 
   return 0;
 }

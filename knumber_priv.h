@@ -37,6 +37,7 @@ class _knumber
   virtual QString const ascii(void) const = 0;
 
   virtual _knumber * abs(void) const = 0;
+  virtual _knumber * sqrt(void) const = 0;
   virtual _knumber * change_sign(void) const = 0;
   virtual _knumber * reciprocal(void) const = 0;
   virtual _knumber * add(_knumber const & arg2) const = 0;
@@ -77,11 +78,14 @@ class _knuminteger : public _knumber
   virtual QString const ascii(void) const;
 
   virtual _knumber * abs(void) const;
+  virtual _knumber * sqrt(void) const;
   virtual _knumber * change_sign(void) const;
   virtual _knumber * reciprocal(void) const;
   virtual _knumber * add(_knumber const & arg2) const;
   virtual _knumber * multiply(_knumber const & arg2) const;
   virtual _knumber * divide(_knumber const & arg2) const;
+
+  _knuminteger * mod(_knuminteger const &arg2) const;
   
  private:
   mpz_t _mpz;
@@ -122,6 +126,7 @@ class _knumfraction : public _knumber
   virtual QString const ascii(void) const;
 
   virtual _knumber * abs(void) const;
+  virtual _knumber * sqrt(void) const;
   virtual _knumber * change_sign(void) const;
   virtual _knumber * reciprocal(void) const;
   virtual _knumber * add(_knumber const & arg2) const;
@@ -163,6 +168,7 @@ class _knumfloat : public _knumber
   virtual QString const ascii(void) const;
 
   virtual _knumber * abs(void) const;
+  virtual _knumber * sqrt(void) const;
   virtual _knumber * change_sign(void) const;
   virtual _knumber * reciprocal(void) const;
   virtual _knumber * add(_knumber const & arg2) const;

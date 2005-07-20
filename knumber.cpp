@@ -152,6 +152,29 @@ KNumber const KNumber::abs(void) const
   return tmp_num;
 }
 
+KNumber const KNumber::sqrt(void) const
+{
+  KNumber tmp_num;
+  delete tmp_num._num;
+
+  tmp_num._num = _num->sqrt();
+
+  return tmp_num;
+}
+
+KNumber const KNumber::integerPart(void) const
+{
+#warning stub
+  switch(type()) {
+  case IntegerType:
+    return KNumber(*this);
+  case FractionType:
+    return KNumber(*this);
+  case FloatType:
+    return KNumber(*this);
+  }
+}
+
 KNumber const KNumber::operator -(void) const
 {
   KNumber tmp_num;
@@ -188,6 +211,23 @@ KNumber const KNumber::divide(KNumber const & arg2) const
   delete tmp_num._num;
 
   tmp_num._num = _num->divide(*arg2._num);
+
+  return tmp_num;
+}
+
+
+KNumber const KNumber::mod(KNumber const & arg2) const
+{
+  if (type() != IntegerType  ||  arg2.type() != IntegerType)
+    return ZeroInteger;
+
+  KNumber tmp_num;
+  delete tmp_num._num;
+
+  _knuminteger const *tmp_arg1 = dynamic_cast<_knuminteger const *>(_num);
+  _knuminteger const *tmp_arg2 = dynamic_cast<_knuminteger const *>(arg2._num);
+
+  tmp_num._num = tmp_arg1->mod(*tmp_arg2);
 
   return tmp_num;
 }

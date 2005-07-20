@@ -82,10 +82,13 @@ class KDECORE_EXPORT KNumber
   
   KNumber const operator -(void) const;
   KNumber const abs(void) const;
+  KNumber const sqrt(void) const;
+  KNumber const integerPart(void) const;
 
   KNumber const add(KNumber const & arg2) const;
   KNumber const multiply(KNumber const & arg2) const;
   KNumber const divide(KNumber const & arg2) const;
+  KNumber const mod(KNumber const & arg2) const;
 
   int const compare(KNumber const & arg2) const;
   
@@ -101,8 +104,6 @@ class KDECORE_EXPORT KNumber
   
  private:
   _knumber *_num;
-
-
 
 };
 
@@ -124,6 +125,11 @@ KNumber const operator*(KNumber const & arg1, KNumber const & arg2)
 KNumber const operator/(KNumber const & arg1, KNumber const & arg2)
 {
   return arg1.divide(arg2);
+}
+
+KNumber const operator%(KNumber const & arg1, KNumber const & arg2)
+{
+  return arg1.mod(arg2);
 }
 
 bool const operator==(KNumber const & arg1, KNumber const & arg2)

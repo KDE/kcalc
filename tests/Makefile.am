@@ -29,7 +29,7 @@ noinst_HEADERS = knumbertest.h
 
 METASOURCES = AUTO
 
-LDADD = ../libkdeinit_knumber.la
+LDADD = ../knumber.la
 knumbertest_SOURCES = knumbertest.cpp
 
 check_LTLIBRARIES = gmp
