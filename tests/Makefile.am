@@ -32,8 +32,6 @@ METASOURCES = AUTO
 LDADD = ../knumber.la
 knumbertest_SOURCES = knumbertest.cpp
 
-check_LTLIBRARIES = gmp
-
 kunittest_kconfig_la_SOURCES = knumbertest.cpp
 kunittest_kconfig_la_LIBADD = $(LIB_KUNITTEST)
 kunittest_kconfig_la_LDFLAGS = -module $(KDE_CHECK_PLUGIN)
