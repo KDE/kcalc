@@ -21,7 +21,8 @@
 #include <qregexp.h>
 #include <qstring.h>
 
-#include "knumber_priv.h"
+#ifdef HAVE_GMP
+# include "knumber_priv.h"
 
 _knuminteger::_knuminteger(_knumber const & num)
   : _knumber(num)
@@ -440,3 +441,11 @@ _knuminteger * _knuminteger::mod(_knuminteger const &arg2) const
   
   return tmp_num;
 }
+
+#else  // !HAVE_GMP
+static void knumber_priv_dummy()
+{
+}
+
+#endif // HAVE_GMP
+
