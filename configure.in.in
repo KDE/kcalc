@@ -62,3 +62,12 @@ AC_CHECK_LIB(m, round, [
 AC_CHECK_LIB(m, roundl, [
   AC_DEFINE_UNQUOTED(HAVE_FUNC_ROUNDL, 1, [Define if you have round])
 ])
+
+LIBGMP=
+KDE_CHECK_HEADER([gmp.h], [
+  KDE_CHECK_LIB(gmp, main, [
+    LIBGMP="-lgmp"
+    AC_DEFINE(HAVE_GMP, 1, [Define if you have libgmp])
+  ])
+])
+AC_SUBST(LIBGMP)

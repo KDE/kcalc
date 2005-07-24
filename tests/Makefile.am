@@ -19,8 +19,6 @@
 
 INCLUDES = -I$(top_srcdir)/kcalc $(all_includes)
 
-AM_LDFLAGS = -lgmp $(QT_LDFLAGS) $(X_LDFLAGS) $(KDE_RPATH)
-
 check_PROGRAMS = knumbertest
 
 TESTS = knumbertest
@@ -29,11 +27,6 @@ noinst_HEADERS = knumbertest.h
 
 METASOURCES = AUTO
 
-LDADD = ../knumber.la
 knumbertest_SOURCES = knumbertest.cpp
-
-check_LTLIBRARIES = gmp
-
-kunittest_kconfig_la_SOURCES = knumbertest.cpp
-kunittest_kconfig_la_LIBADD = $(LIB_KUNITTEST)
-kunittest_kconfig_la_LDFLAGS = -module $(KDE_CHECK_PLUGIN)
+knumbertest_LDADD = ../libknumber.la
+knumbertest_LDFLAGS = -lgmp $(QT_LDFLAGS) $(X_LDFLAGS) $(KDE_RPATH)

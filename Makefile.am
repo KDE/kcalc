@@ -24,7 +24,7 @@ kcalc_la_LDFLAGS = $(all_libraries) -module -avoid-version
 kcalc_la_LIBADD = $(LIB_KDEUI) -lm
 
 knumber_la_LDFLAGS = $(QT_LDFLAGS) -module -avoid-version
-knumber_la_LIBADD = $(LIB_QT) -lgmp -lm
+knumber_la_LIBADD = $(LIB_QT) $(LIBGMP) -lm
 
 KDE_ICON = kcalc
 

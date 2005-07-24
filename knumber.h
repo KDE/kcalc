@@ -40,7 +40,7 @@
   * @author Klaus Niederkrueger <kniederk@math.uni-koeln.de>
   * @short class that provides arbitrary prcision numbers
   */
-class KDECORE_EXPORT KNumber
+class KDE_EXPORT KNumber
 {
  public:
   static KNumber const ZeroInteger;
