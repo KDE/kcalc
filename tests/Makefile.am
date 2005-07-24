@@ -28,5 +28,5 @@ noinst_HEADERS = knumbertest.h
 METASOURCES = AUTO
 
 knumbertest_SOURCES = knumbertest.cpp
-knumbertest_LDADD = ../libknumber.la
+knumbertest_LDADD = ../knumber.la
 knumbertest_LDFLAGS = -lgmp $(QT_LDFLAGS) $(X_LDFLAGS) $(KDE_RPATH)

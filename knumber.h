@@ -80,18 +80,38 @@ class KDE_EXPORT KNumber
 
   QString const toQString(void) const;
   
-  KNumber const operator -(void) const;
+
   KNumber const abs(void) const;
   KNumber const sqrt(void) const;
   KNumber const integerPart(void) const;
 
-  KNumber const add(KNumber const & arg2) const;
-  KNumber const multiply(KNumber const & arg2) const;
-  KNumber const divide(KNumber const & arg2) const;
-  KNumber const mod(KNumber const & arg2) const;
+  KNumber const operator+(KNumber const & arg2) const;
+  KNumber const operator -(void) const;
+  KNumber const operator-(KNumber const & arg2) const;
+  KNumber const operator*(KNumber const & arg2) const;
+  KNumber const operator/(KNumber const & arg2) const;
+  KNumber const operator%(KNumber const & arg2) const;
 
-  int const compare(KNumber const & arg2) const;
-  
+  KNumber const operator&(KNumber const & arg2) const;
+  KNumber const operator|(KNumber const & arg2) const;
+
+  bool const operator==(KNumber const & arg2) const
+  { return (compare(arg2) == 0); }
+
+  bool const operator!=(KNumber const & arg2) const
+  { return (compare(arg2) != 0); }
+
+  bool const operator>(KNumber const & arg2) const
+  { return (compare(arg2) > 0); }
+
+  bool const operator<(KNumber const & arg2) const
+  { return (compare(arg2) < 0); }
+
+  bool const operator>=(KNumber const & arg2) const
+  { return (compare(arg2) >= 0); }
+
+  bool const operator<=(KNumber const & arg2) const
+  { return (compare(arg2) <= 0); }
 
   KNumber & operator +=(KNumber const &arg);
   KNumber & operator -=(KNumber const &arg);
@@ -103,79 +123,24 @@ class KDE_EXPORT KNumber
   
   
  private:
+  int const compare(KNumber const & arg2) const;
+  
   _knumber *_num;
-
+  
 };
 
 
-KNumber const operator+(KNumber const & arg1, KNumber const & arg2)
-{
-  return arg1.add(arg2);
-}
-
-KNumber const operator-(KNumber const & arg1, KNumber const & arg2)
-{
-  return arg1 + (-arg2);
-}
-KNumber const operator*(KNumber const & arg1, KNumber const & arg2)
-{
-  return arg1.multiply(arg2);
-}
-
-KNumber const operator/(KNumber const & arg1, KNumber const & arg2)
-{
-  return arg1.divide(arg2);
-}
-
-KNumber const operator%(KNumber const & arg1, KNumber const & arg2)
-{
-  return arg1.mod(arg2);
-}
-
-bool const operator==(KNumber const & arg1, KNumber const & arg2)
-{
-  return (arg1.compare(arg2) == 0);
-}  
-
-bool const operator>(KNumber const & arg1, KNumber const & arg2)
-{
-  return (arg1.compare(arg2) > 0);
-}  
-
-bool const operator<(KNumber const & arg1, KNumber const & arg2)
-{
-  return (arg1.compare(arg2) < 0);
-}  
-
-bool const operator>=(KNumber const & arg1, KNumber const & arg2)
-{
-  return (arg1.compare(arg2) >= 0);
-}  
-
-bool const operator<=(KNumber const & arg1, KNumber const & arg2)
-{
-  return (arg1.compare(arg2) <= 0);
-}  
 
 #warning below all stubs
-KNumber const operator&(KNumber const & arg1, KNumber const & arg2)
-{
-  return arg1.divide(arg2);
-}  
-
-KNumber const operator|(KNumber const & arg1, KNumber const & arg2)
-{
-  return arg1.divide(arg2);
-}  
 
 KNumber const operator<<(KNumber const & arg1, KNumber const & arg2)
 {
-  return arg1.divide(arg2);
+  return arg1;
 }  
 
 KNumber const operator>>(KNumber const & arg1, KNumber const & arg2)
 {
-  return arg1.divide(arg2);
+  return arg1;
 }  
 
 

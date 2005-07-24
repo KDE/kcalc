@@ -25,11 +25,12 @@
 # include "knumber_priv.h"
 
 _knuminteger::_knuminteger(_knumber const & num)
-  : _knumber(num)
 {
+  mpz_init(_mpz);
+
   switch(num.type()) {
   case IntegerType:
-    mpz_init_set(_mpz, dynamic_cast<_knuminteger const &>(num)._mpz);
+    mpz_set(_mpz, dynamic_cast<_knuminteger const &>(num)._mpz);
     break;
   case FractionType:
   case FloatType:
@@ -93,7 +94,14 @@ _knumfloat::_knumfloat(QString const & num)
   mpf_set_str(_mpf, num.ascii(), 10);
 }
 
+_knuminteger const & _knuminteger::operator = (_knuminteger const & num)
+{
+  if (this == &num)
+    return *this;
 
+  mpz_set(_mpz, num._mpz);
+  return *this;
+}
 
 QString const _knuminteger::ascii(void) const
 {
@@ -173,6 +181,33 @@ _knumber * _knumfloat::abs(void) const
   _knumfloat * tmp_num = new _knumfloat();
   
   mpf_abs(tmp_num->_mpf, _mpf);
+  
+  return tmp_num;
+}
+
+
+
+_knumber * _knuminteger::intPart(void) const
+{
+  _knuminteger *tmp_num = new _knuminteger();
+  mpz_set(tmp_num->_mpz, _mpz);
+  return tmp_num;
+}
+
+_knumber * _knumfraction::intPart(void) const
+{
+  _knuminteger *tmp_num = new _knuminteger();
+
+  mpz_set_q(tmp_num->_mpz, _mpq);
+  
+  return tmp_num;
+}
+
+_knumber * _knumfloat::intPart(void) const
+{
+  _knuminteger *tmp_num = new _knuminteger();
+
+  mpz_set_f(tmp_num->_mpz, _mpf);
   
   return tmp_num;
 }
@@ -431,6 +466,24 @@ _knumber *_knumfloat::divide(_knumber const & arg2) const
   return tmp_num;
 }
 
+
+_knuminteger * _knuminteger::intAnd(_knuminteger const &arg2) const
+{
+  _knuminteger * tmp_num = new _knuminteger();
+
+  mpz_and(tmp_num->_mpz, _mpz, arg2._mpz);
+  
+  return tmp_num;
+}
+
+_knuminteger * _knuminteger::intOr(_knuminteger const &arg2) const
+{
+  _knuminteger * tmp_num = new _knuminteger();
+
+  mpz_ior(tmp_num->_mpz, _mpz, arg2._mpz);
+  
+  return tmp_num;
+}
 
 _knuminteger * _knuminteger::mod(_knuminteger const &arg2) const
 {

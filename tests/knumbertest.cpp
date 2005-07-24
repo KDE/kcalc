@@ -77,7 +77,7 @@ void testingAdditions(void)
   checkResult("KNumber(5.3) + KNumber(2)", KNumber(5.3) + KNumber(2), "7.3", KNumber::FloatType);
   checkResult("KNumber(5.3) + KNumber(\"2/4\")", KNumber(5.3) + KNumber("2/4"), "5.8", KNumber::FloatType);
   checkResult("KNumber(5.3) + KNumber(2.3)", KNumber(5.3) + KNumber(2.3), "7.6", KNumber::FloatType);
-  
+
 }
 
 void testingSubtractions(void)
@@ -147,6 +147,19 @@ void testingModulus(void)
 
 }
 
+void testingAndOr(void)
+{
+  std::cout << "Testing And/Or:\n";
+  
+  checkResult("KNumber(17) & KNumber(9)", KNumber(17) & KNumber(9), "1", KNumber::IntegerType);
+  checkResult("KNumber(17) | KNumber(9)", KNumber(17) | KNumber(9), "25", KNumber::IntegerType);
+  checkResult("KNumber(1023) & KNumber(255)", KNumber(1023) & KNumber(255), "255", KNumber::IntegerType);
+  checkResult("KNumber(1023) | KNumber(255)", KNumber(1023) | KNumber(255), "1023", KNumber::IntegerType);
+
+#warning test for other types
+
+}
+
 
 void testingAbs(void)
 {
@@ -161,6 +174,17 @@ void testingAbs(void)
   checkResult("KNumber(\"-2.3\").abs()", KNumber("-2.3").abs(), "2.3", KNumber::FloatType);
 }
 
+void testingTruncateToInteger(void)
+{
+  std::cout << "Testing truncate to an integer:\n";
+  
+  checkResult("KNumber(16).integerPart()", KNumber(16).integerPart(), "16", KNumber::IntegerType);
+  checkResult("KNumber(\"43/9\").integerPart()", KNumber("43/9").integerPart(), "4", KNumber::IntegerType);
+  checkResult("KNumber(\"-43/9\").integerPart()", KNumber("-43/9").integerPart(), "-4", KNumber::IntegerType);
+  checkResult("KNumber(\"5.25\").integerPart()", KNumber("5.25").integerPart(), "5", KNumber::IntegerType);
+  checkResult("KNumber(\"-5.25\").integerPart()", KNumber("-5.25").integerPart(), "-5", KNumber::IntegerType);  
+}
+
 
 void testingSqrt(void)
 {
@@ -169,7 +193,7 @@ void testingSqrt(void)
   checkResult("KNumber(16).sqrt()", KNumber(16).sqrt(), "4", KNumber::IntegerType);
   checkResult("KNumber(\"16/9\").sqrt()", KNumber("16/9").sqrt(), "4/3", KNumber::FractionType);
   checkResult("KNumber(2).sqrt()", KNumber(2).sqrt(), "1.4142136", KNumber::FloatType);
-  //  checkResult("KNumber(\"2/3\").abs()", KNumber("2/3").abs(), "2/3", KNumber::FractionType);
+  checkResult("KNumber(\"2/3\").sqrt()", KNumber("2/3").sqrt(), "0.81649658", KNumber::FloatType);
   checkResult("KNumber(\"0.25\").sqrt()", KNumber("0.25").sqrt(), "0.5", KNumber::FloatType);
   
 }
@@ -203,10 +227,13 @@ int main(void)
   testingSubtractions();
   testingMultiplications();
   testingDivisions();
-  testingModulus(); 
+
+  testingAndOr();
+  testingModulus();
 
   testingAbs();
   testingSqrt();
+  testingTruncateToInteger();
 
   return 0;
 }
