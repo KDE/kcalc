@@ -26,7 +26,7 @@
 #ifndef KSTATS_H
 #define KSTATS_H
 
-#include <qvaluevector.h>
+#include <q3valuevector.h>
 #include "kcalctype.h"
 
 class KStats {
@@ -50,7 +50,7 @@ public:
 	bool     error();
 
 private:
-    QValueVector<CALCAMNT> mData;
+    Q3ValueVector<CALCAMNT> mData;
     bool error_flag;
 
 };

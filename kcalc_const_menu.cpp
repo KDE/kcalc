@@ -22,6 +22,8 @@
 #include <klocale.h>
 
 #include "kcalc_const_menu.h"
+//Added by qt3to4:
+#include <Q3PopupMenu>
 
 #define NUM_CONST 16
 
@@ -46,13 +48,13 @@ const struct science_constant KCalcConstMenu::Constants[] = {
 };
 
 KCalcConstMenu::KCalcConstMenu(QWidget * parent, const char * name)
-  : QPopupMenu(parent, name)
+  : Q3PopupMenu(parent, name)
 {
-  QPopupMenu *math_menu = new QPopupMenu(this, "mathematical constants");
-  QPopupMenu *em_menu = new QPopupMenu(this, "electromagnetic constants");
-  QPopupMenu *nuclear_menu = new QPopupMenu(this, "nuclear constants");
-  QPopupMenu *thermo_menu = new QPopupMenu(this, "thermodynamics constants");
-  QPopupMenu *gravitation_menu = new QPopupMenu(this, "gravitation constants");
+  Q3PopupMenu *math_menu = new Q3PopupMenu(this, "mathematical constants");
+  Q3PopupMenu *em_menu = new Q3PopupMenu(this, "electromagnetic constants");
+  Q3PopupMenu *nuclear_menu = new Q3PopupMenu(this, "nuclear constants");
+  Q3PopupMenu *thermo_menu = new Q3PopupMenu(this, "thermodynamics constants");
+  Q3PopupMenu *gravitation_menu = new Q3PopupMenu(this, "gravitation constants");
 
   insertItem(i18n("Mathematics"), math_menu);
   insertItem(i18n("Electromagnetism"), em_menu);

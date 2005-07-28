@@ -29,6 +29,11 @@
 #include <qclipboard.h>
 #include <qpainter.h>
 #include <qregexp.h>
+//Added by qt3to4:
+#include <Q3CString>
+#include <Q3Frame>
+#include <QLabel>
+#include <QMouseEvent>
 
 #include <kglobal.h>
 #include <klocale.h>
@@ -59,10 +64,10 @@ KCalcDisplay::KCalcDisplay(QWidget *parent, const char *name)
    _display_size(DEC_SIZE), _precision(9),
    _fixed_precision(-1), _error(false), selection_timer(new QTimer)
 {
-	setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
+	setFrameStyle(Q3Frame::WinPanel | Q3Frame::Sunken);
 	setAlignment(AlignRight | AlignVCenter);
 	setFocus();
-	setFocusPolicy(QWidget::StrongFocus);
+	setFocusPolicy(Qt::StrongFocus);
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed, false);
 
 	connect(this, SIGNAL(clicked()), this, SLOT(slotDisplaySelected()));
@@ -175,7 +180,7 @@ void KCalcDisplay::slotPaste(bool bClipboard)
 
 void KCalcDisplay::slotDisplaySelected(void)
 {
-	if(_button == LeftButton) {
+	if(_button == Qt::LeftButton) {
 		if(_lit) {
 			slotCopy();
 			selection_timer->start(100);
@@ -207,9 +212,9 @@ void KCalcDisplay::invertColors()
 
 void KCalcDisplay::mousePressEvent(QMouseEvent *e)
 {
-	if(e->button() == LeftButton) {
+	if(e->button() == Qt::LeftButton) {
 		_lit = !_lit;
-		_button = LeftButton;
+		_button = Qt::LeftButton;
 	} else {
 		_button = MidButton;
 	}
@@ -321,11 +326,11 @@ bool KCalcDisplay::setAmount(CALCAMNT new_amount)
 		// implementation which is more flexible than QString's.
 
 		if (_fixed_precision != -1 && _display_amount <= 1.0e+16)
-			display_str = QCString().sprintf(PRINT_FLOAT, _fixed_precision, _display_amount);
+			display_str = Q3CString().sprintf(PRINT_FLOAT, _fixed_precision, _display_amount);
 		else if (_display_amount > 1.0e+16)
-			display_str = QCString().sprintf(PRINT_LONG_BIG, _precision + 1, _display_amount);
+			display_str = Q3CString().sprintf(PRINT_LONG_BIG, _precision + 1, _display_amount);
 		else
-			display_str = QCString().sprintf(PRINT_LONG_BIG, _precision, _display_amount);
+			display_str = Q3CString().sprintf(PRINT_LONG_BIG, _precision, _display_amount);
 
 		if (display_str.length() > DSP_SIZE)
 		{
@@ -357,7 +362,7 @@ QString KCalcDisplay::text() const
 	if (_num_base != NB_DECIMAL || _error)
 		return QLabel::text();
 
-	return QCString().sprintf(PRINT_LONG_BIG, 40, _display_amount);
+	return Q3CString().sprintf(PRINT_LONG_BIG, 40, _display_amount);
 }
 
 /* change representation of display to new base (i.e. binary, decimal,

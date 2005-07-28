@@ -20,7 +20,7 @@
 
 */
 
-#include <qsimplerichtext.h>
+#include <q3simplerichtext.h>
 #include <qtooltip.h>
 #include <qpainter.h>
 
@@ -117,7 +117,7 @@ void KCalcButton::slotSetAccelDisplayMode(bool flag)
 void KCalcButton::paintLabel(QPainter *paint)
 {
   if (_mode[_mode_flags].is_label_richtext) {
-    QSimpleRichText _text(_label, font());
+    Q3SimpleRichText _text(_label, font());
     _text.draw(paint, width()/2-_text.width()/2, 0, childrenRegion(), colorGroup());
   } else {
     KPushButton::drawButtonLabel(paint);

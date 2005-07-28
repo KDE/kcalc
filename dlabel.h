@@ -28,7 +28,7 @@
 #ifndef _D_LABEL_H_
 #define _D_LABEL_H_
 
-#include <qvaluevector.h>
+#include <q3valuevector.h>
 #include "kcalcdisplay.h"
 #include "kcalctype.h"
 
@@ -55,7 +55,7 @@ private slots:
 	void history_forward(void);
 
 private:
-	QValueVector<CALCAMNT> _history_list;
+	Q3ValueVector<CALCAMNT> _history_list;
 	int _history_index;
 
 	KAction *_forward;
