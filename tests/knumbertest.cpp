@@ -6,6 +6,7 @@
 #include <stdio.h>
 
 #include <iostream>
+#include <qstring.h>
 
 #include "knumbertest.h"
 
@@ -72,6 +73,8 @@ void testingAdditions(void)
   
   checkResult("KNumber(\"5/3\") + KNumber(2)", KNumber("5/3") + KNumber(2), "11/3", KNumber::FractionType);
   checkResult("KNumber(\"5/3\") + KNumber(\"2/3\")", KNumber("5/3") + KNumber("2/3"), "7/3", KNumber::FractionType);
+  checkResult("KNumber(\"5/3\") + KNumber(\"1/3\")", KNumber("5/3") + KNumber("1/3"), "2", KNumber::IntegerType);
+  checkResult("KNumber(\"5/3\") + KNumber(\"-26/3\")", KNumber("5/3") + KNumber("-26/3"), "-7", KNumber::IntegerType);
   checkResult("KNumber(\"5/2\") + KNumber(2.3)", KNumber("5/2") + KNumber(2.3), "4.8", KNumber::FloatType);
   
   checkResult("KNumber(5.3) + KNumber(2)", KNumber(5.3) + KNumber(2), "7.3", KNumber::FloatType);
@@ -89,7 +92,9 @@ void testingSubtractions(void)
   checkResult("KNumber(5) - KNumber(2.3)", KNumber(5) - KNumber(2.3), "2.7", KNumber::FloatType);
   
   checkResult("KNumber(\"5/3\") - KNumber(2)", KNumber("5/3") - KNumber(2), "-1/3", KNumber::FractionType);
-  checkResult("KNumber(\"5/3\") - KNumber(\"2/3\")", KNumber("5/3") - KNumber("2/3"), "1", KNumber::FractionType);
+  checkResult("KNumber(\"5/3\") - KNumber(\"1/3\")", KNumber("5/3") - KNumber("1/3"), "4/3", KNumber::FractionType);
+  checkResult("KNumber(\"5/3\") - KNumber(\"2/3\")", KNumber("5/3") - KNumber("2/3"), "1", KNumber::IntegerType);
+  checkResult("KNumber(\"-5/3\") - KNumber(\"4/3\")", KNumber("-5/3") - KNumber("4/3"), "-3", KNumber::IntegerType);
   checkResult("KNumber(\"5/4\") - KNumber(2.2)", KNumber("5/4") - KNumber(2.2), "-0.95", KNumber::FloatType);
   
   checkResult("KNumber(5.3) - KNumber(2)", KNumber(5.3) - KNumber(2), "3.3", KNumber::FloatType);
@@ -105,10 +110,12 @@ void testingMultiplications(void)
   
   checkResult("KNumber(5) * KNumber(2)", KNumber(5) * KNumber(2), "10", KNumber::IntegerType);
   checkResult("KNumber(5) * KNumber(\"2/3\")", KNumber(5) * KNumber("2/3"), "10/3", KNumber::FractionType);
+  checkResult("KNumber(5) * KNumber(\"2/5\")", KNumber(5) * KNumber("2/5"), "2", KNumber::IntegerType);
   checkResult("KNumber(5) * KNumber(2.3)", KNumber(5) * KNumber(2.3), "11.5", KNumber::FloatType);
   
   checkResult("KNumber(\"5/3\") * KNumber(2)", KNumber("5/3") * KNumber(2), "10/3", KNumber::FractionType);
   checkResult("KNumber(\"5/3\") * KNumber(\"2/3\")", KNumber("5/3") * KNumber("2/3"), "10/9", KNumber::FractionType);
+  checkResult("KNumber(\"25/6\") * KNumber(\"12/5\")", KNumber("25/6") * KNumber("12/5"), "10", KNumber::IntegerType);
   checkResult("KNumber(\"5/2\") * KNumber(2.3)", KNumber("5/2") * KNumber(2.3), "5.75",KNumber::FloatType);
   
   checkResult("KNumber(5.3) * KNumber(2)", KNumber(5.3) * KNumber(2), "10.6", KNumber::FloatType);
@@ -123,11 +130,14 @@ void testingDivisions(void)
   std::cout << "Testing divisions:\n";
   
   checkResult("KNumber(5) / KNumber(2)", KNumber(5) / KNumber(2), "5/2", KNumber::FractionType);
+  checkResult("KNumber(122) / KNumber(2)", KNumber(122) / KNumber(2), "61", KNumber::IntegerType);
   checkResult("KNumber(5) / KNumber(\"2/3\")", KNumber(5) / KNumber("2/3"), "15/2", KNumber::FractionType);
+  checkResult("KNumber(6) / KNumber(\"2/3\")", KNumber(6) / KNumber("2/3"), "9", KNumber::IntegerType);
   checkResult("KNumber(5) / KNumber(2.5)", KNumber(5) / KNumber(2.5), "2", KNumber::FloatType);
   
   checkResult("KNumber(\"5/3\") / KNumber(2)", KNumber("5/3") / KNumber(2), "5/6", KNumber::FractionType);
   checkResult("KNumber(\"5/3\") / KNumber(\"2/3\")", KNumber("5/3") / KNumber("2/3"), "5/2", KNumber::FractionType);
+  checkResult("KNumber(\"49/3\") / KNumber(\"7/9\")", KNumber("49/3") / KNumber("7/9"), "21", KNumber::IntegerType);
   checkResult("KNumber(\"5/2\") / KNumber(2.5)", KNumber("5/2") / KNumber(2.5), "1", KNumber::FloatType);
   
   checkResult("KNumber(5.3) / KNumber(2)", KNumber(5.3) / KNumber(2), "2.65", KNumber::FloatType);
@@ -222,15 +232,9 @@ int main(void)
 
   std::cout << "\n\nConstants:\n";
 
-  checkType("KNumber::ZeroInteger", KNumber::ZeroInteger.type(), KNumber::IntegerType);
-  checkType("KNumber::OneInteger", KNumber::OneInteger.type(), KNumber::IntegerType);
-  checkType("KNumber::MinusOneInteger", KNumber::MinusOneInteger.type(), KNumber::IntegerType);
-
-  std::cout << "\n";
-
-  checkType("KNumber::ZeroFloat", KNumber::ZeroFloat.type(), KNumber::FloatType);
-  checkType("KNumber::OneFloat", KNumber::OneFloat.type(), KNumber::FloatType);
-  checkType("KNumber::MinusOneFloat", KNumber::MinusOneFloat.type(), KNumber::FloatType);
+  checkType("KNumber::Zero", KNumber::Zero.type(), KNumber::IntegerType);
+  checkType("KNumber::One", KNumber::One.type(), KNumber::IntegerType);
+  checkType("KNumber::MinusOne", KNumber::MinusOne.type(), KNumber::IntegerType);
 
   testingAdditions();
   testingSubtractions();

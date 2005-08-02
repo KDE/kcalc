@@ -44,13 +44,9 @@ class QString;
 class KDE_EXPORT KNumber
 {
  public:
-  static KNumber const ZeroInteger;
-  static KNumber const OneInteger;
-  static KNumber const MinusOneInteger;
-
-  static KNumber const ZeroFloat;
-  static KNumber const OneFloat;
-  static KNumber const MinusOneFloat;
+  static KNumber const Zero;
+  static KNumber const One;
+  static KNumber const MinusOne;
 
   enum NumType {IntegerType, FractionType, FloatType};
   
@@ -120,6 +116,7 @@ class KDE_EXPORT KNumber
   
   
  private:
+  void simplifyRational(void);
   int const compare(KNumber const & arg2) const;
   
   _knumber *_num;

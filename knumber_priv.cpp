@@ -25,6 +25,7 @@
 #ifdef HAVE_GMP
 # include "knumber_priv.h"
 
+
 _knuminteger::_knuminteger(_knumber const & num)
 {
   mpz_init(_mpz);
@@ -156,6 +157,15 @@ QString const _knumfloat::ascii(void) const
   return ret_str;
 
 
+}
+
+
+bool _knumfraction::isInteger(void) const
+{
+  if (mpz_cmp_ui(mpq_denref(_mpq), 1) == 0)
+    return true;
+  else
+    return false;
 }
 
 

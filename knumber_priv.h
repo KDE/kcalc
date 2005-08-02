@@ -134,6 +134,8 @@ class _knumfraction : public _knumber
   virtual NumType type(void) const {return FractionType;}
 
   virtual QString const ascii(void) const;
+  
+  bool isInteger(void) const;
 
   virtual _knumber * abs(void) const;
   virtual _knumber * intPart(void) const;

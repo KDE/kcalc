@@ -26,12 +26,9 @@
 #ifdef HAVE_GMP
 #include "knumber.h"
 
-KNumber const KNumber::ZeroInteger(0);
-KNumber const KNumber::ZeroFloat("0.0");
-KNumber const KNumber::OneInteger(1);
-KNumber const KNumber::OneFloat("1.0");
-KNumber const KNumber::MinusOneInteger(-1);
-KNumber const KNumber::MinusOneFloat("-1.0");
+KNumber const KNumber::Zero(0);
+KNumber const KNumber::One(1);
+KNumber const KNumber::MinusOne(-1);
 
 KNumber::KNumber(signed int num)
 {
@@ -78,6 +75,22 @@ KNumber::NumType KNumber::type(void) const
   if(dynamic_cast<_knumfloat *>(_num))
     return FloatType;
 }
+
+void KNumber::simplifyRational(void)
+{
+  if (type() != FractionType)
+    return;
+  
+  _knumfraction *tmp_num = dynamic_cast<_knumfraction *>(_num);
+
+  if (tmp_num->isInteger()) {
+    _knumber *tmp_num2 = tmp_num->intPart();
+    delete tmp_num;
+    _num = tmp_num2;
+  }
+
+}
+
 
 KNumber const & KNumber::operator=(KNumber const & num)
 {
@@ -200,6 +213,8 @@ KNumber const KNumber::operator+(KNumber const & arg2) const
 
   tmp_num._num = _num->add(*arg2._num);
 
+  tmp_num.simplifyRational();
+
   return tmp_num;
 }
 
@@ -215,6 +230,8 @@ KNumber const KNumber::operator*(KNumber const & arg2) const
 
   tmp_num._num = _num->multiply(*arg2._num);
 
+  tmp_num.simplifyRational();
+
   return tmp_num;
 }
 
@@ -225,6 +242,8 @@ KNumber const KNumber::operator/(KNumber const & arg2) const
 
   tmp_num._num = _num->divide(*arg2._num);
 
+  tmp_num.simplifyRational();
+
   return tmp_num;
 }
 
@@ -232,7 +251,7 @@ KNumber const KNumber::operator/(KNumber const & arg2) const
 KNumber const KNumber::operator%(KNumber const & arg2) const
 {
   if (type() != IntegerType  ||  arg2.type() != IntegerType)
-    return ZeroInteger;
+    return Zero;
 
   KNumber tmp_num;
   delete tmp_num._num;
@@ -248,7 +267,7 @@ KNumber const KNumber::operator%(KNumber const & arg2) const
 KNumber const KNumber::operator&(KNumber const & arg2) const
 {
   if (type() != IntegerType  ||  arg2.type() != IntegerType)
-    return ZeroInteger;
+    return Zero;
 
   KNumber tmp_num;
   delete tmp_num._num;
@@ -265,7 +284,7 @@ KNumber const KNumber::operator&(KNumber const & arg2) const
 KNumber const KNumber::operator|(KNumber const & arg2) const
 {
   if (type() != IntegerType  ||  arg2.type() != IntegerType)
-    return ZeroInteger;
+    return Zero;
 
   KNumber tmp_num;
   delete tmp_num._num;
@@ -282,7 +301,7 @@ KNumber const KNumber::operator|(KNumber const & arg2) const
 KNumber const KNumber::operator<<(KNumber const & arg2) const
 {
   if (type() != IntegerType  ||  arg2.type() != IntegerType)
-    return ZeroInteger;
+    return Zero;
 
   KNumber tmp_num;
   delete tmp_num._num;
@@ -298,7 +317,7 @@ KNumber const KNumber::operator<<(KNumber const & arg2) const
 KNumber const KNumber::operator>>(KNumber const & arg2) const
 {
   if (type() != IntegerType  ||  arg2.type() != IntegerType)
-    return ZeroInteger;
+    return Zero;
 
   KNumber tmp_num;
   delete tmp_num._num;
@@ -313,7 +332,7 @@ KNumber const KNumber::operator>>(KNumber const & arg2) const
 
 KNumber::operator bool(void) const
 {
-  if (*this == ZeroInteger)
+  if (*this == Zero)
     return false;
   return true;
 }
