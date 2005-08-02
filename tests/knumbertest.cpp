@@ -198,6 +198,15 @@ void testingSqrt(void)
   
 }
 
+void testingShifts(void)
+{
+  std::cout << "Testing left/right shift:\n";
+  
+  checkResult("KNumber(16) << KNumber(2)", KNumber(16) << KNumber(2), "64", KNumber::IntegerType);
+  checkResult("KNumber(16) >> KNumber(2)", KNumber(16) >> KNumber(2), "4", KNumber::IntegerType);
+  
+}
+
 
 
 int main(void)
@@ -234,6 +243,8 @@ int main(void)
   testingAbs();
   testingSqrt();
   testingTruncateToInteger();
+
+  testingShifts();
 
   return 0;
 }

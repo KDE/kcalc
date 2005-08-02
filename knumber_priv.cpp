@@ -496,6 +496,27 @@ _knuminteger * _knuminteger::mod(_knuminteger const &arg2) const
   return tmp_num;
 }
 
+_knuminteger * _knuminteger::leftShift(_knuminteger const &arg2) const
+{
+#warning print out some warning that only shift by long int, check for negative
+  _knuminteger * tmp_num = new _knuminteger();
+
+  mpz_mul_2exp(tmp_num->_mpz, _mpz, mpz_get_ui(arg2._mpz));
+  
+  return tmp_num;
+}
+
+_knuminteger * _knuminteger::rightShift(_knuminteger const &arg2) const
+{
+#warning print out some warning that only shift by long int, check for negative
+  _knuminteger * tmp_num = new _knuminteger();
+
+  mpz_tdiv_q_2exp(tmp_num->_mpz, _mpz, mpz_get_ui(arg2._mpz));
+  
+  return tmp_num;
+}
+
+
 #else  // !HAVE_GMP
 static void knumber_priv_dummy()
 {

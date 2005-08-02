@@ -21,11 +21,12 @@
 #define _KNUMBER_H
 
 #include <gmp.h>
-#include <qstring.h>
 
 #include <kdelibs_export.h>
 
 #include "knumber_priv.h"
+
+class QString;
 
 /**
   *
@@ -68,15 +69,7 @@ class KDE_EXPORT KNumber
   
   KNumber const & operator=(KNumber const & num);
 
-  NumType type(void) const
-  {
-    if(dynamic_cast<_knuminteger *>(_num))
-      return IntegerType;
-    if(dynamic_cast<_knumfraction *>(_num))
-      return FractionType;
-    if(dynamic_cast<_knumfloat *>(_num))
-      return FloatType;
-  }
+  NumType type(void) const;
 
   QString const toQString(void) const;
   
@@ -94,6 +87,10 @@ class KDE_EXPORT KNumber
 
   KNumber const operator&(KNumber const & arg2) const;
   KNumber const operator|(KNumber const & arg2) const;
+  KNumber const operator<<(KNumber const & arg2) const;
+  KNumber const operator>>(KNumber const & arg2) const;
+
+  operator bool(void) const;
 
   bool const operator==(KNumber const & arg2) const
   { return (compare(arg2) == 0); }
@@ -129,19 +126,6 @@ class KDE_EXPORT KNumber
   
 };
 
-
-
-#warning below all stubs
-
-KNumber const operator<<(KNumber const & arg1, KNumber const & arg2)
-{
-  return arg1;
-}  
-
-KNumber const operator>>(KNumber const & arg1, KNumber const & arg2)
-{
-  return arg1;
-}  
 
 
 #endif // _KNUMBER_H

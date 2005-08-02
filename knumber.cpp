@@ -69,6 +69,16 @@ KNumber::KNumber(QString const & num)
     _num = new _knumfloat(num);
 }
 
+KNumber::NumType KNumber::type(void) const
+{
+  if(dynamic_cast<_knuminteger *>(_num))
+    return IntegerType;
+  if(dynamic_cast<_knumfraction *>(_num))
+    return FractionType;
+  if(dynamic_cast<_knumfloat *>(_num))
+    return FloatType;
+}
+
 KNumber const & KNumber::operator=(KNumber const & num)
 {
   if (this == & num) 
@@ -268,6 +278,45 @@ KNumber const KNumber::operator|(KNumber const & arg2) const
   return tmp_num;
 }
 
+
+KNumber const KNumber::operator<<(KNumber const & arg2) const
+{
+  if (type() != IntegerType  ||  arg2.type() != IntegerType)
+    return ZeroInteger;
+
+  KNumber tmp_num;
+  delete tmp_num._num;
+
+  _knuminteger const *tmp_arg1 = dynamic_cast<_knuminteger const *>(_num);
+  _knuminteger const *tmp_arg2 = dynamic_cast<_knuminteger const *>(arg2._num);
+
+  tmp_num._num = tmp_arg1->leftShift(*tmp_arg2);
+
+  return tmp_num;
+}
+
+KNumber const KNumber::operator>>(KNumber const & arg2) const
+{
+  if (type() != IntegerType  ||  arg2.type() != IntegerType)
+    return ZeroInteger;
+
+  KNumber tmp_num;
+  delete tmp_num._num;
+
+  _knuminteger const *tmp_arg1 = dynamic_cast<_knuminteger const *>(_num);
+  _knuminteger const *tmp_arg2 = dynamic_cast<_knuminteger const *>(arg2._num);
+
+  tmp_num._num = tmp_arg1->rightShift(*tmp_arg2);
+
+  return tmp_num;
+}
+
+KNumber::operator bool(void) const
+{
+  if (*this == ZeroInteger)
+    return false;
+  return true;
+}
 
 int const KNumber::compare(KNumber const & arg2) const
 {
