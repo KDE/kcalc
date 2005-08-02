@@ -2,8 +2,10 @@
     kCalculator, a scientific calculator for the X window system using the
     Qt widget libraries, available at no cost at http://www.troll.no
 
-    The stack engine conatined in this file was take from
+    The stack engine contained in this file was take from
     Martin Bartlett's xfrmcalc
+
+    portions:	Copyright (C) 2003-2005 Klaus Niederkrueger
 
     portions:	Copyright (C) 1996 Bernd Johannes Wuebben
                                    wuebben@math.cornell.edu
@@ -81,7 +83,6 @@ static KNumber ExecOr(const KNumber & left_op, const KNumber & right_op)
 
 static KNumber ExecXor(const KNumber & left_op, const KNumber & right_op)
 {
-#warning does this implement xor?
 	return (left_op | right_op) - (left_op & right_op);
 }
 
@@ -117,14 +118,7 @@ static KNumber ExecMultiply(const KNumber & left_op, const KNumber & right_op)
 
 static KNumber ExecDivide(const KNumber & left_op, const KNumber & right_op)
 {
-	// printf("ExecDivide\n");
-	if (right_op == KNumber::ZeroInteger)
-	{
-		_error = true;
-		return KNumber::ZeroInteger;
-	}
-	else
-		return left_op / right_op;
+	return left_op / right_op;
 }
 
 static KNumber ExecMod(const KNumber & left_op, const KNumber & right_op)
@@ -146,16 +140,16 @@ bool isoddint(const KNumber & input)
 
 static KNumber ExecPower(const KNumber & left_op, const KNumber & right_op)
 {
-  return KNumber::ZeroInteger;
+  return KNumber::Zero;
 #if 0
-  if (right_op == KNumber::ZeroInteger)
-	  if (left_op == KNumber::ZeroInteger) // 0^0 not defined
+  if (right_op == KNumber::Zero)
+	  if (left_op == KNumber::Zero) // 0^0 not defined
 		{
 			_error = true;		
-			return KNumber::ZeroInteger;
+			return KNumber::Zero;
 		}
 		else
-			return KNumber::OneInteger;
+			return KNumber::One;
 
 	if (left_op < 0 && isoddint(1 / right_op))
 		left_op = - POW((-left_op), right_op);
@@ -165,7 +159,7 @@ static KNumber ExecPower(const KNumber & left_op, const KNumber & right_op)
 	if (errno == EDOM || errno == ERANGE)
 	{
 		_error = true;
-		return KNumber::ZeroInteger;
+		return KNumber::Zero;
 	}
 	else
 		return left_op;
@@ -174,7 +168,7 @@ static KNumber ExecPower(const KNumber & left_op, const KNumber & right_op)
 
 static KNumber ExecPwrRoot(const KNumber & left_op, const KNumber & right_op)
 {
-			return KNumber::ZeroInteger;
+			return KNumber::Zero;
 #if 0
 	// printf("ExecPwrRoot  %g left_op, %g right_op\n", left_op, right_op);
 	if (right_op == 0)
@@ -200,12 +194,12 @@ static KNumber ExecPwrRoot(const KNumber & left_op, const KNumber & right_op)
 
 static KNumber ExecAddP(const KNumber & left_op, const KNumber & right_op)
 {
-	return left_op * (right_op + KNumber(100)) / KNumber(100);
+	return left_op * (KNumber::One + right_op/KNumber(100));
 }
 
 static KNumber ExecSubP(const KNumber & left_op, const KNumber & right_op)
 {
-	return (left_op * (KNumber(100) - right_op)) / KNumber(100);
+	return left_op * (KNumber::One - right_op/KNumber(100));
 }
 
 static KNumber ExecMultiplyP(const KNumber & left_op, const KNumber & right_op)
@@ -259,7 +253,7 @@ CalcEngine::CalcEngine()
 #endif
 	sigaction(SIGFPE, &fpe_trap, NULL);
 
-	_last_number = KNumber::ZeroInteger;
+	_last_number = KNumber::Zero;
 	_error = false;
 }
 
@@ -423,7 +417,7 @@ void CalcEngine::CosDeg(KNumber input)
 
 	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
 	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = KNumber::ZeroInteger;
+		_last_number = KNumber::Zero;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
@@ -439,7 +433,7 @@ void CalcEngine::CosRad(KNumber input)
 
 	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
 	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = KNumber::ZeroInteger;
+		_last_number = KNumber::Zero;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
@@ -457,7 +451,7 @@ void CalcEngine::CosGrad(KNumber input)
 
 	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
 	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = KNumber::ZeroInteger;
+		_last_number = KNumber::Zero;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
@@ -547,7 +541,7 @@ void CalcEngine::InvertSign(KNumber input)
 
 void CalcEngine::Ln(KNumber input)
 {
-	if (input <= KNumber::ZeroInteger)
+	if (input <= KNumber::Zero)
 		_error = true;
 	else {
 		CALCAMNT tmp_num = input.toQString().toDouble();
@@ -557,7 +551,7 @@ void CalcEngine::Ln(KNumber input)
 
 void CalcEngine::Log10(KNumber input)
 {
-	if (input <= KNumber::ZeroInteger)
+	if (input <= KNumber::Zero)
 		_error = true;
 	else {
 		CALCAMNT tmp_num = input.toQString().toDouble();
@@ -587,10 +581,10 @@ void CalcEngine::ParenOpen(KNumber input)
 
 void CalcEngine::Reciprocal(KNumber input)
 {
-	if (input == KNumber::ZeroInteger)
+	if (input == KNumber::Zero)
 		_error = true;
 	else
-		_last_number = KNumber::OneInteger/input;
+		_last_number = KNumber::One/input;
 }
 
 void CalcEngine::SinDeg(KNumber input)
@@ -604,7 +598,7 @@ void CalcEngine::SinDeg(KNumber input)
 
 	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
 	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = KNumber::ZeroInteger;
+		_last_number = KNumber::Zero;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
@@ -620,7 +614,7 @@ void CalcEngine::SinRad(KNumber input)
 
 	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
 	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = KNumber::ZeroInteger;
+		_last_number = KNumber::Zero;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
@@ -638,7 +632,7 @@ void CalcEngine::SinGrad(KNumber input)
 
 	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
 	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = KNumber::ZeroInteger;
+		_last_number = KNumber::Zero;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
@@ -658,7 +652,7 @@ void CalcEngine::Square(KNumber input)
 
 void CalcEngine::SquareRoot(KNumber input)
 {
-	if (input < KNumber::ZeroInteger)
+	if (input < KNumber::Zero)
 		_error = true;
 	else
 		_last_number = input.sqrt();
@@ -686,7 +680,7 @@ void CalcEngine::StatDataDel(KNumber input)
 {
 	UNUSED(input);
 	stats.clearLast();
-	_last_number = KNumber::ZeroInteger;
+	_last_number = KNumber::Zero;
 }
 
 void CalcEngine::StatMean(KNumber input)
@@ -754,7 +748,7 @@ void CalcEngine::TangensDeg(KNumber input)
 
 	// Now a cheat to help the weird case of TAN 0 degrees not being 0!!!
 		//	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		//		_last_number = KNumber::ZeroInteger;
+		//		_last_number = KNumber::Zero;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
@@ -780,7 +774,7 @@ void CalcEngine::TangensRad(KNumber input)
 	// Now a cheat to help the weird case of TAN 0 degrees not being 0!!!
 #warning is this still necesary
 	//	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-	//	_last_number = KNumber::ZeroInteger;
+	//	_last_number = KNumber::Zero;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
@@ -807,7 +801,7 @@ void CalcEngine::TangensGrad(KNumber input)
 	// Now a cheat to help the weird case of TAN 0 degrees not being 0!!!
 #warning is this still necesary
 	//	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-	//	_last_number = KNumber::ZeroInteger;
+	//	_last_number = KNumber::Zero;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
@@ -895,7 +889,7 @@ bool CalcEngine::evalStack(void)
 void CalcEngine::Reset()
 {
 	_error = false;
-	_last_number = KNumber::ZeroInteger;
+	_last_number = KNumber::Zero;
 
 	_stack.clear();
 }

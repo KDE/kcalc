@@ -84,7 +84,7 @@ bool KCalcDisplay::sendEvent(Event const event)
 	{
 	case EventReset:
 		_error = false;
-		_display_amount = KNumber::ZeroInteger;
+		_display_amount = KNumber::Zero;
 		_str_int = "0";
 		_str_int_exp = QString::null;
 

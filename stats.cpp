@@ -113,9 +113,9 @@ KNumber KStats::median(void) {
 }
 
 
-KNumber KStats::std_kernel(void) {
-
-	KNumber result = 0;
+KNumber KStats::std_kernel(void)
+{
+	KNumber result = KNumber::Zero;
 	KNumber _mean;
 	QValueVector<KNumber>::iterator p;
 
@@ -124,11 +124,6 @@ KNumber KStats::std_kernel(void) {
 	for(p = mData.begin(); p != mData.end(); ++p) {
 		result += (*p - _mean) * (*p - _mean);
 	}
-
-
-#ifdef DEBUG_STATS
-	printf("std_kernel %Lg\n",result);
-#endif
 
 	return result;
 }
@@ -143,51 +138,29 @@ KNumber KStats::sum_of_squares() {
 		result += ((*p) * (*p));
 	}
 
-#ifdef DEBUG_STATS
-	printf("Sum of Squares %Lg\n",result);
-#endif
-
 	return result;
 }
 
 
-KNumber KStats::mean(void) {
-
-	KNumber result = 0;
-
-	if(count() == KNumber::ZeroInteger){
+KNumber KStats::mean(void)
+{
+	if(count() == KNumber::Zero){
 		error_flag = true;
 		return 0;
 	}
 
-	result = sum() / KNumber(count());
-
-#ifdef DEBUG_STATS
-	printf("mean: %Lg\n", result);
-#endif
-
-	return result;
+	return (sum() / KNumber(count()));
 }
 
 
-KNumber KStats::std(void) {
-
-	KNumber result = 0;
-
+KNumber KStats::std(void)
+{
 	if(count() == 0){
 		error_flag = true;
-		return 0;
+		return KNumber::Zero;
 	}
 
-	result = (std_kernel() / KNumber(count())).sqrt();
-
-#ifdef DEBUG_STATS
-	printf("data.count %d\n", count());
-	printf("std: %Lg\n", result);
-#endif
-
-  return result;
-
+	return (std_kernel() / KNumber(count())).sqrt();
 }
 
 
@@ -196,7 +169,7 @@ KNumber KStats::sample_std(void) {
 
 	if(count() < 2 ){
 		error_flag = true;
-		return 0;
+		return KNumber::Zero;
 	}
 
 	result = (std_kernel() / KNumber(count() - 1)).sqrt();
@@ -210,7 +183,8 @@ KNumber KStats::sample_std(void) {
 }
 
 
-int KStats::count(void) const {
+int KStats::count(void) const
+{
   return static_cast<int>(mData.size());
 }
 

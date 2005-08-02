@@ -81,7 +81,7 @@ void DispLogic::update_from_core(CalcEngine const &core,
 	KNumber const & output = core.lastOutput(tmp_error);
 	if(tmp_error) sendEvent(EventError);
 	if (setAmount(output)  &&  store_result_in_history  &&
-	    output != KNumber::ZeroInteger)
+	    output != KNumber::Zero)
 	{
 	  // add this latest value to our history
 	  _history_list.insert(_history_list.begin(), output);
