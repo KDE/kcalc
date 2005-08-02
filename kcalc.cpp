@@ -1552,7 +1552,7 @@ void KCalculator::slotPowerclicked(void)
 				    CalcEngine::FUNC_POWER);
 	}
 	// temp. work-around
-	CALCAMNT tmp_num = calc_display->getAmount();
+	KNumber tmp_num = calc_display->getAmount();
 	calc_display->sendEvent(KCalcDisplay::EventReset);
 	calc_display->setAmount(tmp_num);
 	UpdateDisplay(false);

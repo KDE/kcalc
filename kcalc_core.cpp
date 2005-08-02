@@ -49,6 +49,7 @@
 #include <stdlib.h>
 #include <klocale.h>
 #include <kmessagebox.h>
+#include "kcalctype.h"
 
 #ifndef HAVE_FUNC_ISINF
         #ifdef HAVE_IEEEFP_H
@@ -69,288 +70,112 @@ static void fpe_handler(int fpe_parm)
 }
 
 
-const CALCAMNT CalcEngine::pi = (ASIN(1L) * 2L);
+const KNumber CalcEngine::pi("3.14159265358979323846264338327950288");
 
-static CALCAMNT _error;
+static bool _error;
 
-static CALCAMNT ExecOr(CALCAMNT left_op, CALCAMNT right_op)
+static KNumber ExecOr(const KNumber & left_op, const KNumber & right_op)
 {
-	// printf("ExecOr\n");
-	CALCAMNT	boh_work_d;
-	KCALC_LONG	boh_work_l;
-	KCALC_LONG	boh_work_r;
-
-	MODF(left_op, &boh_work_d);
-	if (FABS(boh_work_d) > KCALC_LONG_MAX)
-	{
-	  //	display_error = true;
-		return 0;
-	}
-
-	boh_work_l = static_cast<KCALC_LONG>(boh_work_d);
-	MODF(right_op, &boh_work_d);
-
-	if (FABS(boh_work_d) > KCALC_LONG_MAX)
-	{
-	  //display_error = true;
-		return 0;
-	}
-
-	boh_work_r = static_cast<KCALC_LONG>(boh_work_d);
-	return (boh_work_l | boh_work_r);
+	return (left_op | right_op);
 }
 
-static CALCAMNT ExecXor(CALCAMNT left_op, CALCAMNT right_op)
+static KNumber ExecXor(const KNumber & left_op, const KNumber & right_op)
 {
-	// printf("ExecXOr\n");
-	CALCAMNT	boh_work_d;
-	KCALC_LONG	boh_work_l;
-	KCALC_LONG	boh_work_r;
-
-	MODF(left_op, &boh_work_d);
-	if (FABS(boh_work_d) > KCALC_LONG_MAX)
-	{
-	  //display_error = true;
-		return 0;
-	}
-
-	boh_work_l = static_cast<KCALC_LONG>(boh_work_d);
-	MODF(right_op, &boh_work_d);
-
-	if (FABS(boh_work_d) > KCALC_LONG_MAX)
-	{
-	  //display_error = true;
-		return 0;
-	}
-
-	boh_work_r = static_cast<KCALC_LONG>(boh_work_d);
-	return (boh_work_l ^ boh_work_r);
+#warning does this implement xor?
+	return (left_op | right_op) - (left_op & right_op);
 }
 
-static CALCAMNT ExecAnd(CALCAMNT left_op, CALCAMNT right_op)
+static KNumber ExecAnd(const KNumber & left_op, const KNumber & right_op)
 {
-	// printf("ExecAnd\n");
-	CALCAMNT	boh_work_d;
-	KCALC_LONG	boh_work_l;
-	KCALC_LONG	boh_work_r;
-
-	MODF(left_op, &boh_work_d);
-	if (FABS(boh_work_d) > KCALC_LONG_MAX)
-	{
-	  //display_error = true;
-		return 0;
-	}
-
-	boh_work_l = static_cast<KCALC_LONG>(boh_work_d);
-	MODF(right_op, &boh_work_d);
-
-	if (FABS(boh_work_d) > KCALC_LONG_MAX)
-	{
-	  //display_error = true;
-		return 0;
-	}
-
-	boh_work_r = static_cast<KCALC_LONG>(boh_work_d);
-	return (boh_work_l & boh_work_r);
+	return (left_op & right_op);
 }
 
-static CALCAMNT ExecLsh(CALCAMNT left_op, CALCAMNT right_op)
+static KNumber ExecLsh(const KNumber & left_op, const KNumber & right_op)
 {
-	// printf("ExecLsh\n");
-	CALCAMNT	boh_work_d;
-	KCALC_LONG	boh_work_l;
-	KCALC_LONG	boh_work_r;
-
-	MODF(left_op, &boh_work_d);
-	if (FABS(boh_work_d) > KCALC_LONG_MAX)
-	{
-	  //display_error = true;
-		return 0;
-	}
-
-	boh_work_l = static_cast<KCALC_LONG>(boh_work_d);
-	MODF(right_op, &boh_work_d);
-
-	if (FABS(boh_work_d) > KCALC_LONG_MAX)
-	{
-	  //display_error = true;
-		return 0;
-	}
-
-	boh_work_r = static_cast<KCALC_LONG>(boh_work_d);
-	return (boh_work_l << boh_work_r);
+	return left_op << right_op;
 }
 
-static CALCAMNT ExecRsh(CALCAMNT left_op, CALCAMNT right_op)
+static KNumber ExecRsh(const KNumber & left_op, const KNumber & right_op)
 {
-	// printf("ExecRsh\n");
-	CALCAMNT	boh_work_d;
-	KCALC_LONG	boh_work_l;
-	KCALC_LONG	boh_work_r;
-
-	MODF(left_op, &boh_work_d);
-	if (FABS(boh_work_d) > KCALC_LONG_MAX)
-	{
-	  //display_error = true;
-		return 0;
-	}
-
-	boh_work_l = static_cast<KCALC_LONG>(boh_work_d);
-	MODF(right_op, &boh_work_d);
-
-	if (FABS(boh_work_d) > KCALC_LONG_MAX)
-	{
-	  //display_error = true;
-		return 0;
-	}
-
-	boh_work_r = static_cast<KCALC_LONG>(boh_work_d);
-	return (boh_work_l >> boh_work_r);
+	return left_op >> right_op;
 }
 
-static CALCAMNT ExecAdd(CALCAMNT left_op, CALCAMNT right_op)
+static KNumber ExecAdd(const KNumber & left_op, const KNumber & right_op)
 {
-	// printf("ExecAdd\n");
-	CALCAMNT tmp_result = left_op + right_op;
-
-	if (!tmp_result)
-		return 0;
-
-	// When operating with floating point numbers the following
-	// effect can happen: 1.0000001 + (-1.0) gives 1.0000232e-6
-	// instead of 1e-6. This looks very bad on a calculator (to
-	// the unexperienced eye). Hence we round in this case.
-	CALCAMNT max_precision = (FABS(left_op) + FABS(right_op))
-	  * CALCAMNT_EPSILON;
-	// we want to round to decimal digits, hence we need to find
-	// the number of valid digits
-	CALCAMNT digits = 1;
-	while (digits > max_precision)
-	  digits *= 0.1L;
-	digits *= 100.0L; // this number is experimental
-
-	return  digits * ROUND(tmp_result/digits);
+	return left_op + right_op;
 }
 
-static CALCAMNT ExecSubtract(CALCAMNT left_op, CALCAMNT right_op)
+static KNumber ExecSubtract(const KNumber & left_op, const KNumber & right_op)
 {
-	// printf("ExecSubtract\n");
-	CALCAMNT tmp_result = left_op - right_op;
-
-	if (!tmp_result)
-		return 0;
-
-	// When operating with floating point numbers the following
-	// effect can happen: 1.0000001 + (-1.0) gives 1.0000232e-6
-	// instead of 1e-6. This looks very bad on a calculator (to
-	// the unexperienced eye). Hence we round in this case.
-	CALCAMNT max_precision = (FABS(left_op) + FABS(right_op))
-	  * CALCAMNT_EPSILON;
-	// we want to round to decimal digits, hence we need to find
-	// the number of valid digits
-	CALCAMNT digits = 1;
-	while (digits > max_precision)
-	  digits *= 0.1L;
-	digits *= 100.0L; // this number is experimental
-
-	return  digits * ROUND(tmp_result/digits);
+	return left_op - right_op;
 }
 
-static CALCAMNT ExecMultiply(CALCAMNT left_op, CALCAMNT right_op)
+static KNumber ExecMultiply(const KNumber & left_op, const KNumber & right_op)
 {
-	// printf("ExecMulti\n");
 	return left_op * right_op;
 }
 
-static CALCAMNT ExecDivide(CALCAMNT left_op, CALCAMNT right_op)
+static KNumber ExecDivide(const KNumber & left_op, const KNumber & right_op)
 {
 	// printf("ExecDivide\n");
-	if (right_op == 0)
+	if (right_op == KNumber::ZeroInteger)
 	{
 		_error = true;
-		return 0L;
+		return KNumber::ZeroInteger;
 	}
 	else
 		return left_op / right_op;
 }
 
-static CALCAMNT ExecMod(CALCAMNT left_op, CALCAMNT right_op)
+static KNumber ExecMod(const KNumber & left_op, const KNumber & right_op)
 {
-	// printf("ExecMod\n");
-	CALCAMNT temp = 0.0;
-
-	if (right_op == 0)
-	{
-		_error = true;
-		return 0L;
-	}
-	else
-	{
-		// x mod y should be the same as x mod -y, thus:
-		right_op = FABS(right_op);
-
-		temp = FMOD(left_op, right_op);
-
-		// let's make sure that -7 mod 3 = 2 and NOT -1.
-		// In other words we wand x mod 3 to be a _positive_ number
-		// that is 0,1 or 2.
-		if( temp < 0 )
-			temp = right_op + temp;
-
-		return FABS(temp);
-	}
+	return left_op % right_op;
 }
 
-static CALCAMNT ExecIntDiv(CALCAMNT left_op, CALCAMNT right_op)
+static KNumber ExecIntDiv(const KNumber & left_op, const KNumber & right_op)
 {
-	// printf("IndDiv\n");
-	if (right_op == 0)
-	{
-		_error = true;
-		return 0L;
-	}
-	else
-	{
-		MODF(left_op / right_op, &left_op);
-		return left_op;
-	}
+  	return (left_op / right_op).integerPart();
 }
 
-int isoddint(CALCAMNT input)
+bool isoddint(const KNumber & input)
 {
-	CALCAMNT	dummy;
-
-	// Routine to check if CALCAMNT is an Odd integer
-	return (MODF(input, &dummy) == 0.0 && MODF(input / 2, &dummy) == 0.5);
+	if (input.type() != KNumber::IntegerType) return false;
+	// Routine to check if KNumber is an Odd integer
+	return ( (input / KNumber(2)).type() == KNumber::IntegerType);
 }
 
-static CALCAMNT ExecPower(CALCAMNT left_op, CALCAMNT right_op)
+static KNumber ExecPower(const KNumber & left_op, const KNumber & right_op)
 {
-	if (right_op == 0)
-		if (left_op == 0) // 0^0 not defined
+  return KNumber::ZeroInteger;
+#if 0
+  if (right_op == KNumber::ZeroInteger)
+	  if (left_op == KNumber::ZeroInteger) // 0^0 not defined
 		{
 			_error = true;		
-			return 0L;
+			return KNumber::ZeroInteger;
 		}
 		else
-			return 1L;
+			return KNumber::OneInteger;
 
 	if (left_op < 0 && isoddint(1 / right_op))
-		left_op = -1L * POW((-1L * left_op), right_op);
+		left_op = - POW((-left_op), right_op);
 	else
 		left_op = POW(left_op, right_op);
 
 	if (errno == EDOM || errno == ERANGE)
 	{
 		_error = true;
-		return 0L;
+		return KNumber::ZeroInteger;
 	}
 	else
 		return left_op;
+#endif
 }
 
-static CALCAMNT ExecPwrRoot(CALCAMNT left_op, CALCAMNT right_op)
+static KNumber ExecPwrRoot(const KNumber & left_op, const KNumber & right_op)
 {
+			return KNumber::ZeroInteger;
+#if 0
 	// printf("ExecPwrRoot  %g left_op, %g right_op\n", left_op, right_op);
 	if (right_op == 0)
 	{
@@ -359,7 +184,7 @@ static CALCAMNT ExecPwrRoot(CALCAMNT left_op, CALCAMNT right_op)
 	}
 
 	if (left_op < 0 && isoddint(right_op))
-		left_op = -1L * POW((-1L * left_op), (1L)/right_op);
+		left_op = - POW((-left_op), (1L)/right_op);
 	else
 		left_op = POW(left_op, (1L)/right_op);
 
@@ -370,26 +195,27 @@ static CALCAMNT ExecPwrRoot(CALCAMNT left_op, CALCAMNT right_op)
 	}
 	else
 		return left_op;
+#endif
 }
 
-static CALCAMNT ExecAddP(CALCAMNT left_op, CALCAMNT right_op)
+static KNumber ExecAddP(const KNumber & left_op, const KNumber & right_op)
 {
-    return left_op * (100.0 + right_op) / 100.0;
+	return left_op * (right_op + KNumber(100)) / KNumber(100);
 }
 
-static CALCAMNT ExecSubP(CALCAMNT left_op, CALCAMNT right_op)
+static KNumber ExecSubP(const KNumber & left_op, const KNumber & right_op)
 {
-    return left_op * (100.0 - right_op) / 100.0;
+	return (left_op * (KNumber(100) - right_op)) / KNumber(100);
 }
 
-static CALCAMNT ExecMultiplyP(CALCAMNT left_op, CALCAMNT right_op)
+static KNumber ExecMultiplyP(const KNumber & left_op, const KNumber & right_op)
 {
-    return left_op*right_op / 100;
+	return left_op * right_op / KNumber(100);
 }
 
-static CALCAMNT ExecDivideP(CALCAMNT left_op, CALCAMNT right_op)
+static KNumber ExecDivideP(const KNumber & left_op, const KNumber & right_op)
 {
-    return left_op * 100 / right_op;
+	return left_op * KNumber(100) / right_op;
 }
 
 
@@ -433,132 +259,148 @@ CalcEngine::CalcEngine()
 #endif
 	sigaction(SIGFPE, &fpe_trap, NULL);
 
-	_last_number = 0L;
+	_last_number = KNumber::ZeroInteger;
 	_error = false;
 }
 
-CALCAMNT CalcEngine::lastOutput(bool &error) const
+KNumber CalcEngine::lastOutput(bool &error) const
 {
 	error = _error;
 	return _last_number;
 }
 
-void CalcEngine::ArcCosDeg(CALCAMNT input)
+void CalcEngine::ArcCosDeg(KNumber input)
 {
-	CALCAMNT tmp = ACOS(input);
+#if 0
+	KNumber tmp = ACOS(input);
 
 	_last_number = Rad2Deg(tmp);
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
+#endif
 }
 
-void CalcEngine::ArcCosRad(CALCAMNT input)
+void CalcEngine::ArcCosRad(KNumber input)
 {
-	CALCAMNT tmp = ACOS(input);
+#if 0
+	KNumber tmp = ACOS(input);
 	
 	_last_number = tmp;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
+#endif
 }
 
-void CalcEngine::ArcCosGrad(CALCAMNT input)
+void CalcEngine::ArcCosGrad(KNumber input)
 {
-	CALCAMNT tmp = ACOS(input);
+#if 0
+	KNumber tmp = ACOS(input);
 
 	_last_number = Rad2Gra(tmp);
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
+#endif
 }
 
-void CalcEngine::ArcSinDeg(CALCAMNT input)
+void CalcEngine::ArcSinDeg(KNumber input)
 {
-	CALCAMNT tmp = ASIN(input);
+#if 0
+	KNumber tmp = ASIN(input);
 	
 	_last_number = Rad2Deg(tmp);
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
+#endif
 }
 
-void CalcEngine::ArcSinRad(CALCAMNT input)
+void CalcEngine::ArcSinRad(KNumber input)
 {
-	CALCAMNT tmp = ASIN(input);
+#if 0
+	KNumber tmp = ASIN(input);
 
 	_last_number = tmp;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
+#endif
 }
 
-void CalcEngine::ArcSinGrad(CALCAMNT input)
+void CalcEngine::ArcSinGrad(KNumber input)
 {
-	CALCAMNT tmp = ASIN(input);
+#if 0
+	KNumber tmp = ASIN(input);
 
 	_last_number = Rad2Gra(tmp);
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
+#endif
 }
 
-void CalcEngine::ArcTangensDeg(CALCAMNT input)
+void CalcEngine::ArcTangensDeg(KNumber input)
 {
-	CALCAMNT tmp = ATAN(input);
+#if 0
+	KNumber tmp = ATAN(input);
 	
 	_last_number = Rad2Deg(tmp);
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
+#endif
 }
 
-void CalcEngine::ArcTangensRad(CALCAMNT input)
+void CalcEngine::ArcTangensRad(KNumber input)
 {
+#if 0
 	_last_number = ATAN(input);
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
+#endif
 }
 
-void CalcEngine::ArcTangensGrad(CALCAMNT input)
+void CalcEngine::ArcTangensGrad(KNumber input)
 {
-	CALCAMNT tmp = ATAN(input);
+#if 0
+	KNumber tmp = ATAN(input);
 
 	_last_number = Rad2Gra(tmp);
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
+#endif
 }
 
-void CalcEngine::AreaCosHyp(CALCAMNT input)
+void CalcEngine::AreaCosHyp(KNumber input)
 {
-	_last_number = ACOSH(input);
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
+	CALCAMNT tmp_num = input.toQString().toDouble();
+	_last_number = KNumber(double(ACOSH(tmp_num)));
 }
 
-void CalcEngine::AreaSinHyp(CALCAMNT input)
+void CalcEngine::AreaSinHyp(KNumber input)
 {
-	_last_number = ASINH(input);
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
+	CALCAMNT tmp_num = input.toQString().toDouble();
+	_last_number = KNumber(double(ASINH(tmp_num)));
 }
 
-void CalcEngine::AreaTangensHyp(CALCAMNT input)
+void CalcEngine::AreaTangensHyp(KNumber input)
 {
-	_last_number = ATANH(input);
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
+	CALCAMNT tmp_num = input.toQString().toDouble();
+	_last_number = KNumber(double(ATANH(tmp_num)));
 }
 
-void CalcEngine::Complement(CALCAMNT input)
+void CalcEngine::Complement(KNumber input)
 {
-	CALCAMNT boh_work_d;
+#if 0
+	KNumber boh_work_d;
 
 	MODF(input, &boh_work_d);
 
-	if (FABS(boh_work_d) > KCALC_LONG_MAX)
+	if (boh_work_d.abs() > KCALC_LONG_MAX)
 	{
 		_error = true;
 		return;
@@ -567,11 +409,13 @@ void CalcEngine::Complement(CALCAMNT input)
 	KCALC_LONG boh_work = static_cast<KCALC_LONG>(boh_work_d);
 
 	_last_number = ~boh_work;
+#endif
 }
 
-void CalcEngine::CosDeg(CALCAMNT input)
+void CalcEngine::CosDeg(KNumber input)
 {
-	CALCAMNT tmp = input;
+#if 0
+	KNumber tmp = input;
 	
 	tmp = Deg2Rad(input);
 
@@ -579,29 +423,33 @@ void CalcEngine::CosDeg(CALCAMNT input)
 
 	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
 	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = 0.0;
+		_last_number = KNumber::ZeroInteger;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
+#endif
 }
 
-void CalcEngine::CosRad(CALCAMNT input)
+void CalcEngine::CosRad(KNumber input)
 {
-	CALCAMNT tmp = input;
+#if 0
+	KNumber tmp = input;
 
 	_last_number = COS(tmp);
 
 	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
 	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = 0.0;
+		_last_number = KNumber::ZeroInteger;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
+#endif
 }
 
-void CalcEngine::CosGrad(CALCAMNT input)
+void CalcEngine::CosGrad(KNumber input)
 {
-	CALCAMNT tmp = input;
+#if 0
+	KNumber tmp = input;
 
 	tmp = Gra2Rad(input);
 
@@ -609,41 +457,48 @@ void CalcEngine::CosGrad(CALCAMNT input)
 
 	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
 	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = 0.0;
+		_last_number = KNumber::ZeroInteger;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
+#endif
 }
 
-void CalcEngine::CosHyp(CALCAMNT input)
+void CalcEngine::CosHyp(KNumber input)
 {
-	_last_number = COSH(input);
+	CALCAMNT tmp_num = input.toQString().toDouble();
+	_last_number = KNumber(double(COSH(tmp_num)));
 }
 
-void CalcEngine::Cube(CALCAMNT input)
+void CalcEngine::Cube(KNumber input)
 {
-	if (ISINF(_last_number = input*input*input))
-		_error = true;
+	_last_number = input*input*input;
 }
 
-void CalcEngine::CubeRoot(CALCAMNT input)
+void CalcEngine::CubeRoot(KNumber input)
 {
+#if 0
 	_last_number = CBRT(input);
+#endif
 }
 
-void CalcEngine::Exp(CALCAMNT input)
+void CalcEngine::Exp(KNumber input)
 {
-	_last_number = EXP(input);
+	CALCAMNT tmp_num = input.toQString().toDouble();
+	_last_number = KNumber(double(EXP(tmp_num)));
 }
 
-void CalcEngine::Exp10(CALCAMNT input)
+void CalcEngine::Exp10(KNumber input)
 {
+#if 0
 	_last_number = POW(10, input);
+#endif
 }
 
-static CALCAMNT _factorial(CALCAMNT input)
+#if 0
+static KNumber _factorial(KNumber input)
 {
-	CALCAMNT tmp_amount = input;
+	KNumber tmp_amount = input;
 
 	// don't do recursive factorial,
 	// because large numbers lead to
@@ -665,10 +520,12 @@ static CALCAMNT _factorial(CALCAMNT input)
 		return 1;
 	return input;
 }
+#endif
 
-void CalcEngine::Factorial(CALCAMNT input)
+void CalcEngine::Factorial(KNumber input)
 {
-	CALCAMNT tmp_amount;
+#if 0
+	KNumber tmp_amount;
 
 	if (input < 0)
 	{
@@ -679,31 +536,36 @@ void CalcEngine::Factorial(CALCAMNT input)
 	MODF(input, &tmp_amount);
 
 	_last_number = _factorial(tmp_amount);
+#endif
 
 }
 
-void CalcEngine::InvertSign(CALCAMNT input)
+void CalcEngine::InvertSign(KNumber input)
 {
 	_last_number = -input;
 }
 
-void CalcEngine::Ln(CALCAMNT input)
+void CalcEngine::Ln(KNumber input)
 {
-	if (input <= 0.0)
+	if (input <= KNumber::ZeroInteger)
 		_error = true;
-	else
-		_last_number = LN(input);
+	else {
+		CALCAMNT tmp_num = input.toQString().toDouble();
+		_last_number = KNumber(double(LN(tmp_num)));
+	}
 }
 
-void CalcEngine::Log10(CALCAMNT input)
+void CalcEngine::Log10(KNumber input)
 {
-	if (input <= 0.0)
+	if (input <= KNumber::ZeroInteger)
 		_error = true;
-	else
-		_last_number = LOG_TEN(input);
+	else {
+		CALCAMNT tmp_num = input.toQString().toDouble();
+		_last_number = KNumber(double(LOG_TEN(tmp_num)));
+	}
 }
 
-void CalcEngine::ParenClose(CALCAMNT input)
+void CalcEngine::ParenClose(KNumber input)
 {
  	// evaluate stack until corresponding opening bracket
 	while (!_stack.isEmpty())
@@ -718,22 +580,23 @@ void CalcEngine::ParenClose(CALCAMNT input)
 	return;
 }
 
-void CalcEngine::ParenOpen(CALCAMNT input)
+void CalcEngine::ParenOpen(KNumber input)
 {
 	enterOperation(input, FUNC_BRACKET);
 }
 
-void CalcEngine::Reciprocal(CALCAMNT input)
+void CalcEngine::Reciprocal(KNumber input)
 {
-	if (input == 0.0)
+	if (input == KNumber::ZeroInteger)
 		_error = true;
 	else
-		_last_number = 1/input;
+		_last_number = KNumber::OneInteger/input;
 }
 
-void CalcEngine::SinDeg(CALCAMNT input)
+void CalcEngine::SinDeg(KNumber input)
 {
-	CALCAMNT tmp = input;
+#if 0
+	KNumber tmp = input;
 
 	tmp = Deg2Rad(input);
 
@@ -741,29 +604,33 @@ void CalcEngine::SinDeg(CALCAMNT input)
 
 	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
 	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = 0.0;
+		_last_number = KNumber::ZeroInteger;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
+#endif
 }
 
-void CalcEngine::SinRad(CALCAMNT input)
+void CalcEngine::SinRad(KNumber input)
 {
-	CALCAMNT tmp = input;
+#if 0
+	KNumber tmp = input;
 
 	_last_number = SIN(tmp);
 
 	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
 	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = 0.0;
+		_last_number = KNumber::ZeroInteger;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
+#endif
 }
 
-void CalcEngine::SinGrad(CALCAMNT input)
+void CalcEngine::SinGrad(KNumber input)
 {
-	CALCAMNT tmp = input;
+#if 0
+	KNumber tmp = input;
 
 	tmp = Gra2Rad(input);
 
@@ -771,57 +638,58 @@ void CalcEngine::SinGrad(CALCAMNT input)
 
 	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
 	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = 0.0;
+		_last_number = KNumber::ZeroInteger;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
+#endif
 }
 
-void CalcEngine::SinHyp(CALCAMNT input)
+void CalcEngine::SinHyp(KNumber input)
 {
-	_last_number = SINH(input);
+	CALCAMNT tmp_num = input.toQString().toDouble();
+	_last_number = KNumber(double(SINH(tmp_num)));
 }
 
-void CalcEngine::Square(CALCAMNT input)
+void CalcEngine::Square(KNumber input)
 {
-	if (ISINF(_last_number = input*input))
-		_error = true;
+	_last_number = input*input;
 }
 
-void CalcEngine::SquareRoot(CALCAMNT input)
+void CalcEngine::SquareRoot(KNumber input)
 {
-	if (input < 0.0)
+	if (input < KNumber::ZeroInteger)
 		_error = true;
 	else
-		_last_number = SQRT(input);
+		_last_number = input.sqrt();
 }
 
-void CalcEngine::StatClearAll(CALCAMNT input)
+void CalcEngine::StatClearAll(KNumber input)
 {
 	UNUSED(input);
 	stats.clearAll();
 }
 
-void CalcEngine::StatCount(CALCAMNT input)
+void CalcEngine::StatCount(KNumber input)
 {
 	UNUSED(input);
-	_last_number = stats.count();
+	_last_number = KNumber(stats.count());
 }
 
-void CalcEngine::StatDataNew(CALCAMNT input)
+void CalcEngine::StatDataNew(KNumber input)
 {
 	stats.enterData(input);
-	_last_number = stats.count();
+	_last_number = KNumber(stats.count());
 }
 
-void CalcEngine::StatDataDel(CALCAMNT input)
+void CalcEngine::StatDataDel(KNumber input)
 {
 	UNUSED(input);
 	stats.clearLast();
-	_last_number = 0L;
+	_last_number = KNumber::ZeroInteger;
 }
 
-void CalcEngine::StatMean(CALCAMNT input)
+void CalcEngine::StatMean(KNumber input)
 {
 	UNUSED(input);
 	_last_number = stats.mean();
@@ -829,7 +697,7 @@ void CalcEngine::StatMean(CALCAMNT input)
 	_error = stats.error();
 }
 
-void CalcEngine::StatMedian(CALCAMNT input)
+void CalcEngine::StatMedian(KNumber input)
 {
 	UNUSED(input);
 	_last_number = stats.median();
@@ -837,7 +705,7 @@ void CalcEngine::StatMedian(CALCAMNT input)
 	_error = stats.error();
 }
 
-void CalcEngine::StatStdDeviation(CALCAMNT input)
+void CalcEngine::StatStdDeviation(KNumber input)
 {
 	UNUSED(input);
 	_last_number = stats.std();
@@ -845,7 +713,7 @@ void CalcEngine::StatStdDeviation(CALCAMNT input)
 	_error = stats.error();
 }
 
-void CalcEngine::StatStdSample(CALCAMNT input)
+void CalcEngine::StatStdSample(KNumber input)
 {
 	UNUSED(input);
 	_last_number = stats.sample_std();
@@ -853,13 +721,13 @@ void CalcEngine::StatStdSample(CALCAMNT input)
 	_error = stats.error();
 }
 
-void CalcEngine::StatSum(CALCAMNT input)
+void CalcEngine::StatSum(KNumber input)
 {
 	UNUSED(input);
 	_last_number = stats.sum();
 }
 
-void CalcEngine::StatSumSquares(CALCAMNT input)
+void CalcEngine::StatSumSquares(KNumber input)
 {
 	UNUSED(input);
 	_last_number = stats.sum_of_squares();
@@ -867,88 +735,92 @@ void CalcEngine::StatSumSquares(CALCAMNT input)
 	_error = stats.error();
 }
 
-void CalcEngine::TangensDeg(CALCAMNT input)
+void CalcEngine::TangensDeg(KNumber input)
 {
-	CALCAMNT aux, tmp = Deg2Rad(input);
+	KNumber aux, tmp = Deg2Rad(input);
 	
-	aux = tmp;
-	// make aux positive
-	if (aux < 0) aux = -aux;
+	aux = tmp.abs();
 	// put aux between 0 and pi
 	while (aux > pi) aux -= pi;
 	// if were are really close to pi/2 throw an error
 	// tan(pi/2) => inf
 	// using the 10 factor because without it 270Âº tan still gave a result
-	if ( (aux - pi/2 < POS_ZERO * 10) && (aux - pi/2 > NEG_ZERO * 10) )
-		_error = true;
-	else
-		_last_number = TAN(tmp);
+#warning is this still necesary
+	//	if ( (aux - pi/2 < POS_ZERO * 10) && (aux - pi/2 > NEG_ZERO * 10) )
+	//		_error = true;
+	//	else
+		CALCAMNT tmp_num = tmp.toQString().toDouble();
+		_last_number = KNumber(double(TAN(tmp_num)));
 
 	// Now a cheat to help the weird case of TAN 0 degrees not being 0!!!
-	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = 0.0;
+		//	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
+		//		_last_number = KNumber::ZeroInteger;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
 }
 
-void CalcEngine::TangensRad(CALCAMNT input)
+void CalcEngine::TangensRad(KNumber input)
 {
-	CALCAMNT aux, tmp = input;
+	KNumber aux, tmp = input;
 	
-	aux = tmp;
-	// make aux positive
-	if (aux < 0) aux = -aux;
+	aux = tmp.abs();
 	// put aux between 0 and pi
 	while (aux > pi) aux -= pi;
 	// if were are really close to pi/2 throw an error
 	// tan(pi/2) => inf
 	// using the 10 factor because without it 270Âº tan still gave a result
-	if ( (aux - pi/2 < POS_ZERO * 10) && (aux - pi/2 > NEG_ZERO * 10) )
-		_error = true;
-	else
-		_last_number = TAN(tmp);
+#warning is this still necesary
+	//if ( (aux - pi/2 < POS_ZERO * 10) && (aux - pi/2 > NEG_ZERO * 10) )
+	//		_error = true;
+	//	else
+		CALCAMNT tmp_num = tmp.toQString().toDouble();
+		_last_number = KNumber(double(TAN(tmp_num)));
 
 	// Now a cheat to help the weird case of TAN 0 degrees not being 0!!!
-	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = 0.0;
+#warning is this still necesary
+	//	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
+	//	_last_number = KNumber::ZeroInteger;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
 }
 
-void CalcEngine::TangensGrad(CALCAMNT input)
+void CalcEngine::TangensGrad(KNumber input)
 {
-	CALCAMNT aux, tmp = Gra2Rad(input);
+	KNumber aux, tmp = Gra2Rad(input);
 	
-	aux = tmp;
-	// make aux positive
-	if (aux < 0) aux = -aux;
+	aux = tmp.abs();
 	// put aux between 0 and pi
 	while (aux > pi) aux -= pi;
 	// if were are really close to pi/2 throw an error
 	// tan(pi/2) => inf
 	// using the 10 factor because without it 270Âº tan still gave a result
-	if ( (aux - pi/2 < POS_ZERO * 10) && (aux - pi/2 > NEG_ZERO * 10) )
+	if(false)
+#warning is this still necesary
+	  //if ( (aux - pi/2 < POS_ZERO * 10) && (aux - pi/2 > NEG_ZERO * 10) )
 		_error = true;
-	else
-		_last_number = TAN(tmp);
-
+	else {
+		CALCAMNT tmp_num = tmp.toQString().toDouble();
+		_last_number = KNumber(double(TAN(tmp_num)));
+	}
 	// Now a cheat to help the weird case of TAN 0 degrees not being 0!!!
-	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = 0.0;
+#warning is this still necesary
+	//	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
+	//	_last_number = KNumber::ZeroInteger;
 
 	//if (errno == EDOM || errno == ERANGE)
 	//	_error = true;
 }
 
-void CalcEngine::TangensHyp(CALCAMNT input)
+void CalcEngine::TangensHyp(KNumber input)
 {
-	_last_number = TANH(input);
+	CALCAMNT tmp_num = input.toQString().toDouble();
+	_last_number = KNumber(double(TANH(tmp_num)));
 }
 
-CALCAMNT CalcEngine::evalOperation(CALCAMNT arg1, Operation operation,
-				   CALCAMNT arg2)
+KNumber CalcEngine::evalOperation(KNumber arg1, Operation operation,
+				   KNumber arg2)
 {
 	if (!_percent_mode || Operator[operation].prcnt_ptr == NULL)
 	{
@@ -959,7 +831,7 @@ CALCAMNT CalcEngine::evalOperation(CALCAMNT arg1, Operation operation,
 	}
 }
 
-void CalcEngine::enterOperation(CALCAMNT number, Operation func)
+void CalcEngine::enterOperation(KNumber number, Operation func)
 {
 	_node tmp_node;
 
@@ -1000,7 +872,7 @@ bool CalcEngine::evalStack(void)
 		    Operator[tmp_node2.operation].precedence)
 		{
 			if (tmp_node2.operation == FUNC_BRACKET) continue;
-			CALCAMNT tmp_result =
+			KNumber tmp_result =
 			  evalOperation(tmp_node2.number, tmp_node2.operation,
 					tmp_node.number);
 			tmp_node.number = tmp_result;
@@ -1023,7 +895,7 @@ bool CalcEngine::evalStack(void)
 void CalcEngine::Reset()
 {
 	_error = false;
-	_last_number = 0L;
+	_last_number = KNumber::ZeroInteger;
 
 	_stack.clear();
 }

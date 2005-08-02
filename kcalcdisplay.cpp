@@ -84,7 +84,7 @@ bool KCalcDisplay::sendEvent(Event const event)
 	{
 	case EventReset:
 		_error = false;
-		_display_amount = 0.0;
+		_display_amount = KNumber::ZeroInteger;
 		_str_int = "0";
 		_str_int_exp = QString::null;
 
@@ -165,7 +165,7 @@ void KCalcDisplay::slotPaste(bool bClipboard)
 			return ;
 		}
 	  
-		setAmount(tmp_result);
+		setAmount(static_cast<double>(tmp_result));
 	} 
 	else
 	{
@@ -240,7 +240,7 @@ void KCalcDisplay::setGroupDigits(bool flag)
 	_groupdigits = flag;
 }
 
-CALCAMNT KCalcDisplay::getAmount(void) const
+KNumber const & KCalcDisplay::getAmount(void) const
 {
 	return _display_amount;
 }
@@ -259,12 +259,12 @@ bool KCalcDisplay::setAmount(const QString &string)
 		return false;
 	}
 	
-	setAmount(tmp_result);
+	setAmount(static_cast<double>(tmp_result));
 
 	return true;
 }
 
-bool KCalcDisplay::setAmount(CALCAMNT new_amount)
+bool KCalcDisplay::setAmount(KNumber const & new_amount)
 {
 	if(_error) return false;
 
@@ -299,12 +299,12 @@ bool KCalcDisplay::setAmount(CALCAMNT new_amount)
 		//
 		else if (tmp_round > KCALC_LONG_MAX)
 		{
-			_display_amount = KCALC_LONG_MIN + (tmp_round - KCALC_LONG_MAX - 1);
+		  _display_amount = static_cast<double>(KCALC_LONG_MIN + (tmp_round - KCALC_LONG_MAX - 1));
 			rounded_num = static_cast<KCALC_LONG>(_display_amount);
 		}
 		else
 		{
-			_display_amount = tmp_round;
+		  _display_amount = static_cast<double>(tmp_round);
 			rounded_num = static_cast<KCALC_LONG>(_display_amount);
 		}
 
@@ -319,14 +319,15 @@ bool KCalcDisplay::setAmount(CALCAMNT new_amount)
 	{
 		// We need to use QCString here since it uses the systems native ::sprintf()
 		// implementation which is more flexible than QString's.
-
+	  display_str = _display_amount.toQString();
+#if 0
 		if (_fixed_precision != -1 && _display_amount <= 1.0e+16)
 			display_str = QCString().sprintf(PRINT_FLOAT, _fixed_precision, _display_amount);
 		else if (_display_amount > 1.0e+16)
 			display_str = QCString().sprintf(PRINT_LONG_BIG, _precision + 1, _display_amount);
 		else
 			display_str = QCString().sprintf(PRINT_LONG_BIG, _precision, _display_amount);
-
+#endif
 		if (display_str.length() > DSP_SIZE)
 		{
 			sendEvent(EventError);
@@ -357,7 +358,8 @@ QString KCalcDisplay::text() const
 	if (_num_base != NB_DECIMAL || _error)
 		return QLabel::text();
 
-	return QCString().sprintf(PRINT_LONG_BIG, 40, _display_amount);
+	return _display_amount.toQString();
+	//	return QCString().sprintf(PRINT_LONG_BIG, 40, _display_amount);
 }
 
 /* change representation of display to new base (i.e. binary, decimal,
@@ -394,7 +396,7 @@ int KCalcDisplay::setBase(NumBase new_base)
 		_display_size	= DEC_SIZE;
 	}
 
-	setAmount(tmp_val);
+	setAmount(static_cast<double>(tmp_val));
 	
 	return _num_base;
 }
@@ -422,7 +424,7 @@ bool KCalcDisplay::updateDisplay(void)
 		Q_ASSERT(_period == false  && _eestate == false);
 		Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 		setText(tmp_string);
-		_display_amount = STRTOUL(_str_int.latin1(), 0, 2);
+		_display_amount = 0;//STRTOUL(_str_int.latin1(), 0, 2);
 		if (_neg_sign)
 			_display_amount = -_display_amount;
 		//str_size = cvb(_str_int, boh_work, DSP_SIZE);
@@ -432,7 +434,7 @@ bool KCalcDisplay::updateDisplay(void)
 		Q_ASSERT(_period == false  && _eestate == false);
 		Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 		setText(tmp_string);
-		_display_amount = STRTOUL(_str_int.latin1(), 0, 8);
+		_display_amount = 0;//STRTOUL(_str_int.latin1(), 0, 8);
 		if (_neg_sign)
 			_display_amount = -_display_amount;
 		break;
@@ -441,7 +443,7 @@ bool KCalcDisplay::updateDisplay(void)
 		Q_ASSERT(_period == false  && _eestate == false);
 		Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 		setText(tmp_string);
-		_display_amount = STRTOUL(_str_int.latin1(), 0, 16);
+		_display_amount = 0;//STRTOUL(_str_int.latin1(), 0, 16);
 		if (_neg_sign)
 			_display_amount = -_display_amount;
 		break;
@@ -451,7 +453,7 @@ bool KCalcDisplay::updateDisplay(void)
 		{
 			Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 			setText(tmp_string);
-			_display_amount = toDouble(tmp_string, tmp_flag);
+			_display_amount = tmp_string; tmp_flag = true;//toDouble(tmp_string, tmp_flag);
 			Q_ASSERT(tmp_flag == true);
 		}
 		else
@@ -460,7 +462,7 @@ bool KCalcDisplay::updateDisplay(void)
 			{
 				// add 'e0' to display but not to conversion
 				Q_ASSERT(tmp_string.length()+2 <= DSP_SIZE);
-				_display_amount = toDouble(tmp_string, tmp_flag);
+				_display_amount = tmp_string;//toDouble(tmp_string, tmp_flag);
 				Q_ASSERT(tmp_flag == true);
 				setText(tmp_string + "e0");
 			}
@@ -469,7 +471,7 @@ bool KCalcDisplay::updateDisplay(void)
 				tmp_string +=  'e' + _str_int_exp;
 				Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 				setText(tmp_string);
-				_display_amount = toDouble(tmp_string, tmp_flag);
+				_display_amount = tmp_string; tmp_flag = true;//toDouble(tmp_string, tmp_flag);
 				Q_ASSERT(tmp_flag == true);
 			}
 		}

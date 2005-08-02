@@ -162,8 +162,8 @@ protected slots:
 private:
 	bool inverse;
 	bool hyp_mode;
-	CALCAMNT memory_num;
-	CALCAMNT setvalue;
+	KNumber memory_num;
+	KNumber setvalue;
 
 	// angle modes for trigonometric values
 	enum {

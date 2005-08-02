@@ -50,9 +50,7 @@
 
 
 #if defined(HAVE_LONG_DOUBLE) && defined(HAVE_L_FUNCS)
-	#define FABS(X)		fabsl(X)
 	#define MODF(X,Y)	modfl(X,Y)
-	#define FMOD(X,Y)	fmodl(X,Y)
 	#define SIN(X)		sinl(X)
 	#define ASIN(X)		asinl(X)
 	#define SINH(X)		sinhl(X)
@@ -76,9 +74,7 @@
 	#define ROUND(X)	roundl(X)
 	#define CALCAMNT_EPSILON	LDBL_EPSILON
 #else
-	#define FABS(X)		fabs(X)
 	#define MODF(X,Y)	modf(X,Y)
-	#define FMOD(X,Y)	fmod(X,Y)
 	#define SIN(X)		sin(X)
 	#define ASIN(X)		asin(X)
 	#define SINH(X)		sinh(X)

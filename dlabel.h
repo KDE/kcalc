@@ -30,7 +30,6 @@
 
 #include <qvaluevector.h>
 #include "kcalcdisplay.h"
-#include "kcalctype.h"
 
 class CalcEngine;
 class KAction;
@@ -55,7 +54,7 @@ private slots:
 	void history_forward(void);
 
 private:
-	QValueVector<CALCAMNT> _history_list;
+	QValueVector<KNumber> _history_list;
 	int _history_index;
 
 	KAction *_forward;

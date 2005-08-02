@@ -29,8 +29,8 @@
 #include <stdlib.h>
 #include <qlabel.h>
 #include <qtimer.h>
+#include "knumber.h"
 #include "kcalctype.h"
-
 
 #if defined HAVE_LONG_DOUBLE && defined HAVE_L_FUNCS
 	#define PRINT_FLOAT     "%.*Lf"
@@ -107,11 +107,11 @@ public:
 	};
 	bool sendEvent(Event const event);
 	void deleteLastDigit(void);
-	CALCAMNT getAmount(void) const;
+	KNumber const & getAmount(void) const;
 	bool getError(void) const;
 	void newCharacter(char const new_char);
 	bool setAmount(const QString &string);
-	bool setAmount(CALCAMNT new_amount);
+	bool setAmount(KNumber const & new_amount);
 	int setBase(NumBase new_base);
 	void setBeep(bool flag);
 	void setGroupDigits(bool flag);
@@ -134,7 +134,7 @@ private:
 	int _fixed_precision; // "-1" = no fixed_precision
 
 	bool _error;
-	CALCAMNT _display_amount;
+	KNumber _display_amount;
 private:
 	bool changeSign(void);
 	void invertColors(void);
