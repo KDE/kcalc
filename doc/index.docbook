@@ -265,6 +265,12 @@ sinh(x)</entry></row>
 <sect1 id="memory-operations">
 <title>Memory Operations</title>
 
+<para>&kcalc; supports the memory operations given by standard
+calculators plus six slots to hold constants.</para>
+
+<sect2 id="standard_memory">
+<title> Standard Memory Operations</title>
+
 <para>&kcalc; can remember results of operations for you, and re-use them in
 later calculations.  You can access these functions via several buttons
 labelled <guibutton>MR</guibutton>, <guibutton>MS</guibutton>,
@@ -301,6 +307,43 @@ memory.</para></listitem>
 
 <para>If a value is stored in memory a <guilabel>M</guilabel> will appear in
 the status bar, next to the calculator mode indicator</para>
+</sect2>
+
+<sect2 id="constant_buttons">
+<title>Constants</title>
+
+<para>The six constants buttons <guibutton>C1</guibutton> to
+<guibutton>C6</guibutton> will only be visible after activating the
+item <guilabel>Constants Buttons</guilabel> in the menu
+<guimenu>Settings</guimenu> of the menu bar.</para>
+
+<para>To store the number shown in the &kcalc;-display on one of the
+six constants buttons, press first <guibutton>Inv</guibutton> followed
+by the desired button key <guibutton>C1</guibutton> up to
+<guibutton>C6</guibutton>.</para>
+
+<para>To use the value stored in any of the contants buttons in a
+calculation, just press the desired button <guibutton>C1</guibutton> -
+<guibutton>C6</guibutton>, and the corresponding number will appear in
+the display.</para>
+
+<para>It is possible to change the label of the constants button to
+make it easier for the user to remember which button holds which
+constant. Klick with the right mouse button on one of
+<guibutton>C1</guibutton> - <guibutton>C6</guibutton>. A popup menu
+appears, where one has to select <guilabel>Set Name</guilabel>.</para>
+
+<para>There are many (mostly physical) predefined constants, which can
+be put on any of the six buttons <guibutton>C1</guibutton> -
+<guibutton>C6</guibutton> by selecting the desired constant in the
+popup menu that appears after right clicking on one of the constant
+buttons and selecting <guilabel>Choose from List</guilabel>. Though
+the predefined constants can also be accessed via the
+<guimenu>Constants</guimenu> in the menu bar, storing it on a
+constants button is very handy, if the number is used
+frequently.</para>
+
+</sect2>
 
 </sect1>
 
