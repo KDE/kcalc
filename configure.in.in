@@ -69,5 +69,8 @@ KDE_CHECK_HEADER([gmp.h], [
     LIBGMP="-lgmp"
     AC_DEFINE(HAVE_GMP, 1, [Define if you have libgmp])
   ])
-])
+  ],[
+  DO_NOT_COMPILE="kcalc $DO_NOT_COMPILE"
+  ]
+)
 AC_SUBST(LIBGMP)
