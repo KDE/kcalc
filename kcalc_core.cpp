@@ -489,7 +489,7 @@ void CalcEngine::Exp10(KNumber input)
 #endif
 }
 
-#if 0
+
 static KNumber _factorial(KNumber input)
 {
 	KNumber tmp_amount = input;
@@ -497,41 +497,31 @@ static KNumber _factorial(KNumber input)
 	// don't do recursive factorial,
 	// because large numbers lead to
 	// stack overflows
-	while (tmp_amount > 1.0)
+	while (tmp_amount > KNumber::One)
 	{
-		tmp_amount--;
+		tmp_amount -= KNumber::One;
 
-		input *= tmp_amount;
+		input = tmp_amount * input;
 
-		if(ISINF(input))
-		{
-			_error = true;
-			return 0;
-		}
 	}
 
-	if (tmp_amount < 1)
-		return 1;
+	if (tmp_amount < KNumber::One)
+		return KNumber::One;
 	return input;
 }
-#endif
+
 
 void CalcEngine::Factorial(KNumber input)
 {
-#if 0
-	KNumber tmp_amount;
+	KNumber tmp_amount = input.integerPart();
 
-	if (input < 0)
+	if (input < KNumber::Zero)
 	{
 		_error = true;
 		return;
 	}
 
-	MODF(input, &tmp_amount);
-
 	_last_number = _factorial(tmp_amount);
-#endif
-
 }
 
 void CalcEngine::InvertSign(KNumber input)
@@ -581,10 +571,7 @@ void CalcEngine::ParenOpen(KNumber input)
 
 void CalcEngine::Reciprocal(KNumber input)
 {
-	if (input == KNumber::Zero)
-		_error = true;
-	else
-		_last_number = KNumber::One/input;
+	_last_number = KNumber::One/input;
 }
 
 void CalcEngine::SinDeg(KNumber input)
@@ -652,10 +639,7 @@ void CalcEngine::Square(KNumber input)
 
 void CalcEngine::SquareRoot(KNumber input)
 {
-	if (input < KNumber::Zero)
-		_error = true;
-	else
-		_last_number = input.sqrt();
+	_last_number = input.sqrt();
 }
 
 void CalcEngine::StatClearAll(KNumber input)
