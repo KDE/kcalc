@@ -228,6 +228,8 @@ int main(void)
 
   checkResult("KNumber(\"5\")", KNumber("5"), "5", KNumber::IntegerType);
   checkResult("KNumber(\"5/3\")", KNumber("5/3"), "5/3", KNumber::FractionType);
+  checkResult("KNumber(\"5/1\")", KNumber("5/1"), "5", KNumber::IntegerType);
+  checkResult("KNumber(\"0/12\")", KNumber("0/12"), "0", KNumber::IntegerType);
   checkResult("KNumber(\"5.3\")", KNumber("5.3"), "5.3", KNumber::FloatType);
 
   std::cout << "\n\nConstants:\n";

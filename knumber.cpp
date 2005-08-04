@@ -43,6 +43,9 @@ KNumber::KNumber(double num)
 KNumber::KNumber(KNumber const & num)
 {
   switch(num.type()) {
+  case SpecialType:
+    _num = new _knumerror(*(num._num));
+    return;
   case IntegerType:
     _num = new _knuminteger(*(num._num));
     return;
@@ -60,14 +63,18 @@ KNumber::KNumber(QString const & num)
 {
   if (QRegExp("^[+-]?\\d+$").exactMatch(num))
     _num = new _knuminteger(num);
-  else if (QRegExp("^[+-]?\\d+/\\d+$").exactMatch(num))
+  else if (QRegExp("^[+-]?\\d+/\\d+$").exactMatch(num)) {
     _num = new _knumfraction(num);
+    simplifyRational();
+  }
   else if (QRegExp("^[+-]?\\d+(\\.\\d*)?(e[+-]?\\d+)?$").exactMatch(num))
     _num = new _knumfloat(num);
 }
 
 KNumber::NumType KNumber::type(void) const
 {
+  if(dynamic_cast<_knumerror *>(_num))
+    return SpecialType;
   if(dynamic_cast<_knuminteger *>(_num))
     return IntegerType;
   if(dynamic_cast<_knumfraction *>(_num))
@@ -76,6 +83,10 @@ KNumber::NumType KNumber::type(void) const
     return FloatType;
 }
 
+// This method converts a fraction to an integer, whenever possible,
+// i.e. 5/1 --> 5
+// This method should be called, whenever such a inproper fraction can occur,
+// e.g. when adding 4/3 + 2/3....
 void KNumber::simplifyRational(void)
 {
   if (type() != FractionType)
@@ -100,6 +111,9 @@ KNumber const & KNumber::operator=(KNumber const & num)
   delete _num;
 
   switch(num.type()) {
+  case SpecialType:
+    _num = new _knumerror();
+    break;
   case IntegerType:
     _num = new _knuminteger();
     break;
@@ -123,6 +137,9 @@ KNumber & KNumber::operator +=(KNumber const &arg)
   delete _num;
 
   switch(tmp_num.type()) {
+  case SpecialType:
+    _num = new _knumerror();
+    break;
   case IntegerType:
     _num = new _knuminteger();
     break;
@@ -146,6 +163,9 @@ KNumber & KNumber::operator -=(KNumber const &arg)
   delete _num;
 
   switch(tmp_num.type()) {
+  case SpecialType:
+    _num = new _knumerror();
+    break;
   case IntegerType:
     _num = new _knuminteger();
     break;
@@ -339,8 +359,7 @@ KNumber::operator bool(void) const
 
 int const KNumber::compare(KNumber const & arg2) const
 {
-#warning this is a stub
-  return 0;
+  return _num->compare(*arg2._num);
 }
 
 #else  // !HAVE_GMP

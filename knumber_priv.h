@@ -26,11 +26,12 @@ class QString;
 class _knumber
 {
  public:
-  enum NumType {IntegerType, FractionType, FloatType};
+  enum NumType {SpecialType, IntegerType, FractionType, FloatType};
+  enum ErrorType {UndefinedNumber, Infinity, MinusInfinity};
 
   _knumber() {}
 
-  virtual ~_knumber() {};
+  virtual ~_knumber() {}
 
   virtual void copy(_knumber const & num) = 0;
 
@@ -40,14 +41,64 @@ class _knumber
 
   virtual _knumber * abs(void) const = 0;
   virtual _knumber * intPart(void) const = 0;
+  virtual int sign(void) const = 0;
   virtual _knumber * sqrt(void) const = 0;
   virtual _knumber * change_sign(void) const = 0;
   virtual _knumber * reciprocal(void) const = 0;
   virtual _knumber * add(_knumber const & arg2) const = 0;
   virtual _knumber * multiply(_knumber const & arg2) const = 0;
-  virtual _knumber * divide(_knumber const & arg2) const = 0;
+  _knumber * divide(_knumber const & arg2) const;
+
+  virtual int compare(_knumber const &arg2) const = 0;
 
 };
+
+
+
+class _knumerror : public _knumber
+{
+ public:
+  _knumerror(ErrorType error = UndefinedNumber)
+    : _error(error) { }
+  
+  _knumerror(_knumber const & num);
+
+  _knumerror(const QString & num);
+
+  //virtual ~_knumerror() { }
+
+  _knumerror const & operator = (_knumerror const & num);
+
+  virtual void copy(_knumber const & num)
+  {
+    _error = dynamic_cast<_knumerror const &>(num)._error;
+  }
+
+  virtual NumType type(void) const {return SpecialType;}
+
+  virtual QString const ascii(void) const;
+
+  virtual _knumber * abs(void) const;
+  virtual _knumber * intPart(void) const;
+  virtual int sign(void) const;
+  virtual _knumber * sqrt(void) const;
+  virtual _knumber * change_sign(void) const;
+  virtual _knumber * reciprocal(void) const;
+  virtual _knumber * add(_knumber const & arg2) const;
+  virtual _knumber * multiply(_knumber const & arg2) const;
+
+  virtual int compare(_knumber const &arg2) const;
+
+ private:
+
+  ErrorType _error;
+
+  friend class _knuminteger;
+  friend class _knumfraction;
+  friend class _knumfloat;
+};
+
+
 
 class _knuminteger : public _knumber
 {
@@ -84,12 +135,14 @@ class _knuminteger : public _knumber
 
   virtual _knumber * abs(void) const;
   virtual _knumber * intPart(void) const;
+  virtual int sign(void) const;
   virtual _knumber * sqrt(void) const;
   virtual _knumber * change_sign(void) const;
   virtual _knumber * reciprocal(void) const;
   virtual _knumber * add(_knumber const & arg2) const;
   virtual _knumber * multiply(_knumber const & arg2) const;
-  virtual _knumber * divide(_knumber const & arg2) const;
+
+  virtual int compare(_knumber const &arg2) const;
 
   _knuminteger * intAnd(_knuminteger const &arg2) const;
   _knuminteger * intOr(_knuminteger const &arg2) const;
@@ -139,13 +192,15 @@ class _knumfraction : public _knumber
 
   virtual _knumber * abs(void) const;
   virtual _knumber * intPart(void) const;
+  virtual int sign(void) const;
   virtual _knumber * sqrt(void) const;
   virtual _knumber * change_sign(void) const;
   virtual _knumber * reciprocal(void) const;
   virtual _knumber * add(_knumber const & arg2) const;
   virtual _knumber * multiply(_knumber const & arg2) const;
-  virtual _knumber * divide(_knumber const & arg2) const;
   
+  virtual int compare(_knumber const &arg2) const;
+
  private:
   mpq_t _mpq;
 
@@ -182,12 +237,15 @@ class _knumfloat : public _knumber
 
   virtual _knumber * abs(void) const;
   virtual _knumber * intPart(void) const;
+  virtual int sign(void) const;
   virtual _knumber * sqrt(void) const;
   virtual _knumber * change_sign(void) const;
   virtual _knumber * reciprocal(void) const;
   virtual _knumber * add(_knumber const & arg2) const;
   virtual _knumber * multiply(_knumber const & arg2) const;
   virtual _knumber * divide(_knumber const & arg2) const;
+
+  virtual int compare(_knumber const &arg2) const;
 
  private:
     mpf_t _mpf;

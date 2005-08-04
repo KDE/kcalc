@@ -48,7 +48,8 @@ class KDE_EXPORT KNumber
   static KNumber const One;
   static KNumber const MinusOne;
 
-  enum NumType {IntegerType, FractionType, FloatType};
+  enum NumType {SpecialType, IntegerType, FractionType, FloatType};
+  enum ErrorType {UndefinedNumber, Infinity, MinusInfinity};
   
   KNumber(signed int num = 1);
 
