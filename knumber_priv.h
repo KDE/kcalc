@@ -146,7 +146,7 @@ class _knuminteger : public _knumber
 
   _knuminteger * intAnd(_knuminteger const &arg2) const;
   _knuminteger * intOr(_knuminteger const &arg2) const;
-  _knuminteger * mod(_knuminteger const &arg2) const;
+  _knumber * mod(_knuminteger const &arg2) const;
   _knuminteger * leftShift(_knuminteger const &arg2) const;
   _knuminteger * rightShift(_knuminteger const &arg2) const;
   

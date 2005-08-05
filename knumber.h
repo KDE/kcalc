@@ -68,7 +68,7 @@ class KDE_EXPORT KNumber
 
   NumType type(void) const;
 
-  QString const toQString(void) const;
+  QString const toQString(int prec = -1) const;
   
 
   KNumber const abs(void) const;

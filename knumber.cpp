@@ -61,7 +61,9 @@ KNumber::KNumber(KNumber const & num)
 
 KNumber::KNumber(QString const & num)
 {
-  if (QRegExp("^[+-]?\\d+$").exactMatch(num))
+  if (QRegExp("^(inf|-inf|nan)$").exactMatch(num))
+    _num = new _knumerror(num);
+  else if (QRegExp("^[+-]?\\d+$").exactMatch(num))
     _num = new _knuminteger(num);
   else if (QRegExp("^[+-]?\\d+/\\d+$").exactMatch(num)) {
     _num = new _knumfraction(num);
@@ -182,9 +184,13 @@ KNumber & KNumber::operator -=(KNumber const &arg)
   return *this;
 }
 
-QString const KNumber::toQString(void) const
+QString const KNumber::toQString(int prec) const
 {
-  return QString(_num->ascii());
+  QString tmp_str = QString(_num->ascii());
+  if (prec <= 0)
+    return tmp_str;
+  else
+    return tmp_str.left(prec);
 }
 
 KNumber const KNumber::abs(void) const

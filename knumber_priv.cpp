@@ -97,8 +97,12 @@ _knumfloat::_knumfloat(_knumber const & num)
 
 _knumerror::_knumerror(QString const & num)
 {
-#warning just a stub
-  _error = UndefinedNumber;
+  if (num == "nan")
+    _error = UndefinedNumber;
+  else if (num == "inf")
+    _error = Infinity;
+  else if (num == "-inf")
+    _error = MinusInfinity;
 }
 
 _knuminteger::_knuminteger(QString const & num)
@@ -133,11 +137,11 @@ QString const _knumerror::ascii(void) const
 {
   switch(_error) {
   case UndefinedNumber:
-    return QString("Undefined");
+    return QString("nan");
   case Infinity:
-    return QString("Infinity");
+    return QString("inf");
   case MinusInfinity:
-    return QString("-Infinity");
+    return QString("-inf");
   default:
     return QString::null;
   }
@@ -590,7 +594,7 @@ _knumber * _knumfraction::multiply(_knumber const & arg2) const
   }
 
   
-  if (arg2.type() == FloatType)
+  if (arg2.type() == FloatType  ||  arg2.type() == SpecialType)
     return arg2.multiply(*this);
   
   _knumfraction * tmp_num = new _knumfraction();
@@ -603,6 +607,9 @@ _knumber * _knumfraction::multiply(_knumber const & arg2) const
 
 _knumber *_knumfloat::multiply(_knumber const & arg2) const
 {
+  if (arg2.type() == SpecialType)
+    return arg2.multiply(*this);
+
   if (arg2.type() != FloatType) {
     // need to cast arg2 to float
     _knumfloat tmp_num(arg2);
@@ -700,9 +707,10 @@ _knuminteger * _knuminteger::intOr(_knuminteger const &arg2) const
   return tmp_num;
 }
 
-_knuminteger * _knuminteger::mod(_knuminteger const &arg2) const
+_knumber * _knuminteger::mod(_knuminteger const &arg2) const
 {
-#warning test if dividing by zero  
+  if(mpz_cmp_si(arg2._mpz, 0) == 0) return new _knumerror(UndefinedNumber);
+
   _knuminteger * tmp_num = new _knuminteger();
 
   mpz_mod(tmp_num->_mpz, _mpz, arg2._mpz);

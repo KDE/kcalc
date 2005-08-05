@@ -13,6 +13,8 @@
 QString const  numtypeToString(KNumber::NumType arg)
 {
   switch(arg) {
+  case KNumber::SpecialType:
+    return QString("Special");
   case KNumber::IntegerType:
     return QString("Integer");
   case KNumber::FractionType:
@@ -126,24 +128,34 @@ void testingMultiplications(void)
 
 void testingDivisions(void)
 {
-#warning test for division by zero
   std::cout << "Testing divisions:\n";
   
   checkResult("KNumber(5) / KNumber(2)", KNumber(5) / KNumber(2), "5/2", KNumber::FractionType);
   checkResult("KNumber(122) / KNumber(2)", KNumber(122) / KNumber(2), "61", KNumber::IntegerType);
+  checkResult("KNumber(12) / KNumber(0)", KNumber(12) / KNumber(0), "inf", KNumber::SpecialType);
+  checkResult("KNumber(-12) / KNumber(0)", KNumber(-12) / KNumber(0), "-inf", KNumber::SpecialType);
   checkResult("KNumber(5) / KNumber(\"2/3\")", KNumber(5) / KNumber("2/3"), "15/2", KNumber::FractionType);
   checkResult("KNumber(6) / KNumber(\"2/3\")", KNumber(6) / KNumber("2/3"), "9", KNumber::IntegerType);
   checkResult("KNumber(5) / KNumber(2.5)", KNumber(5) / KNumber(2.5), "2", KNumber::FloatType);
+  checkResult("KNumber(5) / KNumber(0.0)", KNumber(5) / KNumber(0.0), "inf", KNumber::SpecialType);
+  checkResult("KNumber(-5) / KNumber(0.0)", KNumber(-5) / KNumber(0.0), "-inf", KNumber::SpecialType);
   
   checkResult("KNumber(\"5/3\") / KNumber(2)", KNumber("5/3") / KNumber(2), "5/6", KNumber::FractionType);
+  checkResult("KNumber(\"5/3\") / KNumber(0)", KNumber("5/3") / KNumber(0), "inf", KNumber::SpecialType);
+  checkResult("KNumber(\"-5/3\") / KNumber(0)", KNumber("-5/3") / KNumber(0), "-inf", KNumber::SpecialType);
   checkResult("KNumber(\"5/3\") / KNumber(\"2/3\")", KNumber("5/3") / KNumber("2/3"), "5/2", KNumber::FractionType);
   checkResult("KNumber(\"49/3\") / KNumber(\"7/9\")", KNumber("49/3") / KNumber("7/9"), "21", KNumber::IntegerType);
   checkResult("KNumber(\"5/2\") / KNumber(2.5)", KNumber("5/2") / KNumber(2.5), "1", KNumber::FloatType);
+  checkResult("KNumber(\"5/2\") / KNumber(0.0)", KNumber("5/2") / KNumber(0.0), "inf", KNumber::SpecialType);
+  checkResult("KNumber(\"-5/2\") / KNumber(0.0)", KNumber("-5/2") / KNumber(0.0), "-inf", KNumber::SpecialType);
   
   checkResult("KNumber(5.3) / KNumber(2)", KNumber(5.3) / KNumber(2), "2.65", KNumber::FloatType);
+  checkResult("KNumber(5.3) / KNumber(0)", KNumber(5.3) / KNumber(0), "inf", KNumber::SpecialType);
+  checkResult("KNumber(-5.3) / KNumber(0)", KNumber(-5.3) / KNumber(0), "-inf", KNumber::SpecialType);
   checkResult("KNumber(5.3) / KNumber(\"2/3\")", KNumber(5.3) / KNumber("2/3"), "7.95", KNumber::FloatType);
   checkResult("KNumber(5.5) / KNumber(2.5)", KNumber(5.5) / KNumber(2.5), "2.2", KNumber::FloatType);
-
+  checkResult("KNumber(5.5) / KNumber(0.0)", KNumber(5.5) / KNumber(0.0), "inf", KNumber::SpecialType);
+  checkResult("KNumber(-5.5) / KNumber(0.0)", KNumber(-5.5) / KNumber(0.0), "-inf", KNumber::SpecialType);
 }
 
 void testingModulus(void)
@@ -152,8 +164,11 @@ void testingModulus(void)
   
   checkResult("KNumber(23) % KNumber(4)", KNumber(23) % KNumber(4), "3", KNumber::IntegerType);
   checkResult("KNumber(12) % KNumber(-5)", KNumber(12) % KNumber(-5), "2", KNumber::IntegerType);
+  checkResult("KNumber(-12) % KNumber(5)", KNumber(-12) % KNumber(5), "3", KNumber::IntegerType);
+  checkResult("KNumber(12) % KNumber(0)", KNumber(-12) % KNumber(0), "nan", KNumber::SpecialType);
+  checkResult("KNumber(-12) % KNumber(0)", KNumber(-12) % KNumber(0), "nan", KNumber::SpecialType);
 
-#warning test for other types, division by zero
+#warning test for other types
 
 }
 
@@ -201,10 +216,13 @@ void testingSqrt(void)
   std::cout << "Testing square root:\n";
   
   checkResult("KNumber(16).sqrt()", KNumber(16).sqrt(), "4", KNumber::IntegerType);
+  checkResult("KNumber(-16).sqrt()", KNumber(-16).sqrt(), "nan", KNumber::SpecialType);
   checkResult("KNumber(\"16/9\").sqrt()", KNumber("16/9").sqrt(), "4/3", KNumber::FractionType);
+  checkResult("KNumber(\"-16/9\").sqrt()", KNumber("-16/9").sqrt(), "nan", KNumber::SpecialType);
   checkResult("KNumber(2).sqrt()", KNumber(2).sqrt(), "1.4142136", KNumber::FloatType);
   checkResult("KNumber(\"2/3\").sqrt()", KNumber("2/3").sqrt(), "0.81649658", KNumber::FloatType);
   checkResult("KNumber(\"0.25\").sqrt()", KNumber("0.25").sqrt(), "0.5", KNumber::FloatType);
+  checkResult("KNumber(\"-0.25\").sqrt()", KNumber("-0.25").sqrt(), "nan", KNumber::SpecialType);
   
 }
 
@@ -231,6 +249,10 @@ int main(void)
   checkResult("KNumber(\"5/1\")", KNumber("5/1"), "5", KNumber::IntegerType);
   checkResult("KNumber(\"0/12\")", KNumber("0/12"), "0", KNumber::IntegerType);
   checkResult("KNumber(\"5.3\")", KNumber("5.3"), "5.3", KNumber::FloatType);
+
+  checkResult("KNumber(\"nan\")", KNumber("nan"), "nan", KNumber::SpecialType);
+  checkResult("KNumber(\"inf\")", KNumber("inf"), "inf", KNumber::SpecialType);
+  checkResult("KNumber(\"-inf\")", KNumber("-inf"), "-inf", KNumber::SpecialType);
 
   std::cout << "\n\nConstants:\n";
 
