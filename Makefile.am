@@ -3,7 +3,8 @@ AM_CPPFLAGS=-D_GNU_SOURCE -D_ISOC99_SOURCE $(all_includes)
 SUBDIRS = tests
 
 bin_PROGRAMS =
-lib_LTLIBRARIES = knumber.la
+lib_LTLIBRARIES =
+noinst_LTLIBRARIES = libknumber.la
 kdeinit_LTLIBRARIES = kcalc.la
 
 kcalc_la_SOURCES = kcalc.cpp kcalc_button.cpp kcalc_const_button.cpp \
@@ -11,7 +12,7 @@ kcalc_la_SOURCES = kcalc.cpp kcalc_button.cpp kcalc_const_button.cpp \
 			dlabel.cpp stats.cpp colors.ui general.ui \
 			constants.ui kcalc_settings.kcfgc
 
-knumber_la_SOURCES = knumber.cpp knumber_priv.cpp
+libknumber_la_SOURCES = knumber.cpp knumber_priv.cpp
 
 METASOURCES = AUTO
 
@@ -21,10 +22,7 @@ noinst_HEADERS  = kcalc.h kcalc_button.h kcalc_const_button.h \
 			stats.h
 
 kcalc_la_LDFLAGS = $(all_libraries) -module -avoid-version
-kcalc_la_LIBADD = knumber.la $(LIB_KDEUI) -lm
-
-knumber_la_LDFLAGS = $(QT_LDFLAGS) -module -avoid-version
-knumber_la_LIBADD = $(LIB_QT) $(LIBGMP) -lm
+kcalc_la_LIBADD = libknumber.la $(LIB_KDEUI) -lm
 
 KDE_ICON = kcalc
 
