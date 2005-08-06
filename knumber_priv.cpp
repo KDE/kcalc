@@ -508,7 +508,7 @@ _knumber * _knumfraction::add(_knumber const & arg2) const
   }
 
   
-  if (arg2.type() == FloatType)
+  if (arg2.type() == FloatType  ||  arg2.type() == SpecialType)
     return arg2.add(*this);
   
   _knumfraction * tmp_num = new _knumfraction();
