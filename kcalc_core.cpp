@@ -72,8 +72,6 @@ static void fpe_handler(int fpe_parm)
 }
 
 
-const KNumber CalcEngine::pi("3.14159265358979323846264338327950288");
-
 static bool _error;
 
 static KNumber ExecOr(const KNumber & left_op, const KNumber & right_op)
@@ -471,9 +469,7 @@ void CalcEngine::Cube(KNumber input)
 
 void CalcEngine::CubeRoot(KNumber input)
 {
-#if 0
-	_last_number = CBRT(input);
-#endif
+	_last_number = input.cbrt();
 }
 
 void CalcEngine::Exp(KNumber input)
@@ -719,7 +715,7 @@ void CalcEngine::TangensDeg(KNumber input)
 	
 	aux = tmp.abs();
 	// put aux between 0 and pi
-	while (aux > pi) aux -= pi;
+	while (aux > KNumber::Pi) aux -= KNumber::Pi;
 	// if were are really close to pi/2 throw an error
 	// tan(pi/2) => inf
 	// using the 10 factor because without it 270Âº tan still gave a result
@@ -744,7 +740,7 @@ void CalcEngine::TangensRad(KNumber input)
 	
 	aux = tmp.abs();
 	// put aux between 0 and pi
-	while (aux > pi) aux -= pi;
+	while (aux > KNumber::Pi) aux -= KNumber::Pi;
 	// if were are really close to pi/2 throw an error
 	// tan(pi/2) => inf
 	// using the 10 factor because without it 270Âº tan still gave a result
@@ -770,13 +766,13 @@ void CalcEngine::TangensGrad(KNumber input)
 	
 	aux = tmp.abs();
 	// put aux between 0 and pi
-	while (aux > pi) aux -= pi;
+	while (aux > KNumber::Pi) aux -= KNumber::Pi;
 	// if were are really close to pi/2 throw an error
 	// tan(pi/2) => inf
 	// using the 10 factor because without it 270Âº tan still gave a result
 	if(false)
 #warning is this still necesary
-	  //if ( (aux - pi/2 < POS_ZERO * 10) && (aux - pi/2 > NEG_ZERO * 10) )
+	  //if ( (aux - KNumber::Pi/2 < POS_ZERO * 10) && (aux - KNumber::Pi/2 > NEG_ZERO * 10) )
 		_error = true;
 	else {
 		CALCAMNT tmp_num = tmp.toQString().toDouble();
