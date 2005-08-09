@@ -28,6 +28,7 @@
 const struct science_constant KCalcConstMenu::Constants[] = {
   {QString::fromUtf8("π"), I18N_NOOP("Pi"), "", "3.14159265358979323846264338327950288", Mathematics},
   {"e", I18N_NOOP("Euler Number"), "", "2.71828182845904523536028747135266249", Mathematics},
+  {"φ", I18N_NOOP("Golden Ratio"), "", "1.61803398874989484820458683436563811", Mathematics},
   {"c", I18N_NOOP("Light Speed"), "", "2.99792458e8", Electromagnetic},
   {"h", I18N_NOOP("Planck's Constant"), "", "6.6260693e-34", Nuclear},
   {"G", I18N_NOOP("Constant of Gravitation"), "", "6.6742e-11", Gravitation},
