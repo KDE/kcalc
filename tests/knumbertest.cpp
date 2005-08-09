@@ -233,6 +233,7 @@ void testingSqrt(void)
   checkResult("KNumber(-27).cbrt()", KNumber(-27).cbrt(), "-3", KNumber::IntegerType);
   checkResult("KNumber(\"27/8\").cbrt()", KNumber("27/8").cbrt(), "3/2", KNumber::FractionType);
   checkResult("KNumber(\"-8/27\").cbrt()", KNumber("-8/27").cbrt(), "-2/3", KNumber::FractionType);
+#warning need to check non-perfect cube roots
   //  checkResult("KNumber(2).cbrt()", KNumber(2).cbrt(), "1.4142136", KNumber::FloatType);
   //  checkResult("KNumber(\"2/3\").cbrt()", KNumber("2/3").cbrt(), "0.81649658", KNumber::FloatType);
   //  checkResult("KNumber(\"0.25\").cbrt()", KNumber("0.25").cbrt(), "0.5", KNumber::FloatType);

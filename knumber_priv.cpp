@@ -17,6 +17,7 @@
    Boston, MA 02111-1307, USA.
 */
 
+#include <math.h>
 #include <config.h>
 
 #include <qregexp.h>
@@ -311,6 +312,13 @@ int _knumfloat::sign(void) const
 
 
 
+#warning _cbrt for now this is a stupid work around for now
+static void _cbrt(mpf_t &num)
+{
+  double tmp_num = cbrt(mpf_get_d(num));
+  mpf_init_set_d(num, tmp_num);
+}
+
 
 _knumber * _knumerror::cbrt(void) const
 {
@@ -319,7 +327,6 @@ _knumber * _knumerror::cbrt(void) const
   
   return tmp_num;
 }
-
 
 _knumber * _knuminteger::cbrt(void) const
 {
@@ -332,8 +339,8 @@ _knumber * _knuminteger::cbrt(void) const
   
   _knumfloat * tmp_num2 = new _knumfloat();
   mpf_set_z(tmp_num2->_mpf, _mpz);
-#warning implement cube root??
-  mpf_sqrt(tmp_num2->_mpf, tmp_num2->_mpf);
+
+  _cbrt(tmp_num2->_mpf);
     
   return tmp_num2;
 }
@@ -349,17 +356,17 @@ _knumber * _knumfraction::cbrt(void) const
 
   _knumfloat * tmp_num2 = new _knumfloat();
   mpf_set_q(tmp_num2->_mpf, _mpq);
-#warning implement cube root??
-  mpf_sqrt(tmp_num2->_mpf, tmp_num2->_mpf);
+
+  _cbrt(tmp_num2->_mpf);
     
   return tmp_num2;
 }
 
 _knumber * _knumfloat::cbrt(void) const
 {
-  _knumfloat * tmp_num = new _knumfloat();
-#warning implement cube root??
-  mpf_sqrt(tmp_num->_mpf, _mpf);
+  _knumfloat * tmp_num = new _knumfloat(*this);
+
+  _cbrt(tmp_num->_mpf);
   
   return tmp_num;
 }
