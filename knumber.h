@@ -47,6 +47,7 @@ class KDE_EXPORT KNumber
   static KNumber const Zero;
   static KNumber const One;
   static KNumber const MinusOne;
+  static KNumber const Pi;
 
   enum NumType {SpecialType, IntegerType, FractionType, FloatType};
   enum ErrorType {UndefinedNumber, Infinity, MinusInfinity};
@@ -73,6 +74,7 @@ class KDE_EXPORT KNumber
 
   KNumber const abs(void) const;
   KNumber const sqrt(void) const;
+  KNumber const cbrt(void) const;
   KNumber const integerPart(void) const;
 
   KNumber const operator+(KNumber const & arg2) const;

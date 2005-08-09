@@ -29,6 +29,7 @@
 KNumber const KNumber::Zero(0);
 KNumber const KNumber::One(1);
 KNumber const KNumber::MinusOne(-1);
+KNumber const KNumber::Pi("3.14159265358979323846264338327950288");
 
 KNumber::KNumber(signed int num)
 {
@@ -199,6 +200,16 @@ KNumber const KNumber::abs(void) const
   delete tmp_num._num;
 
   tmp_num._num = _num->abs();
+
+  return tmp_num;
+}
+
+KNumber const KNumber::cbrt(void) const
+{
+  KNumber tmp_num;
+  delete tmp_num._num;
+
+  tmp_num._num = _num->cbrt();
 
   return tmp_num;
 }

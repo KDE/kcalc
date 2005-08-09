@@ -43,6 +43,7 @@ class _knumber
   virtual _knumber * intPart(void) const = 0;
   virtual int sign(void) const = 0;
   virtual _knumber * sqrt(void) const = 0;
+  virtual _knumber * cbrt(void) const = 0;
   virtual _knumber * change_sign(void) const = 0;
   virtual _knumber * reciprocal(void) const = 0;
   virtual _knumber * add(_knumber const & arg2) const = 0;
@@ -81,6 +82,7 @@ class _knumerror : public _knumber
   virtual _knumber * abs(void) const;
   virtual _knumber * intPart(void) const;
   virtual int sign(void) const;
+  virtual _knumber * cbrt(void) const;
   virtual _knumber * sqrt(void) const;
   virtual _knumber * change_sign(void) const;
   virtual _knumber * reciprocal(void) const;
@@ -136,6 +138,7 @@ class _knuminteger : public _knumber
   virtual _knumber * abs(void) const;
   virtual _knumber * intPart(void) const;
   virtual int sign(void) const;
+  virtual _knumber * cbrt(void) const;
   virtual _knumber * sqrt(void) const;
   virtual _knumber * change_sign(void) const;
   virtual _knumber * reciprocal(void) const;
@@ -193,6 +196,7 @@ class _knumfraction : public _knumber
   virtual _knumber * abs(void) const;
   virtual _knumber * intPart(void) const;
   virtual int sign(void) const;
+  virtual _knumber * cbrt(void) const;
   virtual _knumber * sqrt(void) const;
   virtual _knumber * change_sign(void) const;
   virtual _knumber * reciprocal(void) const;
@@ -238,6 +242,7 @@ class _knumfloat : public _knumber
   virtual _knumber * abs(void) const;
   virtual _knumber * intPart(void) const;
   virtual int sign(void) const;
+  virtual _knumber * cbrt(void) const;
   virtual _knumber * sqrt(void) const;
   virtual _knumber * change_sign(void) const;
   virtual _knumber * reciprocal(void) const;

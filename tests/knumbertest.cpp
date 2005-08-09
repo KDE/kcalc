@@ -114,13 +114,17 @@ void testingMultiplications(void)
   checkResult("KNumber(5) * KNumber(\"2/3\")", KNumber(5) * KNumber("2/3"), "10/3", KNumber::FractionType);
   checkResult("KNumber(5) * KNumber(\"2/5\")", KNumber(5) * KNumber("2/5"), "2", KNumber::IntegerType);
   checkResult("KNumber(5) * KNumber(2.3)", KNumber(5) * KNumber(2.3), "11.5", KNumber::FloatType);
+  checkResult("KNumber(0) * KNumber(\"2/5\")", KNumber(0) * KNumber("2/5"), "0", KNumber::IntegerType);
+  checkResult("KNumber(0) * KNumber(2.3)", KNumber(0) * KNumber(2.3), "0", KNumber::IntegerType);
   
   checkResult("KNumber(\"5/3\") * KNumber(2)", KNumber("5/3") * KNumber(2), "10/3", KNumber::FractionType);
+  checkResult("KNumber(\"5/3\") * KNumber(0)", KNumber("5/3") * KNumber(0), "0", KNumber::IntegerType);
   checkResult("KNumber(\"5/3\") * KNumber(\"2/3\")", KNumber("5/3") * KNumber("2/3"), "10/9", KNumber::FractionType);
   checkResult("KNumber(\"25/6\") * KNumber(\"12/5\")", KNumber("25/6") * KNumber("12/5"), "10", KNumber::IntegerType);
   checkResult("KNumber(\"5/2\") * KNumber(2.3)", KNumber("5/2") * KNumber(2.3), "5.75",KNumber::FloatType);
   
   checkResult("KNumber(5.3) * KNumber(2)", KNumber(5.3) * KNumber(2), "10.6", KNumber::FloatType);
+  checkResult("KNumber(5.3) * KNumber(0)", KNumber(5.3) * KNumber(0), "0", KNumber::IntegerType);
   checkResult("KNumber(5.3) * KNumber(\"1/2\")", KNumber(5.3) * KNumber("1/2"), "2.65", KNumber::FloatType);
   checkResult("KNumber(5.3) * KNumber(2.3)", KNumber(5.3) * KNumber(2.3), "12.19", KNumber::FloatType);
 
@@ -213,7 +217,7 @@ void testingTruncateToInteger(void)
 
 void testingSqrt(void)
 {
-  std::cout << "\n\nTesting square root:\n";
+  std::cout << "\n\nTesting square root, cubic root:\n";
   
   checkResult("KNumber(16).sqrt()", KNumber(16).sqrt(), "4", KNumber::IntegerType);
   checkResult("KNumber(-16).sqrt()", KNumber(-16).sqrt(), "nan", KNumber::SpecialType);
@@ -224,6 +228,16 @@ void testingSqrt(void)
   checkResult("KNumber(\"0.25\").sqrt()", KNumber("0.25").sqrt(), "0.5", KNumber::FloatType);
   checkResult("KNumber(\"-0.25\").sqrt()", KNumber("-0.25").sqrt(), "nan", KNumber::SpecialType);
   
+
+  checkResult("KNumber(27).cbrt()", KNumber(27).cbrt(), "3", KNumber::IntegerType);
+  checkResult("KNumber(-27).cbrt()", KNumber(-27).cbrt(), "-3", KNumber::IntegerType);
+  checkResult("KNumber(\"27/8\").cbrt()", KNumber("27/8").cbrt(), "3/2", KNumber::FractionType);
+  checkResult("KNumber(\"-8/27\").cbrt()", KNumber("-8/27").cbrt(), "-2/3", KNumber::FractionType);
+  //  checkResult("KNumber(2).cbrt()", KNumber(2).cbrt(), "1.4142136", KNumber::FloatType);
+  //  checkResult("KNumber(\"2/3\").cbrt()", KNumber("2/3").cbrt(), "0.81649658", KNumber::FloatType);
+  //  checkResult("KNumber(\"0.25\").cbrt()", KNumber("0.25").cbrt(), "0.5", KNumber::FloatType);
+  //  checkResult("KNumber(\"-0.25\").cbrt()", KNumber("-0.25").cbrt(), "nan", KNumber::SpecialType);
+
 }
 
 void testingShifts(void)
@@ -333,6 +347,42 @@ void testingInfArithmetic(void)
   checkResult("KNumber(0.0) * mininf", KNumber(0.0) * tmp_mininf, "nan", KNumber::SpecialType);
   checkResult("inf * KNumber(0.0)", tmp_inf * KNumber(0.0), "nan", KNumber::SpecialType);
   checkResult("mininf * KNumber(0.0)", tmp_mininf * KNumber(0.0), "nan", KNumber::SpecialType);
+
+
+  checkResult("inf / KNumber(2)", tmp_inf / KNumber(2), "inf", KNumber::SpecialType);
+  checkResult("KNumber(-5) / inf", KNumber(-5) / tmp_inf, "0", KNumber::IntegerType);
+  checkResult("inf / KNumber(\"1/2\")", tmp_inf / KNumber("1/2"), "inf", KNumber::SpecialType);
+  checkResult("KNumber(\"-5/3\") / inf", KNumber("-5/3") / tmp_inf, "0", KNumber::IntegerType);
+  checkResult("inf / KNumber(2.01)", tmp_inf / KNumber(2.01), "inf", KNumber::SpecialType);
+  checkResult("KNumber(-5.4) / inf", KNumber(-5.4) / tmp_inf, "0", KNumber::IntegerType);
+  checkResult("mininf / KNumber(2)", tmp_mininf / KNumber(2), "-inf", KNumber::SpecialType);
+  checkResult("KNumber(-5) / mininf", KNumber(-5) / tmp_mininf, "0", KNumber::IntegerType);
+  checkResult("mininf / KNumber(\"1/2\")", tmp_mininf / KNumber("1/2"), "-inf", KNumber::SpecialType);
+  checkResult("KNumber(\"-5/3\") / mininf", KNumber("-5/3") / tmp_mininf, "0", KNumber::IntegerType);
+  checkResult("mininf / KNumber(2.01)", tmp_mininf / KNumber(2.01), "-inf", KNumber::SpecialType);
+  checkResult("KNumber(-5.4) / mininf", KNumber(-5.4) / tmp_mininf, "0", KNumber::IntegerType);
+  checkResult("nan / KNumber(2)", tmp_nan / KNumber(2), "nan", KNumber::SpecialType);
+  checkResult("KNumber(-5) / nan", KNumber(-5) / tmp_nan, "nan", KNumber::SpecialType);
+  checkResult("nan / KNumber(\"1/2\")", tmp_nan / KNumber("1/2"), "nan", KNumber::SpecialType);
+  checkResult("KNumber(\"-5/3\") / nan", KNumber("-5/3") / tmp_nan, "nan", KNumber::SpecialType);
+  checkResult("nan / KNumber(2.01)", tmp_nan / KNumber(2.01), "nan", KNumber::SpecialType);
+  checkResult("KNumber(-5.4) / nan", KNumber(-5.4) / tmp_nan, "nan", KNumber::SpecialType);
+  checkResult("inf / inf", tmp_inf / tmp_inf, "nan", KNumber::SpecialType);
+  checkResult("inf / mininf", tmp_inf / tmp_mininf, "nan", KNumber::SpecialType);
+  checkResult("mininf / inf", tmp_mininf / tmp_inf, "nan", KNumber::SpecialType);
+  checkResult("mininf / mininf", tmp_mininf / tmp_mininf, "nan", KNumber::SpecialType);
+  checkResult("inf / nan", tmp_inf / tmp_nan, "nan", KNumber::SpecialType);
+  checkResult("mininf / nan", tmp_mininf / tmp_nan, "nan", KNumber::SpecialType);
+  checkResult("nan / inf", tmp_nan / tmp_inf, "nan", KNumber::SpecialType);
+  checkResult("mininf / nan", tmp_mininf / tmp_nan, "nan", KNumber::SpecialType);
+  checkResult("KNumber(0) / inf", KNumber(0) / tmp_inf, "0", KNumber::IntegerType);
+  checkResult("KNumber(0) / mininf", KNumber(0) / tmp_mininf, "0", KNumber::IntegerType);
+  checkResult("inf / KNumber(0)", tmp_inf / KNumber(0), "inf", KNumber::SpecialType);
+  checkResult("mininf / KNumber(0)", tmp_mininf / KNumber(0), "-inf", KNumber::SpecialType);
+  checkResult("KNumber(0.0) / inf", KNumber(0.0) / tmp_inf, "0", KNumber::IntegerType);
+  checkResult("KNumber(0.0) / mininf", KNumber(0.0) / tmp_mininf, "0", KNumber::IntegerType);
+  checkResult("inf / KNumber(0.0)", tmp_inf / KNumber(0.0), "inf", KNumber::SpecialType);
+  checkResult("mininf / KNumber(0.0)", tmp_mininf / KNumber(0.0), "-inf", KNumber::SpecialType);
 }
 
 
@@ -359,6 +409,7 @@ int main(void)
   checkType("KNumber::Zero", KNumber::Zero.type(), KNumber::IntegerType);
   checkType("KNumber::One", KNumber::One.type(), KNumber::IntegerType);
   checkType("KNumber::MinusOne", KNumber::MinusOne.type(), KNumber::IntegerType);
+  checkType("KNumber::Pi", KNumber::Pi.type(), KNumber::FloatType);
 
   testingAdditions();
   testingSubtractions();

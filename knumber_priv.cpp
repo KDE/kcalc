@@ -312,6 +312,61 @@ int _knumfloat::sign(void) const
 
 
 
+_knumber * _knumerror::cbrt(void) const
+{
+  // infty ^3 = infty;  -infty^3 = -infty
+  _knumerror *tmp_num = new _knumerror(*this);
+  
+  return tmp_num;
+}
+
+
+_knumber * _knuminteger::cbrt(void) const
+{
+  _knuminteger * tmp_num = new _knuminteger();
+  
+  if(mpz_root(tmp_num->_mpz, _mpz, 3))
+    return tmp_num; // root is perfect
+  
+  delete tmp_num; // root was not perfect, result will be float
+  
+  _knumfloat * tmp_num2 = new _knumfloat();
+  mpf_set_z(tmp_num2->_mpf, _mpz);
+#warning implement cube root??
+  mpf_sqrt(tmp_num2->_mpf, tmp_num2->_mpf);
+    
+  return tmp_num2;
+}
+
+_knumber * _knumfraction::cbrt(void) const
+{
+  _knumfraction * tmp_num = new _knumfraction();
+  if (mpz_root(mpq_numref(tmp_num->_mpq), mpq_numref(_mpq), 3)
+      &&  mpz_root(mpq_denref(tmp_num->_mpq), mpq_denref(_mpq), 3))
+    return tmp_num; // root is perfect
+
+  delete tmp_num; // root was not perfect, result will be float
+
+  _knumfloat * tmp_num2 = new _knumfloat();
+  mpf_set_q(tmp_num2->_mpf, _mpq);
+#warning implement cube root??
+  mpf_sqrt(tmp_num2->_mpf, tmp_num2->_mpf);
+    
+  return tmp_num2;
+}
+
+_knumber * _knumfloat::cbrt(void) const
+{
+  _knumfloat * tmp_num = new _knumfloat();
+#warning implement cube root??
+  mpf_sqrt(tmp_num->_mpf, _mpf);
+  
+  return tmp_num;
+}
+
+
+
+
 _knumber * _knumerror::sqrt(void) const
 {
   _knumerror *tmp_num = new _knumerror(*this);
@@ -609,6 +664,10 @@ _knumber *_knumfloat::multiply(_knumber const & arg2) const
 {
   if (arg2.type() == SpecialType)
     return arg2.multiply(*this);
+  if (arg2.type() == IntegerType  &&
+      mpz_cmp_si(dynamic_cast<_knuminteger const &>(arg2)._mpz,0) == 0)
+    // if arg2 == 0 return integer 0!!
+    return new _knuminteger(0);
 
   if (arg2.type() != FloatType) {
     // need to cast arg2 to float
