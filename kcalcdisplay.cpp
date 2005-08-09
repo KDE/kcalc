@@ -57,7 +57,8 @@ KCalcDisplay::KCalcDisplay(QWidget *parent, const char *name)
   :QLabel(parent,name), _beep(false), _groupdigits(false), _button(0), _lit(false),
    _num_base(NB_DECIMAL),
    _display_size(DEC_SIZE), _precision(9),
-   _fixed_precision(-1), _error(false), selection_timer(new QTimer)
+   _fixed_precision(-1), _error(false), _display_amount(0),
+   selection_timer(new QTimer)
 {
 	setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
 	setAlignment(AlignRight | AlignVCenter);
@@ -84,7 +85,7 @@ bool KCalcDisplay::sendEvent(Event const event)
 	{
 	case EventReset:
 		_error = false;
-		_display_amount = KNumber::Zero;
+		_display_amount = 0;
 		_str_int = "0";
 		_str_int_exp = QString::null;
 
@@ -277,7 +278,7 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 	_eestate = false;
 
 	_display_amount = new_amount;
-
+	
 	if (_num_base != NB_DECIMAL)
 	{
 		CALCAMNT	tmp_round;
@@ -319,7 +320,7 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 	{
 		// We need to use QCString here since it uses the systems native ::sprintf()
 		// implementation which is more flexible than QString's.
-	  display_str = _display_amount.toQString();
+	  display_str = _display_amount.toQString(DSP_SIZE);
 #if 0
 		if (_fixed_precision != -1 && _display_amount <= 1.0e+16)
 			display_str = QCString().sprintf(PRINT_FLOAT, _fixed_precision, _display_amount);
@@ -344,7 +345,7 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 void KCalcDisplay::setText(QString const &string)
 {
 	QString localizedString = string;
-	
+
 	// If we aren't in decimal mode, we don't need to modify the string
 	if (_num_base == NB_DECIMAL  &&  !_error  &&  _groupdigits)
 	  localizedString = KGlobal::locale()->formatNumber(string, false, 0); // Note: rounding happened already above!
@@ -358,7 +359,7 @@ QString KCalcDisplay::text() const
 	if (_num_base != NB_DECIMAL || _error)
 		return QLabel::text();
 
-	return _display_amount.toQString();
+	return _display_amount.toQString(DSP_SIZE);
 	//	return QCString().sprintf(PRINT_LONG_BIG, 40, _display_amount);
 }
 
@@ -462,7 +463,7 @@ bool KCalcDisplay::updateDisplay(void)
 			{
 				// add 'e0' to display but not to conversion
 				Q_ASSERT(tmp_string.length()+2 <= DSP_SIZE);
-				_display_amount = tmp_string;//toDouble(tmp_string, tmp_flag);
+				_display_amount = tmp_string; tmp_flag = true;//toDouble(tmp_string, tmp_flag);
 				Q_ASSERT(tmp_flag == true);
 				setText(tmp_string + "e0");
 			}
