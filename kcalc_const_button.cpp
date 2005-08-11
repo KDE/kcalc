@@ -85,7 +85,7 @@ void KCalcConstButton::slotConfigureButton(int option)
   if (option == 0)
     {
       bool yes_no;
-      QString input = KInputDialog::text(i18n("New Name for Constant"), i18n("New name:"),
+      QString input = KInputDialog::getText(i18n("New Name for Constant"), i18n("New name:"),
 					 text(), &yes_no, this, "nameUserConstants-Dialog");
       if(yes_no) {
 	KCalcSettings::setNameConstant(_button_num, input);
