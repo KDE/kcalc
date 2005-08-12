@@ -172,34 +172,17 @@ QString const _knumfraction::ascii(void) const
 
 QString const _knumfloat::ascii(void) const
 {
-#warning this is just a stub
-  mp_exp_t tmp_exp;
+  QString ret_str;
+  char *tmp_ptr;
 
-  char const *tmp_ptr = mpf_get_str(0, &tmp_exp, 10, 8, _mpf);
-  QString ret_str = tmp_ptr;
+  gmp_asprintf(&tmp_ptr, "%Fg", _mpf);
+
+  ret_str = tmp_ptr;
+
 #warning ok to free with delete?
   delete tmp_ptr;
 
-  if(ret_str[0] == '-') {
-    if(tmp_exp >= ret_str.length()-1)
-      return ret_str;
-    if (tmp_exp > 0)
-      ret_str.insert(tmp_exp + 1, ".");
-    else
-      ret_str.insert(1,"0.");
-  }
-  else {
-    if(tmp_exp >= ret_str.length())
-      return ret_str;
-    if (tmp_exp > 0)
-      ret_str.insert(tmp_exp, ".");
-    else
-      ret_str.insert(0,"0.");
-  }
-
   return ret_str;
-
-
 }
 
 
