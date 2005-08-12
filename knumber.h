@@ -30,16 +30,37 @@ class QString;
 
 /**
   *
+  * @short Class that provides arbitrary precision numbers
+  *
   * KNumber provides access to arbitrary precision numbers from within
   * KDE.
   *
-  * KNumber is base on the GMP (GNU Multiprecision) library and
+  * KNumber is based on the GMP (GNU Multiprecision) library and
   * provides transparent support to integer, fractional and floating
-  * point number. It also includes methods for converting the numbers
-  * to QStrings for output, and to read QStrings to obtain a KNumber.
+  * point number. It contains rudimentary error handling, and also
+  * includes methods for converting the numbers to QStrings for
+  * output, and to read QStrings to obtain a KNumber.
+  *
+  * The different types of numbers that can be represented by objects
+  * of this class will be described below:
+  *
+  * @li @p NumType::SpecialType - This type represents an error that
+  * has occured, e.g. trying to divide 1 by 0 gives an object that
+  * represents infinity.
+  *
+  * @li @p NumType::IntegerType - The number is an integer. It can be
+  * arbitrarily large (restricted by the memory of the system).
+  *
+  * @li @p NumType::FractionType - A fraction is a number of the form
+  * denominator divided by nominator, where both denominator and
+  * nominator are integers of arbitrary size.
+  *
+  * @li @p NumType::FloatType - The number is of floating point
+  * type. These numbers are usually rounded, so that they do not
+  * represent precise values.
+  *
   *
   * @author Klaus Niederkrueger <kniederk@math.uni-koeln.de>
-  * @short class that provides arbitrary prcision numbers
   */
 class KDE_EXPORT KNumber
 {
@@ -49,7 +70,38 @@ class KDE_EXPORT KNumber
   static KNumber const MinusOne;
   static KNumber const Pi;
 
+  /**
+   * KNumber tries to provide transparent access to the following type
+   * of numbers:
+   *
+   * @li @p NumType::SpecialType - Some type of error has occured,
+   * further inspection with @p KNumber::ErrorType
+   *
+   * @li @p NumType::IntegerType - the number is an integer
+   *
+   * @li @p NumType::FractionType - the number is a fraction
+   *
+   * @li @p NumType::FloatType - the number is of floating point type
+   *
+   */
   enum NumType {SpecialType, IntegerType, FractionType, FloatType};
+  /**
+   * A KNumber that represents an error, i.e. that is of type @p
+   * NumType::SpecialType can further distinguished:
+   *
+   * @li @p ErrorType::UndefinedNumber - This is e.g. the result of
+   * taking the square root of a negative number or computing
+   * \f$ \infty - \infty \f$.
+   *
+   * @li @p ErrorType::Infinity - Such a number can be e.g. obtained
+   * by dividing 1 by 0. Some further calculations are still allowed,
+   * e.g. \f$ \infty + 5 \f$ still gives \f$\infty\f$.
+   *
+   * @li @p ErrorType::MinusInfinity - MinusInfinity behaves similarly
+   * to infinity above. It can be obtained by changing the sign of
+   * infinity.
+   *
+   */
   enum ErrorType {UndefinedNumber, Infinity, MinusInfinity};
   
   KNumber(signed int num = 1);
@@ -71,7 +123,13 @@ class KDE_EXPORT KNumber
 
   QString const toQString(int prec = -1) const;
   
-
+  /**
+   * Compute the absoulte value, i.e. @p x.abs() returns the value
+   *
+   *  \f[ \left\{\begin{array}{cl} x, & x \ge 0 \\ -x, & x <
+   *  0\end{array}\right.\f]
+   * This method works for \f$ x = \infty \f$ and \f$ x = -\infty \f$.
+   */
   KNumber const abs(void) const;
   KNumber const sqrt(void) const;
   KNumber const cbrt(void) const;

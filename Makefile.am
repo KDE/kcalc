@@ -37,3 +37,5 @@ messages: rc.cpp
 
 updatedir = $(kde_datadir)/kconf_update
 update_DATA = kcalcrc.upd
+
+include ../admin/Doxyfile.am
