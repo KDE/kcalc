@@ -18,6 +18,8 @@
    Boston, MA 02111-1307, USA.
 */
 
+#include <math.h>
+
 #include <config.h>
 
 #include <qregexp.h>
@@ -30,6 +32,8 @@ KNumber const KNumber::Zero(0);
 KNumber const KNumber::One(1);
 KNumber const KNumber::MinusOne(-1);
 KNumber const KNumber::Pi("3.14159265358979323846264338327950288");
+
+bool KNumber::_float_output = false;
 
 KNumber::KNumber(signed int num)
 {
@@ -187,11 +191,37 @@ KNumber & KNumber::operator -=(KNumber const &arg)
 
 QString const KNumber::toQString(int prec) const
 {
-  QString tmp_str = QString(_num->ascii());
-  if (prec <= 0)
+  QString tmp_str;
+  if (type() == FractionType  &&  _float_output)
+#warning quick work-around
+    tmp_str = QString((KNumber("1.0")*(*this))._num->ascii());
+  else
+    tmp_str = QString(_num->ascii());
+
+  if (prec < 0)
     return tmp_str;
   else
     return tmp_str.left(prec);
+}
+
+QString const KNumber::toQString(QString prec) const
+{
+  if (!QRegExp("(\\d+\\.)?\\d*+$").exactMatch(prec))
+    return toQString();
+}
+
+void KNumber::setDefaultFloatOutput(bool flag)
+{
+  _float_output = flag;
+}
+
+void KNumber::setDefaultFloatPrecision(unsigned int prec)
+{
+  // Need to transform decimal digits into binary digits
+  unsigned long int bin_prec = static_cast<unsigned long int>
+    (double(prec) * M_LN10 / M_LN2 + 1);
+
+  mpf_set_default_prec(bin_prec);
 }
 
 KNumber const KNumber::abs(void) const

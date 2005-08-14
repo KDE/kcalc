@@ -386,6 +386,29 @@ void testingInfArithmetic(void)
   checkResult("mininf / KNumber(0.0)", tmp_mininf / KNumber(0.0), "-inf", KNumber::SpecialType);
 }
 
+void testingFloatPrecision(void)
+{
+  KNumber::setDefaultFloatPrecision(100);
+  checkResult("Precision >= 100: (KNumber(1) + KNumber(\"1e-80\")) - KNumber(1)",
+	      (KNumber(1) + KNumber("1e-80")) - KNumber(1), "1e-80", KNumber::FloatType);
+  checkResult("Precision >= 100: (KNumber(1) + KNumber(\"1e-980\")) - KNumber(1)",
+	      (KNumber(1) + KNumber("1e-980")) - KNumber(1), "0", KNumber::FloatType);
+
+  KNumber::setDefaultFloatPrecision(1000);
+  checkResult("Precision >= 1000: (KNumber(1) + KNumber(\"1e-980\")) - KNumber(1)",
+	      (KNumber(1) + KNumber("1e-980")) - KNumber(1), "1e-980", KNumber::FloatType);
+
+}
+
+void testingOutput(void)
+{
+  KNumber::setDefaultFloatOutput(false);
+  checkResult("Fractional output: KNumber(\"1/4\")", KNumber("1/4"), "1/4", KNumber::FractionType);
+  KNumber::setDefaultFloatOutput(true);
+  checkResult("Float: KNumber(\"1/4\")", KNumber("1/4"), "0.25", KNumber::FractionType);
+  KNumber::setDefaultFloatOutput(false);
+}
+
 
 int main(void)
 {
@@ -427,6 +450,10 @@ int main(void)
   testingShifts();
 
   testingInfArithmetic();
+
+  testingFloatPrecision();
+
+  testingOutput();
 
   return 0;
 }

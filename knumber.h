@@ -85,6 +85,7 @@ class KDE_EXPORT KNumber
    *
    */
   enum NumType {SpecialType, IntegerType, FractionType, FloatType};
+
   /**
    * A KNumber that represents an error, i.e. that is of type @p
    * NumType::SpecialType can further distinguished:
@@ -119,9 +120,44 @@ class KDE_EXPORT KNumber
   
   KNumber const & operator=(KNumber const & num);
 
+  /**
+   * Returns the type of the number, as explained in @p KNumber::NumType.
+   */
   NumType type(void) const;
 
+  /**
+   * Set whether the output of numbers (with KNumber::toQString)
+   * should happen as floating point numbers or not. This method has
+   * in fact only an effect on numbers of type @p
+   * NumType::FractionType, which can be either displayed as fractions
+   * or in decimal notation.
+   *
+   * The default behaviour is not to display fractions in floating
+   * point notation.
+   */
+  static void setDefaultFloatOutput(bool flag);
+
+  /**
+   * Set the default precision to be *at least* @p prec (decimal)
+   * digits.  All subsequent initialized floats will use at least this
+   * precision, but previously initialized variables are unaffected.
+   */
+  static void setDefaultFloatPrecision(unsigned int prec);
+
+  /**
+   * Return a QString representing the KNumber.
+   *
+   * @param prec The maximal number of fractional digits displayed. If
+   * @p prec < 0, then the default output format is used.
+   */
   QString const toQString(int prec = -1) const;
+
+  /**
+   * Return a QString representing the KNumber.
+   *
+   * @param prec
+   */
+  QString const toQString(QString prec) const;
   
   /**
    * Compute the absoulte value, i.e. @p x.abs() returns the value
@@ -131,8 +167,42 @@ class KDE_EXPORT KNumber
    * This method works for \f$ x = \infty \f$ and \f$ x = -\infty \f$.
    */
   KNumber const abs(void) const;
+
+  /**
+   * Compute the square root. If \f$ x < 0 \f$ (including \f$
+   * x=-\infty \f$), then @p x.sqrt() returns @p
+   * ErrorType::UndefinedNumber.
+   * 
+   * If @p x is an integer or a fraction, then @p x.sqrt() tries to
+   * compute the exact square root. If the square root is not a
+   * fraction, then a float with the default precision is returned.
+   *
+   * This method works for \f$ x = \infty \f$ giving \f$ \infty \f$.
+   */
   KNumber const sqrt(void) const;
+
+  /**
+   * Compute the cube root. 
+   * 
+   * If @p x is an integer or a fraction, then @p x.cbrt() tries to
+   * compute the exact cube root. If the cube root is not a fraction,
+   * then a float is returned, but
+   *
+   * WARNING: A float cube root is computed as a standard @p double
+   * that is later transformed back into a @p KNumber.
+   *
+   * This method works for \f$ x = \infty \f$ giving \f$ \infty \f$,
+   * and for \f$ x = -\infty \f$ giving \f$ -\infty \f$.
+   */
   KNumber const cbrt(void) const;
+
+  /**
+   * Truncates a @p KNumber to its integer type returning a number of
+   * type @p NumType::IntegerType.
+   * 
+   * If \f$ x = \pm\infty \f$, integerPart leaves the value unchanged,
+   * i.e. it returns \f$ \pm\infty \f$.
+   */
   KNumber const integerPart(void) const;
 
   KNumber const operator+(KNumber const & arg2) const;
@@ -181,7 +251,7 @@ class KDE_EXPORT KNumber
   int const compare(KNumber const & arg2) const;
   
   _knumber *_num;
-  
+  static bool _float_output;
 };
 
 
