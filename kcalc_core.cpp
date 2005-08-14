@@ -404,8 +404,45 @@ void CalcEngine::Complement(KNumber input)
 #endif
 }
 
+
+
+// move a number into the interval [0,360) by adding multiples of 360
+static KNumber const moveIntoDegInterval(KNumber const &num)
+{
+	KNumber tmp_num = num - (num/KNumber(360)).integerPart() * KNumber(360);
+	if(tmp_num < KNumber::Zero)
+		return tmp_num + KNumber(360);
+	return tmp_num;
+}
+
+// move a number into the interval [0,400) by adding multiples of 400
+static KNumber const moveIntoGradInterval(KNumber const &num)
+{
+	KNumber tmp_num = num - (num/KNumber(400)).integerPart() * KNumber(400);
+	if(tmp_num < KNumber::Zero)
+		return tmp_num + KNumber(400);
+	return tmp_num;
+}
+
+
 void CalcEngine::CosDeg(KNumber input)
 {
+	KNumber trunc_input = moveIntoDegInterval(input);
+	if (trunc_input.type() == KNumber::IntegerType) {
+		KNumber mult = trunc_input/KNumber(90);
+		if (mult.type() == KNumber::IntegerType) {
+		  if (mult == KNumber::Zero)
+		  	_last_number = 1;
+		  else if (mult == KNumber(1))
+		  	_last_number = 0;
+		  else if (mult == KNumber(2))
+		  	_last_number = -1;
+		  else if (mult == KNumber(3))
+		  	_last_number = 0;
+		  else qDebug("Something wrong in CalcEngine::CosDeg\n");
+		}
+	}
+
 #if 0
 	KNumber tmp = input;
 	
@@ -440,6 +477,21 @@ void CalcEngine::CosRad(KNumber input)
 
 void CalcEngine::CosGrad(KNumber input)
 {
+	KNumber trunc_input = moveIntoGradInterval(input);
+	if (trunc_input.type() == KNumber::IntegerType) {
+		KNumber mult = trunc_input/KNumber(100);
+		if (mult.type() == KNumber::IntegerType) {
+		  if (mult == KNumber::Zero)
+		  	_last_number = 1;
+		  else if (mult == KNumber(1))
+		  	_last_number = 0;
+		  else if (mult == KNumber(2))
+		  	_last_number = -1;
+		  else if (mult == KNumber(3))
+		  	_last_number = 0;
+		  else qDebug("Something wrong in CalcEngine::CosGrad\n");
+		}
+	}
 #if 0
 	KNumber tmp = input;
 
@@ -527,8 +579,12 @@ void CalcEngine::InvertSign(KNumber input)
 
 void CalcEngine::Ln(KNumber input)
 {
-	if (input <= KNumber::Zero)
-		_error = true;
+	if (input < KNumber::Zero)
+		_last_number = KNumber("nan");
+	else if (input == KNumber::Zero)
+		_last_number = KNumber("-inf");
+	else if (input == KNumber::One)
+		_last_number = 0;
 	else {
 		CALCAMNT tmp_num = input.toQString().toDouble();
 		_last_number = KNumber(double(LN(tmp_num)));
@@ -537,8 +593,12 @@ void CalcEngine::Ln(KNumber input)
 
 void CalcEngine::Log10(KNumber input)
 {
-	if (input <= KNumber::Zero)
-		_error = true;
+	if (input < KNumber::Zero)
+		_last_number = KNumber("nan");
+	else if (input == KNumber::Zero)
+		_last_number = KNumber("-inf");
+	else if (input == KNumber::One)
+		_last_number = 0;
 	else {
 		CALCAMNT tmp_num = input.toQString().toDouble();
 		_last_number = KNumber(double(LOG_TEN(tmp_num)));
@@ -570,11 +630,25 @@ void CalcEngine::Reciprocal(KNumber input)
 	_last_number = KNumber::One/input;
 }
 
+
 void CalcEngine::SinDeg(KNumber input)
 {
+	KNumber trunc_input = moveIntoDegInterval(input);
+	if (trunc_input.type() == KNumber::IntegerType) {
+		KNumber mult = trunc_input/KNumber(90);
+		if (mult.type() == KNumber::IntegerType) {
+		  if (mult == KNumber::Zero)
+		  	_last_number = 0;
+		  else if (mult == KNumber(1))
+		  	_last_number = 1;
+		  else if (mult == KNumber(2))
+		  	_last_number = 0;
+		  else if (mult == KNumber(3))
+		  	_last_number = -1;
+		  else qDebug("Something wrong in CalcEngine::SinDeg\n");
+		}
+	}
 #if 0
-	KNumber tmp = input;
-
 	tmp = Deg2Rad(input);
 
 	_last_number = SIN(tmp);
@@ -606,6 +680,21 @@ void CalcEngine::SinRad(KNumber input)
 
 void CalcEngine::SinGrad(KNumber input)
 {
+	KNumber trunc_input = moveIntoGradInterval(input);
+	if (trunc_input.type() == KNumber::IntegerType) {
+		KNumber mult = trunc_input/KNumber(100);
+		if (mult.type() == KNumber::IntegerType) {
+		  if (mult == KNumber::Zero)
+		  	_last_number = 0;
+		  else if (mult == KNumber(1))
+		  	_last_number = 1;
+		  else if (mult == KNumber(2))
+		  	_last_number = 0;
+		  else if (mult == KNumber(3))
+		  	_last_number = -1;
+		  else qDebug("Something wrong in CalcEngine::SinGrad\n");
+		}
+	}
 #if 0
 	KNumber tmp = input;
 
