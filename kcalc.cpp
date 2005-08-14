@@ -161,9 +161,8 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	mNumericPage = 	setupNumericKeys(central);
 
 	setupLogicKeys(mSmallPage);
-	setupLogExpKeys(mSmallPage);
 	setupStatisticKeys(mSmallPage);
-	setupTrigKeys(mSmallPage);
+	setupScientificKeys(mSmallPage);
 	setupConstantsKeys(mSmallPage);
 
 
@@ -256,42 +255,42 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 
 	// small button layout
 	smallBtnLayout->addWidget(pbStat["NumData"], 0, 0);
-	smallBtnLayout->addWidget(pbTrig["HypMode"], 0, 1);
+	smallBtnLayout->addWidget(pbScientific["HypMode"], 0, 1);
 	smallBtnLayout->addWidget(pbLogic["AND"], 0, 2);
 	smallBtnLayout->addWidget(pbMod, 0, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xA), 0, 4);
 	smallBtnLayout->addWidget(pbConstant[0], 0, 5);
 
 	smallBtnLayout->addWidget(pbStat["Mean"], 1, 0);
-	smallBtnLayout->addWidget(pbTrig["Sine"], 1, 1);
+	smallBtnLayout->addWidget(pbScientific["Sine"], 1, 1);
 	smallBtnLayout->addWidget(pbLogic["OR"], 1, 2);
 	smallBtnLayout->addWidget(pbReci, 1, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xB), 1, 4);
 	smallBtnLayout->addWidget(pbConstant[1], 1, 5);
 
 	smallBtnLayout->addWidget(pbStat["StandardDeviation"], 2, 0);
-	smallBtnLayout->addWidget(pbTrig["Cosine"], 2, 1);
+	smallBtnLayout->addWidget(pbScientific["Cosine"], 2, 1);
 	smallBtnLayout->addWidget(pbLogic["XOR"], 2, 2);
 	smallBtnLayout->addWidget(pbFactorial, 2, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xC), 2, 4);
 	smallBtnLayout->addWidget(pbConstant[2], 2, 5);
 
 	smallBtnLayout->addWidget(pbStat["Median"], 3, 0);
-	smallBtnLayout->addWidget(pbTrig["Tangent"], 3, 1);
+	smallBtnLayout->addWidget(pbScientific["Tangent"], 3, 1);
 	smallBtnLayout->addWidget(pbLogic["LeftShift"], 3, 2);
 	smallBtnLayout->addWidget(pbSquare, 3, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xD), 3, 4);
 	smallBtnLayout->addWidget(pbConstant[3], 3, 5);
 
 	smallBtnLayout->addWidget(pbStat["InputData"], 4, 0);
-	smallBtnLayout->addWidget(pbExp["Log10"], 4, 1);
+	smallBtnLayout->addWidget(pbScientific["Log10"], 4, 1);
 	smallBtnLayout->addWidget(pbLogic["RightShift"], 4, 2);
 	smallBtnLayout->addWidget(pbRoot, 4, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xE), 4, 4);
 	smallBtnLayout->addWidget(pbConstant[4], 4, 5);
 
 	smallBtnLayout->addWidget(pbStat["ClearData"], 5, 0);
-	smallBtnLayout->addWidget(pbExp["LogNatural"], 5, 1);
+	smallBtnLayout->addWidget(pbScientific["LogNatural"], 5, 1);
 	smallBtnLayout->addWidget(pbLogic["One-Complement"], 5, 2);
 	smallBtnLayout->addWidget(pbPower, 5, 3);
 	smallBtnLayout->addWidget(NumButtonGroup->find(0xF), 5, 4);
@@ -326,18 +325,18 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	topLayout->addWidget(pbInv);
 	topLayout->addWidget(calc_display, 10);
 
-	mFunctionButtonList.append(pbTrig["HypMode"]);
+	mFunctionButtonList.append(pbScientific["HypMode"]);
 	mFunctionButtonList.append(pbInv);
 	mFunctionButtonList.append(pbRoot);
-	mFunctionButtonList.append(pbTrig["Sine"]);
+	mFunctionButtonList.append(pbScientific["Sine"]);
 	mFunctionButtonList.append(pbPlusMinus);
-	mFunctionButtonList.append(pbTrig["Cosine"]);
+	mFunctionButtonList.append(pbScientific["Cosine"]);
 	mFunctionButtonList.append(pbReci);
-	mFunctionButtonList.append(pbTrig["Tangent"]);
+	mFunctionButtonList.append(pbScientific["Tangent"]);
 	mFunctionButtonList.append(pbFactorial);
-	mFunctionButtonList.append(pbExp["Log10"]);
+	mFunctionButtonList.append(pbScientific["Log10"]);
 	mFunctionButtonList.append(pbSquare);
-	mFunctionButtonList.append(pbExp["LogNatural"]);
+	mFunctionButtonList.append(pbScientific["LogNatural"]);
 	mFunctionButtonList.append(pbPower);
 
 	mMemButtonList.append(pbEE);
@@ -390,11 +389,8 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	actionStatshow->setChecked(KCalcSettings::showStat());
 	slotStatshow(KCalcSettings::showStat());
 
-	actionExpLogshow->setChecked(KCalcSettings::showExpLog());
-	slotExpLogshow(KCalcSettings::showExpLog());
-
-	actionTrigshow->setChecked(KCalcSettings::showTrig());
-	slotTrigshow(KCalcSettings::showTrig());
+	actionScientificshow->setChecked(KCalcSettings::showScientific());
+	slotScientificshow(KCalcSettings::showScientific());
 
 	actionLogicshow->setChecked(KCalcSettings::showLogic());
 	slotLogicshow(KCalcSettings::showLogic());
@@ -426,18 +422,11 @@ void KCalculator::setupMainActions(void)
 	connect(actionStatshow, SIGNAL(toggled(bool)),
 		SLOT(slotStatshow(bool)));
 
-	actionExpLogshow = new KToggleAction(i18n("&Exp/Log-Buttons"), 0,
-					     actionCollection(),
-					     "show_explog");
-	actionExpLogshow->setChecked(true);
-	connect(actionExpLogshow, SIGNAL(toggled(bool)),
-		SLOT(slotExpLogshow(bool)));
-
-	actionTrigshow = new KToggleAction(i18n("&Trigonometric Buttons"), 0,
-					   actionCollection(), "show_trig");
-	actionTrigshow->setChecked(true);
-	connect(actionTrigshow, SIGNAL(toggled(bool)),
-		SLOT(slotTrigshow(bool)));
+	actionScientificshow = new KToggleAction(i18n("Science/&Engineering Buttons"),
+						 0, actionCollection(), "show_science");
+	actionScientificshow->setChecked(true);
+	connect(actionScientificshow, SIGNAL(toggled(bool)),
+		SLOT(slotScientificshow(bool)));
 
 	actionLogicshow = new KToggleAction(i18n("&Logic Buttons"), 0,
 					    actionCollection(), "show_logic");
@@ -804,46 +793,14 @@ void KCalculator::setupLogicKeys(QWidget *parent)
 		SLOT(slotRightShiftclicked(void)));
 }
 
-void KCalculator::setupLogExpKeys(QWidget *parent)
-{
-	Q_CHECK_PTR(parent);
-
-	KCalcButton *tmp_pb;
-
-	tmp_pb = new KCalcButton(parent, "Ln-Button");
-	tmp_pb->addMode(ModeNormal, "Ln", i18n("Natural log"));
-	tmp_pb->addMode(ModeInverse, "e<sup> x </sup>", i18n("Exponential function"),
-			true);
-	pbExp.insert("LogNatural", tmp_pb);
-	tmp_pb->setAccel(Key_N);
-	connect(this, SIGNAL(switchShowAccels(bool)),
-		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
-		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotLnclicked(void)));
-
-	tmp_pb = new KCalcButton(parent, "Log-Button");
-	tmp_pb->addMode(ModeNormal, "Log", i18n("Logarithm to base 10"));
-	tmp_pb->addMode(ModeInverse, "10<sup> x </sup>", i18n("10 to the power of x"),
-			true);
-	pbExp.insert("Log10", tmp_pb);
-	tmp_pb->setAccel(Key_L);
-	connect(this, SIGNAL(switchShowAccels(bool)),
-		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
-		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotLogclicked(void)));
-
-}
-
-void KCalculator::setupTrigKeys(QWidget *parent)
+void KCalculator::setupScientificKeys(QWidget *parent)
 {
 	Q_CHECK_PTR(parent);
 
 	KCalcButton *tmp_pb;
 
 	tmp_pb = new KCalcButton("Hyp", parent, "Hyp-Button", i18n("Hyperbolic mode"));
-	pbTrig.insert("HypMode", tmp_pb);
+	pbScientific.insert("HypMode", tmp_pb);
 	tmp_pb->setAccel(Key_H);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
@@ -851,7 +808,7 @@ void KCalculator::setupTrigKeys(QWidget *parent)
 	tmp_pb->setToggleButton(true);
 
 	tmp_pb = new KCalcButton(parent, "Sin-Button");
-	pbTrig.insert("Sine", tmp_pb);
+	pbScientific.insert("Sine", tmp_pb);
 	tmp_pb->addMode(ModeNormal, "Sin", i18n("Sine"));
 	tmp_pb->addMode(ModeInverse, "Asin", i18n("Arc sine"));
 	tmp_pb->addMode(ModeHyperbolic, "Sinh", i18n("Hyperbolic sine"));
@@ -865,7 +822,7 @@ void KCalculator::setupTrigKeys(QWidget *parent)
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotSinclicked(void)));
 
 	tmp_pb = new KCalcButton(parent, "Cos-Button");
-	pbTrig.insert("Cosine", tmp_pb);
+	pbScientific.insert("Cosine", tmp_pb);
 	tmp_pb->addMode(ModeNormal, "Cos", i18n("Cosine"));
 	tmp_pb->addMode(ModeInverse, "Acos", i18n("Arc cosine"));
 	tmp_pb->addMode(ModeHyperbolic, "Cosh", i18n("Hyperbolic cosine"));
@@ -879,7 +836,7 @@ void KCalculator::setupTrigKeys(QWidget *parent)
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotCosclicked(void)));
 
 	tmp_pb = new KCalcButton(parent, "Tan-Button");
-	pbTrig.insert("Tangent", tmp_pb);
+	pbScientific.insert("Tangent", tmp_pb);
 	tmp_pb->addMode(ModeNormal, "Tan", i18n("Tangent"));
 	tmp_pb->addMode(ModeInverse, "Atan", i18n("Arc tangent"));
 	tmp_pb->addMode(ModeHyperbolic, "Tanh", i18n("Hyperbolic tangent"));
@@ -891,6 +848,30 @@ void KCalculator::setupTrigKeys(QWidget *parent)
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)),SLOT(slotTanclicked(void)));
+
+	tmp_pb = new KCalcButton(parent, "Ln-Button");
+	tmp_pb->addMode(ModeNormal, "Ln", i18n("Natural log"));
+	tmp_pb->addMode(ModeInverse, "e<sup> x </sup>", i18n("Exponential function"),
+			true);
+	pbScientific.insert("LogNatural", tmp_pb);
+	tmp_pb->setAccel(Key_N);
+	connect(this, SIGNAL(switchShowAccels(bool)),
+		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
+		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotLnclicked(void)));
+
+	tmp_pb = new KCalcButton(parent, "Log-Button");
+	tmp_pb->addMode(ModeNormal, "Log", i18n("Logarithm to base 10"));
+	tmp_pb->addMode(ModeInverse, "10<sup> x </sup>", i18n("10 to the power of x"),
+			true);
+	pbScientific.insert("Log10", tmp_pb);
+	tmp_pb->setAccel(Key_L);
+	connect(this, SIGNAL(switchShowAccels(bool)),
+		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
+		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
+	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotLogclicked(void)));
 
 }
 
@@ -1185,21 +1166,21 @@ void KCalculator::slotBaseSelected(int base)
 	// numbers
 	if(current_base != NB_DECIMAL)
 	{
-	  pbTrig["HypMode"]->setEnabled(false);
-	  pbTrig["Sine"]->setEnabled(false);
-	  pbTrig["Cosine"]->setEnabled(false);
-	  pbTrig["Tangent"]->setEnabled(false);
-	  pbExp["LogNatural"]->setEnabled(false);
-	  pbExp["Log10"]->setEnabled(false);
+	  pbScientific["HypMode"]->setEnabled(false);
+	  pbScientific["Sine"]->setEnabled(false);
+	  pbScientific["Cosine"]->setEnabled(false);
+	  pbScientific["Tangent"]->setEnabled(false);
+	  pbScientific["LogNatural"]->setEnabled(false);
+	  pbScientific["Log10"]->setEnabled(false);
 	}
 	else
 	{
-	  pbTrig["HypMode"]->setEnabled(true);
-	  pbTrig["Sine"]->setEnabled(true);
-	  pbTrig["Cosine"]->setEnabled(true);
-	  pbTrig["Tangent"]->setEnabled(true);
-	  pbExp["LogNatural"]->setEnabled(true);
-	  pbExp["Log10"]->setEnabled(true);
+	  pbScientific["HypMode"]->setEnabled(true);
+	  pbScientific["Sine"]->setEnabled(true);
+	  pbScientific["Cosine"]->setEnabled(true);
+	  pbScientific["Tangent"]->setEnabled(true);
+	  pbScientific["LogNatural"]->setEnabled(true);
+	  pbScientific["Log10"]->setEnabled(true);
 	}
 }
 
@@ -1838,11 +1819,7 @@ void KCalculator::showSettings()
 	// Add the general page.  Store the settings in the General group and
 	// use the icon package_settings.
 	General *general = new General(0, "General");
-	#ifdef HAVE_LONG_DOUBLE
-	int maxprec = 16;
-	#else
-	int maxprec = 12 ;
-	#endif
+	int maxprec = 1000;
 	general->kcfg_Precision->setMaxValue(maxprec);
 	dialog->addPage(general, i18n("General"), "package_settings", i18n("General Settings"));
 
@@ -1976,14 +1953,16 @@ void KCalculator::slotStatshow(bool toggled)
 	KCalcSettings::setShowStat(toggled);
 }
 
-void KCalculator::slotTrigshow(bool toggled)
+void KCalculator::slotScientificshow(bool toggled)
 {
 	if(toggled)
 	{
-	        pbTrig["HypMode"]->show();
-		pbTrig["Sine"]->show();
-		pbTrig["Cosine"]->show();
-		pbTrig["Tangent"]->show();
+	        pbScientific["HypMode"]->show();
+		pbScientific["Sine"]->show();
+		pbScientific["Cosine"]->show();
+		pbScientific["Tangent"]->show();
+		pbScientific["Log10"]->show();
+		pbScientific["LogNatural"]->show();
 		pbAngleChoose->show();
 		if(!statusBar()->hasItem(2))
 			statusBar()->insertFixedItem(" DEG ", 2, true);
@@ -1993,10 +1972,12 @@ void KCalculator::slotTrigshow(bool toggled)
 	}
 	else
 	{
-	        pbTrig["HypMode"]->hide();
-		pbTrig["Sine"]->hide();
-		pbTrig["Cosine"]->hide();
-		pbTrig["Tangent"]->hide();
+	        pbScientific["HypMode"]->hide();
+		pbScientific["Sine"]->hide();
+		pbScientific["Cosine"]->hide();
+		pbScientific["Tangent"]->hide();
+		pbScientific["Log10"]->hide();
+		pbScientific["LogNatural"]->hide();
 		pbAngleChoose->hide();
 		if(statusBar()->hasItem(2))
 			statusBar()->removeItem(2);
@@ -2004,24 +1985,7 @@ void KCalculator::slotTrigshow(bool toggled)
 	}
 	adjustSize();
 	setFixedSize(sizeHint());
-	KCalcSettings::setShowTrig(toggled);
-}
-
-void KCalculator::slotExpLogshow(bool toggled)
-{
-	if(toggled)
-	{
-		pbExp["Log10"]->show();
-		pbExp["LogNatural"]->show();
-	}
-	else
-	{
-		pbExp["Log10"]->hide();
-		pbExp["LogNatural"]->hide();
-	}
-	adjustSize();
-	setFixedSize(sizeHint());
-	KCalcSettings::setShowExpLog(toggled);
+	KCalcSettings::setShowScientific(toggled);
 }
 
 void KCalculator::slotLogicshow(bool toggled)
@@ -2108,8 +2072,7 @@ void KCalculator::slotShowAll(void)
 {
 	// I wonder why "setChecked" does not emit "toggled"
 	if(!actionStatshow->isChecked()) actionStatshow->activate();
-	if(!actionTrigshow->isChecked()) actionTrigshow->activate();
-	if(!actionExpLogshow->isChecked()) actionExpLogshow->activate();
+	if(!actionScientificshow->isChecked()) actionScientificshow->activate();
 	if(!actionLogicshow->isChecked()) actionLogicshow->activate();
 	if(!actionConstantsShow->isChecked()) actionConstantsShow->activate();
 }
@@ -2118,8 +2081,7 @@ void KCalculator::slotHideAll(void)
 {
 	// I wonder why "setChecked" does not emit "toggled"
 	if(actionStatshow->isChecked()) actionStatshow->activate();
-	if(actionTrigshow->isChecked()) actionTrigshow->activate();
-	if(actionExpLogshow->isChecked()) actionExpLogshow->activate();
+	if(actionScientificshow->isChecked()) actionScientificshow->activate();
 	if(actionLogicshow->isChecked()) actionLogicshow->activate();
 	if(actionConstantsShow->isChecked()) actionConstantsShow->activate();
 }
@@ -2219,7 +2181,7 @@ void KCalculator::set_colors()
 
 void KCalculator::set_precision()
 {
-	// TODO: make this do something!!
+	KNumber:: setDefaultFloatPrecision(KCalcSettings::precision());
 	UpdateDisplay(false);
 }
 
@@ -2306,46 +2268,11 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
 
 extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
 {
-        QString precisionStatement;
-		
-#ifdef HAVE_LONG_DOUBLE
-	    size_t pbit = sizeof(long double);
-#else
-	    size_t pbit = sizeof(double);
-#endif
-
-        switch (pbit) {
-			case 4:
-				precisionStatement = QString(I18N_NOOP("Built with 32 bit precision"));
-				break;
-			case 8:
-				precisionStatement = QString(I18N_NOOP("Built with 64 bit precision"));
-				break;
-			case 12:
-				precisionStatement = QString(I18N_NOOP("Built with 96 bit precision"));
-				break;
-			default:
-				// untranslatable!
-				precisionStatement = QString(I18N_NOOP("Built with %1 bit precision")).arg(pbit * 8);
-				break;
-		}
-
-#ifdef HAVE_LONG_DOUBLE
-        precisionStatement += QString(" " I18N_NOOP("(long double)"));
-#else
-        precisionStatement += QString("\n\n" I18N_NOOP("Note: Due to a broken C library, KCalc's precision \n"
-                                         "was conditionally reduced at compile time from\n"
-                                         "'long double' to 'double'. \n\n"
-                                         "Owners of systems with a working libc may \n"
-                                         "want to recompile KCalc with 'long double' \n"
-                                         "precision enabled. See the README for details."));
-#endif
-
 	KAboutData aboutData( "kcalc", I18N_NOOP("KCalc"),
                           version, description, KAboutData::License_GPL,
-                          I18N_NOOP("(c) 1996-2000, Bernd Johannes Wuebben\n"
-                                    "(c) 2000-2003, The KDE Team"),
-                          precisionStatement.utf8());
+                          I18N_NOOP("(c) 2003-2005, Klaus Niederkr" "\xc3\xbc" "ger\n"
+				    "(c) 1996-2000, Bernd Johannes Wuebben\n"
+                                    "(c) 2000-2005, The KDE Team"));
 
 	/* Klaus Niederkrueger */
 	aboutData.addAuthor("Klaus Niederkr" "\xc3\xbc" "ger", 0, "kniederk@math.uni-koeln.de");

@@ -78,8 +78,7 @@ private:
 	void setupStatusbar(void);
 	QWidget *setupNumericKeys(QWidget *parent);
 	void setupLogicKeys(QWidget *parent);
-	void setupLogExpKeys(QWidget *parent);
-	void setupTrigKeys(QWidget *parent);
+	void setupScientificKeys(QWidget *parent);
 	void setupStatisticKeys(QWidget *parent);
 	void setupConstantsKeys(QWidget *parent);
 	void keyPressEvent(QKeyEvent *e);
@@ -98,8 +97,7 @@ protected slots:
     void EnterEqual();
     void showSettings();
     void slotStatshow(bool toggled);
-    void slotTrigshow(bool toggled);
-    void slotExpLogshow(bool toggled);
+    void slotScientificshow(bool toggled);
     void slotLogicshow(bool toggled);
     void slotConstantsShow(bool toggled);   
     void slotShowAll(void);
@@ -182,8 +180,7 @@ private:
     QRadioButton*	pbBaseChoose[4];
     QPushButton*	pbAngleChoose;
     QDict<KCalcButton>	pbStat;
-    QDict<KCalcButton>	pbTrig;
-    QDict<KCalcButton>	pbExp;
+    QDict<KCalcButton>	pbScientific;
     QDict<KCalcButton>	pbLogic;
     KCalcConstButton*	pbConstant[10];
     KCalcButton* 	pbAC;
@@ -225,9 +222,8 @@ private:
     QButtonGroup*	ConstButtonGroup;
 
     KToggleAction *actionStatshow;
-    KToggleAction *actionTrigshow;
+    KToggleAction *actionScientificshow;
     KToggleAction *actionLogicshow;
-    KToggleAction *actionExpLogshow;
     KToggleAction *actionConstantsShow;
 
     QPtrList<KCalcButton> mFunctionButtonList;

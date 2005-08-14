@@ -38,6 +38,7 @@ DispLogic::DispLogic(QWidget *parent, const char *name,
 		     KActionCollection *coll)
   :KCalcDisplay(parent,name), _history_index(0)
 {
+	KNumber::setDefaultFloatOutput(true);
 	_back = KStdAction::undo(this, SLOT(history_back()), coll);
 	_forward = KStdAction::redo(this, SLOT(history_forward()), coll);
 

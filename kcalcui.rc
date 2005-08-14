@@ -1,11 +1,10 @@
 <!DOCTYPE kpartgui>
-<kpartgui name="kcalc" version="16">
+<kpartgui name="kcalc" version="19">
 <MenuBar>
   <Menu name="settings" noMerge="1"><text>&amp;Settings</text>
-    <Action name="show_trig"/>
+    <Action name="show_science"/>
     <Action name="show_stat"/>
     <Action name="show_logic"/>
-    <Action name="show_explog"/>
     <Action name="show_constants"/>
     <Separator/>
     <Action name="show_all"/>
