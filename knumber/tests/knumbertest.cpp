@@ -407,6 +407,16 @@ void testingOutput(void)
   KNumber::setDefaultFloatOutput(true);
   checkResult("Float: KNumber(\"1/4\")", KNumber("1/4"), "0.25", KNumber::FractionType);
   KNumber::setDefaultFloatOutput(false);
+  KNumber::setSplitoffIntegerForFractionOutput(true);
+  checkResult("Fractional output: KNumber(\"1/4\")", KNumber("1/4"), "1/4", KNumber::FractionType);
+  checkResult("Fractional output: KNumber(\"-1/4\")", KNumber("-1/4"), "-1/4", KNumber::FractionType);
+  checkResult("Fractional output: KNumber(\"21/4\")", KNumber("21/4"), "5 1/4", KNumber::FractionType);
+  checkResult("Fractional output: KNumber(\"-21/4\")", KNumber("-21/4"), "-5 1/4", KNumber::FractionType);
+  KNumber::setSplitoffIntegerForFractionOutput(false);
+  checkResult("Fractional output: KNumber(\"1/4\")", KNumber("1/4"), "1/4", KNumber::FractionType);
+  checkResult("Fractional output: KNumber(\"-1/4\")", KNumber("-1/4"), "-1/4", KNumber::FractionType);
+  checkResult("Fractional output: KNumber(\"21/4\")", KNumber("21/4"), "21/4", KNumber::FractionType);
+  checkResult("Fractional output: KNumber(\"-21/4\")", KNumber("-21/4"), "-21/4", KNumber::FractionType);
 }
 
 

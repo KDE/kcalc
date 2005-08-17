@@ -34,6 +34,7 @@ KNumber const KNumber::MinusOne(-1);
 KNumber const KNumber::Pi("3.14159265358979323846264338327950288");
 
 bool KNumber::_float_output = false;
+bool KNumber::_splitoffinteger_output = false;
 
 KNumber::KNumber(signed int num)
 {
@@ -192,10 +193,22 @@ KNumber & KNumber::operator -=(KNumber const &arg)
 QString const KNumber::toQString(int prec) const
 {
   QString tmp_str;
-  if (type() == FractionType  &&  _float_output)
+  if (type() == FractionType) {
+    if (_float_output)
 #warning quick work-around
-    tmp_str = QString((KNumber("1.0")*(*this))._num->ascii());
-  else
+      tmp_str = QString((KNumber("1.0")*(*this))._num->ascii());
+    else if(_splitoffinteger_output) {
+      // split off integer part
+      KNumber int_part = this->integerPart();
+      if (int_part == Zero)
+	tmp_str = QString(_num->ascii());
+      else if (int_part < Zero)
+	tmp_str = int_part.toQString() + " " + (int_part - *this)._num->ascii();
+      else
+	tmp_str = int_part.toQString() + " " + (*this - int_part)._num->ascii();
+    }  else
+      tmp_str = QString(_num->ascii());
+  }else
     tmp_str = QString(_num->ascii());
 
   if (prec < 0)
@@ -213,6 +226,11 @@ QString const KNumber::toQString(QString prec) const
 void KNumber::setDefaultFloatOutput(bool flag)
 {
   _float_output = flag;
+}
+
+void KNumber::setSplitoffIntegerForFractionOutput(bool flag)
+{
+  _splitoffinteger_output = flag;
 }
 
 void KNumber::setDefaultFloatPrecision(unsigned int prec)

@@ -145,6 +145,16 @@ class KDE_EXPORT KNumber
   static void setDefaultFloatPrecision(unsigned int prec);
 
   /**
+   * What a terrible method name!!  When displaying a fraction, the
+   * default mode gives "@p nomin/denom". With this method one can
+   * choose to display a fraction as "@p integer nomin/denom".
+   *
+   * Examples: Default representation mode is 47/17, but if @p flag is
+   * @p true, then the result is 2 13/17.
+   */
+  static void setSplitoffIntegerForFractionOutput(bool flag);
+
+  /**
    * Return a QString representing the KNumber.
    *
    * @param prec The maximal number of fractional digits displayed. If
@@ -252,6 +262,7 @@ class KDE_EXPORT KNumber
   
   _knumber *_num;
   static bool _float_output;
+  static bool _splitoffinteger_output;
 };
 
 
