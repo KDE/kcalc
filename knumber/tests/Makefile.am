@@ -17,7 +17,7 @@
 #    the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 #    Boston, MA 02111-1307, USA.
 
-INCLUDES = -I$(top_srcdir)/kcalc $(all_includes)
+INCLUDES = -I$(top_srcdir)/kcalc/knumber $(all_includes)
 
 check_PROGRAMS = knumbertest
 
