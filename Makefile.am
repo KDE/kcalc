@@ -1,4 +1,4 @@
-AM_CPPFLAGS=-D_GNU_SOURCE -D_ISOC99_SOURCE -I./knumber $(all_includes)
+AM_CPPFLAGS= -I$(srcdir)/knumber $(all_includes)
 
 SUBDIRS = knumber
 
@@ -19,7 +19,7 @@ noinst_HEADERS  = kcalc.h kcalc_button.h kcalc_const_button.h \
 			kcalctype.h dlabel.h stats.h
 
 kcalc_la_LDFLAGS = $(all_libraries) -module -avoid-version
-kcalc_la_LIBADD = ./knumber/libknumber.la $(LIB_KDEUI) $(LIBGMP) -lm
+kcalc_la_LIBADD = $(LIB_KDEUI) knumber/libknumber.la
 
 KDE_ICON = kcalc
 

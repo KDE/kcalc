@@ -23,7 +23,6 @@
 #include <qregexp.h>
 #include <qstring.h>
 
-#ifdef HAVE_GMP
 # include "knumber_priv.h"
 
 _knumerror::_knumerror(_knumber const & num)
@@ -786,12 +785,4 @@ _knuminteger * _knuminteger::rightShift(_knuminteger const &arg2) const
   
   return tmp_num;
 }
-
-
-#else  // !HAVE_GMP
-static void knumber_priv_dummy()
-{
-}
-
-#endif // HAVE_GMP
 

@@ -25,7 +25,6 @@
 #include <qregexp.h>
 #include <qstring.h>
 
-#ifdef HAVE_GMP
 #include "knumber.h"
 
 KNumber const KNumber::Zero(0);
@@ -426,10 +425,3 @@ int const KNumber::compare(KNumber const & arg2) const
 {
   return _num->compare(*arg2._num);
 }
-
-#else  // !HAVE_GMP
-static void knumber_dummy()
-{
-  return;
-}
-#endif // HAVE_GMP
