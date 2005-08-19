@@ -35,3 +35,6 @@ messages: rc.cpp
 updatedir = $(kde_datadir)/kconf_update
 update_DATA = kcalcrc.upd
 
+DOXYGEN_EMPTY = YES
+include $(top_srcdir)/admin/Doxyfile.am
+
