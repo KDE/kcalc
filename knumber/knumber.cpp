@@ -189,12 +189,20 @@ KNumber & KNumber::operator -=(KNumber const &arg)
   return *this;
 }
 
-QString const KNumber::toQString(int prec) const
+QString const KNumber::toQString(QString const & prec) const
 {
   QString tmp_str;
-  if (type() == FractionType) {
+  switch (type()) {
+  case IntegerType:
+    tmp_str = QString(_num->ascii(prec));
+    if (QRegExp("^\\d+$").exactMatch(prec)) {
+      int int_num = prec.toInt();
+      if (int_num < tmp_str.length())
+	tmp_str = (KNumber("1.0")*(*this)).toQString(prec);
+    }
+    break;
+  case FractionType:
     if (_float_output)
-#warning quick work-around
       tmp_str = QString((KNumber("1.0")*(*this))._num->ascii());
     else if(_splitoffinteger_output) {
       // split off integer part
@@ -207,19 +215,18 @@ QString const KNumber::toQString(int prec) const
 	tmp_str = int_part.toQString() + " " + (*this - int_part)._num->ascii();
     }  else
       tmp_str = QString(_num->ascii());
-  }else
-    tmp_str = QString(_num->ascii());
 
-  if (prec < 0)
-    return tmp_str;
-  else
-    return tmp_str.left(prec);
-}
+    if (QRegExp("^\\d+$").exactMatch(prec)) {
+      int int_num = prec.toInt();
+      if (int_num < tmp_str.length())
+	tmp_str = (KNumber("1.0")*(*this)).toQString(prec);
+    }
+    break;
+  default:
+    tmp_str = QString(_num->ascii(prec));
+  }
 
-QString const KNumber::toQString(QString prec) const
-{
-  if (!QRegExp("(\\d+\\.)?\\d*+$").exactMatch(prec))
-    return toQString();
+  return tmp_str;
 }
 
 void KNumber::setDefaultFloatOutput(bool flag)

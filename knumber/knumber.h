@@ -157,17 +157,14 @@ class KDE_EXPORT KNumber
   /**
    * Return a QString representing the KNumber.
    *
-   * @param prec The maximal number of fractional digits displayed. If
-   * @p prec < 0, then the default output format is used.
+   * @param prec The string is similar to the optional conversion
+   * specifications for formatted output for printf and friends,
+   * e.g. "10.3" to display numbers with 10 digits in front of the
+   * decimal point, and 3 after the decimal point. More precise
+   * explanations will be given later.
+   * 
    */
-  QString const toQString(int prec = -1) const;
-
-  /**
-   * Return a QString representing the KNumber.
-   *
-   * @param prec
-   */
-  QString const toQString(QString prec) const;
+  QString const toQString(QString const & prec = QString::null) const;
   
   /**
    * Compute the absoulte value, i.e. @p x.abs() returns the value

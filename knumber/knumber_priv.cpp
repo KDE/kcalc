@@ -133,8 +133,10 @@ _knuminteger const & _knuminteger::operator = (_knuminteger const & num)
   return *this;
 }
 
-QString const _knumerror::ascii(void) const
+QString const _knumerror::ascii(QString const &num) const
 {
+  static_cast<void>(num);
+
   switch(_error) {
   case UndefinedNumber:
     return QString("nan");
@@ -147,17 +149,18 @@ QString const _knumerror::ascii(void) const
   }
 }
 
-QString const _knuminteger::ascii(void) const
+QString const _knuminteger::ascii(QString const &num) const
 {
-  char const *tmp_ptr = mpz_get_str(0, 10, _mpz);
-  QString ret_str = tmp_ptr;
-#warning ok to free with delete?
-  delete tmp_ptr;
+  char *tmp_ptr;
 
-  return ret_str;
+    gmp_asprintf(&tmp_ptr, "%Zd", _mpz);
+    QString ret_str = tmp_ptr;
+#warning ok to free with delete?
+    delete tmp_ptr;
+    return ret_str;
 }
 
-QString const _knumfraction::ascii(void) const
+QString const _knumfraction::ascii(QString const &num) const
 {
   char const *tmp_ptr = mpq_get_str(0, 10, _mpq);
   QString ret_str = tmp_ptr;
@@ -169,7 +172,7 @@ QString const _knumfraction::ascii(void) const
   return ret_str;
 }
 
-QString const _knumfloat::ascii(void) const
+QString const _knumfloat::ascii(QString const &num) const
 {
   QString ret_str;
   char *tmp_ptr;

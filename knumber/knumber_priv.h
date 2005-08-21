@@ -37,7 +37,7 @@ class _knumber
 
   virtual NumType type(void) const = 0;
 
-  virtual QString const ascii(void) const = 0;
+  virtual QString const ascii(QString const &num = QString::null) const = 0;
 
   virtual _knumber * abs(void) const = 0;
   virtual _knumber * intPart(void) const = 0;
@@ -77,7 +77,7 @@ class _knumerror : public _knumber
 
   virtual NumType type(void) const {return SpecialType;}
 
-  virtual QString const ascii(void) const;
+  virtual QString const ascii(QString const &num = QString::null) const;
 
   virtual _knumber * abs(void) const;
   virtual _knumber * intPart(void) const;
@@ -133,7 +133,7 @@ class _knuminteger : public _knumber
 
   virtual NumType type(void) const {return IntegerType;}
 
-  virtual QString const ascii(void) const;
+  virtual QString const ascii(QString const &num = QString::null) const;
 
   virtual _knumber * abs(void) const;
   virtual _knumber * intPart(void) const;
@@ -189,7 +189,7 @@ class _knumfraction : public _knumber
 
   virtual NumType type(void) const {return FractionType;}
 
-  virtual QString const ascii(void) const;
+  virtual QString const ascii(QString const &num= QString::null) const;
   
   bool isInteger(void) const;
 
@@ -237,7 +237,7 @@ class _knumfloat : public _knumber
 
   virtual NumType type(void) const {return FloatType;}
 
-  virtual QString const ascii(void) const;
+  virtual QString const ascii(QString const &num = QString::null) const;
 
   virtual _knumber * abs(void) const;
   virtual _knumber * intPart(void) const;
