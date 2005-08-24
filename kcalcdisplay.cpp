@@ -57,7 +57,7 @@ KCalcDisplay::KCalcDisplay(QWidget *parent, const char *name)
   :QLabel(parent,name), _beep(false), _groupdigits(false), _button(0), _lit(false),
    _num_base(NB_DECIMAL),
    _display_size(DEC_SIZE), _precision(9),
-   _fixed_precision(-1), _error(false), _display_amount(0),
+   _fixed_precision(-1), _display_amount(0),
    selection_timer(new QTimer)
 {
 	setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
@@ -84,7 +84,6 @@ bool KCalcDisplay::sendEvent(Event const event)
 	switch(event)
 	{
 	case EventReset:
-		_error = false;
 		_display_amount = 0;
 		_str_int = "0";
 		_str_int_exp = QString::null;
@@ -97,12 +96,10 @@ bool KCalcDisplay::sendEvent(Event const event)
 
 		return true;
 	case EventClear:
-		if (! _error) return sendEvent(EventReset);
-		return false;
+		return sendEvent(EventReset);
 	case EventChangeSign:
 		return changeSign();
 	case EventError:
-		_error = true;
 		updateDisplay();
 
 		return true;
@@ -114,7 +111,7 @@ bool KCalcDisplay::sendEvent(Event const event)
 
 void KCalcDisplay::slotCut(void)
 {
-	if(_error  &&  _beep)
+	if(_beep)
 	{
 		KNotifyClient::beep();
 		return;
@@ -126,7 +123,7 @@ void KCalcDisplay::slotCut(void)
 
 void KCalcDisplay::slotCopy(void)
 {
-	if(_error  &&  _beep)
+	if(_beep)
 	{
 		KNotifyClient::beep();
 		return;
@@ -143,7 +140,7 @@ void KCalcDisplay::slotPaste(bool bClipboard)
 {
 	QString tmp_str = (QApplication::clipboard())->text(bClipboard ? QClipboard::Clipboard : QClipboard::Selection);
 
-	if (_error  ||  tmp_str.isNull())
+	if (tmp_str.isNull())
 	{
 		if (_beep)  KNotifyClient::beep();
 		return;
@@ -267,8 +264,6 @@ bool KCalcDisplay::setAmount(const QString &string)
 
 bool KCalcDisplay::setAmount(KNumber const & new_amount)
 {
-	if(_error) return false;
-
 	QString display_str;
 
 	_str_int = "0";
@@ -320,7 +315,9 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 	{
 		// We need to use QCString here since it uses the systems native ::sprintf()
 		// implementation which is more flexible than QString's.
+	  KNumber::setDefaultFractionalInput(false);
 	  display_str = _display_amount.toQString("20");
+	  KNumber::setDefaultFractionalInput(true);
 #if 0
 		if (_fixed_precision != -1 && _display_amount <= 1.0e+16)
 			display_str = QCString().sprintf(PRINT_FLOAT, _fixed_precision, _display_amount);
@@ -336,7 +333,6 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 		}
 	}
 
-	Q_ASSERT(_error == false);
 	setText(display_str);
 	return true;
 	
@@ -347,7 +343,7 @@ void KCalcDisplay::setText(QString const &string)
 	QString localizedString = string;
 
 	// If we aren't in decimal mode, we don't need to modify the string
-	if (_num_base == NB_DECIMAL  &&  !_error  &&  _groupdigits)
+	if (_num_base == NB_DECIMAL  &&  _groupdigits)
 	  localizedString = KGlobal::locale()->formatNumber(string, false, 0); // Note: rounding happened already above!
 
 	QLabel::setText(localizedString);
@@ -356,10 +352,13 @@ void KCalcDisplay::setText(QString const &string)
 
 QString KCalcDisplay::text() const
 {
-	if (_num_base != NB_DECIMAL || _error)
+	if (_num_base != NB_DECIMAL)
 		return QLabel::text();
+	KNumber::setDefaultFractionalInput(false);
+	QString display_str = _display_amount.toQString("20");
+	KNumber::setDefaultFractionalInput(true);
 
-	return _display_amount.toQString("20");
+	return display_str;
 	//	return QCString().sprintf(PRINT_LONG_BIG, 40, _display_amount);
 }
 
@@ -482,20 +481,13 @@ bool KCalcDisplay::updateDisplay(void)
 	  return false;
 	}
 
-	if(_error)
-	{
-		if(_beep) KNotifyClient::beep();
-		setText(i18n("Error"));
-		return false;
-	}
-	else
-		return true;
+	return true;
 }
 
 void KCalcDisplay::newCharacter(char const new_char)
 {
 	// error or DISPLAY is already full
-	if (_error || text().length() >= _display_size)
+	if (text().length() >= _display_size)
 	{
 		if(_beep) KNotifyClient::beep();
 		return;
@@ -673,11 +665,6 @@ bool KCalcDisplay::changeSign(void)
 	updateDisplay();
 
 	return true;
-}
-
-bool KCalcDisplay::getError(void) const
-{
-	return _error;
 }
 
 void KCalcDisplay::drawContents(QPainter *p)

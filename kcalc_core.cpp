@@ -275,14 +275,7 @@ void CalcEngine::ArcCosDeg(KNumber input)
 
 void CalcEngine::ArcCosRad(KNumber input)
 {
-#if 0
-	KNumber tmp = ACOS(input);
-	
-	_last_number = tmp;
 
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
-#endif
 }
 
 void CalcEngine::ArcCosGrad(KNumber input)
@@ -440,39 +433,19 @@ void CalcEngine::CosDeg(KNumber input)
 		  else if (mult == KNumber(3))
 		  	_last_number = 0;
 		  else qDebug("Something wrong in CalcEngine::CosDeg\n");
+		  return;
 		}
 	}
+	trunc_input = Deg2Rad(trunc_input);
 
-#if 0
-	KNumber tmp = input;
-	
-	tmp = Deg2Rad(input);
-
-	_last_number = COS(tmp);
-
-	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
-	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = KNumber::Zero;
-
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
-#endif
+	CALCAMNT tmp_num = trunc_input.toQString().toDouble();
+	_last_number = KNumber(double(COS(tmp_num)));
 }
 
 void CalcEngine::CosRad(KNumber input)
 {
-#if 0
-	KNumber tmp = input;
-
-	_last_number = COS(tmp);
-
-	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
-	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = KNumber::Zero;
-
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
-#endif
+  CALCAMNT tmp_num = input.toQString().toDouble();
+  _last_number = KNumber(double(COS(tmp_num)));
 }
 
 void CalcEngine::CosGrad(KNumber input)
@@ -490,22 +463,13 @@ void CalcEngine::CosGrad(KNumber input)
 		  else if (mult == KNumber(3))
 		  	_last_number = 0;
 		  else qDebug("Something wrong in CalcEngine::CosGrad\n");
+		  return;
 		}
 	}
-#if 0
-	KNumber tmp = input;
+	trunc_input = Gra2Rad(trunc_input);
 
-	tmp = Gra2Rad(input);
-
-	_last_number = COS(tmp);
-
-	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
-	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = KNumber::Zero;
-
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
-#endif
+	CALCAMNT tmp_num = trunc_input.toQString().toDouble();
+	_last_number = KNumber(double(COS(tmp_num)));
 }
 
 void CalcEngine::CosHyp(KNumber input)
@@ -646,36 +610,19 @@ void CalcEngine::SinDeg(KNumber input)
 		  else if (mult == KNumber(3))
 		  	_last_number = -1;
 		  else qDebug("Something wrong in CalcEngine::SinDeg\n");
+		  return;
 		}
 	}
-#if 0
-	tmp = Deg2Rad(input);
+	trunc_input = Deg2Rad(trunc_input);
 
-	_last_number = SIN(tmp);
-
-	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
-	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = KNumber::Zero;
-
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
-#endif
+	CALCAMNT tmp_num = trunc_input.toQString().toDouble();
+	_last_number = KNumber(double(SIN(tmp_num)));
 }
 
 void CalcEngine::SinRad(KNumber input)
 {
-#if 0
-	KNumber tmp = input;
-
-	_last_number = SIN(tmp);
-
-	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
-	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = KNumber::Zero;
-
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
-#endif
+  CALCAMNT tmp_num = input.toQString().toDouble();
+  _last_number = KNumber(double(SIN(tmp_num)));
 }
 
 void CalcEngine::SinGrad(KNumber input)
@@ -693,22 +640,14 @@ void CalcEngine::SinGrad(KNumber input)
 		  else if (mult == KNumber(3))
 		  	_last_number = -1;
 		  else qDebug("Something wrong in CalcEngine::SinGrad\n");
+		  return;
 		}
 	}
-#if 0
-	KNumber tmp = input;
 
-	tmp = Gra2Rad(input);
+	trunc_input = Gra2Rad(trunc_input);
 
-	_last_number = SIN(tmp);
-
-	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
-	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		_last_number = KNumber::Zero;
-
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
-#endif
+	CALCAMNT tmp_num = trunc_input.toQString().toDouble();
+	_last_number = KNumber(double(SIN(tmp_num)));
 }
 
 void CalcEngine::SinHyp(KNumber input)

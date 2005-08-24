@@ -108,7 +108,6 @@ public:
 	bool sendEvent(Event const event);
 	void deleteLastDigit(void);
 	KNumber const & getAmount(void) const;
-	bool getError(void) const;
 	void newCharacter(char const new_char);
 	bool setAmount(const QString &string);
 	bool setAmount(KNumber const & new_amount);
@@ -133,7 +132,6 @@ private:
 	int _precision;
 	int _fixed_precision; // "-1" = no fixed_precision
 
-	bool _error;
 	KNumber _display_amount;
 private:
 	bool changeSign(void);

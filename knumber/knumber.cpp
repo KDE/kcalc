@@ -33,6 +33,7 @@ KNumber const KNumber::MinusOne(-1);
 KNumber const KNumber::Pi("3.14159265358979323846264338327950288");
 
 bool KNumber::_float_output = false;
+bool KNumber::_fraction_input = false;
 bool KNumber::_splitoffinteger_output = false;
 
 KNumber::KNumber(signed int num)
@@ -75,7 +76,11 @@ KNumber::KNumber(QString const & num)
     simplifyRational();
   }
   else if (QRegExp("^[+-]?\\d+(\\.\\d*)?(e[+-]?\\d+)?$").exactMatch(num))
-    _num = new _knumfloat(num);
+    if (_fraction_input == true) {
+      _num = new _knumfraction(num);
+      simplifyRational();
+    } else
+      _num = new _knumfloat(num);
 }
 
 KNumber::NumType KNumber::type(void) const
@@ -232,6 +237,11 @@ QString const KNumber::toQString(QString const & prec) const
 void KNumber::setDefaultFloatOutput(bool flag)
 {
   _float_output = flag;
+}
+
+void KNumber::setDefaultFractionalInput(bool flag)
+{
+  _fraction_input = flag;
 }
 
 void KNumber::setSplitoffIntegerForFractionOutput(bool flag)

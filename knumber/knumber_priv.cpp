@@ -114,7 +114,32 @@ _knuminteger::_knuminteger(QString const & num)
 _knumfraction::_knumfraction(QString const & num)
 {
   mpq_init(_mpq);
-  mpq_set_str(_mpq, num.ascii(), 10);
+  if (QRegExp("^[+-]?\\d+(\\.\\d*)?(e[+-]?\\d+)?$").exactMatch(num)) {
+    // my hand-made conversion is terrible
+    // first me convert the mantissa
+    unsigned long int digits_after_dot = ((num.section( '.', 1, 1)).section('e', 0, 0)).length();
+    QString tmp_num = num.section('e', 0, 0).remove('.');
+    mpq_set_str(_mpq, tmp_num.ascii(), 10);
+    mpz_t tmp_int;
+    mpz_init(tmp_int);
+    mpz_ui_pow_ui (tmp_int, 10, digits_after_dot);
+    mpz_mul(mpq_denref(_mpq), mpq_denref(_mpq), tmp_int);
+    // now we take care of the exponent
+    if (! (tmp_num = num.section('e', 1, 1)).isEmpty()) {
+      long int tmp_exp = tmp_num.toLong();
+      if (tmp_exp > 0) {
+	mpz_ui_pow_ui (tmp_int, 10,
+		       static_cast<unsigned long int>(tmp_exp));
+	mpz_mul(mpq_numref(_mpq), mpq_numref(_mpq), tmp_int);
+      } else {
+	mpz_ui_pow_ui (tmp_int, 10,
+		       static_cast<unsigned long int>(-tmp_exp));
+	mpz_mul(mpq_denref(_mpq), mpq_denref(_mpq), tmp_int);
+      }
+    }
+    mpz_clear(tmp_int);
+  } else
+    mpq_set_str(_mpq, num.ascii(), 10);
   mpq_canonicalize(_mpq);
 }
 

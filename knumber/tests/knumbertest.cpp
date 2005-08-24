@@ -432,6 +432,17 @@ int main(void)
   checkResult("KNumber(\"5/3\")", KNumber("5/3"), "5/3", KNumber::FractionType);
   checkResult("KNumber(\"5/1\")", KNumber("5/1"), "5", KNumber::IntegerType);
   checkResult("KNumber(\"0/12\")", KNumber("0/12"), "0", KNumber::IntegerType);
+  KNumber::setDefaultFractionalInput(true);
+  std::cout << "Read decimals as fractions:\n";
+  checkResult("KNumber(\"5\")", KNumber("5"), "5", KNumber::IntegerType);
+  checkResult("KNumber(\"1.2\")", KNumber("1.2"), "6/5", KNumber::FractionType);
+  checkResult("KNumber(\"-0.02\")", KNumber("-0.02"), "-1/50", KNumber::FractionType);
+  checkResult("KNumber(\"5e-2\")", KNumber("5e-2"), "1/20", KNumber::FractionType);
+  checkResult("KNumber(\"1.2e3\")", KNumber("1.2e3"), "1200", KNumber::IntegerType);
+  checkResult("KNumber(\"0.02e+1\")", KNumber("0.02e+1"), "1/5", KNumber::FractionType);
+
+  KNumber::setDefaultFractionalInput(false);
+  std::cout << "Read decimals as floats:\n";
   checkResult("KNumber(\"5.3\")", KNumber("5.3"), "5.3", KNumber::FloatType);
 
   checkResult("KNumber(\"nan\")", KNumber("nan"), "nan", KNumber::SpecialType);

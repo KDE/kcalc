@@ -138,6 +138,15 @@ class KDE_EXPORT KNumber
   static void setDefaultFloatOutput(bool flag);
 
   /**
+   * Set whether a number constructed from a QString should be
+   * initialized as a fraction or as a float, e.g. "1.01" would be
+   * treated as 101/100, if this flag is set to true.
+   *
+   * The default setting is false.
+   */
+  static void setDefaultFractionalInput(bool flag);
+
+  /**
    * Set the default precision to be *at least* @p prec (decimal)
    * digits.  All subsequent initialized floats will use at least this
    * precision, but previously initialized variables are unaffected.
@@ -259,6 +268,7 @@ class KDE_EXPORT KNumber
   
   _knumber *_num;
   static bool _float_output;
+  static bool _fraction_input;
   static bool _splitoffinteger_output;
 };
 
