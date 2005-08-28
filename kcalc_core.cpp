@@ -263,67 +263,118 @@ KNumber CalcEngine::lastOutput(bool &error) const
 
 void CalcEngine::ArcCosDeg(KNumber input)
 {
-#if 0
-	KNumber tmp = ACOS(input);
-
-	_last_number = Rad2Deg(tmp);
-
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
-#endif
+	if (input < -KNumber::One  ||  input > KNumber::One) {
+		_last_number = KNumber("nan");
+		return;
+	}
+	if (input.type() == KNumber::IntegerType) {
+		if (input == KNumber::One) {
+			_last_number = KNumber(90);
+			return;
+		}
+		if (input == - KNumber::One) {
+			_last_number = KNumber(-90);
+			return;
+		}
+		if (input == KNumber::Zero) {
+			_last_number = KNumber(0);
+			return;
+		}
+	}
+	CALCAMNT tmp_num = static_cast<double>(input);
+	_last_number = Rad2Deg(KNumber(double(ACOS(tmp_num))));
 }
 
 void CalcEngine::ArcCosRad(KNumber input)
 {
-
+	if (input < -KNumber::One  ||  input > KNumber::One) {
+		_last_number = KNumber("nan");
+		return;
+	}
+	CALCAMNT tmp_num = static_cast<double>(input);
+	_last_number = KNumber(double(ACOS(tmp_num)));
 }
 
 void CalcEngine::ArcCosGrad(KNumber input)
 {
-#if 0
-	KNumber tmp = ACOS(input);
-
-	_last_number = Rad2Gra(tmp);
-
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
-#endif
+	if (input < -KNumber::One  ||  input > KNumber::One) {
+		_last_number = KNumber("nan");
+		return;
+	}
+	if (input.type() == KNumber::IntegerType) {
+		if (input == KNumber::One) {
+			_last_number = KNumber(100);
+			return;
+		}
+		if (input == - KNumber::One) {
+			_last_number = KNumber(-100);
+			return;
+		}
+		if (input == KNumber::Zero) {
+			_last_number = KNumber(0);
+			return;
+		}
+	}
+	CALCAMNT tmp_num = static_cast<double>(input);
+	_last_number = Rad2Gra(KNumber(double(ACOS(tmp_num))));
 }
 
 void CalcEngine::ArcSinDeg(KNumber input)
 {
-#if 0
-	KNumber tmp = ASIN(input);
-	
-	_last_number = Rad2Deg(tmp);
-
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
-#endif
+	if (input < -KNumber::One  ||  input > KNumber::One) {
+		_last_number = KNumber("nan");
+		return;
+	}
+	if (input.type() == KNumber::IntegerType) {
+		if (input == KNumber::One) {
+			_last_number = KNumber(90);
+			return;
+		}
+		if (input == - KNumber::One) {
+			_last_number = KNumber(-90);
+			return;
+		}
+		if (input == KNumber::Zero) {
+			_last_number = KNumber(0);
+			return;
+		}
+	}
+	CALCAMNT tmp_num = static_cast<double>(input);
+	_last_number = Rad2Deg(KNumber(double(ASIN(tmp_num))));
 }
 
 void CalcEngine::ArcSinRad(KNumber input)
 {
-#if 0
-	KNumber tmp = ASIN(input);
-
-	_last_number = tmp;
-
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
-#endif
+	if (input < -KNumber::One  ||  input > KNumber::One) {
+		_last_number = KNumber("nan");
+		return;
+	}
+	CALCAMNT tmp_num = static_cast<double>(input);
+	_last_number = KNumber(double(ASIN(tmp_num)));
 }
 
 void CalcEngine::ArcSinGrad(KNumber input)
 {
-#if 0
-	KNumber tmp = ASIN(input);
-
-	_last_number = Rad2Gra(tmp);
-
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
-#endif
+	if (input < -KNumber::One  ||  input > KNumber::One) {
+		_last_number = KNumber("nan");
+		return;
+	}
+	if (input.type() == KNumber::IntegerType) {
+		if (input == KNumber::One) {
+			_last_number = KNumber(90);
+			return;
+		}
+		if (input == - KNumber::One) {
+			_last_number = KNumber(-90);
+			return;
+		}
+		if (input == KNumber::Zero) {
+			_last_number = KNumber(0);
+			return;
+		}
+	}
+	CALCAMNT tmp_num = static_cast<double>(input);
+	_last_number = Rad2Gra(KNumber(double(ASIN(tmp_num))));
 }
 
 void CalcEngine::ArcTangensDeg(KNumber input)
@@ -362,19 +413,35 @@ void CalcEngine::ArcTangensGrad(KNumber input)
 
 void CalcEngine::AreaCosHyp(KNumber input)
 {
-	CALCAMNT tmp_num = input.toQString().toDouble();
+	if (input < KNumber::One) {
+	  _last_number = KNumber("nan");
+	  return;
+	}
+	CALCAMNT tmp_num = static_cast<double>(input);
 	_last_number = KNumber(double(ACOSH(tmp_num)));
 }
 
 void CalcEngine::AreaSinHyp(KNumber input)
 {
-	CALCAMNT tmp_num = input.toQString().toDouble();
+	CALCAMNT tmp_num = static_cast<double>(input);
 	_last_number = KNumber(double(ASINH(tmp_num)));
 }
 
 void CalcEngine::AreaTangensHyp(KNumber input)
 {
-	CALCAMNT tmp_num = input.toQString().toDouble();
+	if (input < -KNumber::One  ||  input > KNumber::One) {
+		_last_number = KNumber("nan");
+		return;
+	}
+	if (input == KNumber::One) {
+		_last_number = KNumber("inf");
+		return;
+	}
+	if (input == - KNumber::One) {
+		_last_number = KNumber("-inf");
+		return;
+	}
+	CALCAMNT tmp_num = static_cast<double>(input);
 	_last_number = KNumber(double(ATANH(tmp_num)));
 }
 
@@ -438,14 +505,14 @@ void CalcEngine::CosDeg(KNumber input)
 	}
 	trunc_input = Deg2Rad(trunc_input);
 
-	CALCAMNT tmp_num = trunc_input.toQString().toDouble();
+	CALCAMNT tmp_num = static_cast<double>(trunc_input);
 	_last_number = KNumber(double(COS(tmp_num)));
 }
 
 void CalcEngine::CosRad(KNumber input)
 {
-  CALCAMNT tmp_num = input.toQString().toDouble();
-  _last_number = KNumber(double(COS(tmp_num)));
+	CALCAMNT tmp_num = static_cast<double>(input);
+	_last_number = KNumber(double(COS(tmp_num)));
 }
 
 void CalcEngine::CosGrad(KNumber input)
@@ -468,13 +535,13 @@ void CalcEngine::CosGrad(KNumber input)
 	}
 	trunc_input = Gra2Rad(trunc_input);
 
-	CALCAMNT tmp_num = trunc_input.toQString().toDouble();
+	CALCAMNT tmp_num = static_cast<double>(trunc_input);
 	_last_number = KNumber(double(COS(tmp_num)));
 }
 
 void CalcEngine::CosHyp(KNumber input)
 {
-	CALCAMNT tmp_num = input.toQString().toDouble();
+	CALCAMNT tmp_num = static_cast<double>(input);
 	_last_number = KNumber(double(COSH(tmp_num)));
 }
 
@@ -490,15 +557,13 @@ void CalcEngine::CubeRoot(KNumber input)
 
 void CalcEngine::Exp(KNumber input)
 {
-	CALCAMNT tmp_num = input.toQString().toDouble();
+	CALCAMNT tmp_num = static_cast<double>(input);
 	_last_number = KNumber(double(EXP(tmp_num)));
 }
 
 void CalcEngine::Exp10(KNumber input)
 {
-#if 0
-	_last_number = POW(10, input);
-#endif
+	_last_number = KNumber(10).power(input);
 }
 
 
@@ -550,7 +615,7 @@ void CalcEngine::Ln(KNumber input)
 	else if (input == KNumber::One)
 		_last_number = 0;
 	else {
-		CALCAMNT tmp_num = input.toQString().toDouble();
+		CALCAMNT tmp_num = static_cast<double>(input);
 		_last_number = KNumber(double(LN(tmp_num)));
 	}
 }
@@ -564,7 +629,7 @@ void CalcEngine::Log10(KNumber input)
 	else if (input == KNumber::One)
 		_last_number = 0;
 	else {
-		CALCAMNT tmp_num = input.toQString().toDouble();
+		CALCAMNT tmp_num = static_cast<double>(input);
 		_last_number = KNumber(double(LOG_TEN(tmp_num)));
 	}
 }
@@ -615,14 +680,14 @@ void CalcEngine::SinDeg(KNumber input)
 	}
 	trunc_input = Deg2Rad(trunc_input);
 
-	CALCAMNT tmp_num = trunc_input.toQString().toDouble();
+	CALCAMNT tmp_num = static_cast<double>(trunc_input);
 	_last_number = KNumber(double(SIN(tmp_num)));
 }
 
 void CalcEngine::SinRad(KNumber input)
 {
-  CALCAMNT tmp_num = input.toQString().toDouble();
-  _last_number = KNumber(double(SIN(tmp_num)));
+	CALCAMNT tmp_num = static_cast<double>(input);
+	_last_number = KNumber(double(SIN(tmp_num)));
 }
 
 void CalcEngine::SinGrad(KNumber input)
@@ -646,13 +711,13 @@ void CalcEngine::SinGrad(KNumber input)
 
 	trunc_input = Gra2Rad(trunc_input);
 
-	CALCAMNT tmp_num = trunc_input.toQString().toDouble();
+	CALCAMNT tmp_num = static_cast<double>(trunc_input);
 	_last_number = KNumber(double(SIN(tmp_num)));
 }
 
 void CalcEngine::SinHyp(KNumber input)
 {
-	CALCAMNT tmp_num = input.toQString().toDouble();
+	CALCAMNT tmp_num = static_cast<double>(input);
 	_last_number = KNumber(double(SINH(tmp_num)));
 }
 
