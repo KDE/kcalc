@@ -144,7 +144,7 @@ KNumber KStats::sum_of_squares() {
 
 KNumber KStats::mean(void)
 {
-	if(count() == KNumber::Zero){
+	if(count() == 0){
 		error_flag = true;
 		return 0;
 	}
