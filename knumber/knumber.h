@@ -221,6 +221,8 @@ class KDE_EXPORT KNumber
    */
   KNumber const integerPart(void) const;
 
+  KNumber const power(KNumber const &exp) const;
+
   KNumber const operator+(KNumber const & arg2) const;
   KNumber const operator -(void) const;
   KNumber const operator-(KNumber const & arg2) const;
@@ -234,6 +236,8 @@ class KDE_EXPORT KNumber
   KNumber const operator>>(KNumber const & arg2) const;
 
   operator bool(void) const;
+  operator long int(void) const;
+  operator double(void) const;
 
   bool const operator==(KNumber const & arg2) const
   { return (compare(arg2) == 0); }

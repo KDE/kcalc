@@ -50,8 +50,12 @@ class _knumber
   virtual _knumber * multiply(_knumber const & arg2) const = 0;
   _knumber * divide(_knumber const & arg2) const;
 
+  virtual _knumber * power(_knumber const & exponent) const = 0;
+
   virtual int compare(_knumber const &arg2) const = 0;
 
+  virtual operator long int (void) const = 0;
+  virtual operator double (void) const = 0;
 };
 
 
@@ -89,7 +93,12 @@ class _knumerror : public _knumber
   virtual _knumber * add(_knumber const & arg2) const;
   virtual _knumber * multiply(_knumber const & arg2) const;
 
+  virtual _knumber * power(_knumber const & exponent) const;
+
   virtual int compare(_knumber const &arg2) const;
+
+  virtual operator long int (void) const;
+  virtual operator double (void) const;
 
  private:
 
@@ -147,11 +156,15 @@ class _knuminteger : public _knumber
 
   virtual int compare(_knumber const &arg2) const;
 
+  virtual _knumber * power(_knumber const & exponent) const;
+
+  virtual operator long int (void) const;
+  virtual operator double (void) const;
+
   _knuminteger * intAnd(_knuminteger const &arg2) const;
   _knuminteger * intOr(_knuminteger const &arg2) const;
   _knumber * mod(_knuminteger const &arg2) const;
-  _knuminteger * leftShift(_knuminteger const &arg2) const;
-  _knuminteger * rightShift(_knuminteger const &arg2) const;
+  _knumber * shift(_knuminteger const &arg2) const;
   
  private:
   mpz_t _mpz;
@@ -202,8 +215,13 @@ class _knumfraction : public _knumber
   virtual _knumber * reciprocal(void) const;
   virtual _knumber * add(_knumber const & arg2) const;
   virtual _knumber * multiply(_knumber const & arg2) const;
+
+  virtual _knumber * power(_knumber const & exponent) const;
   
   virtual int compare(_knumber const &arg2) const;
+
+  virtual operator long int (void) const;
+  virtual operator double (void) const;
 
  private:
   mpq_t _mpq;
@@ -250,7 +268,12 @@ class _knumfloat : public _knumber
   virtual _knumber * multiply(_knumber const & arg2) const;
   virtual _knumber * divide(_knumber const & arg2) const;
 
+  virtual _knumber * power(_knumber const & exponent) const;
+
   virtual int compare(_knumber const &arg2) const;
+
+  virtual operator long int (void) const;
+  virtual operator double (void) const;
 
  private:
     mpf_t _mpf;

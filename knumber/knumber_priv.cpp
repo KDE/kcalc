@@ -23,7 +23,7 @@
 #include <qregexp.h>
 #include <qstring.h>
 
-# include "knumber_priv.h"
+#include "knumber_priv.h"
 
 _knumerror::_knumerror(_knumber const & num)
 {
@@ -716,7 +716,8 @@ _knumber * _knumber::divide(_knumber const & arg2) const
 
 _knumber *_knumfloat::divide(_knumber const & arg2) const
 {
-#warning test if dividing by zero  
+  if(mpf_cmp_si(_mpf, 0) == 0) return new _knumerror(Infinity);
+
   // automatically casts arg2 to float
   _knumfloat * tmp_num = new _knumfloat(arg2);
 
@@ -726,6 +727,31 @@ _knumber *_knumfloat::divide(_knumber const & arg2) const
 }
 
 
+
+
+_knumber * _knumerror::power(_knumber const & exponent) const
+{
+#warning need to implemented something sensible here
+  return new _knumerror(Infinity);
+}
+
+_knumber * _knuminteger::power(_knumber const & exponent) const
+{
+  if (exponent.type() == IntegerType) {
+    _knuminteger * tmp_num = new _knuminteger();
+    mpz_pow_ui(tmp_num->_mpz, _mpz,
+	    mpz_get_ui(dynamic_cast<_knuminteger const &>(exponent)._mpz));
+    return tmp_num;
+  }
+}
+
+_knumber * _knumfraction::power(_knumber const & exponent) const
+{
+}
+
+_knumber * _knumfloat::power(_knumber const & exponent) const
+{
+}
 
 
 int _knumerror::compare(_knumber const &arg2) const
@@ -756,13 +782,101 @@ int _knuminteger::compare(_knumber const &arg2) const
 
 int _knumfraction::compare(_knumber const &arg2) const
 {
-  return 0;
+  if (arg2.type() != FractionType) {
+    if (arg2.type() == IntegerType) {
+      mpq_t tmp_frac;
+      mpq_init(tmp_frac);
+      mpq_set_z(tmp_frac,
+		dynamic_cast<_knuminteger const &>(arg2)._mpz);
+      int cmp_result =  mpq_cmp(_mpq, tmp_frac);
+      mpq_clear(tmp_frac);
+      return cmp_result;
+    } else
+      return - arg2.compare(*this);
+  }
+
+  return mpq_cmp(_mpq, dynamic_cast<_knumfraction const &>(arg2)._mpq);
 }
 
 int _knumfloat::compare(_knumber const &arg2) const
 {
-  return 0;
+  if (arg2.type() != FloatType) {
+    mpf_t tmp_float;
+    if (arg2.type() == IntegerType) {
+      mpf_init(tmp_float);
+      mpf_set_z(tmp_float,
+		dynamic_cast<_knuminteger const &>(arg2)._mpz);
+    } else if (arg2.type() == FractionType) {
+      mpf_init(tmp_float);
+      mpf_set_q(tmp_float,
+		dynamic_cast<_knumfraction const &>(arg2)._mpq);
+    } else
+      return - arg2.compare(*this);
+    
+    int cmp_result =  mpf_cmp(_mpf, tmp_float);
+    mpf_clear(tmp_float);
+    return cmp_result;
+  }
+
+  return mpf_cmp(_mpf, dynamic_cast<_knumfloat const &>(arg2)._mpf);
 }
+
+
+
+_knumerror::operator long int (void) const
+{
+  // what would be the correct return values here?
+  if (_error == Infinity)
+    return 0;
+  if (_error == MinusInfinity)
+    return 0;
+  else // if (_error == UndefinedNumber)
+    return 0;
+}
+
+_knuminteger::operator long int (void) const
+{
+  return mpz_get_si(_mpz);
+}
+
+_knumfraction::operator long int (void) const
+{
+  return static_cast<long int>(mpq_get_d(_mpq));
+}
+
+_knumfloat::operator long int (void) const
+{
+  return mpf_get_si(_mpf);
+}
+
+
+
+_knumerror::operator double (void) const
+{
+  if (_error == Infinity)
+    return INFINITY;
+  if (_error == MinusInfinity)
+    return -INFINITY;
+  else // if (_error == UndefinedNumber)
+    return NAN;
+}
+
+_knuminteger::operator double (void) const
+{
+  return mpz_get_d(_mpz);
+}
+
+_knumfraction::operator double (void) const
+{
+  return mpq_get_d(_mpq);
+}
+
+_knumfloat::operator double (void) const
+{
+  return mpf_get_d(_mpf);
+}
+
+
 
 
 _knuminteger * _knuminteger::intAnd(_knuminteger const &arg2) const
@@ -794,23 +908,29 @@ _knumber * _knuminteger::mod(_knuminteger const &arg2) const
   return tmp_num;
 }
 
-_knuminteger * _knuminteger::leftShift(_knuminteger const &arg2) const
+_knumber * _knuminteger::shift(_knuminteger const &arg2) const
 {
-#warning print out some warning that only shift by long int, check for negative
+  mpz_t tmp_mpz;
+
+  mpz_init_set (tmp_mpz, arg2._mpz);
+
+  if (! mpz_fits_slong_p(tmp_mpz)) {
+    mpz_clear(tmp_mpz);
+    return new _knumerror("nan");
+  }
+  
+  signed long int tmp_arg2 = mpz_get_si(tmp_mpz);
+  mpz_clear(tmp_mpz);
+
+
   _knuminteger * tmp_num = new _knuminteger();
 
-  mpz_mul_2exp(tmp_num->_mpz, _mpz, mpz_get_ui(arg2._mpz));
-  
-  return tmp_num;
-}
+  if (tmp_arg2 > 0)  // left shift
+    mpz_mul_2exp(tmp_num->_mpz, _mpz, tmp_arg2);
+  else  // right shift
+    mpz_tdiv_q_2exp(tmp_num->_mpz, _mpz, -tmp_arg2);
 
-_knuminteger * _knuminteger::rightShift(_knuminteger const &arg2) const
-{
-#warning print out some warning that only shift by long int, check for negative
-  _knuminteger * tmp_num = new _knuminteger();
 
-  mpz_tdiv_q_2exp(tmp_num->_mpz, _mpz, mpz_get_ui(arg2._mpz));
-  
   return tmp_num;
 }
 

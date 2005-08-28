@@ -47,6 +47,22 @@ void checkResult(QString const &string, KNumber const & result,
   exit(1);
 }
 
+void checkTruth(QString const &string, bool computation,
+		bool desired_result)
+{
+  std::cout << "Testing truth of: " << string.ascii() <<
+    " should be " << desired_result << " and is " <<
+    computation << "....\n";
+
+  if (computation == desired_result) {
+    std::cout << "OK\n";
+    return;
+  }
+  
+  std::cout << "Failed\n";
+  exit(1);
+}
+
 
 void checkType(QString const &string, KNumber::NumType test_arg,
 	       KNumber::NumType desired)
@@ -64,6 +80,49 @@ void checkType(QString const &string, KNumber::NumType test_arg,
   exit(1);
     
 }
+
+
+void testingCompare(void)
+{
+  std::cout << "\n\nTesting Compare:\n";
+  
+  checkTruth("KNumber(5) == KNumber(2)", KNumber(5) == KNumber(2), false);
+  checkTruth("KNumber(5) > KNumber(2)", KNumber(5) > KNumber(2), true);
+  checkTruth("KNumber(5) < KNumber(2)", KNumber(5) < KNumber(2), false);
+  checkTruth("KNumber(5) >= KNumber(2)", KNumber(5) >= KNumber(2), true);
+  checkTruth("KNumber(5) <= KNumber(2)", KNumber(5) <= KNumber(2), false);
+  checkTruth("KNumber(5) != KNumber(2)", KNumber(5) != KNumber(2), true);
+
+  checkTruth("KNumber(2) == KNumber(2)", KNumber(2) == KNumber(2), true);
+  checkTruth("KNumber(2) > KNumber(2)", KNumber(2) > KNumber(2), false);
+  checkTruth("KNumber(2) < KNumber(2)", KNumber(2) < KNumber(2), false);
+  checkTruth("KNumber(2) >= KNumber(2)", KNumber(2) >= KNumber(2), true);
+  checkTruth("KNumber(2) <= KNumber(2)", KNumber(2) <= KNumber(2), true);
+  checkTruth("KNumber(2) != KNumber(2)", KNumber(2) != KNumber(2), false);
+
+  checkTruth("KNumber(5) == KNumber(\"1/2\")", KNumber(5) == KNumber("1/2"), false);
+  checkTruth("KNumber(5) > KNumber(\"1/2\")", KNumber(5) > KNumber("1/2"), true);
+  checkTruth("KNumber(5) < KNumber(\"1/2\")", KNumber(5) < KNumber("1/2"), false);
+  checkTruth("KNumber(5) >= KNumber(\"1/2\")", KNumber(5) >= KNumber("1/2"), true);
+  checkTruth("KNumber(5) <= KNumber(\"1/2\")", KNumber(5) <= KNumber("1/2"), false);
+  checkTruth("KNumber(5) != KNumber(\"1/2\")", KNumber(5) != KNumber("1/2"), true);
+
+  checkTruth("KNumber(\"1/2\") == KNumber(\"1/2\")", KNumber("1/2") == KNumber("1/2"), true);
+  checkTruth("KNumber(\"1/2\") > KNumber(\"1/2\")", KNumber("1/2") > KNumber("1/2"), false);
+  checkTruth("KNumber(\"1/2\") < KNumber(\"1/2\")", KNumber("1/2") < KNumber("1/2"), false);
+  checkTruth("KNumber(\"1/2\") >= KNumber(\"1/2\")", KNumber("1/2") >= KNumber("1/2"), true);
+  checkTruth("KNumber(\"1/2\") <= KNumber(\"1/2\")", KNumber("1/2") <= KNumber("1/2"), true);
+  checkTruth("KNumber(\"1/2\") != KNumber(\"1/2\")", KNumber("1/2") != KNumber("1/2"), false);
+
+  checkTruth("KNumber(\"3/2\") == KNumber(\"1/2\")", KNumber("3/2") == KNumber("1/2"), false);
+  checkTruth("KNumber(\"3/2\") > KNumber(\"1/2\")", KNumber("3/2") > KNumber("1/2"), true);
+  checkTruth("KNumber(\"3/2\") < KNumber(\"1/2\")", KNumber("3/2") < KNumber("1/2"), false);
+  checkTruth("KNumber(\"3/2\") >= KNumber(\"1/2\")", KNumber("3/2") >= KNumber("1/2"), true);
+  checkTruth("KNumber(\"3/2\") <= KNumber(\"1/2\")", KNumber("3/2") <= KNumber("1/2"), false);
+  checkTruth("KNumber(\"3/2\") != KNumber(\"1/2\")", KNumber("3/2") != KNumber("1/2"), true);
+
+}
+
 
 void testingAdditions(void)
 {
@@ -455,6 +514,8 @@ int main(void)
   checkType("KNumber::One", KNumber::One.type(), KNumber::IntegerType);
   checkType("KNumber::MinusOne", KNumber::MinusOne.type(), KNumber::IntegerType);
   checkType("KNumber::Pi", KNumber::Pi.type(), KNumber::FloatType);
+
+  testingCompare();
 
   testingAdditions();
   testingSubtractions();
