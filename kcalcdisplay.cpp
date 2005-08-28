@@ -272,39 +272,11 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 	_neg_sign = false;
 	_eestate = false;
 
-	_display_amount = new_amount;
-	
 	if (_num_base != NB_DECIMAL)
 	{
-		CALCAMNT	tmp_round;
-		KCALC_LONG	rounded_num = 0;
+		_display_amount = new_amount.integerPart();
 
-		MODF(_display_amount, &tmp_round);
-
-		if (tmp_round < KCALC_LONG_MIN || tmp_round > KCALC_ULONG_MAX)
-		{
-			sendEvent(EventError);
-			return false;
-		}
-
-		//
-		// We may be in that never-never land where boh numbers
-		// turn from positive to negative - if so then we do
-		// just that, allowing boh negative numbers to be entered
-		// as read (from dumps and the like!)
-		//
-		else if (tmp_round > KCALC_LONG_MAX)
-		{
-		  _display_amount = static_cast<double>(KCALC_LONG_MIN + (tmp_round - KCALC_LONG_MAX - 1));
-			rounded_num = static_cast<KCALC_LONG>(_display_amount);
-		}
-		else
-		{
-		  _display_amount = static_cast<double>(tmp_round);
-			rounded_num = static_cast<KCALC_LONG>(_display_amount);
-		}
-
-		display_str = QString::number(rounded_num, _num_base).upper();
+		display_str = QString::number(static_cast<long int>(_display_amount), _num_base).upper();
 		if (display_str.length() > DSP_SIZE)
 		{
 			sendEvent(EventError);
@@ -315,6 +287,9 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 	{
 		// We need to use QCString here since it uses the systems native ::sprintf()
 		// implementation which is more flexible than QString's.
+	  _display_amount = new_amount;
+	
+
 	  KNumber::setDefaultFractionalInput(false);
 	  display_str = _display_amount.toQString("20");
 	  KNumber::setDefaultFractionalInput(true);
@@ -368,7 +343,7 @@ QString KCalcDisplay::text() const
    being set with "setAmount"). Return value is the new base. */
 int KCalcDisplay::setBase(NumBase new_base)
 {
-	CALCAMNT tmp_val = getAmount();
+	CALCAMNT tmp_val = static_cast<double>(getAmount());
 
 	switch(new_base)
 	{
