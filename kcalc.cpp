@@ -314,9 +314,9 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	largeBtnLayout->addWidget(pbMemStore, 2, 1);
 
 	largeBtnLayout->addWidget(pbMemPlusMinus, 3, 0);
-	largeBtnLayout->addWidget(pbPercent, 3, 1);
+	largeBtnLayout->addWidget(pbMC, 3, 1);
 
-	largeBtnLayout->addWidget(pbMC, 4, 0);
+	largeBtnLayout->addWidget(pbPercent, 4, 0);
 	largeBtnLayout->addWidget(pbPlusMinus, 4, 1);
 
 	// top layout
