@@ -49,12 +49,20 @@
     </entry>
   </group>
   <group name="Precision">
-    <entry name="Precision" type="Int" key="precision">
-      <label>Maximum number of digits.</label>
+    <entry name="Precision" type="UInt" key="precision">
+      <label>Maximum number of digits displayed.</label>
+      <whatsthis>
+	KCalc can compute with many more digits than the number that
+	fits on the display. This setting gives the maximum number of
+	digits displayed, before KCalc starts using scientific notation,
+	i.e. notation of the type 2.34e12.
+      </whatsthis> 
       <default>12</default>
+      <min>8</min>
+      <max>200</max>
     </entry>
-    <entry name="FixedPrecision" type="Int" key="fixedprecision">
-      <label>Number of fixed decimal places.</label>
+    <entry name="FixedPrecision" type="UInt" key="fixedprecision">
+      <label>Number of fixed decimal digits.</label>
       <default>2</default>
     </entry>
     <entry name="Fixed" type="Bool" key="fixed">

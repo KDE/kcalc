@@ -33,6 +33,7 @@
 #include <kglobal.h>
 #include <klocale.h>
 #include <knotifyclient.h>
+#include "kcalc_settings.h"
 #include "kcalcdisplay.h"
 #include "kcalcdisplay.moc"
 
@@ -278,7 +279,7 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 	  _display_amount = new_amount;
 	
 
-	  display_str = _display_amount.toQString("20");
+	  display_str = _display_amount.toQString(QString().setNum(KCalcSettings::precision()));
 #if 0
 		if (_fixed_precision != -1 && _display_amount <= 1.0e+16)
 			display_str = QCString().sprintf(PRINT_FLOAT, _fixed_precision, _display_amount);
@@ -315,7 +316,7 @@ QString KCalcDisplay::text() const
 {
 	if (_num_base != NB_DECIMAL)
 		return QLabel::text();
-	QString display_str = _display_amount.toQString("20");
+	QString display_str = _display_amount.toQString(QString().setNum(KCalcSettings::precision()));
 
 	return display_str;
 	//	return QCString().sprintf(PRINT_LONG_BIG, 40, _display_amount);
