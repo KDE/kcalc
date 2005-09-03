@@ -138,7 +138,7 @@ bool isoddint(const KNumber & input)
 
 static KNumber ExecPower(const KNumber & left_op, const KNumber & right_op)
 {
-  return KNumber::Zero;
+	return left_op.power(right_op);
 #if 0
   if (right_op == KNumber::Zero)
 	  if (left_op == KNumber::Zero) // 0^0 not defined

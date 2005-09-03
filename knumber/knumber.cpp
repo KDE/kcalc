@@ -311,15 +311,33 @@ KNumber const KNumber::integerPart(void) const
 
 KNumber const KNumber::power(KNumber const &exp) const
 {
-  if (*this == Zero  && exp == Zero)
-    return KNumber("nan"); // 0^0 not defined
+  if (*this == Zero) {
+    if(exp == Zero)
+      return KNumber("nan"); // 0^0 not defined
+    else if (exp < Zero)
+      return KNumber("inf");
+    else
+      return KNumber(0);
+  }
 
-  KNumber tmp_num;
-  delete tmp_num._num;
+  if (exp == Zero)
+    return One;
+  else if (exp < Zero) {
+    KNumber tmp_num;
+    KNumber tmp_num2 = -exp;
+    delete tmp_num._num;
+    tmp_num._num = _num->power(*(tmp_num2._num));
 
-  tmp_num._num = _num->power(*(exp._num));
+    return One/tmp_num;
+  }
+  else {
+    KNumber tmp_num;
+    delete tmp_num._num;
+    tmp_num._num = _num->power(*(exp._num));
 
-  return tmp_num;
+    return tmp_num;
+  }
+
 }
 
 KNumber const KNumber::operator-(void) const

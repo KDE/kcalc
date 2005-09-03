@@ -738,9 +738,67 @@ _knumber * _knumerror::power(_knumber const & exponent) const
 _knumber * _knuminteger::power(_knumber const & exponent) const
 {
   if (exponent.type() == IntegerType) {
+
+    mpz_t tmp_mpz;
+    mpz_init_set(tmp_mpz,
+		 dynamic_cast<_knuminteger const &>(exponent)._mpz);
+    
+    if (! mpz_fits_ulong_p(tmp_mpz)) { // conversion wouldn't work, so
+				       // use floats
+      mpz_clear(tmp_mpz);
+#warning here we need to convert everything to floats
+      return 0;
+    }
+
+    unsigned long int tmp_int = mpz_get_ui(tmp_mpz);
+    mpz_clear(tmp_mpz);
+
     _knuminteger * tmp_num = new _knuminteger();
-    mpz_pow_ui(tmp_num->_mpz, _mpz,
-	    mpz_get_ui(dynamic_cast<_knuminteger const &>(exponent)._mpz));
+    mpz_pow_ui(tmp_num->_mpz, _mpz, tmp_int);
+    return tmp_num;
+  }
+  if (exponent.type() == FractionType) {
+    // GMP only supports few root functions, so we need to convert
+    // into signed long int
+    mpz_t tmp_mpz;
+    mpz_init_set(tmp_mpz,
+		 mpq_denref(dynamic_cast<_knumfraction const &>(exponent)._mpq));
+    
+    if (! mpz_fits_ulong_p(tmp_mpz)) { // conversion wouldn't work, so
+				       // use floats
+      mpz_clear(tmp_mpz);
+#warning here we need to convert everything to floats
+      return 0;
+    }
+
+    unsigned long int tmp_int = mpz_get_ui(tmp_mpz);
+    mpz_clear(tmp_mpz);
+
+    // first check if result will be an integer
+    _knuminteger * tmp_num = new _knuminteger();
+    int flag = mpz_root(tmp_num->_mpz, _mpz, tmp_int);
+    if (flag == 0) { // result is not exact
+      delete tmp_num;
+#warning here we need to convert everything to floats
+      return 0;
+    }
+
+    // result is exact
+
+    mpz_init_set(tmp_mpz,
+		 mpq_numref(dynamic_cast<_knumfraction const &>(exponent)._mpq));
+    
+    if (! mpz_fits_ulong_p(tmp_mpz)) { // conversion wouldn't work, so
+				       // use floats
+      mpz_clear(tmp_mpz);
+#warning here we need to convert everything to floats
+      return 0;
+    }
+    tmp_int = mpz_get_ui(tmp_mpz);
+    mpz_clear(tmp_mpz);
+
+    mpz_pow_ui(tmp_num->_mpz, tmp_num->_mpz, tmp_int);
+
     return tmp_num;
   }
 }
@@ -916,7 +974,7 @@ _knumber * _knuminteger::shift(_knuminteger const &arg2) const
 
   if (! mpz_fits_slong_p(tmp_mpz)) {
     mpz_clear(tmp_mpz);
-    return new _knumerror("nan");
+    return new _knumerror(UndefinedNumber);
   }
   
   signed long int tmp_arg2 = mpz_get_si(tmp_mpz);
