@@ -320,8 +320,12 @@ KNumber const KNumber::power(KNumber const &exp) const
       return KNumber(0);
   }
 
-  if (exp == Zero)
-    return One;
+  if (exp == Zero) {
+    if (*this > Zero)
+      return One;
+    else
+      return KNumber("nan");
+  }
   else if (exp < Zero) {
     KNumber tmp_num;
     KNumber tmp_num2 = -exp;

@@ -89,6 +89,8 @@ void testingCompare(void)
   checkTruth("KNumber(5) == KNumber(2)", KNumber(5) == KNumber(2), false);
   checkTruth("KNumber(5) > KNumber(2)", KNumber(5) > KNumber(2), true);
   checkTruth("KNumber(5) < KNumber(2)", KNumber(5) < KNumber(2), false);
+  checkTruth("KNumber(5) < KNumber(0)", KNumber(5) < KNumber(0), false);
+  checkTruth("KNumber(-5) < KNumber(0)", KNumber(-5) < KNumber(0), true);
   checkTruth("KNumber(5) >= KNumber(2)", KNumber(5) >= KNumber(2), true);
   checkTruth("KNumber(5) <= KNumber(2)", KNumber(5) <= KNumber(2), false);
   checkTruth("KNumber(5) != KNumber(2)", KNumber(5) != KNumber(2), true);
@@ -309,6 +311,42 @@ void testingShifts(void)
   
 }
 
+void testingPower(void)
+{
+  std::cout << "\n\nTesting Power:\n";
+  
+  checkResult("KNumber(0) ^ KNumber(-4)", KNumber(0).power(KNumber(-4)), "inf", KNumber::SpecialType);
+  checkResult("KNumber(5) ^ KNumber(4)", KNumber(5).power(KNumber(4)), "625", KNumber::IntegerType);
+  checkResult("KNumber(122) ^ KNumber(0)", KNumber(122).power(KNumber(0)), "1", KNumber::IntegerType);
+  checkResult("KNumber(-5) ^ KNumber(0)", KNumber(-5).power(KNumber(0)), "nan", KNumber::SpecialType);
+  checkResult("KNumber(-2) ^ KNumber(3)", KNumber(-2).power(KNumber(3)), "-8", KNumber::IntegerType);
+  checkResult("KNumber(-2) ^ KNumber(4)", KNumber(-2).power(KNumber(4)), "16", KNumber::IntegerType);
+  checkResult("KNumber(5) ^ KNumber(-2)", KNumber(5).power(KNumber(-2)), "1/25", KNumber::FractionType);
+  checkResult("KNumber(8) ^ KNumber(\"2/3\")", KNumber(8).power(KNumber("2/3")), "4", KNumber::IntegerType);
+  checkResult("KNumber(8) ^ KNumber(\"-2/3\")", KNumber(8).power(KNumber("-2/3")), "1/4", KNumber::FractionType);
+  checkResult("KNumber(-16) ^ KNumber(\"1/4\")", KNumber(-16).power(KNumber("1/4")), "nan", KNumber::SpecialType);
+  checkResult("KNumber(-8) ^ KNumber(\"1/3\")", KNumber(-8).power(KNumber("1/3")), "nan", KNumber::SpecialType);
+  checkResult("KNumber(5) ^ KNumber(0.0)", KNumber(5).power(KNumber(0.0)), "1", KNumber::IntegerType);
+  checkResult("KNumber(-5) ^ KNumber(0.0)", KNumber(-5).power(KNumber(0.0)), "nan", KNumber::SpecialType);
+  
+  checkResult("KNumber(\"5/3\") ^ KNumber(2)", KNumber("5/3").power(KNumber(2)), "25/9", KNumber::FractionType);
+  checkResult("KNumber(\"5/3\") ^ KNumber(0)", KNumber("5/3").power(KNumber(0)), "1", KNumber::IntegerType);
+  checkResult("KNumber(\"-5/3\") ^ KNumber(0)", KNumber("-5/3").power(KNumber(0)), "nan", KNumber::SpecialType);
+  checkResult("KNumber(\"8/27\") ^ KNumber(\"2/3\")", KNumber("8/27").power(KNumber("2/3")), "4/9", KNumber::FractionType);
+  checkResult("KNumber(\"49/3\") ^ KNumber(\"7/9\")", KNumber("49/3").power(KNumber("7/9")), "21", KNumber::IntegerType);
+  checkResult("KNumber(\"5/2\") ^ KNumber(2.5)", KNumber("5/2").power(KNumber(2.5)), "1", KNumber::FloatType);
+  checkResult("KNumber(\"5/2\") ^ KNumber(0.0)", KNumber("5/2").power(KNumber(0.0)), "inf", KNumber::SpecialType);
+  checkResult("KNumber(\"-5/2\") ^ KNumber(0.0)", KNumber("-5/2").power(KNumber(0.0)), "-inf", KNumber::SpecialType);
+  
+  checkResult("KNumber(5.3) ^ KNumber(2)", KNumber(5.3).power(KNumber(2)), "2.65", KNumber::FloatType);
+  checkResult("KNumber(5.3) ^ KNumber(0)", KNumber(5.3).power(KNumber(0)), "inf", KNumber::SpecialType);
+  checkResult("KNumber(-5.3) ^ KNumber(0)", KNumber(-5.3).power(KNumber(0)), "-inf", KNumber::SpecialType);
+  checkResult("KNumber(5.3) ^ KNumber(\"2/3\")", KNumber(5.3).power(KNumber("2/3")), "7.95", KNumber::FloatType);
+  checkResult("KNumber(5.5) ^ KNumber(2.5)", KNumber(5.5).power(KNumber(2.5)), "2.2", KNumber::FloatType);
+  checkResult("KNumber(5.5) ^ KNumber(0.0)", KNumber(5.5).power(KNumber(0.0)), "inf", KNumber::SpecialType);
+  checkResult("KNumber(-5.5) ^ KNumber(0.0)", KNumber(-5.5).power(KNumber(0.0)), "-inf", KNumber::SpecialType);
+}
+
 void testingInfArithmetic(void)
 {
   std::cout << "\n\nTesting inf/nan-arithmetics:\n";
@@ -527,6 +565,7 @@ int main(void)
 
   testingAbs();
   testingSqrt();
+  //testingPower();
   testingTruncateToInteger();
 
   testingShifts();

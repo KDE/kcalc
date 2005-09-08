@@ -192,8 +192,6 @@ QString const _knumfraction::ascii(QString const &num) const
 #warning ok to free with delete?
   delete tmp_ptr;
 
-  return mpq_get_str(0, 10, _mpq);
-
   return ret_str;
 }
 
@@ -746,8 +744,9 @@ _knumber * _knuminteger::power(_knumber const & exponent) const
     if (! mpz_fits_ulong_p(tmp_mpz)) { // conversion wouldn't work, so
 				       // use floats
       mpz_clear(tmp_mpz);
-#warning here we need to convert everything to floats
-      return 0;
+      // need to cast everything to float
+      _knumfloat tmp_num1(*this), tmp_num2(exponent);
+      return tmp_num1.power(tmp_num2);
     }
 
     unsigned long int tmp_int = mpz_get_ui(tmp_mpz);
@@ -758,6 +757,8 @@ _knumber * _knuminteger::power(_knumber const & exponent) const
     return tmp_num;
   }
   if (exponent.type() == FractionType) {
+    if (mpz_sgn(_mpz) < 0)
+      return new _knumerror(UndefinedNumber);
     // GMP only supports few root functions, so we need to convert
     // into signed long int
     mpz_t tmp_mpz;
@@ -767,8 +768,9 @@ _knumber * _knuminteger::power(_knumber const & exponent) const
     if (! mpz_fits_ulong_p(tmp_mpz)) { // conversion wouldn't work, so
 				       // use floats
       mpz_clear(tmp_mpz);
-#warning here we need to convert everything to floats
-      return 0;
+      // need to cast everything to float
+      _knumfloat tmp_num1(*this), tmp_num2(exponent);
+      return tmp_num1.power(tmp_num2);
     }
 
     unsigned long int tmp_int = mpz_get_ui(tmp_mpz);
@@ -779,8 +781,9 @@ _knumber * _knuminteger::power(_knumber const & exponent) const
     int flag = mpz_root(tmp_num->_mpz, _mpz, tmp_int);
     if (flag == 0) { // result is not exact
       delete tmp_num;
-#warning here we need to convert everything to floats
-      return 0;
+      // need to cast everything to float
+      _knumfloat tmp_num1(*this), tmp_num2(exponent);
+      return tmp_num1.power(tmp_num2);
     }
 
     // result is exact
@@ -791,8 +794,9 @@ _knumber * _knuminteger::power(_knumber const & exponent) const
     if (! mpz_fits_ulong_p(tmp_mpz)) { // conversion wouldn't work, so
 				       // use floats
       mpz_clear(tmp_mpz);
-#warning here we need to convert everything to floats
-      return 0;
+      // need to cast everything to float
+      _knumfloat tmp_num1(*this), tmp_num2(exponent);
+      return tmp_num1.power(tmp_num2);
     }
     tmp_int = mpz_get_ui(tmp_mpz);
     mpz_clear(tmp_mpz);
@@ -801,14 +805,33 @@ _knumber * _knuminteger::power(_knumber const & exponent) const
 
     return tmp_num;
   }
+  if (exponent.type() == FloatType) {
+    // need to cast everything to float
+    _knumfloat tmp_num(*this);
+    return tmp_num.power(exponent);
+  }
 }
 
 _knumber * _knumfraction::power(_knumber const & exponent) const
 {
+  _knuminteger tmp_num = _knuminteger();
+
+  mpz_set(tmp_num._mpz, mpq_numref(_mpq));
+  _knumber *numer = tmp_num.power(exponent);
+
+  mpz_set(tmp_num._mpz, mpq_denref(_mpq));
+  _knumber *denom = tmp_num.power(exponent);
+
+  _knumber *result = numer->divide(*denom);
+  delete numer;
+  delete denom;
+  return result;
 }
 
 _knumber * _knumfloat::power(_knumber const & exponent) const
 {
+  return new _knumfloat(pow(static_cast<double>(*this),
+			    static_cast<double>(exponent)));
 }
 
 
