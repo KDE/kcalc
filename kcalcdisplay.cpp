@@ -22,6 +22,11 @@
     Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
+
+#ifndef _ISOC99_SOURCE		// for strtold()
+#  define _ISOC99_SOURCE
+#endif
+
 #include <errno.h>
 #include <stdlib.h>
 #include <ctype.h>
