@@ -1,0 +1,12 @@
+if test "x$kcalc_gmp_found" = "xno"; then
+    cat << EOF
+
+KCalc will not be compiled as you are missing the GMP library. 
+Please install the libgmp packages
+or get GMP from http://www.swox.com/gmp/ 
+then run configure again
+
+EOF
+
+
+fi
