@@ -139,55 +139,11 @@ bool isoddint(const KNumber & input)
 static KNumber ExecPower(const KNumber & left_op, const KNumber & right_op)
 {
 	return left_op.power(right_op);
-#if 0
-  if (right_op == KNumber::Zero)
-	  if (left_op == KNumber::Zero) // 0^0 not defined
-		{
-			_error = true;		
-			return KNumber::Zero;
-		}
-		else
-			return KNumber::One;
-
-	if (left_op < 0 && isoddint(1 / right_op))
-		left_op = - POW((-left_op), right_op);
-	else
-		left_op = POW(left_op, right_op);
-
-	if (errno == EDOM || errno == ERANGE)
-	{
-		_error = true;
-		return KNumber::Zero;
-	}
-	else
-		return left_op;
-#endif
 }
 
 static KNumber ExecPwrRoot(const KNumber & left_op, const KNumber & right_op)
 {
-			return KNumber::Zero;
-#if 0
-	// printf("ExecPwrRoot  %g left_op, %g right_op\n", left_op, right_op);
-	if (right_op == 0)
-	{
-		_error = true;
-		return 0L;
-	}
-
-	if (left_op < 0 && isoddint(right_op))
-		left_op = - POW((-left_op), (1L)/right_op);
-	else
-		left_op = POW(left_op, (1L)/right_op);
-
-	if (errno == EDOM || errno == ERANGE)
-	{
-		_error = true;
-		return 0;
-	}
-	else
-		return left_op;
-#endif
+	return left_op.power(KNumber::One / right_op);
 }
 
 static KNumber ExecAddP(const KNumber & left_op, const KNumber & right_op)
@@ -269,15 +225,15 @@ void CalcEngine::ArcCosDeg(KNumber input)
 	}
 	if (input.type() == KNumber::IntegerType) {
 		if (input == KNumber::One) {
-			_last_number = KNumber(90);
+		  _last_number = KNumber::Zero;
 			return;
 		}
 		if (input == - KNumber::One) {
-			_last_number = KNumber(-90);
+			_last_number = KNumber(180);
 			return;
 		}
 		if (input == KNumber::Zero) {
-			_last_number = KNumber(0);
+			_last_number = KNumber(90);
 			return;
 		}
 	}
@@ -303,15 +259,15 @@ void CalcEngine::ArcCosGrad(KNumber input)
 	}
 	if (input.type() == KNumber::IntegerType) {
 		if (input == KNumber::One) {
-			_last_number = KNumber(100);
+			_last_number = KNumber::Zero;
 			return;
 		}
 		if (input == - KNumber::One) {
-			_last_number = KNumber(-100);
+			_last_number = KNumber(200);
 			return;
 		}
 		if (input == KNumber::Zero) {
-			_last_number = KNumber(0);
+			_last_number = KNumber(100);
 			return;
 		}
 	}
@@ -361,11 +317,11 @@ void CalcEngine::ArcSinGrad(KNumber input)
 	}
 	if (input.type() == KNumber::IntegerType) {
 		if (input == KNumber::One) {
-			_last_number = KNumber(90);
+			_last_number = KNumber(100);
 			return;
 		}
 		if (input == - KNumber::One) {
-			_last_number = KNumber(-90);
+			_last_number = KNumber(-100);
 			return;
 		}
 		if (input == KNumber::Zero) {
@@ -379,36 +335,20 @@ void CalcEngine::ArcSinGrad(KNumber input)
 
 void CalcEngine::ArcTangensDeg(KNumber input)
 {
-#if 0
-	KNumber tmp = ATAN(input);
-	
-	_last_number = Rad2Deg(tmp);
-
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
-#endif
+	CALCAMNT tmp_num = static_cast<double>(input);
+	_last_number = Rad2Deg(KNumber(double(ATAN(tmp_num))));
 }
 
 void CalcEngine::ArcTangensRad(KNumber input)
 {
-#if 0
-	_last_number = ATAN(input);
-
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
-#endif
+	CALCAMNT tmp_num = static_cast<double>(input);
+	_last_number = KNumber(double(ATAN(tmp_num)));
 }
 
 void CalcEngine::ArcTangensGrad(KNumber input)
 {
-#if 0
-	KNumber tmp = ATAN(input);
-
-	_last_number = Rad2Gra(tmp);
-
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
-#endif
+	CALCAMNT tmp_num = static_cast<double>(input);
+	_last_number = Rad2Gra(KNumber(double(ATAN(tmp_num))));
 }
 
 void CalcEngine::AreaCosHyp(KNumber input)
@@ -417,12 +357,20 @@ void CalcEngine::AreaCosHyp(KNumber input)
 	  _last_number = KNumber("nan");
 	  return;
 	}
+	if (input == KNumber::One) {
+	  _last_number = KNumber::Zero;
+	  return;
+	}
 	CALCAMNT tmp_num = static_cast<double>(input);
 	_last_number = KNumber(double(ACOSH(tmp_num)));
 }
 
 void CalcEngine::AreaSinHyp(KNumber input)
 {
+	if (input == KNumber::Zero) {
+	  _last_number = KNumber::Zero;
+	  return;
+	}
 	CALCAMNT tmp_num = static_cast<double>(input);
 	_last_number = KNumber(double(ASINH(tmp_num)));
 }
@@ -447,21 +395,12 @@ void CalcEngine::AreaTangensHyp(KNumber input)
 
 void CalcEngine::Complement(KNumber input)
 {
-#if 0
-	KNumber boh_work_d;
-
-	MODF(input, &boh_work_d);
-
-	if (boh_work_d.abs() > KCALC_LONG_MAX)
+	if (input.type() != KNumber::IntegerType)
 	{
-		_error = true;
+		_last_number = KNumber("nan");
 		return;
 	}
-
-	KCALC_LONG boh_work = static_cast<KCALC_LONG>(boh_work_d);
-
-	_last_number = ~boh_work;
-#endif
+	_last_number =  ExecXor(KNumber(0xffffffff), input);
 }
 
 
@@ -804,80 +743,29 @@ void CalcEngine::StatSumSquares(KNumber input)
 
 void CalcEngine::TangensDeg(KNumber input)
 {
-	KNumber aux, tmp = Deg2Rad(input);
-	
-	aux = tmp.abs();
-	// put aux between 0 and pi
-	while (aux > KNumber::Pi) aux -= KNumber::Pi;
-	// if were are really close to pi/2 throw an error
-	// tan(pi/2) => inf
-	// using the 10 factor because without it 270Âº tan still gave a result
-#warning is this still necesary
-	//	if ( (aux - pi/2 < POS_ZERO * 10) && (aux - pi/2 > NEG_ZERO * 10) )
-	//		_error = true;
-	//	else
-		CALCAMNT tmp_num = tmp.toQString().toDouble();
-		_last_number = KNumber(double(TAN(tmp_num)));
-
-	// Now a cheat to help the weird case of TAN 0 degrees not being 0!!!
-		//	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-		//		_last_number = KNumber::Zero;
-
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
+	SinDeg(input);
+	KNumber arg1 = _last_number;
+	CosDeg(input);
+	KNumber arg2 = _last_number;
+	_last_number = arg1 / arg2;
 }
 
 void CalcEngine::TangensRad(KNumber input)
 {
-	KNumber aux, tmp = input;
-	
-	aux = tmp.abs();
-	// put aux between 0 and pi
-	while (aux > KNumber::Pi) aux -= KNumber::Pi;
-	// if were are really close to pi/2 throw an error
-	// tan(pi/2) => inf
-	// using the 10 factor because without it 270Âº tan still gave a result
-#warning is this still necesary
-	//if ( (aux - pi/2 < POS_ZERO * 10) && (aux - pi/2 > NEG_ZERO * 10) )
-	//		_error = true;
-	//	else
-		CALCAMNT tmp_num = tmp.toQString().toDouble();
-		_last_number = KNumber(double(TAN(tmp_num)));
-
-	// Now a cheat to help the weird case of TAN 0 degrees not being 0!!!
-#warning is this still necesary
-	//	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-	//	_last_number = KNumber::Zero;
-
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
+	SinRad(input);
+	KNumber arg1 = _last_number;
+	CosRad(input);
+	KNumber arg2 = _last_number;
+	_last_number = arg1 / arg2;
 }
 
 void CalcEngine::TangensGrad(KNumber input)
 {
-	KNumber aux, tmp = Gra2Rad(input);
-	
-	aux = tmp.abs();
-	// put aux between 0 and pi
-	while (aux > KNumber::Pi) aux -= KNumber::Pi;
-	// if were are really close to pi/2 throw an error
-	// tan(pi/2) => inf
-	// using the 10 factor because without it 270Âº tan still gave a result
-	if(false)
-#warning is this still necesary
-	  //if ( (aux - KNumber::Pi/2 < POS_ZERO * 10) && (aux - KNumber::Pi/2 > NEG_ZERO * 10) )
-		_error = true;
-	else {
-		CALCAMNT tmp_num = tmp.toQString().toDouble();
-		_last_number = KNumber(double(TAN(tmp_num)));
-	}
-	// Now a cheat to help the weird case of TAN 0 degrees not being 0!!!
-#warning is this still necesary
-	//	if (_last_number < POS_ZERO && _last_number > NEG_ZERO)
-	//	_last_number = KNumber::Zero;
-
-	//if (errno == EDOM || errno == ERANGE)
-	//	_error = true;
+	SinGrad(input);
+	KNumber arg1 = _last_number;
+	CosGrad(input);
+	KNumber arg2 = _last_number;
+	_last_number = arg1 / arg2;
 }
 
 void CalcEngine::TangensHyp(KNumber input)

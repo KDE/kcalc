@@ -26,8 +26,12 @@
 #define NUM_CONST 17
 
 const struct science_constant KCalcConstMenu::Constants[] = {
-  {QString::fromUtf8("π"), I18N_NOOP("Pi"), "", "3.14159265358979323846264338327950288", Mathematics},
-  {"e", I18N_NOOP("Euler Number"), "", "2.71828182845904523536028747135266249", Mathematics},
+  {QString::fromUtf8("π"), I18N_NOOP("Pi"), "",
+   "3.1415926535897932384626433832795028841971693993751"
+   "05820974944592307816406286208998628034825342117068", Mathematics},
+  {"e", I18N_NOOP("Euler Number"), "",
+   "2.7182818284590452353602874713526624977572470936999"
+   "59574966967627724076630353547594571382178525166427", Mathematics},
   {QString::fromUtf8("φ"), I18N_NOOP("Golden Ratio"), "", "1.61803398874989484820458683436563811", Mathematics},
   {"c", I18N_NOOP("Light Speed"), "", "2.99792458e8", Electromagnetic},
   {"h", I18N_NOOP("Planck's Constant"), "", "6.6260693e-34", Nuclear},
