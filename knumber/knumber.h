@@ -69,6 +69,7 @@ class KDE_EXPORT KNumber
   static KNumber const One;
   static KNumber const MinusOne;
   static KNumber const Pi;
+  static KNumber const Euler;
 
   /**
    * KNumber tries to provide transparent access to the following type
@@ -106,6 +107,7 @@ class KDE_EXPORT KNumber
   enum ErrorType {UndefinedNumber, Infinity, MinusInfinity};
   
   KNumber(signed int num = 1);
+  KNumber(unsigned int num);
 
   KNumber(double num);
 

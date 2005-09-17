@@ -30,13 +30,24 @@
 KNumber const KNumber::Zero(0);
 KNumber const KNumber::One(1);
 KNumber const KNumber::MinusOne(-1);
-KNumber const KNumber::Pi("3.14159265358979323846264338327950288");
+KNumber const KNumber::Pi("3.141592653589793238462643383279502884197169"
+			  "39937510582097494459230781640628620899862803"
+			  "4825342117068");
+KNumber const KNumber::Euler("2.718281828459045235360287471352662497757"
+			     "24709369995957496696762772407663035354759"
+			     "4571382178525166427");
+
 
 bool KNumber::_float_output = false;
 bool KNumber::_fraction_input = false;
 bool KNumber::_splitoffinteger_output = false;
 
 KNumber::KNumber(signed int num)
+{
+  _num = new _knuminteger(num);
+}
+
+KNumber::KNumber(unsigned int num)
 {
   _num = new _knuminteger(num);
 }

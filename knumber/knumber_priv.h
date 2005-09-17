@@ -118,6 +118,11 @@ class _knuminteger : public _knumber
   {
     mpz_init_set_si(_mpz, num);
   }
+
+  _knuminteger(unsigned int num)
+  {
+    mpz_init_set_ui(_mpz, num);
+  }
   
   _knuminteger(signed long int num)
   {
