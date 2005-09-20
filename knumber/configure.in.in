@@ -49,12 +49,25 @@ fi
 
 LIBGMP=
 KDE_CHECK_HEADER([gmp.h], [
-  KDE_CHECK_LIB(gmp, main, [
-    LIBGMP="-lgmp"
-    AC_DEFINE(HAVE_GMP, 1, [Define if you have libgmp])
+  AC_LANG_SAVE
+  AC_LANG_CPLUSPLUS
+
+  kde_save_LIBS=$LIBS
+  LIBS="$all_libraries -lgmp"
+  AC_TRY_LINK(dnl
+  [
+    #include <gmp.h>
+  ],
+  [ 
+    mpz_t _mpz;
+    mpz_init_set_si(_mpz, 0);
+  ],
+  [LIBGMP="-lgmp"],
+  [
+    DO_NOT_COMPILE="$DO_NOT_COMPILE kcalc"
   ])
-  ],[
-  DO_NOT_COMPILE="kcalc $DO_NOT_COMPILE"
-  ]
-)
+  LIBS=$kde_save_LIBS
+  AC_LANG_RESTORE
+
+])
 AC_SUBST(LIBGMP)
