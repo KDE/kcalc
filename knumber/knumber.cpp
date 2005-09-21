@@ -104,6 +104,8 @@ KNumber::NumType KNumber::type(void) const
     return FractionType;
   if(dynamic_cast<_knumfloat *>(_num))
     return FloatType;
+
+  return SpecialType;
 }
 
 // This method converts a fraction to an integer, whenever possible,

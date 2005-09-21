@@ -810,6 +810,8 @@ _knumber * _knuminteger::power(_knumber const & exponent) const
     _knumfloat tmp_num(*this);
     return tmp_num.power(exponent);
   }
+
+  return new _knumerror(Infinity);
 }
 
 _knumber * _knumfraction::power(_knumber const & exponent) const
