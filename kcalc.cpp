@@ -54,7 +54,7 @@
 #include <kapplication.h>
 #include <kcmdlineargs.h>
 #include <kcolorbutton.h>
-#include <kcolordrag.h>
+#include <k3colordrag.h>
 #include <kconfig.h>
 #include <kconfigdialog.h>
 #include <kdialog.h>
@@ -65,7 +65,7 @@
 #include <kmenubar.h>
 #include <knotifyclient.h>
 #include <knumvalidator.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <kpushbutton.h>
 #include <kstatusbar.h>
 #include <kstdaction.h>
@@ -77,7 +77,7 @@
 #include "general.h"
 #include "colors.h"
 #include "constants.h"
-#include <kaccelmanager.h>
+#include <kacceleratormanager.h>
 #include "kcalc_settings.h"
 
 
@@ -140,7 +140,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	QToolTip::add(pbAngleChoose, i18n("Choose the unit for the angle measure"));
 	pbAngleChoose->setAutoDefault(false);
 
-	KPopupMenu *angle_menu = new KPopupMenu(pbAngleChoose, "AngleMode-Selection-Menu");
+	KMenu *angle_menu = new KMenu(pbAngleChoose, "AngleMode-Selection-Menu");
 	angle_menu->insertItem(i18n("Degrees"), 0);
 	angle_menu->insertItem(i18n("Radians"), 1);
 	angle_menu->insertItem(i18n("Gradians"), 2);
@@ -2236,7 +2236,7 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
 	if(e->type() == QEvent::DragEnter)
 	{
 		QDragEnterEvent *ev = (QDragEnterEvent *)e;
-		ev->accept(KColorDrag::canDecode(ev));
+		ev->accept(K3ColorDrag::canDecode(ev));
 		return true;
 	}
 	else if(e->type() == QEvent::DragLeave)
@@ -2250,7 +2250,7 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
 
 		QColor c;
 		QDropEvent *ev = (QDropEvent *)e;
-		if( KColorDrag::decode(ev, c))
+		if( K3ColorDrag::decode(ev, c))
 		{
 		        Q3PtrList<KCalcButton> *list;
 			int num_but;

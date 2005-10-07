@@ -24,7 +24,7 @@
 
 #include <kcmenumngr.h>
 #include <kinputdialog.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 
 #include "kcalc_const_button.h"
 #include "kcalc_const_menu.h"
@@ -70,7 +70,7 @@ void KCalcConstButton::initPopupMenu(void)
 {
   KCalcConstMenu *tmp_menu = new KCalcConstMenu(this);
   
-  _popup = new KPopupMenu(this, "set const-cutton");
+  _popup = new KMenu(this, "set const-cutton");
   _popup->insertItem(i18n("Set Name"), 0);
   _popup->insertItem(i18n("Choose From List"), tmp_menu, 1);
   

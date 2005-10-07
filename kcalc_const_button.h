@@ -50,7 +50,7 @@ Q_OBJECT
   private:
   void initPopupMenu(void);
   
-  KPopupMenu* _popup;
+  KMenu* _popup;
   int _button_num;
 };
 
