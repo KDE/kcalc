@@ -313,7 +313,7 @@ bool KCalcDisplay::setAmount(CALCAMNT new_amount)
 			rounded_num = static_cast<KCALC_LONG>(_display_amount);
 		}
 
-		display_str = QString::number(rounded_num, _num_base).upper();
+		display_str = QString::number(rounded_num, _num_base).toUpper();
 		if (display_str.length() > DSP_SIZE)
 		{
 			sendEvent(EventError);
