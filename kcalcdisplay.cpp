@@ -689,7 +689,7 @@ void KCalcDisplay::drawContents(QPainter *p)
 	// draw the status texts using half of the normal
 	// font size but not smaller than 7pt
 	QFont f(font());
-	f.setPointSize(QMAX((f.pointSize() / 2), 7));
+	f.setPointSize(qMax((f.pointSize() / 2), 7));
 	p->setFont(f);
 	QFontMetrics fm(f);
 	uint w = fm.width("_____");
@@ -706,7 +706,7 @@ void KCalcDisplay::drawContents(QPainter *p)
 QSize KCalcDisplay::sizeHint() const
 {
 	QFont f(font());
-	f.setPointSize(QMAX((f.pointSize() / 2), 7));
+	f.setPointSize(qMax((f.pointSize() / 2), 7));
 	QFontMetrics fm(f);
 	return QLabel::sizeHint() + QSize(0, fm.height());
 }
