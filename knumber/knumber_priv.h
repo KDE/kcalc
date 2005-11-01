@@ -23,6 +23,15 @@ class QString;
 
 #include <gmp.h>
 
+// work-around for pre-C99-libs
+#ifndef INFINITY
+#define INFINITY  HUGE_VAL
+#endif
+// this is really ugly
+#ifndef NAN
+#define NAN (atof("nan"))
+#endif
+
 class _knumber
 {
  public:
