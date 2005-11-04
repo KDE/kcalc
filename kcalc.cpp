@@ -1077,8 +1077,8 @@ void KCalculator::updateGeometry(void)
         if( o->isWidgetType() )
         {
             QWidget *tmp_widget = dynamic_cast<QWidget *>(o);
-            margin = QApplication::style().
-                pixelMetric(QStyle::PM_ButtonMargin, (tmp_widget))*2;
+			QStyleOption option;
+            margin = QApplication::style()->pixelMetric(QStyle::PM_ButtonMargin,&option,(tmp_widget))*2;
             tmp_widget->setFixedSize(s.width()+margin, s.height()+margin);
             //tmp_widget->setMinimumSize(s.width()+margin, s.height()+margin);
             tmp_widget->installEventFilter( this );
@@ -1091,9 +1091,9 @@ void KCalculator::updateGeometry(void)
 
     int h1 = (NumButtonGroup->find(0x0F))->minimumSize().height();
     int h2 = static_cast<int>( (static_cast<float>(h1) + 4.0) / 5.0 );
+	QStyleOption option;
     s.setWidth(mLargePage->fontMetrics().width("MMM") +
-               QApplication::style().
-               pixelMetric(QStyle::PM_ButtonMargin, NumButtonGroup->find(0x0F))*2);
+               QApplication::style()->pixelMetric(QStyle::PM_ButtonMargin,&option, NumButtonGroup->find(0x0F))*2);
     s.setHeight(h1 + h2);
 
     for(int i = 0; i < l.count(); i++)
@@ -1118,9 +1118,10 @@ void KCalculator::updateGeometry(void)
 
     h1 = (NumButtonGroup->find(0x0F))->minimumSize().height();
     h2 = (int)((((float)h1 + 4.0) / 5.0));
+	QStyleOption option2;
     s.setWidth(mLargePage->fontMetrics().width("MMM") +
-               QApplication::style().
-               pixelMetric(QStyle::PM_ButtonMargin, NumButtonGroup->find(0x0F))*2);
+               QApplication::style()->
+               pixelMetric(QStyle::PM_ButtonMargin, &option2,NumButtonGroup->find(0x0F))*2);
     s.setHeight(h1 + h2);
 
     for(int i = 0; i < l.count(); i++)

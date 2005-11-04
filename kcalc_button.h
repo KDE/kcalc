@@ -25,7 +25,7 @@
 #define _KCALC_BUTTON_H
 
 #include <kpushbutton.h>
-
+#include <QMap>
 // The class KCalcButton is an overriden KPushButton. It offers extra
 // functionality e.g. labels can be richtext or the accels can be
 // shown in the label, but the most important thing is that the button
