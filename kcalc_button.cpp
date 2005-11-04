@@ -31,16 +31,18 @@
 
 
 KCalcButton::KCalcButton(QWidget * parent, const char * name)
-  : KPushButton(parent, name), _show_accel_mode(false),
+  : KPushButton(parent), _show_accel_mode(false),
     _mode_flags(ModeNormal)
 {
+  setObjectName(name);
   setAutoDefault(false);
 }
 
 KCalcButton::KCalcButton(const QString &label, QWidget * parent,
 			 const char * name, const QString &tooltip)
-  : KPushButton(label, parent, name), _show_accel_mode(false), _mode_flags(ModeNormal)
+  : KPushButton(label, parent), _show_accel_mode(false), _mode_flags(ModeNormal)
 {
+  setObjectName(name);
   setAutoDefault(false);
   addMode(ModeNormal, label, tooltip);
 }

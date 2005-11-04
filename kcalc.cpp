@@ -69,6 +69,7 @@
 #include <kpushbutton.h>
 #include <kstatusbar.h>
 #include <kstdaction.h>
+#include <kxmlguifactory.h>
 
 #include "dlabel.h"
 #include "kcalc.h"
@@ -140,7 +141,8 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	QToolTip::add(pbAngleChoose, i18n("Choose the unit for the angle measure"));
 	pbAngleChoose->setAutoDefault(false);
 
-	KMenu *angle_menu = new KMenu(pbAngleChoose, "AngleMode-Selection-Menu");
+	KMenu *angle_menu = new KMenu(pbAngleChoose);
+	angle_menu->setObjectName( "AngleMode-Selection-Menu");
 	angle_menu->insertItem(i18n("Degrees"), 0);
 	angle_menu->insertItem(i18n("Radians"), 1);
 	angle_menu->insertItem(i18n("Gradians"), 2);
@@ -1056,7 +1058,7 @@ void KCalculator::slotConstantToDisplay(int constant)
 
 void KCalculator::updateGeometry(void)
 {
-    QObjectList *l;
+    QList<QObject*> l;
     QSize s;
     int margin;
 
@@ -1067,11 +1069,11 @@ void KCalculator::updateGeometry(void)
     s.setHeight(mSmallPage->fontMetrics().lineSpacing());
 
     // why this stupid cast!
-    l = const_cast<QObjectList *>(mSmallPage->children());
+    l = mSmallPage->children();
 
-    for(uint i=0; i < l->count(); i++)
+    for(int i=0; i < l.count(); i++)
     {
-        QObject *o = l->at(i);
+        QObject *o = l.at(i);
         if( o->isWidgetType() )
         {
             QWidget *tmp_widget = dynamic_cast<QWidget *>(o);
@@ -1085,7 +1087,7 @@ void KCalculator::updateGeometry(void)
     }
 
     // why this stupic cast !!
-    l = const_cast<QObjectList*>(mLargePage->children());
+    l = mLargePage->children();
 
     int h1 = (NumButtonGroup->find(0x0F))->minimumSize().height();
     int h2 = static_cast<int>( (static_cast<float>(h1) + 4.0) / 5.0 );
@@ -1094,9 +1096,9 @@ void KCalculator::updateGeometry(void)
                pixelMetric(QStyle::PM_ButtonMargin, NumButtonGroup->find(0x0F))*2);
     s.setHeight(h1 + h2);
 
-    for(uint i = 0; i < l->count(); i++)
+    for(int i = 0; i < l.count(); i++)
     {
-        QObject *o = l->at(i);
+        QObject *o = l.at(i);
         if(o->isWidgetType())
         {
             QWidget *tmp_widget = dynamic_cast<QWidget *>(o);
@@ -1112,7 +1114,7 @@ void KCalculator::updateGeometry(void)
 
 
 
-    l = (QObjectList*)mNumericPage->children(); // silence please
+    l = mNumericPage->children(); // silence please
 
     h1 = (NumButtonGroup->find(0x0F))->minimumSize().height();
     h2 = (int)((((float)h1 + 4.0) / 5.0));
@@ -1121,9 +1123,9 @@ void KCalculator::updateGeometry(void)
                pixelMetric(QStyle::PM_ButtonMargin, NumButtonGroup->find(0x0F))*2);
     s.setHeight(h1 + h2);
 
-    for(int i = 0; i < l->count(); i++)
+    for(int i = 0; i < l.count(); i++)
     {
-        QObject *o = l->at(i);
+        QObject *o = l.at(i);
         if(o->isWidgetType())
         {
             QWidget *tmp_widget = dynamic_cast<QWidget *>(o);
