@@ -65,7 +65,7 @@ KCalcDisplay::KCalcDisplay(QWidget *parent, const char *name)
    _fixed_precision(-1), _error(false), selection_timer(new QTimer)
 {
 	setFrameStyle(Q3Frame::WinPanel | Q3Frame::Sunken);
-	setAlignment(AlignRight | AlignVCenter);
+	setAlignment(Qt::AlignRight | Qt::AlignVCenter);
 	setFocus();
 	setFocusPolicy(Qt::StrongFocus);
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed, false);

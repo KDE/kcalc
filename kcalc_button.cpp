@@ -122,14 +122,16 @@ void KCalcButton::paintLabel(QPainter *paint)
     Q3SimpleRichText _text(_label, font());
     _text.draw(paint, width()/2-_text.width()/2, 0, childrenRegion(), colorGroup());
   } else {
-    KPushButton::drawButtonLabel(paint);
+#warning "kde4: How to port it ?"
+		  //KPushButton::drawButtonLabel(paint);
   }
 }
 
 void KCalcButton::drawButtonLabel(QPainter *paint)
 {
   if (_show_accel_mode) {
-    KPushButton::drawButtonLabel(paint);
+#warning "kde4: How to port it ?"		  
+    //KPushButton::drawButtonLabel(paint);
   } else if (_mode.contains(_mode_flags)) {
     paintLabel(paint);
   }
@@ -160,7 +162,8 @@ void KSquareButton::paintLabel(QPainter *paint)
 void KSquareButton::drawButtonLabel(QPainter *paint)
 {
   if (_show_accel_mode) {
-    KPushButton::drawButtonLabel(paint);
+#warning "kde4: How to port it ?"		  
+    //KPushButton::drawButtonLabel(paint);
   } else if (_mode.contains(_mode_flags)) {
     paintLabel(paint);
   }
