@@ -690,7 +690,7 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	connect(pbMC, SIGNAL(clicked(void)), SLOT(slotMCclicked(void)));
 
 	pbClear = new KCalcButton("C", mLargePage, "Clear-Button", i18n("Clear"));
-	pbClear->setAccel(Qt::Key_Prior);
+	pbClear->setAccel(Qt::Key_PageUp);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbClear, SLOT(slotSetAccelDisplayMode(bool)));
 	accel()->insert("Entered 'ESC'", i18n("Pressed ESC-Button"), 0,
@@ -1216,7 +1216,7 @@ void KCalculator::slotBaseSelected(int base)
 
 void KCalculator::keyPressEvent(QKeyEvent *e)
 {
-    if ( ( e->state() & Qt::KeyButtonMask ) == 0 || ( e->state() & Qt::ShiftButton ) ) {
+    if ( ( e->state() & Qt::KeyboardModifierMask ) == 0 || ( e->state() & Qt::ShiftModifier ) ) {
 	switch (e->key())
 	{
 	case Qt::Key_PageDown:
