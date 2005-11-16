@@ -23,10 +23,6 @@
 
 */
 
-#ifndef _ISOC99_SOURCE		// for strtold()
-#  define _ISOC99_SOURCE
-#endif
-
 #include <errno.h>
 #include <stdlib.h>
 #include <ctype.h>
