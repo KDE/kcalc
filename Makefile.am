@@ -1,4 +1,4 @@
-AM_CPPFLAGS= -I$(srcdir)/knumber $(all_includes)
+AM_CPPFLAGS= -I$(srcdir)/knumber -D_ISOC99_SOURCE $(all_includes)
 
 SUBDIRS = knumber
 
