@@ -1909,7 +1909,7 @@ void KCalculator::showSettings()
 
 
 	// When the user clicks OK or Apply we want to update our settings.
-	connect(dialog, SIGNAL(settingsChanged()), SLOT(updateSettings()));
+	connect(dialog, SIGNAL(settingsChanged( const QString &)), SLOT(updateSettings()));
 
 	// Display the dialog.
 	dialog->show();
