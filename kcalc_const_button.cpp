@@ -31,8 +31,8 @@
 #include "kcalc_settings.h"
 
 
-KCalcConstButton::KCalcConstButton(QWidget *parent, int but_num, const char * name)
-  : KCalcButton(parent, name), _button_num(but_num)
+KCalcConstButton::KCalcConstButton(QWidget *parent, int but_num)
+  : KCalcButton(parent), _button_num(but_num)
 {
   addMode(ModeInverse, "Store", i18n("Write display data into memory"));
   
@@ -40,9 +40,9 @@ KCalcConstButton::KCalcConstButton(QWidget *parent, int but_num, const char * na
 }
 
 
-KCalcConstButton::KCalcConstButton(const QString &label, QWidget *parent, int but_num,
-                                   const char * name, const QString &tooltip)
-  : KCalcButton(label, parent, name, tooltip), _button_num(but_num)
+KCalcConstButton::KCalcConstButton(const QString &label, QWidget *parent,
+				   int but_num, const QString &tooltip)
+  : KCalcButton(label, parent, tooltip), _button_num(but_num)
 {
   addMode(ModeInverse, "Store", i18n("Write display data into memory"));
   
@@ -71,7 +71,6 @@ void KCalcConstButton::initPopupMenu(void)
   KCalcConstMenu *tmp_menu = new KCalcConstMenu(this);
   
   _popup = new KMenu(this);
-  _popup->setObjectName( "set const-cutton");
   _popup->insertItem(i18n("Set Name"), 0);
   _popup->insertItem(i18n("Choose From List"), tmp_menu, 1);
   

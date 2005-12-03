@@ -6,3 +6,5 @@
 * better to handle keys with "accel" or with "keyPressEvent"?
 
 * think about either doing RichText by hand on labels, or only draw visible buttons, to enhance startup time.
+
+* check whether DelFormer Input in stat-mode works after using median!

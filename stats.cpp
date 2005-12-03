@@ -28,31 +28,19 @@
 #ifdef DEBUG_STATS
 	#include <stdio.h>
 #endif
-#include <q3tl.h>
-//-------------------------------------------------------------------------
-// Name: KStats()
-//-------------------------------------------------------------------------
+
 KStats::KStats() {
 	error_flag = false;
 }
 
-//-------------------------------------------------------------------------
-// Name: ~KStats()
-//-------------------------------------------------------------------------
 KStats::~KStats() {
 }
 
-//-------------------------------------------------------------------------
-// Name: clearAll()
-//-------------------------------------------------------------------------
 void KStats::clearAll() {
 	mData.clear();
 }
  
-//-------------------------------------------------------------------------
-// Name: enterData(CALCAMNT _data
-//-------------------------------------------------------------------------
-void KStats::enterData(CALCAMNT _data) {
+void KStats::enterData(KNumber const & _data) {
 
 	mData.push_back(_data);
 #ifdef DEBUG_STATS
@@ -62,10 +50,8 @@ void KStats::enterData(CALCAMNT _data) {
 
 }
 
-//-------------------------------------------------------------------------
-// Name: clearLast()
-//-------------------------------------------------------------------------
-void KStats::clearLast() {
+
+void KStats::clearLast(void) {
 
 	mData.pop_back();
 #ifdef DEBUG_STATS
@@ -75,13 +61,10 @@ void KStats::clearLast() {
 
 }
 
-//-------------------------------------------------------------------------
-// Name: sum()
-//-------------------------------------------------------------------------
-CALCAMNT KStats::sum() {
+KNumber KStats::sum(void) {
 
-	CALCAMNT result = 0.0;
-	Q3ValueVector<CALCAMNT>::iterator p;
+	KNumber result = 0;
+	QVector<KNumber>::iterator p;
 
 	for(p = mData.begin(); p != mData.end(); ++p) {
 		result += *p;
@@ -94,18 +77,15 @@ CALCAMNT KStats::sum() {
 	return result;
 }
 
-//-------------------------------------------------------------------------
-// Name: median()
-//-------------------------------------------------------------------------
-CALCAMNT KStats::median() {
+KNumber KStats::median(void) {
 
-	CALCAMNT result = 0.0;
-	size_t bound;
+	KNumber result = 0;
+	unsigned int bound;
 	size_t index;
-	qHeapSort(mData);
+	qSort(mData);
 
 #ifdef DEBUG_STATS
-	Q3ValueVector<CALCAMNT>::iterator p;
+	QVector<KNumber>::iterator p;
 	for(p = mData.begin(); p != mData.end(); ++p) {
 		printf("Sorted %Lg\n", *p)
 	}
@@ -115,7 +95,7 @@ CALCAMNT KStats::median() {
 
 	if (bound == 0){
 		error_flag = true;
-		return 0.0;
+		return 0;
 	}
 
 	if (bound == 1)
@@ -125,21 +105,19 @@ CALCAMNT KStats::median() {
 		index = (bound - 1 ) / 2 + 1;
 		result =  mData.at(index - 1);
 	} else { // even
-		index = bound / 2;
-		result = ((mData.at(index - 1))  + (mData.at(index))) / 2;
+	  index = bound / 2;
+	  result = ((mData.at(index - 1))  + (mData.at(index))) / KNumber(2);
 	}
 
 	return result;
 }
 
-//-------------------------------------------------------------------------
-// Name: std_kernel()
-//-------------------------------------------------------------------------
-CALCAMNT KStats::std_kernel() {
 
-	CALCAMNT result = 0.0;
-	CALCAMNT _mean;
-	Q3ValueVector<CALCAMNT>::iterator p;
+KNumber KStats::std_kernel(void)
+{
+	KNumber result = KNumber::Zero;
+	KNumber _mean;
+	QVector<KNumber>::iterator p;
 
 	_mean = mean();
 
@@ -147,89 +125,54 @@ CALCAMNT KStats::std_kernel() {
 		result += (*p - _mean) * (*p - _mean);
 	}
 
-
-#ifdef DEBUG_STATS
-	printf("std_kernel %Lg\n",result);
-#endif
-
 	return result;
 }
 
-//-------------------------------------------------------------------------
-// Name: sum_of_squares()
-//-------------------------------------------------------------------------
-CALCAMNT KStats::sum_of_squares() {
 
-	CALCAMNT result = 0.0;
-	Q3ValueVector<CALCAMNT>::iterator p;
+KNumber KStats::sum_of_squares() {
+
+	KNumber result = 0;
+	QVector<KNumber>::iterator p;
   
 	for(p = mData.begin(); p != mData.end(); ++p) {
 		result += ((*p) * (*p));
 	}
 
-#ifdef DEBUG_STATS
-	printf("Sum of Squares %Lg\n",result);
-#endif
-
 	return result;
 }
 
-//-------------------------------------------------------------------------
-// Name: mean()
-//-------------------------------------------------------------------------
-CALCAMNT KStats::mean() {
 
-	CALCAMNT result = 0.0;
-
+KNumber KStats::mean(void)
+{
 	if(count() == 0){
 		error_flag = true;
-		return 0.0;
+		return 0;
 	}
 
-	result = sum() / count();
-
-#ifdef DEBUG_STATS
-	printf("mean: %Lg\n", result);
-#endif
-
-	return result;
+	return (sum() / KNumber(count()));
 }
 
-//-------------------------------------------------------------------------
-// Name: std()
-//-------------------------------------------------------------------------
-CALCAMNT KStats::std() {
 
-	CALCAMNT result = 0.0;
-
+KNumber KStats::std(void)
+{
 	if(count() == 0){
 		error_flag = true;
-		return 0.0;
+		return KNumber::Zero;
 	}
 
-	result = SQRT(std_kernel() / count());
-
-#ifdef DEBUG_STATS
-	printf("data.count %d\n", count());
-	printf("std: %Lg\n", result);
-#endif
-
-  return result;
-
+	return (std_kernel() / KNumber(count())).sqrt();
 }
 
-//-------------------------------------------------------------------------
-// Name: sample_std()
-//-------------------------------------------------------------------------
-CALCAMNT KStats::sample_std() {
-	CALCAMNT result = 0.0;
+
+KNumber KStats::sample_std(void) {
+	KNumber result = 0;
 
 	if(count() < 2 ){
 		error_flag = true;
-		return 0.0;
+		return KNumber::Zero;
 	}
 
-	result = SQRT(std_kernel() / (count() - 1));
+	result = (std_kernel() / KNumber(count() - 1)).sqrt();
 	
 	//  result = result/(count() - 1);
 #ifdef DEBUG_STATS
@@ -239,16 +182,13 @@ CALCAMNT KStats::sample_std() {
 	return result;
 }
 
-//-------------------------------------------------------------------------
-// Name: count()
-//-------------------------------------------------------------------------
-int KStats::count() {
-	return mData.size();
+
+int KStats::count(void) const
+{
+  return static_cast<int>(mData.size());
 }
 
-//-------------------------------------------------------------------------
-// Name: error()
-//-------------------------------------------------------------------------
+
 bool KStats::error() {
 
   bool value = error_flag;

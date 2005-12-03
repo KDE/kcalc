@@ -1,9 +1,9 @@
-AM_CPPFLAGS=-D_GNU_SOURCE -D_ISOC99_SOURCE $(all_includes)
+AM_CPPFLAGS= -I$(srcdir)/knumber -D_ISOC99_SOURCE $(all_includes)
 
-SUBDIRS = tests
+SUBDIRS = knumber
 
 bin_PROGRAMS =
-lib_LTLIBRARIES = knumber.la
+lib_LTLIBRARIES =
 kdeinit_LTLIBRARIES = kcalc.la
 
 kcalc_la_SOURCES = kcalc.cpp kcalc_button.cpp kcalc_const_button.cpp \
@@ -11,20 +11,15 @@ kcalc_la_SOURCES = kcalc.cpp kcalc_button.cpp kcalc_const_button.cpp \
 			dlabel.cpp stats.cpp colors.ui general.ui \
 			constants.ui kcalc_settings.kcfgc
 
-knumber_la_SOURCES = knumber.cpp knumber_priv.cpp
 
 METASOURCES = AUTO
 
 noinst_HEADERS  = kcalc.h kcalc_button.h kcalc_const_button.h \
 			kcalc_const_menu.h kcalc_core.h kcalcdisplay.h \
-			kcalctype.h knumber.h knumber_priv.h dlabel.h \
-			stats.h
+			kcalctype.h dlabel.h stats.h
 
 kcalc_la_LDFLAGS = $(all_libraries) -module -avoid-version
-kcalc_la_LIBADD = $(LIB_KDEUI) -lm
-
-knumber_la_LDFLAGS = $(QT_LDFLAGS) -module -avoid-version
-knumber_la_LIBADD = $(LIB_QT) $(LIBGMP) -lm
+kcalc_la_LIBADD = $(LIB_KDEUI) knumber/libknumber.la
 
 KDE_ICON = kcalc
 
@@ -39,3 +34,7 @@ messages: rc.cpp
 
 updatedir = $(kde_datadir)/kconf_update
 update_DATA = kcalcrc.upd
+
+DOXYGEN_EMPTY = YES
+include $(top_srcdir)/admin/Doxyfile.am
+

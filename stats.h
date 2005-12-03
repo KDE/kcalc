@@ -26,8 +26,8 @@
 #ifndef KSTATS_H
 #define KSTATS_H
 
-#include <q3valuevector.h>
-#include "kcalctype.h"
+#include <QVector>
+#include "knumber.h"
 
 class KStats {
 
@@ -37,20 +37,20 @@ public:
 
 public:
 	void clearAll();
-	void enterData(CALCAMNT data);
+	void enterData(const KNumber & data);
 	void clearLast();
-	CALCAMNT sum();
-	CALCAMNT sum_of_squares();
-	CALCAMNT mean();
-	CALCAMNT median();
-	CALCAMNT std_kernel();
-	CALCAMNT std();
-	CALCAMNT sample_std();
-	int	     count();
+	KNumber sum();
+	KNumber sum_of_squares();
+	KNumber mean();
+	KNumber median();
+	KNumber std_kernel();
+	KNumber std();
+	KNumber sample_std();
+	int count() const;
 	bool     error();
 
 private:
-    Q3ValueVector<CALCAMNT> mData;
+    QVector<KNumber> mData;
     bool error_flag;
 
 };

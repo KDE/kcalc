@@ -22,39 +22,41 @@
 #include <klocale.h>
 
 #include "kcalc_const_menu.h"
-//Added by qt3to4:
-#include <Q3PopupMenu>
 
-#define NUM_CONST 16
+#define NUM_CONST 17
 
 const struct science_constant KCalcConstMenu::Constants[] = {
-  {QString::fromUtf8("π"), I18N_NOOP("Pi"), "", "3.14159265358979323846264338327950288", Mathematics},
-  {"e", I18N_NOOP("Euler Number"), "", "2.71828182845904523536028747135266249", Mathematics},
+  {QString::fromUtf8("π"), I18N_NOOP("Pi"), "",
+   "3.1415926535897932384626433832795028841971693993751"
+   "05820974944592307816406286208998628034825342117068", Mathematics},
+  {"e", I18N_NOOP("Euler Number"), "",
+   "2.7182818284590452353602874713526624977572470936999"
+   "59574966967627724076630353547594571382178525166427", Mathematics},
+  {QString::fromUtf8("φ"), I18N_NOOP("Golden Ratio"), "", "1.61803398874989484820458683436563811", Mathematics},
   {"c", I18N_NOOP("Light Speed"), "", "2.99792458e8", Electromagnetic},
   {"h", I18N_NOOP("Planck's Constant"), "", "6.6260693e-34", Nuclear},
   {"G", I18N_NOOP("Constant of Gravitation"), "", "6.6742e-11", Gravitation},
   {"g", I18N_NOOP("Earth Acceleration"), "", "9.80665", Gravitation},
-  {"e", I18N_NOOP("Elementary Charge"), "", "1.60217653e-19", Electromagnetic},
+  {"e", I18N_NOOP("Elementary Charge"), "", "1.60217653e-19", ConstantCategory(Electromagnetic|Nuclear)},
   {"Z_0", I18N_NOOP("Impedance of Vacuum"), "", "376.730313461", Electromagnetic},
   {QString::fromUtf8("α"), I18N_NOOP("Fine-Structure Constant"), "", "7.297352568e-3", Nuclear},
-  {"e", I18N_NOOP("Elementary Charge"), "", "1.60217653e-19", Nuclear},
-  {"_0", I18N_NOOP("Permeability of Vacuum"), "", "1.2566370614e-6", Electromagnetic},
+  {QString::fromUtf8("μ")+"_0", I18N_NOOP("Permeability of Vacuum"), "", "1.2566370614e-6", Electromagnetic},
   {QString::fromUtf8("ε")+"_0", I18N_NOOP("Permittivity of vacuum"), "", "8.854187817e-12", Electromagnetic},
   {"k", I18N_NOOP("Boltzmann Constant"), "", "1.3806505e-23", Thermodynamics},
   {"1u", I18N_NOOP("Atomic Mass Unit"), "", "1.66053886e-27", Thermodynamics},
   {"R", I18N_NOOP("Molar Gas Constant"), "", "8.314472", Thermodynamics},
-  {QString::fromUtf8("σ"), I18N_NOOP("Stefan-Boltzmann Constant"), "", "8.314472", Thermodynamics},
+  {QString::fromUtf8("σ"), I18N_NOOP("Stefan-Boltzmann Constant"), "", "5.670400e-8", Thermodynamics},
   {"N_A", I18N_NOOP("Avogadro's Number"), "", "6.0221415e23", Thermodynamics}
 };
 
-KCalcConstMenu::KCalcConstMenu(QWidget * parent, const char * name)
-  : Q3PopupMenu(parent, name)
+KCalcConstMenu::KCalcConstMenu(QWidget * parent)
+  : QMenu(parent)
 {
-  Q3PopupMenu *math_menu = new Q3PopupMenu(this, "mathematical constants");
-  Q3PopupMenu *em_menu = new Q3PopupMenu(this, "electromagnetic constants");
-  Q3PopupMenu *nuclear_menu = new Q3PopupMenu(this, "nuclear constants");
-  Q3PopupMenu *thermo_menu = new Q3PopupMenu(this, "thermodynamics constants");
-  Q3PopupMenu *gravitation_menu = new Q3PopupMenu(this, "gravitation constants");
+  QMenu *math_menu = new QMenu(this);
+  QMenu *em_menu = new QMenu(this);
+  QMenu *nuclear_menu = new QMenu(this);
+  QMenu *thermo_menu = new QMenu(this);
+  QMenu *gravitation_menu = new QMenu(this);
 
   insertItem(i18n("Mathematics"), math_menu);
   insertItem(i18n("Electromagnetism"), em_menu);
@@ -69,25 +71,18 @@ KCalcConstMenu::KCalcConstMenu(QWidget * parent, const char * name)
   connect(gravitation_menu, SIGNAL(activated(int)), this, SLOT(slotPassActivate(int)));
 
 
-  for (int i = 0; i<NUM_CONST; i++)
-    switch (Constants[i].category)
-      {
-      case Mathematics:
-	math_menu->insertItem(i18n(Constants[i].name), i);
-	break;
-      case Electromagnetic:
-	em_menu->insertItem(i18n(Constants[i].name), i);
-	break;
-      case Nuclear:
-	nuclear_menu->insertItem(i18n(Constants[i].name), i);
-	break;
-      case Thermodynamics:
-	thermo_menu->insertItem(i18n(Constants[i].name), i);
-	break;
-      case Gravitation:
-	gravitation_menu->insertItem(i18n(Constants[i].name), i);
-	break;
-      }
+  for (int i = 0; i<NUM_CONST; i++) {
+    if(Constants[i].category  &  Mathematics)
+      math_menu->insertItem(i18n(Constants[i].name), i);
+    if(Constants[i].category  &  Electromagnetic)
+      em_menu->insertItem(i18n(Constants[i].name), i);
+    if(Constants[i].category  &  Nuclear)
+      nuclear_menu->insertItem(i18n(Constants[i].name), i);
+    if(Constants[i].category  &  Thermodynamics)
+      thermo_menu->insertItem(i18n(Constants[i].name), i);
+    if(Constants[i].category  &  Gravitation)
+      gravitation_menu->insertItem(i18n(Constants[i].name), i);
+  }
 }
 
 

@@ -1,7 +1,3 @@
-//Added by qt3to4:
-#include <QKeyEvent>
-#include <QEvent>
-#include <Q3PtrList>
 /*
     KCalc, a scientific calculator for the X window system using the
     Qt widget libraries, available at no cost at http://www.troll.no
@@ -30,8 +26,7 @@
 
 class QPushButton;
 class QRadioButton;
-class Q3ButtonGroup;
-class Q3HButtonGroup;
+class QGroupBox;
 class QWidget;
 class DispLogic;
 class Constants;
@@ -82,15 +77,14 @@ private:
 	void setupStatusbar(void);
 	QWidget *setupNumericKeys(QWidget *parent);
 	void setupLogicKeys(QWidget *parent);
-	void setupLogExpKeys(QWidget *parent);
-	void setupTrigKeys(QWidget *parent);
+	void setupScientificKeys(QWidget *parent);
 	void setupStatisticKeys(QWidget *parent);
 	void setupConstantsKeys(QWidget *parent);
 	void keyPressEvent(QKeyEvent *e);
 	void keyReleaseEvent(QKeyEvent *e);
 	void set_precision();
 	void set_style();
-	void resetBase(void) { (BaseChooseGroup->find(1))->animateClick();};
+	void resetBase(void) { /*(BaseChooseGroup->at(1))->animateClick()*/;};
 
 	void UpdateDisplay(bool get_amount_from_core = false,
 			   bool store_result_in_history = false);
@@ -102,8 +96,7 @@ protected slots:
     void EnterEqual();
     void showSettings();
     void slotStatshow(bool toggled);
-    void slotTrigshow(bool toggled);
-    void slotExpLogshow(bool toggled);
+    void slotScientificshow(bool toggled);
     void slotLogicshow(bool toggled);
     void slotConstantsShow(bool toggled);   
     void slotShowAll(void);
@@ -166,8 +159,8 @@ protected slots:
 private:
 	bool inverse;
 	bool hyp_mode;
-	CALCAMNT memory_num;
-	CALCAMNT setvalue;
+	KNumber memory_num;
+	KNumber setvalue;
 
 	// angle modes for trigonometric values
 	enum {
@@ -185,10 +178,9 @@ private:
     DispLogic*	calc_display; // for historic reasons in "dlabel.h"
     QRadioButton*	pbBaseChoose[4];
     QPushButton*	pbAngleChoose;
-    Q3Dict<KCalcButton>	pbStat;
-    Q3Dict<KCalcButton>	pbTrig;
-    Q3Dict<KCalcButton>	pbExp;
-    Q3Dict<KCalcButton>	pbLogic;
+    QHash<QString, KCalcButton *>	pbStat;
+    QHash<QString, KCalcButton *>	pbScientific;
+    QHash<QString, KCalcButton *>	pbLogic;
     KCalcConstButton*	pbConstant[10];
     KCalcButton* 	pbAC;
     KCalcButton* 	pbAND;
@@ -222,22 +214,21 @@ private:
 			   // buttons would like to remove this, but
 			   // don't know how
 	
-    Q3HButtonGroup*      BaseChooseGroup;
+    QGroupBox *      BaseChooseGroup;
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
-    Q3ButtonGroup* 	NumButtonGroup;
+    QButtonGroup* 	NumButtonGroup;
     // ConstButtonGroup C1-C6
-    Q3ButtonGroup*	ConstButtonGroup;
+    QButtonGroup*	ConstButtonGroup;
 
     KToggleAction *actionStatshow;
-    KToggleAction *actionTrigshow;
+    KToggleAction *actionScientificshow;
     KToggleAction *actionLogicshow;
-    KToggleAction *actionExpLogshow;
     KToggleAction *actionConstantsShow;
 
-    Q3PtrList<KCalcButton> mFunctionButtonList;
-    Q3PtrList<KCalcButton> mStatButtonList;
-    Q3PtrList<KCalcButton> mMemButtonList;
-    Q3PtrList<KCalcButton> mOperationButtonList;
+    QList<KCalcButton*> mFunctionButtonList;
+    QList<KCalcButton*> mStatButtonList;
+    QList<KCalcButton*> mMemButtonList;
+    QList<KCalcButton*> mOperationButtonList;
 
     int				mInternalSpacing;
 

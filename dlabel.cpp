@@ -23,8 +23,9 @@
 
 */
 
-#include <qglobal.h>
+//#include <QGlobal>
 #include <kactioncollection.h>
+#include <kaction.h>
 #include <kstdaction.h>
 
 #include "kcalc_settings.h"
@@ -38,6 +39,8 @@ DispLogic::DispLogic(QWidget *parent, const char *name,
 		     KActionCollection *coll)
   :KCalcDisplay(parent,name), _history_index(0)
 {
+	KNumber::setDefaultFloatOutput(true);
+	KNumber::setDefaultFractionalInput(true);
 	_back = KStdAction::undo(this, SLOT(history_back()), coll);
 	_forward = KStdAction::redo(this, SLOT(history_forward()), coll);
 
@@ -78,10 +81,10 @@ void DispLogic::update_from_core(CalcEngine const &core,
 				 bool store_result_in_history)
 {
 	bool tmp_error;
-	CALCAMNT output = core.lastOutput(tmp_error);
+	KNumber const & output = core.lastOutput(tmp_error);
 	if(tmp_error) sendEvent(EventError);
 	if (setAmount(output)  &&  store_result_in_history  &&
-	    output != 0)
+	    output != KNumber::Zero)
 	{
 	  // add this latest value to our history
 	  _history_list.insert(_history_list.begin(), output);

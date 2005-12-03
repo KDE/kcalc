@@ -22,19 +22,19 @@
 
 */
 
-#ifndef QTCALC_CORE_H
-#define QTCALC_CORE_H
+#ifndef _KCALC_CORE_H
+#define _KCALC_CORE_H
 
+#include <QStack>
 #include "stats.h"
-#include <q3valuestack.h>
-#include "kcalctype.h"
+#include "knumber.h"
 
 #define		POS_ZERO	 1e-19L	 /* What we consider zero is */
 #define		NEG_ZERO	-1e-19L	 /* anything between these two */
 
 
-typedef	CALCAMNT	(*Arith)(CALCAMNT, CALCAMNT);
-typedef	CALCAMNT	(*Prcnt)(CALCAMNT, CALCAMNT);
+typedef	KNumber	(*Arith)(const KNumber &, const KNumber &);
+typedef	KNumber	(*Prcnt)(const KNumber &, const KNumber &);
 
 #define UNUSED(x) ((void)(x))
 
@@ -71,66 +71,66 @@ class CalcEngine
 
   CalcEngine();
   
-  CALCAMNT lastOutput(bool &error) const;
+  KNumber lastOutput(bool &error) const;
 
-  void enterOperation(CALCAMNT num, Operation func);
+  void enterOperation(KNumber num, Operation func);
 
 
-  void ArcCosDeg(CALCAMNT input);
-  void ArcCosRad(CALCAMNT input);
-  void ArcCosGrad(CALCAMNT input);
-  void ArcSinDeg(CALCAMNT input);
-  void ArcSinRad(CALCAMNT input);
-  void ArcSinGrad(CALCAMNT input);
-  void ArcTangensDeg(CALCAMNT input);
-  void ArcTangensRad(CALCAMNT input);
-  void ArcTangensGrad(CALCAMNT input);
-  void AreaCosHyp(CALCAMNT input);
-  void AreaSinHyp(CALCAMNT input);
-  void AreaTangensHyp(CALCAMNT input);
-  void Complement(CALCAMNT input);
-  void CosDeg(CALCAMNT input);
-  void CosRad(CALCAMNT input);
-  void CosGrad(CALCAMNT input);
-  void CosHyp(CALCAMNT input);
-  void Cube(CALCAMNT input);
-  void CubeRoot(CALCAMNT input);
-  void Exp(CALCAMNT input);
-  void Exp10(CALCAMNT input);
-  void Factorial(CALCAMNT input);
-  void InvertSign(CALCAMNT input);
-  void Ln(CALCAMNT input);
-  void Log10(CALCAMNT input);
-  void ParenClose(CALCAMNT input);
-  void ParenOpen(CALCAMNT input);
-  void Reciprocal(CALCAMNT input);
-  void SinDeg(CALCAMNT input);
-  void SinGrad(CALCAMNT input);
-  void SinRad(CALCAMNT input);
-  void SinHyp(CALCAMNT input);
-  void Square(CALCAMNT input);
-  void SquareRoot(CALCAMNT input);
-  void StatClearAll(CALCAMNT input);
-  void StatCount(CALCAMNT input);
-  void StatDataNew(CALCAMNT input);
-  void StatDataDel(CALCAMNT input);
-  void StatMean(CALCAMNT input);
-  void StatMedian(CALCAMNT input);
-  void StatStdDeviation(CALCAMNT input);
-  void StatStdSample(CALCAMNT input);
-  void StatSum(CALCAMNT input);
-  void StatSumSquares(CALCAMNT input);
-  void TangensDeg(CALCAMNT input);
-  void TangensRad(CALCAMNT input);
-  void TangensGrad(CALCAMNT input);
-  void TangensHyp(CALCAMNT input);
+  void ArcCosDeg(KNumber input);
+  void ArcCosRad(KNumber input);
+  void ArcCosGrad(KNumber input);
+  void ArcSinDeg(KNumber input);
+  void ArcSinRad(KNumber input);
+  void ArcSinGrad(KNumber input);
+  void ArcTangensDeg(KNumber input);
+  void ArcTangensRad(KNumber input);
+  void ArcTangensGrad(KNumber input);
+  void AreaCosHyp(KNumber input);
+  void AreaSinHyp(KNumber input);
+  void AreaTangensHyp(KNumber input);
+  void Complement(KNumber input);
+  void CosDeg(KNumber input);
+  void CosRad(KNumber input);
+  void CosGrad(KNumber input);
+  void CosHyp(KNumber input);
+  void Cube(KNumber input);
+  void CubeRoot(KNumber input);
+  void Exp(KNumber input);
+  void Exp10(KNumber input);
+  void Factorial(KNumber input);
+  void InvertSign(KNumber input);
+  void Ln(KNumber input);
+  void Log10(KNumber input);
+  void ParenClose(KNumber input);
+  void ParenOpen(KNumber input);
+  void Reciprocal(KNumber input);
+  void SinDeg(KNumber input);
+  void SinGrad(KNumber input);
+  void SinRad(KNumber input);
+  void SinHyp(KNumber input);
+  void Square(KNumber input);
+  void SquareRoot(KNumber input);
+  void StatClearAll(KNumber input);
+  void StatCount(KNumber input);
+  void StatDataNew(KNumber input);
+  void StatDataDel(KNumber input);
+  void StatMean(KNumber input);
+  void StatMedian(KNumber input);
+  void StatStdDeviation(KNumber input);
+  void StatStdSample(KNumber input);
+  void StatSum(KNumber input);
+  void StatSumSquares(KNumber input);
+  void TangensDeg(KNumber input);
+  void TangensRad(KNumber input);
+  void TangensGrad(KNumber input);
+  void TangensHyp(KNumber input);
 
   void Reset();
  private:
   KStats	stats;
 
   typedef struct {
-    CALCAMNT number;
+    KNumber number;
     Operation operation;
   } _node;
 
@@ -153,27 +153,29 @@ class CalcEngine
   // into the stack, each time the user opens one.  When a bracket is
   // closed, everything in the stack is evaluated until the first
   // marker "FUNC_BRACKET" found.
-  Q3ValueStack<_node> _stack;
+  QStack<_node> _stack;
 
-  CALCAMNT _last_number;
+  KNumber _last_number;
 
   bool _percent_mode;
 
-
-  static const CALCAMNT pi;
 
   static const struct operator_data Operator[];
 
   bool evalStack(void);
 
-  CALCAMNT evalOperation(CALCAMNT arg1, Operation operation, CALCAMNT arg2);
+  KNumber evalOperation(KNumber arg1, Operation operation, KNumber arg2);
 
-  CALCAMNT Deg2Rad(CALCAMNT x) const	{ return (((2L * pi) / 360L) * x); }
-  CALCAMNT Gra2Rad(CALCAMNT x) const	{ return ((pi / 200L) * x); }
-  CALCAMNT Rad2Deg(CALCAMNT x) const	{ return ((360L / (2L * pi)) * x); }
-  CALCAMNT Rad2Gra(CALCAMNT x) const	{ return ((200L / pi) * x); }
+  const KNumber Deg2Rad(const KNumber &x) const
+  { return KNumber(2) * KNumber::Pi / KNumber(360) * x; }
+  const KNumber Gra2Rad(const KNumber &x) const
+  { return KNumber(2)*KNumber::Pi / KNumber(400) * x; }
+  const KNumber Rad2Deg(const KNumber &x) const
+  { return KNumber(360) / (KNumber(2) * KNumber::Pi) * x; }
+  const KNumber Rad2Gra(const KNumber &x) const
+  { return KNumber(400) / (KNumber(2)*KNumber::Pi) * x; }
 
 };
 
 
-#endif  //QTCALC_CORE_H
+#endif  //_KCALC_CORE_H

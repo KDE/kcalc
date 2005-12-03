@@ -30,19 +30,17 @@
 #include "kcalc_button.h"
 
 
-KCalcButton::KCalcButton(QWidget * parent, const char * name)
+KCalcButton::KCalcButton(QWidget * parent)
   : KPushButton(parent), _show_accel_mode(false),
     _mode_flags(ModeNormal)
 {
-  setObjectName(name);
   setAutoDefault(false);
 }
 
 KCalcButton::KCalcButton(const QString &label, QWidget * parent,
-			 const char * name, const QString &tooltip)
+			 const QString &tooltip)
   : KPushButton(label, parent), _show_accel_mode(false), _mode_flags(ModeNormal)
 {
-  setObjectName(name);
   setAutoDefault(false);
   addMode(ModeNormal, label, tooltip);
 }
@@ -116,28 +114,31 @@ void KCalcButton::slotSetAccelDisplayMode(bool flag)
   setAccel(_accel);
 }
 
-void KCalcButton::paintLabel(QPainter *paint)
+
+void KCalcButton::paintEvent(QPaintEvent *paint)
 {
+  QPainter tmp_paint(this);
+    KPushButton::paintEvent(paint);
   if (_mode[_mode_flags].is_label_richtext) {
     Q3SimpleRichText _text(_label, font());
-    _text.draw(paint, width()/2-_text.width()/2, 0, childrenRegion(), colorGroup());
+    _text.draw(&tmp_paint, width()/2-_text.width()/2, 0, childrenRegion(), colorGroup());
   } else {
-#warning "kde4: How to port it ?"
-		  //KPushButton::drawButtonLabel(paint);
+    KPushButton::paintEvent(paint);
   }
 }
 
+/*
 void KCalcButton::drawButtonLabel(QPainter *paint)
 {
   if (_show_accel_mode) {
-#warning "kde4: How to port it ?"		  
-    //KPushButton::drawButtonLabel(paint);
+    KPushButton::drawButtonLabel(paint);
   } else if (_mode.contains(_mode_flags)) {
     paintLabel(paint);
   }
 }
+*/
 
-
+/*
 void KSquareButton::paintLabel(QPainter *paint)
 {
   int w = width();
@@ -158,16 +159,16 @@ void KSquareButton::paintLabel(QPainter *paint)
     paint->drawText(w2-2, 9 + h2, "³");
   }
 }
-
+*/
+ /*
 void KSquareButton::drawButtonLabel(QPainter *paint)
 {
   if (_show_accel_mode) {
-#warning "kde4: How to port it ?"		  
-    //KPushButton::drawButtonLabel(paint);
+    KPushButton::drawButtonLabel(paint);
   } else if (_mode.contains(_mode_flags)) {
     paintLabel(paint);
   }
 }
-
+ */
 #include "kcalc_button.moc"
 
