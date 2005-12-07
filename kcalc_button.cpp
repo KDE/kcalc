@@ -156,7 +156,7 @@ void KSquareButton::paintLabel(QPainter *paint)
   paint->drawLine(w2 + 27, 1 + h2, w2 + 27, 4 + h2);
   // add a three for the cube root
   if (_mode_flags & ModeInverse) {
-    paint->drawText(w2-2, 9 + h2, "³");
+    paint->drawText(w2-2, 9 + h2, QString::fromUtf8("Â³"));
   }
 }
 */

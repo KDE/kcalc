@@ -1,146 +1,146 @@
-2005-04-30 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2005-04-30 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Fix BUG 100316
 
-2005-04-25 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2005-04-25 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
         * Fix BUG 99817.
 
-2005-04-20 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2005-04-20 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Change C-style casts for C++ casts, removed some C-style typedefs
 
-2005-04-02 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2005-04-02 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* GUI: added statusflags to display, looks very neat (this was
 	  contributed by Bernd Brandstetter; well done!)
 
-2005-03-30 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2005-03-30 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* added a Memory-Store button (contributed by Bernd Brandstetter)
 
-2005-03-29 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2005-03-29 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* fix M+/- button to change when inverse is pressed
 
 2005-03-08 Evan Teran <eteran@alum.rit.edu>
 	* updated about box to reflect my correct email address. This one is 
 	permanent and will never change again
 	  
-2005-02-05 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2005-02-05 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* fix BUG 98522: M- button did not work at least since KDE-3.2. Shame on me, and thanks to
 	  Bernd Brandstetter for reporting the bug.
 
-2004-12-21 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-12-21 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* added some more contants and dropped Pi-button since not needed.
 	  Instead new cube and cube root button.
 
-2004-12-17 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-12-17 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* almost finished feature which allows to choose from list
 	  of scientific constants
 
-2004-12-17 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-12-17 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
         * started implementation of a list of scientific constants
 
-2004-12-06 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-12-06 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* further refactoring of configuration options for const buttons
 
-2004-12-05 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-12-05 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* understood how kconfigxt handles indexed configuration options
 
-2004-12-03 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-12-03 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* moving through history is now done via undo/redo
 	  this implements wish BUG 93938
 	
-2004-11-23 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-11-23 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* improved const buttons
 
-2004-10-20 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-10-20 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* clean up Const-Buttons. More work still required.
 
-2004-10-16 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-10-16 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* improve Const-Buttons: set value by using INV-Button instead of config-menu
 
-2004-09-24 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-09-24 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
         * fixed BUG 90009: the display does not resize in vertical direction anymore
 
-2004-09-24 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-09-24 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
         * fixed small bug: switching off Logic-mode tried to change item in statusbar,
           but item did not exist.
 
-2004-09-11 Klaus Niederkrüger <kniederk@math.uni-koeln.de> *
+2004-09-11 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de> *
 	* fix bug 82433: show a check mark next to the angle mode in popup menu
 	
-2004-09-10 Klaus Niederkrüger <kniederk@math.uni-koeln.de> *
+2004-09-10 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de> *
 	* bundle precedence of operators and function pointers into a single
 	  struct.
 	
-2004-09-08 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-09-08 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* moved angle mode logic into GUI
 
-2004-09-04 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-09-04 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* reduced the number of entry points into the CalcEngine
 	  Aim: enterOperation the only entry point
 
-2004-08-2? Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-08-2? Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* added some labels and tooltips for inverse mode
 
-2004-08-2? Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-08-2? Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* fix to BUG 74657
 	* fix to BUG 78726
 
-2004-07-30 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-07-30 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Square root button did not work correctly after pressing CTRL (Bug 86004)
 
-2004-07-30 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-07-30 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Added Accels for Const-Buttons
 
-2004-07-29 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
-	* Fixed BUG 67984 (thanks to André Wöbbeking)
+2004-07-29 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
+	* Fixed BUG 67984 (thanks to AndrÃ© WÃ¶bbeking)
 	
-2004-07-17 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-07-17 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Fixed BUG 85357
 	
-2004-06-05 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-06-05 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* It was not possible to paste a hex-number starting with "0x" in hex-mode, because hex-mode
 	  prepended automatically "0x" leading to "0x0x...".
 	
-2004-05-16 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-05-16 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Refactored a bit the kcalc_button code. In particular use Richtext only, when needed (a bit faster,
 	  but a lot still to be done).
 	
-2004-05-04 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-05-04 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Masked "&" for the label of the AND button, when displaying the corresponding accel.
 	  Thanks to Sigrid from Trolltech.
 	
-2004-04-27 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-04-27 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Buttons have now their own modes (like inverse Mode etc.)
 	This allows moving tooltips and labels into kcalc_button.cpp
 	instead of having everything in kcalc.cpp.
 	This needs to be cleaned up and the tooltips and labels should be
 	revised.
 	
-2004-04-05 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-04-05 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Changed accel for OR-button from "O" to "|"
 	* More accels are visible, when "Ctrl" is used
 	* disable some buttons like "Sin", "Cos" etc., when not
 	  in decimal mode
 	
-2004-04-05 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-04-05 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Pasted numbers in Hex-Mode are now always interpreted as
 	  hex-numbers (BUG 65167).
 
-2004-03-26 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-03-26 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Centered labels on buttons
 	
-2004-03-24 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-03-24 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Press (and hold) CTRL-key to see accels for all
 	buttons (BUG 69850).
 	
-2004-03-19 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-03-19 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Labels like e.g. "x^y" are drawn with QSimpleRichText
 	  Need to center the labels better!!
 	* KCalcButton supports now two different labels, one for normal, one
 	  for inverse mode. Switch between the two happens via a signal.
 	
-2004-03-11 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-03-11 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Moved functions that paint e.g. "x^y" to the KCalcButton-class.
 	
-2004-03-01 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-03-01 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Created class KCalcButton, which is now used for all QPushButtons.
 	  This will allow later to change the labels more easily, if INV is
 	  pressed, and mucho more...
@@ -149,85 +149,85 @@
 	* "x^2" and "x^y"-buttons have now superscripted labels
 	* pressing "INV"-button changes "x^2"-button to square-root etc.
 	
-2004-02-25 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-02-25 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Changed many accels from "accel()->insert()" to
 	  "button->addAccel()". Fixes BUG 75555.
 	* deactivate EE-button, when Base != DEC  
 	
-2004-02-10 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-02-10 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* First step to fix bug 66397. Changing Basemode via Popupmenu is
 	  too clumsy for most programmers. Maybe backport to KDE 3.2 later,
 	  once it has been tested. GUI does not look nice.
 	
-2004-02-06 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-02-06 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Fixed bug 73437. Pasting empty clipboard made kcalc crash.
 
-2004-02-04 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-02-04 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Moved more accels from keyPressEvent into accels
 	
-2004-01-27 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-01-27 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
         * Fix paste-function: Pasting e.g. "123  \n" did not work
           because of the trailing spaces and returns.
 
-2004-01-25 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2004-01-25 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Applied patch from Thomas Weber: Creates buttons C1-C6
 	  to store constants
 
-2003-12-06 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2003-12-06 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Fix problem with several identical labels in statusbar
 	  with the help of newly added statusbar->hasItem.
 
-2003-12-06 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2003-12-06 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Make Percent work the way it did in KDE-3.1 again (documentation
 	  was not updated to this KDE-version, which confused me on 2003/08/28)
 	
-2003-11-04 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2003-11-04 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* More reorganization and preparation for getting accels right.
 
-2003-10-31 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2003-10-31 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Split Constructor into more subfunctions.
 	  To be continued.
 	
-2003-10-20 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2003-10-20 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* At last the calculator window resizes, when buttons are hidden/shown
 	* Added a few extra buttons to "fill gaps".
 	
-2003-10-14 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2003-10-14 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* RadioButtons for Base and Angle converted to PopUpMenu+Button
 	* Layout changed
 	* Moved ENTER form keyPressedEvent to Accel()
 
-2003-10-10 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2003-10-10 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Number buttons look like numeric keyboard (on US-keyboards that is)
 	* Initialize ToggleActions correctly
 	
-2003-10-09 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2003-10-09 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Reverted the menubar stuff after several complaints.
 	  Now Kcalc-GUI looks again like on 2003-09-11.
 	
-2003-09-30 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2003-09-30 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Fixed bug (unitialized pointers)
 	
-2003-09-26 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2003-09-26 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Moved all type of buttons to menubars, which can be hidden/showed
 	  via the menubar. This is quite experimental and full of bugs.
 	
-2003-09-11 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2003-09-11 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* Button groups can be switch on/off via actions.
 	  This is not yet the final GUI-Layout (yes, it looks broken).
 	* Accordingly the Stat/Trig-mode has been deleted from
 	  configure window.
 
-2003-09-11 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2003-09-11 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* deleted a few #includes
 	
-2003-09-02 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2003-09-02 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* dropped configure-button and Help-button
 	* created menubar with standard-actions
 	* ConfigDialog is not modal anymore
 	* copy/paste/cut-standard actions applied to calc_display
 	
-2003-08-28 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2003-08-28 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* created Pi-button and moved Inv-button to make space for it
 	* label of "."-button is now localized
 	* Caption is set via signal/slots
@@ -236,18 +236,18 @@
 	* Number-keys are now handled by KAccel instead of keyPressEvent
 	* ConfigDialog is modal
 
-2003-08-27 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2003-08-27 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* moved result_history from CalcEngine into DispLogic
 	* reactivation of rounding towards zero for cos(90) etc.
 	* quit is done in a more KDE conformant way
 	* Caption is set via slots etc.
 	
-2003-08-12 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2003-08-12 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* continued separation: now display is independent class and
 	  handles everything related to itself.
 	  GUI passes only information between core and display.
 	
-2003-08-04 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+2003-08-04 Klaus NiederkrÃ¼ger <kniederk@math.uni-koeln.de>
 	* finished the separation of gui-code from the calculating core.
 	  this still needs some clean-up
 	
