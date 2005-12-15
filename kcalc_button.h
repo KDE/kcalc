@@ -2,8 +2,8 @@
     KCalc, a scientific calculator for the X window system using the
     Qt widget libraries, available at no cost at http://www.troll.no
 
-    Copyright (C) 1996 Bernd Johannes Wuebben
-                       wuebben@math.cornell.edu
+    Copyright (C) 2004-2005 Klaus Niederkruger
+                       kniederk@ulb.ac.be
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,13 +25,15 @@
 #define _KCALC_BUTTON_H
 
 #include <QHash>
+#include <QLabel>
 #include <kpushbutton.h>
 
 // The class KCalcButton is an overriden KPushButton. It offers extra
-// functionality e.g. labels can be richtext or the accels can be
-// shown in the label, but the most important thing is that the button
-// may have several modes with corresponding labels. When one switches
-// modes, the corresponding label is displayed.
+// functionality e.g. labels can be richtext, and the button can be
+// told to display its accels in the label, but the most important
+// thing is that the button may have several modes with corresponding
+// labels and tooltips. When one switches modes, the corresponding
+// label is displayed.
 
 
 enum ButtonModeFlags {ModeNormal = 0, ModeInverse = 1, ModeHyperbolic = 2};
@@ -75,16 +77,12 @@ public slots:
   void slotSetAccelDisplayMode(bool flag);
 
 protected:
- virtual void paintEvent(QPaintEvent *p);
- void paintLabel(QPainter *paint);
-
-protected:
  bool _show_accel_mode;
- QString _label;
 
  ButtonModeFlags _mode_flags;
 
  QHash<ButtonModeFlags, ButtonMode> _mode;
+ QLabel _label;
 };
 
 class KSquareButton : public KCalcButton

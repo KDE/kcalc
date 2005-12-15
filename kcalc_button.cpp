@@ -20,26 +20,26 @@
 
 */
 
-#include <q3simplerichtext.h>
 #include <qtooltip.h>
 #include <qpainter.h>
 
 
-#include "qdom.h"
+//#include "qdom.h"
 
 #include "kcalc_button.h"
 
 
 KCalcButton::KCalcButton(QWidget * parent)
   : KPushButton(parent), _show_accel_mode(false),
-    _mode_flags(ModeNormal)
+    _mode_flags(ModeNormal), _label(this)
 {
   setAutoDefault(false);
 }
 
 KCalcButton::KCalcButton(const QString &label, QWidget * parent,
 			 const QString &tooltip)
-  : KPushButton(label, parent), _show_accel_mode(false), _mode_flags(ModeNormal)
+  : KPushButton(label, parent), _show_accel_mode(false),
+    _mode_flags(ModeNormal), _label(this)
 {
   setAutoDefault(false);
   addMode(ModeNormal, label, tooltip);
@@ -71,11 +71,17 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
     // save accel, because setting label erases accel
     QKeySequence _accel = accel();
 
-    if(_mode[new_mode].is_label_richtext)
-      _label = _mode[new_mode].label;
-    else
+    if(_mode[new_mode].is_label_richtext) {
+      _label.setText(_mode[new_mode].label);
+
+      _label.move((width()-_label.width())/2, (height()-_label.height())/2);
+      setText("");
+      _label.show();
+    }  else {
       setText(_mode[new_mode].label);
-	QToolTip::remove(this);
+      _label.hide();
+    }
+    QToolTip::remove(this);
     QToolTip::add(this, _mode[new_mode].tooltip);
     _mode_flags = new_mode;
 
@@ -106,8 +112,16 @@ void KCalcButton::slotSetAccelDisplayMode(bool flag)
   
   if (flag == true) {
     setText(escape(QString(accel())));
+    _label.hide();
   } else {
-    setText(_mode[_mode_flags].label);
+    if(_mode[_mode_flags].is_label_richtext) {
+      _label.setText(_mode[_mode_flags].label);
+      setText("");
+      _label.show();
+    }  else {
+      setText(_mode[_mode_flags].label);
+      _label.hide();
+    }
   }
 
   // restore accel
@@ -115,28 +129,9 @@ void KCalcButton::slotSetAccelDisplayMode(bool flag)
 }
 
 
-void KCalcButton::paintEvent(QPaintEvent *paint)
-{
-  QPainter tmp_paint(this);
-    KPushButton::paintEvent(paint);
-  if (_mode[_mode_flags].is_label_richtext) {
-    Q3SimpleRichText _text(_label, font());
-    _text.draw(&tmp_paint, width()/2-_text.width()/2, 0, childrenRegion(), colorGroup());
-  } else {
-    KPushButton::paintEvent(paint);
-  }
-}
+//    _text.draw(&tmp_paint, width()/2-_text.width()/2, 0, childrenRegion(), colorGroup());
 
-/*
-void KCalcButton::drawButtonLabel(QPainter *paint)
-{
-  if (_show_accel_mode) {
-    KPushButton::drawButtonLabel(paint);
-  } else if (_mode.contains(_mode_flags)) {
-    paintLabel(paint);
-  }
-}
-*/
+
 
 /*
 void KSquareButton::paintLabel(QPainter *paint)
