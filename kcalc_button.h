@@ -77,12 +77,14 @@ public slots:
   void slotSetAccelDisplayMode(bool flag);
 
 protected:
- bool _show_accel_mode;
+  virtual void paintEvent(QPaintEvent *p);
 
- ButtonModeFlags _mode_flags;
+  bool _show_accel_mode;
 
- QHash<ButtonModeFlags, ButtonMode> _mode;
- QLabel _label;
+  ButtonModeFlags _mode_flags;
+
+  QHash<ButtonModeFlags, ButtonMode> _mode;
+  QLabel _label;
 };
 
 class KSquareButton : public KCalcButton

@@ -73,8 +73,6 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
 
     if(_mode[new_mode].is_label_richtext) {
       _label.setText(_mode[new_mode].label);
-
-      _label.move((width()-_label.width())/2, (height()-_label.height())/2);
       setText("");
       _label.show();
     }  else {
@@ -126,6 +124,15 @@ void KCalcButton::slotSetAccelDisplayMode(bool flag)
 
   // restore accel
   setAccel(_accel);
+}
+
+void KCalcButton::paintEvent(QPaintEvent *p)
+{
+  KPushButton::paintEvent(p);
+
+  if(_mode[_mode_flags].is_label_richtext)
+    _label.move((width()-_label.width())/2, (height()-_label.height())/2);
+  
 }
 
 
