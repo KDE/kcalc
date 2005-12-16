@@ -43,15 +43,15 @@ Q_OBJECT
 
   void setLabelAndTooltip(void);
 
-  private slots:
+ private slots:
   void slotConfigureButton(int option);
   void slotChooseScientificConst(int option);
 
-  private:
+ private:
   void initPopupMenu(void);
   
   KMenu* _popup;
-  int _button_num;
+  int const _button_num;
 };
 
 

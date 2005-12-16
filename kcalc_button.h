@@ -99,8 +99,7 @@ public:
    : KCalcButton(label, parent, tooltip) { };
 
 protected:
- /* virtual void drawButtonLabel(QPainter *paint);
-    void paintLabel(QPainter *paint);*/
+  virtual void paintEvent(QPaintEvent *p);
 };
 
 #endif  // _KCALC_BUTTON_H

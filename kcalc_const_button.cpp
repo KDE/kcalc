@@ -35,7 +35,7 @@ KCalcConstButton::KCalcConstButton(QWidget *parent, int but_num)
   : KCalcButton(parent), _button_num(but_num)
 {
   addMode(ModeInverse, "Store", i18n("Write display data into memory"));
-  
+
   initPopupMenu();
 }
 
@@ -45,7 +45,7 @@ KCalcConstButton::KCalcConstButton(const QString &label, QWidget *parent,
   : KCalcButton(label, parent, tooltip), _button_num(but_num)
 {
   addMode(ModeInverse, "Store", i18n("Write display data into memory"));
-  
+
   initPopupMenu();
 }
 
@@ -58,7 +58,7 @@ void KCalcConstButton::setLabelAndTooltip(void)
 {
   QString new_label = QString("C") + QString().setNum(_button_num + 1);
   QString new_tooltip;
-  
+
   new_label = (KCalcSettings::nameConstant(_button_num).isNull() ? new_label : KCalcSettings::nameConstant(_button_num));
   
   new_tooltip = new_label + "=" + KCalcSettings::valueConstant(_button_num);

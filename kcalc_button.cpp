@@ -73,7 +73,7 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
 
     if(_mode[new_mode].is_label_richtext) {
       _label.setText(_mode[new_mode].label);
-      setText("");
+      setText(QString::null);
       _label.show();
     }  else {
       setText(_mode[new_mode].label);
@@ -114,7 +114,7 @@ void KCalcButton::slotSetAccelDisplayMode(bool flag)
   } else {
     if(_mode[_mode_flags].is_label_richtext) {
       _label.setText(_mode[_mode_flags].label);
-      setText("");
+      setText(QString::null);
       _label.show();
     }  else {
       setText(_mode[_mode_flags].label);
@@ -124,10 +124,12 @@ void KCalcButton::slotSetAccelDisplayMode(bool flag)
 
   // restore accel
   setAccel(_accel);
+  update();
 }
 
 void KCalcButton::paintEvent(QPaintEvent *p)
 {
+  // draw first button frame (and label, when not using richtext)
   KPushButton::paintEvent(p);
 
   if(_mode[_mode_flags].is_label_richtext)
@@ -136,41 +138,34 @@ void KCalcButton::paintEvent(QPaintEvent *p)
 }
 
 
-//    _text.draw(&tmp_paint, width()/2-_text.width()/2, 0, childrenRegion(), colorGroup());
-
-
-
-/*
-void KSquareButton::paintLabel(QPainter *paint)
+void KSquareButton::paintEvent(QPaintEvent *p)
 {
+  // draw first button frame
+  KCalcButton::paintEvent(p);
+  if (_show_accel_mode)
+    return;
+
+  QPainter paint(this);
   int w = width();
   int w2 = w/2 - 13;
   int h = height();
   int h2 = h/2 - 7;
-  // in some KDE-styles (.NET, Phase,...) we have to set the painter back to the right color
-  paint->setPen(foregroundColor());
+  // in some KDE-styles (.NET, Phase,...) we have to set the painter
+  // back to the right color
+  paint.setPen(foregroundColor());
   // these statements are for the improved
   // representation of the sqrt function
-  paint->drawLine(w2, 11 + h2, w2 + 2, 7 + h2);
-  paint->drawLine(w2 + 2, 7 + h2, w2 + 4, 14 + h2);
-  paint->drawLine(w2 + 4, 14 + h2, w2 + 6, 1 + h2);
-  paint->drawLine(w2 + 6, 1 + h2, w2 + 27, 1 + h2);
-  paint->drawLine(w2 + 27, 1 + h2, w2 + 27, 4 + h2);
+  paint.drawLine(w2, 11 + h2, w2 + 2, 7 + h2);
+  paint.drawLine(w2 + 2, 7 + h2, w2 + 4, 14 + h2);
+  paint.drawLine(w2 + 4, 14 + h2, w2 + 6, 1 + h2);
+  paint.drawLine(w2 + 6, 1 + h2, w2 + 27, 1 + h2);
+  paint.drawLine(w2 + 27, 1 + h2, w2 + 27, 4 + h2);
   // add a three for the cube root
   if (_mode_flags & ModeInverse) {
-    paint->drawText(w2-2, 9 + h2, QString::fromUtf8("³"));
+    paint.drawText(w2-2, 9 + h2, QString::fromUtf8("³"));
   }
 }
-*/
- /*
-void KSquareButton::drawButtonLabel(QPainter *paint)
-{
-  if (_show_accel_mode) {
-    KPushButton::drawButtonLabel(paint);
-  } else if (_mode.contains(_mode_flags)) {
-    paintLabel(paint);
-  }
-}
- */
+
+
 #include "kcalc_button.moc"
 

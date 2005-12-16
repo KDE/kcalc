@@ -26,7 +26,6 @@
 
 class QPushButton;
 class QRadioButton;
-class QGroupBox;
 class QWidget;
 class DispLogic;
 class Constants;
@@ -84,7 +83,7 @@ private:
 	void keyReleaseEvent(QKeyEvent *e);
 	void set_precision();
 	void set_style();
-	void resetBase(void) { /*(BaseChooseGroup->at(1))->animateClick()*/;};
+	void resetBase(void) { pbBaseChoose[1]->animateClick();};
 
 	void UpdateDisplay(bool get_amount_from_core = false,
 			   bool store_result_in_history = false);
@@ -102,7 +101,10 @@ protected slots:
     void slotShowAll(void);
     void slotHideAll(void);
     void slotAngleSelected(int number);
-    void slotBaseSelected(int number);
+    void slotBaseHex(void);
+    void slotBaseDec(void);
+    void slotBaseOct(void);
+    void slotBaseBin(void);
     void slotNumberclicked(int number_clicked);
     void slotEEclicked(void);
     void slotInvtoggled(bool myboolean);
@@ -214,7 +216,7 @@ private:
 			   // buttons would like to remove this, but
 			   // don't know how
 	
-    QGroupBox *      BaseChooseGroup;
+    QGroupBox* 	 	BaseChooseGroup;
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
     QButtonGroup* 	NumButtonGroup;
     // ConstButtonGroup C1-C6
