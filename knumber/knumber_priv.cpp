@@ -20,6 +20,9 @@
 #include <math.h>
 #include <config.h>
 
+#ifdef HAVE_STDLIB_H
+#include <stdlib.h>
+#endif
 #include <qregexp.h>
 #include <qstring.h>
 
