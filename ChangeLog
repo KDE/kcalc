@@ -1,3 +1,9 @@
+2005-12-29 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Fixed BUG 116835, BUG 118300, BUG 118909
+
+2005-10-?? Klaus Niederkrüger <kniederk@math.uni-koeln.de>
+	* Added arbitrary precision
+
 2005-04-30 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
 	* Fix BUG 100316
 

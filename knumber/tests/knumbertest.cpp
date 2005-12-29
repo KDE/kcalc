@@ -32,13 +32,13 @@ void checkResult(QString const &string, KNumber const & result,
 {
   std::cout << "Testing result of: " << string.ascii() <<
     " should give " << desired_string.ascii() << " and gives " <<
-    result.toQString().ascii() << "....\n";
+    result.toQString(8).ascii() << "....\n";
   std::cout << "The type of the result should be " <<
     numtypeToString(desired).ascii() << " and gives " <<
     numtypeToString(result.type()).ascii() << "....  ";
 
   if (result.type() == desired  &&
-      result.toQString() == desired_string) {
+      result.toQString(8) == desired_string) {
     std::cout << "OK\n";
     return;
   }
@@ -284,8 +284,8 @@ void testingSqrt(void)
   checkResult("KNumber(-16).sqrt()", KNumber(-16).sqrt(), "nan", KNumber::SpecialType);
   checkResult("KNumber(\"16/9\").sqrt()", KNumber("16/9").sqrt(), "4/3", KNumber::FractionType);
   checkResult("KNumber(\"-16/9\").sqrt()", KNumber("-16/9").sqrt(), "nan", KNumber::SpecialType);
-  checkResult("KNumber(2).sqrt()", KNumber(2).sqrt(), "1.41421", KNumber::FloatType);
-  checkResult("KNumber(\"2/3\").sqrt()", KNumber("2/3").sqrt(), "0.816497", KNumber::FloatType);
+  checkResult("KNumber(2).sqrt()", KNumber(2).sqrt(), "1.4142136", KNumber::FloatType);
+  checkResult("KNumber(\"2/3\").sqrt()", KNumber("2/3").sqrt(), "0.81649658", KNumber::FloatType);
   checkResult("KNumber(\"0.25\").sqrt()", KNumber("0.25").sqrt(), "0.5", KNumber::FloatType);
   checkResult("KNumber(\"-0.25\").sqrt()", KNumber("-0.25").sqrt(), "nan", KNumber::SpecialType);
   

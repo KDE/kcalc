@@ -45,7 +45,7 @@ class QString;
   * of this class will be described below:
   *
   * @li @p NumType::SpecialType - This type represents an error that
-  * has occured, e.g. trying to divide 1 by 0 gives an object that
+  * has occurred, e.g. trying to divide 1 by 0 gives an object that
   * represents infinity.
   *
   * @li @p NumType::IntegerType - The number is an integer. It can be
@@ -75,7 +75,7 @@ class KDE_EXPORT KNumber
    * KNumber tries to provide transparent access to the following type
    * of numbers:
    *
-   * @li @p NumType::SpecialType - Some type of error has occured,
+   * @li @p NumType::SpecialType - Some type of error has occurred,
    * further inspection with @p KNumber::ErrorType
    *
    * @li @p NumType::IntegerType - the number is an integer
@@ -134,7 +134,7 @@ class KDE_EXPORT KNumber
    * NumType::FractionType, which can be either displayed as fractions
    * or in decimal notation.
    *
-   * The default behaviour is not to display fractions in floating
+   * The default behavior is not to display fractions in floating
    * point notation.
    */
   static void setDefaultFloatOutput(bool flag);
@@ -157,8 +157,8 @@ class KDE_EXPORT KNumber
 
   /**
    * What a terrible method name!!  When displaying a fraction, the
-   * default mode gives "@p nomin/denom". With this method one can
-   * choose to display a fraction as "@p integer nomin/denom".
+   * default mode gives @p "nomin/denom". With this method one can
+   * choose to display a fraction as @p "integer nomin/denom".
    *
    * Examples: Default representation mode is 47/17, but if @p flag is
    * @p true, then the result is 2 13/17.
@@ -168,17 +168,19 @@ class KDE_EXPORT KNumber
   /**
    * Return a QString representing the KNumber.
    *
-   * @param prec The string is similar to the optional conversion
-   * specifications for formatted output for printf and friends,
-   * e.g. "10.3" to display numbers with 10 digits in front of the
-   * decimal point, and 3 after the decimal point. More precise
-   * explanations will be given later.
-   * 
+   * @param width This number specifies the maximal length of the
+   * output, before the method switches to exponential notation and
+   * does rounding.  For negative numbers, this option is ignored.
+   *
+   * @param prec This parameter controls the number of digits
+   * following the decimal point.  For negative numbers, this option
+   * is ignored.
+   *
    */
-  QString const toQString(QString const & prec = QString::null) const;
+  QString const toQString(int width = -1, int prec = -1) const;
   
   /**
-   * Compute the absoulte value, i.e. @p x.abs() returns the value
+   * Compute the absolute value, i.e. @p x.abs() returns the value
    *
    *  \f[ \left\{\begin{array}{cl} x, & x \ge 0 \\ -x, & x <
    *  0\end{array}\right.\f]

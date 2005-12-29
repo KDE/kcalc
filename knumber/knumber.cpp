@@ -207,56 +207,188 @@ KNumber & KNumber::operator -=(KNumber const &arg)
   return *this;
 }
 
-QString const KNumber::toQString(QString const & prec) const
+// increase the digit at 'position' by one
+static void _inc_by_one(QString &str, int position)
+{
+  for (int i = position; i >= 0; i--)
+    {
+      char last_char = str[i].latin1();
+      switch(last_char)
+	{
+	case '0':
+	  str[i] = '1';
+	  break;
+	case '1':
+	  str[i] = '2';
+	  break;
+	case '2':
+	  str[i] = '3';
+	  break;
+	case '3':
+	  str[i] = '4';
+	  break;
+	case '4':
+	  str[i] = '5';
+	  break;
+	case '5':
+	  str[i] = '6';
+	  break;
+	case '6':
+	  str[i] = '7';
+	  break;
+	case '7':
+	  str[i] = '8';
+	  break;
+	case '8':
+	  str[i] = '9';
+	  break;
+	case '9':
+	  str[i] = '0';
+	  if (i == 0) str.prepend('1');
+	  continue;
+	case '.':
+	  continue;
+	}
+      break;
+    }
+}
+
+// Cut off if more digits in fractional part than 'precision'
+static void _round(QString &str, int precision)
+{
+  int decimalSymbolPos = str.find('.');
+
+  if (decimalSymbolPos == -1)
+    if (precision == 0)  return;
+    else if (precision > 0) // add dot if missing (and needed)
+      {
+	str.append('.');
+	decimalSymbolPos = str.length() - 1;
+      }
+
+  // fill up with more than enough zeroes (in case fractional part too short)
+  str.append(QString().fill('0', precision));
+
+  // Now decide whether to round up or down
+  char last_char = str[decimalSymbolPos + precision + 1].latin1();
+  switch (last_char)
+    {
+    case '0':
+    case '1':
+    case '2':
+    case '3':
+    case '4':
+      // nothing to do, rounding down
+      break;
+    case '5':
+    case '6':
+    case '7':
+    case '8':
+    case '9':
+      // rounding up
+      _inc_by_one(str, decimalSymbolPos + precision);
+      break;
+    default:
+      break;
+    }
+
+  decimalSymbolPos = str.find('.');
+  str.truncate(decimalSymbolPos + precision + 1);
+
+  // if precision == 0 delete also '.'
+  if (precision == 0) str = str.section('.', 0, 0);
+}
+
+static QString roundNumber(const QString &numStr, int precision)
+{
+  QString tmpString = numStr;
+  if (precision < 0  ||
+      ! QRegExp("^[+-]?\\d+(\\.\\d+)*(e[+-]?\\d+)?$").exactMatch(tmpString))
+    return numStr;
+
+
+  // Skip the sign (for now)
+  bool neg = (tmpString[0] == '-');
+  if (neg  ||  tmpString[0] == '+') tmpString.remove(0, 1);
+
+
+  // Split off exponential part (including 'e'-symbol)
+  QString mantString = tmpString.section('e', 0, 0,
+					 QString::SectionCaseInsensitiveSeps);
+  QString expString = tmpString.section('e', 1, 1,
+					QString::SectionCaseInsensitiveSeps |
+					QString::SectionIncludeLeadingSep);
+  if (expString.length() == 1) expString = QString();
+
+
+  _round(mantString, precision);
+
+  if(neg) mantString.prepend('-');
+
+  return mantString +  expString;
+}
+
+
+QString const KNumber::toQString(int width, int prec) const
 {
   QString tmp_str;
+
+  if (*this == Zero) // important to avoid infinite loops below
+    return "0";
   switch (type()) {
   case IntegerType:
-    tmp_str = QString(_num->ascii(prec));
-    if (QRegExp("^\\d+$").exactMatch(prec)) {
-      int int_num = prec.toInt();
-      if (int_num < tmp_str.length()) {
-	bool tmp_bool = _fraction_input; // stupid work-around
-	_fraction_input = false;
-	tmp_str = (KNumber("1.0")*(*this)).toQString(prec);
-	_fraction_input = tmp_bool;
-      }
-    }
+    if (width > 0) { //result needs to be cut-off
+      bool tmp_bool = _fraction_input; // stupid work-around
+      _fraction_input = false;
+      tmp_str = (KNumber("1.0")*(*this)).toQString(width, -1);
+      _fraction_input = tmp_bool;
+    } else
+      tmp_str = QString(_num->ascii());
     break;
   case FractionType:
     if (_float_output) {
       bool tmp_bool = _fraction_input; // stupid work-around
       _fraction_input = false;
-      tmp_str = QString((KNumber("1.0")*(*this))._num->ascii());
+      tmp_str = (KNumber("1.0")*(*this)).toQString(width, -1);
       _fraction_input = tmp_bool;
-    }
-    else if(_splitoffinteger_output) {
-      // split off integer part
-      KNumber int_part = this->integerPart();
-      if (int_part == Zero)
+    } else { // _float_output == false
+      if(_splitoffinteger_output) {
+	// split off integer part
+	KNumber int_part = this->integerPart();
+	if (int_part == Zero)
+	  tmp_str = QString(_num->ascii());
+	else if (int_part < Zero)
+	  tmp_str = int_part.toQString() + " " + (int_part - *this)._num->ascii();
+	else
+	  tmp_str = int_part.toQString() + " " + (*this - int_part)._num->ascii();
+      } else
 	tmp_str = QString(_num->ascii());
-      else if (int_part < Zero)
-	tmp_str = int_part.toQString() + " " + (int_part - *this)._num->ascii();
-      else
-	tmp_str = int_part.toQString() + " " + (*this - int_part)._num->ascii();
-    }  else
-      tmp_str = QString(_num->ascii());
 
-    if (QRegExp("^\\d+$").exactMatch(prec)) {
-      int int_num = prec.toInt();
-      if (int_num < tmp_str.length()) {
+      if (width > 0  &&  tmp_str.length() > width) {
+	//result needs to be cut-off
 	bool tmp_bool = _fraction_input; // stupid work-around
 	_fraction_input = false;
-	tmp_str = (KNumber("1.0")*(*this)).toQString(prec);
+	tmp_str = (KNumber("1.0")*(*this)).toQString(width, -1);
 	_fraction_input = tmp_bool;
       }
     }
+
+    break;
+  case FloatType:
+    if (width > 0)
+      tmp_str = QString(_num->ascii(width));
+    else
+      // rough estimate for  maximal decimal precision (10^3 = 2^10)
+      tmp_str = QString(_num->ascii(3*mpf_get_default_prec()/10));
     break;
   default:
-    tmp_str = QString(_num->ascii(prec));
+    return QString(_num->ascii());
   }
-
-  return tmp_str;
+  
+  if (prec >= 0)
+    return roundNumber(tmp_str, prec);
+  else
+    return tmp_str;
 }
 
 void KNumber::setDefaultFloatOutput(bool flag)

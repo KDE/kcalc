@@ -6,3 +6,10 @@
 * better to handle keys with "accel" or with "keyPressEvent"?
 
 * think about either doing RichText by hand on labels, or only draw visible buttons, to enhance startup time.
+
+Following examples from the handbook do not work anymore as explained
+in the documentation. Need to update the documentation!!
+* 22.345 Mod 8 =  will give the result 6.345
+* 10.345 Lsh 3 = also gives 80
+* 16 Inv Lsh 2 = gives 4 (16 divided by 2 twice).
+* 16.999 Inv Lsh 2 = also gives 4

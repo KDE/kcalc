@@ -161,9 +161,9 @@ _knuminteger const & _knuminteger::operator = (_knuminteger const & num)
   return *this;
 }
 
-QString const _knumerror::ascii(QString const &num) const
+QString const _knumerror::ascii(int prec) const
 {
-  static_cast<void>(num);
+  static_cast<void>(prec);
 
   switch(_error) {
   case UndefinedNumber:
@@ -177,19 +177,21 @@ QString const _knumerror::ascii(QString const &num) const
   }
 }
 
-QString const _knuminteger::ascii(QString const &num) const
+QString const _knuminteger::ascii(int prec) const
 {
+  static_cast<void>(prec);
   char *tmp_ptr;
 
-    gmp_asprintf(&tmp_ptr, "%Zd", _mpz);
-    QString ret_str = tmp_ptr;
+  gmp_asprintf(&tmp_ptr, "%Zd", _mpz);
+  QString ret_str = tmp_ptr;
 #warning ok to free with delete?
-    delete tmp_ptr;
-    return ret_str;
+  delete tmp_ptr;
+  return ret_str;
 }
 
-QString const _knumfraction::ascii(QString const &num) const
+QString const _knumfraction::ascii(int prec) const
 {
+  static_cast<void>(prec);
   char const *tmp_ptr = mpq_get_str(0, 10, _mpq);
   QString ret_str = tmp_ptr;
 #warning ok to free with delete?
@@ -198,12 +200,14 @@ QString const _knumfraction::ascii(QString const &num) const
   return ret_str;
 }
 
-QString const _knumfloat::ascii(QString const &num) const
+QString const _knumfloat::ascii(int prec) const
 {
   QString ret_str;
   char *tmp_ptr;
-
-  gmp_asprintf(&tmp_ptr, "%Fg", _mpf);
+  if (prec > 0)
+    gmp_asprintf(&tmp_ptr, ("%." + QString().setNum(prec) + "Fg").ascii(), _mpf);
+  else
+    gmp_asprintf(&tmp_ptr, "%Fg", _mpf);
 
   ret_str = tmp_ptr;
 
@@ -323,7 +327,7 @@ int _knumfloat::sign(void) const
 
 
 
-#warning _cbrt for now this is a stupid work around for now
+#warning _cbrt for now this is a stupid work around
 static void _cbrt(mpf_t &num)
 {
   double tmp_num = cbrt(mpf_get_d(num));
