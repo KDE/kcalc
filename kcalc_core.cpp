@@ -770,7 +770,7 @@ void CalcEngine::TangensGrad(KNumber input)
 
 void CalcEngine::TangensHyp(KNumber input)
 {
-	CALCAMNT tmp_num = input.toQString().toDouble();
+	CALCAMNT tmp_num = static_cast<double>(input);
 	_last_number = KNumber(double(TANH(tmp_num)));
 }
 
