@@ -275,15 +275,10 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 	}
 	else // _num_base == NB_DECIMAL
 	{
-		// We need to use QCString here since it uses the systems native ::sprintf()
-		// implementation which is more flexible than QString's.
-	  _display_amount = new_amount;
+		_display_amount = new_amount;
 	
-
-	  display_str = _display_amount.toQString(QString().setNum(KCalcSettings::precision()));
+		display_str = _display_amount.toQString(KCalcSettings::precision(), _fixed_precision);
 #if 0
-		if (_fixed_precision != -1 && _display_amount <= 1.0e+16)
-			display_str = QCString().sprintf(PRINT_FLOAT, _fixed_precision, _display_amount);
 		else if (_display_amount > 1.0e+16)
 			display_str = QCString().sprintf(PRINT_LONG_BIG, _precision + 1, _display_amount);
 		else
@@ -317,7 +312,7 @@ QString KCalcDisplay::text() const
 {
 	if (_num_base != NB_DECIMAL)
 		return QLabel::text();
-	QString display_str = _display_amount.toQString(QString().setNum(KCalcSettings::precision()));
+	QString display_str = _display_amount.toQString(KCalcSettings::precision());
 
 	return display_str;
 	//	return QCString().sprintf(PRINT_LONG_BIG, 40, _display_amount);
