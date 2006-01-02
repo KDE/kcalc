@@ -82,14 +82,6 @@ KNumber KStats::median(void) {
 	KNumber result = 0;
 	unsigned int bound;
 	size_t index;
-	qSort(mData);
-
-#ifdef DEBUG_STATS
-	QVector<KNumber>::iterator p;
-	for(p = mData.begin(); p != mData.end(); ++p) {
-		printf("Sorted %Lg\n", *p)
-	}
-#endif
 
 	bound = count();
 
@@ -101,12 +93,16 @@ KNumber KStats::median(void) {
 	if (bound == 1)
 		return mData.at(0);
 
+	// need to copy mData-list, because sorting afterwards
+	QVector<KNumber> tmp_mData(mData);
+	qSort(tmp_mData);
+
 	if( bound & 1) {  // odd
 		index = (bound - 1 ) / 2 + 1;
-		result =  mData.at(index - 1);
+		result =  tmp_mData.at(index - 1);
 	} else { // even
 	  index = bound / 2;
-	  result = ((mData.at(index - 1))  + (mData.at(index))) / KNumber(2);
+	  result = ((tmp_mData.at(index - 1))  + (tmp_mData.at(index))) / KNumber(2);
 	}
 
 	return result;
