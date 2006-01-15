@@ -86,7 +86,7 @@ void KCalcConstButton::slotConfigureButton(int option)
     {
       bool yes_no;
       QString input = KInputDialog::getText(i18n("New Name for Constant"), i18n("New name:"),
-					 text(), &yes_no, this, "nameUserConstants-Dialog");
+					 text(), &yes_no, this); // "nameUserConstants-Dialog"
       if(yes_no) {
 	KCalcSettings::setNameConstant(_button_num, input);
 	setLabelAndTooltip();

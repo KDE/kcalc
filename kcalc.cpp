@@ -1877,7 +1877,8 @@ void KCalculator::showSettings()
 	QWidget *fontWidget = new QWidget(0,"Font");
 	QVBoxLayout *fontLayout = new QVBoxLayout(fontWidget);
 	KFontChooser *mFontChooser =
-		new KFontChooser(fontWidget, "kcfg_Font", false, QStringList(), false, 6);
+		new KFontChooser(fontWidget, false, QStringList(), false, 6);
+	mFontChooser->setObjectName("kcfg_Font");
 
 	fontLayout->addWidget(mFontChooser);
 	dialog->addPage(fontWidget, i18n("Font"), "fonts", i18n("Select Display Font"));

@@ -46,6 +46,7 @@ DispLogic::DispLogic(QWidget *parent, const char *name,
 
 	_forward->setEnabled(false);
 	_back->setEnabled(false);
+	setAutoFillBackground(true);
 }
 
 DispLogic::~DispLogic()
