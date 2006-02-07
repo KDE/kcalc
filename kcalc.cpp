@@ -466,16 +466,16 @@ actionCollection());
 void KCalculator::setupStatusbar(void)
 {
 	// Status bar contents
-	statusBar()->insertFixedItem(" NORM ", 0, true);
+	statusBar()->insertFixedItem(" NORM ", 0);
 	statusBar()->setItemAlignment(0, Qt::AlignCenter);
 
-	statusBar()->insertFixedItem(" HEX ", 1, true);
+	statusBar()->insertFixedItem(" HEX ", 1);
 	statusBar()->setItemAlignment(1, Qt::AlignCenter);
 
-	statusBar()->insertFixedItem(" DEG ", 2, true);
+	statusBar()->insertFixedItem(" DEG ", 2);
 	statusBar()->setItemAlignment(2, Qt::AlignCenter);
 
-	statusBar()->insertFixedItem(" \xa0\xa0 ", 3, true); // Memory indicator
+	statusBar()->insertFixedItem(" \xa0\xa0 ", 3); // Memory indicator
 	statusBar()->setItemAlignment(3, Qt::AlignCenter);
 }
 
@@ -2018,7 +2018,7 @@ void KCalculator::slotScientificshow(bool toggled)
 		pbScientific["LogNatural"]->show();
 		pbAngleChoose->show();
 		if(!statusBar()->hasItem(2))
-			statusBar()->insertFixedItem(" DEG ", 2, true);
+			statusBar()->insertFixedItem(" DEG ", 2);
 		statusBar()->setItemAlignment(2, Qt::AlignCenter);
 		calc_display->setStatusText(2, "Deg");
 		slotAngleSelected(0);
@@ -2052,7 +2052,7 @@ void KCalculator::slotLogicshow(bool toggled)
 		pbLogic["LeftShift"]->show();
 		pbLogic["RightShift"]->show();
 		if(!statusBar()->hasItem(1))
-			statusBar()->insertFixedItem(" HEX ", 1, true);
+			statusBar()->insertFixedItem(" HEX ", 1);
 		statusBar()->setItemAlignment(1, Qt::AlignCenter);
 		calc_display->setStatusText(1, "Hex");
 		resetBase();
