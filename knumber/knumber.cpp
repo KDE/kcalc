@@ -52,6 +52,21 @@ KNumber::KNumber(unsigned int num)
   _num = new _knuminteger(num);
 }
 
+KNumber::KNumber(signed long int num)
+{
+  _num = new _knuminteger(num);
+}
+
+KNumber::KNumber(unsigned long int num)
+{
+  _num = new _knuminteger(num);
+}
+
+KNumber::KNumber(unsigned long long int num)
+{
+  _num = new _knuminteger(num);
+}
+
 KNumber::KNumber(double num)
 {
   _num = new _knumfloat(num);
@@ -632,9 +647,23 @@ KNumber::operator bool(void) const
   return true;
 }
 
-KNumber::operator long int(void) const
+KNumber::operator signed long int(void) const
 {
-  return static_cast<long int>(*_num);
+  return static_cast<signed long int>(*_num);
+}
+
+KNumber::operator unsigned long int(void) const
+{
+  return static_cast<unsigned long int>(*_num);
+}
+
+KNumber::operator unsigned long long int(void) const
+{
+  KNumber tmp_num = this->abs().integerPart();
+  return  static_cast<unsigned long int>(*this) +
+  (static_cast<unsigned long long int>(
+				       static_cast<unsigned long int>(tmp_num >> KNumber("32"))) << 32) ;
+
 }
 
 KNumber::operator double(void) const

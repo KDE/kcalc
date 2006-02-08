@@ -269,8 +269,9 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 	if (_num_base != NB_DECIMAL)
 	{
 		_display_amount = new_amount.integerPart();
+		unsigned long long int tmp_workaround = static_cast<unsigned long long int>(_display_amount);
 
-		display_str = QString::number(static_cast<long int>(_display_amount), _num_base).upper();
+		display_str = QString::number(tmp_workaround, _num_base).upper();
 		if (display_str.length() > DSP_SIZE)
 		{
 			sendEvent(EventError);
@@ -383,7 +384,7 @@ bool KCalcDisplay::updateDisplay(void)
 		Q_ASSERT(_period == false  && _eestate == false);
 		Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 		setText(tmp_string);
-		_display_amount = static_cast<int>(STRTOUL(_str_int.latin1(), 0, 2));
+		_display_amount = static_cast<unsigned long long int>(STRTOUL(_str_int.latin1(), 0, 2));
 		if (_neg_sign)
 			_display_amount = -_display_amount;
 		//str_size = cvb(_str_int, boh_work, DSP_SIZE);
@@ -393,7 +394,7 @@ bool KCalcDisplay::updateDisplay(void)
 		Q_ASSERT(_period == false  && _eestate == false);
 		Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 		setText(tmp_string);
-		_display_amount = static_cast<int>(STRTOUL(_str_int.latin1(), 0, 8));
+		_display_amount = static_cast<unsigned long long int>(STRTOUL(_str_int.latin1(), 0, 8));
 		if (_neg_sign)
 			_display_amount = -_display_amount;
 		break;
@@ -402,7 +403,7 @@ bool KCalcDisplay::updateDisplay(void)
 		Q_ASSERT(_period == false  && _eestate == false);
 		Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 		setText(tmp_string);
-		_display_amount = static_cast<int>(STRTOUL(_str_int.latin1(), 0, 16));
+		_display_amount = static_cast<unsigned long long int>(STRTOUL(_str_int.latin1(), 0, 16));
 		if (_neg_sign)
 			_display_amount = -_display_amount;
 		break;
