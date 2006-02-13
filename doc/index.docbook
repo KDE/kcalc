@@ -4,6 +4,7 @@
   <!ENTITY package "kdeutils">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE" > <!-- change language only here -->
+  <!ENTITY commands SYSTEM "commands.docbook">
 ]>
 
 <book lang="&language;">
@@ -20,17 +21,23 @@
 <!-- <affiliation><jobtitle>Handbook maintainer</jobtitle>
 </affiliation> -->
 </author>
+<author>
+&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail;
+<!-- <affiliation><jobtitle>Handbook maintainer</jobtitle>
+</affiliation> -->
+</author>
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
 
 <copyright>
-<year>2001</year> <year>2002</year> <year>2005</year>	
-<holder>&Bernd.Johannes.Wuebben;, &Pamela.Roberts;</holder>
+<year>2001</year> <year>2002</year> <year>2005</year>	<year>2006</year>
+<holder>&Bernd.Johannes.Wuebben;, &Pamela.Roberts;,
+&Anne-Marie.Mahfouf;</holder>
 </copyright>
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2006-02-08</date>
+<date>2006-02-13</date>
 <releaseinfo>2.0.2</releaseinfo>
 
 <abstract><para>&kcalc; is a scientific calculator for &kde;</para></abstract>
@@ -78,7 +85,8 @@ of digits after the period.</para>
 <listitem>
 <para> &kcalc; offers a great number of useful  <link linkend="key-accels">
 key-bindings</link>, which make using &kcalc; without using a pointing device easy.</para>
-<para>Hint: Pressing (and holding) the <keycap>&Ctrl;</keycap>-key, displays on every button,
+<para>Hint: pressing (and holding) the <keycap>&Ctrl;</keycap>-key, displays on
+every button,
 the corresponding key-binding.</para>
 </listitem>
 </itemizedlist>
@@ -149,7 +157,7 @@ but this may disappear in future versions.</para>
 display buttons for basic arithmetic computations.</para>
 <para>Under the menu entry <guimenu>Settings</guimenu> it is possible to
 open extra buttons for &kcalc;:
-It is for example possible to choose
+it is for example possible to choose
 <link linkend="statistical-mode">Statistical</link> or
 <link linkend="trigonometric-mode">Trigonometric</link> buttons.</para> 
 </listitem>
@@ -666,6 +674,8 @@ the precision and you will see what I mean.</para>
 </qandaset>
 </chapter>
 
+&commands;
+
 <chapter id="copyright">
 <title>Credits and License</title>
 
@@ -685,11 +695,12 @@ the precision and you will see what I mean.</para>
 <para>&kcalc; was inspired by <personname><firstname>Martin</firstname> <surname>Bartlett</surname></personname>'s <application>xfrmcalc</application>,
 whose stack engine is still part of &kcalc;.</para>
 
-<para>Documentation Copyright &copy; 2001,2002,2005:</para>
+<para>Documentation Copyright &copy; 2001,2002,2005, 2006:</para>
 <itemizedlist>
 <listitem><para>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para></listitem>
 <listitem><para>&Pamela.Roberts; &Pamela.Roberts.mail;</para></listitem>
-<listitem><para>&J.Hall;&J.Hall.mail;</para></listitem>
+<listitem><para>&J.Hall; &J.Hall.mail;</para></listitem>
+<listitem><para>&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail;</para></listitem>
 </itemizedlist>
 
 &underFDL;
