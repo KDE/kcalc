@@ -30,8 +30,8 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2005-04-12</date>
-<releaseinfo>1.8</releaseinfo>
+<date>2006-02-08</date>
+<releaseinfo>2.0.2</releaseinfo>
 
 <abstract><para>&kcalc; is a scientific calculator for &kde;</para></abstract>
 
@@ -285,7 +285,7 @@ displayed result in memory.</para></listitem>
 
 <varlistentry>
 <term><guibutton>M+</guibutton></term>
-<listitem><para>The <guibutton>M+</guibutton> adds the current result to the
+<listitem><para>The <guibutton>M+</guibutton> button adds the current result to the
 one in memory. So, if you had stored a 20, and the current result is a 5,
 your memory would contain 25 when you press it. If the memory is empty, it
 acts like <guibutton>MS</guibutton> and simply stores the
@@ -317,21 +317,20 @@ the status bar, next to the calculator mode indicator</para>
 item <guilabel>Constants Buttons</guilabel> in the menu
 <guimenu>Settings</guimenu> of the menu bar.</para>
 
-<para>To store the number shown in the &kcalc;-display on one of the
-six constants buttons, press first <guibutton>Inv</guibutton> followed
+<para>To store the number shown in the &kcalc; display in one of the
+six constants, first press <guibutton>Inv</guibutton> followed
 by the desired button key <guibutton>C1</guibutton> up to
 <guibutton>C6</guibutton>.</para>
 
-<para>To use the value stored in any of the contants buttons in a
-calculation, just press the desired button <guibutton>C1</guibutton> -
-<guibutton>C6</guibutton>, and the corresponding number will appear in
-the display.</para>
+<para>To use the value stored in any of the contants in a calculation, just 
+ press the desired button (<guibutton>C1</guibutton> to <guibutton>C6</guibutton>), 
+ and the corresponding number will appear in the display. </para>
 
-<para>It is possible to change the label of the constants button to
-make it easier for the user to remember which button holds which
-constant. Klick with the right mouse button on one of
-<guibutton>C1</guibutton> - <guibutton>C6</guibutton>. A popup menu
-appears, where one has to select <guilabel>Set Name</guilabel>.</para>
+<para>IIt is possible to change the label of the constants button to make it easier 
+ to remember which button holds which constant. Click with the right mouse 
+ button on one of the buttons <guibutton>C1</guibutton> to <guibutton> 
+ C6</guibutton>. A popup menu appears, in which you select <guilabel> 
+ Set Name</guilabel>. </para>
 
 <para>There are many (mostly physical) predefined constants, which can
 be put on any of the six buttons <guibutton>C1</guibutton> -
