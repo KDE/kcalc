@@ -650,16 +650,7 @@ precision</guilabel> and adjust the spin control so that it shows a
 <answer><para>The main factor determining the precision of &kcalc; is whether your libc and libmath
 supports the C data type <type>long double</type>. If this is the case, &kcalc; will detect this
 at compile time and use it as its fundamental data type to represent numbers.
-Check &kcalc;'s <guilabel>About</guilabel> dialog (in the
-<guibutton>Configure</guibutton> dialog box) in order to find out what the
-fundamental data type for your copy of &kcalc; is.</para>
-
-<para>Unless you have a libc and libmath of exceptionally high quality, you will
-be able to observe some <quote>interesting</quote> results when trying
-to execute computations such as: <userinput>123.22 - 123.21</userinput>,
-<userinput>2.01 - 2</userinput>, <userinput>123.88 - 123.87</userinput> and
-similar. However if you think this is bad I ask you to do the same computation
-on the calculator provided with &Windows;.</para>
+</para>
 
 <para>Adjust the <guilabel>Precision</guilabel> in &kcalc;'s
 <guibutton>Configure</guibutton> dialog so that the above computations
