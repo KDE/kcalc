@@ -1,0 +1,254 @@
+<chapter id="commands">
+
+<title>Command Reference</title>
+
+<sect1 id="filemenu">
+<title>The <guimenu>File</guimenu> Menu</title>
+<para>
+<variablelist>
+
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>Q</keycap></keycombo>
+</shortcut>
+<guimenu>File</guimenu>
+<guimenuitem>Quit</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Quit</action> &kcalc;.</para></listitem>
+</varlistentry>
+</variablelist>
+</para>
+
+</sect1>
+
+<sect1 id="editmenu">
+<title>The <guimenu>Edit</guimenu> Menu</title>
+<para>
+<variablelist>
+
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>Z</keycap></keycombo>
+</shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Undo</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Go back in the result
+stack.</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;&Shift;<keycap>Z</keycap></keycombo>
+</shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Redo</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Go forward in the result
+stack.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>X</keycap></keycombo>
+</shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Cut</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Delete the displayed result and copy it to the
+clipboard.</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>C</keycap></keycombo>
+</shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Copy</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Copy the displayed result to the
+clipboard.</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo action="simul">&Ctrl;<keycap>V</keycap></keycombo>
+</shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Paste</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Insert the cut or copied result in the
+display.</action></para></listitem>
+</varlistentry>
+
+</variablelist>
+</para>
+</sect1>
+
+<sect1 id="viewmenu">
+<title>The <guimenu>Constants</guimenu> Menu</title>
+<para>
+<variablelist>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Constants</guimenu>
+<guimenuitem>Mathematics</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Display Pi, Euler Number or Golder Ratio.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Constants</guimenu>
+<guimenuitem>Electromagnetism</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Display Light Speed, Elementary Charge,
+Impedance of Vacuum, Permeability of Vacuum or Permittivity of Vacuum.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Constants</guimenu>
+<guimenuitem>Atomic &amp; Nuclear</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Display Planck's Constant, Elementary Charge or
+Fine-Structure Constant.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Constants</guimenu>
+<guimenuitem>Thermodynamics</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Display Boltzmann Constant, Atomic Mass Unit, Molar Gas
+Constant, Stefan-Boltzmann Constant or Avogadro's Number.</action> 
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Constants</guimenu>
+<guimenuitem>Gravitation</guimenuitem>
+</menuchoice></term>
+<listitem><para>Display Constant of Gravitation or Earth Acceleration.
+</para></listitem>
+</varlistentry>
+
+</variablelist>
+</para>
+</sect1>
+
+<sect1 id="settingsmenu">
+<title>The <guimenu>Settings</guimenu> Menu</title>
+<para><variablelist>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Science/Engineering Buttons</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Display science and engineering buttons.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Statistic Buttons</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Display <link linkend="statistical-mode">statistic
+buttons.</link></action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Logic Buttons</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Display <link linkend="and-or-xor">logic
+buttons.</link></action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Constants Buttons</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Display constants buttons.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Show All</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Display all buttons available.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Hide All</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Hide all extra buttons and display only
+standard default buttons.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Configure Shortcuts...</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Configure the keyboard shortcuts used by &kcalc;.
+</action> 
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Configure &kcalc;...</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Display</action> the &kcalc; settings dialog.
+</para></listitem>
+</varlistentry>
+
+</variablelist>
+</para>
+</sect1>
+
+<sect1 id="helpmenu">
+<title>The <guimenu>Help</guimenu> Menu</title>
+
+&help.menu.documentation;
+
+</sect1>
+
+</chapter>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-parent-document: ("index.docbook" "book" "chapter")
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

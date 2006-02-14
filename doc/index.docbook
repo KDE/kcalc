@@ -4,6 +4,7 @@
   <!ENTITY package "kdeutils">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE" > <!-- change language only here -->
+  <!ENTITY commands SYSTEM "commands.docbook">
 ]>
 
 <book lang="&language;">
@@ -20,18 +21,24 @@
 <!-- <affiliation><jobtitle>Handbook maintainer</jobtitle>
 </affiliation> -->
 </author>
+<author>
+&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail;
+<!-- <affiliation><jobtitle>Handbook maintainer</jobtitle>
+</affiliation> -->
+</author>
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
 
 <copyright>
-<year>2001</year> <year>2002</year> <year>2005</year>	
-<holder>&Bernd.Johannes.Wuebben;, &Pamela.Roberts;</holder>
+<year>2001</year> <year>2002</year> <year>2005</year>	<year>2006</year>
+<holder>&Bernd.Johannes.Wuebben;, &Pamela.Roberts;,
+&Anne-Marie.Mahfouf;</holder>
 </copyright>
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2005-04-12</date>
-<releaseinfo>1.8</releaseinfo>
+<date>2006-02-13</date>
+<releaseinfo>2.0.2</releaseinfo>
 
 <abstract><para>&kcalc; is a scientific calculator for &kde;</para></abstract>
 
@@ -78,7 +85,8 @@ of digits after the period.</para>
 <listitem>
 <para> &kcalc; offers a great number of useful  <link linkend="key-accels">
 key-bindings</link>, which make using &kcalc; without using a pointing device easy.</para>
-<para>Hint: Pressing (and holding) the <keycap>&Ctrl;</keycap>-key, displays on every button,
+<para>Hint: pressing (and holding) the <keycap>&Ctrl;</keycap>-key, displays on
+every button,
 the corresponding key-binding.</para>
 </listitem>
 </itemizedlist>
@@ -149,7 +157,7 @@ but this may disappear in future versions.</para>
 display buttons for basic arithmetic computations.</para>
 <para>Under the menu entry <guimenu>Settings</guimenu> it is possible to
 open extra buttons for &kcalc;:
-It is for example possible to choose
+it is for example possible to choose
 <link linkend="statistical-mode">Statistical</link> or
 <link linkend="trigonometric-mode">Trigonometric</link> buttons.</para> 
 </listitem>
@@ -285,7 +293,7 @@ displayed result in memory.</para></listitem>
 
 <varlistentry>
 <term><guibutton>M+</guibutton></term>
-<listitem><para>The <guibutton>M+</guibutton> adds the current result to the
+<listitem><para>The <guibutton>M+</guibutton> button adds the current result to the
 one in memory. So, if you had stored a 20, and the current result is a 5,
 your memory would contain 25 when you press it. If the memory is empty, it
 acts like <guibutton>MS</guibutton> and simply stores the
@@ -317,21 +325,20 @@ the status bar, next to the calculator mode indicator</para>
 item <guilabel>Constants Buttons</guilabel> in the menu
 <guimenu>Settings</guimenu> of the menu bar.</para>
 
-<para>To store the number shown in the &kcalc;-display on one of the
-six constants buttons, press first <guibutton>Inv</guibutton> followed
+<para>To store the number shown in the &kcalc; display in one of the
+six constants, first press <guibutton>Inv</guibutton> followed
 by the desired button key <guibutton>C1</guibutton> up to
 <guibutton>C6</guibutton>.</para>
 
-<para>To use the value stored in any of the contants buttons in a
-calculation, just press the desired button <guibutton>C1</guibutton> -
-<guibutton>C6</guibutton>, and the corresponding number will appear in
-the display.</para>
+<para>To use the value stored in any of the contants in a calculation, just 
+ press the desired button (<guibutton>C1</guibutton> to <guibutton>C6</guibutton>), 
+ and the corresponding number will appear in the display. </para>
 
-<para>It is possible to change the label of the constants button to
-make it easier for the user to remember which button holds which
-constant. Klick with the right mouse button on one of
-<guibutton>C1</guibutton> - <guibutton>C6</guibutton>. A popup menu
-appears, where one has to select <guilabel>Set Name</guilabel>.</para>
+<para>IIt is possible to change the label of the constants button to make it easier 
+ to remember which button holds which constant. Click with the right mouse 
+ button on one of the buttons <guibutton>C1</guibutton> to <guibutton> 
+ C6</guibutton>. A popup menu appears, in which you select <guilabel> 
+ Set Name</guilabel>. </para>
 
 <para>There are many (mostly physical) predefined constants, which can
 be put on any of the six buttons <guibutton>C1</guibutton> -
@@ -643,16 +650,7 @@ precision</guilabel> and adjust the spin control so that it shows a
 <answer><para>The main factor determining the precision of &kcalc; is whether your libc and libmath
 supports the C data type <type>long double</type>. If this is the case, &kcalc; will detect this
 at compile time and use it as its fundamental data type to represent numbers.
-Check &kcalc;'s <guilabel>About</guilabel> dialog (in the
-<guibutton>Configure</guibutton> dialog box) in order to find out what the
-fundamental data type for your copy of &kcalc; is.</para>
-
-<para>Unless you have a libc and libmath of exceptionally high quality, you will
-be able to observe some <quote>interesting</quote> results when trying
-to execute computations such as: <userinput>123.22 - 123.21</userinput>,
-<userinput>2.01 - 2</userinput>, <userinput>123.88 - 123.87</userinput> and
-similar. However if you think this is bad I ask you to do the same computation
-on the calculator provided with &Windows;.</para>
+</para>
 
 <para>Adjust the <guilabel>Precision</guilabel> in &kcalc;'s
 <guibutton>Configure</guibutton> dialog so that the above computations
@@ -666,6 +664,8 @@ the precision and you will see what I mean.</para>
 
 </qandaset>
 </chapter>
+
+&commands;
 
 <chapter id="copyright">
 <title>Credits and License</title>
@@ -686,11 +686,12 @@ the precision and you will see what I mean.</para>
 <para>&kcalc; was inspired by <personname><firstname>Martin</firstname> <surname>Bartlett</surname></personname>'s <application>xfrmcalc</application>,
 whose stack engine is still part of &kcalc;.</para>
 
-<para>Documentation Copyright &copy; 2001,2002,2005:</para>
+<para>Documentation Copyright &copy; 2001,2002,2005, 2006:</para>
 <itemizedlist>
 <listitem><para>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para></listitem>
 <listitem><para>&Pamela.Roberts; &Pamela.Roberts.mail;</para></listitem>
-<listitem><para>&J.Hall;&J.Hall.mail;</para></listitem>
+<listitem><para>&J.Hall; &J.Hall.mail;</para></listitem>
+<listitem><para>&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail;</para></listitem>
 </itemizedlist>
 
 &underFDL;
