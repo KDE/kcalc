@@ -6,6 +6,7 @@ Exec=kcalc -caption "%c"
 Icon=kcalc
 DocPath=kcalc/index.html
 GenericName=Scientific Calculator
+GenericName[fr]=Une calculatrice scientifique
 GenericName[x-test]=xxScientific Calculatorxx
 Terminal=false
 Type=Application
