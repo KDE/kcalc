@@ -46,9 +46,10 @@
 #include <kacceleratormanager.h>
 #include <kaction.h>
 #include <kapplication.h>
+#include <ktoolbar.h>
 #include <kcmdlineargs.h>
 #include <kcolorbutton.h>
-//#include <k3colordrag.h>
+#include <kcolormimedata.h>
 #include <kconfig.h>
 #include <kconfigdialog.h>
 #include <kdialog.h>
@@ -207,18 +208,18 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	pbSquare->addMode(ModeNormal, "x<sup>2</sup>", i18n("Square"), true);
 	pbSquare->addMode(ModeInverse, "x<sup>3</sup>", i18n("Third power"), true);
 	connect(this, SIGNAL(switchShowAccels(bool)),
-		pbSquare, SLOT(slotSetAccelDisplayMode(bool)));
-        connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
-                pbSquare, SLOT(slotSetMode(ButtonModeFlags,bool)));
+	        pbSquare, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
+	        pbSquare, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(pbSquare, SIGNAL(clicked(void)), SLOT(slotSquareclicked(void)));
 
 	pbRoot = new KSquareButton(mSmallPage);
 	pbRoot->addMode(ModeNormal, QString::null, i18n("Square root"));
 	pbRoot->addMode(ModeInverse, QString::null, i18n("Cube root"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
-		pbRoot, SLOT(slotSetAccelDisplayMode(bool)));
-        connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
-                pbRoot, SLOT(slotSetMode(ButtonModeFlags,bool)));
+	        pbRoot, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
+	        pbRoot, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(pbRoot, SIGNAL(clicked(void)), SLOT(slotRootclicked(void)));
 
 
@@ -466,16 +467,16 @@ actionCollection());
 void KCalculator::setupStatusbar(void)
 {
 	// Status bar contents
-	statusBar()->insertFixedItem(" NORM ", 0);
+	statusBar()->insertPermanentFixedItem(" NORM ", 0);
 	statusBar()->setItemAlignment(0, Qt::AlignCenter);
 
-	statusBar()->insertFixedItem(" HEX ", 1);
+	statusBar()->insertPermanentFixedItem(" HEX ", 1);
 	statusBar()->setItemAlignment(1, Qt::AlignCenter);
 
-	statusBar()->insertFixedItem(" DEG ", 2);
+	statusBar()->insertPermanentFixedItem(" DEG ", 2);
 	statusBar()->setItemAlignment(2, Qt::AlignCenter);
 
-	statusBar()->insertFixedItem(" \xa0\xa0 ", 3); // Memory indicator
+	statusBar()->insertPermanentFixedItem(" \xa0\xa0 ", 3); // Memory indicator
 	statusBar()->setItemAlignment(3, Qt::AlignCenter);
 }
 
@@ -496,61 +497,61 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	tmp_pb->setShortcut(Qt::Key_0);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
-        NumButtonGroup->addButton(tmp_pb, 0);
+	NumButtonGroup->addButton(tmp_pb, 0);
 
 	tmp_pb = new KCalcButton("1", thisPage);
 	tmp_pb->setShortcut(Qt::Key_1);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
-        NumButtonGroup->addButton(tmp_pb, 1);
+	NumButtonGroup->addButton(tmp_pb, 1);
 
 	tmp_pb = new KCalcButton("2", thisPage);
 	tmp_pb->setShortcut(Qt::Key_2);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
-        NumButtonGroup->addButton(tmp_pb, 2);
+	NumButtonGroup->addButton(tmp_pb, 2);
 
 	tmp_pb = new KCalcButton("3", thisPage);
 	tmp_pb->setShortcut(Qt::Key_3);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
-        NumButtonGroup->addButton(tmp_pb, 3);
+	NumButtonGroup->addButton(tmp_pb, 3);
 
 	tmp_pb = new KCalcButton("4", thisPage);
 	tmp_pb->setShortcut(Qt::Key_4);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
-        NumButtonGroup->addButton(tmp_pb, 4);
+	NumButtonGroup->addButton(tmp_pb, 4);
 
 	tmp_pb = new KCalcButton("5", thisPage);
 	tmp_pb->setShortcut(Qt::Key_5);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
-        NumButtonGroup->addButton(tmp_pb, 5);
+	NumButtonGroup->addButton(tmp_pb, 5);
 
 	tmp_pb = new KCalcButton("6", thisPage);
 	tmp_pb->setShortcut(Qt::Key_6);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
-        NumButtonGroup->addButton(tmp_pb, 6);
+	NumButtonGroup->addButton(tmp_pb, 6);
 
 	tmp_pb = new KCalcButton("7", thisPage);
 	tmp_pb->setShortcut(Qt::Key_7);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
-        NumButtonGroup->addButton(tmp_pb, 7);
+	NumButtonGroup->addButton(tmp_pb, 7);
 
 	tmp_pb = new KCalcButton("8", thisPage);
 	tmp_pb->setShortcut(Qt::Key_8);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
-        NumButtonGroup->addButton(tmp_pb, 8);
+	NumButtonGroup->addButton(tmp_pb, 8);
 
 	tmp_pb = new KCalcButton("9", thisPage);
 	tmp_pb->setShortcut(Qt::Key_9);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
-        NumButtonGroup->addButton(tmp_pb, 9);
+	NumButtonGroup->addButton(tmp_pb, 9);
 
 	pbEE = new KCalcButton(thisPage);
 	pbEE->addMode(ModeNormal, "x<small>" "\xb7" "10</small><sup>y</sup>",
@@ -653,7 +654,7 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 		pbMemRecall, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(pbMemRecall, SIGNAL(clicked(void)),
 		SLOT(slotMemRecallclicked(void)));
-        pbMemRecall->setDisabled(true); // At start, there is nothing in memory
+	pbMemRecall->setDisabled(true); // At start, there is nothing in memory
 
 	pbMemPlusMinus = new KCalcButton(mLargePage);
 	pbMemPlusMinus->addMode(ModeNormal, "M+", i18n("Add display to memory"));
@@ -714,37 +715,37 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	tmp_pb->setShortcut(Qt::Key_A);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
-        NumButtonGroup->addButton(tmp_pb, 0xA);
+	NumButtonGroup->addButton(tmp_pb, 0xA);
 
 	tmp_pb = new KCalcButton("B", mSmallPage);
 	tmp_pb->setShortcut(Qt::Key_B);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
-        NumButtonGroup->addButton(tmp_pb, 0xB);
+	NumButtonGroup->addButton(tmp_pb, 0xB);
 
 	tmp_pb = new KCalcButton("C", mSmallPage);
 	tmp_pb->setShortcut(Qt::Key_C);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
-        NumButtonGroup->addButton(tmp_pb, 0xC);
+	NumButtonGroup->addButton(tmp_pb, 0xC);
 
 	tmp_pb = new KCalcButton("D", mSmallPage);
 	tmp_pb->setShortcut(Qt::Key_D);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
-        NumButtonGroup->addButton(tmp_pb, 0xD);
+	NumButtonGroup->addButton(tmp_pb, 0xD);
 
 	tmp_pb = new KCalcButton("E", mSmallPage);
 	tmp_pb->setShortcut(Qt::Key_E);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
-        NumButtonGroup->addButton(tmp_pb, 0xE);
+	NumButtonGroup->addButton(tmp_pb, 0xE);
 
 	tmp_pb = new KCalcButton("F", mSmallPage);
 	tmp_pb->setShortcut(Qt::Key_F);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
-        NumButtonGroup->addButton(tmp_pb, 0xF);
+	NumButtonGroup->addButton(tmp_pb, 0xF);
 
 	return thisPage;
 }
@@ -892,7 +893,7 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
 	tmp_pb->addMode(ModeInverse, QString::fromUtf8("\xce\xa3")
 			+ "x", i18n("Sum of all data items"));
 	pbStat.insert("NumData", tmp_pb);
-        mStatButtonList.append(tmp_pb);
+	mStatButtonList.append(tmp_pb);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
@@ -902,7 +903,7 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
 	tmp_pb = new KCalcButton(parent);
 	tmp_pb->addMode(ModeNormal, "Med", i18n("Median"));
 	pbStat.insert("Median", tmp_pb);
-        mStatButtonList.append(tmp_pb);
+	mStatButtonList.append(tmp_pb);
 	QToolTip::add(tmp_pb, i18n("Median"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
@@ -914,7 +915,7 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
 			+ "x<sup>2</sup>",
 			i18n("Sum of all data items squared"), true);
 	pbStat.insert("Mean", tmp_pb);
-        mStatButtonList.append(tmp_pb);
+	mStatButtonList.append(tmp_pb);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
@@ -927,7 +928,7 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
 	tmp_pb->addMode(ModeInverse, QString::fromUtf8("σ",-1) +  "<sub>N</sub>",
 			i18n("Standard deviation"), true);
 	pbStat.insert("StandardDeviation", tmp_pb);
-        mStatButtonList.append(tmp_pb);
+	mStatButtonList.append(tmp_pb);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
@@ -938,7 +939,7 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
 	tmp_pb->addMode(ModeNormal, "Dat", i18n("Enter data"));
 	tmp_pb->addMode(ModeInverse, "CDat", i18n("Delete last data item"));
 	pbStat.insert("InputData", tmp_pb);
-        mStatButtonList.append(tmp_pb);
+	mStatButtonList.append(tmp_pb);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
@@ -948,7 +949,7 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
 	tmp_pb = new KCalcButton(parent);
 	tmp_pb->addMode(ModeNormal, "CSt", i18n("Clear data store"));
 	pbStat.insert("ClearData", tmp_pb);
-        mStatButtonList.append(tmp_pb);
+	mStatButtonList.append(tmp_pb);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotStatClearDataclicked(void)));
@@ -973,48 +974,48 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
 	ConstButtonGroup->addButton(tmp_pb, 0);
 
 	tmp_pb = new KCalcConstButton(parent, 1);
-        tmp_pb->setShortcut(Qt::ALT + Qt::Key_2);
+	tmp_pb->setShortcut(Qt::ALT + Qt::Key_2);
 	pbConstant[1] = tmp_pb;
 	connect(this, SIGNAL(switchShowAccels(bool)),
-                tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
+		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	ConstButtonGroup->addButton(tmp_pb, 1);
 
 	tmp_pb = new KCalcConstButton(parent, 2);
-        tmp_pb->setShortcut(Qt::ALT + Qt::Key_3);
+	tmp_pb->setShortcut(Qt::ALT + Qt::Key_3);
 	pbConstant[2] = tmp_pb;
 	connect(this, SIGNAL(switchShowAccels(bool)),
-                tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
+			tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
-		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
+			tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	ConstButtonGroup->addButton(tmp_pb, 2);
 
 	tmp_pb = new KCalcConstButton(parent, 3);
-        tmp_pb->setShortcut(Qt::ALT + Qt::Key_4);
+	tmp_pb->setShortcut(Qt::ALT + Qt::Key_4);
 	pbConstant[3] = tmp_pb;
 	connect(this, SIGNAL(switchShowAccels(bool)),
-                tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
+			tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
-		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
+			tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	ConstButtonGroup->addButton(tmp_pb, 3);
 
 	tmp_pb = new KCalcConstButton(parent, 4);
-        tmp_pb->setShortcut(Qt::ALT + Qt::Key_5);
+	tmp_pb->setShortcut(Qt::ALT + Qt::Key_5);
 	pbConstant[4] = tmp_pb;
 	connect(this, SIGNAL(switchShowAccels(bool)),
-                tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
+			tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
-		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
+			tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	ConstButtonGroup->addButton(tmp_pb, 4);
 
 	tmp_pb = new KCalcConstButton(parent, 5);
-        tmp_pb->setShortcut(Qt::ALT + Qt::Key_6);
+	tmp_pb->setShortcut(Qt::ALT + Qt::Key_6);
 	pbConstant[5]  = tmp_pb;
 	connect(this, SIGNAL(switchShowAccels(bool)),
-                tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
+			tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
-		tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
+			tmp_pb, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	ConstButtonGroup->addButton(tmp_pb, 5);
 
 	changeButtonNames();
@@ -1023,7 +1024,7 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
 	KCalcConstMenu *tmp_menu = new KCalcConstMenu(this);
 	menuBar()->insertItem(i18n("&Constants"), tmp_menu, -1, 2);
 	connect(tmp_menu, SIGNAL(activated(int)), this,
-		SLOT(slotConstantToDisplay(int)));
+			SLOT(slotConstantToDisplay(int)));
 }
 
 void KCalculator::slotConstantToDisplay(int constant)
@@ -1049,7 +1050,7 @@ void KCalculator::updateGeometry(void)
 
     for(int i=0; i < l->size(); i++)
     {
-        QObject *o = l->at(i);
+		QObject *o = l->at(i);
         if( o->isWidgetType() )
         {
             QWidget *tmp_widget = dynamic_cast<QWidget *>(o);
@@ -1128,7 +1129,7 @@ void KCalculator::slotBaseHex(void)
 	calc_display->setBase(NumBase(16));
 	if (statusBar()->hasItem(1)) statusBar()->changeItem("HEX",1);
 	calc_display->setStatusText(1, "Hex");
-	
+
 
 	// Enable the buttons not available in this base
 	for (int i=0; i<16; i++)
@@ -2164,8 +2165,9 @@ void KCalculator::updateSettings()
 
 	//
 	// 1999-10-31 Espen Sand: Don't ask me why ;)
-	//
-	kapp->processOneEvent();
+	// 2006-02-26 David Faure: time to find out why -> commented out
+	//kapp->processOneEvent();
+
 	setFixedHeight(minimumHeight());
 }
 
@@ -2236,29 +2238,31 @@ void KCalculator::set_precision()
 
 bool KCalculator::eventFilter(QObject *o, QEvent *e)
 {
-	if(e->type() == QEvent::DragEnter)
+	switch(e->type())
+	{
+	case QEvent::DragEnter:
 	{
 		QDragEnterEvent *ev = (QDragEnterEvent *)e;
-		//ev->accept(K3ColorDrag::canDecode(ev));
+		ev->accept( KColorMimeData::canDecode( ev->mimeData() ) );
 		return true;
 	}
-	else if(e->type() == QEvent::DragLeave)
+	case QEvent::DragLeave:
 	{
 		return true;
 	}
-	else if(e->type() == QEvent::Drop)
+	case QEvent::Drop:
 	{
-		if(!o->isA("KCalcButton"))
+		KCalcButton* calcButton = qobject_cast<KCalcButton *>(o);
+		if(!calcButton)
 			return false;
 
-		QColor c;
 		QDropEvent *ev = (QDropEvent *)e;
-		//if( K3ColorDrag::decode(ev, c))
-		if (0)
+		QColor c = KColorMimeData::fromMimeData( ev->mimeData() );
+		if ( c.isValid() )
 		{
-		        QList<KCalcButton*> *list;
+			QList<KCalcButton*> *list;
 			int num_but;
-			if((num_but = NumButtonGroup->buttons().indexOf((KCalcButton*)o)) != -1)
+			if((num_but = NumButtonGroup->buttons().indexOf(calcButton)) != -1)
 			{
 			  QPalette pal(c, palette().active().background());
 			  // Was it hex-button or normal digit??
@@ -2271,19 +2275,19 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
 
 			  return true;
 			}
-			else if(mFunctionButtonList.contains((KCalcButton*)o))
+			else if(mFunctionButtonList.contains(calcButton))
 			{
 				list = &mFunctionButtonList;
 			}
-			else if(mStatButtonList.contains((KCalcButton*)o))
+			else if(mStatButtonList.contains(calcButton))
 			{
 				list = &mStatButtonList;
 			}
-			else if(mMemButtonList.contains((KCalcButton*)o))
+			else if(mMemButtonList.contains(calcButton))
 			{
 				list = &mMemButtonList;
 			}
-			else if( mOperationButtonList.contains((KCalcButton*)o))
+			else if( mOperationButtonList.contains(calcButton))
 			{
 				list = &mOperationButtonList;
 			}
@@ -2298,8 +2302,7 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
 
 		return true;
 	}
-	else
-	{
+	default:
 		return KMainWindow::eventFilter(o, e);
 	}
 }
