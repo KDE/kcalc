@@ -2,12 +2,16 @@ kde4_header()
 
 add_subdirectory( knumber ) 
 
-include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
+include_directories( ${CMAKE_SOURCE_DIR}/kcalc/knumber ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
 
 
 ########### next target ###############
+set(libknumber_la_SRCS  
+	${CMAKE_SOURCE_DIR}/kcalc/knumber/knumber.cpp 
+	${CMAKE_SOURCE_DIR}/kcalc/knumber/knumber_priv.cpp
+	)
 
-set(kcalc_KDEINIT_SRCS 
+set(kcalc_KDEINIT_SRCS ${libknumber_la_SRCS}
    kcalc.cpp 
    kcalc_button.cpp 
    kcalc_const_button.cpp 
@@ -25,7 +29,7 @@ kde4_add_kcfg_files(kcalc_KDEINIT_SRCS kcalc_settings.kcfgc )
 
 kde4_add_kdeinit_executable( kcalc ${kcalc_KDEINIT_SRCS})
 
-target_link_libraries(kdeinit_kcalc  ${QT_AND_KDECORE_LIBS} kdeui knumber )
+target_link_libraries(kdeinit_kcalc  ${LIB_KDEUI} )
 
 install_targets(${LIB_INSTALL_DIR} kdeinit_kcalc )
 
