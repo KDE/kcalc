@@ -57,8 +57,7 @@ static CALCAMNT toDouble(const QString &s, bool &ok)
 
 KCalcDisplay::KCalcDisplay(QWidget *parent, const char *name)
   :QLabel(parent,name), _beep(false), _groupdigits(false), _button(0), _lit(false),
-   _num_base(NB_DECIMAL),
-   _display_size(DEC_SIZE), _precision(9),
+   _num_base(NB_DECIMAL), _precision(9),
    _fixed_precision(-1), _display_amount(0),
    selection_timer(new QTimer)
 {
@@ -335,26 +334,21 @@ int KCalcDisplay::setBase(NumBase new_base)
 	{
 	case NB_HEX:
 		_num_base	= NB_HEX;
-		_display_size	= HEX_SIZE;
 		_period 	= false;
 		break;
 	case NB_DECIMAL:
 		_num_base	= NB_DECIMAL;
-		_display_size	= DEC_SIZE;
 		break;
 	case NB_OCTAL:
 		_num_base	= NB_OCTAL;
-		_display_size	= OCT_SIZE;
 		_period 	= false;
 		break;
 	case NB_BINARY:
 		_num_base	= NB_BINARY;
-		_display_size	= BIN_SIZE;
 		_period 	= false;
 		break;
 	default: // we shouldn't ever end up here
 		_num_base	= NB_DECIMAL;
-		_display_size	= DEC_SIZE;
 	}
 
 	setAmount(static_cast<double>(tmp_val));
@@ -443,13 +437,6 @@ bool KCalcDisplay::updateDisplay(void)
 
 void KCalcDisplay::newCharacter(char const new_char)
 {
-	// error or DISPLAY is already full
-	if (text().length() >= _display_size)
-	{
-		if(_beep) KNotifyClient::beep();
-		return;
-	}
-
 	// test if character is valid
 	switch(new_char)
 	{
