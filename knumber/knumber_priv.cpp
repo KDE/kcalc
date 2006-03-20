@@ -736,8 +736,8 @@ _knumber *_knumfloat::divide(_knumber const & arg2) const
 
 _knumber * _knumerror::power(_knumber const & exponent) const
 {
-#warning need to implemented something sensible here
-  return new _knumerror(Infinity);
+  static_cast<void>(exponent);
+  return new _knumerror(UndefinedNumber);
 }
 
 _knumber * _knuminteger::power(_knumber const & exponent) const
@@ -857,9 +857,23 @@ int _knumerror::compare(_knumber const &arg2) const
     }
   }
 
-#warning compare _error with _error
-
-  return 0;
+  switch(_error) {
+  case Infinity:
+    if (dynamic_cast<_knumerror const &>(arg2)._error == Infinity)
+      // Infinity is larger than anything else, but itself
+      return 0;
+    return 1;
+  case MinusInfinity:
+    if (dynamic_cast<_knumerror const &>(arg2)._error == MinusInfinity)
+      // MinusInfinity is smaller than anything else, but itself
+      return 0;
+    return -1;
+  default:
+    if (dynamic_cast<_knumerror const &>(arg2)._error == UndefinedNumber)
+      // Undefined only equal to itself
+      return 0;
+    return -arg2.compare(*this);
+  }
 }
 
 int _knuminteger::compare(_knumber const &arg2) const
