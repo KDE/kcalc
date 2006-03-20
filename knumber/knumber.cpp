@@ -659,11 +659,17 @@ KNumber::operator unsigned long int(void) const
 
 KNumber::operator unsigned long long int(void) const
 {
-  KNumber tmp_num = this->abs().integerPart();
-  return  static_cast<unsigned long int>(*this) +
-  (static_cast<unsigned long long int>(
-				       static_cast<unsigned long int>(tmp_num >> KNumber("32"))) << 32) ;
-
+  KNumber tmp_num1 = this->abs().integerPart();
+  unsigned long long int tmp_num2 =  static_cast<unsigned long int>(tmp_num1) +
+    (static_cast<unsigned long long int>(
+					 static_cast<unsigned long int>(tmp_num1 >> KNumber("32"))) << 32) ;
+  
+#warning the cast operator from KNumber to unsigned long long int is probably buggy, when a sign is involved
+  if (*this > KNumber(0))
+    return tmp_num2;
+  else
+    return static_cast<unsigned long long int> (- static_cast<signed long long int>(tmp_num2));
+  
 }
 
 KNumber::operator double(void) const
