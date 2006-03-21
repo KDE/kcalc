@@ -60,7 +60,7 @@ AC_CHECK_LIB(m, round, [
   AC_DEFINE_UNQUOTED(HAVE_FUNC_ROUND, 1, [Define if you have round])
 ])
 AC_CHECK_LIB(m, roundl, [
-  AC_DEFINE_UNQUOTED(HAVE_FUNC_ROUNDL, 1, [Define if you have round])
+  AC_DEFINE_UNQUOTED(HAVE_FUNC_ROUNDL, 1, [Define if you have roundl])
 ])
 
 kcalc_gmp_found=yes
