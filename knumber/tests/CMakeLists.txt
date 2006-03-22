@@ -13,7 +13,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(knumbertest ${knumbertest_SRCS})
 
-target_link_libraries(knumbertest  ${QT_AND_KDECORE_LIBS} knumber )
+target_link_libraries(knumbertest  ${KDE4_KDECORE_LIBS} knumber )
 
 endif(KDE4_BUILD_TESTS)
 
