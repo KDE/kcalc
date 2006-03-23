@@ -689,8 +689,10 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	pbClear->setShortcut(Qt::Key_Prior);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbClear, SLOT(slotSetAccelDisplayMode(bool)));
+#if 0
 	accel()->insert("Entered 'ESC'", i18n("Pressed ESC-Button"), 0,
 			Qt::Key_Escape, pbClear, SLOT(animateClick()));
+#endif	
 	connect(pbClear, SIGNAL(clicked(void)), SLOT(slotClearclicked(void)));
 
 	pbAC = new KCalcButton("AC", mLargePage, i18n("Clear all"));
@@ -2132,19 +2134,19 @@ void KCalculator::changeButtonNames()
 void KCalculator::slotShowAll(void)
 {
 	// I wonder why "setChecked" does not emit "toggled"
-	if(!actionStatshow->isChecked()) actionStatshow->activate();
-	if(!actionScientificshow->isChecked()) actionScientificshow->activate();
-	if(!actionLogicshow->isChecked()) actionLogicshow->activate();
-	if(!actionConstantsShow->isChecked()) actionConstantsShow->activate();
+	if(!actionStatshow->isChecked()) actionStatshow->trigger();
+	if(!actionScientificshow->isChecked()) actionScientificshow->trigger();
+	if(!actionLogicshow->isChecked()) actionLogicshow->trigger();
+	if(!actionConstantsShow->isChecked()) actionConstantsShow->trigger();
 }
 
 void KCalculator::slotHideAll(void)
 {
 	// I wonder why "setChecked" does not emit "toggled"
-	if(actionStatshow->isChecked()) actionStatshow->activate();
-	if(actionScientificshow->isChecked()) actionScientificshow->activate();
-	if(actionLogicshow->isChecked()) actionLogicshow->activate();
-	if(actionConstantsShow->isChecked()) actionConstantsShow->activate();
+	if(actionStatshow->isChecked()) actionStatshow->trigger();
+	if(actionScientificshow->isChecked()) actionScientificshow->trigger();
+	if(actionLogicshow->isChecked()) actionLogicshow->trigger();
+	if(actionConstantsShow->isChecked()) actionConstantsShow->trigger();
 }
 
 void KCalculator::updateSettings()
