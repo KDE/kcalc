@@ -426,25 +426,25 @@ void KCalculator::setupMainActions(void)
 	KStdAction::paste(calc_display, SLOT(slotPaste()), actionCollection());
 
 	// settings menu
-	actionStatshow =  new KToggleAction(i18n("&Statistic Buttons"), 0,
+	actionStatshow =  new KToggleAction(i18n("&Statistic Buttons"),
 					    actionCollection(), "show_stat");
 	actionStatshow->setChecked(true);
 	connect(actionStatshow, SIGNAL(toggled(bool)),
 		SLOT(slotStatshow(bool)));
 
 	actionScientificshow = new KToggleAction(i18n("Science/&Engineering Buttons"),
-						 0, actionCollection(), "show_science");
+						 actionCollection(), "show_science");
 	actionScientificshow->setChecked(true);
 	connect(actionScientificshow, SIGNAL(toggled(bool)),
 		SLOT(slotScientificshow(bool)));
 
-	actionLogicshow = new KToggleAction(i18n("&Logic Buttons"), 0,
+	actionLogicshow = new KToggleAction(i18n("&Logic Buttons"),
 					    actionCollection(), "show_logic");
 	actionLogicshow->setChecked(true);
 	connect(actionLogicshow, SIGNAL(toggled(bool)),
 		SLOT(slotLogicshow(bool)));
 
-	actionConstantsShow = new KToggleAction(i18n("&Constants Buttons"), 0,
+	actionConstantsShow = new KToggleAction(i18n("&Constants Buttons"),
 						actionCollection(), "show_constants");
 	actionConstantsShow->setChecked(true);
 	connect(actionConstantsShow, SIGNAL(toggled(bool)),
@@ -571,8 +571,11 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	pbX->setShortcut(Qt::Key_multiply);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbX, SLOT(slotSetAccelDisplayMode(bool)));
+#warning "how to port it ?"
+#if 0
 	accel()->insert("Pressed '*'", i18n("Pressed Multiplication-Button"),
 			0, Qt::Key_Asterisk, pbX, SLOT(animateClick()));
+#endif
 	connect(pbX, SIGNAL(clicked(void)), SLOT(slotXclicked(void)));
 
 	pbDivision = new KCalcButton("/", thisPage, i18n("Division"));
@@ -597,20 +600,24 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 				   i18n("Decimal point"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbPeriod, SLOT(slotSetAccelDisplayMode(bool)));
+#if 0
 	accel()->insert("Decimal Point (Period)", i18n("Pressed Decimal Point"),
 			0, Qt::Key_Period, pbPeriod, SLOT(animateClick()));
 	accel()->insert("Decimal Point (Comma)", i18n("Pressed Decimal Point"),
 			0, Qt::Key_Comma, pbPeriod, SLOT(animateClick()));
+#endif	
 	connect(pbPeriod, SIGNAL(clicked(void)), SLOT(slotPeriodclicked(void)));
 
 	pbEqual = new KCalcButton("=", thisPage, i18n("Result"));
 	pbEqual->setShortcut(Qt::Key_Enter);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbEqual, SLOT(slotSetAccelDisplayMode(bool)));
+#if 0
 	accel()->insert("Entered Equal", i18n("Pressed Equal-Button"),
 			0, Qt::Key_Equal, pbEqual, SLOT(animateClick()));
 	accel()->insert("Entered Return", i18n("Pressed Equal-Button"),
 			0, Qt::Key_Return, pbEqual, SLOT(animateClick()));
+#endif	
 	connect(pbEqual, SIGNAL(clicked(void)), SLOT(slotEqualclicked(void)));
 
 
