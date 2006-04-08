@@ -531,9 +531,11 @@ void CalcEngine::Factorial(KNumber input)
 {
 	KNumber tmp_amount = input.integerPart();
 
-	if (input < KNumber::Zero)
+	if (input == KNumber("inf")) return;
+	if (input < KNumber::Zero || input.type() == KNumber::SpecialType)
 	{
 		_error = true;
+		_last_number = KNumber("nan");
 		return;
 	}
 
