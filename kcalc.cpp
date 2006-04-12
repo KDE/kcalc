@@ -42,7 +42,6 @@
 
 
 #include <kaboutdata.h>
-#include <kaccel.h>
 #include <kacceleratormanager.h>
 #include <kaction.h>
 #include <kapplication.h>
