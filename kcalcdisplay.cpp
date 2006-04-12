@@ -271,11 +271,13 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 		unsigned long long int tmp_workaround = static_cast<unsigned long long int>(_display_amount);
 
 		display_str = QString::number(tmp_workaround, _num_base).upper();
+#if 0
 		if (display_str.length() > DSP_SIZE)
 		{
 			sendEvent(EventError);
 			return false;
 		}
+#endif
 	}
 	else // _num_base == NB_DECIMAL
 	{
@@ -288,11 +290,13 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 		else
 			display_str = QCString().sprintf(PRINT_LONG_BIG, _precision, _display_amount);
 #endif
+#if 0
 		if (display_str.length() > DSP_SIZE)
 		{
 			sendEvent(EventError);
 			return false;
 		}
+#endif
 	}
 
 	setText(display_str);
