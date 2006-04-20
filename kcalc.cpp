@@ -648,11 +648,11 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	thisLayout->addWidget(pbPeriod, 4, 2);
 	//thisLayout->addMultiCellWidget(pbEqual, 3, 4, 3, 3);
 
-	thisLayout->addColSpacing(0,10);
-	thisLayout->addColSpacing(1,10);
-	thisLayout->addColSpacing(2,10);
-	thisLayout->addColSpacing(3,10);
-	thisLayout->addColSpacing(4,10);
+	thisLayout->addItem( new QSpacerItem(10, 0 ), 0, 0 );
+	thisLayout->addItem( new QSpacerItem(10, 0 ), 0, 1 );
+	thisLayout->addItem( new QSpacerItem(10, 0 ), 0, 2 );
+	thisLayout->addItem( new QSpacerItem(10, 0 ), 0, 3 );
+	thisLayout->addItem( new QSpacerItem(10, 0 ), 0, 4 );
 
 
 	pbMemRecall = new KCalcButton("MR", mLargePage, i18n("Memory recall"));
