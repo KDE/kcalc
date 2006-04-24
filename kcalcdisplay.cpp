@@ -271,13 +271,6 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 		unsigned long long int tmp_workaround = static_cast<unsigned long long int>(_display_amount);
 
 		display_str = QString::number(tmp_workaround, _num_base).upper();
-#if 0
-		if (display_str.length() > DSP_SIZE)
-		{
-			sendEvent(EventError);
-			return false;
-		}
-#endif
 	}
 	else // _num_base == NB_DECIMAL
 	{
@@ -289,13 +282,6 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 			display_str = QCString().sprintf(PRINT_LONG_BIG, _precision + 1, _display_amount);
 		else
 			display_str = QCString().sprintf(PRINT_LONG_BIG, _precision, _display_amount);
-#endif
-#if 0
-		if (display_str.length() > DSP_SIZE)
-		{
-			sendEvent(EventError);
-			return false;
-		}
 #endif
 	}
 
@@ -380,7 +366,6 @@ bool KCalcDisplay::updateDisplay(void)
 	{
 	case NB_BINARY:
 		Q_ASSERT(_period == false  && _eestate == false);
-		Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 		setText(tmp_string);
 		_display_amount = static_cast<unsigned long long int>(STRTOUL(_str_int.latin1(), 0, 2));
 		if (_neg_sign)
@@ -390,7 +375,6 @@ bool KCalcDisplay::updateDisplay(void)
 	  
 	case NB_OCTAL:
 		Q_ASSERT(_period == false  && _eestate == false);
-		Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 		setText(tmp_string);
 		_display_amount = static_cast<unsigned long long int>(STRTOUL(_str_int.latin1(), 0, 8));
 		if (_neg_sign)
@@ -399,7 +383,6 @@ bool KCalcDisplay::updateDisplay(void)
 		
 	case NB_HEX:
 		Q_ASSERT(_period == false  && _eestate == false);
-		Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 		setText(tmp_string);
 		_display_amount = static_cast<unsigned long long int>(STRTOUL(_str_int.latin1(), 0, 16));
 		if (_neg_sign)
@@ -409,7 +392,6 @@ bool KCalcDisplay::updateDisplay(void)
 	case NB_DECIMAL:
 		if(_eestate == false)
 		{
-			Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 			setText(tmp_string);
 			_display_amount = tmp_string;
 		}
@@ -418,14 +400,12 @@ bool KCalcDisplay::updateDisplay(void)
 			if(_str_int_exp.isNull())
 			{
 				// add 'e0' to display but not to conversion
-				Q_ASSERT(tmp_string.length()+2 <= DSP_SIZE);
 				_display_amount = tmp_string;
 				setText(tmp_string + "e0");
 			}
 			else
 			{
 				tmp_string +=  'e' + _str_int_exp;
-				Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 				setText(tmp_string);
 				_display_amount = tmp_string;
 			}

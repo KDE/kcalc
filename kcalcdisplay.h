@@ -50,9 +50,6 @@
 	#define PRINT_HEX    "%lX"
 #endif
 
-// DSP_SIZE should be == BIN_SIZE as BIN_SIZE is the largest one..
-#define		DSP_SIZE	25
-
 #define		NUM_STATUS_TEXT 4
 
 /*
