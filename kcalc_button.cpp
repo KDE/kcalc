@@ -80,7 +80,7 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
       _label.hide();
     }
     QToolTip::remove(this);
-    QToolTip::add(this, _mode[new_mode].tooltip);
+    this->setToolTip( _mode[new_mode].tooltip);
     _mode_flags = new_mode;
 
     // restore accel

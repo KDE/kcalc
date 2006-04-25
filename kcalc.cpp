@@ -115,31 +115,31 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 					    "Hexadecimal-Switch");
 	connect(pbBaseChoose[0], SIGNAL(clicked(void)), SLOT(slotBaseHex(void)));
 	base_but_layout->add(pbBaseChoose[0]);
-	QToolTip::add(pbBaseChoose[0], i18n("Switch base to hexadecimal."));
+	pbBaseChoose[0]->setToolTip( i18n("Switch base to hexadecimal."));
 
 	pbBaseChoose[1] =  new QRadioButton(i18n("&Dec"), BaseChooseGroup,
 					    "Decimal-Switch");
 	connect(pbBaseChoose[1], SIGNAL(clicked(void)), SLOT(slotBaseDec(void)));
 	base_but_layout->add(pbBaseChoose[1]);
-	QToolTip::add(pbBaseChoose[1], i18n("Switch base to decimal."));
+	pbBaseChoose[1]->setToolTip( i18n("Switch base to decimal."));
 
 	pbBaseChoose[2] =  new QRadioButton(i18n("&Oct"), BaseChooseGroup,
 					    "Octal-Switch");
 	connect(pbBaseChoose[2], SIGNAL(clicked(void)), SLOT(slotBaseOct(void)));
 	base_but_layout->add(pbBaseChoose[2]);
-	QToolTip::add(pbBaseChoose[2], i18n("Switch base to octal."));
+	pbBaseChoose[2]->setToolTip( i18n("Switch base to octal."));
 
 	pbBaseChoose[3] =  new QRadioButton(i18n("&Bin"), BaseChooseGroup,
 					    "Binary-Switch");
 	connect(pbBaseChoose[3], SIGNAL(clicked(void)), SLOT(slotBaseBin(void)));
 	base_but_layout->add(pbBaseChoose[3]);
-	QToolTip::add(pbBaseChoose[3], i18n("Switch base to binary."));
+	pbBaseChoose[3]->setToolTip( i18n("Switch base to binary."));
 
 
 	// Create Button to select AngleMode
 	pbAngleChoose =  new QPushButton(i18n("&Angle"),
 					 central, "ChooseAngleMode-Button");
-	QToolTip::add(pbAngleChoose, i18n("Choose the unit for the angle measure"));
+	pbAngleChoose->setToolTip( i18n("Choose the unit for the angle measure"));
 	pbAngleChoose->setAutoDefault(false);
 
 	KMenu *angle_menu = new KMenu(pbAngleChoose);
@@ -912,7 +912,7 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
 	tmp_pb->addMode(ModeNormal, "Med", i18n("Median"));
 	pbStat.insert("Median", tmp_pb);
 	mStatButtonList.append(tmp_pb);
-	QToolTip::add(tmp_pb, i18n("Median"));
+	tmp_pb->setToolTip( i18n("Median"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(clicked(void)), SLOT(slotStatMedianclicked(void)));
