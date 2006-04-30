@@ -57,9 +57,9 @@ void DispLogic::changeSettings()
 {
 	QPalette pal = palette();
 
-	pal.setColor(QColorGroup::Text, KCalcSettings::foreColor());
-	pal.setColor(QColorGroup::Foreground, KCalcSettings::foreColor());
-	pal.setColor(QColorGroup::Background, KCalcSettings::backColor());
+	pal.setColor(QPalette::Text, KCalcSettings::foreColor());
+	pal.setColor(QPalette::Foreground, KCalcSettings::foreColor());
+	pal.setColor(QPalette::Background, KCalcSettings::backColor());
 
 	setPalette(pal);
 	setBackgroundColor(KCalcSettings::backColor());
