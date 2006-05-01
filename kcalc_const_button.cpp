@@ -22,7 +22,6 @@
 #include <qstring.h>
 
 
-#include <kcmenumngr.h>
 #include <kinputdialog.h>
 #include <kmenu.h>
 
@@ -70,27 +69,25 @@ void KCalcConstButton::initPopupMenu(void)
 {
   KCalcConstMenu *tmp_menu = new KCalcConstMenu(this);
   
-  _popup = new KMenu(this);
-  _popup->insertItem(i18n("Set Name"), 0);
-  _popup->insertItem(i18n("Choose From List"), tmp_menu, 1);
+  QAction *a = new QAction(this);
+  a->setText(i18n("Set Name"));
+  connect(a, SIGNAL(triggered()), this, SLOT(slotConfigureButton()));
+  addAction(a);
+  tmp_menu->menuAction()->setText(i18n("Choose From List"));
+  addAction(tmp_menu->menuAction());
+  setContextMenuPolicy(Qt::ActionsContextMenu);
   
-  connect(_popup, SIGNAL(activated(int)), SLOT(slotConfigureButton(int)));
   connect(tmp_menu, SIGNAL(activated(int)), SLOT(slotChooseScientificConst(int)));
-
-  KContextMenuManager::insert(this, _popup);
 }
 
-void KCalcConstButton::slotConfigureButton(int option)
+void KCalcConstButton::slotConfigureButton()
 {
-  if (option == 0)
-    {
-      bool yes_no;
-      QString input = KInputDialog::getText(i18n("New Name for Constant"), i18n("New name:"),
+    bool yes_no;
+    QString input = KInputDialog::getText(i18n("New Name for Constant"), i18n("New name:"),
 					 text(), &yes_no, this); // "nameUserConstants-Dialog"
-      if(yes_no) {
-	KCalcSettings::setNameConstant(_button_num, input);
-	setLabelAndTooltip();
-      }
+    if(yes_no) {
+        KCalcSettings::setNameConstant(_button_num, input);
+        setLabelAndTooltip();
     }
 }
 
