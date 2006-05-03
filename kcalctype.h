@@ -26,6 +26,7 @@
 #ifdef HAVE_CONFIG_H
 	#include "../config.h"
 #endif
+#include <config-kcalc.h>
 
 #ifndef KCALC_TYPE_H
 #define KCALC_TYPE_H

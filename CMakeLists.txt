@@ -1,5 +1,7 @@
 kde4_header()
 
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
+
 add_subdirectory( knumber ) 
 
 include_directories( ${CMAKE_SOURCE_DIR}/kcalc/knumber ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )

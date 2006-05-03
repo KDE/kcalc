@@ -47,6 +47,7 @@
 #endif
 
 #include <config.h>
+#include <config-kcalc.h>
 #include "kcalc_core.h"
 #include <stdlib.h>
 #include <klocale.h>
