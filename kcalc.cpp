@@ -1086,7 +1086,7 @@ void KCalculator::updateGeometry(void)
         QObject *o = l->at(i);
         if(o->isWidgetType())
         {
-            QWidget *tmp_widget = dynamic_cast<QWidget *>(o);
+            QWidget *tmp_widget = static_cast<QWidget *>(o);
             tmp_widget->setFixedSize(s);
             tmp_widget->installEventFilter(this);
             tmp_widget->setAcceptDrops(true);
@@ -1114,7 +1114,7 @@ void KCalculator::updateGeometry(void)
         QObject *o = l->at(i);
         if(o->isWidgetType())
         {
-            QWidget *tmp_widget = dynamic_cast<QWidget *>(o);
+            QWidget *tmp_widget = static_cast<QWidget *>(o);
             tmp_widget->setFixedSize(s);
             tmp_widget->installEventFilter(this);
             tmp_widget->setAcceptDrops(true);
