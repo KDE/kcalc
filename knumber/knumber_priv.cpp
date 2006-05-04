@@ -548,7 +548,7 @@ _knumber * _knumerror::add(_knumber const & arg2) const
   if (arg2.type() != SpecialType)
     return new _knumerror(_error);
 
-  _knumerror const & tmp_arg2 = dynamic_cast<_knumerror const &>(arg2);
+  _knumerror const & tmp_arg2 = static_cast<_knumerror const &>(arg2);
   
   if (_error == UndefinedNumber  
       || tmp_arg2._error == UndefinedNumber
