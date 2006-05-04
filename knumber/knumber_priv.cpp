@@ -619,7 +619,7 @@ _knumber * _knumerror::multiply(_knumber const & arg2) const
   switch(arg2.type()) {
   case SpecialType:
     {
-      _knumerror const & tmp_arg2 = dynamic_cast<_knumerror const &>(arg2);
+      _knumerror const & tmp_arg2 = static_cast<_knumerror const &>(arg2);
       if (_error == UndefinedNumber || tmp_arg2._error == UndefinedNumber)
 	return new _knumerror(UndefinedNumber);
       if ( this->sign() * arg2.sign() > 0)
