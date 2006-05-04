@@ -1061,7 +1061,7 @@ void KCalculator::updateGeometry(void)
 		QObject *o = l->at(i);
         if( o->isWidgetType() )
         {
-            QWidget *tmp_widget = dynamic_cast<QWidget *>(o);
+            QWidget *tmp_widget = static_cast<QWidget *>(o);
             margin = QApplication::style()->
 	      pixelMetric(QStyle::PM_ButtonMargin, 0, tmp_widget)*2;
             tmp_widget->setFixedSize(s.width()+margin, s.height()+margin);
