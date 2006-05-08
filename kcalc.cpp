@@ -64,6 +64,7 @@
 #include <kstatusbar.h>
 #include <kstdaction.h>
 #include <kxmlguifactory.h>
+#include <ktoggleaction.h>
 
 #include "dlabel.h"
 #include "kcalc.h"
