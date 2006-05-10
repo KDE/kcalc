@@ -22,8 +22,8 @@
 
 #include <config.h>
 
-#include <qregexp.h>
-#include <qstring.h>
+#include <QRegExp>
+#include <QString>
 
 #include "knumber.h"
 

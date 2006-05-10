@@ -6,7 +6,7 @@
 #include <stdio.h>
 
 #include <iostream>
-#include <qstring.h>
+#include <QString>
 
 #include "knumbertest.h"
 

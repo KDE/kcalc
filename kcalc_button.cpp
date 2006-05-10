@@ -20,7 +20,7 @@
 
 */
 
-#include <qtooltip.h>
+#include <QToolTip>
 #include <qpainter.h>
 
 

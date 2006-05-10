@@ -27,8 +27,8 @@
 #define _D_KCALCDISPLAY_H_
 
 #include <stdlib.h>
-#include <qlabel.h>
-#include <qtimer.h>
+#include <QLabel>
+#include <QTimer>
 #include "knumber.h"
 #include "kcalctype.h"
 

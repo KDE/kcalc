@@ -20,8 +20,8 @@
 #include <math.h>
 #include <config.h>
 
-#include <qregexp.h>
-#include <qstring.h>
+#include <QRegExp>
+#include <QString>
 
 #include "knumber_priv.h"
 
