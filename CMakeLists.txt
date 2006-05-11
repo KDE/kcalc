@@ -1,17 +1,17 @@
 kde4_header()
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
+configure_file(config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
 
 add_subdirectory( knumber ) 
 
-include_directories( ${CMAKE_SOURCE_DIR}/kcalc/knumber ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
+include_directories( ${CMAKE_SOURCE_DIR}/kcalc/knumber  )
 
 
 ########### next target ###############
 set(libknumber_la_SRCS  
-	${CMAKE_SOURCE_DIR}/kcalc/knumber/knumber.cpp 
-	${CMAKE_SOURCE_DIR}/kcalc/knumber/knumber_priv.cpp
-	)
+   ${CMAKE_SOURCE_DIR}/kcalc/knumber/knumber.cpp 
+   ${CMAKE_SOURCE_DIR}/kcalc/knumber/knumber_priv.cpp
+   )
 
 set(kcalc_KDEINIT_SRCS ${libknumber_la_SRCS}
    kcalc.cpp 
