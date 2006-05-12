@@ -1,4 +1,3 @@
-kde4_header()
 
 configure_file(config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
 
@@ -47,7 +46,6 @@ install_files( ${DATA_INSTALL_DIR}/kconf_update FILES kcalcrc.upd )
 
 kde4_install_icons( ${ICON_INSTALL_DIR}  hicolor )
 
-kde4_footer()
 
 
 
