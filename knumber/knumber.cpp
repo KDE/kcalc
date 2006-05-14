@@ -256,7 +256,7 @@ static void _inc_by_one(QString &str, int position)
 // Cut off if more digits in fractional part than 'precision'
 static void _round(QString &str, int precision)
 {
-  int decimalSymbolPos = str.find('.');
+  int decimalSymbolPos = str.count('.');
 
   if (decimalSymbolPos == -1)
     if (precision == 0)  return;
@@ -292,7 +292,7 @@ static void _round(QString &str, int precision)
       break;
     }
 
-  decimalSymbolPos = str.find('.');
+  decimalSymbolPos = str.count('.');
   str.truncate(decimalSymbolPos + precision + 1);
 
   // if precision == 0 delete also '.'

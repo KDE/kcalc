@@ -108,7 +108,7 @@ _knumerror::_knumerror(QString const & num)
 _knuminteger::_knuminteger(QString const & num)
 {
   mpz_init(_mpz);
-  mpz_set_str(_mpz, num.ascii(), 10);
+  mpz_set_str(_mpz, num.toAscii(), 10);
 }
 
 _knumfraction::_knumfraction(QString const & num)
@@ -119,7 +119,7 @@ _knumfraction::_knumfraction(QString const & num)
     // first me convert the mantissa
     unsigned long int digits_after_dot = ((num.section( '.', 1, 1)).section('e', 0, 0)).length();
     QString tmp_num = num.section('e', 0, 0).remove('.');
-    mpq_set_str(_mpq, tmp_num.ascii(), 10);
+    mpq_set_str(_mpq, tmp_num.toAscii(), 10);
     mpz_t tmp_int;
     mpz_init(tmp_int);
     mpz_ui_pow_ui (tmp_int, 10, digits_after_dot);
@@ -139,14 +139,14 @@ _knumfraction::_knumfraction(QString const & num)
     }
     mpz_clear(tmp_int);
   } else
-    mpq_set_str(_mpq, num.ascii(), 10);
+    mpq_set_str(_mpq, num.toAscii(), 10);
   mpq_canonicalize(_mpq);
 }
 
 _knumfloat::_knumfloat(QString const & num)
 {
   mpf_init(_mpf);
-  mpf_set_str(_mpf, num.ascii(), 10);
+  mpf_set_str(_mpf, num.toAscii(), 10);
 }
 
 _knuminteger const & _knuminteger::operator = (_knuminteger const & num)
@@ -202,7 +202,7 @@ QString const _knumfloat::ascii(int prec) const
   QString ret_str;
   char *tmp_ptr;
   if (prec > 0)
-    gmp_asprintf(&tmp_ptr, ("%." + QString().setNum(prec) + "Fg").ascii(), _mpf);
+    gmp_asprintf(&tmp_ptr, ("%." + QString().setNum(prec) + "Fg").toAscii(), _mpf);
   else
     gmp_asprintf(&tmp_ptr, "%Fg", _mpf);
 

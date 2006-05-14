@@ -43,7 +43,7 @@ static CALCAMNT toDouble(const QString &s, bool &ok)
 {
 	char *ptr = 0;
 	errno = 0;
-	CALCAMNT result = static_cast<CALCAMNT>(STRTOD(s.latin1(),&ptr));
+	CALCAMNT result = static_cast<CALCAMNT>(STRTOD(s.toLatin1(),&ptr));
 
 	// find first non-space character for check below
 	while (ptr != 0 && *ptr != '\0' && isspace(*ptr)) {
@@ -382,7 +382,7 @@ bool KCalcDisplay::updateDisplay(void)
 		Q_ASSERT(_period == false  && _eestate == false);
 		Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 		setText(tmp_string);
-		_display_amount = static_cast<int>(STRTOUL(_str_int.latin1(), 0, 2));
+		_display_amount = static_cast<int>(STRTOUL(_str_int.toLatin1(), 0, 2));
 		if (_neg_sign)
 			_display_amount = -_display_amount;
 		//str_size = cvb(_str_int, boh_work, DSP_SIZE);
@@ -392,7 +392,7 @@ bool KCalcDisplay::updateDisplay(void)
 		Q_ASSERT(_period == false  && _eestate == false);
 		Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 		setText(tmp_string);
-		_display_amount = static_cast<int>(STRTOUL(_str_int.latin1(), 0, 8));
+		_display_amount = static_cast<int>(STRTOUL(_str_int.toLatin1(), 0, 8));
 		if (_neg_sign)
 			_display_amount = -_display_amount;
 		break;
@@ -401,7 +401,7 @@ bool KCalcDisplay::updateDisplay(void)
 		Q_ASSERT(_period == false  && _eestate == false);
 		Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 		setText(tmp_string);
-		_display_amount = static_cast<int>(STRTOUL(_str_int.latin1(), 0, 16));
+		_display_amount = static_cast<int>(STRTOUL(_str_int.toLatin1(), 0, 16));
 		if (_neg_sign)
 			_display_amount = -_display_amount;
 		break;

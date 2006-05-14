@@ -150,7 +150,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 
 	angle_menu->setCheckable(true);
 	connect(angle_menu, SIGNAL(activated(int)), SLOT(slotAngleSelected(int)));
-	pbAngleChoose->setPopup(angle_menu);
+	pbAngleChoose->setMenu(angle_menu);
 
 
 
@@ -159,7 +159,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	connect(pbInv, SIGNAL(toggled(bool)), SLOT(slotInvtoggled(bool)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbInv, SLOT(slotSetAccelDisplayMode(bool)));
-	pbInv->setToggleButton(true);
+	pbInv->setCheckable(true);
 
 	//
 	//  Create Calculator Buttons
@@ -821,7 +821,7 @@ void KCalculator::setupScientificKeys(QWidget *parent)
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		tmp_pb, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(tmp_pb, SIGNAL(toggled(bool)), SLOT(slotHyptoggled(bool)));
-	tmp_pb->setToggleButton(true);
+	tmp_pb->setCheckable(true);
 
 	tmp_pb = new KCalcButton(parent);
 	pbScientific.insert("Sine", tmp_pb);
@@ -1431,7 +1431,7 @@ void KCalculator::slotMemPlusMinusclicked(void)
 	if (!tmp_inverse)	memory_num += calc_display->getAmount();
 	else 			memory_num -= calc_display->getAmount();
 
-	pbInv->setOn(false);
+	pbInv->setChecked(false);
 	statusBar()->changeItem("M",3);
 	calc_display->setStatusText(3, "M");
 	pbMemRecall->setEnabled(true);
@@ -1585,7 +1585,7 @@ void KCalculator::slotPowerclicked(void)
 	{
 		core.enterOperation(calc_display->getAmount(),
 				    CalcEngine::FUNC_PWR_ROOT);
-		pbInv->setOn(false);
+		pbInv->setChecked(false);
 	}
 	else
 	{
@@ -1760,7 +1760,7 @@ void KCalculator::slotStatNumclicked(void)
 	}
 	else
 	{
-		pbInv->setOn(false);
+		pbInv->setChecked(false);
 		core.StatSum(0);
 	}
 
@@ -1773,7 +1773,7 @@ void KCalculator::slotStatMeanclicked(void)
 		core.StatMean(0);
 	else
 	{
-		pbInv->setOn(false);
+		pbInv->setChecked(false);
 		core.StatSumSquares(0);
 	}
 
@@ -1786,7 +1786,7 @@ void KCalculator::slotStatStdDevclicked(void)
 	{
 		// std (n-1)
 		core.StatStdDeviation(0);
-		pbInv->setOn(false);
+		pbInv->setChecked(false);
 	}
 	else
 	{
@@ -1808,7 +1808,7 @@ void KCalculator::slotStatMedianclicked(void)
 	{
 		// std (n)
 		core.StatMedian(0);
-		pbInv->setOn(false);
+		pbInv->setChecked(false);
 	}
 	// it seems two different modes should be implemented, but...?
 	UpdateDisplay(true);
@@ -1822,7 +1822,7 @@ void KCalculator::slotStatDataInputclicked(void)
 	}
 	else
 	{
-		pbInv->setOn(false);
+		pbInv->setChecked(false);
 		core.StatDataDel(0);
 		statusBar()->message(i18n("Last stat item erased"), 3000);
 	}
@@ -1839,7 +1839,7 @@ void KCalculator::slotStatClearDataclicked(void)
 	}
 	else
 	{
-		pbInv->setOn(false);
+		pbInv->setChecked(false);
 		UpdateDisplay(false);
 	}
 }
@@ -1854,7 +1854,7 @@ void KCalculator::slotConstclicked(int button)
 	}
 	else
 	{
-		pbInv->setOn(false);
+		pbInv->setChecked(false);
 		KCalcSettings::setValueConstant(button, calc_display->text());
 		// below set new tooltip
 		pbConstant[button]->setLabelAndTooltip();
@@ -1881,7 +1881,7 @@ void KCalculator::showSettings()
 	// use the icon package_settings.
 	General *general = new General(0, "General");
 	int maxprec = 1000;
-	general->kcfg_Precision->setMaxValue(maxprec);
+	general->kcfg_Precision->setMaximum(maxprec);
 	dialog->addPage(general, i18n("General"), "package_settings", i18n("General Settings"));
 
 	QWidget *fontWidget = new QWidget(0,"Font");
@@ -1907,32 +1907,32 @@ void KCalculator::showSettings()
 	KCalcConstMenu *tmp_menu = new KCalcConstMenu(this);
 	connect(tmp_menu, SIGNAL(activated(int)),
 		SLOT(slotChooseScientificConst0(int)));
-	(constant->kPushButton0)->setPopup(tmp_menu);
+	(constant->kPushButton0)->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
 	connect(tmp_menu, SIGNAL(activated(int)),
 		SLOT(slotChooseScientificConst1(int)));
-	(constant->kPushButton1)->setPopup(tmp_menu);
+	(constant->kPushButton1)->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
 	connect(tmp_menu, SIGNAL(activated(int)),
 		SLOT(slotChooseScientificConst2(int)));
-	(constant->kPushButton2)->setPopup(tmp_menu);
+	(constant->kPushButton2)->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
 	connect(tmp_menu, SIGNAL(activated(int)),
 		SLOT(slotChooseScientificConst3(int)));
-	(constant->kPushButton3)->setPopup(tmp_menu);
+	(constant->kPushButton3)->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
 	connect(tmp_menu, SIGNAL(activated(int)),
 		SLOT(slotChooseScientificConst4(int)));
-	(constant->kPushButton4)->setPopup(tmp_menu);
+	(constant->kPushButton4)->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
 	connect(tmp_menu, SIGNAL(activated(int)),
 		SLOT(slotChooseScientificConst5(int)));
-	(constant->kPushButton5)->setPopup(tmp_menu);
+	(constant->kPushButton5)->setMenu(tmp_menu);
 
 	dialog->addPage(constant, i18n("Constants"), "constants");
 
@@ -2192,7 +2192,7 @@ void KCalculator::UpdateDisplay(bool get_amount_from_core,
 		calc_display->update();
 	}
 
-	pbInv->setOn(false);
+	pbInv->setChecked(false);
 
 }
 
