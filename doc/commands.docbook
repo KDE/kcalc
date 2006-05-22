@@ -102,7 +102,7 @@ display.</action></para></listitem>
 <guimenu>Constants</guimenu>
 <guimenuitem>Mathematics</guimenuitem>
 </menuchoice></term>
-<listitem><para><action>Display Pi, Euler Number or Golder Ratio.</action>
+<listitem><para><action>Display Pi, Euler Number or Golden Ratio.</action>
 </para></listitem>
 </varlistentry>
 
