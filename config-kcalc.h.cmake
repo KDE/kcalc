@@ -17,3 +17,5 @@
 /* Define if you have libgmp */
 #define HAVE_GMP 1
 
+/* Define if you have support for long double in printf */
+#define HAVE_LONG_DOUBLE 1
