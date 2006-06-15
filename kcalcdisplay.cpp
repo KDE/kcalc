@@ -57,8 +57,7 @@ static CALCAMNT toDouble(const QString &s, bool &ok)
 
 KCalcDisplay::KCalcDisplay(QWidget *parent, const char *name)
   :QLabel(parent,name), _beep(false), _groupdigits(false), _button(0), _lit(false),
-   _num_base(NB_DECIMAL),
-   _display_size(DEC_SIZE), _precision(9),
+   _num_base(NB_DECIMAL), _precision(9),
    _fixed_precision(-1), _display_amount(0),
    selection_timer(new QTimer)
 {
@@ -118,7 +117,8 @@ void KCalcDisplay::slotCut(void)
 }
 
 void KCalcDisplay::slotCopy(void)
-{	QString txt;
+{
+	QString txt;
 	if (_num_base != NB_DECIMAL)
 		txt = QLabel::text();
 	else
@@ -268,13 +268,9 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 	if (_num_base != NB_DECIMAL)
 	{
 		_display_amount = new_amount.integerPart();
+		unsigned long long int tmp_workaround = static_cast<unsigned long long int>(_display_amount);
 
-		display_str = QString::number(static_cast<long int>(_display_amount), _num_base).upper();
-		if (display_str.length() > DSP_SIZE)
-		{
-			sendEvent(EventError);
-			return false;
-		}
+		display_str = QString::number(tmp_workaround, _num_base).upper();
 	}
 	else // _num_base == NB_DECIMAL
 	{
@@ -287,11 +283,6 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 		else
 			display_str = QCString().sprintf(PRINT_LONG_BIG, _precision, _display_amount);
 #endif
-		if (display_str.length() > DSP_SIZE)
-		{
-			sendEvent(EventError);
-			return false;
-		}
 	}
 
 	setText(display_str);
@@ -333,26 +324,21 @@ int KCalcDisplay::setBase(NumBase new_base)
 	{
 	case NB_HEX:
 		_num_base	= NB_HEX;
-		_display_size	= HEX_SIZE;
 		_period 	= false;
 		break;
 	case NB_DECIMAL:
 		_num_base	= NB_DECIMAL;
-		_display_size	= DEC_SIZE;
 		break;
 	case NB_OCTAL:
 		_num_base	= NB_OCTAL;
-		_display_size	= OCT_SIZE;
 		_period 	= false;
 		break;
 	case NB_BINARY:
 		_num_base	= NB_BINARY;
-		_display_size	= BIN_SIZE;
 		_period 	= false;
 		break;
 	default: // we shouldn't ever end up here
 		_num_base	= NB_DECIMAL;
-		_display_size	= DEC_SIZE;
 	}
 
 	setAmount(static_cast<double>(tmp_val));
@@ -380,9 +366,8 @@ bool KCalcDisplay::updateDisplay(void)
 	{
 	case NB_BINARY:
 		Q_ASSERT(_period == false  && _eestate == false);
-		Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 		setText(tmp_string);
-		_display_amount = static_cast<int>(STRTOUL(_str_int.toLatin1(), 0, 2));
+		_display_amount = static_cast<unsigned long long int>(STRTOUL(_str_int.toLatin1(), 0, 2));
 		if (_neg_sign)
 			_display_amount = -_display_amount;
 		//str_size = cvb(_str_int, boh_work, DSP_SIZE);
@@ -390,18 +375,16 @@ bool KCalcDisplay::updateDisplay(void)
 	  
 	case NB_OCTAL:
 		Q_ASSERT(_period == false  && _eestate == false);
-		Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 		setText(tmp_string);
-		_display_amount = static_cast<int>(STRTOUL(_str_int.toLatin1(), 0, 8));
+		_display_amount = static_cast<unsigned long long int>(STRTOUL(_str_int.toLatin1(), 0, 8));
 		if (_neg_sign)
 			_display_amount = -_display_amount;
 		break;
 		
 	case NB_HEX:
 		Q_ASSERT(_period == false  && _eestate == false);
-		Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 		setText(tmp_string);
-		_display_amount = static_cast<int>(STRTOUL(_str_int.toLatin1(), 0, 16));
+		_display_amount = static_cast<unsigned long long int>(STRTOUL(_str_int.toLatin1(), 0, 16));
 		if (_neg_sign)
 			_display_amount = -_display_amount;
 		break;
@@ -409,7 +392,6 @@ bool KCalcDisplay::updateDisplay(void)
 	case NB_DECIMAL:
 		if(_eestate == false)
 		{
-			Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 			setText(tmp_string);
 			_display_amount = tmp_string;
 		}
@@ -418,14 +400,12 @@ bool KCalcDisplay::updateDisplay(void)
 			if(_str_int_exp.isNull())
 			{
 				// add 'e0' to display but not to conversion
-				Q_ASSERT(tmp_string.length()+2 <= DSP_SIZE);
 				_display_amount = tmp_string;
 				setText(tmp_string + "e0");
 			}
 			else
 			{
 				tmp_string +=  'e' + _str_int_exp;
-				Q_ASSERT(tmp_string.length() <= DSP_SIZE);
 				setText(tmp_string);
 				_display_amount = tmp_string;
 			}
@@ -441,13 +421,6 @@ bool KCalcDisplay::updateDisplay(void)
 
 void KCalcDisplay::newCharacter(char const new_char)
 {
-	// error or DISPLAY is already full
-	if (text().length() >= _display_size)
-	{
-		if(_beep) KNotifyClient::beep();
-		return;
-	}
-
 	// test if character is valid
 	switch(new_char)
 	{
