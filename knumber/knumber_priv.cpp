@@ -733,8 +733,8 @@ _knumber *_knumfloat::divide(_knumber const & arg2) const
 
 _knumber * _knumerror::power(_knumber const & exponent) const
 {
-#warning need to implemented something sensible here
-  return new _knumerror(Infinity);
+  static_cast<void>(exponent);
+  return new _knumerror(UndefinedNumber);
 }
 
 _knumber * _knuminteger::power(_knumber const & exponent) const
@@ -854,9 +854,23 @@ int _knumerror::compare(_knumber const &arg2) const
     }
   }
 
-#warning compare _error with _error
-
-  return 0;
+  switch(_error) {
+  case Infinity:
+    if (dynamic_cast<_knumerror const &>(arg2)._error == Infinity)
+      // Infinity is larger than anything else, but itself
+      return 0;
+    return 1;
+  case MinusInfinity:
+    if (dynamic_cast<_knumerror const &>(arg2)._error == MinusInfinity)
+      // MinusInfinity is smaller than anything else, but itself
+      return 0;
+    return -1;
+  default:
+    if (dynamic_cast<_knumerror const &>(arg2)._error == UndefinedNumber)
+      // Undefined only equal to itself
+      return 0;
+    return -arg2.compare(*this);
+  }
 }
 
 int _knuminteger::compare(_knumber const &arg2) const
@@ -910,7 +924,7 @@ int _knumfloat::compare(_knumber const &arg2) const
 
 
 
-_knumerror::operator long int (void) const
+_knumerror::operator signed long int (void) const
 {
   // what would be the correct return values here?
   if (_error == Infinity)
@@ -921,19 +935,46 @@ _knumerror::operator long int (void) const
     return 0;
 }
 
-_knuminteger::operator long int (void) const
+_knumerror::operator unsigned long int (void) const
+{
+  // what would be the correct return values here?
+  if (_error == Infinity)
+    return 0;
+  if (_error == MinusInfinity)
+    return 0;
+  else // if (_error == UndefinedNumber)
+    return 0;
+}
+
+
+_knuminteger::operator signed long int (void) const
 {
   return mpz_get_si(_mpz);
 }
 
-_knumfraction::operator long int (void) const
+_knumfraction::operator signed long int (void) const
 {
-  return static_cast<long int>(mpq_get_d(_mpq));
+  return static_cast<signed long int>(mpq_get_d(_mpq));
 }
 
-_knumfloat::operator long int (void) const
+_knumfloat::operator signed long int (void) const
 {
   return mpf_get_si(_mpf);
+}
+
+_knuminteger::operator unsigned long int (void) const
+{
+  return mpz_get_ui(_mpz);
+}
+
+_knumfraction::operator unsigned long int (void) const
+{
+  return static_cast<unsigned long int>(mpq_get_d(_mpq));
+}
+
+_knumfloat::operator unsigned long int (void) const
+{
+  return mpf_get_ui(_mpf);
 }
 
 

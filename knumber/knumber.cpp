@@ -52,6 +52,21 @@ KNumber::KNumber(unsigned int num)
   _num = new _knuminteger(num);
 }
 
+KNumber::KNumber(signed long int num)
+{
+  _num = new _knuminteger(num);
+}
+
+KNumber::KNumber(unsigned long int num)
+{
+  _num = new _knuminteger(num);
+}
+
+KNumber::KNumber(unsigned long long int num)
+{
+  _num = new _knuminteger(num);
+}
+
 KNumber::KNumber(double num)
 {
   _num = new _knumfloat(num);
@@ -256,7 +271,7 @@ static void _inc_by_one(QString &str, int position)
 // Cut off if more digits in fractional part than 'precision'
 static void _round(QString &str, int precision)
 {
-  int decimalSymbolPos = str.count('.');
+  int decimalSymbolPos = str.indexOf('.');
 
   if (decimalSymbolPos == -1)
     if (precision == 0)  return;
@@ -292,7 +307,7 @@ static void _round(QString &str, int precision)
       break;
     }
 
-  decimalSymbolPos = str.count('.');
+  decimalSymbolPos = str.indexOf('.');
   str.truncate(decimalSymbolPos + precision + 1);
 
   // if precision == 0 delete also '.'
@@ -632,9 +647,29 @@ KNumber::operator bool(void) const
   return true;
 }
 
-KNumber::operator long int(void) const
+KNumber::operator signed long int(void) const
 {
-  return static_cast<long int>(*_num);
+  return static_cast<signed long int>(*_num);
+}
+
+KNumber::operator unsigned long int(void) const
+{
+  return static_cast<unsigned long int>(*_num);
+}
+
+KNumber::operator unsigned long long int(void) const
+{
+  KNumber tmp_num1 = this->abs().integerPart();
+  unsigned long long int tmp_num2 =  static_cast<unsigned long int>(tmp_num1) +
+    (static_cast<unsigned long long int>(
+					 static_cast<unsigned long int>(tmp_num1 >> KNumber("32"))) << 32) ;
+  
+#warning the cast operator from KNumber to unsigned long long int is probably buggy, when a sign is involved
+  if (*this > KNumber(0))
+    return tmp_num2;
+  else
+    return static_cast<unsigned long long int> (- static_cast<signed long long int>(tmp_num2));
+  
 }
 
 KNumber::operator double(void) const
