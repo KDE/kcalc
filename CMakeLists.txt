@@ -1,7 +1,6 @@
 
 configure_file(config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
 
-add_subdirectory( knumber ) 
 
 include_directories( ${CMAKE_SOURCE_DIR}/kcalc/knumber  )
 
@@ -11,6 +10,8 @@ set(libknumber_la_SRCS
    ${CMAKE_SOURCE_DIR}/kcalc/knumber/knumber.cpp 
    ${CMAKE_SOURCE_DIR}/kcalc/knumber/knumber_priv.cpp
    )
+
+add_subdirectory( knumber )
 
 set(kcalc_KDEINIT_SRCS ${libknumber_la_SRCS}
    kcalc.cpp 
