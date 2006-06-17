@@ -30,7 +30,7 @@
 
 // The class KCalcButton is an overriden KPushButton. It offers extra
 // functionality e.g. labels can be richtext, and the button can be
-// told to display its accels in the label, but the most important
+// told to display its shortcuts in the label, but the most important
 // thing is that the button may have several modes with corresponding
 // labels and tooltips. When one switches modes, the corresponding
 // label is displayed.
@@ -79,7 +79,7 @@ public slots:
 protected:
   virtual void paintEvent(QPaintEvent *p);
 
-  bool _show_accel_mode;
+  bool _show_shortcut_mode;
 
   ButtonModeFlags _mode_flags;
 

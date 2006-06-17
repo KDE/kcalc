@@ -30,7 +30,7 @@
 
 
 KCalcButton::KCalcButton(QWidget * parent)
-  : KPushButton(parent), _show_accel_mode(false),
+  : KPushButton(parent), _show_shortcut_mode(false),
     _mode_flags(ModeNormal), _label(this)
 {
   setAutoDefault(false);
@@ -38,7 +38,7 @@ KCalcButton::KCalcButton(QWidget * parent)
 
 KCalcButton::KCalcButton(const QString &label, QWidget * parent,
 			 const QString &tooltip)
-  : KPushButton(label, parent), _show_accel_mode(false),
+  : KPushButton(label, parent), _show_shortcut_mode(false),
     _mode_flags(ModeNormal), _label(this)
 {
   setAutoDefault(false);
@@ -68,8 +68,8 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
   }
 
   if (_mode.contains(new_mode)) {
-    // save accel, because setting label erases accel
-    QKeySequence _accel = accel();
+    // save shortcut, because setting label erases it
+    QKeySequence _shortcut = shortcut();
 
     if(_mode[new_mode].is_label_richtext) {
       _label.setText(_mode[new_mode].label);
@@ -79,17 +79,16 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
       setText(_mode[new_mode].label);
       _label.hide();
     }
-    QToolTip::remove(this);
     this->setToolTip( _mode[new_mode].tooltip);
     _mode_flags = new_mode;
 
-    // restore accel
-    setAccel(_accel);
+    // restore shortcut
+    setShortcut(_shortcut);
   }
 
   // this is necessary for people pressing CTRL and changing mode at
   // the same time...
-  if (_show_accel_mode) slotSetAccelDisplayMode(true);
+  if (_show_shortcut_mode) slotSetAccelDisplayMode(true);
   
   update();
 }
@@ -103,13 +102,13 @@ static QString escape(QString str)
 
 void KCalcButton::slotSetAccelDisplayMode(bool flag)
 {
-  _show_accel_mode = flag;
+  _show_shortcut_mode = flag;
 
-  // save accel, because setting label erases accel
-  QKeySequence _accel = accel();
+  // save shortcut, because setting label erases it
+  QKeySequence _shortcut = shortcut();
   
   if (flag == true) {
-    setText(escape(QString(accel())));
+    setText(escape(QString(shortcut())));
     _label.hide();
   } else {
     if(_mode[_mode_flags].is_label_richtext) {
@@ -122,8 +121,8 @@ void KCalcButton::slotSetAccelDisplayMode(bool flag)
     }
   }
 
-  // restore accel
-  setAccel(_accel);
+  // restore shortcut
+  setShortcut(_shortcut);
   update();
 }
 
@@ -142,7 +141,7 @@ void KSquareButton::paintEvent(QPaintEvent *p)
 {
   // draw first button frame
   KCalcButton::paintEvent(p);
-  if (_show_accel_mode)
+  if (_show_shortcut_mode)
     return;
 
   QPainter paint(this);
@@ -152,7 +151,7 @@ void KSquareButton::paintEvent(QPaintEvent *p)
   int h2 = h/2 - 7;
   // in some KDE-styles (.NET, Phase,...) we have to set the painter
   // back to the right color
-  paint.setPen(foregroundColor());
+  paint.setPen(palette().color(QPalette::Text));
   // these statements are for the improved
   // representation of the sqrt function
   paint.drawLine(w2, 11 + h2, w2 + 2, 7 + h2);
