@@ -189,9 +189,12 @@ void KCalcDisplay::slotSelectionTimedOut(void)
 
 void KCalcDisplay::invertColors()
 {
-	QColor tmp_col(paletteBackgroundColor());
-	setPaletteBackgroundColor(paletteForegroundColor());
-	setPaletteForegroundColor(tmp_col);
+	QPalette tmp_palette;
+	tmp_palette.setColor(backgroundRole(),
+			palette().color(QPalette::WindowText));
+	tmp_palette.setColor(foregroundRole(),
+			palette().color(QPalette::Background));
+	setPalette(tmp_palette);
 }
 
 

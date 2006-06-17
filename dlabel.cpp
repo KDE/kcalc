@@ -62,7 +62,6 @@ void DispLogic::changeSettings()
 	pal.setColor(QPalette::Background, KCalcSettings::backColor());
 
 	setPalette(pal);
-	setBackgroundColor(KCalcSettings::backColor());
 
 	setFont(KCalcSettings::font());
 

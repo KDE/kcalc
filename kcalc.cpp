@@ -2200,7 +2200,7 @@ void KCalculator::set_colors()
 {
 	calc_display->changeSettings();
 
-	QColor bg = palette().active().background();
+	QColor bg = palette().color(QPalette::Active, QPalette::Background);
 
 	QPalette numPal(KCalcSettings::numberButtonsColor(), bg);
 	for(int i=0; i<10; i++)
@@ -2273,7 +2273,7 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
 			int num_but;
 			if((num_but = NumButtonGroup->buttons().indexOf(calcButton)) != -1)
 			{
-			  QPalette pal(c, palette().active().background());
+			  QPalette pal(c, palette().color(QPalette::Active, QPalette::Background));
 			  // Was it hex-button or normal digit??
 			  if (num_but <10)
 			    for(int i=0; i<10; i++)
@@ -2303,7 +2303,7 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
 			else
 				return false;
 
-			QPalette pal(c, palette().active().background());
+			QPalette pal(c, palette().color(QPalette::Active, QPalette::Background));
 
 			for(int i = 0; i < list->size(); i++)
 				list->at(i)->setPalette(pal);

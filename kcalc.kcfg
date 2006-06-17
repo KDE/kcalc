@@ -18,7 +18,7 @@
     </entry>
     <entry name="NumberButtonsColor" type="Color">
       <label>The color of number buttons.</label>
-      <code>QColor defaultButtonColor = kapp->palette().active().background();</code>
+      <code>QColor defaultButtonColor = kapp->palette().color(QPalette::Active, QPalette::Background);</code>
       <default code="true">defaultButtonColor</default>
     </entry>
     <entry name="FunctionButtonsColor" type="Color">
