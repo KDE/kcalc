@@ -30,12 +30,12 @@ QString const  numtypeToString(KNumber::NumType arg)
 void checkResult(QString const &string, KNumber const & result,
 		 QString const & desired_string, KNumber::NumType desired)
 {
-  std::cout << "Testing result of: " << string.ascii() <<
-    " should give " << desired_string.ascii() << " and gives " <<
-    result.toQString(8).ascii() << "....\n";
+  std::cout << "Testing result of: " << string.toAscii().constData() <<
+    " should give " << desired_string.toAscii().constData() << " and gives " <<
+    result.toQString(8).toAscii().constData() << "....\n";
   std::cout << "The type of the result should be " <<
-    numtypeToString(desired).ascii() << " and gives " <<
-    numtypeToString(result.type()).ascii() << "....  ";
+    numtypeToString(desired).toAscii().constData() << " and gives " <<
+    numtypeToString(result.type()).toAscii().constData() << "....  ";
 
   if (result.type() == desired  &&
       result.toQString(8) == desired_string) {
@@ -50,7 +50,7 @@ void checkResult(QString const &string, KNumber const & result,
 void checkTruth(QString const &string, bool computation,
 		bool desired_result)
 {
-  std::cout << "Testing truth of: " << string.ascii() <<
+  std::cout << "Testing truth of: " << string.toAscii().constData() <<
     " should be " << desired_result << " and is " <<
     computation << "....\n";
 
@@ -67,9 +67,9 @@ void checkTruth(QString const &string, bool computation,
 void checkType(QString const &string, KNumber::NumType test_arg,
 	       KNumber::NumType desired)
 {
-  std::cout << "Testing type of: " << string.ascii() << " should give " <<
-    numtypeToString(desired).ascii() << " and gives " <<
-    numtypeToString(test_arg).ascii() << "....";
+  std::cout << "Testing type of: " << string.toAscii().constData() << " should give " <<
+    numtypeToString(desired).toAscii().constData() << " and gives " <<
+    numtypeToString(test_arg).toAscii().constData() << "....";
 
   if (test_arg == desired) {
     std::cout << "OK\n";
