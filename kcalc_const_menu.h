@@ -42,8 +42,12 @@ Q_OBJECT
 
  public:
   KCalcConstMenu(QWidget * parent = 0);
+  KCalcConstMenu(QString const & title, QWidget * parent = 0);
 
   static const struct science_constant Constants[];
+
+ private:
+  void _init_all(void);
 
 public slots:
   void slotPassActivate(int item)

@@ -49,20 +49,13 @@ const struct science_constant KCalcConstMenu::Constants[] = {
   {"N_A", I18N_NOOP("Avogadro's Number"), "", "6.0221415e23", Thermodynamics}
 };
 
-KCalcConstMenu::KCalcConstMenu(QWidget * parent)
-  : QMenu(parent)
+void KCalcConstMenu::_init_all(void)
 {
-  QMenu *math_menu = new QMenu(this);
-  QMenu *em_menu = new QMenu(this);
-  QMenu *nuclear_menu = new QMenu(this);
-  QMenu *thermo_menu = new QMenu(this);
-  QMenu *gravitation_menu = new QMenu(this);
-
-  insertItem(i18n("Mathematics"), math_menu);
-  insertItem(i18n("Electromagnetism"), em_menu);
-  insertItem(i18n("Atomic && Nuclear"), nuclear_menu);
-  insertItem(i18n("Thermodynamics"), thermo_menu);
-  insertItem(i18n("Gravitation"), gravitation_menu);
+  QMenu *math_menu = addMenu(i18n("Mathematics"));
+  QMenu *em_menu = addMenu(i18n("Electromagnetism"));
+  QMenu *nuclear_menu = addMenu(i18n("Atomic && Nuclear"));
+  QMenu *thermo_menu = addMenu(i18n("Thermodynamics"));
+  QMenu *gravitation_menu = addMenu(i18n("Gravitation"));
 
   connect(math_menu, SIGNAL(activated(int)), this, SLOT(slotPassActivate(int)));
   connect(em_menu, SIGNAL(activated(int)), this, SLOT(slotPassActivate(int)));
@@ -83,6 +76,19 @@ KCalcConstMenu::KCalcConstMenu(QWidget * parent)
     if(Constants[i].category  &  Gravitation)
       gravitation_menu->insertItem(i18n(Constants[i].name), i);
   }
+}
+
+
+KCalcConstMenu::KCalcConstMenu(QString const & title, QWidget * parent)
+  : QMenu(title, parent)
+{
+  _init_all();
+}
+
+KCalcConstMenu::KCalcConstMenu(QWidget * parent)
+  : QMenu(parent)
+{
+  _init_all();
 }
 
 
