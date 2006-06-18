@@ -33,7 +33,7 @@
 
 #include <kglobal.h>
 #include <klocale.h>
-#include <knotifyclient.h>
+#include <knotification.h>
 #include "kcalc_settings.h"
 #include "kcalcdisplay.h"
 #include "kcalcdisplay.moc"
@@ -135,24 +135,24 @@ void KCalcDisplay::slotPaste(bool bClipboard)
 
 	if (tmp_str.isNull())
 	{
-		if (_beep)  KNotifyClient::beep();
+		if (_beep)  KNotification::beep();
 		return;
 	}
 
-	if (_num_base == NB_HEX  &&  ! tmp_str.startsWith("0x", false))
+	if (_num_base == NB_HEX  &&  ! tmp_str.startsWith("0x", Qt::CaseInsensitive))
 	  tmp_str.prepend( "0x" );
 
 	bool was_ok;
 	CALCAMNT tmp_result;
 
 	if ( (_num_base == NB_OCTAL || _num_base == NB_BINARY) &&
-	     !  tmp_str.startsWith("0x",false))
+	     !  tmp_str.startsWith("0x",Qt::CaseInsensitive))
 	{
 		tmp_result = CALCAMNT(tmp_str.toLongLong(& was_ok, _num_base));
 		if (!was_ok)
 		{
 			tmp_result = (CALCAMNT) (0);
-			if(_beep) KNotifyClient::beep();
+			if(_beep) KNotification::beep();
 			return ;
 		}
 	  
@@ -249,7 +249,7 @@ bool KCalcDisplay::setAmount(const QString &string)
 	if (!was_ok)
 	{
 		tmp_result = static_cast<CALCAMNT>(0);
-		if(_beep) KNotifyClient::beep();
+		if(_beep) KNotification::beep();
 		return false;
 	}
 	
@@ -273,7 +273,7 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 		_display_amount = new_amount.integerPart();
 		unsigned long long int tmp_workaround = static_cast<unsigned long long int>(_display_amount);
 
-		display_str = QString::number(tmp_workaround, _num_base).upper();
+		display_str = QString::number(tmp_workaround, _num_base).toUpper();
 	}
 	else // _num_base == NB_DECIMAL
 	{
@@ -432,7 +432,7 @@ void KCalcDisplay::newCharacter(char const new_char)
 		if (_num_base != NB_DECIMAL  ||
 		    _eestate == true)
 		{
-			if(_beep) KNotifyClient::beep();
+			if(_beep) KNotification::beep();
 			return;
 		}
 		_eestate = true;
@@ -445,7 +445,7 @@ void KCalcDisplay::newCharacter(char const new_char)
 		    _period == true  ||
 		    _eestate == true)
 		{
-			if(_beep) KNotifyClient::beep();
+			if(_beep) KNotification::beep();
 			return;
 		}
 		_period = true;
@@ -459,7 +459,7 @@ void KCalcDisplay::newCharacter(char const new_char)
 	case 'A':
 		if (_num_base == NB_DECIMAL)
 		{
-			if(_beep) KNotifyClient::beep();
+			if(_beep) KNotification::beep();
 			return;
 		}
 		// no break
@@ -467,7 +467,7 @@ void KCalcDisplay::newCharacter(char const new_char)
 	case '8':
 		if (_num_base == NB_OCTAL)
 		{
-			if(_beep) KNotifyClient::beep();
+			if(_beep) KNotification::beep();
 			return;
 		}
 		// no break
@@ -479,7 +479,7 @@ void KCalcDisplay::newCharacter(char const new_char)
 	case '2':
 		if (_num_base == NB_BINARY)
 		{
-			if(_beep) KNotifyClient::beep();
+			if(_beep) KNotification::beep();
 			return;
 		}
 		// no break
@@ -488,7 +488,7 @@ void KCalcDisplay::newCharacter(char const new_char)
 		break;
 
 	default:
-		if(_beep) KNotifyClient::beep();
+		if(_beep) KNotification::beep();
 		return;
 	}
 
