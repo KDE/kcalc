@@ -112,34 +112,29 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	//BaseChooseGroup->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed, false);
 	QHBoxLayout * base_but_layout = new QHBoxLayout(BaseChooseGroup);
 
-	pbBaseChoose[0] =  new QRadioButton(i18n("&Hex"), BaseChooseGroup,
-					    "Hexadecimal-Switch");
+	pbBaseChoose[0] =  new QRadioButton(i18n("&Hex"), BaseChooseGroup);
 	connect(pbBaseChoose[0], SIGNAL(clicked(void)), SLOT(slotBaseHex(void)));
 	base_but_layout->add(pbBaseChoose[0]);
 	pbBaseChoose[0]->setToolTip( i18n("Switch base to hexadecimal."));
 
-	pbBaseChoose[1] =  new QRadioButton(i18n("&Dec"), BaseChooseGroup,
-					    "Decimal-Switch");
+	pbBaseChoose[1] =  new QRadioButton(i18n("&Dec"), BaseChooseGroup);
 	connect(pbBaseChoose[1], SIGNAL(clicked(void)), SLOT(slotBaseDec(void)));
 	base_but_layout->add(pbBaseChoose[1]);
 	pbBaseChoose[1]->setToolTip( i18n("Switch base to decimal."));
 
-	pbBaseChoose[2] =  new QRadioButton(i18n("&Oct"), BaseChooseGroup,
-					    "Octal-Switch");
+	pbBaseChoose[2] =  new QRadioButton(i18n("&Oct"), BaseChooseGroup);
 	connect(pbBaseChoose[2], SIGNAL(clicked(void)), SLOT(slotBaseOct(void)));
 	base_but_layout->add(pbBaseChoose[2]);
 	pbBaseChoose[2]->setToolTip( i18n("Switch base to octal."));
 
-	pbBaseChoose[3] =  new QRadioButton(i18n("&Bin"), BaseChooseGroup,
-					    "Binary-Switch");
+	pbBaseChoose[3] =  new QRadioButton(i18n("&Bin"), BaseChooseGroup);
 	connect(pbBaseChoose[3], SIGNAL(clicked(void)), SLOT(slotBaseBin(void)));
 	base_but_layout->add(pbBaseChoose[3]);
 	pbBaseChoose[3]->setToolTip( i18n("Switch base to binary."));
 
 
 	// Create Button to select AngleMode
-	pbAngleChoose =  new QPushButton(i18n("&Angle"),
-					 central, "ChooseAngleMode-Button");
+	pbAngleChoose =  new QPushButton(i18n("&Angle"), central);
 	pbAngleChoose->setToolTip( i18n("Choose the unit for the angle measure"));
 	pbAngleChoose->setAutoDefault(false);
 
@@ -241,17 +236,14 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// All these layouts are needed because all the groups have their
 	// own size per row so we can't use one huge QGridLayout (mosfet)
 	//
-	QGridLayout *smallBtnLayout = new QGridLayout(mSmallPage, 6, 4, 0,
-		mInternalSpacing);
-	QGridLayout *largeBtnLayout = new QGridLayout(mLargePage, 5, 2, 0,
-		mInternalSpacing);
+	QGridLayout *smallBtnLayout = new QGridLayout(mSmallPage);
+	QGridLayout *largeBtnLayout = new QGridLayout(mLargePage);
 
 	QHBoxLayout *topLayout		= new QHBoxLayout();
 	QHBoxLayout *btnLayout		= new QHBoxLayout();
 
 	// bring them all together
-	QVBoxLayout *mainLayout = new QVBoxLayout(central, mInternalSpacing,
-		mInternalSpacing);
+	QVBoxLayout *mainLayout = new QVBoxLayout(central);
 
 	mainLayout->addLayout(topLayout);
 	mainLayout->addLayout(btnLayout);
@@ -1824,7 +1816,7 @@ void KCalculator::slotStatDataInputclicked(void)
 	{
 		pbInv->setChecked(false);
 		core.StatDataDel(0);
-		statusBar()->message(i18n("Last stat item erased"), 3000);
+		statusBar()->showMessage(i18n("Last stat item erased"), 3000);
 	}
 
 	UpdateDisplay(true);
@@ -1835,7 +1827,7 @@ void KCalculator::slotStatClearDataclicked(void)
         if(!inverse)
 	{
 		core.StatClearAll(0);
-		statusBar()->message(i18n("Stat mem cleared"), 3000);
+		statusBar()->showMessage(i18n("Stat mem cleared"), 3000);
 	}
 	else
 	{
