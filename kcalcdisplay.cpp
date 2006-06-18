@@ -55,8 +55,8 @@ static CALCAMNT toDouble(const QString &s, bool &ok)
 	return result;
 }
 
-KCalcDisplay::KCalcDisplay(QWidget *parent, const char *name)
-  :QLabel(parent,name), _beep(false), _groupdigits(false), _button(0), _lit(false),
+KCalcDisplay::KCalcDisplay(QWidget *parent)
+  :QLabel(parent), _beep(false), _groupdigits(false), _button(0), _lit(false),
    _num_base(NB_DECIMAL), _precision(9),
    _fixed_precision(-1), _display_amount(0),
    selection_timer(new QTimer)

@@ -40,8 +40,7 @@ class DispLogic : public KCalcDisplay
 Q_OBJECT
 
 public:
-	DispLogic(QWidget *parent, const char *name,
-		  KActionCollection *coll);
+	DispLogic(QWidget *parent, KActionCollection *coll);
 	~DispLogic();
 
 	void changeSettings();

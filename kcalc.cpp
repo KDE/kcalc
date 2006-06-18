@@ -58,7 +58,6 @@
 #include <kkeydialog.h>
 #include <kmenu.h>
 #include <kmenubar.h>
-#include <knotifyclient.h>
 #include <knumvalidator.h>
 #include <kpushbutton.h>
 #include <kstatusbar.h>
@@ -94,7 +93,7 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// Detect color change
 	connect(kapp,SIGNAL(kdisplayPaletteChanged()), SLOT(set_colors()));
 
-	calc_display = new DispLogic(central, "display", actionCollection());
+	calc_display = new DispLogic(central, actionCollection());
 
 	setupMainActions();
 

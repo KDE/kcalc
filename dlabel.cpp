@@ -35,9 +35,8 @@
 
 
 
-DispLogic::DispLogic(QWidget *parent, const char *name,
-		     KActionCollection *coll)
-  :KCalcDisplay(parent,name), _history_index(0)
+DispLogic::DispLogic(QWidget *parent, KActionCollection *coll)
+  :KCalcDisplay(parent), _history_index(0)
 {
 	KNumber::setDefaultFloatOutput(true);
 	KNumber::setDefaultFractionalInput(true);

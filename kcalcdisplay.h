@@ -81,7 +81,7 @@ class KCalcDisplay : public QLabel
 Q_OBJECT
 
 public:
-	KCalcDisplay(QWidget *parent=0, const char *name=0);
+	KCalcDisplay(QWidget *parent=0);
 	~KCalcDisplay();
 
 protected:
