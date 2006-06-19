@@ -28,7 +28,7 @@
 #include <QLabel>
 #include <kpushbutton.h>
 
-// The class KCalcButton is an overriden KPushButton. It offers extra
+// The class KCalcButton is an overridden KPushButton. It offers extra
 // functionality e.g. labels can be richtext, and the button can be
 // told to display its shortcuts in the label, but the most important
 // thing is that the button may have several modes with corresponding
