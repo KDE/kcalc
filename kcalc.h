@@ -61,7 +61,7 @@ class KCalculator : public KMainWindow
     Q_OBJECT
 
 public:
-	KCalculator(QWidget *parent = 0, const char *name = 0);
+	KCalculator(QWidget *parent = 0);
 	~KCalculator();
 
 signals:

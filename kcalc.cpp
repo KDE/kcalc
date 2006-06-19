@@ -80,9 +80,9 @@ static const char description[] = I18N_NOOP("KDE Calculator");
 static const char version[] = KCALCVERSION;
 
 
-KCalculator::KCalculator(QWidget *parent, const char *name)
-	: KMainWindow(parent, name), inverse(false),
-	  hyp_mode(false), memory_num(0.0), calc_display(NULL),
+KCalculator::KCalculator(QWidget *parent)
+	: KMainWindow(parent), inverse(false), hyp_mode(false),
+	  memory_num(0.0), calc_display(NULL),
 	  mInternalSpacing(4), core()
 {
 	/* central widget to contain all the elements */
@@ -113,22 +113,22 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 
 	pbBaseChoose[0] =  new QRadioButton(i18n("&Hex"), BaseChooseGroup);
 	connect(pbBaseChoose[0], SIGNAL(clicked(void)), SLOT(slotBaseHex(void)));
-	base_but_layout->add(pbBaseChoose[0]);
+	base_but_layout->addWidget(pbBaseChoose[0]);
 	pbBaseChoose[0]->setToolTip( i18n("Switch base to hexadecimal."));
 
 	pbBaseChoose[1] =  new QRadioButton(i18n("&Dec"), BaseChooseGroup);
 	connect(pbBaseChoose[1], SIGNAL(clicked(void)), SLOT(slotBaseDec(void)));
-	base_but_layout->add(pbBaseChoose[1]);
+	base_but_layout->addWidget(pbBaseChoose[1]);
 	pbBaseChoose[1]->setToolTip( i18n("Switch base to decimal."));
 
 	pbBaseChoose[2] =  new QRadioButton(i18n("&Oct"), BaseChooseGroup);
 	connect(pbBaseChoose[2], SIGNAL(clicked(void)), SLOT(slotBaseOct(void)));
-	base_but_layout->add(pbBaseChoose[2]);
+	base_but_layout->addWidget(pbBaseChoose[2]);
 	pbBaseChoose[2]->setToolTip( i18n("Switch base to octal."));
 
 	pbBaseChoose[3] =  new QRadioButton(i18n("&Bin"), BaseChooseGroup);
 	connect(pbBaseChoose[3], SIGNAL(clicked(void)), SLOT(slotBaseBin(void)));
-	base_but_layout->add(pbBaseChoose[3]);
+	base_but_layout->addWidget(pbBaseChoose[3]);
 	pbBaseChoose[3]->setToolTip( i18n("Switch base to binary."));
 
 
@@ -612,8 +612,7 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	connect(pbEqual, SIGNAL(clicked(void)), SLOT(slotEqualclicked(void)));
 
 
-	QGridLayout *thisLayout = new QGridLayout(thisPage, 5, 4, 0,
-						  mInternalSpacing);
+	QGridLayout *thisLayout = new QGridLayout(thisPage);
 
 	// large button layout
 	thisLayout->addWidget(pbEE, 0, 0);
@@ -624,21 +623,21 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	thisLayout->addWidget(NumButtonGroup->buttons()[7], 1, 0);
 	thisLayout->addWidget(NumButtonGroup->buttons()[8], 1, 1);
 	thisLayout->addWidget(NumButtonGroup->buttons()[9], 1, 2);
-	thisLayout->addMultiCellWidget(pbPlus, 1, 2, 3, 3);
+	thisLayout->addWidget(pbPlus, 1, 3, 2, 1);
 
 	thisLayout->addWidget(NumButtonGroup->buttons()[4], 2, 0);
 	thisLayout->addWidget(NumButtonGroup->buttons()[5], 2, 1);
 	thisLayout->addWidget(NumButtonGroup->buttons()[6], 2, 2);
-	//thisLayout->addMultiCellWidget(pbPlus, 1, 2, 3, 3);
+	// thisLayout->addWidget(pbPlus, 1, 3, 2, 1);
 
 	thisLayout->addWidget(NumButtonGroup->buttons()[1], 3, 0);
 	thisLayout->addWidget(NumButtonGroup->buttons()[2], 3, 1);
 	thisLayout->addWidget(NumButtonGroup->buttons()[3], 3, 2);
-	thisLayout->addMultiCellWidget(pbEqual, 3, 4, 3, 3);
+	thisLayout->addWidget(pbEqual, 3, 3, 2, 1);
 
-	thisLayout->addMultiCellWidget(NumButtonGroup->buttons()[0], 4, 4, 0, 1);
+	thisLayout->addWidget(NumButtonGroup->buttons()[0], 4, 0, 1, 2);
 	thisLayout->addWidget(pbPeriod, 4, 2);
-	//thisLayout->addMultiCellWidget(pbEqual, 3, 4, 3, 3);
+	// thisLayout->addWidget(pbEqual, 3, 3, 2, 1);
 
 	thisLayout->addItem( new QSpacerItem(10, 0 ), 0, 0 );
 	thisLayout->addItem( new QSpacerItem(10, 0 ), 0, 1 );
@@ -2339,7 +2338,7 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
 
 	KApplication app;
 
-	KCalculator *calc = new KCalculator(0, "calculator-window");
+	KCalculator *calc = new KCalculator(0);
 	app.setTopWidget(calc);
 
 	calc->show();
