@@ -77,7 +77,10 @@ void KCalcConstButton::initPopupMenu(void)
   addAction(tmp_menu->menuAction());
   setContextMenuPolicy(Qt::ActionsContextMenu);
   
-  connect(tmp_menu, SIGNAL(activated(int)), SLOT(slotChooseScientificConst(int)));
+  connect(tmp_menu,
+	  SIGNAL(triggeredConstant(science_constant const &)),
+	  SLOT(slotChooseScientificConst(science_constant const &)));
+
 }
 
 void KCalcConstButton::slotConfigureButton()
@@ -91,13 +94,11 @@ void KCalcConstButton::slotConfigureButton()
     }
 }
 
-void KCalcConstButton::slotChooseScientificConst(int option)
+void KCalcConstButton::slotChooseScientificConst(struct science_constant const &const_chosen)
 {
-  KCalcSettings::setValueConstant(_button_num,
-				  KCalcConstMenu::Constants[option].value);
+  KCalcSettings::setValueConstant(_button_num, const_chosen.value);
 
-  KCalcSettings::setNameConstant(_button_num,
-				 KCalcConstMenu::Constants[option].label);
+  KCalcSettings::setNameConstant(_button_num,const_chosen.label);
   
   setLabelAndTooltip();
 }

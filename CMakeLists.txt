@@ -43,6 +43,7 @@ install_targets(/bin kcalc )
 install_files( ${XDG_APPS_DIR} FILES kcalc.desktop )
 install_files( ${KCFG_INSTALL_DIR} FILES kcalc.kcfg )
 install_files( ${DATA_INSTALL_DIR}/kcalc FILES kcalcui.rc )
+install_files( ${DATA_INSTALL_DIR}/kcalc FILES scienceconstants.xml )
 install_files( ${DATA_INSTALL_DIR}/kconf_update FILES kcalcrc.upd )
 
 kde4_install_icons( ${ICON_INSTALL_DIR}  hicolor )

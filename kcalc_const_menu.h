@@ -23,6 +23,7 @@
 #ifndef _KCALC_CONST_MENU_H
 #define _KCALC_CONST_MENU_H
 
+#include <QList>
 #include <QMenu>
 #include <QString>
 
@@ -30,7 +31,7 @@ enum ConstantCategory {Mathematics = 1, Electromagnetic = 2, Nuclear = 4, Thermo
 
 struct science_constant{
   QString label;
-  const char * name;
+  QString name;
   QString whatsthis;
   QString value;
   ConstantCategory category;
@@ -44,16 +45,19 @@ Q_OBJECT
   KCalcConstMenu(QWidget * parent = 0);
   KCalcConstMenu(QString const & title, QWidget * parent = 0);
 
-  static const struct science_constant Constants[];
+  static QList<struct science_constant> Constants;
+  static void init_consts(void);
+
+signals:
+  void triggeredConstant(struct science_constant const &);
+
 
  private:
   void _init_all(void);
 
+
 public slots:
-  void slotPassActivate(int item)
-  {
-    emit activated(item);
-  };
+  void slotPassSignalThrough(QAction  *chosen_const);
 };
 
 #endif  // _KCALC_CONST_MENU_H

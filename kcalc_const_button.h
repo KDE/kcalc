@@ -45,7 +45,7 @@ Q_OBJECT
 
  private slots:
   void slotConfigureButton();
-  void slotChooseScientificConst(int option);
+  void slotChooseScientificConst(struct science_constant const &const_chosen);
 
  private:
   void initPopupMenu(void);

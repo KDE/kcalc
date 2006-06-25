@@ -19,35 +19,71 @@
 
 */
 
+#include <QDomDocument>
+#include <QFile>
 #include <klocale.h>
+#include <kstandarddirs.h>
 
 #include "kcalc_const_menu.h"
 
-#define NUM_CONST 17
+QList<struct science_constant> KCalcConstMenu::Constants;
 
-const struct science_constant KCalcConstMenu::Constants[] = {
-  {QString::fromUtf8("π"), I18N_NOOP("Pi"), "",
-   "3.1415926535897932384626433832795028841971693993751"
-   "05820974944592307816406286208998628034825342117068", Mathematics},
-  {"e", I18N_NOOP("Euler Number"), "",
-   "2.7182818284590452353602874713526624977572470936999"
-   "59574966967627724076630353547594571382178525166427", Mathematics},
-  {QString::fromUtf8("φ"), I18N_NOOP("Golden Ratio"), "", "1.61803398874989484820458683436563811", Mathematics},
-  {"c", I18N_NOOP("Light Speed"), "", "2.99792458e8", Electromagnetic},
-  {"h", I18N_NOOP("Planck's Constant"), "", "6.6260693e-34", Nuclear},
-  {"G", I18N_NOOP("Constant of Gravitation"), "", "6.6742e-11", Gravitation},
-  {"g", I18N_NOOP("Earth Acceleration"), "", "9.80665", Gravitation},
-  {"e", I18N_NOOP("Elementary Charge"), "", "1.60217653e-19", ConstantCategory(Electromagnetic|Nuclear)},
-  {"Z_0", I18N_NOOP("Impedance of Vacuum"), "", "376.730313461", Electromagnetic},
-  {QString::fromUtf8("α"), I18N_NOOP("Fine-Structure Constant"), "", "7.297352568e-3", Nuclear},
-  {QString::fromUtf8("μ")+"_0", I18N_NOOP("Permeability of Vacuum"), "", "1.2566370614e-6", Electromagnetic},
-  {QString::fromUtf8("ε")+"_0", I18N_NOOP("Permittivity of vacuum"), "", "8.854187817e-12", Electromagnetic},
-  {"k", I18N_NOOP("Boltzmann Constant"), "", "1.3806505e-23", Thermodynamics},
-  {"1u", I18N_NOOP("Atomic Mass Unit"), "", "1.66053886e-27", Thermodynamics},
-  {"R", I18N_NOOP("Molar Gas Constant"), "", "8.314472", Thermodynamics},
-  {QString::fromUtf8("σ"), I18N_NOOP("Stefan-Boltzmann Constant"), "", "5.670400e-8", Thermodynamics},
-  {"N_A", I18N_NOOP("Avogadro's Number"), "", "6.0221415e23", Thermodynamics}
-};
+
+void KCalcConstMenu::init_consts(void)
+{
+  QDomDocument doc("list_of_constants");
+  QFile file(KGlobal::dirs()->findResource("appdata", "scienceconstants.xml"));
+
+  if (!file.open(QIODevice::ReadOnly)) {
+    qDebug("Didn't find file \"scienceconstants.xml\"."
+	   "No constants will be available.");
+    return;
+  }
+  if (!doc.setContent(&file)) {
+    file.close();
+    qDebug("The file \"scienceconstants.xml\" doesn't seem"
+	   "to be a valid description file."
+	   "No constants will be available.");
+    return;
+  }
+  file.close();
+
+  // print out the element names of all elements that are direct children
+  // of the outermost element.
+  QDomElement docElem = doc.documentElement();
+
+  int i = 0;
+  QDomNode n = docElem.firstChild();
+  while(!n.isNull()) {
+    QDomElement e = n.toElement(); // try to convert the node to an element.
+    if(!e.isNull()  &&  e.tagName() == "constant") {
+      struct science_constant tmp_const;
+
+      tmp_const.name = I18N_NOOP(e.attributeNode("name").value());
+      tmp_const.label = e.attributeNode("symbol").value();
+      tmp_const.value = e.attributeNode("value").value();
+
+      QString tmp_str_category = e.attributeNode("category").value();
+      
+      if (tmp_str_category == "mathematics")
+	tmp_const.category = Mathematics;
+      if (tmp_str_category == "electromagnetism")
+	tmp_const.category = Electromagnetic;
+      if (tmp_str_category == "nuclear")
+	tmp_const.category = Nuclear;
+      if (tmp_str_category == "thermodynamics")
+	tmp_const.category = Thermodynamics;
+      if (tmp_str_category == "gravitation")
+	tmp_const.category = Gravitation;
+
+      tmp_const.whatsthis = e.firstChildElement("description").text();
+
+      Constants.append(tmp_const);
+    }
+    n = n.nextSibling();
+    i++;
+  }
+}
 
 void KCalcConstMenu::_init_all(void)
 {
@@ -57,27 +93,31 @@ void KCalcConstMenu::_init_all(void)
   QMenu *thermo_menu = addMenu(i18n("Thermodynamics"));
   QMenu *gravitation_menu = addMenu(i18n("Gravitation"));
 
-  connect(math_menu, SIGNAL(activated(int)), this, SLOT(slotPassActivate(int)));
-  connect(em_menu, SIGNAL(activated(int)), this, SLOT(slotPassActivate(int)));
-  connect(nuclear_menu, SIGNAL(activated(int)), this, SLOT(slotPassActivate(int)));
-  connect(thermo_menu, SIGNAL(activated(int)), this, SLOT(slotPassActivate(int)));
-  connect(gravitation_menu, SIGNAL(activated(int)), this, SLOT(slotPassActivate(int)));
+  connect(this, SIGNAL(triggered(QAction *)), SLOT(slotPassSignalThrough(QAction *)));
 
 
-  for (int i = 0; i<NUM_CONST; i++) {
-    if(Constants[i].category  &  Mathematics)
-      math_menu->insertItem(i18n(Constants[i].name), i);
-    if(Constants[i].category  &  Electromagnetic)
-      em_menu->insertItem(i18n(Constants[i].name), i);
-    if(Constants[i].category  &  Nuclear)
-      nuclear_menu->insertItem(i18n(Constants[i].name), i);
-    if(Constants[i].category  &  Thermodynamics)
-      thermo_menu->insertItem(i18n(Constants[i].name), i);
-    if(Constants[i].category  &  Gravitation)
-      gravitation_menu->insertItem(i18n(Constants[i].name), i);
+  for (int i = 0; i<Constants.size(); i++) {
+    QAction *tmp_action = new QAction(i18n(Constants.at(i).name.toAscii().data()), this);
+    tmp_action->setData(QVariant(i));
+    if(Constants.at(i).category  &  Mathematics)
+      math_menu->addAction(tmp_action);
+    if(Constants.at(i).category  &  Electromagnetic)
+      em_menu->addAction(tmp_action);
+    if(Constants.at(i).category  &  Nuclear)
+      nuclear_menu->addAction(tmp_action);
+    if(Constants.at(i).category  &  Thermodynamics)
+      thermo_menu->addAction(tmp_action);
+    if(Constants.at(i).category  &  Gravitation)
+      gravitation_menu->addAction(tmp_action);
   }
 }
 
+void KCalcConstMenu::slotPassSignalThrough(QAction  *chosen_const)
+{
+  bool tmp_bool;
+  int chosen_const_idx = (chosen_const->data()).toInt(& tmp_bool);
+  emit triggeredConstant(Constants.at(chosen_const_idx));
+}
 
 KCalcConstMenu::KCalcConstMenu(QString const & title, QWidget * parent)
   : QMenu(title, parent)

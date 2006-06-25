@@ -89,6 +89,9 @@ KCalculator::KCalculator(QWidget *parent)
 	QWidget *central = new QWidget(this);
 	setCentralWidget(central);
 	KAcceleratorManager::setNoAccel( central );
+	
+	// load science constants from xml-file
+	KCalcConstMenu::init_consts();
 
 	// Detect color change
 	connect(kapp,SIGNAL(kdisplayPaletteChanged()), SLOT(set_colors()));
@@ -1020,15 +1023,20 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
 	changeButtonNames();
 
 	// add menu with scientific constants
-	KCalcConstMenu *tmp_menu = new KCalcConstMenu(this);
-	menuBar()->insertItem(i18n("&Constants"), tmp_menu, -1, 2);
-	connect(tmp_menu, SIGNAL(activated(int)), this,
-			SLOT(slotConstantToDisplay(int)));
+	KCalcConstMenu *tmp_menu = new KCalcConstMenu(i18n("&Constants"),
+						      this);
+	#warning order of menu initialization is fundamental!!
+	menuBar()->insertMenu((menuBar()->actions)()[2], tmp_menu);
+	connect(tmp_menu,
+		SIGNAL(triggeredConstant(science_constant const &)),
+		this,
+		SLOT(slotConstantToDisplay(science_constant const &)));
+
 }
 
-void KCalculator::slotConstantToDisplay(int constant)
+void KCalculator::slotConstantToDisplay(struct science_constant const &const_chosen)
 {
-	calc_display->setAmount(KCalcConstMenu::Constants[constant].value);
+	calc_display->setAmount(const_chosen.value);
 
 	UpdateDisplay(false);
 }
@@ -1272,28 +1280,28 @@ void KCalculator::keyReleaseEvent(QKeyEvent *e)
 
 void KCalculator::slotAngleSelected(int number)
 {
-	pbAngleChoose->popup()->setItemChecked(0, false);
-	pbAngleChoose->popup()->setItemChecked(1, false);
-	pbAngleChoose->popup()->setItemChecked(2, false);
+	pbAngleChoose->menu()->setItemChecked(0, false);
+	pbAngleChoose->menu()->setItemChecked(1, false);
+	pbAngleChoose->menu()->setItemChecked(2, false);
 
 	switch(number)
 	{
 	case 0:
 		_angle_mode = DegMode;
 		statusBar()->changeItem("DEG", 2);
-		pbAngleChoose->popup()->setItemChecked(0, true);
+		pbAngleChoose->menu()->setItemChecked(0, true);
 		calc_display->setStatusText(2, "Deg");
 		break;
 	case 1:
 		_angle_mode = RadMode;
 		statusBar()->changeItem("RAD", 2);
-		pbAngleChoose->popup()->setItemChecked(1, true);
+		pbAngleChoose->menu()->setItemChecked(1, true);
 		calc_display->setStatusText(2, "Rad");
 		break;
 	case 2:
 		_angle_mode = GradMode;
 		statusBar()->changeItem("GRA", 2);
-		pbAngleChoose->popup()->setItemChecked(2, true);
+		pbAngleChoose->menu()->setItemChecked(2, true);
 		calc_display->setStatusText(2, "Gra");
 		break;
 	default: // we shouldn't ever end up here
@@ -1874,7 +1882,7 @@ void KCalculator::showSettings()
 	general->kcfg_Precision->setMaximum(maxprec);
 	dialog->addPage(general, i18n("General"), "package_settings", i18n("General Settings"));
 
-	QWidget *fontWidget = new QWidget(0,"Font");
+	QWidget *fontWidget = new QWidget(0);
 	QVBoxLayout *fontLayout = new QVBoxLayout(fontWidget);
 	KFontChooser *mFontChooser =
 		new KFontChooser(fontWidget, false, QStringList(), false, 6);
@@ -1895,33 +1903,45 @@ void KCalculator::showSettings()
 	tmp_const = constant;
 
 	KCalcConstMenu *tmp_menu = new KCalcConstMenu(this);
-	connect(tmp_menu, SIGNAL(activated(int)),
-		SLOT(slotChooseScientificConst0(int)));
+	connect(tmp_menu,
+		SIGNAL(triggeredConstant(science_constant const &)),
+		this,
+		SLOT(slotChooseScientificConst0(science_constant const &)));
 	(constant->kPushButton0)->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
-	connect(tmp_menu, SIGNAL(activated(int)),
-		SLOT(slotChooseScientificConst1(int)));
+	connect(tmp_menu,
+		SIGNAL(triggeredConstant(science_constant const &)),
+		this,
+		SLOT(slotChooseScientificConst1(science_constant const &)));
 	(constant->kPushButton1)->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
-	connect(tmp_menu, SIGNAL(activated(int)),
-		SLOT(slotChooseScientificConst2(int)));
+	connect(tmp_menu,
+		SIGNAL(triggeredConstant(science_constant const &)),
+		this,
+		SLOT(slotChooseScientificConst2(science_constant const &)));
 	(constant->kPushButton2)->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
-	connect(tmp_menu, SIGNAL(activated(int)),
-		SLOT(slotChooseScientificConst3(int)));
+	connect(tmp_menu,
+		SIGNAL(triggeredConstant(science_constant const &)),
+		this,
+		SLOT(slotChooseScientificConst3(science_constant const &)));
 	(constant->kPushButton3)->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
-	connect(tmp_menu, SIGNAL(activated(int)),
-		SLOT(slotChooseScientificConst4(int)));
+	connect(tmp_menu,
+		SIGNAL(triggeredConstant(science_constant const &)),
+		this,
+		SLOT(slotChooseScientificConst4(science_constant const &)));
 	(constant->kPushButton4)->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
-	connect(tmp_menu, SIGNAL(activated(int)),
-		SLOT(slotChooseScientificConst5(int)));
+	connect(tmp_menu,
+		SIGNAL(triggeredConstant(science_constant const &)),
+		this,
+		SLOT(slotChooseScientificConst5(science_constant const &)));
 	(constant->kPushButton5)->setMenu(tmp_menu);
 
 	dialog->addPage(constant, i18n("Constants"), "constants");
@@ -1938,46 +1958,46 @@ void KCalculator::showSettings()
 // these 6 slots are just a quick hack, instead of setting the
 // TextEdit fields in the configuration dialog, we are setting the
 // Settingvalues themselves!!
-void KCalculator::slotChooseScientificConst0(int option)
+void KCalculator::slotChooseScientificConst0(struct science_constant const & chosen_const)
 {
-  (tmp_const->kcfg_valueConstant0)->setText(KCalcConstMenu::Constants[option].value);
+  (tmp_const->kcfg_valueConstant0)->setText(chosen_const.value);
 
-  (tmp_const->kcfg_nameConstant0)->setText(KCalcConstMenu::Constants[option].label);
+  (tmp_const->kcfg_nameConstant0)->setText(chosen_const.label);
 }
 
-void KCalculator::slotChooseScientificConst1(int option)
+void KCalculator::slotChooseScientificConst1(struct science_constant const & chosen_const)
 {
-  (tmp_const->kcfg_valueConstant1)->setText(KCalcConstMenu::Constants[option].value);
+  (tmp_const->kcfg_valueConstant1)->setText(chosen_const.value);
 
-  (tmp_const->kcfg_nameConstant1)->setText(KCalcConstMenu::Constants[option].label);
+  (tmp_const->kcfg_nameConstant1)->setText(chosen_const.label);
 }
 
-void KCalculator::slotChooseScientificConst2(int option)
+void KCalculator::slotChooseScientificConst2(struct science_constant const & chosen_const)
 {
-  (tmp_const->kcfg_valueConstant2)->setText(KCalcConstMenu::Constants[option].value);
+  (tmp_const->kcfg_valueConstant2)->setText(chosen_const.value);
 
-  (tmp_const->kcfg_nameConstant2)->setText(KCalcConstMenu::Constants[option].label);
+  (tmp_const->kcfg_nameConstant2)->setText(chosen_const.label);
 }
 
-void KCalculator::slotChooseScientificConst3(int option)
+void KCalculator::slotChooseScientificConst3(struct science_constant const & chosen_const)
 {
-  (tmp_const->kcfg_valueConstant3)->setText(KCalcConstMenu::Constants[option].value);
+  (tmp_const->kcfg_valueConstant3)->setText(chosen_const.value);
 
-  (tmp_const->kcfg_nameConstant3)->setText(KCalcConstMenu::Constants[option].label);
+  (tmp_const->kcfg_nameConstant3)->setText(chosen_const.label);
 }
 
-void KCalculator::slotChooseScientificConst4(int option)
+void KCalculator::slotChooseScientificConst4(struct science_constant const & chosen_const)
 {
-  (tmp_const->kcfg_valueConstant4)->setText(KCalcConstMenu::Constants[option].value);
+  (tmp_const->kcfg_valueConstant4)->setText(chosen_const.value);
 
-  (tmp_const->kcfg_nameConstant4)->setText(KCalcConstMenu::Constants[option].label);
+  (tmp_const->kcfg_nameConstant4)->setText(chosen_const.label);
 }
 
-void KCalculator::slotChooseScientificConst5(int option)
+void KCalculator::slotChooseScientificConst5(struct science_constant const & chosen_const)
 {
-  (tmp_const->kcfg_valueConstant5)->setText(KCalcConstMenu::Constants[option].value);
+  (tmp_const->kcfg_valueConstant5)->setText(chosen_const.value);
 
-  (tmp_const->kcfg_nameConstant5)->setText(KCalcConstMenu::Constants[option].label);
+  (tmp_const->kcfg_nameConstant5)->setText(chosen_const.label);
 }
 
 

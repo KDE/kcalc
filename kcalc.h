@@ -150,13 +150,13 @@ protected slots:
     void slotHyptoggled(bool flag);
     void slotConstclicked(int);
 
-    void slotConstantToDisplay(int constant);
-    void slotChooseScientificConst0(int option);
-    void slotChooseScientificConst1(int option);
-    void slotChooseScientificConst2(int option);
-    void slotChooseScientificConst3(int option);
-    void slotChooseScientificConst4(int option);
-    void slotChooseScientificConst5(int option);
+    void slotConstantToDisplay(struct science_constant const &const_chosen);
+    void slotChooseScientificConst0(struct science_constant const &);
+    void slotChooseScientificConst1(struct science_constant const &);
+    void slotChooseScientificConst2(struct science_constant const &);
+    void slotChooseScientificConst3(struct science_constant const &);
+    void slotChooseScientificConst4(struct science_constant const &);
+    void slotChooseScientificConst5(struct science_constant const &);
 
 private:
 	bool inverse;
