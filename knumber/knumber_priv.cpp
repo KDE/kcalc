@@ -181,18 +181,17 @@ QString const _knuminteger::ascii(int prec) const
 
   gmp_asprintf(&tmp_ptr, "%Zd", _mpz);
   QString ret_str = tmp_ptr;
-#warning ok to free with delete?
-  delete tmp_ptr;
+
+  free(tmp_ptr);
   return ret_str;
 }
 
 QString const _knumfraction::ascii(int prec) const
 {
   static_cast<void>(prec);
-  char const *tmp_ptr = mpq_get_str(0, 10, _mpq);
+  char *tmp_ptr = mpq_get_str(0, 10, _mpq);
   QString ret_str = tmp_ptr;
-#warning ok to free with delete?
-  delete tmp_ptr;
+  free(tmp_ptr);
 
   return ret_str;
 }
@@ -208,8 +207,7 @@ QString const _knumfloat::ascii(int prec) const
 
   ret_str = tmp_ptr;
 
-#warning ok to free with delete?
-  delete tmp_ptr;
+  free(tmp_ptr);
 
   return ret_str;
 }
