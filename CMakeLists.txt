@@ -33,18 +33,18 @@ kde4_add_kdeinit_executable( kcalc ${kcalc_KDEINIT_SRCS})
 
 target_link_libraries(kdeinit_kcalc  ${KDE4_KDEUI_LIBS} ${GMP_LIBRARIES})
 
-install_targets(${LIB_INSTALL_DIR} kdeinit_kcalc )
+install(TARGETS kdeinit_kcalc  DESTINATION ${LIB_INSTALL_DIR})
 
 target_link_libraries( kcalc kdeinit_kcalc )
-install_targets(/bin kcalc )
+install(TARGETS kcalc  DESTINATION ${BIN_INSTALL_DIR} )
 
 ########### install files ###############
 
-install_files( ${XDG_APPS_DIR} FILES kcalc.desktop )
-install_files( ${KCFG_INSTALL_DIR} FILES kcalc.kcfg )
-install_files( ${DATA_INSTALL_DIR}/kcalc FILES kcalcui.rc )
-install_files( ${DATA_INSTALL_DIR}/kcalc FILES scienceconstants.xml )
-install_files( ${DATA_INSTALL_DIR}/kconf_update FILES kcalcrc.upd )
+install( FILES kcalc.desktop  DESTINATION ${XDG_APPS_DIR})
+install( FILES kcalc.kcfg  DESTINATION ${KCFG_INSTALL_DIR})
+install( FILES kcalcui.rc  DESTINATION ${DATA_INSTALL_DIR}/kcalc)
+install( FILES scienceconstants.xml  DESTINATION ${DATA_INSTALL_DIR}/kcalc)
+install( FILES kcalcrc.upd  DESTINATION ${DATA_INSTALL_DIR}/kconf_update)
 
 kde4_install_icons( ${ICON_INSTALL_DIR}  hicolor )
 
