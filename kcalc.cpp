@@ -1873,7 +1873,7 @@ void KCalculator::showSettings()
 
 	// Create a new dialog with the same name as the above checking code.
 	KConfigDialog *dialog = new KConfigDialog(this, "settings", KCalcSettings::self());
-	dialog->enableButtonSeparator( true );
+	dialog->showButtonSeparator( true );
 
 	// Add the general page.  Store the settings in the General group and
 	// use the icon package_settings.
