@@ -35,6 +35,7 @@
 #include <QLayout>
 #include <QObjectList>
 #include <QRadioButton>
+#include <QShortcut>
 #include <QSpinBox>
 #include <QStyle>
 #include <QToolTip>
@@ -565,7 +566,7 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	pbX->setShortcut(Qt::Key_multiply);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbX, SLOT(slotSetAccelDisplayMode(bool)));
-#warning "how to port it ?"
+	new QShortcut( Qt::Key_Asterisk, pbX, SLOT(animateClick()) );
 #if 0
 	accel()->insert("Pressed '*'", i18n("Pressed Multiplication-Button"),
 			0, Qt::Key_Asterisk, pbX, SLOT(animateClick()));
@@ -594,6 +595,8 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 				   i18n("Decimal point"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbPeriod, SLOT(slotSetAccelDisplayMode(bool)));
+	pbPeriod->setShortcut( Qt::Key_Period ); 
+	new QShortcut( Qt::Key_Comma, pbPeriod, SLOT(animateClick()) );
 #if 0
 	accel()->insert("Decimal Point (Period)", i18n("Pressed Decimal Point"),
 			0, Qt::Key_Period, pbPeriod, SLOT(animateClick()));
@@ -606,6 +609,8 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	pbEqual->setShortcut(Qt::Key_Enter);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbEqual, SLOT(slotSetAccelDisplayMode(bool)));
+	new QShortcut( Qt::Key_Equal, pbEqual, SLOT(animateClick()) );
+	new QShortcut( Qt::Key_Return, pbEqual, SLOT(animateClick()) );
 #if 0
 	accel()->insert("Entered Equal", i18n("Pressed Equal-Button"),
 			0, Qt::Key_Equal, pbEqual, SLOT(animateClick()));
@@ -682,6 +687,7 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	pbClear->setShortcut(Qt::Key_Prior);
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbClear, SLOT(slotSetAccelDisplayMode(bool)));
+	new QShortcut( Qt::Key_Escape, pbClear, SLOT(animateClick()) );
 #if 0
 	accel()->insert("Entered 'ESC'", i18n("Pressed ESC-Button"), 0,
 			Qt::Key_Escape, pbClear, SLOT(animateClick()));
