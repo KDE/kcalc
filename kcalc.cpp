@@ -115,7 +115,7 @@ KCalculator::KCalculator(QWidget *parent)
 	//BaseChooseGroup->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed, false);
 	QHBoxLayout * base_but_layout = new QHBoxLayout(BaseChooseGroup);
 
-	pbBaseChoose[0] =  new QRadioButton(i18n("&Hex"), BaseChooseGroup);
+	pbBaseChoose[0] =  new QRadioButton(i18n("He&x"), BaseChooseGroup);
 	connect(pbBaseChoose[0], SIGNAL(clicked(void)), SLOT(slotBaseHex(void)));
 	base_but_layout->addWidget(pbBaseChoose[0]);
 	pbBaseChoose[0]->setToolTip( i18n("Switch base to hexadecimal."));
