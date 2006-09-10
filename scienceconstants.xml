@@ -28,7 +28,11 @@
     <description>
     </description>
   </constant>
-  <constant name="Elementary Charge" symbol="e" category="nuclear" category="electromagnetism" value="1.60217653e-19">
+  <constant name="Elementary Charge" symbol="e" category="nuclear" value="1.60217653e-19">
+    <description>
+    </description>
+  </constant>
+  <constant name="Elementary Charge" symbol="e" category="electromagnetism" value="1.60217653e-19">
     <description>
     </description>
   </constant>

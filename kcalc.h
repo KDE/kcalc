@@ -29,6 +29,7 @@ class QRadioButton;
 class QWidget;
 class DispLogic;
 class Constants;
+class KCalcBitset;
 #include <kmainwindow.h>
 
 /*
@@ -158,6 +159,9 @@ protected slots:
     void slotChooseScientificConst4(struct science_constant const &);
     void slotChooseScientificConst5(struct science_constant const &);
 
+	void slotBitsetChanged(unsigned long long);
+	void slotUpdateBitset(const KNumber &);
+
 private:
 	bool inverse;
 	bool hyp_mode;
@@ -173,9 +177,11 @@ private:
 
 
 private:
+
     QWidget *mSmallPage;
     QWidget *mLargePage;
     QWidget *mNumericPage;
+    KCalcBitset *mBitset;
 
     DispLogic*	calc_display; // for historic reasons in "dlabel.h"
     QRadioButton*	pbBaseChoose[4];

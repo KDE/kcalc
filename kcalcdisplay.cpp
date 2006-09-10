@@ -289,6 +289,7 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 	}
 
 	setText(display_str);
+	emit changedAmount(_display_amount);
 	return true;
 	
 }
@@ -418,7 +419,7 @@ bool KCalcDisplay::updateDisplay(void)
 	default:
 	  return false;
 	}
-
+	emit changedAmount(_display_amount);
 	return true;
 }
 

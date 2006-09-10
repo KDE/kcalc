@@ -74,7 +74,7 @@
 #include "colors.h"
 #include "constants.h"
 #include "kcalc_settings.h"
-
+#include "kcalc_bitset.h"
 
 
 static const char description[] = I18N_NOOP("KDE Calculator");
@@ -158,6 +158,10 @@ KCalculator::KCalculator(QWidget *parent)
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbInv, SLOT(slotSetAccelDisplayMode(bool)));
 	pbInv->setCheckable(true);
+
+	// Create Bitset Display
+	mBitset = new KCalcBitset(central);
+	mBitset->setToolTip(i18n("Click on a Bit to toggle it."));
 
 	//
 	//  Create Calculator Buttons
@@ -249,6 +253,7 @@ KCalculator::KCalculator(QWidget *parent)
 	QVBoxLayout *mainLayout = new QVBoxLayout(central);
 
 	mainLayout->addLayout(topLayout);
+	mainLayout->addWidget(mBitset);
 	mainLayout->addLayout(btnLayout);
 
 	// button layout
@@ -2071,7 +2076,13 @@ void KCalculator::slotLogicshow(bool toggled)
 {
 	if(toggled)
 	{
-	        pbLogic["AND"]->show();
+		mBitset->show();
+		connect(mBitset, SIGNAL(valueChanged(unsigned long long)),
+			this, SLOT(slotBitsetChanged(unsigned long long)));
+		connect(calc_display, SIGNAL(changedAmount(const KNumber &)),
+			SLOT(slotUpdateBitset(const KNumber &)));
+
+		pbLogic["AND"]->show();
 		pbLogic["OR"]->show();
 		pbLogic["XOR"]->show();
 		pbLogic["One-Complement"]->show();
@@ -2088,7 +2099,12 @@ void KCalculator::slotLogicshow(bool toggled)
 	}
 	else
 	{
-	    pbLogic["AND"]->hide();
+		mBitset->hide();
+		disconnect(mBitset, SIGNAL(valueChanged(unsigned long long)),
+			this, SLOT(slotBitsetChanged(unsigned long long)));
+		disconnect(calc_display, SIGNAL(changedAmount(const KNumber &)),
+			this, SLOT(slotUpdateBitset(const KNumber &)));
+		pbLogic["AND"]->hide();
 		pbLogic["OR"]->hide();
 		pbLogic["XOR"]->hide();
 		pbLogic["One-Complement"]->hide();
@@ -2163,6 +2179,15 @@ void KCalculator::slotHideAll(void)
 	if(actionScientificshow->isChecked()) actionScientificshow->trigger();
 	if(actionLogicshow->isChecked()) actionLogicshow->trigger();
 	if(actionConstantsShow->isChecked()) actionConstantsShow->trigger();
+}
+
+void KCalculator::slotBitsetChanged(unsigned long long value) {
+	calc_display->setAmount(value);
+	UpdateDisplay(false);
+}
+
+void KCalculator::slotUpdateBitset(const KNumber &nr) {
+	mBitset->setValue(nr);
 }
 
 void KCalculator::updateSettings()

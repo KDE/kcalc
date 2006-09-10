@@ -139,6 +139,7 @@ private:
 signals:
 	void clicked(void);
 	void changedText(QString const &);
+	void changedAmount(const KNumber &);
 
 public slots:
 	void slotCut(void);
