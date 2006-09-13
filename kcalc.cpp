@@ -95,7 +95,7 @@ KCalculator::KCalculator(QWidget *parent)
 	KCalcConstMenu::init_consts();
 
 	// Detect color change
-	connect(kapp,SIGNAL(kdisplayPaletteChanged()), SLOT(set_colors()));
+	connect(KGlobalSettings::self(),SIGNAL(kdisplayPaletteChanged()), SLOT(set_colors()));
 
 	calc_display = new DispLogic(central, actionCollection());
 
