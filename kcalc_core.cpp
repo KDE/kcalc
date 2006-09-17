@@ -449,7 +449,7 @@ void CalcEngine::Complement(KNumber input)
 		_last_number = KNumber("nan");
 		return;
 	}
-	_last_number =  ExecXor(KNumber(0xffffffff), input);
+	_last_number = - input - KNumber::One; 
 }
 
 
