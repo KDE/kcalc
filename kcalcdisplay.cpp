@@ -322,7 +322,7 @@ QString KCalcDisplay::text() const
    being set with "setAmount"). Return value is the new base. */
 int KCalcDisplay::setBase(NumBase new_base)
 {
-	CALCAMNT tmp_val = static_cast<double>(getAmount());
+	CALCAMNT tmp_val = static_cast<unsigned long long int>(getAmount());
 
 	switch(new_base)
 	{
@@ -345,7 +345,7 @@ int KCalcDisplay::setBase(NumBase new_base)
 		_num_base	= NB_DECIMAL;
 	}
 
-	setAmount(static_cast<double>(tmp_val));
+	setAmount(static_cast<unsigned long long int>(tmp_val));
 	
 	return _num_base;
 }
