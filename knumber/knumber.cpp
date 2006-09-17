@@ -481,7 +481,7 @@ KNumber const KNumber::power(KNumber const &exp) const
   }
 
   if (exp == Zero) {
-    if (*this > Zero)
+    if (*this != Zero)
       return One;
     else
       return KNumber("nan");
