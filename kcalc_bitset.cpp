@@ -72,7 +72,7 @@ KCalcBitset::KCalcBitset(QWidget *parent)
 			}
 
 			QWidget *group4Bits = new QWidget(this);
-			QHBoxLayout *groupLayout = new QHBoxLayout(this);
+			QHBoxLayout *groupLayout = new QHBoxLayout;
 			for( int b=0; b<4; b++ )
 			{
 
