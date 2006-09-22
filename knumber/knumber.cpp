@@ -69,7 +69,10 @@ KNumber::KNumber(unsigned long long int num)
 
 KNumber::KNumber(double num)
 {
-  _num = new _knumfloat(num);
+  if ( isinf(num) ) _num = new _knumerror( _knumber::Infinity );
+  else if ( isnan(num) ) _num = new _knumerror( _knumber::UndefinedNumber );
+  else _num = new _knumfloat(num);      
+
 }
 
 KNumber::KNumber(KNumber const & num)
