@@ -71,8 +71,6 @@
 #include "kcalc_const_menu.h"
 #include "version.h"
 #include "general.h"
-#include "colors.h"
-#include "constants.h"
 #include "kcalc_settings.h"
 #include "kcalc_bitset.h"
 
@@ -1904,13 +1902,13 @@ void KCalculator::showSettings()
 
 	// color settings
 
-	Colors *color = new Colors(0, "Color");
+	Colors *color = new Colors(0);
 
 	dialog->addPage(color, i18n("Colors"), "colors", i18n("Button & Display Colors"));
 
 	// constant settings
 
-	Constants *constant = new Constants(0, "Constant" );
+	Constants *constant = new Constants(0);
 	tmp_const = constant;
 
 	KCalcConstMenu *tmp_menu = new KCalcConstMenu(this);
@@ -1955,7 +1953,7 @@ void KCalculator::showSettings()
 		SLOT(slotChooseScientificConst5(science_constant const &)));
 	(constant->kPushButton5)->setMenu(tmp_menu);
 
-	dialog->addPage(constant, i18n("Constants"), "constants");
+	dialog->addPage(constant, i18n("Constants"), "constants",i18n("Define constants"));
 
 
 	// When the user clicks OK or Apply we want to update our settings.

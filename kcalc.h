@@ -57,6 +57,27 @@ class KCalcBitset;
 #include "kcalc_button.h"
 #include "kcalc_const_button.h"
 
+#include "ui_constants.h"
+#include "ui_colors.h"
+
+class Constants : public QWidget, public Ui::Constants
+{
+public:
+  Constants( QWidget *parent ) : QWidget( parent ) {
+    setupUi( this );
+  }
+};
+
+class Colors : public QWidget, public Ui::Colors
+{
+public:
+  Colors( QWidget *parent ) : QWidget( parent ) {
+    setupUi( this );
+  }
+};
+
+
+
 class KCalculator : public KMainWindow
 {
     Q_OBJECT

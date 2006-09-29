@@ -29,7 +29,9 @@ set(kcalc_KDEINIT_SRCS ${libknumber_la_SRCS}
 
 kde4_automoc(${kcalc_KDEINIT_SRCS})
 
-kde4_add_ui3_files(kcalc_KDEINIT_SRCS colors.ui general.ui constants.ui )
+kde4_add_ui3_files(kcalc_KDEINIT_SRCS general.ui )
+
+kde4_add_ui_files(kcalc_KDEINIT_SRCS constants.ui colors.ui)
 
 kde4_add_kcfg_files(kcalc_KDEINIT_SRCS kcalc_settings.kcfgc )
 
