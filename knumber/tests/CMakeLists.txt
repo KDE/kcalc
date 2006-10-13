@@ -4,7 +4,7 @@ include_directories( ${CMAKE_SOURCE_DIR}/kcalc/knumber  )
 
 set(knumbertest_SRCS knumbertest.cpp ${libknumber_la_SRCS})
 
-kde4_automoc(${knumbertest_SRCS})
+kde4_automoc(knumbertest ${knumbertest_SRCS})
 
 kde4_add_executable(knumbertest ${knumbertest_SRCS})
 
