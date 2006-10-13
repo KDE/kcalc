@@ -33,7 +33,7 @@ kde4_add_ui3_files(kcalc_KDEINIT_SRCS general.ui )
 
 kde4_add_ui_files(kcalc_KDEINIT_SRCS constants.ui colors.ui)
 
-kde4_add_kcfg_files(kcalc_KDEINIT_SRCS kcalc_settings.kcfgc )
+kde4_add_kcfg_files(kcalc kcalc_KDEINIT_SRCS kcalc_settings.kcfgc )
 
 kde4_add_kdeinit_executable( kcalc ${kcalc_KDEINIT_SRCS})
 
