@@ -61,7 +61,16 @@
                 #include <math.h>
         #endif
 
-int isinf(double x) { return !finite(x) && x==x; }
+#undef isinf
+int isinf(double x) 
+{
+#ifdef _HPUX_SOURCE
+return !isfinite(x) && x == x;
+#else
+return !finite(x) && x==x; 
+#endif
+}
+
 #endif
 
 
