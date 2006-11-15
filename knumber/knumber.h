@@ -106,11 +106,9 @@ class KDE_EXPORT KNumber
    */
   enum ErrorType {UndefinedNumber, Infinity, MinusInfinity};
 
-  KNumber(signed int num = 0);
-  KNumber(unsigned int num);  
-  KNumber(signed long int num);
-  KNumber(unsigned long int num);
-  KNumber(unsigned long long int num);
+  KNumber(qint32 num = 0);
+  KNumber(quint32 num);  
+  KNumber(quint64 num);
 
   KNumber(double num);
 
@@ -243,9 +241,9 @@ class KDE_EXPORT KNumber
   KNumber const operator>>(KNumber const & arg2) const;
 
   operator bool(void) const;
-  operator signed long int(void) const;
-  operator unsigned long int(void) const;
-  operator unsigned long long int(void) const;
+  operator qint32(void) const;
+  operator quint32(void) const;
+  operator quint64(void) const;
   operator double(void) const;
 
   bool const operator==(KNumber const & arg2) const

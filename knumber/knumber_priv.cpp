@@ -39,6 +39,20 @@ _knumerror::_knumerror(_knumber const & num)
   }
 }
 
+_knuminteger::_knuminteger(quint64 num)
+{
+  mpz_init(_mpz);
+#if SIZEOF_UNSIGNED_LONG == 8
+  mpz_init_set_ui(_mpz, static_cast<unsigned long int>(num));
+#elif SIZEOF_UNSIGNED_LONG == 4
+  mpz_set_ui(_mpz, static_cast<unsigned long int>(num >> 32));
+  mpz_mul_2exp(_mpz, _mpz, 32);
+  mpz_add_ui(_mpz, _mpz, static_cast<unsigned long int>(num));
+#else
+#error "SIZEOF_UNSIGNED_LONG is a unhandled case"
+#endif 
+}
+
 _knuminteger::_knuminteger(_knumber const & num)
 {
   mpz_init(_mpz);
@@ -322,7 +336,7 @@ int _knumfloat::sign(void) const
 
 
 
-#warning _cbrt for now this is a stupid work around
+#warning "_cbrt for now this is a stupid work around"
 static void _cbrt(mpf_t &num)
 {
   double tmp_num = cbrt(mpf_get_d(num));
@@ -922,7 +936,7 @@ int _knumfloat::compare(_knumber const &arg2) const
 
 
 
-_knumerror::operator signed long int (void) const
+_knumerror::operator qint32 (void) const
 {
   // what would be the correct return values here?
   if (_error == Infinity)
@@ -933,7 +947,7 @@ _knumerror::operator signed long int (void) const
     return 0;
 }
 
-_knumerror::operator unsigned long int (void) const
+_knumerror::operator quint32 (void) const
 {
   // what would be the correct return values here?
   if (_error == Infinity)
@@ -945,32 +959,32 @@ _knumerror::operator unsigned long int (void) const
 }
 
 
-_knuminteger::operator signed long int (void) const
+_knuminteger::operator qint32 (void) const
 {
   return mpz_get_si(_mpz);
 }
 
-_knumfraction::operator signed long int (void) const
+_knumfraction::operator qint32 (void) const
 {
-  return static_cast<signed long int>(mpq_get_d(_mpq));
+  return static_cast<qint32>(mpq_get_d(_mpq));
 }
 
-_knumfloat::operator signed long int (void) const
+_knumfloat::operator qint32 (void) const
 {
   return mpf_get_si(_mpf);
 }
 
-_knuminteger::operator unsigned long int (void) const
+_knuminteger::operator quint32 (void) const
 {
   return mpz_get_ui(_mpz);
 }
 
-_knumfraction::operator unsigned long int (void) const
+_knumfraction::operator quint32 (void) const
 {
-  return static_cast<unsigned long int>(mpq_get_d(_mpq));
+  return static_cast<quint32>(mpq_get_d(_mpq));
 }
 
-_knumfloat::operator unsigned long int (void) const
+_knumfloat::operator quint32 (void) const
 {
   return mpf_get_ui(_mpf);
 }

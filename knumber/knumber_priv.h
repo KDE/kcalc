@@ -63,8 +63,8 @@ class _knumber
 
   virtual int compare(_knumber const &arg2) const = 0;
 
-  virtual operator signed long int (void) const = 0;
-  virtual operator unsigned long int (void) const = 0;
+  virtual operator qint32(void) const = 0;
+  virtual operator quint32(void) const = 0;
   virtual operator double (void) const = 0;
 };
 
@@ -107,8 +107,8 @@ class _knumerror : public _knumber
 
   virtual int compare(_knumber const &arg2) const;
 
-  virtual operator signed long int (void) const;
-  virtual operator unsigned long int (void) const;
+  virtual operator qint32(void) const;
+  virtual operator quint32(void) const;
   virtual operator double (void) const;
 
  private:
@@ -125,33 +125,17 @@ class _knumerror : public _knumber
 class _knuminteger : public _knumber
 {
  public:
-  _knuminteger(signed int num = 0)
+  _knuminteger(qint32 num = 0)
   {
-    mpz_init_set_si(_mpz, num);
+    mpz_init_set_si(_mpz, static_cast<signed long int>(num));
   }
 
-  _knuminteger(unsigned int num)
+  _knuminteger(quint32 num)
   {
-    mpz_init_set_ui(_mpz, num);
+    mpz_init_set_ui(_mpz, static_cast<unsigned long int>(num));
   }
   
-  _knuminteger(signed long int num)
-  {
-    mpz_init_set_si(_mpz, num);
-  }
-
-  _knuminteger(unsigned long int num)
-  {
-    mpz_init_set_ui(_mpz, num);
-  }
-  
-  _knuminteger(unsigned long long int num)
-  {
-    mpz_init(_mpz);
-    mpz_set_ui(_mpz, static_cast<unsigned long int>(num >> 32));
-    mpz_mul_2exp(_mpz, _mpz, 32);
-    mpz_add_ui(_mpz, _mpz, static_cast<unsigned long int>(num));
-  }
+  _knuminteger(quint64 num);
 
   _knuminteger(_knumber const & num);
 
@@ -187,8 +171,8 @@ class _knuminteger : public _knumber
 
   virtual _knumber * power(_knumber const & exponent) const;
 
-  virtual operator signed long int (void) const;
-  virtual operator unsigned long int (void) const;
+  virtual operator qint32 (void) const;
+  virtual operator quint32 (void) const;
   virtual operator double (void) const;
 
   _knuminteger * intAnd(_knuminteger const &arg2) const;
@@ -250,8 +234,8 @@ class _knumfraction : public _knumber
   
   virtual int compare(_knumber const &arg2) const;
 
-  virtual operator signed long int (void) const;
-  virtual operator unsigned long int (void) const;
+  virtual operator qint32 (void) const;
+  virtual operator quint32 (void) const;
   virtual operator double (void) const;
 
  private:
@@ -303,8 +287,8 @@ class _knumfloat : public _knumber
 
   virtual int compare(_knumber const &arg2) const;
 
-  virtual operator signed long int (void) const;
-  virtual operator unsigned long int (void) const;
+  virtual operator qint32 (void) const;
+  virtual operator quint32 (void) const;
   virtual operator double (void) const;
 
  private:

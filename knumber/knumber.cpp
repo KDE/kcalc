@@ -42,27 +42,17 @@ bool KNumber::_float_output = false;
 bool KNumber::_fraction_input = false;
 bool KNumber::_splitoffinteger_output = false;
 
-KNumber::KNumber(signed int num)
+KNumber::KNumber(qint32 num)
 {
   _num = new _knuminteger(num);
 }
 
-KNumber::KNumber(unsigned int num)
+KNumber::KNumber(quint32 num)
 {
   _num = new _knuminteger(num);
 }
 
-KNumber::KNumber(signed long int num)
-{
-  _num = new _knuminteger(num);
-}
-
-KNumber::KNumber(unsigned long int num)
-{
-  _num = new _knuminteger(num);
-}
-
-KNumber::KNumber(unsigned long long int num)
+KNumber::KNumber(quint64 num)
 {
   _num = new _knuminteger(num);
 }
@@ -650,31 +640,32 @@ KNumber::operator bool(void) const
   return true;
 }
 
-KNumber::operator signed long int(void) const
+KNumber::operator qint32(void) const
 {
-  return static_cast<signed long int>(*_num);
+  return static_cast<qint32>(*_num);
 }
 
-KNumber::operator unsigned long int(void) const
+KNumber::operator quint32(void) const
 {
-  return static_cast<unsigned long int>(*_num);
+  return static_cast<quint32>(*_num);
 }
 
-KNumber::operator unsigned long long int(void) const
+KNumber::operator quint64(void) const
 {
-#if SIZEOF_LONG >= 8
-  return static_cast<unsigned long int>(*this);
-#else
+#if SIZEOF_UNSIGNED_LONG == 8
+  return static_cast<quint64>(*this);
+#elif SIZEOF_UNSIGNED_LONG == 4
   KNumber tmp_num1 = this->abs().integerPart();
-  unsigned long long int tmp_num2 =  static_cast<unsigned long int>(tmp_num1) +
-    (static_cast<unsigned long long int>(
-					 static_cast<unsigned long int>(tmp_num1 >> KNumber("32"))) << 32) ;
+  quint64 tmp_num2 =  static_cast<quint32>(tmp_num1) +
+    (static_cast<quint64>(static_cast<quint32>(tmp_num1 >> KNumber("32"))) << 32) ;
   
-#warning the cast operator from KNumber to unsigned long long int is probably buggy, when a sign is involved
+#warning "the cast operator from KNumber to quint64 is probably buggy, when a sign is involved"
   if (*this > KNumber(0))
     return tmp_num2;
   else
-    return static_cast<unsigned long long int> (- static_cast<signed long long int>(tmp_num2));
+    return static_cast<quint64> (- static_cast<qint64>(tmp_num2));
+#else
+#error "SIZEOF_UNSIGNED_LONG is a unhandled case"
 #endif 
 }
 
