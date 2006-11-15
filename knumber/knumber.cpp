@@ -376,9 +376,9 @@ QString const KNumber::toQString(int width, int prec) const
 	if (int_part == Zero)
 	  tmp_str = QString(_num->ascii());
 	else if (int_part < Zero)
-	  tmp_str = int_part.toQString() + " " + (int_part - *this)._num->ascii();
+	  tmp_str = int_part.toQString() + ' ' + (int_part - *this)._num->ascii();
 	else
-	  tmp_str = int_part.toQString() + " " + (*this - int_part)._num->ascii();
+	  tmp_str = int_part.toQString() + ' ' + (*this - int_part)._num->ascii();
       } else
 	tmp_str = QString(_num->ascii());
 

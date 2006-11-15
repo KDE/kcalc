@@ -362,7 +362,7 @@ bool KCalcDisplay::updateDisplay(void)
 	// Put sign in front.
 	QString tmp_string;
 	if(_neg_sign == true)
-		tmp_string = "-" + _str_int;
+		tmp_string = '-' + _str_int;
 	else
 		tmp_string = _str_int;
 

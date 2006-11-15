@@ -60,7 +60,7 @@ void KCalcConstButton::setLabelAndTooltip(void)
 
   new_label = (KCalcSettings::nameConstant(_button_num).isNull() ? new_label : KCalcSettings::nameConstant(_button_num));
   
-  new_tooltip = new_label + "=" + KCalcSettings::valueConstant(_button_num);
+  new_tooltip = new_label + '=' + KCalcSettings::valueConstant(_button_num);
   
   addMode(ModeNormal, new_label, new_tooltip);
 }

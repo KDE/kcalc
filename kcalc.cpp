@@ -902,7 +902,7 @@ void KCalculator::setupStatisticKeys(QWidget *parent)
 	tmp_pb = new KCalcButton(parent);
 	tmp_pb->addMode(ModeNormal, "N", i18n("Number of data entered"));
 	tmp_pb->addMode(ModeInverse, QString::fromUtf8("\xce\xa3")
-			+ "x", i18n("Sum of all data items"));
+			+ 'x', i18n("Sum of all data items"));
 	pbStat.insert("NumData", tmp_pb);
 	mStatButtonList.append(tmp_pb);
 	connect(this, SIGNAL(switchShowAccels(bool)),
