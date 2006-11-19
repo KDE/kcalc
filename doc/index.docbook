@@ -93,7 +93,7 @@ the corresponding key-binding.</para>
 
 <para>Have fun with &kcalc;!</para>
 
-<para>Bernd Johannes Wuebben</para>
+<para>&Bernd.Johannes.Wuebben;</para>
 
 </chapter>
 
@@ -671,7 +671,7 @@ the precision and you will see what I mean.</para>
 <title>Credits and License</title>
 
 <para>&kcalc; Program Copyright &copy;:</para>
-<para>Bernd Johannes Wuebben 1996-2000</para>
+<para>&Bernd.Johannes.Wuebben; 1996-2000</para>
 <para>The &kde; Team 2000-2004</para>
 
 <itemizedlist>
@@ -694,6 +694,7 @@ whose stack engine is still part of &kcalc;.</para>
 <listitem><para>&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail;</para></listitem>
 </itemizedlist>
 
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
 &underFDL;
 &underGPL;
 
@@ -737,7 +738,7 @@ line saying:</para>
 
 <screen>#define HAVE_LONG_DOUBLE 1</screen>
 
-<para>If you can't find such a line your system doesn't support long
+<para>If you cannot find such a line your system doesn't support long
 double IEEE precision. </para>
 </step>
 <step>
