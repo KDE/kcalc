@@ -45,7 +45,8 @@ KCalcButton::KCalcButton(const QString &label, QWidget * parent,
   addMode(ModeNormal, label, tooltip);
 }
 
-void KCalcButton::addMode(ButtonModeFlags mode, QString label, QString tooltip, bool is_label_richtext)
+void KCalcButton::addMode(ButtonModeFlags mode, const QString &label,
+			  const QString &tooltip, bool is_label_richtext)
 {
   if (_mode.contains(mode)) _mode.remove(mode);
 

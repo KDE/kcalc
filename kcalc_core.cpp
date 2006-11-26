@@ -6,6 +6,7 @@
     Martin Bartlett's xfrmcalc
 
     portions:	Copyright (C) 2003-2006 Klaus Niederkrueger
+                                        kniederk@ulb.ac.be
 
     portions:	Copyright (C) 1996 Bernd Johannes Wuebben
                                    wuebben@math.cornell.edu

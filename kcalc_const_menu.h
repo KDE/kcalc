@@ -3,6 +3,7 @@
     Qt widget libraries, available at no cost at http://www.troll.no
 
     Copyright (C) 2004 Klaus Niederkruger
+                       kniederk@ulb.ac.be
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

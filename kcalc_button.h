@@ -70,7 +70,8 @@ public:
  KCalcButton(const QString &label, QWidget *parent,
 	     const QString &tooltip = QString());
 
- void addMode(ButtonModeFlags mode, QString label, QString tooltip, bool is_label_richtext = false);
+ void addMode(ButtonModeFlags mode, const QString &label,
+	      const QString &tooltip, bool is_label_richtext = false);
 
 public slots: 
   void slotSetMode(ButtonModeFlags mode, bool flag); 

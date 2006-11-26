@@ -87,7 +87,7 @@ bool KCalcDisplay::sendEvent(Event const event)
 	case EventReset:
 		_display_amount = 0;
 		_str_int = "0";
-		_str_int_exp = QString::null;
+		_str_int_exp.clear();
 
 		_eestate = false;
 		_period = false;
@@ -263,7 +263,7 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 	QString display_str;
 
 	_str_int = "0";
-	_str_int_exp = QString::null;
+	_str_int_exp.clear();
 	_period = false;
 	_neg_sign = false;
 	_eestate = false;

@@ -184,7 +184,7 @@ QString const _knumerror::ascii(int prec) const
   case MinusInfinity:
     return QString("-inf");
   default:
-    return QString::null;
+    return QString();
   }
 }
 
