@@ -46,7 +46,7 @@ class ButtonMode
 {
 public:
   ButtonMode(void) {};
-  ButtonMode(QString &label, QString &tooltip, bool is_label_richtext)
+  ButtonMode(const QString &label, const QString &tooltip, bool is_label_richtext)
     : is_label_richtext(is_label_richtext), tooltip(tooltip)
   {
     if (is_label_richtext)
