@@ -492,6 +492,13 @@ void KCalcDisplay::newCharacter(char const new_char)
 	// change exponent or mantissa
 	if (_eestate)
 	{
+	  // ignore ',' before 'e'. turn e.g. '123.e' into '123e'
+	  if (new_char == 'e'  && _str_int.endsWith( "." ))
+	    {
+			_str_int.truncate(_str_int.length() - 1);
+			_period = false;
+	    }
+
 	  // 'e' only starts ee_mode, leaves strings unchanged
 	  if (new_char != 'e'  &&
 	      // do not add '0' if at start of exp
