@@ -662,10 +662,9 @@ KNumber::operator unsigned long int(void) const
 
 KNumber::operator unsigned long long int(void) const
 {
-#if SIZEOF_LONG >= 8
+#if SIZEOF_UNSIGNED_LONG == 8
   return static_cast<unsigned long int>(*this);
-#else
-
+#elif SIZEOF_UNSIGNED_LONG == 4
   KNumber tmp_num1 = this->abs().integerPart();
   unsigned long long int tmp_num2 =  static_cast<unsigned long int>(tmp_num1) +
     (static_cast<unsigned long long int>(
@@ -676,7 +675,8 @@ KNumber::operator unsigned long long int(void) const
     return tmp_num2;
   else
     return static_cast<unsigned long long int> (- static_cast<signed long long int>(tmp_num2));
-
+#else
+#error "SIZEOF_UNSIGNED_LONG is a unhandled case"
 #endif  
 }
 

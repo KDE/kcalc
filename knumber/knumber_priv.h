@@ -145,13 +145,7 @@ class _knuminteger : public _knumber
     mpz_init_set_ui(_mpz, num);
   }
   
-  _knuminteger(unsigned long long int num)
-  {
-    mpz_init(_mpz);
-    mpz_set_ui(_mpz, static_cast<unsigned long int>(num >> 32));
-    mpz_mul_2exp(_mpz, _mpz, 32);
-    mpz_add_ui(_mpz, _mpz, static_cast<unsigned long int>(num));
-  }
+  _knuminteger(unsigned long long int num);
 
   _knuminteger(_knumber const & num);
 
