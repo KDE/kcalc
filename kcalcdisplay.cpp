@@ -300,6 +300,14 @@ void KCalcDisplay::setText(QString const &string)
 
 	// If we aren't in decimal mode, we don't need to modify the string
 	if (_num_base == NB_DECIMAL  &&  _groupdigits)
+	  // when input ends with "." (because uncomplete), the
+	  // formatNumber-method does not work; fix by hand by
+	  // truncating, formatting and appending again
+	  if (string.endsWith(".")) {
+	    localizedString.truncate(localizedString.length() - 1);
+	    localizedString = KGlobal::locale()->formatNumber(localizedString, false, 0); // Note: rounding happened already above!
+	    localizedString.append(KGlobal::locale()->decimalSymbol());
+	  } else
 	  localizedString = KGlobal::locale()->formatNumber(string, false, 0); // Note: rounding happened already above!
 
 	QLabel::setText(localizedString);
