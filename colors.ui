@@ -17,7 +17,7 @@
         <number>0</number>
       </property>
       <item>
-        <widget class="Q3GroupBox" name="groupBox3" >
+        <widget class="QGroupBox" name="groupBox3" >
           <property name="title" >
             <string>Display Colors</string>
           </property>
@@ -99,7 +99,7 @@
         </widget>
       </item>
       <item>
-        <widget class="Q3GroupBox" name="groupBox4" >
+        <widget class="QGroupBox" name="groupBox4" >
           <property name="title" >
             <string>Button Colors</string>
           </property>

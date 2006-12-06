@@ -17,7 +17,7 @@
     </property>
     <layout class="QVBoxLayout" >
       <item>
-        <widget class="Q3GroupBox" name="mainGroupBox" >
+        <widget class="QGroupBox" name="mainGroupBox" >
           <property name="title" >
             <string>Configure Constants</string>
           </property>
@@ -26,7 +26,7 @@
               <number>0</number>
             </property>
             <item>
-              <widget class="Q3GroupBox" name="groupBox0" >
+              <widget class="QGroupBox" name="groupBox0" >
                 <property name="title" >
                   <string>C1</string>
                 </property>
@@ -91,7 +91,7 @@
               </widget>
             </item>
             <item>
-              <widget class="Q3GroupBox" name="groupBox1" >
+              <widget class="QGroupBox" name="groupBox1" >
                 <property name="title" >
                   <string>C2</string>
                 </property>
@@ -156,7 +156,7 @@
               </widget>
             </item>
             <item>
-              <widget class="Q3GroupBox" name="groupBox2" >
+              <widget class="QGroupBox" name="groupBox2" >
                 <property name="title" >
                   <string>C3</string>
                 </property>
@@ -221,7 +221,7 @@
               </widget>
             </item>
             <item>
-              <widget class="Q3GroupBox" name="groupBox3" >
+              <widget class="QGroupBox" name="groupBox3" >
                 <property name="title" >
                   <string>C4</string>
                 </property>
@@ -286,7 +286,7 @@
               </widget>
             </item>
             <item>
-              <widget class="Q3GroupBox" name="groupBox4" >
+              <widget class="QGroupBox" name="groupBox4" >
                 <property name="title" >
                   <string>C5</string>
                 </property>
@@ -351,7 +351,7 @@
               </widget>
             </item>
             <item>
-              <widget class="Q3GroupBox" name="groupBox5" >
+              <widget class="QGroupBox" name="groupBox5" >
                 <property name="title" >
                   <string>C6</string>
                 </property>
