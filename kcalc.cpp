@@ -449,11 +449,11 @@ void KCalculator::setupMainActions(void)
 		SLOT(slotConstantsShow(bool)));
 
 
-	(void) new KAction(i18n("&Show All"), KShortcut(), this, SLOT(slotShowAll()),
-			   actionCollection(), "show_all");
+	KAction* showAct = new KAction(i18n("&Show All"), actionCollection(), "show_all");
+	connect(showAct, SIGNAL(triggered()), this, SLOT(slotShowAll()));
 
-	(void) new KAction(i18n("&Hide All"), KShortcut(), this, SLOT(slotHideAll()),
-			   actionCollection(), "hide_all");
+	KAction* hideAct = new KAction(i18n("&Hide All"), actionCollection(), "hide_all");
+	connect(hideAct, SIGNAL(triggered()), this, SLOT(slotHideAll()));
 
 	KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
 
