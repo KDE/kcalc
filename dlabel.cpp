@@ -26,7 +26,7 @@
 //#include <QGlobal>
 #include <kactioncollection.h>
 #include <kaction.h>
-#include <kstdaction.h>
+#include <kstandardaction.h>
 
 #include "kcalc_settings.h"
 #include "kcalc_core.h"
@@ -40,8 +40,8 @@ DispLogic::DispLogic(QWidget *parent, KActionCollection *coll)
 {
 	KNumber::setDefaultFloatOutput(true);
 	KNumber::setDefaultFractionalInput(true);
-	_back = KStdAction::undo(this, SLOT(history_back()), coll);
-	_forward = KStdAction::redo(this, SLOT(history_forward()), coll);
+	_back = KStandardAction::undo(this, SLOT(history_back()), coll);
+	_forward = KStandardAction::redo(this, SLOT(history_forward()), coll);
 
 	_forward->setEnabled(false);
 	_back->setEnabled(false);

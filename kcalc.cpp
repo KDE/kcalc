@@ -62,7 +62,7 @@
 #include <knumvalidator.h>
 #include <kpushbutton.h>
 #include <kstatusbar.h>
-#include <kstdaction.h>
+#include <kstandardaction.h>
 #include <kxmlguifactory.h>
 #include <ktoggleaction.h>
 
@@ -416,12 +416,12 @@ KCalculator::~KCalculator()
 void KCalculator::setupMainActions(void)
 {
 	// file menu
-	KStdAction::quit(this, SLOT(close()), actionCollection());
+	KStandardAction::quit(this, SLOT(close()), actionCollection());
 
 	// edit menu
-	KStdAction::cut(calc_display, SLOT(slotCut()), actionCollection());
-	KStdAction::copy(calc_display, SLOT(slotCopy()), actionCollection());
-	KStdAction::paste(calc_display, SLOT(slotPaste()), actionCollection());
+	KStandardAction::cut(calc_display, SLOT(slotCut()), actionCollection());
+	KStandardAction::copy(calc_display, SLOT(slotCopy()), actionCollection());
+	KStandardAction::paste(calc_display, SLOT(slotPaste()), actionCollection());
 
 	// settings menu
 	actionStatshow =  new KToggleAction(i18n("&Statistic Buttons"),
@@ -455,9 +455,9 @@ void KCalculator::setupMainActions(void)
 	KAction* hideAct = new KAction(i18n("&Hide All"), actionCollection(), "hide_all");
 	connect(hideAct, SIGNAL(triggered()), this, SLOT(slotHideAll()));
 
-	KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
+	KStandardAction::preferences(this, SLOT(showSettings()), actionCollection());
 
-	KStdAction::keyBindings(guiFactory(), SLOT(configureShortcuts()),
+	KStandardAction::keyBindings(guiFactory(), SLOT(configureShortcuts()),
 actionCollection());
 
 }
