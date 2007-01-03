@@ -70,6 +70,7 @@ class KDE_EXPORT KNumber
   static KNumber const MinusOne;
   static KNumber const Pi;
   static KNumber const Euler;
+  static KNumber const NotDefined;
 
   /**
    * KNumber tries to provide transparent access to the following type
