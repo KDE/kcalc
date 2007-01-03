@@ -139,19 +139,20 @@ void KCalcDisplay::slotPaste(bool bClipboard)
 		return;
 	}
 
+	tmp_str = tmp_str.stripWhiteSpace();
+
 	if (_num_base == NB_HEX  &&  ! tmp_str.startsWith("0x", false))
 	  tmp_str.prepend( "0x" );
-
-	bool was_ok;
-	CALCAMNT tmp_result;
 
 	if ( (_num_base == NB_OCTAL || _num_base == NB_BINARY) &&
 	     !  tmp_str.startsWith("0x",false))
 	{
-		tmp_result = CALCAMNT(tmp_str.toLongLong(& was_ok, _num_base));
+		bool was_ok;
+		unsigned long long int tmp_result = tmp_str.toULongLong(& was_ok, _num_base);
+
 		if (!was_ok)
 		{
-			tmp_result = (CALCAMNT) (0);
+			setAmount(KNumber::NotDefined);
 			if(_beep) KNotifyClient::beep();
 			return ;
 		}
@@ -245,7 +246,7 @@ bool KCalcDisplay::setAmount(const QString &string)
 	
 	if (!was_ok)
 	{
-		tmp_result = static_cast<CALCAMNT>(0);
+		setAmount(KNumber::NotDefined);
 		if(_beep) KNotifyClient::beep();
 		return false;
 	}
@@ -265,14 +266,15 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 	_neg_sign = false;
 	_eestate = false;
 
-	if (_num_base != NB_DECIMAL)
+	if (_num_base != NB_DECIMAL  && new_amount.type() != KNumber::SpecialType)
 	{
 		_display_amount = new_amount.integerPart();
 		unsigned long long int tmp_workaround = static_cast<unsigned long long int>(_display_amount);
 
 		display_str = QString::number(tmp_workaround, _num_base).upper();
 	}
-	else // _num_base == NB_DECIMAL
+	else // _num_base == NB_DECIMAL || new_amount.type() ==
+	     // KNumber::SpecialType
 	{
 		_display_amount = new_amount;
 	
