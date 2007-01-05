@@ -101,6 +101,8 @@ KNumber::KNumber(QString const & num)
       simplifyRational();
     } else
       _num = new _knumfloat(num);
+  else
+    _num = new _knumerror("nan");
 }
 
 KNumber::NumType KNumber::type(void) const
