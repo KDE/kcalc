@@ -38,22 +38,6 @@
 #include "kcalcdisplay.h"
 #include "kcalcdisplay.moc"
 
-// We can't use QString::toDouble because it uses DOUBLE and use LONG DOUBLE!!
-static CALCAMNT toDouble(const QString &s, bool &ok)
-{
-	char *ptr = 0;
-	errno = 0;
-	CALCAMNT result = static_cast<CALCAMNT>(STRTOD(s.latin1(),&ptr));
-
-	// find first non-space character for check below
-	while (ptr != 0 && *ptr != '\0' && isspace(*ptr)) {
-	// *ptr == 0 is also caught by isspace(*ptr), but you never know
-		ptr++;
-	}
-	// input contains more than a number or another error
-	ok = (errno == 0) && (ptr != 0) && (*ptr == 0);
-	return result;
-}
 
 KCalcDisplay::KCalcDisplay(QWidget *parent, const char *name)
   :QLabel(parent,name), _beep(false), _groupdigits(false), _button(0), _lit(false),
@@ -162,7 +146,9 @@ void KCalcDisplay::slotPaste(bool bClipboard)
 	} 
 	else // _num_base == NB_DECIMAL && ! tmp_str.startsWith("0x", false)
 	{
-		setAmount(tmp_str);
+		setAmount(KNumber(tmp_str));
+		if (_beep  &&  _display_amount == KNumber::NotDefined)
+			KNotifyClient::beep();
 	}
 }
 
@@ -238,24 +224,6 @@ KNumber const & KCalcDisplay::getAmount(void) const
 	return _display_amount;
 }
 
-bool KCalcDisplay::setAmount(const QString &string)
-{
-	bool was_ok;
-	CALCAMNT tmp_result;
-
-	tmp_result = toDouble(string, was_ok);
-	
-	if (!was_ok)
-	{
-		setAmount(KNumber::NotDefined);
-		if(_beep) KNotifyClient::beep();
-		return false;
-	}
-	
-	setAmount(static_cast<double>(tmp_result));
-
-	return true;
-}
 
 bool KCalcDisplay::setAmount(KNumber const & new_amount)
 {
