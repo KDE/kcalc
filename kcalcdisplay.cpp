@@ -139,16 +139,17 @@ void KCalcDisplay::slotPaste(bool bClipboard)
 		return;
 	}
 
+	NumBase tmp_num_base = _num_base;
+
 	tmp_str = tmp_str.stripWhiteSpace();
 
-	if (_num_base == NB_HEX  &&  ! tmp_str.startsWith("0x", false))
-	  tmp_str.prepend( "0x" );
+	if (tmp_str.startsWith("0x", false))
+	  tmp_num_base = NB_HEX;
 
-	if ( (_num_base == NB_OCTAL || _num_base == NB_BINARY) &&
-	     !  tmp_str.startsWith("0x",false))
+	if (tmp_num_base != NB_DECIMAL)
 	{
 		bool was_ok;
-		unsigned long long int tmp_result = tmp_str.toULongLong(& was_ok, _num_base);
+		unsigned long long int tmp_result = tmp_str.toULongLong(& was_ok, tmp_num_base);
 
 		if (!was_ok)
 		{
@@ -157,9 +158,9 @@ void KCalcDisplay::slotPaste(bool bClipboard)
 			return ;
 		}
 	  
-		setAmount(static_cast<double>(tmp_result));
+		setAmount(KNumber(tmp_result));
 	} 
-	else
+	else // _num_base == NB_DECIMAL && ! tmp_str.startsWith("0x", false)
 	{
 		setAmount(tmp_str);
 	}
