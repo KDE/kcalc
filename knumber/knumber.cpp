@@ -36,6 +36,7 @@ KNumber const KNumber::Pi("3.141592653589793238462643383279502884197169"
 KNumber const KNumber::Euler("2.718281828459045235360287471352662497757"
 			     "24709369995957496696762772407663035354759"
 			     "4571382178525166427");
+KNumber const KNumber::NotDefined("nan");
 
 
 bool KNumber::_float_output = false;
@@ -100,6 +101,8 @@ KNumber::KNumber(QString const & num)
       simplifyRational();
     } else
       _num = new _knumfloat(num);
+  else
+    _num = new _knumerror("nan");
 }
 
 KNumber::NumType KNumber::type(void) const

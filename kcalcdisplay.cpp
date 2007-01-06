@@ -38,23 +38,6 @@
 #include "kcalcdisplay.h"
 #include "kcalcdisplay.moc"
 
-// We can't use QString::toDouble because it uses DOUBLE and use LONG DOUBLE!!
-static CALCAMNT toDouble(const QString &s, bool &ok)
-{
-	char *ptr = 0;
-	errno = 0;
-	CALCAMNT result = static_cast<CALCAMNT>(STRTOD(s.toLatin1(),&ptr));
-
-	// find first non-space character for check below
-	while (ptr != 0 && *ptr != '\0' && isspace(*ptr)) {
-	// *ptr == 0 is also caught by isspace(*ptr), but you never know
-		ptr++;
-	}
-	// input contains more than a number or another error
-	ok = (errno == 0) && (ptr != 0) && (*ptr == 0);
-	return result;
-}
-
 KCalcDisplay::KCalcDisplay(QWidget *parent)
   :QLabel(parent), _beep(false), _groupdigits(false), _button(0), _lit(false),
    _num_base(NB_DECIMAL), _precision(9),
@@ -139,28 +122,33 @@ void KCalcDisplay::slotPaste(bool bClipboard)
 		return;
 	}
 
-	if (_num_base == NB_HEX  &&  ! tmp_str.startsWith("0x", Qt::CaseInsensitive))
-	  tmp_str.prepend( "0x" );
+	NumBase tmp_num_base = _num_base;
 
-	bool was_ok;
-	CALCAMNT tmp_result;
+	tmp_str = tmp_str.trimmed();
 
-	if ( (_num_base == NB_OCTAL || _num_base == NB_BINARY) &&
-	     !  tmp_str.startsWith("0x",Qt::CaseInsensitive))
+	if (tmp_str.startsWith("0x", Qt::CaseInsensitive)) tmp_num_base = NB_HEX;
+
+	if (tmp_num_base != NB_DECIMAL)
 	{
-		tmp_result = CALCAMNT(tmp_str.toLongLong(& was_ok, _num_base));
+		bool was_ok;
+		quint64 tmp_result = tmp_str.toULongLong(& was_ok, tmp_num_base);
+
 		if (!was_ok)
 		{
-			tmp_result = (CALCAMNT) (0);
+			setAmount(KNumber::NotDefined);
 			if(_beep) KNotification::beep();
 			return ;
 		}
 	  
-		setAmount(static_cast<double>(tmp_result));
+		setAmount(KNumber(tmp_result));
 	} 
-	else
+	else // _num_base == NB_DECIMAL && ! 
+	     // tmp_str.startsWith("0x",Qt::CaseInsensitive)
 	{
-		setAmount(tmp_str);
+		setAmount(KNumber(tmp_str));
+		if (_beep  &&  _display_amount == KNumber::NotDefined)
+			KNotification::beep();
+
 	}
 }
 
@@ -239,25 +227,6 @@ KNumber const & KCalcDisplay::getAmount(void) const
 	return _display_amount;
 }
 
-bool KCalcDisplay::setAmount(const QString &string)
-{
-	bool was_ok;
-	CALCAMNT tmp_result;
-
-	tmp_result = toDouble(string, was_ok);
-	
-	if (!was_ok)
-	{
-		tmp_result = static_cast<CALCAMNT>(0);
-		if(_beep) KNotification::beep();
-		return false;
-	}
-	
-	setAmount(static_cast<double>(tmp_result));
-
-	return true;
-}
-
 bool KCalcDisplay::setAmount(KNumber const & new_amount)
 {
 	QString display_str;
@@ -268,14 +237,15 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 	_neg_sign = false;
 	_eestate = false;
 
-	if (_num_base != NB_DECIMAL)
+	if (_num_base != NB_DECIMAL  &&  new_amount.type() != KNumber::SpecialType)
 	{
 		_display_amount = new_amount.integerPart();
-		unsigned long long int tmp_workaround = static_cast<unsigned long long int>(_display_amount);
+		quint64 tmp_workaround = static_cast<quint64>(_display_amount);
 
 		display_str = QString::number(tmp_workaround, _num_base).toUpper();
 	}
-	else // _num_base == NB_DECIMAL
+	else // _num_base == NB_DECIMAL || new_amount.type() ==
+	     // KNumber::SpecialType
 	{
 		_display_amount = new_amount;
 	
@@ -330,7 +300,7 @@ QString KCalcDisplay::text() const
    being set with "setAmount"). Return value is the new base. */
 int KCalcDisplay::setBase(NumBase new_base)
 {
-	CALCAMNT tmp_val = static_cast<unsigned long long int>(getAmount());
+	CALCAMNT tmp_val = static_cast<quint64>(getAmount());
 
 	switch(new_base)
 	{
@@ -353,7 +323,7 @@ int KCalcDisplay::setBase(NumBase new_base)
 		_num_base	= NB_DECIMAL;
 	}
 
-	setAmount(static_cast<unsigned long long int>(tmp_val));
+	setAmount(static_cast<quint64>(tmp_val));
 	
 	return _num_base;
 }
@@ -379,7 +349,7 @@ bool KCalcDisplay::updateDisplay(void)
 	case NB_BINARY:
 		Q_ASSERT(_period == false  && _eestate == false);
 		setText(tmp_string);
-		_display_amount = static_cast<unsigned long long int>(STRTOUL(_str_int.toLatin1(), 0, 2));
+		_display_amount = static_cast<quint64>(STRTOUL(_str_int.toLatin1(), 0, 2));
 		if (_neg_sign)
 			_display_amount = -_display_amount;
 		//str_size = cvb(_str_int, boh_work, DSP_SIZE);
@@ -388,7 +358,7 @@ bool KCalcDisplay::updateDisplay(void)
 	case NB_OCTAL:
 		Q_ASSERT(_period == false  && _eestate == false);
 		setText(tmp_string);
-		_display_amount = static_cast<unsigned long long int>(STRTOUL(_str_int.toLatin1(), 0, 8));
+		_display_amount = static_cast<quint64>(STRTOUL(_str_int.toLatin1(), 0, 8));
 		if (_neg_sign)
 			_display_amount = -_display_amount;
 		break;
@@ -396,7 +366,7 @@ bool KCalcDisplay::updateDisplay(void)
 	case NB_HEX:
 		Q_ASSERT(_period == false  && _eestate == false);
 		setText(tmp_string);
-		_display_amount = static_cast<unsigned long long int>(STRTOUL(_str_int.toLatin1(), 0, 16));
+		_display_amount = static_cast<quint64>(STRTOUL(_str_int.toLatin1(), 0, 16));
 		if (_neg_sign)
 			_display_amount = -_display_amount;
 		break;

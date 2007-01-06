@@ -99,7 +99,6 @@ public:
 	void deleteLastDigit(void);
 	KNumber const & getAmount(void) const;
 	void newCharacter(char const new_char);
-	bool setAmount(const QString &string);
 	bool setAmount(KNumber const & new_amount);
 	int setBase(NumBase new_base);
 	void setBeep(bool flag);
