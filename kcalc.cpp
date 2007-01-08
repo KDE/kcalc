@@ -43,6 +43,7 @@
 
 
 #include <kaboutdata.h>
+#include <kactioncollection.h>
 #include <kacceleratormanager.h>
 #include <kaction.h>
 #include <kapplication.h>
@@ -88,7 +89,7 @@ KCalculator::KCalculator(QWidget *parent)
 	QWidget *central = new QWidget(this);
 	setCentralWidget(central);
 	KAcceleratorManager::setNoAccel( central );
-	
+
 	// load science constants from xml-file
 	KCalcConstMenu::init_consts();
 
@@ -424,35 +425,37 @@ void KCalculator::setupMainActions(void)
 	KStandardAction::paste(calc_display, SLOT(slotPaste()), actionCollection());
 
 	// settings menu
-	actionStatshow =  new KToggleAction(i18n("&Statistic Buttons"),
-					    actionCollection(), "show_stat");
+        actionStatshow = actionCollection()->add<KToggleAction>( "show_stat" );
+        actionStatshow->setText( i18n("&Statistic Buttons") );
 	actionStatshow->setChecked(true);
 	connect(actionStatshow, SIGNAL(toggled(bool)),
 		SLOT(slotStatshow(bool)));
 
-	actionScientificshow = new KToggleAction(i18n("Science/&Engineering Buttons"),
-						 actionCollection(), "show_science");
+        actionScientificshow = actionCollection()->add<KToggleAction>( "show_science" );
+        actionScientificshow->setText( i18n("Science/&Engineering Buttons") );
 	actionScientificshow->setChecked(true);
 	connect(actionScientificshow, SIGNAL(toggled(bool)),
 		SLOT(slotScientificshow(bool)));
 
-	actionLogicshow = new KToggleAction(i18n("&Logic Buttons"),
-					    actionCollection(), "show_logic");
+	actionLogicshow = actionCollection()->add<KToggleAction>( "show_logic");
+        actionLogicshow->setText( i18n("&Logic Buttons") );
 	actionLogicshow->setChecked(true);
 	connect(actionLogicshow, SIGNAL(toggled(bool)),
 		SLOT(slotLogicshow(bool)));
 
-	actionConstantsShow = new KToggleAction(i18n("&Constants Buttons"),
-						actionCollection(), "show_constants");
+        actionConstantsShow=actionCollection()->add<KToggleAction>( "show_constants" );
+        actionConstantsShow->setText( i18n("&Constants Buttons") );
 	actionConstantsShow->setChecked(true);
 	connect(actionConstantsShow, SIGNAL(toggled(bool)),
 		SLOT(slotConstantsShow(bool)));
 
 
-	KAction* showAct = new KAction(i18n("&Show All"), actionCollection(), "show_all");
+        QAction*showAct = actionCollection()->addAction( "show_all" );
+        showAct->setText( i18n("&Show All") );
 	connect(showAct, SIGNAL(triggered()), this, SLOT(slotShowAll()));
 
-	KAction* hideAct = new KAction(i18n("&Hide All"), actionCollection(), "hide_all");
+	QAction *hideAct = actionCollection()->addAction("hide_all");
+	hideAct->setText(i18n("&Hide All"));
 	connect(hideAct, SIGNAL(triggered()), this, SLOT(slotHideAll()));
 
 	KStandardAction::preferences(this, SLOT(showSettings()), actionCollection());
@@ -598,14 +601,14 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 				   i18n("Decimal point"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbPeriod, SLOT(slotSetAccelDisplayMode(bool)));
-	pbPeriod->setShortcut(QKeySequence(Qt::Key_Period)); 
+	pbPeriod->setShortcut(QKeySequence(Qt::Key_Period));
 	new QShortcut( Qt::Key_Comma, pbPeriod, SLOT(animateClick()) );
 #if 0
 	accel()->insert("Decimal Point (Period)", i18n("Pressed Decimal Point"),
 			0, Qt::Key_Period, pbPeriod, SLOT(animateClick()));
 	accel()->insert("Decimal Point (Comma)", i18n("Pressed Decimal Point"),
 			0, Qt::Key_Comma, pbPeriod, SLOT(animateClick()));
-#endif	
+#endif
 	connect(pbPeriod, SIGNAL(clicked(void)), SLOT(slotPeriodclicked(void)));
 
 	pbEqual = new KCalcButton("=", thisPage, i18n("Result"));
@@ -619,7 +622,7 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 			0, Qt::Key_Equal, pbEqual, SLOT(animateClick()));
 	accel()->insert("Entered Return", i18n("Pressed Equal-Button"),
 			0, Qt::Key_Return, pbEqual, SLOT(animateClick()));
-#endif	
+#endif
 	connect(pbEqual, SIGNAL(clicked(void)), SLOT(slotEqualclicked(void)));
 
 
@@ -694,7 +697,7 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 #if 0
 	accel()->insert("Entered 'ESC'", i18n("Pressed ESC-Button"), 0,
 			Qt::Key_Escape, pbClear, SLOT(animateClick()));
-#endif	
+#endif
 	connect(pbClear, SIGNAL(clicked(void)), SLOT(slotClearclicked(void)));
 
 	pbAC = new KCalcButton("AC", mLargePage, i18n("Clear all"));
