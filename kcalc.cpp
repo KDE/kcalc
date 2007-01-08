@@ -43,6 +43,7 @@
 
 
 #include <kaboutdata.h>
+#include <kactioncollection.h>
 #include <kacceleratormanager.h>
 #include <kaction.h>
 #include <kapplication.h>
@@ -452,7 +453,8 @@ void KCalculator::setupMainActions(void)
 	KAction* showAct = new KAction(i18n("&Show All"), actionCollection(), "show_all");
 	connect(showAct, SIGNAL(triggered()), this, SLOT(slotShowAll()));
 
-	KAction* hideAct = new KAction(i18n("&Hide All"), actionCollection(), "hide_all");
+	QAction *hideAct = actionCollection()->addAction("hide_all");
+	hideAct->setText(i18n("&Hide All"));
 	connect(hideAct, SIGNAL(triggered()), this, SLOT(slotHideAll()));
 
 	KStandardAction::preferences(this, SLOT(showSettings()), actionCollection());
