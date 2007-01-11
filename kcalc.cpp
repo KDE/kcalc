@@ -1037,7 +1037,9 @@ void KCalculator::setupConstantsKeys(QWidget *parent)
 	// add menu with scientific constants
 	KCalcConstMenu *tmp_menu = new KCalcConstMenu(i18n("&Constants"),
 						      this);
+#ifdef __GNUC__
 	#warning order of menu initialization is fundamental!!
+#endif
 	menuBar()->insertMenu((menuBar()->actions)()[2], tmp_menu);
 	connect(tmp_menu,
 		SIGNAL(triggeredConstant(science_constant const &)),

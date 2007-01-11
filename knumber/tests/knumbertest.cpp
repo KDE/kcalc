@@ -233,7 +233,9 @@ void testingModulus(void)
   checkResult("KNumber(12) % KNumber(0)", KNumber(-12) % KNumber(0), "nan", KNumber::SpecialType);
   checkResult("KNumber(-12) % KNumber(0)", KNumber(-12) % KNumber(0), "nan", KNumber::SpecialType);
 
+#ifdef __GNUC__
 #warning test for other types
+#endif
 
 }
 
@@ -246,7 +248,9 @@ void testingAndOr(void)
   checkResult("KNumber(1023) & KNumber(255)", KNumber(1023) & KNumber(255), "255", KNumber::IntegerType);
   checkResult("KNumber(1023) | KNumber(255)", KNumber(1023) | KNumber(255), "1023", KNumber::IntegerType);
 
+#ifdef __GNUC__
 #warning test for other types
+#endif
 
 }
 
@@ -294,7 +298,9 @@ void testingSqrt(void)
   checkResult("KNumber(-27).cbrt()", KNumber(-27).cbrt(), "-3", KNumber::IntegerType);
   checkResult("KNumber(\"27/8\").cbrt()", KNumber("27/8").cbrt(), "3/2", KNumber::FractionType);
   checkResult("KNumber(\"-8/27\").cbrt()", KNumber("-8/27").cbrt(), "-2/3", KNumber::FractionType);
+#ifdef __GNUC__
 #warning need to check non-perfect cube roots
+#endif
   //  checkResult("KNumber(2).cbrt()", KNumber(2).cbrt(), "1.4142136", KNumber::FloatType);
   //  checkResult("KNumber(\"2/3\").cbrt()", KNumber("2/3").cbrt(), "0.81649658", KNumber::FloatType);
   //  checkResult("KNumber(\"0.25\").cbrt()", KNumber("0.25").cbrt(), "0.5", KNumber::FloatType);

@@ -662,7 +662,9 @@ KNumber::operator quint64(void) const
   quint64 tmp_num2 =  static_cast<quint32>(tmp_num1) +
     (static_cast<quint64>(static_cast<quint32>(tmp_num1 >> KNumber("32"))) << 32) ;
   
+#ifdef __GNUC__
 #warning "the cast operator from KNumber to quint64 is probably buggy, when a sign is involved"
+#endif
   if (*this > KNumber(0))
     return tmp_num2;
   else

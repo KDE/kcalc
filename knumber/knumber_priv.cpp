@@ -336,7 +336,9 @@ int _knumfloat::sign(void) const
 
 
 
+#ifdef __GNUC__
 #warning "_cbrt for now this is a stupid work around"
+#endif
 static void _cbrt(mpf_t &num)
 {
   double tmp_num = cbrt(mpf_get_d(num));
