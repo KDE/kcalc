@@ -65,6 +65,7 @@ class CalcEngine
     FUNC_DIVIDE,
     FUNC_MOD,
     FUNC_INTDIV,
+    FUNC_BINOM,
     FUNC_POWER,
     FUNC_PWR_ROOT
   };

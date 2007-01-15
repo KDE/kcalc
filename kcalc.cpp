@@ -189,7 +189,10 @@ KCalculator::KCalculator(QWidget *parent)
 
 	pbReci = new KCalcButton(mSmallPage);
 	pbReci->addMode(ModeNormal, "1/x", i18n("Reciprocal"));
+	pbReci->addMode(ModeInverse, "nCm", i18n("n Choose m")); 
 	pbReci->setShortcut(QKeySequence(Qt::Key_R));
+	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), 
+		pbReci, SLOT(slotSetMode(ButtonModeFlags,bool))); 
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbReci, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(pbReci, SIGNAL(clicked(void)), SLOT(slotReciclicked(void)));
@@ -1495,8 +1498,21 @@ void KCalculator::slotCosclicked(void)
 
 void KCalculator::slotReciclicked(void)
 {
-	core.Reciprocal(calc_display->getAmount());
-	UpdateDisplay(true);
+	if (inverse) 
+	{ 
+		core.enterOperation(calc_display->getAmount(), 
+				    CalcEngine::FUNC_BINOM); 
+	}  else { 
+		core.Reciprocal(calc_display->getAmount()); 
+		UpdateDisplay(true); 
+		return; 
+	}
+	// temp. work-around 
+	KNumber tmp_num = calc_display->getAmount(); 
+	calc_display->sendEvent(KCalcDisplay::EventReset); 
+	calc_display->setAmount(tmp_num); 
+	UpdateDisplay(false); 
+
 }
 
 void KCalculator::slotTanclicked(void)

@@ -147,6 +147,37 @@ bool isoddint(const KNumber & input)
 	return ( (input / KNumber(2)).type() == KNumber::IntegerType);
 }
 
+  
+static KNumber ExecBinom(const KNumber & left_op, const KNumber & right_op) 
+{ 
+	if (left_op.type() != KNumber::IntegerType
+	    ||  right_op.type() != KNumber::IntegerType
+	    ||  right_op > left_op  ||  left_op < KNumber::Zero)
+		return KNumber::UndefinedNumber;
+
+	KNumber tmp_count = left_op;
+	KNumber tmp_result = KNumber::One;
+
+	// don't do recursive factorial,
+	// because large numbers lead to
+	// stack overflows
+	while (tmp_count > right_op)
+	{
+		tmp_result = tmp_count * tmp_result;
+		tmp_count -= KNumber::One;
+	}
+
+	tmp_count = left_op-right_op;
+	while (tmp_count > KNumber::One)
+	{
+		tmp_result = tmp_result / tmp_count;
+		tmp_count -= KNumber::One;
+	}
+
+
+	return tmp_result;
+} 
+
 static KNumber ExecPower(const KNumber & left_op, const KNumber & right_op)
 {
 	return left_op.power(right_op);
@@ -194,6 +225,7 @@ const struct operator_data CalcEngine::Operator[] = {
   { 6, ExecDivide,   ExecDivideP}, // FUNC_DIVIDE
   { 6, ExecMod,  NULL}, // FUNC_MOD
   { 6, ExecIntDiv, NULL}, // FUNC_INTDIV
+  { 7, ExecBinom, NULL},  // FUNC_BINOM 
   { 7, ExecPower,  NULL}, // FUNC_POWER
   { 7, ExecPwrRoot, NULL} // FUNC_PWR_ROOT
 };
