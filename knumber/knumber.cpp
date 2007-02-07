@@ -20,7 +20,7 @@
 
 #include <math.h>
 
-#include <config.h>
+#include <config-kcalc.h>
 
 #include <QRegExp>
 #include <QString>

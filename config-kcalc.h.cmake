@@ -13,9 +13,11 @@
 /* Define if you have round */
 #define HAVE_FUNC_ROUND 1
 
-
 /* Define if you have libgmp */
 #define HAVE_GMP 1
 
 /* Define if you have support for long double in printf */
 #define HAVE_LONG_DOUBLE 1
+
+/* The size of a `unsigned long', as computed by sizeof. */
+#define SIZEOF_UNSIGNED_LONG ${SIZEOF_UNSIGNED_LONG}

@@ -50,9 +50,9 @@ class KCalcBitset;
   operation button is pressed, e.g. "core.Plus(display_number)".
  */
 
-#include "config.h"
+#include "config-kcalc.h"
 
-// IMPORTANT this has to come after ../config.h
+// IMPORTANT this has to come after config-kcalc.h - DF: why?
 #include "kcalc_core.h"
 #include "kcalc_button.h"
 #include "kcalc_const_button.h"

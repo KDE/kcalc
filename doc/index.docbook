@@ -732,7 +732,7 @@ precision for &kcalc;.</para>
 
 <procedure>
 <step>
-<para> Check <filename>../config.h</filename> and see whether
+<para> Check <filename>config-kcalc.h</filename> and see whether
 HAVE&lowbar;LONG&lowbar;DOUBLE is defined, &ie; you should be able to locate a
 line saying:</para>
 

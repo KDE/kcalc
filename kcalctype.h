@@ -23,9 +23,6 @@
 
 */
 
-#ifdef HAVE_CONFIG_H
-	#include "../config.h"
-#endif
 #include <config-kcalc.h>
 
 #ifndef KCALC_TYPE_H
@@ -36,7 +33,7 @@
 #include <math.h>
 
 #if defined(HAVE_LONG_DOUBLE) && defined(HAVE_L_FUNCS)
-/* should be detected by autoconf and defined in config.h
+/* should be detected by autoconf and defined in config-kcalc.h
    Be carefull when modifying these lines. HAVE_LONG_DOUBLE
    is used all over kcalc's sources to determine whether 
    long double of double is the fundamental data type for kcalc*/

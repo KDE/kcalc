@@ -5,7 +5,6 @@
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
   <include>kapplication.h</include>
   <include>kglobalsettings.h</include>
-  <include>config.h</include>
   <kcfgfile name="kcalcrc"/>
   <group name="Colors">
     <entry name="ForeColor" type="Color">

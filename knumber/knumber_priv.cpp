@@ -18,7 +18,8 @@
 */
 
 #include <math.h>
-#include <config.h>
+#include <config-kcalc.h>
+#include <stdlib.h>
 
 #include <QRegExp>
 #include <QString>

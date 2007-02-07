@@ -29,6 +29,7 @@
 
 */
 
+#include <config-kcalc.h>
 
 #if defined(_ISOC99_SOURCE)
 	#include <cassert>
@@ -47,8 +48,6 @@
 	#include <string.h>
 #endif
 
-#include <config.h>
-#include <config-kcalc.h>
 #include "kcalc_core.h"
 #include <stdlib.h>
 #include <klocale.h>

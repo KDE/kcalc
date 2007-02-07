@@ -1,30 +1,33 @@
 project(kcalc)
 
+check_include_files(ieeefp.h      HAVE_IEEEFP_H)
+check_function_exists(isinf      HAVE_FUNC_ISINF)
 configure_file(config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
 
 ADD_DEFINITIONS( -D_ISOC99_SOURCE ) # added manually
 
 
-include_directories( ${CMAKE_SOURCE_DIR}/kcalc/knumber  )
+include_directories( ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/knumber  )
 
 
 ########### next target ###############
-set(libknumber_la_SRCS  
-   ${CMAKE_SOURCE_DIR}/kcalc/knumber/knumber.cpp 
+# Needs absolute paths due to the test program for knumber
+set(libknumber_la_SRCS
+   ${CMAKE_SOURCE_DIR}/kcalc/knumber/knumber.cpp
    ${CMAKE_SOURCE_DIR}/kcalc/knumber/knumber_priv.cpp
    )
 
 add_subdirectory( knumber )
 
 set(kcalc_KDEINIT_SRCS ${libknumber_la_SRCS}
-   kcalc.cpp 
+   kcalc.cpp
    kcalc_bitset.cpp
-   kcalc_button.cpp 
-   kcalc_const_button.cpp 
-   kcalc_const_menu.cpp 
-   kcalc_core.cpp 
-   kcalcdisplay.cpp 
-   dlabel.cpp 
+   kcalc_button.cpp
+   kcalc_const_button.cpp
+   kcalc_const_menu.cpp
+   kcalc_core.cpp
+   kcalcdisplay.cpp
+   dlabel.cpp
    stats.cpp )
 
 kde4_automoc(${kcalc_KDEINIT_SRCS})
