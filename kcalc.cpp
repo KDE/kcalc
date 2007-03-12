@@ -2310,7 +2310,7 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
 	case QEvent::DragEnter:
 	{
 		QDragEnterEvent *ev = (QDragEnterEvent *)e;
-		ev->accept( KColorMimeData::canDecode( ev->mimeData() ) );
+		ev->setAccepted( KColorMimeData::canDecode( ev->mimeData() ) );
 		return true;
 	}
 	case QEvent::DragLeave:
