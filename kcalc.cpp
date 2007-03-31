@@ -55,7 +55,6 @@
 #include <kfontdialog.h>
 #include <kglobal.h>
 #include <kglobalsettings.h>
-#include <kkeydialog.h>
 #include <kmenu.h>
 #include <kmenubar.h>
 #include <knumvalidator.h>
