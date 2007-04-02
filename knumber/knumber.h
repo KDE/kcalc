@@ -22,7 +22,7 @@
 
 #include <gmp.h>
 
-#include <kdelibs_export.h>
+#include <kdemacros.h>
 
 #include "knumber_priv.h"
 
