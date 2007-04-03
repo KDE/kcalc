@@ -44,7 +44,7 @@ kde4_add_kcfg_files(kcalc_KDEINIT_SRCS kcalc_settings.kcfgc )
 
 kde4_add_kdeinit_executable( kcalc ${kcalc_KDEINIT_SRCS})
 
-target_link_libraries(kdeinit_kcalc  ${KDE4_KDEUI_LIBS} ${GMP_LIBRARIES})
+target_link_libraries(kdeinit_kcalc  ${KDE4_KDEUI_LIBS} ${GMP_LIBRARIES} ${QT_QT3SUPPORT_LIBRARY})
 
 install(TARGETS kdeinit_kcalc  DESTINATION ${LIB_INSTALL_DIR})
 
