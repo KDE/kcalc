@@ -322,8 +322,9 @@ KCalculator::KCalculator(QWidget *parent, const char *name)
 	// top layout
 	topLayout->addWidget(pbAngleChoose);
 	topLayout->addWidget(BaseChooseGroup);
+	topLayout->addStretch();
 	topLayout->addWidget(pbInv);
-	topLayout->addWidget(calc_display, 10);
+	mainLayout->insertWidget(0, calc_display);
 
 	mFunctionButtonList.append(pbScientific["HypMode"]);
 	mFunctionButtonList.append(pbInv);
