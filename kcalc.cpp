@@ -251,8 +251,9 @@ KCalculator::KCalculator(QWidget *parent)
 	// bring them all together
 	QVBoxLayout *mainLayout = new QVBoxLayout(central);
 
-	mainLayout->addLayout(topLayout);
+	mainLayout->addWidget(calc_display);
 	mainLayout->addWidget(mBitset);
+	mainLayout->addLayout(topLayout);
 	mainLayout->addLayout(btnLayout);
 
 	// button layout
@@ -331,8 +332,8 @@ KCalculator::KCalculator(QWidget *parent)
 	// top layout
 	topLayout->addWidget(pbAngleChoose);
 	topLayout->addWidget(BaseChooseGroup);
+	topLayout->addStretch();
 	topLayout->addWidget(pbInv);
-	topLayout->addWidget(calc_display, 10);
 
 	mFunctionButtonList.append(pbScientific["HypMode"]);
 	mFunctionButtonList.append(pbInv);
