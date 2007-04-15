@@ -223,7 +223,7 @@ static void _inc_by_one(QString &str, int position)
 {
   for (int i = position; i >= 0; i--)
     {
-      char last_char = str[i].latin1();
+      char last_char = str[i].toLatin1();
       switch(last_char)
 	{
 	case '0':
@@ -281,7 +281,7 @@ static void _round(QString &str, int precision)
   str.append(QString().fill('0', precision));
 
   // Now decide whether to round up or down
-  char last_char = str[decimalSymbolPos + precision + 1].latin1();
+  char last_char = str[decimalSymbolPos + precision + 1].toLatin1();
   switch (last_char)
     {
     case '0':
