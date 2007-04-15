@@ -26,7 +26,6 @@
 #include <unistd.h>
 
 
-#include <QButtonGroup>
 #include <QFont>
 #include <QGroupBox>
 #include <QKeyEvent>
@@ -41,11 +40,11 @@
 
 
 #include <kaboutdata.h>
-#include <kactioncollection.h>
 #include <kacceleratormanager.h>
 #include <kaction.h>
+#include <kactioncollection.h>
 #include <kapplication.h>
-#include <ktoolbar.h>
+#include <kbuttongroup.h>
 #include <kcmdlineargs.h>
 #include <kcolorbutton.h>
 #include <kcolormimedata.h>
@@ -61,8 +60,10 @@
 #include <kpushbutton.h>
 #include <kstatusbar.h>
 #include <kstandardaction.h>
-#include <kxmlguifactory.h>
 #include <ktoggleaction.h>
+#include <ktoolbar.h>
+#include <kxmlguifactory.h>
+
 
 #include "dlabel.h"
 #include "kcalc.h"
@@ -106,45 +107,49 @@ KCalculator::KCalculator(QWidget *parent)
 	toolBar()->hide();
 
 	// Create Button to select BaseMode
-	BaseChooseGroup = new QGroupBox(i18n("Base"), central);
+	BaseChooseGroup = new KButtonGroup(central);
+	BaseChooseGroup->setTitle(i18n("Base"));
 
-	//BaseChooseGroup->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed, false);
 	QHBoxLayout * base_but_layout = new QHBoxLayout(BaseChooseGroup);
 
-	pbBaseChoose[0] =  new QRadioButton(i18n("He&x"), BaseChooseGroup);
-	connect(pbBaseChoose[0], SIGNAL(clicked(void)), SLOT(slotBaseHex(void)));
-	base_but_layout->addWidget(pbBaseChoose[0]);
-	pbBaseChoose[0]->setToolTip( i18n("Switch base to hexadecimal."));
+	QRadioButton* tmpBaseButton = new QRadioButton(i18n("He&x"),
+						       BaseChooseGroup);
+	base_but_layout->addWidget(tmpBaseButton);
+	tmpBaseButton->setToolTip( i18n("Switch base to hexadecimal."));
 
-	pbBaseChoose[1] =  new QRadioButton(i18n("&Dec"), BaseChooseGroup);
-	connect(pbBaseChoose[1], SIGNAL(clicked(void)), SLOT(slotBaseDec(void)));
-	base_but_layout->addWidget(pbBaseChoose[1]);
-	pbBaseChoose[1]->setToolTip( i18n("Switch base to decimal."));
+	tmpBaseButton = new QRadioButton(i18n("&Dec"), BaseChooseGroup);
+	base_but_layout->addWidget(tmpBaseButton);
+	tmpBaseButton->setToolTip( i18n("Switch base to decimal."));
 
-	pbBaseChoose[2] =  new QRadioButton(i18n("&Oct"), BaseChooseGroup);
-	connect(pbBaseChoose[2], SIGNAL(clicked(void)), SLOT(slotBaseOct(void)));
-	base_but_layout->addWidget(pbBaseChoose[2]);
-	pbBaseChoose[2]->setToolTip( i18n("Switch base to octal."));
+	tmpBaseButton = new QRadioButton(i18n("&Oct"), BaseChooseGroup);
+	base_but_layout->addWidget(tmpBaseButton);
+	tmpBaseButton->setToolTip( i18n("Switch base to octal."));
 
-	pbBaseChoose[3] =  new QRadioButton(i18n("&Bin"), BaseChooseGroup);
-	connect(pbBaseChoose[3], SIGNAL(clicked(void)), SLOT(slotBaseBin(void)));
-	base_but_layout->addWidget(pbBaseChoose[3]);
-	pbBaseChoose[3]->setToolTip( i18n("Switch base to binary."));
+	tmpBaseButton =  new QRadioButton(i18n("&Bin"), BaseChooseGroup);
+	base_but_layout->addWidget(tmpBaseButton);
+	tmpBaseButton->setToolTip( i18n("Switch base to binary."));
+
+	connect(BaseChooseGroup, SIGNAL(changed(int)),
+		SLOT(slotBaseSelected(int)));
+
 
 
 	// Create Button to select AngleMode
-	pbAngleChoose =  new QPushButton(i18n("&Angle"), central);
-	pbAngleChoose->setToolTip( i18n("Choose the unit for the angle measure"));
-	pbAngleChoose->setAutoDefault(false);
+	AngleChooseGroup =  new KButtonGroup(central);
+	AngleChooseGroup->setTitle(i18n("&Angle"));
+	AngleChooseGroup->setToolTip( i18n("Choose the unit for the angle measure"));
+	QHBoxLayout * angle_but_layout = new QHBoxLayout(AngleChooseGroup);
 
-	KMenu *angle_menu = new KMenu(pbAngleChoose);
-	angle_menu->insertItem(i18n("Degrees"), 0);
-	angle_menu->insertItem(i18n("Radians"), 1);
-	angle_menu->insertItem(i18n("Gradians"), 2);
+	QRadioButton* tmpAngleButton = new QRadioButton(i18n("Degrees"),
+							AngleChooseGroup);
+	angle_but_layout->addWidget(tmpAngleButton);
+	tmpAngleButton = new QRadioButton(i18n("Radians"), AngleChooseGroup);
+	angle_but_layout->addWidget(tmpAngleButton);
+	tmpAngleButton = new QRadioButton(i18n("Gradians"), AngleChooseGroup);
+	angle_but_layout->addWidget(tmpAngleButton);
 
-	angle_menu->setCheckable(true);
-	connect(angle_menu, SIGNAL(activated(int)), SLOT(slotAngleSelected(int)));
-	pbAngleChoose->setMenu(angle_menu);
+	connect(AngleChooseGroup, SIGNAL(changed(int)),
+		SLOT(slotAngleSelected(int)));
 
 
 
@@ -330,7 +335,7 @@ KCalculator::KCalculator(QWidget *parent)
 	largeBtnLayout->addWidget(pbPlusMinus, 4, 1);
 
 	// top layout
-	topLayout->addWidget(pbAngleChoose);
+	topLayout->addWidget(AngleChooseGroup);
 	topLayout->addWidget(BaseChooseGroup);
 	topLayout->addStretch();
 	topLayout->addWidget(pbInv);
@@ -385,7 +390,6 @@ KCalculator::KCalculator(QWidget *parent)
 
 	// Switch to decimal
 	resetBase();
-	slotAngleSelected(0);
 
 	updateGeometry();
 
@@ -1145,117 +1149,70 @@ void KCalculator::updateGeometry(void)
     pbPlus->setFixedSize(t);
 }
 
-void KCalculator::slotBaseHex(void)
+void KCalculator::slotBaseSelected(int base)
 {
-	// set display & statusbar (if item exist in statusbar)
-	calc_display->setBase(NumBase(16));
-	if (statusBar()->hasItem(1)) statusBar()->changeItem("HEX",1);
-	calc_display->setStatusText(1, "Hex");
+  int current_base;
+    
+  // set display & statusbar (if item exist in statusbar)
+  switch(base) {
+  case 3:
+    current_base = calc_display->setBase(NumBase(2));
+    if (statusBar()->hasItem(1)) statusBar()->changeItem("BIN",1);
+    calc_display->setStatusText(1, "Bin");
+    break;
+  case 2:
+    current_base = calc_display->setBase(NumBase(8));
+    if (statusBar()->hasItem(1)) statusBar()->changeItem("OCT",1);
+    calc_display->setStatusText(1, "Oct");
+    break;
+  case 1:
+    current_base = calc_display->setBase(NumBase(10));
+    if (statusBar()->hasItem(1)) statusBar()->changeItem("DEC",1);
+    calc_display->setStatusText(1, "Dec");
+    break;
+  case 0:
+    current_base = calc_display->setBase(NumBase(16));
+    if (statusBar()->hasItem(1)) statusBar()->changeItem("HEX",1);
+    calc_display->setStatusText(1, "Hex");
+    break;
+  default:
+    if (statusBar()->hasItem(1)) statusBar()->changeItem("Error",1);
+    calc_display->setStatusText(1, "Error");
+    return;
+  }
 
-
-	// Enable the buttons not available in this base
-	for (int i=0; i<16; i++)
-	  (NumButtonGroup->buttons()[i])->setEnabled (true);
-
-	// Only enable the decimal point, x*10^y button in decimal
-	pbPeriod->setEnabled(false);
-	pbEE->setEnabled(false);
-
-	// Disable buttons that make only sense with floating point
-	// numbers
-	pbScientific["HypMode"]->setEnabled(false);
-	pbScientific["Sine"]->setEnabled(false);
-	pbScientific["Cosine"]->setEnabled(false);
-	pbScientific["Tangent"]->setEnabled(false);
-	pbScientific["LogNatural"]->setEnabled(false);
-	pbScientific["Log10"]->setEnabled(false);
+  // Enable the buttons not available in this base
+  for (int i=0; i<current_base; i++)
+    (NumButtonGroup->buttons()[i])->setEnabled (true);
+  
+  // Disable the buttons not available in this base
+  for (int i=current_base; i<16; i++)
+    (NumButtonGroup->buttons()[i])->setEnabled (false);
+  
+  // Only enable the decimal point in decimal
+  pbPeriod->setEnabled(current_base == NB_DECIMAL);
+  // Only enable the x*10^y button in decimal
+  pbEE->setEnabled(current_base == NB_DECIMAL);
+  
+  // Disable buttons that make only sense with floating point
+  // numbers
+  if(current_base != NB_DECIMAL)  {
+    pbScientific["HypMode"]->setEnabled(false);
+    pbScientific["Sine"]->setEnabled(false);
+    pbScientific["Cosine"]->setEnabled(false);
+    pbScientific["Tangent"]->setEnabled(false);
+    pbScientific["LogNatural"]->setEnabled(false);
+    pbScientific["Log10"]->setEnabled(false);
+  } else {
+    pbScientific["HypMode"]->setEnabled(true);
+    pbScientific["Sine"]->setEnabled(true);
+    pbScientific["Cosine"]->setEnabled(true);
+    pbScientific["Tangent"]->setEnabled(true);
+    pbScientific["LogNatural"]->setEnabled(true);
+    pbScientific["Log10"]->setEnabled(true);
+  }
 }
 
-void KCalculator::slotBaseDec(void)
-{
-	// set display & statusbar (if item exist in statusbar)
-	calc_display->setBase(NumBase(10));
-	if (statusBar()->hasItem(1)) statusBar()->changeItem("DEC",1);
-	calc_display->setStatusText(1, "Dec");
-
-
-	// Enable the buttons not available in this base
-	for (int i=0; i<10; i++)
-	  (NumButtonGroup->buttons()[i])->setEnabled (true);
-
-	// Disable the buttons not available in this base
-	for (int i=10; i<16; i++)
-	  (NumButtonGroup->buttons()[i])->setEnabled (false);
-
-	// Only enable the decimal point, x*10^y button in decimal
-	pbPeriod->setEnabled(true);
-	pbEE->setEnabled(true);
-
-	pbScientific["HypMode"]->setEnabled(true);
-	pbScientific["Sine"]->setEnabled(true);
-	pbScientific["Cosine"]->setEnabled(true);
-	pbScientific["Tangent"]->setEnabled(true);
-	pbScientific["LogNatural"]->setEnabled(true);
-	pbScientific["Log10"]->setEnabled(true);
-}
-
-void KCalculator::slotBaseOct(void)
-{
-	// set display & statusbar (if item exist in statusbar)
-	  calc_display->setBase(NumBase(8));
-	  if (statusBar()->hasItem(1)) statusBar()->changeItem("OCT",1);
-	  calc_display->setStatusText(1, "Oct");
-
-	// Enable the buttons not available in this base
-	for (int i=0; i<8; i++)
-	  (NumButtonGroup->buttons()[i])->setEnabled (true);
-
-	// Disable the buttons not available in this base
-	for (int i=8; i<16; i++)
-	  (NumButtonGroup->buttons()[i])->setEnabled (false);
-
-	// Only enable the decimal point, x*10^y button in decimal
-	pbPeriod->setEnabled(false);
-	pbEE->setEnabled(false);
-
-	// Disable buttons that make only sense with floating point
-	// numbers
-	pbScientific["HypMode"]->setEnabled(false);
-	pbScientific["Sine"]->setEnabled(false);
-	pbScientific["Cosine"]->setEnabled(false);
-	pbScientific["Tangent"]->setEnabled(false);
-	pbScientific["LogNatural"]->setEnabled(false);
-	pbScientific["Log10"]->setEnabled(false);
-}
-
-void KCalculator::slotBaseBin(void)
-{
-	// set display & statusbar (if item exist in statusbar)
-	calc_display->setBase(NumBase(2));
-	if (statusBar()->hasItem(1)) statusBar()->changeItem("BIN",1);
-	calc_display->setStatusText(1, "Bin");
-
-	// Enable the buttons not available in this base
-	for (int i=0; i<2; i++)
-	  (NumButtonGroup->buttons()[i])->setEnabled (true);
-
-	// Disable the buttons not available in this base
-	for (int i=2; i<16; i++)
-	  (NumButtonGroup->buttons()[i])->setEnabled (false);
-
-	// Only enable the decimal point, x*10^y button in decimal
-	pbPeriod->setEnabled(false);
-	pbEE->setEnabled(false);
-
-	// Disable buttons that make only sense with floating point
-	// numbers
-	pbScientific["HypMode"]->setEnabled(false);
-	pbScientific["Sine"]->setEnabled(false);
-	pbScientific["Cosine"]->setEnabled(false);
-	pbScientific["Tangent"]->setEnabled(false);
-	pbScientific["LogNatural"]->setEnabled(false);
-	pbScientific["Log10"]->setEnabled(false);
-}
 
 void KCalculator::keyPressEvent(QKeyEvent *e)
 {
@@ -1295,28 +1252,21 @@ void KCalculator::keyReleaseEvent(QKeyEvent *e)
 
 void KCalculator::slotAngleSelected(int number)
 {
-	pbAngleChoose->menu()->setItemChecked(0, false);
-	pbAngleChoose->menu()->setItemChecked(1, false);
-	pbAngleChoose->menu()->setItemChecked(2, false);
-
 	switch(number)
 	{
 	case 0:
 		_angle_mode = DegMode;
 		statusBar()->changeItem("DEG", 2);
-		pbAngleChoose->menu()->setItemChecked(0, true);
 		calc_display->setStatusText(2, "Deg");
 		break;
 	case 1:
 		_angle_mode = RadMode;
 		statusBar()->changeItem("RAD", 2);
-		pbAngleChoose->menu()->setItemChecked(1, true);
 		calc_display->setStatusText(2, "Rad");
 		break;
 	case 2:
 		_angle_mode = GradMode;
 		statusBar()->changeItem("GRA", 2);
-		pbAngleChoose->menu()->setItemChecked(2, true);
 		calc_display->setStatusText(2, "Gra");
 		break;
 	default: // we shouldn't ever end up here
@@ -1913,7 +1863,7 @@ void KCalculator::showSettings()
 	QWidget *fontWidget = new QWidget(0);
 	QVBoxLayout *fontLayout = new QVBoxLayout(fontWidget);
 	KFontChooser *mFontChooser =
-		new KFontChooser(fontWidget, KFontChooser::NoDisplayFlags, QStringList(), 6);
+		new KFontChooser(fontWidget, false, QStringList(), 6);
 	mFontChooser->setObjectName("kcfg_Font");
 
 	fontLayout->addWidget(mFontChooser);
@@ -2064,12 +2014,12 @@ void KCalculator::slotScientificshow(bool toggled)
 		pbScientific["Tangent"]->show();
 		pbScientific["Log10"]->show();
 		pbScientific["LogNatural"]->show();
-		pbAngleChoose->show();
+		AngleChooseGroup->show();
 		if(!statusBar()->hasItem(2))
 			statusBar()->insertFixedItem(" DEG ", 2);
 		statusBar()->setItemAlignment(2, Qt::AlignCenter);
 		calc_display->setStatusText(2, "Deg");
-		slotAngleSelected(0);
+		AngleChooseGroup->setSelected(0);
 	}
 	else
 	{
@@ -2079,7 +2029,7 @@ void KCalculator::slotScientificshow(bool toggled)
 		pbScientific["Tangent"]->hide();
 		pbScientific["Log10"]->hide();
 		pbScientific["LogNatural"]->hide();
-		pbAngleChoose->hide();
+		AngleChooseGroup->hide();
 		if(statusBar()->hasItem(2))
 			statusBar()->removeItem(2);
 		calc_display->setStatusText(2, QString::null);
@@ -2109,8 +2059,8 @@ void KCalculator::slotLogicshow(bool toggled)
 			statusBar()->insertFixedItem(" HEX ", 1);
 		statusBar()->setItemAlignment(1, Qt::AlignCenter);
 		calc_display->setStatusText(1, "Hex");
-		resetBase();
 		BaseChooseGroup->show();
+		resetBase();
 		for (int i=10; i<16; i++)
 			(NumButtonGroup->button(i))->show();
 	}

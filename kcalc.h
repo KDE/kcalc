@@ -105,7 +105,7 @@ private:
 	void keyReleaseEvent(QKeyEvent *e);
 	void set_precision();
 	void set_style();
-	void resetBase(void) { pbBaseChoose[1]->animateClick();};
+	void resetBase(void) { BaseChooseGroup->setSelected(1); };
 
 	void UpdateDisplay(bool get_amount_from_core = false,
 			   bool store_result_in_history = false);
@@ -123,10 +123,7 @@ protected slots:
     void slotShowAll(void);
     void slotHideAll(void);
     void slotAngleSelected(int number);
-    void slotBaseHex(void);
-    void slotBaseDec(void);
-    void slotBaseOct(void);
-    void slotBaseBin(void);
+    void slotBaseSelected(int base);
     void slotNumberclicked(int number_clicked);
     void slotEEclicked(void);
     void slotInvtoggled(bool myboolean);
@@ -205,8 +202,6 @@ private:
     KCalcBitset *mBitset;
 
     DispLogic*	calc_display; // for historic reasons in "dlabel.h"
-    QRadioButton*	pbBaseChoose[4];
-    QPushButton*	pbAngleChoose;
     QHash<QString, KCalcButton *>	pbStat;
     QHash<QString, KCalcButton *>	pbScientific;
     QHash<QString, KCalcButton *>	pbLogic;
@@ -243,7 +238,8 @@ private:
 			   // buttons would like to remove this, but
 			   // don't know how
 	
-    QGroupBox* 	 	BaseChooseGroup;
+    KButtonGroup*	AngleChooseGroup;
+    KButtonGroup* 	BaseChooseGroup;
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
     QButtonGroup* 	NumButtonGroup;
     // ConstButtonGroup C1-C6
