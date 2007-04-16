@@ -30,7 +30,7 @@ class QWidget;
 class DispLogic;
 class Constants;
 class KCalcBitset;
-#include <kmainwindow.h>
+#include <kxmlguiwindow.h>
 
 /*
   Kcalc basically consist of a class for the GUI (here), a class for
@@ -78,7 +78,7 @@ public:
 
 
 
-class KCalculator : public KMainWindow
+class KCalculator : public KXmlGuiWindow
 {
     Q_OBJECT
 

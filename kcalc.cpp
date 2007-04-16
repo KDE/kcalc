@@ -79,7 +79,7 @@ static const char version[] = KCALCVERSION;
 
 
 KCalculator::KCalculator(QWidget *parent)
-	: KMainWindow(parent), inverse(false), hyp_mode(false),
+	: KXmlGuiWindow(parent), inverse(false), hyp_mode(false),
 	  memory_num(0.0), calc_display(NULL),
 	  mInternalSpacing(4), core()
 {
@@ -2320,7 +2320,7 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
 		return true;
 	}
 	default:
-		return KMainWindow::eventFilter(o, e);
+		return KXmlGuiWindow::eventFilter(o, e);
 	}
 }
 
