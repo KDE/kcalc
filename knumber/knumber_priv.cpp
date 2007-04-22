@@ -22,7 +22,7 @@
 #include <stdlib.h>
 
 #include <QRegExp>
-#include <QString>
+
 
 #include "knumber_priv.h"
 

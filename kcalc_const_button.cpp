@@ -19,7 +19,7 @@
 
 */
 
-#include <QString>
+
 
 
 #include <kinputdialog.h>

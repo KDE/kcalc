@@ -26,7 +26,7 @@
 
 #include <QList>
 #include <QMenu>
-#include <QString>
+
 
 enum ConstantCategory {Mathematics = 1, Electromagnetic = 2, Nuclear = 4, Thermodynamics = 8, Gravitation = 16};
 

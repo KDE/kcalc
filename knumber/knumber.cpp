@@ -23,7 +23,7 @@
 #include <config-kcalc.h>
 
 #include <QRegExp>
-#include <QString>
+
 
 #include "knumber.h"
 

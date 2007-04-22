@@ -19,7 +19,7 @@
 #ifndef _KNUMBER_PRIV_H
 #define _KNUMBER_PRIV_H
 
-#include <QString>
+
 
 #include <gmp.h>
 
