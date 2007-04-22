@@ -10,6 +10,8 @@
 
 #include "knumbertest.h"
 
+#include <QString>
+
 QString const  numtypeToString(KNumber::NumType arg)
 {
   switch(arg) {
