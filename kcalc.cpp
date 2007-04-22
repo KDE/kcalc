@@ -35,7 +35,7 @@
 #include <QShortcut>
 #include <QSpinBox>
 #include <QStyle>
-#include <QToolTip>
+
 
 
 
