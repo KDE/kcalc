@@ -45,7 +45,7 @@ class QDomNode;
 class ButtonMode
 {
 public:
-  ButtonMode(void) {};
+  ButtonMode(void) {}
   ButtonMode(const QString &label, const QString &tooltip, bool is_label_richtext)
     : is_label_richtext(is_label_richtext), tooltip(tooltip)
   {
@@ -53,7 +53,7 @@ public:
       this->label = "<qt type=\"page\"><center>" + label + "</center></qt>";
     else
       this->label = label;
-  };
+  }
 
   QString label;
   bool is_label_richtext;
@@ -94,10 +94,10 @@ Q_OBJECT
 
 public:
   KSquareButton(QWidget *parent)
-    : KCalcButton(parent) { }; 
+    : KCalcButton(parent) { } 
  KSquareButton(const QString &label, QWidget *parent,
 	       const QString &tooltip = QString())
-   : KCalcButton(label, parent, tooltip) { };
+   : KCalcButton(label, parent, tooltip) { }
 
 protected:
   virtual void paintEvent(QPaintEvent *p);

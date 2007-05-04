@@ -20,7 +20,7 @@
 #define _KNUMBER_PRIV_H
 
 
-
+#include <cstdio>
 #include <gmp.h>
 
 // work-around for pre-C99-libs

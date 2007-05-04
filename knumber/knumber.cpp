@@ -18,7 +18,9 @@
    Boston, MA 02110-1301, USA.
 */
 
-#include <math.h>
+#include <cmath>
+#include <cstdio>
+#include <gmp.h>
 
 #include <config-kcalc.h>
 

@@ -105,7 +105,7 @@ private:
 	void keyReleaseEvent(QKeyEvent *e);
 	void set_precision();
 	void set_style();
-	void resetBase(void) { BaseChooseGroup->setSelected(1); };
+	void resetBase(void) { BaseChooseGroup->setSelected(1); }
 
 	void UpdateDisplay(bool get_amount_from_core = false,
 			   bool store_result_in_history = false);
