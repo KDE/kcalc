@@ -415,7 +415,7 @@ KCalculator::KCalculator(QWidget *parent)
 
 KCalculator::~KCalculator()
 {
-	KCalcSettings::writeConfig();
+	KCalcSettings::self()->writeConfig();
 	delete calc_display;
 }
 
