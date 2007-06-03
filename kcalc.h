@@ -24,8 +24,6 @@
 #ifndef KCALC_H
 #define KCALC_H
 
-class QPushButton;
-class QRadioButton;
 class QWidget;
 class DispLogic;
 class Constants;
