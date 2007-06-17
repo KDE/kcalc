@@ -13,7 +13,6 @@ Name[sv]=Kcalc
 Name[ta]=கேகணிப்பான்
 Name[tg]=KМошинаи ҳисобкунак
 Name[th]=เครื่องคิดเลข
-Name[tr]=Hesap Makinesi
 Name[uz]=Калкулятор
 Name[zh_TW]=KDE 計算機
 Exec=kcalc  -caption "%c" %i %m
