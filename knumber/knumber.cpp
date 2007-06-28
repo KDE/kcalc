@@ -45,6 +45,17 @@ bool KNumber::_float_output = false;
 bool KNumber::_fraction_input = false;
 bool KNumber::_splitoffinteger_output = false;
 
+#ifndef HAVE_FUNC_ISINF
+
+#ifdef HAVE_IEEEEFP_H
+#include <ieeefp.h>
+#else
+#include <math.h>
+#endif
+
+#define isinf(x) !finite(x) && x == x
+#endif
+
 KNumber::KNumber(qint32 num)
 {
   _num = new _knuminteger(num);
