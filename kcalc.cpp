@@ -2336,23 +2336,23 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
 
 extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
 {
-	KAboutData aboutData( "kcalc", I18N_NOOP("KCalc"),
-                          version, description, KAboutData::License_GPL,
-                          I18N_NOOP("(c) 2003-2005, Klaus Niederkr" "\xc3\xbc" "ger\n"
+	KAboutData aboutData( "kcalc", 0, ki18n("KCalc"),
+                          version, ki18n(description), KAboutData::License_GPL,
+                          ki18n("(c) 2003-2005, Klaus Niederkr" "\xc3\xbc" "ger\n"
 				    "(c) 1996-2000, Bernd Johannes Wuebben\n"
                                     "(c) 2000-2005, The KDE Team"));
 
 	/* Klaus Niederkrueger */
-	aboutData.addAuthor("Klaus Niederkr" "\xc3\xbc" "ger", 0, "kniederk@math.uni-koeln.de");
-	aboutData.addAuthor("Bernd Johannes Wuebben", 0, "wuebben@kde.org");
-	aboutData.addAuthor("Evan Teran", 0, "eteran@alum.rit.edu");
-	aboutData.addAuthor("Espen Sand", 0, "espen@kde.org");
-	aboutData.addAuthor("Chris Howells", 0, "howells@kde.org");
-	aboutData.addAuthor("Aaron J. Seigo", 0, "aseigo@olympusproject.org");
-	aboutData.addAuthor("Charles Samuels", 0, "charles@altair.dhs.org");
+	aboutData.addAuthor(ki18n("Klaus Niederkr" "\xc3\xbc" "ger"), KLocalizedString(), "kniederk@math.uni-koeln.de");
+	aboutData.addAuthor(ki18n("Bernd Johannes Wuebben"), KLocalizedString(), "wuebben@kde.org");
+	aboutData.addAuthor(ki18n("Evan Teran"), KLocalizedString(), "eteran@alum.rit.edu");
+	aboutData.addAuthor(ki18n("Espen Sand"), KLocalizedString(), "espen@kde.org");
+	aboutData.addAuthor(ki18n("Chris Howells"), KLocalizedString(), "howells@kde.org");
+	aboutData.addAuthor(ki18n("Aaron J. Seigo"), KLocalizedString(), "aseigo@olympusproject.org");
+	aboutData.addAuthor(ki18n("Charles Samuels"), KLocalizedString(), "charles@altair.dhs.org");
 	/* Rene Merou */
-	aboutData.addAuthor("Ren" "\xc3\xa9" " M" "\xc3\xa9"  "rou", 0, "ochominutosdearco@yahoo.es");
-	aboutData.addAuthor("Michel Marti", 0, "mma@objectxp.com");
+	aboutData.addAuthor(ki18n("Ren" "\xc3\xa9" " M" "\xc3\xa9"  "rou"), KLocalizedString(), "ochominutosdearco@yahoo.es");
+	aboutData.addAuthor(ki18n("Michel Marti"), KLocalizedString(), "mma@objectxp.com");
 	KCmdLineArgs::init(argc, argv, &aboutData);
 
 	KApplication app;
