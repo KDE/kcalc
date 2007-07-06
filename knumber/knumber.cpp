@@ -29,6 +29,8 @@
 
 #include "knumber.h"
 
+using namespace std;
+
 KNumber const KNumber::Zero(0);
 KNumber const KNumber::One(1);
 KNumber const KNumber::MinusOne(-1);
