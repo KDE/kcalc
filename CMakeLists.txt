@@ -35,7 +35,6 @@ set(kcalc_KDEINIT_SRCS ${libknumber_la_SRCS}
    dlabel.cpp 
    stats.cpp )
 
-kde4_automoc(${kcalc_KDEINIT_SRCS})
 
 kde4_add_ui3_files(kcalc_KDEINIT_SRCS general.ui )
 
