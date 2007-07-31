@@ -49,7 +49,7 @@ bool KNumber::_splitoffinteger_output = false;
 
 #ifndef HAVE_FUNC_ISINF
 
-#ifdef HAVE_IEEEEFP_H
+#ifdef HAVE_IEEEFP_H
 #include <ieeefp.h>
 #else
 #include <math.h>
