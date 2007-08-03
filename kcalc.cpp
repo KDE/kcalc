@@ -695,7 +695,7 @@ QWidget* KCalculator::setupNumericKeys(QWidget *parent)
 	connect(pbMC, SIGNAL(clicked(void)), SLOT(slotMCclicked(void)));
 
 	pbClear = new KCalcButton("C", mLargePage, i18n("Clear"));
-	pbClear->setShortcut(QKeySequence(Qt::Key_Prior));
+	pbClear->setShortcut(QKeySequence(Qt::Key_PageUp));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 		pbClear, SLOT(slotSetAccelDisplayMode(bool)));
 	new QShortcut( Qt::Key_Escape, pbClear, SLOT(animateClick()) );
@@ -1219,7 +1219,7 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
   if ( ( e->modifiers() & Qt::NoModifier ) == 0 || ( e->modifiers() & Qt::ShiftModifier) ) {
 	switch (e->key())
 	{
-	case Qt::Key_Next:
+	case Qt::Key_PageDown:
 		pbAC->animateClick();
 		break;
 	case Qt::Key_Slash:
