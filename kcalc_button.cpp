@@ -74,7 +74,7 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
 
     if(_mode[new_mode].is_label_richtext) {
       _label.setText(_mode[new_mode].label);
-      setText(QString::null);
+      setText(QString::null);	//krazy:exclude=nullstrassign for old broken gcc
       _label.show();
     }  else {
       setText(_mode[new_mode].label);
@@ -114,7 +114,7 @@ void KCalcButton::slotSetAccelDisplayMode(bool flag)
   } else {
     if(_mode[_mode_flags].is_label_richtext) {
       _label.setText(_mode[_mode_flags].label);
-      setText(QString::null);
+      setText(QString::null);	//krazy:exclude=nullstrassign for old broken gcc
       _label.show();
     }  else {
       setText(_mode[_mode_flags].label);

@@ -220,8 +220,8 @@ KCalculator::KCalculator(QWidget *parent)
 	connect(pbSquare, SIGNAL(clicked(void)), SLOT(slotSquareclicked(void)));
 
 	pbRoot = new KSquareButton(mSmallPage);
-	pbRoot->addMode(ModeNormal, QString::null, i18n("Square root"));
-	pbRoot->addMode(ModeInverse, QString::null, i18n("Cube root"));
+	pbRoot->addMode(ModeNormal, QString::null, i18n("Square root"));	//krazy:exclude=nullstrassign for old broken gcc
+	pbRoot->addMode(ModeInverse, QString::null, i18n("Cube root"));	//krazy:exclude=nullstrassign for old broken gcc
 	connect(this, SIGNAL(switchShowAccels(bool)),
 	        pbRoot, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
@@ -1293,7 +1293,7 @@ void KCalculator::slotInvtoggled(bool flag)
 	else
 	{
 		statusBar()->changeItem("NORM", 0);
-		calc_display->setStatusText(0, QString::null);
+		calc_display->setStatusText(0, QString::null);	//krazy:exclude=nullstrassign for old broken gcc
 	}
 }
 
@@ -1579,7 +1579,7 @@ void KCalculator::slotMCclicked(void)
 {
 	memory_num		= 0;
 	statusBar()->changeItem(" \xa0\xa0 ",3);
-	calc_display->setStatusText(3, QString::null);
+	calc_display->setStatusText(3, QString::null);	//krazy:exclude=nullstrassign for old broken gcc
 	pbMemRecall->setDisabled(true);
 }
 
@@ -2032,7 +2032,7 @@ void KCalculator::slotScientificshow(bool toggled)
 		AngleChooseGroup->hide();
 		if(statusBar()->hasItem(2))
 			statusBar()->removeItem(2);
-		calc_display->setStatusText(2, QString::null);
+		calc_display->setStatusText(2, QString::null);	//krazy:exclude=nullstrassign for old broken gcc
 	}
 	adjustSize();
 	setFixedSize(sizeHint());
@@ -2082,7 +2082,7 @@ void KCalculator::slotLogicshow(bool toggled)
 		BaseChooseGroup->hide();
 		if(statusBar()->hasItem(1))
 			statusBar()->removeItem(1);
-		calc_display->setStatusText(1, QString::null);
+		calc_display->setStatusText(1, QString::null);	//krazy:exclude=nullstrassign for old broken gcc
 		for (int i=10; i<16; i++)
 			(NumButtonGroup->button(i))->hide();
 	}
@@ -2173,7 +2173,7 @@ void KCalculator::updateSettings()
 	}
 	else
 	{
-		setCaption(QString::null);
+		setCaption(QString::null);	//krazy:exclude=nullstrassign for old broken gcc
 	}
 	calc_display->changeSettings();
 
