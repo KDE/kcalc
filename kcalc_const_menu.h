@@ -44,7 +44,7 @@ Q_OBJECT
 
  public:
   KCalcConstMenu(QWidget * parent = 0);
-  KCalcConstMenu(QString const & title, QWidget * parent = 0);
+  explicit KCalcConstMenu(QString const & title, QWidget * parent = 0);
 
   static QList<struct science_constant> Constants;
   static void init_consts(void);

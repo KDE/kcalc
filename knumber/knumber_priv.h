@@ -193,7 +193,7 @@ class _knumfraction : public _knumber
 {
  public:
   
-  _knumfraction(signed long int nom = 0, signed long int denom = 1)
+  explicit _knumfraction(signed long int nom = 0, signed long int denom = 1)
   {
     mpq_init(_mpq);
     mpq_set_si(_mpq, nom, denom);

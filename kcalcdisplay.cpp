@@ -276,7 +276,7 @@ void KCalcDisplay::setText(QString const &string)
 	  // when input ends with "." (because uncomplete), the
 	  // formatNumber-method does not work; fix by hand by
 	  // truncating, formatting and appending again
-	  if (string.endsWith(".")) {
+	  if (string.endsWith('.')) {
 	    localizedString.truncate(localizedString.length() - 1);
 	    localizedString = KGlobal::locale()->formatNumber(localizedString, false, 0); // Note: rounding happened already above!
 	    localizedString.append(KGlobal::locale()->decimalSymbol());
@@ -478,7 +478,7 @@ void KCalcDisplay::newCharacter(char const new_char)
 	if (_eestate)
 	{
 	  // ignore ',' before 'e'. turn e.g. '123.e' into '123e'
-	  if (new_char == 'e'  &&  _str_int.endsWith( "." ))
+	  if (new_char == 'e'  &&  _str_int.endsWith( '.' ))
 	  {
 		_str_int.truncate(_str_int.length() - 1);
 		_period = false;
