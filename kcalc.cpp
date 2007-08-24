@@ -69,7 +69,6 @@
 #include "kcalc.h"
 #include "kcalc_const_menu.h"
 #include "version.h"
-#include "general.h"
 #include "kcalc_settings.h"
 #include "kcalc_bitset.h"
 
@@ -150,8 +149,6 @@ KCalculator::KCalculator(QWidget *parent)
 
 	connect(AngleChooseGroup, SIGNAL(changed(int)),
 		SLOT(slotAngleSelected(int)));
-
-
 
 	pbInv = new KCalcButton("Inv", central,	i18n("Inverse mode"));
 	pbInv->setShortcut(QKeySequence(Qt::Key_I));
@@ -393,8 +390,7 @@ KCalculator::KCalculator(QWidget *parent)
 
 	updateGeometry();
 
-	adjustSize();
-	setFixedSize(sizeHint());
+	resize(minimumSize());
 
 	UpdateDisplay(true);
 
@@ -1855,10 +1851,10 @@ void KCalculator::showSettings()
 
 	// Add the general page.  Store the settings in the General group and
 	// use the icon package_settings.
-	General *general = new General(0, "General");
+	General *general = new General(0);
 	int maxprec = 1000;
 	general->kcfg_Precision->setMaximum(maxprec);
-	dialog->addPage(general, i18n("General"), "package_settings", i18n("General Settings"));
+	dialog->addPage(general, i18n("General"), "kcalc", i18n("General Settings"));
 
 	QWidget *fontWidget = new QWidget(0);
 	QVBoxLayout *fontLayout = new QVBoxLayout(fontWidget);
@@ -1867,13 +1863,13 @@ void KCalculator::showSettings()
 	mFontChooser->setObjectName("kcfg_Font");
 
 	fontLayout->addWidget(mFontChooser);
-	dialog->addPage(fontWidget, i18n("Font"), "fonts", i18n("Select Display Font"));
+	dialog->addPage(fontWidget, i18n("Font"), "preferences-desktop-font", i18n("Select Display Font"));
 
 	// color settings
 
 	Colors *color = new Colors(0);
 
-	dialog->addPage(color, i18n("Colors"), "colors", i18n("Button & Display Colors"));
+	dialog->addPage(color, i18n("Colors"), "color-fill", i18n("Button & Display Colors"));
 
 	// constant settings
 
@@ -1999,8 +1995,6 @@ void KCalculator::slotStatshow(bool toggled)
 		pbStat["InputData"]->hide();
 		pbStat["ClearData"]->hide();
 	}
-	adjustSize();
-	setFixedSize(sizeHint());
 	KCalcSettings::setShowStat(toggled);
 }
 
@@ -2034,8 +2028,6 @@ void KCalculator::slotScientificshow(bool toggled)
 			statusBar()->removeItem(2);
 		calc_display->setStatusText(2, QString());
 	}
-	adjustSize();
-	setFixedSize(sizeHint());
 	KCalcSettings::setShowScientific(toggled);
 }
 
@@ -2086,8 +2078,6 @@ void KCalculator::slotLogicshow(bool toggled)
 		for (int i=10; i<16; i++)
 			(NumButtonGroup->button(i))->hide();
 	}
-	adjustSize();
-	setFixedSize(sizeHint());
 	KCalcSettings::setShowLogic(toggled);
 }
 
@@ -2112,8 +2102,6 @@ void KCalculator::slotConstantsShow(bool toggled)
 		pbConstant[4]->hide();
 		pbConstant[5]->hide();
 	}
-	adjustSize();
-	setFixedSize(sizeHint());
 	KCalcSettings::setShowConstants(toggled);
 }
 
@@ -2178,14 +2166,6 @@ void KCalculator::updateSettings()
 	calc_display->changeSettings();
 
 	updateGeometry();
-	resize(minimumSize());
-
-	//
-	// 1999-10-31 Espen Sand: Don't ask me why ;)
-	// 2006-02-26 David Faure: time to find out why -> commented out
-	//kapp->processOneEvent();
-
-	setFixedHeight(minimumHeight());
 }
 
 void KCalculator::UpdateDisplay(bool get_amount_from_core,

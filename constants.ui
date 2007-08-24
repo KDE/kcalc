@@ -1,444 +1,229 @@
-<ui version="4.0" stdsetdef="1" >
-  <author></author>
-  <comment></comment>
-  <exportmacro></exportmacro>
-  <class>Constants</class>
-  <widget class="QWidget" name="Constants" >
-    <property name="geometry" >
-      <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>534</width>
-        <height>596</height>
-      </rect>
-    </property>
-    <property name="windowTitle" >
-      <string>Constants</string>
-    </property>
-    <layout class="QVBoxLayout" >
+<ui version="4.0" >
+ <class>Constants</class>
+ <widget class="QWidget" name="Constants" >
+  <property name="windowTitle" >
+   <string>Constants</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <widget class="QGroupBox" name="mainGroupBox" >
+     <property name="title" >
+      <string>Configure Constants</string>
+     </property>
+     <layout class="QVBoxLayout" >
       <item>
-        <widget class="QGroupBox" name="mainGroupBox" >
-          <property name="title" >
-            <string>Configure Constants</string>
-          </property>
-          <layout class="QVBoxLayout" >
-            <property name="margin" >
-              <number>0</number>
-            </property>
-            <item>
-              <widget class="QGroupBox" name="groupBox0" >
-                <property name="title" >
-                  <string>C1</string>
-                </property>
-                <layout class="QHBoxLayout" >
-                  <property name="margin" >
-                    <number>0</number>
-                  </property>
-                  <item>
-                    <widget class="QLineEdit" name="kcfg_nameConstant0" >
-                      <property name="maxLength" >
-                        <number>6</number>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <spacer name="spacer1" >
-                      <property name="sizeHint" >
-                        <size>
-                          <width>70</width>
-                          <height>21</height>
-                        </size>
-                      </property>
-                      <property name="sizeType" >
-                        <enum>Expanding</enum>
-                      </property>
-                      <property name="orientation" >
-                        <enum>Horizontal</enum>
-                      </property>
-                    </spacer>
-                  </item>
-                  <item>
-                    <widget class="QLineEdit" name="kcfg_valueConstant0" >
-                      <property name="maxLength" >
-                        <number>40</number>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <spacer name="spacer2" >
-                      <property name="sizeHint" >
-                        <size>
-                          <width>80</width>
-                          <height>21</height>
-                        </size>
-                      </property>
-                      <property name="sizeType" >
-                        <enum>Expanding</enum>
-                      </property>
-                      <property name="orientation" >
-                        <enum>Horizontal</enum>
-                      </property>
-                    </spacer>
-                  </item>
-                  <item>
-                    <widget class="KPushButton" name="kPushButton0" >
-                      <property name="text" >
-                        <string>Predefined</string>
-                      </property>
-                    </widget>
-                  </item>
-                </layout>
-              </widget>
-            </item>
-            <item>
-              <widget class="QGroupBox" name="groupBox1" >
-                <property name="title" >
-                  <string>C2</string>
-                </property>
-                <layout class="QHBoxLayout" >
-                  <property name="margin" >
-                    <number>0</number>
-                  </property>
-                  <item>
-                    <widget class="QLineEdit" name="kcfg_nameConstant1" >
-                      <property name="maxLength" >
-                        <number>6</number>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <spacer name="spacer3" >
-                      <property name="sizeHint" >
-                        <size>
-                          <width>70</width>
-                          <height>21</height>
-                        </size>
-                      </property>
-                      <property name="sizeType" >
-                        <enum>Expanding</enum>
-                      </property>
-                      <property name="orientation" >
-                        <enum>Horizontal</enum>
-                      </property>
-                    </spacer>
-                  </item>
-                  <item>
-                    <widget class="QLineEdit" name="kcfg_valueConstant1" >
-                      <property name="maxLength" >
-                        <number>40</number>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <spacer name="spacer4" >
-                      <property name="sizeHint" >
-                        <size>
-                          <width>80</width>
-                          <height>21</height>
-                        </size>
-                      </property>
-                      <property name="sizeType" >
-                        <enum>Expanding</enum>
-                      </property>
-                      <property name="orientation" >
-                        <enum>Horizontal</enum>
-                      </property>
-                    </spacer>
-                  </item>
-                  <item>
-                    <widget class="KPushButton" name="kPushButton1" >
-                      <property name="text" >
-                        <string>Predefined</string>
-                      </property>
-                    </widget>
-                  </item>
-                </layout>
-              </widget>
-            </item>
-            <item>
-              <widget class="QGroupBox" name="groupBox2" >
-                <property name="title" >
-                  <string>C3</string>
-                </property>
-                <layout class="QHBoxLayout" >
-                  <property name="margin" >
-                    <number>0</number>
-                  </property>
-                  <item>
-                    <widget class="QLineEdit" name="kcfg_nameConstant2" >
-                      <property name="maxLength" >
-                        <number>6</number>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <spacer name="spacer5" >
-                      <property name="sizeHint" >
-                        <size>
-                          <width>70</width>
-                          <height>21</height>
-                        </size>
-                      </property>
-                      <property name="sizeType" >
-                        <enum>Expanding</enum>
-                      </property>
-                      <property name="orientation" >
-                        <enum>Horizontal</enum>
-                      </property>
-                    </spacer>
-                  </item>
-                  <item>
-                    <widget class="QLineEdit" name="kcfg_valueConstant2" >
-                      <property name="maxLength" >
-                        <number>40</number>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <spacer name="spacer6" >
-                      <property name="sizeHint" >
-                        <size>
-                          <width>80</width>
-                          <height>21</height>
-                        </size>
-                      </property>
-                      <property name="sizeType" >
-                        <enum>Expanding</enum>
-                      </property>
-                      <property name="orientation" >
-                        <enum>Horizontal</enum>
-                      </property>
-                    </spacer>
-                  </item>
-                  <item>
-                    <widget class="KPushButton" name="kPushButton2" >
-                      <property name="text" >
-                        <string>Predefined</string>
-                      </property>
-                    </widget>
-                  </item>
-                </layout>
-              </widget>
-            </item>
-            <item>
-              <widget class="QGroupBox" name="groupBox3" >
-                <property name="title" >
-                  <string>C4</string>
-                </property>
-                <layout class="QHBoxLayout" >
-                  <property name="margin" >
-                    <number>0</number>
-                  </property>
-                  <item>
-                    <widget class="QLineEdit" name="kcfg_nameConstant3" >
-                      <property name="maxLength" >
-                        <number>6</number>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <spacer name="spacer7" >
-                      <property name="sizeHint" >
-                        <size>
-                          <width>70</width>
-                          <height>21</height>
-                        </size>
-                      </property>
-                      <property name="sizeType" >
-                        <enum>Expanding</enum>
-                      </property>
-                      <property name="orientation" >
-                        <enum>Horizontal</enum>
-                      </property>
-                    </spacer>
-                  </item>
-                  <item>
-                    <widget class="QLineEdit" name="kcfg_valueConstant3" >
-                      <property name="maxLength" >
-                        <number>40</number>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <spacer name="spacer8" >
-                      <property name="sizeHint" >
-                        <size>
-                          <width>80</width>
-                          <height>21</height>
-                        </size>
-                      </property>
-                      <property name="sizeType" >
-                        <enum>Expanding</enum>
-                      </property>
-                      <property name="orientation" >
-                        <enum>Horizontal</enum>
-                      </property>
-                    </spacer>
-                  </item>
-                  <item>
-                    <widget class="KPushButton" name="kPushButton3" >
-                      <property name="text" >
-                        <string>Predefined</string>
-                      </property>
-                    </widget>
-                  </item>
-                </layout>
-              </widget>
-            </item>
-            <item>
-              <widget class="QGroupBox" name="groupBox4" >
-                <property name="title" >
-                  <string>C5</string>
-                </property>
-                <layout class="QHBoxLayout" >
-                  <property name="margin" >
-                    <number>0</number>
-                  </property>
-                  <item>
-                    <widget class="QLineEdit" name="kcfg_nameConstant4" >
-                      <property name="maxLength" >
-                        <number>6</number>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <spacer name="spacer9" >
-                      <property name="sizeHint" >
-                        <size>
-                          <width>70</width>
-                          <height>21</height>
-                        </size>
-                      </property>
-                      <property name="sizeType" >
-                        <enum>Expanding</enum>
-                      </property>
-                      <property name="orientation" >
-                        <enum>Horizontal</enum>
-                      </property>
-                    </spacer>
-                  </item>
-                  <item>
-                    <widget class="QLineEdit" name="kcfg_valueConstant4" >
-                      <property name="maxLength" >
-                        <number>40</number>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <spacer name="spacer10" >
-                      <property name="sizeHint" >
-                        <size>
-                          <width>80</width>
-                          <height>21</height>
-                        </size>
-                      </property>
-                      <property name="sizeType" >
-                        <enum>Expanding</enum>
-                      </property>
-                      <property name="orientation" >
-                        <enum>Horizontal</enum>
-                      </property>
-                    </spacer>
-                  </item>
-                  <item>
-                    <widget class="KPushButton" name="kPushButton4" >
-                      <property name="text" >
-                        <string>Predefined</string>
-                      </property>
-                    </widget>
-                  </item>
-                </layout>
-              </widget>
-            </item>
-            <item>
-              <widget class="QGroupBox" name="groupBox5" >
-                <property name="title" >
-                  <string>C6</string>
-                </property>
-                <layout class="QHBoxLayout" >
-                  <property name="margin" >
-                    <number>0</number>
-                  </property>
-                  <item>
-                    <widget class="QLineEdit" name="kcfg_nameConstant5" >
-                      <property name="maxLength" >
-                        <number>6</number>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <spacer name="spacer11" >
-                      <property name="sizeHint" >
-                        <size>
-                          <width>70</width>
-                          <height>21</height>
-                        </size>
-                      </property>
-                      <property name="sizeType" >
-                        <enum>Expanding</enum>
-                      </property>
-                      <property name="orientation" >
-                        <enum>Horizontal</enum>
-                      </property>
-                    </spacer>
-                  </item>
-                  <item>
-                    <widget class="QLineEdit" name="kcfg_valueConstant5" >
-                      <property name="maxLength" >
-                        <number>40</number>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <spacer name="spacer12" >
-                      <property name="sizeHint" >
-                        <size>
-                          <width>80</width>
-                          <height>21</height>
-                        </size>
-                      </property>
-                      <property name="sizeType" >
-                        <enum>Expanding</enum>
-                      </property>
-                      <property name="orientation" >
-                        <enum>Horizontal</enum>
-                      </property>
-                    </spacer>
-                  </item>
-                  <item>
-                    <widget class="KPushButton" name="kPushButton5" >
-                      <property name="text" >
-                        <string>Predefined</string>
-                      </property>
-                    </widget>
-                  </item>
-                </layout>
-              </widget>
-            </item>
-          </layout>
-        </widget>
+       <widget class="QGroupBox" name="groupBox0" >
+        <property name="title" >
+         <string>C1</string>
+        </property>
+        <layout class="QHBoxLayout" >
+         <item>
+          <widget class="QLineEdit" name="kcfg_nameConstant0" >
+           <property name="maxLength" >
+            <number>6</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="kcfg_valueConstant0" >
+           <property name="maxLength" >
+            <number>40</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="KPushButton" name="kPushButton0" >
+           <property name="text" >
+            <string>Predefined</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </item>
       <item>
-        <spacer name="spacer13" >
-          <property name="sizeHint" >
-            <size>
-              <width>20</width>
-              <height>40</height>
-            </size>
-          </property>
-          <property name="sizeType" >
-            <enum>Expanding</enum>
-          </property>
-          <property name="orientation" >
-            <enum>Vertical</enum>
-          </property>
-        </spacer>
+       <widget class="QGroupBox" name="groupBox1" >
+        <property name="title" >
+         <string>C2</string>
+        </property>
+        <layout class="QHBoxLayout" >
+         <item>
+          <widget class="QLineEdit" name="kcfg_nameConstant1" >
+           <property name="maxLength" >
+            <number>6</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="kcfg_valueConstant1" >
+           <property name="maxLength" >
+            <number>40</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="KPushButton" name="kPushButton1" >
+           <property name="text" >
+            <string>Predefined</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </item>
-    </layout>
-  </widget>
-  <layoutdefault spacing="6" margin="11" />
-  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
-  <includes>
-    <include location="local" >kpushbutton.h</include>
-  </includes>
+      <item>
+       <widget class="QGroupBox" name="groupBox2" >
+        <property name="title" >
+         <string>C3</string>
+        </property>
+        <layout class="QHBoxLayout" >
+         <item>
+          <widget class="QLineEdit" name="kcfg_nameConstant2" >
+           <property name="maxLength" >
+            <number>6</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="kcfg_valueConstant2" >
+           <property name="maxLength" >
+            <number>40</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="KPushButton" name="kPushButton2" >
+           <property name="text" >
+            <string>Predefined</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBox3" >
+        <property name="title" >
+         <string>C4</string>
+        </property>
+        <layout class="QHBoxLayout" >
+         <item>
+          <widget class="QLineEdit" name="kcfg_nameConstant3" >
+           <property name="maxLength" >
+            <number>6</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="kcfg_valueConstant3" >
+           <property name="maxLength" >
+            <number>40</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="KPushButton" name="kPushButton3" >
+           <property name="text" >
+            <string>Predefined</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBox4" >
+        <property name="title" >
+         <string>C5</string>
+        </property>
+        <layout class="QHBoxLayout" >
+         <item>
+          <widget class="QLineEdit" name="kcfg_nameConstant4" >
+           <property name="maxLength" >
+            <number>6</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="kcfg_valueConstant4" >
+           <property name="maxLength" >
+            <number>40</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="KPushButton" name="kPushButton4" >
+           <property name="text" >
+            <string>Predefined</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBox5" >
+        <property name="title" >
+         <string>C6</string>
+        </property>
+        <layout class="QHBoxLayout" >
+         <item>
+          <widget class="QLineEdit" name="kcfg_nameConstant5" >
+           <property name="maxLength" >
+            <number>6</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="kcfg_valueConstant5" >
+           <property name="maxLength" >
+            <number>40</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="KPushButton" name="kPushButton5" >
+           <property name="text" >
+            <string>Predefined</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11" />
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <customwidgets>
+  <customwidget>
+   <class>KPushButton</class>
+   <extends>QPushButton</extends>
+   <header>kpushbutton.h</header>
+  </customwidget>
+ </customwidgets>
+ <includes>
+  <include location="local" >kpushbutton.h</include>
+ </includes>
+ <resources/>
+ <connections/>
 </ui>

@@ -55,8 +55,17 @@ class KCalcBitset;
 #include "kcalc_button.h"
 #include "kcalc_const_button.h"
 
+#include "ui_general.h"
 #include "ui_constants.h"
 #include "ui_colors.h"
+
+class  General: public QWidget, public Ui::General
+{
+public:
+  General( QWidget *parent ) : QWidget( parent ) {
+    setupUi( this );
+  }
+};
 
 class Constants : public QWidget, public Ui::Constants
 {
