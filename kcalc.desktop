@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Name=KCalc
 Name[af]=Kcalc
+Name[ar]=حاسبة ك
 Name[eo]=Kalkulilo
 Name[lv]=KKalk
 Name[ne]=केडीई क्याल्क
@@ -19,6 +20,7 @@ Icon=kcalc
 DocPath=kcalc/index.html
 GenericName=Scientific Calculator
 GenericName[af]=Wetenskaplike Sakrekenaar
+GenericName[ar]=آلة حاسبة علمية
 GenericName[br]=Ur jederez skiantel
 GenericName[ca]=Calculadora científica
 GenericName[cs]=Vědecká kalkulačka
