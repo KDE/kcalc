@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=KCalc
 Name[af]=Kcalc
 Name[ar]=حاسبة ك
@@ -16,7 +15,7 @@ Name[x-test]=xxKCalcxx
 Name[zh_TW]=KDE 計算機
 Exec=kcalc -caption "%c"
 Icon=kcalc
-DocPath=kcalc/index.html
+X-DocPath=kcalc/index.html
 GenericName=Scientific Calculator
 GenericName[af]=Wetenskaplike Sakrekenaar
 GenericName[ar]=آلة حاسبة علمية
