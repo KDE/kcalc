@@ -660,22 +660,22 @@ KNumber::operator bool(void) const
 
 KNumber::operator qint32(void) const
 {
-  return static_cast<qint32>(*_num);
+  return static_cast<long int>(*_num);
 }
 
 KNumber::operator quint32(void) const
 {
-  return static_cast<quint32>(*_num);
+  return static_cast<unsigned long int>(*_num);
 }
 
 KNumber::operator quint64(void) const
 {
 #if SIZEOF_UNSIGNED_LONG == 8
-  return static_cast<quint64>(*this);
+  return static_cast<unsigned long int>(*_num);
 #elif SIZEOF_UNSIGNED_LONG == 4
   KNumber tmp_num1 = this->abs().integerPart();
-  quint64 tmp_num2 =  static_cast<quint32>(tmp_num1) +
-    (static_cast<quint64>(static_cast<quint32>(tmp_num1 >> KNumber("32"))) << 32) ;
+  quint64 tmp_num2 =  static_cast<unsigned long int>(tmp_num1) +
+    (static_cast<quint64>(static_cast<unsigned long int>(tmp_num1 >> KNumber("32"))) << 32) ;
   
 #ifdef __GNUC__
 #warning "the cast operator from KNumber to quint64 is probably buggy, when a sign is involved"

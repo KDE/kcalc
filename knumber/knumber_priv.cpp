@@ -939,7 +939,7 @@ int _knumfloat::compare(_knumber const &arg2) const
 
 
 
-_knumerror::operator qint32 (void) const
+_knumerror::operator long int (void) const
 {
   // what would be the correct return values here?
   if (_error == Infinity)
@@ -950,7 +950,7 @@ _knumerror::operator qint32 (void) const
     return 0;
 }
 
-_knumerror::operator quint32 (void) const
+_knumerror::operator unsigned long int (void) const
 {
   // what would be the correct return values here?
   if (_error == Infinity)
@@ -962,32 +962,32 @@ _knumerror::operator quint32 (void) const
 }
 
 
-_knuminteger::operator qint32 (void) const
+_knuminteger::operator long int (void) const
 {
   return mpz_get_si(_mpz);
 }
 
-_knumfraction::operator qint32 (void) const
+_knumfraction::operator long int (void) const
 {
-  return static_cast<qint32>(mpq_get_d(_mpq));
+  return static_cast<long int>(mpq_get_d(_mpq));
 }
 
-_knumfloat::operator qint32 (void) const
+_knumfloat::operator long int (void) const
 {
   return mpf_get_si(_mpf);
 }
 
-_knuminteger::operator quint32 (void) const
+_knuminteger::operator unsigned long int (void) const
 {
   return mpz_get_ui(_mpz);
 }
 
-_knumfraction::operator quint32 (void) const
+_knumfraction::operator unsigned long int (void) const
 {
-  return static_cast<quint32>(mpq_get_d(_mpq));
+  return static_cast<unsigned long int>(mpq_get_d(_mpq));
 }
 
-_knumfloat::operator quint32 (void) const
+_knumfloat::operator unsigned long int (void) const
 {
   return mpf_get_ui(_mpf);
 }

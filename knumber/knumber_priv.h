@@ -63,8 +63,8 @@ class _knumber
 
   virtual int compare(_knumber const &arg2) const = 0;
 
-  virtual operator qint32(void) const = 0;
-  virtual operator quint32(void) const = 0;
+  virtual operator long int(void) const = 0;
+  virtual operator unsigned long int(void) const = 0;
   virtual operator double (void) const = 0;
 };
 
@@ -107,8 +107,8 @@ class _knumerror : public _knumber
 
   virtual int compare(_knumber const &arg2) const;
 
-  virtual operator qint32(void) const;
-  virtual operator quint32(void) const;
+  virtual operator long int(void) const;
+  virtual operator unsigned long int(void) const;
   virtual operator double (void) const;
 
  private:
@@ -171,8 +171,8 @@ class _knuminteger : public _knumber
 
   virtual _knumber * power(_knumber const & exponent) const;
 
-  virtual operator qint32 (void) const;
-  virtual operator quint32 (void) const;
+  virtual operator long int (void) const;
+  virtual operator unsigned long int (void) const;
   virtual operator double (void) const;
 
   _knuminteger * intAnd(_knuminteger const &arg2) const;
@@ -234,8 +234,8 @@ class _knumfraction : public _knumber
   
   virtual int compare(_knumber const &arg2) const;
 
-  virtual operator qint32 (void) const;
-  virtual operator quint32 (void) const;
+  virtual operator long int (void) const;
+  virtual operator unsigned long int (void) const;
   virtual operator double (void) const;
 
  private:
@@ -287,8 +287,8 @@ class _knumfloat : public _knumber
 
   virtual int compare(_knumber const &arg2) const;
 
-  virtual operator qint32 (void) const;
-  virtual operator quint32 (void) const;
+  virtual operator long int (void) const;
+  virtual operator unsigned long int (void) const;
   virtual operator double (void) const;
 
  private:
