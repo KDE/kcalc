@@ -77,7 +77,7 @@ KNumber::KNumber(double num)
 {
   if ( isinf(num) ) _num = new _knumerror( _knumber::Infinity );
   else if ( isnan(num) ) _num = new _knumerror( _knumber::UndefinedNumber );
-  else _num = new _knumfloat(num);      
+  else _num = new _knumfloat(num);
 
 }
 
@@ -142,7 +142,7 @@ void KNumber::simplifyRational(void)
 {
   if (type() != FractionType)
     return;
-  
+
   _knumfraction *tmp_num = dynamic_cast<_knumfraction *>(_num);
 
   if (tmp_num->isInteger()) {
@@ -156,7 +156,7 @@ void KNumber::simplifyRational(void)
 
 KNumber const & KNumber::operator=(KNumber const & num)
 {
-  if (this == & num) 
+  if (this == & num)
     return *this;
 
   delete _num;
@@ -175,7 +175,7 @@ KNumber const & KNumber::operator=(KNumber const & num)
     _num = new _knumfloat();
     break;
   };
-  
+
   _num->copy(*(num._num));
 
   return *this;
@@ -201,7 +201,7 @@ KNumber & KNumber::operator +=(KNumber const &arg)
     _num = new _knumfloat();
     break;
   };
-  
+
   _num->copy(*(tmp_num._num));
 
   return *this;
@@ -227,7 +227,7 @@ KNumber & KNumber::operator -=(KNumber const &arg)
     _num = new _knumfloat();
     break;
   };
-  
+
   _num->copy(*(tmp_num._num));
 
   return *this;
@@ -410,7 +410,7 @@ QString const KNumber::toQString(int width, int prec) const
   default:
     return QString(_num->ascii());
   }
-  
+
   if (prec >= 0)
     return roundNumber(tmp_str, prec);
   else
@@ -674,9 +674,9 @@ KNumber::operator quint64(void) const
   return static_cast<unsigned long int>(*_num);
 #elif SIZEOF_UNSIGNED_LONG == 4
   KNumber tmp_num1 = this->abs().integerPart();
-  quint64 tmp_num2 =  static_cast<unsigned long int>(tmp_num1) +
-    (static_cast<quint64>(static_cast<unsigned long int>(tmp_num1 >> KNumber("32"))) << 32) ;
-  
+  quint64 tmp_num2 =  static_cast<quint32>(tmp_num1) +
+    (static_cast<quint64>(static_cast<quint32>(tmp_num1 >> KNumber("32"))) << 32) ;
+
 #ifdef __GNUC__
 #warning "the cast operator from KNumber to quint64 is probably buggy, when a sign is involved"
 #endif
@@ -686,7 +686,7 @@ KNumber::operator quint64(void) const
     return static_cast<quint64> (- static_cast<qint64>(tmp_num2));
 #else
 #error "SIZEOF_UNSIGNED_LONG is a unhandled case"
-#endif 
+#endif
 }
 
 KNumber::operator double(void) const
