@@ -1,4 +1,6 @@
 == ToDo ==
+* Use validator for constant value line edits in configure.
+
 * Have a look at Evan's new stack engine kcalc_core.cpp. But be very careful
 not to create new bugs. Also think why statistic-function in an independent file.
 

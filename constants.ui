@@ -1,6 +1,14 @@
 <ui version="4.0" >
  <class>Constants</class>
  <widget class="QWidget" name="Constants" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>201</width>
+    <height>528</height>
+   </rect>
+  </property>
   <property name="windowTitle" >
    <string>Constants</string>
   </property>
