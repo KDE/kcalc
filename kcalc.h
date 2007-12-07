@@ -241,9 +241,7 @@ private:
     KCalcButton* 	pbX;
     KCalcButton* 	pbXOR;
 
-    Constants * tmp_const; // this is the dialog for configuring const
-			   // buttons would like to remove this, but
-			   // don't know how
+    Constants*          constants; // this is the dialog for configuring const buttons
 	
     KButtonGroup*	AngleChooseGroup;
     KButtonGroup* 	BaseChooseGroup;
@@ -262,7 +260,7 @@ private:
     QList<KCalcButton*> mMemButtonList;
     QList<KCalcButton*> mOperationButtonList;
 
-    int				mInternalSpacing;
+    int			mInternalSpacing;
 
     CalcEngine core;
 };

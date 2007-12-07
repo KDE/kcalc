@@ -40,7 +40,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KPushButton" name="kPushButton0" >
+          <widget class="QPushButton" name="pushButton0" >
            <property name="text" >
             <string>Predefined</string>
            </property>
@@ -70,7 +70,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KPushButton" name="kPushButton1" >
+          <widget class="QPushButton" name="pushButton1" >
            <property name="text" >
             <string>Predefined</string>
            </property>
@@ -100,7 +100,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KPushButton" name="kPushButton2" >
+          <widget class="QPushButton" name="pushButton2" >
            <property name="text" >
             <string>Predefined</string>
            </property>
@@ -130,7 +130,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KPushButton" name="kPushButton3" >
+          <widget class="QPushButton" name="pushButton3" >
            <property name="text" >
             <string>Predefined</string>
            </property>
@@ -160,7 +160,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KPushButton" name="kPushButton4" >
+          <widget class="QPushButton" name="pushButton4" >
            <property name="text" >
             <string>Predefined</string>
            </property>
@@ -190,7 +190,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KPushButton" name="kPushButton5" >
+          <widget class="QPushButton" name="pushButton5" >
            <property name="text" >
             <string>Predefined</string>
            </property>
@@ -222,13 +222,6 @@
  </widget>
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
- <customwidgets>
-  <customwidget>
-   <class>KPushButton</class>
-   <extends>QPushButton</extends>
-   <header>kpushbutton.h</header>
-  </customwidget>
- </customwidgets>
  <includes>
   <include location="local" >kpushbutton.h</include>
  </includes>

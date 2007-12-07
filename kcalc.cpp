@@ -76,11 +76,12 @@
 static const char description[] = I18N_NOOP("KDE Calculator");
 static const char version[] = KCALCVERSION;
 
+static const int maxprecision = 1000;
 
 KCalculator::KCalculator(QWidget *parent)
 	: KXmlGuiWindow(parent), inverse(false), hyp_mode(false),
 	  memory_num(0.0), calc_display(NULL),
-	  mInternalSpacing(4), core()
+	  constants(0), mInternalSpacing(4), core()
 {
 	/* central widget to contain all the elements */
 	QWidget *central = new QWidget(this);
@@ -1849,77 +1850,71 @@ void KCalculator::showSettings()
 	KConfigDialog *dialog = new KConfigDialog(this, "settings", KCalcSettings::self());
 	dialog->showButtonSeparator( true );
 
-	// Add the general page.  Store the settings in the General group and
-	// use the icon package_settings.
+	// general settings
+
 	General *general = new General(0);
-	int maxprec = 1000;
-	general->kcfg_Precision->setMaximum(maxprec);
+	general->kcfg_Precision->setMaximum(maxprecision);
 	dialog->addPage(general, i18n("General"), "kcalc", i18n("General Settings"));
 
-	QWidget *fontWidget = new QWidget(0);
-	QVBoxLayout *fontLayout = new QVBoxLayout(fontWidget);
-	KFontChooser *mFontChooser =
-		new KFontChooser(fontWidget, false, QStringList(), 6);
-	mFontChooser->setObjectName("kcfg_Font");
+	// font settings
 
-	fontLayout->addWidget(mFontChooser);
-	dialog->addPage(fontWidget, i18n("Font"), "preferences-desktop-font", i18n("Select Display Font"));
+	KFontChooser *fontChooser = new KFontChooser(0);
+	fontChooser->setObjectName("kcfg_Font");
+	dialog->addPage(fontChooser, i18n("Font"), "preferences-desktop-font", i18n("Select Display Font"));
 
 	// color settings
 
 	Colors *color = new Colors(0);
-
 	dialog->addPage(color, i18n("Colors"), "color-fill", i18n("Button & Display Colors"));
 
 	// constant settings
 
-	Constants *constant = new Constants(0);
-	tmp_const = constant;
+	if (!constants)
+		constants = new Constants(0);
 
 	KCalcConstMenu *tmp_menu = new KCalcConstMenu(this);
 	connect(tmp_menu,
 		SIGNAL(triggeredConstant(science_constant const &)),
 		this,
 		SLOT(slotChooseScientificConst0(science_constant const &)));
-	(constant->kPushButton0)->setMenu(tmp_menu);
+	constants->pushButton0->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
 	connect(tmp_menu,
 		SIGNAL(triggeredConstant(science_constant const &)),
 		this,
 		SLOT(slotChooseScientificConst1(science_constant const &)));
-	(constant->kPushButton1)->setMenu(tmp_menu);
+	constants->pushButton1->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
 	connect(tmp_menu,
 		SIGNAL(triggeredConstant(science_constant const &)),
 		this,
 		SLOT(slotChooseScientificConst2(science_constant const &)));
-	(constant->kPushButton2)->setMenu(tmp_menu);
+	constants->pushButton2->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
 	connect(tmp_menu,
 		SIGNAL(triggeredConstant(science_constant const &)),
 		this,
 		SLOT(slotChooseScientificConst3(science_constant const &)));
-	(constant->kPushButton3)->setMenu(tmp_menu);
+	constants->pushButton3->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
 	connect(tmp_menu,
 		SIGNAL(triggeredConstant(science_constant const &)),
 		this,
 		SLOT(slotChooseScientificConst4(science_constant const &)));
-	(constant->kPushButton4)->setMenu(tmp_menu);
+	constants->pushButton4->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
 	connect(tmp_menu,
 		SIGNAL(triggeredConstant(science_constant const &)),
 		this,
 		SLOT(slotChooseScientificConst5(science_constant const &)));
-	(constant->kPushButton5)->setMenu(tmp_menu);
+	constants->pushButton5->setMenu(tmp_menu);
 
-	dialog->addPage(constant, i18n("Constants"), "constants",i18n("Define constants"));
-
+	dialog->addPage(constants, i18n("Constants"), "preferences-kcalc-constants", i18n("Define constants"));
 
 	// When the user clicks OK or Apply we want to update our settings.
 	connect(dialog, SIGNAL(settingsChanged(const QString &)), SLOT(updateSettings()));
@@ -1934,44 +1929,44 @@ void KCalculator::showSettings()
 // Settingvalues themselves!!
 void KCalculator::slotChooseScientificConst0(struct science_constant const & chosen_const)
 {
-  (tmp_const->kcfg_valueConstant0)->setText(chosen_const.value);
+  constants->kcfg_valueConstant0->setText(chosen_const.value);
 
-  (tmp_const->kcfg_nameConstant0)->setText(chosen_const.label);
+  constants->kcfg_nameConstant0->setText(chosen_const.label);
 }
 
 void KCalculator::slotChooseScientificConst1(struct science_constant const & chosen_const)
 {
-  (tmp_const->kcfg_valueConstant1)->setText(chosen_const.value);
+  constants->kcfg_valueConstant1->setText(chosen_const.value);
 
-  (tmp_const->kcfg_nameConstant1)->setText(chosen_const.label);
+  constants->kcfg_nameConstant1->setText(chosen_const.label);
 }
 
 void KCalculator::slotChooseScientificConst2(struct science_constant const & chosen_const)
 {
-  (tmp_const->kcfg_valueConstant2)->setText(chosen_const.value);
+  constants->kcfg_valueConstant2->setText(chosen_const.value);
 
-  (tmp_const->kcfg_nameConstant2)->setText(chosen_const.label);
+  constants->kcfg_nameConstant2->setText(chosen_const.label);
 }
 
 void KCalculator::slotChooseScientificConst3(struct science_constant const & chosen_const)
 {
-  (tmp_const->kcfg_valueConstant3)->setText(chosen_const.value);
+  constants->kcfg_valueConstant3->setText(chosen_const.value);
 
-  (tmp_const->kcfg_nameConstant3)->setText(chosen_const.label);
+  constants->kcfg_nameConstant3->setText(chosen_const.label);
 }
 
 void KCalculator::slotChooseScientificConst4(struct science_constant const & chosen_const)
 {
-  (tmp_const->kcfg_valueConstant4)->setText(chosen_const.value);
+  constants->kcfg_valueConstant4->setText(chosen_const.value);
 
-  (tmp_const->kcfg_nameConstant4)->setText(chosen_const.label);
+  constants->kcfg_nameConstant4->setText(chosen_const.label);
 }
 
 void KCalculator::slotChooseScientificConst5(struct science_constant const & chosen_const)
 {
-  (tmp_const->kcfg_valueConstant5)->setText(chosen_const.value);
+  constants->kcfg_valueConstant5->setText(chosen_const.value);
 
-  (tmp_const->kcfg_nameConstant5)->setText(chosen_const.label);
+  constants->kcfg_nameConstant5->setText(chosen_const.label);
 }
 
 
