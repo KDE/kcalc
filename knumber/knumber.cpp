@@ -366,7 +366,7 @@ QString const KNumber::toQString(int width, int prec) const
     if (width > 0) { //result needs to be cut-off
       bool tmp_bool = _fraction_input; // stupid work-around
       _fraction_input = false;
-      tmp_str = (KNumber("1.0")*(*this)).toQString(width, -1);
+      tmp_str = (KNumber(1.0)*(*this)).toQString(width, -1);
       _fraction_input = tmp_bool;
     } else
       tmp_str = QString(_num->ascii());
@@ -375,7 +375,7 @@ QString const KNumber::toQString(int width, int prec) const
     if (_float_output) {
       bool tmp_bool = _fraction_input; // stupid work-around
       _fraction_input = false;
-      tmp_str = (KNumber("1.0")*(*this)).toQString(width, -1);
+      tmp_str = (KNumber(1.0)*(*this)).toQString(width, -1);
       _fraction_input = tmp_bool;
     } else { // _float_output == false
       if(_splitoffinteger_output) {
@@ -394,7 +394,7 @@ QString const KNumber::toQString(int width, int prec) const
 	//result needs to be cut-off
 	bool tmp_bool = _fraction_input; // stupid work-around
 	_fraction_input = false;
-	tmp_str = (KNumber("1.0")*(*this)).toQString(width, -1);
+	tmp_str = (KNumber(1.0)*(*this)).toQString(width, -1);
 	_fraction_input = tmp_bool;
       }
     }
