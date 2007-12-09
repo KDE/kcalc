@@ -1,4 +1,7 @@
 == ToDo ==
+* Eliminate DispLogic, rolling functionality into KCalc and KCalcDisplay.
+Consider using QUndoStock for history
+
 * Use validator for constant value line edits in configure.
 
 * Have a look at Evan's new stack engine kcalc_core.cpp. But be very careful

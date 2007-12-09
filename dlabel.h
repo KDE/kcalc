@@ -40,7 +40,7 @@ class DispLogic : public KCalcDisplay
 Q_OBJECT
 
 public:
-	DispLogic(QWidget *parent, KActionCollection *coll);
+	DispLogic(QWidget *parent);
 	~DispLogic();
 
 	void changeSettings();
@@ -55,9 +55,6 @@ private slots:
 private:
 	QVector<KNumber> _history_list;
 	int _history_index;
-
-	KAction *_forward;
-	KAction *_back;
 };
 
 #endif

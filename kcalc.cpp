@@ -94,7 +94,7 @@ KCalculator::KCalculator(QWidget *parent)
 	// Detect color change
 	connect(KGlobalSettings::self(),SIGNAL(kdisplayPaletteChanged()), SLOT(set_colors()));
 
-	calc_display = new DispLogic(central, actionCollection());
+	calc_display = new DispLogic(central);
 
 	setupMainActions();
 
@@ -422,6 +422,8 @@ void KCalculator::setupMainActions(void)
 	KStandardAction::quit(this, SLOT(close()), actionCollection());
 
 	// edit menu
+	KStandardAction::undo(calc_display, SLOT(history_back()), actionCollection());
+	KStandardAction::redo(calc_display, SLOT(history_forward()), actionCollection());
 	KStandardAction::cut(calc_display, SLOT(slotCut()), actionCollection());
 	KStandardAction::copy(calc_display, SLOT(slotCopy()), actionCollection());
 	KStandardAction::paste(calc_display, SLOT(slotPaste()), actionCollection());
@@ -2328,6 +2330,7 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
 	/* Rene Merou */
 	aboutData.addAuthor(ki18n("Ren" "\xc3\xa9" " M" "\xc3\xa9"  "rou"), KLocalizedString(), "ochominutosdearco@yahoo.es");
 	aboutData.addAuthor(ki18n("Michel Marti"), KLocalizedString(), "mma@objectxp.com");
+	aboutData.addAuthor(ki18n("David Johnson"), KLocalizedString(), "david@usermode.org");
 	KCmdLineArgs::init(argc, argv, &aboutData);
 
 	KApplication app;

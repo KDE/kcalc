@@ -35,16 +35,11 @@
 
 
 
-DispLogic::DispLogic(QWidget *parent, KActionCollection *coll)
-  :KCalcDisplay(parent), _history_index(0)
+DispLogic::DispLogic(QWidget *parent)
+	: KCalcDisplay(parent), _history_index(0)
 {
 	KNumber::setDefaultFloatOutput(true);
 	KNumber::setDefaultFractionalInput(true);
-	_back = KStandardAction::undo(this, SLOT(history_back()), coll);
-	_forward = KStandardAction::redo(this, SLOT(history_forward()), coll);
-
-	_forward->setEnabled(false);
-	_back->setEnabled(false);
 	setAutoFillBackground(true);
 }
 
@@ -88,8 +83,6 @@ void DispLogic::update_from_core(CalcEngine const &core,
 	  // add this latest value to our history
 	  _history_list.insert(_history_list.begin(), output);
 	  _history_index = 0;
-	  _back->setEnabled(true);
-	  _forward->setEnabled(false);
 	}
 }
 
@@ -156,29 +149,19 @@ void DispLogic::EnterDigit(int data)
 
 void DispLogic::history_forward()
 {
-	Q_ASSERT(! _history_list.empty());
-	Q_ASSERT(_history_index > 0);
+	if (_history_list.empty()) return;
+	if (_history_index <= 0) return;
 
 	_history_index --;
-
 	setAmount(_history_list[_history_index]);
-
-	if(_history_index == 0) _forward->setEnabled(false);
-
-	_back->setEnabled(true);
 }
 
 void DispLogic::history_back()
 {
-	Q_ASSERT(! _history_list.empty());
-	Q_ASSERT( _history_index < static_cast<int>(_history_list.size()) );
+	if ( _history_list.empty()) return;
+	if (_history_index >= _history_list.size()) return;
 
 	setAmount(_history_list[_history_index]);
-
 	_history_index ++;
-	
-	if( _history_index == static_cast<int>(_history_list.size()) )
-		_back->setEnabled(false);
-	_forward->setEnabled(true);
 }
 
