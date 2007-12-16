@@ -22,6 +22,7 @@ set(libknumber_la_SRCS
    )
 
 add_subdirectory( knumber )
+add_subdirectory( pics )
 
 set(kcalc_KDEINIT_SRCS ${libknumber_la_SRCS}
    kcalc.cpp 
@@ -34,7 +35,11 @@ set(kcalc_KDEINIT_SRCS ${libknumber_la_SRCS}
    dlabel.cpp 
    stats.cpp )
 
-kde4_add_ui_files(kcalc_KDEINIT_SRCS constants.ui colors.ui general.ui)
+kde4_add_ui_files(kcalc_KDEINIT_SRCS
+   kcalc.ui
+   constants.ui
+   colors.ui
+   general.ui)
 
 kde4_add_kcfg_files(kcalc_KDEINIT_SRCS kcalc_settings.kcfgc )
 

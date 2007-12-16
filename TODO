@@ -7,12 +7,8 @@ Consider using QUndoStock for history
 * Have a look at Evan's new stack engine kcalc_core.cpp. But be very careful
 not to create new bugs. Also think why statistic-function in an independent file.
 
-* Use a *.ui-file for the GUI. This would reduce kcalc.cpp to almost nothing.
-
 * Implement integer arithmetic for (unsigned int, signed int,
 unsigned short,...). Look here at some of Evan's code.
-
-* Move constants into an XML-file (right now they are hardcoded in kcalc_const_menu.cpp)
 
 * think what to do with cos, sin, etc. right now, as work-around cast KNumber to double,
 use standard libc cos, sin, etc., cast back

@@ -34,23 +34,29 @@ Q_OBJECT
 
   public:
 
-  KCalcConstButton(QWidget *parent, int but_num);
+  KCalcConstButton(QWidget *parent);
   
-  KCalcConstButton(const QString &label, QWidget *parent, int but_num,
+  KCalcConstButton(const QString &label, QWidget *parent,
 		   const QString &tooltip = QString());
 
   QString constant(void) const;
 
+  void setButtonNumber(int num);
+
   void setLabelAndTooltip(void);
+
+ signals:
+  void clicked(int num);
 
  private slots:
   void slotConfigureButton();
   void slotChooseScientificConst(struct science_constant const &const_chosen);
+  void slotClicked();
 
  private:
   void initPopupMenu(void);
   
-  int const _button_num;
+  int _button_num;
 };
 
 

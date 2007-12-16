@@ -24,10 +24,9 @@
 #ifndef KCALC_H
 #define KCALC_H
 
-class QWidget;
-class DispLogic;
 class Constants;
-class KCalcBitset;
+class QButtonGroup;
+
 #include <kxmlguiwindow.h>
 
 /*
@@ -55,6 +54,7 @@ class KCalcBitset;
 #include "kcalc_button.h"
 #include "kcalc_const_button.h"
 
+#include "ui_kcalc.h"
 #include "ui_general.h"
 #include "ui_constants.h"
 #include "ui_colors.h"
@@ -85,7 +85,7 @@ public:
 
 
 
-class KCalculator : public KXmlGuiWindow
+class KCalculator : public KXmlGuiWindow, private Ui::KCalculator
 {
     Q_OBJECT
 
@@ -103,22 +103,18 @@ private:
 	void updateGeometry();
 	void setupMainActions(void);
 	void setupStatusbar(void);
-	QWidget *setupNumericKeys(QWidget *parent);
-	void setupLogicKeys(QWidget *parent);
-	void setupScientificKeys(QWidget *parent);
-	void setupStatisticKeys(QWidget *parent);
-	void setupConstantsKeys(QWidget *parent);
+	void setupKeys();
 	void keyPressEvent(QKeyEvent *e);
 	void keyReleaseEvent(QKeyEvent *e);
 	void set_precision();
 	void set_style();
-	void resetBase(void) { BaseChooseGroup->setSelected(1); }
+	void resetBase(void) { decRadio->animateClick(); }
 
 	void UpdateDisplay(bool get_amount_from_core = false,
 			   bool store_result_in_history = false);
 
 protected slots:
-    void changeButtonNames();
+void changeButtonNames();
     void updateSettings();
     void set_colors();
     void EnterEqual();
@@ -147,13 +143,13 @@ protected slots:
     void slotSquareclicked(void);
     void slotLnclicked(void);
     void slotPowerclicked(void);
-    void slotMCclicked(void);
+    void slotMemClearclicked(void);
     void slotClearclicked(void);
-    void slotACclicked(void);
+    void slotAllClearclicked(void);
     void slotParenOpenclicked(void);
     void slotParenCloseclicked(void);
     void slotANDclicked(void);
-    void slotXclicked(void);
+    void slotMultiplicationclicked(void);
     void slotDivisionclicked(void);
     void slotORclicked(void);
     void slotXORclicked(void);
@@ -203,64 +199,29 @@ private:
 
 private:
 
-    QWidget *mSmallPage;
-    QWidget *mLargePage;
-    QWidget *mNumericPage;
-    KCalcBitset *mBitset;
-
-    DispLogic*	calc_display; // for historic reasons in "dlabel.h"
-    QHash<QString, KCalcButton *>	pbStat;
-    QHash<QString, KCalcButton *>	pbScientific;
-    QHash<QString, KCalcButton *>	pbLogic;
-    KCalcConstButton*	pbConstant[10];
-    KCalcButton* 	pbAC;
-    KCalcButton* 	pbAND;
-    KCalcButton* 	pbClear;
-    KCalcButton* 	pbDivision;
-    KCalcButton* 	pbEE;
-    KCalcButton* 	pbEqual;
-    KCalcButton* 	pbFactorial;
-    KCalcButton* 	pbInv;
-    KCalcButton* 	pbMC;
-    KCalcButton* 	pbMinus;
-    KCalcButton* 	pbMod;
-    KCalcButton* 	pbMemPlusMinus;
-    KCalcButton* 	pbMemRecall;
-    KCalcButton*	pbMemStore;
-    KCalcButton* 	pbOR;
-    KCalcButton* 	pbParenClose;
-    KCalcButton* 	pbParenOpen;
-    KCalcButton* 	pbPercent;
-    KCalcButton* 	pbPeriod;
-    KCalcButton* 	pbPlus;
-    KCalcButton* 	pbPlusMinus;
-    KCalcButton* 	pbPower;
-    KCalcButton* 	pbReci;
-    KSquareButton* 	pbRoot;
-    KCalcButton* 	pbSquare;
-    KCalcButton* 	pbX;
-    KCalcButton* 	pbXOR;
-
     Constants*          constants; // this is the dialog for configuring const buttons
 	
-    KButtonGroup*	AngleChooseGroup;
-    KButtonGroup* 	BaseChooseGroup;
+    QButtonGroup*	AngleChooseGroup;
+    QButtonGroup* 	BaseChooseGroup;
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
     QButtonGroup* 	NumButtonGroup;
-    // ConstButtonGroup C1-C6
-    QButtonGroup*	ConstButtonGroup;
+
+    QList<QAbstractButton*> logicButtons;
+    QList<QAbstractButton*> scientificButtons;
+    QList<QAbstractButton*> statButtons;
+    QList<QAbstractButton*> constButtons;
+
+
 
     KToggleAction *actionStatshow;
     KToggleAction *actionScientificshow;
     KToggleAction *actionLogicshow;
     KToggleAction *actionConstantsShow;
 
-    QList<KCalcButton*> mFunctionButtonList;
-    QList<KCalcButton*> mStatButtonList;
-    QList<KCalcButton*> mMemButtonList;
-    QList<KCalcButton*> mOperationButtonList;
-
-    int			mInternalSpacing;
+    QList<QAbstractButton*> mFunctionButtonList;
+    QList<QAbstractButton*> mStatButtonList;
+    QList<QAbstractButton*> mMemButtonList;
+    QList<QAbstractButton*> mOperationButtonList;
 
     CalcEngine core;
 };

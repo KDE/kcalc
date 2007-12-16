@@ -30,18 +30,20 @@
 #include "kcalc_settings.h"
 
 
-KCalcConstButton::KCalcConstButton(QWidget *parent, int but_num)
-  : KCalcButton(parent), _button_num(but_num)
+KCalcConstButton::KCalcConstButton(QWidget *parent)
+  : KCalcButton(parent), _button_num(-1)
 {
   addMode(ModeInverse, "Store", i18n("Write display data into memory"));
 
   initPopupMenu();
+
+  connect(this, SIGNAL(clicked()), SLOT(slotClicked()));
 }
 
 
 KCalcConstButton::KCalcConstButton(const QString &label, QWidget *parent,
-				   int but_num, const QString &tooltip)
-  : KCalcButton(label, parent, tooltip), _button_num(but_num)
+				   const QString &tooltip)
+  : KCalcButton(label, parent, tooltip), _button_num(-1)
 {
   addMode(ModeInverse, "Store", i18n("Write display data into memory"));
 
@@ -51,6 +53,11 @@ KCalcConstButton::KCalcConstButton(const QString &label, QWidget *parent,
 QString KCalcConstButton::constant(void) const
 {
   return KCalcSettings::valueConstant(_button_num);
+}
+
+void KCalcConstButton::setButtonNumber(int num)
+{
+	_button_num = num;
 }
 
 void KCalcConstButton::setLabelAndTooltip(void)
@@ -101,6 +108,11 @@ void KCalcConstButton::slotChooseScientificConst(struct science_constant const &
   KCalcSettings::setNameConstant(_button_num,const_chosen.label);
   
   setLabelAndTooltip();
+}
+
+void KCalcConstButton::slotClicked()
+{
+	emit clicked(_button_num);
 }
 
 #include "kcalc_const_button.moc"

@@ -46,11 +46,11 @@ KCalcButton::KCalcButton(const QString &label, QWidget * parent,
 }
 
 void KCalcButton::addMode(ButtonModeFlags mode, const QString &label,
-			  const QString &tooltip, bool is_label_richtext)
+	const QString &tooltip, bool is_label_richtext, const KIcon &icon)
 {
   if (_mode.contains(mode)) _mode.remove(mode);
 
-  _mode[mode] = ButtonMode(label, tooltip, is_label_richtext);
+  _mode[mode] = ButtonMode(label, tooltip, is_label_richtext, icon);
 
   // Need to put each button into default mode first
   if(mode == ModeNormal) slotSetMode(ModeNormal, true);
@@ -81,7 +81,9 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
       _label.hide();
     }
     this->setToolTip( _mode[new_mode].tooltip);
+	setIcon(_mode[new_mode].icon);
     _mode_flags = new_mode;
+
 
     // restore shortcut
     setShortcut(_shortcut);
@@ -136,36 +138,6 @@ void KCalcButton::paintEvent(QPaintEvent *p)
     _label.move((width()-_label.width())/2, (height()-_label.height())/2);
   
 }
-
-
-void KSquareButton::paintEvent(QPaintEvent *p)
-{
-  // draw first button frame
-  KCalcButton::paintEvent(p);
-  if (_show_shortcut_mode)
-    return;
-
-  QPainter paint(this);
-  int w = width();
-  int w2 = w/2 - 13;
-  int h = height();
-  int h2 = h/2 - 7;
-  // in some KDE-styles (.NET, Phase,...) we have to set the painter
-  // back to the right color
-  paint.setPen(palette().color(QPalette::Text));
-  // these statements are for the improved
-  // representation of the sqrt function
-  paint.drawLine(w2, 11 + h2, w2 + 2, 7 + h2);
-  paint.drawLine(w2 + 2, 7 + h2, w2 + 4, 14 + h2);
-  paint.drawLine(w2 + 4, 14 + h2, w2 + 6, 1 + h2);
-  paint.drawLine(w2 + 6, 1 + h2, w2 + 27, 1 + h2);
-  paint.drawLine(w2 + 27, 1 + h2, w2 + 27, 4 + h2);
-  // add a three for the cube root
-  if (_mode_flags & ModeInverse) {
-    paint.drawText(w2-2, 9 + h2, QString::fromUtf8("³"));
-  }
-}
-
 
 #include "kcalc_button.moc"
 

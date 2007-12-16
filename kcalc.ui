@@ -1,0 +1,1012 @@
+<ui version="4.0" >
+ <class>KCalculator</class>
+ <widget class="QWidget" name="KCalculator" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>558</width>
+    <height>338</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>KCalc</string>
+  </property>
+  <layout class="QHBoxLayout" >
+   <item>
+    <layout class="QVBoxLayout" >
+     <item>
+      <widget class="DispLogic" native="1" name="calc_display" />
+     </item>
+     <item>
+      <widget class="KCalcBitset" native="1" name="mBitset" >
+       <property name="toolTip" >
+        <string>Click on a Bit to toggle it.</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" >
+       <item>
+        <widget class="QRadioButton" name="degRadio" >
+         <property name="text" >
+          <string>Deg</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radRadio" >
+         <property name="text" >
+          <string>Rad</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="gradRadio" >
+         <property name="text" >
+          <string>Grad</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="hexRadio" >
+         <property name="toolTip" >
+          <string>Switch base to hexadecimal.</string>
+         </property>
+         <property name="text" >
+          <string>He&amp;x</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="decRadio" >
+         <property name="toolTip" >
+          <string>Switch base to decimal.</string>
+         </property>
+         <property name="text" >
+          <string>&amp;Dec</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="octRadio" >
+         <property name="toolTip" >
+          <string>Switch base to octal.</string>
+         </property>
+         <property name="text" >
+          <string>&amp;Oct</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="binRadio" >
+         <property name="toolTip" >
+          <string>Switch base to binary.</string>
+         </property>
+         <property name="text" >
+          <string>&amp;Bin</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" >
+       <item>
+        <widget class="QWidget" native="1" name="leftPad" >
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="KCalcButton" name="pbNData" >
+            <property name="toolTip" >
+             <string>Number of data entered</string>
+            </property>
+            <property name="text" >
+             <string>N</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" >
+           <widget class="KCalcButton" name="pbHyp" >
+            <property name="toolTip" >
+             <string>Hyperbolic mode</string>
+            </property>
+            <property name="text" >
+             <string>Hyp</string>
+            </property>
+            <property name="shortcut" >
+             <string>H</string>
+            </property>
+            <property name="checkable" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2" >
+           <widget class="KCalcButton" name="pbAND" >
+            <property name="toolTip" >
+             <string>Bitwise AND</string>
+            </property>
+            <property name="text" >
+             <string>AND</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3" >
+           <widget class="KCalcButton" name="pbMod" >
+            <property name="toolTip" >
+             <string>Modulo</string>
+            </property>
+            <property name="text" >
+             <string>Mod</string>
+            </property>
+            <property name="shortcut" >
+             <string>Shift+:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4" >
+           <widget class="KCalcButton" name="pbA" >
+            <property name="text" >
+             <string>A</string>
+            </property>
+            <property name="shortcut" >
+             <string>A</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="5" >
+           <widget class="KCalcConstButton" name="pbC1" >
+            <property name="text" >
+             <string>C1</string>
+            </property>
+            <property name="shortcut" >
+             <string>Alt+1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" >
+           <widget class="KCalcButton" name="pbMean" >
+            <property name="toolTip" >
+             <string>Mean</string>
+            </property>
+            <property name="text" >
+             <string>Mea</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" >
+           <widget class="KCalcButton" name="pbSin" >
+            <property name="toolTip" >
+             <string>Sine</string>
+            </property>
+            <property name="text" >
+             <string>Sin</string>
+            </property>
+            <property name="shortcut" >
+             <string>S</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2" >
+           <widget class="KCalcButton" name="pbOR" >
+            <property name="toolTip" >
+             <string>Bitwise OR</string>
+            </property>
+            <property name="text" >
+             <string>OR</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3" >
+           <widget class="KCalcButton" name="pbReci" >
+            <property name="toolTip" >
+             <string>Reciprocal</string>
+            </property>
+            <property name="text" >
+             <string>1/X</string>
+            </property>
+            <property name="shortcut" >
+             <string>R</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4" >
+           <widget class="KCalcButton" name="pbB" >
+            <property name="text" >
+             <string>B</string>
+            </property>
+            <property name="shortcut" >
+             <string>B</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="5" >
+           <widget class="KCalcConstButton" name="pbC2" >
+            <property name="text" >
+             <string>C2</string>
+            </property>
+            <property name="shortcut" >
+             <string>Alt+2</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" >
+           <widget class="KCalcButton" name="pbSd" >
+            <property name="toolTip" >
+             <string>Standard deviation</string>
+            </property>
+            <property name="text" >
+             <string>SD</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" >
+           <widget class="KCalcButton" name="pbCos" >
+            <property name="toolTip" >
+             <string>Cosine</string>
+            </property>
+            <property name="text" >
+             <string>Cos</string>
+            </property>
+            <property name="shortcut" >
+             <string>C</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2" >
+           <widget class="KCalcButton" name="pbXOR" >
+            <property name="toolTip" >
+             <string>Bitwise XOR</string>
+            </property>
+            <property name="text" >
+             <string>XOR</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3" >
+           <widget class="KCalcButton" name="pbFactorial" >
+            <property name="toolTip" >
+             <string>Factorial</string>
+            </property>
+            <property name="text" >
+             <string>x!</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="4" >
+           <widget class="KCalcButton" name="pbC" >
+            <property name="text" >
+             <string>C</string>
+            </property>
+            <property name="shortcut" >
+             <string>C</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="5" >
+           <widget class="KCalcConstButton" name="pbC3" >
+            <property name="text" >
+             <string>C3</string>
+            </property>
+            <property name="shortcut" >
+             <string>Alt+3</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" >
+           <widget class="KCalcButton" name="pbMed" >
+            <property name="toolTip" >
+             <string>Median</string>
+            </property>
+            <property name="text" >
+             <string>Med</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" >
+           <widget class="KCalcButton" name="pbTan" >
+            <property name="toolTip" >
+             <string>Tangent</string>
+            </property>
+            <property name="text" >
+             <string>Tan</string>
+            </property>
+            <property name="shortcut" >
+             <string>T</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2" >
+           <widget class="KCalcButton" name="pbLsh" >
+            <property name="toolTip" >
+             <string>Left bit shift</string>
+            </property>
+            <property name="text" >
+             <string>Lsh</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3" >
+           <widget class="KCalcButton" name="pbSquare" >
+            <property name="toolTip" >
+             <string>Square</string>
+            </property>
+            <property name="text" >
+             <string>x2</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="4" >
+           <widget class="KCalcButton" name="pbD" >
+            <property name="text" >
+             <string>D</string>
+            </property>
+            <property name="shortcut" >
+             <string>D</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="5" >
+           <widget class="KCalcConstButton" name="pbC4" >
+            <property name="text" >
+             <string>C4</string>
+            </property>
+            <property name="shortcut" >
+             <string>Alt+4</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" >
+           <widget class="KCalcButton" name="pbDat" >
+            <property name="toolTip" >
+             <string>Enter data</string>
+            </property>
+            <property name="text" >
+             <string>Dat</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1" >
+           <widget class="KCalcButton" name="pbLog" >
+            <property name="toolTip" >
+             <string>Logarithm to base 10</string>
+            </property>
+            <property name="text" >
+             <string>Log</string>
+            </property>
+            <property name="shortcut" >
+             <string>L</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2" >
+           <widget class="KCalcButton" name="pbRsh" >
+            <property name="toolTip" >
+             <string>Right bit shift</string>
+            </property>
+            <property name="text" >
+             <string>Rsh</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="3" >
+           <widget class="KCalcButton" name="pbPower" >
+            <property name="toolTip" >
+             <string>x to the power of y</string>
+            </property>
+            <property name="text" >
+             <string>pow</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="4" >
+           <widget class="KCalcButton" name="pbE" >
+            <property name="text" >
+             <string>E</string>
+            </property>
+            <property name="shortcut" >
+             <string>E</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="5" >
+           <widget class="KCalcConstButton" name="pbC5" >
+            <property name="text" >
+             <string>C5</string>
+            </property>
+            <property name="shortcut" >
+             <string>Alt+5</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" >
+           <widget class="KCalcButton" name="pbCSt" >
+            <property name="toolTip" >
+             <string>Clear data store</string>
+            </property>
+            <property name="text" >
+             <string>CSt</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1" >
+           <widget class="KCalcButton" name="pbLn" >
+            <property name="toolTip" >
+             <string>Natural log</string>
+            </property>
+            <property name="text" >
+             <string>Ln</string>
+            </property>
+            <property name="shortcut" >
+             <string>N</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2" >
+           <widget class="KCalcButton" name="pbCmp" >
+            <property name="toolTip" >
+             <string>One's complement</string>
+            </property>
+            <property name="text" >
+             <string>Cmp</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="3" >
+           <widget class="KCalcButton" name="pbEE" >
+            <property name="toolTip" >
+             <string>Exponent</string>
+            </property>
+            <property name="text" >
+             <string>EXP</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="4" >
+           <widget class="KCalcButton" name="pbF" >
+            <property name="text" >
+             <string>F</string>
+            </property>
+            <property name="shortcut" >
+             <string>F</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="5" >
+           <widget class="KCalcConstButton" name="pbC6" >
+            <property name="text" >
+             <string>C6</string>
+            </property>
+            <property name="shortcut" >
+             <string>Alt+6</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" native="1" name="numericPad" >
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="KCalcButton" name="pbRoot" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip" >
+             <string>Square root</string>
+            </property>
+            <property name="text" >
+             <string>sr</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" >
+           <widget class="KCalcButton" name="pbDivision" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip" >
+             <string>Division</string>
+            </property>
+            <property name="text" >
+             <string>/</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2" >
+           <widget class="KCalcButton" name="pbMultiplication" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip" >
+             <string>Multiplication</string>
+            </property>
+            <property name="text" >
+             <string>X</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3" >
+           <widget class="KCalcButton" name="pbMinus" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip" >
+             <string>Minus</string>
+            </property>
+            <property name="text" >
+             <string>-</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" >
+           <widget class="KCalcButton" name="pb7" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text" >
+             <string>7</string>
+            </property>
+            <property name="shortcut" >
+             <string>7</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" >
+           <widget class="KCalcButton" name="pb8" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text" >
+             <string>8</string>
+            </property>
+            <property name="shortcut" >
+             <string>8</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2" >
+           <widget class="KCalcButton" name="pb9" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text" >
+             <string>9</string>
+            </property>
+            <property name="shortcut" >
+             <string>9</string>
+            </property>
+           </widget>
+          </item>
+          <item rowspan="2" row="1" column="3" >
+           <widget class="KCalcButton" name="pbPlus" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip" >
+             <string>Plus</string>
+            </property>
+            <property name="text" >
+             <string>+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" >
+           <widget class="KCalcButton" name="pb4" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text" >
+             <string>4</string>
+            </property>
+            <property name="shortcut" >
+             <string>4</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" >
+           <widget class="KCalcButton" name="pb5" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text" >
+             <string>5</string>
+            </property>
+            <property name="shortcut" >
+             <string>5</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2" >
+           <widget class="KCalcButton" name="pb6" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text" >
+             <string>6</string>
+            </property>
+            <property name="shortcut" >
+             <string>6</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" >
+           <widget class="KCalcButton" name="pb1" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text" >
+             <string>1</string>
+            </property>
+            <property name="shortcut" >
+             <string>1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" >
+           <widget class="KCalcButton" name="pb2" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text" >
+             <string>2</string>
+            </property>
+            <property name="shortcut" >
+             <string>2</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2" >
+           <widget class="KCalcButton" name="pb3" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text" >
+             <string>3</string>
+            </property>
+            <property name="shortcut" >
+             <string>3</string>
+            </property>
+           </widget>
+          </item>
+          <item rowspan="2" row="3" column="3" >
+           <widget class="KCalcButton" name="pbEqual" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip" >
+             <string>Result</string>
+            </property>
+            <property name="text" >
+             <string>=</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" colspan="2" >
+           <widget class="KCalcButton" name="pb0" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text" >
+             <string>0</string>
+            </property>
+            <property name="shortcut" >
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2" >
+           <widget class="KCalcButton" name="pbPeriod" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip" >
+             <string>Decimal point</string>
+            </property>
+            <property name="text" >
+             <string>.</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" native="1" name="rightPad" >
+         <layout class="QGridLayout" >
+          <item row="0" column="1" >
+           <widget class="KCalcButton" name="pbInv" >
+            <property name="toolTip" >
+             <string>Inverse mode</string>
+            </property>
+            <property name="text" >
+             <string>Inv</string>
+            </property>
+            <property name="shortcut" >
+             <string>I</string>
+            </property>
+            <property name="checkable" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" >
+           <widget class="KCalcButton" name="pbClear" >
+            <property name="toolTip" >
+             <string>Clear</string>
+            </property>
+            <property name="text" >
+             <string>C</string>
+            </property>
+            <property name="shortcut" >
+             <string>PgUp</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" >
+           <widget class="KCalcButton" name="pbAllClear" >
+            <property name="toolTip" >
+             <string>Clear all</string>
+            </property>
+            <property name="text" >
+             <string>AC</string>
+            </property>
+            <property name="shortcut" >
+             <string>Del</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" >
+           <widget class="KCalcButton" name="pbParenOpen" >
+            <property name="toolTip" >
+             <string>Open parenthesis</string>
+            </property>
+            <property name="text" >
+             <string>(</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" >
+           <widget class="KCalcButton" name="pbParenClose" >
+            <property name="toolTip" >
+             <string>Close parenthesis</string>
+            </property>
+            <property name="text" >
+             <string>)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" >
+           <widget class="KCalcButton" name="pbMemRecall" >
+            <property name="toolTip" >
+             <string>Memory recall</string>
+            </property>
+            <property name="text" >
+             <string>MR</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" >
+           <widget class="KCalcButton" name="pbMemClear" >
+            <property name="toolTip" >
+             <string>Memory clear</string>
+            </property>
+            <property name="text" >
+             <string>MC</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" >
+           <widget class="KCalcButton" name="pbMemPlusMinus" >
+            <property name="toolTip" >
+             <string>Add to memory</string>
+            </property>
+            <property name="text" >
+             <string>M+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1" >
+           <widget class="KCalcButton" name="pbMemStore" >
+            <property name="toolTip" >
+             <string>Memory store</string>
+            </property>
+            <property name="text" >
+             <string>MS</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" >
+           <widget class="KCalcButton" name="pbPercent" >
+            <property name="toolTip" >
+             <string>Percent</string>
+            </property>
+            <property name="text" >
+             <string>%</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1" >
+           <widget class="KCalcButton" name="pbPlusMinus" >
+            <property name="toolTip" >
+             <string>Change sign</string>
+            </property>
+            <property name="text" >
+             <string>+/-</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>KCalcButton</class>
+   <extends>QPushButton</extends>
+   <header>kcalc_button.h</header>
+  </customwidget>
+  <customwidget>
+   <class>DispLogic</class>
+   <extends>QWidget</extends>
+   <header>dlabel.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>KCalcBitset</class>
+   <extends>QWidget</extends>
+   <header>kcalc_bitset.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>KCalcConstButton</class>
+   <extends>QPushButton</extends>
+   <header>kcalc_const_button.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>degRadio</tabstop>
+  <tabstop>radRadio</tabstop>
+  <tabstop>gradRadio</tabstop>
+  <tabstop>hexRadio</tabstop>
+  <tabstop>decRadio</tabstop>
+  <tabstop>octRadio</tabstop>
+  <tabstop>binRadio</tabstop>
+  <tabstop>pb0</tabstop>
+  <tabstop>pb1</tabstop>
+  <tabstop>pb2</tabstop>
+  <tabstop>pb3</tabstop>
+  <tabstop>pb4</tabstop>
+  <tabstop>pb5</tabstop>
+  <tabstop>pb6</tabstop>
+  <tabstop>pb7</tabstop>
+  <tabstop>pb8</tabstop>
+  <tabstop>pb9</tabstop>
+  <tabstop>pbPeriod</tabstop>
+  <tabstop>pbEqual</tabstop>
+  <tabstop>pbPlus</tabstop>
+  <tabstop>pbMinus</tabstop>
+  <tabstop>pbMultiplication</tabstop>
+  <tabstop>pbDivision</tabstop>
+  <tabstop>pbRoot</tabstop>
+  <tabstop>pbInv</tabstop>
+  <tabstop>pbClear</tabstop>
+  <tabstop>pbAllClear</tabstop>
+  <tabstop>pbParenOpen</tabstop>
+  <tabstop>pbParenClose</tabstop>
+  <tabstop>pbMemRecall</tabstop>
+  <tabstop>pbMemClear</tabstop>
+  <tabstop>pbMemPlusMinus</tabstop>
+  <tabstop>pbMemStore</tabstop>
+  <tabstop>pbPercent</tabstop>
+  <tabstop>pbPlusMinus</tabstop>
+  <tabstop>pbNData</tabstop>
+  <tabstop>pbMean</tabstop>
+  <tabstop>pbSd</tabstop>
+  <tabstop>pbMed</tabstop>
+  <tabstop>pbDat</tabstop>
+  <tabstop>pbCSt</tabstop>
+  <tabstop>pbHyp</tabstop>
+  <tabstop>pbSin</tabstop>
+  <tabstop>pbCos</tabstop>
+  <tabstop>pbTan</tabstop>
+  <tabstop>pbLog</tabstop>
+  <tabstop>pbLn</tabstop>
+  <tabstop>pbAND</tabstop>
+  <tabstop>pbOR</tabstop>
+  <tabstop>pbXOR</tabstop>
+  <tabstop>pbLsh</tabstop>
+  <tabstop>pbRsh</tabstop>
+  <tabstop>pbCmp</tabstop>
+  <tabstop>pbMod</tabstop>
+  <tabstop>pbReci</tabstop>
+  <tabstop>pbFactorial</tabstop>
+  <tabstop>pbSquare</tabstop>
+  <tabstop>pbPower</tabstop>
+  <tabstop>pbEE</tabstop>
+  <tabstop>pbA</tabstop>
+  <tabstop>pbB</tabstop>
+  <tabstop>pbC</tabstop>
+  <tabstop>pbD</tabstop>
+  <tabstop>pbE</tabstop>
+  <tabstop>pbF</tabstop>
+  <tabstop>pbC1</tabstop>
+  <tabstop>pbC2</tabstop>
+  <tabstop>pbC3</tabstop>
+  <tabstop>pbC4</tabstop>
+  <tabstop>pbC5</tabstop>
+  <tabstop>pbC6</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

@@ -45,8 +45,11 @@ class ButtonMode
 {
 public:
   ButtonMode(void) {}
-  ButtonMode(const QString &label, const QString &tooltip, bool is_label_richtext)
-    : is_label_richtext(is_label_richtext), tooltip(tooltip)
+  ButtonMode(const QString &label,
+             const QString &tooltip,
+             bool is_label_richtext,
+             const KIcon &icon)
+      : is_label_richtext(is_label_richtext), tooltip(tooltip), icon(icon)
   {
     if (is_label_richtext)
       this->label = "<qt type=\"page\"><center>" + label + "</center></qt>";
@@ -57,6 +60,7 @@ public:
   QString label;
   bool is_label_richtext;
   QString tooltip;
+  KIcon icon;
 };
 
 
@@ -70,7 +74,8 @@ public:
 	     const QString &tooltip = QString());
 
  void addMode(ButtonModeFlags mode, const QString &label,
-	      const QString &tooltip, bool is_label_richtext = false);
+	      const QString &tooltip, bool is_label_richtext = false,
+              const KIcon &icon = KIcon());
 
 public slots: 
   void slotSetMode(ButtonModeFlags mode, bool flag); 
@@ -85,21 +90,6 @@ protected:
 
   QHash<ButtonModeFlags, ButtonMode> _mode;
   QLabel _label;
-};
-
-class KSquareButton : public KCalcButton
-{
-Q_OBJECT
-
-public:
-  KSquareButton(QWidget *parent)
-    : KCalcButton(parent) { } 
- KSquareButton(const QString &label, QWidget *parent,
-	       const QString &tooltip = QString())
-   : KCalcButton(label, parent, tooltip) { }
-
-protected:
-  virtual void paintEvent(QPaintEvent *p);
 };
 
 #endif  // _KCALC_BUTTON_H
