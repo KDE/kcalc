@@ -110,7 +110,7 @@ private:
 	void set_style();
 	void resetBase(void) { decRadio->animateClick(); }
 
-	void UpdateDisplay(bool get_amount_from_core = false,
+	void updateDisplay(bool get_amount_from_core = false,
 			   bool store_result_in_history = false);
 
 protected slots:

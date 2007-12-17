@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>558</width>
-    <height>338</height>
+    <width>498</width>
+    <height>266</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -108,6 +108,24 @@
        <item>
         <widget class="QWidget" native="1" name="leftPad" >
          <layout class="QGridLayout" >
+          <property name="leftMargin" >
+           <number>2</number>
+          </property>
+          <property name="topMargin" >
+           <number>2</number>
+          </property>
+          <property name="rightMargin" >
+           <number>2</number>
+          </property>
+          <property name="bottomMargin" >
+           <number>2</number>
+          </property>
+          <property name="horizontalSpacing" >
+           <number>4</number>
+          </property>
+          <property name="verticalSpacing" >
+           <number>4</number>
+          </property>
           <item row="0" column="0" >
            <widget class="KCalcButton" name="pbNData" >
             <property name="toolTip" >
@@ -501,6 +519,24 @@
        <item>
         <widget class="QWidget" native="1" name="numericPad" >
          <layout class="QGridLayout" >
+          <property name="leftMargin" >
+           <number>2</number>
+          </property>
+          <property name="topMargin" >
+           <number>2</number>
+          </property>
+          <property name="rightMargin" >
+           <number>2</number>
+          </property>
+          <property name="bottomMargin" >
+           <number>2</number>
+          </property>
+          <property name="horizontalSpacing" >
+           <number>4</number>
+          </property>
+          <property name="verticalSpacing" >
+           <number>4</number>
+          </property>
           <item row="0" column="0" >
            <widget class="KCalcButton" name="pbRoot" >
             <property name="sizePolicy" >
@@ -743,12 +779,6 @@
           </item>
           <item row="4" column="0" colspan="2" >
            <widget class="KCalcButton" name="pb0" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text" >
              <string>0</string>
             </property>
@@ -779,6 +809,24 @@
        <item>
         <widget class="QWidget" native="1" name="rightPad" >
          <layout class="QGridLayout" >
+          <property name="leftMargin" >
+           <number>2</number>
+          </property>
+          <property name="topMargin" >
+           <number>2</number>
+          </property>
+          <property name="rightMargin" >
+           <number>2</number>
+          </property>
+          <property name="bottomMargin" >
+           <number>2</number>
+          </property>
+          <property name="horizontalSpacing" >
+           <number>4</number>
+          </property>
+          <property name="verticalSpacing" >
+           <number>4</number>
+          </property>
           <item row="0" column="1" >
            <widget class="KCalcButton" name="pbInv" >
             <property name="toolTip" >
@@ -935,13 +983,6 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>degRadio</tabstop>
-  <tabstop>radRadio</tabstop>
-  <tabstop>gradRadio</tabstop>
-  <tabstop>hexRadio</tabstop>
-  <tabstop>decRadio</tabstop>
-  <tabstop>octRadio</tabstop>
-  <tabstop>binRadio</tabstop>
   <tabstop>pb0</tabstop>
   <tabstop>pb1</tabstop>
   <tabstop>pb2</tabstop>
@@ -952,23 +993,23 @@
   <tabstop>pb7</tabstop>
   <tabstop>pb8</tabstop>
   <tabstop>pb9</tabstop>
-  <tabstop>pbPeriod</tabstop>
-  <tabstop>pbEqual</tabstop>
-  <tabstop>pbPlus</tabstop>
-  <tabstop>pbMinus</tabstop>
-  <tabstop>pbMultiplication</tabstop>
-  <tabstop>pbDivision</tabstop>
   <tabstop>pbRoot</tabstop>
-  <tabstop>pbInv</tabstop>
+  <tabstop>pbDivision</tabstop>
+  <tabstop>pbMultiplication</tabstop>
+  <tabstop>pbMinus</tabstop>
+  <tabstop>pbPlus</tabstop>
+  <tabstop>pbEqual</tabstop>
+  <tabstop>pbPeriod</tabstop>
   <tabstop>pbClear</tabstop>
-  <tabstop>pbAllClear</tabstop>
   <tabstop>pbParenOpen</tabstop>
-  <tabstop>pbParenClose</tabstop>
   <tabstop>pbMemRecall</tabstop>
-  <tabstop>pbMemClear</tabstop>
   <tabstop>pbMemPlusMinus</tabstop>
-  <tabstop>pbMemStore</tabstop>
   <tabstop>pbPercent</tabstop>
+  <tabstop>pbInv</tabstop>
+  <tabstop>pbAllClear</tabstop>
+  <tabstop>pbParenClose</tabstop>
+  <tabstop>pbMemClear</tabstop>
+  <tabstop>pbMemStore</tabstop>
   <tabstop>pbPlusMinus</tabstop>
   <tabstop>pbNData</tabstop>
   <tabstop>pbMean</tabstop>
@@ -1006,6 +1047,13 @@
   <tabstop>pbC4</tabstop>
   <tabstop>pbC5</tabstop>
   <tabstop>pbC6</tabstop>
+  <tabstop>degRadio</tabstop>
+  <tabstop>radRadio</tabstop>
+  <tabstop>gradRadio</tabstop>
+  <tabstop>hexRadio</tabstop>
+  <tabstop>decRadio</tabstop>
+  <tabstop>octRadio</tabstop>
+  <tabstop>binRadio</tabstop>
  </tabstops>
  <resources/>
  <connections/>

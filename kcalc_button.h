@@ -77,6 +77,9 @@ public:
 	      const QString &tooltip, bool is_label_richtext = false,
               const KIcon &icon = KIcon());
 
+
+ virtual QSize sizeHint() const; // reimp
+
 public slots: 
   void slotSetMode(ButtonModeFlags mode, bool flag); 
   void slotSetAccelDisplayMode(bool flag);

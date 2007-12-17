@@ -20,11 +20,9 @@
 
 */
 
-
-#include <qpainter.h>
-
-
-//#include "qdom.h"
+#include <QApplication>
+#include <QPainter>
+#include <QStyle>
 
 #include "kcalc_button.h"
 
@@ -34,6 +32,9 @@ KCalcButton::KCalcButton(QWidget * parent)
     _mode_flags(ModeNormal), _label(this)
 {
   setAutoDefault(false);
+
+  // use preferred size policy for vertical
+  setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
 }
 
 KCalcButton::KCalcButton(const QString &label, QWidget * parent,
@@ -137,6 +138,17 @@ void KCalcButton::paintEvent(QPaintEvent *p)
   if(_mode[_mode_flags].is_label_richtext)
     _label.move((width()-_label.width())/2, (height()-_label.height())/2);
   
+}
+
+QSize KCalcButton::sizeHint() const
+{
+	// reimplemented to provide a shorter button
+    int margin = style()->pixelMetric(QStyle::PM_ButtonMargin, 0, this);
+    int h = fontMetrics().lineSpacing() + margin*2 + 4;
+
+	QSize sz = QPushButton::sizeHint();
+	sz.setHeight(qMin(sz.height(), h));
+	return sz.expandedTo(QApplication::globalStrut());
 }
 
 #include "kcalc_button.moc"
