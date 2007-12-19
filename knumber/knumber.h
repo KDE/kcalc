@@ -20,8 +20,6 @@
 #ifndef _KNUMBER_H
 #define _KNUMBER_H
 
-#include <gmp.h>
-
 #include <kdelibs_export.h>
 
 #include "knumber_priv.h"

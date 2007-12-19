@@ -21,6 +21,7 @@
 
 class QString;
 
+#include <cstdio>
 #include <gmp.h>
 
 // work-around for pre-C99-libs
