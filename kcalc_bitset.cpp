@@ -18,8 +18,9 @@
 */
 
 #include <QButtonGroup>
-#include <QLayout>
-#include <QEvent>
+#include <QGridLayout>
+#include <QLabel>
+#include <QHBoxLayout>
 
 #include "kcalc_bitset.h"
 #include "kcalc_bitset.moc"

@@ -21,7 +21,6 @@
 */
 
 #include <QApplication>
-#include <QPainter>
 #include <QStyle>
 
 #include "kcalc_button.h"

@@ -26,14 +26,8 @@
 #include <unistd.h>
 
 
-#include <QFont>
-#include <QGroupBox>
 #include <QKeyEvent>
-#include <QLayout>
-#include <QObjectList>
-#include <QRadioButton>
 #include <QShortcut>
-#include <QSpinBox>
 #include <QStyle>
 
 

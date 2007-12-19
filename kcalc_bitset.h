@@ -20,7 +20,6 @@
 #define _KCALC_BITSET_H_
 
 #include <QFrame>
-#include <QLabel>
 #include <QPushButton>
 
 class KCalcBitset : public QFrame
