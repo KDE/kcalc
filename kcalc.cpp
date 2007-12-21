@@ -138,6 +138,7 @@ KCalculator::KCalculator(QWidget *parent)
 	updateGeometry();
 
 	resize(minimumSize());
+	setFixedSize(minimumSize());
 
 	updateDisplay(true);
 
