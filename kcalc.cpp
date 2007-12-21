@@ -306,6 +306,7 @@ void KCalculator::setupKeys()
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbClear, SLOT(slotSetAccelDisplayMode(bool)));
 
+	pbAllClear->setShortcut(QKeySequence(Qt::Key_PageDown));
 	connect(pbAllClear, SIGNAL(clicked(void)),
 			SLOT(slotAllClearclicked(void)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
@@ -374,6 +375,7 @@ void KCalculator::setupKeys()
 	        pbRoot, SLOT(slotSetMode(ButtonModeFlags, bool)));
 
 	pbDivision->setShortcut(QKeySequence(Qt::Key_Slash));
+	new QShortcut( Qt::Key_division, pbDivision, SLOT(animateClick()) );
 	connect(pbDivision, SIGNAL(clicked(void)),
 			SLOT(slotDivisionclicked(void)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
@@ -650,6 +652,8 @@ void KCalculator::setupKeys()
 
 	pbSquare->addMode(ModeNormal, "x<sup>2</sup>", i18n("Square"), true);
 	pbSquare->addMode(ModeInverse, "x<sup>3</sup>", i18n("Third power"), true);
+	pbSquare->setShortcut(QKeySequence(Qt::Key_BracketLeft));
+	new QShortcut( Qt::Key_twosuperior, pbSquare, SLOT(animateClick()) );
 	connect(this, SIGNAL(switchShowAccels(bool)),
 	        pbSquare, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
@@ -803,8 +807,7 @@ void KCalculator::slotBaseSelected(int base)
 	// Only enable the x*10^y button in decimal
 	pbEE->setEnabled(current_base == NB_DECIMAL);
   
-	// Disable buttons that make only sense with floating point
-	// numbers
+	// Disable buttons that make only sense with floating point numbers
 	if(current_base != NB_DECIMAL)  {
 		foreach (QAbstractButton *btn, scientificButtons) {
 			btn->setEnabled(false);
@@ -819,31 +822,16 @@ void KCalculator::slotBaseSelected(int base)
 
 void KCalculator::keyPressEvent(QKeyEvent *e)
 {
-  if ( ( e->modifiers() & Qt::NoModifier ) == 0 || ( e->modifiers() & Qt::ShiftModifier) ) {
-	switch (e->key())
-	{
-	case Qt::Key_PageDown:
-		pbAllClear->animateClick();
-		break;
-	case Qt::Key_Slash:
-	case Qt::Key_division:
-		pbDivision->animateClick();
-		break;
- 	case Qt::Key_D:
-		pbDat->animateClick(); // stat mode
-		break;
-	case Qt::Key_BracketLeft:
-        case Qt::Key_twosuperior:
-		pbSquare->animateClick();
-		break;
-	case Qt::Key_Backspace:
-		calc_display->deleteLastDigit();
-		// pbAllClear->animateClick();
-		break;
-	}
+	if (((e->modifiers() & Qt::NoModifier) == 0) ||
+		(e->modifiers() & Qt::ShiftModifier)) {
+		switch (e->key()) {
+		  case Qt::Key_Backspace:
+			  calc_display->deleteLastDigit();
+			  break;
+		}
     }
 
-    if (e->key() == Qt::Key_Control)
+	if (e->key() == Qt::Key_Control)
 	emit switchShowAccels(true);
 }
 

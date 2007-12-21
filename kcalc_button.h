@@ -80,6 +80,9 @@ public:
 
  virtual QSize sizeHint() const; // reimp
 
+ void setText(const QString &text); // reimp
+ void setToolTip(const QString &tip); // reimp
+
 public slots: 
   void slotSetMode(ButtonModeFlags mode, bool flag); 
   void slotSetAccelDisplayMode(bool flag);

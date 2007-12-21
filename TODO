@@ -1,4 +1,6 @@
 == ToDo ==
+* Redo KCalcButton
+
 * Eliminate DispLogic, rolling functionality into KCalc and KCalcDisplay.
 Consider using QUndoStock for history
 

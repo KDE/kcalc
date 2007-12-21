@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>498</width>
+    <width>504</width>
     <height>266</height>
    </rect>
   </property>
@@ -105,6 +105,19 @@
      </item>
      <item>
       <layout class="QHBoxLayout" >
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
        <item>
         <widget class="QWidget" native="1" name="leftPad" >
          <layout class="QGridLayout" >
@@ -394,6 +407,9 @@
             </property>
             <property name="text" >
              <string>Dat</string>
+            </property>
+            <property name="shortcut" >
+             <string>D</string>
             </property>
            </widget>
           </item>

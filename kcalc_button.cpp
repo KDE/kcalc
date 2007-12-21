@@ -43,6 +43,9 @@ KCalcButton::KCalcButton(const QString &label, QWidget * parent,
 {
   setAutoDefault(false);
   addMode(ModeNormal, label, tooltip);
+
+  // use preferred size policy for vertical
+  setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
 }
 
 void KCalcButton::addMode(ButtonModeFlags mode, const QString &label,
@@ -102,7 +105,6 @@ static QString escape(QString str)
   return str;
 }
 
-
 void KCalcButton::slotSetAccelDisplayMode(bool flag)
 {
   _show_shortcut_mode = flag;
@@ -116,7 +118,7 @@ void KCalcButton::slotSetAccelDisplayMode(bool flag)
   } else {
     if(_mode[_mode_flags].is_label_richtext) {
       _label.setText(_mode[_mode_flags].label);
-      setText(QString::null);	//krazy:exclude=nullstrassign for old broken gcc
+      setText(QString());
       _label.show();
     }  else {
       setText(_mode[_mode_flags].label);
@@ -148,6 +150,26 @@ QSize KCalcButton::sizeHint() const
 	QSize sz = QPushButton::sizeHint();
 	sz.setHeight(qMin(sz.height(), h));
 	return sz.expandedTo(QApplication::globalStrut());
+}
+
+void KCalcButton::setText(const QString &text)
+{
+	KPushButton::setText(text);
+
+	// normal mode may not have been explicitly set
+	if (_mode[ModeNormal].label.isEmpty()) {
+		_mode[ModeNormal].label = text;
+	}
+}
+
+void KCalcButton::setToolTip(const QString &tip)
+{
+	KPushButton::setToolTip(tip);
+
+	// normal mode may not have been explicitly set
+	if (_mode[ModeNormal].tooltip.isEmpty()) {
+		_mode[ModeNormal].tooltip = tip;
+	}
 }
 
 #include "kcalc_button.moc"
