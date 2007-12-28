@@ -137,7 +137,6 @@ KCalculator::KCalculator(QWidget *parent)
 
 	updateGeometry();
 
-	resize(minimumSize());
 	setFixedSize(minimumSize());
 
 	updateDisplay(true);
@@ -720,7 +719,7 @@ void KCalculator::setupKeys()
 void KCalculator::updateGeometry(void)
 {
 	QWidget *widget;
-	QSize em = fontMetrics().size( Qt::TextShowMnemonic, "M");
+	QSize em = fontMetrics().size(0, "M");
     int margin =
 		QApplication::style()->pixelMetric(QStyle::PM_ButtonMargin, 0, 0) + 1;
 

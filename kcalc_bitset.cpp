@@ -17,23 +17,51 @@
 
 */
 
-#include <QButtonGroup>
+#include <QApplication>
 #include <QGridLayout>
 #include <QLabel>
 #include <QHBoxLayout>
+#include <QPainter>
 
 #include "kcalc_bitset.h"
 #include "kcalc_bitset.moc"
 
-static QPushButton *createBitButton(QWidget *parent = 0)
+BitButton::BitButton(QWidget *parent) : QAbstractButton(parent), on(false)
 {
-  QPushButton *tmp = new QPushButton("0", parent);
-  tmp->setFlat(true);
-  tmp->setFixedSize(QSize(tmp->fontMetrics().width(" 0 "),
-			  tmp->fontMetrics().height()));
-
-  return tmp;
+	// size button by font
+	QSize size = fontMetrics().size(0, "M");
+	if (size.width() < size.height()) {
+		size.setHeight(size.width());
+	} else {
+		size.setWidth(size.height());
+	}
+	setFixedSize(size.expandedTo(QApplication::globalStrut()));
 }
+
+bool BitButton::isOn() const
+{
+	return on;
+}
+
+void BitButton::setOn(bool value)
+{
+	on = value;
+	update();
+}
+
+void BitButton::paintEvent(QPaintEvent *event)
+{
+	QPainter painter(this);
+	QPen pen(palette().text(), 2);
+	pen.setJoinStyle(Qt::MiterJoin);
+	painter.setPen(pen);
+
+	if (on) painter.setBrush(palette().text());
+	else    painter.setBrush(palette().base());
+
+	painter.drawRect(rect().adjusted(1, 1, -1, -1));
+}
+
 
 KCalcBitset::KCalcBitset(QWidget *parent)
    : QFrame(parent), mValue(0)
@@ -43,68 +71,49 @@ KCalcBitset::KCalcBitset(QWidget *parent)
 	connect(bitButtonGroup, SIGNAL(buttonClicked (int)),
 		SLOT(slotToggleBit(int)));
 
+	// smaller label font
+	QFont fnt = font();
+	if (fnt.pointSize() > 6) fnt.setPointSize(fnt.pointSize() - 1);
+
+	// main layout
 	QGridLayout *layout = new QGridLayout(this);
-	layout->setMargin(0);
-	//layout->setSpacing(0);
+	layout->setMargin(2);
+	layout->setSpacing(0);
 
+	// create bits
 	int bitCounter = 63;
-	for (int countRows=0; countRows<3; countRows+=2)
-	{
-		for (int countCols=0; countCols<8; countCols++)
-		{
-			// Labels on column 0, 4, 7
-			if(countCols == 0 || countCols == 4 || countCols == 7)
-			{
-				QLabel *label = new QLabel(this);
-				int bn = bitCounter;
-				if(countCols == 7)
-				{
-					label->setAlignment(Qt::AlignRight);
-					bn-=3;
-				}
-				label->setText(QString::number(bn));
-				{
-				  QPalette palette;
-				  palette.setColor(label->foregroundRole(), QColor(0,0,255));
-				  label->setPalette(palette);
-				}
-				layout->addWidget(label, countRows+1,
-						  countCols);
-			}
+	for (int rows=0; rows<2; rows++) {
+		for (int cols=0; cols<4; cols++) {
+			// two rows of four words
+			QHBoxLayout *wordlayout = new QHBoxLayout();
+			wordlayout->setMargin(2);
+			wordlayout->setSpacing(2);
+			layout->addLayout(wordlayout, rows, cols);
 
-			QWidget *group4Bits = new QWidget(this);
-			QHBoxLayout *groupLayout = new QHBoxLayout;
-			for( int b=0; b<4; b++ )
-			{
-
-				QPushButton *tmpBitButton = createBitButton(group4Bits);
-				groupLayout->addWidget(tmpBitButton);
+			for (int bit=0; bit<8; bit++) {
+				QAbstractButton *tmpBitButton = new BitButton(this);
+				wordlayout->addWidget(tmpBitButton);
 				bitButtonGroup->addButton(tmpBitButton, bitCounter);
 				bitCounter--;
 			}
-			groupLayout->setSpacing(0);
-			group4Bits->setLayout(groupLayout);
-			layout->addWidget(group4Bits, countRows, countCols);
-#if 0
-			if(countCols != 7 )
-			{
-				// Add a "spacer"
-				QLabel *sp = new QLabel(this);
-				sp->setMinimumWidth(5);
-			}
-#endif
+
+			// label word
+			QLabel *label = new QLabel(this);
+			label->setText(QString::number(bitCounter+1));
+			label->setFont(fnt);
+			wordlayout->addWidget(label);
+
 		}
 	}
-
 }
-
 
 void KCalcBitset::setValue(unsigned long long value)
 {
 	mValue = value;
 	for(int i=0; i<64; i++) {
-		bitButtonGroup->button(i)->setText(value&1?"1":"0");
-		value>>=1;
+		BitButton *bb = qobject_cast<BitButton*>(bitButtonGroup->button(i));
+		if (bb) bb->setOn(value & 1);
+		value >>= 1;
 	}
 }
 
@@ -115,7 +124,7 @@ unsigned long long KCalcBitset::getValue()
 
 void KCalcBitset::slotToggleBit( int bit )
 {
-  unsigned long long nv = getValue()^(1LL<<bit);
+  unsigned long long nv = getValue() ^ (1LL << bit);
   setValue(nv);
   emit valueChanged(mValue);
 }

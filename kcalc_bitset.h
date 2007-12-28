@@ -20,17 +20,20 @@
 #define _KCALC_BITSET_H_
 
 #include <QFrame>
-#include <QPushButton>
+#include <QAbstractButton>
+#include <QButtonGroup>
 
 class KCalcBitset : public QFrame
 {
-Q_OBJECT
+	Q_OBJECT
 public:
 	KCalcBitset( QWidget *parent=0 );
 	unsigned long long getValue();
+
 public slots:
 	void setValue( unsigned long long value );
 	void slotToggleBit( int bit );
+
 signals:
 	void valueChanged( unsigned long long value );
 
@@ -39,5 +42,19 @@ private:
 	unsigned long long mValue;
 };
 
-#endif
+class BitButton : public QAbstractButton
+{
+	Q_OBJECT
+public:
+	explicit BitButton( QWidget *parent=0 );
+	bool isOn() const;
+	void setOn(bool value);
 
+protected:
+	void paintEvent(QPaintEvent *event);
+
+private:
+	bool on;
+};
+
+#endif
