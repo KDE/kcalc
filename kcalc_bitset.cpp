@@ -28,6 +28,8 @@
 
 BitButton::BitButton(QWidget *parent) : QAbstractButton(parent), on(false)
 {
+	setFocusPolicy(Qt::ClickFocus); // too many bits for tab focus
+
 	// size button by font
 	QSize size = fontMetrics().size(0, "M");
 	if (size.width() < size.height()) {

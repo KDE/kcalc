@@ -30,10 +30,11 @@ KCalcButton::KCalcButton(QWidget * parent)
   : KPushButton(parent), _show_shortcut_mode(false),
     _mode_flags(ModeNormal), _label(this)
 {
-  setAutoDefault(false);
+	setFocusPolicy(Qt::TabFocus);
+	setAutoDefault(false);
 
-  // use preferred size policy for vertical
-  setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
+	// use preferred size policy for vertical
+	setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
 }
 
 KCalcButton::KCalcButton(const QString &label, QWidget * parent,
