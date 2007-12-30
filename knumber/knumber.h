@@ -26,6 +26,8 @@
 
 class QString;
 
+class _knumber;
+
 /**
   *
   * @short Class that provides arbitrary precision numbers
@@ -115,10 +117,7 @@ class KDE_EXPORT KNumber
   
   KNumber(QString const & num);
   
-  ~KNumber()
-  {
-    delete _num;
-  }
+  virtual ~KNumber();
   
   KNumber const & operator=(KNumber const & num);
 
@@ -268,10 +267,7 @@ class KDE_EXPORT KNumber
 
 
   //KNumber const toFloat(void) const;
-  
-  
-  
-  
+
  private:
   void simplifyRational(void);
   int const compare(KNumber const & arg2) const;

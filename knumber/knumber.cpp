@@ -20,13 +20,12 @@
 
 #include <cmath>
 #include <cstdio>
-#include <gmp.h>
 
 #include <config-kcalc.h>
 
 #include <QRegExp>
 
-
+#include "knumber_priv.h"
 #include "knumber.h"
 
 using namespace std;
@@ -42,7 +41,6 @@ KNumber const KNumber::Euler("2.718281828459045235360287471352662497757"
 			     "4571382178525166427");
 KNumber const KNumber::NotDefined("nan");
 
-
 bool KNumber::_float_output = false;
 bool KNumber::_fraction_input = false;
 bool KNumber::_splitoffinteger_output = false;
@@ -55,7 +53,7 @@ bool KNumber::_splitoffinteger_output = false;
 #include <math.h>
 #endif
 
-#define isinf(x) !finite(x) && x == x
+#define isinf(x) (!finite(x) && x == x)
 #endif
 
 KNumber::KNumber(qint32 num)
@@ -99,7 +97,6 @@ KNumber::KNumber(KNumber const & num)
   };
 }
 
-
 KNumber::KNumber(QString const & num)
 {
   if (QRegExp("^(inf|-inf|nan)$").exactMatch(num))
@@ -118,6 +115,11 @@ KNumber::KNumber(QString const & num)
       _num = new _knumfloat(num);
   else
     _num = new _knumerror("nan");
+}
+
+KNumber::~KNumber()
+{
+  delete _num;
 }
 
 KNumber::NumType KNumber::type(void) const
