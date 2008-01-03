@@ -1460,7 +1460,7 @@ void KCalculator::showSettings()
 	// color settings
 
 	Colors *color = new Colors(0);
-	dialog->addPage(color, i18n("Colors"), "color-fill", i18n("Button & Display Colors"));
+	dialog->addPage(color, i18n("Colors"), "format-fill-color", i18n("Button & Display Colors"));
 
 	// constant settings
 
