@@ -24,12 +24,11 @@
 #ifndef _KCALC_BUTTON_H
 #define _KCALC_BUTTON_H
 
-#include <QHash>
-#include <QLabel>
+#include <QMap>
 #include <kpushbutton.h>
 
 // The class KCalcButton is an overridden KPushButton. It offers extra
-// functionality e.g. labels can be richtext, and the button can be
+// functionality e.g. text can be richtext, and the button can be
 // told to display its shortcuts in the label, but the most important
 // thing is that the button may have several modes with corresponding
 // labels and tooltips. When one switches modes, the corresponding
@@ -47,18 +46,10 @@ public:
   ButtonMode(void) {}
   ButtonMode(const QString &label,
              const QString &tooltip,
-             bool is_label_richtext,
              const KIcon &icon)
-      : is_label_richtext(is_label_richtext), tooltip(tooltip), icon(icon)
-  {
-    if (is_label_richtext)
-      this->label = "<qt type=\"page\"><center>" + label + "</center></qt>";
-    else
-      this->label = label;
-  }
+      : label(label), tooltip(tooltip), icon(icon) { }
 
   QString label;
-  bool is_label_richtext;
   QString tooltip;
   KIcon icon;
 };
@@ -74,9 +65,7 @@ public:
 	     const QString &tooltip = QString());
 
  void addMode(ButtonModeFlags mode, const QString &label,
-	      const QString &tooltip, bool is_label_richtext = false,
-              const KIcon &icon = KIcon());
-
+	      const QString &tooltip, const KIcon &icon = KIcon());
 
  virtual QSize sizeHint() const; // reimp
 
@@ -88,14 +77,12 @@ public slots:
   void slotSetAccelDisplayMode(bool flag);
 
 protected:
-  virtual void paintEvent(QPaintEvent *p);
+  virtual void paintEvent(QPaintEvent *e);
 
+ private:
   bool _show_shortcut_mode;
-
   ButtonModeFlags _mode_flags;
-
-  QHash<ButtonModeFlags, ButtonMode> _mode;
-  QLabel _label;
+  QMap<ButtonModeFlags, ButtonMode> _mode;
 };
 
 #endif  // _KCALC_BUTTON_H

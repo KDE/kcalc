@@ -362,9 +362,9 @@ void KCalculator::setupKeys()
 
 	// numeric keypad
 
-	pbRoot->addMode(ModeNormal, QString(), i18n("Square root"), false,
+	pbRoot->addMode(ModeNormal, QString(), i18n("Square root"),
 					KIcon("math_sqrt"));
-	pbRoot->addMode(ModeInverse, QString(), i18n("Cube root"), false,
+	pbRoot->addMode(ModeInverse, QString(), i18n("Cube root"),
 					KIcon("math_cbrt"));
 	connect(pbRoot, SIGNAL(clicked(void)),
 			SLOT(slotRootclicked(void)));
@@ -502,16 +502,14 @@ void KCalculator::setupKeys()
 	connect(pbTan, SIGNAL(clicked(void)),SLOT(slotTanclicked(void)));
 
 	pbLog->addMode(ModeNormal, "Log", i18n("Logarithm to base 10"));
-	pbLog->addMode(ModeInverse, "10<sup>x</sup>", i18n("10 to the power of x"),
-				   true);
+	pbLog->addMode(ModeInverse, "10<sup>x</sup>", i18n("10 to the power of x"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbLog, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 			pbLog, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(pbLog, SIGNAL(clicked(void)), SLOT(slotLogclicked(void)));
 	pbLn->addMode(ModeNormal, "Ln", i18n("Natural log"));
-	pbLn->addMode(ModeInverse, "e<sup>x</sup>", i18n("Exponential function"),
-				  true);
+	pbLn->addMode(ModeInverse, "e<sup>x</sup>", i18n("Exponential function"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbLn, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
@@ -539,7 +537,7 @@ void KCalculator::setupKeys()
 	pbMean->addMode(ModeNormal, "Mea", i18n("Mean"));
 	pbMean->addMode(ModeInverse, QString::fromUtf8("\xce\xa3")
 					+ "x<sup>2</sup>",
-					i18n("Sum of all data items squared"), true);
+					i18n("Sum of all data items squared"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbMean, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
@@ -547,9 +545,9 @@ void KCalculator::setupKeys()
 	connect(pbMean, SIGNAL(clicked(void)), SLOT(slotStatMeanclicked(void)));
 
 	pbSd->addMode(ModeNormal, QString::fromUtf8("σ",-1) + "<sub>N</sub>",
-				  i18n("Standard deviation"), true);
+				  i18n("Standard deviation"));
 	pbSd->addMode(ModeInverse, QString::fromUtf8("σ",-1) + "<sub>N-1</sub>",
-				  i18n("Sample standard deviation"), true);
+				  i18n("Sample standard deviation"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbSd, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
@@ -649,8 +647,8 @@ void KCalculator::setupKeys()
 			pbFactorial, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(pbFactorial, SIGNAL(clicked(void)),SLOT(slotFactorialclicked(void)));
 
-	pbSquare->addMode(ModeNormal, "x<sup>2</sup>", i18n("Square"), true);
-	pbSquare->addMode(ModeInverse, "x<sup>3</sup>", i18n("Third power"), true);
+	pbSquare->addMode(ModeNormal, "x<sup>2</sup>", i18n("Square"));
+	pbSquare->addMode(ModeInverse, "x<sup>3</sup>", i18n("Third power"));
 	pbSquare->setShortcut(QKeySequence(Qt::Key_BracketLeft));
 	new QShortcut( Qt::Key_twosuperior, pbSquare, SLOT(animateClick()) );
 	connect(this, SIGNAL(switchShowAccels(bool)),
@@ -659,8 +657,8 @@ void KCalculator::setupKeys()
 	        pbSquare, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(pbSquare, SIGNAL(clicked(void)), SLOT(slotSquareclicked(void)));
 
-	pbPower->addMode(ModeNormal, "x<sup>y</sup>", i18n("x to the power of y"), true);
-	pbPower->addMode(ModeInverse, "x<sup>1/y</sup>", i18n("x to the power of 1/y"), true);
+	pbPower->addMode(ModeNormal, "x<sup>y</sup>", i18n("x to the power of y"));
+	pbPower->addMode(ModeInverse, "x<sup>1/y</sup>", i18n("x to the power of 1/y"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbPower, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
@@ -669,7 +667,7 @@ void KCalculator::setupKeys()
 	connect(pbPower, SIGNAL(clicked(void)), SLOT(slotPowerclicked(void)));
 
 	pbEE->addMode(ModeNormal, "x<small>" "\xb7" "10</small><sup>y</sup>",
-				  i18n("Exponent"), true);
+				  i18n("Exponent"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbEE, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(pbEE, SIGNAL(clicked(void)), SLOT(slotEEclicked(void)));
