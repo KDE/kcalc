@@ -20,15 +20,18 @@
 
 */
 
+#include <QAbstractTextDocumentLayout>
 #include <QApplication>
-#include <QStyle>
+#include <QStyleOptionButton>
+#include <QStylePainter>
+#include <QTextDocument>
 
 #include "kcalc_button.h"
 
 
 KCalcButton::KCalcButton(QWidget * parent)
   : KPushButton(parent), _show_shortcut_mode(false),
-    _mode_flags(ModeNormal), _label(this)
+    _mode_flags(ModeNormal)
 {
 	setFocusPolicy(Qt::TabFocus);
 	setAutoDefault(false);
@@ -40,7 +43,7 @@ KCalcButton::KCalcButton(QWidget * parent)
 KCalcButton::KCalcButton(const QString &label, QWidget * parent,
 			 const QString &tooltip)
   : KPushButton(label, parent), _show_shortcut_mode(false),
-    _mode_flags(ModeNormal), _label(this)
+    _mode_flags(ModeNormal)
 {
   setAutoDefault(false);
   addMode(ModeNormal, label, tooltip);
@@ -50,14 +53,14 @@ KCalcButton::KCalcButton(const QString &label, QWidget * parent,
 }
 
 void KCalcButton::addMode(ButtonModeFlags mode, const QString &label,
-	const QString &tooltip, bool is_label_richtext, const KIcon &icon)
+						  const QString &tooltip, const KIcon &icon)
 {
   if (_mode.contains(mode)) _mode.remove(mode);
 
-  _mode[mode] = ButtonMode(label, tooltip, is_label_richtext, icon);
+  _mode[mode] = ButtonMode(label, tooltip, icon);
 
   // Need to put each button into default mode first
-  if(mode == ModeNormal) slotSetMode(ModeNormal, true);
+  if (mode == ModeNormal) slotSetMode(ModeNormal, true);
 }
 
 void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
@@ -76,14 +79,7 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
     // save shortcut, because setting label erases it
     QKeySequence _shortcut = shortcut();
 
-    if(_mode[new_mode].is_label_richtext) {
-      _label.setText(_mode[new_mode].label);
-      setText(QString::null);	//krazy:exclude=nullstrassign for old broken gcc
-      _label.show();
-    }  else {
-      setText(_mode[new_mode].label);
-      _label.hide();
-    }
+	setText(_mode[new_mode].label);
     this->setToolTip( _mode[new_mode].tooltip);
 	setIcon(_mode[new_mode].icon);
     _mode_flags = new_mode;
@@ -100,12 +96,6 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
   update();
 }
 
-static QString escape(QString str)
-{
-  str.replace('&', "&&");
-  return str;
-}
-
 void KCalcButton::slotSetAccelDisplayMode(bool flag)
 {
   _show_shortcut_mode = flag;
@@ -114,17 +104,9 @@ void KCalcButton::slotSetAccelDisplayMode(bool flag)
   QKeySequence _shortcut = shortcut();
   
   if (flag == true) {
-    setText(escape(QString(shortcut())));
-    _label.hide();
+    setText(QString(shortcut()));
   } else {
-    if(_mode[_mode_flags].is_label_richtext) {
-      _label.setText(_mode[_mode_flags].label);
-      setText(QString());
-      _label.show();
-    }  else {
-      setText(_mode[_mode_flags].label);
-      _label.hide();
-    }
+    setText(_mode[_mode_flags].label);
   }
 
   // restore shortcut
@@ -132,14 +114,38 @@ void KCalcButton::slotSetAccelDisplayMode(bool flag)
   update();
 }
 
-void KCalcButton::paintEvent(QPaintEvent *p)
+void KCalcButton::paintEvent(QPaintEvent *)
 {
-  // draw first button frame (and label, when not using richtext)
-  KPushButton::paintEvent(p);
+	QPainter p(this);
+	QStyleOptionButton option;
+	initStyleOption(&option);
 
-  if(_mode[_mode_flags].is_label_richtext)
-    _label.move((width()-_label.width())/2, (height()-_label.height())/2);
-  
+	// draw bevel
+	style()->drawControl(QStyle::CE_PushButtonBevel, &option, &p, this);
+
+	// draw label...
+	p.save();
+
+	// rant: Qt4 needs QSimpleRichText, dammit!
+	QTextDocument doc;
+	QAbstractTextDocumentLayout::PaintContext context;
+	doc.setHtml("<center>" + text() + "</center>");
+	context.palette = palette();
+        context.palette.setColor(QPalette::Text, context.palette.buttonText().color());
+
+	p.translate(width()/2 - doc.size().width()/2,
+				height()/2 - doc.size().height()/2);
+	doc.documentLayout()->draw(&p, context);
+	p.restore();
+
+	// draw focus
+	if (hasFocus()) {
+		QStyleOptionFocusRect fropt;
+		fropt.QStyleOption::operator=(option);
+		fropt.rect = style()->subElementRect(QStyle::SE_PushButtonFocusRect,
+											 &option, this);
+		style()->drawPrimitive(QStyle::PE_FrameFocusRect, &fropt, &p, this);
+	}
 }
 
 QSize KCalcButton::sizeHint() const
