@@ -1,3 +1,4 @@
+// -*- indent-tabs-mode: t -*-
 /*
     kCalculator, a simple scientific calculator for KDE
 
@@ -100,18 +101,18 @@ KCalculator::KCalculator(QWidget *parent)
 
 	BaseChooseGroup = new QButtonGroup(this);
 	BaseChooseGroup->setExclusive(true);
-	BaseChooseGroup->addButton(hexRadio, 0);
-	BaseChooseGroup->addButton(decRadio, 1);
-	BaseChooseGroup->addButton(octRadio, 2);
-	BaseChooseGroup->addButton(binRadio, 3);
+	BaseChooseGroup->addButton(hexRadio, HexMode);
+	BaseChooseGroup->addButton(decRadio, DecMode);
+	BaseChooseGroup->addButton(octRadio, OctMode);
+	BaseChooseGroup->addButton(binRadio, BinMode);
 	connect(BaseChooseGroup, SIGNAL(buttonClicked(int)),
 			SLOT(slotBaseSelected(int)));
 
 	AngleChooseGroup =  new QButtonGroup(this);
 	AngleChooseGroup->setExclusive(true);
-	AngleChooseGroup->addButton(degRadio, 0);
-	AngleChooseGroup->addButton(radRadio, 1);
-	AngleChooseGroup->addButton(gradRadio, 2);
+	AngleChooseGroup->addButton(degRadio, DegMode);
+	AngleChooseGroup->addButton(radRadio, RadMode);
+	AngleChooseGroup->addButton(gradRadio, GradMode);
 	connect(AngleChooseGroup, SIGNAL(buttonClicked(int)),
 			SLOT(slotAngleSelected(int)));
 
@@ -219,17 +220,17 @@ actionCollection());
 void KCalculator::setupStatusbar(void)
 {
 	// Status bar contents
-	statusBar()->insertPermanentFixedItem(" NORM ", 0);
-	statusBar()->setItemAlignment(0, Qt::AlignCenter);
+	statusBar()->insertPermanentFixedItem(" NORM ", InvField);
+	statusBar()->setItemAlignment(InvField, Qt::AlignCenter);
 
-	statusBar()->insertPermanentFixedItem(" HEX ", 1);
-	statusBar()->setItemAlignment(1, Qt::AlignCenter);
+	statusBar()->insertPermanentFixedItem(" HEX ", BaseField);
+	statusBar()->setItemAlignment(BaseField, Qt::AlignCenter);
 
-	statusBar()->insertPermanentFixedItem(" DEG ", 2);
-	statusBar()->setItemAlignment(2, Qt::AlignCenter);
+	statusBar()->insertPermanentFixedItem(" DEG ", AngleField);
+	statusBar()->setItemAlignment(AngleField, Qt::AlignCenter);
 
-	statusBar()->insertPermanentFixedItem(" \xa0\xa0 ", 3); // Memory indicator
-	statusBar()->setItemAlignment(3, Qt::AlignCenter);
+	statusBar()->insertPermanentFixedItem(" \xa0\xa0 ", MemField); // nbsp
+	statusBar()->setItemAlignment(MemField, Qt::AlignCenter);
 }
 
 // additional setup for button keys
@@ -765,29 +766,29 @@ void KCalculator::slotBaseSelected(int base)
     
 	// set display & statusbar (if item exist in statusbar)
 	switch(base) {
-	  case 3:
+	  case BinMode:
 		  current_base = calc_display->setBase(NumBase(2));
-		  if (statusBar()->hasItem(1)) statusBar()->changeItem("BIN",1);
-		  calc_display->setStatusText(1, "Bin");
+		  statusBar()->changeItem("BIN", BaseField);
+		  calc_display->setStatusText(BaseField, "Bin");
 		  break;
-	  case 2:
+	  case OctMode:
 		  current_base = calc_display->setBase(NumBase(8));
-		  if (statusBar()->hasItem(1)) statusBar()->changeItem("OCT",1);
-		  calc_display->setStatusText(1, "Oct");
+		  statusBar()->changeItem("OCT", BaseField);
+		  calc_display->setStatusText(BaseField, "Oct");
 		  break;
-	  case 1:
+	  case DecMode:
 		  current_base = calc_display->setBase(NumBase(10));
-		  if (statusBar()->hasItem(1)) statusBar()->changeItem("DEC",1);
-		  calc_display->setStatusText(1, "Dec");
+		  statusBar()->changeItem("DEC", BaseField);
+		  calc_display->setStatusText(BaseField, "Dec");
 		  break;
-	  case 0:
+	  case HexMode:
 		  current_base = calc_display->setBase(NumBase(16));
-		  if (statusBar()->hasItem(1)) statusBar()->changeItem("HEX",1);
-		  calc_display->setStatusText(1, "Hex");
+		  statusBar()->changeItem("HEX", BaseField);
+		  calc_display->setStatusText(BaseField, "Hex");
 		  break;
 	  default:
-		  if (statusBar()->hasItem(1)) statusBar()->changeItem("Error",1);
-		  calc_display->setStatusText(1, "Error");
+		  statusBar()->changeItem("Error", BaseField);
+		  calc_display->setStatusText(BaseField, "Error");
 		  return;
 	}
 
@@ -838,24 +839,22 @@ void KCalculator::keyReleaseEvent(QKeyEvent *e)
 	emit switchShowAccels(false);
 }
 
-void KCalculator::slotAngleSelected(int number)
+void KCalculator::slotAngleSelected(int mode)
 {
-	switch(number)
+	_angle_mode = mode;
+	switch(mode)
 	{
-	case 0:
-		_angle_mode = DegMode;
-		statusBar()->changeItem("DEG", 2);
-		calc_display->setStatusText(2, "Deg");
+	case DegMode:
+		statusBar()->changeItem("DEG", AngleField);
+		calc_display->setStatusText(AngleField, "Deg");
 		break;
-	case 1:
-		_angle_mode = RadMode;
-		statusBar()->changeItem("RAD", 2);
-		calc_display->setStatusText(2, "Rad");
+	case RadMode:
+		statusBar()->changeItem("RAD", AngleField);
+		calc_display->setStatusText(AngleField, "Rad");
 		break;
-	case 2:
-		_angle_mode = GradMode;
-		statusBar()->changeItem("GRA", 2);
-		calc_display->setStatusText(2, "Gra");
+	case GradMode:
+		statusBar()->changeItem("GRA", AngleField);
+		calc_display->setStatusText(AngleField, "Gra");
 		break;
 	default: // we shouldn't ever end up here
 		_angle_mode = RadMode;
@@ -875,13 +874,13 @@ void KCalculator::slotInvtoggled(bool flag)
 
 	if (inverse)
 	{
-		statusBar()->changeItem("INV", 0);
-		calc_display->setStatusText(0, "Inv");
+		statusBar()->changeItem("INV", InvField);
+		calc_display->setStatusText(InvField, "Inv");
 	}
 	else
 	{
-		statusBar()->changeItem("NORM", 0);
-		calc_display->setStatusText(0, QString());
+		statusBar()->changeItem("NORM", InvField);
+		calc_display->setStatusText(InvField, QString());
 	}
 }
 
@@ -909,8 +908,8 @@ void KCalculator::slotMemStoreclicked(void)
 	EnterEqual();
 
 	memory_num = calc_display->getAmount();
-	calc_display->setStatusText(3, "M");
-	statusBar()->changeItem("M",3);
+	calc_display->setStatusText(MemField, "M");
+	statusBar()->changeItem("M", MemField);
 	pbMemRecall->setEnabled(true);
 }
 
@@ -983,8 +982,8 @@ void KCalculator::slotMemPlusMinusclicked(void)
 	else 			memory_num -= calc_display->getAmount();
 
 	pbInv->setChecked(false);
-	statusBar()->changeItem("M",3);
-	calc_display->setStatusText(3, "M");
+	statusBar()->changeItem("M", MemField);
+	calc_display->setStatusText(MemField, "M");
 	pbMemRecall->setEnabled(true);
 }
 
@@ -1166,8 +1165,8 @@ void KCalculator::slotPowerclicked(void)
 void KCalculator::slotMemClearclicked(void)
 {
 	memory_num		= 0;
-	statusBar()->changeItem(" \xa0\xa0 ",3);
-	calc_display->setStatusText(3, QString());
+	statusBar()->changeItem(" \xa0\xa0 ", MemField);
+	calc_display->setStatusText(MemField, QString());
 	pbMemRecall->setDisabled(true);
 }
 
@@ -1590,10 +1589,9 @@ void KCalculator::slotScientificshow(bool toggled)
 		foreach (QAbstractButton* btn, AngleChooseGroup->buttons()) {
 			btn->show();
 		}
-		if(!statusBar()->hasItem(2))
-			statusBar()->insertFixedItem(" DEG ", 2);
-		statusBar()->setItemAlignment(2, Qt::AlignCenter);
-		calc_display->setStatusText(2, "Deg");
+		statusBar()->changeItem(" DEG ", AngleField);
+		statusBar()->setItemFixed(AngleField, -1);
+		calc_display->setStatusText(AngleField, "Deg");
 		degRadio->setChecked(true);
 	}
 	else
@@ -1604,9 +1602,9 @@ void KCalculator::slotScientificshow(bool toggled)
 		foreach (QAbstractButton* btn, AngleChooseGroup->buttons()) {
 			btn->hide();
 		}
-		if(statusBar()->hasItem(2))
-			statusBar()->removeItem(2);
-		calc_display->setStatusText(2, QString());
+		statusBar()->changeItem(QString(), AngleField);
+		statusBar()->setItemFixed(AngleField, 0);
+		calc_display->setStatusText(AngleField, QString());
 	}
 	KCalcSettings::setShowScientific(toggled);
 }
@@ -1623,10 +1621,9 @@ void KCalculator::slotLogicshow(bool toggled)
 		foreach (QAbstractButton* btn, logicButtons) {
 			btn->show();
 		}
-		if(!statusBar()->hasItem(1))
-			statusBar()->insertFixedItem(" HEX ", 1);
-		statusBar()->setItemAlignment(1, Qt::AlignCenter);
-		calc_display->setStatusText(1, "Hex");
+		statusBar()->changeItem(" HEX ", BaseField);
+		statusBar()->setItemFixed(BaseField, -1);
+		calc_display->setStatusText(BaseField, "Hex");
 		foreach (QAbstractButton *btn, BaseChooseGroup->buttons()) {
 			btn->show();
 		}
@@ -1649,9 +1646,9 @@ void KCalculator::slotLogicshow(bool toggled)
 		foreach (QAbstractButton *btn, BaseChooseGroup->buttons()) {
 			btn->hide();
 		}
-		if(statusBar()->hasItem(1))
-			statusBar()->removeItem(1);
-		calc_display->setStatusText(1, QString());
+		statusBar()->changeItem(QString(), BaseField);
+		statusBar()->setItemFixed(BaseField, 0);
+		calc_display->setStatusText(BaseField, QString());
 		for (int i=10; i<16; i++)
 			(NumButtonGroup->button(i))->hide();
 	}

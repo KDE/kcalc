@@ -125,7 +125,7 @@ void changeButtonNames();
     void slotConstantsShow(bool toggled);   
     void slotShowAll(void);
     void slotHideAll(void);
-    void slotAngleSelected(int number);
+    void slotAngleSelected(int mode);
     void slotBaseSelected(int base);
     void slotNumberclicked(int number_clicked);
     void slotEEclicked(void);
@@ -180,24 +180,35 @@ void changeButtonNames();
     void slotChooseScientificConst4(struct science_constant const &);
     void slotChooseScientificConst5(struct science_constant const &);
 
-	void slotBitsetChanged(unsigned long long);
-	void slotUpdateBitset(const KNumber &);
+    void slotBitsetChanged(unsigned long long);
+    void slotUpdateBitset(const KNumber &);
 
 private:
-	bool inverse;
-	bool hyp_mode;
-	KNumber memory_num;
-	KNumber setvalue;
-
-	// angle modes for trigonometric values
-	enum {
-	  DegMode,
-	  RadMode,
-	  GradMode
-	} _angle_mode;
-
+    enum StatusField {
+        InvField = 0,
+        BaseField,
+        AngleField,
+        MemField
+    };
+    enum AngleMode {
+        DegMode = 0,
+        RadMode,
+        GradMode
+    };
+    enum BaseMode {
+        HexMode = 0,
+        DecMode,
+        OctMode,
+        BinMode
+    };
 
 private:
+    bool inverse;
+    bool hyp_mode;
+    KNumber memory_num;
+    KNumber setvalue;
+
+    int _angle_mode; // angle modes for trigonometric values
 
     Constants*          constants; // this is the dialog for configuring const buttons
 	
@@ -210,8 +221,6 @@ private:
     QList<QAbstractButton*> scientificButtons;
     QList<QAbstractButton*> statButtons;
     QList<QAbstractButton*> constButtons;
-
-
 
     KToggleAction *actionStatshow;
     KToggleAction *actionScientificshow;
