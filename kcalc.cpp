@@ -294,7 +294,6 @@ void KCalculator::setupKeys()
 
 	// right keypad
 
-    pbInv->installEventFilter(this);
 	connect(pbInv, SIGNAL(toggled(bool)),
 			SLOT(slotInvtoggled(bool)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
@@ -816,7 +815,6 @@ void KCalculator::slotBaseSelected(int base)
 		}
 	}
 }
-
 
 void KCalculator::keyPressEvent(QKeyEvent *e)
 {
@@ -1754,42 +1752,42 @@ void KCalculator::set_colors()
 {
 	calc_display->changeSettings();
 
-	QColor bg = palette().color(QPalette::Active, QPalette::Background);
+	QString sheet = "background-color: %1";
 
-	QPalette numPal(KCalcSettings::numberButtonsColor(), bg);
+	QColor numPal(KCalcSettings::numberButtonsColor());
 	for(int i=0; i<10; i++)
 	{
-		(NumButtonGroup->button(i))->setPalette(numPal);
+		(NumButtonGroup->button(i))->setStyleSheet(sheet.arg(numPal.name()));
 	}
 
-	QPalette funcPal(KCalcSettings::functionButtonsColor(), bg);
+	QColor funcPal(KCalcSettings::functionButtonsColor());
 	foreach (QAbstractButton *btn, mFunctionButtonList)
 	{
-		btn->setPalette(funcPal);
+		btn->setStyleSheet(sheet.arg(funcPal.name()));
 	}
 
-	QPalette statPal(KCalcSettings::statButtonsColor(), bg);
+	QColor statPal(KCalcSettings::statButtonsColor());
 	foreach (QAbstractButton *btn, statButtons)
 	{
-		btn->setPalette(statPal);
+		btn->setStyleSheet(sheet.arg(statPal.name()));
 	}
 
-	QPalette hexPal(KCalcSettings::hexButtonsColor(), bg);
+	QColor hexPal(KCalcSettings::hexButtonsColor());
 	for(int i=10; i<16; i++)
 	{
-		(NumButtonGroup->button(i))->setPalette(hexPal);
+		(NumButtonGroup->button(i))->setStyleSheet(sheet.arg(hexPal.name()));
 	}
 
-	QPalette memPal(KCalcSettings::memoryButtonsColor(), bg);
+	QColor memPal(KCalcSettings::memoryButtonsColor());
 	foreach (QAbstractButton *btn, mMemButtonList)
 	{
-		btn->setPalette(memPal);
+		btn->setStyleSheet(sheet.arg(memPal.name()));
 	}
 
-	QPalette opPal(KCalcSettings::operationButtonsColor(), bg);
+	QColor opPal(KCalcSettings::operationButtonsColor());
 	foreach (QAbstractButton *btn, mOperationButtonList)
 	{
-		btn->setPalette(opPal);
+		btn->setStyleSheet(sheet.arg(opPal.name()));
 	}
 }
 
@@ -1823,18 +1821,20 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
 		QColor c = KColorMimeData::fromMimeData( ev->mimeData() );
 		if ( c.isValid() )
 		{
+			QString cn = c.name();
+			QString sheet = "background-color: %1";
+
 			QList<QAbstractButton*> *list;
 			int num_but;
 			if((num_but = NumButtonGroup->buttons().indexOf(calcButton)) != -1)
 			{
-			  QPalette pal(c, palette().color(QPalette::Active, QPalette::Background));
 			  // Was it hex-button or normal digit??
 			  if (num_but <10)
 			    for(int i=0; i<10; i++)
-			      (NumButtonGroup->buttons()[i])->setPalette(pal);
+				  (NumButtonGroup->buttons()[i])->setStyleSheet(sheet.arg(cn));
 			  else
 			    for(int i=10; i<16; i++)
-			      (NumButtonGroup->buttons()[i])->setPalette(pal);
+				  (NumButtonGroup->buttons()[i])->setStyleSheet(sheet.arg(cn));
 
 			  return true;
 			}
@@ -1857,10 +1857,8 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
 			else
 				return false;
 
-			QPalette pal(c, palette().color(QPalette::Active, QPalette::Background));
-
 			for(int i = 0; i < list->size(); i++)
-				list->at(i)->setPalette(pal);
+				list->at(i)->setStyleSheet(sheet.arg(cn));
 		}
 
 		return true;

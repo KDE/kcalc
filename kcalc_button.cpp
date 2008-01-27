@@ -33,6 +33,7 @@ KCalcButton::KCalcButton(QWidget * parent)
   : KPushButton(parent), _show_shortcut_mode(false),
     _mode_flags(ModeNormal)
 {
+	setAcceptDrops(true); // allow color drops
 	setFocusPolicy(Qt::TabFocus);
 	setAutoDefault(false);
 
