@@ -362,10 +362,8 @@ void KCalculator::setupKeys()
 
 	// numeric keypad
 
-	pbRoot->addMode(ModeNormal, QString(), i18n("Square root"),
-					KIcon("math_sqrt"));
-	pbRoot->addMode(ModeInverse, QString(), i18n("Cube root"),
-					KIcon("math_cbrt"));
+	pbRoot->addMode(ModeNormal, "&radic;x", i18n("Square root"));
+	pbRoot->addMode(ModeInverse, "<sup>3</sup>&radic;x", i18n("Cube root"));
 	connect(pbRoot, SIGNAL(clicked(void)),
 			SLOT(slotRootclicked(void)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
