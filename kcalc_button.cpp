@@ -151,12 +151,14 @@ void KCalcButton::paintEvent(QPaintEvent *)
 
 QSize KCalcButton::sizeHint() const
 {
-	// reimplemented to provide a shorter button
-    int margin = style()->pixelMetric(QStyle::PM_ButtonMargin, 0, this);
-    int h = fontMetrics().lineSpacing() + margin*2 + 4;
+	// reimplemented to provide a smaller button
 
-	QSize sz = QPushButton::sizeHint();
-	sz.setHeight(qMin(sz.height(), h));
+    int margin = style()->pixelMetric(QStyle::PM_ButtonMargin, 0, this);
+    margin = qMax(qMin(margin/2, 3), 3);
+
+    // approximation because metrics doesn't account for richtext
+    QSize sz = fontMetrics().size(Qt::TextSingleLine, text());
+    sz += QSize(margin*2, margin*2);
 	return sz.expandedTo(QApplication::globalStrut());
 }
 
