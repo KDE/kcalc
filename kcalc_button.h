@@ -45,13 +45,11 @@ class ButtonMode
 public:
   ButtonMode(void) {}
   ButtonMode(const QString &label,
-             const QString &tooltip,
-             const KIcon &icon)
-      : label(label), tooltip(tooltip), icon(icon) { }
+             const QString &tooltip)
+      : label(label), tooltip(tooltip) { }
 
   QString label;
   QString tooltip;
-  KIcon icon;
 };
 
 
@@ -65,7 +63,7 @@ public:
 	     const QString &tooltip = QString());
 
  void addMode(ButtonModeFlags mode, const QString &label,
-	      const QString &tooltip, const KIcon &icon = KIcon());
+	      const QString &tooltip);
 
  virtual QSize sizeHint() const; // reimp
 
@@ -79,10 +77,14 @@ public slots:
 protected:
   virtual void paintEvent(QPaintEvent *e);
 
- private:
+private:
+  void calcSizeHint();
+
+private:
   bool _show_shortcut_mode;
   ButtonModeFlags _mode_flags;
   QMap<ButtonModeFlags, ButtonMode> _mode;
+  QSize _size;
 };
 
 #endif  // _KCALC_BUTTON_H

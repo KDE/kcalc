@@ -1,3 +1,4 @@
+// -*- indent-tabs-mode: t -*-
 /*
     kCalculator, a simple scientific calculator for KDE
 
@@ -30,8 +31,8 @@
 
 
 KCalcButton::KCalcButton(QWidget * parent)
-  : KPushButton(parent), _show_shortcut_mode(false),
-    _mode_flags(ModeNormal)
+	: KPushButton(parent), _show_shortcut_mode(false),
+	_mode_flags(ModeNormal), _size()
 {
 	setAcceptDrops(true); // allow color drops
 	setFocusPolicy(Qt::TabFocus);
@@ -42,23 +43,25 @@ KCalcButton::KCalcButton(QWidget * parent)
 }
 
 KCalcButton::KCalcButton(const QString &label, QWidget * parent,
-			 const QString &tooltip)
-  : KPushButton(label, parent), _show_shortcut_mode(false),
-    _mode_flags(ModeNormal)
+                         const QString &tooltip)
+	: KPushButton(label, parent), _show_shortcut_mode(false),
+	  _mode_flags(ModeNormal), _size()
 {
   setAutoDefault(false);
   addMode(ModeNormal, label, tooltip);
 
   // use preferred size policy for vertical
   setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
+
 }
 
 void KCalcButton::addMode(ButtonModeFlags mode, const QString &label,
-						  const QString &tooltip, const KIcon &icon)
+						  const QString &tooltip)
 {
   if (_mode.contains(mode)) _mode.remove(mode);
 
-  _mode[mode] = ButtonMode(label, tooltip, icon);
+  _mode[mode] = ButtonMode(label, tooltip);
+  calcSizeHint();
 
   // Need to put each button into default mode first
   if (mode == ModeNormal) slotSetMode(ModeNormal, true);
@@ -82,7 +85,6 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
 
 	setText(_mode[new_mode].label);
     this->setToolTip( _mode[new_mode].tooltip);
-	setIcon(_mode[new_mode].icon);
     _mode_flags = new_mode;
 
 
@@ -152,14 +154,25 @@ void KCalcButton::paintEvent(QPaintEvent *)
 QSize KCalcButton::sizeHint() const
 {
 	// reimplemented to provide a smaller button
+	return _size;
+}
 
-    int margin = style()->pixelMetric(QStyle::PM_ButtonMargin, 0, this);
-    margin = qMax(qMin(margin/2, 3), 3);
+void KCalcButton::calcSizeHint()
+{
+	int margin = style()->pixelMetric(QStyle::PM_ButtonMargin, 0, this);
+	margin = qMax(qMin(margin/2, 3), 3);
 
-    // approximation because metrics doesn't account for richtext
-    QSize sz = fontMetrics().size(Qt::TextSingleLine, text());
-    sz += QSize(margin*2, margin*2);
-	return sz.expandedTo(QApplication::globalStrut());
+	// approximation because metrics doesn't account for richtext
+	_size = fontMetrics().size(0, _mode[ModeNormal].label);
+	if (_mode.contains(ModeInverse)) {
+		_size = _size.expandedTo(fontMetrics().size(0, _mode[ModeInverse].label));
+	}
+	if (_mode.contains(ModeHyperbolic)) {
+		_size = _size.expandedTo(fontMetrics().size(0, _mode[ModeHyperbolic].label));
+	}
+
+	_size += QSize(margin*2, margin*2);
+	_size = _size.expandedTo(QApplication::globalStrut());
 }
 
 void KCalcButton::setText(const QString &text)
@@ -170,6 +183,7 @@ void KCalcButton::setText(const QString &text)
 	if (_mode[ModeNormal].label.isEmpty()) {
 		_mode[ModeNormal].label = text;
 	}
+	calcSizeHint();
 }
 
 void KCalcButton::setToolTip(const QString &tip)
