@@ -19,12 +19,12 @@
 
 */
 
+#include "kcalc_const_menu.h"
+
 #include <QDomDocument>
 #include <QFile>
 #include <klocale.h>
 #include <kstandarddirs.h>
-
-#include "kcalc_const_menu.h"
 
 QList<struct science_constant> KCalcConstMenu::Constants;
 
@@ -35,13 +35,13 @@ void KCalcConstMenu::init_consts(void)
   QFile file(KGlobal::dirs()->findResource("appdata", "scienceconstants.xml"));
 
   if (!file.open(QIODevice::ReadOnly)) {
-    qDebug("Didn't find file \"scienceconstants.xml\"."
+    qDebug("Did not find file \"scienceconstants.xml\"."
 	   "No constants will be available.");
     return;
   }
   if (!doc.setContent(&file)) {
     file.close();
-    qDebug("The file \"scienceconstants.xml\" doesn't seem"
+    qDebug("The file \"scienceconstants.xml\" does not seem"
 	   "to be a valid description file."
 	   "No constants will be available.");
     return;

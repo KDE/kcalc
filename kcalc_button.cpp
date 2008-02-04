@@ -21,14 +21,13 @@
 
 */
 
+#include "kcalc_button.h"
+
 #include <QAbstractTextDocumentLayout>
 #include <QApplication>
 #include <QStyleOptionButton>
 #include <QStylePainter>
 #include <QTextDocument>
-
-#include "kcalc_button.h"
-
 
 KCalcButton::KCalcButton(QWidget * parent)
 	: KPushButton(parent), _show_shortcut_mode(false),

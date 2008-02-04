@@ -17,13 +17,14 @@
 
 */
 
+#include "kcalc_bitset.h"
+
 #include <QApplication>
 #include <QGridLayout>
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QPainter>
 
-#include "kcalc_bitset.h"
 #include "kcalc_bitset.moc"
 
 BitButton::BitButton(QWidget *parent) : QAbstractButton(parent), on(false)

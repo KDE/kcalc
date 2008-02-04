@@ -23,6 +23,8 @@
 
 */
 
+#include "dlabel.h"
+
 //#include <QGlobal>
 #include <kactioncollection.h>
 #include <kaction.h>
@@ -30,9 +32,7 @@
 
 #include "kcalc_settings.h"
 #include "kcalc_core.h"
-#include "dlabel.h"
 #include "dlabel.moc"
-
 
 
 DispLogic::DispLogic(QWidget *parent)

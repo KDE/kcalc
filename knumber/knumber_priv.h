@@ -22,6 +22,7 @@
 
 #include <cstdio>
 #include <gmp.h>
+#include <QString>
 
 // work-around for pre-C99-libs
 #ifndef INFINITY

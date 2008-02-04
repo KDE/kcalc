@@ -18,6 +18,9 @@
    Boston, MA 02110-1301, USA.
 */
 
+#include "knumber.h"
+#include "knumber_priv.h"
+
 #include <cmath>
 #include <cstdio>
 
@@ -25,8 +28,6 @@
 
 #include <QRegExp>
 
-#include "knumber_priv.h"
-#include "knumber.h"
 
 using namespace std;
 

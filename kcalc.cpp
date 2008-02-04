@@ -21,16 +21,16 @@
 
 */
 
+#include "kcalc.h"
+
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
-
 #include <QKeyEvent>
 #include <QShortcut>
 #include <QStyle>
-
 
 #include <kaboutdata.h>
 #include <kacceleratormanager.h>
@@ -59,7 +59,6 @@
 
 
 #include "dlabel.h"
-#include "kcalc.h"
 #include "kcalc_const_menu.h"
 #include "version.h"
 #include "kcalc_settings.h"

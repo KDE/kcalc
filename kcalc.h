@@ -26,6 +26,7 @@
 
 class Constants;
 class QButtonGroup;
+class KToggleAction;
 
 #include <kxmlguiwindow.h>
 
@@ -82,7 +83,6 @@ public:
     setupUi( this );
   }
 };
-
 
 
 class KCalculator : public KXmlGuiWindow, private Ui::KCalculator

@@ -23,6 +23,8 @@
 
 */
 
+#include "kcalcdisplay.h"
+
 #include <errno.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -35,7 +37,6 @@
 #include <klocale.h>
 #include <knotification.h>
 #include "kcalc_settings.h"
-#include "kcalcdisplay.h"
 #include "kcalcdisplay.moc"
 
 KCalcDisplay::KCalcDisplay(QWidget *parent)

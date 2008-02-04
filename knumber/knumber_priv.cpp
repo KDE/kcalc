@@ -17,14 +17,13 @@
    Boston, MA 02110-1301, USA.
 */
 
+#include "knumber_priv.h"
+
 #include <math.h>
 #include <config-kcalc.h>
 #include <stdlib.h>
 
 #include <QRegExp>
-
-
-#include "knumber_priv.h"
 
 _knumerror::_knumerror(_knumber const & num)
 {
