@@ -46,7 +46,7 @@ kde4_add_kdeinit_executable( kcalc ${kcalc_KDEINIT_SRCS})
 
 target_link_libraries(kdeinit_kcalc  ${KDE4_KDEUI_LIBS} ${GMP_LIBRARIES})
 
-install(TARGETS kdeinit_kcalc  DESTINATION ${LIB_INSTALL_DIR})
+install(TARGETS kdeinit_kcalc ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 target_link_libraries( kcalc kdeinit_kcalc )
 install(TARGETS kcalc  DESTINATION ${BIN_INSTALL_DIR} )
