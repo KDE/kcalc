@@ -18,6 +18,8 @@
    Boston, MA 02110-1301, USA.
 */
 
+#include <math.h>
+
 #include "knumber.h"
 #include "knumber_priv.h"
 
