@@ -1878,11 +1878,15 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
 
 extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
 {
-	KAboutData aboutData( "kcalc", 0, ki18n("KCalc"),
-                          version, ki18n(description), KAboutData::License_GPL,
-                          ki18n("(c) 2003-2005, Klaus Niederkr" "\xc3\xbc" "ger\n"
-				    "(c) 1996-2000, Bernd Johannes Wuebben\n"
-                                    "(c) 2000-2005, The KDE Team"));
+	KAboutData aboutData( "kcalc",
+						  0,
+						  ki18n("KCalc"),
+                          version,
+						  ki18n(description),
+						  KAboutData::License_GPL,
+                          ki18n("(c) 2000-2008, The KDE Team\n"
+								"(c) 2003-2005, Klaus Niederkr" "\xc3\xbc" "ger\n"
+								"(c) 1996-2000, Bernd Johannes Wuebben"));
 
 	/* Klaus Niederkrueger */
 	aboutData.addAuthor(ki18n("Klaus Niederkr" "\xc3\xbc" "ger"), KLocalizedString(), "kniederk@math.uni-koeln.de");
@@ -1895,7 +1899,7 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
 	/* Rene Merou */
 	aboutData.addAuthor(ki18n("Ren" "\xc3\xa9" " M" "\xc3\xa9"  "rou"), KLocalizedString(), "ochominutosdearco@yahoo.es");
 	aboutData.addAuthor(ki18n("Michel Marti"), KLocalizedString(), "mma@objectxp.com");
-	aboutData.addAuthor(ki18n("David Johnson"), KLocalizedString(), "david@usermode.org");
+	aboutData.addAuthor(ki18n("David Johnson"), ki18n("Maintainer"), "david@usermode.org");
 	KCmdLineArgs::init(argc, argv, &aboutData);
 
 	KApplication app;
