@@ -57,8 +57,7 @@
 #include <ktoolbar.h>
 #include <kxmlguifactory.h>
 
-
-#include "dlabel.h"
+#include "kcalcdisplay.h"
 #include "kcalc_const_menu.h"
 #include "version.h"
 #include "kcalc_settings.h"
@@ -172,8 +171,8 @@ void KCalculator::setupMainActions(void)
 	KStandardAction::quit(this, SLOT(close()), actionCollection());
 
 	// edit menu
-	KStandardAction::undo(calc_display, SLOT(history_back()), actionCollection());
-	KStandardAction::redo(calc_display, SLOT(history_forward()), actionCollection());
+	KStandardAction::undo(calc_display, SLOT(slotHistoryBack()), actionCollection());
+	KStandardAction::redo(calc_display, SLOT(slotHistoryForward()), actionCollection());
 	KStandardAction::cut(calc_display, SLOT(slotCut()), actionCollection());
 	KStandardAction::copy(calc_display, SLOT(slotCopy()), actionCollection());
 	KStandardAction::paste(calc_display, SLOT(slotPaste()), actionCollection());
@@ -911,7 +910,7 @@ void KCalculator::slotMemStoreclicked(void)
 
 void KCalculator::slotNumberclicked(int number_clicked)
 {
-	calc_display->EnterDigit(number_clicked);
+	calc_display->enterDigit(number_clicked);
 }
 
 void KCalculator::slotSinclicked(void)
@@ -1735,7 +1734,7 @@ void KCalculator::updateDisplay(bool get_amount_from_core,
 {
 	if(get_amount_from_core)
 	{
-		calc_display->update_from_core(core, store_result_in_history);
+		calc_display->updateFromCore(core, store_result_in_history);
 	}
 	else
 	{

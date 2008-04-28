@@ -4,7 +4,7 @@
 
  Copyright (C) Bernd Johannes Wuebben
                wuebben@math.cornell.edu
-	       wuebben@kde.org
+               wuebben@kde.org
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -26,11 +26,15 @@
 #ifndef _D_KCALCDISPLAY_H_
 #define _D_KCALCDISPLAY_H_
 
-#include <stdlib.h>
 #include <QLabel>
-#include <QTimer>
+#include <QVector>
 #include "knumber.h"
 #include "kcalctype.h"
+
+class CalcEngine;
+class KAction;
+class KActionCollection;
+class QTimer;
 
 #if defined HAVE_LONG_DOUBLE && defined HAVE_L_FUNCS
 	#define PRINT_FLOAT     "%.*Lf"
@@ -84,17 +88,13 @@ public:
 	KCalcDisplay(QWidget *parent=0);
 	~KCalcDisplay();
 
-protected:
-	void  mousePressEvent ( QMouseEvent *);
-	virtual void paintEvent(QPaintEvent *p);
-
-public:
 	enum Event {
 	  EventReset, // resets display
 	  EventClear, // if no _error reset display
 	  EventError,
 	  EventChangeSign
 	};
+
 	bool sendEvent(Event const event);
 	void deleteLastDigit(void);
 	KNumber const & getAmount(void) const;
@@ -110,6 +110,36 @@ public:
 	bool updateDisplay(void);
 	void setStatusText(int i, const QString& text);
 	virtual QSize sizeHint() const;
+
+	void changeSettings();
+	void enterDigit(int data);
+	void updateFromCore(CalcEngine const &core,
+			      bool store_result_in_history = false);
+
+public slots:
+	void slotCut(void);
+	void slotCopy(void);
+	void slotPaste(bool bClipboard=true);
+
+signals:
+	void clicked(void);
+	void changedText(QString const &);
+	void changedAmount(const KNumber &);
+
+protected:
+	void  mousePressEvent ( QMouseEvent *);
+	virtual void paintEvent(QPaintEvent *p);
+
+private:
+	bool changeSign(void);
+	void invertColors(void);
+
+private slots:
+	void slotSelectionTimedOut(void);
+	void slotDisplaySelected(void);
+	void slotHistoryBack(void);
+	void slotHistoryForward(void);
+
 private:
 	bool _beep;
 	bool _groupdigits;
@@ -121,9 +151,9 @@ private:
 	int _fixed_precision; // "-1" = no fixed_precision
 
 	KNumber _display_amount;
-private:
-	bool changeSign(void);
-	void invertColors(void);
+
+	QVector<KNumber> _history_list;
+	int _history_index;
 
 	// only used for input of new numbers
 	bool _eestate;
@@ -133,21 +163,7 @@ private:
 	QString _str_int_exp;
 	QString _str_status[NUM_STATUS_TEXT];
 
-	QTimer* selection_timer;
-
-signals:
-	void clicked(void);
-	void changedText(QString const &);
-	void changedAmount(const KNumber &);
-
-public slots:
-	void slotCut(void);
-	void slotCopy(void);
-	void slotPaste(bool bClipboard=true);
-
-private slots:
-	void slotSelectionTimedOut(void);
-	void slotDisplaySelected(void);
+	QTimer* _selection_timer;
 };
 
 #endif // _KCALCDISPLAY_H_

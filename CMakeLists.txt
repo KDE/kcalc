@@ -31,7 +31,6 @@ set(kcalc_KDEINIT_SRCS ${libknumber_la_SRCS}
    kcalc_const_menu.cpp 
    kcalc_core.cpp 
    kcalcdisplay.cpp 
-   dlabel.cpp 
    stats.cpp )
 
 kde4_add_ui_files(kcalc_KDEINIT_SRCS

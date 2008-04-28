@@ -32,21 +32,26 @@
 #include <QClipboard>
 #include <QMouseEvent>
 #include <QPainter>
+#include <QTimer>
 
+#include <kactioncollection.h>
+#include <kaction.h>
 #include <kglobal.h>
 #include <klocale.h>
 #include <knotification.h>
+#include <kstandardaction.h>
+#include "kcalc_core.h"
 #include "kcalc_settings.h"
 #include "kcalcdisplay.moc"
 
 KCalcDisplay::KCalcDisplay(QWidget *parent)
   :QLabel(parent), _beep(false), _groupdigits(false), _button(0), _lit(false),
    _num_base(NB_DECIMAL), _precision(9),
-   _fixed_precision(-1), _display_amount(0),
-   selection_timer(new QTimer)
+   _fixed_precision(-1), _display_amount(0), _history_index(0),
+   _selection_timer(new QTimer)
 {
-	setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
-	setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+	setAutoFillBackground(true);
 	setFocus();
 	setFocusPolicy(Qt::StrongFocus);
 
@@ -54,9 +59,12 @@ KCalcDisplay::KCalcDisplay(QWidget *parent)
 	sp.setHeightForWidth(false);
 	setSizePolicy(sp);
 
+	KNumber::setDefaultFloatOutput(true);
+	KNumber::setDefaultFractionalInput(true);
+
 	connect(this, SIGNAL(clicked()), this, SLOT(slotDisplaySelected()));
 
-	connect(selection_timer, SIGNAL(timeout()),
+	connect(_selection_timer, SIGNAL(timeout()),
 		this, SLOT(slotSelectionTimedOut()));
 
 	sendEvent(EventReset);
@@ -64,7 +72,125 @@ KCalcDisplay::KCalcDisplay(QWidget *parent)
 
 KCalcDisplay::~KCalcDisplay()
 {
-	delete selection_timer;
+	delete _selection_timer;
+}
+
+void KCalcDisplay::changeSettings()
+{
+	QPalette pal = palette();
+
+	pal.setColor(QPalette::Text, KCalcSettings::foreColor());
+	pal.setColor(QPalette::WindowText, KCalcSettings::foreColor());
+	pal.setColor(QPalette::Window, KCalcSettings::backColor());
+
+	setPalette(pal);
+
+	setFont(KCalcSettings::font());
+
+	setPrecision(KCalcSettings::precision());
+
+	if(KCalcSettings::fixed() == false)
+		setFixedPrecision(-1);
+	else
+		setFixedPrecision(KCalcSettings::fixedPrecision());
+
+	setBeep(KCalcSettings::beep());
+	setGroupDigits(KCalcSettings::groupDigits());
+	updateDisplay();
+}
+
+void KCalcDisplay::updateFromCore(CalcEngine const &core,
+				 bool store_result_in_history)
+{
+	bool tmp_error;
+	KNumber const & output = core.lastOutput(tmp_error);
+	if(tmp_error) sendEvent(EventError);
+	if (setAmount(output)  &&  store_result_in_history  &&
+	    output != KNumber::Zero)
+	{
+	  // add this latest value to our history
+	  _history_list.insert(_history_list.begin(), output);
+	  _history_index = 0;
+	}
+}
+
+void KCalcDisplay::enterDigit(int data)
+{
+	char tmp;
+	switch(data)
+	{
+	case 0:
+	  tmp = '0';
+	  break;
+	case 1:
+	  tmp = '1';
+	  break;
+	case 2:
+	  tmp = '2';
+	  break;
+	case 3:
+	  tmp = '3';
+	  break;
+	case 4:
+	  tmp = '4';
+	  break;
+	case 5:
+	  tmp = '5';
+	  break;
+	case 6:
+	  tmp = '6';
+	  break;
+	case 7:
+	  tmp = '7';
+	  break;
+	case 8:
+	  tmp = '8';
+	  break;
+	case 9:
+	  tmp = '9';
+	  break;
+	case 0xA:
+	  tmp = 'A';
+	  break;
+	case 0xB:
+	  tmp = 'B';
+	  break;
+	case 0xC:
+	  tmp = 'C';
+	  break;
+	case 0xD:
+	  tmp = 'D';
+	  break;
+	case 0xE:
+	  tmp = 'E';
+	  break;
+	case 0xF:
+	  tmp = 'F';
+	  break;
+	default:
+	  tmp = '?';
+	  break;
+	}
+
+	newCharacter(tmp);
+}
+
+void KCalcDisplay::slotHistoryForward()
+{
+	if (_history_list.empty()) return;
+	if (_history_index <= 0) return;
+
+	_history_index --;
+	setAmount(_history_list[_history_index]);
+}
+
+void KCalcDisplay::slotHistoryBack()
+{
+	if ( _history_list.empty()) return;
+	if (_history_index >= _history_list.size()) return;
+
+	setAmount(_history_list[_history_index]);
+	_history_index ++;
 }
 
 bool KCalcDisplay::sendEvent(Event const event)
@@ -161,9 +287,9 @@ void KCalcDisplay::slotDisplaySelected(void)
 	if(_button == Qt::LeftButton) {
 		if(_lit) {
 			slotCopy();
-			selection_timer->start(100);
+			_selection_timer->start(100);
 		} else {
-			selection_timer->stop();
+			_selection_timer->stop();
 		}
 
 		invertColors();
@@ -176,20 +302,18 @@ void KCalcDisplay::slotSelectionTimedOut(void)
 {
 	_lit = false;
 	invertColors();
-	selection_timer->stop();
+	_selection_timer->stop();
 }
 
 void KCalcDisplay::invertColors()
 {
-	QPalette tmp_palette;
-	tmp_palette.setColor(backgroundRole(),
+	QPalette tmp_palette = palette();
+	tmp_palette.setColor(QPalette::Window,
 			palette().color(QPalette::WindowText));
-	tmp_palette.setColor(foregroundRole(),
+	tmp_palette.setColor(QPalette::WindowText,
 			palette().color(QPalette::Background));
 	setPalette(tmp_palette);
 }
-
-
 
 void KCalcDisplay::mousePressEvent(QMouseEvent *e)
 {
@@ -262,7 +386,7 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 #endif
 	}
 
-	setText(display_str);
+    setText(display_str);
 	emit changedAmount(_display_amount);
 	return true;
 	
