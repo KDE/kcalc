@@ -32,6 +32,7 @@
 #include <QClipboard>
 #include <QMouseEvent>
 #include <QPainter>
+#include <QStyle>
 #include <QTimer>
 
 #include <kactioncollection.h>
@@ -44,30 +45,28 @@
 #include "kcalc_settings.h"
 #include "kcalcdisplay.moc"
 
+const uint MARGIN = 2;
+
 KCalcDisplay::KCalcDisplay(QWidget *parent)
-  :QLabel(parent), _beep(false), _groupdigits(false), _button(0), _lit(false),
-   _num_base(NB_DECIMAL), _precision(9),
-   _fixed_precision(-1), _display_amount(0), _history_index(0),
-   _selection_timer(new QTimer)
+    :QFrame(parent), _beep(false), _groupdigits(false), _button(0),
+     _lit(false), _num_base(NB_DECIMAL), _precision(9), _fixed_precision(-1),
+     _display_amount(0), _history_index(0), _selection_timer(new QTimer)
 {
-    setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-	setAutoFillBackground(true);
-	setFocus();
-	setFocusPolicy(Qt::StrongFocus);
+    setAutoFillBackground(true);
+    setFocus();
+    setFocusPolicy(Qt::StrongFocus);
 
-	QSizePolicy sp(QSizePolicy::Expanding, QSizePolicy::Fixed);
-	sp.setHeightForWidth(false);
-	setSizePolicy(sp);
+    setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed));
 
-	KNumber::setDefaultFloatOutput(true);
-	KNumber::setDefaultFractionalInput(true);
+    KNumber::setDefaultFloatOutput(true);
+    KNumber::setDefaultFractionalInput(true);
 
-	connect(this, SIGNAL(clicked()), this, SLOT(slotDisplaySelected()));
+    connect(this, SIGNAL(clicked()),
+            this, SLOT(slotDisplaySelected()));
+    connect(_selection_timer, SIGNAL(timeout()),
+            this, SLOT(slotSelectionTimedOut()));
 
-	connect(_selection_timer, SIGNAL(timeout()),
-		this, SLOT(slotSelectionTimedOut()));
-
-	sendEvent(EventReset);
+    sendEvent(EventReset);
 }
 
 KCalcDisplay::~KCalcDisplay()
@@ -222,7 +221,6 @@ bool KCalcDisplay::sendEvent(Event const event)
 	}
 }
 
-
 void KCalcDisplay::slotCut(void)
 {
 	slotCopy();
@@ -233,7 +231,7 @@ void KCalcDisplay::slotCopy(void)
 {
 	QString txt;
 	if (_num_base != NB_DECIMAL)
-		txt = QLabel::text();
+		txt = _text;
 	else
 		txt = _display_amount.toQString();
 	if (_num_base == NB_HEX)
@@ -394,7 +392,7 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 
 void KCalcDisplay::setText(QString const &string)
 {
-	QString localizedString = string;
+	_text = string;
 
 	// If we aren't in decimal mode, we don't need to modify the string
 	if (_num_base == NB_DECIMAL  &&  _groupdigits)
@@ -402,24 +400,24 @@ void KCalcDisplay::setText(QString const &string)
 	  // formatNumber-method does not work; fix by hand by
 	  // truncating, formatting and appending again
 	  if (string.endsWith('.')) {
-	    localizedString.truncate(localizedString.length() - 1);
-	    localizedString = KGlobal::locale()->formatNumber(localizedString, false, 0); // Note: rounding happened already above!
-	    localizedString.append(KGlobal::locale()->decimalSymbol());
+	    _text.truncate(_text.length() - 1);
+	    _text = KGlobal::locale()->formatNumber(_text, false, 0); // Note: rounding happened already above!
+	    _text.append(KGlobal::locale()->decimalSymbol());
 	  } else
-	  localizedString = KGlobal::locale()->formatNumber(string, false, 0); // Note: rounding happened already above!
+	  _text = KGlobal::locale()->formatNumber(string, false, 0); // Note: rounding happened already above!
 
-	QLabel::setText(localizedString);
-	emit changedText(localizedString);
+    update();
+	emit changedText(_text);
 }
 
 QString KCalcDisplay::text() const
 {
 	if (_num_base != NB_DECIMAL)
-		return QLabel::text();
+		return _text;
 	QString display_str = _display_amount.toQString(KCalcSettings::precision());
 
 	return display_str;
-	//	return QCString().sprintf(PRINT_LONG_BIG, 40, _display_amount);
+	//	return QString().sprintf(PRINT_LONG_BIG, 40, _display_amount);
 }
 
 /* change representation of display to new base (i.e. binary, decimal,
@@ -712,33 +710,41 @@ bool KCalcDisplay::changeSign(void)
 	return true;
 }
 
-void KCalcDisplay::paintEvent(QPaintEvent *p)
+void KCalcDisplay::paintEvent(QPaintEvent *)
 {
-	QLabel::paintEvent(p);
-	QPainter this_paint(this);
+    QPainter painter(this);
+    drawFrame(&painter);
 
-	// draw the status texts using half of the normal
-	// font size but not smaller than 7pt
-	QFont f(font());
-	f.setPointSize(qMax((f.pointSize() / 2), 7));
-	this_paint.setFont(f);
-	QFontMetrics fm(f);
-	uint w = fm.width("_____");
-	uint h = fm.height();
+    // draw display text
+    QRect cr = contentsRect();
+    //cr.adjust(MARGIN, 0, -MARGIN, 0); // provide a margin
+    int align = QStyle::visualAlignment(layoutDirection(),
+                                        Qt::AlignRight | Qt::AlignVCenter);
+    painter.drawText(cr, align | Qt::TextSingleLine, _text);
 
-	for (int i = 0; i < NUM_STATUS_TEXT; i++)
-	{
-		this_paint.drawText(5 + i * w, h, _str_status[i]);
-	}
+    // draw the status texts using half of the normal
+    // font size but not smaller than 7pt
+    QFont fnt(font());
+    fnt.setPointSize(qMax((fnt.pointSize() / 2), 7));
+    painter.setFont(fnt);
+    QFontMetrics fm(fnt);
+    uint w = fm.width("_____");
+    uint h = fm.height();
+
+    for (int n = 0; n < NUM_STATUS_TEXT; n++) {
+        painter.drawText(5 + n * w, h, _str_status[n]);
+    }
 }
 
-// Return the QLabel's normal size hint vertically expanded
-// by half the font height to make room for the status texts
 QSize KCalcDisplay::sizeHint() const
 {
-	QFont f(font());
-	f.setPointSize(qMax((f.pointSize() / 2), 7));
-	QFontMetrics fm(f);
-	return QLabel::sizeHint() + QSize(0, fm.height());
+    // basic size
+    QSize sz = fontMetrics().size(Qt::TextSingleLine, _text);
+
+    // expanded by half font height to make room for  the status texts
+    QFont fnt(font());
+    fnt.setPointSize(qMax((fnt.pointSize() / 2), 7));
+    QFontMetrics fm(fnt);
+    return sz + QSize(MARGIN*2, fm.height());
 }
 

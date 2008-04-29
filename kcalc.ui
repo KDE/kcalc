@@ -953,7 +953,7 @@
   </customwidget>
   <customwidget>
    <class>KCalcDisplay</class>
-   <extends>QLabel</extends>
+   <extends>QFrame</extends>
    <header>kcalcdisplay.h</header>
   </customwidget>
   <customwidget>

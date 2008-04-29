@@ -26,7 +26,7 @@
 #ifndef _D_KCALCDISPLAY_H_
 #define _D_KCALCDISPLAY_H_
 
-#include <QLabel>
+#include <QFrame>
 #include <QVector>
 #include "knumber.h"
 #include "kcalctype.h"
@@ -80,7 +80,7 @@ enum NumBase {
 };
 
 
-class KCalcDisplay : public QLabel
+class KCalcDisplay : public QFrame
 {
 Q_OBJECT
 
@@ -141,7 +141,8 @@ private slots:
 	void slotHistoryForward(void);
 
 private:
-	bool _beep;
+	QString _text;
+    bool _beep;
 	bool _groupdigits;
 	int  _button;
 	bool _lit;
