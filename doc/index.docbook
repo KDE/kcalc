@@ -672,7 +672,7 @@ the precision and you will see what I mean.</para>
 
 <para>&kcalc; Program Copyright &copy;:</para>
 <para>&Bernd.Johannes.Wuebben; 1996-2000</para>
-<para>The &kde; Team 2000-2004</para>
+<para>The &kde; Team 2000-2008</para>
 
 <itemizedlist>
 <listitem><para>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para></listitem>
@@ -681,6 +681,7 @@ the precision and you will see what I mean.</para>
 <listitem><para>&Chris.Howells; &Chris.Howells.mail;</para></listitem>
 <listitem><para>&Aaron.J.Seigo; &Aaron.J.Seigo.mail;</para></listitem>
 <listitem><para>&Charles.Samuels; &Charles.Samuels.mail;</para></listitem>
+<listitem><para>&David.Johnson; &David.Johnson.mail;</para></listitem>
 </itemizedlist>
 
 <para>&kcalc; was inspired by <personname><firstname>Martin</firstname> <surname>Bartlett</surname></personname>'s <application>xfrmcalc</application>,
