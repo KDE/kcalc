@@ -1,3 +1,4 @@
+// -*- indent-tabs-mode: nil -*-
 /*
     $Id$
 
@@ -35,12 +36,9 @@
 #include <QStyle>
 #include <QTimer>
 
-#include <kactioncollection.h>
-#include <kaction.h>
 #include <kglobal.h>
 #include <klocale.h>
 #include <knotification.h>
-#include <kstandardaction.h>
 #include "kcalc_core.h"
 #include "kcalc_settings.h"
 #include "kcalcdisplay.moc"
@@ -196,6 +194,7 @@ bool KCalcDisplay::sendEvent(Event const event)
 {
 	switch(event)
 	{
+	case EventClear:
 	case EventReset:
 		_display_amount = 0;
 		_str_int = "0";
@@ -208,8 +207,6 @@ bool KCalcDisplay::sendEvent(Event const event)
 		updateDisplay();
 
 		return true;
-	case EventClear:
-		return sendEvent(EventReset);
 	case EventChangeSign:
 		return changeSign();
 	case EventError:
@@ -392,32 +389,27 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 
 void KCalcDisplay::setText(QString const &string)
 {
-	_text = string;
+    _text = string;
 
-	// If we aren't in decimal mode, we don't need to modify the string
-	if (_num_base == NB_DECIMAL  &&  _groupdigits)
-	  // when input ends with "." (because uncomplete), the
-	  // formatNumber-method does not work; fix by hand by
-	  // truncating, formatting and appending again
-	  if (string.endsWith('.')) {
-	    _text.truncate(_text.length() - 1);
-	    _text = KGlobal::locale()->formatNumber(_text, false, 0); // Note: rounding happened already above!
-	    _text.append(KGlobal::locale()->decimalSymbol());
-	  } else
-	  _text = KGlobal::locale()->formatNumber(string, false, 0); // Note: rounding happened already above!
+    // if we aren't in decimal mode, we don't need to modify the string
+    if (_num_base == NB_DECIMAL && _groupdigits)
+        // when input ends with "." (because incomplete), the
+        // formatNumber method does not work; fix by hand by
+        // truncating, formatting and appending again
+        if (string.endsWith('.')) {
+            _text.chop(1);
+            _text = KGlobal::locale()->formatNumber(_text, false, 0); // Note: rounding happened already above!
+            _text.append(KGlobal::locale()->decimalSymbol());
+        } else
+            _text = KGlobal::locale()->formatNumber(_text, false, 0); // Note: rounding happened already above!
 
     update();
-	emit changedText(_text);
+    emit changedText(_text);
 }
 
 QString KCalcDisplay::text() const
 {
-	if (_num_base != NB_DECIMAL)
-		return _text;
-	QString display_str = _display_amount.toQString(KCalcSettings::precision());
-
-	return display_str;
-	//	return QString().sprintf(PRINT_LONG_BIG, 40, _display_amount);
+    return _text;
 }
 
 /* change representation of display to new base (i.e. binary, decimal,
@@ -603,7 +595,7 @@ void KCalcDisplay::newCharacter(char const new_char)
 	  // ignore ',' before 'e'. turn e.g. '123.e' into '123e'
 	  if (new_char == 'e'  &&  _str_int.endsWith( '.' ))
 	  {
-		_str_int.truncate(_str_int.length() - 1);
+		_str_int.chop(1);
 		_period = false;
 	  }
 
@@ -655,7 +647,7 @@ void KCalcDisplay::deleteLastDigit(void)
 			int length = _str_int_exp.length();
 			if(length > 1)
 			{
-				_str_int_exp.truncate(length-1);
+				_str_int_exp.chop(1);
 			}
 			else
 			{
@@ -670,7 +662,7 @@ void KCalcDisplay::deleteLastDigit(void)
 		{
 			if (_str_int[length-1] == '.')
 				_period = false;
-			_str_int.truncate(length-1);
+			_str_int.chop(1);
 		}
 		else
 		{
