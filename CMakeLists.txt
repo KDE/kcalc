@@ -48,7 +48,7 @@ target_link_libraries(kdeinit_kcalc  ${KDE4_KDEUI_LIBS} ${GMP_LIBRARIES})
 install(TARGETS kdeinit_kcalc ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 target_link_libraries( kcalc kdeinit_kcalc )
-install(TARGETS kcalc  DESTINATION ${BIN_INSTALL_DIR} )
+install(TARGETS kcalc  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 ########### install files ###############
 
