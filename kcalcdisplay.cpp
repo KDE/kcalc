@@ -389,6 +389,7 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 
 void KCalcDisplay::setText(QString const &string)
 {
+    // note that "C" locale is being used internally
     _text = string;
 
     // if we aren't in decimal mode, we don't need to modify the string

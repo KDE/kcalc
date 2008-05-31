@@ -24,6 +24,7 @@
 #include "kcalc.h"
 
 #include <ctype.h>
+#include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -1902,6 +1903,9 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
 	KCmdLineArgs::init(argc, argv, &aboutData);
 
 	KApplication app;
+
+	// force system locale to "C" internally [bug 159168]
+	setlocale(LC_NUMERIC, "C");
 
 	KCalculator *calc = new KCalculator(0);
 	app.setTopWidget(calc);
