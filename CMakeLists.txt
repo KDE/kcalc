@@ -1,6 +1,7 @@
 project(kcalc)
 include(CheckTypeSize)
 include(CheckFunctionExists)
+include(CheckIncludeFiles)
 
 check_include_files(ieeefp.h      HAVE_IEEEFP_H)
 check_function_exists(isinf      HAVE_FUNC_ISINF)
