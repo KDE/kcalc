@@ -240,7 +240,7 @@ CalcEngine::CalcEngine()
 	// handler to trap the errors that the code can/has not been
 	// written to trap.
 	//
-
+#ifndef Q_OS_WIN
 	struct sigaction fpe_trap;
 
 	sigemptyset(&fpe_trap.sa_mask);
@@ -249,7 +249,7 @@ CalcEngine::CalcEngine()
 	fpe_trap.sa_flags = SA_RESTART;
 #endif
 	sigaction(SIGFPE, &fpe_trap, NULL);
-
+#endif
 	_last_number = KNumber::Zero;
 	_error = false;
 }

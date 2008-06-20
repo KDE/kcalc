@@ -341,7 +341,11 @@ int _knumfloat::sign(void) const
 #endif
 static void _cbrt(mpf_t &num)
 {
+#ifdef Q_CC_MSVC
+  double tmp_num = pow(mpf_get_d(num), 1./3.);
+#else
   double tmp_num = cbrt(mpf_get_d(num));
+#endif
   mpf_init_set_d(num, tmp_num);
 }
 
