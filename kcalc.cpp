@@ -298,6 +298,7 @@ void KCalculator::setupKeys()
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbInv, SLOT(slotSetAccelDisplayMode(bool)));
 
+	pbClear->setShortcut(QKeySequence(Qt::Key_PageUp));
 	new QShortcut(Qt::Key_Escape, pbClear, SLOT(animateClick()));
 	connect(pbClear, SIGNAL(clicked(void)),
 			SLOT(slotClearclicked(void)));
@@ -305,6 +306,7 @@ void KCalculator::setupKeys()
 			pbClear, SLOT(slotSetAccelDisplayMode(bool)));
 
 	pbAllClear->setShortcut(QKeySequence(Qt::Key_PageDown));
+	new QShortcut(Qt::Key_Delete, pbAllClear, SLOT(animateClick()));
 	connect(pbAllClear, SIGNAL(clicked(void)),
 			SLOT(slotAllClearclicked(void)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
@@ -396,9 +398,9 @@ void KCalculator::setupKeys()
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbPlus, SLOT(slotSetAccelDisplayMode(bool)));
 
+	pbPeriod->setText(KGlobal::locale()->decimalSymbol());
 	pbPeriod->setShortcut(QKeySequence(Qt::Key_Period));
 	new QShortcut( Qt::Key_Comma, pbPeriod, SLOT(animateClick()) );
-	pbPeriod->setText(KGlobal::locale()->decimalSymbol());
 	connect(pbPeriod, SIGNAL(clicked(void)),
 			SLOT(slotPeriodclicked(void)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
