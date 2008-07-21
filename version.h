@@ -1,3 +1,3 @@
 #ifndef KCALCVERSION
-#define KCALCVERSION "2.2"
+#define KCALCVERSION "2.3"
 #endif // KCALCVERSION

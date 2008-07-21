@@ -1888,7 +1888,9 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
 						  KAboutData::License_GPL,
                           ki18n("(c) 2000-2008, The KDE Team\n"
 								"(c) 2003-2005, Klaus Niederkr" "\xc3\xbc" "ger\n"
-								"(c) 1996-2000, Bernd Johannes Wuebben"));
+								"(c) 1996-2000, Bernd Johannes Wuebben"),
+						  KLocalizedString(),
+						  "http://utils.kde.org/projects/kcalc");
 
 	/* Klaus Niederkrueger */
 	aboutData.addAuthor(ki18n("Klaus Niederkr" "\xc3\xbc" "ger"), KLocalizedString(), "kniederk@math.uni-koeln.de");
