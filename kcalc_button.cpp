@@ -121,6 +121,9 @@ void KCalcButton::paintEvent(QPaintEvent *)
 	QPainter p(this);
 	QStyleOptionButton option;
 	initStyleOption(&option);
+	bool is_down=isDown() || isChecked();
+	int x_offset=is_down ? style()->pixelMetric(QStyle::PM_ButtonShiftHorizontal, &option, this) : 0;
+	int y_offset=is_down ? style()->pixelMetric(QStyle::PM_ButtonShiftVertical, &option, this) : 0;
 
 	// draw bevel
 	style()->drawControl(QStyle::CE_PushButtonBevel, &option, &p, this);
@@ -135,8 +138,8 @@ void KCalcButton::paintEvent(QPaintEvent *)
 	context.palette = palette();
         context.palette.setColor(QPalette::Text, context.palette.buttonText().color());
 
-	p.translate(width()/2 - doc.size().width()/2,
-				height()/2 - doc.size().height()/2);
+	p.translate((width()/2 - doc.size().width()/2)+x_offset,
+				(height()/2 - doc.size().height()/2)+y_offset);
 	doc.documentLayout()->draw(&p, context);
 	p.restore();
 
