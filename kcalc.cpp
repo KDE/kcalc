@@ -76,6 +76,7 @@ KCalculator::KCalculator(QWidget *parent)
 {
 	/* central widget to contain all the elements */
 	QWidget *central = new QWidget(this);
+	central->setLayoutDirection( Qt::LeftToRight );
 	setCentralWidget(central);
 	KAcceleratorManager::setNoAccel( central );
 
