@@ -498,7 +498,7 @@ you want arcsin(x) type <userinput>i s </userinput></entry></row>
 
 <row><entry>&Alt;+<keycap>1</keycap> to &Alt;+<keycap>6</keycap></entry>
 <entry><guibutton>C1</guibutton></entry>
-<entry>use the value stored in C1 tp C6</entry></row>
+<entry>use the value stored in C1 to C6</entry></row>
 
 </tbody></tgroup></informaltable>
 
