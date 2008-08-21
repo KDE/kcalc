@@ -373,12 +373,6 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
 		_display_amount = new_amount;
 	
 		display_str = _display_amount.toQString(KCalcSettings::precision(), _fixed_precision);
-#if 0
-		else if (_display_amount > 1.0e+16)
-			display_str = QCString().sprintf(PRINT_LONG_BIG, _precision + 1, _display_amount);
-		else
-			display_str = QCString().sprintf(PRINT_LONG_BIG, _precision, _display_amount);
-#endif
 	}
 
     setText(display_str);
@@ -419,7 +413,7 @@ QString KCalcDisplay::text() const
    being set with "setAmount"). Return value is the new base. */
 int KCalcDisplay::setBase(NumBase new_base)
 {
-	CALCAMNT tmp_val = static_cast<quint64>(getAmount());
+	quint64 tmp_val = static_cast<quint64>(getAmount());
 
 	switch(new_base)
 	{

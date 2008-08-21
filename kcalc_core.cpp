@@ -282,8 +282,7 @@ void CalcEngine::ArcCosDeg(KNumber input)
 			return;
 		}
 	}
-	CALCAMNT tmp_num = static_cast<double>(input);
-	_last_number = Rad2Deg(KNumber(double(ACOS(tmp_num))));
+	_last_number = Rad2Deg(KNumber(acos(static_cast<double>(input))));
 }
 
 void CalcEngine::ArcCosRad(KNumber input)
@@ -293,8 +292,7 @@ void CalcEngine::ArcCosRad(KNumber input)
 		_last_number = KNumber("nan");
 		return;
 	}
-	CALCAMNT tmp_num = static_cast<double>(input);
-	_last_number = KNumber(double(ACOS(tmp_num)));
+	_last_number = KNumber(acos(static_cast<double>(input)));
 }
 
 void CalcEngine::ArcCosGrad(KNumber input)
@@ -318,8 +316,7 @@ void CalcEngine::ArcCosGrad(KNumber input)
 			return;
 		}
 	}
-	CALCAMNT tmp_num = static_cast<double>(input);
-	_last_number = Rad2Gra(KNumber(double(ACOS(tmp_num))));
+	_last_number = Rad2Gra(KNumber(acos(static_cast<double>(input))));
 }
 
 void CalcEngine::ArcSinDeg(KNumber input)
@@ -343,8 +340,7 @@ void CalcEngine::ArcSinDeg(KNumber input)
 			return;
 		}
 	}
-	CALCAMNT tmp_num = static_cast<double>(input);
-	_last_number = Rad2Deg(KNumber(double(ASIN(tmp_num))));
+	_last_number = Rad2Deg(KNumber(asin(static_cast<double>(input))));
 }
 
 void CalcEngine::ArcSinRad(KNumber input)
@@ -354,8 +350,7 @@ void CalcEngine::ArcSinRad(KNumber input)
 		_last_number = KNumber("nan");
 		return;
 	}
-	CALCAMNT tmp_num = static_cast<double>(input);
-	_last_number = KNumber(double(ASIN(tmp_num)));
+	_last_number = KNumber(asin(static_cast<double>(input)));
 }
 
 void CalcEngine::ArcSinGrad(KNumber input)
@@ -379,8 +374,7 @@ void CalcEngine::ArcSinGrad(KNumber input)
 			return;
 		}
 	}
-	CALCAMNT tmp_num = static_cast<double>(input);
-	_last_number = Rad2Gra(KNumber(double(ASIN(tmp_num))));
+	_last_number = Rad2Gra(KNumber(asin(static_cast<double>(input))));
 }
 
 void CalcEngine::ArcTangensDeg(KNumber input)
@@ -392,8 +386,7 @@ void CalcEngine::ArcTangensDeg(KNumber input)
 		return;
 	}
 
-	CALCAMNT tmp_num = static_cast<double>(input);
-	_last_number = Rad2Deg(KNumber(double(ATAN(tmp_num))));
+	_last_number = Rad2Deg(KNumber(atan(static_cast<double>(input))));
 }
 
 void CalcEngine::ArcTangensRad(KNumber input)
@@ -407,8 +400,7 @@ void CalcEngine::ArcTangensRad(KNumber input)
 		return;
 	}
 
-	CALCAMNT tmp_num = static_cast<double>(input);
-	_last_number = KNumber(double(ATAN(tmp_num)));
+	_last_number = KNumber(atan(static_cast<double>(input)));
 }
 
 void CalcEngine::ArcTangensGrad(KNumber input)
@@ -420,8 +412,7 @@ void CalcEngine::ArcTangensGrad(KNumber input)
 		return;
 	}
 
-	CALCAMNT tmp_num = static_cast<double>(input);
-	_last_number = Rad2Gra(KNumber(double(ATAN(tmp_num))));
+	_last_number = Rad2Gra(KNumber(atan(static_cast<double>(input))));
 }
 
 void CalcEngine::AreaCosHyp(KNumber input)
@@ -441,8 +432,7 @@ void CalcEngine::AreaCosHyp(KNumber input)
 	  _last_number = KNumber::Zero;
 	  return;
 	}
-	CALCAMNT tmp_num = static_cast<double>(input);
-	_last_number = KNumber(double(ACOSH(tmp_num)));
+	_last_number = KNumber(acosh(static_cast<double>(input)));
 }
 
 void CalcEngine::AreaSinHyp(KNumber input)
@@ -458,8 +448,7 @@ void CalcEngine::AreaSinHyp(KNumber input)
 	  _last_number = KNumber::Zero;
 	  return;
 	}
-	CALCAMNT tmp_num = static_cast<double>(input);
-	_last_number = KNumber(double(ASINH(tmp_num)));
+	_last_number = KNumber(asinh(static_cast<double>(input)));
 }
 
 void CalcEngine::AreaTangensHyp(KNumber input)
@@ -481,8 +470,7 @@ void CalcEngine::AreaTangensHyp(KNumber input)
 		_last_number = KNumber("-inf");
 		return;
 	}
-	CALCAMNT tmp_num = static_cast<double>(input);
-	_last_number = KNumber(double(ATANH(tmp_num)));
+	_last_number = KNumber(atanh(static_cast<double>(input)));
 }
 
 void CalcEngine::Complement(KNumber input)
@@ -540,8 +528,7 @@ void CalcEngine::CosDeg(KNumber input)
 	}
 	trunc_input = Deg2Rad(trunc_input);
 
-	CALCAMNT tmp_num = static_cast<double>(trunc_input);
-	_last_number = KNumber(double(COS(tmp_num)));
+	_last_number = KNumber(cos(static_cast<double>(trunc_input)));
 }
 
 void CalcEngine::CosRad(KNumber input)
@@ -550,8 +537,7 @@ void CalcEngine::CosRad(KNumber input)
 		_last_number = KNumber("nan");
 		return;
 	}
-	CALCAMNT tmp_num = static_cast<double>(input);
-	_last_number = KNumber(double(COS(tmp_num)));
+	_last_number = KNumber(cos(static_cast<double>(input)));
 }
 
 void CalcEngine::CosGrad(KNumber input)
@@ -578,8 +564,7 @@ void CalcEngine::CosGrad(KNumber input)
 	}
 	trunc_input = Gra2Rad(trunc_input);
 
-	CALCAMNT tmp_num = static_cast<double>(trunc_input);
-	_last_number = KNumber(double(COS(tmp_num)));
+	_last_number = KNumber(cos(static_cast<double>(trunc_input)));
 }
 
 void CalcEngine::CosHyp(KNumber input)
@@ -591,8 +576,7 @@ void CalcEngine::CosHyp(KNumber input)
 		return;
 	}
 
-	CALCAMNT tmp_num = static_cast<double>(input);
-	_last_number = KNumber(double(COSH(tmp_num)));
+	_last_number = KNumber(cosh(static_cast<double>(input)));
 }
 
 void CalcEngine::Cube(KNumber input)
@@ -613,8 +597,7 @@ void CalcEngine::Exp(KNumber input)
 		if (input == KNumber("-inf"))  _last_number = KNumber::Zero;
 		return;
 	}
-	CALCAMNT tmp_num = static_cast<double>(input);
-	_last_number = KNumber(double(EXP(tmp_num)));
+	_last_number = KNumber(exp(static_cast<double>(input)));
 }
 
 void CalcEngine::Exp10(KNumber input)
@@ -684,8 +667,7 @@ void CalcEngine::Ln(KNumber input)
 	else if (input == KNumber::One)
 		_last_number = 0;
 	else {
-		CALCAMNT tmp_num = static_cast<double>(input);
-		_last_number = KNumber(double(LN(tmp_num)));
+		_last_number = KNumber(log(static_cast<double>(input)));
 	}
 }
 
@@ -704,8 +686,7 @@ void CalcEngine::Log10(KNumber input)
 	else if (input == KNumber::One)
 		_last_number = 0;
 	else {
-		CALCAMNT tmp_num = static_cast<double>(input);
-		_last_number = KNumber(double(LOG_TEN(tmp_num)));
+		_last_number = KNumber(log10(static_cast<double>(input)));
 	}
 }
 
@@ -760,8 +741,7 @@ void CalcEngine::SinDeg(KNumber input)
 	}
 	trunc_input = Deg2Rad(trunc_input);
 
-	CALCAMNT tmp_num = static_cast<double>(trunc_input);
-	_last_number = KNumber(double(SIN(tmp_num)));
+	_last_number = KNumber(sin(static_cast<double>(trunc_input)));
 }
 
 void CalcEngine::SinRad(KNumber input)
@@ -771,8 +751,7 @@ void CalcEngine::SinRad(KNumber input)
 		return;
 	}
 
-	CALCAMNT tmp_num = static_cast<double>(input);
-	_last_number = KNumber(double(SIN(tmp_num)));
+	_last_number = KNumber(sin(static_cast<double>(input)));
 }
 
 void CalcEngine::SinGrad(KNumber input)
@@ -801,8 +780,7 @@ void CalcEngine::SinGrad(KNumber input)
 
 	trunc_input = Gra2Rad(trunc_input);
 
-	CALCAMNT tmp_num = static_cast<double>(trunc_input);
-	_last_number = KNumber(double(SIN(tmp_num)));
+	_last_number = KNumber(sin(static_cast<double>(trunc_input)));
 }
 
 void CalcEngine::SinHyp(KNumber input)
@@ -814,8 +792,7 @@ void CalcEngine::SinHyp(KNumber input)
 		return;
 	}
 
-	CALCAMNT tmp_num = static_cast<double>(input);
-	_last_number = KNumber(double(SINH(tmp_num)));
+	_last_number = KNumber(asinh(static_cast<double>(input)));
 }
 
 void CalcEngine::Square(KNumber input)
@@ -950,8 +927,7 @@ void CalcEngine::TangensHyp(KNumber input)
 		return;
 	}
 
-	CALCAMNT tmp_num = static_cast<double>(input);
-	_last_number = KNumber(double(TANH(tmp_num)));
+	_last_number = KNumber(tanh(static_cast<double>(input)));
 }
 
 KNumber CalcEngine::evalOperation(KNumber arg1, Operation operation,

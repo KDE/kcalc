@@ -5,7 +5,6 @@ include(CheckIncludeFiles)
 
 check_include_files(ieeefp.h      HAVE_IEEEFP_H)
 check_function_exists(isinf      HAVE_FUNC_ISINF)
-check_function_exists(sinl HAVE_L_FUNCS)
 check_type_size("unsigned long" SIZEOF_UNSIGNED_LONG)
 
 configure_file(config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
