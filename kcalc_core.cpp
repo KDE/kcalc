@@ -972,7 +972,7 @@ void CalcEngine::enterOperation(KNumber number, Operation func)
 bool CalcEngine::evalStack(void)
 {
 	// this should never happen
-	if (_stack.isEmpty()) KMessageBox::error(0L, i18n("Stack processing error - empty stack"));
+    if (_stack.isEmpty()) qCritical(i18n("KCalc: CalcEngine: Stack processing error - empty stack").toLatin1());
 
 	_node tmp_node = _stack.pop();
 

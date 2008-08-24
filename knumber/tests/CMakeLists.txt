@@ -3,8 +3,6 @@ include_directories( ${CMAKE_SOURCE_DIR}/kcalc/knumber  )
 
 set(knumbertest_SRCS knumbertest.cpp ${libknumber_la_SRCS})
 
-kde4_add_unit_test(knumbertest ${knumbertest_SRCS})
+kde4_add_unit_test(knumbertest TESTNAME KNumber ${knumbertest_SRCS})
 
 target_link_libraries(knumbertest ${KDE4_KDECORE_LIBS} ${GMP_LIBRARIES} )
-
-
