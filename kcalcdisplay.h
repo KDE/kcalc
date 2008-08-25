@@ -36,24 +36,6 @@ class KAction;
 class KActionCollection;
 class QTimer;
 
-#if defined HAVE_LONG_DOUBLE && defined HAVE_L_FUNCS
-	#define PRINT_FLOAT     "%.*Lf"
-	#define PRINT_LONG_BIG  "%.*Lg"
-	#define PRINT_LONG      "%Lg"
-#else
-	#define PRINT_FLOAT     "%.*f"
-	#define PRINT_LONG_BIG  "%.*g"
-	#define PRINT_LONG      "%g"
-#endif
-
-#ifdef HAVE_LONG_LONG
-	#define PRINT_OCTAL  "%llo"
-	#define PRINT_HEX    "%llX"
-#else
-	#define PRINT_OCTAL  "%lo"
-	#define PRINT_HEX    "%lX"
-#endif
-
 #define		NUM_STATUS_TEXT 4
 
 /*
