@@ -37,8 +37,8 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2006-02-13</date>
-<releaseinfo>2.0.2</releaseinfo>
+<date>2008-08-05</date>
+<releaseinfo>2.4</releaseinfo>
 
 <abstract><para>&kcalc; is a scientific calculator for &kde;</para></abstract>
 
@@ -52,7 +52,7 @@
 <chapter id="introduction">
 <title>Introduction</title>
 
-<para>This document describes &kcalc; version 1.8.</para>
+<para>This document describes &kcalc; version 2.4.</para>
 
 <para>&kcalc; offers many more mathematical functions than meet the eye
 on a first glance. Please study the section on keyboard accelerators and
@@ -112,7 +112,7 @@ special &kcalc; features:</para>
 <term>Result Stack</term>
 <listitem><para>Each time you &LMB; click on the
 <guibutton>=</guibutton> button or press your keyboard's
-<keycap>Enter</keycap> or <keysym>=</keysym> keys, the display result is
+&Enter; or <keysym>=</keysym> keys, the display result is
 written to &kcalc;'s result stack. You can navigate through the result
 stack with your keyboard's
 <keycombo action="simul">&Ctrl;<keycap>Z</keycap></keycombo>
@@ -158,10 +158,20 @@ display buttons for basic arithmetic computations.</para>
 <para>Under the menu entry <guimenu>Settings</guimenu> it is possible to
 open extra buttons for &kcalc;:
 it is for example possible to choose
-<link linkend="statistical-mode">Statistical</link> or
-<link linkend="trigonometric-mode">Trigonometric</link> buttons.</para> 
+<link linkend="statistical-mode">Statistic</link> or
+<link linkend="trigonometric-mode">Science/Engineering</link> buttons.</para> 
 </listitem>
 </varlistentry>
+
+<varlistentry>
+<term>Button Layout</term>
+<listitem>
+<para>To give easy access to all the functions in &kcalc;, many keys have a second layout. Click 
+on <guibutton>Inv</guibutton> or press the shortcut <keycap>I</keycap> to make 
+the second layout of the buttons visible.</para> 
+</listitem>
+</varlistentry>
+
 </variablelist>
 </sect1>
 
@@ -212,7 +222,7 @@ functions:</para>
 <row><entry><guibutton>Inv</guibutton> <guibutton>Dat</guibutton></entry>
 <entry>Clear last data item entered</entry></row>
 
-<row><entry><guibutton>Cst</guibutton></entry>
+<row><entry><guibutton>CSt</guibutton></entry>
 <entry>Clear the store of all data item entered</entry></row>
 
 </tbody></tgroup></informaltable>
@@ -361,9 +371,9 @@ frequently.</para>
 accelerators for most functions. For example entering <userinput>7R</userinput>
 or <userinput>7r</userinput> will calculate the reciprocal of 7 (1/7).</para>
 
-<para>During a computation, you can always press <keycap>&Ctrl;</keycap> to make each
+<para>During a computation, you can always press &Ctrl; to make each
 button display its key-binding.</para>
-
+<!-- Inv works like Caps Lock-->
 <informaltable><tgroup cols="3">
 <thead>
 <row><entry>Key</entry>
@@ -420,14 +430,16 @@ you want arcsin(x) type <userinput>i s </userinput></entry></row>
 
 <row><entry><keysym>&lt;</keysym></entry>
 <entry><guibutton>Lsh</guibutton></entry>
-<entry>Left shift. Note: <guibutton>Inv</guibutton>
-<guibutton>Lsh</guibutton> is Right shift</entry></row>
-
+<entry>Left shift</entry></row>
+<!-- no "<" on Lsh key only ">" on Rsh key-->
+<row><entry><keysym>&gt;</keysym></entry>
+<entry><guibutton>Rsh</guibutton></entry>
+<entry>Right shift.</entry></row>
 <row><entry><keysym>&amp;</keysym></entry>
-<entry><guibutton>And</guibutton></entry>
+<entry><guibutton>AND</guibutton></entry>
 <entry>Logical AND</entry></row>
 
-<row><entry><keysym>*</keysym></entry>
+<row><entry><keysym>x</keysym> or <keysym>*</keysym></entry>
 <entry><guibutton>X</guibutton></entry>
 <entry>Multiply</entry></row>
 
@@ -439,20 +451,16 @@ you want arcsin(x) type <userinput>i s </userinput></entry></row>
 <entry><guibutton>Dat</guibutton></entry>
 <entry>Enter data item in statistical mode</entry></row>
 
-<row><entry><keycap>O</keycap></entry>
-<entry><guibutton>Or</guibutton></entry>
+<row><entry><keycap>|</keycap></entry>
+<entry><guibutton>OR</guibutton></entry>
 <entry>Logical OR. Note: <guibutton>Inv</guibutton>
-<guibutton>Or</guibutton> is XOR</entry></row>
+<guibutton>OR</guibutton> is XOR</entry></row>
 
 <row><entry><keycap>R</keycap></entry>
 <entry><guibutton>1/x</guibutton></entry>
 <entry>Reciprocal</entry></row>
 
-<row><entry><keysym>=</keysym></entry>
-<entry><guibutton>=</guibutton></entry>
-<entry></entry></row>
-
-<row><entry><keycap>Enter</keycap></entry>
+<row><entry>&Enter;</entry>
 <entry><guibutton>=</guibutton></entry>
 <entry></entry></row>
 
@@ -460,29 +468,37 @@ you want arcsin(x) type <userinput>i s </userinput></entry></row>
 <entry><guibutton>=</guibutton></entry>
 <entry></entry></row>
 
-<row><entry><keycap>Page Up</keycap></entry>
+<row><entry><keycap>PgUp</keycap></entry>
 <entry><guibutton>C</guibutton></entry>
 <entry>Clear</entry></row>
 
 <row><entry><keycap>Esc</keycap></entry>
 <entry><guibutton>C</guibutton></entry>
 <entry>Clear</entry></row>
-
+<!--
 <row><entry><keycap>Prior</keycap></entry>
 <entry><guibutton>C</guibutton></entry>
 <entry>Clear</entry></row>
-
-<row><entry><keycap>Page Down</keycap></entry>
+-->
+<row><entry><keycap>PgDown</keycap></entry>
 <entry><guibutton>AC</guibutton></entry>
 <entry>Clear all</entry></row>
-
+<!--
 <row><entry><keycap>Next</keycap></entry>
 <entry><guibutton>AC</guibutton></entry>
 <entry>Clear all</entry></row>
-
+-->
 <row><entry><keycap>Del</keycap></entry>
 <entry><guibutton>AC</guibutton></entry>
 <entry>Clear all</entry></row>
+
+<row><entry>&Shift;+<keycap>:</keycap></entry>
+<entry><guibutton>Mod</guibutton></entry>
+<entry>remainder of dividing</entry></row>
+
+<row><entry>&Alt;+<keycap>1</keycap> to &Alt;+<keycap>6</keycap></entry>
+<entry><guibutton>C1</guibutton></entry>
+<entry>use the value stored in C1 to C6</entry></row>
 
 </tbody></tgroup></informaltable>
 
@@ -493,7 +509,7 @@ you want arcsin(x) type <userinput>i s </userinput></entry></row>
 <title>Comments on Specific Functions</title>
 
 <sect1 id="mod">
-<title>Mod and Inv Mod</title>
+<title>Mod and IntDiv</title>
 
 <variablelist>
 <varlistentry>
@@ -506,11 +522,11 @@ number by the next input number.</term>
 </listitem></varlistentry>
 
 <varlistentry>
-<term><guibutton>Inv</guibutton> <guibutton>Mod</guibutton> does integer
+<term><guibutton>Inv</guibutton> <guibutton>IntDiv</guibutton> does integer
 division of the displayed number by the next input number.</term>
-<listitem><para><userinput>22 Inv Mod 8 = </userinput> will give the result
+<listitem><para><userinput>22 Inv IntDiv 8 = </userinput> will give the result
 <emphasis>2</emphasis></para>
-<para><userinput>22.345 Inv Mod 8 = </userinput> also gives <emphasis>2</emphasis>
+<para><userinput>22.345 Inv IntDiv 8 = </userinput> also gives <emphasis>2</emphasis>
 </para></listitem></varlistentry>
 </variablelist>
 
@@ -560,12 +576,12 @@ as a percentage of the right operand.
 </sect1>
 
 <sect1 id="lsh-rsh">
-<title>Lsh and Inv Lsh</title>
+<title>Lsh and Rsh</title>
 <variablelist>
 <varlistentry>
 <term><guibutton>Lsh</guibutton> left shifts the integer part of the displayed
 value (multiplies it by 2) n times, where n is the next input number, and
-gives an integer result:</term>
+gives an integer result (base is set to <guibutton>Bin</guibutton>):</term>
 <listitem><para><userinput>10 Lsh 3 =</userinput> gives <emphasis>80</emphasis>
 (10 multiplied by 2 three times).</para>
 <para><userinput>10.345 Lsh 3 =</userinput> also gives
@@ -573,11 +589,11 @@ gives an integer result:</term>
 </varlistentry>
 
 <varlistentry>
-<term><guibutton>Inv</guibutton> <guibutton>Lsh</guibutton> right shifts the
+<term><guibutton>Rsh</guibutton> right shifts the
 value (performs an integer divide by 2) n times.</term>
-<listitem><para><userinput>16 Inv Lsh 2 =</userinput> gives
+<listitem><para><userinput>16 Rsh 2 =</userinput> gives
 <emphasis>4</emphasis> (16 divided by 2 twice).</para>
-<para><userinput>16.999 Inv Lsh 2 =</userinput> also gives
+<para><userinput>16.999 Rsh 2 =</userinput> also gives
 <emphasis>4</emphasis>.</para>
 </listitem>
 </varlistentry>
@@ -590,10 +606,10 @@ value (performs an integer divide by 2) n times.</term>
 
 <para>The <guibutton>Cmp</guibutton>, <guibutton>And</guibutton> and 
 <guibutton>Or</guibutton> functions perform bitwise logical operations and
-therefore appear more meaningful if the <guilabel>Base</guilabel> is set to
+therefore appear more meaningful if the base is set to
 <guilabel>Hex</guilabel>, <guilabel>Oct</guilabel> or <guilabel>Bin</guilabel>
 rather than <guilabel>Dec</guilabel>. In the following
-examples <guilabel>Base</guilabel> is set to <guilabel>Bin</guilabel>.</para>
+examples base is set to <guilabel>Bin</guilabel>.</para>
 
 <variablelist>
 <varlistentry>
@@ -604,21 +620,21 @@ bits).</term>
 </varlistentry>
 
 <varlistentry>
-<term><guibutton>And</guibutton> does a logical AND.</term>
-<listitem><para><userinput>101 And 110 =</userinput> gives
+<term><guibutton>AND</guibutton> does a logical AND.</term>
+<listitem><para><userinput>101 AND 110 =</userinput> gives
 <emphasis>100</emphasis></para> </listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guibutton>Or</guibutton> does the logical OR.</term>
-<listitem><para><userinput>101 Or 110 =</userinput> gives
+<term><guibutton>OR</guibutton> does the logical OR.</term>
+<listitem><para><userinput>101 OR 110 =</userinput> gives
 <emphasis>111</emphasis></para> </listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guibutton>Xor</guibutton> performs the logical
+<term><guibutton>XOR</guibutton> performs the logical
 XOR (exclusive OR) operation.</term>
-<listitem><para><userinput>101 Xor 110 =</userinput> gives
+<listitem><para><userinput>101 XOR 110 =</userinput> gives
 <emphasis>11</emphasis></para> </listitem>
 </varlistentry>
 
@@ -640,8 +656,9 @@ XOR (exclusive OR) operation.</term>
 
 <qandaentry>
 <question><para>How do I get two fixed digits after the period?</para></question>
-<answer><para>Click on the <guibutton>Configure</guibutton> button, this will
-bring up the configuration dialog. Check <guilabel>Set fixed
+<answer><para>Select <menuchoice><guimenu>Settings</guimenu><guimenuitem>
+Configure &kcalc;...</guimenuitem></menuchoice> on the menubar, this will
+bring up the configuration dialog. Check <guilabel>Set decimal
 precision</guilabel> and adjust the spin control so that it shows a
 2.</para></answer> </qandaentry>
 
