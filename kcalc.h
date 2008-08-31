@@ -123,6 +123,7 @@ void changeButtonNames();
     void slotScientificshow(bool toggled);
     void slotLogicshow(bool toggled);
     void slotConstantsShow(bool toggled);   
+    void slotBitsetshow(bool toggled);
     void slotShowAll(void);
     void slotHideAll(void);
     void slotAngleSelected(int mode);
@@ -222,6 +223,8 @@ private:
     QList<QAbstractButton*> statButtons;
     QList<QAbstractButton*> constButtons;
 
+    KToggleAction *actionMenubarshow;
+    KToggleAction *actionBitsetshow;
     KToggleAction *actionStatshow;
     KToggleAction *actionScientificshow;
     KToggleAction *actionLogicshow;

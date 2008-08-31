@@ -142,7 +142,7 @@ KCalculator::KCalculator(QWidget *parent)
 
 	updateDisplay(true);
 
-	// Read and set button groups
+	// misc settings
 
 	actionStatshow->setChecked(KCalcSettings::showStat());
 	slotStatshow(KCalcSettings::showStat());
@@ -155,6 +155,9 @@ KCalculator::KCalculator(QWidget *parent)
 
 	actionConstantsShow->setChecked(KCalcSettings::showConstants());
 	slotConstantsShow(KCalcSettings::showConstants());
+
+	actionBitsetshow->setChecked(KCalcSettings::showBitset());
+	slotBitsetshow(KCalcSettings::showBitset());
 
 	// connections
 
@@ -211,6 +214,12 @@ void KCalculator::setupMainActions(void)
 	QAction *hideAct = actionCollection()->addAction("hide_all");
 	hideAct->setText(i18n("&Hide All"));
 	connect(hideAct, SIGNAL(triggered()), this, SLOT(slotHideAll()));
+
+	actionBitsetshow = actionCollection()->add<KToggleAction>( "show_bitset" );
+	actionBitsetshow->setText( i18n("Show B&it Edit") );
+	actionBitsetshow->setChecked(true);
+	connect(actionBitsetshow, SIGNAL(toggled(bool)),
+			SLOT(slotBitsetshow(bool)));
 
 	KStandardAction::preferences(this, SLOT(showSettings()), actionCollection());
 	KStandardAction::keyBindings(guiFactory(), SLOT(configureShortcuts()),
@@ -1560,7 +1569,6 @@ void KCalculator::slotChooseScientificConst5(struct science_constant const & cho
   constants->kcfg_nameConstant5->setText(chosen_const.label);
 }
 
-
 void KCalculator::slotStatshow(bool toggled)
 {
 	if(toggled)
@@ -1612,7 +1620,7 @@ void KCalculator::slotLogicshow(bool toggled)
 {
 	if(toggled)
 	{
-		mBitset->show();
+		mBitset->setEnabled(true);
 		connect(mBitset, SIGNAL(valueChanged(unsigned long long)),
 			this, SLOT(slotBitsetChanged(unsigned long long)));
 		connect(calc_display, SIGNAL(changedAmount(const KNumber &)),
@@ -1632,7 +1640,7 @@ void KCalculator::slotLogicshow(bool toggled)
 	}
 	else
 	{
-		mBitset->hide();
+		mBitset->setEnabled(false);
 		disconnect(mBitset, SIGNAL(valueChanged(unsigned long long)),
 			this, SLOT(slotBitsetChanged(unsigned long long)));
 		disconnect(calc_display, SIGNAL(changedAmount(const KNumber &)),
@@ -1671,6 +1679,12 @@ void KCalculator::slotConstantsShow(bool toggled)
 	KCalcSettings::setShowConstants(toggled);
 }
 
+void KCalculator::slotBitsetshow(bool toggled)
+{
+    mBitset->setVisible(toggled);
+    KCalcSettings::setShowBitset(toggled);
+}
+
 // This function is for setting the constant names configured in the
 // kcalc settings menu. If the user doesn't enter a name for the
 // constant C1 to C6 is used.
@@ -1690,6 +1704,7 @@ void KCalculator::slotShowAll(void)
 	if(!actionScientificshow->isChecked()) actionScientificshow->trigger();
 	if(!actionLogicshow->isChecked()) actionLogicshow->trigger();
 	if(!actionConstantsShow->isChecked()) actionConstantsShow->trigger();
+	if(!actionBitsetshow->isChecked()) actionBitsetshow->trigger();
 }
 
 void KCalculator::slotHideAll(void)
@@ -1699,6 +1714,7 @@ void KCalculator::slotHideAll(void)
 	if(actionScientificshow->isChecked()) actionScientificshow->trigger();
 	if(actionLogicshow->isChecked()) actionLogicshow->trigger();
 	if(actionConstantsShow->isChecked()) actionConstantsShow->trigger();
+	if(actionBitsetshow->isChecked()) actionBitsetshow->trigger();
 }
 
 void KCalculator::slotBitsetChanged(unsigned long long value) {
