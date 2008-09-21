@@ -89,7 +89,7 @@
     </entry>
     <entry name="ShowBitset" type="Bool">
       <label>Whether to show the bit edit widget.</label>
-      <default>true</default>
+      <default>false</default>
     </entry>
     <entry name="ShowStat" type="Bool">
       <label>Whether to show statistical buttons.</label>
