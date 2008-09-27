@@ -34,6 +34,7 @@
 #include <QMouseEvent>
 #include <QPainter>
 #include <QStyle>
+#include <QStyleOption>
 #include <QTimer>
 
 #include <kglobal.h>
@@ -43,14 +44,13 @@
 #include "kcalc_settings.h"
 #include "kcalcdisplay.moc"
 
-const uint MARGIN = 2;
+const uint MARGIN = 4;
 
 KCalcDisplay::KCalcDisplay(QWidget *parent)
     :QFrame(parent), _beep(false), _groupdigits(false), _button(0),
      _lit(false), _num_base(NB_DECIMAL), _precision(9), _fixed_precision(-1),
      _display_amount(0), _history_index(0), _selection_timer(new QTimer)
 {
-    setAutoFillBackground(true);
     setFocus();
     setFocusPolicy(Qt::StrongFocus);
 
@@ -70,6 +70,22 @@ KCalcDisplay::KCalcDisplay(QWidget *parent)
 KCalcDisplay::~KCalcDisplay()
 {
 	delete _selection_timer;
+}
+
+void KCalcDisplay::initStyleOption(QStyleOptionFrame *option) const
+{
+    if (!option)
+        return;
+
+    option->initFrom(this);
+    option->rect = rect();
+    option->lineWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth, option, this);
+    option->midLineWidth = 0;
+    option->state |= QStyle::State_Sunken;
+    option->state |= QStyle::State_ReadOnly;
+
+    if (QStyleOptionFrameV2 *optionV2 = qstyleoption_cast<QStyleOptionFrameV2 *>(option))
+        optionV2->features = QStyleOptionFrameV2::None;
 }
 
 void KCalcDisplay::changeSettings()
@@ -700,11 +716,14 @@ bool KCalcDisplay::changeSign(void)
 void KCalcDisplay::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    drawFrame(&painter);
+
+    QStyleOptionFrameV2 panel;
+    initStyleOption(&panel);
+    style()->drawPrimitive(QStyle::PE_PanelLineEdit, &panel, &painter, this);
 
     // draw display text
     QRect cr = contentsRect();
-    //cr.adjust(MARGIN, 0, -MARGIN, 0); // provide a margin
+    cr.adjust(MARGIN, 0, -MARGIN, 0); // provide a margin
     int align = QStyle::visualAlignment(layoutDirection(),
                                         Qt::AlignRight | Qt::AlignVCenter);
     painter.drawText(cr, align | Qt::TextSingleLine, _text);
