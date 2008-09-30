@@ -163,6 +163,8 @@ KCalculator::KCalculator(QWidget *parent)
 
 	connect(KGlobalSettings::self(), SIGNAL(kdisplayPaletteChanged()),
 			SLOT(set_colors()));
+
+	calc_display->setFocus();
 }
 
 KCalculator::~KCalculator()

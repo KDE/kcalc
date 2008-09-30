@@ -44,17 +44,18 @@
 #include "kcalc_settings.h"
 #include "kcalcdisplay.moc"
 
-const uint MARGIN = 4;
-
 KCalcDisplay::KCalcDisplay(QWidget *parent)
     :QFrame(parent), _beep(false), _groupdigits(false), _button(0),
      _lit(false), _num_base(NB_DECIMAL), _precision(9), _fixed_precision(-1),
      _display_amount(0), _history_index(0), _selection_timer(new QTimer)
 {
-    setFocus();
     setFocusPolicy(Qt::StrongFocus);
 
     setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed));
+
+    setBackgroundRole(QPalette::Base);
+    setForegroundRole(QPalette::Text);
+    setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
 
     KNumber::setDefaultFloatOutput(true);
     KNumber::setDefaultFractionalInput(true);
@@ -72,29 +73,12 @@ KCalcDisplay::~KCalcDisplay()
 	delete _selection_timer;
 }
 
-void KCalcDisplay::initStyleOption(QStyleOptionFrame *option) const
-{
-    if (!option)
-        return;
-
-    option->initFrom(this);
-    option->rect = rect();
-    option->lineWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth, option, this);
-    option->midLineWidth = 0;
-    option->state |= QStyle::State_Sunken;
-    option->state |= QStyle::State_ReadOnly;
-
-    if (QStyleOptionFrameV2 *optionV2 = qstyleoption_cast<QStyleOptionFrameV2 *>(option))
-        optionV2->features = QStyleOptionFrameV2::None;
-}
-
 void KCalcDisplay::changeSettings()
 {
 	QPalette pal = palette();
 
 	pal.setColor(QPalette::Text, KCalcSettings::foreColor());
-	pal.setColor(QPalette::WindowText, KCalcSettings::foreColor());
-	pal.setColor(QPalette::Window, KCalcSettings::backColor());
+	pal.setColor(QPalette::Base, KCalcSettings::backColor());
 
 	setPalette(pal);
 
@@ -319,10 +303,10 @@ void KCalcDisplay::slotSelectionTimedOut(void)
 void KCalcDisplay::invertColors()
 {
 	QPalette tmp_palette = palette();
-	tmp_palette.setColor(QPalette::Window,
-			palette().color(QPalette::WindowText));
-	tmp_palette.setColor(QPalette::WindowText,
-			palette().color(QPalette::Background));
+	tmp_palette.setColor(QPalette::Base,
+			palette().color(QPalette::Text));
+	tmp_palette.setColor(QPalette::Text,
+			palette().color(QPalette::Base));
 	setPalette(tmp_palette);
 }
 
@@ -713,17 +697,28 @@ bool KCalcDisplay::changeSign(void)
 	return true;
 }
 
+void KCalcDisplay::initStyleOption(QStyleOptionFrame *option) const
+{
+    if (!option) return;
+
+    option->initFrom(this);
+    option->lineWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth, option, this);
+    option->midLineWidth = 0;
+}
+
 void KCalcDisplay::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
 
-    QStyleOptionFrameV2 panel;
-    initStyleOption(&panel);
-    style()->drawPrimitive(QStyle::PE_PanelLineEdit, &panel, &painter, this);
+    QStyleOptionFrame option;
+    initStyleOption(&option);
+
+    style()->drawPrimitive(QStyle::PE_PanelLineEdit, &option, &painter, this);
 
     // draw display text
+    int margin = style()->pixelMetric(QStyle::PM_DefaultFrameWidth, 0, 0);
     QRect cr = contentsRect();
-    cr.adjust(MARGIN, 0, -MARGIN, 0); // provide a margin
+    cr.adjust(margin*2, 0, -margin*2, 0); // provide a margin
     int align = QStyle::visualAlignment(layoutDirection(),
                                         Qt::AlignRight | Qt::AlignVCenter);
     painter.drawText(cr, align | Qt::TextSingleLine, _text);
@@ -751,6 +746,12 @@ QSize KCalcDisplay::sizeHint() const
     QFont fnt(font());
     fnt.setPointSize(qMax((fnt.pointSize() / 2), 7));
     QFontMetrics fm(fnt);
-    return sz + QSize(MARGIN*2, fm.height());
-}
+    sz.setHeight(sz.height() + fm.height());
 
+    QStyleOptionFrame option;
+    initStyleOption(&option);
+    return (style()->sizeFromContents(QStyle::CT_LineEdit,
+                                      &option,
+                                      sz.expandedTo(QApplication::globalStrut()),
+                                      this));
+}

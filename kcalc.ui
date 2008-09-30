@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>816</width>
-    <height>287</height>
+    <height>293</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -17,8 +17,11 @@
     <layout class="QVBoxLayout" >
      <item>
       <widget class="KCalcDisplay" name="calc_display" >
+       <property name="focusPolicy" >
+        <enum>Qt::StrongFocus</enum>
+       </property>
        <property name="frameShape" >
-        <enum>QFrame::WinPanel</enum>
+        <enum>QFrame::StyledPanel</enum>
        </property>
        <property name="frameShadow" >
         <enum>QFrame::Sunken</enum>
@@ -949,6 +952,7 @@
    <class>KCalcDisplay</class>
    <extends>QFrame</extends>
    <header>kcalcdisplay.h</header>
+   <container>1</container>
   </customwidget>
   <customwidget>
    <class>KCalcBitset</class>
