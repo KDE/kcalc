@@ -55,7 +55,7 @@ KCalcDisplay::KCalcDisplay(QWidget *parent)
 
     setBackgroundRole(QPalette::Base);
     setForegroundRole(QPalette::Text);
-    setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
+    setFrameStyle(QFrame::StyledPanel | QFrame::Sunken); // set in kalc.ui
 
     KNumber::setDefaultFloatOutput(true);
     KNumber::setDefaultFractionalInput(true);
@@ -99,16 +99,16 @@ void KCalcDisplay::changeSettings()
 void KCalcDisplay::updateFromCore(CalcEngine const &core,
 				 bool store_result_in_history)
 {
-	bool tmp_error;
-	KNumber const & output = core.lastOutput(tmp_error);
-	if(tmp_error) sendEvent(EventError);
-	if (setAmount(output)  &&  store_result_in_history  &&
-	    output != KNumber::Zero)
-	{
-	  // add this latest value to our history
-	  _history_list.insert(_history_list.begin(), output);
-	  _history_index = 0;
-	}
+    bool tmp_error;
+    KNumber const & output = core.lastOutput(tmp_error);
+    if(tmp_error) sendEvent(EventError);
+    if (setAmount(output)
+        && store_result_in_history
+        && (output != KNumber::Zero) ) {
+        // add this latest value to our history
+        _history_list.insert(_history_list.begin(), output);
+        _history_index = 0;
+    }
 }
 
 void KCalcDisplay::enterDigit(int data)
@@ -352,33 +352,29 @@ KNumber const & KCalcDisplay::getAmount(void) const
 
 bool KCalcDisplay::setAmount(KNumber const & new_amount)
 {
-	QString display_str;
+    QString display_str;
 
-	_str_int = "0";
-	_str_int_exp.clear();
-	_period = false;
-	_neg_sign = false;
-	_eestate = false;
+    _str_int = "0";
+    _str_int_exp.clear();
+    _period = false;
+    _neg_sign = false;
+    _eestate = false;
 
-	if (_num_base != NB_DECIMAL  &&  new_amount.type() != KNumber::SpecialType)
-	{
-		_display_amount = new_amount.integerPart();
-		quint64 tmp_workaround = static_cast<quint64>(_display_amount);
-
-		display_str = QString::number(tmp_workaround, _num_base).toUpper();
-	}
-	else // _num_base == NB_DECIMAL || new_amount.type() ==
-	     // KNumber::SpecialType
-	{
-		_display_amount = new_amount;
-	
-		display_str = _display_amount.toQString(KCalcSettings::precision(), _fixed_precision);
-	}
+    if ((_num_base != NB_DECIMAL) &&
+        (new_amount.type() != KNumber::SpecialType)) {
+        _display_amount = new_amount.integerPart();
+        quint64 tmp_workaround = static_cast<quint64>(_display_amount);
+        display_str = QString::number(tmp_workaround, _num_base).toUpper();
+    } else {
+        // _num_base == NB_DECIMAL || new_amount.type() == KNumber::SpecialType
+        _display_amount = new_amount;
+        display_str = _display_amount.toQString(KCalcSettings::precision(),
+                                                _fixed_precision);
+    }
 
     setText(display_str);
-	emit changedAmount(_display_amount);
-	return true;
-	
+    emit changedAmount(_display_amount);
+    return true;
 }
 
 void KCalcDisplay::setText(QString const &string)
@@ -450,68 +446,58 @@ void KCalcDisplay::setStatusText(int i, const QString& text)
 
 bool KCalcDisplay::updateDisplay(void)
 {
-	// Put sign in front.
-	QString tmp_string;
-	if(_neg_sign == true)
-		tmp_string = '-' + _str_int;
-	else
-		tmp_string = _str_int;
+    // Put sign in front.
+    QString tmp_string;
+    if(_neg_sign == true) {
+        tmp_string = '-' + _str_int;
+    } else {
+        tmp_string = _str_int;
+    }
 
-	switch(_num_base)
-	{
-	case NB_BINARY:
-		Q_ASSERT(_period == false  && _eestate == false);
-		setText(tmp_string);
-		_display_amount = static_cast<quint64>(STRTOUL(_str_int.toLatin1(), 0, 2));
-		if (_neg_sign)
-			_display_amount = -_display_amount;
-		//str_size = cvb(_str_int, boh_work, DSP_SIZE);
-		break;
+    switch(_num_base) {
+      case NB_BINARY:
+          Q_ASSERT(_period == false  && _eestate == false);
+          setText(tmp_string);
+          _display_amount = static_cast<quint64>(STRTOUL(_str_int.toLatin1(), 0, 2));
+          if (_neg_sign) _display_amount = -_display_amount;
+          break;
 	  
-	case NB_OCTAL:
-		Q_ASSERT(_period == false  && _eestate == false);
-		setText(tmp_string);
-		_display_amount = static_cast<quint64>(STRTOUL(_str_int.toLatin1(), 0, 8));
-		if (_neg_sign)
-			_display_amount = -_display_amount;
-		break;
+      case NB_OCTAL:
+          Q_ASSERT(_period == false  && _eestate == false);
+          setText(tmp_string);
+          _display_amount = static_cast<quint64>(STRTOUL(_str_int.toLatin1(), 0, 8));
+          if (_neg_sign) _display_amount = -_display_amount;
+          break;
 		
-	case NB_HEX:
-		Q_ASSERT(_period == false  && _eestate == false);
-		setText(tmp_string);
-		_display_amount = static_cast<quint64>(STRTOUL(_str_int.toLatin1(), 0, 16));
-		if (_neg_sign)
-			_display_amount = -_display_amount;
-		break;
+      case NB_HEX:
+          Q_ASSERT(_period == false  && _eestate == false);
+          setText(tmp_string);
+          _display_amount = static_cast<quint64>(STRTOUL(_str_int.toLatin1(), 0, 16));
+          if (_neg_sign) _display_amount = -_display_amount;
+          break;
 	  
-	case NB_DECIMAL:
-		if(_eestate == false)
-		{
-			setText(tmp_string);
-			_display_amount = tmp_string;
-		}
-		else
-		{
-			if(_str_int_exp.isNull())
-			{
-				// add 'e0' to display but not to conversion
-				_display_amount = tmp_string;
-				setText(tmp_string + "e0");
-			}
-			else
-			{
-				tmp_string +=  'e' + _str_int_exp;
-				setText(tmp_string);
-				_display_amount = tmp_string;
-			}
-		}
-		break;
+      case NB_DECIMAL:
+          if(_eestate == false) {
+              setText(tmp_string);
+              _display_amount = tmp_string;
+          } else {
+              if(_str_int_exp.isNull()) {
+                  // add 'e0' to display but not to conversion
+                  _display_amount = tmp_string;
+                  setText(tmp_string + "e0");
+              } else {
+                  tmp_string +=  'e' + _str_int_exp;
+                  setText(tmp_string);
+                  _display_amount = tmp_string;
+              }
+          }
+          break;
 	  
-	default:
-	  return false;
-	}
-	emit changedAmount(_display_amount);
-	return true;
+      default:
+          return false;
+    }
+    emit changedAmount(_display_amount);
+    return true;
 }
 
 void KCalcDisplay::newCharacter(char const new_char)
@@ -702,7 +688,14 @@ void KCalcDisplay::initStyleOption(QStyleOptionFrame *option) const
     if (!option) return;
 
     option->initFrom(this);
-    option->lineWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth, option, this);
+    option->state &= ~QStyle::State_HasFocus; // don't draw focus highlight
+    if (frameShadow() == QFrame::Sunken) {
+        option->state |= QStyle::State_Sunken;
+    } else if (frameShadow() == QFrame::Raised) {
+        option->state |= QStyle::State_Raised;
+    }
+    option->lineWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth,
+                                             option, this);
     option->midLineWidth = 0;
 }
 

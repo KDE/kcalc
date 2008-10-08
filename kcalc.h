@@ -223,7 +223,6 @@ private:
     QList<QAbstractButton*> statButtons;
     QList<QAbstractButton*> constButtons;
 
-    KToggleAction *actionMenubarshow;
     KToggleAction *actionBitsetshow;
     KToggleAction *actionStatshow;
     KToggleAction *actionScientificshow;
