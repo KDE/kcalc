@@ -39,18 +39,16 @@ _knumerror::_knumerror(_knumber const & num)
   }
 }
 
+_knuminteger::_knuminteger(qint64 num)
+{
+  // TODO: fixup
+  mpz_init_set_si(_mpz, static_cast<signed long int>(num));
+}
+
 _knuminteger::_knuminteger(quint64 num)
 {
-  mpz_init(_mpz);
-#if SIZEOF_UNSIGNED_LONG == 8
+  // TODO: fixup
   mpz_init_set_ui(_mpz, static_cast<unsigned long int>(num));
-#elif SIZEOF_UNSIGNED_LONG == 4
-  mpz_set_ui(_mpz, static_cast<unsigned long int>(num >> 32));
-  mpz_mul_2exp(_mpz, _mpz, 32);
-  mpz_add_ui(_mpz, _mpz, static_cast<unsigned long int>(num));
-#else
-#error "SIZEOF_UNSIGNED_LONG is a unhandled case"
-#endif 
 }
 
 _knuminteger::_knuminteger(_knumber const & num)
@@ -64,7 +62,7 @@ _knuminteger::_knuminteger(_knumber const & num)
   case FractionType:
   case FloatType:
   case SpecialType:
-    // What should I do here?
+    // TODO: What should I do here?
     break;
   }
 }
@@ -964,6 +962,27 @@ _knumerror::operator unsigned long int (void) const
     return 0;
 }
 
+_knumerror::operator long long int (void) const
+{
+  // what would be the correct return values here?
+  if (_error == Infinity)
+    return 0;
+  if (_error == MinusInfinity)
+    return 0;
+  else // if (_error == UndefinedNumber)
+    return 0;
+}
+
+_knumerror::operator unsigned long long int (void) const
+{
+  // what would be the correct return values here?
+  if (_error == Infinity)
+    return 0;
+  if (_error == MinusInfinity)
+    return 0;
+  else // if (_error == UndefinedNumber)
+    return 0;
+}
 
 _knuminteger::operator long int (void) const
 {
@@ -985,9 +1004,54 @@ _knuminteger::operator unsigned long int (void) const
   return mpz_get_ui(_mpz);
 }
 
+_knuminteger::operator long long int (void) const
+{
+  // libgmp doesn't have long long conversion
+  // so convert to string and then to long long
+  char *tmpchar = mpz_get_str(0, 10, _mpz);
+  QString tmpstring(tmpchar);
+  free(tmpchar);
+  bool ok;
+  long long int value = tmpstring.toLongLong(&ok, 10);
+
+  if (!ok) {
+    // what to do if error?
+    value = 0;
+  }
+  return value;
+}
+
+_knuminteger::operator unsigned long long int (void) const
+{
+  // libgmp doesn't have unsigned long long conversion
+  // so convert to string and then to unsigned long long
+  char *tmpchar = mpz_get_str(0, 10, _mpz);
+  QString tmpstring(tmpchar);
+  free(tmpchar);
+
+  bool ok;
+  unsigned long long int value = tmpstring.toULongLong(&ok, 10);
+
+  if (!ok) {
+    // what to do if error?
+    value = 0;
+  }
+  return value;
+}
+
 _knumfraction::operator unsigned long int (void) const
 {
   return static_cast<unsigned long int>(mpq_get_d(_mpq));
+}
+
+_knumfraction::operator long long int (void) const
+{
+  return static_cast<long long int>(mpq_get_d(_mpq));
+}
+
+_knumfraction::operator unsigned long long int (void) const
+{
+  return static_cast<unsigned long long int>(mpq_get_d(_mpq));
 }
 
 _knumfloat::operator unsigned long int (void) const
@@ -995,7 +1059,15 @@ _knumfloat::operator unsigned long int (void) const
   return mpf_get_ui(_mpf);
 }
 
+_knumfloat::operator long long int (void) const
+{
+  return static_cast<long long int>(mpf_get_si(_mpf));
+}
 
+_knumfloat::operator unsigned long long int (void) const
+{
+  return static_cast<unsigned long long int>(mpf_get_ui(_mpf));
+}
 
 _knumerror::operator double (void) const
 {

@@ -256,7 +256,7 @@ void KCalcDisplay::slotPaste(bool bClipboard)
 	if (tmp_num_base != NB_DECIMAL)
 	{
 		bool was_ok;
-		quint64 tmp_result = tmp_str.toULongLong(& was_ok, tmp_num_base);
+		qint64 tmp_result = tmp_str.toLongLong(& was_ok, tmp_num_base);
 
 		if (!was_ok)
 		{
@@ -324,30 +324,30 @@ void KCalcDisplay::mousePressEvent(QMouseEvent *e)
 
 void KCalcDisplay::setPrecision(int precision)
 {
-	_precision = precision;
+    _precision = precision;
 }
 
 void KCalcDisplay::setFixedPrecision(int precision)
 {
-	if (_fixed_precision > _precision)
-		_fixed_precision = -1;
-	else
-		_fixed_precision = precision;
+    if (_fixed_precision > _precision)
+        _fixed_precision = -1;
+    else
+        _fixed_precision = precision;
 }
 
 void KCalcDisplay::setBeep(bool flag)
 {
-	_beep = flag;
+    _beep = flag;
 }
 
 void KCalcDisplay::setGroupDigits(bool flag)
 {
-	_groupdigits = flag;
+    _groupdigits = flag;
 }
 
 KNumber const & KCalcDisplay::getAmount(void) const
 {
-	return _display_amount;
+    return _display_amount;
 }
 
 bool KCalcDisplay::setAmount(KNumber const & new_amount)
@@ -363,7 +363,7 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
     if ((_num_base != NB_DECIMAL) &&
         (new_amount.type() != KNumber::SpecialType)) {
         _display_amount = new_amount.integerPart();
-        quint64 tmp_workaround = static_cast<quint64>(_display_amount);
+        qint64 tmp_workaround = static_cast<qint64>(_display_amount);
         display_str = QString::number(tmp_workaround, _num_base).toUpper();
     } else {
         // _num_base == NB_DECIMAL || new_amount.type() == KNumber::SpecialType
@@ -381,7 +381,6 @@ void KCalcDisplay::setText(QString const &string)
 {
     // note that "C" locale is being used internally
     _text = string;
-
     // if we aren't in decimal mode, we don't need to modify the string
     if (_num_base == NB_DECIMAL && _groupdigits)
         // when input ends with "." (because incomplete), the
@@ -409,8 +408,6 @@ QString KCalcDisplay::text() const
    being set with "setAmount"). Return value is the new base. */
 int KCalcDisplay::setBase(NumBase new_base)
 {
-	quint64 tmp_val = static_cast<quint64>(getAmount());
-
 	switch(new_base)
 	{
 	case NB_HEX:
@@ -432,7 +429,8 @@ int KCalcDisplay::setBase(NumBase new_base)
 		_num_base	= NB_DECIMAL;
 	}
 
-	setAmount(static_cast<quint64>(tmp_val));
+        // reset amount
+	setAmount(_display_amount);
 	
 	return _num_base;
 }
@@ -458,21 +456,21 @@ bool KCalcDisplay::updateDisplay(void)
       case NB_BINARY:
           Q_ASSERT(_period == false  && _eestate == false);
           setText(tmp_string);
-          _display_amount = static_cast<quint64>(STRTOUL(_str_int.toLatin1(), 0, 2));
+          _display_amount = static_cast<qint64>(STRTOUL(_str_int.toLatin1(), 0, 2));
           if (_neg_sign) _display_amount = -_display_amount;
           break;
 	  
       case NB_OCTAL:
           Q_ASSERT(_period == false  && _eestate == false);
           setText(tmp_string);
-          _display_amount = static_cast<quint64>(STRTOUL(_str_int.toLatin1(), 0, 8));
+          _display_amount = static_cast<qint64>(STRTOUL(_str_int.toLatin1(), 0, 8));
           if (_neg_sign) _display_amount = -_display_amount;
           break;
 		
       case NB_HEX:
           Q_ASSERT(_period == false  && _eestate == false);
           setText(tmp_string);
-          _display_amount = static_cast<quint64>(STRTOUL(_str_int.toLatin1(), 0, 16));
+          _display_amount = static_cast<qint64>(STRTOUL(_str_int.toLatin1(), 0, 16));
           if (_neg_sign) _display_amount = -_display_amount;
           break;
 	  

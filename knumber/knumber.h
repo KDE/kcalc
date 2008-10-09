@@ -109,6 +109,7 @@ class KDE_EXPORT KNumber
 
   KNumber(qint32 num = 0);
   KNumber(quint32 num);  
+  KNumber(qint64 num);
   KNumber(quint64 num);
 
   KNumber(double num);
@@ -241,6 +242,7 @@ class KDE_EXPORT KNumber
   operator bool(void) const;
   operator qint32(void) const;
   operator quint32(void) const;
+  operator qint64(void) const;
   operator quint64(void) const;
   operator double(void) const;
 

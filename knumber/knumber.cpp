@@ -69,6 +69,11 @@ KNumber::KNumber(quint32 num)
   _num = new _knuminteger(num);
 }
 
+KNumber::KNumber(qint64 num)
+{
+  _num = new _knuminteger(num);
+}
+
 KNumber::KNumber(quint64 num)
 {
   _num = new _knuminteger(num);
@@ -673,25 +678,14 @@ KNumber::operator quint32(void) const
   return static_cast<unsigned long int>(*_num);
 }
 
+KNumber::operator qint64(void) const
+{
+  return static_cast<long long int>(*_num);
+}
+
 KNumber::operator quint64(void) const
 {
-#if SIZEOF_UNSIGNED_LONG == 8
-  return static_cast<unsigned long int>(*_num);
-#elif SIZEOF_UNSIGNED_LONG == 4
-  KNumber tmp_num1 = this->abs().integerPart();
-  quint64 tmp_num2 =  static_cast<quint32>(tmp_num1) +
-    (static_cast<quint64>(static_cast<quint32>(tmp_num1 >> KNumber("32"))) << 32) ;
-
-#ifdef __GNUC__
-#warning "the cast operator from KNumber to quint64 is probably buggy, when a sign is involved"
-#endif
-  if (*this > KNumber(0))
-    return tmp_num2;
-  else
-    return static_cast<quint64> (- static_cast<qint64>(tmp_num2));
-#else
-#error "SIZEOF_UNSIGNED_LONG is a unhandled case"
-#endif
+  return static_cast<unsigned long long int>(*_num);
 }
 
 KNumber::operator double(void) const

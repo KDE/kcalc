@@ -13,7 +13,6 @@ ADD_DEFINITIONS( -D_ISOC99_SOURCE ) # added manually
 
 include_directories( ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/knumber ${GMP_INCLUDE_DIR} )
 
-
 ########### next target ###############
 # Needs absolute paths due to the test program for knumber
 set(libknumber_la_SRCS  
@@ -22,6 +21,7 @@ set(libknumber_la_SRCS
    )
 
 add_subdirectory( knumber )
+add_subdirectory( tests )
 
 set(kcalc_KDEINIT_SRCS ${libknumber_la_SRCS}
    kcalc.cpp 
@@ -57,3 +57,5 @@ install( FILES kcalc.kcfg  DESTINATION ${KCFG_INSTALL_DIR})
 install( FILES kcalcui.rc  DESTINATION ${DATA_INSTALL_DIR}/kcalc)
 install( FILES scienceconstants.xml  DESTINATION ${DATA_INSTALL_DIR}/kcalc)
 install( FILES kcalcrc.upd  DESTINATION ${DATA_INSTALL_DIR}/kconf_update)
+
+kde4_install_icons( ${ICON_INSTALL_DIR}   )
