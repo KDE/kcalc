@@ -21,7 +21,7 @@ set(libknumber_la_SRCS
    )
 
 add_subdirectory( knumber )
-add_subdirectory( tests )
+# add_subdirectory( tests )
 
 set(kcalc_KDEINIT_SRCS ${libknumber_la_SRCS}
    kcalc.cpp 
