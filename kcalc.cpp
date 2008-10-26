@@ -1923,6 +1923,9 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
 	aboutData.addAuthor(ki18n("Ren" "\xc3\xa9" " M" "\xc3\xa9"  "rou"), KLocalizedString(), "ochominutosdearco@yahoo.es");
 	aboutData.addAuthor(ki18n("Michel Marti"), KLocalizedString(), "mma@objectxp.com");
 	aboutData.addAuthor(ki18n("David Johnson"), ki18n("Maintainer"), "david@usermode.org");
+
+	aboutData.setProgramIconName("accessories-calculator");
+
 	KCmdLineArgs::init(argc, argv, &aboutData);
 
 	KApplication app;
