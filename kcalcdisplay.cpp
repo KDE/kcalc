@@ -382,16 +382,20 @@ void KCalcDisplay::setText(QString const &string)
     // note that "C" locale is being used internally
     _text = string;
     // if we aren't in decimal mode, we don't need to modify the string
-    if (_num_base == NB_DECIMAL && _groupdigits)
+    if ((_num_base == NB_DECIMAL) && _groupdigits) {
         // when input ends with "." (because incomplete), the
         // formatNumber method does not work; fix by hand by
         // truncating, formatting and appending again
         if (string.endsWith('.')) {
             _text.chop(1);
-            _text = KGlobal::locale()->formatNumber(_text, false, 0); // Note: rounding happened already above!
+            // Note: rounding happened already above!
+            _text = KGlobal::locale()->formatNumber(_text, false, 0); 
             _text.append(KGlobal::locale()->decimalSymbol());
-        } else
-            _text = KGlobal::locale()->formatNumber(_text, false, 0); // Note: rounding happened already above!
+        } else {
+            // Note: rounding happened already above!
+            _text = KGlobal::locale()->formatNumber(_text, false, 0); 
+        }
+    }
 
     update();
     emit changedText(_text);

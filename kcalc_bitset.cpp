@@ -52,7 +52,7 @@ void BitButton::setOn(bool value)
 	update();
 }
 
-void BitButton::paintEvent(QPaintEvent *event)
+void BitButton::paintEvent(QPaintEvent *)
 {
 	QPainter painter(this);
 	QPen pen(palette().text(), 2);

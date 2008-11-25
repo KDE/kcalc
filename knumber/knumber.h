@@ -246,22 +246,22 @@ class KDE_EXPORT KNumber
   operator quint64(void) const;
   operator double(void) const;
 
-  bool const operator==(KNumber const & arg2) const
+  bool operator==(KNumber const & arg2) const
   { return (compare(arg2) == 0); }
 
-  bool const operator!=(KNumber const & arg2) const
+  bool operator!=(KNumber const & arg2) const
   { return (compare(arg2) != 0); }
 
-  bool const operator>(KNumber const & arg2) const
+  bool operator>(KNumber const & arg2) const
   { return (compare(arg2) > 0); }
 
-  bool const operator<(KNumber const & arg2) const
+  bool operator<(KNumber const & arg2) const
   { return (compare(arg2) < 0); }
 
-  bool const operator>=(KNumber const & arg2) const
+  bool operator>=(KNumber const & arg2) const
   { return (compare(arg2) >= 0); }
 
-  bool const operator<=(KNumber const & arg2) const
+  bool operator<=(KNumber const & arg2) const
   { return (compare(arg2) <= 0); }
 
   KNumber & operator +=(KNumber const &arg);
@@ -272,7 +272,7 @@ class KDE_EXPORT KNumber
 
  private:
   void simplifyRational(void);
-  int const compare(KNumber const & arg2) const;
+  int compare(KNumber const & arg2) const;
   
   _knumber *_num;
   static bool _float_output;

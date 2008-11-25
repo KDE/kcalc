@@ -34,21 +34,37 @@ _knumerror::_knumerror(_knumber const & num)
   case IntegerType:
   case FractionType:
   case FloatType:
-    // What should I do here?
+    // TODO: What should I do here?
     break;
   }
 }
 
 _knuminteger::_knuminteger(qint64 num)
 {
-  // TODO: fixup
-  mpz_init_set_si(_mpz, static_cast<signed long int>(num));
+  mpz_init(_mpz);
+#if SIZEOF_SIGNED_LONG == 8
+  mpz_set_si(_mpz, static_cast<signed long int>(num));
+#elif SIZEOF_SIGNED_LONG == 4
+  mpz_set_si(_mpz, static_cast<signed long int>(num >> 32));
+  mpz_mul_2exp(_mpz, _mpz, 32);
+  mpz_add_ui(_mpz, _mpz, static_cast<signed long int>(num));
+#else
+#error "SIZEOF_SIGNED_LONG is a unhandled case"
+#endif 
 }
 
 _knuminteger::_knuminteger(quint64 num)
 {
-  // TODO: fixup
-  mpz_init_set_ui(_mpz, static_cast<unsigned long int>(num));
+  mpz_init(_mpz);
+#if SIZEOF_UNSIGNED_LONG == 8
+  mpz_set_ui(_mpz, static_cast<unsigned long int>(num));
+#elif SIZEOF_UNSIGNED_LONG == 4
+  mpz_set_ui(_mpz, static_cast<unsigned long int>(num >> 32));
+  mpz_mul_2exp(_mpz, _mpz, 32);
+  mpz_add_ui(_mpz, _mpz, static_cast<unsigned long int>(num));
+#else
+#error "SIZEOF_UNSIGNED_LONG is a unhandled case"
+#endif 
 }
 
 _knuminteger::_knuminteger(_knumber const & num)
@@ -1015,7 +1031,7 @@ _knuminteger::operator long long int (void) const
   long long int value = tmpstring.toLongLong(&ok, 10);
 
   if (!ok) {
-    // what to do if error?
+    // TODO: what to do if error?
     value = 0;
   }
   return value;
@@ -1033,7 +1049,7 @@ _knuminteger::operator unsigned long long int (void) const
   unsigned long long int value = tmpstring.toULongLong(&ok, 10);
 
   if (!ok) {
-    // what to do if error?
+    // TODO: what to do if error?
     value = 0;
   }
   return value;

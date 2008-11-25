@@ -1725,7 +1725,9 @@ void KCalculator::slotBitsetChanged(unsigned long long value) {
 }
 
 void KCalculator::slotUpdateBitset(const KNumber &nr) {
-	mBitset->setValue(nr);
+    // KNumber returns zero when casting a negative to unsigned
+    // so cast to signed first to avoid the side effect
+    mBitset->setValue(static_cast<quint64>(static_cast<qint64>(nr)));
 }
 
 void KCalculator::updateSettings()

@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2 -*-
+// -*- indent-tabs-mode: nil -*-
 /* This file is part of the KDE libraries
    Copyright (c) 2005 Klaus Niederkrueger <kniederk@math.uni-koeln.de>
 
@@ -294,13 +294,14 @@ static void _round(QString &str, int precision)
 {
   int decimalSymbolPos = str.indexOf('.');
 
-  if (decimalSymbolPos == -1)
-    if (precision == 0)  return;
-    else if (precision > 0) // add dot if missing (and needed)
-      {
-	str.append('.');
-	decimalSymbolPos = str.length() - 1;
-      }
+  if (decimalSymbolPos == -1) {
+    if (precision == 0) {
+      return;
+    } else if (precision > 0) { // add dot if missing (and needed)
+      str.append('.');
+      decimalSymbolPos = str.length() - 1;
+    }
+  }
 
   // fill up with more than enough zeroes (in case fractional part too short)
   str.append(QString().fill('0', precision));
@@ -693,7 +694,7 @@ KNumber::operator double(void) const
   return static_cast<double>(*_num);
 }
 
-int const KNumber::compare(KNumber const & arg2) const
+int KNumber::compare(KNumber const & arg2) const
 {
   return _num->compare(*arg2._num);
 }
