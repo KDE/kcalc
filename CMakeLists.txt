@@ -42,6 +42,8 @@ kde4_add_ui_files(kcalc_KDEINIT_SRCS
 
 kde4_add_kcfg_files(kcalc_KDEINIT_SRCS kcalc_settings.kcfgc )
 
+kde4_add_app_icon(kcalc_KDEINIT_SRCS "${KDE4_INSTALL_DIR}/share/icons/oxygen/*/apps/accessories-calculator.png")
+
 kde4_add_kdeinit_executable( kcalc ${kcalc_KDEINIT_SRCS})
 
 target_link_libraries(kdeinit_kcalc ${QT_QTXML_LIBRARY} ${KDE4_KDEUI_LIBS} ${GMP_LIBRARIES})
