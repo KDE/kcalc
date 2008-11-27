@@ -24,6 +24,7 @@
 #include <gmp.h>
 #include <QString>
 
+#ifndef Q_CC_MSVC
 // work-around for pre-C99-libs
 #ifndef INFINITY
 #define INFINITY  HUGE_VAL
@@ -31,6 +32,7 @@
 // this is really ugly
 #ifndef NAN
 #define NAN (atof("nan"))
+#endif
 #endif
 
 class _knumber
