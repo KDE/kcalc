@@ -149,7 +149,9 @@ bool isoddint(const KNumber & input)
 
   
 static KNumber ExecBinom(const KNumber & left_op, const KNumber & right_op) 
-{ 
+{
+    // TODO: use libgmp mpz_bin_ui
+
 	if (left_op.type() != KNumber::IntegerType
 	    ||  right_op.type() != KNumber::IntegerType
 	    ||  right_op > left_op  ||  left_op < KNumber::Zero)
@@ -612,27 +614,6 @@ void CalcEngine::Exp10(KNumber input)
 }
 
 
-static KNumber _factorial(KNumber input)
-{
-	KNumber tmp_amount = input;
-
-	// don't do recursive factorial,
-	// because large numbers lead to
-	// stack overflows
-	while (tmp_amount > KNumber::One)
-	{
-		tmp_amount -= KNumber::One;
-
-		input = tmp_amount * input;
-
-	}
-
-	if (tmp_amount < KNumber::One)
-		return KNumber::One;
-	return input;
-}
-
-
 void CalcEngine::Factorial(KNumber input)
 {
 	if (input == KNumber("inf")) return;
@@ -644,7 +625,7 @@ void CalcEngine::Factorial(KNumber input)
 	}
 	KNumber tmp_amount = input.integerPart();
 
-	_last_number = _factorial(tmp_amount);
+	_last_number = tmp_amount.factorial();
 }
 
 void CalcEngine::InvertSign(KNumber input)

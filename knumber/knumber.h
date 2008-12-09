@@ -216,6 +216,8 @@ class KDE_EXPORT KNumber
    */
   KNumber const cbrt(void) const;
 
+  KNumber const factorial(void) const;
+
   /**
    * Truncates a @p KNumber to its integer type returning a number of
    * type @p NumType::IntegerType.

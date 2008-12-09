@@ -482,6 +482,16 @@ KNumber const KNumber::sqrt(void) const
   return tmp_num;
 }
 
+KNumber const KNumber::factorial(void) const
+{
+  KNumber tmp_num;
+  delete tmp_num._num;
+
+  tmp_num._num = _num->factorial();
+
+  return tmp_num;
+}
+
 KNumber const KNumber::integerPart(void) const
 {
   KNumber tmp_num;

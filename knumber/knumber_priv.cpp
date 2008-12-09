@@ -490,6 +490,62 @@ _knumber * _knumfloat::sqrt(void) const
 
 
 
+_knumber * _knumerror::factorial(void) const
+{
+  _knumerror *tmp_num = new _knumerror(*this);
+
+  return tmp_num;
+}
+
+_knumber * _knuminteger::factorial(void) const
+{
+    if (mpz_sgn(_mpz) < 0) {
+	_knumerror *tmp_num = new _knumerror(UndefinedNumber);
+	return tmp_num;
+    }
+    _knuminteger * tmp_num = new _knuminteger();
+
+    mpz_fac_ui(tmp_num->_mpz, mpz_get_ui(_mpz));
+
+    return tmp_num;
+}
+
+_knumber * _knumfraction::factorial(void) const
+{
+    if (mpq_sgn(_mpq) < 0) {
+	_knumerror *tmp_num = new _knumerror(UndefinedNumber);
+	return tmp_num;
+    }
+    _knuminteger *tmp_num = new _knuminteger();
+    mpz_set_q(tmp_num->_mpz, _mpq);
+    unsigned long int op = mpz_get_ui(tmp_num->_mpz);
+
+    tmp_num = new _knuminteger();
+
+    mpz_fac_ui(tmp_num->_mpz, op);
+
+    return tmp_num;
+}
+
+_knumber * _knumfloat::factorial(void) const
+{
+    if (mpf_sgn(_mpf) < 0) {
+	_knumerror *tmp_num = new _knumerror(UndefinedNumber);
+	return tmp_num;
+    }
+    _knuminteger *tmp_num = new _knuminteger();
+    mpz_set_f(tmp_num->_mpz, _mpf);
+    unsigned long int op = mpz_get_ui(tmp_num->_mpz);
+
+    tmp_num = new _knuminteger();
+
+    mpz_fac_ui(tmp_num->_mpz, op);
+
+    return tmp_num;
+}
+
+
+
 _knumber * _knumerror::change_sign(void) const
 {
   _knumerror * tmp_num = new _knumerror();
