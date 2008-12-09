@@ -102,11 +102,7 @@ void KCalcDisplay::slotCut(void)
 
 void KCalcDisplay::slotCopy(void)
 {
-	QString txt;
-	if (_num_base != NB_DECIMAL)
-		txt = QLabel::text();
-	else
-		txt = _display_amount.toQString();
+	QString txt = QLabel::text();
 	if (_num_base == NB_HEX)
 		txt.prepend( "0x" );
 	(QApplication::clipboard())->setText(txt, QClipboard::Clipboard);
