@@ -505,6 +505,9 @@
             <property name="text" >
              <string>EXP</string>
             </property>
+            <property name="shortcut" >
+             <string>E</string>
+            </property>
            </widget>
           </item>
           <item row="5" column="4" >
