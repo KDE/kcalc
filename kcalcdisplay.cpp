@@ -220,21 +220,17 @@ bool KCalcDisplay::sendEvent(Event const event)
 
 void KCalcDisplay::slotCut(void)
 {
-	slotCopy();
-	sendEvent(EventReset);
+    slotCopy();
+    sendEvent(EventReset);
 }
 
 void KCalcDisplay::slotCopy(void)
 {
-	QString txt;
-	if (_num_base != NB_DECIMAL)
-		txt = _text;
-	else
-		txt = _display_amount.toQString();
-	if (_num_base == NB_HEX)
-		txt.prepend( "0x" );
-	(QApplication::clipboard())->setText(txt, QClipboard::Clipboard);
-	(QApplication::clipboard())->setText(txt, QClipboard::Selection);
+    QString txt = _text;
+    if (_num_base == NB_HEX)
+        txt.prepend( "0x" );
+    (QApplication::clipboard())->setText(txt, QClipboard::Clipboard);
+    (QApplication::clipboard())->setText(txt, QClipboard::Selection);
 }
 
 void KCalcDisplay::slotPaste(bool bClipboard)
