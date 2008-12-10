@@ -377,8 +377,10 @@ void KCalcDisplay::setText(QString const &string)
 {
     // note that "C" locale is being used internally
     _text = string;
+    // don't mess with special numbers
+    bool special = (string.contains("nan") || string.contains("inf"));
     // if we aren't in decimal mode, we don't need to modify the string
-    if ((_num_base == NB_DECIMAL) && _groupdigits) {
+    if ((_num_base == NB_DECIMAL) && _groupdigits && !special) {
         // when input ends with "." (because incomplete), the
         // formatNumber method does not work; fix by hand by
         // truncating, formatting and appending again

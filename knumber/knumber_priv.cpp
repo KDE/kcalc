@@ -190,6 +190,7 @@ QString const _knumerror::ascii(int prec) const
 {
   static_cast<void>(prec);
 
+  // TODO: i18n these strings here and elsewhere, as they're user visible
   switch(_error) {
   case UndefinedNumber:
     return QString("nan");
@@ -819,9 +820,8 @@ _knumber *_knumfloat::divide(_knumber const & arg2) const
 
 
 
-_knumber * _knumerror::power(_knumber const & exponent) const
+_knumber * _knumerror::power(_knumber const & /*exponent*/) const
 {
-  static_cast<void>(exponent);
   return new _knumerror(UndefinedNumber);
 }
 
@@ -916,7 +916,16 @@ _knumber * _knumfraction::power(_knumber const & exponent) const
   mpz_set(tmp_num._mpz, mpq_denref(_mpq));
   _knumber *denom = tmp_num.power(exponent);
 
-  _knumber *result = numer->divide(*denom);
+  _knumber *result;
+
+  if (numer->type() == SpecialType) {
+    result = new _knumerror(*numer);
+  } else if (denom->type() == SpecialType) {
+    result = new _knumerror(*denom);
+  } else {
+    result = numer->divide(*denom);
+  }
+
   delete numer;
   delete denom;
   return result;
@@ -924,8 +933,16 @@ _knumber * _knumfraction::power(_knumber const & exponent) const
 
 _knumber * _knumfloat::power(_knumber const & exponent) const
 {
-  return new _knumfloat(pow(static_cast<double>(*this),
-			    static_cast<double>(exponent)));
+  double result = pow(static_cast<double>(*this),
+			static_cast<double>(exponent));
+  if (isnan(result)) {
+    return new _knumerror(UndefinedNumber);
+  }
+  if (isinf(result)) {
+    return new _knumerror(Infinity);
+  }
+
+  return new _knumfloat(result);
 }
 
 
