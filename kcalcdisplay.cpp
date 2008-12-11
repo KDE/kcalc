@@ -250,11 +250,12 @@ void KCalcDisplay::slotPaste(bool bClipboard)
         if (_groupdigits) {
             tmp_str.remove(KGlobal::locale()->thousandsSeparator());
         }
+        tmp_str = tmp_str.toLower();
 
         // determine base
-	if (tmp_str.startsWith("0x", Qt::CaseInsensitive)) {
+	if (tmp_str.startsWith("0x")) {
             tmp_num_base = NB_HEX;
-        } else if (tmp_str.startsWith("0b", Qt::CaseInsensitive)) {
+        } else if (tmp_str.startsWith("0b")) {
             tmp_num_base = NB_BINARY;
             tmp_str.remove(0, 2);
         }
