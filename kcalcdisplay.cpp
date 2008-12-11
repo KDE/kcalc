@@ -245,14 +245,24 @@ void KCalcDisplay::slotPaste(bool bClipboard)
 
 	NumBase tmp_num_base = _num_base;
 
+        // fix up string
 	tmp_str = tmp_str.trimmed();
+        if (_groupdigits) {
+            tmp_str.remove(KGlobal::locale()->thousandsSeparator());
+        }
 
-	if (tmp_str.startsWith("0x", Qt::CaseInsensitive)) tmp_num_base = NB_HEX;
+        // determine base
+	if (tmp_str.startsWith("0x", Qt::CaseInsensitive)) {
+            tmp_num_base = NB_HEX;
+        } else if (tmp_str.startsWith("0b", Qt::CaseInsensitive)) {
+            tmp_num_base = NB_BINARY;
+            tmp_str.remove(0, 2);
+        }
 
 	if (tmp_num_base != NB_DECIMAL)
 	{
 		bool was_ok;
-		qint64 tmp_result = tmp_str.toLongLong(& was_ok, tmp_num_base);
+		qint64 tmp_result = tmp_str.toLongLong(&was_ok, tmp_num_base);
 
 		if (!was_ok)
 		{
@@ -263,8 +273,7 @@ void KCalcDisplay::slotPaste(bool bClipboard)
 	  
 		setAmount(KNumber(tmp_result));
 	} 
-	else // _num_base == NB_DECIMAL && ! 
-	     // tmp_str.startsWith("0x",Qt::CaseInsensitive)
+	else
 	{
 		setAmount(KNumber(tmp_str));
 		if (_beep  &&  _display_amount == KNumber::NotDefined)
