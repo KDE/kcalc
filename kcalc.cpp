@@ -727,7 +727,7 @@ void KCalculator::setupKeys()
 void KCalculator::updateGeometry(void)
 {
     QWidget *widget;
-    QSize em = pb->fontMetrics().size(0, "M");
+    QSize em = pbAND->fontMetrics().size(0, "M");
     int margin =
 		QApplication::style()->pixelMetric(QStyle::PM_ButtonMargin, 0, 0);
     margin = qMax(qMin(margin/2, 3), 3);
