@@ -1,3 +1,4 @@
+// -*- indent-tabs-mode: nil -*-
 /*
     KCalc, a scientific calculator for the X window system using the
     Qt widget libraries, available at no cost at http://www.troll.no
@@ -57,31 +58,40 @@ class KToggleAction;
 
 #include "ui_kcalc.h"
 #include "ui_general.h"
+#include "ui_fonts.h"
 #include "ui_constants.h"
 #include "ui_colors.h"
 
 class  General: public QWidget, public Ui::General
 {
 public:
-  General( QWidget *parent ) : QWidget( parent ) {
-    setupUi( this );
-  }
+    General( QWidget *parent ) : QWidget( parent ) {
+	setupUi( this );
+    }
+};
+
+class  Fonts: public QWidget, public Ui::Fonts
+{
+public:
+    Fonts( QWidget *parent ) : QWidget( parent ) {
+	setupUi( this );
+    }
 };
 
 class Constants : public QWidget, public Ui::Constants
 {
 public:
-  Constants( QWidget *parent ) : QWidget( parent ) {
-    setupUi( this );
-  }
+    Constants( QWidget *parent ) : QWidget( parent ) {
+	setupUi( this );
+    }
 };
 
 class Colors : public QWidget, public Ui::Colors
 {
 public:
-  Colors( QWidget *parent ) : QWidget( parent ) {
-    setupUi( this );
-  }
+    Colors( QWidget *parent ) : QWidget( parent ) {
+	setupUi( this );
+    }
 };
 
 
@@ -114,7 +124,7 @@ private:
 			   bool store_result_in_history = false);
 
 protected slots:
-void changeButtonNames();
+    void changeButtonNames();
     void updateSettings();
     void set_colors();
     void EnterEqual();

@@ -45,7 +45,6 @@
 #include <kconfig.h>
 #include <kconfigdialog.h>
 #include <kdialog.h>
-#include <kfontdialog.h>
 #include <kglobal.h>
 #include <kglobalsettings.h>
 #include <kmenu.h>
@@ -1460,9 +1459,8 @@ void KCalculator::showSettings()
 
 	// font settings
 
-	KFontChooser *fontChooser = new KFontChooser(0);
-	fontChooser->setObjectName("kcfg_Font");
-	dialog->addPage(fontChooser, i18n("Font"), "preferences-desktop-font", i18n("Select Display Font"));
+	Fonts *fonts = new Fonts(0);
+	dialog->addPage(fonts, i18n("Font"), "preferences-desktop-font", i18n("Select Display Font"));
 
 	// color settings
 

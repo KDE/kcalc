@@ -38,6 +38,7 @@ kde4_add_ui_files(kcalc_KDEINIT_SRCS
    kcalc.ui
    constants.ui
    colors.ui
+   fonts.ui
    general.ui)
 
 kde4_add_kcfg_files(kcalc_KDEINIT_SRCS kcalc_settings.kcfgc )
