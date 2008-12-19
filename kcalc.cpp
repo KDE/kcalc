@@ -247,6 +247,8 @@ void KCalculator::setupStatusbar(void)
 
 void KCalculator::setupKeys()
 {
+    // NOTE: all alphanumeric shorts set in ui file
+
 	// numbers
 
 	NumButtonGroup = new QButtonGroup(this);
@@ -309,15 +311,15 @@ void KCalculator::setupKeys()
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbInv, SLOT(slotSetAccelDisplayMode(bool)));
 
-	pbClear->setShortcut(QKeySequence(Qt::Key_PageUp));
-	new QShortcut(Qt::Key_Escape, pbClear, SLOT(animateClick()));
+	pbClear->setShortcut(QKeySequence(Qt::Key_Escape));
+	new QShortcut(Qt::Key_PageUp, pbClear, SLOT(animateClick()));
 	connect(pbClear, SIGNAL(clicked(void)),
 			SLOT(slotClearclicked(void)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbClear, SLOT(slotSetAccelDisplayMode(bool)));
 
-	pbAllClear->setShortcut(QKeySequence(Qt::Key_PageDown));
-	new QShortcut(Qt::Key_Delete, pbAllClear, SLOT(animateClick()));
+	pbAllClear->setShortcut(QKeySequence(Qt::Key_Delete));
+	new QShortcut(Qt::Key_PageDown, pbAllClear, SLOT(animateClick()));
 	connect(pbAllClear, SIGNAL(clicked(void)),
 			SLOT(slotAllClearclicked(void)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
@@ -390,8 +392,9 @@ void KCalculator::setupKeys()
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbDivision, SLOT(slotSetAccelDisplayMode(bool)));
 
-	pbMultiplication->setShortcut(QKeySequence(Qt::Key_multiply));
-	new QShortcut( Qt::Key_Asterisk, pbMultiplication, SLOT(animateClick()) );
+	pbMultiplication->setShortcut(QKeySequence(Qt::Key_Asterisk));
+	new QShortcut( Qt::Key_X, pbMultiplication, SLOT(animateClick()) );
+	new QShortcut( Qt::Key_multiply, pbMultiplication, SLOT(animateClick()) );
 	connect(pbMultiplication, SIGNAL(clicked(void)),
 			SLOT(slotMultiplicationclicked(void)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
@@ -410,8 +413,11 @@ void KCalculator::setupKeys()
 			pbPlus, SLOT(slotSetAccelDisplayMode(bool)));
 
 	pbPeriod->setText(KGlobal::locale()->decimalSymbol());
-	pbPeriod->setShortcut(QKeySequence(Qt::Key_Period));
-	new QShortcut( Qt::Key_Comma, pbPeriod, SLOT(animateClick()) );
+	pbPeriod->setShortcut(KGlobal::locale()->decimalSymbol());
+	if (KGlobal::locale()->decimalSymbol() == ".")
+	    new QShortcut( Qt::Key_Comma, pbPeriod, SLOT(animateClick()) );
+	else if (KGlobal::locale()->decimalSymbol() == ",")
+	    new QShortcut( Qt::Key_Period, pbPeriod, SLOT(animateClick()) );
 	connect(pbPeriod, SIGNAL(clicked(void)),
 			SLOT(slotPeriodclicked(void)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
@@ -641,6 +647,7 @@ void KCalculator::setupKeys()
 			pbMod, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbMod, SLOT(slotSetAccelDisplayMode(bool)));
+	pbMod->setShortcut(QKeySequence(Qt::Key_Colon));
 	connect(pbMod, SIGNAL(clicked(void)), SLOT(slotModclicked(void)));
 
 	pbReci->addMode(ModeNormal, "1/x", i18n("Reciprocal"));
@@ -991,8 +998,8 @@ void KCalculator::slotMemPlusMinusclicked(void)
 	else 			memory_num -= calc_display->getAmount();
 
 	pbInv->setChecked(false);
-	statusBar()->changeItem("M", MemField);
-	calc_display->setStatusText(MemField, "M");
+	statusBar()->changeItem(i18n("M"), MemField);
+	calc_display->setStatusText(MemField, i18n("M"));
 	pbMemRecall->setEnabled(true);
 }
 

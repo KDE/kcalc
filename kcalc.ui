@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>816</width>
+    <width>675</width>
     <height>293</height>
    </rect>
   </property>
@@ -180,9 +180,6 @@
             </property>
             <property name="text" >
              <string>Mod</string>
-            </property>
-            <property name="shortcut" >
-             <string>Shift+:</string>
             </property>
            </widget>
           </item>
