@@ -369,7 +369,7 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
     if ((_num_base != NB_DECIMAL) &&
         (new_amount.type() != KNumber::SpecialType)) {
         _display_amount = new_amount.integerPart();
-        qint64 tmp_workaround = static_cast<qint64>(_display_amount);
+        quint64 tmp_workaround = static_cast<quint64>(_display_amount);
         display_str = QString::number(tmp_workaround, _num_base).toUpper();
     } else {
         // _num_base == NB_DECIMAL || new_amount.type() == KNumber::SpecialType

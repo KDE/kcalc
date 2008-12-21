@@ -1724,15 +1724,21 @@ void KCalculator::slotHideAll(void)
 	if(actionBitsetshow->isChecked()) actionBitsetshow->trigger();
 }
 
-void KCalculator::slotBitsetChanged(unsigned long long value) {
+void KCalculator::slotBitsetChanged(unsigned long long value)
+{
+	// note: sets display to *unsigned* value
 	calc_display->setAmount(value);
 	updateDisplay(false);
 }
 
 void KCalculator::slotUpdateBitset(const KNumber &nr) {
-    // KNumber returns zero when casting a negative to unsigned
-    // so cast to signed first to avoid the side effect
-    mBitset->setValue(static_cast<quint64>(static_cast<qint64>(nr)));
+    if (nr < KNumber::Zero) {
+        // KNumber returns zero when casting a negative to unsigned
+        // so cast to signed first to avoid the side effect
+        mBitset->setValue(static_cast<qint64>(nr));
+    } else { 
+        mBitset->setValue(static_cast<quint64>(nr));
+    }
 }
 
 void KCalculator::updateSettings()
@@ -1751,7 +1757,7 @@ void KCalculator::updateSettings()
 	}
 	else
 	{
-		setCaption(QString::null);	//krazy:exclude=nullstrassign for old broken gcc
+		setCaption(QString());
 	}
 	calc_display->changeSettings();
 

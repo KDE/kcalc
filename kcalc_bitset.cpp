@@ -94,7 +94,7 @@ KCalcBitset::KCalcBitset(QWidget *parent)
 			layout->addLayout(wordlayout, rows, cols);
 
 			for (int bit=0; bit<8; bit++) {
-				QAbstractButton *tmpBitButton = new BitButton(this);
+				BitButton *tmpBitButton = new BitButton(this);
 				wordlayout->addWidget(tmpBitButton);
 				bitButtonGroup->addButton(tmpBitButton, bitCounter);
 				bitCounter--;
@@ -112,6 +112,8 @@ KCalcBitset::KCalcBitset(QWidget *parent)
 
 void KCalcBitset::setValue(unsigned long long value)
 {
+    if (mValue == value) return;
+
 	mValue = value;
 	for(int i=0; i<64; i++) {
 		BitButton *bb = qobject_cast<BitButton*>(bitButtonGroup->button(i));
