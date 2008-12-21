@@ -545,8 +545,6 @@ _knumber * _knumfloat::factorial(void) const
     return tmp_num;
 }
 
-
-
 _knumber * _knumerror::change_sign(void) const
 {
   _knumerror * tmp_num = new _knumerror();
@@ -1119,7 +1117,13 @@ _knuminteger::operator unsigned long long int (void) const
   free(tmpchar);
 
   bool ok;
-  unsigned long long int value = tmpstring.toULongLong(&ok, 10);
+  unsigned long long int value;
+  if (sign() < 0) {
+      long long signedvalue = tmpstring.toLongLong(&ok, 10);
+      value = static_cast<unsigned long long>(signedvalue);
+  } else {
+      value = tmpstring.toULongLong(&ok, 10);
+  }
 
   if (!ok) {
     // TODO: what to do if error?

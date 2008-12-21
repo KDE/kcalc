@@ -475,6 +475,7 @@ void CalcEngine::AreaTangensHyp(KNumber input)
 	_last_number = KNumber(atanh(static_cast<double>(input)));
 }
 
+#include "knumber/knumber_priv.h"
 void CalcEngine::Complement(KNumber input)
 {
 	if (input.type() != KNumber::IntegerType)
@@ -482,7 +483,9 @@ void CalcEngine::Complement(KNumber input)
 		_last_number = KNumber("nan");
 		return;
 	}
-	_last_number = - input - KNumber::One;
+	// Note: assumes 64-bit "logic mode"
+	quint64 value = static_cast<quint64>(input);
+	_last_number = KNumber(~value);
 }
 
 
