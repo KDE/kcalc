@@ -1,9 +1,6 @@
 == ToDo ==
 * Redo KCalcButton
 
-* Eliminate DispLogic, rolling functionality into KCalc and KCalcDisplay.
-Consider using QUndoStock for history
-
 * Use validator for constant value line edits in configure.
 
 * Have a look at Evan's new stack engine kcalc_core.cpp. But be very careful
@@ -16,10 +13,7 @@ unsigned short,...). Look here at some of Evan's code.
 use standard libc cos, sin, etc., cast back
 
 ====Below old TODOs ===
-* get rid of dlabel.h & dlabel.cpp
 * key groups for color configuration need to be rethought
 * better to handle keys with "accel" or with "keyPressEvent"?
-
-* think about either doing RichText by hand on labels, or only draw visible buttons, to enhance startup time.
 
 * check whether DelFormer Input in stat-mode works after using median!
