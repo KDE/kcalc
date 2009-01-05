@@ -149,7 +149,9 @@ bool isoddint(const KNumber & input)
 
   
 static KNumber ExecBinom(const KNumber & left_op, const KNumber & right_op) 
-{ 
+{
+    // TODO: use libgmp mpz_bin_ui
+
 	if (left_op.type() != KNumber::IntegerType
 	    ||  right_op.type() != KNumber::IntegerType
 	    ||  right_op > left_op  ||  left_op < KNumber::Zero)
@@ -473,6 +475,7 @@ void CalcEngine::AreaTangensHyp(KNumber input)
 	_last_number = KNumber(atanh(static_cast<double>(input)));
 }
 
+#include "knumber/knumber_priv.h"
 void CalcEngine::Complement(KNumber input)
 {
 	if (input.type() != KNumber::IntegerType)
@@ -480,7 +483,9 @@ void CalcEngine::Complement(KNumber input)
 		_last_number = KNumber("nan");
 		return;
 	}
-	_last_number = - input - KNumber::One;
+	// Note: assumes 64-bit "logic mode"
+	quint64 value = static_cast<quint64>(input);
+	_last_number = KNumber(~value);
 }
 
 
@@ -612,27 +617,6 @@ void CalcEngine::Exp10(KNumber input)
 }
 
 
-static KNumber _factorial(KNumber input)
-{
-	KNumber tmp_amount = input;
-
-	// don't do recursive factorial,
-	// because large numbers lead to
-	// stack overflows
-	while (tmp_amount > KNumber::One)
-	{
-		tmp_amount -= KNumber::One;
-
-		input = tmp_amount * input;
-
-	}
-
-	if (tmp_amount < KNumber::One)
-		return KNumber::One;
-	return input;
-}
-
-
 void CalcEngine::Factorial(KNumber input)
 {
 	if (input == KNumber("inf")) return;
@@ -644,7 +628,7 @@ void CalcEngine::Factorial(KNumber input)
 	}
 	KNumber tmp_amount = input.integerPart();
 
-	_last_number = _factorial(tmp_amount);
+	_last_number = tmp_amount.factorial();
 }
 
 void CalcEngine::InvertSign(KNumber input)
@@ -972,7 +956,7 @@ void CalcEngine::enterOperation(KNumber number, Operation func)
 bool CalcEngine::evalStack(void)
 {
 	// this should never happen
-	if (_stack.isEmpty()) KMessageBox::error(0L, i18n("Stack processing error - empty stack"));
+	Q_ASSERT(!_stack.isEmpty());
 
 	_node tmp_node = _stack.pop();
 

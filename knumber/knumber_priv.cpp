@@ -34,16 +34,30 @@ _knumerror::_knumerror(_knumber const & num)
   case IntegerType:
   case FractionType:
   case FloatType:
-    // What should I do here?
+    // TODO: What should I do here?
     break;
   }
+}
+
+_knuminteger::_knuminteger(qint64 num)
+{
+  mpz_init(_mpz);
+#if SIZEOF_SIGNED_LONG == 8
+  mpz_set_si(_mpz, static_cast<signed long int>(num));
+#elif SIZEOF_SIGNED_LONG == 4
+  mpz_set_si(_mpz, static_cast<signed long int>(num >> 32));
+  mpz_mul_2exp(_mpz, _mpz, 32);
+  mpz_add_ui(_mpz, _mpz, static_cast<signed long int>(num));
+#else
+#error "SIZEOF_SIGNED_LONG is a unhandled case"
+#endif 
 }
 
 _knuminteger::_knuminteger(quint64 num)
 {
   mpz_init(_mpz);
 #if SIZEOF_UNSIGNED_LONG == 8
-  mpz_init_set_ui(_mpz, static_cast<unsigned long int>(num));
+  mpz_set_ui(_mpz, static_cast<unsigned long int>(num));
 #elif SIZEOF_UNSIGNED_LONG == 4
   mpz_set_ui(_mpz, static_cast<unsigned long int>(num >> 32));
   mpz_mul_2exp(_mpz, _mpz, 32);
@@ -64,7 +78,7 @@ _knuminteger::_knuminteger(_knumber const & num)
   case FractionType:
   case FloatType:
   case SpecialType:
-    // What should I do here?
+    // TODO: What should I do here?
     break;
   }
 }
@@ -176,6 +190,7 @@ QString const _knumerror::ascii(int prec) const
 {
   static_cast<void>(prec);
 
+  // TODO: i18n these strings here and elsewhere, as they're user visible
   switch(_error) {
   case UndefinedNumber:
     return QString("nan");
@@ -476,6 +491,60 @@ _knumber * _knumfloat::sqrt(void) const
 
 
 
+_knumber * _knumerror::factorial(void) const
+{
+  _knumerror *tmp_num = new _knumerror(*this);
+
+  return tmp_num;
+}
+
+_knumber * _knuminteger::factorial(void) const
+{
+    if (mpz_sgn(_mpz) < 0) {
+	_knumerror *tmp_num = new _knumerror(UndefinedNumber);
+	return tmp_num;
+    }
+    _knuminteger * tmp_num = new _knuminteger();
+
+    mpz_fac_ui(tmp_num->_mpz, mpz_get_ui(_mpz));
+
+    return tmp_num;
+}
+
+_knumber * _knumfraction::factorial(void) const
+{
+    if (mpq_sgn(_mpq) < 0) {
+	_knumerror *tmp_num = new _knumerror(UndefinedNumber);
+	return tmp_num;
+    }
+    _knuminteger *tmp_num = new _knuminteger();
+    mpz_set_q(tmp_num->_mpz, _mpq);
+    unsigned long int op = mpz_get_ui(tmp_num->_mpz);
+
+    tmp_num = new _knuminteger();
+
+    mpz_fac_ui(tmp_num->_mpz, op);
+
+    return tmp_num;
+}
+
+_knumber * _knumfloat::factorial(void) const
+{
+    if (mpf_sgn(_mpf) < 0) {
+	_knumerror *tmp_num = new _knumerror(UndefinedNumber);
+	return tmp_num;
+    }
+    _knuminteger *tmp_num = new _knuminteger();
+    mpz_set_f(tmp_num->_mpz, _mpf);
+    unsigned long int op = mpz_get_ui(tmp_num->_mpz);
+
+    tmp_num = new _knuminteger();
+
+    mpz_fac_ui(tmp_num->_mpz, op);
+
+    return tmp_num;
+}
+
 _knumber * _knumerror::change_sign(void) const
 {
   _knumerror * tmp_num = new _knumerror();
@@ -749,9 +818,8 @@ _knumber *_knumfloat::divide(_knumber const & arg2) const
 
 
 
-_knumber * _knumerror::power(_knumber const & exponent) const
+_knumber * _knumerror::power(_knumber const & /*exponent*/) const
 {
-  static_cast<void>(exponent);
   return new _knumerror(UndefinedNumber);
 }
 
@@ -846,7 +914,16 @@ _knumber * _knumfraction::power(_knumber const & exponent) const
   mpz_set(tmp_num._mpz, mpq_denref(_mpq));
   _knumber *denom = tmp_num.power(exponent);
 
-  _knumber *result = numer->divide(*denom);
+  _knumber *result;
+
+  if (numer->type() == SpecialType) {
+    result = new _knumerror(*numer);
+  } else if (denom->type() == SpecialType) {
+    result = new _knumerror(*denom);
+  } else {
+    result = numer->divide(*denom);
+  }
+
   delete numer;
   delete denom;
   return result;
@@ -854,8 +931,16 @@ _knumber * _knumfraction::power(_knumber const & exponent) const
 
 _knumber * _knumfloat::power(_knumber const & exponent) const
 {
-  return new _knumfloat(pow(static_cast<double>(*this),
-			    static_cast<double>(exponent)));
+  double result = pow(static_cast<double>(*this),
+			static_cast<double>(exponent));
+  if (isnan(result)) {
+    return new _knumerror(UndefinedNumber);
+  }
+  if (isinf(result)) {
+    return new _knumerror(Infinity);
+  }
+
+  return new _knumfloat(result);
 }
 
 
@@ -964,6 +1049,27 @@ _knumerror::operator unsigned long int (void) const
     return 0;
 }
 
+_knumerror::operator long long int (void) const
+{
+  // what would be the correct return values here?
+  if (_error == Infinity)
+    return 0;
+  if (_error == MinusInfinity)
+    return 0;
+  else // if (_error == UndefinedNumber)
+    return 0;
+}
+
+_knumerror::operator unsigned long long int (void) const
+{
+  // what would be the correct return values here?
+  if (_error == Infinity)
+    return 0;
+  if (_error == MinusInfinity)
+    return 0;
+  else // if (_error == UndefinedNumber)
+    return 0;
+}
 
 _knuminteger::operator long int (void) const
 {
@@ -985,9 +1091,60 @@ _knuminteger::operator unsigned long int (void) const
   return mpz_get_ui(_mpz);
 }
 
+_knuminteger::operator long long int (void) const
+{
+  // libgmp doesn't have long long conversion
+  // so convert to string and then to long long
+  char *tmpchar = mpz_get_str(0, 10, _mpz);
+  QString tmpstring(tmpchar);
+  free(tmpchar);
+  bool ok;
+  long long int value = tmpstring.toLongLong(&ok, 10);
+
+  if (!ok) {
+    // TODO: what to do if error?
+    value = 0;
+  }
+  return value;
+}
+
+_knuminteger::operator unsigned long long int (void) const
+{
+  // libgmp doesn't have unsigned long long conversion
+  // so convert to string and then to unsigned long long
+  char *tmpchar = mpz_get_str(0, 10, _mpz);
+  QString tmpstring(tmpchar);
+  free(tmpchar);
+
+  bool ok;
+  unsigned long long int value;
+  if (sign() < 0) {
+      long long signedvalue = tmpstring.toLongLong(&ok, 10);
+      value = static_cast<unsigned long long>(signedvalue);
+  } else {
+      value = tmpstring.toULongLong(&ok, 10);
+  }
+
+  if (!ok) {
+    // TODO: what to do if error?
+    value = 0;
+  }
+  return value;
+}
+
 _knumfraction::operator unsigned long int (void) const
 {
   return static_cast<unsigned long int>(mpq_get_d(_mpq));
+}
+
+_knumfraction::operator long long int (void) const
+{
+  return static_cast<long long int>(mpq_get_d(_mpq));
+}
+
+_knumfraction::operator unsigned long long int (void) const
+{
+  return static_cast<unsigned long long int>(mpq_get_d(_mpq));
 }
 
 _knumfloat::operator unsigned long int (void) const
@@ -995,7 +1152,15 @@ _knumfloat::operator unsigned long int (void) const
   return mpf_get_ui(_mpf);
 }
 
+_knumfloat::operator long long int (void) const
+{
+  return static_cast<long long int>(mpf_get_si(_mpf));
+}
 
+_knumfloat::operator unsigned long long int (void) const
+{
+  return static_cast<unsigned long long int>(mpf_get_ui(_mpf));
+}
 
 _knumerror::operator double (void) const
 {

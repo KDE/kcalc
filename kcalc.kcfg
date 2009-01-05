@@ -87,6 +87,10 @@
       <label>Whether to group digits.</label>
       <default>true</default>
     </entry>
+    <entry name="ShowBitset" type="Bool">
+      <label>Whether to show the bit edit widget.</label>
+      <default>false</default>
+    </entry>
     <entry name="ShowStat" type="Bool">
       <label>Whether to show statistical buttons.</label>
       <default>false</default>

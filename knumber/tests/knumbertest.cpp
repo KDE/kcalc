@@ -34,13 +34,13 @@ void checkResult(QString const &string, KNumber const & result,
 {
   std::cout << "Testing result of: " << string.toAscii().constData() <<
     " should give " << desired_string.toAscii().constData() << " and gives " <<
-    result.toQString(8).toAscii().constData() << "....\n";
+    result.toQString(12).toAscii().constData() << "....\n";
   std::cout << "The type of the result should be " <<
     numtypeToString(desired).toAscii().constData() << " and gives " <<
     numtypeToString(result.type()).toAscii().constData() << "....  ";
 
   if (result.type() == desired  &&
-      result.toQString(8) == desired_string) {
+      result.toQString(12) == desired_string) {
     std::cout << "OK\n";
     return;
   }
@@ -290,8 +290,8 @@ void testingSqrt(void)
   checkResult("KNumber(-16).sqrt()", KNumber(-16).sqrt(), "nan", KNumber::SpecialType);
   checkResult("KNumber(\"16/9\").sqrt()", KNumber("16/9").sqrt(), "4/3", KNumber::FractionType);
   checkResult("KNumber(\"-16/9\").sqrt()", KNumber("-16/9").sqrt(), "nan", KNumber::SpecialType);
-  checkResult("KNumber(2).sqrt()", KNumber(2).sqrt(), "1.4142136", KNumber::FloatType);
-  checkResult("KNumber(\"2/3\").sqrt()", KNumber("2/3").sqrt(), "0.81649658", KNumber::FloatType);
+  checkResult("KNumber(2).sqrt()", KNumber(2).sqrt(), "1.41421356237", KNumber::FloatType);
+  checkResult("KNumber(\"2/3\").sqrt()", KNumber("2/3").sqrt(), "0.816496580928", KNumber::FloatType);
   checkResult("KNumber(\"0.25\").sqrt()", KNumber("0.25").sqrt(), "0.5", KNumber::FloatType);
   checkResult("KNumber(\"-0.25\").sqrt()", KNumber("-0.25").sqrt(), "nan", KNumber::SpecialType);
   
@@ -310,6 +310,58 @@ void testingSqrt(void)
 
 }
 
+void testingFactorial(void)
+{
+  std::cout << "\n\nTesting factorial:\n";
+
+  checkResult("KNumber(-1).factorial()", KNumber(-1).factorial(), "nan", KNumber::SpecialType);
+  checkResult("KNumber(-2).factorial()", KNumber(-2).factorial(), "nan", KNumber::SpecialType);
+  checkResult("KNumber(-20).factorial()", KNumber(-20).factorial(), "nan", KNumber::SpecialType);
+  checkResult("KNumber(-1/2).factorial()", KNumber("-1/2").factorial(), "nan", KNumber::SpecialType);
+  checkResult("KNumber(-0.5).factorial()", KNumber("-0.5").factorial(), "nan", KNumber::SpecialType);
+
+  checkResult("KNumber(0).factorial()", KNumber(0).factorial(), "1", KNumber::IntegerType);
+  checkResult("KNumber(1).factorial()", KNumber(1).factorial(), "1", KNumber::IntegerType);
+  checkResult("KNumber(2).factorial()", KNumber(2).factorial(), "2", KNumber::IntegerType);
+  checkResult("KNumber(3).factorial()", KNumber(3).factorial(), "6", KNumber::IntegerType);
+  checkResult("KNumber(4).factorial()", KNumber(4).factorial(), "24", KNumber::IntegerType);
+  checkResult("KNumber(5).factorial()", KNumber(5).factorial(), "120", KNumber::IntegerType);
+  checkResult("KNumber(6).factorial()", KNumber(6).factorial(), "720", KNumber::IntegerType);
+  checkResult("KNumber(9).factorial()", KNumber(9).factorial(), "362880", KNumber::IntegerType);
+  checkResult("KNumber(12).factorial()", KNumber(12).factorial(), "479001600", KNumber::IntegerType);
+
+  checkResult("KNumber(1/2).factorial()", KNumber("1/2").factorial(), "1", KNumber::IntegerType);
+  checkResult("KNumber(2/1).factorial()", KNumber("2/1").factorial(), "2", KNumber::IntegerType);
+  checkResult("KNumber(3/2).factorial()", KNumber("3/2").factorial(), "1", KNumber::IntegerType);
+
+  checkResult("KNumber(0.1).factorial()", KNumber(0.1).factorial(), "1", KNumber::IntegerType);
+  checkResult("KNumber(0.5).factorial()", KNumber(0.5).factorial(), "1", KNumber::IntegerType);
+  checkResult("KNumber(1.5).factorial()", KNumber(1.5).factorial(), "1", KNumber::IntegerType);
+  checkResult("KNumber(2.5).factorial()", KNumber(2.5).factorial(), "2", KNumber::IntegerType);
+  checkResult("KNumber(3.5).factorial()", KNumber(3.5).factorial(), "6", KNumber::IntegerType);
+}  
+
+// void testingComplement(void)
+// {
+//   std::cout << "\n\nTesting complement:\n";
+
+//   checkResult("KNumber(0).complement()", KNumber(0).complement(), "-1", KNumber::IntegerType);
+//   checkResult("KNumber(1).complement()", KNumber(1).complement(), "-2", KNumber::IntegerType);
+//   checkResult("KNumber(2).complement()", KNumber(2).complement(), "-3", KNumber::IntegerType);
+//   checkResult("KNumber(8).complement()", KNumber(8).complement(), "-9", KNumber::IntegerType);
+//   checkResult("KNumber(15).complement()", KNumber(15).complement(), "-16", KNumber::IntegerType);
+//   checkResult("KNumber(-1).complement()", KNumber(-1).complement(), "0", KNumber::IntegerType);
+//   checkResult("KNumber(-2).complement()", KNumber(-2).complement(), "1", KNumber::IntegerType);
+//   checkResult("KNumber(-3).complement()", KNumber(-3).complement(), "2", KNumber::IntegerType);
+//   checkResult("KNumber(-9).complement()", KNumber(-9).complement(), "8", KNumber::IntegerType);
+//   checkResult("KNumber(-16).complement()", KNumber(-16).complement(), "15", KNumber::IntegerType);
+
+//   checkResult("KNumber(0.12345).complement()", KNumber(0.12345).complement(), "nan", KNumber::SpecialType);
+//   checkResult("KNumber(-0.12345).complement()", KNumber(-0.12345).complement(), "nan", KNumber::SpecialType);
+//   checkResult("KNumber\"1/2\").complement()", KNumber("1/2").complement(), "nan", KNumber::SpecialType);
+//   checkResult("KNumber\"-1/2\").complement()", KNumber("-1/2").complement(), "nan", KNumber::SpecialType);
+// }
+
 void testingShifts(void)
 {
   std::cout << "\n\nTesting left/right shift:\n";
@@ -326,7 +378,7 @@ void testingPower(void)
   checkResult("KNumber(0) ^ KNumber(-4)", KNumber(0).power(KNumber(-4)), "inf", KNumber::SpecialType);
   checkResult("KNumber(5) ^ KNumber(4)", KNumber(5).power(KNumber(4)), "625", KNumber::IntegerType);
   checkResult("KNumber(122) ^ KNumber(0)", KNumber(122).power(KNumber(0)), "1", KNumber::IntegerType);
-  checkResult("KNumber(-5) ^ KNumber(0)", KNumber(-5).power(KNumber(0)), "nan", KNumber::SpecialType);
+  checkResult("KNumber(-5) ^ KNumber(0)", KNumber(-5).power(KNumber(0)), "1", KNumber::IntegerType);
   checkResult("KNumber(-2) ^ KNumber(3)", KNumber(-2).power(KNumber(3)), "-8", KNumber::IntegerType);
   checkResult("KNumber(-2) ^ KNumber(4)", KNumber(-2).power(KNumber(4)), "16", KNumber::IntegerType);
   checkResult("KNumber(5) ^ KNumber(-2)", KNumber(5).power(KNumber(-2)), "1/25", KNumber::FractionType);
@@ -335,24 +387,24 @@ void testingPower(void)
   checkResult("KNumber(-16) ^ KNumber(\"1/4\")", KNumber(-16).power(KNumber("1/4")), "nan", KNumber::SpecialType);
   checkResult("KNumber(-8) ^ KNumber(\"1/3\")", KNumber(-8).power(KNumber("1/3")), "nan", KNumber::SpecialType);
   checkResult("KNumber(5) ^ KNumber(0.0)", KNumber(5).power(KNumber(0.0)), "1", KNumber::IntegerType);
-  checkResult("KNumber(-5) ^ KNumber(0.0)", KNumber(-5).power(KNumber(0.0)), "nan", KNumber::SpecialType);
+  checkResult("KNumber(-5) ^ KNumber(0.0)", KNumber(-5).power(KNumber(0.0)), "1", KNumber::IntegerType);
   
   checkResult("KNumber(\"5/3\") ^ KNumber(2)", KNumber("5/3").power(KNumber(2)), "25/9", KNumber::FractionType);
   checkResult("KNumber(\"5/3\") ^ KNumber(0)", KNumber("5/3").power(KNumber(0)), "1", KNumber::IntegerType);
-  checkResult("KNumber(\"-5/3\") ^ KNumber(0)", KNumber("-5/3").power(KNumber(0)), "nan", KNumber::SpecialType);
+  checkResult("KNumber(\"-5/3\") ^ KNumber(0)", KNumber("-5/3").power(KNumber(0)), "1", KNumber::IntegerType);
   checkResult("KNumber(\"8/27\") ^ KNumber(\"2/3\")", KNumber("8/27").power(KNumber("2/3")), "4/9", KNumber::FractionType);
-  checkResult("KNumber(\"49/3\") ^ KNumber(\"7/9\")", KNumber("49/3").power(KNumber("7/9")), "21", KNumber::IntegerType);
-  checkResult("KNumber(\"5/2\") ^ KNumber(2.5)", KNumber("5/2").power(KNumber(2.5)), "1", KNumber::FloatType);
-  checkResult("KNumber(\"5/2\") ^ KNumber(0.0)", KNumber("5/2").power(KNumber(0.0)), "inf", KNumber::SpecialType);
-  checkResult("KNumber(\"-5/2\") ^ KNumber(0.0)", KNumber("-5/2").power(KNumber(0.0)), "-inf", KNumber::SpecialType);
+  checkResult("KNumber(\"49/3\") ^ KNumber(\"7/9\")", KNumber("49/3").power(KNumber("7/9")), "8.78016428243", KNumber::FloatType);
+  checkResult("KNumber(\"5/2\") ^ KNumber(2.5)", KNumber("5/2").power(KNumber(2.5)), "9.88211768803", KNumber::FloatType);
+  checkResult("KNumber(\"5/2\") ^ KNumber(0.0)", KNumber("5/2").power(KNumber(0.0)), "1", KNumber::IntegerType);
+  checkResult("KNumber(\"-5/2\") ^ KNumber(0.0)", KNumber("-5/2").power(KNumber(0.0)), "1", KNumber::IntegerType);
   
-  checkResult("KNumber(5.3) ^ KNumber(2)", KNumber(5.3).power(KNumber(2)), "2.65", KNumber::FloatType);
-  checkResult("KNumber(5.3) ^ KNumber(0)", KNumber(5.3).power(KNumber(0)), "inf", KNumber::SpecialType);
-  checkResult("KNumber(-5.3) ^ KNumber(0)", KNumber(-5.3).power(KNumber(0)), "-inf", KNumber::SpecialType);
-  checkResult("KNumber(5.3) ^ KNumber(\"2/3\")", KNumber(5.3).power(KNumber("2/3")), "7.95", KNumber::FloatType);
-  checkResult("KNumber(5.5) ^ KNumber(2.5)", KNumber(5.5).power(KNumber(2.5)), "2.2", KNumber::FloatType);
-  checkResult("KNumber(5.5) ^ KNumber(0.0)", KNumber(5.5).power(KNumber(0.0)), "inf", KNumber::SpecialType);
-  checkResult("KNumber(-5.5) ^ KNumber(0.0)", KNumber(-5.5).power(KNumber(0.0)), "-inf", KNumber::SpecialType);
+  checkResult("KNumber(5.3) ^ KNumber(2)", KNumber(5.3).power(KNumber(2)), "28.09", KNumber::FloatType);
+  checkResult("KNumber(5.3) ^ KNumber(0)", KNumber(5.3).power(KNumber(0)), "1", KNumber::IntegerType);
+  checkResult("KNumber(-5.3) ^ KNumber(0)", KNumber(-5.3).power(KNumber(0)), "1", KNumber::IntegerType);
+  checkResult("KNumber(5.3) ^ KNumber(\"2/3\")", KNumber(5.3).power(KNumber("2/3")), "3.03983898039", KNumber::FloatType);
+  checkResult("KNumber(5.5) ^ KNumber(2.5)", KNumber(5.5).power(KNumber(2.5)), "70.9425383673", KNumber::FloatType);
+  checkResult("KNumber(5.5) ^ KNumber(0.0)", KNumber(5.5).power(KNumber(0.0)), "1", KNumber::IntegerType);
+  checkResult("KNumber(-5.5) ^ KNumber(0.0)", KNumber(-5.5).power(KNumber(0.0)), "1", KNumber::IntegerType);
 }
 
 void testingInfArithmetic(void)
@@ -573,7 +625,9 @@ int main(void)
 
   testingAbs();
   testingSqrt();
-  //testingPower();
+  testingFactorial();
+  //testingComplement();
+  testingPower();
   testingTruncateToInteger();
 
   testingShifts();

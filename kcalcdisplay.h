@@ -35,6 +35,7 @@ class CalcEngine;
 class KAction;
 class KActionCollection;
 class QTimer;
+class QStyleOptionFrame;
 
 #define		NUM_STATUS_TEXT 4
 
@@ -115,6 +116,7 @@ protected:
 private:
 	bool changeSign(void);
 	void invertColors(void);
+        void initStyleOption(QStyleOptionFrame *option) const;
 
 private slots:
 	void slotSelectionTimedOut(void);

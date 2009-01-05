@@ -45,7 +45,6 @@
 #include <kconfig.h>
 #include <kconfigdialog.h>
 #include <kdialog.h>
-#include <kfontdialog.h>
 #include <kglobal.h>
 #include <kglobalsettings.h>
 #include <kmenu.h>
@@ -76,6 +75,7 @@ KCalculator::KCalculator(QWidget *parent)
 {
 	/* central widget to contain all the elements */
 	QWidget *central = new QWidget(this);
+	central->setLayoutDirection( Qt::LeftToRight );
 	setCentralWidget(central);
 	KAcceleratorManager::setNoAccel( central );
 
@@ -141,7 +141,7 @@ KCalculator::KCalculator(QWidget *parent)
 
 	updateDisplay(true);
 
-	// Read and set button groups
+	// misc settings
 
 	actionStatshow->setChecked(KCalcSettings::showStat());
 	slotStatshow(KCalcSettings::showStat());
@@ -155,10 +155,15 @@ KCalculator::KCalculator(QWidget *parent)
 	actionConstantsShow->setChecked(KCalcSettings::showConstants());
 	slotConstantsShow(KCalcSettings::showConstants());
 
+	actionBitsetshow->setChecked(KCalcSettings::showBitset());
+	slotBitsetshow(KCalcSettings::showBitset());
+
 	// connections
 
 	connect(KGlobalSettings::self(), SIGNAL(kdisplayPaletteChanged()),
 			SLOT(set_colors()));
+
+	calc_display->setFocus();
 }
 
 KCalculator::~KCalculator()
@@ -211,6 +216,12 @@ void KCalculator::setupMainActions(void)
 	hideAct->setText(i18n("&Hide All"));
 	connect(hideAct, SIGNAL(triggered()), this, SLOT(slotHideAll()));
 
+	actionBitsetshow = actionCollection()->add<KToggleAction>( "show_bitset" );
+	actionBitsetshow->setText( i18n("Show B&it Edit") );
+	actionBitsetshow->setChecked(true);
+	connect(actionBitsetshow, SIGNAL(toggled(bool)),
+			SLOT(slotBitsetshow(bool)));
+
 	KStandardAction::preferences(this, SLOT(showSettings()), actionCollection());
 	KStandardAction::keyBindings(guiFactory(), SLOT(configureShortcuts()),
 actionCollection());
@@ -236,6 +247,8 @@ void KCalculator::setupStatusbar(void)
 
 void KCalculator::setupKeys()
 {
+    // NOTE: all alphanumeric shorts set in ui file
+
 	// numbers
 
 	NumButtonGroup = new QButtonGroup(this);
@@ -298,15 +311,15 @@ void KCalculator::setupKeys()
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbInv, SLOT(slotSetAccelDisplayMode(bool)));
 
-	pbClear->setShortcut(QKeySequence(Qt::Key_PageUp));
-	new QShortcut(Qt::Key_Escape, pbClear, SLOT(animateClick()));
+	pbClear->setShortcut(QKeySequence(Qt::Key_Escape));
+	new QShortcut(Qt::Key_PageUp, pbClear, SLOT(animateClick()));
 	connect(pbClear, SIGNAL(clicked(void)),
 			SLOT(slotClearclicked(void)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbClear, SLOT(slotSetAccelDisplayMode(bool)));
 
-	pbAllClear->setShortcut(QKeySequence(Qt::Key_PageDown));
-	new QShortcut(Qt::Key_Delete, pbAllClear, SLOT(animateClick()));
+	pbAllClear->setShortcut(QKeySequence(Qt::Key_Delete));
+	new QShortcut(Qt::Key_PageDown, pbAllClear, SLOT(animateClick()));
 	connect(pbAllClear, SIGNAL(clicked(void)),
 			SLOT(slotAllClearclicked(void)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
@@ -379,8 +392,9 @@ void KCalculator::setupKeys()
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbDivision, SLOT(slotSetAccelDisplayMode(bool)));
 
-	pbMultiplication->setShortcut(QKeySequence(Qt::Key_multiply));
-	new QShortcut( Qt::Key_Asterisk, pbMultiplication, SLOT(animateClick()) );
+	pbMultiplication->setShortcut(QKeySequence(Qt::Key_Asterisk));
+	new QShortcut( Qt::Key_X, pbMultiplication, SLOT(animateClick()) );
+	new QShortcut( Qt::Key_multiply, pbMultiplication, SLOT(animateClick()) );
 	connect(pbMultiplication, SIGNAL(clicked(void)),
 			SLOT(slotMultiplicationclicked(void)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
@@ -399,8 +413,11 @@ void KCalculator::setupKeys()
 			pbPlus, SLOT(slotSetAccelDisplayMode(bool)));
 
 	pbPeriod->setText(KGlobal::locale()->decimalSymbol());
-	pbPeriod->setShortcut(QKeySequence(Qt::Key_Period));
-	new QShortcut( Qt::Key_Comma, pbPeriod, SLOT(animateClick()) );
+	pbPeriod->setShortcut(KGlobal::locale()->decimalSymbol());
+	if (KGlobal::locale()->decimalSymbol() == ".")
+	    new QShortcut( Qt::Key_Comma, pbPeriod, SLOT(animateClick()) );
+	else if (KGlobal::locale()->decimalSymbol() == ",")
+	    new QShortcut( Qt::Key_Period, pbPeriod, SLOT(animateClick()) );
 	connect(pbPeriod, SIGNAL(clicked(void)),
 			SLOT(slotPeriodclicked(void)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
@@ -630,6 +647,7 @@ void KCalculator::setupKeys()
 			pbMod, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbMod, SLOT(slotSetAccelDisplayMode(bool)));
+	pbMod->setShortcut(QKeySequence(Qt::Key_Colon));
 	connect(pbMod, SIGNAL(clicked(void)), SLOT(slotModclicked(void)));
 
 	pbReci->addMode(ModeNormal, "1/x", i18n("Reciprocal"));
@@ -715,8 +733,8 @@ void KCalculator::setupKeys()
 
 void KCalculator::updateGeometry(void)
 {
-	QWidget *widget;
-	QSize em = fontMetrics().size(0, "M");
+    QWidget *widget;
+    QSize em = pbAND->fontMetrics().size(0, "M");
     int margin =
 		QApplication::style()->pixelMetric(QStyle::PM_ButtonMargin, 0, 0);
     margin = qMax(qMin(margin/2, 3), 3);
@@ -980,8 +998,8 @@ void KCalculator::slotMemPlusMinusclicked(void)
 	else 			memory_num -= calc_display->getAmount();
 
 	pbInv->setChecked(false);
-	statusBar()->changeItem("M", MemField);
-	calc_display->setStatusText(MemField, "M");
+	statusBar()->changeItem(i18n("M"), MemField);
+	calc_display->setStatusText(MemField, i18n("M"));
 	pbMemRecall->setEnabled(true);
 }
 
@@ -1448,9 +1466,8 @@ void KCalculator::showSettings()
 
 	// font settings
 
-	KFontChooser *fontChooser = new KFontChooser(0);
-	fontChooser->setObjectName("kcfg_Font");
-	dialog->addPage(fontChooser, i18n("Font"), "preferences-desktop-font", i18n("Select Display Font"));
+	Fonts *fonts = new Fonts(0);
+	dialog->addPage(fonts, i18n("Font"), "preferences-desktop-font", i18n("Select Display Font"));
 
 	// color settings
 
@@ -1559,7 +1576,6 @@ void KCalculator::slotChooseScientificConst5(struct science_constant const & cho
   constants->kcfg_nameConstant5->setText(chosen_const.label);
 }
 
-
 void KCalculator::slotStatshow(bool toggled)
 {
 	if(toggled)
@@ -1611,7 +1627,7 @@ void KCalculator::slotLogicshow(bool toggled)
 {
 	if(toggled)
 	{
-		mBitset->show();
+		mBitset->setEnabled(true);
 		connect(mBitset, SIGNAL(valueChanged(unsigned long long)),
 			this, SLOT(slotBitsetChanged(unsigned long long)));
 		connect(calc_display, SIGNAL(changedAmount(const KNumber &)),
@@ -1631,7 +1647,7 @@ void KCalculator::slotLogicshow(bool toggled)
 	}
 	else
 	{
-		mBitset->hide();
+		mBitset->setEnabled(false);
 		disconnect(mBitset, SIGNAL(valueChanged(unsigned long long)),
 			this, SLOT(slotBitsetChanged(unsigned long long)));
 		disconnect(calc_display, SIGNAL(changedAmount(const KNumber &)),
@@ -1670,6 +1686,12 @@ void KCalculator::slotConstantsShow(bool toggled)
 	KCalcSettings::setShowConstants(toggled);
 }
 
+void KCalculator::slotBitsetshow(bool toggled)
+{
+    mBitset->setVisible(toggled);
+    KCalcSettings::setShowBitset(toggled);
+}
+
 // This function is for setting the constant names configured in the
 // kcalc settings menu. If the user doesn't enter a name for the
 // constant C1 to C6 is used.
@@ -1689,6 +1711,7 @@ void KCalculator::slotShowAll(void)
 	if(!actionScientificshow->isChecked()) actionScientificshow->trigger();
 	if(!actionLogicshow->isChecked()) actionLogicshow->trigger();
 	if(!actionConstantsShow->isChecked()) actionConstantsShow->trigger();
+	if(!actionBitsetshow->isChecked()) actionBitsetshow->trigger();
 }
 
 void KCalculator::slotHideAll(void)
@@ -1698,15 +1721,19 @@ void KCalculator::slotHideAll(void)
 	if(actionScientificshow->isChecked()) actionScientificshow->trigger();
 	if(actionLogicshow->isChecked()) actionLogicshow->trigger();
 	if(actionConstantsShow->isChecked()) actionConstantsShow->trigger();
+	if(actionBitsetshow->isChecked()) actionBitsetshow->trigger();
 }
 
-void KCalculator::slotBitsetChanged(unsigned long long value) {
+void KCalculator::slotBitsetChanged(unsigned long long value)
+{
+	// note: sets display to *unsigned* value
 	calc_display->setAmount(value);
 	updateDisplay(false);
 }
 
-void KCalculator::slotUpdateBitset(const KNumber &nr) {
-	mBitset->setValue(nr);
+void KCalculator::slotUpdateBitset(const KNumber &nr)
+{
+    mBitset->setValue(static_cast<quint64>(nr));
 }
 
 void KCalculator::updateSettings()
@@ -1725,7 +1752,7 @@ void KCalculator::updateSettings()
 	}
 	else
 	{
-		setCaption(QString::null);	//krazy:exclude=nullstrassign for old broken gcc
+		setCaption(QString());
 	}
 	calc_display->changeSettings();
 
@@ -1904,6 +1931,9 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
 	aboutData.addAuthor(ki18n("Ren" "\xc3\xa9" " M" "\xc3\xa9"  "rou"), KLocalizedString(), "ochominutosdearco@yahoo.es");
 	aboutData.addAuthor(ki18n("Michel Marti"), KLocalizedString(), "mma@objectxp.com");
 	aboutData.addAuthor(ki18n("David Johnson"), ki18n("Maintainer"), "david@usermode.org");
+
+	aboutData.setProgramIconName("accessories-calculator");
+
 	KCmdLineArgs::init(argc, argv, &aboutData);
 
 	KApplication app;

@@ -24,6 +24,7 @@
 #include <gmp.h>
 #include <QString>
 
+#ifndef Q_CC_MSVC
 // work-around for pre-C99-libs
 #ifndef INFINITY
 #define INFINITY  HUGE_VAL
@@ -31,6 +32,7 @@
 // this is really ugly
 #ifndef NAN
 #define NAN (atof("nan"))
+#endif
 #endif
 
 class _knumber
@@ -54,6 +56,7 @@ class _knumber
   virtual int sign(void) const = 0;
   virtual _knumber * sqrt(void) const = 0;
   virtual _knumber * cbrt(void) const = 0;
+  virtual _knumber * factorial(void) const = 0;
   virtual _knumber * change_sign(void) const = 0;
   virtual _knumber * reciprocal(void) const = 0;
   virtual _knumber * add(_knumber const & arg2) const = 0;
@@ -66,9 +69,10 @@ class _knumber
 
   virtual operator long int(void) const = 0;
   virtual operator unsigned long int(void) const = 0;
+  virtual operator long long int(void) const = 0;
+  virtual operator unsigned long long int(void) const = 0;
   virtual operator double (void) const = 0;
 };
-
 
 
 class _knumerror : public _knumber
@@ -99,6 +103,7 @@ class _knumerror : public _knumber
   virtual int sign(void) const;
   virtual _knumber * cbrt(void) const;
   virtual _knumber * sqrt(void) const;
+  virtual _knumber * factorial(void) const;
   virtual _knumber * change_sign(void) const;
   virtual _knumber * reciprocal(void) const;
   virtual _knumber * add(_knumber const & arg2) const;
@@ -110,6 +115,8 @@ class _knumerror : public _knumber
 
   virtual operator long int(void) const;
   virtual operator unsigned long int(void) const;
+  virtual operator long long int(void) const;
+  virtual operator unsigned long long int(void) const;
   virtual operator double (void) const;
 
  private:
@@ -136,6 +143,8 @@ class _knuminteger : public _knumber
     mpz_init_set_ui(_mpz, static_cast<unsigned long int>(num));
   }
   
+  _knuminteger(qint64 num);
+
   _knuminteger(quint64 num);
 
   _knuminteger(_knumber const & num);
@@ -163,6 +172,7 @@ class _knuminteger : public _knumber
   virtual int sign(void) const;
   virtual _knumber * cbrt(void) const;
   virtual _knumber * sqrt(void) const;
+  virtual _knumber * factorial(void) const;
   virtual _knumber * change_sign(void) const;
   virtual _knumber * reciprocal(void) const;
   virtual _knumber * add(_knumber const & arg2) const;
@@ -174,6 +184,8 @@ class _knuminteger : public _knumber
 
   virtual operator long int (void) const;
   virtual operator unsigned long int (void) const;
+  virtual operator long long int(void) const;
+  virtual operator unsigned long long int(void) const;
   virtual operator double (void) const;
 
   _knuminteger * intAnd(_knuminteger const &arg2) const;
@@ -226,6 +238,7 @@ class _knumfraction : public _knumber
   virtual int sign(void) const;
   virtual _knumber * cbrt(void) const;
   virtual _knumber * sqrt(void) const;
+  virtual _knumber * factorial(void) const;
   virtual _knumber * change_sign(void) const;
   virtual _knumber * reciprocal(void) const;
   virtual _knumber * add(_knumber const & arg2) const;
@@ -237,6 +250,8 @@ class _knumfraction : public _knumber
 
   virtual operator long int (void) const;
   virtual operator unsigned long int (void) const;
+  virtual operator long long int(void) const;
+  virtual operator unsigned long long int(void) const;
   virtual operator double (void) const;
 
  private:
@@ -278,6 +293,7 @@ class _knumfloat : public _knumber
   virtual int sign(void) const;
   virtual _knumber * cbrt(void) const;
   virtual _knumber * sqrt(void) const;
+  virtual _knumber * factorial(void) const;
   virtual _knumber * change_sign(void) const;
   virtual _knumber * reciprocal(void) const;
   virtual _knumber * add(_knumber const & arg2) const;
@@ -290,6 +306,8 @@ class _knumfloat : public _knumber
 
   virtual operator long int (void) const;
   virtual operator unsigned long int (void) const;
+  virtual operator long long int(void) const;
+  virtual operator unsigned long long int(void) const;
   virtual operator double (void) const;
 
  private:

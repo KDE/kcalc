@@ -5,6 +5,7 @@ include(CheckIncludeFiles)
 
 check_include_files(ieeefp.h      HAVE_IEEEFP_H)
 check_function_exists(isinf      HAVE_FUNC_ISINF)
+check_type_size("signed long" SIZEOF_SIGNED_LONG)
 check_type_size("unsigned long" SIZEOF_UNSIGNED_LONG)
 
 configure_file(config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
@@ -12,7 +13,6 @@ configure_file(config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
 ADD_DEFINITIONS( -D_ISOC99_SOURCE ) # added manually
 
 include_directories( ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/knumber ${GMP_INCLUDE_DIR} )
-
 
 ########### next target ###############
 # Needs absolute paths due to the test program for knumber
@@ -22,6 +22,7 @@ set(libknumber_la_SRCS
    )
 
 add_subdirectory( knumber )
+# add_subdirectory( tests )
 
 set(kcalc_KDEINIT_SRCS ${libknumber_la_SRCS}
    kcalc.cpp 
@@ -37,9 +38,12 @@ kde4_add_ui_files(kcalc_KDEINIT_SRCS
    kcalc.ui
    constants.ui
    colors.ui
+   fonts.ui
    general.ui)
 
 kde4_add_kcfg_files(kcalc_KDEINIT_SRCS kcalc_settings.kcfgc )
+
+kde4_add_app_icon(kcalc_KDEINIT_SRCS "${KDE4_INSTALL_DIR}/share/icons/oxygen/*/apps/accessories-calculator.png")
 
 kde4_add_kdeinit_executable( kcalc ${kcalc_KDEINIT_SRCS})
 
