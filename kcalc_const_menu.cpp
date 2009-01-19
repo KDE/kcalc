@@ -23,6 +23,7 @@
 
 #include <QDomDocument>
 #include <QFile>
+#include <kdebug.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
 
@@ -35,13 +36,13 @@ void KCalcConstMenu::init_consts(void)
   QFile file(KGlobal::dirs()->findResource("appdata", "scienceconstants.xml"));
 
   if (!file.open(QIODevice::ReadOnly)) {
-    qDebug("Did not find file \"scienceconstants.xml\"."
+    kDebug("Did not find file \"scienceconstants.xml\"."
 	   "No constants will be available.");
     return;
   }
   if (!doc.setContent(&file)) {
     file.close();
-    qDebug("The file \"scienceconstants.xml\" does not seem"
+    kDebug("The file \"scienceconstants.xml\" does not seem"
 	   "to be a valid description file."
 	   "No constants will be available.");
     return;

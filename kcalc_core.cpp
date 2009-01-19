@@ -51,6 +51,7 @@
 #endif
 
 #include <stdlib.h>
+#include <kdebug.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 #include "kcalctype.h"
@@ -527,7 +528,7 @@ void CalcEngine::CosDeg(KNumber input)
 		  	_last_number = -1;
 		  else if (mult == KNumber(3))
 		  	_last_number = 0;
-		  else qDebug("Something wrong in CalcEngine::CosDeg\n");
+		  else kDebug("Something wrong in CalcEngine::CosDeg\n");
 		  return;
 		}
 	}
@@ -563,7 +564,7 @@ void CalcEngine::CosGrad(KNumber input)
 		  	_last_number = -1;
 		  else if (mult == KNumber(3))
 		  	_last_number = 0;
-		  else qDebug("Something wrong in CalcEngine::CosGrad\n");
+		  else kDebug("Something wrong in CalcEngine::CosGrad\n");
 		  return;
 		}
 	}
@@ -719,7 +720,7 @@ void CalcEngine::SinDeg(KNumber input)
 		  	_last_number = 0;
 		  else if (mult == KNumber(3))
 		  	_last_number = -1;
-		  else qDebug("Something wrong in CalcEngine::SinDeg\n");
+		  else kDebug("Something wrong in CalcEngine::SinDeg\n");
 		  return;
 		}
 	}
@@ -757,7 +758,7 @@ void CalcEngine::SinGrad(KNumber input)
 		  	_last_number = 0;
 		  else if (mult == KNumber(3))
 		  	_last_number = -1;
-		  else qDebug("Something wrong in CalcEngine::SinGrad\n");
+		  else kDebug("Something wrong in CalcEngine::SinGrad\n");
 		  return;
 		}
 	}
