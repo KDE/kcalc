@@ -1,4 +1,4 @@
-// -*- indent-tabs-mode: t -*-
+// -*- indent-tabs-mode: nil -*-
 /*
     kCalculator, a simple scientific calculator for KDE
 
@@ -124,14 +124,15 @@ KCalculator::KCalculator(QWidget *parent)
 
 	// misc setup
 
-	set_colors();
+	setColors();
+	setFonts();
 
 	// Show the result in the app's caption in taskbar (wishlist - bug #52858)
 	if (KCalcSettings::captionResult() == true)
 		connect(calc_display, SIGNAL(changedText(const QString &)),
 				SLOT(setCaption(const QString &)));
 	calc_display->changeSettings();
-	set_precision();
+	setPrecision();
 
 	resetBase(); // switch to decimal
 
@@ -161,7 +162,9 @@ KCalculator::KCalculator(QWidget *parent)
 	// connections
 
 	connect(KGlobalSettings::self(), SIGNAL(kdisplayPaletteChanged()),
-			SLOT(set_colors()));
+			SLOT(setColors()));
+	connect(KGlobalSettings::self(), SIGNAL(kdisplayFontChanged()),
+			SLOT(setFonts()));
 
 	calc_display->setFocus();
 }
@@ -733,39 +736,41 @@ void KCalculator::setupKeys()
 
 void KCalculator::updateGeometry(void)
 {
-    QWidget *widget;
+    KCalcButton *button;
     QSize em = pbAND->fontMetrics().size(0, "M");
     int margin =
-		QApplication::style()->pixelMetric(QStyle::PM_ButtonMargin, 0, 0);
+        QApplication::style()->pixelMetric(QStyle::PM_ButtonMargin, 0, 0);
     margin = qMax(qMin(margin/2, 3), 3);
 
-	// left pad
+    // left pad
 
-	foreach (QObject *obj, leftPad->children()) {
-        if ( obj->isWidgetType() ) {
-            widget = static_cast<QWidget*>(obj);
-            widget->setFixedWidth(em.width()*4 + margin*2);
-            widget->installEventFilter( this );
+    foreach (QObject *obj, leftPad->children()) {
+        button = qobject_cast<KCalcButton*>(obj);
+        if ( button ) {
+            button->setFixedWidth(em.width()*4 + margin*2);
+            button->installEventFilter( this );
         }
     }
 
-	// right pad
+    // right pad
 
-	foreach (QObject *obj, rightPad->children()) {
-        if (obj->isWidgetType()) {
-            widget = static_cast<QWidget*>(obj);
-            widget->setFixedWidth(em.width()*3 + margin*2);
-            widget->installEventFilter(this);
+    foreach (QObject *obj, rightPad->children()) {
+        button = qobject_cast<KCalcButton*>(obj);
+        if ( button ) {
+            button->setFixedWidth(em.width()*3 + margin*2);
+            button->installEventFilter(this);
         }
     }
 
-	foreach (QObject *obj, numericPad->children()) {
-        if (obj->isWidgetType()) {
-            widget = static_cast<QWidget *>(obj);
-			if (widget != pb0) { // let pb0 expand freely
-				widget->setFixedWidth(em.width()*3 + margin*2);
-			}
-            widget->installEventFilter(this);
+    // numeric pad
+
+    foreach (QObject *obj, numericPad->children()) {
+        button = qobject_cast<KCalcButton*>(obj);
+        if ( button ) {
+	    if (button != pb0) { // let pb0 expand freely
+		button->setFixedWidth(em.width()*3 + margin*2);
+	    }
+            button->installEventFilter(this);
         }
     }
 }
@@ -1739,8 +1744,9 @@ void KCalculator::slotUpdateBitset(const KNumber &nr)
 void KCalculator::updateSettings()
 {
 	changeButtonNames();
-	set_colors();
-	set_precision();
+	setColors();
+	setFonts();
+	setPrecision();
 	// Show the result in the app's caption in taskbar (wishlist - bug #52858)
 	disconnect(calc_display, SIGNAL(changedText(const QString &)),
 		   this, 0);
@@ -1775,7 +1781,7 @@ void KCalculator::updateDisplay(bool get_amount_from_core,
 
 }
 
-void KCalculator::set_colors()
+void KCalculator::setColors()
 {
 	calc_display->changeSettings();
 
@@ -1818,7 +1824,31 @@ void KCalculator::set_colors()
 	}
 }
 
-void KCalculator::set_precision()
+void KCalculator::setFonts()
+{
+    KCalcButton *button;
+    foreach (QObject *obj, leftPad->children()) {
+	button = qobject_cast<KCalcButton*>(obj);
+        if (button) {
+            button->setFont(KCalcSettings::buttonFont());
+        }
+    }
+    foreach (QObject *obj, numericPad->children()) {
+	button = qobject_cast<KCalcButton*>(obj);
+        if (button) {
+            button->setFont(KCalcSettings::buttonFont());
+        }
+    }
+    foreach (QObject *obj, rightPad->children()) {
+	button = qobject_cast<KCalcButton*>(obj);
+        if (button) {
+            button->setFont(KCalcSettings::buttonFont());
+        }
+    }
+    updateGeometry();
+}
+
+void KCalculator::setPrecision()
 {
 	KNumber:: setDefaultFloatPrecision(KCalcSettings::precision());
 	updateDisplay(false);

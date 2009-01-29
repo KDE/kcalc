@@ -2,3 +2,7 @@ Id=KDE_3_2_0
 File=kcalcrc
 Group=General
 Key=style,Statistical
+Id=KDE_4_3_0
+File=kcalcrc
+Group=Font
+Key=Font,DisplayFont

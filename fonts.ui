@@ -5,24 +5,81 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>469</width>
-    <height>365</height>
+    <width>288</width>
+    <height>74</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Fonts</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout" >
+  <layout class="QVBoxLayout" name="verticalLayout" >
    <item>
-    <widget class="KFontChooser" name="kcfg_Font" />
+    <layout class="QFormLayout" name="formLayout" >
+     <property name="fieldGrowthPolicy" >
+      <enum>QFormLayout::ExpandingFieldsGrow</enum>
+     </property>
+     <item row="0" column="0" >
+      <widget class="QLabel" name="buttonlabel" >
+       <property name="text" >
+        <string>&amp;Button font</string>
+       </property>
+       <property name="buddy" >
+        <cstring>kcfg_ButtonFont</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1" >
+      <widget class="KFontRequester" name="kcfg_ButtonFont" >
+       <property name="focusPolicy" >
+        <enum>Qt::WheelFocus</enum>
+       </property>
+       <property name="toolTip" >
+        <string>The font to use for the buttons</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" >
+      <widget class="QLabel" name="displaylabel" >
+       <property name="text" >
+        <string>&amp;Display font</string>
+       </property>
+       <property name="buddy" >
+        <cstring>kcfg_DisplayFont</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1" >
+      <widget class="KFontRequester" name="kcfg_DisplayFont" >
+       <property name="focusPolicy" >
+        <enum>Qt::WheelFocus</enum>
+       </property>
+       <property name="toolTip" >
+        <string>The font to use in the display</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer" >
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>20</width>
+       <height>0</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KFontChooser</class>
+   <class>KFontRequester</class>
    <extends>QWidget</extends>
-   <header>kfontdialog.h</header>
+   <header>kfontrequester.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

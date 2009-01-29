@@ -135,6 +135,7 @@ void KCalcButton::paintEvent(QPaintEvent *)
 	QTextDocument doc;
 	QAbstractTextDocumentLayout::PaintContext context;
 	doc.setHtml("<center>" + text() + "</center>");
+	doc.setDefaultFont(font());
 	context.palette = palette();
         context.palette.setColor(QPalette::Text, context.palette.buttonText().color());
 
@@ -176,6 +177,13 @@ void KCalcButton::calcSizeHint()
 
 	_size += QSize(margin*2, margin*2);
 	_size = _size.expandedTo(QApplication::globalStrut());
+}
+
+void KCalcButton::setFont(const QFont &fnt)
+{
+    KPushButton::setFont(fnt);
+
+    calcSizeHint();
 }
 
 void KCalcButton::setText(const QString &text)
