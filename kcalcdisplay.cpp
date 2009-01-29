@@ -82,7 +82,7 @@ void KCalcDisplay::changeSettings()
 
 	setPalette(pal);
 
-	setFont(KCalcSettings::font());
+	setFont(KCalcSettings::displayFont());
 
 	setPrecision(KCalcSettings::precision());
 
@@ -465,6 +465,7 @@ bool KCalcDisplay::updateDisplay(void)
     }
 
     switch(_num_base) {
+        // TODO: use QString:::toULongLong() instead of STRTOUL
       case NB_BINARY:
           Q_ASSERT(_period == false  && _eestate == false);
           setText(tmp_string);

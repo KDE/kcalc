@@ -100,33 +100,33 @@ class KCalculator : public KXmlGuiWindow, private Ui::KCalculator
     Q_OBJECT
 
 public:
-	KCalculator(QWidget *parent = 0);
-	~KCalculator();
+    KCalculator(QWidget *parent = 0);
+    ~KCalculator();
 
 signals:
-	void switchInverse(bool);
-	void switchMode(ButtonModeFlags,bool);
-	void switchShowAccels(bool);
+    void switchInverse(bool);
+    void switchMode(ButtonModeFlags,bool);
+    void switchShowAccels(bool);
 
 private:
-	virtual bool eventFilter( QObject *o, QEvent *e );
-	void updateGeometry();
-	void setupMainActions(void);
-	void setupStatusbar(void);
-	void setupKeys();
-	void keyPressEvent(QKeyEvent *e);
-	void keyReleaseEvent(QKeyEvent *e);
-	void set_precision();
-	void set_style();
-	void resetBase(void) { decRadio->animateClick(); }
+    virtual bool eventFilter( QObject *o, QEvent *e );
+    void updateGeometry();
+    void setupMainActions(void);
+    void setupStatusbar(void);
+    void setupKeys();
+    void keyPressEvent(QKeyEvent *e);
+    void keyReleaseEvent(QKeyEvent *e);
+    void setPrecision();
+    void resetBase(void) { decRadio->animateClick(); }
 
-	void updateDisplay(bool get_amount_from_core = false,
-			   bool store_result_in_history = false);
+    void updateDisplay(bool get_amount_from_core = false,
+                       bool store_result_in_history = false);
 
 protected slots:
     void changeButtonNames();
     void updateSettings();
-    void set_colors();
+    void setColors();
+    void setFonts();
     void EnterEqual();
     void showSettings();
     void slotStatshow(bool toggled);

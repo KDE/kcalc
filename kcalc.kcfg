@@ -47,7 +47,11 @@
     </entry>
   </group>
   <group name="Font">
-    <entry name="Font" type="Font">
+    <entry name="ButtonFont" type="Font">
+      <label>The font to use for the buttons.</label>
+      <default code="true">KGlobalSettings::generalFont()</default>
+    </entry>
+    <entry name="DisplayFont" type="Font">
       <label>The font to use in the display.</label>
       <default code="true">QFont(KGlobalSettings::generalFont().family(), 14, QFont::Bold)</default>
     </entry>

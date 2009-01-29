@@ -67,6 +67,7 @@ public:
 
  virtual QSize sizeHint() const; // reimp
 
+ void setFont(const QFont &fnt);
  void setText(const QString &text); // reimp
  void setToolTip(const QString &tip); // reimp
 
