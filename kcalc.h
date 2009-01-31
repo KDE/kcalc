@@ -117,7 +117,8 @@ private:
     void keyPressEvent(QKeyEvent *e);
     void keyReleaseEvent(QKeyEvent *e);
     void setPrecision();
-    void resetBase(void) { decRadio->animateClick(); }
+    void setAngle();
+    void setBase();
 
     void updateDisplay(bool get_amount_from_core = false,
                        bool store_result_in_history = false);
@@ -207,10 +208,10 @@ private:
         GradMode
     };
     enum BaseMode {
-        HexMode = 0,
-        DecMode,
-        OctMode,
-        BinMode
+        BinMode = 2,
+        OctMode = 8,
+        DecMode = 10,
+        HexMode = 16
     };
 
 private:

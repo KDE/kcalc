@@ -2,6 +2,4 @@
 File=kcalc.kcfg
 ClassName=KCalcSettings
 Singleton=true
-Mutators=ShowBitset,ShowStat,ShowScientific,ShowLogic,ShowConstants,nameConstant,valueConstant
-# Inherits=KConfigSkeleton
-# MemberVariables=public
+Mutators=true
