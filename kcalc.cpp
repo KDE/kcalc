@@ -134,8 +134,6 @@ KCalculator::KCalculator(QWidget *parent)
 	calc_display->changeSettings();
 	setPrecision();
 
-	resetBase(); // switch to decimal
-
 	updateGeometry();
 
 	setFixedSize(minimumSize());
@@ -158,6 +156,9 @@ KCalculator::KCalculator(QWidget *parent)
 
 	actionBitsetshow->setChecked(KCalcSettings::showBitset());
 	slotBitsetshow(KCalcSettings::showBitset());
+
+        setAngle();
+        setBase();
 
 	// connections
 
@@ -837,6 +838,7 @@ void KCalculator::slotBaseSelected(int base)
 			btn->setEnabled(true);
 		}
 	}
+        KCalcSettings::setBaseMode(base);
 }
 
 void KCalculator::keyPressEvent(QKeyEvent *e)
@@ -880,6 +882,7 @@ void KCalculator::slotAngleSelected(int mode)
 	default: // we shouldn't ever end up here
 		_angle_mode = RadMode;
 	}
+        KCalcSettings::setAngleMode(_angle_mode);
 }
 
 void KCalculator::slotEEclicked(void)
@@ -1608,10 +1611,8 @@ void KCalculator::slotScientificshow(bool toggled)
 		foreach (QAbstractButton* btn, AngleChooseGroup->buttons()) {
 			btn->show();
 		}
-		statusBar()->changeItem(" DEG ", AngleField);
 		statusBar()->setItemFixed(AngleField, -1);
-		calc_display->setStatusText(AngleField, "Deg");
-		degRadio->setChecked(true);
+		setAngle();
 	}
 	else
 	{
@@ -1640,13 +1641,12 @@ void KCalculator::slotLogicshow(bool toggled)
 		foreach (QAbstractButton* btn, logicButtons) {
 			btn->show();
 		}
-		statusBar()->changeItem(" HEX ", BaseField);
 		statusBar()->setItemFixed(BaseField, -1);
-		calc_display->setStatusText(BaseField, "Hex");
+                setBase();
+
 		foreach (QAbstractButton *btn, BaseChooseGroup->buttons()) {
 			btn->show();
 		}
-		resetBase();
 		for (int i=10; i<16; i++)
 			(NumButtonGroup->button(i))->show();
 	}
@@ -1661,7 +1661,7 @@ void KCalculator::slotLogicshow(bool toggled)
 			btn->hide();
 		}
 		// Hide Hex-Buttons, but first switch back to decimal
-		resetBase();
+		decRadio->animateClick(0);
 		foreach (QAbstractButton *btn, BaseChooseGroup->buttons()) {
 			btn->hide();
 		}
@@ -1852,6 +1852,20 @@ void KCalculator::setPrecision()
 {
 	KNumber:: setDefaultFloatPrecision(KCalcSettings::precision());
 	updateDisplay(false);
+}
+
+void KCalculator::setAngle()
+{
+    QAbstractButton *btn;
+    btn = AngleChooseGroup->button(KCalcSettings::angleMode());
+    if (btn) btn->animateClick(0);
+}
+
+void KCalculator::setBase()
+{
+    QAbstractButton *btn;
+    btn = BaseChooseGroup->button(KCalcSettings::baseMode());
+    if (btn) btn->animateClick(0);
 }
 
 bool KCalculator::eventFilter(QObject *o, QEvent *e)

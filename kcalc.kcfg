@@ -112,6 +112,14 @@
       <label>Whether to show constant buttons.</label>
       <default>false</default>
     </entry>
+    <entry name="AngleMode" type="UInt">
+      <label>Degrees, radians or grads</label>
+      <default>0</default>
+    </entry>
+    <entry name="BaseMode" type="UInt">
+      <label>Numeric base</label>
+      <default>10</default>
+    </entry>
   </group>
   <group name="UserConstants">
 	<entry name="nameConstant$(ConstIndex)" type="String" key="nameConstant$(ConstIndex)">
