@@ -91,6 +91,15 @@
       <label>Whether to group digits.</label>
       <default>true</default>
     </entry>
+    <entry name="TwosComplement" type="Bool" key="twoscomplement">
+      <label>Whether to use Two's Complement for non-decimal numbers.</label>
+      <whatsthis>
+        Select to use Two's Complement notation for Binary, Octal
+        and Hexidecimal numbers. This is a common notation to represent
+        negative numbers in computers.
+      </whatsthis>
+      <default>true</default>
+    </entry>
     <entry name="ShowBitset" type="Bool">
       <label>Whether to show the bit edit widget.</label>
       <default>false</default>

@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
-    <height>268</height>
+    <width>293</width>
+    <height>319</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -35,10 +35,20 @@
          </widget>
         </item>
         <item row="0" column="1" >
-         <widget class="QSpinBox" name="kcfg_Precision" />
+         <widget class="QSpinBox" name="kcfg_Precision" >
+          <property name="toolTip" >
+           <string>Maximum number of digits displayed</string>
+          </property>
+          <property name="whatsThis" >
+           <string>KCalc can compute with many more digits than the number that fits on the display. This setting gives the maximum number of digits displayed, before KCalc starts using scientific notation, i.e. notation of the type 2.34e12.</string>
+          </property>
+         </widget>
         </item>
         <item row="1" column="0" >
          <widget class="QCheckBox" name="kcfg_Fixed" >
+          <property name="toolTip" >
+           <string>Whether to use fixed decimal places</string>
+          </property>
           <property name="text" >
            <string>Set &amp;decimal precision</string>
           </property>
@@ -49,6 +59,9 @@
           <property name="enabled" >
            <bool>false</bool>
           </property>
+          <property name="toolTip" >
+           <string>Number of fixed decimal digits</string>
+          </property>
          </widget>
         </item>
        </layout>
@@ -58,13 +71,51 @@
         <property name="orientation" >
          <enum>Qt::Horizontal</enum>
         </property>
-        <property name="sizeHint" >
+        <property name="sizeHint" stdset="0" >
          <size>
           <width>40</width>
           <height>20</height>
          </size>
         </property>
        </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox" >
+     <property name="title" >
+      <string>Numbers</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout" >
+      <item>
+       <widget class="QCheckBox" name="kcfg_GroupDigits" >
+        <property name="toolTip" >
+         <string>Whether to group digits</string>
+        </property>
+        <property name="text" >
+         <string>Group digits</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="kcfg_TwosComplement" >
+        <property name="toolTip" >
+         <string>Whether to use Two's Complement for non-decimal numbers</string>
+        </property>
+        <property name="whatsThis" >
+         <string>Select to use Two's Complement notation for Binary, Octal and Hexidecimal numbers. This is a common notation to represent negative numbers for non-decimal numbers in computers.</string>
+        </property>
+        <property name="text" >
+         <string>Two's Complement</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -77,6 +128,9 @@
      <layout class="QVBoxLayout" >
       <item>
        <widget class="QCheckBox" name="kcfg_Beep" >
+        <property name="toolTip" >
+         <string>Whether to beep on error</string>
+        </property>
         <property name="text" >
          <string>&amp;Beep on error</string>
         </property>
@@ -87,15 +141,11 @@
       </item>
       <item>
        <widget class="QCheckBox" name="kcfg_CaptionResult" >
+        <property name="toolTip" >
+         <string>Whether to show the result in the window title</string>
+        </property>
         <property name="text" >
          <string>Show &amp;result in window title</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="kcfg_GroupDigits" >
-        <property name="text" >
-         <string>Group digits</string>
         </property>
        </widget>
       </item>
@@ -110,7 +160,7 @@
      <property name="sizeType" >
       <enum>QSizePolicy::Expanding</enum>
      </property>
-     <property name="sizeHint" >
+     <property name="sizeHint" stdset="0" >
       <size>
        <width>282</width>
        <height>31</height>
@@ -126,9 +176,10 @@
   <tabstop>kcfg_Precision</tabstop>
   <tabstop>kcfg_Fixed</tabstop>
   <tabstop>kcfg_FixedPrecision</tabstop>
+  <tabstop>kcfg_GroupDigits</tabstop>
+  <tabstop>kcfg_TwosComplement</tabstop>
   <tabstop>kcfg_Beep</tabstop>
   <tabstop>kcfg_CaptionResult</tabstop>
-  <tabstop>kcfg_GroupDigits</tabstop>
  </tabstops>
  <resources/>
  <connections>
