@@ -86,6 +86,7 @@ public:
 	int setBase(NumBase new_base);
 	void setBeep(bool flag);
 	void setGroupDigits(bool flag);
+	void setTwosComplement(bool flag);
 	void setFixedPrecision(int precision);
 	void setPrecision(int precision);
 	void setText(QString const &string);
@@ -128,6 +129,7 @@ private:
 	QString _text;
     bool _beep;
 	bool _groupdigits;
+	bool _twoscomplement;
 	int  _button;
 	bool _lit;
 	NumBase _num_base;

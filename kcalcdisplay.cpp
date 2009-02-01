@@ -45,9 +45,10 @@
 #include "kcalcdisplay.moc"
 
 KCalcDisplay::KCalcDisplay(QWidget *parent)
-    :QFrame(parent), _beep(false), _groupdigits(false), _button(0),
-     _lit(false), _num_base(NB_DECIMAL), _precision(9), _fixed_precision(-1),
-     _display_amount(0), _history_index(0), _selection_timer(new QTimer)
+    :QFrame(parent), _beep(false), _groupdigits(true), _twoscomplement(true),
+     _button(0), _lit(false), _num_base(NB_DECIMAL), _precision(9),
+     _fixed_precision(-1), _display_amount(0), _history_index(0),
+     _selection_timer(new QTimer)
 {
     setFocusPolicy(Qt::StrongFocus);
 
@@ -91,9 +92,10 @@ void KCalcDisplay::changeSettings()
 	else
 		setFixedPrecision(KCalcSettings::fixedPrecision());
 
-	setBeep(KCalcSettings::beep());
-	setGroupDigits(KCalcSettings::groupDigits());
-	updateDisplay();
+    setBeep(KCalcSettings::beep());
+    setGroupDigits(KCalcSettings::groupDigits());
+    setTwosComplement(KCalcSettings::twosComplement());
+    updateDisplay();
 }
 
 void KCalcDisplay::updateFromCore(CalcEngine const &core,
@@ -351,6 +353,11 @@ void KCalcDisplay::setGroupDigits(bool flag)
     _groupdigits = flag;
 }
 
+void KCalcDisplay::setTwosComplement(bool flag)
+{
+    _twoscomplement = flag;
+}
+
 KNumber const & KCalcDisplay::getAmount(void) const
 {
     return _display_amount;
@@ -369,8 +376,18 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
     if ((_num_base != NB_DECIMAL) &&
         (new_amount.type() != KNumber::SpecialType)) {
         _display_amount = new_amount.integerPart();
-        quint64 tmp_workaround = static_cast<quint64>(_display_amount);
-        display_str = QString::number(tmp_workaround, _num_base).toUpper();
+        if (_twoscomplement) {
+            // treat number as 64-bit unsigned
+            quint64 tmp_workaround = static_cast<quint64>(_display_amount);
+            display_str = QString::number(tmp_workaround, _num_base).toUpper();
+        } else {
+            // QString::number treats non-decimal as unsigned
+            qint64 tmp_workaround = static_cast<qint64>(_display_amount);
+            bool neg = tmp_workaround < 0;
+            if (neg) tmp_workaround = qAbs(tmp_workaround);
+            display_str = QString::number(tmp_workaround, _num_base).toUpper();
+            if (neg) display_str.prepend(KGlobal::locale()->negativeSign());
+        }
     } else {
         // _num_base == NB_DECIMAL || new_amount.type() == KNumber::SpecialType
         _display_amount = new_amount;
