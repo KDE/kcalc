@@ -194,6 +194,15 @@ buttons.</link></action>
 <varlistentry>
 <term><menuchoice>
 <guimenu>Settings</guimenu>
+<guimenuitem>Show Bit Edit</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Displays a bit edit field. Click on a bit to toggle it.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
 <guimenuitem>Show All</guimenuitem>
 </menuchoice></term>
 <listitem><para><action>Display all buttons available.</action>
