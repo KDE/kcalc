@@ -340,7 +340,7 @@ six constants, first press <guibutton>Inv</guibutton> followed
 by the desired button key <guibutton>C1</guibutton> up to
 <guibutton>C6</guibutton>.</para>
 
-<para>To use the value stored in any of the contants in a calculation, just 
+<para>To use the value stored in any of the constants in a calculation, just 
  press the desired button (<guibutton>C1</guibutton> to <guibutton>C6</guibutton>), 
  and the corresponding number will appear in the display. </para>
 
