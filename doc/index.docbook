@@ -85,9 +85,8 @@ of digits after the period.</para>
 <listitem>
 <para> &kcalc; offers a great number of useful  <link linkend="key-accels">
 key-bindings</link>, which make using &kcalc; without using a pointing device easy.</para>
-<para>Hint: pressing (and holding) the <keycap>&Ctrl;</keycap>-key, displays on
-every button,
-the corresponding key-binding.</para>
+<para>Hint: pressing (and holding) the &Ctrl;-key, displays on
+every button,the corresponding key-binding.</para>
 </listitem>
 </itemizedlist>
 
