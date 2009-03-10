@@ -171,8 +171,7 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11" />
- <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
- <tabstops>
+  <tabstops>
   <tabstop>kcfg_Precision</tabstop>
   <tabstop>kcfg_Fixed</tabstop>
   <tabstop>kcfg_FixedPrecision</tabstop>

@@ -167,8 +167,7 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11" />
- <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
- <includes>
+  <includes>
   <include location="local" >kpushbutton.h</include>
  </includes>
  <resources/>
