@@ -29,8 +29,6 @@ class Constants;
 class QButtonGroup;
 class KToggleAction;
 
-#include <kxmlguiwindow.h>
-
 /*
   Kcalc basically consist of a class for the GUI (here), a class for
   the display (dlabel.h), and one for the mathematics core
@@ -61,6 +59,8 @@ class KToggleAction;
 #include "ui_fonts.h"
 #include "ui_constants.h"
 #include "ui_colors.h"
+
+#include <kxmlguiwindow.h>
 
 class  General: public QWidget, public Ui::General
 {

@@ -19,16 +19,12 @@
 
 */
 
-
-
-
-#include <kinputdialog.h>
-#include <kmenu.h>
-
 #include "kcalc_const_button.h"
 #include "kcalc_const_menu.h"
 #include "kcalc_settings.h"
 
+#include <kinputdialog.h>
+#include <kmenu.h>
 
 KCalcConstButton::KCalcConstButton(QWidget *parent)
   : KCalcButton(parent), _button_num(-1)

@@ -18,8 +18,6 @@
    Boston, MA 02110-1301, USA.
 */
 
-#include <math.h>
-
 #include "knumber.h"
 #include "knumber_priv.h"
 
@@ -29,7 +27,6 @@
 #include <config-kcalc.h>
 
 #include <QRegExp>
-
 
 using namespace std;
 
@@ -52,8 +49,6 @@ bool KNumber::_splitoffinteger_output = false;
 
 #ifdef HAVE_IEEEFP_H
 #include <ieeefp.h>
-#else
-#include <math.h>
 #endif
 
 #define isinf(x) (!finite(x) && x == x)
@@ -355,7 +350,7 @@ static QString roundNumber(const QString &numStr, int precision)
   QString expString = tmpString.section('e', 1, 1,
 					QString::SectionCaseInsensitiveSeps |
 					QString::SectionIncludeLeadingSep);
-  if (expString.length() == 1) expString = QString();
+  if (expString.length() == 1) expString.clear();
 
 
   _round(mantString, precision);
