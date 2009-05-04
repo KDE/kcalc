@@ -21,7 +21,7 @@
      <item row="0" column="0" >
       <widget class="QLabel" name="buttonlabel" >
        <property name="text" >
-        <string>&amp;Button font</string>
+        <string>&amp;Button font:</string>
        </property>
        <property name="buddy" >
         <cstring>kcfg_ButtonFont</cstring>
@@ -41,7 +41,7 @@
      <item row="1" column="0" >
       <widget class="QLabel" name="displaylabel" >
        <property name="text" >
-        <string>&amp;Display font</string>
+        <string>&amp;Display font:</string>
        </property>
        <property name="buddy" >
         <cstring>kcfg_DisplayFont</cstring>

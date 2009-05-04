@@ -110,7 +110,7 @@
          <string>Select to use Two's Complement notation for Binary, Octal and Hexidecimal numbers. This is a common notation to represent negative numbers for non-decimal numbers in computers.</string>
         </property>
         <property name="text" >
-         <string>Two's Complement</string>
+         <string>Two's complement</string>
         </property>
         <property name="checked" >
          <bool>true</bool>
