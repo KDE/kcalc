@@ -777,7 +777,7 @@ void CalcEngine::SinHyp(KNumber input)
 		return;
 	}
 
-	_last_number = KNumber(asinh(static_cast<double>(input)));
+	_last_number = KNumber(sinh(static_cast<double>(input)));
 }
 
 void CalcEngine::Square(KNumber input)
