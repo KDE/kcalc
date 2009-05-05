@@ -1529,7 +1529,7 @@ void KCalculator::showSettings()
 		SLOT(slotChooseScientificConst5(science_constant const &)));
 	constants->pushButton5->setMenu(tmp_menu);
 
-	dialog->addPage(constants, i18n("Constants"), "preferences-kcalc-constants", i18n("Define constants"));
+	dialog->addPage(constants, i18n("Constants"), "preferences-kcalc-constants", i18n("Define Constants"));
 
 	// When the user clicks OK or Apply we want to update our settings.
 	connect(dialog, SIGNAL(settingsChanged(const QString &)), SLOT(updateSettings()));

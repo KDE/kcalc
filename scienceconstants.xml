@@ -49,7 +49,7 @@
     <description>
     </description>
   </constant>
-  <constant name="Permittivity of vacuum" symbol="ε_0" category="electromagnetism" value="8.854187817e-12">
+  <constant name="Permittivity of Vacuum" symbol="ε_0" category="electromagnetism" value="8.854187817e-12">
     <description>
     </description>
   </constant>
