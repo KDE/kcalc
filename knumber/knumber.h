@@ -68,8 +68,6 @@ class KDE_EXPORT KNumber
   static KNumber const Zero;
   static KNumber const One;
   static KNumber const MinusOne;
-  static KNumber const Pi;
-  static KNumber const Euler;
   static KNumber const NotDefined;
 
   /**
@@ -268,6 +266,8 @@ class KDE_EXPORT KNumber
 
   KNumber & operator +=(KNumber const &arg);
   KNumber & operator -=(KNumber const &arg);
+  static KNumber Pi(void);
+  static KNumber Euler(void);
 
 
   //KNumber const toFloat(void) const;
