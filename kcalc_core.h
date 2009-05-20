@@ -168,13 +168,13 @@ class CalcEngine
   KNumber evalOperation(KNumber arg1, Operation operation, KNumber arg2);
 
   const KNumber Deg2Rad(const KNumber &x) const
-  { return KNumber(2) * KNumber::Pi / KNumber(360) * x; }
+  { return KNumber(2) * KNumber::Pi() / KNumber(360) * x; }
   const KNumber Gra2Rad(const KNumber &x) const
-  { return KNumber(2)*KNumber::Pi / KNumber(400) * x; }
+  { return KNumber(2)*KNumber::Pi() / KNumber(400) * x; }
   const KNumber Rad2Deg(const KNumber &x) const
-  { return KNumber(360) / (KNumber(2) * KNumber::Pi) * x; }
+  { return KNumber(360) / (KNumber(2) * KNumber::Pi()) * x; }
   const KNumber Rad2Gra(const KNumber &x) const
-  { return KNumber(400) / (KNumber(2)*KNumber::Pi) * x; }
+  { return KNumber(400) / (KNumber(2)*KNumber::Pi()) * x; }
 
 };
 

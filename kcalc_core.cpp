@@ -396,9 +396,9 @@ void CalcEngine::ArcTangensRad(KNumber input)
 	if (input.type() == KNumber::SpecialType) {
 		if (input == KNumber("nan")) _last_number = KNumber("nan");
 		if (input == KNumber("inf"))
-			_last_number = KNumber::Pi/KNumber(2);
+			_last_number = KNumber::Pi()/KNumber(2);
 		if (input == KNumber("-inf"))
-			_last_number = -KNumber::Pi/KNumber(2);
+			_last_number = -KNumber::Pi()/KNumber(2);
 		return;
 	}
 

@@ -22,6 +22,7 @@
 
 #include "knumber.h"
 #include "knumber_priv.h"
+#include "kglobal.h"
 
 #include <cmath>
 #include <cstdio>
@@ -36,12 +37,6 @@ using namespace std;
 KNumber const KNumber::Zero(0);
 KNumber const KNumber::One(1);
 KNumber const KNumber::MinusOne(-1);
-KNumber const KNumber::Pi("3.141592653589793238462643383279502884197169"
-			  "39937510582097494459230781640628620899862803"
-			  "4825342117068");
-KNumber const KNumber::Euler("2.718281828459045235360287471352662497757"
-			     "24709369995957496696762772407663035354759"
-			     "4571382178525166427");
 KNumber const KNumber::NotDefined("nan");
 
 bool KNumber::_float_output = false;
@@ -707,4 +702,22 @@ KNumber::operator double(void) const
 int KNumber::compare(KNumber const & arg2) const
 {
   return _num->compare(*arg2._num);
+}
+
+K_GLOBAL_STATIC_WITH_ARGS(KNumber, g_Pi, (
+"3.141592653589793238462643383279502884197169"
+"39937510582097494459230781640628620899862803"
+"4825342117068") )
+KNumber KNumber::Pi()
+{
+  return *g_Pi;
+}
+
+K_GLOBAL_STATIC_WITH_ARGS(KNumber, g_Euler, (
+"2.718281828459045235360287471352662497757"
+"24709369995957496696762772407663035354759"
+"4571382178525166427") )
+KNumber KNumber::Euler()
+{
+  return *g_Euler;
 }
