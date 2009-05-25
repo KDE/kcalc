@@ -611,7 +611,7 @@ int main(void)
   checkType("KNumber::Zero", KNumber::Zero.type(), KNumber::IntegerType);
   checkType("KNumber::One", KNumber::One.type(), KNumber::IntegerType);
   checkType("KNumber::MinusOne", KNumber::MinusOne.type(), KNumber::IntegerType);
-  checkType("KNumber::Pi", KNumber::Pi.type(), KNumber::FloatType);
+  checkType("KNumber::Pi", KNumber::Pi().type(), KNumber::FloatType);
 
   testingCompare();
 
