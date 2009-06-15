@@ -25,6 +25,17 @@
 
 #include <QRegExp>
 
+#if defined(Q_OS_SOLARIS) && defined(__SUNPRO_CC)
+// Strictly by the standard, ininf() is a c99-ism which
+// is unavailable in C++. The IEEE FP headers provide
+// a function with similar functionality, so use that instead.
+// However, !finite(a) == isinf(a) || isnan(a), so it's 
+// not 100% correct.
+#include <ieeefp.h>
+#define isinf(a) !finite(a)
+#endif
+
+
 _knumerror::_knumerror(_knumber const & num)
 {
   switch(num.type()) {
