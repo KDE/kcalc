@@ -30,6 +30,7 @@
 */
 
 #include "kcalc_core.h"
+#include <cmath>
 
 #include <config-kcalc.h>
 
