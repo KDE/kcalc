@@ -30,6 +30,8 @@
 */
 
 #include "kcalc_core.h"
+// On Solaris, need to include math.h (or <cmath>) before any STL headers, 
+// because of ambiguity around the identifier "exception".
 #include <cmath>
 
 #include <config-kcalc.h>
