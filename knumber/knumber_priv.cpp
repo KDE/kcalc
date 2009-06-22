@@ -217,12 +217,16 @@ QString const _knumerror::ascii(int prec) const
 QString const _knuminteger::ascii(int prec) const
 {
   static_cast<void>(prec);
-  char *tmp_ptr;
+  char *tmp_ptr = 0;
 
-  gmp_asprintf(&tmp_ptr, "%Zd", _mpz);
+  // get the size of the string
+  size_t size = gmp_snprintf(tmp_ptr, 0, "%Zd", _mpz) + 1;
+  tmp_ptr = new char[size];
+  gmp_snprintf(tmp_ptr, size, "%Zd", _mpz);
+
   QString ret_str = tmp_ptr;
 
-  free(tmp_ptr);
+  delete tmp_ptr;
   return ret_str;
 }
 
@@ -239,15 +243,21 @@ QString const _knumfraction::ascii(int prec) const
 QString const _knumfloat::ascii(int prec) const
 {
   QString ret_str;
-  char *tmp_ptr;
+  char *tmp_ptr = 0;
+  size_t size;
   if (prec > 0)
-    gmp_asprintf(&tmp_ptr, ("%." + QString().setNum(prec) + "Fg").toAscii(), _mpf);
+    size = gmp_snprintf(tmp_ptr, 0, ("%." + QString().setNum(prec) + "Fg").toAscii(), _mpf) + 1;
   else
-    gmp_asprintf(&tmp_ptr, "%Fg", _mpf);
+    size = gmp_snprintf(tmp_ptr, 0, "%Fg", _mpf) + 1;
+  tmp_ptr = new char[size];
+  if (prec > 0)
+    gmp_snprintf(tmp_ptr, size, ("%." + QString().setNum(prec) + "Fg").toAscii(), _mpf);
+  else
+    gmp_snprintf(tmp_ptr, size, "%Fg", _mpf);
 
   ret_str = tmp_ptr;
 
-  free(tmp_ptr);
+  delete tmp_ptr;
 
   return ret_str;
 }
