@@ -33,7 +33,6 @@
 
 class CalcEngine;
 class KAction;
-class KActionCollection;
 class QTimer;
 class QStyleOptionFrame;
 
