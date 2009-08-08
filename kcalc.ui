@@ -600,7 +600,7 @@
              <string>Minus</string>
             </property>
             <property name="text">
-             <string>-</string>
+             <string comment="- calculator button">-</string>
             </property>
            </widget>
           </item>
@@ -664,7 +664,7 @@
              <string>Plus</string>
             </property>
             <property name="text">
-             <string>+</string>
+             <string comment="+ calculator button">+</string>
             </property>
            </widget>
           </item>
@@ -776,7 +776,7 @@
              <string>Result</string>
             </property>
             <property name="text">
-             <string>=</string>
+             <string comment="= calculator button">=</string>
             </property>
            </widget>
           </item>
@@ -802,7 +802,7 @@
              <string>Decimal point</string>
             </property>
             <property name="text">
-             <string>.</string>
+             <string comment=". calculator button">.</string>
             </property>
            </widget>
           </item>
@@ -860,7 +860,7 @@
              <string>Open parenthesis</string>
             </property>
             <property name="text">
-             <string>(</string>
+             <string comment="( calculator button">(</string>
             </property>
            </widget>
           </item>
@@ -870,7 +870,7 @@
              <string>Close parenthesis</string>
             </property>
             <property name="text">
-             <string>)</string>
+             <string comment=") calculator button">)</string>
             </property>
            </widget>
           </item>
