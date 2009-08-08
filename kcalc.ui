@@ -200,7 +200,7 @@
              <string>C1</string>
             </property>
             <property name="shortcut">
-             <string>Alt+1</string>
+             <string notr="true">Alt+1</string>
             </property>
            </widget>
           </item>
@@ -266,7 +266,7 @@
              <string>C2</string>
             </property>
             <property name="shortcut">
-             <string>Alt+2</string>
+             <string notr="true">Alt+2</string>
             </property>
            </widget>
           </item>
@@ -329,7 +329,7 @@
              <string>C3</string>
             </property>
             <property name="shortcut">
-             <string>Alt+3</string>
+             <string notr="true">Alt+3</string>
             </property>
            </widget>
           </item>
@@ -392,7 +392,7 @@
              <string>C4</string>
             </property>
             <property name="shortcut">
-             <string>Alt+4</string>
+             <string notr="true">Alt+4</string>
             </property>
            </widget>
           </item>
@@ -458,7 +458,7 @@
              <string>C5</string>
             </property>
             <property name="shortcut">
-             <string>Alt+5</string>
+             <string notr="true">Alt+5</string>
             </property>
            </widget>
           </item>
@@ -524,7 +524,7 @@
              <string>C6</string>
             </property>
             <property name="shortcut">
-             <string>Alt+6</string>
+             <string notr="true">Alt+6</string>
             </property>
            </widget>
           </item>
