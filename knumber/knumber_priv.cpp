@@ -1116,7 +1116,8 @@ _knuminteger::operator long long int (void) const
 {
   // libgmp doesn't have long long conversion
   // so convert to string and then to long long
-  char *tmpchar = mpz_get_str(0, 10, _mpz);
+  char *tmpchar = new char[mpz_sizeinbase (_mpz, 10) + 2];
+  mpz_get_str(tmpchar, 10, _mpz);
   QString tmpstring(tmpchar);
   free(tmpchar);
   bool ok;
@@ -1133,7 +1134,8 @@ _knuminteger::operator unsigned long long int (void) const
 {
   // libgmp doesn't have unsigned long long conversion
   // so convert to string and then to unsigned long long
-  char *tmpchar = mpz_get_str(0, 10, _mpz);
+  char *tmpchar = new char[mpz_sizeinbase (_mpz, 10) + 2];
+  mpz_get_str(tmpchar, 10, _mpz);
   QString tmpstring(tmpchar);
   free(tmpchar);
 
