@@ -110,7 +110,7 @@
     </entry>
     <entry name="ShowScientific" type="Bool">
       <label>Whether to show buttons with functions used in science/engineering,
-	     like exp, log, sin etc.</label>
+	     like exp, log, sin, etc.</label>
       <default>false</default>
     </entry>
     <entry name="ShowLogic" type="Bool">
