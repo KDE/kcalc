@@ -20,7 +20,7 @@
     <description>
     </description>
   </constant>
-  <constant name="Constant of Gravitation" symbol="G" category="gravitation" value="6.6742e-11">
+  <constant name="Gravitational Constant" symbol="G" category="gravitation" value="6.6742e-11">
     <description>
     </description>
   </constant>
