@@ -655,9 +655,9 @@ void KCalculator::setupKeys()
 	connect(pbMod, SIGNAL(clicked(void)), SLOT(slotModclicked(void)));
 
 	pbReci->addMode(ModeNormal, "1/x", i18n("Reciprocal"));
-	pbReci->addMode(ModeInverse, "nCm", i18n("n Choose m")); 
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), 
-			pbReci, SLOT(slotSetMode(ButtonModeFlags,bool))); 
+	pbReci->addMode(ModeInverse, "nCm", i18n("n Choose m"));
+	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
+			pbReci, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbReci, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(pbReci, SIGNAL(clicked(void)), SLOT(slotReciclicked(void)));
@@ -786,7 +786,7 @@ void KCalculator::slotConstantToDisplay(struct science_constant const &const_cho
 void KCalculator::slotBaseSelected(int base)
 {
 	int current_base;
-    
+
 	// set display & statusbar (if item exist in statusbar)
 	switch(base) {
 	  case BinMode:
@@ -818,16 +818,16 @@ void KCalculator::slotBaseSelected(int base)
 	// Enable the buttons not available in this base
 	for (int i=0; i<current_base; i++)
 		(NumButtonGroup->buttons()[i])->setEnabled (true);
-  
+
 	// Disable the buttons not available in this base
 	for (int i=current_base; i<16; i++)
 		(NumButtonGroup->buttons()[i])->setEnabled (false);
-  
+
 	// Only enable the decimal point in decimal
 	pbPeriod->setEnabled(current_base == NB_DECIMAL);
 	// Only enable the x*10^y button in decimal
 	pbEE->setEnabled(current_base == NB_DECIMAL);
-  
+
 	// Disable buttons that make only sense with floating point numbers
 	if(current_base != NB_DECIMAL)  {
 		foreach (QAbstractButton *btn, scientificButtons) {
@@ -1057,20 +1057,20 @@ void KCalculator::slotCosclicked(void)
 
 void KCalculator::slotReciclicked(void)
 {
-	if (inverse) 
-	{ 
-		core.enterOperation(calc_display->getAmount(), 
-				    CalcEngine::FUNC_BINOM); 
-	}  else { 
-		core.Reciprocal(calc_display->getAmount()); 
-		updateDisplay(true); 
-		return; 
+	if (inverse)
+	{
+		core.enterOperation(calc_display->getAmount(),
+				    CalcEngine::FUNC_BINOM);
+	}  else {
+		core.Reciprocal(calc_display->getAmount());
+		updateDisplay(true);
+		return;
 	}
-	// temp. work-around 
-	KNumber tmp_num = calc_display->getAmount(); 
-	calc_display->sendEvent(KCalcDisplay::EventReset); 
-	calc_display->setAmount(tmp_num); 
-	updateDisplay(false); 
+	// temp. work-around
+	KNumber tmp_num = calc_display->getAmount();
+	calc_display->sendEvent(KCalcDisplay::EventReset);
+	calc_display->setAmount(tmp_num);
+	updateDisplay(false);
 
 }
 
@@ -1470,7 +1470,7 @@ void KCalculator::showSettings()
 
 	General *general = new General(0);
 	general->kcfg_Precision->setMaximum(maxprecision);
-	dialog->addPage(general, i18n("General"), "kcalc", i18n("General Settings"));
+	dialog->addPage(general, i18n("General"), "accessories-calculator", i18n("General Settings"));
 
 	// font settings
 
