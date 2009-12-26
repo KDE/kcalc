@@ -352,8 +352,8 @@ void KCalculator::setupKeys()
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbMemClear, SLOT(slotSetAccelDisplayMode(bool)));
 
-	pbMemPlusMinus->addMode(ModeNormal, "M+", i18n("Add display to memory"));
-	pbMemPlusMinus->addMode(ModeInverse, "M-", i18n("Subtract from memory"));
+	pbMemPlusMinus->addMode(ModeNormal, i18nc("Add display to memory", "M+"), i18n("Add display to memory"));
+	pbMemPlusMinus->addMode(ModeInverse, i18nc("Subtract from memory", "M-"), i18n("Subtract from memory"));
 	connect(pbMemPlusMinus,SIGNAL(clicked(void)),
 			SLOT(slotMemPlusMinusclicked(void)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
@@ -488,48 +488,48 @@ void KCalculator::setupKeys()
 			pbHyp, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(pbHyp, SIGNAL(toggled(bool)), SLOT(slotHyptoggled(bool)));
 
-	pbSin->addMode(ModeNormal, "Sin", i18n("Sine"));
-	pbSin->addMode(ModeInverse, "Asin", i18n("Arc sine"));
-	pbSin->addMode(ModeHyperbolic, "Sinh", i18n("Hyperbolic sine"));
+	pbSin->addMode(ModeNormal, i18nc("Sine", "Sin"), i18n("Sine"));
+	pbSin->addMode(ModeInverse, i18nc("Arc sine", "Asin"), i18n("Arc sine"));
+	pbSin->addMode(ModeHyperbolic, i18nc("Hyperbolic sine", "Sinh"), i18n("Hyperbolic sine"));
 	pbSin->addMode(ButtonModeFlags(ModeInverse | ModeHyperbolic),
-				   "Asinh", i18n("Inverse hyperbolic sine"));
+				   i18nc("Inverse hyperbolic sine", "Asinh"), i18n("Inverse hyperbolic sine"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbSin, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 			pbSin, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(pbSin, SIGNAL(clicked(void)), SLOT(slotSinclicked(void)));
 
-	pbCos->addMode(ModeNormal, "Cos", i18n("Cosine"));
-	pbCos->addMode(ModeInverse, "Acos", i18n("Arc cosine"));
-	pbCos->addMode(ModeHyperbolic, "Cosh", i18n("Hyperbolic cosine"));
+	pbCos->addMode(ModeNormal, i18nc("Cosine", "Cos"), i18n("Cosine"));
+	pbCos->addMode(ModeInverse, i18nc("Arc cosine", "Acos"), i18n("Arc cosine"));
+	pbCos->addMode(ModeHyperbolic, i18nc("Hyperbolic cosine", "Cosh"), i18n("Hyperbolic cosine"));
 	pbCos->addMode(ButtonModeFlags(ModeInverse | ModeHyperbolic),
-				   "Acosh", i18n("Inverse hyperbolic cosine"));
+				   i18nc("Inverse hyperbolic cosine", "Acosh"), i18n("Inverse hyperbolic cosine"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbCos, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 			pbCos, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(pbCos, SIGNAL(clicked(void)), SLOT(slotCosclicked(void)));
 
-	pbTan->addMode(ModeNormal, "Tan", i18n("Tangent"));
-	pbTan->addMode(ModeInverse, "Atan", i18n("Arc tangent"));
-	pbTan->addMode(ModeHyperbolic, "Tanh", i18n("Hyperbolic tangent"));
+	pbTan->addMode(ModeNormal, i18nc("Tangent", "Tan"), i18n("Tangent"));
+	pbTan->addMode(ModeInverse, i18nc("Arc tangent", "Atan"), i18n("Arc tangent"));
+	pbTan->addMode(ModeHyperbolic, i18nc("Hyperbolic tangent", "Tanh"), i18n("Hyperbolic tangent"));
 	pbTan->addMode(ButtonModeFlags(ModeInverse | ModeHyperbolic),
-				   "Atanh", i18n("Inverse hyperbolic tangent"));
+				   i18nc("Inverse hyperbolic tangent", "Atanh"), i18n("Inverse hyperbolic tangent"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbTan, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 			pbTan, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(pbTan, SIGNAL(clicked(void)),SLOT(slotTanclicked(void)));
 
-	pbLog->addMode(ModeNormal, "Log", i18n("Logarithm to base 10"));
-	pbLog->addMode(ModeInverse, "10<sup>x</sup>", i18n("10 to the power of x"));
+	pbLog->addMode(ModeNormal, i18nc("Logarithm to base 10", "Log"), i18n("Logarithm to base 10"));
+	pbLog->addMode(ModeInverse, i18nc("10 to the power of x", "10<sup>x</sup>"), i18n("10 to the power of x"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbLog, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 			pbLog, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(pbLog, SIGNAL(clicked(void)), SLOT(slotLogclicked(void)));
-	pbLn->addMode(ModeNormal, "Ln", i18n("Natural log"));
-	pbLn->addMode(ModeInverse, "e<sup>x</sup>", i18n("Exponential function"));
+	pbLn->addMode(ModeNormal, i18nc("Natural log", "Ln"), i18n("Natural log"));
+	pbLn->addMode(ModeInverse, i18nc("Exponential function", "e<sup>x</sup>"), i18n("Exponential function"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbLn, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
@@ -545,7 +545,7 @@ void KCalculator::setupKeys()
 	statButtons.append(pbDat);
 	statButtons.append(pbCSt);
 
-	pbNData->addMode(ModeNormal, "N", i18n("Number of data entered"));
+	pbNData->addMode(ModeNormal, i18nc("Number of data entered", "N"), i18n("Number of data entered"));
 	pbNData->addMode(ModeInverse, QString::fromUtf8("\xce\xa3")
 					 + 'x', i18n("Sum of all data items"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
@@ -554,7 +554,7 @@ void KCalculator::setupKeys()
 			pbNData, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(pbNData, SIGNAL(clicked(void)), SLOT(slotStatNumclicked(void)));
 
-	pbMean->addMode(ModeNormal, "Mea", i18n("Mean"));
+	pbMean->addMode(ModeNormal, i18nc("Mean", "Mea"), i18n("Mean"));
 	pbMean->addMode(ModeInverse, QString::fromUtf8("\xce\xa3")
 					+ "x<sup>2</sup>",
 					i18n("Sum of all data items squared"));
@@ -578,8 +578,8 @@ void KCalculator::setupKeys()
 			pbMed, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(pbMed, SIGNAL(clicked(void)), SLOT(slotStatMedianclicked(void)));
 
-	pbDat->addMode(ModeNormal, "Dat", i18n("Enter data"));
-	pbDat->addMode(ModeInverse, "CDat", i18n("Delete last data item"));
+	pbDat->addMode(ModeNormal, i18nc("Enter data", "Dat"), i18n("Enter data"));
+	pbDat->addMode(ModeInverse, i18nc("Delete last data item", "CDat"), i18n("Delete last data item"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbDat, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
@@ -645,8 +645,8 @@ void KCalculator::setupKeys()
 
 	// misc buttons
 
-	pbMod->addMode(ModeNormal, "Mod", i18n("Modulo"));
-	pbMod->addMode(ModeInverse, "IntDiv", i18n("Integer division"));
+	pbMod->addMode(ModeNormal, i18nc("Modulo", "Mod"), i18n("Modulo"));
+	pbMod->addMode(ModeInverse, i18nc("Integer division", "IntDiv"), i18n("Integer division"));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 			pbMod, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
@@ -654,22 +654,22 @@ void KCalculator::setupKeys()
 	pbMod->setShortcut(QKeySequence(Qt::Key_Colon));
 	connect(pbMod, SIGNAL(clicked(void)), SLOT(slotModclicked(void)));
 
-	pbReci->addMode(ModeNormal, "1/x", i18n("Reciprocal"));
-	pbReci->addMode(ModeInverse, "nCm", i18n("n Choose m"));
+	pbReci->addMode(ModeNormal, i18nc("Reciprocal", "1/x"), i18n("Reciprocal"));
+	pbReci->addMode(ModeInverse, i18nc("n Choose m", "nCm"), i18n("n Choose m"));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
 			pbReci, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbReci, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(pbReci, SIGNAL(clicked(void)), SLOT(slotReciclicked(void)));
 
-	pbFactorial->addMode(ModeNormal, "x!", i18n("Factorial"));
+	pbFactorial->addMode(ModeNormal, i18nc("Factorial", "x!"), i18n("Factorial"));
 	pbFactorial->setShortcut(QKeySequence(Qt::Key_Exclam));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbFactorial, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(pbFactorial, SIGNAL(clicked(void)),SLOT(slotFactorialclicked(void)));
 
-	pbSquare->addMode(ModeNormal, "x<sup>2</sup>", i18n("Square"));
-	pbSquare->addMode(ModeInverse, "x<sup>3</sup>", i18n("Third power"));
+	pbSquare->addMode(ModeNormal, i18nc("Square", "x<sup>2</sup>"), i18n("Square"));
+	pbSquare->addMode(ModeInverse, i18nc("Third power", "x<sup>3</sup>"), i18n("Third power"));
 	pbSquare->setShortcut(QKeySequence(Qt::Key_BracketLeft));
 	new QShortcut( Qt::Key_twosuperior, pbSquare, SLOT(animateClick()) );
 	connect(this, SIGNAL(switchShowAccels(bool)),
@@ -678,8 +678,8 @@ void KCalculator::setupKeys()
 	        pbSquare, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(pbSquare, SIGNAL(clicked(void)), SLOT(slotSquareclicked(void)));
 
-	pbPower->addMode(ModeNormal, "x<sup>y</sup>", i18n("x to the power of y"));
-	pbPower->addMode(ModeInverse, "x<sup>1/y</sup>", i18n("x to the power of 1/y"));
+	pbPower->addMode(ModeNormal, i18nc("x to the power of y", "x<sup>y</sup>"), i18n("x to the power of y"));
+	pbPower->addMode(ModeInverse, i18nc("x to the power of 1/y", "x<sup>1/y</sup>"), i18n("x to the power of 1/y"));
 	connect(this, SIGNAL(switchShowAccels(bool)),
 			pbPower, SLOT(slotSetAccelDisplayMode(bool)));
 	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)),
