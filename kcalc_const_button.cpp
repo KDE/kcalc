@@ -29,7 +29,7 @@
 KCalcConstButton::KCalcConstButton(QWidget *parent)
   : KCalcButton(parent), _button_num(-1)
 {
-  addMode(ModeInverse, "Store", i18n("Write display data into memory"));
+  addMode(ModeInverse, i18nc("Write display data into memory", "Store"), i18n("Write display data into memory"));
 
   initPopupMenu();
 
@@ -41,7 +41,7 @@ KCalcConstButton::KCalcConstButton(const QString &label, QWidget *parent,
 				   const QString &tooltip)
   : KCalcButton(label, parent, tooltip), _button_num(-1)
 {
-  addMode(ModeInverse, "Store", i18n("Write display data into memory"));
+  addMode(ModeInverse, i18nc("Write display data into memory", "Store"), i18n("Write display data into memory"));
 
   initPopupMenu();
 }

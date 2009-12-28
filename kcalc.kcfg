@@ -6,6 +6,7 @@
   <include>KApplication</include>
   <include>KGlobalSettings</include>
   <include>KColorScheme</include>
+  <include>KLocale</include>
   <kcfgfile name="kcalcrc"/>
   <group name="Colors">
     <entry name="ForeColor" type="Color">
@@ -134,12 +135,20 @@
 	<entry name="nameConstant$(ConstIndex)" type="String" key="nameConstant$(ConstIndex)">
 	<label>Name of the user programmable constants.</label>
 	<parameter name="ConstIndex" type="Int" max="5"/>
-	<default param="0">C1</default>
-	<default param="1">C2</default>
-	<default param="2">C3</default>
-	<default param="3">C4</default>
-	<default param="4">C5</default>
-	<default param="5">C6</default>
+	<code>
+		QString nameConstant0 = i18nc("Name of the user programmable constant", "C1");
+		QString nameConstant1 = i18nc("Name of the user programmable constant", "C2");
+		QString nameConstant2 = i18nc("Name of the user programmable constant", "C3");
+		QString nameConstant3 = i18nc("Name of the user programmable constant", "C4");
+		QString nameConstant4 = i18nc("Name of the user programmable constant", "C5");
+		QString nameConstant5 = i18nc("Name of the user programmable constant", "C6");
+	</code>
+	<default param="0" code="true">nameConstant0</default>
+	<default param="1" code="true">nameConstant1</default>
+	<default param="2" code="true">nameConstant2</default>
+	<default param="3" code="true">nameConstant3</default>
+	<default param="4" code="true">nameConstant4</default>
+	<default param="5" code="true">nameConstant5</default>
 	</entry>
 
 	<entry name="valueConstant$(ConstIndex)" type="String" key="valueConstant$(ConstIndex)">
