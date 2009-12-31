@@ -10,7 +10,7 @@ check_type_size("unsigned long" SIZEOF_UNSIGNED_LONG)
 
 configure_file(config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
 
-ADD_DEFINITIONS( -D_ISOC99_SOURCE ) # added manually
+add_definitions( -D_ISOC99_SOURCE ) # added manually
 
 include_directories( ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/knumber ${GMP_INCLUDE_DIR} )
 
