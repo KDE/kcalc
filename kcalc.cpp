@@ -29,6 +29,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#include <QApplication>
+#include <QCursor>
 #include <QKeyEvent>
 #include <QShortcut>
 #include <QStyle>
@@ -1120,8 +1122,12 @@ void KCalculator::slotTanclicked(void)
 
 void KCalculator::slotFactorialclicked(void)
 {
+	// Set WaitCursor, as this operation may take looooong
+	// time and UI frezes with large numbers. User needs some
+	// visual feedback.
+	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	core.Factorial(calc_display->getAmount());
-
+	QApplication::restoreOverrideCursor();
 	updateDisplay(true);
 }
 
