@@ -355,7 +355,7 @@ void KCalculator::setupKeys()
 			pbMemClear, SLOT(slotSetAccelDisplayMode(bool)));
 
 	pbMemPlusMinus->addMode(ModeNormal, i18nc("Add display to memory", "M+"), i18n("Add display to memory"));
-	pbMemPlusMinus->addMode(ModeInverse, i18nc("Subtract from memory", "M-"), i18n("Subtract from memory"));
+	pbMemPlusMinus->addMode(ModeInverse, i18nc("Subtract from memory", "M−"), i18n("Subtract from memory"));
 	connect(pbMemPlusMinus,SIGNAL(clicked(void)),
 			SLOT(slotMemPlusMinusclicked(void)));
 	connect(this, SIGNAL(switchShowAccels(bool)),

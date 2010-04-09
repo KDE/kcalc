@@ -568,7 +568,7 @@
              <string>Division</string>
             </property>
             <property name="text">
-             <string>/</string>
+             <string>÷</string>
             </property>
            </widget>
           </item>
@@ -584,7 +584,7 @@
              <string>Multiplication</string>
             </property>
             <property name="text">
-             <string>X</string>
+             <string>×</string>
             </property>
            </widget>
           </item>
@@ -600,7 +600,7 @@
              <string>Minus</string>
             </property>
             <property name="text">
-             <string comment="- calculator button">-</string>
+             <string comment="- calculator button">−</string>
             </property>
            </widget>
           </item>
@@ -930,7 +930,7 @@
              <string>Change sign</string>
             </property>
             <property name="text">
-             <string>+/-</string>
+             <string>+/−</string>
             </property>
            </widget>
           </item>
