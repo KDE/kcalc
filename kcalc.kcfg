@@ -101,21 +101,28 @@
       </whatsthis>
       <default>true</default>
     </entry>
+    <entry name="CalculatorMode" type="Enum">
+      <choices>
+        <choice name="simple">
+          <label>Easy Calculator Mode</label>
+          <whatsthis>A very simple mode where only the basic calculator buttons are shown</whatsthis>
+        </choice>
+        <choice name="science">
+          <label>Science Calculator Mode</label>
+          <whatsthis>Mode with science buttons and optional constants buttons</whatsthis>
+        </choice>
+        <choice name="statistics">
+          <label>Statistic Calculator Mode</label>
+          <whatsthis>Mode with additional statistics buttons and optional constants buttons</whatsthis>
+        </choice>
+        <choice name="numeral">
+          <label>Numeral System Mode</label>
+          <whatsthis>Mode with logic buttons and selectable base. Optional bit edit available.</whatsthis>
+        </choice>
+      </choices>
+    </entry>
     <entry name="ShowBitset" type="Bool">
       <label>Whether to show the bit edit widget.</label>
-      <default>false</default>
-    </entry>
-    <entry name="ShowStat" type="Bool">
-      <label>Whether to show statistical buttons.</label>
-      <default>false</default>
-    </entry>
-    <entry name="ShowScientific" type="Bool">
-      <label>Whether to show buttons with functions used in science/engineering,
-	     like exp, log, sin, etc.</label>
-      <default>false</default>
-    </entry>
-    <entry name="ShowLogic" type="Bool">
-      <label>Whether to show logic buttons.</label>
       <default>false</default>
     </entry>
     <entry name="ShowConstants" type="Bool">

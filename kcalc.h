@@ -122,6 +122,10 @@ private:
 
     void updateDisplay(bool get_amount_from_core = false,
                        bool store_result_in_history = false);
+    // button sets
+    void showStatButtons(bool toggled);
+    void showScienceButtons(bool toggled);
+    void showLogicButtons(bool toggled);
 
 protected slots:
     void changeButtonNames();
@@ -130,13 +134,15 @@ protected slots:
     void setFonts();
     void EnterEqual();
     void showSettings();
-    void slotStatshow(bool toggled);
-    void slotScientificshow(bool toggled);
-    void slotLogicshow(bool toggled);
+
+    // Mode
+    void slotSetSimpleMode();
+    void slotSetScienceMode();
+    void slotSetStatisticMode();
+    void slotSetNumeralMode();
+
     void slotConstantsShow(bool toggled);   
     void slotBitsetshow(bool toggled);
-    void slotShowAll(void);
-    void slotHideAll(void);
     void slotAngleSelected(int mode);
     void slotBaseSelected(int base);
     void slotNumberclicked(int number_clicked);
@@ -235,10 +241,12 @@ private:
     QList<QAbstractButton*> constButtons;
 
     KToggleAction *actionBitsetshow;
-    KToggleAction *actionStatshow;
-    KToggleAction *actionScientificshow;
-    KToggleAction *actionLogicshow;
     KToggleAction *actionConstantsShow;
+
+    KToggleAction *actionModeSimple;
+    KToggleAction *actionModeScience;
+    KToggleAction *actionModeStatistic;
+    KToggleAction *actionModeNumeral;
 
     QList<QAbstractButton*> mFunctionButtonList;
     QList<QAbstractButton*> mStatButtonList;

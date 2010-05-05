@@ -3,3 +3,4 @@ File=kcalc.kcfg
 ClassName=KCalcSettings
 Singleton=true
 Mutators=true
+UseEnumTypes=true

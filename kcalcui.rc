@@ -1,15 +1,14 @@
 <!DOCTYPE kpartgui>
-<kpartgui name="kcalc" version="19">
+<kpartgui name="kcalc" version="20">
 <MenuBar>
   <Menu name="settings" noMerge="1"><text>&amp;Settings</text>
-    <Action name="show_science"/>
-    <Action name="show_stat"/>
-    <Action name="show_logic"/>
+    <Action name="mode_simple"/>
+    <Action name="mode_science"/>
+    <Action name="mode_statistics"/>
+    <Action name="mode_numeral"/>
+    <Separator/>
     <Action name="show_constants"/>
     <Action name="show_bitset"/>
-    <Separator/>
-    <Action name="show_all"/>
-    <Action name="hide_all"/>
     <Separator/>
     <Action name="options_configure_keybinding"/>
     <Action name="options_configure"/>

@@ -65,6 +65,7 @@
 #include "kcalc_settings.h"
 #include "kcalc_bitset.h"
 
+class QActionGroup;
 
 static const char description[] = I18N_NOOP("KDE Calculator");
 static const char version[] = KCALCVERSION;
@@ -143,21 +144,21 @@ KCalculator::KCalculator(QWidget *parent)
 	updateDisplay(true);
 
 	// misc settings
-
-	actionStatshow->setChecked(KCalcSettings::showStat());
-	slotStatshow(KCalcSettings::showStat());
-
-	actionScientificshow->setChecked(KCalcSettings::showScientific());
-	slotScientificshow(KCalcSettings::showScientific());
-
-	actionLogicshow->setChecked(KCalcSettings::showLogic());
-	slotLogicshow(KCalcSettings::showLogic());
-
-	actionConstantsShow->setChecked(KCalcSettings::showConstants());
-	slotConstantsShow(KCalcSettings::showConstants());
-
-	actionBitsetshow->setChecked(KCalcSettings::showBitset());
-	slotBitsetshow(KCalcSettings::showBitset());
+	KCalcSettings::EnumCalculatorMode::type calculatorMode = KCalcSettings::calculatorMode();
+	switch( calculatorMode ) {
+          case KCalcSettings::EnumCalculatorMode::science:
+	      actionModeScience->setChecked( true );
+	      break;
+          case KCalcSettings::EnumCalculatorMode::statistics:
+	      actionModeStatistic->setChecked( true );
+	      break;
+          case KCalcSettings::EnumCalculatorMode::numeral:
+	      actionModeNumeral->setChecked( true );
+	      break;
+          case KCalcSettings::EnumCalculatorMode::simple:
+          default:
+	      actionModeSimple->setChecked( true );
+	}
 
         setAngle();
         setBase();
@@ -189,38 +190,31 @@ void KCalculator::setupMainActions(void)
 	KStandardAction::copy(calc_display, SLOT(slotCopy()), actionCollection());
 	KStandardAction::paste(calc_display, SLOT(slotPaste()), actionCollection());
 
+	// mode menu
+	QActionGroup *modeGroup = new QActionGroup( this );
+	actionModeSimple = actionCollection()->add<KToggleAction>( "mode_simple" );
+	actionModeSimple->setActionGroup( modeGroup );
+	actionModeSimple->setText( i18n("Simple Mode") );
+	connect(actionModeSimple, SIGNAL(toggled(bool)), SLOT(slotSetSimpleMode()));
+	actionModeScience = actionCollection()->add<KToggleAction>( "mode_science" );
+	actionModeScience->setActionGroup( modeGroup );
+	actionModeScience->setText( i18n("Science Mode") );
+	connect(actionModeScience, SIGNAL(toggled(bool)), SLOT(slotSetScienceMode()));
+	actionModeStatistic = actionCollection()->add<KToggleAction>( "mode_statistics" );
+	actionModeStatistic->setActionGroup( modeGroup );
+	actionModeStatistic->setText( i18n("Statistic Mode") );
+	connect(actionModeStatistic, SIGNAL(toggled(bool)), SLOT(slotSetStatisticMode()));
+	actionModeNumeral = actionCollection()->add<KToggleAction>( "mode_numeral" );
+	actionModeNumeral->setActionGroup( modeGroup );
+	actionModeNumeral->setText( i18n("Numeral System Mode") );
+	connect(actionModeNumeral, SIGNAL(toggled(bool)), SLOT(slotSetNumeralMode()));
+
 	// settings menu
-	actionStatshow = actionCollection()->add<KToggleAction>( "show_stat" );
-	actionStatshow->setText( i18n("&Statistic Buttons") );
-	actionStatshow->setChecked(true);
-	connect(actionStatshow, SIGNAL(toggled(bool)),
-			SLOT(slotStatshow(bool)));
-
-	actionScientificshow = actionCollection()->add<KToggleAction>( "show_science" );
-	actionScientificshow->setText( i18n("Science/&Engineering Buttons") );
-	actionScientificshow->setChecked(true);
-	connect(actionScientificshow, SIGNAL(toggled(bool)),
-			SLOT(slotScientificshow(bool)));
-
-	actionLogicshow = actionCollection()->add<KToggleAction>( "show_logic");
-	actionLogicshow->setText( i18n("&Logic Buttons") );
-	actionLogicshow->setChecked(true);
-	connect(actionLogicshow, SIGNAL(toggled(bool)),
-			SLOT(slotLogicshow(bool)));
-
 	actionConstantsShow=actionCollection()->add<KToggleAction>( "show_constants" );
 	actionConstantsShow->setText( i18n("&Constants Buttons") );
 	actionConstantsShow->setChecked(true);
 	connect(actionConstantsShow, SIGNAL(toggled(bool)),
 			SLOT(slotConstantsShow(bool)));
-
-	QAction *showAct = actionCollection()->addAction( "show_all" );
-	showAct->setText( i18n("&Show All") );
-	connect(showAct, SIGNAL(triggered()), this, SLOT(slotShowAll()));
-
-	QAction *hideAct = actionCollection()->addAction("hide_all");
-	hideAct->setText(i18n("&Hide All"));
-	connect(hideAct, SIGNAL(triggered()), this, SLOT(slotHideAll()));
 
 	actionBitsetshow = actionCollection()->add<KToggleAction>( "show_bitset" );
 	actionBitsetshow->setText( i18n("Show B&it Edit") );
@@ -1590,7 +1584,55 @@ void KCalculator::slotChooseScientificConst5(struct science_constant const & cho
   constants->kcfg_nameConstant5->setText(chosen_const.label);
 }
 
-void KCalculator::slotStatshow(bool toggled)
+void KCalculator::slotSetSimpleMode()
+{
+    actionConstantsShow->setChecked( false );
+    actionConstantsShow->setEnabled( false );
+    actionBitsetshow->setChecked( false );
+    actionBitsetshow->setEnabled( false );
+    showScienceButtons( false );
+    showStatButtons( false );
+    showLogicButtons( false );
+    KCalcSettings::setCalculatorMode( KCalcSettings::EnumCalculatorMode::simple );
+}
+
+void KCalculator::slotSetScienceMode()
+{
+    actionConstantsShow->setEnabled( true );
+    actionConstantsShow->setChecked( KCalcSettings::showConstants() );
+    actionBitsetshow->setChecked( false );
+    actionBitsetshow->setEnabled( false );
+    showScienceButtons( true );
+    showStatButtons( false );
+    showLogicButtons( false );
+    KCalcSettings::setCalculatorMode( KCalcSettings::EnumCalculatorMode::science );
+}
+
+void KCalculator::slotSetStatisticMode()
+{
+    actionConstantsShow->setEnabled( true );
+    actionConstantsShow->setChecked( KCalcSettings::showConstants() );
+    actionBitsetshow->setChecked( false );
+    actionBitsetshow->setEnabled( false );
+    showScienceButtons( true );
+    showStatButtons( true );
+    showLogicButtons( false );
+    KCalcSettings::setCalculatorMode( KCalcSettings::EnumCalculatorMode::statistics );
+}
+
+void KCalculator::slotSetNumeralMode()
+{
+    actionConstantsShow->setChecked( false );
+    actionConstantsShow->setEnabled( false );
+    actionBitsetshow->setEnabled( true );
+    actionBitsetshow->setChecked( KCalcSettings::showBitset() );
+    showScienceButtons( false );
+    showStatButtons( false );
+    showLogicButtons( true );
+    KCalcSettings::setCalculatorMode( KCalcSettings::EnumCalculatorMode::numeral );
+}
+
+void KCalculator::showStatButtons(bool toggled)
 {
 	if(toggled)
 	{
@@ -1604,10 +1646,9 @@ void KCalculator::slotStatshow(bool toggled)
 			btn->hide();
 		}
 	}
-	KCalcSettings::setShowStat(toggled);
 }
 
-void KCalculator::slotScientificshow(bool toggled)
+void KCalculator::showScienceButtons(bool toggled)
 {
 	if(toggled)
 	{
@@ -1632,10 +1673,9 @@ void KCalculator::slotScientificshow(bool toggled)
 		statusBar()->setItemFixed(AngleField, 0);
 		calc_display->setStatusText(AngleField, QString());
 	}
-	KCalcSettings::setShowScientific(toggled);
 }
 
-void KCalculator::slotLogicshow(bool toggled)
+void KCalculator::showLogicButtons(bool toggled)
 {
 	if(toggled)
 	{
@@ -1677,7 +1717,6 @@ void KCalculator::slotLogicshow(bool toggled)
 		for (int i=10; i<16; i++)
 			(NumButtonGroup->button(i))->hide();
 	}
-	KCalcSettings::setShowLogic(toggled);
 }
 
 void KCalculator::slotConstantsShow(bool toggled)
@@ -1713,26 +1752,6 @@ void KCalculator::changeButtonNames()
 		constbtn = qobject_cast<KCalcConstButton*>(btn);
 		if (constbtn) constbtn->setLabelAndTooltip();
 	}
-}
-
-void KCalculator::slotShowAll(void)
-{
-	// I wonder why "setChecked" does not emit "toggled"
-	if(!actionStatshow->isChecked()) actionStatshow->trigger();
-	if(!actionScientificshow->isChecked()) actionScientificshow->trigger();
-	if(!actionLogicshow->isChecked()) actionLogicshow->trigger();
-	if(!actionConstantsShow->isChecked()) actionConstantsShow->trigger();
-	if(!actionBitsetshow->isChecked()) actionBitsetshow->trigger();
-}
-
-void KCalculator::slotHideAll(void)
-{
-	// I wonder why "setChecked" does not emit "toggled"
-	if(actionStatshow->isChecked()) actionStatshow->trigger();
-	if(actionScientificshow->isChecked()) actionScientificshow->trigger();
-	if(actionLogicshow->isChecked()) actionLogicshow->trigger();
-	if(actionConstantsShow->isChecked()) actionConstantsShow->trigger();
-	if(actionBitsetshow->isChecked()) actionBitsetshow->trigger();
 }
 
 void KCalculator::slotBitsetChanged(unsigned long long value)
