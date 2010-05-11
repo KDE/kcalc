@@ -29,108 +29,108 @@
 
 BitButton::BitButton(QWidget *parent) : QAbstractButton(parent), on(false)
 {
-	setFocusPolicy(Qt::ClickFocus); // too many bits for tab focus
+    setFocusPolicy(Qt::ClickFocus);   // too many bits for tab focus
 
-	// size button by font
-	QSize size = fontMetrics().size(0, "M");
-	if (size.width() < size.height()) {
-		size.setHeight(size.width());
-	} else {
-		size.setWidth(size.height());
-	}
-	setFixedSize(size.expandedTo(QApplication::globalStrut()));
+    // size button by font
+    QSize size = fontMetrics().size(0, "M");
+    if (size.width() < size.height()) {
+        size.setHeight(size.width());
+    } else {
+        size.setWidth(size.height());
+    }
+    setFixedSize(size.expandedTo(QApplication::globalStrut()));
 }
 
 bool BitButton::isOn() const
 {
-	return on;
+    return on;
 }
 
 void BitButton::setOn(bool value)
 {
-	on = value;
-	update();
+    on = value;
+    update();
 }
 
 void BitButton::paintEvent(QPaintEvent *)
 {
-	QPainter painter(this);
-	QPen pen(palette().text(), 2);
-	pen.setJoinStyle(Qt::MiterJoin);
-	painter.setPen(pen);
+    QPainter painter(this);
+    QPen pen(palette().text(), 2);
+    pen.setJoinStyle(Qt::MiterJoin);
+    painter.setPen(pen);
 
-	if (on) painter.setBrush(palette().text());
-	else    painter.setBrush(palette().base());
+    if (on) painter.setBrush(palette().text());
+    else    painter.setBrush(palette().base());
 
-	painter.drawRect(rect().adjusted(1, 1, -1, -1));
+    painter.drawRect(rect().adjusted(1, 1, -1, -1));
 }
 
 
 KCalcBitset::KCalcBitset(QWidget *parent)
-   : QFrame(parent), mValue(0)
+        : QFrame(parent), mValue(0)
 {
-	setFrameStyle(QFrame::Panel | QFrame::Sunken);
-	bitButtonGroup = new QButtonGroup(this);
-	connect(bitButtonGroup, SIGNAL(buttonClicked (int)),
-		SLOT(slotToggleBit(int)));
+    setFrameStyle(QFrame::Panel | QFrame::Sunken);
+    bitButtonGroup = new QButtonGroup(this);
+    connect(bitButtonGroup, SIGNAL(buttonClicked(int)),
+            SLOT(slotToggleBit(int)));
 
-	// smaller label font
-	QFont fnt = font();
-	if (fnt.pointSize() > 6) fnt.setPointSize(fnt.pointSize() - 1);
+    // smaller label font
+    QFont fnt = font();
+    if (fnt.pointSize() > 6) fnt.setPointSize(fnt.pointSize() - 1);
 
-	// main layout
-	QGridLayout *layout = new QGridLayout(this);
-	layout->setMargin(2);
-	layout->setSpacing(0);
+    // main layout
+    QGridLayout *layout = new QGridLayout(this);
+    layout->setMargin(2);
+    layout->setSpacing(0);
 
-	// create bits
-	int bitCounter = 63;
-	for (int rows=0; rows<2; rows++) {
-		for (int cols=0; cols<4; cols++) {
-			// two rows of four words
-			QHBoxLayout *wordlayout = new QHBoxLayout();
-			wordlayout->setMargin(2);
-			wordlayout->setSpacing(2);
-			layout->addLayout(wordlayout, rows, cols);
+    // create bits
+    int bitCounter = 63;
+    for (int rows = 0; rows < 2; rows++) {
+        for (int cols = 0; cols < 4; cols++) {
+            // two rows of four words
+            QHBoxLayout *wordlayout = new QHBoxLayout();
+            wordlayout->setMargin(2);
+            wordlayout->setSpacing(2);
+            layout->addLayout(wordlayout, rows, cols);
 
-			for (int bit=0; bit<8; bit++) {
-				BitButton *tmpBitButton = new BitButton(this);
-				wordlayout->addWidget(tmpBitButton);
-				bitButtonGroup->addButton(tmpBitButton, bitCounter);
-				bitCounter--;
-			}
+            for (int bit = 0; bit < 8; bit++) {
+                BitButton *tmpBitButton = new BitButton(this);
+                wordlayout->addWidget(tmpBitButton);
+                bitButtonGroup->addButton(tmpBitButton, bitCounter);
+                bitCounter--;
+            }
 
-			// label word
-			QLabel *label = new QLabel(this);
-			label->setText(QString::number(bitCounter+1));
-			label->setFont(fnt);
-			wordlayout->addWidget(label);
+            // label word
+            QLabel *label = new QLabel(this);
+            label->setText(QString::number(bitCounter + 1));
+            label->setFont(fnt);
+            wordlayout->addWidget(label);
 
-		}
-	}
+        }
+    }
 }
 
 void KCalcBitset::setValue(unsigned long long value)
 {
     if (mValue == value) return;
 
-	mValue = value;
-	for(int i=0; i<64; i++) {
-		BitButton *bb = qobject_cast<BitButton*>(bitButtonGroup->button(i));
-		if (bb) bb->setOn(value & 1);
-		value >>= 1;
-	}
+    mValue = value;
+    for (int i = 0; i < 64; i++) {
+        BitButton *bb = qobject_cast<BitButton*>(bitButtonGroup->button(i));
+        if (bb) bb->setOn(value & 1);
+        value >>= 1;
+    }
 }
 
 unsigned long long KCalcBitset::getValue()
 {
-	return mValue;
+    return mValue;
 }
 
-void KCalcBitset::slotToggleBit( int bit )
+void KCalcBitset::slotToggleBit(int bit)
 {
-  unsigned long long nv = getValue() ^ (1LL << bit);
-  setValue(nv);
-  emit valueChanged(mValue);
+    unsigned long long nv = getValue() ^(1LL << bit);
+    setValue(nv);
+    emit valueChanged(mValue);
 }
 

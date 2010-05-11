@@ -25,36 +25,36 @@
 
 class KCalcBitset : public QFrame
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	KCalcBitset( QWidget *parent=0 );
-	unsigned long long getValue();
+    KCalcBitset(QWidget *parent = 0);
+    unsigned long long getValue();
 
 public slots:
-	void setValue( unsigned long long value );
-	void slotToggleBit( int bit );
+    void setValue(unsigned long long value);
+    void slotToggleBit(int bit);
 
 signals:
-	void valueChanged( unsigned long long value );
+    void valueChanged(unsigned long long value);
 
 private:
-	QButtonGroup *bitButtonGroup;
-	unsigned long long mValue;
+    QButtonGroup *bitButtonGroup;
+    unsigned long long mValue;
 };
 
 class BitButton : public QAbstractButton
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	explicit BitButton( QWidget *parent=0 );
-	bool isOn() const;
-	void setOn(bool value);
+    explicit BitButton(QWidget *parent = 0);
+    bool isOn() const;
+    void setOn(bool value);
 
 protected:
-	void paintEvent(QPaintEvent *event);
+    void paintEvent(QPaintEvent *event);
 
 private:
-	bool on;
+    bool on;
 };
 
 #endif

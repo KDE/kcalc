@@ -30,33 +30,33 @@
 
 class KCalcConstButton : public KCalcButton
 {
-Q_OBJECT
+    Q_OBJECT
 
-  public:
+public:
 
-  KCalcConstButton(QWidget *parent);
-  
-  KCalcConstButton(const QString &label, QWidget *parent,
-		   const QString &tooltip = QString());
+    KCalcConstButton(QWidget *parent);
 
-  QString constant(void) const;
+    KCalcConstButton(const QString &label, QWidget *parent,
+                     const QString &tooltip = QString());
 
-  void setButtonNumber(int num);
+    QString constant(void) const;
 
-  void setLabelAndTooltip(void);
+    void setButtonNumber(int num);
 
- signals:
-  void clicked(int num);
+    void setLabelAndTooltip(void);
 
- private slots:
-  void slotConfigureButton();
-  void slotChooseScientificConst(struct science_constant const &const_chosen);
-  void slotClicked();
+signals:
+    void clicked(int num);
 
- private:
-  void initPopupMenu(void);
-  
-  int _button_num;
+private slots:
+    void slotConfigureButton();
+    void slotChooseScientificConst(struct science_constant const &const_chosen);
+    void slotClicked();
+
+private:
+    void initPopupMenu(void);
+
+    int _button_num;
 };
 
 

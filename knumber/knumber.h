@@ -64,222 +64,228 @@ class _knumber;
   */
 class KDE_EXPORT KNumber
 {
- public:
-  static KNumber const Zero;
-  static KNumber const One;
-  static KNumber const MinusOne;
-  static KNumber const NotDefined;
+public:
+    static KNumber const Zero;
+    static KNumber const One;
+    static KNumber const MinusOne;
+    static KNumber const NotDefined;
 
-  /**
-   * KNumber tries to provide transparent access to the following type
-   * of numbers:
-   *
-   * @li @p NumType::SpecialType - Some type of error has occurred,
-   * further inspection with @p KNumber::ErrorType
-   *
-   * @li @p NumType::IntegerType - the number is an integer
-   *
-   * @li @p NumType::FractionType - the number is a fraction
-   *
-   * @li @p NumType::FloatType - the number is of floating point type
-   *
-   */
-  enum NumType {SpecialType, IntegerType, FractionType, FloatType};
+    /**
+     * KNumber tries to provide transparent access to the following type
+     * of numbers:
+     *
+     * @li @p NumType::SpecialType - Some type of error has occurred,
+     * further inspection with @p KNumber::ErrorType
+     *
+     * @li @p NumType::IntegerType - the number is an integer
+     *
+     * @li @p NumType::FractionType - the number is a fraction
+     *
+     * @li @p NumType::FloatType - the number is of floating point type
+     *
+     */
+    enum NumType {SpecialType, IntegerType, FractionType, FloatType};
 
-  /**
-   * A KNumber that represents an error, i.e. that is of type @p
-   * NumType::SpecialType can further distinguished:
-   *
-   * @li @p ErrorType::UndefinedNumber - This is e.g. the result of
-   * taking the square root of a negative number or computing
-   * \f$ \infty - \infty \f$.
-   *
-   * @li @p ErrorType::Infinity - Such a number can be e.g. obtained
-   * by dividing 1 by 0. Some further calculations are still allowed,
-   * e.g. \f$ \infty + 5 \f$ still gives \f$\infty\f$.
-   *
-   * @li @p ErrorType::MinusInfinity - MinusInfinity behaves similarly
-   * to infinity above. It can be obtained by changing the sign of
-   * infinity.
-   *
-   */
-  enum ErrorType {UndefinedNumber, Infinity, MinusInfinity};
+    /**
+     * A KNumber that represents an error, i.e. that is of type @p
+     * NumType::SpecialType can further distinguished:
+     *
+     * @li @p ErrorType::UndefinedNumber - This is e.g. the result of
+     * taking the square root of a negative number or computing
+     * \f$ \infty - \infty \f$.
+     *
+     * @li @p ErrorType::Infinity - Such a number can be e.g. obtained
+     * by dividing 1 by 0. Some further calculations are still allowed,
+     * e.g. \f$ \infty + 5 \f$ still gives \f$\infty\f$.
+     *
+     * @li @p ErrorType::MinusInfinity - MinusInfinity behaves similarly
+     * to infinity above. It can be obtained by changing the sign of
+     * infinity.
+     *
+     */
+    enum ErrorType {UndefinedNumber, Infinity, MinusInfinity};
 
-  KNumber(qint32 num = 0);
-  KNumber(quint32 num);  
-  KNumber(qint64 num);
-  KNumber(quint64 num);
+    KNumber(qint32 num = 0);
+    KNumber(quint32 num);
+    KNumber(qint64 num);
+    KNumber(quint64 num);
 
-  KNumber(double num);
+    KNumber(double num);
 
-  KNumber(KNumber const & num);
-  
-  KNumber(QString const & num);
-  
-  virtual ~KNumber();
-  
-  KNumber const & operator=(KNumber const & num);
+    KNumber(KNumber const & num);
 
-  /**
-   * Returns the type of the number, as explained in @p KNumber::NumType.
-   */
-  NumType type(void) const;
+    KNumber(QString const & num);
 
-  /**
-   * Set whether the output of numbers (with KNumber::toQString)
-   * should happen as floating point numbers or not. This method has
-   * in fact only an effect on numbers of type @p
-   * NumType::FractionType, which can be either displayed as fractions
-   * or in decimal notation.
-   *
-   * The default behavior is not to display fractions in floating
-   * point notation.
-   */
-  static void setDefaultFloatOutput(bool flag);
+    virtual ~KNumber();
 
-  /**
-   * Set whether a number constructed from a QString should be
-   * initialized as a fraction or as a float, e.g. "1.01" would be
-   * treated as 101/100, if this flag is set to true.
-   *
-   * The default setting is false.
-   */
-  static void setDefaultFractionalInput(bool flag);
+    KNumber const & operator=(KNumber const & num);
 
-  /**
-   * Set the default precision to be *at least* @p prec (decimal)
-   * digits.  All subsequent initialized floats will use at least this
-   * precision, but previously initialized variables are unaffected.
-   */
-  static void setDefaultFloatPrecision(unsigned int prec);
+    /**
+     * Returns the type of the number, as explained in @p KNumber::NumType.
+     */
+    NumType type(void) const;
 
-  /**
-   * What a terrible method name!!  When displaying a fraction, the
-   * default mode gives @p "nomin/denom". With this method one can
-   * choose to display a fraction as @p "integer nomin/denom".
-   *
-   * Examples: Default representation mode is 47/17, but if @p flag is
-   * @p true, then the result is 2 13/17.
-   */
-  static void setSplitoffIntegerForFractionOutput(bool flag);
+    /**
+     * Set whether the output of numbers (with KNumber::toQString)
+     * should happen as floating point numbers or not. This method has
+     * in fact only an effect on numbers of type @p
+     * NumType::FractionType, which can be either displayed as fractions
+     * or in decimal notation.
+     *
+     * The default behavior is not to display fractions in floating
+     * point notation.
+     */
+    static void setDefaultFloatOutput(bool flag);
 
-  /**
-   * Return a QString representing the KNumber.
-   *
-   * @param width This number specifies the maximal length of the
-   * output, before the method switches to exponential notation and
-   * does rounding.  For negative numbers, this option is ignored.
-   *
-   * @param prec This parameter controls the number of digits
-   * following the decimal point.  For negative numbers, this option
-   * is ignored.
-   *
-   */
-  QString const toQString(int width = -1, int prec = -1) const;
-  
-  /**
-   * Compute the absolute value, i.e. @p x.abs() returns the value
-   *
-   *  \f[ \left\{\begin{array}{cl} x, & x \ge 0 \\ -x, & x <
-   *  0\end{array}\right.\f]
-   * This method works for \f$ x = \infty \f$ and \f$ x = -\infty \f$.
-   */
-  KNumber const abs(void) const;
+    /**
+     * Set whether a number constructed from a QString should be
+     * initialized as a fraction or as a float, e.g. "1.01" would be
+     * treated as 101/100, if this flag is set to true.
+     *
+     * The default setting is false.
+     */
+    static void setDefaultFractionalInput(bool flag);
 
-  /**
-   * Compute the square root. If \f$ x < 0 \f$ (including \f$
-   * x=-\infty \f$), then @p x.sqrt() returns @p
-   * ErrorType::UndefinedNumber.
-   * 
-   * If @p x is an integer or a fraction, then @p x.sqrt() tries to
-   * compute the exact square root. If the square root is not a
-   * fraction, then a float with the default precision is returned.
-   *
-   * This method works for \f$ x = \infty \f$ giving \f$ \infty \f$.
-   */
-  KNumber const sqrt(void) const;
+    /**
+     * Set the default precision to be *at least* @p prec (decimal)
+     * digits.  All subsequent initialized floats will use at least this
+     * precision, but previously initialized variables are unaffected.
+     */
+    static void setDefaultFloatPrecision(unsigned int prec);
 
-  /**
-   * Compute the cube root. 
-   * 
-   * If @p x is an integer or a fraction, then @p x.cbrt() tries to
-   * compute the exact cube root. If the cube root is not a fraction,
-   * then a float is returned, but
-   *
-   * WARNING: A float cube root is computed as a standard @p double
-   * that is later transformed back into a @p KNumber.
-   *
-   * This method works for \f$ x = \infty \f$ giving \f$ \infty \f$,
-   * and for \f$ x = -\infty \f$ giving \f$ -\infty \f$.
-   */
-  KNumber const cbrt(void) const;
+    /**
+     * What a terrible method name!!  When displaying a fraction, the
+     * default mode gives @p "nomin/denom". With this method one can
+     * choose to display a fraction as @p "integer nomin/denom".
+     *
+     * Examples: Default representation mode is 47/17, but if @p flag is
+     * @p true, then the result is 2 13/17.
+     */
+    static void setSplitoffIntegerForFractionOutput(bool flag);
 
-  KNumber const factorial(void) const;
+    /**
+     * Return a QString representing the KNumber.
+     *
+     * @param width This number specifies the maximal length of the
+     * output, before the method switches to exponential notation and
+     * does rounding.  For negative numbers, this option is ignored.
+     *
+     * @param prec This parameter controls the number of digits
+     * following the decimal point.  For negative numbers, this option
+     * is ignored.
+     *
+     */
+    QString const toQString(int width = -1, int prec = -1) const;
 
-  /**
-   * Truncates a @p KNumber to its integer type returning a number of
-   * type @p NumType::IntegerType.
-   * 
-   * If \f$ x = \pm\infty \f$, integerPart leaves the value unchanged,
-   * i.e. it returns \f$ \pm\infty \f$.
-   */
-  KNumber const integerPart(void) const;
+    /**
+     * Compute the absolute value, i.e. @p x.abs() returns the value
+     *
+     *  \f[ \left\{\begin{array}{cl} x, & x \ge 0 \\ -x, & x <
+     *  0\end{array}\right.\f]
+     * This method works for \f$ x = \infty \f$ and \f$ x = -\infty \f$.
+     */
+    KNumber const abs(void) const;
 
-  KNumber const power(KNumber const &exp) const;
+    /**
+     * Compute the square root. If \f$ x < 0 \f$ (including \f$
+     * x=-\infty \f$), then @p x.sqrt() returns @p
+     * ErrorType::UndefinedNumber.
+     *
+     * If @p x is an integer or a fraction, then @p x.sqrt() tries to
+     * compute the exact square root. If the square root is not a
+     * fraction, then a float with the default precision is returned.
+     *
+     * This method works for \f$ x = \infty \f$ giving \f$ \infty \f$.
+     */
+    KNumber const sqrt(void) const;
 
-  KNumber const operator+(KNumber const & arg2) const;
-  KNumber const operator -(void) const;
-  KNumber const operator-(KNumber const & arg2) const;
-  KNumber const operator*(KNumber const & arg2) const;
-  KNumber const operator/(KNumber const & arg2) const;
-  KNumber const operator%(KNumber const & arg2) const;
+    /**
+     * Compute the cube root.
+     *
+     * If @p x is an integer or a fraction, then @p x.cbrt() tries to
+     * compute the exact cube root. If the cube root is not a fraction,
+     * then a float is returned, but
+     *
+     * WARNING: A float cube root is computed as a standard @p double
+     * that is later transformed back into a @p KNumber.
+     *
+     * This method works for \f$ x = \infty \f$ giving \f$ \infty \f$,
+     * and for \f$ x = -\infty \f$ giving \f$ -\infty \f$.
+     */
+    KNumber const cbrt(void) const;
 
-  KNumber const operator&(KNumber const & arg2) const;
-  KNumber const operator|(KNumber const & arg2) const;
-  KNumber const operator<<(KNumber const & arg2) const;
-  KNumber const operator>>(KNumber const & arg2) const;
+    KNumber const factorial(void) const;
 
-  operator bool(void) const;
-  operator qint32(void) const;
-  operator quint32(void) const;
-  operator qint64(void) const;
-  operator quint64(void) const;
-  operator double(void) const;
+    /**
+     * Truncates a @p KNumber to its integer type returning a number of
+     * type @p NumType::IntegerType.
+     *
+     * If \f$ x = \pm\infty \f$, integerPart leaves the value unchanged,
+     * i.e. it returns \f$ \pm\infty \f$.
+     */
+    KNumber const integerPart(void) const;
 
-  bool operator==(KNumber const & arg2) const
-  { return (compare(arg2) == 0); }
+    KNumber const power(KNumber const &exp) const;
 
-  bool operator!=(KNumber const & arg2) const
-  { return (compare(arg2) != 0); }
+    KNumber const operator+(KNumber const & arg2) const;
+    KNumber const operator -(void) const;
+    KNumber const operator-(KNumber const & arg2) const;
+    KNumber const operator*(KNumber const & arg2) const;
+    KNumber const operator/(KNumber const & arg2) const;
+    KNumber const operator%(KNumber const & arg2) const;
 
-  bool operator>(KNumber const & arg2) const
-  { return (compare(arg2) > 0); }
+    KNumber const operator&(KNumber const & arg2) const;
+    KNumber const operator|(KNumber const & arg2) const;
+    KNumber const operator<<(KNumber const & arg2) const;
+    KNumber const operator>>(KNumber const & arg2) const;
 
-  bool operator<(KNumber const & arg2) const
-  { return (compare(arg2) < 0); }
+    operator bool(void) const;
+    operator qint32(void) const;
+    operator quint32(void) const;
+    operator qint64(void) const;
+    operator quint64(void) const;
+    operator double(void) const;
 
-  bool operator>=(KNumber const & arg2) const
-  { return (compare(arg2) >= 0); }
+    bool operator==(KNumber const & arg2) const {
+        return (compare(arg2) == 0);
+    }
 
-  bool operator<=(KNumber const & arg2) const
-  { return (compare(arg2) <= 0); }
+    bool operator!=(KNumber const & arg2) const {
+        return (compare(arg2) != 0);
+    }
 
-  KNumber & operator +=(KNumber const &arg);
-  KNumber & operator -=(KNumber const &arg);
-  static KNumber Pi(void);
-  static KNumber Euler(void);
+    bool operator>(KNumber const & arg2) const {
+        return (compare(arg2) > 0);
+    }
+
+    bool operator<(KNumber const & arg2) const {
+        return (compare(arg2) < 0);
+    }
+
+    bool operator>=(KNumber const & arg2) const {
+        return (compare(arg2) >= 0);
+    }
+
+    bool operator<=(KNumber const & arg2) const {
+        return (compare(arg2) <= 0);
+    }
+
+    KNumber & operator +=(KNumber const &arg);
+    KNumber & operator -=(KNumber const &arg);
+    static KNumber Pi(void);
+    static KNumber Euler(void);
 
 
-  //KNumber const toFloat(void) const;
+    //KNumber const toFloat(void) const;
 
- private:
-  void simplifyRational(void);
-  int compare(KNumber const & arg2) const;
-  
-  _knumber *_num;
-  static bool _float_output;
-  static bool _fraction_input;
-  static bool _splitoffinteger_output;
+private:
+    void simplifyRational(void);
+    int compare(KNumber const & arg2) const;
+
+    _knumber *_num;
+    static bool _float_output;
+    static bool _fraction_input;
+    static bool _splitoffinteger_output;
 };
 
 

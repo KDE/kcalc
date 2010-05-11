@@ -43,49 +43,49 @@ enum ButtonModeFlags {ModeNormal = 0, ModeInverse = 1, ModeHyperbolic = 2};
 class ButtonMode
 {
 public:
-  ButtonMode(void) {}
-  ButtonMode(const QString &label,
-             const QString &tooltip)
-      : label(label), tooltip(tooltip) { }
+    ButtonMode(void) {}
+    ButtonMode(const QString &label,
+               const QString &tooltip)
+            : label(label), tooltip(tooltip) { }
 
-  QString label;
-  QString tooltip;
+    QString label;
+    QString tooltip;
 };
 
 
 class KCalcButton : public KPushButton
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
- KCalcButton(QWidget *parent); 
- KCalcButton(const QString &label, QWidget *parent,
-	     const QString &tooltip = QString());
+    KCalcButton(QWidget *parent);
+    KCalcButton(const QString &label, QWidget *parent,
+                const QString &tooltip = QString());
 
- void addMode(ButtonModeFlags mode, const QString &label,
-	      const QString &tooltip);
+    void addMode(ButtonModeFlags mode, const QString &label,
+                 const QString &tooltip);
 
- virtual QSize sizeHint() const; // reimp
+    virtual QSize sizeHint() const; // reimp
 
- void setFont(const QFont &fnt);
- void setText(const QString &text); // reimp
- void setToolTip(const QString &tip); // reimp
+    void setFont(const QFont &fnt);
+    void setText(const QString &text);   // reimp
+    void setToolTip(const QString &tip);   // reimp
 
-public slots: 
-  void slotSetMode(ButtonModeFlags mode, bool flag); 
-  void slotSetAccelDisplayMode(bool flag);
+public slots:
+    void slotSetMode(ButtonModeFlags mode, bool flag);
+    void slotSetAccelDisplayMode(bool flag);
 
 protected:
-  virtual void paintEvent(QPaintEvent *e);
+    virtual void paintEvent(QPaintEvent *e);
 
 private:
-  void calcSizeHint();
+    void calcSizeHint();
 
 private:
-  bool _show_shortcut_mode;
-  ButtonModeFlags _mode_flags;
-  QMap<ButtonModeFlags, ButtonMode> _mode;
-  QSize _size;
+    bool _show_shortcut_mode;
+    ButtonModeFlags _mode_flags;
+    QMap<ButtonModeFlags, ButtonMode> _mode;
+    QSize _size;
 };
 
 #endif  // _KCALC_BUTTON_H

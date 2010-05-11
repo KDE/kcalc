@@ -3,10 +3,10 @@
 
     KCalc, a scientific calculator for the X window system using the
     Qt widget libraries, available at no cost at http://www.troll.no
-   
+
     Copyright (C) 1996 Bernd Johannes Wuebben
                        wuebben@math.cornell.edu
-    
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -34,18 +34,18 @@
 
 #undef HAVE_LONG_LONG
 #if defined(LLONG_MAX) && defined(HAVE_LONG_DOUBLE)
-#define KCALC_LONG_MIN	LLONG_MIN
-#define KCALC_LONG_MAX	LLONG_MAX
-#define KCALC_ULONG_MAX	ULLONG_MAX
-#define KCALC_LONG	long long
+#define KCALC_LONG_MIN LLONG_MIN
+#define KCALC_LONG_MAX LLONG_MAX
+#define KCALC_ULONG_MAX ULLONG_MAX
+#define KCALC_LONG long long
 #define HAVE_LONG_LONG
 #define STRTOUL         strtoull
 #else
 #if defined(LONG_LONG_MAX) && defined(HAVE_LONG_DOUBLE)
-#define KCALC_LONG_MIN	LONG_LONG_MIN
-#define KCALC_LONG_MAX	LONG_LONG_MAX
-#define KCALC_ULONG_MAX	ULONG_LONG_MAX
-#define KCALC_LONG	long long
+#define KCALC_LONG_MIN LONG_LONG_MIN
+#define KCALC_LONG_MAX LONG_LONG_MAX
+#define KCALC_ULONG_MAX ULONG_LONG_MAX
+#define KCALC_LONG long long
 #define HAVE_LONG_LONG
 #ifdef _HPUX_SOURCE
 #define STRTOUL         strtoul
@@ -53,11 +53,11 @@
 #define STRTOUL         strtoull
 #endif
 #else
-#define KCALC_LONG_MIN	LONG_MIN
-#define KCALC_LONG_MAX	LONG_MAX
-#define KCALC_ULONG_MAX	ULONG_MAX
-#define KCALC_LONG	long
+#define KCALC_LONG_MIN LONG_MIN
+#define KCALC_LONG_MAX LONG_MAX
+#define KCALC_ULONG_MAX ULONG_MAX
+#define KCALC_LONG long
 #define STRTOUL         strtoul
 #endif
 #endif
-#endif 
+#endif

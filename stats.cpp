@@ -3,10 +3,10 @@
 
     KCalc, a scientific calculator for the X window system using the
     Qt widget libraries, available at no cost at http://www.troll.no
-   
+
     Copyright (C) 1996 Bernd Johannes Wuebben
                        wuebben@math.cornell.edu
-    
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -26,170 +26,180 @@
 
 #include "stats.h"
 #ifdef DEBUG_STATS
-	#include <stdio.h>
+#include <stdio.h>
 #endif
 
-KStats::KStats() {
-	error_flag = false;
+KStats::KStats()
+{
+    error_flag = false;
 }
 
-KStats::~KStats() {
+KStats::~KStats()
+{
 }
 
-void KStats::clearAll() {
-	mData.clear();
+void KStats::clearAll()
+{
+    mData.clear();
 }
- 
-void KStats::enterData(KNumber const & _data) {
 
-	mData.push_back(_data);
+void KStats::enterData(KNumber const & _data)
+{
+
+    mData.push_back(_data);
 #ifdef DEBUG_STATS
-	printf("Added %Lg\n", _data);
-	printf("count %d\n", mData.size());
+    printf("Added %Lg\n", _data);
+    printf("count %d\n", mData.size());
 #endif
 
 }
 
 
-void KStats::clearLast(void) {
+void KStats::clearLast(void)
+{
 
-	mData.pop_back();
+    mData.pop_back();
 #ifdef DEBUG_STATS
-	printf("count %d\n",mData.size());
-#endif   
-
-
-}
-
-KNumber KStats::sum(void) {
-
-	KNumber result = 0;
-	QVector<KNumber>::iterator p;
-
-	for(p = mData.begin(); p != mData.end(); ++p) {
-		result += *p;
-	}
-	
-#ifdef DEBUG_STATS
-	printf("Sum %Lg\n", result);
+    printf("count %d\n", mData.size());
 #endif
 
-	return result;
+
 }
 
-KNumber KStats::median(void) {
+KNumber KStats::sum(void)
+{
 
-	KNumber result = 0;
-	unsigned int bound;
-	size_t index;
+    KNumber result = 0;
+    QVector<KNumber>::iterator p;
 
-	bound = count();
+    for (p = mData.begin(); p != mData.end(); ++p) {
+        result += *p;
+    }
 
-	if (bound == 0){
-		error_flag = true;
-		return 0;
-	}
+#ifdef DEBUG_STATS
+    printf("Sum %Lg\n", result);
+#endif
 
-	if (bound == 1)
-		return mData.at(0);
+    return result;
+}
 
-	// need to copy mData-list, because sorting afterwards
-	QVector<KNumber> tmp_mData(mData);
-	qSort(tmp_mData);
+KNumber KStats::median(void)
+{
 
-	if( bound & 1) {  // odd
-		index = (bound - 1 ) / 2 + 1;
-		result =  tmp_mData.at(index - 1);
-	} else { // even
-	  index = bound / 2;
-	  result = ((tmp_mData.at(index - 1))  + (tmp_mData.at(index))) / KNumber(2);
-	}
+    KNumber result = 0;
+    unsigned int bound;
+    size_t index;
 
-	return result;
+    bound = count();
+
+    if (bound == 0) {
+        error_flag = true;
+        return 0;
+    }
+
+    if (bound == 1)
+        return mData.at(0);
+
+    // need to copy mData-list, because sorting afterwards
+    QVector<KNumber> tmp_mData(mData);
+    qSort(tmp_mData);
+
+    if (bound & 1) {    // odd
+        index = (bound - 1) / 2 + 1;
+        result =  tmp_mData.at(index - 1);
+    } else { // even
+        index = bound / 2;
+        result = ((tmp_mData.at(index - 1))  + (tmp_mData.at(index))) / KNumber(2);
+    }
+
+    return result;
 }
 
 
 KNumber KStats::std_kernel(void)
 {
-	KNumber result = KNumber::Zero;
-	KNumber _mean;
-	QVector<KNumber>::iterator p;
+    KNumber result = KNumber::Zero;
+    KNumber _mean;
+    QVector<KNumber>::iterator p;
 
-	_mean = mean();
+    _mean = mean();
 
-	for(p = mData.begin(); p != mData.end(); ++p) {
-		result += (*p - _mean) * (*p - _mean);
-	}
+    for (p = mData.begin(); p != mData.end(); ++p) {
+        result += (*p - _mean) * (*p - _mean);
+    }
 
-	return result;
+    return result;
 }
 
 
-KNumber KStats::sum_of_squares() {
+KNumber KStats::sum_of_squares()
+{
 
-	KNumber result = 0;
-	QVector<KNumber>::iterator p;
-  
-	for(p = mData.begin(); p != mData.end(); ++p) {
-		result += ((*p) * (*p));
-	}
+    KNumber result = 0;
+    QVector<KNumber>::iterator p;
 
-	return result;
+    for (p = mData.begin(); p != mData.end(); ++p) {
+        result += ((*p) * (*p));
+    }
+
+    return result;
 }
 
 
 KNumber KStats::mean(void)
 {
-	if(count() == 0){
-		error_flag = true;
-		return 0;
-	}
+    if (count() == 0) {
+        error_flag = true;
+        return 0;
+    }
 
-	return (sum() / KNumber(count()));
+    return (sum() / KNumber(count()));
 }
 
 
 KNumber KStats::std(void)
 {
-	if(count() == 0){
-		error_flag = true;
-		return KNumber::Zero;
-	}
+    if (count() == 0) {
+        error_flag = true;
+        return KNumber::Zero;
+    }
 
-	return (std_kernel() / KNumber(count())).sqrt();
+    return (std_kernel() / KNumber(count())).sqrt();
 }
 
 
-KNumber KStats::sample_std(void) {
-	KNumber result = 0;
+KNumber KStats::sample_std(void)
+{
+    KNumber result = 0;
 
-	if(count() < 2 ){
-		error_flag = true;
-		return KNumber::Zero;
-	}
+    if (count() < 2) {
+        error_flag = true;
+        return KNumber::Zero;
+    }
 
-	result = (std_kernel() / KNumber(count() - 1)).sqrt();
-	
-	//  result = result/(count() - 1);
+    result = (std_kernel() / KNumber(count() - 1)).sqrt();
+
+    //  result = result/(count() - 1);
 #ifdef DEBUG_STATS
-	printf("sample std: %Lg\n",result);
+    printf("sample std: %Lg\n", result);
 #endif
 
-	return result;
+    return result;
 }
 
 
 int KStats::count(void) const
 {
-  return static_cast<int>(mData.size());
+    return static_cast<int>(mData.size());
 }
 
 
-bool KStats::error() {
+bool KStats::error()
+{
 
-  bool value = error_flag;
-  error_flag = false;
-  return value;
+    bool value = error_flag;
+    error_flag = false;
+    return value;
 }
 
 

@@ -30,35 +30,35 @@
 
 enum ConstantCategory {Mathematics = 1, Electromagnetic = 2, Nuclear = 4, Thermodynamics = 8, Gravitation = 16};
 
-struct science_constant{
-  QString label;
-  QString name;
-  QString whatsthis;
-  QString value;
-  ConstantCategory category;
+struct science_constant {
+    QString label;
+    QString name;
+    QString whatsthis;
+    QString value;
+    ConstantCategory category;
 };
 
 class KCalcConstMenu : public QMenu
 {
-Q_OBJECT 
+    Q_OBJECT
 
- public:
-  KCalcConstMenu(QWidget * parent = 0);
-  explicit KCalcConstMenu(QString const & title, QWidget * parent = 0);
+public:
+    KCalcConstMenu(QWidget * parent = 0);
+    explicit KCalcConstMenu(QString const & title, QWidget * parent = 0);
 
-  static QList<struct science_constant> Constants;
-  static void init_consts(void);
+    static QList<struct science_constant> Constants;
+    static void init_consts(void);
 
 signals:
-  void triggeredConstant(struct science_constant const &);
+    void triggeredConstant(struct science_constant const &);
 
 
- private:
-  void _init_all(void);
+private:
+    void _init_all(void);
 
 
 public slots:
-  void slotPassSignalThrough(QAction  *chosen_const);
+    void slotPassSignalThrough(QAction  *chosen_const);
 };
 
 #endif  // _KCALC_CONST_MENU_H

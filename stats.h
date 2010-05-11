@@ -3,10 +3,10 @@
 
     KCalc, a scientific calculator for the X window system using the
     Qt widget libraries, available at no cost at http://www.troll.no
-   
+
     Copyright (C) 1996 Bernd Johannes Wuebben
                        wuebben@math.cornell.edu
-    
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -29,25 +29,26 @@
 #include <QVector>
 #include "knumber.h"
 
-class KStats {
+class KStats
+{
 
 public:
-	KStats();
-	~KStats();
+    KStats();
+    ~KStats();
 
 public:
-	void clearAll();
-	void enterData(const KNumber & data);
-	void clearLast();
-	KNumber sum();
-	KNumber sum_of_squares();
-	KNumber mean();
-	KNumber median();
-	KNumber std_kernel();
-	KNumber std();
-	KNumber sample_std();
-	int count() const;
-	bool     error();
+    void clearAll();
+    void enterData(const KNumber & data);
+    void clearLast();
+    KNumber sum();
+    KNumber sum_of_squares();
+    KNumber mean();
+    KNumber median();
+    KNumber std_kernel();
+    KNumber std();
+    KNumber sample_std();
+    int count() const;
+    bool     error();
 
 private:
     QVector<KNumber> mData;

@@ -65,32 +65,32 @@ class KToggleAction;
 class  General: public QWidget, public Ui::General
 {
 public:
-    General( QWidget *parent ) : QWidget( parent ) {
-	setupUi( this );
+    General(QWidget *parent) : QWidget(parent) {
+        setupUi(this);
     }
 };
 
 class  Fonts: public QWidget, public Ui::Fonts
 {
 public:
-    Fonts( QWidget *parent ) : QWidget( parent ) {
-	setupUi( this );
+    Fonts(QWidget *parent) : QWidget(parent) {
+        setupUi(this);
     }
 };
 
 class Constants : public QWidget, public Ui::Constants
 {
 public:
-    Constants( QWidget *parent ) : QWidget( parent ) {
-	setupUi( this );
+    Constants(QWidget *parent) : QWidget(parent) {
+        setupUi(this);
     }
 };
 
 class Colors : public QWidget, public Ui::Colors
 {
 public:
-    Colors( QWidget *parent ) : QWidget( parent ) {
-	setupUi( this );
+    Colors(QWidget *parent) : QWidget(parent) {
+        setupUi(this);
     }
 };
 
@@ -105,11 +105,11 @@ public:
 
 signals:
     void switchInverse(bool);
-    void switchMode(ButtonModeFlags,bool);
+    void switchMode(ButtonModeFlags, bool);
     void switchShowAccels(bool);
 
 private:
-    virtual bool eventFilter( QObject *o, QEvent *e );
+    virtual bool eventFilter(QObject *o, QEvent *e);
     void updateGeometry();
     void setupMainActions(void);
     void setupStatusbar(void);
@@ -141,7 +141,7 @@ protected slots:
     void slotSetStatisticMode();
     void slotSetNumeralMode();
 
-    void slotConstantsShow(bool toggled);   
+    void slotConstantsShow(bool toggled);
     void slotBitsetshow(bool toggled);
     void slotAngleSelected(int mode);
     void slotBaseSelected(int base);
@@ -229,11 +229,11 @@ private:
     int _angle_mode; // angle modes for trigonometric values
 
     Constants*          constants; // this is the dialog for configuring const buttons
-	
-    QButtonGroup*	AngleChooseGroup;
-    QButtonGroup* 	BaseChooseGroup;
+
+    QButtonGroup* AngleChooseGroup;
+    QButtonGroup*  BaseChooseGroup;
     // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
-    QButtonGroup* 	NumButtonGroup;
+    QButtonGroup*  NumButtonGroup;
 
     QList<QAbstractButton*> logicButtons;
     QList<QAbstractButton*> scientificButtons;
