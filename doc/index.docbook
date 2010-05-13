@@ -37,8 +37,8 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2009-02-10</date>
-<releaseinfo>2.4</releaseinfo>
+<date>2010-05-13</date>
+<releaseinfo>2.7 (&kde; 4.5)</releaseinfo>
 
 <abstract><para>&kcalc; is a scientific calculator for &kde;</para></abstract>
 
@@ -52,7 +52,7 @@
 <chapter id="introduction">
 <title>Introduction</title>
 
-<para>This document describes &kcalc; version 2.4.</para>
+<para>This document describes &kcalc; version 2.7.</para>
 
 <para>&kcalc; offers many more mathematical functions than meet the eye
 on a first glance. Please study the section on keyboard accelerators and
@@ -154,11 +154,13 @@ but this may disappear in future versions.</para>
 <listitem>
 <para>When you start &kcalc; for the first time, the calculator will only
 display buttons for basic arithmetic computations.</para>
-<para>Under the menu entry <guimenu>Settings</guimenu> it is possible to
-open extra buttons for &kcalc;:
-it is for example possible to choose
+<para>Under the menu entry <guimenu>Settings</guimenu> it is possible to select a mode for &kcalc;:
+it is possible to choose
+<link linkend="simple-mode">Simple</link> or
+<link linkend="science-mode">Science</link> or
 <link linkend="statistical-mode">Statistic</link> or
-<link linkend="trigonometric-mode">Science/Engineering</link> buttons.</para> 
+<link linkend="numeral-system-mode">Numeral System</link> mode. Please note, that these modes will
+slightly change as &kcalc; evolves.</para> 
 </listitem>
 </varlistentry>
 
@@ -173,6 +175,67 @@ the second layout of the buttons visible.</para>
 
 </variablelist>
 </sect1>
+
+
+<!-- describing MODES here -->
+
+<sect1 id="simple-mode">
+<title>Simple Mode</title>
+<para>This mode contains only those buttons and functions, which are essential necessary for basic calculations.</para>
+<para>If you just want to sum up all items on an invoice this mode may be your choice.</para>
+</sect1>
+
+
+<sect1 id="science-mode">
+<title>Science Mode</title>
+
+<para>In this mode the left column of buttons is allocated to trigonometric
+functions:</para>
+
+<informaltable><tgroup cols="2">
+<thead>
+<row><entry>Buttons</entry>
+<entry>Function</entry></row>
+</thead>
+<tbody>
+<row><entry><guibutton>Hyp</guibutton></entry>
+<entry>Enter Hyperbolic sub mode. Hyp Sin for example is the hyperbolic sine:
+sinh(x)</entry></row>
+
+<row><entry><guibutton>Sin</guibutton></entry>
+<entry>Compute the sine</entry></row>
+
+<row><entry><guibutton>Inv</guibutton> <guibutton>Sin</guibutton></entry>
+<entry>Compute the inverse sine</entry></row>
+
+<row><entry><guibutton>Cos</guibutton></entry>
+<entry>Compute the cosine</entry></row>
+
+<row><entry><guibutton>Inv</guibutton> <guibutton>Cos</guibutton></entry>
+<entry>Compute the inverse cosine</entry></row>
+
+<row><entry><guibutton>Tan</guibutton></entry>
+<entry>Compute the tangent</entry></row>
+
+<row><entry><guibutton>Inv</guibutton> <guibutton>Tan</guibutton></entry>
+<entry>Compute the inverse tangent</entry></row>
+
+<row><entry><guibutton>Log</guibutton></entry>
+<entry>Compute the Log base 10</entry></row>
+
+<row><entry><guibutton>Inv</guibutton> <guibutton>Log</guibutton></entry>
+<entry>Compute 10 to the power of x</entry></row>
+
+<row><entry><guibutton>Ln</guibutton></entry>
+<entry>Compute the natural logarithm. That is the log to base e</entry></row>
+
+<row><entry><guibutton>Inv</guibutton> <guibutton>Ln</guibutton></entry>
+<entry>Compute e to the power of x</entry></row>
+
+</tbody></tgroup></informaltable>
+
+</sect1>
+
 
 <sect1 id="statistical-mode">
 <title>Statistical Mode</title>
@@ -229,55 +292,42 @@ functions:</para>
 
 </sect1>
 
-<sect1 id="trigonometric-mode">
-<title>Trigonometric Mode</title>
 
-<para>In this mode the left column of buttons is allocated to trigonometric
-functions:</para>
+<sect1 id="numeral-system-mode">
+<title>Numeral System Mode</title>
+<para>This mode contains buttons and functions to calculate in binary, hexadecimal, octal and decimal.</para>
 
+<para>You select the numeral system with the radio buttons on the right. To insert a hexadecimal number for example,
+just do the following: Select <guilabel>Hex</guilabel> from the radio buttons. Then enter a number and note, that you can
+use the letters <guibutton>A</guibutton> to <guibutton>F</guibutton>
+for numbers larger than 9. If you would like to see this number in binary, just select <guilabel>Bin</guilabel> from the radio buttons.</para>
+
+<para>You may want to select <guimenu>Show Bit Edit</guimenu> from the <guimenu>Settings</guimenu> menu to see selected bits.</para>
+
+<para>There are logic operators available in this mode. These operators are: 
 <informaltable><tgroup cols="2">
 <thead>
 <row><entry>Buttons</entry>
-<entry>Function</entry></row>
-</thead>
+<entry>Function</entry></row></thead>
 <tbody>
-<row><entry><guibutton>Hyp</guibutton></entry>
-<entry>Enter Hyperbolic sub mode. Hyp Sin for example is the hyperbolic sine:
-sinh(x)</entry></row>
+<row><entry><guibutton>AND</guibutton></entry>
+<entry>Two numbers are logically anded</entry></row>
 
-<row><entry><guibutton>Sin</guibutton></entry>
-<entry>Compute the sine</entry></row>
+<row><entry><guibutton>OR</guibutton></entry>
+<entry>Two numbers are logically ored</entry></row>
 
-<row><entry><guibutton>Inv</guibutton> <guibutton>Sin</guibutton></entry>
-<entry>Compute the inverse sine</entry></row>
-
-<row><entry><guibutton>Cos</guibutton></entry>
-<entry>Compute the cosine</entry></row>
-
-<row><entry><guibutton>Inv</guibutton> <guibutton>Cos</guibutton></entry>
-<entry>Compute the inverse cosine</entry></row>
-
-<row><entry><guibutton>Tan</guibutton></entry>
-<entry>Compute the tangent</entry></row>
-
-<row><entry><guibutton>Inv</guibutton> <guibutton>Tan</guibutton></entry>
-<entry>Compute the inverse tangent</entry></row>
-
-<row><entry><guibutton>Log</guibutton></entry>
-<entry>Compute the Log base 10</entry></row>
-
-<row><entry><guibutton>Inv</guibutton> <guibutton>Log</guibutton></entry>
-<entry>Compute 10 to the power of x</entry></row>
-
-<row><entry><guibutton>Ln</guibutton></entry>
-<entry>Compute the natural logarithm. That is the log to base e</entry></row>
-
-<row><entry><guibutton>Inv</guibutton> <guibutton>Ln</guibutton></entry>
-<entry>Compute e to the power of x</entry></row>
+<row><entry><guibutton>XOR</guibutton></entry>
+<entry>Two numbers are logically exclusive ored</entry></row>
 
 </tbody></tgroup></informaltable>
 
+</para>
 </sect1>
+
+
+
+<!-- end of MODES -->
+
 
 <sect1 id="memory-operations">
 <title>Memory Operations</title>
@@ -290,7 +340,7 @@ calculators plus six slots to hold constants.</para>
 
 <para>&kcalc; can remember results of operations for you, and re-use them in
 later calculations.  You can access these functions via several buttons
-labelled <guibutton>MR</guibutton>, <guibutton>MS</guibutton>,
+labeled <guibutton>MR</guibutton>, <guibutton>MS</guibutton>,
 <guibutton>M+</guibutton> and <guibutton>MC</guibutton>.</para>
 
 <variablelist>
@@ -332,7 +382,8 @@ the status bar, next to the calculator mode indicator</para>
 <para>The six constants buttons <guibutton>C1</guibutton> to
 <guibutton>C6</guibutton> will only be visible after activating the
 item <guilabel>Constants Buttons</guilabel> in the menu
-<guimenu>Settings</guimenu> of the menu bar.</para>
+<guimenu>Settings</guimenu> of the menu bar. They are available in <guilabel>Science mode</guilabel>
+and <guilabel>Statistics mode</guilabel></para>
 
 <para>To store the number shown in the &kcalc; display in one of the
 six constants, first press <guibutton>Inv</guibutton> followed
@@ -471,7 +522,7 @@ you want arcsin(x) type <userinput>i s </userinput></entry></row>
 <entry><guibutton>C</guibutton></entry>
 <entry>Clear</entry></row>
 
-<row><entry><keycap>Esc</keycap></entry>
+<row><entry>&Esc;</entry>
 <entry><guibutton>C</guibutton></entry>
 <entry>Clear</entry></row>
 <!--
@@ -703,12 +754,14 @@ the precision and you will see what I mean.</para>
 <para>&kcalc; was inspired by <personname><firstname>Martin</firstname> <surname>Bartlett</surname></personname>'s <application>xfrmcalc</application>,
 whose stack engine is still part of &kcalc;.</para>
 
-<para>Documentation Copyright &copy; 2001,2002,2005, 2006:</para>
+<para>Documentation Copyright &copy; 2001,2002,2005, 2006,2010:</para>
 <itemizedlist>
 <listitem><para>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para></listitem>
 <listitem><para>&Pamela.Roberts; &Pamela.Roberts.mail;</para></listitem>
 <listitem><para>&J.Hall; &J.Hall.mail;</para></listitem>
 <listitem><para>&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail;</para></listitem>
+<listitem><para><personname><firstname>Eike</firstname><surname>Krumbacher</surname></personname>
+<email>eike.krumbacher@x-eike.de</email></para></listitem>
 </itemizedlist>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
@@ -723,12 +776,6 @@ whose stack engine is still part of &kcalc;.</para>
 <para>&kcalc; is part of the kdeutils package within the &kde; project and will
 normally be provided as part of a &kde; installation. For more details about
 &kde; visit <ulink url="http://www.kde.org">http://www.kde.org</ulink>.</para>
-
-<!--
-<para>&kcalc;'s home site is <ulink
-url="http://math.cornell.edu/~wuebben/kde.html">
-http://math.cornell.edu/~wuebben/kde.html</ulink></para>
--->
 
 <sect1 id="compilation-and-installation">
 <title>Compilation and Installation</title>

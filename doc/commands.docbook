@@ -3,7 +3,7 @@
 <title>Command Reference</title>
 
 <sect1 id="filemenu">
-<title>The <guimenu>File</guimenu> Menu</title>
+<title>The File Menu</title>
 <para>
 <variablelist>
 
@@ -23,7 +23,7 @@
 </sect1>
 
 <sect1 id="editmenu">
-<title>The <guimenu>Edit</guimenu> Menu</title>
+<title>The Edit Menu</title>
 <para>
 <variablelist>
 
@@ -93,7 +93,7 @@ display.</action></para></listitem>
 </sect1>
 
 <sect1 id="viewmenu">
-<title>The <guimenu>Constants</guimenu> Menu</title>
+<title>The Constants Menu</title>
 <para>
 <variablelist>
 
@@ -150,24 +150,33 @@ Constant, Stefan-Boltzmann Constant or Avogadro's Number.</action>
 </sect1>
 
 <sect1 id="settingsmenu">
-<title>The <guimenu>Settings</guimenu> Menu</title>
+<title>The Settings Menu</title>
 <para><variablelist>
 
 <varlistentry>
 <term><menuchoice>
 <guimenu>Settings</guimenu>
-<guimenuitem>Science/Engineering Buttons</guimenuitem>
+<guimenuitem>Simple Mode</guimenuitem>
 </menuchoice></term>
-<listitem><para><action>Display science and engineering buttons.</action>
+<listitem><para><action>Displays the simple math buttons.</action>
 </para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><menuchoice>
 <guimenu>Settings</guimenu>
-<guimenuitem>Statistic Buttons</guimenuitem>
+<guimenuitem>Science Mode</guimenuitem>
 </menuchoice></term>
-<listitem><para><action>Display <link linkend="statistical-mode">statistic
+<listitem><para><action>Displays trigonometric and science buttons.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Statistic Mode</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Displays <link linkend="statistical-mode">statistic
 buttons.</link></action>
 </para></listitem>
 </varlistentry>
@@ -175,10 +184,10 @@ buttons.</link></action>
 <varlistentry>
 <term><menuchoice>
 <guimenu>Settings</guimenu>
-<guimenuitem>Logic Buttons</guimenuitem>
+<guimenuitem>Numeral System Mode</guimenuitem>
 </menuchoice></term>
-<listitem><para><action>Display <link linkend="and-or-xor">logic
-buttons.</link></action>
+<listitem><para><action>Displays <link linkend="and-or-xor">logic
+buttons</link> and allows changing the numeral system.</action>
 </para></listitem>
 </varlistentry>
 
@@ -187,7 +196,8 @@ buttons.</link></action>
 <guimenu>Settings</guimenu>
 <guimenuitem>Constants Buttons</guimenuitem>
 </menuchoice></term>
-<listitem><para><action>Display constants buttons.</action>
+<listitem><para><action>Display constants buttons. They are available in <link linkend="science-mode">science mode</link> and
+<link linkend="statistical-mode">statistic mode</link>. </action>
 </para></listitem>
 </varlistentry>
 
@@ -196,26 +206,8 @@ buttons.</link></action>
 <guimenu>Settings</guimenu>
 <guimenuitem>Show Bit Edit</guimenuitem>
 </menuchoice></term>
-<listitem><para><action>Displays a bit edit field. Click on a bit to toggle it.</action>
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu>
-<guimenuitem>Show All</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Display all buttons available.</action>
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu>
-<guimenuitem>Hide All</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Hide all extra buttons and display only
-standard default buttons.</action>
+<listitem><para><action>Displays a bit edit field. Click on a bit to toggle it. Only available in
+<link linkend="numeral-system-mode">numeral system mode</link>.</action>
 </para></listitem>
 </varlistentry>
 
@@ -243,7 +235,7 @@ standard default buttons.</action>
 </sect1>
 
 <sect1 id="helpmenu">
-<title>The <guimenu>Help</guimenu> Menu</title>
+<title>The Help Menu</title>
 
 &help.menu.documentation;
 
