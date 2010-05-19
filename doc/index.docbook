@@ -168,7 +168,7 @@ slightly change as &kcalc; evolves.</para>
 <term>Button Layout</term>
 <listitem>
 <para>To give easy access to all the functions in &kcalc;, many keys have a second layout. Click 
-on <guibutton>Inv</guibutton> or press the shortcut <keycap>I</keycap> to make 
+on <guibutton>&Shift;</guibutton> or press the shortcut <keycap>I</keycap> to make 
 the second layout of the buttons visible.</para> 
 </listitem>
 </varlistentry>
@@ -205,31 +205,31 @@ sinh(x)</entry></row>
 <row><entry><guibutton>Sin</guibutton></entry>
 <entry>Compute the sine</entry></row>
 
-<row><entry><guibutton>Inv</guibutton> <guibutton>Sin</guibutton></entry>
+<row><entry><guibutton>&Shift;</guibutton> <guibutton>Sin</guibutton></entry>
 <entry>Compute the inverse sine</entry></row>
 
 <row><entry><guibutton>Cos</guibutton></entry>
 <entry>Compute the cosine</entry></row>
 
-<row><entry><guibutton>Inv</guibutton> <guibutton>Cos</guibutton></entry>
+<row><entry><guibutton>&Shift;</guibutton> <guibutton>Cos</guibutton></entry>
 <entry>Compute the inverse cosine</entry></row>
 
 <row><entry><guibutton>Tan</guibutton></entry>
 <entry>Compute the tangent</entry></row>
 
-<row><entry><guibutton>Inv</guibutton> <guibutton>Tan</guibutton></entry>
+<row><entry><guibutton>&Shift;</guibutton> <guibutton>Tan</guibutton></entry>
 <entry>Compute the inverse tangent</entry></row>
 
 <row><entry><guibutton>Log</guibutton></entry>
 <entry>Compute the Log base 10</entry></row>
 
-<row><entry><guibutton>Inv</guibutton> <guibutton>Log</guibutton></entry>
+<row><entry><guibutton>&Shift;</guibutton> <guibutton>Log</guibutton></entry>
 <entry>Compute 10 to the power of x</entry></row>
 
 <row><entry><guibutton>Ln</guibutton></entry>
 <entry>Compute the natural logarithm. That is the log to base e</entry></row>
 
-<row><entry><guibutton>Inv</guibutton> <guibutton>Ln</guibutton></entry>
+<row><entry><guibutton>&Shift;</guibutton> <guibutton>Ln</guibutton></entry>
 <entry>Compute e to the power of x</entry></row>
 
 </tbody></tgroup></informaltable>
@@ -260,19 +260,19 @@ functions:</para>
 <row><entry><guibutton>N</guibutton></entry>
 <entry>Recall the number of data items entered</entry></row>
 
-<row><entry><guibutton>Inv</guibutton> <guibutton>N</guibutton></entry>
+<row><entry><guibutton>&Shift;</guibutton> <guibutton>N</guibutton></entry>
 <entry>Display the sum of all data items entered</entry></row>
 
 <row><entry><guibutton>Mea</guibutton></entry>
 <entry>Display the mean of the data items entered</entry></row>
 
-<row><entry><guibutton>Inv</guibutton> <guibutton>Mea</guibutton></entry>
+<row><entry><guibutton>&Shift;</guibutton> <guibutton>Mea</guibutton></entry>
 <entry>Display the sum of the square of all data items entered</entry></row>
 
 <row><entry><guibutton>Std</guibutton></entry>
 <entry>Display the standard deviation (n)</entry></row>
 
-<row><entry><guibutton>Inv</guibutton> <guibutton>Std</guibutton></entry>
+<row><entry><guibutton>&Shift;</guibutton> <guibutton>Std</guibutton></entry>
 <entry>Display the population standard deviation (n-1)</entry></row>
 
 <row><entry><guibutton>Med</guibutton></entry>
@@ -281,7 +281,7 @@ functions:</para>
 <row><entry><guibutton>Dat</guibutton></entry>
 <entry>Enter a data item</entry></row>
 
-<row><entry><guibutton>Inv</guibutton> <guibutton>Dat</guibutton></entry>
+<row><entry><guibutton>&Shift;</guibutton> <guibutton>Dat</guibutton></entry>
 <entry>Clear last data item entered</entry></row>
 
 <row><entry><guibutton>CSt</guibutton></entry>
@@ -386,7 +386,7 @@ item <guilabel>Constants Buttons</guilabel> in the menu
 and <guilabel>Statistics mode</guilabel></para>
 
 <para>To store the number shown in the &kcalc; display in one of the
-six constants, first press <guibutton>Inv</guibutton> followed
+six constants, first press <guibutton>&Shift;</guibutton> followed
 by the desired button key <guibutton>C1</guibutton> up to
 <guibutton>C6</guibutton>.</para>
 
@@ -423,7 +423,7 @@ or <userinput>7r</userinput> will calculate the reciprocal of 7 (1/7).</para>
 
 <para>During a computation, you can always press &Ctrl; to make each
 button display its key-binding.</para>
-<!-- Inv works like Caps Lock-->
+<!-- Shift works like Caps Lock-->
 <informaltable><tgroup cols="3">
 <thead>
 <row><entry>Key</entry>
@@ -457,10 +457,10 @@ the sinh(x)</entry></row>
 <entry><guibutton>Log</guibutton></entry>
 <entry>log base 10</entry></row>
 
-<row><entry><keycap>I</keycap></entry>
-<entry> <guibutton>Inv</guibutton></entry>
-<entry>Inverse, &eg; if
-you want arcsin(x) type <userinput>i s </userinput></entry></row>
+<row><entry><keycap>Ctrl-2</keycap></entry>
+<entry> <guibutton>&Shift;</guibutton></entry>
+<entry>Second function for this button. &eg; if
+you want arcsin(x) type <userinput>Ctrl-2 s </userinput></entry></row>
 
 <row><entry><keysym>\</keysym></entry>
 <entry><guibutton>+/-</guibutton></entry>
@@ -503,7 +503,7 @@ you want arcsin(x) type <userinput>i s </userinput></entry></row>
 
 <row><entry><keycap>|</keycap></entry>
 <entry><guibutton>OR</guibutton></entry>
-<entry>Logical OR. Note: <guibutton>Inv</guibutton>
+<entry>Logical OR. Note: <guibutton>&Shift;</guibutton>
 <guibutton>OR</guibutton> is XOR</entry></row>
 
 <row><entry><keycap>R</keycap></entry>
@@ -572,11 +572,11 @@ number by the next input number.</term>
 </listitem></varlistentry>
 
 <varlistentry>
-<term><guibutton>Inv</guibutton> <guibutton>IntDiv</guibutton> does integer
+<term><guibutton>&Shift;</guibutton> <guibutton>IntDiv</guibutton> does integer
 division of the displayed number by the next input number.</term>
-<listitem><para><userinput>22 Inv IntDiv 8 = </userinput> will give the result
+<listitem><para><userinput>22 Shift IntDiv 8 = </userinput> will give the result
 <emphasis>2</emphasis></para>
-<para><userinput>22.345 Inv IntDiv 8 = </userinput> also gives <emphasis>2</emphasis>
+<para><userinput>22.345 Shift IntDiv 8 = </userinput> also gives <emphasis>2</emphasis>
 </para></listitem></varlistentry>
 </variablelist>
 
@@ -701,7 +701,7 @@ XOR (exclusive OR) operation.</term>
 
 <qandaentry>
 <question><para>How do I get e, the Euler number?</para></question>
-<answer><para>Type <userinput>1 Inv Ln</userinput>.</para></answer>
+<answer><para>Type <userinput>1 Shift Ln</userinput>.</para></answer>
 </qandaentry>
 
 <qandaentry>
