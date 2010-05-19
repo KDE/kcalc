@@ -104,7 +104,7 @@ public:
     ~KCalculator();
 
 signals:
-    void switchInverse(bool);
+    void switchShift(bool);
     void switchMode(ButtonModeFlags, bool);
     void switchShowAccels(bool);
 
@@ -147,7 +147,7 @@ protected slots:
     void slotBaseSelected(int base);
     void slotNumberclicked(int number_clicked);
     void slotEEclicked(void);
-    void slotInvtoggled(bool myboolean);
+    void slotShifttoggled(bool myboolean);
     void slotMemRecallclicked(void);
     void slotMemStoreclicked(void);
     void slotSinclicked(void);
@@ -159,6 +159,7 @@ protected slots:
     void slotFactorialclicked(void);
     void slotLogclicked(void);
     void slotSquareclicked(void);
+    void slotCubeclicked(void);
     void slotLnclicked(void);
     void slotPowerclicked(void);
     void slotMemClearclicked(void);
@@ -178,7 +179,6 @@ protected slots:
     void slotPeriodclicked(void);
     void slotEqualclicked(void);
     void slotPercentclicked(void);
-    void slotRootclicked(void);
     void slotNegateclicked(void);
     void slotModclicked(void);
     void slotStatNumclicked(void);
@@ -203,7 +203,7 @@ protected slots:
 
 private:
     enum StatusField {
-        InvField = 0,
+        ShiftField = 0,
         BaseField,
         AngleField,
         MemField
@@ -221,7 +221,7 @@ private:
     };
 
 private:
-    bool inverse;
+    bool shift_mode;
     bool hyp_mode;
     KNumber memory_num;
     KNumber setvalue;

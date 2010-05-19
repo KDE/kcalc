@@ -73,7 +73,7 @@ static const char version[] = KCALCVERSION;
 static const int maxprecision = 1000;
 
 KCalculator::KCalculator(QWidget *parent)
-        : KXmlGuiWindow(parent), inverse(false), hyp_mode(false),
+        : KXmlGuiWindow(parent), shift_mode(false), hyp_mode(false),
         memory_num(0.0), constants(0), core()
 {
     /* central widget to contain all the elements */
@@ -230,8 +230,8 @@ void KCalculator::setupMainActions(void)
 void KCalculator::setupStatusbar(void)
 {
     // Status bar contents
-    statusBar()->insertPermanentFixedItem(" NORM ", InvField);
-    statusBar()->setItemAlignment(InvField, Qt::AlignCenter);
+    statusBar()->insertPermanentFixedItem(" NORM ", ShiftField);
+    statusBar()->setItemAlignment(ShiftField, Qt::AlignCenter);
 
     statusBar()->insertPermanentFixedItem(" HEX ", BaseField);
     statusBar()->setItemAlignment(BaseField, Qt::AlignCenter);
@@ -306,10 +306,10 @@ void KCalculator::setupKeys()
 
     // right keypad
 
-    connect(pbInv, SIGNAL(toggled(bool)),
-            SLOT(slotInvtoggled(bool)));
+    connect(pbShift, SIGNAL(toggled(bool)),
+            SLOT(slotShifttoggled(bool)));
     connect(this, SIGNAL(switchShowAccels(bool)),
-            pbInv, SLOT(slotSetAccelDisplayMode(bool)));
+            pbShift, SLOT(slotSetAccelDisplayMode(bool)));
 
     pbClear->setShortcut(QKeySequence(Qt::Key_Escape));
     new QShortcut(Qt::Key_PageUp, pbClear, SLOT(animateClick()));
@@ -349,7 +349,7 @@ void KCalculator::setupKeys()
             pbMemClear, SLOT(slotSetAccelDisplayMode(bool)));
 
     pbMemPlusMinus->addMode(ModeNormal, i18nc("Add display to memory", "M+"), i18n("Add display to memory"));
-    pbMemPlusMinus->addMode(ModeInverse, i18nc("Subtract from memory", "M−"), i18n("Subtract from memory"));
+    pbMemPlusMinus->addMode(ModeShift, i18nc("Subtract from memory", "M−"), i18n("Subtract from memory"));
     connect(pbMemPlusMinus, SIGNAL(clicked(void)),
             SLOT(slotMemPlusMinusclicked(void)));
     connect(this, SIGNAL(switchShowAccels(bool)),
@@ -376,14 +376,14 @@ void KCalculator::setupKeys()
 
     // numeric keypad
 
-    pbRoot->addMode(ModeNormal, "&radic;x", i18n("Square root"));
-    pbRoot->addMode(ModeInverse, "<sup>3</sup>&radic;x", i18n("Cube root"));
-    connect(pbRoot, SIGNAL(clicked(void)),
-            SLOT(slotRootclicked(void)));
+    pbCube->addMode(ModeNormal, i18nc("Third power", "x<sup>3</sup>"), i18n("Third power"));
+    pbCube->addMode(ModeShift, "<sup>3</sup>&radic;x", i18n("Cube root"));
+    connect(pbCube, SIGNAL(clicked(void)),
+            SLOT(slotCubeclicked(void)));
     connect(this, SIGNAL(switchShowAccels(bool)),
-            pbRoot, SLOT(slotSetAccelDisplayMode(bool)));
+            pbCube, SLOT(slotSetAccelDisplayMode(bool)));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
-            pbRoot, SLOT(slotSetMode(ButtonModeFlags, bool)));
+            pbCube, SLOT(slotSetMode(ButtonModeFlags, bool)));
 
     pbDivision->setShortcut(QKeySequence(Qt::Key_Slash));
     new QShortcut(Qt::Key_division, pbDivision, SLOT(animateClick()));
@@ -485,9 +485,9 @@ void KCalculator::setupKeys()
     connect(pbHyp, SIGNAL(toggled(bool)), SLOT(slotHyptoggled(bool)));
 
     pbSin->addMode(ModeNormal, i18nc("Sine", "Sin"), i18n("Sine"));
-    pbSin->addMode(ModeInverse, i18nc("Arc sine", "Asin"), i18n("Arc sine"));
+    pbSin->addMode(ModeShift, i18nc("Arc sine", "Asin"), i18n("Arc sine"));
     pbSin->addMode(ModeHyperbolic, i18nc("Hyperbolic sine", "Sinh"), i18n("Hyperbolic sine"));
-    pbSin->addMode(ButtonModeFlags(ModeInverse | ModeHyperbolic),
+    pbSin->addMode(ButtonModeFlags(ModeShift | ModeHyperbolic),
                    i18nc("Inverse hyperbolic sine", "Asinh"), i18n("Inverse hyperbolic sine"));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbSin, SLOT(slotSetAccelDisplayMode(bool)));
@@ -496,9 +496,9 @@ void KCalculator::setupKeys()
     connect(pbSin, SIGNAL(clicked(void)), SLOT(slotSinclicked(void)));
 
     pbCos->addMode(ModeNormal, i18nc("Cosine", "Cos"), i18n("Cosine"));
-    pbCos->addMode(ModeInverse, i18nc("Arc cosine", "Acos"), i18n("Arc cosine"));
+    pbCos->addMode(ModeShift, i18nc("Arc cosine", "Acos"), i18n("Arc cosine"));
     pbCos->addMode(ModeHyperbolic, i18nc("Hyperbolic cosine", "Cosh"), i18n("Hyperbolic cosine"));
-    pbCos->addMode(ButtonModeFlags(ModeInverse | ModeHyperbolic),
+    pbCos->addMode(ButtonModeFlags(ModeShift | ModeHyperbolic),
                    i18nc("Inverse hyperbolic cosine", "Acosh"), i18n("Inverse hyperbolic cosine"));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbCos, SLOT(slotSetAccelDisplayMode(bool)));
@@ -507,9 +507,9 @@ void KCalculator::setupKeys()
     connect(pbCos, SIGNAL(clicked(void)), SLOT(slotCosclicked(void)));
 
     pbTan->addMode(ModeNormal, i18nc("Tangent", "Tan"), i18n("Tangent"));
-    pbTan->addMode(ModeInverse, i18nc("Arc tangent", "Atan"), i18n("Arc tangent"));
+    pbTan->addMode(ModeShift, i18nc("Arc tangent", "Atan"), i18n("Arc tangent"));
     pbTan->addMode(ModeHyperbolic, i18nc("Hyperbolic tangent", "Tanh"), i18n("Hyperbolic tangent"));
-    pbTan->addMode(ButtonModeFlags(ModeInverse | ModeHyperbolic),
+    pbTan->addMode(ButtonModeFlags(ModeShift | ModeHyperbolic),
                    i18nc("Inverse hyperbolic tangent", "Atanh"), i18n("Inverse hyperbolic tangent"));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbTan, SLOT(slotSetAccelDisplayMode(bool)));
@@ -518,14 +518,14 @@ void KCalculator::setupKeys()
     connect(pbTan, SIGNAL(clicked(void)), SLOT(slotTanclicked(void)));
 
     pbLog->addMode(ModeNormal, i18nc("Logarithm to base 10", "Log"), i18n("Logarithm to base 10"));
-    pbLog->addMode(ModeInverse, i18nc("10 to the power of x", "10<sup>x</sup>"), i18n("10 to the power of x"));
+    pbLog->addMode(ModeShift, i18nc("10 to the power of x", "10<sup>x</sup>"), i18n("10 to the power of x"));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbLog, SLOT(slotSetAccelDisplayMode(bool)));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
             pbLog, SLOT(slotSetMode(ButtonModeFlags, bool)));
     connect(pbLog, SIGNAL(clicked(void)), SLOT(slotLogclicked(void)));
     pbLn->addMode(ModeNormal, i18nc("Natural log", "Ln"), i18n("Natural log"));
-    pbLn->addMode(ModeInverse, i18nc("Exponential function", "e<sup>x</sup>"), i18n("Exponential function"));
+    pbLn->addMode(ModeShift, i18nc("Exponential function", "e<sup>x</sup>"), i18n("Exponential function"));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbLn, SLOT(slotSetAccelDisplayMode(bool)));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
@@ -542,7 +542,7 @@ void KCalculator::setupKeys()
     statButtons.append(pbCSt);
 
     pbNData->addMode(ModeNormal, i18nc("Number of data entered", "N"), i18n("Number of data entered"));
-    pbNData->addMode(ModeInverse, QString::fromUtf8("\xce\xa3")
+    pbNData->addMode(ModeShift, QString::fromUtf8("\xce\xa3")
                      + 'x', i18n("Sum of all data items"));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbNData, SLOT(slotSetAccelDisplayMode(bool)));
@@ -551,7 +551,7 @@ void KCalculator::setupKeys()
     connect(pbNData, SIGNAL(clicked(void)), SLOT(slotStatNumclicked(void)));
 
     pbMean->addMode(ModeNormal, i18nc("Mean", "Mea"), i18n("Mean"));
-    pbMean->addMode(ModeInverse, QString::fromUtf8("\xce\xa3")
+    pbMean->addMode(ModeShift, QString::fromUtf8("\xce\xa3")
                     + "x<sup>2</sup>",
                     i18n("Sum of all data items squared"));
     connect(this, SIGNAL(switchShowAccels(bool)),
@@ -562,7 +562,7 @@ void KCalculator::setupKeys()
 
     pbSd->addMode(ModeNormal, QString::fromUtf8("σ", -1) + "<sub>N</sub>",
                   i18n("Standard deviation"));
-    pbSd->addMode(ModeInverse, QString::fromUtf8("σ", -1) + "<sub>N-1</sub>",
+    pbSd->addMode(ModeShift, QString::fromUtf8("σ", -1) + "<sub>N-1</sub>",
                   i18n("Sample standard deviation"));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbSd, SLOT(slotSetAccelDisplayMode(bool)));
@@ -575,7 +575,7 @@ void KCalculator::setupKeys()
     connect(pbMed, SIGNAL(clicked(void)), SLOT(slotStatMedianclicked(void)));
 
     pbDat->addMode(ModeNormal, i18nc("Enter data", "Dat"), i18n("Enter data"));
-    pbDat->addMode(ModeInverse, i18nc("Delete last data item", "CDat"), i18n("Delete last data item"));
+    pbDat->addMode(ModeShift, i18nc("Delete last data item", "CDat"), i18n("Delete last data item"));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbDat, SLOT(slotSetAccelDisplayMode(bool)));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
@@ -642,7 +642,7 @@ void KCalculator::setupKeys()
     // misc buttons
 
     pbMod->addMode(ModeNormal, i18nc("Modulo", "Mod"), i18n("Modulo"));
-    pbMod->addMode(ModeInverse, i18nc("Integer division", "IntDiv"), i18n("Integer division"));
+    pbMod->addMode(ModeShift, i18nc("Integer division", "IntDiv"), i18n("Integer division"));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
             pbMod, SLOT(slotSetMode(ButtonModeFlags, bool)));
     connect(this, SIGNAL(switchShowAccels(bool)),
@@ -651,7 +651,7 @@ void KCalculator::setupKeys()
     connect(pbMod, SIGNAL(clicked(void)), SLOT(slotModclicked(void)));
 
     pbReci->addMode(ModeNormal, i18nc("Reciprocal", "1/x"), i18n("Reciprocal"));
-    pbReci->addMode(ModeInverse, i18nc("n Choose m", "nCm"), i18n("n Choose m"));
+    pbReci->addMode(ModeShift, i18nc("n Choose m", "nCm"), i18n("n Choose m"));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
             pbReci, SLOT(slotSetMode(ButtonModeFlags, bool)));
     connect(this, SIGNAL(switchShowAccels(bool)),
@@ -665,7 +665,7 @@ void KCalculator::setupKeys()
     connect(pbFactorial, SIGNAL(clicked(void)), SLOT(slotFactorialclicked(void)));
 
     pbSquare->addMode(ModeNormal, i18nc("Square", "x<sup>2</sup>"), i18n("Square"));
-    pbSquare->addMode(ModeInverse, i18nc("Third power", "x<sup>3</sup>"), i18n("Third power"));
+    pbSquare->addMode(ModeShift, "&radic;x", i18n("Square root"));
     pbSquare->setShortcut(QKeySequence(Qt::Key_BracketLeft));
     new QShortcut(Qt::Key_twosuperior, pbSquare, SLOT(animateClick()));
     connect(this, SIGNAL(switchShowAccels(bool)),
@@ -675,7 +675,7 @@ void KCalculator::setupKeys()
     connect(pbSquare, SIGNAL(clicked(void)), SLOT(slotSquareclicked(void)));
 
     pbPower->addMode(ModeNormal, i18nc("x to the power of y", "x<sup>y</sup>"), i18n("x to the power of y"));
-    pbPower->addMode(ModeInverse, i18nc("x to the power of 1/y", "x<sup>1/y</sup>"), i18n("x to the power of 1/y"));
+    pbPower->addMode(ModeShift, i18nc("x to the power of 1/y", "x<sup>1/y</sup>"), i18n("x to the power of 1/y"));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbPower, SLOT(slotSetAccelDisplayMode(bool)));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
@@ -692,7 +692,7 @@ void KCalculator::setupKeys()
     // other button lists
 
     mFunctionButtonList.append(pbHyp);
-    mFunctionButtonList.append(pbInv);
+    mFunctionButtonList.append(pbShift);
     mFunctionButtonList.append(pbEE);
     mFunctionButtonList.append(pbSin);
     mFunctionButtonList.append(pbPlusMinus);
@@ -728,7 +728,7 @@ void KCalculator::setupKeys()
     mOperationButtonList.append(pbPercent);
     mOperationButtonList.append(pbCmp);
     mOperationButtonList.append(pbMod);
-    mOperationButtonList.append(pbRoot);
+    mOperationButtonList.append(pbCube);
 }
 
 void KCalculator::updateGeometry(void)
@@ -885,18 +885,18 @@ void KCalculator::slotEEclicked(void)
     calc_display->newCharacter('e');
 }
 
-void KCalculator::slotInvtoggled(bool flag)
+void KCalculator::slotShifttoggled(bool flag)
 {
-    inverse = flag;
+    shift_mode = flag;
 
-    emit switchMode(ModeInverse, flag);
+    emit switchMode(ModeShift, flag);
 
-    if (inverse) {
-        statusBar()->changeItem("INV", InvField);
-        calc_display->setStatusText(InvField, "Inv");
+    if (shift_mode) {
+        statusBar()->changeItem("SHIFT", ShiftField);
+        calc_display->setStatusText(ShiftField, "Shift");
     } else {
-        statusBar()->changeItem("NORM", InvField);
-        calc_display->setStatusText(InvField, QString());
+        statusBar()->changeItem("NORM", ShiftField);
+        calc_display->setStatusText(ShiftField, QString());
     }
 }
 
@@ -938,13 +938,13 @@ void KCalculator::slotSinclicked(void)
 {
     if (hyp_mode) {
         // sinh or arsinh
-        if (!inverse)
+        if (!shift_mode)
             core.SinHyp(calc_display->getAmount());
         else
             core.AreaSinHyp(calc_display->getAmount());
     } else {
         // sine or arcsine
-        if (!inverse)
+        if (!shift_mode)
             switch (_angle_mode) {
             case DegMode:
                 core.SinDeg(calc_display->getAmount());
@@ -985,13 +985,13 @@ void KCalculator::slotPlusMinusclicked(void)
 
 void KCalculator::slotMemPlusMinusclicked(void)
 {
-    bool tmp_inverse = inverse; // store this, because next command deletes inverse
+    bool tmp_shift_mode = shift_mode; // store this, because next command deletes shift_mode
     EnterEqual(); // finish calculation so far, to store result into MEM
 
-    if (!tmp_inverse) memory_num += calc_display->getAmount();
+    if (!tmp_shift_mode) memory_num += calc_display->getAmount();
     else    memory_num -= calc_display->getAmount();
 
-    pbInv->setChecked(false);
+    pbShift->setChecked(false);
     statusBar()->changeItem(i18n("M"), MemField);
     calc_display->setStatusText(MemField, i18n("M"));
     pbMemRecall->setEnabled(true);
@@ -1001,13 +1001,13 @@ void KCalculator::slotCosclicked(void)
 {
     if (hyp_mode) {
         // cosh or arcosh
-        if (!inverse)
+        if (!shift_mode)
             core.CosHyp(calc_display->getAmount());
         else
             core.AreaCosHyp(calc_display->getAmount());
     } else {
         // cosine or arccosine
-        if (!inverse)
+        if (!shift_mode)
             switch (_angle_mode) {
             case DegMode:
                 core.CosDeg(calc_display->getAmount());
@@ -1038,7 +1038,7 @@ void KCalculator::slotCosclicked(void)
 
 void KCalculator::slotReciclicked(void)
 {
-    if (inverse) {
+    if (shift_mode) {
         core.enterOperation(calc_display->getAmount(),
                             CalcEngine::FUNC_BINOM);
     }  else {
@@ -1058,13 +1058,13 @@ void KCalculator::slotTanclicked(void)
 {
     if (hyp_mode) {
         // tanh or artanh
-        if (!inverse)
+        if (!shift_mode)
             core.TangensHyp(calc_display->getAmount());
         else
             core.AreaTangensHyp(calc_display->getAmount());
     } else {
         // tan or arctan
-        if (!inverse)
+        if (!shift_mode)
             switch (_angle_mode) {
             case DegMode:
                 core.TangensDeg(calc_display->getAmount());
@@ -1106,7 +1106,7 @@ void KCalculator::slotFactorialclicked(void)
 
 void KCalculator::slotLogclicked(void)
 {
-    if (!inverse)
+    if (!shift_mode)
         core.Log10(calc_display->getAmount());
     else
         core.Exp10(calc_display->getAmount());
@@ -1117,27 +1117,29 @@ void KCalculator::slotLogclicked(void)
 
 void KCalculator::slotSquareclicked(void)
 {
-    if (!inverse)
+    if (!shift_mode)
         core.Square(calc_display->getAmount());
     else
-        core.Cube(calc_display->getAmount());
+        core.SquareRoot(calc_display->getAmount());
 
     updateDisplay(true);
 }
 
-void KCalculator::slotRootclicked(void)
+
+void KCalculator::slotCubeclicked(void)
 {
-    if (!inverse)
-        core.SquareRoot(calc_display->getAmount());
+    if (!shift_mode)
+        core.Cube(calc_display->getAmount());
     else
         core.CubeRoot(calc_display->getAmount());
 
     updateDisplay(true);
 }
 
+
 void KCalculator::slotLnclicked(void)
 {
-    if (!inverse)
+    if (!shift_mode)
         core.Ln(calc_display->getAmount());
     else
         core.Exp(calc_display->getAmount());
@@ -1147,10 +1149,10 @@ void KCalculator::slotLnclicked(void)
 
 void KCalculator::slotPowerclicked(void)
 {
-    if (inverse) {
+    if (shift_mode) {
         core.enterOperation(calc_display->getAmount(),
                             CalcEngine::FUNC_PWR_ROOT);
-        pbInv->setChecked(false);
+        pbShift->setChecked(false);
     } else {
         core.enterOperation(calc_display->getAmount(),
                             CalcEngine::FUNC_POWER);
@@ -1305,7 +1307,7 @@ void KCalculator::slotNegateclicked(void)
 
 void KCalculator::slotModclicked(void)
 {
-    if (inverse)
+    if (shift_mode)
         core.enterOperation(calc_display->getAmount(),
                             CalcEngine::FUNC_INTDIV);
     else
@@ -1317,10 +1319,10 @@ void KCalculator::slotModclicked(void)
 
 void KCalculator::slotStatNumclicked(void)
 {
-    if (!inverse) {
+    if (!shift_mode) {
         core.StatCount(0);
     } else {
-        pbInv->setChecked(false);
+        pbShift->setChecked(false);
         core.StatSum(0);
     }
 
@@ -1329,10 +1331,10 @@ void KCalculator::slotStatNumclicked(void)
 
 void KCalculator::slotStatMeanclicked(void)
 {
-    if (!inverse)
+    if (!shift_mode)
         core.StatMean(0);
     else {
-        pbInv->setChecked(false);
+        pbShift->setChecked(false);
         core.StatSumSquares(0);
     }
 
@@ -1341,10 +1343,10 @@ void KCalculator::slotStatMeanclicked(void)
 
 void KCalculator::slotStatStdDevclicked(void)
 {
-    if (inverse) {
+    if (shift_mode) {
         // std (n-1)
         core.StatStdDeviation(0);
-        pbInv->setChecked(false);
+        pbShift->setChecked(false);
     } else {
         // std (n)
         core.StatStdSample(0);
@@ -1355,13 +1357,13 @@ void KCalculator::slotStatStdDevclicked(void)
 
 void KCalculator::slotStatMedianclicked(void)
 {
-    if (!inverse) {
+    if (!shift_mode) {
         // std (n-1)
         core.StatMedian(0);
     } else {
         // std (n)
         core.StatMedian(0);
-        pbInv->setChecked(false);
+        pbShift->setChecked(false);
     }
     // it seems two different modes should be implemented, but...?
     updateDisplay(true);
@@ -1369,10 +1371,10 @@ void KCalculator::slotStatMedianclicked(void)
 
 void KCalculator::slotStatDataInputclicked(void)
 {
-    if (!inverse) {
+    if (!shift_mode) {
         core.StatDataNew(calc_display->getAmount());
     } else {
-        pbInv->setChecked(false);
+        pbShift->setChecked(false);
         core.StatDataDel(0);
         statusBar()->showMessage(i18n("Last stat item erased"), 3000);
     }
@@ -1382,11 +1384,11 @@ void KCalculator::slotStatDataInputclicked(void)
 
 void KCalculator::slotStatClearDataclicked(void)
 {
-    if (!inverse) {
+    if (!shift_mode) {
         core.StatClearAll(0);
         statusBar()->showMessage(i18n("Stat mem cleared"), 3000);
     } else {
-        pbInv->setChecked(false);
+        pbShift->setChecked(false);
         updateDisplay(false);
     }
 }
@@ -1396,11 +1398,11 @@ void KCalculator::slotConstclicked(int button)
     KCalcConstButton *btn = qobject_cast<KCalcConstButton*>(constButtons[button]);
     if (!btn) return;
 
-    if (!inverse) {
+    if (!shift_mode) {
         // set the display to the configured value of constant button
         calc_display->setAmount(btn->constant());
     } else {
-        pbInv->setChecked(false);
+        pbShift->setChecked(false);
         KCalcSettings::setValueConstant(button, calc_display->text());
         // below set new tooltip
         btn->setLabelAndTooltip();
@@ -1741,7 +1743,7 @@ void KCalculator::updateDisplay(bool get_amount_from_core,
         calc_display->update();
     }
 
-    pbInv->setChecked(false);
+    pbShift->setChecked(false);
 
 }
 

@@ -35,7 +35,7 @@
 // label is displayed.
 
 
-enum ButtonModeFlags {ModeNormal = 0, ModeInverse = 1, ModeHyperbolic = 2};
+enum ButtonModeFlags {ModeNormal = 0, ModeShift = 1, ModeHyperbolic = 2};
 
 
 // Each kcalc button can be in one of several modes.

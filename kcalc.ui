@@ -541,7 +541,7 @@
            <number>4</number>
           </property>
           <item row="0" column="0">
-           <widget class="KCalcButton" name="pbRoot">
+           <widget class="KCalcButton" name="pbCube">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -549,10 +549,10 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Square root</string>
+             <string>Cube</string>
             </property>
             <property name="text">
-             <string>sr</string>
+             <string>x3</string>
             </property>
            </widget>
           </item>
@@ -819,15 +819,15 @@
            <number>4</number>
           </property>
           <item row="0" column="1">
-           <widget class="KCalcButton" name="pbInv">
+           <widget class="KCalcButton" name="pbShift">
             <property name="toolTip">
-             <string>Inverse mode</string>
+             <string>Second button function</string>
             </property>
             <property name="text">
-             <string>Inv</string>
+             <string>Shift</string>
             </property>
             <property name="shortcut">
-             <string>I</string>
+             <string>Ctrl+2</string>
             </property>
             <property name="checkable">
              <bool>true</bool>
@@ -978,7 +978,7 @@
   <tabstop>pb7</tabstop>
   <tabstop>pb8</tabstop>
   <tabstop>pb9</tabstop>
-  <tabstop>pbRoot</tabstop>
+  <tabstop>pbCube</tabstop>
   <tabstop>pbDivision</tabstop>
   <tabstop>pbMultiplication</tabstop>
   <tabstop>pbMinus</tabstop>
@@ -990,7 +990,7 @@
   <tabstop>pbMemRecall</tabstop>
   <tabstop>pbMemPlusMinus</tabstop>
   <tabstop>pbPercent</tabstop>
-  <tabstop>pbInv</tabstop>
+  <tabstop>pbShift</tabstop>
   <tabstop>pbAllClear</tabstop>
   <tabstop>pbParenClose</tabstop>
   <tabstop>pbMemClear</tabstop>

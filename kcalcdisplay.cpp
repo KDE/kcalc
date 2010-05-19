@@ -713,7 +713,7 @@ void KCalcDisplay::paintEvent(QPaintEvent *)
     fnt.setPointSize(qMax((fnt.pointSize() / 2), 7));
     painter.setFont(fnt);
     QFontMetrics fm(fnt);
-    uint w = fm.width("_____");
+    uint w = fm.width("________");
     uint h = fm.height();
 
     for (int n = 0; n < NUM_STATUS_TEXT; n++) {

@@ -168,8 +168,8 @@ void KCalcButton::calcSizeHint()
 
     // approximation because metrics doesn't account for richtext
     _size = fontMetrics().size(0, _mode[ModeNormal].label);
-    if (_mode.contains(ModeInverse)) {
-        _size = _size.expandedTo(fontMetrics().size(0, _mode[ModeInverse].label));
+    if (_mode.contains(ModeShift)) {
+        _size = _size.expandedTo(fontMetrics().size(0, _mode[ModeShift].label));
     }
     if (_mode.contains(ModeHyperbolic)) {
         _size = _size.expandedTo(fontMetrics().size(0, _mode[ModeHyperbolic].label));
