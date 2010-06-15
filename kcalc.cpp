@@ -1751,7 +1751,7 @@ void KCalculator::setColors()
 {
     calc_display->changeSettings();
 
-    QString sheet = "background-color: %1";
+    QString sheet = "KPushButton { background-color: %1 }";
 
     QColor numPal(KCalcSettings::numberButtonsColor());
     for (int i = 0; i < 10; i++) {
