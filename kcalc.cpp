@@ -892,10 +892,10 @@ void KCalculator::slotShifttoggled(bool flag)
     emit switchMode(ModeShift, flag);
 
     if (shift_mode) {
-        statusBar()->changeItem("SHIFT", ShiftField);
-        calc_display->setStatusText(ShiftField, "Shift");
+        statusBar()->changeItem(i18nc("Second button functions are active", "SHIFT"), ShiftField);
+        calc_display->setStatusText(ShiftField, i18n("Shift"));
     } else {
-        statusBar()->changeItem("NORM", ShiftField);
+        statusBar()->changeItem(i18nc("Normal button functions are active", "NORM"), ShiftField);
         calc_display->setStatusText(ShiftField, QString());
     }
 }
