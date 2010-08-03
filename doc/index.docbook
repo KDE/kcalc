@@ -200,7 +200,7 @@ functions:</para>
 <tbody>
 <row><entry><guibutton>Hyp</guibutton></entry>
 <entry>Enter Hyperbolic sub mode. Hyp Sin for example is the hyperbolic sine:
-sinh(x)</entry></row>
+sinh</entry></row>
 
 <row><entry><guibutton>Sin</guibutton></entry>
 <entry>Compute the sine</entry></row>
@@ -435,7 +435,7 @@ button display its key-binding.</para>
 <row><entry><keycap>H</keycap></entry>
 <entry><guibutton>Hyp</guibutton></entry>
 <entry>Hyperbolic as in Hyp Sin,
-the sinh(x)</entry></row>
+the sinh</entry></row>
 
 <row><entry><keycap>S</keycap></entry>
 <entry><guibutton>Sin</guibutton></entry>
@@ -460,7 +460,7 @@ the sinh(x)</entry></row>
 <row><entry><keycap>Ctrl-2</keycap></entry>
 <entry> <guibutton>&Shift;</guibutton></entry>
 <entry>Second function for this button. &eg; if
-you want arcsin(x) type <userinput>Ctrl-2 s </userinput></entry></row>
+you want arcsin type <userinput>Ctrl-2 s </userinput></entry></row>
 
 <row><entry><keysym>\</keysym></entry>
 <entry><guibutton>+/-</guibutton></entry>
