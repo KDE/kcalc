@@ -265,7 +265,7 @@ void KCalcDisplay::slotPaste(bool bClipboard)
 	if (tmp_num_base != NB_DECIMAL)
 	{
 		bool was_ok;
-		qint64 tmp_result = tmp_str.toLongLong(&was_ok, tmp_num_base);
+		qint64 tmp_result = tmp_str.toULongLong(&was_ok, tmp_num_base);
 
 		if (!was_ok)
 		{
