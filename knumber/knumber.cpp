@@ -49,6 +49,18 @@ bool KNumber::_splitoffinteger_output = false;
 #define isinf(x) (!finite(x) && x == x)
 #endif
 
+// this constructor is different from the rest
+// firstly it is explicit so that the compiler doesn't
+// get confused if you pass a 0 constant
+// secondly it takes a pointer to the knumber implementation
+// class and TAKES OWNERSHIP of it.
+// It's purpose it enable us to avoid code which creates
+// a KNumber just to do a "delete tmp._num;"
+KNumber::KNumber(_knumber *num) : _num(num)
+{
+	Q_ASSERT(num != 0);
+}
+
 KNumber::KNumber(qint32 num) : _num(new _knuminteger(num))
 {
 }
@@ -504,23 +516,13 @@ KNumber const KNumber::power(KNumber const &exp) const
 
 KNumber const KNumber::operator-(void) const
 {
-    KNumber tmp_num;
-    delete tmp_num._num;
-
-    tmp_num._num = _num->change_sign();
-
-    return tmp_num;
+	return KNumber(_num->change_sign());
 }
 
 KNumber const KNumber::operator+(KNumber const & arg2) const
 {
-    KNumber tmp_num;
-    delete tmp_num._num;
-
-    tmp_num._num = _num->add(*arg2._num);
-
+    KNumber tmp_num(_num->add(*arg2._num));
     tmp_num.simplifyRational();
-
     return tmp_num;
 }
 
@@ -531,25 +533,15 @@ KNumber const KNumber::operator-(KNumber const & arg2) const
 
 KNumber const KNumber::operator*(KNumber const & arg2) const
 {
-    KNumber tmp_num;
-    delete tmp_num._num;
-
-    tmp_num._num = _num->multiply(*arg2._num);
-
+    KNumber tmp_num(_num->multiply(*arg2._num));
     tmp_num.simplifyRational();
-
     return tmp_num;
 }
 
 KNumber const KNumber::operator/(KNumber const & arg2) const
 {
-    KNumber tmp_num;
-    delete tmp_num._num;
-
-    tmp_num._num = _num->divide(*arg2._num);
-
+    KNumber tmp_num(_num->divide(*arg2._num));
     tmp_num.simplifyRational();
-
     return tmp_num;
 }
 
@@ -559,15 +551,10 @@ KNumber const KNumber::operator%(KNumber const & arg2) const
     if (type() != IntegerType  ||  arg2.type() != IntegerType)
         return Zero;
 
-    KNumber tmp_num;
-    delete tmp_num._num;
-
     _knuminteger const *tmp_arg1 = dynamic_cast<_knuminteger const *>(_num);
     _knuminteger const *tmp_arg2 = dynamic_cast<_knuminteger const *>(arg2._num);
 
-    tmp_num._num = tmp_arg1->mod(*tmp_arg2);
-
-    return tmp_num;
+    return KNumber(tmp_arg1->mod(*tmp_arg2));
 }
 
 KNumber const KNumber::operator&(KNumber const & arg2) const
@@ -575,15 +562,10 @@ KNumber const KNumber::operator&(KNumber const & arg2) const
     if (type() != IntegerType  ||  arg2.type() != IntegerType)
         return Zero;
 
-    KNumber tmp_num;
-    delete tmp_num._num;
-
     _knuminteger const *tmp_arg1 = dynamic_cast<_knuminteger const *>(_num);
     _knuminteger const *tmp_arg2 = dynamic_cast<_knuminteger const *>(arg2._num);
 
-    tmp_num._num = tmp_arg1->intAnd(*tmp_arg2);
-
-    return tmp_num;
+    return KNumber(tmp_arg1->intAnd(*tmp_arg2));
 
 }
 
@@ -592,15 +574,10 @@ KNumber const KNumber::operator|(KNumber const & arg2) const
     if (type() != IntegerType  ||  arg2.type() != IntegerType)
         return Zero;
 
-    KNumber tmp_num;
-    delete tmp_num._num;
-
     _knuminteger const *tmp_arg1 = dynamic_cast<_knuminteger const *>(_num);
     _knuminteger const *tmp_arg2 = dynamic_cast<_knuminteger const *>(arg2._num);
 
-    tmp_num._num = tmp_arg1->intOr(*tmp_arg2);
-
-    return tmp_num;
+    return KNumber(tmp_arg1->intOr(*tmp_arg2));
 }
 
 
@@ -612,11 +589,7 @@ KNumber const KNumber::operator<<(KNumber const & arg2) const
     _knuminteger const *tmp_arg1 = dynamic_cast<_knuminteger const *>(_num);
     _knuminteger const *tmp_arg2 = dynamic_cast<_knuminteger const *>(arg2._num);
 
-    KNumber tmp_num;
-    delete tmp_num._num;
-    tmp_num._num = tmp_arg1->shift(*tmp_arg2);
-
-    return tmp_num;
+    return KNumber(tmp_arg1->shift(*tmp_arg2));
 }
 
 KNumber const KNumber::operator>>(KNumber const & arg2) const
@@ -629,11 +602,7 @@ KNumber const KNumber::operator>>(KNumber const & arg2) const
     _knuminteger const *tmp_arg1 = dynamic_cast<_knuminteger const *>(_num);
     _knuminteger const *tmp_arg2 = dynamic_cast<_knuminteger const *>(tmp_num._num);
 
-    KNumber tmp_num2;
-    delete tmp_num2._num;
-    tmp_num2._num = tmp_arg1->shift(*tmp_arg2);
-
-    return tmp_num2;
+    return KNumber(tmp_arg1->shift(*tmp_arg2));
 }
 
 

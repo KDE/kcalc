@@ -105,6 +105,7 @@ public:
      */
     enum ErrorType {UndefinedNumber, Infinity, MinusInfinity};
 
+    explicit KNumber(_knumber *num);
     KNumber(qint32 num = 0);
     KNumber(quint32 num);
     KNumber(qint64 num);
