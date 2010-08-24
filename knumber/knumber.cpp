@@ -105,7 +105,7 @@ KNumber::KNumber(KNumber const & num)
     case FloatType:
         _num = new _knumfloat(*(num._num));
         return;
-    };
+    }
 }
 
 KNumber::KNumber(QString const & num)
@@ -134,6 +134,8 @@ KNumber::~KNumber()
 
 KNumber::NumType KNumber::type(void) const
 {
+	// TODO: wouldn't it be more efficient to just
+	// use "return _num->type();"
     if (dynamic_cast<_knumerror *>(_num))
         return SpecialType;
     if (dynamic_cast<_knuminteger *>(_num))
@@ -158,15 +160,12 @@ void KNumber::simplifyRational(void)
     _knumfraction *tmp_num = dynamic_cast<_knumfraction *>(_num);
 
     if (tmp_num->isInteger()) {
-        _knumber *tmp_num2 = tmp_num->intPart();
-        delete tmp_num;
-        _num = tmp_num2;
+        KNumber(tmp_num->intPart()).swap(*this);
     }
-
 }
 
 
-KNumber const & KNumber::operator=(KNumber const & num)
+KNumber & KNumber::operator=(KNumber const & num)
 {
     if (this != & num) {
         KNumber(num).swap(*this);
@@ -176,53 +175,13 @@ KNumber const & KNumber::operator=(KNumber const & num)
 
 KNumber & KNumber::operator +=(KNumber const & arg)
 {
-    KNumber tmp_num = *this + arg;
-
-    delete _num;
-
-    switch (tmp_num.type()) {
-    case SpecialType:
-        _num = new _knumerror();
-        break;
-    case IntegerType:
-        _num = new _knuminteger();
-        break;
-    case FractionType:
-        _num = new _knumfraction();
-        break;
-    case FloatType:
-        _num = new _knumfloat();
-        break;
-    };
-
-    _num->copy(*(tmp_num._num));
-
+    KNumber(*this + arg).swap(*this);
     return *this;
 }
 
 KNumber & KNumber::operator -=(KNumber const & arg)
 {
-    KNumber tmp_num = *this - arg;
-
-    delete _num;
-
-    switch (tmp_num.type()) {
-    case SpecialType:
-        _num = new _knumerror();
-        break;
-    case IntegerType:
-        _num = new _knuminteger();
-        break;
-    case FractionType:
-        _num = new _knumfraction();
-        break;
-    case FloatType:
-        _num = new _knumfloat();
-        break;
-    };
-
-    _num->copy(*(tmp_num._num));
-
+    KNumber(*this - arg).swap(*this);
     return *this;
 }
 
@@ -434,51 +393,27 @@ void KNumber::setDefaultFloatPrecision(unsigned int prec)
 
 KNumber const KNumber::abs(void) const
 {
-    KNumber tmp_num;
-    delete tmp_num._num;
-
-    tmp_num._num = _num->abs();
-
-    return tmp_num;
+    return KNumber(_num->abs());
 }
 
 KNumber const KNumber::cbrt(void) const
 {
-    KNumber tmp_num;
-    delete tmp_num._num;
-
-    tmp_num._num = _num->cbrt();
-
-    return tmp_num;
+    return KNumber(_num->cbrt());
 }
 
 KNumber const KNumber::sqrt(void) const
 {
-    KNumber tmp_num;
-    delete tmp_num._num;
-
-    tmp_num._num = _num->sqrt();
-
-    return tmp_num;
+    return KNumber(_num->sqrt());
 }
 
 KNumber const KNumber::factorial(void) const
 {
-    KNumber tmp_num;
-    delete tmp_num._num;
-
-    tmp_num._num = _num->factorial();
-
-    return tmp_num;
+    return KNumber(_num->factorial());
 }
 
 KNumber const KNumber::integerPart(void) const
 {
-    KNumber tmp_num;
-    delete tmp_num._num;
-    tmp_num._num = _num->intPart();
-
-    return tmp_num;
+    return KNumber(_num->intPart());
 }
 
 KNumber const KNumber::power(KNumber const &exp) const
@@ -489,7 +424,7 @@ KNumber const KNumber::power(KNumber const &exp) const
         else if (exp < Zero)
             return KNumber("inf");
         else
-            return KNumber(0);
+            return Zero;
     }
 
     if (exp == Zero) {
@@ -498,18 +433,11 @@ KNumber const KNumber::power(KNumber const &exp) const
         else
             return KNumber("nan");
     } else if (exp < Zero) {
-        KNumber tmp_num;
         KNumber tmp_num2 = -exp;
-        delete tmp_num._num;
-        tmp_num._num = _num->power(*(tmp_num2._num));
-
+        KNumber tmp_num(_num->power(*(tmp_num2._num)));
         return One / tmp_num;
     } else {
-        KNumber tmp_num;
-        delete tmp_num._num;
-        tmp_num._num = _num->power(*(exp._num));
-
-        return tmp_num;
+        return KNumber(_num->power(*(exp._num)));
     }
 
 }

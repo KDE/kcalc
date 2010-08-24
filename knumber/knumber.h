@@ -119,7 +119,7 @@ public:
 
     virtual ~KNumber();
 
-    KNumber const & operator=(KNumber const & num);
+    KNumber & operator=(KNumber const & num);
 
     /**
      * Returns the type of the number, as explained in @p KNumber::NumType.
