@@ -81,7 +81,7 @@ int isinf(double x)
 
 static void fpe_handler(int fpe_parm)
 {
-    UNUSED(fpe_parm);
+    Q_UNUSED(fpe_parm);
     // display_error = true;
     //tmp_number = 0L;
 }
@@ -790,13 +790,13 @@ void CalcEngine::SquareRoot(KNumber input)
 
 void CalcEngine::StatClearAll(KNumber input)
 {
-    UNUSED(input);
+    Q_UNUSED(input);
     stats.clearAll();
 }
 
 void CalcEngine::StatCount(KNumber input)
 {
-    UNUSED(input);
+    Q_UNUSED(input);
     _last_number = KNumber(stats.count());
 }
 
@@ -808,14 +808,14 @@ void CalcEngine::StatDataNew(KNumber input)
 
 void CalcEngine::StatDataDel(KNumber input)
 {
-    UNUSED(input);
+    Q_UNUSED(input);
     stats.clearLast();
     _last_number = KNumber::Zero;
 }
 
 void CalcEngine::StatMean(KNumber input)
 {
-    UNUSED(input);
+    Q_UNUSED(input);
     _last_number = stats.mean();
 
     _error = stats.error();
@@ -823,7 +823,7 @@ void CalcEngine::StatMean(KNumber input)
 
 void CalcEngine::StatMedian(KNumber input)
 {
-    UNUSED(input);
+    Q_UNUSED(input);
     _last_number = stats.median();
 
     _error = stats.error();
@@ -831,7 +831,7 @@ void CalcEngine::StatMedian(KNumber input)
 
 void CalcEngine::StatStdDeviation(KNumber input)
 {
-    UNUSED(input);
+    Q_UNUSED(input);
     _last_number = stats.std();
 
     _error = stats.error();
@@ -839,7 +839,7 @@ void CalcEngine::StatStdDeviation(KNumber input)
 
 void CalcEngine::StatStdSample(KNumber input)
 {
-    UNUSED(input);
+    Q_UNUSED(input);
     _last_number = stats.sample_std();
 
     _error = stats.error();
@@ -847,13 +847,13 @@ void CalcEngine::StatStdSample(KNumber input)
 
 void CalcEngine::StatSum(KNumber input)
 {
-    UNUSED(input);
+    Q_UNUSED(input);
     _last_number = stats.sum();
 }
 
 void CalcEngine::StatSumSquares(KNumber input)
 {
-    UNUSED(input);
+    Q_UNUSED(input);
     _last_number = stats.sum_of_squares();
 
     _error = stats.error();

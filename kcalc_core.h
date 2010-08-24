@@ -36,10 +36,6 @@
 typedef KNumber(*Arith)(const KNumber &, const KNumber &);
 typedef KNumber(*Prcnt)(const KNumber &, const KNumber &);
 
-#define UNUSED(x) ((void)(x))
-
-
-
 struct operator_data {
     int precedence;  // priority of operators in " enum Operation"
     Arith arith_ptr;
