@@ -156,28 +156,9 @@ void KNumber::simplifyRational(void)
 
 KNumber const & KNumber::operator=(KNumber const & num)
 {
-    if (this == & num)
-        return *this;
-
-    delete _num;
-
-    switch (num.type()) {
-    case SpecialType:
-        _num = new _knumerror();
-        break;
-    case IntegerType:
-        _num = new _knuminteger();
-        break;
-    case FractionType:
-        _num = new _knumfraction();
-        break;
-    case FloatType:
-        _num = new _knumfloat();
-        break;
-    };
-
-    _num->copy(*(num._num));
-
+    if (this != & num) {
+        KNumber(num).swap(*this);
+	}
     return *this;
 }
 
