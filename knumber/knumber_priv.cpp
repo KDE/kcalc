@@ -199,7 +199,7 @@ _knuminteger const & _knuminteger::operator = (_knuminteger const & num)
 
 QString const _knumerror::ascii(int prec) const
 {
-    static_cast<void>(prec);
+    Q_UNUSED(prec);
 
     // TODO: i18n these strings here and elsewhere, as they're user visible
     switch (_error) {
@@ -216,7 +216,7 @@ QString const _knumerror::ascii(int prec) const
 
 QString const _knuminteger::ascii(int prec) const
 {
-    static_cast<void>(prec);
+    Q_UNUSED(prec);
     char *tmp_ptr = 0;
 
     // get the size of the string
@@ -232,7 +232,7 @@ QString const _knuminteger::ascii(int prec) const
 
 QString const _knumfraction::ascii(int prec) const
 {
-    static_cast<void>(prec);
+    Q_UNUSED(prec);
     char *tmp_ptr = mpq_get_str(0, 10, _mpq);
     QString ret_str = tmp_ptr;
     free(tmp_ptr);
