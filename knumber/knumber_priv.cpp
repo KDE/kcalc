@@ -226,7 +226,7 @@ QString const _knuminteger::ascii(int prec) const
 
     QString ret_str = tmp_ptr;
 
-    delete tmp_ptr;
+    delete [] tmp_ptr;
     return ret_str;
 }
 
@@ -257,7 +257,7 @@ QString const _knumfloat::ascii(int prec) const
 
     ret_str = tmp_ptr;
 
-    delete tmp_ptr;
+    delete [] tmp_ptr;
 
     return ret_str;
 }
