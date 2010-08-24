@@ -73,6 +73,11 @@ KNumber::KNumber(double num)
 
 }
 
+void KNumber::swap(KNumber &other)
+{
+	qSwap(_num, other._num);
+}
+
 KNumber::KNumber(KNumber const & num)
 {
     switch (num.type()) {

@@ -276,7 +276,7 @@ public:
     static KNumber Euler(void);
 
 
-    //KNumber const toFloat(void) const;
+    void swap(KNumber &other);
 
 private:
     void simplifyRational(void);
