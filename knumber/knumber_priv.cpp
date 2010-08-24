@@ -1117,7 +1117,7 @@ _knuminteger::operator long long int (void) const
     char *tmpchar = new char[mpz_sizeinbase(_mpz, 10) + 2];
     mpz_get_str(tmpchar, 10, _mpz);
     QString tmpstring(tmpchar);
-    free(tmpchar);
+    delete [] tmpchar;
     bool ok;
     long long int value = tmpstring.toLongLong(&ok, 10);
 
@@ -1135,7 +1135,7 @@ _knuminteger::operator unsigned long long int (void) const
     char *tmpchar = new char[mpz_sizeinbase(_mpz, 10) + 2];
     mpz_get_str(tmpchar, 10, _mpz);
     QString tmpstring(tmpchar);
-    free(tmpchar);
+    delete [] tmpchar;
 
     bool ok;
     unsigned long long int value;
