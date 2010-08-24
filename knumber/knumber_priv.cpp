@@ -1259,9 +1259,14 @@ _knumber * _knuminteger::shift(_knuminteger const &arg2) const
 
     if (tmp_arg2 > 0)    // left shift
         mpz_mul_2exp(tmp_num->_mpz, _mpz, tmp_arg2);
-    else  // right shift
-        mpz_tdiv_q_2exp(tmp_num->_mpz, _mpz, -tmp_arg2);
-
+    else {
+        // right shift
+        if(mpz_sgn(_mpz) < 0) {
+            mpz_fdiv_q_2exp(tmp_num->_mpz, _mpz, -tmp_arg2);
+        } else {
+            mpz_tdiv_q_2exp(tmp_num->_mpz, _mpz, -tmp_arg2);
+        }
+    }
 
     return tmp_num;
 }
