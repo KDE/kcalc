@@ -49,24 +49,20 @@ bool KNumber::_splitoffinteger_output = false;
 #define isinf(x) (!finite(x) && x == x)
 #endif
 
-KNumber::KNumber(qint32 num)
+KNumber::KNumber(qint32 num) : _num(new _knuminteger(num))
 {
-    _num = new _knuminteger(num);
 }
 
-KNumber::KNumber(quint32 num)
+KNumber::KNumber(quint32 num) :  _num(new _knuminteger(num))
 {
-    _num = new _knuminteger(num);
 }
 
-KNumber::KNumber(qint64 num)
+KNumber::KNumber(qint64 num) : _num(new _knuminteger(num))
 {
-    _num = new _knuminteger(num);
 }
 
-KNumber::KNumber(quint64 num)
+KNumber::KNumber(quint64 num) : _num(new _knuminteger(num))
 {
-    _num = new _knuminteger(num);
 }
 
 KNumber::KNumber(double num)
