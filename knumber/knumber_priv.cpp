@@ -518,9 +518,7 @@ _knumber * _knumfloat::sqrt(void) const
 
 _knumber * _knumerror::factorial(void) const
 {
-    _knumerror *tmp_num = new _knumerror(*this);
-
-    return tmp_num;
+    return new _knumerror(*this);
 }
 
 #ifdef Q_OS_LINUX
@@ -565,8 +563,7 @@ _knumber * _knuminteger::factorial(void) const
 _knumber * _knumfraction::factorial(void) const
 {
     if (mpq_sgn(_mpq) < 0) {
-        _knumerror *tmp_num = new _knumerror(UndefinedNumber);
-        return tmp_num;
+        return new _knumerror(UndefinedNumber);
     }
     _knuminteger *tmp_num = new _knuminteger();
     mpz_set_q(tmp_num->_mpz, _mpq);
@@ -583,12 +580,12 @@ _knumber * _knumfraction::factorial(void) const
 _knumber * _knumfloat::factorial(void) const
 {
     if (mpf_sgn(_mpf) < 0) {
-        _knumerror *tmp_num = new _knumerror(UndefinedNumber);
-        return tmp_num;
+        return new _knumerror(UndefinedNumber);
     }
     _knuminteger *tmp_num = new _knuminteger();
     mpz_set_f(tmp_num->_mpz, _mpf);
     unsigned long int op = mpz_get_ui(tmp_num->_mpz);
+	delete tmp_num;
 
     tmp_num = new _knuminteger();
 
