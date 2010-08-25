@@ -22,6 +22,10 @@
 #include <math.h>
 #include <config-kcalc.h>
 #include <stdlib.h>
+#ifdef Q_OS_LINUX
+#include <signal.h>
+#include <setjmp.h>
+#endif
 
 #include <QRegExp>
 
@@ -519,15 +523,41 @@ _knumber * _knumerror::factorial(void) const
     return tmp_num;
 }
 
+#ifdef Q_OS_LINUX
+static jmp_buf abort_factorial;
+static void factorial_abort_handler(int)
+{
+    longjmp(abort_factorial, 1);
+}
+#endif
+
 _knumber * _knuminteger::factorial(void) const
 {
     if (mpz_sgn(_mpz) < 0) {
-        _knumerror *tmp_num = new _knumerror(UndefinedNumber);
-        return tmp_num;
+        return new _knumerror(UndefinedNumber);
     }
-    _knuminteger * tmp_num = new _knuminteger();
 
+#ifdef Q_OS_LINUX
+    struct sigaction new_sa;
+    struct sigaction old_sa;
+
+    memset(&new_sa, 0, sizeof(new_sa));
+
+    new_sa.sa_handler = factorial_abort_handler;
+    sigaction(SIGABRT, &new_sa, &old_sa);
+
+    if(setjmp(abort_factorial)) {
+		sigaction(SIGABRT, &old_sa, 0);
+        return new _knumerror(UndefinedNumber);
+    }
+#endif
+    
+    _knuminteger * tmp_num = new _knuminteger();
     mpz_fac_ui(tmp_num->_mpz, mpz_get_ui(_mpz));
+
+#ifdef Q_OS_LINUX
+    sigaction(SIGABRT, &old_sa, 0);
+#endif
 
     return tmp_num;
 }
@@ -541,6 +571,7 @@ _knumber * _knumfraction::factorial(void) const
     _knuminteger *tmp_num = new _knuminteger();
     mpz_set_q(tmp_num->_mpz, _mpq);
     unsigned long int op = mpz_get_ui(tmp_num->_mpz);
+	delete tmp_num;
 
     tmp_num = new _knuminteger();
 
