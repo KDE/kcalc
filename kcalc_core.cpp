@@ -467,7 +467,6 @@ void CalcEngine::AreaTangensHyp(KNumber input)
     _last_number = KNumber(atanh(static_cast<double>(input)));
 }
 
-#include "knumber/knumber_priv.h"
 void CalcEngine::Complement(KNumber input)
 {
     if (input.type() != KNumber::IntegerType) {

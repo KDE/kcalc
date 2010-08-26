@@ -17,14 +17,16 @@
     the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
     Boston, MA 02110-1301, USA.
 */
-#ifndef _KNUMBER_H
-#define _KNUMBER_H
+#ifndef KNUMBER_H_
+#define KNUMBER_H_
 
 #include <kdemacros.h>
 
 class QString;
 
-class _knumber;
+namespace detail {
+class knumber;
+}
 
 /**
   *
@@ -103,7 +105,7 @@ public:
      */
     enum ErrorType {UndefinedNumber, Infinity, MinusInfinity};
 
-    explicit KNumber(_knumber *num);
+    explicit KNumber(detail::knumber *num);
     KNumber(qint32 num = 0);
     KNumber(quint32 num);
     KNumber(qint64 num);
@@ -281,7 +283,7 @@ private:
     void simplifyRational(void);
     int compare(KNumber const & arg2) const;
 
-    _knumber *_num;
+    detail::knumber *num_;
     static bool _float_output;
     static bool _fraction_input;
     static bool _splitoffinteger_output;
@@ -289,4 +291,4 @@ private:
 
 
 
-#endif // _KNUMBER_H
+#endif // KNUMBER_H_
