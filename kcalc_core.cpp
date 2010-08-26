@@ -938,7 +938,7 @@ void CalcEngine::enterOperation(KNumber number, Operation func)
     evalStack();
 }
 
-bool CalcEngine::evalStack(void)
+bool CalcEngine::evalStack()
 {
     // this should never happen
     Q_ASSERT(!stack_.isEmpty());

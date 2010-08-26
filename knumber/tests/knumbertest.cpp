@@ -84,7 +84,7 @@ void checkType(QString const &string, KNumber::NumType test_arg,
 }
 
 
-void testingCompare(void)
+void testingCompare()
 {
     std::cout << "\n\nTesting Compare:\n";
 
@@ -128,7 +128,7 @@ void testingCompare(void)
 }
 
 
-void testingAdditions(void)
+void testingAdditions()
 {
     std::cout << "\n\nTesting additions:\n";
 
@@ -148,7 +148,7 @@ void testingAdditions(void)
 
 }
 
-void testingSubtractions(void)
+void testingSubtractions()
 {
     std::cout << "\n\nTesting subtractions:\n";
 
@@ -169,7 +169,7 @@ void testingSubtractions(void)
 }
 
 
-void testingMultiplications(void)
+void testingMultiplications()
 {
     std::cout << "\n\nTesting multiplications:\n";
 
@@ -193,7 +193,7 @@ void testingMultiplications(void)
 
 }
 
-void testingDivisions(void)
+void testingDivisions()
 {
     std::cout << "\n\nTesting divisions:\n";
 
@@ -225,7 +225,7 @@ void testingDivisions(void)
     checkResult("KNumber(-5.5) / KNumber(0.0)", KNumber(-5.5) / KNumber(0.0), "-inf", KNumber::SpecialType);
 }
 
-void testingModulus(void)
+void testingModulus()
 {
     std::cout << "\n\nTesting modulus:\n";
 
@@ -241,7 +241,7 @@ void testingModulus(void)
 
 }
 
-void testingAndOr(void)
+void testingAndOr()
 {
     std::cout << "\n\nTesting And/Or:\n";
 
@@ -257,7 +257,7 @@ void testingAndOr(void)
 }
 
 
-void testingAbs(void)
+void testingAbs()
 {
     std::cout << "\n\nTesting absolute value:\n";
 
@@ -270,7 +270,7 @@ void testingAbs(void)
     checkResult("KNumber(\"-2.3\").abs()", KNumber("-2.3").abs(), "2.3", KNumber::FloatType);
 }
 
-void testingTruncateToInteger(void)
+void testingTruncateToInteger()
 {
     std::cout << "\n\nTesting truncate to an integer:\n";
 
@@ -282,7 +282,7 @@ void testingTruncateToInteger(void)
 }
 
 
-void testingSqrt(void)
+void testingSqrt()
 {
     std::cout << "\n\nTesting square root, cubic root:\n";
 
@@ -310,7 +310,7 @@ void testingSqrt(void)
 
 }
 
-void testingFactorial(void)
+void testingFactorial()
 {
     std::cout << "\n\nTesting factorial:\n";
 
@@ -341,7 +341,7 @@ void testingFactorial(void)
     checkResult("KNumber(3.5).factorial()", KNumber(3.5).factorial(), "6", KNumber::IntegerType);
 }
 
-// void testingComplement(void)
+// void testingComplement()
 // {
 //   std::cout << "\n\nTesting complement:\n";
 
@@ -362,7 +362,7 @@ void testingFactorial(void)
 //   checkResult("KNumber\"-1/2\").complement()", KNumber("-1/2").complement(), "nan", KNumber::SpecialType);
 // }
 
-void testingShifts(void)
+void testingShifts()
 {
     std::cout << "\n\nTesting left/right shift:\n";
 
@@ -371,7 +371,7 @@ void testingShifts(void)
 
 }
 
-void testingPower(void)
+void testingPower()
 {
     std::cout << "\n\nTesting Power:\n";
 
@@ -407,7 +407,7 @@ void testingPower(void)
     checkResult("KNumber(-5.5) ^ KNumber(0.0)", KNumber(-5.5).power(KNumber(0.0)), "1", KNumber::IntegerType);
 }
 
-void testingInfArithmetic(void)
+void testingInfArithmetic()
 {
     std::cout << "\n\nTesting inf/nan-arithmetics:\n";
 
@@ -543,7 +543,7 @@ void testingInfArithmetic(void)
     checkResult("mininf / KNumber(0.0)", tmp_mininf / KNumber(0.0), "-inf", KNumber::SpecialType);
 }
 
-void testingFloatPrecision(void)
+void testingFloatPrecision()
 {
     KNumber::setDefaultFloatPrecision(100);
     checkResult("Precision >= 100: (KNumber(1) + KNumber(\"1e-80\")) - KNumber(1)",
@@ -557,7 +557,7 @@ void testingFloatPrecision(void)
 
 }
 
-void testingOutput(void)
+void testingOutput()
 {
     KNumber::setDefaultFloatOutput(false);
     checkResult("Fractional output: KNumber(\"1/4\")", KNumber("1/4"), "1/4", KNumber::FractionType);
@@ -577,7 +577,7 @@ void testingOutput(void)
 }
 
 
-int main(void)
+int main()
 {
     std::cout << "Testing Constructors:\n";
 

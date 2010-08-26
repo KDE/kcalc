@@ -124,7 +124,7 @@ public:
     /**
      * Returns the type of the number, as explained in @p KNumber::NumType.
      */
-    NumType type(void) const;
+    NumType type() const;
 
     /**
      * Set whether the output of numbers (with KNumber::toQString)
@@ -185,7 +185,7 @@ public:
      *  0\end{array}\right.\f]
      * This method works for \f$ x = \infty \f$ and \f$ x = -\infty \f$.
      */
-    KNumber const abs(void) const;
+    KNumber const abs() const;
 
     /**
      * Compute the square root. If \f$ x < 0 \f$ (including \f$
@@ -198,7 +198,7 @@ public:
      *
      * This method works for \f$ x = \infty \f$ giving \f$ \infty \f$.
      */
-    KNumber const sqrt(void) const;
+    KNumber const sqrt() const;
 
     /**
      * Compute the cube root.
@@ -213,9 +213,9 @@ public:
      * This method works for \f$ x = \infty \f$ giving \f$ \infty \f$,
      * and for \f$ x = -\infty \f$ giving \f$ -\infty \f$.
      */
-    KNumber const cbrt(void) const;
+    KNumber const cbrt() const;
 
-    KNumber const factorial(void) const;
+    KNumber const factorial() const;
 
     /**
      * Truncates a @p KNumber to its integer type returning a number of
@@ -224,12 +224,12 @@ public:
      * If \f$ x = \pm\infty \f$, integerPart leaves the value unchanged,
      * i.e. it returns \f$ \pm\infty \f$.
      */
-    KNumber const integerPart(void) const;
+    KNumber const integerPart() const;
 
     KNumber const power(KNumber const &exp) const;
 
     KNumber const operator+(KNumber const & arg2) const;
-    KNumber const operator -(void) const;
+    KNumber const operator -() const;
     KNumber const operator-(KNumber const & arg2) const;
     KNumber const operator*(KNumber const & arg2) const;
     KNumber const operator/(KNumber const & arg2) const;
@@ -240,12 +240,12 @@ public:
     KNumber const operator<<(KNumber const & arg2) const;
     KNumber const operator>>(KNumber const & arg2) const;
 
-    operator bool(void) const;
-    operator qint32(void) const;
-    operator quint32(void) const;
-    operator qint64(void) const;
-    operator quint64(void) const;
-    operator double(void) const;
+    operator bool() const;
+    operator qint32() const;
+    operator quint32() const;
+    operator qint64() const;
+    operator quint64() const;
+    operator double() const;
 
     bool operator==(KNumber const & arg2) const {
         return (compare(arg2) == 0);
@@ -273,14 +273,14 @@ public:
 
     KNumber & operator +=(KNumber const &arg);
     KNumber & operator -=(KNumber const &arg);
-    static KNumber Pi(void);
-    static KNumber Euler(void);
+    static KNumber Pi();
+    static KNumber Euler();
 
 
     void swap(KNumber &other);
 
 private:
-    void simplifyRational(void);
+    void simplifyRational();
     int compare(KNumber const & arg2) const;
 
     detail::knumber *num_;

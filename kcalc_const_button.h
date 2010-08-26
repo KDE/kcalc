@@ -39,11 +39,11 @@ public:
     KCalcConstButton(const QString &label, QWidget *parent,
                      const QString &tooltip = QString());
 
-    QString constant(void) const;
+    QString constant() const;
 
     void setButtonNumber(int num);
 
-    void setLabelAndTooltip(void);
+    void setLabelAndTooltip();
 
 signals:
     void clicked(int num);
@@ -54,7 +54,7 @@ private slots:
     void slotClicked();
 
 private:
-    void initPopupMenu(void);
+    void initPopupMenu();
 
     int button_num_;
 };

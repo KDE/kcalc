@@ -47,14 +47,14 @@ public:
     explicit KCalcConstMenu(QString const & title, QWidget * parent = 0);
 
     static QList<struct science_constant> Constants;
-    static void init_consts(void);
+    static void init_consts();
 
 signals:
     void triggeredConstant(struct science_constant const &);
 
 
 private:
-    void init_all(void);
+    void init_all();
 
 
 public slots:

@@ -218,13 +218,13 @@ bool KCalcDisplay::sendEvent(Event const event)
     }
 }
 
-void KCalcDisplay::slotCut(void)
+void KCalcDisplay::slotCut()
 {
     slotCopy();
     sendEvent(EventReset);
 }
 
-void KCalcDisplay::slotCopy(void)
+void KCalcDisplay::slotCopy()
 {
     QString txt = text_;
     if (num_base_ == NB_HEX)
@@ -278,7 +278,7 @@ void KCalcDisplay::slotPaste(bool bClipboard)
     }
 }
 
-void KCalcDisplay::slotDisplaySelected(void)
+void KCalcDisplay::slotDisplaySelected()
 {
     if (button_ == Qt::LeftButton) {
         if (lit_) {
@@ -294,7 +294,7 @@ void KCalcDisplay::slotDisplaySelected(void)
     }
 }
 
-void KCalcDisplay::slotSelectionTimedOut(void)
+void KCalcDisplay::slotSelectionTimedOut()
 {
     lit_ = false;
     invertColors();
@@ -351,7 +351,7 @@ void KCalcDisplay::setTwosComplement(bool flag)
     twoscomplement_ = flag;
 }
 
-KNumber const & KCalcDisplay::getAmount(void) const
+KNumber const & KCalcDisplay::getAmount() const
 {
     return display_amount_;
 }
@@ -463,7 +463,7 @@ void KCalcDisplay::setStatusText(int i, const QString& text)
     update();
 }
 
-bool KCalcDisplay::updateDisplay(void)
+bool KCalcDisplay::updateDisplay()
 {
     // Put sign in front.
     QString tmp_string;
@@ -621,7 +621,7 @@ void KCalcDisplay::newCharacter(char const new_char)
     updateDisplay();
 }
 
-void KCalcDisplay::deleteLastDigit(void)
+void KCalcDisplay::deleteLastDigit()
 {
     // Only partially implemented !!
     if (eestate_) {
@@ -653,7 +653,7 @@ void KCalcDisplay::deleteLastDigit(void)
 // change Sign of display. Problem: Only possible here, when in input
 // mode. Otherwise return 'false' so that the kcalc_core can handle
 // things.
-bool KCalcDisplay::changeSign(void)
+bool KCalcDisplay::changeSign()
 {
     //stupid way, to see if in input_mode or display_mode
     if (str_int_ == "0") return false;

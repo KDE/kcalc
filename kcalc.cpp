@@ -178,7 +178,7 @@ KCalculator::~KCalculator()
     KCalcSettings::self()->writeConfig();
 }
 
-void KCalculator::setupMainActions(void)
+void KCalculator::setupMainActions()
 {
     // file menu
     KStandardAction::quit(this, SLOT(close()), actionCollection());
@@ -227,7 +227,7 @@ void KCalculator::setupMainActions(void)
                                  actionCollection());
 }
 
-void KCalculator::setupStatusbar(void)
+void KCalculator::setupStatusbar()
 {
     // Status bar contents
     statusBar()->insertPermanentFixedItem(" NORM ", ShiftField);
@@ -313,64 +313,64 @@ void KCalculator::setupKeys()
 
     pbClear->setShortcut(QKeySequence(Qt::Key_Escape));
     new QShortcut(Qt::Key_PageUp, pbClear, SLOT(animateClick()));
-    connect(pbClear, SIGNAL(clicked(void)),
-            SLOT(slotClearclicked(void)));
+    connect(pbClear, SIGNAL(clicked()),
+            SLOT(slotClearclicked()));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbClear, SLOT(slotSetAccelDisplayMode(bool)));
 
     pbAllClear->setShortcut(QKeySequence(Qt::Key_Delete));
     new QShortcut(Qt::Key_PageDown, pbAllClear, SLOT(animateClick()));
-    connect(pbAllClear, SIGNAL(clicked(void)),
-            SLOT(slotAllClearclicked(void)));
+    connect(pbAllClear, SIGNAL(clicked()),
+            SLOT(slotAllClearclicked()));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbAllClear, SLOT(slotSetAccelDisplayMode(bool)));
 
     pbParenOpen->setShortcut(QKeySequence(Qt::Key_ParenLeft));
-    connect(pbParenOpen, SIGNAL(clicked(void)),
-            SLOT(slotParenOpenclicked(void)));
+    connect(pbParenOpen, SIGNAL(clicked()),
+            SLOT(slotParenOpenclicked()));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbParenOpen, SLOT(slotSetAccelDisplayMode(bool)));
 
     pbParenClose->setShortcut(QKeySequence(Qt::Key_ParenRight));
-    connect(pbParenClose, SIGNAL(clicked(void)),
-            SLOT(slotParenCloseclicked(void)));
+    connect(pbParenClose, SIGNAL(clicked()),
+            SLOT(slotParenCloseclicked()));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbParenClose, SLOT(slotSetAccelDisplayMode(bool)));
 
     pbMemRecall->setDisabled(true);   // nothing in memory at start
-    connect(pbMemRecall, SIGNAL(clicked(void)),
-            SLOT(slotMemRecallclicked(void)));
+    connect(pbMemRecall, SIGNAL(clicked()),
+            SLOT(slotMemRecallclicked()));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbMemRecall, SLOT(slotSetAccelDisplayMode(bool)));
 
-    connect(pbMemClear, SIGNAL(clicked(void)),
-            SLOT(slotMemClearclicked(void)));
+    connect(pbMemClear, SIGNAL(clicked()),
+            SLOT(slotMemClearclicked()));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbMemClear, SLOT(slotSetAccelDisplayMode(bool)));
 
     pbMemPlusMinus->addMode(ModeNormal, i18nc("Add display to memory", "M+"), i18n("Add display to memory"));
     pbMemPlusMinus->addMode(ModeShift, i18nc("Subtract from memory", "M−"), i18n("Subtract from memory"));
-    connect(pbMemPlusMinus, SIGNAL(clicked(void)),
-            SLOT(slotMemPlusMinusclicked(void)));
+    connect(pbMemPlusMinus, SIGNAL(clicked()),
+            SLOT(slotMemPlusMinusclicked()));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbMemPlusMinus, SLOT(slotSetAccelDisplayMode(bool)));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
             pbMemPlusMinus, SLOT(slotSetMode(ButtonModeFlags, bool)));
 
-    connect(pbMemStore, SIGNAL(clicked(void)),
-            SLOT(slotMemStoreclicked(void)));
+    connect(pbMemStore, SIGNAL(clicked()),
+            SLOT(slotMemStoreclicked()));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbMemStore, SLOT(slotSetAccelDisplayMode(bool)));
 
     pbPercent->setShortcut(QKeySequence(Qt::Key_Percent));
-    connect(pbPercent, SIGNAL(clicked(void)),
-            SLOT(slotPercentclicked(void)));
+    connect(pbPercent, SIGNAL(clicked()),
+            SLOT(slotPercentclicked()));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbPercent, SLOT(slotSetAccelDisplayMode(bool)));
 
     pbPlusMinus->setShortcut(QKeySequence(Qt::Key_Backslash));
-    connect(pbPlusMinus, SIGNAL(clicked(void)),
-            SLOT(slotPlusMinusclicked(void)));
+    connect(pbPlusMinus, SIGNAL(clicked()),
+            SLOT(slotPlusMinusclicked()));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbPlusMinus, SLOT(slotSetAccelDisplayMode(bool)));
 
@@ -378,8 +378,8 @@ void KCalculator::setupKeys()
 
     pbCube->addMode(ModeNormal, i18nc("Third power", "x<sup>3</sup>"), i18n("Third power"));
     pbCube->addMode(ModeShift, "<sup>3</sup>&radic;x", i18n("Cube root"));
-    connect(pbCube, SIGNAL(clicked(void)),
-            SLOT(slotCubeclicked(void)));
+    connect(pbCube, SIGNAL(clicked()),
+            SLOT(slotCubeclicked()));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbCube, SLOT(slotSetAccelDisplayMode(bool)));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
@@ -387,28 +387,28 @@ void KCalculator::setupKeys()
 
     pbDivision->setShortcut(QKeySequence(Qt::Key_Slash));
     new QShortcut(Qt::Key_division, pbDivision, SLOT(animateClick()));
-    connect(pbDivision, SIGNAL(clicked(void)),
-            SLOT(slotDivisionclicked(void)));
+    connect(pbDivision, SIGNAL(clicked()),
+            SLOT(slotDivisionclicked()));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbDivision, SLOT(slotSetAccelDisplayMode(bool)));
 
     pbMultiplication->setShortcut(QKeySequence(Qt::Key_Asterisk));
     new QShortcut(Qt::Key_X, pbMultiplication, SLOT(animateClick()));
     new QShortcut(Qt::Key_multiply, pbMultiplication, SLOT(animateClick()));
-    connect(pbMultiplication, SIGNAL(clicked(void)),
-            SLOT(slotMultiplicationclicked(void)));
+    connect(pbMultiplication, SIGNAL(clicked()),
+            SLOT(slotMultiplicationclicked()));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbMultiplication, SLOT(slotSetAccelDisplayMode(bool)));
 
     pbMinus->setShortcut(QKeySequence(Qt::Key_Minus));
-    connect(pbMinus, SIGNAL(clicked(void)),
-            SLOT(slotMinusclicked(void)));
+    connect(pbMinus, SIGNAL(clicked()),
+            SLOT(slotMinusclicked()));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbMinus, SLOT(slotSetAccelDisplayMode(bool)));
 
     pbPlus->setShortcut(QKeySequence(Qt::Key_Plus));
-    connect(pbPlus, SIGNAL(clicked(void)),
-            SLOT(slotPlusclicked(void)));
+    connect(pbPlus, SIGNAL(clicked()),
+            SLOT(slotPlusclicked()));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbPlus, SLOT(slotSetAccelDisplayMode(bool)));
 
@@ -418,16 +418,16 @@ void KCalculator::setupKeys()
         new QShortcut(Qt::Key_Comma, pbPeriod, SLOT(animateClick()));
     else if (KGlobal::locale()->decimalSymbol() == ",")
         new QShortcut(Qt::Key_Period, pbPeriod, SLOT(animateClick()));
-    connect(pbPeriod, SIGNAL(clicked(void)),
-            SLOT(slotPeriodclicked(void)));
+    connect(pbPeriod, SIGNAL(clicked()),
+            SLOT(slotPeriodclicked()));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbPeriod, SLOT(slotSetAccelDisplayMode(bool)));
 
     pbEqual->setShortcut(QKeySequence(Qt::Key_Enter));
     new QShortcut(Qt::Key_Equal, pbEqual, SLOT(animateClick()));
     new QShortcut(Qt::Key_Return, pbEqual, SLOT(animateClick()));
-    connect(pbEqual, SIGNAL(clicked(void)),
-            SLOT(slotEqualclicked(void)));
+    connect(pbEqual, SIGNAL(clicked()),
+            SLOT(slotEqualclicked()));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbEqual, SLOT(slotSetAccelDisplayMode(bool)));
 
@@ -443,33 +443,33 @@ void KCalculator::setupKeys()
     pbAND->setShortcut(QKeySequence(Qt::Key_Ampersand));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbAND, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(pbAND, SIGNAL(clicked(void)), SLOT(slotANDclicked(void)));
+    connect(pbAND, SIGNAL(clicked()), SLOT(slotANDclicked()));
 
     pbOR->setShortcut(QKeySequence(Qt::Key_Bar));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbOR, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(pbOR, SIGNAL(clicked(void)), SLOT(slotORclicked(void)));
+    connect(pbOR, SIGNAL(clicked()), SLOT(slotORclicked()));
 
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbXOR, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(pbXOR, SIGNAL(clicked(void)), SLOT(slotXORclicked(void)));
+    connect(pbXOR, SIGNAL(clicked()), SLOT(slotXORclicked()));
 
     pbLsh->setShortcut(QKeySequence(Qt::Key_Less));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbLsh, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(pbLsh, SIGNAL(clicked(void)),
-            SLOT(slotLeftShiftclicked(void)));
+    connect(pbLsh, SIGNAL(clicked()),
+            SLOT(slotLeftShiftclicked()));
 
     pbRsh->setShortcut(QKeySequence(Qt::Key_Greater));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbRsh, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(pbRsh, SIGNAL(clicked(void)),
-            SLOT(slotRightShiftclicked(void)));
+    connect(pbRsh, SIGNAL(clicked()),
+            SLOT(slotRightShiftclicked()));
 
     pbCmp->setShortcut(QKeySequence(Qt::Key_AsciiTilde));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbCmp, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(pbCmp, SIGNAL(clicked(void)), SLOT(slotNegateclicked(void)));
+    connect(pbCmp, SIGNAL(clicked()), SLOT(slotNegateclicked()));
 
     // scientific keys
 
@@ -493,7 +493,7 @@ void KCalculator::setupKeys()
             pbSin, SLOT(slotSetAccelDisplayMode(bool)));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
             pbSin, SLOT(slotSetMode(ButtonModeFlags, bool)));
-    connect(pbSin, SIGNAL(clicked(void)), SLOT(slotSinclicked(void)));
+    connect(pbSin, SIGNAL(clicked()), SLOT(slotSinclicked()));
 
     pbCos->addMode(ModeNormal, i18nc("Cosine", "Cos"), i18n("Cosine"));
     pbCos->addMode(ModeShift, i18nc("Arc cosine", "Acos"), i18n("Arc cosine"));
@@ -504,7 +504,7 @@ void KCalculator::setupKeys()
             pbCos, SLOT(slotSetAccelDisplayMode(bool)));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
             pbCos, SLOT(slotSetMode(ButtonModeFlags, bool)));
-    connect(pbCos, SIGNAL(clicked(void)), SLOT(slotCosclicked(void)));
+    connect(pbCos, SIGNAL(clicked()), SLOT(slotCosclicked()));
 
     pbTan->addMode(ModeNormal, i18nc("Tangent", "Tan"), i18n("Tangent"));
     pbTan->addMode(ModeShift, i18nc("Arc tangent", "Atan"), i18n("Arc tangent"));
@@ -515,7 +515,7 @@ void KCalculator::setupKeys()
             pbTan, SLOT(slotSetAccelDisplayMode(bool)));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
             pbTan, SLOT(slotSetMode(ButtonModeFlags, bool)));
-    connect(pbTan, SIGNAL(clicked(void)), SLOT(slotTanclicked(void)));
+    connect(pbTan, SIGNAL(clicked()), SLOT(slotTanclicked()));
 
     pbLog->addMode(ModeNormal, i18nc("Logarithm to base 10", "Log"), i18n("Logarithm to base 10"));
     pbLog->addMode(ModeShift, i18nc("10 to the power of x", "10<sup>x</sup>"), i18n("10 to the power of x"));
@@ -523,14 +523,14 @@ void KCalculator::setupKeys()
             pbLog, SLOT(slotSetAccelDisplayMode(bool)));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
             pbLog, SLOT(slotSetMode(ButtonModeFlags, bool)));
-    connect(pbLog, SIGNAL(clicked(void)), SLOT(slotLogclicked(void)));
+    connect(pbLog, SIGNAL(clicked()), SLOT(slotLogclicked()));
     pbLn->addMode(ModeNormal, i18nc("Natural log", "Ln"), i18n("Natural log"));
     pbLn->addMode(ModeShift, i18nc("Exponential function", "e<sup>x</sup>"), i18n("Exponential function"));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbLn, SLOT(slotSetAccelDisplayMode(bool)));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
             pbLn, SLOT(slotSetMode(ButtonModeFlags, bool)));
-    connect(pbLn, SIGNAL(clicked(void)), SLOT(slotLnclicked(void)));
+    connect(pbLn, SIGNAL(clicked()), SLOT(slotLnclicked()));
 
     // statistic buttons
 
@@ -548,7 +548,7 @@ void KCalculator::setupKeys()
             pbNData, SLOT(slotSetAccelDisplayMode(bool)));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
             pbNData, SLOT(slotSetMode(ButtonModeFlags, bool)));
-    connect(pbNData, SIGNAL(clicked(void)), SLOT(slotStatNumclicked(void)));
+    connect(pbNData, SIGNAL(clicked()), SLOT(slotStatNumclicked()));
 
     pbMean->addMode(ModeNormal, i18nc("Mean", "Mea"), i18n("Mean"));
     pbMean->addMode(ModeShift, QString::fromUtf8("\xce\xa3")
@@ -558,7 +558,7 @@ void KCalculator::setupKeys()
             pbMean, SLOT(slotSetAccelDisplayMode(bool)));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
             pbMean, SLOT(slotSetMode(ButtonModeFlags, bool)));
-    connect(pbMean, SIGNAL(clicked(void)), SLOT(slotStatMeanclicked(void)));
+    connect(pbMean, SIGNAL(clicked()), SLOT(slotStatMeanclicked()));
 
     pbSd->addMode(ModeNormal, QString::fromUtf8("σ", -1) + "<sub>N</sub>",
                   i18n("Standard deviation"));
@@ -568,11 +568,11 @@ void KCalculator::setupKeys()
             pbSd, SLOT(slotSetAccelDisplayMode(bool)));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
             pbSd, SLOT(slotSetMode(ButtonModeFlags, bool)));
-    connect(pbSd, SIGNAL(clicked(void)), SLOT(slotStatStdDevclicked(void)));
+    connect(pbSd, SIGNAL(clicked()), SLOT(slotStatStdDevclicked()));
 
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbMed, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(pbMed, SIGNAL(clicked(void)), SLOT(slotStatMedianclicked(void)));
+    connect(pbMed, SIGNAL(clicked()), SLOT(slotStatMedianclicked()));
 
     pbDat->addMode(ModeNormal, i18nc("Enter data", "Dat"), i18n("Enter data"));
     pbDat->addMode(ModeShift, i18nc("Delete last data item", "CDat"), i18n("Delete last data item"));
@@ -580,11 +580,11 @@ void KCalculator::setupKeys()
             pbDat, SLOT(slotSetAccelDisplayMode(bool)));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
             pbDat, SLOT(slotSetMode(ButtonModeFlags, bool)));
-    connect(pbDat, SIGNAL(clicked(void)), SLOT(slotStatDataInputclicked(void)));
+    connect(pbDat, SIGNAL(clicked()), SLOT(slotStatDataInputclicked()));
 
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbCSt, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(pbCSt, SIGNAL(clicked(void)), SLOT(slotStatClearDataclicked(void)));
+    connect(pbCSt, SIGNAL(clicked()), SLOT(slotStatClearDataclicked()));
 
     // constants_ keys
 
@@ -648,7 +648,7 @@ void KCalculator::setupKeys()
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbMod, SLOT(slotSetAccelDisplayMode(bool)));
     pbMod->setShortcut(QKeySequence(Qt::Key_Colon));
-    connect(pbMod, SIGNAL(clicked(void)), SLOT(slotModclicked(void)));
+    connect(pbMod, SIGNAL(clicked()), SLOT(slotModclicked()));
 
     pbReci->addMode(ModeNormal, i18nc("Reciprocal", "1/x"), i18n("Reciprocal"));
     pbReci->addMode(ModeShift, i18nc("n Choose m", "nCm"), i18n("n Choose m"));
@@ -656,13 +656,13 @@ void KCalculator::setupKeys()
             pbReci, SLOT(slotSetMode(ButtonModeFlags, bool)));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbReci, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(pbReci, SIGNAL(clicked(void)), SLOT(slotReciclicked(void)));
+    connect(pbReci, SIGNAL(clicked()), SLOT(slotReciclicked()));
 
     pbFactorial->addMode(ModeNormal, i18nc("Factorial", "x!"), i18n("Factorial"));
     pbFactorial->setShortcut(QKeySequence(Qt::Key_Exclam));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbFactorial, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(pbFactorial, SIGNAL(clicked(void)), SLOT(slotFactorialclicked(void)));
+    connect(pbFactorial, SIGNAL(clicked()), SLOT(slotFactorialclicked()));
 
     pbSquare->addMode(ModeNormal, i18nc("Square", "x<sup>2</sup>"), i18n("Square"));
     pbSquare->addMode(ModeShift, "&radic;x", i18n("Square root"));
@@ -672,7 +672,7 @@ void KCalculator::setupKeys()
             pbSquare, SLOT(slotSetAccelDisplayMode(bool)));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
             pbSquare, SLOT(slotSetMode(ButtonModeFlags, bool)));
-    connect(pbSquare, SIGNAL(clicked(void)), SLOT(slotSquareclicked(void)));
+    connect(pbSquare, SIGNAL(clicked()), SLOT(slotSquareclicked()));
 
     pbPower->addMode(ModeNormal, i18nc("x to the power of y", "x<sup>y</sup>"), i18n("x to the power of y"));
     pbPower->addMode(ModeShift, i18nc("x to the power of 1/y", "x<sup>1/y</sup>"), i18n("x to the power of 1/y"));
@@ -681,13 +681,13 @@ void KCalculator::setupKeys()
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
             pbPower, SLOT(slotSetMode(ButtonModeFlags, bool)));
     pbPower->setShortcut(QKeySequence(Qt::Key_AsciiCircum));
-    connect(pbPower, SIGNAL(clicked(void)), SLOT(slotPowerclicked(void)));
+    connect(pbPower, SIGNAL(clicked()), SLOT(slotPowerclicked()));
 
     pbEE->addMode(ModeNormal, "x<small>" "\xb7" "10</small><sup>y</sup>",
                   i18n("Exponent"));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbEE, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(pbEE, SIGNAL(clicked(void)), SLOT(slotEEclicked(void)));
+    connect(pbEE, SIGNAL(clicked()), SLOT(slotEEclicked()));
 
     // other button lists
 
@@ -731,7 +731,7 @@ void KCalculator::setupKeys()
     operation_button_list_.append(pbCube);
 }
 
-void KCalculator::updateGeometry(void)
+void KCalculator::updateGeometry()
 {
     KCalcButton *button;
     QSize em = pbAND->fontMetrics().size(0, "M");
@@ -880,7 +880,7 @@ void KCalculator::slotAngleSelected(int mode)
     KCalcSettings::setAngleMode(angle_mode_);
 }
 
-void KCalculator::slotEEclicked(void)
+void KCalculator::slotEEclicked()
 {
     calc_display->newCharacter('e');
 }
@@ -910,7 +910,7 @@ void KCalculator::slotHyptoggled(bool flag)
 
 
 
-void KCalculator::slotMemRecallclicked(void)
+void KCalculator::slotMemRecallclicked()
 {
     // temp. work-around
     calc_display->sendEvent(KCalcDisplay::EventReset);
@@ -919,7 +919,7 @@ void KCalculator::slotMemRecallclicked(void)
     updateDisplay(false);
 }
 
-void KCalculator::slotMemStoreclicked(void)
+void KCalculator::slotMemStoreclicked()
 {
     EnterEqual();
 
@@ -934,7 +934,7 @@ void KCalculator::slotNumberclicked(int number_clicked)
     calc_display->enterDigit(number_clicked);
 }
 
-void KCalculator::slotSinclicked(void)
+void KCalculator::slotSinclicked()
 {
     if (hyp_mode_) {
         // sinh or arsinh
@@ -973,7 +973,7 @@ void KCalculator::slotSinclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotPlusMinusclicked(void)
+void KCalculator::slotPlusMinusclicked()
 {
     // display can only change sign, when in input mode, otherwise we
     // need the core to do this.
@@ -983,7 +983,7 @@ void KCalculator::slotPlusMinusclicked(void)
     }
 }
 
-void KCalculator::slotMemPlusMinusclicked(void)
+void KCalculator::slotMemPlusMinusclicked()
 {
     bool tmp_shift_mode = shift_mode_; // store this, because next command deletes shift_mode_
     EnterEqual(); // finish calculation so far, to store result into MEM
@@ -997,7 +997,7 @@ void KCalculator::slotMemPlusMinusclicked(void)
     pbMemRecall->setEnabled(true);
 }
 
-void KCalculator::slotCosclicked(void)
+void KCalculator::slotCosclicked()
 {
     if (hyp_mode_) {
         // cosh or arcosh
@@ -1036,7 +1036,7 @@ void KCalculator::slotCosclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotReciclicked(void)
+void KCalculator::slotReciclicked()
 {
     if (shift_mode_) {
         core.enterOperation(calc_display->getAmount(),
@@ -1054,7 +1054,7 @@ void KCalculator::slotReciclicked(void)
 
 }
 
-void KCalculator::slotTanclicked(void)
+void KCalculator::slotTanclicked()
 {
     if (hyp_mode_) {
         // tanh or artanh
@@ -1093,7 +1093,7 @@ void KCalculator::slotTanclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotFactorialclicked(void)
+void KCalculator::slotFactorialclicked()
 {
     // Set WaitCursor, as this operation may take looooong
     // time and UI frezes with large numbers. User needs some
@@ -1104,7 +1104,7 @@ void KCalculator::slotFactorialclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotLogclicked(void)
+void KCalculator::slotLogclicked()
 {
     if (!shift_mode_)
         core.Log10(calc_display->getAmount());
@@ -1115,7 +1115,7 @@ void KCalculator::slotLogclicked(void)
 }
 
 
-void KCalculator::slotSquareclicked(void)
+void KCalculator::slotSquareclicked()
 {
     if (!shift_mode_)
         core.Square(calc_display->getAmount());
@@ -1126,7 +1126,7 @@ void KCalculator::slotSquareclicked(void)
 }
 
 
-void KCalculator::slotCubeclicked(void)
+void KCalculator::slotCubeclicked()
 {
     if (!shift_mode_)
         core.Cube(calc_display->getAmount());
@@ -1137,7 +1137,7 @@ void KCalculator::slotCubeclicked(void)
 }
 
 
-void KCalculator::slotLnclicked(void)
+void KCalculator::slotLnclicked()
 {
     if (!shift_mode_)
         core.Ln(calc_display->getAmount());
@@ -1147,7 +1147,7 @@ void KCalculator::slotLnclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotPowerclicked(void)
+void KCalculator::slotPowerclicked()
 {
     if (shift_mode_) {
         core.enterOperation(calc_display->getAmount(),
@@ -1164,7 +1164,7 @@ void KCalculator::slotPowerclicked(void)
     updateDisplay(false);
 }
 
-void KCalculator::slotMemClearclicked(void)
+void KCalculator::slotMemClearclicked()
 {
     memory_num_  = 0;
     statusBar()->changeItem(" \xa0\xa0 ", MemField);
@@ -1172,12 +1172,12 @@ void KCalculator::slotMemClearclicked(void)
     pbMemRecall->setDisabled(true);
 }
 
-void KCalculator::slotClearclicked(void)
+void KCalculator::slotClearclicked()
 {
     calc_display->sendEvent(KCalcDisplay::EventClear);
 }
 
-void KCalculator::slotAllClearclicked(void)
+void KCalculator::slotAllClearclicked()
 {
     core.Reset();
     calc_display->sendEvent(KCalcDisplay::EventReset);
@@ -1185,7 +1185,7 @@ void KCalculator::slotAllClearclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotParenOpenclicked(void)
+void KCalculator::slotParenOpenclicked()
 {
     core.ParenOpen(calc_display->getAmount());
 
@@ -1193,14 +1193,14 @@ void KCalculator::slotParenOpenclicked(void)
     //updateDisplay(true);
 }
 
-void KCalculator::slotParenCloseclicked(void)
+void KCalculator::slotParenCloseclicked()
 {
     core.ParenClose(calc_display->getAmount());
 
     updateDisplay(true);
 }
 
-void KCalculator::slotANDclicked(void)
+void KCalculator::slotANDclicked()
 {
     core.enterOperation(calc_display->getAmount(),
                         CalcEngine::FUNC_AND);
@@ -1208,7 +1208,7 @@ void KCalculator::slotANDclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotMultiplicationclicked(void)
+void KCalculator::slotMultiplicationclicked()
 {
     core.enterOperation(calc_display->getAmount(),
                         CalcEngine::FUNC_MULTIPLY);
@@ -1216,7 +1216,7 @@ void KCalculator::slotMultiplicationclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotDivisionclicked(void)
+void KCalculator::slotDivisionclicked()
 {
     core.enterOperation(calc_display->getAmount(),
                         CalcEngine::FUNC_DIVIDE);
@@ -1224,7 +1224,7 @@ void KCalculator::slotDivisionclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotORclicked(void)
+void KCalculator::slotORclicked()
 {
     core.enterOperation(calc_display->getAmount(),
                         CalcEngine::FUNC_OR);
@@ -1232,7 +1232,7 @@ void KCalculator::slotORclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotXORclicked(void)
+void KCalculator::slotXORclicked()
 {
     core.enterOperation(calc_display->getAmount(),
                         CalcEngine::FUNC_XOR);
@@ -1240,7 +1240,7 @@ void KCalculator::slotXORclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotPlusclicked(void)
+void KCalculator::slotPlusclicked()
 {
     core.enterOperation(calc_display->getAmount(),
                         CalcEngine::FUNC_ADD);
@@ -1248,7 +1248,7 @@ void KCalculator::slotPlusclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotMinusclicked(void)
+void KCalculator::slotMinusclicked()
 {
     core.enterOperation(calc_display->getAmount(),
                         CalcEngine::FUNC_SUBTRACT);
@@ -1256,7 +1256,7 @@ void KCalculator::slotMinusclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotLeftShiftclicked(void)
+void KCalculator::slotLeftShiftclicked()
 {
     core.enterOperation(calc_display->getAmount(),
                         CalcEngine::FUNC_LSH);
@@ -1264,7 +1264,7 @@ void KCalculator::slotLeftShiftclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotRightShiftclicked(void)
+void KCalculator::slotRightShiftclicked()
 {
     core.enterOperation(calc_display->getAmount(),
                         CalcEngine::FUNC_RSH);
@@ -1272,7 +1272,7 @@ void KCalculator::slotRightShiftclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotPeriodclicked(void)
+void KCalculator::slotPeriodclicked()
 {
     calc_display->newCharacter('.');
 }
@@ -1285,12 +1285,12 @@ void KCalculator::EnterEqual()
     updateDisplay(true, true);
 }
 
-void KCalculator::slotEqualclicked(void)
+void KCalculator::slotEqualclicked()
 {
     EnterEqual();
 }
 
-void KCalculator::slotPercentclicked(void)
+void KCalculator::slotPercentclicked()
 {
     core.enterOperation(calc_display->getAmount(),
                         CalcEngine::FUNC_PERCENT);
@@ -1298,14 +1298,14 @@ void KCalculator::slotPercentclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotNegateclicked(void)
+void KCalculator::slotNegateclicked()
 {
     core.Complement(calc_display->getAmount());
 
     updateDisplay(true);
 }
 
-void KCalculator::slotModclicked(void)
+void KCalculator::slotModclicked()
 {
     if (shift_mode_)
         core.enterOperation(calc_display->getAmount(),
@@ -1317,7 +1317,7 @@ void KCalculator::slotModclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotStatNumclicked(void)
+void KCalculator::slotStatNumclicked()
 {
     if (!shift_mode_) {
         core.StatCount(0);
@@ -1329,7 +1329,7 @@ void KCalculator::slotStatNumclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotStatMeanclicked(void)
+void KCalculator::slotStatMeanclicked()
 {
     if (!shift_mode_)
         core.StatMean(0);
@@ -1341,7 +1341,7 @@ void KCalculator::slotStatMeanclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotStatStdDevclicked(void)
+void KCalculator::slotStatStdDevclicked()
 {
     if (shift_mode_) {
         // std (n-1)
@@ -1355,7 +1355,7 @@ void KCalculator::slotStatStdDevclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotStatMedianclicked(void)
+void KCalculator::slotStatMedianclicked()
 {
     if (!shift_mode_) {
         // std (n-1)
@@ -1369,7 +1369,7 @@ void KCalculator::slotStatMedianclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotStatDataInputclicked(void)
+void KCalculator::slotStatDataInputclicked()
 {
     if (!shift_mode_) {
         core.StatDataNew(calc_display->getAmount());
@@ -1382,7 +1382,7 @@ void KCalculator::slotStatDataInputclicked(void)
     updateDisplay(true);
 }
 
-void KCalculator::slotStatClearDataclicked(void)
+void KCalculator::slotStatClearDataclicked()
 {
     if (!shift_mode_) {
         core.StatClearAll(0);

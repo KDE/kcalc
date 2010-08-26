@@ -46,7 +46,7 @@ KCalcConstButton::KCalcConstButton(const QString &label, QWidget *parent,
     initPopupMenu();
 }
 
-QString KCalcConstButton::constant(void) const
+QString KCalcConstButton::constant() const
 {
     return KCalcSettings::valueConstant(button_num_);
 }
@@ -56,7 +56,7 @@ void KCalcConstButton::setButtonNumber(int num)
     button_num_ = num;
 }
 
-void KCalcConstButton::setLabelAndTooltip(void)
+void KCalcConstButton::setLabelAndTooltip()
 {
     QString new_label = QString("C") + QString().setNum(button_num_ + 1);
     QString new_tooltip;
@@ -68,7 +68,7 @@ void KCalcConstButton::setLabelAndTooltip(void)
     addMode(ModeNormal, new_label, new_tooltip);
 }
 
-void KCalcConstButton::initPopupMenu(void)
+void KCalcConstButton::initPopupMenu()
 {
     KCalcConstMenu *tmp_menu = new KCalcConstMenu(this);
 

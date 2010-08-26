@@ -159,7 +159,7 @@ private:
 
     static const struct operator_data Operator[];
 
-    bool evalStack(void);
+    bool evalStack();
 
     KNumber evalOperation(KNumber arg1, Operation operation, KNumber arg2);
 

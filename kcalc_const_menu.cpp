@@ -30,7 +30,7 @@
 QList<struct science_constant> KCalcConstMenu::Constants;
 
 
-void KCalcConstMenu::init_consts(void)
+void KCalcConstMenu::init_consts()
 {
     QDomDocument doc("list_of_constants");
     QFile file(KGlobal::dirs()->findResource("appdata", "scienceconstants.xml"));
@@ -85,7 +85,7 @@ void KCalcConstMenu::init_consts(void)
     }
 }
 
-void KCalcConstMenu::init_all(void)
+void KCalcConstMenu::init_all()
 {
     QMenu *math_menu = addMenu(i18n("Mathematics"));
     QMenu *em_menu = addMenu(i18n("Electromagnetism"));

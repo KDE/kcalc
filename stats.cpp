@@ -55,7 +55,7 @@ void KStats::enterData(KNumber const & data)
 }
 
 
-void KStats::clearLast(void)
+void KStats::clearLast()
 {
 
     data_.pop_back();
@@ -66,7 +66,7 @@ void KStats::clearLast(void)
 
 }
 
-KNumber KStats::sum(void)
+KNumber KStats::sum()
 {
 
     KNumber result = 0;
@@ -83,7 +83,7 @@ KNumber KStats::sum(void)
     return result;
 }
 
-KNumber KStats::median(void)
+KNumber KStats::median()
 {
 
     KNumber result = 0;
@@ -116,7 +116,7 @@ KNumber KStats::median(void)
 }
 
 
-KNumber KStats::std_kernel(void)
+KNumber KStats::std_kernel()
 {
     KNumber result = KNumber::Zero;
     KNumber mean_value;
@@ -146,7 +146,7 @@ KNumber KStats::sum_of_squares()
 }
 
 
-KNumber KStats::mean(void)
+KNumber KStats::mean()
 {
     if (count() == 0) {
         error_flag_ = true;
@@ -157,7 +157,7 @@ KNumber KStats::mean(void)
 }
 
 
-KNumber KStats::std(void)
+KNumber KStats::std()
 {
     if (count() == 0) {
         error_flag_ = true;
@@ -168,7 +168,7 @@ KNumber KStats::std(void)
 }
 
 
-KNumber KStats::sample_std(void)
+KNumber KStats::sample_std()
 {
     KNumber result = 0;
 
@@ -188,7 +188,7 @@ KNumber KStats::sample_std(void)
 }
 
 
-int KStats::count(void) const
+int KStats::count() const
 {
     return static_cast<int>(data_.size());
 }

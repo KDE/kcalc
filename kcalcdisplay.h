@@ -78,8 +78,8 @@ public:
     };
 
     bool sendEvent(Event const event);
-    void deleteLastDigit(void);
-    KNumber const & getAmount(void) const;
+    void deleteLastDigit();
+    KNumber const & getAmount() const;
     void newCharacter(char const new_char);
     bool setAmount(KNumber const & new_amount);
     int setBase(NumBase new_base);
@@ -90,7 +90,7 @@ public:
     void setPrecision(int precision);
     void setText(QString const &string);
     QString text() const;
-    bool updateDisplay(void);
+    bool updateDisplay();
     void setStatusText(int i, const QString& text);
     virtual QSize sizeHint() const;
 
@@ -100,12 +100,12 @@ public:
                         bool store_result_in_history = false);
 
 public slots:
-    void slotCut(void);
-    void slotCopy(void);
+    void slotCut();
+    void slotCopy();
     void slotPaste(bool bClipboard = true);
 
 signals:
-    void clicked(void);
+    void clicked();
     void changedText(QString const &);
     void changedAmount(const KNumber &);
 
@@ -114,15 +114,15 @@ protected:
     virtual void paintEvent(QPaintEvent *p);
 
 private:
-    bool changeSign(void);
-    void invertColors(void);
+    bool changeSign();
+    void invertColors();
     void initStyleOption(QStyleOptionFrame *option) const;
 
 private slots:
-    void slotSelectionTimedOut(void);
-    void slotDisplaySelected(void);
-    void slotHistoryBack(void);
-    void slotHistoryForward(void);
+    void slotSelectionTimedOut();
+    void slotDisplaySelected();
+    void slotHistoryBack();
+    void slotHistoryForward();
 
 private:
     QString text_;

@@ -132,7 +132,7 @@ KNumber::~KNumber()
     delete num_;
 }
 
-KNumber::NumType KNumber::type(void) const
+KNumber::NumType KNumber::type() const
 {
 	// TODO: wouldn't it be more efficient to just
 	// use "return num_->type();"
@@ -152,7 +152,7 @@ KNumber::NumType KNumber::type(void) const
 // i.e. 5/1 --> 5
 // This method should be called, whenever such a inproper fraction can occur,
 // e.g. when adding 4/3 + 2/3....
-void KNumber::simplifyRational(void)
+void KNumber::simplifyRational()
 {
     if (type() != FractionType)
         return;
@@ -398,27 +398,27 @@ void KNumber::setDefaultFloatPrecision(unsigned int prec)
     mpf_set_default_prec(bin_prec);
 }
 
-KNumber const KNumber::abs(void) const
+KNumber const KNumber::abs() const
 {
     return KNumber(num_->abs());
 }
 
-KNumber const KNumber::cbrt(void) const
+KNumber const KNumber::cbrt() const
 {
     return KNumber(num_->cbrt());
 }
 
-KNumber const KNumber::sqrt(void) const
+KNumber const KNumber::sqrt() const
 {
     return KNumber(num_->sqrt());
 }
 
-KNumber const KNumber::factorial(void) const
+KNumber const KNumber::factorial() const
 {
     return KNumber(num_->factorial());
 }
 
-KNumber const KNumber::integerPart(void) const
+KNumber const KNumber::integerPart() const
 {
     return KNumber(num_->intPart());
 }
@@ -449,7 +449,7 @@ KNumber const KNumber::power(KNumber const &exp) const
 
 }
 
-KNumber const KNumber::operator-(void) const
+KNumber const KNumber::operator-() const
 {
 	return KNumber(num_->change_sign());
 }
@@ -542,34 +542,34 @@ KNumber const KNumber::operator>>(KNumber const & arg2) const
 
 
 
-KNumber::operator bool(void) const
+KNumber::operator bool() const
 {
     if (*this == Zero)
         return false;
     return true;
 }
 
-KNumber::operator qint32(void) const
+KNumber::operator qint32() const
 {
     return static_cast<long int>(*num_);
 }
 
-KNumber::operator quint32(void) const
+KNumber::operator quint32() const
 {
     return static_cast<unsigned long int>(*num_);
 }
 
-KNumber::operator qint64(void) const
+KNumber::operator qint64() const
 {
     return static_cast<long long int>(*num_);
 }
 
-KNumber::operator quint64(void) const
+KNumber::operator quint64() const
 {
     return static_cast<unsigned long long int>(*num_);
 }
 
-KNumber::operator double(void) const
+KNumber::operator double() const
 {
     return static_cast<double>(*num_);
 }
