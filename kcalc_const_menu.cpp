@@ -85,7 +85,7 @@ void KCalcConstMenu::init_consts(void)
     }
 }
 
-void KCalcConstMenu::_init_all(void)
+void KCalcConstMenu::init_all(void)
 {
     QMenu *math_menu = addMenu(i18n("Mathematics"));
     QMenu *em_menu = addMenu(i18n("Electromagnetism"));
@@ -122,13 +122,13 @@ void KCalcConstMenu::slotPassSignalThrough(QAction  *chosen_const)
 KCalcConstMenu::KCalcConstMenu(QString const & title, QWidget * parent)
         : QMenu(title, parent)
 {
-    _init_all();
+    init_all();
 }
 
 KCalcConstMenu::KCalcConstMenu(QWidget * parent)
         : QMenu(parent)
 {
-    _init_all();
+    init_all();
 }
 
 

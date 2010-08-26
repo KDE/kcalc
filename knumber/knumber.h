@@ -284,9 +284,9 @@ private:
     int compare(KNumber const & arg2) const;
 
     detail::knumber *num_;
-    static bool _float_output;
-    static bool _fraction_input;
-    static bool _splitoffinteger_output;
+    static bool FloatOutput;
+    static bool FractionInput;
+    static bool SplitOffIntegerOutput;
 };
 
 

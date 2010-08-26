@@ -22,8 +22,8 @@
 
 */
 
-#ifndef KCALC_H
-#define KCALC_H
+#ifndef KCALC_H_
+#define KCALC_H_
 
 class Constants;
 class QButtonGroup;
@@ -221,39 +221,38 @@ private:
     };
 
 private:
-    bool shift_mode;
-    bool hyp_mode;
-    KNumber memory_num;
-    KNumber setvalue;
+    bool shift_mode_;
+    bool hyp_mode_;
+    KNumber memory_num_;
 
-    int _angle_mode; // angle modes for trigonometric values
+    int angle_mode_; // angle modes for trigonometric values
 
-    Constants*          constants; // this is the dialog for configuring const buttons
+    Constants*          constants_; // this is the dialog for configuring const buttons
 
-    QButtonGroup* AngleChooseGroup;
-    QButtonGroup*  BaseChooseGroup;
-    // NumButtonGroup: 0-9 = digits, 0xA-0xF = hex-keys
-    QButtonGroup*  NumButtonGroup;
+    QButtonGroup* angle_choose_group_;
+    QButtonGroup*  base_choose_group_;
+    // num_button_group_: 0-9 = digits, 0xA-0xF = hex-keys
+    QButtonGroup*  num_button_group_;
 
-    QList<QAbstractButton*> logicButtons;
-    QList<QAbstractButton*> scientificButtons;
-    QList<QAbstractButton*> statButtons;
-    QList<QAbstractButton*> constButtons;
+    QList<QAbstractButton*> logic_buttons_;
+    QList<QAbstractButton*> scientific_buttons_;
+    QList<QAbstractButton*> stat_buttons_;
+    QList<QAbstractButton*> const_buttons_;
 
-    KToggleAction *actionBitsetshow;
-    KToggleAction *actionConstantsShow;
+    KToggleAction *action_bitset_show_;
+    KToggleAction *action_constants_show_;
 
-    KToggleAction *actionModeSimple;
-    KToggleAction *actionModeScience;
-    KToggleAction *actionModeStatistic;
-    KToggleAction *actionModeNumeral;
+    KToggleAction *action_mode_simple_;
+    KToggleAction *action_mode_science_;
+    KToggleAction *action_mode_statistic_;
+    KToggleAction *action_mode_numeral_;
 
-    QList<QAbstractButton*> mFunctionButtonList;
-    QList<QAbstractButton*> mStatButtonList;
-    QList<QAbstractButton*> mMemButtonList;
-    QList<QAbstractButton*> mOperationButtonList;
+    QList<QAbstractButton*> function_button_list_;
+    QList<QAbstractButton*> stat_button_list_;
+    QList<QAbstractButton*> mem_button_list_;
+    QList<QAbstractButton*> operation_button_list_;
 
     CalcEngine core;
 };
 
-#endif  // KCALC_H
+#endif  // KCALC_H_

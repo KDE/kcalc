@@ -31,7 +31,7 @@
 
 KStats::KStats()
 {
-    error_flag = false;
+    error_flag_ = false;
 }
 
 KStats::~KStats()
@@ -40,16 +40,16 @@ KStats::~KStats()
 
 void KStats::clearAll()
 {
-    mData.clear();
+    data_.clear();
 }
 
-void KStats::enterData(KNumber const & _data)
+void KStats::enterData(KNumber const & data)
 {
 
-    mData.push_back(_data);
+    data_.push_back(data);
 #ifdef DEBUG_STATS
-    printf("Added %Lg\n", _data);
-    printf("count %d\n", mData.size());
+    printf("Added %Lg\n", data);
+    printf("count %d\n", data.size());
 #endif
 
 }
@@ -58,9 +58,9 @@ void KStats::enterData(KNumber const & _data)
 void KStats::clearLast(void)
 {
 
-    mData.pop_back();
+    data_.pop_back();
 #ifdef DEBUG_STATS
-    printf("count %d\n", mData.size());
+    printf("count %d\n", data_.size());
 #endif
 
 
@@ -72,7 +72,7 @@ KNumber KStats::sum(void)
     KNumber result = 0;
     QVector<KNumber>::iterator p;
 
-    for (p = mData.begin(); p != mData.end(); ++p) {
+    for (p = data_.begin(); p != data_.end(); ++p) {
         result += *p;
     }
 
@@ -93,15 +93,15 @@ KNumber KStats::median(void)
     bound = count();
 
     if (bound == 0) {
-        error_flag = true;
+        error_flag_ = true;
         return 0;
     }
 
     if (bound == 1)
-        return mData.at(0);
+        return data_.at(0);
 
-    // need to copy mData-list, because sorting afterwards
-    QVector<KNumber> tmp_mData(mData);
+    // need to copy data_-list, because sorting afterwards
+    QVector<KNumber> tmp_mData(data_);
     qSort(tmp_mData);
 
     if (bound & 1) {    // odd
@@ -119,13 +119,13 @@ KNumber KStats::median(void)
 KNumber KStats::std_kernel(void)
 {
     KNumber result = KNumber::Zero;
-    KNumber _mean;
+    KNumber mean_value;
     QVector<KNumber>::iterator p;
 
-    _mean = mean();
+    mean_value = mean();
 
-    for (p = mData.begin(); p != mData.end(); ++p) {
-        result += (*p - _mean) * (*p - _mean);
+    for (p = data_.begin(); p != data_.end(); ++p) {
+        result += (*p - mean_value) * (*p - mean_value);
     }
 
     return result;
@@ -138,7 +138,7 @@ KNumber KStats::sum_of_squares()
     KNumber result = 0;
     QVector<KNumber>::iterator p;
 
-    for (p = mData.begin(); p != mData.end(); ++p) {
+    for (p = data_.begin(); p != data_.end(); ++p) {
         result += ((*p) * (*p));
     }
 
@@ -149,7 +149,7 @@ KNumber KStats::sum_of_squares()
 KNumber KStats::mean(void)
 {
     if (count() == 0) {
-        error_flag = true;
+        error_flag_ = true;
         return 0;
     }
 
@@ -160,7 +160,7 @@ KNumber KStats::mean(void)
 KNumber KStats::std(void)
 {
     if (count() == 0) {
-        error_flag = true;
+        error_flag_ = true;
         return KNumber::Zero;
     }
 
@@ -173,7 +173,7 @@ KNumber KStats::sample_std(void)
     KNumber result = 0;
 
     if (count() < 2) {
-        error_flag = true;
+        error_flag_ = true;
         return KNumber::Zero;
     }
 
@@ -190,15 +190,15 @@ KNumber KStats::sample_std(void)
 
 int KStats::count(void) const
 {
-    return static_cast<int>(mData.size());
+    return static_cast<int>(data_.size());
 }
 
 
 bool KStats::error()
 {
 
-    bool value = error_flag;
-    error_flag = false;
+    bool value = error_flag_;
+    error_flag_ = false;
     return value;
 }
 

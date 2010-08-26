@@ -377,18 +377,20 @@ int detail::knumfloat::sign(void) const
 
 
 #ifdef __GNUC__
-#warning "_cbrt for now this is a stupid work around"
+#warning "cube_root for now this is a stupid work around"
 #endif
-static void _cbrt(mpf_t &num)
+
+namespace {
+void cube_root(mpf_t &num)
 {
 #ifdef Q_CC_MSVC
     double tmp_num = pow(mpf_get_d(num), 1. / 3.);
 #else
-    double tmp_num = cbrt(mpf_get_d(num));
+    double tmp_num = ::cbrt(mpf_get_d(num));
 #endif
     mpf_init_set_d(num, tmp_num);
 }
-
+}
 
 detail::knumber * detail::knumerror::cbrt(void) const
 {
@@ -410,7 +412,7 @@ detail::knumber * detail::knuminteger::cbrt(void) const
     knumfloat * tmp_num2 = new knumfloat();
     mpf_set_z(tmp_num2->mpf_, mpz_);
 
-    _cbrt(tmp_num2->mpf_);
+    cube_root(tmp_num2->mpf_);
 
     return tmp_num2;
 }
@@ -427,7 +429,7 @@ detail::knumber * detail::knumfraction::cbrt(void) const
     knumfloat * tmp_num2 = new knumfloat();
     mpf_set_q(tmp_num2->mpf_, mpq_);
 
-    _cbrt(tmp_num2->mpf_);
+    cube_root(tmp_num2->mpf_);
 
     return tmp_num2;
 }
@@ -436,7 +438,7 @@ detail::knumber * detail::knumfloat::cbrt(void) const
 {
     knumfloat * tmp_num = new knumfloat(*this);
 
-    _cbrt(tmp_num->mpf_);
+    cube_root(tmp_num->mpf_);
 
     return tmp_num;
 }

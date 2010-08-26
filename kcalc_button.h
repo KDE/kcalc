@@ -21,8 +21,8 @@
 
 */
 
-#ifndef _KCALC_BUTTON_H
-#define _KCALC_BUTTON_H
+#ifndef KCALC_BUTTON_H_
+#define KCALC_BUTTON_H_
 
 #include <QMap>
 #include <kpushbutton.h>
@@ -82,10 +82,10 @@ private:
     void calcSizeHint();
 
 private:
-    bool _show_shortcut_mode;
-    ButtonModeFlags _mode_flags;
-    QMap<ButtonModeFlags, ButtonMode> _mode;
-    QSize _size;
+    bool show_shortcut_mode_;
+    ButtonModeFlags mode_flags_;
+    QMap<ButtonModeFlags, ButtonMode> mode_;
+    QSize size_;
 };
 
-#endif  // _KCALC_BUTTON_H
+#endif // KCALC_BUTTON_H_

@@ -36,9 +36,9 @@ KNumber const KNumber::Zero(0);
 KNumber const KNumber::One(1);
 KNumber const KNumber::MinusOne(-1);
 KNumber const KNumber::NotDefined("nan");
-bool KNumber::_float_output = false;
-bool KNumber::_fraction_input = false;
-bool KNumber::_splitoffinteger_output = false;
+bool KNumber::FloatOutput = false;
+bool KNumber::FractionInput = false;
+bool KNumber::SplitOffIntegerOutput = false;
 
 #ifndef HAVE_FUNC_ISINF
 
@@ -118,7 +118,7 @@ KNumber::KNumber(QString const & num)
         num_ = new detail::knumfraction(num);
         simplifyRational();
     } else if (QRegExp("^[+-]?\\d+(\\.\\d*)?(e[+-]?\\d+)?$").exactMatch(num))
-        if (_fraction_input == true) {
+        if (FractionInput == true) {
             num_ = new detail::knumfraction(num);
             simplifyRational();
         } else
@@ -185,8 +185,9 @@ KNumber & KNumber::operator -=(KNumber const & arg)
     return *this;
 }
 
+namespace {
 // increase the digit at 'position' by one
-static void _inc_by_one(QString &str, int position)
+void increment(QString &str, int position)
 {
     for (int i = position; i >= 0; i--) {
         char last_char = str[i].toLatin1();
@@ -229,8 +230,9 @@ static void _inc_by_one(QString &str, int position)
     }
 }
 
+namespace impl {
 // Cut off if more digits in fractional part than 'precision'
-static void _round(QString &str, int precision)
+void round(QString &str, int precision)
 {
     int decimalSymbolPos = str.indexOf('.');
 
@@ -262,7 +264,7 @@ static void _round(QString &str, int precision)
     case '8':
     case '9':
         // rounding up
-        _inc_by_one(str, decimalSymbolPos + precision);
+        increment(str, decimalSymbolPos + precision);
         break;
     default:
         break;
@@ -274,8 +276,9 @@ static void _round(QString &str, int precision)
     // if precision == 0 delete also '.'
     if (precision == 0) str = str.section('.', 0, 0);
 }
+}
 
-static QString roundNumber(const QString &numStr, int precision)
+QString round(const QString &numStr, int precision)
 {
     QString tmpString = numStr;
     if (precision < 0  ||
@@ -297,12 +300,16 @@ static QString roundNumber(const QString &numStr, int precision)
     if (expString.length() == 1) expString.clear();
 
 
-    _round(mantString, precision);
+    impl::round(mantString, precision);
 
     if (neg) mantString.prepend('-');
 
     return mantString +  expString;
 }
+
+}
+
+
 
 
 QString const KNumber::toQString(int width, int prec) const
@@ -314,21 +321,21 @@ QString const KNumber::toQString(int width, int prec) const
     switch (type()) {
     case IntegerType:
         if (width > 0) {   //result needs to be cut-off
-            bool tmp_bool = _fraction_input; // stupid work-around
-            _fraction_input = false;
+            bool tmp_bool = FractionInput; // stupid work-around
+            FractionInput = false;
             tmp_str = (KNumber(1.0) * (*this)).toQString(width, -1);
-            _fraction_input = tmp_bool;
+            FractionInput = tmp_bool;
         } else
             tmp_str = QString(num_->ascii());
         break;
     case FractionType:
-        if (_float_output) {
-            bool tmp_bool = _fraction_input; // stupid work-around
-            _fraction_input = false;
+        if (FloatOutput) {
+            bool tmp_bool = FractionInput; // stupid work-around
+            FractionInput = false;
             tmp_str = (KNumber(1.0) * (*this)).toQString(width, -1);
-            _fraction_input = tmp_bool;
-        } else { // _float_output == false
-            if (_splitoffinteger_output) {
+            FractionInput = tmp_bool;
+        } else { // FloatOutput == false
+            if (SplitOffIntegerOutput) {
                 // split off integer part
                 KNumber int_part = this->integerPart();
                 if (int_part == Zero)
@@ -342,10 +349,10 @@ QString const KNumber::toQString(int width, int prec) const
 
             if (width > 0  &&  tmp_str.length() > width) {
                 //result needs to be cut-off
-                bool tmp_bool = _fraction_input; // stupid work-around
-                _fraction_input = false;
+                bool tmp_bool = FractionInput; // stupid work-around
+                FractionInput = false;
                 tmp_str = (KNumber(1.0) * (*this)).toQString(width, -1);
-                _fraction_input = tmp_bool;
+                FractionInput = tmp_bool;
             }
         }
 
@@ -362,24 +369,24 @@ QString const KNumber::toQString(int width, int prec) const
     }
 
     if (prec >= 0)
-        return roundNumber(tmp_str, prec);
+        return round(tmp_str, prec);
     else
         return tmp_str;
 }
 
 void KNumber::setDefaultFloatOutput(bool flag)
 {
-    _float_output = flag;
+    FloatOutput = flag;
 }
 
 void KNumber::setDefaultFractionalInput(bool flag)
 {
-    _fraction_input = flag;
+    FractionInput = flag;
 }
 
 void KNumber::setSplitoffIntegerForFractionOutput(bool flag)
 {
-    _splitoffinteger_output = flag;
+    SplitOffIntegerOutput = flag;
 }
 
 void KNumber::setDefaultFloatPrecision(unsigned int prec)

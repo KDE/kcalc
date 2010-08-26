@@ -23,8 +23,8 @@
 
 */
 
-#ifndef KSTATS_H
-#define KSTATS_H
+#ifndef KSTATS_H_
+#define KSTATS_H_
 
 #include <QVector>
 #include "knumber.h"
@@ -51,11 +51,11 @@ public:
     bool     error();
 
 private:
-    QVector<KNumber> mData;
-    bool error_flag;
+    QVector<KNumber> data_;
+    bool error_flag_;
 
 };
 
 
-#endif /*KSTATS_H*/
+#endif // KSTATS_H_
 

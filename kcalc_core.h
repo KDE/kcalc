@@ -22,8 +22,8 @@
 
 */
 
-#ifndef _KCALC_CORE_H
-#define _KCALC_CORE_H
+#ifndef KCALC_CORE_H_
+#define KCALC_CORE_H_
 
 #include <QStack>
 #include "stats.h"
@@ -129,7 +129,7 @@ private:
     typedef struct {
         KNumber number;
         Operation operation;
-    } _node;
+    } Node;
 
     // Stack holds all operations and numbers that have not yet been
     // processed, e.g. user types "2+3*", the calculation can not be
@@ -150,11 +150,11 @@ private:
     // into the stack, each time the user opens one.  When a bracket is
     // closed, everything in the stack is evaluated until the first
     // marker "FUNC_BRACKET" found.
-    QStack<_node> _stack;
+    QStack<Node> stack_;
 
-    KNumber _last_number;
+    KNumber last_number_;
 
-    bool _percent_mode;
+    bool percent_mode_;
 
 
     static const struct operator_data Operator[];
@@ -179,4 +179,4 @@ private:
 };
 
 
-#endif  //_KCALC_CORE_H
+#endif  // KCALC_CORE_H_

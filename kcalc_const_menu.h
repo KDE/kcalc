@@ -21,8 +21,8 @@
 
 */
 
-#ifndef _KCALC_CONST_MENU_H
-#define _KCALC_CONST_MENU_H
+#ifndef KCALC_CONST_MENU_H_
+#define KCALC_CONST_MENU_H_
 
 #include <QList>
 #include <QMenu>
@@ -54,11 +54,11 @@ signals:
 
 
 private:
-    void _init_all(void);
+    void init_all(void);
 
 
 public slots:
     void slotPassSignalThrough(QAction  *chosen_const);
 };
 
-#endif  // _KCALC_CONST_MENU_H
+#endif // KCALC_CONST_MENU_H_

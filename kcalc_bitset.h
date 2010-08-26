@@ -16,8 +16,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 */
-#ifndef _KCALC_BITSET_H_
-#define _KCALC_BITSET_H_
+#ifndef KCALC_BITSET_H_
+#define KCALC_BITSET_H_
 
 #include <QFrame>
 #include <QAbstractButton>
@@ -38,8 +38,8 @@ signals:
     void valueChanged(unsigned long long value);
 
 private:
-    QButtonGroup *bitButtonGroup;
-    unsigned long long mValue;
+    QButtonGroup *bit_button_group_;
+    unsigned long long value_;
 };
 
 class BitButton : public QAbstractButton
@@ -54,7 +54,7 @@ protected:
     void paintEvent(QPaintEvent *event);
 
 private:
-    bool on;
+    bool on_;
 };
 
-#endif
+#endif // KCALC_BITSET_H_

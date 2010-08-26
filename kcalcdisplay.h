@@ -23,8 +23,8 @@
  */
 
 
-#ifndef _D_KCALCDISPLAY_H_
-#define _D_KCALCDISPLAY_H_
+#ifndef KCALCDISPLAY_H_
+#define KCALCDISPLAY_H_
 
 #include <QFrame>
 #include <QVector>
@@ -72,7 +72,7 @@ public:
 
     enum Event {
         EventReset, // resets display
-        EventClear, // if no _error reset display
+        EventClear, // if no error reset display
         EventError,
         EventChangeSign
     };
@@ -125,31 +125,31 @@ private slots:
     void slotHistoryForward(void);
 
 private:
-    QString _text;
-    bool _beep;
-    bool _groupdigits;
-    bool _twoscomplement;
-    int  _button;
-    bool _lit;
-    NumBase _num_base;
+    QString text_;
+    bool beep_;
+    bool groupdigits_;
+    bool twoscomplement_;
+    int  button_;
+    bool lit_;
+    NumBase num_base_;
 
-    int _precision;
-    int _fixed_precision; // "-1" = no fixed_precision
+    int precision_;
+    int fixed_precision_; // "-1" = no fixed_precision
 
-    KNumber _display_amount;
+    KNumber display_amount_;
 
-    QVector<KNumber> _history_list;
-    int _history_index;
+    QVector<KNumber> history_list_;
+    int history_index_;
 
     // only used for input of new numbers
-    bool _eestate;
-    bool _period;
-    bool _neg_sign;
-    QString _str_int;
-    QString _str_int_exp;
-    QString _str_status[NUM_STATUS_TEXT];
+    bool eestate_;
+    bool period_;
+    bool neg_sign_;
+    QString str_int_;
+    QString str_int_exp_;
+    QString str_status_[NUM_STATUS_TEXT];
 
-    QTimer* _selection_timer;
+    QTimer* selection_timer_;
 };
 
-#endif // _KCALCDISPLAY_H_
+#endif // KCALCDISPLAY_H_

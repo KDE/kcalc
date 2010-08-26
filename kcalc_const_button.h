@@ -21,8 +21,8 @@
 
 */
 
-#ifndef _KCALC_CONST_BUTTON_H
-#define _KCALC_CONST_BUTTON_H
+#ifndef KCALC_CONST_BUTTON_H_
+#define KCALC_CONST_BUTTON_H_
 
 #include <klocale.h>
 #include "kcalc_button.h"
@@ -56,8 +56,8 @@ private slots:
 private:
     void initPopupMenu(void);
 
-    int _button_num;
+    int button_num_;
 };
 
 
-#endif  // _KCALC_CONST_BUTTON_H
+#endif // KCALC_CONST_BUTTON_H_

@@ -27,7 +27,7 @@
 
 #include "kcalc_bitset.moc"
 
-BitButton::BitButton(QWidget *parent) : QAbstractButton(parent), on(false)
+BitButton::BitButton(QWidget *parent) : QAbstractButton(parent), on_(false)
 {
     setFocusPolicy(Qt::ClickFocus);   // too many bits for tab focus
 
@@ -43,12 +43,12 @@ BitButton::BitButton(QWidget *parent) : QAbstractButton(parent), on(false)
 
 bool BitButton::isOn() const
 {
-    return on;
+    return on_;
 }
 
 void BitButton::setOn(bool value)
 {
-    on = value;
+    on_ = value;
     update();
 }
 
@@ -59,7 +59,7 @@ void BitButton::paintEvent(QPaintEvent *)
     pen.setJoinStyle(Qt::MiterJoin);
     painter.setPen(pen);
 
-    if (on) painter.setBrush(palette().text());
+    if (on_) painter.setBrush(palette().text());
     else    painter.setBrush(palette().base());
 
     painter.drawRect(rect().adjusted(1, 1, -1, -1));
@@ -67,11 +67,11 @@ void BitButton::paintEvent(QPaintEvent *)
 
 
 KCalcBitset::KCalcBitset(QWidget *parent)
-        : QFrame(parent), mValue(0)
+        : QFrame(parent), value_(0)
 {
     setFrameStyle(QFrame::Panel | QFrame::Sunken);
-    bitButtonGroup = new QButtonGroup(this);
-    connect(bitButtonGroup, SIGNAL(buttonClicked(int)),
+    bit_button_group_ = new QButtonGroup(this);
+    connect(bit_button_group_, SIGNAL(buttonClicked(int)),
             SLOT(slotToggleBit(int)));
 
     // smaller label font
@@ -96,7 +96,7 @@ KCalcBitset::KCalcBitset(QWidget *parent)
             for (int bit = 0; bit < 8; bit++) {
                 BitButton *tmpBitButton = new BitButton(this);
                 wordlayout->addWidget(tmpBitButton);
-                bitButtonGroup->addButton(tmpBitButton, bitCounter);
+                bit_button_group_->addButton(tmpBitButton, bitCounter);
                 bitCounter--;
             }
 
@@ -112,11 +112,11 @@ KCalcBitset::KCalcBitset(QWidget *parent)
 
 void KCalcBitset::setValue(unsigned long long value)
 {
-    if (mValue == value) return;
+    if (value_ == value) return;
 
-    mValue = value;
+    value_ = value;
     for (int i = 0; i < 64; i++) {
-        BitButton *bb = qobject_cast<BitButton*>(bitButtonGroup->button(i));
+        BitButton *bb = qobject_cast<BitButton*>(bit_button_group_->button(i));
         if (bb) bb->setOn(value & 1);
         value >>= 1;
     }
@@ -124,13 +124,13 @@ void KCalcBitset::setValue(unsigned long long value)
 
 unsigned long long KCalcBitset::getValue()
 {
-    return mValue;
+    return value_;
 }
 
 void KCalcBitset::slotToggleBit(int bit)
 {
     unsigned long long nv = getValue() ^(1LL << bit);
     setValue(nv);
-    emit valueChanged(mValue);
+    emit valueChanged(value_);
 }
 
