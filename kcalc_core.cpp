@@ -36,22 +36,12 @@
 
 #include <config-kcalc.h>
 
-#if defined(_ISOC99_SOURCE)
-#include <cassert>
-#include <cstdio>
-#include <climits>
-#include <csignal>
-#include <cerrno>
-#include <cstring>
-using namespace std;
-#else
 #include <limits.h>
 #include <stdio.h>
 #include <assert.h>
 #include <signal.h>
 #include <errno.h>
 #include <string.h>
-#endif
 
 #include <stdlib.h>
 #include <kdebug.h>

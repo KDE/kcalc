@@ -22,8 +22,6 @@
 
 #include <kdemacros.h>
 
-#include "knumber_priv.h"
-
 class QString;
 
 class _knumber;
