@@ -28,18 +28,18 @@ class KCalcBitset : public QFrame
     Q_OBJECT
 public:
     KCalcBitset(QWidget *parent = 0);
-    unsigned long long getValue();
+    quint64 getValue();
 
 public slots:
-    void setValue(unsigned long long value);
+    void setValue(quint64 value);
     void slotToggleBit(int bit);
 
 signals:
-    void valueChanged(unsigned long long value);
+    void valueChanged(quint64 value);
 
 private:
     QButtonGroup *bit_button_group_;
-    unsigned long long value_;
+    quint64 value_;
 };
 
 class BitButton : public QAbstractButton

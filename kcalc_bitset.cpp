@@ -110,7 +110,7 @@ KCalcBitset::KCalcBitset(QWidget *parent)
     }
 }
 
-void KCalcBitset::setValue(unsigned long long value)
+void KCalcBitset::setValue(quint64 value)
 {
     if (value_ == value) return;
 
@@ -122,14 +122,14 @@ void KCalcBitset::setValue(unsigned long long value)
     }
 }
 
-unsigned long long KCalcBitset::getValue()
+quint64 KCalcBitset::getValue()
 {
     return value_;
 }
 
 void KCalcBitset::slotToggleBit(int bit)
 {
-    unsigned long long nv = getValue() ^(1LL << bit);
+    quint64 nv = getValue() ^(1LL << bit);
     setValue(nv);
     emit valueChanged(value_);
 }

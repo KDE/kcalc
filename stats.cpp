@@ -29,9 +29,8 @@
 #include <stdio.h>
 #endif
 
-KStats::KStats()
+KStats::KStats() : error_flag_(false)
 {
-    error_flag_ = false;
 }
 
 KStats::~KStats()
@@ -70,9 +69,8 @@ KNumber KStats::sum()
 {
 
     KNumber result = 0;
-    QVector<KNumber>::iterator p;
-
-    for (p = data_.begin(); p != data_.end(); ++p) {
+	
+    for (QVector<KNumber>::const_iterator p = data_.begin(); p != data_.end(); ++p) {
         result += *p;
     }
 
@@ -101,15 +99,15 @@ KNumber KStats::median()
         return data_.at(0);
 
     // need to copy data_-list, because sorting afterwards
-    QVector<KNumber> tmp_mData(data_);
-    qSort(tmp_mData);
+    QVector<KNumber> tmp_data(data_);
+    qSort(tmp_data);
 
     if (bound & 1) {    // odd
         index = (bound - 1) / 2 + 1;
-        result =  tmp_mData.at(index - 1);
+        result =  tmp_data.at(index - 1);
     } else { // even
         index = bound / 2;
-        result = ((tmp_mData.at(index - 1))  + (tmp_mData.at(index))) / KNumber(2);
+        result = ((tmp_data.at(index - 1))  + (tmp_data.at(index))) / KNumber(2);
     }
 
     return result;
@@ -120,11 +118,10 @@ KNumber KStats::std_kernel()
 {
     KNumber result = KNumber::Zero;
     KNumber mean_value;
-    QVector<KNumber>::iterator p;
 
     mean_value = mean();
 
-    for (p = data_.begin(); p != data_.end(); ++p) {
+    for (QVector<KNumber>::const_iterator p = data_.begin(); p != data_.end(); ++p) {
         result += (*p - mean_value) * (*p - mean_value);
     }
 
@@ -136,9 +133,8 @@ KNumber KStats::sum_of_squares()
 {
 
     KNumber result = 0;
-    QVector<KNumber>::iterator p;
 
-    for (p = data_.begin(); p != data_.end(); ++p) {
+    for (QVector<KNumber>::const_iterator p = data_.begin(); p != data_.end(); ++p) {
         result += ((*p) * (*p));
     }
 
