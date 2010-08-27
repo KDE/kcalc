@@ -47,8 +47,6 @@ public:
 
     virtual ~knumber() {}
 
-    virtual void copy(knumber const & num) = 0;
-
     virtual NumType type() const = 0;
 
     virtual QString const ascii(int prec = -1) const = 0;
@@ -90,10 +88,6 @@ public:
     //virtual ~knumerror() { }
 
     knumerror const & operator = (knumerror const & num);
-
-    virtual void copy(knumber const & num) {
-        error_ = dynamic_cast<knumerror const &>(num).error_;
-    }
 
     virtual NumType type() const {
         return SpecialType;
@@ -158,10 +152,6 @@ public:
 
     knuminteger const & operator = (knuminteger const & num);
 
-    virtual void copy(knumber const & num) {
-        mpz_set(mpz_, dynamic_cast<knuminteger const &>(num).mpz_);
-    }
-
     virtual NumType type() const {
         return IntegerType;
     }
@@ -221,10 +211,6 @@ public:
         mpq_clear(mpq_);
     }
 
-    virtual void copy(knumber const & num) {
-        mpq_set(mpq_, dynamic_cast<knumfraction const &>(num).mpq_);
-    }
-
     virtual NumType type() const {
         return FractionType;
     }
@@ -275,10 +261,6 @@ public:
 
     virtual ~knumfloat() {
         mpf_clear(mpf_);
-    }
-
-    virtual void copy(knumber const & num) {
-        mpf_set(mpf_, dynamic_cast<knumfloat const &>(num).mpf_);
     }
 
     virtual NumType type() const {
