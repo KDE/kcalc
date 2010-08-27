@@ -70,7 +70,7 @@ KNumber KStats::sum()
 
     KNumber result = 0;
 	
-    for (QVector<KNumber>::const_iterator p = data_.begin(); p != data_.end(); ++p) {
+    for (QVector<KNumber>::const_iterator p = data_.constBegin(); p != data_.constEnd(); ++p) {
         result += *p;
     }
 
@@ -121,7 +121,7 @@ KNumber KStats::std_kernel()
 
     mean_value = mean();
 
-    for (QVector<KNumber>::const_iterator p = data_.begin(); p != data_.end(); ++p) {
+    for (QVector<KNumber>::const_iterator p = data_.constBegin(); p != data_.constEnd(); ++p) {
         result += (*p - mean_value) * (*p - mean_value);
     }
 
@@ -134,7 +134,7 @@ KNumber KStats::sum_of_squares()
 
     KNumber result = 0;
 
-    for (QVector<KNumber>::const_iterator p = data_.begin(); p != data_.end(); ++p) {
+    for (QVector<KNumber>::const_iterator p = data_.constBegin(); p != data_.constEnd(); ++p) {
         result += ((*p) * (*p));
     }
 
