@@ -61,7 +61,7 @@ public:
     virtual knumber * reciprocal() const = 0;
     virtual knumber * add(knumber const & arg2) const = 0;
     virtual knumber * multiply(knumber const & arg2) const = 0;
-    knumber * divide(knumber const & arg2) const;
+    virtual knumber * divide(knumber const & arg2) const;
 
     virtual knumber * power(knumber const & exponent) const = 0;
 
