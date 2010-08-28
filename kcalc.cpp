@@ -1751,6 +1751,17 @@ void KCalculator::setColors()
 {
     calc_display->changeSettings();
 
+    KColorScheme schemeButtons(QPalette::Active, KColorScheme::Button);
+    QColor defaultColor = schemeButtons.background().color();
+    if (KCalcSettings::numberButtonsColor() == defaultColor
+        && KCalcSettings::functionButtonsColor() == defaultColor
+        && KCalcSettings::statButtonsColor() == defaultColor
+        && KCalcSettings::hexButtonsColor() == defaultColor
+        && KCalcSettings::memoryButtonsColor() == defaultColor
+        && KCalcSettings::operationButtonsColor() == defaultColor) {
+        return;
+    }
+
     QString sheet = "KPushButton { background-color: %1 }";
 
     QColor numPal(KCalcSettings::numberButtonsColor());
