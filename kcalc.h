@@ -198,7 +198,7 @@ protected slots:
     void slotChooseScientificConst4(struct science_constant const &);
     void slotChooseScientificConst5(struct science_constant const &);
 
-    void slotBitsetChanged(unsigned long long);
+    void slotBitsetChanged(quint64);
     void slotUpdateBitset(const KNumber &);
 
 private:

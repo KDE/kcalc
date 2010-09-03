@@ -1632,8 +1632,8 @@ void KCalculator::showLogicButtons(bool toggled)
 {
     if (toggled) {
         mBitset->setEnabled(true);
-        connect(mBitset, SIGNAL(valueChanged(unsigned long long)),
-                this, SLOT(slotBitsetChanged(unsigned long long)));
+        connect(mBitset, SIGNAL(valueChanged(quint64)),
+                this, SLOT(slotBitsetChanged(quint64)));
         connect(calc_display, SIGNAL(changedAmount(const KNumber &)),
                 SLOT(slotUpdateBitset(const KNumber &)));
         foreach(QAbstractButton* btn, logic_buttons_) {
@@ -1649,8 +1649,8 @@ void KCalculator::showLogicButtons(bool toggled)
             (num_button_group_->button(i))->show();
     } else {
         mBitset->setEnabled(false);
-        disconnect(mBitset, SIGNAL(valueChanged(unsigned long long)),
-                   this, SLOT(slotBitsetChanged(unsigned long long)));
+        disconnect(mBitset, SIGNAL(valueChanged(quint64)),
+                   this, SLOT(slotBitsetChanged(quint64)));
         disconnect(calc_display, SIGNAL(changedAmount(const KNumber &)),
                    this, SLOT(slotUpdateBitset(const KNumber &)));
         foreach(QAbstractButton* btn, logic_buttons_) {
@@ -1701,7 +1701,7 @@ void KCalculator::changeButtonNames()
     }
 }
 
-void KCalculator::slotBitsetChanged(unsigned long long value)
+void KCalculator::slotBitsetChanged(quint64 value)
 {
     // note: sets display to *unsigned* value
     calc_display->setAmount(value);
