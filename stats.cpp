@@ -186,7 +186,7 @@ KNumber KStats::sample_std()
 
 int KStats::count() const
 {
-    return static_cast<int>(data_.size());
+    return data_.size();
 }
 
 
