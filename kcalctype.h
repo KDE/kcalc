@@ -32,28 +32,4 @@
 #include <float.h>
 #include <math.h>
 
-#undef HAVE_LONG_LONG
-#if defined(LLONG_MAX) && defined(HAVE_LONG_DOUBLE)
-#define KCALC_LONG_MIN LLONG_MIN
-#define KCALC_LONG_MAX LLONG_MAX
-#define KCALC_ULONG_MAX ULLONG_MAX
-#define KCALC_LONG long long
-#define HAVE_LONG_LONG
-#else
-#if defined(LONG_LONG_MAX) && defined(HAVE_LONG_DOUBLE)
-#define KCALC_LONG_MIN LONG_LONG_MIN
-#define KCALC_LONG_MAX LONG_LONG_MAX
-#define KCALC_ULONG_MAX ULONG_LONG_MAX
-#define KCALC_LONG long long
-#define HAVE_LONG_LONG
-#ifdef _HPUX_SOURCE
-#else
-#endif
-#else
-#define KCALC_LONG_MIN LONG_MIN
-#define KCALC_LONG_MAX LONG_MAX
-#define KCALC_ULONG_MAX ULONG_MAX
-#define KCALC_LONG long
-#endif
-#endif
 #endif

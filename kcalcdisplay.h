@@ -29,7 +29,6 @@
 #include <QFrame>
 #include <QVector>
 #include "knumber.h"
-#include "kcalctype.h"
 
 class CalcEngine;
 class KAction;

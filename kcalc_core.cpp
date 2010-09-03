@@ -47,7 +47,6 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kmessagebox.h>
-#include "kcalctype.h"
 
 #ifndef HAVE_FUNC_ISINF
 #ifdef HAVE_IEEEFP_H
