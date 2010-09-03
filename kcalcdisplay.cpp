@@ -472,27 +472,29 @@ bool KCalcDisplay::updateDisplay()
     } else {
         tmp_string = str_int_;
     }
+	
+	bool ok;
 
     switch (num_base_) {
         // TODO: use QString:::toULongLong() instead of STRTOUL
     case NB_BINARY:
         Q_ASSERT(period_ == false  && eestate_ == false);
         setText(tmp_string);
-        display_amount_ = static_cast<qint64>(STRTOUL(str_int_.toLatin1(), 0, 2));
+		display_amount_ = str_int_.toULongLong(&ok, 2);
         if (neg_sign_) display_amount_ = -display_amount_;
         break;
 
     case NB_OCTAL:
         Q_ASSERT(period_ == false  && eestate_ == false);
         setText(tmp_string);
-        display_amount_ = static_cast<qint64>(STRTOUL(str_int_.toLatin1(), 0, 8));
+        display_amount_ = str_int_.toULongLong(&ok, 8);
         if (neg_sign_) display_amount_ = -display_amount_;
         break;
 
     case NB_HEX:
         Q_ASSERT(period_ == false  && eestate_ == false);
         setText(tmp_string);
-        display_amount_ = static_cast<qint64>(STRTOUL(str_int_.toLatin1(), 0, 16));
+        display_amount_ = str_int_.toULongLong(&ok, 16);
         if (neg_sign_) display_amount_ = -display_amount_;
         break;
 

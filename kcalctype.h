@@ -39,7 +39,6 @@
 #define KCALC_ULONG_MAX ULLONG_MAX
 #define KCALC_LONG long long
 #define HAVE_LONG_LONG
-#define STRTOUL         strtoull
 #else
 #if defined(LONG_LONG_MAX) && defined(HAVE_LONG_DOUBLE)
 #define KCALC_LONG_MIN LONG_LONG_MIN
@@ -48,16 +47,13 @@
 #define KCALC_LONG long long
 #define HAVE_LONG_LONG
 #ifdef _HPUX_SOURCE
-#define STRTOUL         strtoul
 #else
-#define STRTOUL         strtoull
 #endif
 #else
 #define KCALC_LONG_MIN LONG_MIN
 #define KCALC_LONG_MAX LONG_MAX
 #define KCALC_ULONG_MAX ULONG_MAX
 #define KCALC_LONG long
-#define STRTOUL         strtoul
 #endif
 #endif
 #endif
