@@ -48,26 +48,6 @@
 #include <klocale.h>
 #include <kmessagebox.h>
 
-#ifndef HAVE_FUNC_ISINF
-#ifdef HAVE_IEEEFP_H
-#include <ieeefp.h>
-#else
-#include <math.h>
-#endif
-
-#undef isinf
-int isinf(double x)
-{
-#ifdef _HPUX_SOURCE
-    return !isfinite(x) && x == x;
-#else
-    return !finite(x) && x == x;
-#endif
-}
-
-#endif
-
-
 static void fpe_handler(int fpe_parm)
 {
     Q_UNUSED(fpe_parm);
