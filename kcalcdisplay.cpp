@@ -191,7 +191,7 @@ void KCalcDisplay::slotHistoryBack()
     history_index_ ++;
 }
 
-bool KCalcDisplay::sendEvent(Event const event)
+bool KCalcDisplay::sendEvent(Event event)
 {
     switch (event) {
     case EventClear:

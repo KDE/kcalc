@@ -76,10 +76,10 @@ public:
         EventChangeSign
     };
 
-    bool sendEvent(Event const event);
+    bool sendEvent(Event event);
     void deleteLastDigit();
     KNumber const & getAmount() const;
-    void newCharacter(char const new_char);
+    void newCharacter(char new_char);
     bool setAmount(KNumber const & new_amount);
     int setBase(NumBase new_base);
     void setBeep(bool flag);
