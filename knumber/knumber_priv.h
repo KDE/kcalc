@@ -49,7 +49,7 @@ public:
 
     virtual NumType type() const = 0;
 
-    virtual QString const ascii(int prec = -1) const = 0;
+    virtual QString ascii(int prec = -1) const = 0;
 
     virtual knumber * abs() const = 0;
     virtual knumber * intPart() const = 0;
@@ -93,7 +93,7 @@ public:
         return SpecialType;
     }
 
-    virtual QString const ascii(int prec = -1) const;
+    virtual QString ascii(int prec = -1) const;
 
     virtual knumber * abs() const;
     virtual knumber * intPart() const;
@@ -156,7 +156,7 @@ public:
         return IntegerType;
     }
 
-    virtual QString const ascii(int prec = -1) const;
+    virtual QString ascii(int prec = -1) const;
 
     virtual knumber * abs() const;
     virtual knumber * intPart() const;
@@ -215,7 +215,7 @@ public:
         return FractionType;
     }
 
-    virtual QString const ascii(int prec = -1) const;
+    virtual QString ascii(int prec = -1) const;
 
     bool isInteger() const;
 
@@ -267,7 +267,7 @@ public:
         return FloatType;
     }
 
-    virtual QString const ascii(int prec = -1) const;
+    virtual QString ascii(int prec = -1) const;
 
     virtual knumber * abs() const;
     virtual knumber * intPart() const;

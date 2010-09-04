@@ -32,10 +32,10 @@
 
 using namespace std;
 
-KNumber const KNumber::Zero(0);
-KNumber const KNumber::One(1);
-KNumber const KNumber::MinusOne(-1);
-KNumber const KNumber::NotDefined("nan");
+const KNumber KNumber::Zero(0);
+const KNumber KNumber::One(1);
+const KNumber KNumber::MinusOne(-1);
+const KNumber KNumber::NotDefined("nan");
 bool KNumber::FloatOutput = false;
 bool KNumber::FractionInput = false;
 bool KNumber::SplitOffIntegerOutput = false;
@@ -312,7 +312,7 @@ QString round(const QString &numStr, int precision)
 
 
 
-QString const KNumber::toQString(int width, int prec) const
+QString KNumber::toQString(int width, int prec) const
 {
     QString tmp_str;
 
@@ -398,32 +398,32 @@ void KNumber::setDefaultFloatPrecision(unsigned int prec)
     mpf_set_default_prec(bin_prec);
 }
 
-KNumber const KNumber::abs() const
+KNumber KNumber::abs() const
 {
     return KNumber(num_->abs());
 }
 
-KNumber const KNumber::cbrt() const
+KNumber KNumber::cbrt() const
 {
     return KNumber(num_->cbrt());
 }
 
-KNumber const KNumber::sqrt() const
+KNumber KNumber::sqrt() const
 {
     return KNumber(num_->sqrt());
 }
 
-KNumber const KNumber::factorial() const
+KNumber KNumber::factorial() const
 {
     return KNumber(num_->factorial());
 }
 
-KNumber const KNumber::integerPart() const
+KNumber KNumber::integerPart() const
 {
     return KNumber(num_->intPart());
 }
 
-KNumber const KNumber::power(const KNumber &exp) const
+KNumber KNumber::power(const KNumber &exp) const
 {
     if (*this == Zero) {
         if (exp == Zero)
@@ -449,31 +449,31 @@ KNumber const KNumber::power(const KNumber &exp) const
 
 }
 
-KNumber const KNumber::operator-() const
+KNumber KNumber::operator-() const
 {
 	return KNumber(num_->change_sign());
 }
 
-KNumber const KNumber::operator+(const KNumber &arg2) const
+KNumber KNumber::operator+(const KNumber &arg2) const
 {
     KNumber tmp_num(num_->add(*arg2.num_));
     tmp_num.simplifyRational();
     return tmp_num;
 }
 
-KNumber const KNumber::operator-(const KNumber &arg2) const
+KNumber KNumber::operator-(const KNumber &arg2) const
 {
     return *this + (-arg2);
 }
 
-KNumber const KNumber::operator*(const KNumber &arg2) const
+KNumber KNumber::operator*(const KNumber &arg2) const
 {
     KNumber tmp_num(num_->multiply(*arg2.num_));
     tmp_num.simplifyRational();
     return tmp_num;
 }
 
-KNumber const KNumber::operator/(const KNumber &arg2) const
+KNumber KNumber::operator/(const KNumber &arg2) const
 {
     KNumber tmp_num(num_->divide(*arg2.num_));
     tmp_num.simplifyRational();
@@ -481,7 +481,7 @@ KNumber const KNumber::operator/(const KNumber &arg2) const
 }
 
 
-KNumber const KNumber::operator%(const KNumber &arg2) const
+KNumber KNumber::operator%(const KNumber &arg2) const
 {
     if (type() != IntegerType  ||  arg2.type() != IntegerType)
         return Zero;
@@ -492,7 +492,7 @@ KNumber const KNumber::operator%(const KNumber &arg2) const
     return KNumber(tmp_arg1->mod(*tmp_arg2));
 }
 
-KNumber const KNumber::operator&(const KNumber &arg2) const
+KNumber KNumber::operator&(const KNumber &arg2) const
 {
     if (type() != IntegerType  ||  arg2.type() != IntegerType)
         return Zero;
@@ -504,7 +504,7 @@ KNumber const KNumber::operator&(const KNumber &arg2) const
 
 }
 
-KNumber const KNumber::operator|(const KNumber &arg2) const
+KNumber KNumber::operator|(const KNumber &arg2) const
 {
     if (type() != IntegerType  ||  arg2.type() != IntegerType)
         return Zero;
@@ -516,7 +516,7 @@ KNumber const KNumber::operator|(const KNumber &arg2) const
 }
 
 
-KNumber const KNumber::operator<<(const KNumber &arg2) const
+KNumber KNumber::operator<<(const KNumber &arg2) const
 {
     if (type() != IntegerType  ||  arg2.type() != IntegerType)
         return KNumber("nan");
@@ -527,7 +527,7 @@ KNumber const KNumber::operator<<(const KNumber &arg2) const
     return KNumber(tmp_arg1->shift(*tmp_arg2));
 }
 
-KNumber const KNumber::operator>>(const KNumber &arg2) const
+KNumber KNumber::operator>>(const KNumber &arg2) const
 {
     if (type() != IntegerType  ||  arg2.type() != IntegerType)
         return KNumber("nan");

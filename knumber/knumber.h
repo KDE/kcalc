@@ -65,10 +65,10 @@ class knumber;
 class KDE_EXPORT KNumber
 {
 public:
-    static KNumber const Zero;
-    static KNumber const One;
-    static KNumber const MinusOne;
-    static KNumber const NotDefined;
+    static const KNumber Zero;
+    static const KNumber One;
+    static const KNumber MinusOne;
+    static const KNumber NotDefined;
 
     /**
      * KNumber tries to provide transparent access to the following type
@@ -176,7 +176,7 @@ public:
      * is ignored.
      *
      */
-    QString const toQString(int width = -1, int prec = -1) const;
+    QString toQString(int width = -1, int prec = -1) const;
 
     /**
      * Compute the absolute value, i.e. @p x.abs() returns the value
@@ -185,7 +185,7 @@ public:
      *  0\end{array}\right.\f]
      * This method works for \f$ x = \infty \f$ and \f$ x = -\infty \f$.
      */
-    KNumber const abs() const;
+    KNumber abs() const;
 
     /**
      * Compute the square root. If \f$ x < 0 \f$ (including \f$
@@ -198,7 +198,7 @@ public:
      *
      * This method works for \f$ x = \infty \f$ giving \f$ \infty \f$.
      */
-    KNumber const sqrt() const;
+    KNumber sqrt() const;
 
     /**
      * Compute the cube root.
@@ -213,9 +213,9 @@ public:
      * This method works for \f$ x = \infty \f$ giving \f$ \infty \f$,
      * and for \f$ x = -\infty \f$ giving \f$ -\infty \f$.
      */
-    KNumber const cbrt() const;
+    KNumber cbrt() const;
 
-    KNumber const factorial() const;
+    KNumber factorial() const;
 
     /**
      * Truncates a @p KNumber to its integer type returning a number of
@@ -224,21 +224,21 @@ public:
      * If \f$ x = \pm\infty \f$, integerPart leaves the value unchanged,
      * i.e. it returns \f$ \pm\infty \f$.
      */
-    KNumber const integerPart() const;
+    KNumber integerPart() const;
 
-    KNumber const power(const KNumber &exp) const;
+    KNumber power(const KNumber &exp) const;
 
-    KNumber const operator+(const KNumber &arg2) const;
-    KNumber const operator -() const;
-    KNumber const operator-(const KNumber &arg2) const;
-    KNumber const operator*(const KNumber &arg2) const;
-    KNumber const operator/(const KNumber &arg2) const;
-    KNumber const operator%(const KNumber &arg2) const;
+    KNumber operator+(const KNumber &arg2) const;
+    KNumber operator -() const;
+    KNumber operator-(const KNumber &arg2) const;
+    KNumber operator*(const KNumber &arg2) const;
+    KNumber operator/(const KNumber &arg2) const;
+    KNumber operator%(const KNumber &arg2) const;
 
-    KNumber const operator&(const KNumber &arg2) const;
-    KNumber const operator|(const KNumber &arg2) const;
-    KNumber const operator<<(const KNumber &arg2) const;
-    KNumber const operator>>(const KNumber &arg2) const;
+    KNumber operator&(const KNumber &arg2) const;
+    KNumber operator|(const KNumber &arg2) const;
+    KNumber operator<<(const KNumber &arg2) const;
+    KNumber operator>>(const KNumber &arg2) const;
 
     operator bool() const;
     operator qint32() const;

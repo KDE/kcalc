@@ -201,7 +201,7 @@ const detail::knuminteger &detail::knuminteger::operator = (const knuminteger &n
     return *this;
 }
 
-QString const detail::knumerror::ascii(int prec) const
+QString detail::knumerror::ascii(int prec) const
 {
     Q_UNUSED(prec);
 
@@ -218,7 +218,7 @@ QString const detail::knumerror::ascii(int prec) const
     }
 }
 
-QString const detail::knuminteger::ascii(int prec) const
+QString detail::knuminteger::ascii(int prec) const
 {
     Q_UNUSED(prec);
     char *tmp_ptr = 0;
@@ -234,7 +234,7 @@ QString const detail::knuminteger::ascii(int prec) const
     return ret_str;
 }
 
-QString const detail::knumfraction::ascii(int prec) const
+QString detail::knumfraction::ascii(int prec) const
 {
     Q_UNUSED(prec);
     char *tmp_ptr = mpq_get_str(0, 10, mpq_);
@@ -244,7 +244,7 @@ QString const detail::knumfraction::ascii(int prec) const
     return ret_str;
 }
 
-QString const detail::knumfloat::ascii(int prec) const
+QString detail::knumfloat::ascii(int prec) const
 {
     QString ret_str;
     char *tmp_ptr = 0;
