@@ -27,7 +27,7 @@
 #include <klocale.h>
 #include <kstandarddirs.h>
 
-QList<struct science_constant> KCalcConstMenu::Constants;
+QList<science_constant> KCalcConstMenu::Constants;
 
 
 void KCalcConstMenu::init_consts()
@@ -57,7 +57,7 @@ void KCalcConstMenu::init_consts()
     while (!n.isNull()) {
         QDomElement e = n.toElement(); // try to convert the node to an element.
         if (!e.isNull()  &&  e.tagName() == "constant") {
-            struct science_constant tmp_const;
+            science_constant tmp_const;
 
             tmp_const.name = I18N_NOOP(e.attributeNode("name").value());
             tmp_const.label = e.attributeNode("symbol").value();

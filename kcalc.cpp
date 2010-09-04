@@ -772,7 +772,7 @@ void KCalculator::updateGeometry()
     }
 }
 
-void KCalculator::slotConstantToDisplay(const struct science_constant &const_chosen)
+void KCalculator::slotConstantToDisplay(const science_constant &const_chosen)
 {
     calc_display->setAmount(const_chosen.value);
 
@@ -1501,42 +1501,42 @@ void KCalculator::showSettings()
 // these 6 slots are just a quick hack, instead of setting the
 // TextEdit fields in the configuration dialog, we are setting the
 // Settingvalues themselves!!
-void KCalculator::slotChooseScientificConst0(const struct science_constant &chosen_const)
+void KCalculator::slotChooseScientificConst0(const science_constant &chosen_const)
 {
     constants_->kcfg_valueConstant0->setText(chosen_const.value);
 
     constants_->kcfg_nameConstant0->setText(chosen_const.label);
 }
 
-void KCalculator::slotChooseScientificConst1(const struct science_constant &chosen_const)
+void KCalculator::slotChooseScientificConst1(const science_constant &chosen_const)
 {
     constants_->kcfg_valueConstant1->setText(chosen_const.value);
 
     constants_->kcfg_nameConstant1->setText(chosen_const.label);
 }
 
-void KCalculator::slotChooseScientificConst2(const struct science_constant &chosen_const)
+void KCalculator::slotChooseScientificConst2(const science_constant &chosen_const)
 {
     constants_->kcfg_valueConstant2->setText(chosen_const.value);
 
     constants_->kcfg_nameConstant2->setText(chosen_const.label);
 }
 
-void KCalculator::slotChooseScientificConst3(const struct science_constant &chosen_const)
+void KCalculator::slotChooseScientificConst3(const science_constant &chosen_const)
 {
     constants_->kcfg_valueConstant3->setText(chosen_const.value);
 
     constants_->kcfg_nameConstant3->setText(chosen_const.label);
 }
 
-void KCalculator::slotChooseScientificConst4(const struct science_constant &chosen_const)
+void KCalculator::slotChooseScientificConst4(const science_constant &chosen_const)
 {
     constants_->kcfg_valueConstant4->setText(chosen_const.value);
 
     constants_->kcfg_nameConstant4->setText(chosen_const.label);
 }
 
-void KCalculator::slotChooseScientificConst5(const struct science_constant &chosen_const)
+void KCalculator::slotChooseScientificConst5(const science_constant &chosen_const)
 {
     constants_->kcfg_valueConstant5->setText(chosen_const.value);
 

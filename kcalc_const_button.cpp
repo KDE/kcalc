@@ -97,7 +97,7 @@ void KCalcConstButton::slotConfigureButton()
     }
 }
 
-void KCalcConstButton::slotChooseScientificConst(const struct science_constant &const_chosen)
+void KCalcConstButton::slotChooseScientificConst(const science_constant &const_chosen)
 {
     KCalcSettings::setValueConstant(button_num_, const_chosen.value);
 

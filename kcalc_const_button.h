@@ -27,6 +27,8 @@
 #include <klocale.h>
 #include "kcalc_button.h"
 
+struct science_constant;
+
 
 class KCalcConstButton : public KCalcButton
 {
@@ -50,7 +52,7 @@ signals:
 
 private slots:
     void slotConfigureButton();
-    void slotChooseScientificConst(const struct science_constant &const_chosen);
+    void slotChooseScientificConst(const science_constant &const_chosen);
     void slotClicked();
 
 private:
