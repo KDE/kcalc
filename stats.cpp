@@ -42,7 +42,7 @@ void KStats::clearAll()
     data_.clear();
 }
 
-void KStats::enterData(KNumber const & data)
+void KStats::enterData(const KNumber &data)
 {
 
     data_.push_back(data);

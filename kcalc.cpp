@@ -122,8 +122,8 @@ KCalculator::KCalculator(QWidget *parent)
 
     KCalcConstMenu *tmp_menu = new KCalcConstMenu(i18n("&Constants"), this);
     menuBar()->insertMenu((menuBar()->actions)()[2], tmp_menu);
-    connect(tmp_menu, SIGNAL(triggeredConstant(science_constant const &)),
-            this, SLOT(slotConstantToDisplay(science_constant const &)));
+    connect(tmp_menu, SIGNAL(triggeredConstant(const science_constant &)),
+            this, SLOT(slotConstantToDisplay(const science_constant &)));
 
     // misc setup
 
@@ -772,7 +772,7 @@ void KCalculator::updateGeometry()
     }
 }
 
-void KCalculator::slotConstantToDisplay(struct science_constant const &const_chosen)
+void KCalculator::slotConstantToDisplay(const struct science_constant &const_chosen)
 {
     calc_display->setAmount(const_chosen.value);
 
@@ -1448,44 +1448,44 @@ void KCalculator::showSettings()
 
     KCalcConstMenu *tmp_menu = new KCalcConstMenu(this);
     connect(tmp_menu,
-            SIGNAL(triggeredConstant(science_constant const &)),
+            SIGNAL(triggeredConstant(const science_constant &)),
             this,
-            SLOT(slotChooseScientificConst0(science_constant const &)));
+            SLOT(slotChooseScientificConst0(const science_constant &)));
     constants_->pushButton0->setMenu(tmp_menu);
 
     tmp_menu = new KCalcConstMenu(this);
     connect(tmp_menu,
-            SIGNAL(triggeredConstant(science_constant const &)),
+            SIGNAL(triggeredConstant(const science_constant &)),
             this,
-            SLOT(slotChooseScientificConst1(science_constant const &)));
+            SLOT(slotChooseScientificConst1(const science_constant &)));
     constants_->pushButton1->setMenu(tmp_menu);
 
     tmp_menu = new KCalcConstMenu(this);
     connect(tmp_menu,
-            SIGNAL(triggeredConstant(science_constant const &)),
+            SIGNAL(triggeredConstant(const science_constant &)),
             this,
-            SLOT(slotChooseScientificConst2(science_constant const &)));
+            SLOT(slotChooseScientificConst2(const science_constant &)));
     constants_->pushButton2->setMenu(tmp_menu);
 
     tmp_menu = new KCalcConstMenu(this);
     connect(tmp_menu,
-            SIGNAL(triggeredConstant(science_constant const &)),
+            SIGNAL(triggeredConstant(const science_constant &)),
             this,
-            SLOT(slotChooseScientificConst3(science_constant const &)));
+            SLOT(slotChooseScientificConst3(const science_constant &)));
     constants_->pushButton3->setMenu(tmp_menu);
 
     tmp_menu = new KCalcConstMenu(this);
     connect(tmp_menu,
-            SIGNAL(triggeredConstant(science_constant const &)),
+            SIGNAL(triggeredConstant(const science_constant &)),
             this,
-            SLOT(slotChooseScientificConst4(science_constant const &)));
+            SLOT(slotChooseScientificConst4(const science_constant &)));
     constants_->pushButton4->setMenu(tmp_menu);
 
     tmp_menu = new KCalcConstMenu(this);
     connect(tmp_menu,
-            SIGNAL(triggeredConstant(science_constant const &)),
+            SIGNAL(triggeredConstant(const science_constant &)),
             this,
-            SLOT(slotChooseScientificConst5(science_constant const &)));
+            SLOT(slotChooseScientificConst5(const science_constant &)));
     constants_->pushButton5->setMenu(tmp_menu);
 
     dialog->addPage(constants_, i18n("Constants"), "preferences-kcalc-constants_", i18n("Define Constants"));
@@ -1501,42 +1501,42 @@ void KCalculator::showSettings()
 // these 6 slots are just a quick hack, instead of setting the
 // TextEdit fields in the configuration dialog, we are setting the
 // Settingvalues themselves!!
-void KCalculator::slotChooseScientificConst0(struct science_constant const & chosen_const)
+void KCalculator::slotChooseScientificConst0(const struct science_constant &chosen_const)
 {
     constants_->kcfg_valueConstant0->setText(chosen_const.value);
 
     constants_->kcfg_nameConstant0->setText(chosen_const.label);
 }
 
-void KCalculator::slotChooseScientificConst1(struct science_constant const & chosen_const)
+void KCalculator::slotChooseScientificConst1(const struct science_constant &chosen_const)
 {
     constants_->kcfg_valueConstant1->setText(chosen_const.value);
 
     constants_->kcfg_nameConstant1->setText(chosen_const.label);
 }
 
-void KCalculator::slotChooseScientificConst2(struct science_constant const & chosen_const)
+void KCalculator::slotChooseScientificConst2(const struct science_constant &chosen_const)
 {
     constants_->kcfg_valueConstant2->setText(chosen_const.value);
 
     constants_->kcfg_nameConstant2->setText(chosen_const.label);
 }
 
-void KCalculator::slotChooseScientificConst3(struct science_constant const & chosen_const)
+void KCalculator::slotChooseScientificConst3(const struct science_constant &chosen_const)
 {
     constants_->kcfg_valueConstant3->setText(chosen_const.value);
 
     constants_->kcfg_nameConstant3->setText(chosen_const.label);
 }
 
-void KCalculator::slotChooseScientificConst4(struct science_constant const & chosen_const)
+void KCalculator::slotChooseScientificConst4(const struct science_constant &chosen_const)
 {
     constants_->kcfg_valueConstant4->setText(chosen_const.value);
 
     constants_->kcfg_nameConstant4->setText(chosen_const.label);
 }
 
-void KCalculator::slotChooseScientificConst5(struct science_constant const & chosen_const)
+void KCalculator::slotChooseScientificConst5(const struct science_constant &chosen_const)
 {
     constants_->kcfg_valueConstant5->setText(chosen_const.value);
 

@@ -44,13 +44,13 @@ class KCalcConstMenu : public QMenu
 
 public:
     KCalcConstMenu(QWidget * parent = 0);
-    explicit KCalcConstMenu(QString const & title, QWidget * parent = 0);
+    explicit KCalcConstMenu(const QString &title, QWidget * parent = 0);
 
     static QList<struct science_constant> Constants;
     static void init_consts();
 
 signals:
-    void triggeredConstant(struct science_constant const &);
+    void triggeredConstant(const struct science_constant &);
 
 
 private:

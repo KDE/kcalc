@@ -12,7 +12,7 @@
 
 #include <QString>
 
-QString const  numtypeToString(KNumber::NumType arg)
+QString numtypeToString(KNumber::NumType arg)
 {
     switch (arg) {
     case KNumber::SpecialType:
@@ -29,8 +29,8 @@ QString const  numtypeToString(KNumber::NumType arg)
     }
 }
 
-void checkResult(QString const &string, KNumber const & result,
-                 QString const & desired_string, KNumber::NumType desired)
+void checkResult(const QString &string, const KNumber &result,
+                 const QString &desired_string, KNumber::NumType desired)
 {
     std::cout << "Testing result of: " << string.toAscii().constData() <<
               " should give " << desired_string.toAscii().constData() << " and gives " <<
@@ -49,7 +49,7 @@ void checkResult(QString const &string, KNumber const & result,
     exit(1);
 }
 
-void checkTruth(QString const &string, bool computation,
+void checkTruth(const QString &string, bool computation,
                 bool desired_result)
 {
     std::cout << "Testing truth of: " << string.toAscii().constData() <<
@@ -66,7 +66,7 @@ void checkTruth(QString const &string, bool computation,
 }
 
 
-void checkType(QString const &string, KNumber::NumType test_arg,
+void checkType(const QString &string, KNumber::NumType test_arg,
                KNumber::NumType desired)
 {
     std::cout << "Testing type of: " << string.toAscii().constData() << " should give " <<

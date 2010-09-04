@@ -78,24 +78,24 @@ public:
 
     bool sendEvent(Event event);
     void deleteLastDigit();
-    KNumber const & getAmount() const;
+    const KNumber &getAmount() const;
     void newCharacter(char new_char);
-    bool setAmount(KNumber const & new_amount);
+    bool setAmount(const KNumber &new_amount);
     int setBase(NumBase new_base);
     void setBeep(bool flag);
     void setGroupDigits(bool flag);
     void setTwosComplement(bool flag);
     void setFixedPrecision(int precision);
     void setPrecision(int precision);
-    void setText(QString const &string);
+    void setText(const QString &string);
     QString text() const;
     bool updateDisplay();
-    void setStatusText(int i, const QString& text);
+    void setStatusText(int i, const QString &text);
     virtual QSize sizeHint() const;
 
     void changeSettings();
     void enterDigit(int data);
-    void updateFromCore(CalcEngine const &core,
+    void updateFromCore(const CalcEngine &core,
                         bool store_result_in_history = false);
 
 public slots:
@@ -105,7 +105,7 @@ public slots:
 
 signals:
     void clicked();
-    void changedText(QString const &);
+    void changedText(const QString &);
     void changedAmount(const KNumber &);
 
 protected:

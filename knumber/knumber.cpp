@@ -90,7 +90,7 @@ void KNumber::swap(KNumber &other)
 	qSwap(num_, other.num_);
 }
 
-KNumber::KNumber(KNumber const & num)
+KNumber::KNumber(const KNumber &num)
 {
     switch (num.type()) {
     case SpecialType:
@@ -108,7 +108,7 @@ KNumber::KNumber(KNumber const & num)
     }
 }
 
-KNumber::KNumber(QString const & num)
+KNumber::KNumber(const QString &num)
 {
     if (QRegExp("^(inf|-inf|nan)$").exactMatch(num))
         num_ = new detail::knumerror(num);
@@ -165,7 +165,7 @@ void KNumber::simplifyRational()
 }
 
 
-KNumber & KNumber::operator=(KNumber const & num)
+KNumber & KNumber::operator=(const KNumber &num)
 {
     if (this != & num) {
         KNumber(num).swap(*this);
@@ -173,13 +173,13 @@ KNumber & KNumber::operator=(KNumber const & num)
     return *this;
 }
 
-KNumber & KNumber::operator +=(KNumber const & arg)
+KNumber & KNumber::operator +=(const KNumber &arg)
 {
     KNumber(*this + arg).swap(*this);
     return *this;
 }
 
-KNumber & KNumber::operator -=(KNumber const & arg)
+KNumber & KNumber::operator -=(const KNumber &arg)
 {
     KNumber(*this - arg).swap(*this);
     return *this;
@@ -423,7 +423,7 @@ KNumber const KNumber::integerPart() const
     return KNumber(num_->intPart());
 }
 
-KNumber const KNumber::power(KNumber const &exp) const
+KNumber const KNumber::power(const KNumber &exp) const
 {
     if (*this == Zero) {
         if (exp == Zero)
@@ -454,26 +454,26 @@ KNumber const KNumber::operator-() const
 	return KNumber(num_->change_sign());
 }
 
-KNumber const KNumber::operator+(KNumber const & arg2) const
+KNumber const KNumber::operator+(const KNumber &arg2) const
 {
     KNumber tmp_num(num_->add(*arg2.num_));
     tmp_num.simplifyRational();
     return tmp_num;
 }
 
-KNumber const KNumber::operator-(KNumber const & arg2) const
+KNumber const KNumber::operator-(const KNumber &arg2) const
 {
     return *this + (-arg2);
 }
 
-KNumber const KNumber::operator*(KNumber const & arg2) const
+KNumber const KNumber::operator*(const KNumber &arg2) const
 {
     KNumber tmp_num(num_->multiply(*arg2.num_));
     tmp_num.simplifyRational();
     return tmp_num;
 }
 
-KNumber const KNumber::operator/(KNumber const & arg2) const
+KNumber const KNumber::operator/(const KNumber &arg2) const
 {
     KNumber tmp_num(num_->divide(*arg2.num_));
     tmp_num.simplifyRational();
@@ -481,61 +481,61 @@ KNumber const KNumber::operator/(KNumber const & arg2) const
 }
 
 
-KNumber const KNumber::operator%(KNumber const & arg2) const
+KNumber const KNumber::operator%(const KNumber &arg2) const
 {
     if (type() != IntegerType  ||  arg2.type() != IntegerType)
         return Zero;
 
-    detail::knuminteger const *tmp_arg1 = dynamic_cast<detail::knuminteger const *>(num_);
-    detail::knuminteger const *tmp_arg2 = dynamic_cast<detail::knuminteger const *>(arg2.num_);
+    const detail::knuminteger *tmp_arg1 = dynamic_cast<const detail::knuminteger *>(num_);
+    const detail::knuminteger *tmp_arg2 = dynamic_cast<const detail::knuminteger *>(arg2.num_);
 
     return KNumber(tmp_arg1->mod(*tmp_arg2));
 }
 
-KNumber const KNumber::operator&(KNumber const & arg2) const
+KNumber const KNumber::operator&(const KNumber &arg2) const
 {
     if (type() != IntegerType  ||  arg2.type() != IntegerType)
         return Zero;
 
-    detail::knuminteger const *tmp_arg1 = dynamic_cast<detail::knuminteger const *>(num_);
-    detail::knuminteger const *tmp_arg2 = dynamic_cast<detail::knuminteger const *>(arg2.num_);
+    const detail::knuminteger *tmp_arg1 = dynamic_cast<const detail::knuminteger *>(num_);
+    const detail::knuminteger *tmp_arg2 = dynamic_cast<const detail::knuminteger *>(arg2.num_);
 
     return KNumber(tmp_arg1->intAnd(*tmp_arg2));
 
 }
 
-KNumber const KNumber::operator|(KNumber const & arg2) const
+KNumber const KNumber::operator|(const KNumber &arg2) const
 {
     if (type() != IntegerType  ||  arg2.type() != IntegerType)
         return Zero;
 
-    detail::knuminteger const *tmp_arg1 = dynamic_cast<detail::knuminteger const *>(num_);
-    detail::knuminteger const *tmp_arg2 = dynamic_cast<detail::knuminteger const *>(arg2.num_);
+    const detail::knuminteger *tmp_arg1 = dynamic_cast<const detail::knuminteger *>(num_);
+    const detail::knuminteger *tmp_arg2 = dynamic_cast<const detail::knuminteger *>(arg2.num_);
 
     return KNumber(tmp_arg1->intOr(*tmp_arg2));
 }
 
 
-KNumber const KNumber::operator<<(KNumber const & arg2) const
+KNumber const KNumber::operator<<(const KNumber &arg2) const
 {
     if (type() != IntegerType  ||  arg2.type() != IntegerType)
         return KNumber("nan");
 
-    detail::knuminteger const *tmp_arg1 = dynamic_cast<detail::knuminteger const *>(num_);
-    detail::knuminteger const *tmp_arg2 = dynamic_cast<detail::knuminteger const *>(arg2.num_);
+    const detail::knuminteger *tmp_arg1 = dynamic_cast<const detail::knuminteger *>(num_);
+    const detail::knuminteger *tmp_arg2 = dynamic_cast<const detail::knuminteger *>(arg2.num_);
 
     return KNumber(tmp_arg1->shift(*tmp_arg2));
 }
 
-KNumber const KNumber::operator>>(KNumber const & arg2) const
+KNumber const KNumber::operator>>(const KNumber &arg2) const
 {
     if (type() != IntegerType  ||  arg2.type() != IntegerType)
         return KNumber("nan");
 
     KNumber tmp_num = -arg2;
 
-    detail::knuminteger const *tmp_arg1 = dynamic_cast<detail::knuminteger const *>(num_);
-    detail::knuminteger const *tmp_arg2 = dynamic_cast<detail::knuminteger const *>(tmp_num.num_);
+    const detail::knuminteger *tmp_arg1 = dynamic_cast<const detail::knuminteger *>(num_);
+    const detail::knuminteger *tmp_arg2 = dynamic_cast<const detail::knuminteger *>(tmp_num.num_);
 
     return KNumber(tmp_arg1->shift(*tmp_arg2));
 }
@@ -574,7 +574,7 @@ KNumber::operator double() const
     return static_cast<double>(*num_);
 }
 
-int KNumber::compare(KNumber const & arg2) const
+int KNumber::compare(const KNumber &arg2) const
 {
     return num_->compare(*arg2.num_);
 }

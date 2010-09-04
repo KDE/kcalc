@@ -50,7 +50,7 @@ signals:
 
 private slots:
     void slotConfigureButton();
-    void slotChooseScientificConst(struct science_constant const &const_chosen);
+    void slotChooseScientificConst(const struct science_constant &const_chosen);
     void slotClicked();
 
 private:

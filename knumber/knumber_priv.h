@@ -59,13 +59,13 @@ public:
     virtual knumber * factorial() const = 0;
     virtual knumber * change_sign() const = 0;
     virtual knumber * reciprocal() const = 0;
-    virtual knumber * add(knumber const & arg2) const = 0;
-    virtual knumber * multiply(knumber const & arg2) const = 0;
-    virtual knumber * divide(knumber const & arg2) const;
+    virtual knumber * add(const knumber &arg2) const = 0;
+    virtual knumber * multiply(const knumber &arg2) const = 0;
+    virtual knumber * divide(const knumber &arg2) const;
 
-    virtual knumber * power(knumber const & exponent) const = 0;
+    virtual knumber * power(const knumber &exponent) const = 0;
 
-    virtual int compare(knumber const &arg2) const = 0;
+    virtual int compare(const knumber &arg2) const = 0;
 
     virtual operator long int() const = 0;
     virtual operator unsigned long int() const = 0;
@@ -81,13 +81,13 @@ public:
     knumerror(ErrorType error = UndefinedNumber)
             : error_(error) { }
 
-    knumerror(knumber const & num);
+    knumerror(const knumber &num);
 
-    knumerror(const QString & num);
+    knumerror(const QString &num);
 
     //virtual ~knumerror() { }
 
-    knumerror const & operator = (knumerror const & num);
+    const knumerror &operator = (const knumerror &num);
 
     virtual NumType type() const {
         return SpecialType;
@@ -103,12 +103,12 @@ public:
     virtual knumber * factorial() const;
     virtual knumber * change_sign() const;
     virtual knumber * reciprocal() const;
-    virtual knumber * add(knumber const & arg2) const;
-    virtual knumber * multiply(knumber const & arg2) const;
+    virtual knumber * add(const knumber &arg2) const;
+    virtual knumber * multiply(const knumber &arg2) const;
 
-    virtual knumber * power(knumber const & exponent) const;
+    virtual knumber * power(const knumber &exponent) const;
 
-    virtual int compare(knumber const &arg2) const;
+    virtual int compare(const knumber &arg2) const;
 
     virtual operator long int() const;
     virtual operator unsigned long int() const;
@@ -142,7 +142,7 @@ public:
 
     knuminteger(quint64 num);
 
-    knuminteger(knumber const & num);
+    knuminteger(const knumber &num);
 
     knuminteger(const QString & num);
 
@@ -150,7 +150,7 @@ public:
         mpz_clear(mpz_);
     }
 
-    knuminteger const & operator = (knuminteger const & num);
+    const knuminteger &operator = (const knuminteger &num);
 
     virtual NumType type() const {
         return IntegerType;
@@ -166,12 +166,12 @@ public:
     virtual knumber * factorial() const;
     virtual knumber * change_sign() const;
     virtual knumber * reciprocal() const;
-    virtual knumber * add(knumber const & arg2) const;
-    virtual knumber * multiply(knumber const & arg2) const;
+    virtual knumber * add(const knumber &arg2) const;
+    virtual knumber * multiply(const knumber &arg2) const;
 
-    virtual int compare(knumber const &arg2) const;
+    virtual int compare(const knumber &arg2) const;
 
-    virtual knumber * power(knumber const & exponent) const;
+    virtual knumber * power(const knumber &exponent) const;
 
     virtual operator long int () const;
     virtual operator unsigned long int () const;
@@ -179,10 +179,10 @@ public:
     virtual operator unsigned long long int() const;
     virtual operator double() const;
 
-    knuminteger * intAnd(knuminteger const &arg2) const;
-    knuminteger * intOr(knuminteger const &arg2) const;
-    knumber * mod(knuminteger const &arg2) const;
-    knumber * shift(knuminteger const &arg2) const;
+    knuminteger * intAnd(const knuminteger &arg2) const;
+    knuminteger * intOr(const knuminteger &arg2) const;
+    knumber * mod(const knuminteger &arg2) const;
+    knumber * shift(const knuminteger &arg2) const;
 
 private:
     mpz_t mpz_;
@@ -203,9 +203,9 @@ public:
         mpq_canonicalize(mpq_);
     }
 
-    knumfraction(knumber const & num);
+    knumfraction(const knumber &num);
 
-    knumfraction(QString const & num);
+    knumfraction(const QString &num);
 
     virtual ~knumfraction() {
         mpq_clear(mpq_);
@@ -227,12 +227,12 @@ public:
     virtual knumber * factorial() const;
     virtual knumber * change_sign() const;
     virtual knumber * reciprocal() const;
-    virtual knumber * add(knumber const & arg2) const;
-    virtual knumber * multiply(knumber const & arg2) const;
+    virtual knumber * add(const knumber &arg2) const;
+    virtual knumber * multiply(const knumber &arg2) const;
 
-    virtual knumber * power(knumber const & exponent) const;
+    virtual knumber * power(const knumber &exponent) const;
 
-    virtual int compare(knumber const &arg2) const;
+    virtual int compare(const knumber &arg2) const;
 
     virtual operator long int () const;
     virtual operator unsigned long int () const;
@@ -255,9 +255,9 @@ public:
         mpf_set_d(mpf_, num);
     }
 
-    knumfloat(knumber const & num);
+    knumfloat(const knumber &num);
 
-    knumfloat(QString const & num);
+    knumfloat(const QString &num);
 
     virtual ~knumfloat() {
         mpf_clear(mpf_);
@@ -277,13 +277,13 @@ public:
     virtual knumber * factorial() const;
     virtual knumber * change_sign() const;
     virtual knumber * reciprocal() const;
-    virtual knumber * add(knumber const & arg2) const;
-    virtual knumber * multiply(knumber const & arg2) const;
-    virtual knumber * divide(knumber const & arg2) const;
+    virtual knumber * add(const knumber &arg2) const;
+    virtual knumber * multiply(const knumber &arg2) const;
+    virtual knumber * divide(const knumber &arg2) const;
 
-    virtual knumber * power(knumber const & exponent) const;
+    virtual knumber * power(const knumber &exponent) const;
 
-    virtual int compare(knumber const &arg2) const;
+    virtual int compare(const knumber &arg2) const;
 
     virtual operator long int () const;
     virtual operator unsigned long int () const;

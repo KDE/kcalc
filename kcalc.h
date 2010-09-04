@@ -190,13 +190,13 @@ protected slots:
     void slotHyptoggled(bool flag);
     void slotConstclicked(int);
 
-    void slotConstantToDisplay(struct science_constant const &const_chosen);
-    void slotChooseScientificConst0(struct science_constant const &);
-    void slotChooseScientificConst1(struct science_constant const &);
-    void slotChooseScientificConst2(struct science_constant const &);
-    void slotChooseScientificConst3(struct science_constant const &);
-    void slotChooseScientificConst4(struct science_constant const &);
-    void slotChooseScientificConst5(struct science_constant const &);
+    void slotConstantToDisplay(const struct science_constant &const_chosen);
+    void slotChooseScientificConst0(const struct science_constant &);
+    void slotChooseScientificConst1(const struct science_constant &);
+    void slotChooseScientificConst2(const struct science_constant &);
+    void slotChooseScientificConst3(const struct science_constant &);
+    void slotChooseScientificConst4(const struct science_constant &);
+    void slotChooseScientificConst5(const struct science_constant &);
 
     void slotBitsetChanged(quint64);
     void slotUpdateBitset(const KNumber &);

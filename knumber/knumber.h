@@ -113,13 +113,13 @@ public:
 
     KNumber(double num);
 
-    KNumber(KNumber const & num);
+    KNumber(const KNumber &num);
 
-    KNumber(QString const & num);
+    KNumber(const QString &num);
 
     virtual ~KNumber();
 
-    KNumber & operator=(KNumber const & num);
+    KNumber & operator=(const KNumber &num);
 
     /**
      * Returns the type of the number, as explained in @p KNumber::NumType.
@@ -226,19 +226,19 @@ public:
      */
     KNumber const integerPart() const;
 
-    KNumber const power(KNumber const &exp) const;
+    KNumber const power(const KNumber &exp) const;
 
-    KNumber const operator+(KNumber const & arg2) const;
+    KNumber const operator+(const KNumber &arg2) const;
     KNumber const operator -() const;
-    KNumber const operator-(KNumber const & arg2) const;
-    KNumber const operator*(KNumber const & arg2) const;
-    KNumber const operator/(KNumber const & arg2) const;
-    KNumber const operator%(KNumber const & arg2) const;
+    KNumber const operator-(const KNumber &arg2) const;
+    KNumber const operator*(const KNumber &arg2) const;
+    KNumber const operator/(const KNumber &arg2) const;
+    KNumber const operator%(const KNumber &arg2) const;
 
-    KNumber const operator&(KNumber const & arg2) const;
-    KNumber const operator|(KNumber const & arg2) const;
-    KNumber const operator<<(KNumber const & arg2) const;
-    KNumber const operator>>(KNumber const & arg2) const;
+    KNumber const operator&(const KNumber &arg2) const;
+    KNumber const operator|(const KNumber &arg2) const;
+    KNumber const operator<<(const KNumber &arg2) const;
+    KNumber const operator>>(const KNumber &arg2) const;
 
     operator bool() const;
     operator qint32() const;
@@ -247,32 +247,32 @@ public:
     operator quint64() const;
     operator double() const;
 
-    bool operator==(KNumber const & arg2) const {
+    bool operator==(const KNumber &arg2) const {
         return (compare(arg2) == 0);
     }
 
-    bool operator!=(KNumber const & arg2) const {
+    bool operator!=(const KNumber &arg2) const {
         return (compare(arg2) != 0);
     }
 
-    bool operator>(KNumber const & arg2) const {
+    bool operator>(const KNumber &arg2) const {
         return (compare(arg2) > 0);
     }
 
-    bool operator<(KNumber const & arg2) const {
+    bool operator<(const KNumber &arg2) const {
         return (compare(arg2) < 0);
     }
 
-    bool operator>=(KNumber const & arg2) const {
+    bool operator>=(const KNumber &arg2) const {
         return (compare(arg2) >= 0);
     }
 
-    bool operator<=(KNumber const & arg2) const {
+    bool operator<=(const KNumber &arg2) const {
         return (compare(arg2) <= 0);
     }
 
-    KNumber & operator +=(KNumber const &arg);
-    KNumber & operator -=(KNumber const &arg);
+    KNumber & operator +=(const KNumber &arg);
+    KNumber & operator -=(const KNumber &arg);
     static KNumber Pi();
     static KNumber Euler();
 
@@ -281,7 +281,7 @@ public:
 
 private:
     void simplifyRational();
-    int compare(KNumber const & arg2) const;
+    int compare(const KNumber &arg2) const;
 
     detail::knumber *num_;
     static bool FloatOutput;

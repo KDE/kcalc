@@ -98,11 +98,11 @@ void KCalcDisplay::changeSettings()
     updateDisplay();
 }
 
-void KCalcDisplay::updateFromCore(CalcEngine const &core,
+void KCalcDisplay::updateFromCore(const CalcEngine &core,
                                   bool store_result_in_history)
 {
     bool tmp_error;
-    KNumber const & output = core.lastOutput(tmp_error);
+    const KNumber &output = core.lastOutput(tmp_error);
     if (tmp_error) sendEvent(EventError);
     if (setAmount(output)
             && store_result_in_history
@@ -351,12 +351,12 @@ void KCalcDisplay::setTwosComplement(bool flag)
     twoscomplement_ = flag;
 }
 
-KNumber const & KCalcDisplay::getAmount() const
+const KNumber &KCalcDisplay::getAmount() const
 {
     return display_amount_;
 }
 
-bool KCalcDisplay::setAmount(KNumber const & new_amount)
+bool KCalcDisplay::setAmount(const KNumber &new_amount)
 {
     QString display_str;
 
@@ -393,7 +393,7 @@ bool KCalcDisplay::setAmount(KNumber const & new_amount)
     return true;
 }
 
-void KCalcDisplay::setText(QString const &string)
+void KCalcDisplay::setText(const QString &string)
 {
     // note that "C" locale is being used internally
     text_ = string;
@@ -456,7 +456,7 @@ int KCalcDisplay::setBase(NumBase new_base)
     return num_base_;
 }
 
-void KCalcDisplay::setStatusText(int i, const QString& text)
+void KCalcDisplay::setStatusText(int i, const QString &text)
 {
     if (i < NUM_STATUS_TEXT)
         str_status_[i] = text;

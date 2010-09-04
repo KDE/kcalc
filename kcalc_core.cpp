@@ -460,7 +460,7 @@ void CalcEngine::Complement(const KNumber &input)
 
 
 // move a number into the interval [0,360) by adding multiples of 360
-static KNumber moveIntoDegInterval(KNumber const &num)
+static KNumber moveIntoDegInterval(const KNumber &num)
 {
     KNumber tmp_num = num - (num / KNumber(360)).integerPart() * KNumber(360);
     if (tmp_num < KNumber::Zero)
@@ -469,7 +469,7 @@ static KNumber moveIntoDegInterval(KNumber const &num)
 }
 
 // move a number into the interval [0,400) by adding multiples of 400
-static KNumber moveIntoGradInterval(KNumber const &num)
+static KNumber moveIntoGradInterval(const KNumber &num)
 {
     KNumber tmp_num = num - (num / KNumber(400)).integerPart() * KNumber(400);
     if (tmp_num < KNumber::Zero)
