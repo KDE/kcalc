@@ -233,7 +233,7 @@ KNumber CalcEngine::lastOutput(bool &error) const
     return last_number_;
 }
 
-void CalcEngine::ArcCosDeg(KNumber input)
+void CalcEngine::ArcCosDeg(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType  ||
             input < -KNumber::One  ||  input > KNumber::One) {
@@ -258,7 +258,7 @@ void CalcEngine::ArcCosDeg(KNumber input)
     last_number_ = Rad2Deg(KNumber(acos(static_cast<double>(input))));
 }
 
-void CalcEngine::ArcCosRad(KNumber input)
+void CalcEngine::ArcCosRad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType  ||
             input < -KNumber::One  ||  input > KNumber::One) {
@@ -268,7 +268,7 @@ void CalcEngine::ArcCosRad(KNumber input)
     last_number_ = KNumber(acos(static_cast<double>(input)));
 }
 
-void CalcEngine::ArcCosGrad(KNumber input)
+void CalcEngine::ArcCosGrad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType  ||
             input < -KNumber::One  ||  input > KNumber::One) {
@@ -292,7 +292,7 @@ void CalcEngine::ArcCosGrad(KNumber input)
     last_number_ = Rad2Gra(KNumber(acos(static_cast<double>(input))));
 }
 
-void CalcEngine::ArcSinDeg(KNumber input)
+void CalcEngine::ArcSinDeg(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType  ||
             input < -KNumber::One  ||  input > KNumber::One) {
@@ -316,7 +316,7 @@ void CalcEngine::ArcSinDeg(KNumber input)
     last_number_ = Rad2Deg(KNumber(asin(static_cast<double>(input))));
 }
 
-void CalcEngine::ArcSinRad(KNumber input)
+void CalcEngine::ArcSinRad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType  ||
             input < -KNumber::One  ||  input > KNumber::One) {
@@ -326,7 +326,7 @@ void CalcEngine::ArcSinRad(KNumber input)
     last_number_ = KNumber(asin(static_cast<double>(input)));
 }
 
-void CalcEngine::ArcSinGrad(KNumber input)
+void CalcEngine::ArcSinGrad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType  ||
             input < -KNumber::One  ||  input > KNumber::One) {
@@ -350,7 +350,7 @@ void CalcEngine::ArcSinGrad(KNumber input)
     last_number_ = Rad2Gra(KNumber(asin(static_cast<double>(input))));
 }
 
-void CalcEngine::ArcTangensDeg(KNumber input)
+void CalcEngine::ArcTangensDeg(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         if (input == KNumber("nan")) last_number_ = KNumber("nan");
@@ -362,7 +362,7 @@ void CalcEngine::ArcTangensDeg(KNumber input)
     last_number_ = Rad2Deg(KNumber(atan(static_cast<double>(input))));
 }
 
-void CalcEngine::ArcTangensRad(KNumber input)
+void CalcEngine::ArcTangensRad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         if (input == KNumber("nan")) last_number_ = KNumber("nan");
@@ -376,7 +376,7 @@ void CalcEngine::ArcTangensRad(KNumber input)
     last_number_ = KNumber(atan(static_cast<double>(input)));
 }
 
-void CalcEngine::ArcTangensGrad(KNumber input)
+void CalcEngine::ArcTangensGrad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         if (input == KNumber("nan")) last_number_ = KNumber("nan");
@@ -388,7 +388,7 @@ void CalcEngine::ArcTangensGrad(KNumber input)
     last_number_ = Rad2Gra(KNumber(atan(static_cast<double>(input))));
 }
 
-void CalcEngine::AreaCosHyp(KNumber input)
+void CalcEngine::AreaCosHyp(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         if (input == KNumber("nan")) last_number_ = KNumber("nan");
@@ -408,7 +408,7 @@ void CalcEngine::AreaCosHyp(KNumber input)
     last_number_ = KNumber(acosh(static_cast<double>(input)));
 }
 
-void CalcEngine::AreaSinHyp(KNumber input)
+void CalcEngine::AreaSinHyp(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         if (input == KNumber("nan")) last_number_ = KNumber("nan");
@@ -424,7 +424,7 @@ void CalcEngine::AreaSinHyp(KNumber input)
     last_number_ = KNumber(asinh(static_cast<double>(input)));
 }
 
-void CalcEngine::AreaTangensHyp(KNumber input)
+void CalcEngine::AreaTangensHyp(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         last_number_ = KNumber("nan");
@@ -446,7 +446,7 @@ void CalcEngine::AreaTangensHyp(KNumber input)
     last_number_ = KNumber(atanh(static_cast<double>(input)));
 }
 
-void CalcEngine::Complement(KNumber input)
+void CalcEngine::Complement(const KNumber &input)
 {
     if (input.type() != KNumber::IntegerType) {
         last_number_ = KNumber("nan");
@@ -478,7 +478,7 @@ static KNumber const moveIntoGradInterval(KNumber const &num)
 }
 
 
-void CalcEngine::CosDeg(KNumber input)
+void CalcEngine::CosDeg(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         last_number_ = KNumber("nan");
@@ -505,7 +505,7 @@ void CalcEngine::CosDeg(KNumber input)
     last_number_ = KNumber(cos(static_cast<double>(trunc_input)));
 }
 
-void CalcEngine::CosRad(KNumber input)
+void CalcEngine::CosRad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         last_number_ = KNumber("nan");
@@ -514,7 +514,7 @@ void CalcEngine::CosRad(KNumber input)
     last_number_ = KNumber(cos(static_cast<double>(input)));
 }
 
-void CalcEngine::CosGrad(KNumber input)
+void CalcEngine::CosGrad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         last_number_ = KNumber("nan");
@@ -541,7 +541,7 @@ void CalcEngine::CosGrad(KNumber input)
     last_number_ = KNumber(cos(static_cast<double>(trunc_input)));
 }
 
-void CalcEngine::CosHyp(KNumber input)
+void CalcEngine::CosHyp(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         if (input == KNumber("nan")) last_number_ = KNumber("nan");
@@ -553,17 +553,17 @@ void CalcEngine::CosHyp(KNumber input)
     last_number_ = KNumber(cosh(static_cast<double>(input)));
 }
 
-void CalcEngine::Cube(KNumber input)
+void CalcEngine::Cube(const KNumber &input)
 {
     last_number_ = input * input * input;
 }
 
-void CalcEngine::CubeRoot(KNumber input)
+void CalcEngine::CubeRoot(const KNumber &input)
 {
     last_number_ = input.cbrt();
 }
 
-void CalcEngine::Exp(KNumber input)
+void CalcEngine::Exp(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         if (input == KNumber("nan")) last_number_ = KNumber("nan");
@@ -574,7 +574,7 @@ void CalcEngine::Exp(KNumber input)
     last_number_ = KNumber(exp(static_cast<double>(input)));
 }
 
-void CalcEngine::Exp10(KNumber input)
+void CalcEngine::Exp10(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         if (input == KNumber("nan")) last_number_ = KNumber("nan");
@@ -586,7 +586,7 @@ void CalcEngine::Exp10(KNumber input)
 }
 
 
-void CalcEngine::Factorial(KNumber input)
+void CalcEngine::Factorial(const KNumber &input)
 {
     if (input == KNumber("inf")) return;
     if (input < KNumber::Zero || input.type() == KNumber::SpecialType) {
@@ -599,12 +599,12 @@ void CalcEngine::Factorial(KNumber input)
     last_number_ = tmp_amount.factorial();
 }
 
-void CalcEngine::InvertSign(KNumber input)
+void CalcEngine::InvertSign(const KNumber &input)
 {
     last_number_ = -input;
 }
 
-void CalcEngine::Ln(KNumber input)
+void CalcEngine::Ln(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         if (input == KNumber("nan")) last_number_ = KNumber("nan");
@@ -623,7 +623,7 @@ void CalcEngine::Ln(KNumber input)
     }
 }
 
-void CalcEngine::Log10(KNumber input)
+void CalcEngine::Log10(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         if (input == KNumber("nan")) last_number_ = KNumber("nan");
@@ -656,18 +656,18 @@ void CalcEngine::ParenClose(KNumber input)
     return;
 }
 
-void CalcEngine::ParenOpen(KNumber input)
+void CalcEngine::ParenOpen(const KNumber &input)
 {
     enterOperation(input, FUNC_BRACKET);
 }
 
-void CalcEngine::Reciprocal(KNumber input)
+void CalcEngine::Reciprocal(const KNumber &input)
 {
     last_number_ = KNumber::One / input;
 }
 
 
-void CalcEngine::SinDeg(KNumber input)
+void CalcEngine::SinDeg(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         last_number_ = KNumber("nan");
@@ -695,7 +695,7 @@ void CalcEngine::SinDeg(KNumber input)
     last_number_ = KNumber(sin(static_cast<double>(trunc_input)));
 }
 
-void CalcEngine::SinRad(KNumber input)
+void CalcEngine::SinRad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         last_number_ = KNumber("nan");
@@ -705,7 +705,7 @@ void CalcEngine::SinRad(KNumber input)
     last_number_ = KNumber(sin(static_cast<double>(input)));
 }
 
-void CalcEngine::SinGrad(KNumber input)
+void CalcEngine::SinGrad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         last_number_ = KNumber("nan");
@@ -734,7 +734,7 @@ void CalcEngine::SinGrad(KNumber input)
     last_number_ = KNumber(sin(static_cast<double>(trunc_input)));
 }
 
-void CalcEngine::SinHyp(KNumber input)
+void CalcEngine::SinHyp(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         if (input == KNumber("nan")) last_number_ = KNumber("nan");
@@ -746,42 +746,42 @@ void CalcEngine::SinHyp(KNumber input)
     last_number_ = KNumber(sinh(static_cast<double>(input)));
 }
 
-void CalcEngine::Square(KNumber input)
+void CalcEngine::Square(const KNumber &input)
 {
     last_number_ = input * input;
 }
 
-void CalcEngine::SquareRoot(KNumber input)
+void CalcEngine::SquareRoot(const KNumber &input)
 {
     last_number_ = input.sqrt();
 }
 
-void CalcEngine::StatClearAll(KNumber input)
+void CalcEngine::StatClearAll(const KNumber &input)
 {
     Q_UNUSED(input);
     stats.clearAll();
 }
 
-void CalcEngine::StatCount(KNumber input)
+void CalcEngine::StatCount(const KNumber &input)
 {
     Q_UNUSED(input);
     last_number_ = KNumber(stats.count());
 }
 
-void CalcEngine::StatDataNew(KNumber input)
+void CalcEngine::StatDataNew(const KNumber &input)
 {
     stats.enterData(input);
     last_number_ = KNumber(stats.count());
 }
 
-void CalcEngine::StatDataDel(KNumber input)
+void CalcEngine::StatDataDel(const KNumber &input)
 {
     Q_UNUSED(input);
     stats.clearLast();
     last_number_ = KNumber::Zero;
 }
 
-void CalcEngine::StatMean(KNumber input)
+void CalcEngine::StatMean(const KNumber &input)
 {
     Q_UNUSED(input);
     last_number_ = stats.mean();
@@ -789,7 +789,7 @@ void CalcEngine::StatMean(KNumber input)
     error_ = stats.error();
 }
 
-void CalcEngine::StatMedian(KNumber input)
+void CalcEngine::StatMedian(const KNumber &input)
 {
     Q_UNUSED(input);
     last_number_ = stats.median();
@@ -797,7 +797,7 @@ void CalcEngine::StatMedian(KNumber input)
     error_ = stats.error();
 }
 
-void CalcEngine::StatStdDeviation(KNumber input)
+void CalcEngine::StatStdDeviation(const KNumber &input)
 {
     Q_UNUSED(input);
     last_number_ = stats.std();
@@ -805,7 +805,7 @@ void CalcEngine::StatStdDeviation(KNumber input)
     error_ = stats.error();
 }
 
-void CalcEngine::StatStdSample(KNumber input)
+void CalcEngine::StatStdSample(const KNumber &input)
 {
     Q_UNUSED(input);
     last_number_ = stats.sample_std();
@@ -813,13 +813,13 @@ void CalcEngine::StatStdSample(KNumber input)
     error_ = stats.error();
 }
 
-void CalcEngine::StatSum(KNumber input)
+void CalcEngine::StatSum(const KNumber &input)
 {
     Q_UNUSED(input);
     last_number_ = stats.sum();
 }
 
-void CalcEngine::StatSumSquares(KNumber input)
+void CalcEngine::StatSumSquares(const KNumber &input)
 {
     Q_UNUSED(input);
     last_number_ = stats.sum_of_squares();
@@ -827,7 +827,7 @@ void CalcEngine::StatSumSquares(KNumber input)
     error_ = stats.error();
 }
 
-void CalcEngine::TangensDeg(KNumber input)
+void CalcEngine::TangensDeg(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         last_number_ = KNumber("nan");
@@ -841,7 +841,7 @@ void CalcEngine::TangensDeg(KNumber input)
     last_number_ = arg1 / arg2;
 }
 
-void CalcEngine::TangensRad(KNumber input)
+void CalcEngine::TangensRad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         last_number_ = KNumber("nan");
@@ -855,7 +855,7 @@ void CalcEngine::TangensRad(KNumber input)
     last_number_ = arg1 / arg2;
 }
 
-void CalcEngine::TangensGrad(KNumber input)
+void CalcEngine::TangensGrad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         last_number_ = KNumber("nan");
@@ -869,7 +869,7 @@ void CalcEngine::TangensGrad(KNumber input)
     last_number_ = arg1 / arg2;
 }
 
-void CalcEngine::TangensHyp(KNumber input)
+void CalcEngine::TangensHyp(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
         if (input == KNumber("nan")) last_number_ = KNumber("nan");
@@ -881,8 +881,8 @@ void CalcEngine::TangensHyp(KNumber input)
     last_number_ = KNumber(tanh(static_cast<double>(input)));
 }
 
-KNumber CalcEngine::evalOperation(KNumber arg1, Operation operation,
-                                  KNumber arg2)
+KNumber CalcEngine::evalOperation(const KNumber &arg1, Operation operation,
+                                  const KNumber &arg2)
 {
     if (!percent_mode_ || Operator[operation].prcnt_ptr == NULL) {
         return (Operator[operation].arith_ptr)(arg1, arg2);
