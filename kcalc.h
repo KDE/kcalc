@@ -60,6 +60,8 @@ class KToggleAction;
 #include "ui_constants.h"
 #include "ui_colors.h"
 
+#include <QFlags>
+
 #include <kxmlguiwindow.h>
 
 class  General: public QWidget, public Ui::General
@@ -108,6 +110,14 @@ signals:
     void switchMode(ButtonModeFlags, bool);
     void switchShowAccels(bool);
 
+public:
+    enum UpdateFlag {
+        UPDATE_FROM_CORE    = 1,
+        UPDATE_STORE_RESULT = 2
+    };
+    
+    Q_DECLARE_FLAGS(UpdateFlags, UpdateFlag)
+
 private:
     virtual bool eventFilter(QObject *o, QEvent *e);
     void updateGeometry();
@@ -120,8 +130,8 @@ private:
     void setAngle();
     void setBase();
 
-    void updateDisplay(bool get_amount_from_core = false,
-                       bool store_result_in_history = false);
+    void updateDisplay(UpdateFlags flags);/*bool get_amount_from_core = false,
+                       bool store_result_in_history = false);*/
     // button sets
     void showStatButtons(bool toggled);
     void showScienceButtons(bool toggled);
@@ -254,5 +264,7 @@ private:
 
     CalcEngine core;
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(KCalculator::UpdateFlags)
 
 #endif  // KCALC_H_
