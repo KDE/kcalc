@@ -136,8 +136,6 @@ detail::knumfloat::knumfloat(const knumber &num)
     }
 }
 
-
-
 detail::knumerror::knumerror(const QString &num)
 {
     if (num == "nan")
@@ -192,7 +190,7 @@ detail::knumfloat::knumfloat(const QString &num)
     mpf_set_str(mpf_, num.toAscii(), 10);
 }
 
-const detail::knuminteger &detail::knuminteger::operator = (const knuminteger &num)
+const detail::knuminteger &detail::knuminteger::operator=(const knuminteger &num)
 {
     if (this == &num)
         return *this;
@@ -208,11 +206,11 @@ QString detail::knumerror::ascii(int prec) const
     // TODO: i18n these strings here and elsewhere, as they're user visible
     switch (error_) {
     case UndefinedNumber:
-        return QString("nan");
+        return "nan";
     case Infinity:
-        return QString("inf");
+        return "inf";
     case MinusInfinity:
-        return QString("-inf");
+        return "-inf";
     default:
         return QString();
     }
@@ -224,7 +222,7 @@ QString detail::knuminteger::ascii(int prec) const
     char *tmp_ptr = 0;
 
     // get the size of the string
-    size_t size = gmp_snprintf(tmp_ptr, 0, "%Zd", mpz_) + 1;
+    const size_t size = gmp_snprintf(tmp_ptr, 0, "%Zd", mpz_) + 1;
     tmp_ptr = new char[size];
     gmp_snprintf(tmp_ptr, size, "%Zd", mpz_);
 
@@ -238,7 +236,7 @@ QString detail::knumfraction::ascii(int prec) const
 {
     Q_UNUSED(prec);
     char *tmp_ptr = mpq_get_str(0, 10, mpq_);
-    QString ret_str = tmp_ptr;
+    const QString ret_str = tmp_ptr;
     free(tmp_ptr);
 
     return ret_str;
@@ -276,57 +274,55 @@ bool detail::knumfraction::isInteger() const
 }
 
 
-detail::knumber * detail::knumerror::abs() const
+detail::knumber *detail::knumerror::abs() const
 {
-    knumerror * tmp_num = new knumerror(*this);
+    knumerror *tmp_num = new knumerror(*this);
 
     if (error_ == MinusInfinity) tmp_num->error_ = Infinity;
 
     return tmp_num;
 }
 
-detail::knumber * detail::knuminteger::abs() const
+detail::knumber *detail::knuminteger::abs() const
 {
-    knuminteger * tmp_num = new knuminteger();
+    knuminteger *tmp_num = new knuminteger();
 
     mpz_abs(tmp_num->mpz_, mpz_);
 
     return tmp_num;
 }
 
-detail::knumber * detail::knumfraction::abs() const
+detail::knumber *detail::knumfraction::abs() const
 {
-    knumfraction * tmp_num = new knumfraction();
+    knumfraction *tmp_num = new knumfraction();
 
     mpq_abs(tmp_num->mpq_, mpq_);
 
     return tmp_num;
 }
 
-detail::knumber * detail::knumfloat::abs() const
+detail::knumber *detail::knumfloat::abs() const
 {
-    detail::knumfloat * tmp_num = new detail::knumfloat();
+    detail::knumfloat *tmp_num = new detail::knumfloat();
 
     mpf_abs(tmp_num->mpf_, mpf_);
 
     return tmp_num;
 }
 
-
-
-detail::knumber * detail::knumerror::intPart() const
+detail::knumber *detail::knumerror::intPart() const
 {
     return new knumerror(*this);
 }
 
-detail::knumber * detail::knuminteger::intPart() const
+detail::knumber *detail::knuminteger::intPart() const
 {
     detail::knuminteger *tmp_num = new detail::knuminteger();
     mpz_set(tmp_num->mpz_, mpz_);
     return tmp_num;
 }
 
-detail::knumber * detail::knumfraction::intPart() const
+detail::knumber *detail::knumfraction::intPart() const
 {
     detail::knuminteger *tmp_num = new detail::knuminteger();
 
@@ -335,7 +331,7 @@ detail::knumber * detail::knumfraction::intPart() const
     return tmp_num;
 }
 
-detail::knumber * detail::knumfloat::intPart() const
+detail::knumber *detail::knumfloat::intPart() const
 {
     detail::knuminteger *tmp_num = new detail::knuminteger();
 
@@ -343,8 +339,6 @@ detail::knumber * detail::knumfloat::intPart() const
 
     return tmp_num;
 }
-
-
 
 
 int detail::knumerror::sign() const
@@ -392,24 +386,22 @@ void cube_root(mpf_t &num)
 }
 }
 
-detail::knumber * detail::knumerror::cbrt() const
+detail::knumber *detail::knumerror::cbrt() const
 {
     // infty ^3 = infty;  -infty^3 = -infty
-    knumerror *tmp_num = new knumerror(*this);
-
-    return tmp_num;
+    return new knumerror(*this);
 }
 
-detail::knumber * detail::knuminteger::cbrt() const
+detail::knumber *detail::knuminteger::cbrt() const
 {
-    knuminteger * tmp_num = new knuminteger();
+    knuminteger *const tmp_num = new knuminteger();
 
     if (mpz_root(tmp_num->mpz_, mpz_, 3))
         return tmp_num; // root is perfect
 
     delete tmp_num; // root was not perfect, result will be float
 
-    knumfloat * tmp_num2 = new knumfloat();
+    knumfloat *const tmp_num2 = new knumfloat();
     mpf_set_z(tmp_num2->mpf_, mpz_);
 
     cube_root(tmp_num2->mpf_);
@@ -417,16 +409,16 @@ detail::knumber * detail::knuminteger::cbrt() const
     return tmp_num2;
 }
 
-detail::knumber * detail::knumfraction::cbrt() const
+detail::knumber *detail::knumfraction::cbrt() const
 {
-    knumfraction * tmp_num = new knumfraction();
+    knumfraction *tmp_num = new knumfraction();
     if (mpz_root(mpq_numref(tmp_num->mpq_), mpq_numref(mpq_), 3)
-            &&  mpz_root(mpq_denref(tmp_num->mpq_), mpq_denref(mpq_), 3))
+            && mpz_root(mpq_denref(tmp_num->mpq_), mpq_denref(mpq_), 3))
         return tmp_num; // root is perfect
 
     delete tmp_num; // root was not perfect, result will be float
 
-    knumfloat * tmp_num2 = new knumfloat();
+    knumfloat *tmp_num2 = new knumfloat();
     mpf_set_q(tmp_num2->mpf_, mpq_);
 
     cube_root(tmp_num2->mpf_);
@@ -434,19 +426,16 @@ detail::knumber * detail::knumfraction::cbrt() const
     return tmp_num2;
 }
 
-detail::knumber * detail::knumfloat::cbrt() const
+detail::knumber *detail::knumfloat::cbrt() const
 {
-    knumfloat * tmp_num = new knumfloat(*this);
+    knumfloat *tmp_num = new knumfloat(*this);
 
     cube_root(tmp_num->mpf_);
 
     return tmp_num;
 }
 
-
-
-
-detail::knumber * detail::knumerror::sqrt() const
+detail::knumber *detail::knumerror::sqrt() const
 {
     knumerror *tmp_num = new knumerror(*this);
 
@@ -455,61 +444,59 @@ detail::knumber * detail::knumerror::sqrt() const
     return tmp_num;
 }
 
-detail::knumber * detail::knuminteger::sqrt() const
+detail::knumber *detail::knuminteger::sqrt() const
 {
     if (mpz_sgn(mpz_) < 0) {
-        knumerror *tmp_num = new knumerror(UndefinedNumber);
+        knumerror *const tmp_num = new knumerror(UndefinedNumber);
         return tmp_num;
     }
+	
     if (mpz_perfect_square_p(mpz_)) {
-        knuminteger * tmp_num = new knuminteger();
-
+        knuminteger *const tmp_num = new knuminteger();
         mpz_sqrt(tmp_num->mpz_, mpz_);
-
         return tmp_num;
     } else {
-        knumfloat * tmp_num = new knumfloat();
+        knumfloat *const tmp_num = new knumfloat();
         mpf_set_z(tmp_num->mpf_, mpz_);
         mpf_sqrt(tmp_num->mpf_, tmp_num->mpf_);
-
         return tmp_num;
     }
 }
 
-detail::knumber * detail::knumfraction::sqrt() const
+detail::knumber *detail::knumfraction::sqrt() const
 {
     if (mpq_sgn(mpq_) < 0) {
         knumerror *tmp_num = new knumerror(UndefinedNumber);
         return tmp_num;
     }
     if (mpz_perfect_square_p(mpq_numref(mpq_))
-            &&  mpz_perfect_square_p(mpq_denref(mpq_))) {
-        knumfraction * tmp_num = new knumfraction();
+            && mpz_perfect_square_p(mpq_denref(mpq_))) {
+        knumfraction *tmp_num = new knumfraction();
         mpq_set(tmp_num->mpq_, mpq_);
         mpz_sqrt(mpq_numref(tmp_num->mpq_), mpq_numref(tmp_num->mpq_));
         mpz_sqrt(mpq_denref(tmp_num->mpq_), mpq_denref(tmp_num->mpq_));
 
         return tmp_num;
     } else {
-        knumfloat * tmp_num = new knumfloat();
+        knumfloat *tmp_num = new knumfloat();
         mpf_set_q(tmp_num->mpf_, mpq_);
         mpf_sqrt(tmp_num->mpf_, tmp_num->mpf_);
 
         return tmp_num;
     }
 
-    knumfraction * tmp_num = new knumfraction();
+    knumfraction *tmp_num = new knumfraction();
 
     return tmp_num;
 }
 
-detail::knumber * detail::knumfloat::sqrt() const
+detail::knumber *detail::knumfloat::sqrt() const
 {
     if (mpf_sgn(mpf_) < 0) {
         knumerror *tmp_num = new knumerror(UndefinedNumber);
         return tmp_num;
     }
-    knumfloat * tmp_num = new knumfloat();
+    knumfloat *tmp_num = new knumfloat();
 
     mpf_sqrt(tmp_num->mpf_, mpf_);
 
@@ -518,7 +505,7 @@ detail::knumber * detail::knumfloat::sqrt() const
 
 
 
-detail::knumber * detail::knumerror::factorial() const
+detail::knumber *detail::knumerror::factorial() const
 {
     return new knumerror(*this);
 }
@@ -531,7 +518,7 @@ static void factorial_abort_handler(int)
 }
 #endif
 
-detail::knumber * detail::knuminteger::factorial() const
+detail::knumber *detail::knuminteger::factorial() const
 {
     if (mpz_sgn(mpz_) < 0) {
         return new knumerror(UndefinedNumber);
@@ -541,8 +528,7 @@ detail::knumber * detail::knuminteger::factorial() const
     struct sigaction new_sa;
     struct sigaction old_sa;
 
-    memset(&new_sa, 0, sizeof(new_sa));
-
+	sigemptyset(&new_sa.sa_mask);
     new_sa.sa_handler = factorial_abort_handler;
     sigaction(SIGABRT, &new_sa, &old_sa);
 
@@ -552,7 +538,7 @@ detail::knumber * detail::knuminteger::factorial() const
     }
 #endif
     
-    knuminteger * tmp_num = new knuminteger();
+    knuminteger *tmp_num = new knuminteger();
     mpz_fac_ui(tmp_num->mpz_, mpz_get_ui(mpz_));
 
 #ifdef Q_OS_LINUX
@@ -562,7 +548,7 @@ detail::knumber * detail::knuminteger::factorial() const
     return tmp_num;
 }
 
-detail::knumber * detail::knumfraction::factorial() const
+detail::knumber *detail::knumfraction::factorial() const
 {
     if (mpq_sgn(mpq_) < 0) {
         return new knumerror(UndefinedNumber);
@@ -579,7 +565,7 @@ detail::knumber * detail::knumfraction::factorial() const
     return tmp_num;
 }
 
-detail::knumber * detail::knumfloat::factorial() const
+detail::knumber *detail::knumfloat::factorial() const
 {
     if (mpf_sgn(mpf_) < 0) {
         return new knumerror(UndefinedNumber);
@@ -596,9 +582,9 @@ detail::knumber * detail::knumfloat::factorial() const
     return tmp_num;
 }
 
-detail::knumber * detail::knumerror::change_sign() const
+detail::knumber *detail::knumerror::change_sign() const
 {
-    knumerror * tmp_num = new knumerror();
+    knumerror *tmp_num = new knumerror();
 
     if (error_ == Infinity) tmp_num->error_ = MinusInfinity;
     if (error_ == MinusInfinity) tmp_num->error_ = Infinity;
@@ -606,18 +592,18 @@ detail::knumber * detail::knumerror::change_sign() const
     return tmp_num;
 }
 
-detail::knumber * detail::knuminteger::change_sign() const
+detail::knumber *detail::knuminteger::change_sign() const
 {
-    knuminteger * tmp_num = new knuminteger();
+    knuminteger *tmp_num = new knuminteger();
 
     mpz_neg(tmp_num->mpz_, mpz_);
 
     return tmp_num;
 }
 
-detail::knumber * detail::knumfraction::change_sign() const
+detail::knumber *detail::knumfraction::change_sign() const
 {
-    knumfraction * tmp_num = new knumfraction();
+    knumfraction *tmp_num = new knumfraction();
 
     mpq_neg(tmp_num->mpq_, mpq_);
 
@@ -626,7 +612,7 @@ detail::knumber * detail::knumfraction::change_sign() const
 
 detail::knumber *detail::knumfloat::change_sign() const
 {
-    knumfloat * tmp_num = new knumfloat();
+    knumfloat *tmp_num = new knumfloat();
 
     mpf_neg(tmp_num->mpf_, mpf_);
 
@@ -634,7 +620,7 @@ detail::knumber *detail::knumfloat::change_sign() const
 }
 
 
-detail::knumber * detail::knumerror::reciprocal() const
+detail::knumber *detail::knumerror::reciprocal() const
 {
     switch (error_) {
     case  Infinity:
@@ -646,22 +632,22 @@ detail::knumber * detail::knumerror::reciprocal() const
     }
 }
 
-detail::knumber * detail::knuminteger::reciprocal() const
+detail::knumber *detail::knuminteger::reciprocal() const
 {
     if (mpz_cmp_si(mpz_, 0) == 0) return new knumerror(Infinity);
 
-    knumfraction * tmp_num = new knumfraction(*this);
+    knumfraction *tmp_num = new knumfraction(*this);
 
     mpq_inv(tmp_num->mpq_, tmp_num->mpq_);
 
     return tmp_num;
 }
 
-detail::knumber * detail::knumfraction::reciprocal() const
+detail::knumber *detail::knumfraction::reciprocal() const
 {
     if (mpq_cmp_si(mpq_, 0, 1) == 0) return new knumerror(Infinity);
 
-    knumfraction * tmp_num = new knumfraction();
+    knumfraction *tmp_num = new knumfraction();
 
     mpq_inv(tmp_num->mpq_, mpq_);
 
@@ -672,7 +658,7 @@ detail::knumber *detail::knumfloat::reciprocal() const
 {
     if (mpf_cmp_si(mpf_, 0) == 0) return new knumerror(Infinity);
 
-    knumfloat * tmp_num = new knumfloat();
+    knumfloat *tmp_num = new knumfloat();
 
     mpf_div(tmp_num->mpf_, knumfloat("1.0").mpf_, mpf_);
 
@@ -681,7 +667,7 @@ detail::knumber *detail::knumfloat::reciprocal() const
 
 
 
-detail::knumber * detail::knumerror::add(const knumber &arg2) const
+detail::knumber *detail::knumerror::add(const knumber &arg2) const
 {
     if (arg2.type() != SpecialType)
         return new knumerror(error_);
@@ -698,12 +684,12 @@ detail::knumber * detail::knumerror::add(const knumber &arg2) const
     return new knumerror(error_);
 }
 
-detail::knumber * detail::knuminteger::add(const knumber &arg2) const
+detail::knumber *detail::knuminteger::add(const knumber &arg2) const
 {
     if (arg2.type() != IntegerType)
         return arg2.add(*this);
 
-    knuminteger * tmp_num = new knuminteger();
+    knuminteger *tmp_num = new knuminteger();
 
     mpz_add(tmp_num->mpz_, mpz_,
             dynamic_cast<const knuminteger &>(arg2).mpz_);
@@ -711,7 +697,7 @@ detail::knumber * detail::knuminteger::add(const knumber &arg2) const
     return tmp_num;
 }
 
-detail::knumber * detail::knumfraction::add(const knumber &arg2) const
+detail::knumber *detail::knumfraction::add(const knumber &arg2) const
 {
     if (arg2.type() == IntegerType) {
         // need to cast arg2 to fraction
@@ -720,10 +706,10 @@ detail::knumber * detail::knumfraction::add(const knumber &arg2) const
     }
 
 
-    if (arg2.type() == FloatType  ||  arg2.type() == SpecialType)
+    if (arg2.type() == FloatType || arg2.type() == SpecialType)
         return arg2.add(*this);
 
-    knumfraction * tmp_num = new knumfraction();
+    knumfraction *tmp_num = new knumfraction();
 
     mpq_add(tmp_num->mpq_, mpq_,
             dynamic_cast<const knumfraction &>(arg2).mpq_);
@@ -742,7 +728,7 @@ detail::knumber *detail::knumfloat::add(const knumber &arg2) const
         return tmp_num.add(*this);
     }
 
-    knumfloat * tmp_num = new knumfloat();
+    knumfloat *tmp_num = new knumfloat();
 
     mpf_add(tmp_num->mpf_, mpf_,
             dynamic_cast<const knumfloat &>(arg2).mpf_);
@@ -751,7 +737,7 @@ detail::knumber *detail::knumfloat::add(const knumber &arg2) const
 }
 
 
-detail::knumber * detail::knumerror::multiply(const knumber &arg2) const
+detail::knumber *detail::knumerror::multiply(const knumber &arg2) const
 {
     //improve this
     switch (arg2.type()) {
@@ -770,8 +756,8 @@ detail::knumber * detail::knumerror::multiply(const knumber &arg2) const
         int sign_arg2 = arg2.sign();
         if (error_ == UndefinedNumber || sign_arg2 == 0)
             return new knumerror(UndefinedNumber);
-        if ((error_ == Infinity  &&  sign_arg2 > 0)  ||
-                (error_ == MinusInfinity  &&  sign_arg2 < 0))
+        if ((error_ == Infinity && sign_arg2 > 0)  ||
+                (error_ == MinusInfinity && sign_arg2 < 0))
             return new knumerror(Infinity);
 
         return new knumerror(MinusInfinity);
@@ -782,12 +768,12 @@ detail::knumber * detail::knumerror::multiply(const knumber &arg2) const
 }
 
 
-detail::knumber * detail::knuminteger::multiply(const knumber &arg2) const
+detail::knumber *detail::knuminteger::multiply(const knumber &arg2) const
 {
     if (arg2.type() != IntegerType)
         return arg2.multiply(*this);
 
-    knuminteger * tmp_num = new knuminteger();
+    knuminteger *tmp_num = new knuminteger();
 
     mpz_mul(tmp_num->mpz_, mpz_,
             dynamic_cast<const knuminteger &>(arg2).mpz_);
@@ -795,7 +781,7 @@ detail::knumber * detail::knuminteger::multiply(const knumber &arg2) const
     return tmp_num;
 }
 
-detail::knumber * detail::knumfraction::multiply(const knumber &arg2) const
+detail::knumber *detail::knumfraction::multiply(const knumber &arg2) const
 {
     if (arg2.type() == IntegerType) {
         // need to cast arg2 to fraction
@@ -804,10 +790,10 @@ detail::knumber * detail::knumfraction::multiply(const knumber &arg2) const
     }
 
 
-    if (arg2.type() == FloatType  ||  arg2.type() == SpecialType)
+    if (arg2.type() == FloatType || arg2.type() == SpecialType)
         return arg2.multiply(*this);
 
-    knumfraction * tmp_num = new knumfraction();
+    knumfraction *tmp_num = new knumfraction();
 
     mpq_mul(tmp_num->mpq_, mpq_,
             dynamic_cast<const knumfraction &>(arg2).mpq_);
@@ -830,7 +816,7 @@ detail::knumber *detail::knumfloat::multiply(const knumber &arg2) const
         return tmp_num.multiply(*this);
     }
 
-    knumfloat * tmp_num = new knumfloat();
+    knumfloat *tmp_num = new knumfloat();
 
     mpf_mul(tmp_num->mpf_, mpf_,
             dynamic_cast<const knumfloat &>(arg2).mpf_);
@@ -838,14 +824,10 @@ detail::knumber *detail::knumfloat::multiply(const knumber &arg2) const
     return tmp_num;
 }
 
-
-
-
-
-detail::knumber * detail::knumber::divide(const knumber &arg2) const
+detail::knumber *detail::knumber::divide(const knumber &arg2) const
 {
-    knumber * tmp_num = arg2.reciprocal();
-    knumber * rslt_num = this->multiply(*tmp_num);
+    knumber *tmp_num = arg2.reciprocal();
+    knumber *rslt_num = this->multiply(*tmp_num);
 
     delete tmp_num;
 
@@ -857,7 +839,7 @@ detail::knumber *detail::knumfloat::divide(const knumber &arg2) const
     if (mpf_cmp_si(mpf_, 0) == 0) return new knumerror(Infinity);
 
     // automatically casts arg2 to float
-    knumfloat * tmp_num = new knumfloat(arg2);
+    knumfloat *tmp_num = new knumfloat(arg2);
 
     mpf_div(tmp_num->mpf_, mpf_, tmp_num->mpf_);
 
@@ -867,12 +849,12 @@ detail::knumber *detail::knumfloat::divide(const knumber &arg2) const
 
 
 
-detail::knumber * detail::knumerror::power(const knumber &/*exponent*/) const
+detail::knumber *detail::knumerror::power(const knumber &/*exponent*/) const
 {
     return new knumerror(UndefinedNumber);
 }
 
-detail::knumber * detail::knuminteger::power(const knumber &exponent) const
+detail::knumber *detail::knuminteger::power(const knumber &exponent) const
 {
     if (exponent.type() == IntegerType) {
 
@@ -891,7 +873,7 @@ detail::knumber * detail::knuminteger::power(const knumber &exponent) const
         unsigned long int tmp_int = mpz_get_ui(tmp_mpz);
         mpz_clear(tmp_mpz);
 
-        knuminteger * tmp_num = new knuminteger();
+        knuminteger *tmp_num = new knuminteger();
         mpz_pow_ui(tmp_num->mpz_, mpz_, tmp_int);
         return tmp_num;
     }
@@ -916,7 +898,7 @@ detail::knumber * detail::knuminteger::power(const knumber &exponent) const
         mpz_clear(tmp_mpz);
 
         // first check if result will be an integer
-        knuminteger * tmp_num = new knuminteger();
+        knuminteger *tmp_num = new knuminteger();
         int flag = mpz_root(tmp_num->mpz_, mpz_, tmp_int);
         if (flag == 0) {   // result is not exact
             delete tmp_num;
@@ -953,7 +935,7 @@ detail::knumber * detail::knuminteger::power(const knumber &exponent) const
     return new knumerror(Infinity);
 }
 
-detail::knumber * detail::knumfraction::power(const knumber &exponent) const
+detail::knumber *detail::knumfraction::power(const knumber &exponent) const
 {
     knuminteger tmp_num = knuminteger();
 
@@ -978,7 +960,7 @@ detail::knumber * detail::knumfraction::power(const knumber &exponent) const
     return result;
 }
 
-detail::knumber * detail::knumfloat::power(const knumber &exponent) const
+detail::knumber *detail::knumfloat::power(const knumber &exponent) const
 {
     double result = pow(static_cast<double>(*this),
                         static_cast<double>(exponent));
@@ -1241,36 +1223,36 @@ detail::knumfloat::operator double() const
 
 
 
-detail::knuminteger * detail::knuminteger::intAnd(const knuminteger &arg2) const
+detail::knuminteger *detail::knuminteger::intAnd(const knuminteger &arg2) const
 {
-    knuminteger * tmp_num = new knuminteger();
+    knuminteger *tmp_num = new knuminteger();
 
     mpz_and(tmp_num->mpz_, mpz_, arg2.mpz_);
 
     return tmp_num;
 }
 
-detail::knuminteger * detail::knuminteger::intOr(const knuminteger &arg2) const
+detail::knuminteger *detail::knuminteger::intOr(const knuminteger &arg2) const
 {
-    knuminteger * tmp_num = new knuminteger();
+    knuminteger *tmp_num = new knuminteger();
 
     mpz_ior(tmp_num->mpz_, mpz_, arg2.mpz_);
 
     return tmp_num;
 }
 
-detail::knumber * detail::knuminteger::mod(const knuminteger &arg2) const
+detail::knumber *detail::knuminteger::mod(const knuminteger &arg2) const
 {
     if (mpz_cmp_si(arg2.mpz_, 0) == 0) return new knumerror(UndefinedNumber);
 
-    knuminteger * tmp_num = new knuminteger();
+    knuminteger *tmp_num = new knuminteger();
 
     mpz_mod(tmp_num->mpz_, mpz_, arg2.mpz_);
 
     return tmp_num;
 }
 
-detail::knumber * detail::knuminteger::shift(const knuminteger &arg2) const
+detail::knumber *detail::knuminteger::shift(const knuminteger &arg2) const
 {
     mpz_t tmp_mpz;
 
@@ -1285,7 +1267,7 @@ detail::knumber * detail::knuminteger::shift(const knuminteger &arg2) const
     mpz_clear(tmp_mpz);
 
 
-    knuminteger * tmp_num = new knuminteger();
+    knuminteger *tmp_num = new knuminteger();
 
     if (tmp_arg2 > 0)    // left shift
         mpz_mul_2exp(tmp_num->mpz_, mpz_, tmp_arg2);

@@ -51,19 +51,19 @@ public:
 
     virtual QString ascii(int prec = -1) const = 0;
 
-    virtual knumber * abs() const = 0;
-    virtual knumber * intPart() const = 0;
+    virtual knumber *abs() const = 0;
+    virtual knumber *intPart() const = 0;
     virtual int sign() const = 0;
-    virtual knumber * sqrt() const = 0;
-    virtual knumber * cbrt() const = 0;
-    virtual knumber * factorial() const = 0;
-    virtual knumber * change_sign() const = 0;
-    virtual knumber * reciprocal() const = 0;
-    virtual knumber * add(const knumber &arg2) const = 0;
-    virtual knumber * multiply(const knumber &arg2) const = 0;
-    virtual knumber * divide(const knumber &arg2) const;
+    virtual knumber *sqrt() const = 0;
+    virtual knumber *cbrt() const = 0;
+    virtual knumber *factorial() const = 0;
+    virtual knumber *change_sign() const = 0;
+    virtual knumber *reciprocal() const = 0;
+    virtual knumber *add(const knumber &arg2) const = 0;
+    virtual knumber *multiply(const knumber &arg2) const = 0;
+    virtual knumber *divide(const knumber &arg2) const;
 
-    virtual knumber * power(const knumber &exponent) const = 0;
+    virtual knumber *power(const knumber &exponent) const = 0;
 
     virtual int compare(const knumber &arg2) const = 0;
 
@@ -87,7 +87,7 @@ public:
 
     //virtual ~knumerror() { }
 
-    const knumerror &operator = (const knumerror &num);
+    const knumerror &operator=(const knumerror &num);
 
     virtual NumType type() const {
         return SpecialType;
@@ -95,18 +95,18 @@ public:
 
     virtual QString ascii(int prec = -1) const;
 
-    virtual knumber * abs() const;
-    virtual knumber * intPart() const;
+    virtual knumber *abs() const;
+    virtual knumber *intPart() const;
     virtual int sign() const;
-    virtual knumber * cbrt() const;
-    virtual knumber * sqrt() const;
-    virtual knumber * factorial() const;
-    virtual knumber * change_sign() const;
-    virtual knumber * reciprocal() const;
-    virtual knumber * add(const knumber &arg2) const;
-    virtual knumber * multiply(const knumber &arg2) const;
+    virtual knumber *cbrt() const;
+    virtual knumber *sqrt() const;
+    virtual knumber *factorial() const;
+    virtual knumber *change_sign() const;
+    virtual knumber *reciprocal() const;
+    virtual knumber *add(const knumber &arg2) const;
+    virtual knumber *multiply(const knumber &arg2) const;
 
-    virtual knumber * power(const knumber &exponent) const;
+    virtual knumber *power(const knumber &exponent) const;
 
     virtual int compare(const knumber &arg2) const;
 
@@ -150,7 +150,7 @@ public:
         mpz_clear(mpz_);
     }
 
-    const knuminteger &operator = (const knuminteger &num);
+    const knuminteger &operator=(const knuminteger &num);
 
     virtual NumType type() const {
         return IntegerType;
@@ -158,20 +158,20 @@ public:
 
     virtual QString ascii(int prec = -1) const;
 
-    virtual knumber * abs() const;
-    virtual knumber * intPart() const;
+    virtual knumber *abs() const;
+    virtual knumber *intPart() const;
     virtual int sign() const;
-    virtual knumber * cbrt() const;
-    virtual knumber * sqrt() const;
-    virtual knumber * factorial() const;
-    virtual knumber * change_sign() const;
-    virtual knumber * reciprocal() const;
-    virtual knumber * add(const knumber &arg2) const;
-    virtual knumber * multiply(const knumber &arg2) const;
+    virtual knumber *cbrt() const;
+    virtual knumber *sqrt() const;
+    virtual knumber *factorial() const;
+    virtual knumber *change_sign() const;
+    virtual knumber *reciprocal() const;
+    virtual knumber *add(const knumber &arg2) const;
+    virtual knumber *multiply(const knumber &arg2) const;
 
     virtual int compare(const knumber &arg2) const;
 
-    virtual knumber * power(const knumber &exponent) const;
+    virtual knumber *power(const knumber &exponent) const;
 
     virtual operator long int () const;
     virtual operator unsigned long int () const;
@@ -179,10 +179,10 @@ public:
     virtual operator unsigned long long int() const;
     virtual operator double() const;
 
-    knuminteger * intAnd(const knuminteger &arg2) const;
-    knuminteger * intOr(const knuminteger &arg2) const;
-    knumber * mod(const knuminteger &arg2) const;
-    knumber * shift(const knuminteger &arg2) const;
+    knuminteger *intAnd(const knuminteger &arg2) const;
+    knuminteger *intOr(const knuminteger &arg2) const;
+    knumber *mod(const knuminteger &arg2) const;
+    knumber *shift(const knuminteger &arg2) const;
 
 private:
     mpz_t mpz_;
@@ -219,18 +219,18 @@ public:
 
     bool isInteger() const;
 
-    virtual knumber * abs() const;
-    virtual knumber * intPart() const;
+    virtual knumber *abs() const;
+    virtual knumber *intPart() const;
     virtual int sign() const;
-    virtual knumber * cbrt() const;
-    virtual knumber * sqrt() const;
-    virtual knumber * factorial() const;
-    virtual knumber * change_sign() const;
-    virtual knumber * reciprocal() const;
-    virtual knumber * add(const knumber &arg2) const;
-    virtual knumber * multiply(const knumber &arg2) const;
+    virtual knumber *cbrt() const;
+    virtual knumber *sqrt() const;
+    virtual knumber *factorial() const;
+    virtual knumber *change_sign() const;
+    virtual knumber *reciprocal() const;
+    virtual knumber *add(const knumber &arg2) const;
+    virtual knumber *multiply(const knumber &arg2) const;
 
-    virtual knumber * power(const knumber &exponent) const;
+    virtual knumber *power(const knumber &exponent) const;
 
     virtual int compare(const knumber &arg2) const;
 
@@ -269,19 +269,19 @@ public:
 
     virtual QString ascii(int prec = -1) const;
 
-    virtual knumber * abs() const;
-    virtual knumber * intPart() const;
+    virtual knumber *abs() const;
+    virtual knumber *intPart() const;
     virtual int sign() const;
-    virtual knumber * cbrt() const;
-    virtual knumber * sqrt() const;
-    virtual knumber * factorial() const;
-    virtual knumber * change_sign() const;
-    virtual knumber * reciprocal() const;
-    virtual knumber * add(const knumber &arg2) const;
-    virtual knumber * multiply(const knumber &arg2) const;
-    virtual knumber * divide(const knumber &arg2) const;
+    virtual knumber *cbrt() const;
+    virtual knumber *sqrt() const;
+    virtual knumber *factorial() const;
+    virtual knumber *change_sign() const;
+    virtual knumber *reciprocal() const;
+    virtual knumber *add(const knumber &arg2) const;
+    virtual knumber *multiply(const knumber &arg2) const;
+    virtual knumber *divide(const knumber &arg2) const;
 
-    virtual knumber * power(const knumber &exponent) const;
+    virtual knumber *power(const knumber &exponent) const;
 
     virtual int compare(const knumber &arg2) const;
 

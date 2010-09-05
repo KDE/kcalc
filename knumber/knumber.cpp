@@ -347,7 +347,7 @@ QString KNumber::toQString(int width, int prec) const
             } else
                 tmp_str = QString(num_->ascii());
 
-            if (width > 0  &&  tmp_str.length() > width) {
+            if (width > 0 && tmp_str.length() > width) {
                 //result needs to be cut-off
                 bool tmp_bool = FractionInput; // stupid work-around
                 FractionInput = false;

@@ -119,7 +119,7 @@ public:
 
     virtual ~KNumber();
 
-    KNumber & operator=(const KNumber &num);
+    KNumber &operator=(const KNumber &num);
 
     /**
      * Returns the type of the number, as explained in @p KNumber::NumType.
@@ -271,8 +271,8 @@ public:
         return (compare(arg2) <= 0);
     }
 
-    KNumber & operator +=(const KNumber &arg);
-    KNumber & operator -=(const KNumber &arg);
+    KNumber &operator +=(const KNumber &arg);
+    KNumber &operator -=(const KNumber &arg);
     static KNumber Pi();
     static KNumber Euler();
 

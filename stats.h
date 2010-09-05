@@ -38,7 +38,7 @@ public:
 
 public:
     void clearAll();
-    void enterData(const KNumber & data);
+    void enterData(const KNumber &data);
     void clearLast();
     KNumber sum();
     KNumber sum_of_squares();

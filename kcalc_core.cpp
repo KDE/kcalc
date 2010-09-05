@@ -58,62 +58,62 @@ static void fpe_handler(int fpe_parm)
 
 static bool error_;
 
-static KNumber ExecOr(const KNumber & left_op, const KNumber & right_op)
+static KNumber ExecOr(const KNumber &left_op, const KNumber &right_op)
 {
     return (left_op | right_op);
 }
 
-static KNumber ExecXor(const KNumber & left_op, const KNumber & right_op)
+static KNumber ExecXor(const KNumber &left_op, const KNumber &right_op)
 {
     return (left_op | right_op) - (left_op & right_op);
 }
 
-static KNumber ExecAnd(const KNumber & left_op, const KNumber & right_op)
+static KNumber ExecAnd(const KNumber &left_op, const KNumber &right_op)
 {
     return (left_op & right_op);
 }
 
-static KNumber ExecLsh(const KNumber & left_op, const KNumber & right_op)
+static KNumber ExecLsh(const KNumber &left_op, const KNumber &right_op)
 {
     return left_op << right_op;
 }
 
-static KNumber ExecRsh(const KNumber & left_op, const KNumber & right_op)
+static KNumber ExecRsh(const KNumber &left_op, const KNumber &right_op)
 {
     return left_op >> right_op;
 }
 
-static KNumber ExecAdd(const KNumber & left_op, const KNumber & right_op)
+static KNumber ExecAdd(const KNumber &left_op, const KNumber &right_op)
 {
     return left_op + right_op;
 }
 
-static KNumber ExecSubtract(const KNumber & left_op, const KNumber & right_op)
+static KNumber ExecSubtract(const KNumber &left_op, const KNumber &right_op)
 {
     return left_op - right_op;
 }
 
-static KNumber ExecMultiply(const KNumber & left_op, const KNumber & right_op)
+static KNumber ExecMultiply(const KNumber &left_op, const KNumber &right_op)
 {
     return left_op * right_op;
 }
 
-static KNumber ExecDivide(const KNumber & left_op, const KNumber & right_op)
+static KNumber ExecDivide(const KNumber &left_op, const KNumber &right_op)
 {
     return left_op / right_op;
 }
 
-static KNumber ExecMod(const KNumber & left_op, const KNumber & right_op)
+static KNumber ExecMod(const KNumber &left_op, const KNumber &right_op)
 {
     return left_op % right_op;
 }
 
-static KNumber ExecIntDiv(const KNumber & left_op, const KNumber & right_op)
+static KNumber ExecIntDiv(const KNumber &left_op, const KNumber &right_op)
 {
     return (left_op / right_op).integerPart();
 }
 
-bool isoddint(const KNumber & input)
+bool isoddint(const KNumber &input)
 {
     if (input.type() != KNumber::IntegerType) return false;
     // Routine to check if KNumber is an Odd integer
@@ -121,7 +121,7 @@ bool isoddint(const KNumber & input)
 }
 
 
-static KNumber ExecBinom(const KNumber & left_op, const KNumber & right_op)
+static KNumber ExecBinom(const KNumber &left_op, const KNumber &right_op)
 {
     // TODO: use libgmp mpz_bin_ui
 
@@ -151,32 +151,32 @@ static KNumber ExecBinom(const KNumber & left_op, const KNumber & right_op)
     return tmp_result;
 }
 
-static KNumber ExecPower(const KNumber & left_op, const KNumber & right_op)
+static KNumber ExecPower(const KNumber &left_op, const KNumber &right_op)
 {
     return left_op.power(right_op);
 }
 
-static KNumber ExecPwrRoot(const KNumber & left_op, const KNumber & right_op)
+static KNumber ExecPwrRoot(const KNumber &left_op, const KNumber &right_op)
 {
     return left_op.power(KNumber::One / right_op);
 }
 
-static KNumber ExecAddP(const KNumber & left_op, const KNumber & right_op)
+static KNumber ExecAddP(const KNumber &left_op, const KNumber &right_op)
 {
     return left_op * (KNumber::One + right_op / KNumber(100));
 }
 
-static KNumber ExecSubP(const KNumber & left_op, const KNumber & right_op)
+static KNumber ExecSubP(const KNumber &left_op, const KNumber &right_op)
 {
     return left_op * (KNumber::One - right_op / KNumber(100));
 }
 
-static KNumber ExecMultiplyP(const KNumber & left_op, const KNumber & right_op)
+static KNumber ExecMultiplyP(const KNumber &left_op, const KNumber &right_op)
 {
     return left_op * right_op / KNumber(100);
 }
 
-static KNumber ExecDivideP(const KNumber & left_op, const KNumber & right_op)
+static KNumber ExecDivideP(const KNumber &left_op, const KNumber &right_op)
 {
     return left_op * KNumber(100) / right_op;
 }
