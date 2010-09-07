@@ -271,11 +271,12 @@ public:
         return (compare(arg2) <= 0);
     }
 
-    KNumber &operator +=(const KNumber &arg);
-    KNumber &operator -=(const KNumber &arg);
+    KNumber &operator+=(const KNumber &arg);
+    KNumber &operator-=(const KNumber &arg);
     static KNumber Pi();
+	
+	// TODO: is Euler used anymore?
     static KNumber Euler();
-
 
     void swap(KNumber &other);
 

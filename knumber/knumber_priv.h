@@ -173,8 +173,8 @@ public:
 
     virtual knumber *power(const knumber &exponent) const;
 
-    virtual operator long int () const;
-    virtual operator unsigned long int () const;
+    virtual operator long int() const;
+    virtual operator unsigned long int() const;
     virtual operator long long int() const;
     virtual operator unsigned long long int() const;
     virtual operator double() const;
@@ -234,8 +234,8 @@ public:
 
     virtual int compare(const knumber &arg2) const;
 
-    virtual operator long int () const;
-    virtual operator unsigned long int () const;
+    virtual operator long int() const;
+    virtual operator unsigned long int() const;
     virtual operator long long int() const;
     virtual operator unsigned long long int() const;
     virtual operator double() const;
@@ -285,8 +285,8 @@ public:
 
     virtual int compare(const knumber &arg2) const;
 
-    virtual operator long int () const;
-    virtual operator unsigned long int () const;
+    virtual operator long int() const;
+    virtual operator unsigned long int() const;
     virtual operator long long int() const;
     virtual operator unsigned long long int() const;
     virtual operator double() const;
