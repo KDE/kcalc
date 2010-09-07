@@ -445,8 +445,7 @@ detail::knumber *detail::knumerror::sqrt() const
 detail::knumber *detail::knuminteger::sqrt() const
 {
     if (mpz_sgn(mpz_) < 0) {
-        knumerror *const tmp_num = new knumerror(UndefinedNumber);
-        return tmp_num;
+        return new knumerror(UndefinedNumber);
     }
     
     if (mpz_perfect_square_p(mpz_)) {
@@ -499,8 +498,6 @@ detail::knumber *detail::knumfloat::sqrt() const
     return tmp_num;
 }
 
-
-
 detail::knumber *detail::knumerror::factorial() const
 {
     return new knumerror(*this);
@@ -549,15 +546,14 @@ detail::knumber *detail::knumfraction::factorial() const
     if (mpq_sgn(mpq_) < 0) {
         return new knumerror(UndefinedNumber);
     }
+	
+    knuminteger tmp_num;
+    mpz_set_q(tmp_num.mpz_, mpq_);
+    const unsigned long int op = mpz_get_ui(tmp_num.mpz_);
 
-    knuminteger *tmp_num = new knuminteger();
-    mpz_set_q(tmp_num->mpz_, mpq_);
-    unsigned long int op = mpz_get_ui(tmp_num->mpz_);
-    delete tmp_num;
-
-    tmp_num = new knuminteger();
-    mpz_fac_ui(tmp_num->mpz_, op);
-    return tmp_num;
+    knuminteger *const tmp_num2 = new knuminteger();
+    mpz_fac_ui(tmp_num2->mpz_, op);
+    return tmp_num2;
 }
 
 detail::knumber *detail::knumfloat::factorial() const
@@ -565,15 +561,14 @@ detail::knumber *detail::knumfloat::factorial() const
     if (mpf_sgn(mpf_) < 0) {
         return new knumerror(UndefinedNumber);
     }
+	
+    knuminteger tmp_num;
+    mpz_set_f(tmp_num.mpz_, mpf_);
+    const unsigned long int op = mpz_get_ui(tmp_num.mpz_);
 
-    knuminteger *tmp_num = new knuminteger();
-    mpz_set_f(tmp_num->mpz_, mpf_);
-    unsigned long int op = mpz_get_ui(tmp_num->mpz_);
-    delete tmp_num;
-
-    tmp_num = new knuminteger();
-    mpz_fac_ui(tmp_num->mpz_, op);
-    return tmp_num;
+    knuminteger *const tmp_num2 = new knuminteger();
+    mpz_fac_ui(tmp_num2->mpz_, op);
+    return tmp_num2;
 }
 
 detail::knumber *detail::knumerror::change_sign() const
