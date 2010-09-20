@@ -1917,7 +1917,7 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
     /* Klaus Niederkrueger */
     aboutData.addAuthor(ki18n("Klaus Niederkr" "\xc3\xbc" "ger"), KLocalizedString(), "kniederk@math.uni-koeln.de");
     aboutData.addAuthor(ki18n("Bernd Johannes Wuebben"), KLocalizedString(), "wuebben@kde.org");
-    aboutData.addAuthor(ki18n("Evan Teran"), KLocalizedString(), "eteran@alum.rit.edu");
+    aboutData.addAuthor(ki18n("Evan Teran"), ki18n("Maintainer"), "eteran@alum.rit.edu");
     aboutData.addAuthor(ki18n("Espen Sand"), KLocalizedString(), "espen@kde.org");
     aboutData.addAuthor(ki18n("Chris Howells"), KLocalizedString(), "howells@kde.org");
     aboutData.addAuthor(ki18n("Aaron J. Seigo"), KLocalizedString(), "aseigo@olympusproject.org");
@@ -1925,7 +1925,7 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
     /* Rene Merou */
     aboutData.addAuthor(ki18n("Ren" "\xc3\xa9" " M" "\xc3\xa9"  "rou"), KLocalizedString(), "ochominutosdearco@yahoo.es");
     aboutData.addAuthor(ki18n("Michel Marti"), KLocalizedString(), "mma@objectxp.com");
-    aboutData.addAuthor(ki18n("David Johnson"), ki18n("Maintainer"), "david@usermode.org");
+    aboutData.addAuthor(ki18n("David Johnson"), KLocalizedString(), "david@usermode.org");
 
     aboutData.setProgramIconName("accessories-calculator");
 
