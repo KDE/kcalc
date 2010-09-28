@@ -197,7 +197,7 @@ bool KCalcDisplay::sendEvent(Event event)
     case EventClear:
     case EventReset:
         display_amount_ = 0;
-        str_int_ = "0";
+        str_int_ = QLatin1String( "0" );
         str_int_exp_.clear();
 
         eestate_ = false;
@@ -228,7 +228,7 @@ void KCalcDisplay::slotCopy()
 {
     QString txt = text_;
     if (num_base_ == NB_HEX)
-        txt.prepend("0x");
+        txt.prepend(QLatin1String( "0x" ));
     (QApplication::clipboard())->setText(txt, QClipboard::Clipboard);
     (QApplication::clipboard())->setText(txt, QClipboard::Selection);
 }
@@ -360,7 +360,7 @@ bool KCalcDisplay::setAmount(const KNumber &new_amount)
 {
     QString display_str;
 
-    str_int_ = "0";
+    str_int_ = QLatin1String( "0" );
     str_int_exp_.clear();
     period_ = false;
     neg_sign_ = false;
@@ -398,13 +398,13 @@ void KCalcDisplay::setText(const QString &string)
     // note that "C" locale is being used internally
     text_ = string;
     // don't mess with special numbers
-    bool special = (string.contains("nan") || string.contains("inf"));
+    bool special = (string.contains(QLatin1String( "nan" )) || string.contains(QLatin1String( "inf" )));
     // if we aren't in decimal mode, we don't need to modify the string
     if ((num_base_ == NB_DECIMAL) && groupdigits_ && !special) {
         // when input ends with "." (because incomplete), the
         // formatNumber method does not work; fix by hand by
         // truncating, formatting and appending again
-        if (string.endsWith('.')) {
+        if (string.endsWith(QLatin1Char( '.' ))) {
             text_.chop(1);
             // Note: rounding happened already above!
             text_ = KGlobal::locale()->formatNumber(text_, false, 0);
@@ -468,11 +468,11 @@ bool KCalcDisplay::updateDisplay()
     // Put sign in front.
     QString tmp_string;
     if (neg_sign_ == true) {
-        tmp_string = '-' + str_int_;
+        tmp_string = QLatin1Char( '-' ) + str_int_;
     } else {
         tmp_string = str_int_;
     }
-	
+
 	bool ok;
 
     switch (num_base_) {
@@ -506,9 +506,9 @@ bool KCalcDisplay::updateDisplay()
             if (str_int_exp_.isNull()) {
                 // add 'e0' to display but not to conversion
                 display_amount_ = tmp_string;
-                setText(tmp_string + "e0");
+                setText(tmp_string + QLatin1String( "e0" ));
             } else {
-                tmp_string +=  'e' + str_int_exp_;
+                tmp_string +=  QLatin1Char( 'e' ) + str_int_exp_;
                 setText(tmp_string);
                 display_amount_ = tmp_string;
             }
@@ -589,7 +589,7 @@ void KCalcDisplay::newCharacter(char const new_char)
     // change exponent or mantissa
     if (eestate_) {
         // ignore ',' before 'e'. turn e.g. '123.e' into '123e'
-        if (new_char == 'e'  &&  str_int_.endsWith('.')) {
+        if (new_char == 'e'  &&  str_int_.endsWith(QLatin1Char( '.' ))) {
             str_int_.chop(1);
             period_ = false;
         }
@@ -598,26 +598,26 @@ void KCalcDisplay::newCharacter(char const new_char)
         if (new_char != 'e'  &&
                 // do not add '0' if at start of exp
                 !(str_int_exp_.isNull() && new_char == '0'))
-            str_int_exp_.append(new_char);
+            str_int_exp_.append(QLatin1Char( new_char ));
     } else {
         // handle first character
-        if (str_int_ == "0") {
+        if (str_int_ == QLatin1String( "0" )) {
             switch (new_char) {
             case '.':
                 // display "0." not just "."
-                str_int_.append(new_char);
+                str_int_.append(QLatin1Char( new_char ));
                 break;
             case 'e':
                 // display "0e" not just "e"
                 // "0e" does not make sense either, but...
-                str_int_.append(new_char);
+                str_int_.append(QLatin1Char( new_char ));
                 break;
             default:
                 // no leading '0's
                 str_int_[0] = new_char;
             }
         } else
-            str_int_.append(new_char);
+            str_int_.append(QLatin1Char( new_char ));
     }
 
     updateDisplay();
@@ -634,13 +634,13 @@ void KCalcDisplay::deleteLastDigit()
             if (length > 1) {
                 str_int_exp_.chop(1);
             } else {
-                str_int_exp_ = (char *)0;
+                str_int_exp_ = QLatin1String( (const char *)0 );
             }
         }
     } else {
         int length = str_int_.length();
         if (length > 1) {
-            if (str_int_[length-1] == '.')
+            if (str_int_[length-1] == QLatin1Char( '.' ))
                 period_ = false;
             str_int_.chop(1);
         } else {
@@ -658,14 +658,14 @@ void KCalcDisplay::deleteLastDigit()
 bool KCalcDisplay::changeSign()
 {
     //stupid way, to see if in input_mode or display_mode
-    if (str_int_ == "0") return false;
+    if (str_int_ == QLatin1String( "0" )) return false;
 
     if (eestate_) {
         if (!str_int_exp_.isNull()) {
-            if (str_int_exp_[0] != '-')
-                str_int_exp_.prepend('-');
+            if (str_int_exp_[0] != QLatin1Char( '-' ))
+                str_int_exp_.prepend(QLatin1Char( '-' ));
             else
-                str_int_exp_.remove('-');
+                str_int_exp_.remove(QLatin1Char( '-' ));
         }
     } else {
         neg_sign_ = ! neg_sign_;
@@ -715,7 +715,7 @@ void KCalcDisplay::paintEvent(QPaintEvent *)
     fnt.setPointSize(qMax((fnt.pointSize() / 2), 7));
     painter.setFont(fnt);
     QFontMetrics fm(fnt);
-    uint w = fm.width("________");
+    uint w = fm.width(QLatin1String( "________" ));
     uint h = fm.height();
 
     for (int n = 0; n < NUM_STATUS_TEXT; n++) {

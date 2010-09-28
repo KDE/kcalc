@@ -58,12 +58,12 @@ void KCalcConstButton::setButtonNumber(int num)
 
 void KCalcConstButton::setLabelAndTooltip()
 {
-    QString new_label = QString("C") + QString().setNum(button_num_ + 1);
+    QString new_label = QLatin1String("C") + QString().setNum(button_num_ + 1);
     QString new_tooltip;
 
     new_label = (KCalcSettings::nameConstant(button_num_).isNull() ? new_label : KCalcSettings::nameConstant(button_num_));
 
-    new_tooltip = new_label + '=' + KCalcSettings::valueConstant(button_num_);
+    new_tooltip = new_label + QLatin1Char( '=' ) + KCalcSettings::valueConstant(button_num_);
 
     addMode(ModeNormal, new_label, new_tooltip);
 }

@@ -138,9 +138,9 @@ detail::knumfloat::knumfloat(const knumber &num)
 
 detail::knumerror::knumerror(const QString &num)
 {
-    if (num == "nan")       error_ = UndefinedNumber;
-    else if (num == "inf")  error_ = Infinity;
-    else if (num == "-inf") error_ = MinusInfinity;
+    if (num == QLatin1String( "nan" ))       error_ = UndefinedNumber;
+    else if (num == QLatin1String( "inf" ))  error_ = Infinity;
+    else if (num == QLatin1String( "-inf" )) error_ = MinusInfinity;
     else                    error_ = UndefinedNumber;
 }
 
@@ -153,21 +153,21 @@ detail::knuminteger::knuminteger(const QString &num)
 detail::knumfraction::knumfraction(const QString &num)
 {
     mpq_init(mpq_);
-    if (QRegExp("^[+-]?\\d+(\\.\\d*)?(e[+-]?\\d+)?$").exactMatch(num)) {
+    if (QRegExp(QLatin1String( "^[+-]?\\d+(\\.\\d*)?(e[+-]?\\d+)?$" )).exactMatch(num)) {
         // my hand-made conversion is terrible
         // first me convert the mantissa
-        unsigned long int digits_after_dot = ((num.section('.', 1, 1)).section('e', 0, 0)).length();
-        
-        QString tmp_num = num.section('e', 0, 0).remove('.');
+        unsigned long int digits_after_dot = ((num.section(QLatin1Char( '.' ), 1, 1)).section(QLatin1Char( 'e' ), 0, 0)).length();
+
+        QString tmp_num = num.section(QLatin1Char( 'e' ), 0, 0).remove(QLatin1Char( '.' ));
         mpq_set_str(mpq_, tmp_num.toAscii(), 10);
-        
+
         mpz_t tmp_int;
         mpz_init(tmp_int);
         mpz_ui_pow_ui(tmp_int, 10, digits_after_dot);
         mpz_mul(mpq_denref(mpq_), mpq_denref(mpq_), tmp_int);
 
         // now we take care of the exponent
-        if (!(tmp_num = num.section('e', 1, 1)).isEmpty()) {
+        if (!(tmp_num = num.section(QLatin1Char( 'e' ), 1, 1)).isEmpty()) {
             long int tmp_exp = tmp_num.toLong();
             if (tmp_exp > 0) {
                 mpz_ui_pow_ui(tmp_int,
@@ -214,11 +214,11 @@ QString detail::knumerror::ascii(int prec) const
     // TODO: i18n these strings here and elsewhere, as they're user visible
     switch (error_) {
     case UndefinedNumber:
-        return "nan";
+        return QLatin1String( "nan" );
     case Infinity:
-        return "inf";
+        return QLatin1String( "inf" );
     case MinusInfinity:
-        return "-inf";
+        return QLatin1String( "-inf" );
     default:
         return QString();
     }
@@ -230,11 +230,11 @@ QString detail::knuminteger::ascii(int prec) const
 
     // get the size of the string
     const size_t size = gmp_snprintf(NULL, 0, "%Zd", mpz_) + 1;
-    
+
     char *const tmp_ptr = new char[size];
     gmp_snprintf(tmp_ptr, size, "%Zd", mpz_);
 
-    const QString ret_str = tmp_ptr;
+    const QString ret_str = QLatin1String( tmp_ptr );
 
     delete [] tmp_ptr;
     return ret_str;
@@ -243,9 +243,9 @@ QString detail::knuminteger::ascii(int prec) const
 QString detail::knumfraction::ascii(int prec) const
 {
     Q_UNUSED(prec);
-    
+
     char *tmp_ptr = mpq_get_str(0, 10, mpq_);
-    const QString ret_str = tmp_ptr;
+    const QString ret_str = QLatin1String( tmp_ptr );
     free(tmp_ptr);
 
     return ret_str;
@@ -256,7 +256,7 @@ QString detail::knumfloat::ascii(int prec) const
     size_t size;
 
     if (prec > 0) {
-        size = gmp_snprintf(NULL, 0, ("%." + QString::number(prec) + "Fg").toAscii(), mpf_) + 1;
+        size = gmp_snprintf(NULL, 0, (QLatin1String( "%." ) + QString::number(prec) + QLatin1String( "Fg" )).toAscii(), mpf_) + 1;
     } else {
         size = gmp_snprintf(NULL, 0, "%Fg", mpf_) + 1;
     }
@@ -264,12 +264,12 @@ QString detail::knumfloat::ascii(int prec) const
     char *const tmp_ptr = new char[size];
 
     if (prec > 0) {
-        gmp_snprintf(tmp_ptr, size, ("%." + QString::number(prec) + "Fg").toAscii(), mpf_);
+        gmp_snprintf(tmp_ptr, size, (QLatin1String( "%." ) + QString::number(prec) + QLatin1String( "Fg" )).toAscii(), mpf_);
     } else {
         gmp_snprintf(tmp_ptr, size, "%Fg", mpf_);
     }
 
-    const QString ret_str = tmp_ptr;
+    const QString ret_str = QLatin1String( tmp_ptr );
 
     delete [] tmp_ptr;
     return ret_str;
@@ -409,13 +409,13 @@ detail::knumber *detail::knuminteger::cbrt() const
 detail::knumber *detail::knumfraction::cbrt() const
 {
     knumfraction *const tmp_num = new knumfraction();
-    
-    if (mpz_root(mpq_numref(tmp_num->mpq_), mpq_numref(mpq_), 3) && 
+
+    if (mpz_root(mpq_numref(tmp_num->mpq_), mpq_numref(mpq_), 3) &&
         mpz_root(mpq_denref(tmp_num->mpq_), mpq_denref(mpq_), 3)) {
 
         return tmp_num; // root is perfect
     }
-    
+
     delete tmp_num; // root was not perfect, result will be float
 
     knumfloat *const tmp_num2 = new knumfloat();
@@ -447,7 +447,7 @@ detail::knumber *detail::knuminteger::sqrt() const
     if (mpz_sgn(mpz_) < 0) {
         return new knumerror(UndefinedNumber);
     }
-    
+
     if (mpz_perfect_square_p(mpz_)) {
         knuminteger *const tmp_num = new knuminteger();
         mpz_sqrt(tmp_num->mpz_, mpz_);
@@ -467,7 +467,7 @@ detail::knumber *detail::knumfraction::sqrt() const
         return tmp_num;
     }
 
-    if (mpz_perfect_square_p(mpq_numref(mpq_)) && 
+    if (mpz_perfect_square_p(mpq_numref(mpq_)) &&
         mpz_perfect_square_p(mpq_denref(mpq_))) {
 
         knumfraction *const tmp_num = new knumfraction();
@@ -530,7 +530,7 @@ detail::knumber *detail::knuminteger::factorial() const
         return new knumerror(UndefinedNumber);
     }
 #endif
-    
+
     knuminteger *const tmp_num = new knuminteger();
     mpz_fac_ui(tmp_num->mpz_, mpz_get_ui(mpz_));
 
@@ -546,7 +546,7 @@ detail::knumber *detail::knumfraction::factorial() const
     if (mpq_sgn(mpq_) < 0) {
         return new knumerror(UndefinedNumber);
     }
-	
+
     knuminteger tmp_num;
     mpz_set_q(tmp_num.mpz_, mpq_);
     const unsigned long int op = mpz_get_ui(tmp_num.mpz_);
@@ -561,7 +561,7 @@ detail::knumber *detail::knumfloat::factorial() const
     if (mpf_sgn(mpf_) < 0) {
         return new knumerror(UndefinedNumber);
     }
-	
+
     knuminteger tmp_num;
     mpz_set_f(tmp_num.mpz_, mpf_);
     const unsigned long int op = mpz_get_ui(tmp_num.mpz_);
@@ -644,7 +644,7 @@ detail::knumber *detail::knumfloat::reciprocal() const
     }
 
     knumfloat *const tmp_num = new knumfloat();
-    mpf_div(tmp_num->mpf_, knumfloat("1.0").mpf_, mpf_);
+    mpf_div(tmp_num->mpf_, knumfloat(QLatin1String( "1.0" )).mpf_, mpf_);
     return tmp_num;
 }
 
@@ -656,9 +656,9 @@ detail::knumber *detail::knumerror::add(const knumber &arg2) const
 
     const knumerror &tmp_arg2 = static_cast<const knumerror &>(arg2);
 
-    if (error_ == UndefinedNumber || 
-        tmp_arg2.error_ == UndefinedNumber || 
-        (error_ == Infinity && tmp_arg2.error_ == MinusInfinity) || 
+    if (error_ == UndefinedNumber ||
+        tmp_arg2.error_ == UndefinedNumber ||
+        (error_ == Infinity && tmp_arg2.error_ == MinusInfinity) ||
         (error_ == MinusInfinity && tmp_arg2.error_ == Infinity)) {
 
         return new knumerror(UndefinedNumber);
@@ -726,7 +726,7 @@ detail::knumber *detail::knumerror::multiply(const knumber &arg2) const
         if (error_ == UndefinedNumber || tmp_arg2.error_ == UndefinedNumber) {
             return new knumerror(UndefinedNumber);
         }
-        
+
         if (this->sign() * arg2.sign() > 0) {
             return new knumerror(Infinity);
         } else {
@@ -737,12 +737,12 @@ detail::knumber *detail::knumerror::multiply(const knumber &arg2) const
     case FractionType:
     case FloatType: {
         int sign_arg2 = arg2.sign();
-        
+
         if (error_ == UndefinedNumber || sign_arg2 == 0) {
             return new knumerror(UndefinedNumber);
         }
 
-        if ((error_ == Infinity && sign_arg2 > 0) || 
+        if ((error_ == Infinity && sign_arg2 > 0) ||
            (error_ == MinusInfinity && sign_arg2 < 0)) {
             return new knumerror(Infinity);
         }
@@ -788,7 +788,7 @@ detail::knumber *detail::knumfloat::multiply(const knumber &arg2) const
     if (arg2.type() == SpecialType) {
         return arg2.multiply(*this);
     }
-    
+
     if (arg2.type() == IntegerType &&
         mpz_cmp_si(dynamic_cast<const knuminteger &>(arg2).mpz_, 0) == 0) {
 
@@ -1010,7 +1010,7 @@ int detail::knumfraction::compare(const knumber &arg2) const
             mpq_init(tmp_frac);
             mpq_set_z(tmp_frac,
                       dynamic_cast<const knuminteger &>(arg2).mpz_);
-					  
+
             const int cmp_result =  mpq_cmp(mpq_, tmp_frac);
             mpq_clear(tmp_frac);
             return cmp_result;
@@ -1026,7 +1026,7 @@ int detail::knumfloat::compare(const knumber &arg2) const
 {
     if (arg2.type() != FloatType) {
         mpf_t tmp_float;
-		
+
         if (arg2.type() == IntegerType) {
             mpf_init(tmp_float);
             mpf_set_z(tmp_float,
@@ -1105,9 +1105,9 @@ detail::knuminteger::operator long long int() const
     // so convert to string and then to long long
     char *const tmpchar = new char[mpz_sizeinbase(mpz_, 10) + 2];
     mpz_get_str(tmpchar, 10, mpz_);
-    const QString tmpstring = tmpchar;
+    const QString tmpstring = QLatin1String( tmpchar );
     delete [] tmpchar;
-	
+
     bool ok;
     long long int value = tmpstring.toLongLong(&ok, 10);
 
@@ -1124,12 +1124,12 @@ detail::knuminteger::operator unsigned long long int() const
     // so convert to string and then to unsigned long long
     char *const tmpchar = new char[mpz_sizeinbase(mpz_, 10) + 2];
     mpz_get_str(tmpchar, 10, mpz_);
-    const QString tmpstring = tmpchar;
+    const QString tmpstring =QLatin1String( tmpchar );
     delete [] tmpchar;
 
     bool ok;
     unsigned long long int value;
-	
+
     if (sign() < 0) {
         const long long signedvalue = tmpstring.toLongLong(&ok, 10);
         value = static_cast<unsigned long long>(signedvalue);

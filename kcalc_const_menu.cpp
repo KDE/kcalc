@@ -32,8 +32,8 @@ QList<science_constant> KCalcConstMenu::Constants;
 
 void KCalcConstMenu::init_consts()
 {
-    QDomDocument doc("list_of_constants");
-    QFile file(KGlobal::dirs()->findResource("appdata", "scienceconstants.xml"));
+    QDomDocument doc(QLatin1String( "list_of_constants" ));
+    QFile file(KGlobal::dirs()->findResource("appdata", QLatin1String( "scienceconstants.xml" )));
 
     if (!file.open(QIODevice::ReadOnly)) {
         kDebug() << "Did not find file \"scienceconstants.xml\"." << "No constants will be available.";
@@ -56,27 +56,27 @@ void KCalcConstMenu::init_consts()
     QDomNode n = docElem.firstChild();
     while (!n.isNull()) {
         QDomElement e = n.toElement(); // try to convert the node to an element.
-        if (!e.isNull()  &&  e.tagName() == "constant") {
+        if (!e.isNull()  &&  e.tagName() == QLatin1String( "constant" )) {
             science_constant tmp_const;
 
-            tmp_const.name = I18N_NOOP(e.attributeNode("name").value());
-            tmp_const.label = e.attributeNode("symbol").value();
-            tmp_const.value = e.attributeNode("value").value();
+            tmp_const.name = I18N_NOOP(e.attributeNode(QLatin1String( "name" )).value());
+            tmp_const.label = e.attributeNode(QLatin1String( "symbol" )).value();
+            tmp_const.value = e.attributeNode(QLatin1String( "value" )).value();
 
-            QString tmp_str_category = e.attributeNode("category").value();
+            QString tmp_str_category = e.attributeNode(QLatin1String( "category" )).value();
 
-            if (tmp_str_category == "mathematics")
+            if (tmp_str_category == QLatin1String( "mathematics" ))
                 tmp_const.category = Mathematics;
-            if (tmp_str_category == "electromagnetism")
+            if (tmp_str_category == QLatin1String( "electromagnetism" ))
                 tmp_const.category = Electromagnetic;
-            if (tmp_str_category == "nuclear")
+            if (tmp_str_category == QLatin1String( "nuclear" ))
                 tmp_const.category = Nuclear;
-            if (tmp_str_category == "thermodynamics")
+            if (tmp_str_category == QLatin1String( "thermodynamics" ))
                 tmp_const.category = Thermodynamics;
-            if (tmp_str_category == "gravitation")
+            if (tmp_str_category == QLatin1String( "gravitation" ))
                 tmp_const.category = Gravitation;
 
-            tmp_const.whatsthis = e.firstChildElement("description").text();
+            tmp_const.whatsthis = e.firstChildElement(QLatin1String( "description" )).text();
 
             Constants.append(tmp_const);
         }

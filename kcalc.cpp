@@ -192,31 +192,31 @@ void KCalculator::setupMainActions()
 
     // mode menu
     QActionGroup *modeGroup = new QActionGroup(this);
-    action_mode_simple_ = actionCollection()->add<KToggleAction>("mode_simple");
+    action_mode_simple_ = actionCollection()->add<KToggleAction>(QLatin1String( "mode_simple" ));
     action_mode_simple_->setActionGroup(modeGroup);
     action_mode_simple_->setText(i18n("Simple Mode"));
     connect(action_mode_simple_, SIGNAL(toggled(bool)), SLOT(slotSetSimpleMode()));
-    action_mode_science_ = actionCollection()->add<KToggleAction>("mode_science");
+    action_mode_science_ = actionCollection()->add<KToggleAction>(QLatin1String( "mode_science" ));
     action_mode_science_->setActionGroup(modeGroup);
     action_mode_science_->setText(i18n("Science Mode"));
     connect(action_mode_science_, SIGNAL(toggled(bool)), SLOT(slotSetScienceMode()));
-    action_mode_statistic_ = actionCollection()->add<KToggleAction>("mode_statistics");
+    action_mode_statistic_ = actionCollection()->add<KToggleAction>(QLatin1String( "mode_statistics" ));
     action_mode_statistic_->setActionGroup(modeGroup);
     action_mode_statistic_->setText(i18n("Statistic Mode"));
     connect(action_mode_statistic_, SIGNAL(toggled(bool)), SLOT(slotSetStatisticMode()));
-    action_mode_numeral_ = actionCollection()->add<KToggleAction>("mode_numeral");
+    action_mode_numeral_ = actionCollection()->add<KToggleAction>(QLatin1String( "mode_numeral" ));
     action_mode_numeral_->setActionGroup(modeGroup);
     action_mode_numeral_->setText(i18n("Numeral System Mode"));
     connect(action_mode_numeral_, SIGNAL(toggled(bool)), SLOT(slotSetNumeralMode()));
 
     // settings menu
-    action_constants_show_ = actionCollection()->add<KToggleAction>("show_constants");
+    action_constants_show_ = actionCollection()->add<KToggleAction>(QLatin1String( "show_constants" ));
     action_constants_show_->setText(i18n("&Constants Buttons"));
     action_constants_show_->setChecked(true);
     connect(action_constants_show_, SIGNAL(toggled(bool)),
             SLOT(slotConstantsShow(bool)));
 
-    action_bitset_show_ = actionCollection()->add<KToggleAction>("show_bitset");
+    action_bitset_show_ = actionCollection()->add<KToggleAction>(QLatin1String( "show_bitset" ));
     action_bitset_show_->setText(i18n("Show B&it Edit"));
     action_bitset_show_->setChecked(true);
     connect(action_bitset_show_, SIGNAL(toggled(bool)),
@@ -230,16 +230,16 @@ void KCalculator::setupMainActions()
 void KCalculator::setupStatusbar()
 {
     // Status bar contents
-    statusBar()->insertPermanentFixedItem(" NORM ", ShiftField);
+    statusBar()->insertPermanentFixedItem(QLatin1String( " NORM " ), ShiftField);
     statusBar()->setItemAlignment(ShiftField, Qt::AlignCenter);
 
-    statusBar()->insertPermanentFixedItem(" HEX ", BaseField);
+    statusBar()->insertPermanentFixedItem(QLatin1String( " HEX " ), BaseField);
     statusBar()->setItemAlignment(BaseField, Qt::AlignCenter);
 
-    statusBar()->insertPermanentFixedItem(" DEG ", AngleField);
+    statusBar()->insertPermanentFixedItem(QLatin1String( " DEG " ), AngleField);
     statusBar()->setItemAlignment(AngleField, Qt::AlignCenter);
 
-    statusBar()->insertPermanentFixedItem(" \xa0\xa0 ", MemField);   // nbsp
+    statusBar()->insertPermanentFixedItem(QLatin1String( " \xa0\xa0 " ), MemField);   // nbsp
     statusBar()->setItemAlignment(MemField, Qt::AlignCenter);
 }
 
@@ -377,7 +377,7 @@ void KCalculator::setupKeys()
     // numeric keypad
 
     pbCube->addMode(ModeNormal, i18nc("Third power", "x<sup>3</sup>"), i18n("Third power"));
-    pbCube->addMode(ModeShift, "<sup>3</sup>&radic;x", i18n("Cube root"));
+    pbCube->addMode(ModeShift, QLatin1String( "<sup>3</sup>&radic;x" ), i18n("Cube root"));
     connect(pbCube, SIGNAL(clicked()),
             SLOT(slotCubeclicked()));
     connect(this, SIGNAL(switchShowAccels(bool)),
@@ -414,9 +414,9 @@ void KCalculator::setupKeys()
 
     pbPeriod->setText(KGlobal::locale()->decimalSymbol());
     pbPeriod->setShortcut(KGlobal::locale()->decimalSymbol());
-    if (KGlobal::locale()->decimalSymbol() == ".")
+    if (KGlobal::locale()->decimalSymbol() == QLatin1String( "." ))
         new QShortcut(Qt::Key_Comma, pbPeriod, SLOT(animateClick()));
-    else if (KGlobal::locale()->decimalSymbol() == ",")
+    else if (KGlobal::locale()->decimalSymbol() == QLatin1String( "," ))
         new QShortcut(Qt::Key_Period, pbPeriod, SLOT(animateClick()));
     connect(pbPeriod, SIGNAL(clicked()),
             SLOT(slotPeriodclicked()));
@@ -543,7 +543,7 @@ void KCalculator::setupKeys()
 
     pbNData->addMode(ModeNormal, i18nc("Number of data entered", "N"), i18n("Number of data entered"));
     pbNData->addMode(ModeShift, QString::fromUtf8("\xce\xa3")
-                     + 'x', i18n("Sum of all data items"));
+                     + QLatin1Char( 'x' ), i18n("Sum of all data items"));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbNData, SLOT(slotSetAccelDisplayMode(bool)));
     connect(this, SIGNAL(switchMode(ButtonModeFlags, bool)),
@@ -552,7 +552,7 @@ void KCalculator::setupKeys()
 
     pbMean->addMode(ModeNormal, i18nc("Mean", "Mea"), i18n("Mean"));
     pbMean->addMode(ModeShift, QString::fromUtf8("\xce\xa3")
-                    + "x<sup>2</sup>",
+                    + QLatin1String( "x<sup>2</sup>" ),
                     i18n("Sum of all data items squared"));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbMean, SLOT(slotSetAccelDisplayMode(bool)));
@@ -560,9 +560,9 @@ void KCalculator::setupKeys()
             pbMean, SLOT(slotSetMode(ButtonModeFlags, bool)));
     connect(pbMean, SIGNAL(clicked()), SLOT(slotStatMeanclicked()));
 
-    pbSd->addMode(ModeNormal, QString::fromUtf8("σ", -1) + "<sub>N</sub>",
+    pbSd->addMode(ModeNormal, QString::fromUtf8("σ", -1) + QLatin1String( "<sub>N</sub>" ),
                   i18n("Standard deviation"));
-    pbSd->addMode(ModeShift, QString::fromUtf8("σ", -1) + "<sub>N-1</sub>",
+    pbSd->addMode(ModeShift, QString::fromUtf8("σ", -1) + QLatin1String( "<sub>N-1</sub>" ),
                   i18n("Sample standard deviation"));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbSd, SLOT(slotSetAccelDisplayMode(bool)));
@@ -665,7 +665,7 @@ void KCalculator::setupKeys()
     connect(pbFactorial, SIGNAL(clicked()), SLOT(slotFactorialclicked()));
 
     pbSquare->addMode(ModeNormal, i18nc("Square", "x<sup>2</sup>"), i18n("Square"));
-    pbSquare->addMode(ModeShift, "&radic;x", i18n("Square root"));
+    pbSquare->addMode(ModeShift, QLatin1String( "&radic;x" ), i18n("Square root"));
     pbSquare->setShortcut(QKeySequence(Qt::Key_BracketLeft));
     new QShortcut(Qt::Key_twosuperior, pbSquare, SLOT(animateClick()));
     connect(this, SIGNAL(switchShowAccels(bool)),
@@ -683,7 +683,7 @@ void KCalculator::setupKeys()
     pbPower->setShortcut(QKeySequence(Qt::Key_AsciiCircum));
     connect(pbPower, SIGNAL(clicked()), SLOT(slotPowerclicked()));
 
-    pbEE->addMode(ModeNormal, "x<small>" "\xb7" "10</small><sup>y</sup>",
+    pbEE->addMode(ModeNormal, QLatin1String( "x<small>" "\xb7" "10</small><sup>y</sup>" ),
                   i18n("Exponent"));
     connect(this, SIGNAL(switchShowAccels(bool)),
             pbEE, SLOT(slotSetAccelDisplayMode(bool)));
@@ -733,7 +733,7 @@ void KCalculator::setupKeys()
 
 void KCalculator::updateGeometry()
 {
-    const QSize em = pbAND->fontMetrics().size(0, "M");
+    const QSize em = pbAND->fontMetrics().size(0, QLatin1String( "M" ));
     int margin =
         QApplication::style()->pixelMetric(QStyle::PM_ButtonMargin, 0, 0);
     margin = qMax(qMin(margin / 2, 3), 3);
@@ -786,27 +786,27 @@ void KCalculator::slotBaseSelected(int base)
     switch (base) {
     case BinMode:
         current_base = calc_display->setBase(NumBase(2));
-        statusBar()->changeItem("BIN", BaseField);
-        calc_display->setStatusText(BaseField, "Bin");
+        statusBar()->changeItem(QLatin1String( "BIN" ), BaseField);
+        calc_display->setStatusText(BaseField, QLatin1String( "Bin" ));
         break;
     case OctMode:
         current_base = calc_display->setBase(NumBase(8));
-        statusBar()->changeItem("OCT", BaseField);
-        calc_display->setStatusText(BaseField, "Oct");
+        statusBar()->changeItem(QLatin1String( "OCT" ), BaseField);
+        calc_display->setStatusText(BaseField, QLatin1String( "Oct" ));
         break;
     case DecMode:
         current_base = calc_display->setBase(NumBase(10));
-        statusBar()->changeItem("DEC", BaseField);
-        calc_display->setStatusText(BaseField, "Dec");
+        statusBar()->changeItem(QLatin1String( "DEC" ), BaseField);
+        calc_display->setStatusText(BaseField, QLatin1String( "Dec" ));
         break;
     case HexMode:
         current_base = calc_display->setBase(NumBase(16));
-        statusBar()->changeItem("HEX", BaseField);
-        calc_display->setStatusText(BaseField, "Hex");
+        statusBar()->changeItem(QLatin1String( "HEX" ), BaseField);
+        calc_display->setStatusText(BaseField, QLatin1String( "Hex" ));
         break;
     default:
-        statusBar()->changeItem("Error", BaseField);
-        calc_display->setStatusText(BaseField, "Error");
+        statusBar()->changeItem(QLatin1String( "Error" ), BaseField);
+        calc_display->setStatusText(BaseField, QLatin1String( "Error" ));
         return;
     }
 
@@ -862,16 +862,16 @@ void KCalculator::slotAngleSelected(int mode)
     angle_mode_ = mode;
     switch (mode) {
     case DegMode:
-        statusBar()->changeItem("DEG", AngleField);
-        calc_display->setStatusText(AngleField, "Deg");
+        statusBar()->changeItem(QLatin1String( "DEG" ), AngleField);
+        calc_display->setStatusText(AngleField, QLatin1String( "Deg" ));
         break;
     case RadMode:
-        statusBar()->changeItem("RAD", AngleField);
-        calc_display->setStatusText(AngleField, "Rad");
+        statusBar()->changeItem(QLatin1String( "RAD" ), AngleField);
+        calc_display->setStatusText(AngleField, QLatin1String( "Rad" ));
         break;
     case GradMode:
-        statusBar()->changeItem("GRA", AngleField);
-        calc_display->setStatusText(AngleField, "Gra");
+        statusBar()->changeItem(QLatin1String( "GRA" ), AngleField);
+        calc_display->setStatusText(AngleField, QLatin1String( "Gra" ));
         break;
     default: // we shouldn't ever end up here
         angle_mode_ = RadMode;
@@ -923,8 +923,8 @@ void KCalculator::slotMemStoreclicked()
     EnterEqual();
 
     memory_num_ = calc_display->getAmount();
-    calc_display->setStatusText(MemField, "M");
-    statusBar()->changeItem("M", MemField);
+    calc_display->setStatusText(MemField, QLatin1String( "M" ));
+    statusBar()->changeItem(QLatin1String( "M" ), MemField);
     pbMemRecall->setEnabled(true);
 }
 
@@ -1166,7 +1166,7 @@ void KCalculator::slotPowerclicked()
 void KCalculator::slotMemClearclicked()
 {
     memory_num_  = 0;
-    statusBar()->changeItem(" \xa0\xa0 ", MemField);
+    statusBar()->changeItem(QLatin1String( " \xa0\xa0 " ), MemField);
     calc_display->setStatusText(MemField, QString());
     pbMemRecall->setDisabled(true);
 }
@@ -1417,28 +1417,28 @@ void KCalculator::showSettings()
 {
     // Check if there is already a dialog and if so bring
     // it to the foreground.
-    if (KConfigDialog::showDialog("settings"))
+    if (KConfigDialog::showDialog(QLatin1String( "settings" )))
         return;
 
     // Create a new dialog with the same name as the above checking code.
-    KConfigDialog *dialog = new KConfigDialog(this, "settings", KCalcSettings::self());
+    KConfigDialog *dialog = new KConfigDialog(this, QLatin1String( "settings" ), KCalcSettings::self());
     dialog->showButtonSeparator(true);
 
     // general settings
 
     General *general = new General(0);
     general->kcfg_Precision->setMaximum(maxprecision);
-    dialog->addPage(general, i18n("General"), "accessories-calculator", i18n("General Settings"));
+    dialog->addPage(general, i18n("General"), QLatin1String( "accessories-calculator" ), i18n("General Settings"));
 
     // font settings
 
     Fonts *fonts = new Fonts(0);
-    dialog->addPage(fonts, i18n("Font"), "preferences-desktop-font", i18n("Select Display Font"));
+    dialog->addPage(fonts, i18n("Font"), QLatin1String( "preferences-desktop-font" ), i18n("Select Display Font"));
 
     // color settings
 
     Colors *color = new Colors(0);
-    dialog->addPage(color, i18n("Colors"), "format-fill-color", i18n("Button & Display Colors"));
+    dialog->addPage(color, i18n("Colors"), QLatin1String( "format-fill-color" ), i18n("Button & Display Colors"));
 
     // constant settings
 
@@ -1487,7 +1487,7 @@ void KCalculator::showSettings()
             SLOT(slotChooseScientificConst5(const science_constant &)));
     constants_->pushButton5->setMenu(tmp_menu);
 
-    dialog->addPage(constants_, i18n("Constants"), "preferences-kcalc-constants_", i18n("Define Constants"));
+    dialog->addPage(constants_, i18n("Constants"), QLatin1String( "preferences-kcalc-constants_" ), i18n("Define Constants"));
 
     // When the user clicks OK or Apply we want to update our settings.
     connect(dialog, SIGNAL(settingsChanged(const QString &)), SLOT(updateSettings()));
@@ -1759,7 +1759,7 @@ void KCalculator::setColors()
         return;
     }
 
-    QString sheet = "KPushButton { background-color: %1 }";
+    QString sheet = QLatin1String( "KPushButton { background-color: %1 }" );
 
     QColor numPal(KCalcSettings::numberButtonsColor());
     for (int i = 0; i < 10; i++) {
@@ -1854,7 +1854,7 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
         QColor c = KColorMimeData::fromMimeData(ev->mimeData());
         if (c.isValid()) {
             QString cn = c.name();
-            QString sheet = "background-color: %1";
+            QString sheet = QLatin1String( "background-color: %1" );
 
             QList<QAbstractButton*> *list;
             int num_but;
@@ -1927,7 +1927,7 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
     aboutData.addAuthor(ki18n("Michel Marti"), KLocalizedString(), "mma@objectxp.com");
     aboutData.addAuthor(ki18n("David Johnson"), KLocalizedString(), "david@usermode.org");
 
-    aboutData.setProgramIconName("accessories-calculator");
+    aboutData.setProgramIconName(QLatin1String( "accessories-calculator" ));
 
     KCmdLineArgs::init(argc, argv, &aboutData);
 

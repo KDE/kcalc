@@ -35,7 +35,7 @@ using namespace std;
 const KNumber KNumber::Zero(0);
 const KNumber KNumber::One(1);
 const KNumber KNumber::MinusOne(-1);
-const KNumber KNumber::NotDefined("nan");
+const KNumber KNumber::NotDefined(QLatin1String( "nan" ));
 bool KNumber::FloatOutput = false;
 bool KNumber::FractionInput = false;
 bool KNumber::SplitOffIntegerOutput = false;
@@ -110,14 +110,14 @@ KNumber::KNumber(const KNumber &num)
 
 KNumber::KNumber(const QString &num)
 {
-    if (QRegExp("^(inf|-inf|nan)$").exactMatch(num)) {
+    if (QRegExp(QLatin1String( "^(inf|-inf|nan)$" )).exactMatch(num)) {
         num_ = new detail::knumerror(num);
-    } else if (QRegExp("^[+-]?\\d+$").exactMatch(num)) {
+    } else if (QRegExp(QLatin1String( "^[+-]?\\d+$" )).exactMatch(num)) {
         num_ = new detail::knuminteger(num);
-    } else if (QRegExp("^[+-]?\\d+/\\d+$").exactMatch(num)) {
+    } else if (QRegExp(QLatin1String( "^[+-]?\\d+/\\d+$" )).exactMatch(num)) {
         num_ = new detail::knumfraction(num);
         simplifyRational();
-    } else if (QRegExp("^[+-]?\\d+(\\.\\d*)?(e[+-]?\\d+)?$").exactMatch(num)) {
+    } else if (QRegExp(QLatin1String( "^[+-]?\\d+(\\.\\d*)?(e[+-]?\\d+)?$" )).exactMatch(num)) {
         if (FractionInput == true) {
             num_ = new detail::knumfraction(num);
             simplifyRational();
@@ -125,7 +125,7 @@ KNumber::KNumber(const QString &num)
             num_ = new detail::knumfloat(num);
         }
     } else {
-        num_ = new detail::knumerror("nan");
+        num_ = new detail::knumerror(QLatin1String( "nan" ));
     }
 }
 
@@ -225,7 +225,7 @@ void increment(QString &str, int position)
             break;
         case '9':
             str[i] = '0';
-            if (i == 0) str.prepend('1');
+            if (i == 0) str.prepend(QLatin1Char( '1' ));
             continue;
         case '.':
             continue;
@@ -238,19 +238,19 @@ namespace impl {
 // Cut off if more digits in fractional part than 'precision'
 void round(QString &str, int precision)
 {
-    int decimalSymbolPos = str.indexOf('.');
+    int decimalSymbolPos = str.indexOf(QLatin1Char( '.' ));
 
     if (decimalSymbolPos == -1) {
         if (precision == 0) {
             return;
         } else if (precision > 0) {   // add dot if missing (and needed)
-            str.append('.');
+            str.append(QLatin1Char( '.' ));
             decimalSymbolPos = str.length() - 1;
         }
     }
 
     // fill up with more than enough zeroes (in case fractional part too short)
-    str.append(QString().fill('0', precision));
+    str.append(QString().fill(QLatin1Char( '0' ), precision));
 
     // Now decide whether to round up or down
     const char last_char = str[decimalSymbolPos + precision + 1].toLatin1();
@@ -274,12 +274,12 @@ void round(QString &str, int precision)
         break;
     }
 
-    decimalSymbolPos = str.indexOf('.');
+    decimalSymbolPos = str.indexOf(QLatin1Char( '.' ));
     str.truncate(decimalSymbolPos + precision + 1);
 
     // if precision == 0 delete also '.'
     if (precision == 0) {
-        str = str.section('.', 0, 0);
+        str = str.section(QLatin1Char( '.' ), 0, 0);
     }
 }
 }
@@ -287,26 +287,26 @@ void round(QString &str, int precision)
 QString round(const QString &numStr, int precision)
 {
     QString tmpString = numStr;
-    if (precision < 0 || 
-            !QRegExp("^[+-]?\\d+(\\.\\d+)*(e[+-]?\\d+)?$").exactMatch(tmpString)) {
+    if (precision < 0 ||
+            !QRegExp(QLatin1String( "^[+-]?\\d+(\\.\\d+)*(e[+-]?\\d+)?$" )).exactMatch(tmpString)) {
         return numStr;
     }
 
 
     // Skip the sign (for now)
-    const bool neg = (tmpString[0] == '-');
-    if (neg || tmpString[0] == '+') {
+    const bool neg = (tmpString[0] == QLatin1Char( '-' ));
+    if (neg || tmpString[0] == QLatin1Char( '+' )) {
         tmpString.remove(0, 1);
     }
 
     // Split off exponential part (including 'e'-symbol)
-    QString mantString = tmpString.section('e', 0, 0,
+    QString mantString = tmpString.section(QLatin1Char( 'e' ), 0, 0,
                                            QString::SectionCaseInsensitiveSeps);
-											
-    QString expString = tmpString.section('e', 1, 1,
+
+    QString expString = tmpString.section(QLatin1Char( 'e' ), 1, 1,
                                           QString::SectionCaseInsensitiveSeps |
                                           QString::SectionIncludeLeadingSep);
-										  
+
     if (expString.length() == 1) {
         expString.clear();
     }
@@ -315,7 +315,7 @@ QString round(const QString &numStr, int precision)
     impl::round(mantString, precision);
 
     if (neg) {
-        mantString.prepend('-');
+        mantString.prepend(QLatin1Char( '-' ));
     }
 
     return mantString + expString;
@@ -327,7 +327,7 @@ QString KNumber::toQString(int width, int prec) const
 {
     if (*this == Zero) {
         // important to avoid infinite loops below
-        return "0";
+        return QLatin1String( "0" );
     }
 
     QString tmp_str;
@@ -356,9 +356,9 @@ QString KNumber::toQString(int width, int prec) const
                 if (int_part == Zero) {
                     tmp_str = QString(num_->ascii());
                 } else if (int_part < Zero) {
-                    tmp_str = int_part.toQString() + ' ' + (int_part - *this).num_->ascii();
+                    tmp_str = int_part.toQString() + QLatin1Char( ' ' ) + (int_part - *this).num_->ascii();
                 } else {
-                    tmp_str = int_part.toQString() + ' ' + (*this - int_part).num_->ascii();
+                    tmp_str = int_part.toQString() + QLatin1Char( ' ' ) + (*this - int_part).num_->ascii();
                 }
             } else {
                 tmp_str = QString(num_->ascii());
@@ -444,14 +444,14 @@ KNumber KNumber::integerPart() const
 KNumber KNumber::power(const KNumber &exp) const
 {
     if (*this == Zero) {
-        if (exp == Zero)     return KNumber("nan");   // 0^0 not defined
-        else if (exp < Zero) return KNumber("inf");
+        if (exp == Zero)     return KNumber(QLatin1String( "nan" ));   // 0^0 not defined
+        else if (exp < Zero) return KNumber(QLatin1String( "inf" ));
         else                 return Zero;
     }
 
     if (exp == Zero) {
         if (*this != Zero) return One;
-        else               return KNumber("nan");
+        else               return KNumber(QLatin1String( "nan" ));
     } else if (exp < Zero) {
         const KNumber tmp_num2 = -exp;
         const KNumber tmp_num(num_->power(*(tmp_num2.num_)));
@@ -534,7 +534,7 @@ KNumber KNumber::operator|(const KNumber &arg2) const
 KNumber KNumber::operator<<(const KNumber &arg2) const
 {
     if (type() != IntegerType || arg2.type() != IntegerType) {
-        return KNumber("nan");
+        return KNumber(QLatin1String( "nan" ));
     }
 
     const detail::knuminteger *const tmp_arg1 = dynamic_cast<const detail::knuminteger *>(num_);
@@ -546,7 +546,7 @@ KNumber KNumber::operator<<(const KNumber &arg2) const
 KNumber KNumber::operator>>(const KNumber &arg2) const
 {
     if (type() != IntegerType || arg2.type() != IntegerType) {
-        return KNumber("nan");
+        return KNumber(QLatin1String( "nan" ));
     }
 
     const KNumber tmp_num = -arg2;
@@ -597,9 +597,9 @@ int KNumber::compare(const KNumber &arg2) const
 K_GLOBAL_STATIC_WITH_ARGS(KNumber,
                           g_Pi,
                           (
-                          "3.141592653589793238462643383279502884197169"
-                          "39937510582097494459230781640628620899862803"
-                          "4825342117068"))
+                          QLatin1String( "3.141592653589793238462643383279502884197169"
+                                         "39937510582097494459230781640628620899862803"
+                                         "4825342117068" )))
 KNumber KNumber::Pi()
 {
     return *g_Pi;
@@ -607,10 +607,10 @@ KNumber KNumber::Pi()
 
 K_GLOBAL_STATIC_WITH_ARGS(KNumber,
                           g_Euler,
-                          (
+                          (QLatin1String(
                           "2.718281828459045235360287471352662497757"
                           "24709369995957496696762772407663035354759"
-                          "4571382178525166427"))
+                          "4571382178525166427" )))
 
 KNumber KNumber::Euler()
 {
