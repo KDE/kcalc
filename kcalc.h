@@ -64,7 +64,7 @@ class KToggleAction;
 
 #include <kxmlguiwindow.h>
 
-class  General: public QWidget, public Ui::General
+class General: public QWidget, public Ui::General
 {
 public:
     General(QWidget *parent) : QWidget(parent) {
@@ -72,7 +72,7 @@ public:
     }
 };
 
-class  Fonts: public QWidget, public Ui::Fonts
+class Fonts: public QWidget, public Ui::Fonts
 {
 public:
     Fonts(QWidget *parent) : QWidget(parent) {

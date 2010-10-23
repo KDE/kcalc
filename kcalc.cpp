@@ -23,10 +23,10 @@
 
 #include "kcalc.h"
 
-#include <ctype.h>
-#include <locale.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cctype>
+#include <clocale>
+#include <cstdio>
+#include <cstdlib>
 #include <unistd.h>
 
 #include <QApplication>

@@ -26,7 +26,7 @@
 
 #include "stats.h"
 #ifdef DEBUG_STATS
-#include <stdio.h>
+#include <cstdio>
 #endif
 
 KStats::KStats() : error_flag_(false)

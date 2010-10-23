@@ -36,14 +36,13 @@
 
 #include <config-kcalc.h>
 
-#include <limits.h>
-#include <stdio.h>
-#include <assert.h>
-#include <signal.h>
-#include <errno.h>
-#include <string.h>
+#include <climits>
+#include <cstdio>
+#include <csignal>
+#include <cerrno>
+#include <cstring>
+#include <cstdlib>
 
-#include <stdlib.h>
 #include <kdebug.h>
 #include <klocale.h>
 #include <kmessagebox.h>

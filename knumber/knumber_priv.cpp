@@ -19,12 +19,12 @@
 
 #include "knumber_priv.h"
 
-#include <math.h>
+#include <cmath>
 #include <config-kcalc.h>
-#include <stdlib.h>
+#include <cstdlib>
 #ifdef Q_OS_LINUX
-#include <signal.h>
-#include <setjmp.h>
+#include <csignal>
+#include <csetjmp>
 #endif
 
 #include <QRegExp>

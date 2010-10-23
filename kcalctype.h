@@ -28,8 +28,8 @@
 #ifndef KCALC_TYPE_H
 #define KCALC_TYPE_H
 
-#include <limits.h>
-#include <float.h>
-#include <math.h>
+#include <climits>
+#include <cfloat>
+#include <cmath>
 
 #endif

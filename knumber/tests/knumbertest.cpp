@@ -2,14 +2,10 @@
 // Author: Klaus Niederkrueger <kniederk@math.uni-koeln.de>
 //
 
-#include <stdlib.h>
-#include <stdio.h>
-
-#include <iostream>
-
-
 #include "knumbertest.h"
-
+#include <cstdlib>
+#include <cstdio>
+#include <iostream>
 #include <QString>
 
 QString numtypeToString(KNumber::NumType arg)

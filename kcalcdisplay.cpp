@@ -26,9 +26,9 @@
 
 #include "kcalcdisplay.h"
 
-#include <errno.h>
-#include <stdlib.h>
-#include <ctype.h>
+#include <cerrno>
+#include <cstdlib>
+#include <cctype>
 
 #include <QClipboard>
 #include <QMouseEvent>
