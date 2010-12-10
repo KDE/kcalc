@@ -832,130 +832,109 @@ detail::knumber *detail::knumerror::power(const knumber &/*exponent*/) const
     return new knumerror(UndefinedNumber);
 }
 
+
+detail::knumber *detail::knuminteger::power_integer(const knumber &exponent) const {
+    mpz_t tmp_mpz;
+    mpz_init_set(
+		tmp_mpz,
+		dynamic_cast<const knuminteger &>(exponent).mpz_);
+
+    if (!mpz_fits_ulong_p(tmp_mpz)) {
+        // conversion wouldn't work, so use floats
+        mpz_clear(tmp_mpz);
+
+        // need to cast everything to float
+		return knumfloat(*this).power(knumfloat(exponent));
+    }
+
+    const unsigned long tmp_int = mpz_get_ui(tmp_mpz);
+    mpz_clear(tmp_mpz);
+
+    knuminteger *const tmp_num = new knuminteger();
+    mpz_pow_ui(tmp_num->mpz_, mpz_, tmp_int);
+    return tmp_num;
+}
+
+detail::knumber *detail::knuminteger::power_fraction(const knumber &exponent) const {
+	if (mpz_sgn(mpz_) < 0) {
+    	return new knumerror(UndefinedNumber);
+	}
+
+	// GMP only supports few root functions, so we need to convert
+	// into signed long int
+	mpz_t tmp_mpz;
+	mpz_init_set(
+		tmp_mpz,
+		mpq_denref(dynamic_cast<const knumfraction &>(exponent).mpq_));
+
+	if (!mpz_fits_ulong_p(tmp_mpz)) {
+    	// conversion wouldn't work, so use floats
+    	mpz_clear(tmp_mpz);
+
+		// need to cast everything to float
+    	return knumfloat(*this).power(knumfloat(exponent));
+	}
+
+	unsigned long tmp_int = mpz_get_ui(tmp_mpz);
+	mpz_clear(tmp_mpz);
+
+	// first check if result will be an integer
+	knuminteger *const tmp_num = new knuminteger();
+
+	if (mpz_root(tmp_num->mpz_, mpz_, tmp_int) == 0) {   // result is not exact
+    	delete tmp_num;
+
+    	// need to cast everything to float
+    	return knumfloat(*this).power(knumfloat(exponent));
+	}
+
+	// result is exact
+
+	mpz_init_set(
+		tmp_mpz,
+		mpq_numref(dynamic_cast<const knumfraction &>(exponent).mpq_));
+
+	if (!mpz_fits_ulong_p(tmp_mpz)) {     // conversion wouldn't work, so
+    	// use floats
+    	mpz_clear(tmp_mpz);
+
+    	// need to cast everything to float
+    	return knumfloat(*this).power(knumfloat(exponent));
+	}
+
+	tmp_int = mpz_get_ui(tmp_mpz);
+	mpz_clear(tmp_mpz);
+
+	mpz_pow_ui(tmp_num->mpz_, tmp_num->mpz_, tmp_int);
+
+	return tmp_num;
+}
+
+detail::knumber *detail::knuminteger::power_float(const knumber &exponent) const {
+    return knumfloat(*this).power(exponent);
+}
+
 detail::knumber *detail::knuminteger::power(const knumber &exponent) const
 {
-    if (exponent.type() == IntegerType) {
-
-        mpz_t tmp_mpz;
-        mpz_init_set(tmp_mpz,
-                     dynamic_cast<const knuminteger &>(exponent).mpz_);
-
-        if (!mpz_fits_ulong_p(tmp_mpz)) {
-            // conversion wouldn't work, so use floats
-            mpz_clear(tmp_mpz);
-
-            // need to cast everything to float
-            const knumfloat tmp_num1(*this);
-            const knumfloat tmp_num2(exponent);
-            return tmp_num1.power(tmp_num2);
-        }
-
-        const unsigned long int tmp_int = mpz_get_ui(tmp_mpz);
-        mpz_clear(tmp_mpz);
-
-        knuminteger *const tmp_num = new knuminteger();
-        mpz_pow_ui(tmp_num->mpz_, mpz_, tmp_int);
-        return tmp_num;
+    switch(exponent.type()) {
+    case IntegerType:  return power_integer(exponent);
+    case FractionType: return power_fraction(exponent);
+    case FloatType:    return power_float(exponent);
+    default:           return new knumerror(Infinity);
     }
-
-    if (exponent.type() == FractionType) {
-        if (mpz_sgn(mpz_) < 0) {
-            return new knumerror(UndefinedNumber);
-        }
-
-        // GMP only supports few root functions, so we need to convert
-        // into signed long int
-        mpz_t tmp_mpz;
-        mpz_init_set(tmp_mpz,
-                     mpq_denref(dynamic_cast<const knumfraction &>(exponent).mpq_));
-
-        if (!mpz_fits_ulong_p(tmp_mpz)) {
-            // conversion wouldn't work, so use floats
-            mpz_clear(tmp_mpz);
-
-            // need to cast everything to float
-            const knumfloat tmp_num1(*this);
-            const knumfloat tmp_num2(exponent);
-            return tmp_num1.power(tmp_num2);
-        }
-
-        unsigned long int tmp_int = mpz_get_ui(tmp_mpz);
-        mpz_clear(tmp_mpz);
-
-        // first check if result will be an integer
-        knuminteger *const tmp_num = new knuminteger();
-        const int flag = mpz_root(tmp_num->mpz_, mpz_, tmp_int);
-
-        if (flag == 0) {   // result is not exact
-            delete tmp_num;
-
-            // need to cast everything to float
-            const knumfloat tmp_num1(*this);
-            const knumfloat tmp_num2(exponent);
-            return tmp_num1.power(tmp_num2);
-        }
-
-        // result is exact
-
-        mpz_init_set(tmp_mpz,
-                     mpq_numref(dynamic_cast<const knumfraction &>(exponent).mpq_));
-
-        if (!mpz_fits_ulong_p(tmp_mpz)) {     // conversion wouldn't work, so
-            // use floats
-            mpz_clear(tmp_mpz);
-
-            // need to cast everything to float
-            const knumfloat tmp_num1(*this);
-            const knumfloat tmp_num2(exponent);
-            return tmp_num1.power(tmp_num2);
-        }
-
-        tmp_int = mpz_get_ui(tmp_mpz);
-        mpz_clear(tmp_mpz);
-
-        mpz_pow_ui(tmp_num->mpz_, tmp_num->mpz_, tmp_int);
-
-        return tmp_num;
-    }
-
-    if (exponent.type() == FloatType) {
-        // need to cast everything to float
-        const knumfloat tmp_num(*this);
-        return tmp_num.power(exponent);
-    }
-
-    return new knumerror(Infinity);
 }
 
 detail::knumber *detail::knumfraction::power(const knumber &exponent) const
-{
-    knuminteger tmp_num;
-
-    mpz_set(tmp_num.mpz_, mpq_numref(mpq_));
-    knumber *const numer = tmp_num.power(exponent);
-
-    mpz_set(tmp_num.mpz_, mpq_denref(mpq_));
-    knumber *const denom = tmp_num.power(exponent);
-
-    knumber *result;
-
-    if (numer->type() == SpecialType) {
-        result = new knumerror(*numer);
-    } else if (denom->type() == SpecialType) {
-        result = new knumerror(*denom);
-    } else {
-        result = numer->divide(*denom);
-    }
-
-    delete numer;
-    delete denom;
-    return result;
+{	
+	return knumfloat(*this).power(exponent);
 }
 
 detail::knumber *detail::knumfloat::power(const knumber &exponent) const
 {
-    const double result = pow(static_cast<double>(*this),
-                              static_cast<double>(exponent));
+    const double result = pow(
+		static_cast<double>(*this),
+		static_cast<double>(exponent));
+
     if (isnan(result)) {
         return new knumerror(UndefinedNumber);
     }

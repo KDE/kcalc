@@ -183,6 +183,11 @@ public:
     knuminteger *intOr(const knuminteger &arg2) const;
     knumber *mod(const knuminteger &arg2) const;
     knumber *shift(const knuminteger &arg2) const;
+	
+private:
+	knumber *power_integer(const knumber &exponent) const;
+	knumber *power_fraction (const knumber &exponent) const;
+	knumber *power_float(const knumber &exponent) const;
 
 private:
     mpz_t mpz_;

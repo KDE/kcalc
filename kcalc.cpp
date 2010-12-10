@@ -741,8 +741,7 @@ void KCalculator::updateGeometry()
     // left pad
 
     foreach(QObject *obj, leftPad->children()) {
-        KCalcButton *const button = qobject_cast<KCalcButton*>(obj);
-        if (button) {
+        if (KCalcButton *const button = qobject_cast<KCalcButton*>(obj)) {
             button->setFixedWidth(em.width()*4 + margin*2);
             button->installEventFilter(this);
         }
@@ -751,8 +750,7 @@ void KCalculator::updateGeometry()
     // right pad
 
     foreach(QObject *obj, rightPad->children()) {
-        KCalcButton *const button = qobject_cast<KCalcButton*>(obj);
-        if (button) {
+        if (KCalcButton *const button = qobject_cast<KCalcButton*>(obj)) {
             button->setFixedWidth(em.width()*3 + margin*2);
             button->installEventFilter(this);
         }
@@ -761,8 +759,7 @@ void KCalculator::updateGeometry()
     // numeric pad
 
     foreach(QObject *obj, numericPad->children()) {
-        KCalcButton *const button = qobject_cast<KCalcButton*>(obj);
-        if (button) {
+        if (KCalcButton *const button = qobject_cast<KCalcButton*>(obj)) {
             if (button != pb0) {   // let pb0 expand freely
                 button->setFixedWidth(em.width()*3 + margin*2);
             }
@@ -774,7 +771,6 @@ void KCalculator::updateGeometry()
 void KCalculator::slotConstantToDisplay(const science_constant &const_chosen)
 {
     calc_display->setAmount(const_chosen.value);
-
     updateDisplay(0);
 }
 
