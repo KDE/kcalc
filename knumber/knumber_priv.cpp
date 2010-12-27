@@ -935,11 +935,11 @@ detail::knumber *detail::knumfloat::power(const knumber &exponent) const
 		static_cast<double>(*this),
 		static_cast<double>(exponent));
 
-    if (isnan(result)) {
+    if (std::isnan(result)) {
         return new knumerror(UndefinedNumber);
     }
 
-    if (isinf(result)) {
+    if (std::isinf(result)) {
         return new knumerror(Infinity);
     }
 
