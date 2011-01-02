@@ -931,15 +931,19 @@ detail::knumber *detail::knumfraction::power(const knumber &exponent) const
 
 detail::knumber *detail::knumfloat::power(const knumber &exponent) const
 {
+	// apparently on some systems isnan and isinf are only found
+	// in std::
+	using namespace std;
+
     const double result = pow(
 		static_cast<double>(*this),
 		static_cast<double>(exponent));
 
-    if (std::isnan(result)) {
+    if (isnan(result)) {
         return new knumerror(UndefinedNumber);
     }
 
-    if (std::isinf(result)) {
+    if (isinf(result)) {
         return new knumerror(Infinity);
     }
 
