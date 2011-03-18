@@ -141,7 +141,7 @@ detail::knumerror::knumerror(const QString &num)
     if (num == QLatin1String( "nan" ))       error_ = UndefinedNumber;
     else if (num == QLatin1String( "inf" ))  error_ = Infinity;
     else if (num == QLatin1String( "-inf" )) error_ = MinusInfinity;
-    else                    error_ = UndefinedNumber;
+    else                                     error_ = UndefinedNumber;
 }
 
 detail::knuminteger::knuminteger(const QString &num)
@@ -390,6 +390,14 @@ detail::knumber *detail::knumerror::cbrt() const
     return new knumerror(*this);
 }
 
+#ifdef Q_OS_LINUX
+static jmp_buf abort_cbrt;
+static void cbrt_abort_handler(int)
+{
+    longjmp(abort_cbrt, 1);
+}
+#endif
+
 detail::knumber *detail::knuminteger::cbrt() const
 {
     knuminteger *const tmp_num = new knuminteger();
@@ -402,7 +410,27 @@ detail::knumber *detail::knuminteger::cbrt() const
 
     knumfloat *const tmp_num2 = new knumfloat();
     mpf_set_z(tmp_num2->mpf_, mpz_);
+	
+#ifdef Q_OS_LINUX
+    struct sigaction new_sa;
+    struct sigaction old_sa;
+
+    sigemptyset(&new_sa.sa_mask);
+    new_sa.sa_handler = cbrt_abort_handler;
+    sigaction(SIGABRT, &new_sa, &old_sa);
+
+    if(setjmp(abort_cbrt)) {
+        sigaction(SIGABRT, &old_sa, 0);
+		delete tmp_num2;
+        return new knumerror(UndefinedNumber);
+    }
+#endif
+	
     cube_root(tmp_num2->mpf_);
+	
+#ifdef Q_OS_LINUX
+    sigaction(SIGABRT, &old_sa, 0);
+#endif
     return tmp_num2;
 }
 
@@ -420,7 +448,26 @@ detail::knumber *detail::knumfraction::cbrt() const
 
     knumfloat *const tmp_num2 = new knumfloat();
     mpf_set_q(tmp_num2->mpf_, mpq_);
+	
+#ifdef Q_OS_LINUX
+    struct sigaction new_sa;
+    struct sigaction old_sa;
+
+    sigemptyset(&new_sa.sa_mask);
+    new_sa.sa_handler = cbrt_abort_handler;
+    sigaction(SIGABRT, &new_sa, &old_sa);
+
+    if(setjmp(abort_cbrt)) {
+        sigaction(SIGABRT, &old_sa, 0);
+		delete tmp_num2;
+        return new knumerror(UndefinedNumber);
+    }
+#endif
+	
     cube_root(tmp_num2->mpf_);
+#ifdef Q_OS_LINUX
+    sigaction(SIGABRT, &old_sa, 0);
+#endif
     return tmp_num2;
 }
 
