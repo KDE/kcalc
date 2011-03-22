@@ -392,7 +392,7 @@ detail::knumber *detail::knumerror::cbrt() const
 
 #ifdef Q_OS_LINUX
 static jmp_buf abort_integer_cbrt;
-static void cbrt_abort_handler(int)
+static void cbrt_abort_integer_handler(int)
 {
     longjmp(abort_integer_cbrt, 1);
 }
@@ -416,7 +416,7 @@ detail::knumber *detail::knuminteger::cbrt() const
     struct sigaction old_sa;
 
     sigemptyset(&new_sa.sa_mask);
-    new_sa.sa_handler = cbrt_abort_handler;
+    new_sa.sa_handler = cbrt_abort_integer_handler;
     sigaction(SIGABRT, &new_sa, &old_sa);
 
     if(setjmp(abort_integer_cbrt)) {
@@ -462,7 +462,7 @@ detail::knumber *detail::knumfraction::cbrt() const
     struct sigaction old_sa;
 
     sigemptyset(&new_sa.sa_mask);
-    new_sa.sa_handler = cbrt_abort_handler;
+    new_sa.sa_handler = cbrt_abort_fraction_handler;
     sigaction(SIGABRT, &new_sa, &old_sa);
 
     if(setjmp(abort_fraction_cbrt)) {
