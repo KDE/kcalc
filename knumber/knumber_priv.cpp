@@ -391,10 +391,10 @@ detail::knumber *detail::knumerror::cbrt() const
 }
 
 #ifdef Q_OS_LINUX
-static jmp_buf abort_cbrt;
+static jmp_buf abort_integer_cbrt;
 static void cbrt_abort_handler(int)
 {
-    longjmp(abort_cbrt, 1);
+    longjmp(abort_integer_cbrt, 1);
 }
 #endif
 
@@ -419,7 +419,7 @@ detail::knumber *detail::knuminteger::cbrt() const
     new_sa.sa_handler = cbrt_abort_handler;
     sigaction(SIGABRT, &new_sa, &old_sa);
 
-    if(setjmp(abort_cbrt)) {
+    if(setjmp(abort_integer_cbrt)) {
         sigaction(SIGABRT, &old_sa, 0);
 		delete tmp_num2;
         return new knumerror(UndefinedNumber);
@@ -433,6 +433,14 @@ detail::knumber *detail::knuminteger::cbrt() const
 #endif
     return tmp_num2;
 }
+
+#ifdef Q_OS_LINUX
+static jmp_buf abort_fraction_cbrt;
+static void cbrt_abort_fraction_handler(int)
+{
+    longjmp(abort_fraction_cbrt, 1);
+}
+#endif
 
 detail::knumber *detail::knumfraction::cbrt() const
 {
@@ -457,7 +465,7 @@ detail::knumber *detail::knumfraction::cbrt() const
     new_sa.sa_handler = cbrt_abort_handler;
     sigaction(SIGABRT, &new_sa, &old_sa);
 
-    if(setjmp(abort_cbrt)) {
+    if(setjmp(abort_fraction_cbrt)) {
         sigaction(SIGABRT, &old_sa, 0);
 		delete tmp_num2;
         return new knumerror(UndefinedNumber);
