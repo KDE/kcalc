@@ -3,6 +3,23 @@ project(kcalc)
 find_package(KDE4)
 include(KDE4Defaults)
 
+if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
+    set(GMP_REQUIRED TRUE)
+else()
+    set(GMP_REQUIRED FALSE)
+endif()
+
+find_package(GMP)
+macro_log_feature( GMP_FOUND "GMP" "The GNU Multiple Precision Arithmetic Library" "http://gmplib.org/" ${GMP_REQUIRED} "" "Required for building KCalc.")
+
+if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
+    macro_display_feature_log()
+else()
+    if(NOT GMP_FOUND)
+        RETURN()
+    endif(NOT GMP_FOUND)
+endif()
+
 include(CheckTypeSize)
 include(CheckFunctionExists)
 include(CheckIncludeFiles)
@@ -11,8 +28,6 @@ check_include_files(ieeefp.h      HAVE_IEEEFP_H)
 check_function_exists(isinf      HAVE_FUNC_ISINF)
 check_type_size("signed long" SIZEOF_SIGNED_LONG)
 check_type_size("unsigned long" SIZEOF_UNSIGNED_LONG)
-
-find_package(GMP)
 
 configure_file(config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
 
