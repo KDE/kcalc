@@ -1,4 +1,8 @@
 project(kcalc)
+
+find_package(KDE4)
+include(KDE4Defaults)
+
 include(CheckTypeSize)
 include(CheckFunctionExists)
 include(CheckIncludeFiles)
@@ -8,15 +12,18 @@ check_function_exists(isinf      HAVE_FUNC_ISINF)
 check_type_size("signed long" SIZEOF_SIGNED_LONG)
 check_type_size("unsigned long" SIZEOF_UNSIGNED_LONG)
 
+find_package(GMP)
+
 configure_file(config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
 
+include_directories(${KDE4_INCLUDES})
 include_directories( ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/knumber ${GMP_INCLUDE_DIR} )
 
 ########### next target ###############
 # Needs absolute paths due to the test program for knumber
 set(libknumber_la_SRCS  
-   ${CMAKE_SOURCE_DIR}/kcalc/knumber/knumber.cpp 
-   ${CMAKE_SOURCE_DIR}/kcalc/knumber/knumber_priv.cpp
+   ${kcalc_SOURCE_DIR}/knumber/knumber.cpp 
+   ${kcalc_SOURCE_DIR}/knumber/knumber_priv.cpp
    )
 
 add_subdirectory( knumber )
