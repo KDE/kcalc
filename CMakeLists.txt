@@ -82,3 +82,5 @@ install( FILES scienceconstants.xml  DESTINATION ${DATA_INSTALL_DIR}/kcalc)
 install( FILES kcalcrc.upd  DESTINATION ${DATA_INSTALL_DIR}/kconf_update)
 
 kde4_install_icons( ${ICON_INSTALL_DIR}   )
+
+add_subdirectory(doc)
