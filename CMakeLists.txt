@@ -3,6 +3,7 @@ project(kcalc)
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
     find_package(KDE4)
     include(KDE4Defaults)
+    include_directories(${KDE4_INCLUDES})
     set(GMP_REQUIRED TRUE)
 else()
     set(GMP_REQUIRED FALSE)
@@ -30,7 +31,6 @@ check_type_size("unsigned long" SIZEOF_UNSIGNED_LONG)
 
 configure_file(config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
 
-include_directories(${KDE4_INCLUDES})
 include_directories( ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/knumber ${GMP_INCLUDE_DIR} )
 
 ########### next target ###############
