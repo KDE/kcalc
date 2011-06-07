@@ -256,7 +256,7 @@ QString detail::knumfloat::ascii(int prec) const
     size_t size;
 
     if (prec > 0) {
-        size = gmp_snprintf(NULL, 0, (QLatin1String( "%." ) + QString::number(prec) + QLatin1String( "Fg" )).toAscii(), mpf_) + 1;
+        size = gmp_snprintf(NULL, 0, QString(QLatin1String( "%." ) + QString::number(prec) + QLatin1String( "Fg" )).toAscii(), mpf_) + 1;
     } else {
         size = gmp_snprintf(NULL, 0, "%Fg", mpf_) + 1;
     }
@@ -264,7 +264,7 @@ QString detail::knumfloat::ascii(int prec) const
     char *const tmp_ptr = new char[size];
 
     if (prec > 0) {
-        gmp_snprintf(tmp_ptr, size, (QLatin1String( "%." ) + QString::number(prec) + QLatin1String( "Fg" )).toAscii(), mpf_);
+        gmp_snprintf(tmp_ptr, size, QString(QLatin1String( "%." ) + QString::number(prec) + QLatin1String( "Fg" )).toAscii(), mpf_);
     } else {
         gmp_snprintf(tmp_ptr, size, "%Fg", mpf_);
     }
