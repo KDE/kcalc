@@ -35,7 +35,7 @@ using namespace std;
 const KNumber KNumber::Zero(0);
 const KNumber KNumber::One(1);
 const KNumber KNumber::MinusOne(-1);
-const KNumber KNumber::NotDefined(QLatin1String( "nan" ));
+const KNumber KNumber::NotDefined(QLatin1String("nan"));
 bool KNumber::FloatOutput = false;
 bool KNumber::FractionInput = false;
 bool KNumber::SplitOffIntegerOutput = false;
@@ -110,7 +110,7 @@ KNumber::KNumber(const KNumber &num)
 
 KNumber::KNumber(const QString &num)
 {
-    if (QRegExp(QLatin1String( "^(inf|-inf|nan)$" )).exactMatch(num)) {
+    if (QRegExp(QLatin1String("^(inf|-inf|nan)$")).exactMatch(num)) {
         num_ = new detail::knumerror(num);
     } else if (QRegExp(QLatin1String( "^[+-]?\\d+$" )).exactMatch(num)) {
         num_ = new detail::knuminteger(num);
@@ -327,7 +327,7 @@ QString KNumber::toQString(int width, int prec) const
 {
     if (*this == Zero) {
         // important to avoid infinite loops below
-        return QLatin1String( "0" );
+        return QLatin1String("0");
     }
 
     QString tmp_str;
@@ -444,14 +444,14 @@ KNumber KNumber::integerPart() const
 KNumber KNumber::power(const KNumber &exp) const
 {
     if (*this == Zero) {
-        if (exp == Zero)     return KNumber(QLatin1String( "nan" ));   // 0^0 not defined
-        else if (exp < Zero) return KNumber(QLatin1String( "inf" ));
+        if (exp == Zero)     return KNumber(QLatin1String("nan"));   // 0^0 not defined
+        else if (exp < Zero) return KNumber(QLatin1String("inf"));
         else                 return Zero;
     }
 
     if (exp == Zero) {
         if (*this != Zero) return One;
-        else               return KNumber(QLatin1String( "nan" ));
+        else               return KNumber(QLatin1String("nan"));
     } else if (exp < Zero) {
         const KNumber tmp_num2 = -exp;
         const KNumber tmp_num(num_->power(*(tmp_num2.num_)));
@@ -534,7 +534,7 @@ KNumber KNumber::operator|(const KNumber &arg2) const
 KNumber KNumber::operator<<(const KNumber &arg2) const
 {
     if (type() != IntegerType || arg2.type() != IntegerType) {
-        return KNumber(QLatin1String( "nan" ));
+        return KNumber(QLatin1String("nan"));
     }
 
     const detail::knuminteger *const tmp_arg1 = dynamic_cast<const detail::knuminteger *>(num_);
@@ -546,7 +546,7 @@ KNumber KNumber::operator<<(const KNumber &arg2) const
 KNumber KNumber::operator>>(const KNumber &arg2) const
 {
     if (type() != IntegerType || arg2.type() != IntegerType) {
-        return KNumber(QLatin1String( "nan" ));
+        return KNumber(QLatin1String("nan"));
     }
 
     const KNumber tmp_num = -arg2;
