@@ -81,8 +81,8 @@ void KCalcConstButton::initPopupMenu()
     setContextMenuPolicy(Qt::ActionsContextMenu);
 
     connect(tmp_menu,
-            SIGNAL(triggeredConstant(const science_constant &)),
-            SLOT(slotChooseScientificConst(const science_constant &)));
+            SIGNAL(triggeredConstant(science_constant)),
+            SLOT(slotChooseScientificConst(science_constant)));
 
 }
 
