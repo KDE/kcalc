@@ -1,4 +1,33 @@
 project(kcalc)
+
+if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
+    find_package(KDE4)
+    include(KDE4Defaults)
+    include_directories(${KDE4_INCLUDES})
+
+    # If definitions like -D_GNU_SOURCE are needed for these checks they
+    # should be added to _KDE4_PLATFORM_DEFINITIONS when it is originally
+    # defined outside this file.  Here we include these definitions in
+    # CMAKE_REQUIRED_DEFINITIONS so they will be included in the build of
+    # checks below.
+    set( CMAKE_REQUIRED_DEFINITIONS ${_KDE4_PLATFORM_DEFINITIONS} )
+
+    set(GMP_REQUIRED TRUE)
+else()
+    set(GMP_REQUIRED FALSE)
+endif()
+
+find_package(GMP)
+macro_log_feature( GMP_FOUND "GMP" "The GNU Multiple Precision Arithmetic Library" "http://gmplib.org/" ${GMP_REQUIRED} "" "Required for building KCalc.")
+
+if(NOT GMP_FOUND)
+    if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
+        macro_display_feature_log()
+    else()
+        return()
+    endif()
+endif(NOT GMP_FOUND)
+
 include(CheckTypeSize)
 include(CheckFunctionExists)
 include(CheckIncludeFiles)
@@ -15,8 +44,8 @@ include_directories( ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/knu
 ########### next target ###############
 # Needs absolute paths due to the test program for knumber
 set(libknumber_la_SRCS  
-   ${CMAKE_SOURCE_DIR}/kcalc/knumber/knumber.cpp 
-   ${CMAKE_SOURCE_DIR}/kcalc/knumber/knumber_priv.cpp
+   ${kcalc_SOURCE_DIR}/knumber/knumber.cpp 
+   ${kcalc_SOURCE_DIR}/knumber/knumber_priv.cpp
    )
 
 add_subdirectory( knumber )
@@ -61,3 +90,5 @@ install( FILES scienceconstants.xml  DESTINATION ${DATA_INSTALL_DIR}/kcalc)
 install( FILES kcalcrc.upd  DESTINATION ${DATA_INSTALL_DIR}/kconf_update)
 
 kde4_install_icons( ${ICON_INSTALL_DIR}   )
+
+add_subdirectory(doc)
