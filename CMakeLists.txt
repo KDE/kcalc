@@ -17,6 +17,8 @@ else()
     set(GMP_REQUIRED FALSE)
 endif()
 
+add_definitions (-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
+
 find_package(GMP)
 macro_log_feature( GMP_FOUND "GMP" "The GNU Multiple Precision Arithmetic Library" "http://gmplib.org/" ${GMP_REQUIRED} "" "Required for building KCalc.")
 
