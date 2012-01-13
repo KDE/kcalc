@@ -818,22 +818,6 @@
           <property name="spacing">
            <number>4</number>
           </property>
-          <item row="0" column="1">
-           <widget class="KCalcButton" name="pbShift">
-            <property name="toolTip">
-             <string>Second button function</string>
-            </property>
-            <property name="text">
-             <string>Shift</string>
-            </property>
-            <property name="shortcut">
-             <string>Ctrl+2</string>
-            </property>
-            <property name="checkable">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="0">
            <widget class="KCalcButton" name="pbClear">
             <property name="toolTip">
@@ -931,6 +915,28 @@
             </property>
             <property name="text">
              <string>+/−</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="KCalcButton" name="pbShift">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Second button function</string>
+            </property>
+            <property name="text">
+             <string>Shift</string>
+            </property>
+            <property name="shortcut">
+             <string>Ctrl+2</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
             </property>
            </widget>
           </item>

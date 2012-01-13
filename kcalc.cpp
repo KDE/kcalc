@@ -750,7 +750,8 @@ void KCalculator::updateGeometry()
     // right pad
 
     foreach(QObject *obj, rightPad->children()) {
-        if (KCalcButton *const button = qobject_cast<KCalcButton*>(obj)) {
+        KCalcButton *const button = qobject_cast<KCalcButton*>(obj);
+        if (button && button != pbShift) {
             button->setFixedWidth(em.width()*3 + margin*2);
             button->installEventFilter(this);
         }
