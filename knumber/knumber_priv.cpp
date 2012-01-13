@@ -22,10 +22,7 @@
 #include <cmath>
 #include <config-kcalc.h>
 #include <cstdlib>
-#ifdef Q_OS_LINUX
-#include <csignal>
-#include <csetjmp>
-#endif
+#include <exception>
 
 #include <QRegExp>
 
@@ -38,6 +35,44 @@
 #include <ieeefp.h>
 #define isinf(a) !finite(a)
 #endif
+
+struct gmp_exception : std::exception {};
+
+namespace {
+
+void *knumber_malloc(size_t size) {
+	void *p = malloc(size);
+	if(!p) {
+		throw gmp_exception();
+	}
+	return p;
+}
+
+void knumber_free(void *ptr, size_t size) {
+	Q_UNUSED(size);
+	return free(ptr);
+}
+
+void *knumber_realloc(void *ptr, size_t old_size, size_t new_size) {
+	Q_UNUSED(old_size);
+	void *p = realloc(ptr, new_size);
+	/*
+	if(!p && new_size != 0) {
+		throw gmp_exception();
+	}
+	*/
+	return p;
+}
+
+class static_knumber_init {
+public:
+	static_knumber_init() {
+		mp_set_memory_functions(knumber_malloc, knumber_realloc, knumber_free);
+	}
+	
+} static_knumber;
+
+}
 
 
 detail::knumerror::knumerror(const knumber &num)
@@ -390,14 +425,6 @@ detail::knumber *detail::knumerror::cbrt() const
     return new knumerror(*this);
 }
 
-#ifdef Q_OS_LINUX
-static jmp_buf abort_integer_cbrt;
-static void cbrt_abort_integer_handler(int)
-{
-    longjmp(abort_integer_cbrt, 1);
-}
-#endif
-
 detail::knumber *detail::knuminteger::cbrt() const
 {
     knuminteger *const tmp_num = new knuminteger();
@@ -411,36 +438,14 @@ detail::knumber *detail::knuminteger::cbrt() const
     knumfloat *const tmp_num2 = new knumfloat();
     mpf_set_z(tmp_num2->mpf_, mpz_);
 	
-#ifdef Q_OS_LINUX
-    struct sigaction new_sa;
-    struct sigaction old_sa;
-
-    sigemptyset(&new_sa.sa_mask);
-    new_sa.sa_handler = cbrt_abort_integer_handler;
-    sigaction(SIGABRT, &new_sa, &old_sa);
-
-    if(setjmp(abort_integer_cbrt)) {
-        sigaction(SIGABRT, &old_sa, 0);
+	try {
+		cube_root(tmp_num2->mpf_);
+		return tmp_num2;
+	} catch(const gmp_exception &) {
 		delete tmp_num2;
         return new knumerror(UndefinedNumber);
-    }
-#endif
-	
-    cube_root(tmp_num2->mpf_);
-	
-#ifdef Q_OS_LINUX
-    sigaction(SIGABRT, &old_sa, 0);
-#endif
-    return tmp_num2;
+	}
 }
-
-#ifdef Q_OS_LINUX
-static jmp_buf abort_fraction_cbrt;
-static void cbrt_abort_fraction_handler(int)
-{
-    longjmp(abort_fraction_cbrt, 1);
-}
-#endif
 
 detail::knumber *detail::knumfraction::cbrt() const
 {
@@ -457,26 +462,13 @@ detail::knumber *detail::knumfraction::cbrt() const
     knumfloat *const tmp_num2 = new knumfloat();
     mpf_set_q(tmp_num2->mpf_, mpq_);
 	
-#ifdef Q_OS_LINUX
-    struct sigaction new_sa;
-    struct sigaction old_sa;
-
-    sigemptyset(&new_sa.sa_mask);
-    new_sa.sa_handler = cbrt_abort_fraction_handler;
-    sigaction(SIGABRT, &new_sa, &old_sa);
-
-    if(setjmp(abort_fraction_cbrt)) {
-        sigaction(SIGABRT, &old_sa, 0);
+	try {
+		cube_root(tmp_num2->mpf_);
+		return tmp_num2;
+	} catch(const gmp_exception &) {
 		delete tmp_num2;
         return new knumerror(UndefinedNumber);
-    }
-#endif
-	
-    cube_root(tmp_num2->mpf_);
-#ifdef Q_OS_LINUX
-    sigaction(SIGABRT, &old_sa, 0);
-#endif
-    return tmp_num2;
+	}
 }
 
 detail::knumber *detail::knumfloat::cbrt() const
@@ -558,42 +550,22 @@ detail::knumber *detail::knumerror::factorial() const
     return new knumerror(*this);
 }
 
-#ifdef Q_OS_LINUX
-static jmp_buf abort_factorial;
-static void factorial_abort_handler(int)
-{
-    longjmp(abort_factorial, 1);
-}
-#endif
-
 detail::knumber *detail::knuminteger::factorial() const
 {
     if (mpz_sgn(mpz_) < 0) {
         return new knumerror(UndefinedNumber);
     }
+	
+	knuminteger *const tmp_num = new knuminteger();
 
-#ifdef Q_OS_LINUX
-    struct sigaction new_sa;
-    struct sigaction old_sa;
+	try {
+	    mpz_fac_ui(tmp_num->mpz_, mpz_get_ui(mpz_));
+		return tmp_num;
+	} catch(const gmp_exception &) {
+		delete tmp_num;
+		return new knumerror(UndefinedNumber);
+	}
 
-    sigemptyset(&new_sa.sa_mask);
-    new_sa.sa_handler = factorial_abort_handler;
-    sigaction(SIGABRT, &new_sa, &old_sa);
-
-    if(setjmp(abort_factorial)) {
-        sigaction(SIGABRT, &old_sa, 0);
-        return new knumerror(UndefinedNumber);
-    }
-#endif
-
-    knuminteger *const tmp_num = new knuminteger();
-    mpz_fac_ui(tmp_num->mpz_, mpz_get_ui(mpz_));
-
-#ifdef Q_OS_LINUX
-    sigaction(SIGABRT, &old_sa, 0);
-#endif
-
-    return tmp_num;
 }
 
 detail::knumber *detail::knumfraction::factorial() const
@@ -972,17 +944,21 @@ detail::knumber *detail::knuminteger::power_fraction(const knumber &exponent) co
 }
 
 detail::knumber *detail::knuminteger::power_float(const knumber &exponent) const {
-    return knumfloat(*this).power(exponent);
+	return knumfloat(*this).power(exponent);
 }
 
 detail::knumber *detail::knuminteger::power(const knumber &exponent) const
 {
-    switch(exponent.type()) {
-    case IntegerType:  return power_integer(exponent);
-    case FractionType: return power_fraction(exponent);
-    case FloatType:    return power_float(exponent);
-    default:           return new knumerror(Infinity);
-    }
+	try {
+	    switch(exponent.type()) {
+	    case IntegerType:  return power_integer(exponent);
+	    case FractionType: return power_fraction(exponent);
+	    case FloatType:    return power_float(exponent);
+	    default:           return new knumerror(Infinity);
+	    }
+	} catch(const gmp_exception &) {
+        return new knumerror(UndefinedNumber);
+	}
 }
 
 detail::knumber *detail::knumfraction::power(const knumber &exponent) const

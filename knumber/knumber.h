@@ -229,7 +229,7 @@ public:
     KNumber power(const KNumber &exp) const;
 
     KNumber operator+(const KNumber &arg2) const;
-    KNumber operator -() const;
+    KNumber operator-() const;
     KNumber operator-(const KNumber &arg2) const;
     KNumber operator*(const KNumber &arg2) const;
     KNumber operator/(const KNumber &arg2) const;
