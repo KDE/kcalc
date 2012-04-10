@@ -21,8 +21,7 @@
 #define KNUMBER_H_
 
 #include <kdemacros.h>
-
-class QString;
+#include <QString>
 
 namespace detail {
 class knumber;
@@ -69,6 +68,8 @@ public:
     static const KNumber One;
     static const KNumber MinusOne;
     static const KNumber NotDefined;
+	static const KNumber PosInfinity;
+	static const KNumber NegInfinity;
 
     /**
      * KNumber tries to provide transparent access to the following type
@@ -115,12 +116,12 @@ public:
 
     KNumber(const KNumber &num);
 
-    KNumber(const QString &num);
+    explicit KNumber(const QString &num, const QString &decimal_separator = QLatin1String("."));
 
     virtual ~KNumber();
 
     KNumber &operator=(const KNumber &num);
-
+	
     /**
      * Returns the type of the number, as explained in @p KNumber::NumType.
      */

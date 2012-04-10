@@ -236,7 +236,7 @@ void CalcEngine::ArcCosDeg(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType  ||
             input < -KNumber::One  ||  input > KNumber::One) {
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
         return;
     }
 
@@ -261,7 +261,7 @@ void CalcEngine::ArcCosRad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType  ||
             input < -KNumber::One  ||  input > KNumber::One) {
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
         return;
     }
     last_number_ = KNumber(acos(static_cast<double>(input)));
@@ -271,7 +271,7 @@ void CalcEngine::ArcCosGrad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType  ||
             input < -KNumber::One  ||  input > KNumber::One) {
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
         return;
     }
     if (input.type() == KNumber::IntegerType) {
@@ -295,7 +295,7 @@ void CalcEngine::ArcSinDeg(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType  ||
             input < -KNumber::One  ||  input > KNumber::One) {
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
         return;
     }
     if (input.type() == KNumber::IntegerType) {
@@ -319,7 +319,7 @@ void CalcEngine::ArcSinRad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType  ||
             input < -KNumber::One  ||  input > KNumber::One) {
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
         return;
     }
     last_number_ = KNumber(asin(static_cast<double>(input)));
@@ -329,7 +329,7 @@ void CalcEngine::ArcSinGrad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType  ||
             input < -KNumber::One  ||  input > KNumber::One) {
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
         return;
     }
     if (input.type() == KNumber::IntegerType) {
@@ -352,9 +352,9 @@ void CalcEngine::ArcSinGrad(const KNumber &input)
 void CalcEngine::ArcTangensDeg(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber(QLatin1String( "nan" ))) last_number_ = KNumber(QLatin1String( "nan" ));
-        if (input == KNumber(QLatin1String( "inf" ))) last_number_ = KNumber(90);
-        if (input == KNumber(QLatin1String( "-inf" )))  last_number_ = KNumber(-90);
+        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+        if (input == KNumber::PosInfinity) last_number_ = KNumber(90);
+        if (input == KNumber::NegInfinity)  last_number_ = KNumber(-90);
         return;
     }
 
@@ -364,10 +364,10 @@ void CalcEngine::ArcTangensDeg(const KNumber &input)
 void CalcEngine::ArcTangensRad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber(QLatin1String( "nan" ))) last_number_ = KNumber(QLatin1String( "nan" ));
-        if (input == KNumber(QLatin1String( "inf" )))
+        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+        if (input == KNumber::PosInfinity)
             last_number_ = KNumber::Pi() / KNumber(2);
-        if (input == KNumber(QLatin1String( "-inf" )))
+        if (input == KNumber::NegInfinity)
             last_number_ = -KNumber::Pi() / KNumber(2);
         return;
     }
@@ -378,9 +378,9 @@ void CalcEngine::ArcTangensRad(const KNumber &input)
 void CalcEngine::ArcTangensGrad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber(QLatin1String( "nan" ))) last_number_ = KNumber(QLatin1String( "nan" ));
-        if (input == KNumber(QLatin1String( "inf" ))) last_number_ = KNumber(100);
-        if (input == KNumber(QLatin1String( "-inf" )))  last_number_ = KNumber(-100);
+        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+        if (input == KNumber::PosInfinity) last_number_ = KNumber(100);
+        if (input == KNumber::NegInfinity)  last_number_ = KNumber(-100);
         return;
     }
 
@@ -390,14 +390,14 @@ void CalcEngine::ArcTangensGrad(const KNumber &input)
 void CalcEngine::AreaCosHyp(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber(QLatin1String( "nan" ))) last_number_ = KNumber(QLatin1String( "nan" ));
-        if (input == KNumber(QLatin1String( "inf" ))) last_number_ = KNumber(QLatin1String( "inf" ));
-        if (input == KNumber(QLatin1String( "-inf" )))  last_number_ = KNumber(QLatin1String( "nan" ));
+        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+        if (input == KNumber::PosInfinity) last_number_ = KNumber::PosInfinity;
+        if (input == KNumber::NegInfinity)  last_number_ = KNumber::NotDefined;
         return;
     }
 
     if (input < KNumber::One) {
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
         return;
     }
     if (input == KNumber::One) {
@@ -410,9 +410,9 @@ void CalcEngine::AreaCosHyp(const KNumber &input)
 void CalcEngine::AreaSinHyp(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber(QLatin1String( "nan" ))) last_number_ = KNumber(QLatin1String( "nan" ));
-        if (input == KNumber(QLatin1String( "inf" ))) last_number_ = KNumber(QLatin1String( "inf" ));
-        if (input == KNumber(QLatin1String( "-inf" )))  last_number_ = KNumber(QLatin1String( "-inf" ));
+        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+        if (input == KNumber::PosInfinity) last_number_ = KNumber::PosInfinity;
+        if (input == KNumber::NegInfinity)  last_number_ = KNumber::NegInfinity;
         return;
     }
 
@@ -426,20 +426,20 @@ void CalcEngine::AreaSinHyp(const KNumber &input)
 void CalcEngine::AreaTangensHyp(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
         return;
     }
 
     if (input < -KNumber::One  ||  input > KNumber::One) {
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
         return;
     }
     if (input == KNumber::One) {
-        last_number_ = KNumber(QLatin1String( "inf" ));
+        last_number_ = KNumber::PosInfinity;
         return;
     }
     if (input == - KNumber::One) {
-        last_number_ = KNumber(QLatin1String( "-inf" ));
+        last_number_ = KNumber::NegInfinity;
         return;
     }
     last_number_ = KNumber(atanh(static_cast<double>(input)));
@@ -448,7 +448,7 @@ void CalcEngine::AreaTangensHyp(const KNumber &input)
 void CalcEngine::Complement(const KNumber &input)
 {
     if (input.type() != KNumber::IntegerType) {
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
         return;
     }
     // Note: assumes 64-bit "logic mode"
@@ -480,7 +480,7 @@ static KNumber moveIntoGradInterval(const KNumber &num)
 void CalcEngine::CosDeg(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
         return;
     }
     KNumber trunc_input = moveIntoDegInterval(input);
@@ -507,7 +507,7 @@ void CalcEngine::CosDeg(const KNumber &input)
 void CalcEngine::CosRad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
         return;
     }
     last_number_ = KNumber(cos(static_cast<double>(input)));
@@ -516,7 +516,7 @@ void CalcEngine::CosRad(const KNumber &input)
 void CalcEngine::CosGrad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
         return;
     }
     KNumber trunc_input = moveIntoGradInterval(input);
@@ -543,9 +543,9 @@ void CalcEngine::CosGrad(const KNumber &input)
 void CalcEngine::CosHyp(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber(QLatin1String( "nan" ))) last_number_ = KNumber(QLatin1String( "nan" ));
-        if (input == KNumber(QLatin1String( "inf" ))) last_number_ = KNumber(QLatin1String( "inf" ));
-        if (input == KNumber(QLatin1String( "-inf" )))  last_number_ = KNumber(QLatin1String( "inf" ));
+        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+        if (input == KNumber::PosInfinity) last_number_ = KNumber::PosInfinity;
+        if (input == KNumber::NegInfinity)  last_number_ = KNumber::PosInfinity;
         return;
     }
 
@@ -565,9 +565,9 @@ void CalcEngine::CubeRoot(const KNumber &input)
 void CalcEngine::Exp(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber(QLatin1String( "nan" ))) last_number_ = KNumber(QLatin1String( "nan" ));
-        if (input == KNumber(QLatin1String( "inf" ))) last_number_ = KNumber(QLatin1String( "inf" ));
-        if (input == KNumber(QLatin1String( "-inf" )))  last_number_ = KNumber::Zero;
+        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+        if (input == KNumber::PosInfinity) last_number_ = KNumber::PosInfinity;
+        if (input == KNumber::NegInfinity)  last_number_ = KNumber::Zero;
         return;
     }
     last_number_ = KNumber(exp(static_cast<double>(input)));
@@ -576,9 +576,9 @@ void CalcEngine::Exp(const KNumber &input)
 void CalcEngine::Exp10(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber(QLatin1String( "nan" ))) last_number_ = KNumber(QLatin1String( "nan" ));
-        if (input == KNumber(QLatin1String( "inf" ))) last_number_ = KNumber(QLatin1String( "inf" ));
-        if (input == KNumber(QLatin1String( "-inf" )))  last_number_ = KNumber::Zero;
+        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+        if (input == KNumber::PosInfinity) last_number_ = KNumber::PosInfinity;
+        if (input == KNumber::NegInfinity)  last_number_ = KNumber::Zero;
         return;
     }
     last_number_ = KNumber(10).power(input);
@@ -587,10 +587,10 @@ void CalcEngine::Exp10(const KNumber &input)
 
 void CalcEngine::Factorial(const KNumber &input)
 {
-    if (input == KNumber(QLatin1String( "inf" ))) return;
+    if (input == KNumber::PosInfinity) return;
     if (input < KNumber::Zero || input.type() == KNumber::SpecialType) {
         error_ = true;
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
         return;
     }
     KNumber tmp_amount = input.integerPart();
@@ -606,15 +606,15 @@ void CalcEngine::InvertSign(const KNumber &input)
 void CalcEngine::Ln(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber(QLatin1String( "nan" ))) last_number_ = KNumber(QLatin1String( "nan" ));
-        if (input == KNumber(QLatin1String( "inf" ))) last_number_ = KNumber(QLatin1String( "inf" ));
-        if (input == KNumber(QLatin1String( "-inf" )))  last_number_ = KNumber(QLatin1String( "nan" ));
+        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+        if (input == KNumber::PosInfinity) last_number_ = KNumber::PosInfinity;
+        if (input == KNumber::NegInfinity)  last_number_ = KNumber::NotDefined;
         return;
     }
     if (input < KNumber::Zero)
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
     else if (input == KNumber::Zero)
-        last_number_ = KNumber(QLatin1String( "-inf" ));
+        last_number_ = KNumber::NegInfinity;
     else if (input == KNumber::One)
         last_number_ = 0;
     else {
@@ -625,15 +625,15 @@ void CalcEngine::Ln(const KNumber &input)
 void CalcEngine::Log10(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber(QLatin1String( "nan" ))) last_number_ = KNumber(QLatin1String( "nan" ));
-        if (input == KNumber(QLatin1String( "inf" ))) last_number_ = KNumber(QLatin1String( "inf" ));
-        if (input == KNumber(QLatin1String( "-inf" )))  last_number_ = KNumber(QLatin1String( "nan" ));
+        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+        if (input == KNumber::PosInfinity) last_number_ = KNumber::PosInfinity;
+        if (input == KNumber::NegInfinity)  last_number_ = KNumber::NotDefined;
         return;
     }
     if (input < KNumber::Zero)
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
     else if (input == KNumber::Zero)
-        last_number_ = KNumber(QLatin1String( "-inf" ));
+        last_number_ = KNumber::NegInfinity;
     else if (input == KNumber::One)
         last_number_ = 0;
     else {
@@ -669,7 +669,7 @@ void CalcEngine::Reciprocal(const KNumber &input)
 void CalcEngine::SinDeg(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
         return;
     }
 
@@ -697,7 +697,7 @@ void CalcEngine::SinDeg(const KNumber &input)
 void CalcEngine::SinRad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber(QLatin1String("nan"));
+        last_number_ = KNumber::NotDefined;
         return;
     }
 
@@ -707,7 +707,7 @@ void CalcEngine::SinRad(const KNumber &input)
 void CalcEngine::SinGrad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
         return;
     }
 
@@ -736,9 +736,9 @@ void CalcEngine::SinGrad(const KNumber &input)
 void CalcEngine::SinHyp(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber(QLatin1String( "nan" ))) last_number_ = KNumber(QLatin1String( "nan" ));
-        if (input == KNumber(QLatin1String( "inf" ))) last_number_ = KNumber(QLatin1String( "inf" ));
-        if (input == KNumber(QLatin1String( "-inf" )))  last_number_ = KNumber(QLatin1String( "-inf" ));
+        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+        if (input == KNumber::PosInfinity) last_number_ = KNumber::PosInfinity;
+        if (input == KNumber::NegInfinity)  last_number_ = KNumber::NegInfinity;
         return;
     }
 
@@ -829,7 +829,7 @@ void CalcEngine::StatSumSquares(const KNumber &input)
 void CalcEngine::TangensDeg(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
         return;
     }
 
@@ -843,7 +843,7 @@ void CalcEngine::TangensDeg(const KNumber &input)
 void CalcEngine::TangensRad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
         return;
     }
 
@@ -857,7 +857,7 @@ void CalcEngine::TangensRad(const KNumber &input)
 void CalcEngine::TangensGrad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber::NotDefined;
         return;
     }
 
@@ -871,9 +871,9 @@ void CalcEngine::TangensGrad(const KNumber &input)
 void CalcEngine::TangensHyp(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber(QLatin1String( "nan" ))) last_number_ = KNumber(QLatin1String( "nan" ));
-        if (input == KNumber(QLatin1String( "inf" ))) last_number_ = KNumber::One;
-        if (input == KNumber(QLatin1String( "-inf" )))  last_number_ = KNumber::MinusOne;
+        if (input == KNumber::NotDefined)  last_number_ = KNumber::NotDefined;
+        if (input == KNumber::PosInfinity) last_number_ = KNumber::One;
+        if (input == KNumber::NegInfinity) last_number_ = KNumber::MinusOne;
         return;
     }
 

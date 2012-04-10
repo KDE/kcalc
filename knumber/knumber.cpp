@@ -36,6 +36,8 @@ const KNumber KNumber::Zero(0);
 const KNumber KNumber::One(1);
 const KNumber KNumber::MinusOne(-1);
 const KNumber KNumber::NotDefined(QLatin1String("nan"));
+const KNumber KNumber::PosInfinity(QLatin1String("inf"));
+const KNumber KNumber::NegInfinity(QLatin1String("-inf"));
 bool KNumber::FloatOutput = false;
 bool KNumber::FractionInput = false;
 bool KNumber::SplitOffIntegerOutput = false;
@@ -108,16 +110,25 @@ KNumber::KNumber(const KNumber &num)
     }
 }
 
-KNumber::KNumber(const QString &num)
+KNumber::KNumber(const QString &num, const QString &decimal_separator)
 {
+
+	QString fractional_regex(QLatin1String("^[+-]?\\d+(%1\\d*)?(e[+-]?\\d+)?$"));
+	
+	if(decimal_separator == ".") {
+		fractional_regex = fractional_regex.arg("\\.");
+	} else {
+		fractional_regex = fractional_regex.arg(",");
+	}
+	
     if (QRegExp(QLatin1String("^(inf|-inf|nan)$")).exactMatch(num)) {
         num_ = new detail::knumerror(num);
-    } else if (QRegExp(QLatin1String( "^[+-]?\\d+$" )).exactMatch(num)) {
+    } else if (QRegExp(QLatin1String("^[+-]?\\d+$")).exactMatch(num)) {
         num_ = new detail::knuminteger(num);
-    } else if (QRegExp(QLatin1String( "^[+-]?\\d+/\\d+$" )).exactMatch(num)) {
+    } else if (QRegExp(QLatin1String("^[+-]?\\d+/\\d+$")).exactMatch(num)) {
         num_ = new detail::knumfraction(num);
         simplifyRational();
-    } else if (QRegExp(QLatin1String( "^[+-]?\\d+(\\.\\d*)?(e[+-]?\\d+)?$" )).exactMatch(num)) {
+    } else if (QRegExp(fractional_regex).exactMatch(num)) {
         if (FractionInput == true) {
             num_ = new detail::knumfraction(num);
             simplifyRational();
@@ -444,14 +455,14 @@ KNumber KNumber::integerPart() const
 KNumber KNumber::power(const KNumber &exp) const
 {
     if (*this == Zero) {
-        if (exp == Zero)     return KNumber(QLatin1String("nan"));   // 0^0 not defined
-        else if (exp < Zero) return KNumber(QLatin1String("inf"));
+        if (exp == Zero)     return KNumber::NotDefined;   // 0^0 not defined
+        else if (exp < Zero) return KNumber::PosInfinity;
         else                 return Zero;
     }
 
     if (exp == Zero) {
         if (*this != Zero) return One;
-        else               return KNumber(QLatin1String("nan"));
+        else               return KNumber::NotDefined;
     } else if (exp < Zero) {
         const KNumber tmp_num2 = -exp;
         const KNumber tmp_num(num_->power(*(tmp_num2.num_)));
@@ -534,7 +545,7 @@ KNumber KNumber::operator|(const KNumber &arg2) const
 KNumber KNumber::operator<<(const KNumber &arg2) const
 {
     if (type() != IntegerType || arg2.type() != IntegerType) {
-        return KNumber(QLatin1String("nan"));
+        return KNumber::NotDefined;
     }
 
     const detail::knuminteger *const tmp_arg1 = dynamic_cast<const detail::knuminteger *>(num_);
@@ -546,7 +557,7 @@ KNumber KNumber::operator<<(const KNumber &arg2) const
 KNumber KNumber::operator>>(const KNumber &arg2) const
 {
     if (type() != IntegerType || arg2.type() != IntegerType) {
-        return KNumber(QLatin1String("nan"));
+        return KNumber::NotDefined;
     }
 
     const KNumber tmp_num = -arg2;

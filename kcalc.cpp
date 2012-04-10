@@ -771,7 +771,7 @@ void KCalculator::updateGeometry()
 
 void KCalculator::slotConstantToDisplay(const science_constant &const_chosen)
 {
-    calc_display->setAmount(const_chosen.value);
+    calc_display->setAmount(KNumber(const_chosen.value));
     updateDisplay(0);
 }
 
@@ -1396,7 +1396,7 @@ void KCalculator::slotConstclicked(int button)
 
     if (!shift_mode_) {
         // set the display to the configured value of constant button
-        calc_display->setAmount(btn->constant());
+        calc_display->setAmount(KNumber(btn->constant()));
     } else {
         pbShift->setChecked(false);
         KCalcSettings::setValueConstant(button, calc_display->text());
