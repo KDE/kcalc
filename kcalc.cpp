@@ -211,7 +211,7 @@ void KCalculator::setupMainActions()
 
     // settings menu
     action_constants_show_ = actionCollection()->add<KToggleAction>(QLatin1String( "show_constants" ));
-    action_constants_show_->setText(i18n("&Constants Buttons"));
+    action_constants_show_->setText(i18n("Constants &Buttons"));
     action_constants_show_->setChecked(true);
     connect(action_constants_show_, SIGNAL(toggled(bool)),
             SLOT(slotConstantsShow(bool)));
