@@ -57,5 +57,5 @@ private:
 };
 
 
-#endif // KSTATS_H_
+#endif
 

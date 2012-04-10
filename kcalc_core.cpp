@@ -697,7 +697,7 @@ void CalcEngine::SinDeg(const KNumber &input)
 void CalcEngine::SinRad(const KNumber &input)
 {
     if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber(QLatin1String( "nan" ));
+        last_number_ = KNumber(QLatin1String("nan"));
         return;
     }
 
