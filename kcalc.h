@@ -28,6 +28,7 @@
 class Constants;
 class QButtonGroup;
 class KToggleAction;
+class KCalcConstMenu;
 
 /*
   Kcalc basically consist of a class for the GUI (here), a class for
@@ -133,9 +134,12 @@ private:
     void updateDisplay(UpdateFlags flags);/*bool get_amount_from_core = false,
                        bool store_result_in_history = false);*/
     // button sets
+    void showMemButtons(bool toggled);
     void showStatButtons(bool toggled);
     void showScienceButtons(bool toggled);
     void showLogicButtons(bool toggled);
+	
+	KCalcConstMenu *createConstantsMenu();
 
 protected slots:
     void changeButtonNames();
@@ -199,6 +203,7 @@ protected slots:
     void slotStatClearDataclicked();
     void slotHyptoggled(bool flag);
     void slotConstclicked(int);
+	void slotBackspaceclicked();
 
     void slotConstantToDisplay(const science_constant &const_chosen);
     void slotChooseScientificConst0(const science_constant &);
@@ -236,6 +241,8 @@ private:
     KNumber memory_num_;
 
     int angle_mode_; // angle modes for trigonometric values
+
+	KCalcConstMenu* constants_menu_;
 
     Constants*          constants_; // this is the dialog for configuring const buttons
 
