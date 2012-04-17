@@ -960,7 +960,7 @@
           <item row="1" column="1">
            <widget class="KCalcButton" name="pbBackspace">
             <property name="text">
-             <string>Del</string>
+             <string>←</string>
             </property>
             <property name="shortcut">
              <string>Backspace</string>
