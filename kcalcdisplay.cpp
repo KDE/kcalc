@@ -268,11 +268,10 @@ void KCalcDisplay::slotPaste(bool bClipboard)
             if (beep_) KNotification::beep();
             return ;
         }
-
         setAmount(KNumber(tmp_result));
     } else {
-        setAmount(KNumber(tmp_str));
-        if (beep_  &&  display_amount_ == KNumber::NotDefined)
+        setAmount(KNumber(tmp_str, KGlobal::locale()->decimalSymbol()));
+        if (beep_ && display_amount_ == KNumber::NotDefined)
             KNotification::beep();
 
     }
@@ -501,16 +500,16 @@ bool KCalcDisplay::updateDisplay()
     case NB_DECIMAL:
         if (eestate_ == false) {
             setText(tmp_string);
-            display_amount_ = tmp_string;
+            display_amount_ = KNumber(tmp_string);
         } else {
             if (str_int_exp_.isNull()) {
                 // add 'e0' to display but not to conversion
-                display_amount_ = tmp_string;
-                setText(tmp_string + QLatin1String( "e0" ));
+                display_amount_ = KNumber(tmp_string);
+                setText(tmp_string + QLatin1String("e0"));
             } else {
-                tmp_string +=  QLatin1Char( 'e' ) + str_int_exp_;
+                tmp_string +=  QLatin1Char('e') + str_int_exp_;
                 setText(tmp_string);
-                display_amount_ = tmp_string;
+                display_amount_ = KNumber(tmp_string);
             }
         }
         break;

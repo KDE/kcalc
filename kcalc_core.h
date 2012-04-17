@@ -42,8 +42,7 @@ struct operator_data {
     Prcnt prcnt_ptr;
 };
 
-class CalcEngine
-{
+class CalcEngine {
 public:
     // operations that can be stored in calculation stack
     enum Operation {
