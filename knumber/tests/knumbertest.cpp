@@ -129,7 +129,7 @@ void testingAdditions()
     std::cout << "\n\nTesting additions:\n";
 
     checkResult("KNumber(5) + KNumber(2)", KNumber(5) + KNumber(2), "7", KNumber::IntegerType);
-    checkResult("KNumber(5) + KNumber(\"2/3\")", KNumber(5) + KNumber(QLatin1String("2.3")), "17/3", KNumber::FractionType);
+    checkResult("KNumber(5) + KNumber(\"2/3\")", KNumber(5) + KNumber(QLatin1String("2/3")), "17/3", KNumber::FractionType);
     checkResult("KNumber(5) + KNumber(\"2.3\")", KNumber(5) + KNumber(QLatin1String("2.3")), "7.3", KNumber::FloatType);
 
     checkResult("KNumber(\"5/3\") + KNumber(2)", KNumber(QLatin1String("5/3")) + KNumber(2), "11/3", KNumber::FractionType);
