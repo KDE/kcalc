@@ -133,7 +133,7 @@ void testingAdditions()
     checkResult("KNumber(5) + KNumber(\"2.3\")", KNumber(5) + KNumber(QLatin1String("2.3")), "7.3", KNumber::FloatType);
 
     checkResult("KNumber(\"5/3\") + KNumber(2)", KNumber(QLatin1String("5/3")) + KNumber(2), "11/3", KNumber::FractionType);
-    checkResult("KNumber(\"5/3\") + KNumber(\"2/3\")", KNumber(QLatin1String("5/3")) + KNumber(QLatin1String("2.3")), "7/3", KNumber::FractionType);
+    checkResult("KNumber(\"5/3\") + KNumber(\"2/3\")", KNumber(QLatin1String("5/3")) + KNumber(QLatin1String("2/3")), "7/3", KNumber::FractionType);
     checkResult("KNumber(\"5/3\") + KNumber(\"1/3\")", KNumber(QLatin1String("5/3")) + KNumber("1/3"), QLatin1String("2"), KNumber::IntegerType);
     checkResult("KNumber(\"5/3\") + KNumber(\"-26/3\")", KNumber(QLatin1String("5/3")) + KNumber("-26/3"), "-7", KNumber::IntegerType);
     checkResult("KNumber(\"5/2\") + KNumber(2.3)", KNumber(QLatin1String("5/2")) + KNumber(2.3), "4.8", KNumber::FloatType);
@@ -149,7 +149,7 @@ void testingSubtractions()
     std::cout << "\n\nTesting subtractions:\n";
 
     checkResult("KNumber(5) - KNumber(2)", KNumber(5) - KNumber(2), QLatin1String("3"), KNumber::IntegerType);
-    checkResult("KNumber(5) - KNumber(\"2/3\")", KNumber(5) - KNumber(QLatin1String("2.3")), "13/3", KNumber::FractionType);
+    checkResult("KNumber(5) - KNumber(\"2/3\")", KNumber(5) - KNumber(QLatin1String("2/3")), "13/3", KNumber::FractionType);
     checkResult("KNumber(5) - KNumber(2.3)", KNumber(5) - KNumber(2.3), "2.7", KNumber::FloatType);
 
     checkResult("KNumber(\"5/3\") - KNumber(2)", KNumber(QLatin1String("5/3")) - KNumber(2), "-1/3", KNumber::FractionType);
@@ -170,7 +170,7 @@ void testingMultiplications()
     std::cout << "\n\nTesting multiplications:\n";
 
     checkResult("KNumber(5) * KNumber(2)", KNumber(5) * KNumber(2), "10", KNumber::IntegerType);
-    checkResult("KNumber(5) * KNumber(\"2/3\")", KNumber(5) * KNumber(QLatin1String("2.3")), "10/3", KNumber::FractionType);
+    checkResult("KNumber(5) * KNumber(\"2/3\")", KNumber(5) * KNumber(QLatin1String("2/3")), "10/3", KNumber::FractionType);
     checkResult("KNumber(5) * KNumber(\"2/5\")", KNumber(5) * KNumber("2/5"), QLatin1String("2"), KNumber::IntegerType);
     checkResult("KNumber(5) * KNumber(2.3)", KNumber(5) * KNumber(2.3), "11.5", KNumber::FloatType);
     checkResult("KNumber(0) * KNumber(\"2/5\")", KNumber(0) * KNumber("2/5"), QLatin1String("0"), KNumber::IntegerType);
@@ -178,7 +178,7 @@ void testingMultiplications()
 
     checkResult("KNumber(\"5/3\") * KNumber(2)", KNumber(QLatin1String("5/3")) * KNumber(2), "10/3", KNumber::FractionType);
     checkResult("KNumber(\"5/3\") * KNumber(0)", KNumber(QLatin1String("5/3")) * KNumber(0), QLatin1String("0"), KNumber::IntegerType);
-    checkResult("KNumber(\"5/3\") * KNumber(\"2/3\")", KNumber(QLatin1String("5/3")) * KNumber(QLatin1String("2.3")), "10/9", KNumber::FractionType);
+    checkResult("KNumber(\"5/3\") * KNumber(\"2/3\")", KNumber(QLatin1String("5/3")) * KNumber(QLatin1String("2/3")), "10/9", KNumber::FractionType);
     checkResult("KNumber(\"25/6\") * KNumber(\"12/5\")", KNumber("25/6") * KNumber("12/5"), "10", KNumber::IntegerType);
     checkResult("KNumber(\"5/2\") * KNumber(2.3)", KNumber(QLatin1String("5/2")) * KNumber(2.3), "5.75", KNumber::FloatType);
 
@@ -198,7 +198,7 @@ void testingDivisions()
     checkResult("KNumber(12) / KNumber(0)", KNumber(12) / KNumber(0), QLatin1String("inf"), KNumber::SpecialType);
     checkResult("KNumber(-12) / KNumber(0)", KNumber(-12) / KNumber(0), QLatin1String("-inf"), KNumber::SpecialType);
     checkResult("KNumber(5) / KNumber(\"2/3\")", KNumber(5) / KNumber(QLatin1String("2.3")), "15/2", KNumber::FractionType);
-    checkResult("KNumber(6) / KNumber(\"2/3\")", KNumber(6) / KNumber(QLatin1String("2.3")), "9", KNumber::IntegerType);
+    checkResult("KNumber(6) / KNumber(\"2/3\")", KNumber(6) / KNumber(QLatin1String("2/3")), "9", KNumber::IntegerType);
     checkResult("KNumber(5) / KNumber(2.5)", KNumber(5) / KNumber(2.5), QLatin1String("2"), KNumber::FloatType);
     checkResult("KNumber(5) / KNumber(0.0)", KNumber(5) / KNumber(0.0), QLatin1String("inf"), KNumber::SpecialType);
     checkResult("KNumber(-5) / KNumber(0.0)", KNumber(-5) / KNumber(0.0), QLatin1String("-inf"), KNumber::SpecialType);
@@ -206,7 +206,7 @@ void testingDivisions()
     checkResult("KNumber(\"5/3\") / KNumber(2)", KNumber(QLatin1String("5/3")) / KNumber(2), "5/6", KNumber::FractionType);
     checkResult("KNumber(\"5/3\") / KNumber(0)", KNumber(QLatin1String("5/3")) / KNumber(0), QLatin1String("inf"), KNumber::SpecialType);
     checkResult("KNumber(\"-5/3\") / KNumber(0)", KNumber(QLatin1String("-5/3")) / KNumber(0), QLatin1String("-inf"), KNumber::SpecialType);
-    checkResult("KNumber(\"5/3\") / KNumber(\"2/3\")", KNumber(QLatin1String("5/3")) / KNumber(QLatin1String("2.3")), QLatin1String("5/2"), KNumber::FractionType);
+    checkResult("KNumber(\"5/3\") / KNumber(\"2/3\")", KNumber(QLatin1String("5/3")) / KNumber(QLatin1String("2/3")), QLatin1String("5/2"), KNumber::FractionType);
     checkResult("KNumber(\"49/3\") / KNumber(\"7/9\")", KNumber("49/3") / KNumber("7/9"), "21", KNumber::IntegerType);
     checkResult("KNumber(\"5/2\") / KNumber(2.5)", KNumber(QLatin1String("5/2")) / KNumber(2.5), QLatin1String("1"), KNumber::FloatType);
     checkResult("KNumber(\"5/2\") / KNumber(0.0)", KNumber(QLatin1String("5/2")) / KNumber(0.0), QLatin1String("inf"), KNumber::SpecialType);
@@ -215,7 +215,7 @@ void testingDivisions()
     checkResult("KNumber(5.3) / KNumber(2)", KNumber(5.3) / KNumber(2), "2.65", KNumber::FloatType);
     checkResult("KNumber(5.3) / KNumber(0)", KNumber(5.3) / KNumber(0), QLatin1String("inf"), KNumber::SpecialType);
     checkResult("KNumber(-5.3) / KNumber(0)", KNumber(-5.3) / KNumber(0), QLatin1String("-inf"), KNumber::SpecialType);
-    checkResult("KNumber(5.3) / KNumber(\"2/3\")", KNumber(5.3) / KNumber(QLatin1String("2.3")), "7.95", KNumber::FloatType);
+    checkResult("KNumber(5.3) / KNumber(\"2/3\")", KNumber(5.3) / KNumber(QLatin1String("2/3")), "7.95", KNumber::FloatType);
     checkResult("KNumber(5.5) / KNumber(2.5)", KNumber(5.5) / KNumber(2.5), "2.2", KNumber::FloatType);
     checkResult("KNumber(5.5) / KNumber(0.0)", KNumber(5.5) / KNumber(0.0), QLatin1String("inf"), KNumber::SpecialType);
     checkResult("KNumber(-5.5) / KNumber(0.0)", KNumber(-5.5) / KNumber(0.0), QLatin1String("-inf"), KNumber::SpecialType);
@@ -258,11 +258,11 @@ void testingAbs()
     std::cout << "\n\nTesting absolute value:\n";
 
     checkResult("KNumber(5).abs()", KNumber(5).abs(), QLatin1String("5"), KNumber::IntegerType);
-    checkResult("KNumber(\"2/3\").abs()", KNumber(QLatin1String("2.3")).abs(), QLatin1String("2.3"), KNumber::FractionType);
+    checkResult("KNumber(\"2/3\").abs()", KNumber(QLatin1String("2.3")).abs(), QLatin1String("2/3"), KNumber::FractionType);
     checkResult("KNumber(\"2.3\").abs()", KNumber(QLatin1String("2.3")).abs(), QLatin1String("2.3"), KNumber::FloatType);
 
     checkResult("KNumber(-5).abs()", KNumber(-5).abs(), QLatin1String("5"), KNumber::IntegerType);
-    checkResult("KNumber(\"-2/3\").abs()", KNumber(QLatin1String("-2/3")).abs(), QLatin1String("2.3"), KNumber::FractionType);
+    checkResult("KNumber(\"-2/3\").abs()", KNumber(QLatin1String("-2/3")).abs(), QLatin1String("2/3"), KNumber::FractionType);
     checkResult("KNumber(\"-2.3\").abs()", KNumber("-2.3").abs(), QLatin1String("2.3"), KNumber::FloatType);
 }
 
@@ -287,7 +287,7 @@ void testingSqrt()
     checkResult("KNumber(\"16/9\").sqrt()", KNumber("16/9").sqrt(), "4/3", KNumber::FractionType);
     checkResult("KNumber(\"-16/9\").sqrt()", KNumber("-16/9").sqrt(), QLatin1String("nan"), KNumber::SpecialType);
     checkResult("KNumber(2).sqrt()", KNumber(2).sqrt(), "1.41421356237", KNumber::FloatType);
-    checkResult("KNumber(\"2/3\").sqrt()", KNumber(QLatin1String("2.3")).sqrt(), "0.816496580928", KNumber::FloatType);
+    checkResult("KNumber(\"2/3\").sqrt()", KNumber(QLatin1String("2/3")).sqrt(), "0.816496580928", KNumber::FloatType);
     checkResult("KNumber(\"0.25\").sqrt()", KNumber("0.25").sqrt(), "0.5", KNumber::FloatType);
     checkResult("KNumber(\"-0.25\").sqrt()", KNumber("-0.25").sqrt(), QLatin1String("nan"), KNumber::SpecialType);
 
@@ -300,7 +300,7 @@ void testingSqrt()
 #warning need to check non-perfect cube roots
 #endif
     //  checkResult("KNumber(2).cbrt()", KNumber(2).cbrt(), "1.4142136", KNumber::FloatType);
-    //  checkResult("KNumber(\"2/3\").cbrt()", KNumber(QLatin1String("2.3")).cbrt(), "0.81649658", KNumber::FloatType);
+    //  checkResult("KNumber(\"2/3\").cbrt()", KNumber(QLatin1String("2/3")).cbrt(), "0.81649658", KNumber::FloatType);
     //  checkResult("KNumber(\"0.25\").cbrt()", KNumber("0.25").cbrt(), "0.5", KNumber::FloatType);
     //  checkResult("KNumber(\"-0.25\").cbrt()", KNumber("-0.25").cbrt(), QLatin1String("nan"), KNumber::SpecialType);
 
@@ -378,7 +378,7 @@ void testingPower()
     checkResult("KNumber(-2) ^ KNumber(3)", KNumber(-2).power(KNumber(3)), "-8", KNumber::IntegerType);
     checkResult("KNumber(-2) ^ KNumber(4)", KNumber(-2).power(KNumber(4)), QLatin1String("16"), KNumber::IntegerType);
     checkResult("KNumber(5) ^ KNumber(-2)", KNumber(5).power(KNumber(-2)), "1/25", KNumber::FractionType);
-    checkResult("KNumber(8) ^ KNumber(\"2/3\")", KNumber(8).power(KNumber(QLatin1String("2.3"))), "4", KNumber::IntegerType);
+    checkResult("KNumber(8) ^ KNumber(\"2/3\")", KNumber(8).power(KNumber(QLatin1String("2/3"))), "4", KNumber::IntegerType);
     checkResult("KNumber(8) ^ KNumber(\"-2/3\")", KNumber(8).power(KNumber(QLatin1String("-2/3"))), "1/4", KNumber::FractionType);
     checkResult("KNumber(-16) ^ KNumber(\"1/4\")", KNumber(-16).power(KNumber("1/4")), QLatin1String("nan"), KNumber::SpecialType);
     checkResult("KNumber(-8) ^ KNumber(\"1/3\")", KNumber(-8).power(KNumber("1/3")), QLatin1String("nan"), KNumber::SpecialType);
@@ -388,7 +388,7 @@ void testingPower()
     checkResult("KNumber(\"5/3\") ^ KNumber(2)", KNumber(QLatin1String("5/3")).power(KNumber(2)), "25/9", KNumber::FractionType);
     checkResult("KNumber(\"5/3\") ^ KNumber(0)", KNumber(QLatin1String("5/3")).power(KNumber(0)), QLatin1String("1"), KNumber::IntegerType);
     checkResult("KNumber(\"-5/3\") ^ KNumber(0)", KNumber(QLatin1String("-5/3")).power(KNumber(0)), QLatin1String("1"), KNumber::IntegerType);
-    checkResult("KNumber(\"8/27\") ^ KNumber(\"2/3\")", KNumber("8/27").power(KNumber(QLatin1String("2.3"))), "4/9", KNumber::FractionType);
+    checkResult("KNumber(\"8/27\") ^ KNumber(\"2/3\")", KNumber("8/27").power(KNumber(QLatin1String("2/3"))), "4/9", KNumber::FractionType);
     checkResult("KNumber(\"49/3\") ^ KNumber(\"7/9\")", KNumber("49/3").power(KNumber("7/9")), "8.78016428243", KNumber::FloatType);
     checkResult("KNumber(\"5/2\") ^ KNumber(2.5)", KNumber(QLatin1String("5/2")).power(KNumber(2.5)), "9.88211768803", KNumber::FloatType);
     checkResult("KNumber(\"5/2\") ^ KNumber(0.0)", KNumber(QLatin1String("5/2")).power(KNumber(0.0)), QLatin1String("1"), KNumber::IntegerType);
@@ -397,7 +397,7 @@ void testingPower()
     checkResult("KNumber(5.3) ^ KNumber(2)", KNumber(5.3).power(KNumber(2)), "28.09", KNumber::FloatType);
     checkResult("KNumber(5.3) ^ KNumber(0)", KNumber(5.3).power(KNumber(0)), QLatin1String("1"), KNumber::IntegerType);
     checkResult("KNumber(-5.3) ^ KNumber(0)", KNumber(-5.3).power(KNumber(0)), QLatin1String("1"), KNumber::IntegerType);
-    checkResult("KNumber(5.3) ^ KNumber(\"2/3\")", KNumber(5.3).power(KNumber(QLatin1String("2.3"))), "3.03983898039", KNumber::FloatType);
+    checkResult("KNumber(5.3) ^ KNumber(\"2/3\")", KNumber(5.3).power(KNumber(QLatin1String("2/3"))), "3.03983898039", KNumber::FloatType);
     checkResult("KNumber(5.5) ^ KNumber(2.5)", KNumber(5.5).power(KNumber(2.5)), "70.9425383673", KNumber::FloatType);
     checkResult("KNumber(5.5) ^ KNumber(0.0)", KNumber(5.5).power(KNumber(0.0)), QLatin1String("1"), KNumber::IntegerType);
     checkResult("KNumber(-5.5) ^ KNumber(0.0)", KNumber(-5.5).power(KNumber(0.0)), QLatin1String("1"), KNumber::IntegerType);
