@@ -837,7 +837,7 @@ detail::knumber *detail::knumfloat::multiply(const knumber &arg2) const
 detail::knumber *detail::knumber::divide(const knumber &arg2) const
 {
 
-	if(static_cast<double>(arg2) == 0.0) {
+    if(static_cast<double>(arg2) == 0.0) {
         return new knumerror(Infinity);
     }
 
@@ -850,7 +850,7 @@ detail::knumber *detail::knumber::divide(const knumber &arg2) const
 detail::knumber *detail::knumfloat::divide(const knumber &arg2) const
 {
 
-	if(static_cast<double>(arg2) == 0.0) {
+    if(static_cast<double>(arg2) == 0.0) {
         return new knumerror(Infinity);
     }
 

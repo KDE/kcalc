@@ -154,7 +154,7 @@ void testingSubtractions()
 
     checkResult("KNumber(\"5/3\") - KNumber(2)", KNumber(QLatin1String("5/3")) - KNumber(2), "-1/3", KNumber::FractionType);
     checkResult("KNumber(\"5/3\") - KNumber(\"1/3\")", KNumber(QLatin1String("5/3")) - KNumber("1/3"), "4/3", KNumber::FractionType);
-    checkResult("KNumber(\"5/3\") - KNumber(\"2/3\")", KNumber(QLatin1String("5/3")) - KNumber(QLatin1String("2.3")), QLatin1String("1"), KNumber::IntegerType);
+    checkResult("KNumber(\"5/3\") - KNumber(\"2/3\")", KNumber(QLatin1String("5/3")) - KNumber(QLatin1String("2/3")), QLatin1String("1"), KNumber::IntegerType);
     checkResult("KNumber(\"-5/3\") - KNumber(\"4/3\")", KNumber(QLatin1String("-5/3")) - KNumber("4/3"), "-3", KNumber::IntegerType);
     checkResult("KNumber(\"5/4\") - KNumber(2.2)", KNumber("5/4") - KNumber(2.2), "-0.95", KNumber::FloatType);
 
