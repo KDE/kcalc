@@ -838,7 +838,11 @@ detail::knumber *detail::knumber::divide(const knumber &arg2) const
 {
 
     if(static_cast<double>(arg2) == 0.0) {
-        return new knumerror(Infinity);
+		if(sign() < 0) {
+	        return new knumerror(MinusInfinity);
+		} else {
+		    return new knumerror(Infinity);
+		}
     }
 
     knumber *const tmp_num = arg2.reciprocal();
@@ -851,7 +855,11 @@ detail::knumber *detail::knumfloat::divide(const knumber &arg2) const
 {
 
     if(static_cast<double>(arg2) == 0.0) {
-        return new knumerror(Infinity);
+		if(sign() < 0) {
+	        return new knumerror(MinusInfinity);
+		} else {
+		    return new knumerror(Infinity);
+		}
     }
 
     // automatically casts arg2 to float
