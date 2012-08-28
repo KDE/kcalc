@@ -36,15 +36,6 @@ if(NOT GMP_FOUND)
     endif()
 endif(NOT GMP_FOUND)
 
-find_package(MPFR)
-
-macro_log_feature( MPFR_FOUND "MPFR" "The GNU Multiple Precision Floating-Pointer Library" "http://mpfr.org/" FALSE "" "Required for building KCalc.")
-
-if(MPFR_FOUND)
-	add_definitions (-DKNUMBER_USE_MPFR)
-endif(MPFR_FOUND)
-
-
 include(CheckTypeSize)
 include(CheckFunctionExists)
 include(CheckIncludeFiles)
