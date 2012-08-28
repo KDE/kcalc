@@ -28,7 +28,13 @@
 #include <QMenu>
 
 
-enum ConstantCategory {Mathematics = 1, Electromagnetic = 2, Nuclear = 4, Thermodynamics = 8, Gravitation = 16};
+enum ConstantCategory {
+	Mathematics     = 1,
+	Electromagnetic = 2,
+	Nuclear         = 4,
+	Thermodynamics  = 8,
+	Gravitation     = 16
+};
 
 struct science_constant {
     QString label;
@@ -38,15 +44,14 @@ struct science_constant {
     ConstantCategory category;
 };
 
-class KCalcConstMenu : public QMenu
-{
+class KCalcConstMenu : public QMenu {
     Q_OBJECT
 
 public:
     KCalcConstMenu(QWidget * parent = 0);
     explicit KCalcConstMenu(const QString &title, QWidget * parent = 0);
 
-    static QList<science_constant> Constants;
+public:
     static void init_consts();
 
 signals:
@@ -61,4 +66,4 @@ public slots:
     void slotPassSignalThrough(QAction  *chosen_const);
 };
 
-#endif // KCALC_CONST_MENU_H_
+#endif

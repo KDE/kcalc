@@ -57,4 +57,4 @@ private:
     bool on_;
 };
 
-#endif // KCALC_BITSET_H_
+#endif

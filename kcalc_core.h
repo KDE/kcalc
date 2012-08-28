@@ -29,10 +29,6 @@
 #include "stats.h"
 #include "knumber.h"
 
-#define  POS_ZERO  1e-19L  /* What we consider zero is */
-#define  NEG_ZERO -1e-19L  /* anything between these two */
-
-
 typedef KNumber(*Arith)(const KNumber &, const KNumber &);
 typedef KNumber(*Prcnt)(const KNumber &, const KNumber &);
 
@@ -69,8 +65,7 @@ public:
 
     KNumber lastOutput(bool &error) const;
 
-    void enterOperation(KNumber num, Operation func);
-
+    void enterOperation(const KNumber &num, Operation func);
 
     void ArcCosDeg(const KNumber &input);
     void ArcCosRad(const KNumber &input);
@@ -125,10 +120,10 @@ public:
 private:
     KStats stats;
 
-    typedef struct {
+    struct Node {
         KNumber number;
         Operation operation;
-    } Node;
+    };
 
     // Stack holds all operations and numbers that have not yet been
     // processed, e.g. user types "2+3*", the calculation can not be
@@ -161,21 +156,7 @@ private:
     bool evalStack();
 
     KNumber evalOperation(const KNumber &arg1, Operation operation, const KNumber &arg2);
-
-    KNumber Deg2Rad(const KNumber &x) const {
-        return KNumber(2) * KNumber::Pi() / KNumber(360) * x;
-    }
-    KNumber Gra2Rad(const KNumber &x) const {
-        return KNumber(2)*KNumber::Pi() / KNumber(400) * x;
-    }
-    KNumber Rad2Deg(const KNumber &x) const {
-        return KNumber(360) / (KNumber(2) * KNumber::Pi()) * x;
-    }
-    KNumber Rad2Gra(const KNumber &x) const {
-        return KNumber(400) / (KNumber(2)*KNumber::Pi()) * x;
-    }
-
 };
 
 
-#endif  // KCALC_CORE_H_
+#endif

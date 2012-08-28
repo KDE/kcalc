@@ -62,4 +62,4 @@ private:
 };
 
 
-#endif // KCALC_CONST_BUTTON_H_
+#endif

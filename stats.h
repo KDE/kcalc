@@ -48,14 +48,13 @@ public:
     KNumber std();
     KNumber sample_std();
     int count() const;
-    bool     error();
+    bool error();
 
 private:
     QVector<KNumber> data_;
     bool error_flag_;
 
 };
-
 
 #endif
 

@@ -125,14 +125,22 @@ private:
     void setupMainActions();
     void setupStatusbar();
     void setupKeys();
+	void setupNumberKeys();
+	void setupRightKeypad();
+	void setupNumericKeypad();
+	void setupLogicKeys();
+	void setupScientificKeys();
+	void setupStatisticKeys();
+	void setupConstantsKeys();
+	void setupMiscKeys();
     void keyPressEvent(QKeyEvent *e);
     void keyReleaseEvent(QKeyEvent *e);
     void setPrecision();
     void setAngle();
     void setBase();
 
-    void updateDisplay(UpdateFlags flags);/*bool get_amount_from_core = false,
-                       bool store_result_in_history = false);*/
+    void updateDisplay(UpdateFlags flags);
+	
     // button sets
     void showMemButtons(bool toggled);
     void showStatButtons(bool toggled);
@@ -274,4 +282,4 @@ private:
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(KCalculator::UpdateFlags)
 
-#endif  // KCALC_H_
+#endif

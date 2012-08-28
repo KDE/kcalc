@@ -26,44 +26,38 @@
 #include <kinputdialog.h>
 #include <kmenu.h>
 
-KCalcConstButton::KCalcConstButton(QWidget *parent)
-        : KCalcButton(parent), button_num_(-1)
-{
+KCalcConstButton::KCalcConstButton(QWidget *parent) : KCalcButton(parent), button_num_(-1) {
+
     addMode(ModeShift, i18nc("Write display data into memory", "Store"), i18n("Write display data into memory"));
-
     initPopupMenu();
-
     connect(this, SIGNAL(clicked()), SLOT(slotClicked()));
 }
 
 
-KCalcConstButton::KCalcConstButton(const QString &label, QWidget *parent,
-                                   const QString &tooltip)
-        : KCalcButton(label, parent, tooltip), button_num_(-1)
-{
-    addMode(ModeShift, i18nc("Write display data into memory", "Store"), i18n("Write display data into memory"));
+KCalcConstButton::KCalcConstButton(const QString &label, QWidget *parent, const QString &tooltip) : KCalcButton(label, parent, tooltip), button_num_(-1) {
 
+    addMode(ModeShift, i18nc("Write display data into memory", "Store"), i18n("Write display data into memory"));
     initPopupMenu();
 }
 
-QString KCalcConstButton::constant() const
-{
+QString KCalcConstButton::constant() const {
+
     return KCalcSettings::valueConstant(button_num_);
 }
 
-void KCalcConstButton::setButtonNumber(int num)
-{
+void KCalcConstButton::setButtonNumber(int num) {
+
     button_num_ = num;
 }
 
-void KCalcConstButton::setLabelAndTooltip()
-{
-    QString new_label = QLatin1String("C") + QString().setNum(button_num_ + 1);
+void KCalcConstButton::setLabelAndTooltip() {
+
+    QString new_label = QLatin1String("C") + QString::number(button_num_ + 1);
     QString new_tooltip;
 
     new_label = (KCalcSettings::nameConstant(button_num_).isNull() ? new_label : KCalcSettings::nameConstant(button_num_));
 
-    new_tooltip = new_label + QLatin1Char( '=' ) + KCalcSettings::valueConstant(button_num_);
+    new_tooltip = new_label + QLatin1Char('=') + KCalcSettings::valueConstant(button_num_);
 
     addMode(ModeNormal, new_label, new_tooltip);
 }
@@ -89,25 +83,22 @@ void KCalcConstButton::initPopupMenu()
 void KCalcConstButton::slotConfigureButton()
 {
     bool yes_no;
-    QString input = KInputDialog::getText(i18n("New Name for Constant"), i18n("New name:"),
-                                          text(), &yes_no, this);  // "nameUserConstants-Dialog"
+    const QString input = KInputDialog::getText(i18n("New Name for Constant"), i18n("New name:"), text(), &yes_no, this);  // "nameUserConstants-Dialog"
     if (yes_no) {
         KCalcSettings::setNameConstant(button_num_, input);
         setLabelAndTooltip();
     }
 }
 
-void KCalcConstButton::slotChooseScientificConst(const science_constant &const_chosen)
-{
+void KCalcConstButton::slotChooseScientificConst(const science_constant &const_chosen) {
+
     KCalcSettings::setValueConstant(button_num_, const_chosen.value);
-
     KCalcSettings::setNameConstant(button_num_, const_chosen.label);
-
     setLabelAndTooltip();
 }
 
-void KCalcConstButton::slotClicked()
-{
+void KCalcConstButton::slotClicked() {
+
     emit clicked(button_num_);
 }
 

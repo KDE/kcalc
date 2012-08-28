@@ -4,6 +4,9 @@
 /* Define if you have isinf */
 #cmakedefine HAVE_FUNC_ISINF 1
 
+/* Define if you have isnan */
+#cmakedefine HAVE_FUNC_ISNAN 1
+
 /* Define if you have round */
 #define HAVE_FUNC_ROUNDL 1
 

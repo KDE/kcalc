@@ -30,156 +30,128 @@
 */
 
 #include "kcalc_core.h"
-// On Solaris, need to include math.h (or <cmath>) before any STL headers,
-// because of ambiguity around the identifier "exception".
-#include <cmath>
-
 #include <config-kcalc.h>
-
-#include <climits>
-#include <cstdio>
 #include <csignal>
-#include <cerrno>
-#include <cstring>
-#include <cstdlib>
-
 #include <kdebug.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 
-static void fpe_handler(int fpe_parm)
-{
+namespace {
+
+void fpe_handler(int fpe_parm) {
     Q_UNUSED(fpe_parm);
     // display_error = true;
     //tmp_number = 0L;
 }
 
-
-static bool error_;
-
-static KNumber ExecOr(const KNumber &left_op, const KNumber &right_op)
-{
-    return (left_op | right_op);
+KNumber Deg2Rad(const KNumber &x) {
+	return x * (KNumber::Pi() / KNumber(180));
 }
 
-static KNumber ExecXor(const KNumber &left_op, const KNumber &right_op)
-{
-    return (left_op | right_op) - (left_op & right_op);
+KNumber Gra2Rad(const KNumber &x) {
+	return x * (KNumber::Pi() / KNumber(200));
 }
 
-static KNumber ExecAnd(const KNumber &left_op, const KNumber &right_op)
-{
-    return (left_op & right_op);
+KNumber Rad2Deg(const KNumber &x) {
+	 return x * (KNumber(180) / KNumber::Pi());
 }
 
-static KNumber ExecLsh(const KNumber &left_op, const KNumber &right_op)
-{
+KNumber Rad2Gra(const KNumber &x) {
+	return x * (KNumber(200) / KNumber::Pi());
+}
+
+bool error_;
+
+KNumber ExecOr(const KNumber &left_op, const KNumber &right_op) {
+    return left_op | right_op;
+}
+
+KNumber ExecXor(const KNumber &left_op, const KNumber &right_op) {
+    return left_op ^ right_op;
+}
+
+KNumber ExecAnd(const KNumber &left_op, const KNumber &right_op) {
+    return left_op & right_op;
+}
+
+KNumber ExecLsh(const KNumber &left_op, const KNumber &right_op) {
     return left_op << right_op;
 }
 
-static KNumber ExecRsh(const KNumber &left_op, const KNumber &right_op)
-{
+KNumber ExecRsh(const KNumber &left_op, const KNumber &right_op) {
     return left_op >> right_op;
 }
 
-static KNumber ExecAdd(const KNumber &left_op, const KNumber &right_op)
-{
+KNumber ExecAdd(const KNumber &left_op, const KNumber &right_op) {
     return left_op + right_op;
 }
 
-static KNumber ExecSubtract(const KNumber &left_op, const KNumber &right_op)
-{
+KNumber ExecSubtract(const KNumber &left_op, const KNumber &right_op) {
     return left_op - right_op;
 }
 
-static KNumber ExecMultiply(const KNumber &left_op, const KNumber &right_op)
-{
+KNumber ExecMultiply(const KNumber &left_op, const KNumber &right_op) {
     return left_op * right_op;
 }
 
-static KNumber ExecDivide(const KNumber &left_op, const KNumber &right_op)
-{
+KNumber ExecDivide(const KNumber &left_op, const KNumber &right_op) {
     return left_op / right_op;
 }
 
-static KNumber ExecMod(const KNumber &left_op, const KNumber &right_op)
-{
+KNumber ExecMod(const KNumber &left_op, const KNumber &right_op) {
     return left_op % right_op;
 }
 
-static KNumber ExecIntDiv(const KNumber &left_op, const KNumber &right_op)
-{
+KNumber ExecIntDiv(const KNumber &left_op, const KNumber &right_op) {
     return (left_op / right_op).integerPart();
 }
 
-bool isoddint(const KNumber &input)
-{
-    if (input.type() != KNumber::IntegerType) return false;
-    // Routine to check if KNumber is an Odd integer
-    return ((input / KNumber(2)).type() == KNumber::IntegerType);
+KNumber ExecBinom(const KNumber &left_op, const KNumber &right_op) {
+
+	return left_op.bin(right_op);
 }
 
-
-static KNumber ExecBinom(const KNumber &left_op, const KNumber &right_op)
-{
-    // TODO: use libgmp mpz_bin_ui
-
-    if (left_op.type() != KNumber::IntegerType
-            ||  right_op.type() != KNumber::IntegerType
-            ||  right_op > left_op  ||  left_op < KNumber::Zero)
-        return KNumber::UndefinedNumber;
-
-    KNumber tmp_count = left_op;
-    KNumber tmp_result = KNumber::One;
-
-    // don't do recursive factorial,
-    // because large numbers lead to
-    // stack overflows
-    while (tmp_count > right_op) {
-        tmp_result = tmp_count * tmp_result;
-        tmp_count -= KNumber::One;
-    }
-
-    tmp_count = left_op - right_op;
-    while (tmp_count > KNumber::One) {
-        tmp_result = tmp_result / tmp_count;
-        tmp_count -= KNumber::One;
-    }
-
-
-    return tmp_result;
+KNumber ExecPower(const KNumber &left_op, const KNumber &right_op) {
+    return left_op.pow(right_op);
 }
 
-static KNumber ExecPower(const KNumber &left_op, const KNumber &right_op)
-{
-    return left_op.power(right_op);
+KNumber ExecPwrRoot(const KNumber &left_op, const KNumber &right_op) {
+    return left_op.pow(KNumber::One / right_op);
 }
 
-static KNumber ExecPwrRoot(const KNumber &left_op, const KNumber &right_op)
-{
-    return left_op.power(KNumber::One / right_op);
-}
-
-static KNumber ExecAddP(const KNumber &left_op, const KNumber &right_op)
-{
+KNumber ExecAddP(const KNumber &left_op, const KNumber &right_op) {
     return left_op * (KNumber::One + right_op / KNumber(100));
 }
 
-static KNumber ExecSubP(const KNumber &left_op, const KNumber &right_op)
-{
+KNumber ExecSubP(const KNumber &left_op, const KNumber &right_op) {
     return left_op * (KNumber::One - right_op / KNumber(100));
 }
 
-static KNumber ExecMultiplyP(const KNumber &left_op, const KNumber &right_op)
-{
+KNumber ExecMultiplyP(const KNumber &left_op, const KNumber &right_op) {
     return left_op * right_op / KNumber(100);
 }
 
-static KNumber ExecDivideP(const KNumber &left_op, const KNumber &right_op)
-{
+KNumber ExecDivideP(const KNumber &left_op, const KNumber &right_op) {
     return left_op * KNumber(100) / right_op;
 }
 
+// move a number into the interval [0,360) by adding multiples of 360
+KNumber moveIntoDegInterval(const KNumber &num) {
+    KNumber tmp_num = num - (num / KNumber(360)).integerPart() * KNumber(360);
+    if (tmp_num < KNumber::Zero)
+        return tmp_num + KNumber(360);
+    return tmp_num;
+}
+
+// move a number into the interval [0,400) by adding multiples of 400
+KNumber moveIntoGradInterval(const KNumber &num) {
+    KNumber tmp_num = num - (num / KNumber(400)).integerPart() * KNumber(400);
+    if (tmp_num < KNumber::Zero)
+        return tmp_num + KNumber(400);
+    return tmp_num;
+}
+
+}
 
 // build precedence list
 const struct operator_data CalcEngine::Operator[] = {
@@ -203,9 +175,7 @@ const struct operator_data CalcEngine::Operator[] = {
 };
 
 
-CalcEngine::CalcEngine()
-        :   percent_mode_(false)
-{
+CalcEngine::CalcEngine() : percent_mode_(false) {
     //
     // Basic initialization involves initializing the calcultion
     // stack, and setting up the floating point excetion signal
@@ -234,13 +204,12 @@ KNumber CalcEngine::lastOutput(bool &error) const
 
 void CalcEngine::ArcCosDeg(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType  ||
-            input < -KNumber::One  ||  input > KNumber::One) {
-        last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR || input < -KNumber::One || input > KNumber::One) {
+        last_number_ = KNumber::NaN;
         return;
     }
 
-    if (input.type() == KNumber::IntegerType) {
+    if (input.type() == KNumber::TYPE_INTEGER) {
         if (input == KNumber::One) {
             last_number_ = KNumber::Zero;
             return;
@@ -254,27 +223,25 @@ void CalcEngine::ArcCosDeg(const KNumber &input)
             return;
         }
     }
-    last_number_ = Rad2Deg(KNumber(acos(static_cast<double>(input))));
+    last_number_ = Rad2Deg(input.acos());
 }
 
 void CalcEngine::ArcCosRad(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType  ||
-            input < -KNumber::One  ||  input > KNumber::One) {
-        last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR || input < -KNumber::One || input > KNumber::One) {
+        last_number_ = KNumber::NaN;
         return;
     }
-    last_number_ = KNumber(acos(static_cast<double>(input)));
+    last_number_ = input.acos();
 }
 
 void CalcEngine::ArcCosGrad(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType  ||
-            input < -KNumber::One  ||  input > KNumber::One) {
-        last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR || input < -KNumber::One || input > KNumber::One) {
+        last_number_ = KNumber::NaN;
         return;
     }
-    if (input.type() == KNumber::IntegerType) {
+    if (input.type() == KNumber::TYPE_INTEGER) {
         if (input == KNumber::One) {
             last_number_ = KNumber::Zero;
             return;
@@ -288,17 +255,17 @@ void CalcEngine::ArcCosGrad(const KNumber &input)
             return;
         }
     }
-    last_number_ = Rad2Gra(KNumber(acos(static_cast<double>(input))));
+    last_number_ = Rad2Gra(input.acos());
 }
 
 void CalcEngine::ArcSinDeg(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType  ||
-            input < -KNumber::One  ||  input > KNumber::One) {
-        last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR  ||
+            input < -KNumber::One || input > KNumber::One) {
+        last_number_ = KNumber::NaN;
         return;
     }
-    if (input.type() == KNumber::IntegerType) {
+    if (input.type() == KNumber::TYPE_INTEGER) {
         if (input == KNumber::One) {
             last_number_ = KNumber(90);
             return;
@@ -308,31 +275,31 @@ void CalcEngine::ArcSinDeg(const KNumber &input)
             return;
         }
         if (input == KNumber::Zero) {
-            last_number_ = KNumber(0);
+            last_number_ = KNumber::Zero;
             return;
         }
     }
-    last_number_ = Rad2Deg(KNumber(asin(static_cast<double>(input))));
+    last_number_ = Rad2Deg(input.asin());
 }
 
 void CalcEngine::ArcSinRad(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType  ||
-            input < -KNumber::One  ||  input > KNumber::One) {
-        last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR  ||
+            input < -KNumber::One || input > KNumber::One) {
+        last_number_ = KNumber::NaN;
         return;
     }
-    last_number_ = KNumber(asin(static_cast<double>(input)));
+    last_number_ = input.asin();
 }
 
 void CalcEngine::ArcSinGrad(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType  ||
-            input < -KNumber::One  ||  input > KNumber::One) {
-        last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR  ||
+            input < -KNumber::One || input > KNumber::One) {
+        last_number_ = KNumber::NaN;
         return;
     }
-    if (input.type() == KNumber::IntegerType) {
+    if (input.type() == KNumber::TYPE_INTEGER) {
         if (input == KNumber::One) {
             last_number_ = KNumber(100);
             return;
@@ -342,29 +309,29 @@ void CalcEngine::ArcSinGrad(const KNumber &input)
             return;
         }
         if (input == KNumber::Zero) {
-            last_number_ = KNumber(0);
+            last_number_ = KNumber::Zero;
             return;
         }
     }
-    last_number_ = Rad2Gra(KNumber(asin(static_cast<double>(input))));
+    last_number_ = Rad2Gra(input.asin());
 }
 
 void CalcEngine::ArcTangensDeg(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR) {
+        if (input == KNumber::NaN) last_number_ = KNumber::NaN;
         if (input == KNumber::PosInfinity) last_number_ = KNumber(90);
         if (input == KNumber::NegInfinity)  last_number_ = KNumber(-90);
         return;
     }
 
-    last_number_ = Rad2Deg(KNumber(atan(static_cast<double>(input))));
+    last_number_ = Rad2Deg(input.atan());
 }
 
 void CalcEngine::ArcTangensRad(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR) {
+        if (input == KNumber::NaN) last_number_ = KNumber::NaN;
         if (input == KNumber::PosInfinity)
             last_number_ = KNumber::Pi() / KNumber(2);
         if (input == KNumber::NegInfinity)
@@ -372,47 +339,47 @@ void CalcEngine::ArcTangensRad(const KNumber &input)
         return;
     }
 
-    last_number_ = KNumber(atan(static_cast<double>(input)));
+    last_number_ = input.atan();
 }
 
 void CalcEngine::ArcTangensGrad(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR) {
+        if (input == KNumber::NaN)         last_number_ = KNumber::NaN;
         if (input == KNumber::PosInfinity) last_number_ = KNumber(100);
-        if (input == KNumber::NegInfinity)  last_number_ = KNumber(-100);
+        if (input == KNumber::NegInfinity) last_number_ = KNumber(-100);
         return;
     }
 
-    last_number_ = Rad2Gra(KNumber(atan(static_cast<double>(input))));
+    last_number_ = Rad2Gra(input.atan());
 }
 
 void CalcEngine::AreaCosHyp(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR) {
+        if (input == KNumber::NaN)         last_number_ = KNumber::NaN;
         if (input == KNumber::PosInfinity) last_number_ = KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity)  last_number_ = KNumber::NotDefined;
+        if (input == KNumber::NegInfinity) last_number_ = KNumber::NaN;
         return;
     }
 
     if (input < KNumber::One) {
-        last_number_ = KNumber::NotDefined;
+        last_number_ = KNumber::NaN;
         return;
     }
     if (input == KNumber::One) {
         last_number_ = KNumber::Zero;
         return;
     }
-    last_number_ = KNumber(acosh(static_cast<double>(input)));
+    last_number_ = input.acosh();
 }
 
 void CalcEngine::AreaSinHyp(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR) {
+        if (input == KNumber::NaN)         last_number_ = KNumber::NaN;
         if (input == KNumber::PosInfinity) last_number_ = KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity)  last_number_ = KNumber::NegInfinity;
+        if (input == KNumber::NegInfinity) last_number_ = KNumber::NegInfinity;
         return;
     }
 
@@ -420,18 +387,18 @@ void CalcEngine::AreaSinHyp(const KNumber &input)
         last_number_ = KNumber::Zero;
         return;
     }
-    last_number_ = KNumber(asinh(static_cast<double>(input)));
+    last_number_ = input.asinh();
 }
 
 void CalcEngine::AreaTangensHyp(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR) {
+        last_number_ = KNumber::NaN;
         return;
     }
 
-    if (input < -KNumber::One  ||  input > KNumber::One) {
-        last_number_ = KNumber::NotDefined;
+    if (input < -KNumber::One || input > KNumber::One) {
+        last_number_ = KNumber::NaN;
         return;
     }
     if (input == KNumber::One) {
@@ -442,114 +409,95 @@ void CalcEngine::AreaTangensHyp(const KNumber &input)
         last_number_ = KNumber::NegInfinity;
         return;
     }
-    last_number_ = KNumber(atanh(static_cast<double>(input)));
+    last_number_ = input.atanh();
 }
 
 void CalcEngine::Complement(const KNumber &input)
 {
-    if (input.type() != KNumber::IntegerType) {
-        last_number_ = KNumber::NotDefined;
+    if (input.type() != KNumber::TYPE_INTEGER) {
+        last_number_ = KNumber::NaN;
         return;
     }
-    // Note: assumes 64-bit "logic mode"
-    quint64 value = static_cast<quint64>(input);
-    last_number_ = KNumber(~value);
+
+    last_number_ = ~input;
 }
-
-
-
-// move a number into the interval [0,360) by adding multiples of 360
-static KNumber moveIntoDegInterval(const KNumber &num)
-{
-    KNumber tmp_num = num - (num / KNumber(360)).integerPart() * KNumber(360);
-    if (tmp_num < KNumber::Zero)
-        return tmp_num + KNumber(360);
-    return tmp_num;
-}
-
-// move a number into the interval [0,400) by adding multiples of 400
-static KNumber moveIntoGradInterval(const KNumber &num)
-{
-    KNumber tmp_num = num - (num / KNumber(400)).integerPart() * KNumber(400);
-    if (tmp_num < KNumber::Zero)
-        return tmp_num + KNumber(400);
-    return tmp_num;
-}
-
 
 void CalcEngine::CosDeg(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR) {
+        last_number_ = KNumber::NaN;
         return;
     }
+	
     KNumber trunc_input = moveIntoDegInterval(input);
-    if (trunc_input.type() == KNumber::IntegerType) {
+    
+	if (trunc_input.type() == KNumber::TYPE_INTEGER) {
         KNumber mult = trunc_input / KNumber(90);
-        if (mult.type() == KNumber::IntegerType) {
+        if (mult.type() == KNumber::TYPE_INTEGER) {
             if (mult == KNumber::Zero)
-                last_number_ = 1;
-            else if (mult == KNumber(1))
-                last_number_ = 0;
+                last_number_ = KNumber::One;
+            else if (mult == KNumber::One)
+                last_number_ = KNumber::Zero;
             else if (mult == KNumber(2))
-                last_number_ = -1;
+                last_number_ = KNumber::NegOne;
             else if (mult == KNumber(3))
-                last_number_ = 0;
+                last_number_ = KNumber::Zero;
             else kDebug() << "Something wrong in CalcEngine::CosDeg";
             return;
         }
     }
+		
     trunc_input = Deg2Rad(trunc_input);
-
-    last_number_ = KNumber(cos(static_cast<double>(trunc_input)));
+    last_number_ = trunc_input.cos();
 }
 
 void CalcEngine::CosRad(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR) {
+        last_number_ = KNumber::NaN;
         return;
     }
-    last_number_ = KNumber(cos(static_cast<double>(input)));
+	
+    last_number_ = input.cos();
 }
 
 void CalcEngine::CosGrad(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR) {
+        last_number_ = KNumber::NaN;
         return;
     }
     KNumber trunc_input = moveIntoGradInterval(input);
-    if (trunc_input.type() == KNumber::IntegerType) {
+    if (trunc_input.type() == KNumber::TYPE_INTEGER) {
         KNumber mult = trunc_input / KNumber(100);
-        if (mult.type() == KNumber::IntegerType) {
+        if (mult.type() == KNumber::TYPE_INTEGER) {
             if (mult == KNumber::Zero)
-                last_number_ = 1;
-            else if (mult == KNumber(1))
-                last_number_ = 0;
+                last_number_ = KNumber::One;
+            else if (mult == KNumber::One)
+                last_number_ = KNumber::Zero;
             else if (mult == KNumber(2))
-                last_number_ = -1;
+                last_number_ = KNumber::NegOne;
             else if (mult == KNumber(3))
-                last_number_ = 0;
+                last_number_ = KNumber::Zero;
             else kDebug() << "Something wrong in CalcEngine::CosGrad";
             return;
         }
     }
     trunc_input = Gra2Rad(trunc_input);
 
-    last_number_ = KNumber(cos(static_cast<double>(trunc_input)));
+    last_number_ = trunc_input.cos();
 }
 
 void CalcEngine::CosHyp(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR) {
+        if (input == KNumber::NaN)         last_number_ = KNumber::NaN;
         if (input == KNumber::PosInfinity) last_number_ = KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity)  last_number_ = KNumber::PosInfinity;
+        if (input == KNumber::NegInfinity) last_number_ = KNumber::PosInfinity;
         return;
     }
 
-    last_number_ = KNumber(cosh(static_cast<double>(input)));
+    last_number_ = input.cosh();
 }
 
 void CalcEngine::Cube(const KNumber &input)
@@ -564,38 +512,37 @@ void CalcEngine::CubeRoot(const KNumber &input)
 
 void CalcEngine::Exp(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR) {
+        if (input == KNumber::NaN)         last_number_ = KNumber::NaN;
         if (input == KNumber::PosInfinity) last_number_ = KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity)  last_number_ = KNumber::Zero;
+        if (input == KNumber::NegInfinity) last_number_ = KNumber::Zero;
         return;
     }
-    last_number_ = KNumber(exp(static_cast<double>(input)));
+    last_number_ = KNumber::Euler().pow(input);
 }
 
 void CalcEngine::Exp10(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR) {
+        if (input == KNumber::NaN)         last_number_ = KNumber::NaN;
         if (input == KNumber::PosInfinity) last_number_ = KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity)  last_number_ = KNumber::Zero;
+        if (input == KNumber::NegInfinity) last_number_ = KNumber::Zero;
         return;
     }
-    last_number_ = KNumber(10).power(input);
+    last_number_ = KNumber(10).pow(input);
 }
 
 
 void CalcEngine::Factorial(const KNumber &input)
 {
     if (input == KNumber::PosInfinity) return;
-    if (input < KNumber::Zero || input.type() == KNumber::SpecialType) {
+    if (input < KNumber::Zero || input.type() == KNumber::TYPE_ERROR) {
         error_ = true;
-        last_number_ = KNumber::NotDefined;
+        last_number_ = KNumber::NaN;
         return;
     }
-    KNumber tmp_amount = input.integerPart();
-
-    last_number_ = tmp_amount.factorial();
+	
+    last_number_ = input.integerPart().factorial();
 }
 
 void CalcEngine::InvertSign(const KNumber &input)
@@ -605,39 +552,27 @@ void CalcEngine::InvertSign(const KNumber &input)
 
 void CalcEngine::Ln(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
-        if (input == KNumber::PosInfinity) last_number_ = KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity)  last_number_ = KNumber::NotDefined;
-        return;
-    }
     if (input < KNumber::Zero)
-        last_number_ = KNumber::NotDefined;
+        last_number_ = KNumber::NaN;
     else if (input == KNumber::Zero)
         last_number_ = KNumber::NegInfinity;
     else if (input == KNumber::One)
-        last_number_ = 0;
+        last_number_ = KNumber::Zero;
     else {
-        last_number_ = KNumber(log(static_cast<double>(input)));
+        last_number_ = input.ln();
     }
 }
 
 void CalcEngine::Log10(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
-        if (input == KNumber::PosInfinity) last_number_ = KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity)  last_number_ = KNumber::NotDefined;
-        return;
-    }
     if (input < KNumber::Zero)
-        last_number_ = KNumber::NotDefined;
+        last_number_ = KNumber::NaN;
     else if (input == KNumber::Zero)
         last_number_ = KNumber::NegInfinity;
     else if (input == KNumber::One)
-        last_number_ = 0;
+        last_number_ = KNumber::Zero;
     else {
-        last_number_ = KNumber(log10(static_cast<double>(input)));
+        last_number_ = input.log10();
     }
 }
 
@@ -648,8 +583,7 @@ void CalcEngine::ParenClose(KNumber input)
         Node tmp_node = stack_.pop();
         if (tmp_node.operation == FUNC_BRACKET)
             break;
-        input = evalOperation(tmp_node.number, tmp_node.operation,
-                              input);
+        input = evalOperation(tmp_node.number, tmp_node.operation, input);
     }
     last_number_ = input;
     return;
@@ -668,61 +602,61 @@ void CalcEngine::Reciprocal(const KNumber &input)
 
 void CalcEngine::SinDeg(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR) {
+        last_number_ = KNumber::NaN;
         return;
     }
 
     KNumber trunc_input = moveIntoDegInterval(input);
-    if (trunc_input.type() == KNumber::IntegerType) {
+    if (trunc_input.type() == KNumber::TYPE_INTEGER) {
         KNumber mult = trunc_input / KNumber(90);
-        if (mult.type() == KNumber::IntegerType) {
+        if (mult.type() == KNumber::TYPE_INTEGER) {
             if (mult == KNumber::Zero)
-                last_number_ = 0;
-            else if (mult == KNumber(1))
-                last_number_ = 1;
+                last_number_ = KNumber::Zero;
+            else if (mult == KNumber::One)
+                last_number_ = KNumber::One;
             else if (mult == KNumber(2))
-                last_number_ = 0;
+                last_number_ = KNumber::Zero;
             else if (mult == KNumber(3))
-                last_number_ = -1;
+                last_number_ = KNumber::NegOne;
             else kDebug() << "Something wrong in CalcEngine::SinDeg";
             return;
         }
     }
     trunc_input = Deg2Rad(trunc_input);
 
-    last_number_ = KNumber(sin(static_cast<double>(trunc_input)));
+    last_number_ = trunc_input.sin();
 }
 
 void CalcEngine::SinRad(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR) {
+        last_number_ = KNumber::NaN;
         return;
     }
 
-    last_number_ = KNumber(sin(static_cast<double>(input)));
+    last_number_ = input.sin();
 }
 
 void CalcEngine::SinGrad(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR) {
+        last_number_ = KNumber::NaN;
         return;
     }
 
     KNumber trunc_input = moveIntoGradInterval(input);
-    if (trunc_input.type() == KNumber::IntegerType) {
+    if (trunc_input.type() == KNumber::TYPE_INTEGER) {
         KNumber mult = trunc_input / KNumber(100);
-        if (mult.type() == KNumber::IntegerType) {
+        if (mult.type() == KNumber::TYPE_INTEGER) {
             if (mult == KNumber::Zero)
-                last_number_ = 0;
-            else if (mult == KNumber(1))
-                last_number_ = 1;
+                last_number_ = KNumber::Zero;
+            else if (mult == KNumber::One)
+                last_number_ = KNumber::One;
             else if (mult == KNumber(2))
-                last_number_ = 0;
+                last_number_ = KNumber::Zero;
             else if (mult == KNumber(3))
-                last_number_ = -1;
+                last_number_ = KNumber::NegOne;
             else kDebug() << "Something wrong in CalcEngine::SinGrad";
             return;
         }
@@ -730,19 +664,19 @@ void CalcEngine::SinGrad(const KNumber &input)
 
     trunc_input = Gra2Rad(trunc_input);
 
-    last_number_ = KNumber(sin(static_cast<double>(trunc_input)));
+    last_number_ = trunc_input.sin();
 }
 
 void CalcEngine::SinHyp(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber::NotDefined) last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR) {
+        if (input == KNumber::NaN)         last_number_ = KNumber::NaN;
         if (input == KNumber::PosInfinity) last_number_ = KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity)  last_number_ = KNumber::NegInfinity;
+        if (input == KNumber::NegInfinity) last_number_ = KNumber::NegInfinity;
         return;
     }
 
-    last_number_ = KNumber(sinh(static_cast<double>(input)));
+    last_number_ = input.sinh();
 }
 
 void CalcEngine::Square(const KNumber &input)
@@ -828,8 +762,8 @@ void CalcEngine::StatSumSquares(const KNumber &input)
 
 void CalcEngine::TangensDeg(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR) {
+        last_number_ = KNumber::NaN;
         return;
     }
 
@@ -842,8 +776,8 @@ void CalcEngine::TangensDeg(const KNumber &input)
 
 void CalcEngine::TangensRad(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR) {
+        last_number_ = KNumber::NaN;
         return;
     }
 
@@ -856,8 +790,8 @@ void CalcEngine::TangensRad(const KNumber &input)
 
 void CalcEngine::TangensGrad(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        last_number_ = KNumber::NotDefined;
+    if (input.type() == KNumber::TYPE_ERROR) {
+        last_number_ = KNumber::NaN;
         return;
     }
 
@@ -870,18 +804,17 @@ void CalcEngine::TangensGrad(const KNumber &input)
 
 void CalcEngine::TangensHyp(const KNumber &input)
 {
-    if (input.type() == KNumber::SpecialType) {
-        if (input == KNumber::NotDefined)  last_number_ = KNumber::NotDefined;
-        if (input == KNumber::PosInfinity) last_number_ = KNumber::One;
-        if (input == KNumber::NegInfinity) last_number_ = KNumber::MinusOne;
-        return;
-    }
+	if (input.type() == KNumber::TYPE_ERROR) {
+		if (input == KNumber::NaN)         last_number_ = KNumber::NaN;
+		if (input == KNumber::PosInfinity) last_number_ = KNumber::One;
+		if (input == KNumber::NegInfinity) last_number_ = KNumber::NegOne;
+		return;
+	}
 
-    last_number_ = KNumber(tanh(static_cast<double>(input)));
+	last_number_ = input.tanh();
 }
 
-KNumber CalcEngine::evalOperation(const KNumber &arg1, Operation operation,
-                                  const KNumber &arg2)
+KNumber CalcEngine::evalOperation(const KNumber &arg1, Operation operation, const KNumber &arg2)
 {
     if (!percent_mode_ || Operator[operation].prcnt_ptr == NULL) {
         return (Operator[operation].arith_ptr)(arg1, arg2);
@@ -891,12 +824,12 @@ KNumber CalcEngine::evalOperation(const KNumber &arg1, Operation operation,
     }
 }
 
-void CalcEngine::enterOperation(KNumber number, Operation func)
+void CalcEngine::enterOperation(const KNumber &number, Operation func)
 {
     Node tmp_node;
 
     if (func == FUNC_BRACKET) {
-        tmp_node.number = 0;
+        tmp_node.number = KNumber::Zero;
         tmp_node.operation = FUNC_BRACKET;
 
         stack_.push(tmp_node);
@@ -928,9 +861,7 @@ bool CalcEngine::evalStack()
         if (Operator[tmp_node.operation].precedence <=
                 Operator[tmp_node2.operation].precedence) {
             if (tmp_node2.operation == FUNC_BRACKET) continue;
-            KNumber tmp_result =
-                evalOperation(tmp_node2.number, tmp_node2.operation,
-                              tmp_node.number);
+			const KNumber tmp_result = evalOperation(tmp_node2.number, tmp_node2.operation, tmp_node.number);
             tmp_node.number = tmp_result;
         } else {
             stack_.push(tmp_node2);
@@ -939,7 +870,7 @@ bool CalcEngine::evalStack()
 
     }
 
-    if (tmp_node.operation != FUNC_EQUAL  &&  tmp_node.operation != FUNC_PERCENT)
+    if (tmp_node.operation != FUNC_EQUAL && tmp_node.operation != FUNC_PERCENT)
         stack_.push(tmp_node);
 
     last_number_ = tmp_node.number;

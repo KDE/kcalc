@@ -35,7 +35,7 @@ class KAction;
 class QTimer;
 class QStyleOptionFrame;
 
-#define  NUM_STATUS_TEXT 4
+#define NUM_STATUS_TEXT 4
 
 /*
   This class provides a pocket calculator display.  The display has
@@ -79,7 +79,7 @@ public:
     bool sendEvent(Event event);
     void deleteLastDigit();
     const KNumber &getAmount() const;
-    void newCharacter(char new_char);
+    void newCharacter(const QChar new_char);
     bool setAmount(const KNumber &new_amount);
     int setBase(NumBase new_base);
     void setBeep(bool flag);
@@ -151,4 +151,4 @@ private:
     QTimer* selection_timer_;
 };
 
-#endif // KCALCDISPLAY_H_
+#endif

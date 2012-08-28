@@ -1,242 +1,69 @@
-// -*- indent-tabs-mode: nil -*-
-/* This file is part of the KDE libraries
-   Copyright (c) 2005 Klaus Niederkrueger <kniederk@math.uni-koeln.de>
-
-   This library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Library General Public
-   License as published by the Free Software Foundation; either
-   version 2 of the License, or (at your option) any later version.
-
-   This library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Library General Public License for more details.
-
-   You should have received a copy of the GNU Library General Public License
-   along with this library; see the file COPYING.LIB.  If not, write to
-   the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
-   Boston, MA 02110-1301, USA.
-*/
-
-#include "knumber.h"
-#include "knumber_priv.h"
-#include "kdemacros.h"
-#include "kglobal.h"
-
-#include <cmath>
-#include <cstdio>
 
 #include <config-kcalc.h>
-
+#include "knumber.h"
+#include "knumber_base.h"
+#include "knumber_error.h"
+#include "knumber_float.h"
+#include "knumber_fraction.h"
+#include "knumber_integer.h"
+#include <QDebug>
 #include <QRegExp>
+#include <QStringList>
+#include <cmath>
 
-using namespace std;
+QString KNumber::GroupSeparator   = QLatin1String(",");
+QString KNumber::DecimalSeparator = QLatin1String(".");
 
-const KNumber KNumber::Zero(0);
-const KNumber KNumber::One(1);
-const KNumber KNumber::MinusOne(-1);
-const KNumber KNumber::NotDefined(QLatin1String("nan"));
+const KNumber KNumber::Zero(QLatin1String("0"));
+const KNumber KNumber::One(QLatin1String("1"));
+const KNumber KNumber::NegOne(QLatin1String("-1"));
 const KNumber KNumber::PosInfinity(QLatin1String("inf"));
 const KNumber KNumber::NegInfinity(QLatin1String("-inf"));
-bool KNumber::FloatOutput = false;
-bool KNumber::FractionInput = false;
-bool KNumber::SplitOffIntegerOutput = false;
-
-#ifndef HAVE_FUNC_ISINF
-
-#ifdef HAVE_IEEEFP_H
-#include <ieeefp.h>
-#endif
-
-#define isinf(x) (!finite(x) && x == x)
-#endif
-
-// this constructor is different from the rest
-// firstly it is explicit so that the compiler doesn't
-// get confused if you pass a 0 constant
-// secondly it takes a pointer to the knumber implementation
-// class and TAKES OWNERSHIP of it.
-// It's purpose it enable us to avoid code which creates
-// a KNumber just to do a "delete tmp.num_;"
-KNumber::KNumber(detail::knumber *num) : num_(num)
-{
-    Q_ASSERT(num != 0);
-}
-
-KNumber::KNumber(qint32 num) : num_(new detail::knuminteger(num))
-{
-}
-
-KNumber::KNumber(quint32 num) : num_(new detail::knuminteger(num))
-{
-}
-
-KNumber::KNumber(qint64 num) : num_(new detail::knuminteger(num))
-{
-}
-
-KNumber::KNumber(quint64 num) : num_(new detail::knuminteger(num))
-{
-}
-
-KNumber::KNumber(double num)
-{
-    if (isinf(num))      num_ = new detail::knumerror(detail::knumber::Infinity);
-    else if (isnan(num)) num_ = new detail::knumerror(detail::knumber::UndefinedNumber);
-    else                 num_ = new detail::knumfloat(num);
-
-}
-
-void KNumber::swap(KNumber &other)
-{
-    qSwap(num_, other.num_);
-}
-
-KNumber::KNumber(const KNumber &num)
-{
-    switch(num.type()) {
-    case SpecialType:
-        num_ = new detail::knumerror(*(num.num_));
-        break;
-    case IntegerType:
-        num_ = new detail::knuminteger(*(num.num_));
-        break;
-    case FractionType:
-        num_ = new detail::knumfraction(*(num.num_));
-        break;
-    case FloatType:
-        num_ = new detail::knumfloat(*(num.num_));
-        break;
-    }
-}
-
-KNumber::KNumber(const QString &num, const QString &decimal_separator)
-{
-
-	QString fractional_regex(QLatin1String("^[+-]?\\d+(%1\\d*)?(e[+-]?\\d+)?$"));
-	
-	if(decimal_separator == ".") {
-		fractional_regex = fractional_regex.arg("\\.");
-	} else {
-		fractional_regex = fractional_regex.arg(",");
-	}
-	
-    if (QRegExp(QLatin1String("^(inf|-inf|nan)$")).exactMatch(num)) {
-        num_ = new detail::knumerror(num);
-    } else if (QRegExp(QLatin1String("^[+-]?\\d+$")).exactMatch(num)) {
-        num_ = new detail::knuminteger(num);
-    } else if (QRegExp(QLatin1String("^[+-]?\\d+/\\d+$")).exactMatch(num)) {
-        num_ = new detail::knumfraction(num);
-        simplifyRational();
-    } else if (QRegExp(fractional_regex).exactMatch(num)) {
-        if (FractionInput == true) {
-            num_ = new detail::knumfraction(num);
-            simplifyRational();
-        } else {
-            num_ = new detail::knumfloat(num);
-        }
-    } else {
-        num_ = new detail::knumerror(QLatin1String( "nan" ));
-    }
-}
-
-KNumber::~KNumber()
-{
-    delete num_;
-}
-
-KNumber::NumType KNumber::type() const
-{
-    // TODO: wouldn't it be more efficient to just
-    // use "return num_->type();"
-    if (dynamic_cast<detail::knumerror *>(num_))    return SpecialType;
-    if (dynamic_cast<detail::knuminteger *>(num_))  return IntegerType;
-    if (dynamic_cast<detail::knumfraction *>(num_)) return FractionType;
-    if (dynamic_cast<detail::knumfloat *>(num_))    return FloatType;
-
-    return SpecialType;
-}
-
-// This method converts a fraction to an integer, whenever possible,
-// i.e. 5/1 --> 5
-// This method should be called, whenever such a inproper fraction can occur,
-// e.g. when adding 4/3 + 2/3....
-void KNumber::simplifyRational()
-{
-    if (type() != FractionType) {
-        return;
-    }
-
-    detail::knumfraction *const tmp_num = dynamic_cast<detail::knumfraction *>(num_);
-
-    if (tmp_num->isInteger()) {
-        KNumber(tmp_num->intPart()).swap(*this);
-    }
-}
-
-
-KNumber &KNumber::operator=(const KNumber &num)
-{
-    if (this != &num) {
-        KNumber(num).swap(*this);
-    }
-    return *this;
-}
-
-KNumber &KNumber::operator+=(const KNumber &arg)
-{
-    // TODO:
-    // this is a little backwards, usually operator+ is implemented
-    // in terms of operator+=, since in most cases, operator+=
-    // can avoid creating a new object while operator+ cannot
-    KNumber(*this + arg).swap(*this);
-    return *this;
-}
-
-KNumber &KNumber::operator-=(const KNumber &arg)
-{
-    // TODO: see operator+=
-    KNumber(*this - arg).swap(*this);
-    return *this;
-}
+const KNumber KNumber::NaN(QLatin1String("nan"));
 
 namespace {
-// increase the digit at 'position' by one
-void increment(QString &str, int position)
-{
+namespace impl {
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+void increment(QString &str, int position) {
+
     for (int i = position; i >= 0; i--) {
         const char last_char = str[i].toLatin1();
         switch (last_char) {
         case '0':
-            str[i] = '1';
+            str[i] = QLatin1Char('1');
             break;
         case '1':
-            str[i] = '2';
+            str[i] = QLatin1Char('2');
             break;
         case '2':
-            str[i] = '3';
+            str[i] = QLatin1Char('3');
             break;
         case '3':
-            str[i] = '4';
+            str[i] = QLatin1Char('4');
             break;
         case '4':
-            str[i] = '5';
+            str[i] = QLatin1Char('5');
             break;
         case '5':
-            str[i] = '6';
+            str[i] = QLatin1Char('6');
             break;
         case '6':
-            str[i] = '7';
+            str[i] = QLatin1Char('7');
             break;
         case '7':
-            str[i] = '8';
+            str[i] = QLatin1Char('8');
             break;
         case '8':
-            str[i] = '9';
+            str[i] = QLatin1Char('9');
             break;
         case '9':
-            str[i] = '0';
-            if (i == 0) str.prepend(QLatin1Char( '1' ));
+            str[i] = QLatin1Char('0');
+            if (i == 0) {
+				str.prepend(QLatin1Char('1'));
+			}
             continue;
         case '.':
             continue;
@@ -245,23 +72,26 @@ void increment(QString &str, int position)
     }
 }
 
-namespace impl {
-// Cut off if more digits in fractional part than 'precision'
-void round(QString &str, int precision)
-{
-    int decimalSymbolPos = str.indexOf(QLatin1Char( '.' ));
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+void round(QString &str, int precision) {
+
+	// Cut off if more digits in fractional part than 'precision'
+
+    int decimalSymbolPos = str.indexOf(QLatin1Char('.'));
 
     if (decimalSymbolPos == -1) {
         if (precision == 0) {
             return;
         } else if (precision > 0) {   // add dot if missing (and needed)
-            str.append(QLatin1Char( '.' ));
+            str.append(QLatin1Char('.'));
             decimalSymbolPos = str.length() - 1;
         }
     }
 
     // fill up with more than enough zeroes (in case fractional part too short)
-    str.append(QString().fill(QLatin1Char( '0' ), precision));
+    str.append(QString().fill(QLatin1Char('0'), precision));
 
     // Now decide whether to round up or down
     const char last_char = str[decimalSymbolPos + precision + 1].toLatin1();
@@ -285,346 +115,741 @@ void round(QString &str, int precision)
         break;
     }
 
-    decimalSymbolPos = str.indexOf(QLatin1Char( '.' ));
+    decimalSymbolPos = str.indexOf(QLatin1Char('.'));
     str.truncate(decimalSymbolPos + precision + 1);
 
     // if precision == 0 delete also '.'
     if (precision == 0) {
-        str = str.section(QLatin1Char( '.' ), 0, 0);
+        str = str.section(QLatin1Char('.'), 0, 0);
     }
 }
 }
 
-QString round(const QString &numStr, int precision)
-{
-    QString tmpString = numStr;
-    if (precision < 0 ||
-            !QRegExp(QLatin1String( "^[+-]?\\d+(\\.\\d+)*(e[+-]?\\d+)?$" )).exactMatch(tmpString)) {
-        return numStr;
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+QString round(const QString &s, int precision) {
+    	
+	QString tmp = s;
+    if (precision < 0 || !QRegExp(QLatin1String("^[+-]?\\d+(\\.\\d+)*(e[+-]?\\d+)?$")).exactMatch(tmp)) {
+        return s;
     }
-
 
     // Skip the sign (for now)
-    const bool neg = (tmpString[0] == QLatin1Char( '-' ));
-    if (neg || tmpString[0] == QLatin1Char( '+' )) {
-        tmpString.remove(0, 1);
+    const bool neg = (tmp[0] == QLatin1Char('-'));
+    if (neg || tmp[0] == QLatin1Char('+')) {
+        tmp.remove(0, 1);
     }
 
     // Split off exponential part (including 'e'-symbol)
-    QString mantString = tmpString.section(QLatin1Char( 'e' ), 0, 0,
-                                           QString::SectionCaseInsensitiveSeps);
-
-    QString expString = tmpString.section(QLatin1Char( 'e' ), 1, 1,
-                                          QString::SectionCaseInsensitiveSeps |
-                                          QString::SectionIncludeLeadingSep);
+    QString mantString = tmp.section(QLatin1Char('e'), 0, 0, QString::SectionCaseInsensitiveSeps);
+    QString expString  = tmp.section(QLatin1Char('e'), 1, 1, QString::SectionCaseInsensitiveSeps | QString::SectionIncludeLeadingSep);
 
     if (expString.length() == 1) {
         expString.clear();
     }
 
-
     impl::round(mantString, precision);
 
     if (neg) {
-        mantString.prepend(QLatin1Char( '-' ));
+        mantString.prepend(QLatin1Char('-'));
     }
 
     return mantString + expString;
 }
-
 }
 
-QString KNumber::toQString(int width, int prec) const
-{
-    if (*this == Zero) {
-        // important to avoid infinite loops below
-        return QLatin1String("0");
-    }
-
-    QString tmp_str;
-
-    switch (type()) {
-    case IntegerType:
-        if (width > 0) {   //result needs to be cut-off
-            bool tmp_bool = FractionInput; // stupid work-around
-            FractionInput = false;
-            tmp_str = (KNumber(1.0) * (*this)).toQString(width, -1);
-            FractionInput = tmp_bool;
-        } else {
-            tmp_str = QString(num_->ascii());
-        }
-        break;
-    case FractionType:
-        if (FloatOutput) {
-            bool tmp_bool = FractionInput; // stupid work-around
-            FractionInput = false;
-            tmp_str = (KNumber(1.0) * (*this)).toQString(width, -1);
-            FractionInput = tmp_bool;
-        } else { // FloatOutput == false
-            if (SplitOffIntegerOutput) {
-                // split off integer part
-                KNumber int_part = this->integerPart();
-                if (int_part == Zero) {
-                    tmp_str = QString(num_->ascii());
-                } else if (int_part < Zero) {
-                    tmp_str = int_part.toQString() + QLatin1Char( ' ' ) + (int_part - *this).num_->ascii();
-                } else {
-                    tmp_str = int_part.toQString() + QLatin1Char( ' ' ) + (*this - int_part).num_->ascii();
-                }
-            } else {
-                tmp_str = QString(num_->ascii());
-            }
-
-            if (width > 0 && tmp_str.length() > width) {
-                //result needs to be cut-off
-                bool tmp_bool = FractionInput; // stupid work-around
-                FractionInput = false;
-                tmp_str = (KNumber(1.0) * (*this)).toQString(width, -1);
-                FractionInput = tmp_bool;
-            }
-        }
-        break;
-    case FloatType:
-        if (width > 0) {
-            tmp_str = QString(num_->ascii(width));
-        } else {
-            // rough estimate for maximal decimal precision (10^3 = 2^10)
-            tmp_str = QString(num_->ascii(3 * mpf_get_default_prec() / 10));
-        }
-        break;
-    default:
-        return num_->ascii();
-    }
-
-    if (prec >= 0) {
-        return round(tmp_str, prec);
-    } else {
-        return tmp_str;
-    }
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+void KNumber::setGroupSeparator(const QString &ch) {
+	GroupSeparator = ch;
 }
 
-void KNumber::setDefaultFloatOutput(bool flag)
-{
-    FloatOutput = flag;
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+void KNumber::setDecimalSeparator(const QString &ch) {
+	DecimalSeparator = ch;
 }
 
-void KNumber::setDefaultFractionalInput(bool flag)
-{
-    FractionInput = flag;
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+QString KNumber::groupSeparator() {
+	return GroupSeparator;
 }
 
-void KNumber::setSplitoffIntegerForFractionOutput(bool flag)
-{
-    SplitOffIntegerOutput = flag;
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+QString KNumber::decimalSeparator() {
+	return DecimalSeparator;
 }
 
-void KNumber::setDefaultFloatPrecision(unsigned int prec)
-{
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+void KNumber::setDefaultFloatPrecision(int precision) {
     // Need to transform decimal digits into binary digits
-    unsigned long int bin_prec = static_cast<unsigned long int>
-                                 (double(prec) * M_LN10 / M_LN2 + 1);
-
+    unsigned long int bin_prec = static_cast<unsigned long int>(double(precision) * M_LN10 / M_LN2 + 1);
     mpf_set_default_prec(bin_prec);
 }
 
-KNumber KNumber::abs() const
-{
-    return KNumber(num_->abs());
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+void KNumber::setSplitoffIntegerForFractionOutput(bool x) {
+	detail::knumber_fraction::set_split_off_integer_for_fraction_output(x);
 }
 
-KNumber KNumber::cbrt() const
-{
-    return KNumber(num_->cbrt());
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+void KNumber::setDefaultFractionalInput(bool x) {
+	detail::knumber_fraction::set_default_fractional_input(x);
 }
 
-KNumber KNumber::sqrt() const
-{
-    return KNumber(num_->sqrt());
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+void KNumber::setDefaultFloatOutput(bool x) {
+	detail::knumber_fraction::set_default_fractional_output(!x);
 }
 
-KNumber KNumber::factorial() const
-{
-    return KNumber(num_->factorial());
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::Pi() {
+	static const KNumber pi(QLatin1String("3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117068"));
+	return pi;
 }
 
-KNumber KNumber::integerPart() const
-{
-    return KNumber(num_->intPart());
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::Euler() {
+	static const KNumber e(QLatin1String("2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945713821785251664274"));
+	return e;
 }
 
-KNumber KNumber::power(const KNumber &exp) const
-{
-    if (*this == Zero) {
-        if (exp == Zero)     return KNumber::NotDefined;   // 0^0 not defined
-        else if (exp < Zero) return KNumber::PosInfinity;
-        else                 return Zero;
-    }
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber::KNumber() : value_(new detail::knumber_integer(0)) {
+}
 
-    if (exp == Zero) {
-        if (*this != Zero) return One;
-        else               return KNumber::NotDefined;
-    } else if (exp < Zero) {
-        const KNumber tmp_num2 = -exp;
-        const KNumber tmp_num(num_->power(*(tmp_num2.num_)));
-        return One / tmp_num;
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber::KNumber(const QString &s) : value_(0) {
+
+	const QRegExp special_regex(QLatin1String("^(inf|-inf|nan)$"));
+	const QRegExp integer_regex(QLatin1String("^[+-]?\\d+$"));
+	const QRegExp fraction_regex(QLatin1String("^[+-]?\\d+/\\d+$"));
+	const QRegExp float_regex(QString(QLatin1String("^([+-]?\\d+)(%1\\d*)?(e([+-]?\\d+))?$")).arg(QRegExp::escape(DecimalSeparator)));
+
+	if (special_regex.exactMatch(s)) {
+		value_ = new detail::knumber_error(s);
+	} else if (integer_regex.exactMatch(s)) {		
+		value_ = new detail::knumber_integer(s);
+	} else if (fraction_regex.exactMatch(s)) {
+		value_ = new detail::knumber_fraction(s);
+		simplify();
+	} else if (float_regex.exactMatch(s)) {
+		
+		if(detail::knumber_fraction::default_fractional_input) {
+
+			const QStringList list = float_regex.capturedTexts();
+			if(list.size() == 5) {
+					
+				QString ipart = list[1];
+				QString fpart = list[2];
+				QString epart = list[3];
+				int e_val     = list[4].toInt();
+
+				QString num = ipart + fpart.mid(1);
+				QString den = QLatin1String("1") + QString(fpart.size() - 1, QLatin1Char('0'));
+
+				if(e_val < 0) {
+					den = den + QString(::abs(e_val), QLatin1Char('0'));
+				} else if(e_val > 0) {
+					num = num + QString(::abs(e_val), QLatin1Char('0'));
+				}
+
+				value_ = new detail::knumber_fraction(QString(QLatin1String("%1/%2")).arg(num, den));
+				simplify();
+				return;
+			}
+		}
+		
+		// we need to normalize the decimal searator to US style because that's
+		// the only type that the GMP function accept
+		QString new_s = s;
+		new_s.replace(DecimalSeparator, QLatin1String("."));
+		
+		value_ = new detail::knumber_float(new_s);
+		simplify();
+	} else {
+		value_ = new detail::knumber_error(detail::knumber_error::ERROR_UNDEFINED);
+	}
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber::KNumber(qint32 value) : value_(new detail::knumber_integer(value)) {
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber::KNumber(qint64 value) : value_(new detail::knumber_integer(value)) {
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber::KNumber(quint32 value) : value_(new detail::knumber_integer(value)) {
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber::KNumber(quint64 value) : value_(new detail::knumber_integer(value)) {
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber::KNumber(qint64 num, quint64 den) : value_(new detail::knumber_fraction(num, den)) {
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber::KNumber(quint64 num, quint64 den) : value_(new detail::knumber_fraction(num, den)) {
+}
+
+#ifdef HAVE_LONG_DOUBLE
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber::KNumber(long double value) : value_(new detail::knumber_float(value)) {
+	simplify();
+}
+#endif
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber::KNumber(double value) : value_(new detail::knumber_float(value)) {
+	simplify();
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber::KNumber(const KNumber &other) : value_(0) {
+	if(&other != this) {
+		value_ = other.value_->clone();
+	}
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber::~KNumber() {
+	delete value_;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber::Type KNumber::type() const {
+
+	if(dynamic_cast<detail::knumber_integer *>(value_)) {
+		return TYPE_INTEGER;
+	} else if(dynamic_cast<detail::knumber_float *>(value_)) {
+		return TYPE_FLOAT;
+	} else if(dynamic_cast<detail::knumber_fraction *>(value_)) {
+		return TYPE_FRACTION;
+	} else if(dynamic_cast<detail::knumber_error *>(value_)) {
+		return TYPE_ERROR;
+	} else {
+		Q_ASSERT(0);
+		return TYPE_ERROR;
+	}
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber &KNumber::operator=(const KNumber &rhs) {
+	KNumber(rhs).swap(*this);
+	return *this;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+void KNumber::swap(KNumber &other) {
+	qSwap(value_, other.value_);
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::integerPart() const {
+
+	KNumber x(*this);
+	
+	if(detail::knumber_integer *const p = dynamic_cast<detail::knumber_integer *>(value_)) {
+		// NO-OP
+		Q_UNUSED(p);
+	} else if(detail::knumber_float *const p = dynamic_cast<detail::knumber_float *>(value_)) {
+		detail::knumber_base *v = new detail::knumber_integer(p);
+		qSwap(v, x.value_);
+		delete v;
+	} else if(detail::knumber_fraction *const p = dynamic_cast<detail::knumber_fraction *>(value_)) {
+		detail::knumber_base *v = new detail::knumber_integer(p);
+		qSwap(v, x.value_);
+		delete v;
+	} else if(detail::knumber_error *const p = dynamic_cast<detail::knumber_error *>(value_)) {
+		// NO-OP
+		Q_UNUSED(p);
+	} else {
+		Q_ASSERT(0);
+	}
+	
+	return x;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+void KNumber::simplify() {
+
+	if(value_->is_integer()) {
+			
+		if(detail::knumber_integer *const p = dynamic_cast<detail::knumber_integer *>(value_)) {
+			// NO-OP
+			Q_UNUSED(p);
+		} else if(detail::knumber_float *const p = dynamic_cast<detail::knumber_float *>(value_)) {
+			detail::knumber_base *v = new detail::knumber_integer(p);
+			qSwap(v, value_);
+			delete v;
+		} else if(detail::knumber_fraction *const p = dynamic_cast<detail::knumber_fraction *>(value_)) {
+			detail::knumber_base *v = new detail::knumber_integer(p);
+			qSwap(v, value_);
+			delete v;
+		} else if(detail::knumber_error *const p = dynamic_cast<detail::knumber_error *>(value_)) {
+			// NO-OP
+			Q_UNUSED(p);
+		} else {
+			Q_ASSERT(0);
+		}
+	}
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber &KNumber::operator+=(const KNumber &rhs) {
+	value_ = value_->add(rhs.value_);
+	simplify();
+	return *this;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber &KNumber::operator-=(const KNumber &rhs) {
+	value_ = value_->sub(rhs.value_);
+	simplify();
+	return *this;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber &KNumber::operator*=(const KNumber &rhs) {
+	value_ = value_->mul(rhs.value_);
+	simplify();
+	return *this;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber &KNumber::operator/=(const KNumber &rhs) {
+	value_ = value_->div(rhs.value_);
+	simplify();
+	return *this;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber &KNumber::operator%=(const KNumber &rhs) {
+	value_ = value_->mod(rhs.value_);
+	simplify();
+	return *this;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber &KNumber::operator&=(const KNumber &rhs) {
+	value_ = value_->bitwise_and(rhs.value_);
+	return *this;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber &KNumber::operator|=(const KNumber &rhs) {
+	value_ = value_->bitwise_or(rhs.value_);
+	return *this;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber &KNumber::operator^=(const KNumber &rhs) {
+	value_ = value_->bitwise_xor(rhs.value_);
+	return *this;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber &KNumber::operator<<=(const KNumber &rhs) {
+	value_ = value_->bitwise_shift(rhs.value_);
+	return *this;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber &KNumber::operator>>=(const KNumber &rhs) {
+	const KNumber rhs_neg(-rhs);
+	value_ = value_->bitwise_shift(rhs_neg.value_);
+	return *this;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::operator-() const {
+	KNumber x(*this);
+	x.value_ = x.value_->neg();
+	return x;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::operator~() const {
+	KNumber x(*this);
+	x.value_ = x.value_->cmp();
+	return x;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+QString KNumber::toQString(int width, int precision) const {
+
+	if(value_->is_zero()) {
+		return QLatin1String("0");
+	}
+	
+	QString s;
+	
+	if(detail::knumber_integer *const p = dynamic_cast<detail::knumber_integer *>(value_)) {
+		if(width > 0) {
+			s = detail::knumber_float(p).toString(width);
+		} else {
+			s = value_->toString(width);
+		}
+	} else if(detail::knumber_float *const p = dynamic_cast<detail::knumber_float *>(value_)) {
+		if(width > 0) {
+			s = value_->toString(width);
+		} else {
+			s = value_->toString(3 * mpf_get_default_prec() / 10);
+		}
+	} else if(detail::knumber_fraction *const p = dynamic_cast<detail::knumber_fraction *>(value_)) {
+		s = value_->toString(width);
+	} else {
+		return value_->toString(width);
+	}
+
+	// now do some rounding to make sure things are displayed reasonably
+    if (precision >= 0) {
+        return round(s, precision);
     } else {
-        return KNumber(num_->power(*(exp.num_)));
+        return s;
     }
 }
 
-KNumber KNumber::operator-() const
-{
-    return KNumber(num_->change_sign());
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+quint64 KNumber::toUint64() const {
+	return value_->toUint64();
 }
 
-KNumber KNumber::operator+(const KNumber &arg2) const
-{
-    KNumber tmp_num(num_->add(*arg2.num_));
-    tmp_num.simplifyRational();
-    return tmp_num;
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+qint64 KNumber::toInt64() const {
+	return value_->toInt64();
 }
 
-KNumber KNumber::operator-(const KNumber &arg2) const
-{
-    return *this + (-arg2);
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::abs() const {
+	KNumber z(*this);
+	z.value_ = z.value_->abs();
+	z.simplify();
+	return z;
 }
 
-KNumber KNumber::operator*(const KNumber &arg2) const
-{
-    KNumber tmp_num(num_->multiply(*arg2.num_));
-    tmp_num.simplifyRational();
-    return tmp_num;
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::cbrt() const {
+	KNumber z(*this);
+	z.value_ = z.value_->cbrt();
+	z.simplify();
+	return z;
 }
 
-KNumber KNumber::operator/(const KNumber &arg2) const
-{
-    KNumber tmp_num(num_->divide(*arg2.num_));
-    tmp_num.simplifyRational();
-    return tmp_num;
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::sqrt() const {
+	KNumber z(*this);
+	z.value_ = z.value_->sqrt();
+	z.simplify();
+	return z;
 }
 
-
-KNumber KNumber::operator%(const KNumber &arg2) const
-{
-    if (type() != IntegerType || arg2.type() != IntegerType) {
-        return Zero;
-    }
-
-    const detail::knuminteger *const tmp_arg1 = dynamic_cast<const detail::knuminteger *>(num_);
-    const detail::knuminteger *const tmp_arg2 = dynamic_cast<const detail::knuminteger *>(arg2.num_);
-
-    return KNumber(tmp_arg1->mod(*tmp_arg2));
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::pow(const KNumber &x) const {
+	KNumber z(*this);
+	z.value_ = z.value_->pow(x.value_);
+	z.simplify();
+	return z;
 }
 
-KNumber KNumber::operator&(const KNumber &arg2) const
-{
-    if (type() != IntegerType || arg2.type() != IntegerType) {
-        return Zero;
-    }
-
-    const detail::knuminteger *const tmp_arg1 = dynamic_cast<const detail::knuminteger *>(num_);
-    const detail::knuminteger *const tmp_arg2 = dynamic_cast<const detail::knuminteger *>(arg2.num_);
-
-    return KNumber(tmp_arg1->intAnd(*tmp_arg2));
-
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::sin() const {
+	KNumber z(*this);
+	z.value_ = z.value_->sin();
+	z.simplify();
+	return z;
 }
 
-KNumber KNumber::operator|(const KNumber &arg2) const
-{
-    if (type() != IntegerType || arg2.type() != IntegerType) {
-        return Zero;
-    }
-
-    const detail::knuminteger *const tmp_arg1 = dynamic_cast<const detail::knuminteger *>(num_);
-    const detail::knuminteger *const tmp_arg2 = dynamic_cast<const detail::knuminteger *>(arg2.num_);
-
-    return KNumber(tmp_arg1->intOr(*tmp_arg2));
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::cos() const {
+	KNumber z(*this);
+	z.value_ = z.value_->cos();
+	z.simplify();
+	return z;
 }
 
-
-KNumber KNumber::operator<<(const KNumber &arg2) const
-{
-    if (type() != IntegerType || arg2.type() != IntegerType) {
-        return KNumber::NotDefined;
-    }
-
-    const detail::knuminteger *const tmp_arg1 = dynamic_cast<const detail::knuminteger *>(num_);
-    const detail::knuminteger *const tmp_arg2 = dynamic_cast<const detail::knuminteger *>(arg2.num_);
-
-    return KNumber(tmp_arg1->shift(*tmp_arg2));
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::tan() const {
+	KNumber z(*this);
+	z.value_ = z.value_->tan();
+	z.simplify();
+	return z;
 }
 
-KNumber KNumber::operator>>(const KNumber &arg2) const
-{
-    if (type() != IntegerType || arg2.type() != IntegerType) {
-        return KNumber::NotDefined;
-    }
-
-    const KNumber tmp_num = -arg2;
-
-    const detail::knuminteger *const tmp_arg1 = dynamic_cast<const detail::knuminteger *>(num_);
-    const detail::knuminteger *const tmp_arg2 = dynamic_cast<const detail::knuminteger *>(tmp_num.num_);
-
-    return KNumber(tmp_arg1->shift(*tmp_arg2));
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::asin() const {
+	KNumber z(*this);
+	z.value_ = z.value_->asin();
+	z.simplify();
+	return z;
 }
 
-
-
-KNumber::operator bool() const
-{
-    return (*this != Zero);
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::acos() const {
+	KNumber z(*this);
+	z.value_ = z.value_->acos();
+	z.simplify();
+	return z;
 }
 
-KNumber::operator qint32() const
-{
-    return static_cast<long int>(*num_);
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::atan() const {
+	KNumber z(*this);
+	z.value_ = z.value_->atan();
+	z.simplify();
+	return z;
 }
 
-KNumber::operator quint32() const
-{
-    return static_cast<unsigned long int>(*num_);
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::sinh() const {
+	KNumber z(*this);
+	z.value_ = z.value_->sinh();
+	z.simplify();
+	return z;
 }
 
-KNumber::operator qint64() const
-{
-    return static_cast<long long int>(*num_);
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::cosh() const {
+	KNumber z(*this);
+	z.value_ = z.value_->cosh();
+	z.simplify();
+	return z;
 }
 
-KNumber::operator quint64() const
-{
-    return static_cast<unsigned long long int>(*num_);
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::tanh() const {
+	KNumber z(*this);
+	z.value_ = z.value_->tanh();
+	z.simplify();
+	return z;
 }
 
-KNumber::operator double() const
-{
-    return static_cast<double>(*num_);
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::asinh() const {
+	KNumber z(*this);
+	z.value_ = z.value_->asinh();
+	z.simplify();
+	return z;
 }
 
-int KNumber::compare(const KNumber &arg2) const
-{
-    return num_->compare(*arg2.num_);
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::acosh() const {
+	KNumber z(*this);
+	z.value_ = z.value_->acosh();
+	z.simplify();
+	return z;
 }
 
-K_GLOBAL_STATIC_WITH_ARGS(KNumber,
-                          g_Pi,
-                          (
-                          QLatin1String( "3.141592653589793238462643383279502884197169"
-                                         "39937510582097494459230781640628620899862803"
-                                         "4825342117068" )))
-KNumber KNumber::Pi()
-{
-    return *g_Pi;
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::atanh() const {
+	KNumber z(*this);
+	z.value_ = z.value_->atanh();
+	z.simplify();
+	return z;
 }
 
-K_GLOBAL_STATIC_WITH_ARGS(KNumber,
-                          g_Euler,
-                          (QLatin1String(
-                          "2.718281828459045235360287471352662497757"
-                          "24709369995957496696762772407663035354759"
-                          "4571382178525166427" )))
-
-KNumber KNumber::Euler()
-{
-    return *g_Euler;
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::factorial() const {
+	KNumber z(*this);
+	
+	// number much bigger than this tend to crash GMP with
+	// an abort
+	if(z > KNumber(QLatin1String("10000000000"))) {
+		return PosInfinity;
+	}
+	
+	z.value_ = z.value_->factorial();
+	z.simplify();
+	return z;
 }
 
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::log2() const {
+	KNumber z(*this);
+	z.value_ = z.value_->log2();
+	z.simplify();
+	return z;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::log10() const {
+	KNumber z(*this);
+	z.value_ = z.value_->log10();
+	z.simplify();
+	return z;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::ln() const {
+	KNumber z(*this);
+	z.value_ = z.value_->ln();
+	z.simplify();
+	return z;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::exp2() const {
+	KNumber z(*this);
+	z.value_ = z.value_->exp2();
+	z.simplify();
+	return z;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::exp10() const {
+	KNumber z(*this);
+	z.value_ = z.value_->exp10();
+	z.simplify();
+	return z;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::exp() const {
+	KNumber z(*this);
+	z.value_ = z.value_->exp();
+	z.simplify();
+	return z;
+}
+
+//------------------------------------------------------------------------------
+// Name: 
+//------------------------------------------------------------------------------
+KNumber KNumber::bin(const KNumber &x) const {
+	KNumber z(*this);
+	z.value_ = z.value_->bin(x.value_);
+	z.simplify();
+	return z;
+}

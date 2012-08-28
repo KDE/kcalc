@@ -27,23 +27,48 @@
 #include <klocale.h>
 #include <kstandarddirs.h>
 
-QList<science_constant> KCalcConstMenu::Constants;
+namespace {
+	QList<science_constant> Constants;
+	
+	ConstantCategory stringToCategory(const QString &s) {
+    	if (s == QLatin1String("mathematics")) {
+        	return Mathematics;
+		}
+
+    	if (s == QLatin1String("electromagnetism")) {
+        	return Electromagnetic;
+		}
+
+    	if (s == QLatin1String("nuclear")) {
+        	return Nuclear;
+		}
+
+    	if (s == QLatin1String("thermodynamics")) {
+        	return Thermodynamics;
+		}
+
+    	if (s == QLatin1String("gravitation")) {
+        	return Gravitation;
+		}
+
+		kDebug() << "Invalid Category For Constant: " << s;
+		return Mathematics;
+	}
+	
+}
 
 
-void KCalcConstMenu::init_consts()
-{
-    QDomDocument doc(QLatin1String( "list_of_constants" ));
-    QFile file(KGlobal::dirs()->findResource("appdata", QLatin1String( "scienceconstants.xml" )));
+void KCalcConstMenu::init_consts() {
+    QDomDocument doc(QLatin1String("list_of_constants"));
+    QFile file(KGlobal::dirs()->findResource("appdata", QLatin1String("scienceconstants.xml")));
 
     if (!file.open(QIODevice::ReadOnly)) {
-        kDebug() << "Did not find file \"scienceconstants.xml\"." << "No constants will be available.";
+        kDebug() << "Did not find file \"scienceconstants.xml\". No constants will be available.";
         return;
     }
     if (!doc.setContent(&file)) {
         file.close();
-        kDebug() << "The file \"scienceconstants.xml\" does not seem"
-        "to be a valid description file. "
-        "No constants will be available.";
+        kDebug() << "The file \"scienceconstants.xml\" does not seem to be a valid description file. No constants will be available.";
         return;
     }
     file.close();
@@ -56,27 +81,17 @@ void KCalcConstMenu::init_consts()
     QDomNode n = docElem.firstChild();
     while (!n.isNull()) {
         QDomElement e = n.toElement(); // try to convert the node to an element.
-        if (!e.isNull()  &&  e.tagName() == QLatin1String( "constant" )) {
+        if (!e.isNull() && e.tagName() == QLatin1String("constant")) {
             science_constant tmp_const;
 
-            tmp_const.name = I18N_NOOP(e.attributeNode(QLatin1String( "name" )).value());
-            tmp_const.label = e.attributeNode(QLatin1String( "symbol" )).value();
-            tmp_const.value = e.attributeNode(QLatin1String( "value" )).value();
+            tmp_const.name = I18N_NOOP(e.attributeNode(QLatin1String("name")).value());
+            tmp_const.label = e.attributeNode(QLatin1String("symbol")).value();
+            tmp_const.value = e.attributeNode(QLatin1String("value")).value();
 
-            QString tmp_str_category = e.attributeNode(QLatin1String( "category" )).value();
+            QString tmp_str_category = e.attributeNode(QLatin1String("category")).value();
 
-            if (tmp_str_category == QLatin1String( "mathematics" ))
-                tmp_const.category = Mathematics;
-            if (tmp_str_category == QLatin1String( "electromagnetism" ))
-                tmp_const.category = Electromagnetic;
-            if (tmp_str_category == QLatin1String( "nuclear" ))
-                tmp_const.category = Nuclear;
-            if (tmp_str_category == QLatin1String( "thermodynamics" ))
-                tmp_const.category = Thermodynamics;
-            if (tmp_str_category == QLatin1String( "gravitation" ))
-                tmp_const.category = Gravitation;
-
-            tmp_const.whatsthis = e.firstChildElement(QLatin1String( "description" )).text();
+			tmp_const.category  = stringToCategory(tmp_str_category);
+            tmp_const.whatsthis = e.firstChildElement(QLatin1String("description")).text();
 
             Constants.append(tmp_const);
         }
@@ -87,10 +102,10 @@ void KCalcConstMenu::init_consts()
 
 void KCalcConstMenu::init_all()
 {
-    QMenu *math_menu = addMenu(i18n("Mathematics"));
-    QMenu *em_menu = addMenu(i18n("Electromagnetism"));
-    QMenu *nuclear_menu = addMenu(i18n("Atomic && Nuclear"));
-    QMenu *thermo_menu = addMenu(i18n("Thermodynamics"));
+    QMenu *math_menu        = addMenu(i18n("Mathematics"));
+    QMenu *em_menu          = addMenu(i18n("Electromagnetism"));
+    QMenu *nuclear_menu     = addMenu(i18n("Atomic && Nuclear"));
+    QMenu *thermo_menu      = addMenu(i18n("Thermodynamics"));
     QMenu *gravitation_menu = addMenu(i18n("Gravitation"));
 
     connect(this, SIGNAL(triggered(QAction*)), SLOT(slotPassSignalThrough(QAction*)));

@@ -88,4 +88,4 @@ private:
     QSize size_;
 };
 
-#endif // KCALC_BUTTON_H_
+#endif

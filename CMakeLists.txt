@@ -20,6 +20,7 @@ else()
     set(GMP_REQUIRED FALSE)
 endif()
 
+set (CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" ${CMAKE_SOURCE_DIR}/cmake/modules)
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  ${KDE4_ENABLE_EXCEPTIONS}")
 
 add_definitions (-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
@@ -35,14 +36,24 @@ if(NOT GMP_FOUND)
     endif()
 endif(NOT GMP_FOUND)
 
+find_package(MPFR)
+
+macro_log_feature( MPFR_FOUND "MPFR" "The GNU Multiple Precision Floating-Pointer Library" "http://mpfr.org/" FALSE "" "Required for building KCalc.")
+
+if(MPFR_FOUND)
+	add_definitions (-DKNUMBER_USE_MPFR)
+endif(MPFR_FOUND)
+
+
 include(CheckTypeSize)
 include(CheckFunctionExists)
 include(CheckIncludeFiles)
 
-check_include_files(ieeefp.h      HAVE_IEEEFP_H)
+check_include_files(ieeefp.h     HAVE_IEEEFP_H)
 check_function_exists(isinf      HAVE_FUNC_ISINF)
-check_type_size("signed long" SIZEOF_SIGNED_LONG)
-check_type_size("unsigned long" SIZEOF_UNSIGNED_LONG)
+check_function_exists(isnan      HAVE_FUNC_ISNAN)
+check_type_size("signed long"    SIZEOF_SIGNED_LONG)
+check_type_size("unsigned long"  SIZEOF_UNSIGNED_LONG)
 
 configure_file(config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
 
@@ -51,9 +62,13 @@ include_directories( ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/knu
 ########### next target ###############
 # Needs absolute paths due to the test program for knumber
 set(libknumber_la_SRCS  
-   ${kcalc_SOURCE_DIR}/knumber/knumber.cpp 
-   ${kcalc_SOURCE_DIR}/knumber/knumber_priv.cpp
-   )
+	${kcalc_SOURCE_DIR}/knumber/knumber.cpp
+	${kcalc_SOURCE_DIR}/knumber/knumber_error.cpp
+	${kcalc_SOURCE_DIR}/knumber/knumber_float.cpp
+	${kcalc_SOURCE_DIR}/knumber/knumber_fraction.cpp
+	${kcalc_SOURCE_DIR}/knumber/knumber_integer.cpp
+	${kcalc_SOURCE_DIR}/knumber/knumber_operators.cpp
+)
 
 add_subdirectory( knumber )
 # add_subdirectory( tests )
@@ -81,7 +96,7 @@ kde4_add_app_icon(kcalc_KDEINIT_SRCS "${KDE4_INSTALL_DIR}/share/icons/oxygen/*/a
 
 kde4_add_kdeinit_executable( kcalc ${kcalc_KDEINIT_SRCS})
 
-target_link_libraries(kdeinit_kcalc ${QT_QTXML_LIBRARY} ${KDE4_KDEUI_LIBS} ${GMP_LIBRARIES})
+target_link_libraries(kdeinit_kcalc ${QT_QTXML_LIBRARY} ${KDE4_KDEUI_LIBS} ${GMP_LIBRARIES} ${MPFR_LIBRARIES})
 
 install(TARGETS kdeinit_kcalc ${INSTALL_TARGETS_DEFAULT_ARGS})
 

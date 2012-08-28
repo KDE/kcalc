@@ -134,7 +134,7 @@ void KCalcButton::paintEvent(QPaintEvent *)
     // rant: Qt4 needs QSimpleRichText, dammit!
     QTextDocument doc;
     QAbstractTextDocumentLayout::PaintContext context;
-    doc.setHtml(QLatin1String( "<center>" ) + text() + QLatin1String( "</center>" ));
+    doc.setHtml(QLatin1String("<center>") + text() + QLatin1String("</center>"));
     doc.setDefaultFont(font());
     context.palette = palette();
     context.palette.setColor(QPalette::Text, context.palette.buttonText().color());
