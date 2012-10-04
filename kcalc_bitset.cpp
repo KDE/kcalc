@@ -27,6 +27,10 @@
 
 #include "kcalc_bitset.moc"
 
+// TODO: I think it would actually be appropriate to use a std::bitset<64>
+//       for the internal representation of this class perhaps
+//       the only real caveat is the conversion to/from quint64
+
 //------------------------------------------------------------------------------
 // Name: paintEvent(QPaintEvent *)
 // Desc: draws the button
@@ -48,83 +52,90 @@ void BitButton::paintEvent(QPaintEvent *) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
-// Desc: 
+// Name: KCalcBitset(QWidget *parent)
+// Desc: constructor
 //------------------------------------------------------------------------------
 KCalcBitset::KCalcBitset(QWidget *parent) : QFrame(parent), value_(0) {
-    setFrameStyle(QFrame::Panel | QFrame::Sunken);
-    bit_button_group_ = new QButtonGroup(this);
-    connect(bit_button_group_, SIGNAL(buttonClicked(int)),
-            SLOT(slotToggleBit(int)));
 
-    // smaller label font
-    QFont fnt = font();
-    if (fnt.pointSize() > 6) fnt.setPointSize(fnt.pointSize() - 1);
+	setFrameStyle(QFrame::Panel | QFrame::Sunken);
+	
+	bit_button_group_ = new QButtonGroup(this);
+	connect(bit_button_group_, SIGNAL(buttonClicked(int)), SLOT(slotToggleBit(int)));
 
-    // main layout
-    QGridLayout *layout = new QGridLayout(this);
-    layout->setMargin(2);
-    layout->setSpacing(0);
+	// smaller label font
+	QFont fnt = font();
+	if (fnt.pointSize() > 6) {
+		fnt.setPointSize(fnt.pointSize() - 1);
+	}
 
-    // create bits
-    int bitCounter = 63;
-    for (int rows = 0; rows < 2; rows++) {
-        for (int cols = 0; cols < 4; cols++) {
-            // two rows of four words
-            QHBoxLayout *wordlayout = new QHBoxLayout();
-            wordlayout->setMargin(2);
-            wordlayout->setSpacing(2);
-            layout->addLayout(wordlayout, rows, cols);
+	// main layout
+	QGridLayout *layout = new QGridLayout(this);
+	layout->setMargin(2);
+	layout->setSpacing(0);
 
-            for (int bit = 0; bit < 8; bit++) {
-                BitButton *tmpBitButton = new BitButton(this);
-                wordlayout->addWidget(tmpBitButton);
-                bit_button_group_->addButton(tmpBitButton, bitCounter);
-                bitCounter--;
-            }
+	// create bits
+	int bitCounter = 63;
+	for (int rows = 0; rows < 2; rows++) {
+		for (int cols = 0; cols < 4; cols++) {
+			// two rows of four words
+			QHBoxLayout *const wordlayout = new QHBoxLayout();
+			wordlayout->setMargin(2);
+			wordlayout->setSpacing(2);
+			layout->addLayout(wordlayout, rows, cols);
 
-            // label word
-            QLabel *label = new QLabel(this);
-            label->setText(QString::number(bitCounter + 1));
-            label->setFont(fnt);
-            wordlayout->addWidget(label);
+			for (int bit = 0; bit < 8; bit++) {
+				BitButton *const tmpBitButton = new BitButton(this);
+				wordlayout->addWidget(tmpBitButton);
+				bit_button_group_->addButton(tmpBitButton, bitCounter);
+				bitCounter--;
+			}
 
-        }
-    }
+			// label word
+			QLabel *label = new QLabel(this);
+			label->setText(QString::number(bitCounter + 1));
+			label->setFont(fnt);
+			wordlayout->addWidget(label);
+		}
+	}
 }
 
 //------------------------------------------------------------------------------
-// Name: 
-// Desc: 
+// Name: setValue(quint64 value)
+// Desc: set the value of the bitset based on an unsigned 64-bit number
 //------------------------------------------------------------------------------
-void KCalcBitset::setValue(quint64 value)
-{
-    if (value_ == value) return;
+void KCalcBitset::setValue(quint64 value) {
 
-    value_ = value;
-    for (int i = 0; i < 64; i++) {
-        BitButton *bb = qobject_cast<BitButton*>(bit_button_group_->button(i));
-        if (bb) bb->setOn(value & 1);
-        value >>= 1;
-    }
+	if (value_ == value) {
+		// don't waste time if there was no change..
+		return;
+	}
+
+	value_ = value;
+	
+	// set each bit button
+	for (int i = 0; i < 64; i++) {	
+		if(BitButton *bb = qobject_cast<BitButton*>(bit_button_group_->button(i))) {
+			bb->setOn(value & 1);
+		}
+		value >>= 1;
+	}
 }
 
 //------------------------------------------------------------------------------
-// Name: 
-// Desc: 
+// Name: getValue()
+// Desc: returns the bitset value as an unsigned 64-bit number
 //------------------------------------------------------------------------------
-quint64 KCalcBitset::getValue()
-{
+quint64 KCalcBitset::getValue() const {
     return value_;
 }
 
 //------------------------------------------------------------------------------
-// Name: 
-// Desc: 
+// Name: slotToggleBit(int bit)
+// Desc: inverts the value of a single bit
 //------------------------------------------------------------------------------
-void KCalcBitset::slotToggleBit(int bit)
-{
-    quint64 nv = getValue() ^(1LL << bit);
+void KCalcBitset::slotToggleBit(int bit) {
+
+    const quint64 nv = getValue() ^(1LL << bit);
     setValue(nv);
     emit valueChanged(value_);
 }

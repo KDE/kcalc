@@ -26,70 +26,101 @@
 #include <kinputdialog.h>
 #include <kmenu.h>
 
+#include "kcalc_const_button.moc"
+
+//------------------------------------------------------------------------------
+// Name: KCalcConstButton(QWidget *parent)
+// Desc: constructor
+//------------------------------------------------------------------------------
 KCalcConstButton::KCalcConstButton(QWidget *parent) : KCalcButton(parent), button_num_(-1) {
 
-    addMode(ModeShift, i18nc("Write display data into memory", "Store"), i18n("Write display data into memory"));
-    initPopupMenu();
-    connect(this, SIGNAL(clicked()), SLOT(slotClicked()));
+	addMode(ModeShift, i18nc("Write display data into memory", "Store"), i18n("Write display data into memory"));
+	initPopupMenu();
+	connect(this, SIGNAL(clicked()), SLOT(slotClicked()));
 }
 
-
+//------------------------------------------------------------------------------
+// Name: KCalcConstButton(const QString &label, QWidget *parent, const QString &tooltip)
+// Desc: constructor
+//------------------------------------------------------------------------------
 KCalcConstButton::KCalcConstButton(const QString &label, QWidget *parent, const QString &tooltip) : KCalcButton(label, parent, tooltip), button_num_(-1) {
 
-    addMode(ModeShift, i18nc("Write display data into memory", "Store"), i18n("Write display data into memory"));
-    initPopupMenu();
+	addMode(ModeShift, i18nc("Write display data into memory", "Store"), i18n("Write display data into memory"));
+	initPopupMenu();
 }
 
+//------------------------------------------------------------------------------
+// Name: constant() const
+// Desc: get the value of the const as a QString
+//------------------------------------------------------------------------------
 QString KCalcConstButton::constant() const {
 
-    return KCalcSettings::valueConstant(button_num_);
+	return KCalcSettings::valueConstant(button_num_);
 }
 
+//------------------------------------------------------------------------------
+// Name: setButtonNumber(int num)
+// Desc: remembers the "index" of the const button
+//------------------------------------------------------------------------------
 void KCalcConstButton::setButtonNumber(int num) {
 
-    button_num_ = num;
+	button_num_ = num;
 }
 
+//------------------------------------------------------------------------------
+// Name: setLabelAndTooltip()
+// Desc: sets both the label and the tooltip for the const button
+//------------------------------------------------------------------------------
 void KCalcConstButton::setLabelAndTooltip() {
 
-    QString new_label = QLatin1String("C") + QString::number(button_num_ + 1);
-    QString new_tooltip;
+	QString new_label = QLatin1String("C") + QString::number(button_num_ + 1);
+	QString new_tooltip;
 
-    new_label = (KCalcSettings::nameConstant(button_num_).isNull() ? new_label : KCalcSettings::nameConstant(button_num_));
+	new_label = (KCalcSettings::nameConstant(button_num_).isNull() ? new_label : KCalcSettings::nameConstant(button_num_));
 
-    new_tooltip = new_label + QLatin1Char('=') + KCalcSettings::valueConstant(button_num_);
+	new_tooltip = new_label + QLatin1Char('=') + KCalcSettings::valueConstant(button_num_);
 
-    addMode(ModeNormal, new_label, new_tooltip);
+	addMode(ModeNormal, new_label, new_tooltip);
 }
 
-void KCalcConstButton::initPopupMenu()
-{
-    KCalcConstMenu *tmp_menu = new KCalcConstMenu(this);
+//------------------------------------------------------------------------------
+// Name: initPopupMenu()
+// Desc: initializes the const button popup
+//------------------------------------------------------------------------------
+void KCalcConstButton::initPopupMenu() {
 
-    QAction *a = new QAction(this);
+    QAction *const a = new QAction(this);
     a->setText(i18n("Set Name"));
     connect(a, SIGNAL(triggered()), this, SLOT(slotConfigureButton()));
     addAction(a);
+	
+	KCalcConstMenu *const tmp_menu = new KCalcConstMenu(this);
     tmp_menu->menuAction()->setText(i18n("Choose From List"));
     addAction(tmp_menu->menuAction());
     setContextMenuPolicy(Qt::ActionsContextMenu);
 
-    connect(tmp_menu,
-            SIGNAL(triggeredConstant(science_constant)),
-            SLOT(slotChooseScientificConst(science_constant)));
+    connect(tmp_menu, SIGNAL(triggeredConstant(science_constant)), SLOT(slotChooseScientificConst(science_constant)));
 
 }
 
-void KCalcConstButton::slotConfigureButton()
-{
-    bool yes_no;
-    const QString input = KInputDialog::getText(i18n("New Name for Constant"), i18n("New name:"), text(), &yes_no, this);  // "nameUserConstants-Dialog"
-    if (yes_no) {
-        KCalcSettings::setNameConstant(button_num_, input);
-        setLabelAndTooltip();
-    }
+//------------------------------------------------------------------------------
+// Name: slotConfigureButton()
+// Desc: lets the user set the name for a constant
+//------------------------------------------------------------------------------
+void KCalcConstButton::slotConfigureButton() {
+
+	bool yes_no;
+	const QString input = KInputDialog::getText(i18n("New Name for Constant"), i18n("New name:"), text(), &yes_no, this);  // "nameUserConstants-Dialog"
+	if (yes_no) {
+		KCalcSettings::setNameConstant(button_num_, input);
+		setLabelAndTooltip();
+	}
 }
 
+//------------------------------------------------------------------------------
+// Name: slotChooseScientificConst(const science_constant &const_chosen)
+// Desc: set the buttons's scientific constant
+//------------------------------------------------------------------------------
 void KCalcConstButton::slotChooseScientificConst(const science_constant &const_chosen) {
 
     KCalcSettings::setValueConstant(button_num_, const_chosen.value);
@@ -97,10 +128,12 @@ void KCalcConstButton::slotChooseScientificConst(const science_constant &const_c
     setLabelAndTooltip();
 }
 
+//------------------------------------------------------------------------------
+// Name: slotClicked()
+// Desc: constant button was clicked
+//------------------------------------------------------------------------------
 void KCalcConstButton::slotClicked() {
 
     emit clicked(button_num_);
 }
-
-#include "kcalc_const_button.moc"
 

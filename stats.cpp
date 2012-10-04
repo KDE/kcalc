@@ -27,16 +27,32 @@
 #include "stats.h"
 #include <kdebug.h>
 
+//------------------------------------------------------------------------------
+// Name: KStats()
+// Desc: constructor
+//------------------------------------------------------------------------------
 KStats::KStats() : error_flag_(false) {
 }
 
+//------------------------------------------------------------------------------
+// Name: ~KStats()
+// Desc: destructor
+//------------------------------------------------------------------------------
 KStats::~KStats() {
 }
 
+//------------------------------------------------------------------------------
+// Name: clearAll()
+// Desc: empties the data set
+//------------------------------------------------------------------------------
 void KStats::clearAll() {
     data_.clear();
 }
 
+//------------------------------------------------------------------------------
+// Name: enterData(const KNumber &data)
+// Desc: adds an item to the data set
+//------------------------------------------------------------------------------
 void KStats::enterData(const KNumber &data) {
 
     data_.push_back(data);
@@ -47,7 +63,10 @@ void KStats::enterData(const KNumber &data) {
 
 }
 
-
+//------------------------------------------------------------------------------
+// Name: clearLast()
+// Desc: remoaves the last item from the data set
+//------------------------------------------------------------------------------
 void KStats::clearLast() {
 
 	if(!data_.isEmpty()) {
@@ -58,7 +77,11 @@ void KStats::clearLast() {
 	}
 }
 
-KNumber KStats::sum() {
+//------------------------------------------------------------------------------
+// Name: sum()
+// Desc: calculates the SUM of all values in the data set
+//------------------------------------------------------------------------------
+KNumber KStats::sum() const {
 
     KNumber result = KNumber::Zero;
 	
@@ -73,6 +96,10 @@ KNumber KStats::sum() {
     return result;
 }
 
+//------------------------------------------------------------------------------
+// Name: median()
+// Desc: calculates the MEDIAN of all values in the data set
+//------------------------------------------------------------------------------
 KNumber KStats::median() {
 
 	KNumber result = KNumber::Zero;
@@ -103,7 +130,10 @@ KNumber KStats::median() {
 	return result;
 }
 
-
+//------------------------------------------------------------------------------
+// Name: std_kernel() 
+// Desc: calculates the STD Kernel of all values in the data set
+//------------------------------------------------------------------------------
 KNumber KStats::std_kernel() {
     KNumber result           = KNumber::Zero;
     const KNumber mean_value = mean();
@@ -115,8 +145,11 @@ KNumber KStats::std_kernel() {
     return result;
 }
 
-
-KNumber KStats::sum_of_squares() {
+//------------------------------------------------------------------------------
+// Name: std_kernel() const 
+// Desc: calculates the SUM of all values in the data set (each squared)
+//------------------------------------------------------------------------------
+KNumber KStats::sum_of_squares() const {
 
     KNumber result = KNumber::Zero;
 
@@ -127,7 +160,10 @@ KNumber KStats::sum_of_squares() {
     return result;
 }
 
-
+//------------------------------------------------------------------------------
+// Name: median()
+// Desc: calculates the MEAN of all values in the data set
+//------------------------------------------------------------------------------
 KNumber KStats::mean() {
 
 	if (count() == 0) {
@@ -138,7 +174,10 @@ KNumber KStats::mean() {
 	return (sum() / KNumber(count()));
 }
 
-
+//------------------------------------------------------------------------------
+// Name: median()
+// Desc: calculates the STANDARD DEVIATION of all values in the data set
+//------------------------------------------------------------------------------
 KNumber KStats::std() {
 
 	if (count() == 0) {
@@ -149,8 +188,12 @@ KNumber KStats::std() {
 	return (std_kernel() / KNumber(count())).sqrt();
 }
 
-
+//------------------------------------------------------------------------------
+// Name: median()
+// Desc: calculates the SAMPLE STANDARD DEVIATION of all values in the data set
+//------------------------------------------------------------------------------
 KNumber KStats::sample_std() {
+
 	KNumber result = KNumber::Zero;
 
 	if (count() < 2) {
@@ -167,12 +210,19 @@ KNumber KStats::sample_std() {
 	return result;
 }
 
-
+//------------------------------------------------------------------------------
+// Name: count() const
+// Desc: returns the amount of values in the data set
+//------------------------------------------------------------------------------
 int KStats::count() const {
+
     return data_.size();
 }
 
-
+//------------------------------------------------------------------------------
+// Name: error()
+// Desc: returns the error state AND clears it
+//------------------------------------------------------------------------------
 bool KStats::error() {
 
     bool value = error_flag_;

@@ -29,9 +29,7 @@
 #include <QVector>
 #include "knumber.h"
 
-class KStats
-{
-
+class KStats {
 public:
     KStats();
     ~KStats();
@@ -40,8 +38,8 @@ public:
     void clearAll();
     void enterData(const KNumber &data);
     void clearLast();
-    KNumber sum();
-    KNumber sum_of_squares();
+    KNumber sum() const;
+    KNumber sum_of_squares() const;
     KNumber mean();
     KNumber median();
     KNumber std_kernel();
@@ -52,8 +50,7 @@ public:
 
 private:
     QVector<KNumber> data_;
-    bool error_flag_;
-
+    bool             error_flag_;
 };
 
 #endif

@@ -16,6 +16,7 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 */
+
 #ifndef KCALC_BITSET_H_
 #define KCALC_BITSET_H_
 
@@ -23,25 +24,23 @@
 #include <QAbstractButton>
 #include <QButtonGroup>
 
-class KCalcBitset : public QFrame
-{
-    Q_OBJECT
+class KCalcBitset : public QFrame {
+	Q_OBJECT
+	
 public:
-    KCalcBitset(QWidget *parent = 0);
-    quint64 getValue();
+	KCalcBitset(QWidget *parent = 0);
+	quint64 getValue() const;
 
 public slots:
-    void setValue(quint64 value);
-    void slotToggleBit(int bit);
+	void setValue(quint64 value);
+	void slotToggleBit(int bit);
 
 signals:
-    void valueChanged(quint64 value);
+	void valueChanged(quint64 value);
 
 private:
-    QButtonGroup *bit_button_group_;
-    quint64 value_;
+	QButtonGroup *bit_button_group_;
+	quint64       value_;
 };
-
-
 
 #endif
