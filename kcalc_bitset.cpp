@@ -18,8 +18,8 @@
 */
 
 #include "kcalc_bitset.h"
+#include "bitbutton.h"
 
-#include <QApplication>
 #include <QGridLayout>
 #include <QLabel>
 #include <QHBoxLayout>
@@ -27,48 +27,31 @@
 
 #include "kcalc_bitset.moc"
 
-BitButton::BitButton(QWidget *parent) : QAbstractButton(parent), on_(false)
-{
-    setFocusPolicy(Qt::ClickFocus);   // too many bits for tab focus
+//------------------------------------------------------------------------------
+// Name: paintEvent(QPaintEvent *)
+// Desc: draws the button
+//------------------------------------------------------------------------------
+void BitButton::paintEvent(QPaintEvent *) {
 
-    // size button by font
-    QSize size = fontMetrics().size(0, QLatin1String("M"));
-    if (size.width() < size.height()) {
-        size.setHeight(size.width());
-    } else {
-        size.setWidth(size.height());
-    }
-    setFixedSize(size.expandedTo(QApplication::globalStrut()));
+	QPainter painter(this);
+	QPen pen(palette().text(), 2);
+	pen.setJoinStyle(Qt::MiterJoin);
+	painter.setPen(pen);
+
+	if (on_) {
+		painter.setBrush(palette().text());
+	} else {
+		painter.setBrush(palette().base());
+	}
+
+	painter.drawRect(rect().adjusted(1, 1, -1, -1));
 }
 
-bool BitButton::isOn() const
-{
-    return on_;
-}
-
-void BitButton::setOn(bool value)
-{
-    on_ = value;
-    update();
-}
-
-void BitButton::paintEvent(QPaintEvent *)
-{
-    QPainter painter(this);
-    QPen pen(palette().text(), 2);
-    pen.setJoinStyle(Qt::MiterJoin);
-    painter.setPen(pen);
-
-    if (on_) painter.setBrush(palette().text());
-    else    painter.setBrush(palette().base());
-
-    painter.drawRect(rect().adjusted(1, 1, -1, -1));
-}
-
-
-KCalcBitset::KCalcBitset(QWidget *parent)
-        : QFrame(parent), value_(0)
-{
+//------------------------------------------------------------------------------
+// Name: 
+// Desc: 
+//------------------------------------------------------------------------------
+KCalcBitset::KCalcBitset(QWidget *parent) : QFrame(parent), value_(0) {
     setFrameStyle(QFrame::Panel | QFrame::Sunken);
     bit_button_group_ = new QButtonGroup(this);
     connect(bit_button_group_, SIGNAL(buttonClicked(int)),
@@ -110,6 +93,10 @@ KCalcBitset::KCalcBitset(QWidget *parent)
     }
 }
 
+//------------------------------------------------------------------------------
+// Name: 
+// Desc: 
+//------------------------------------------------------------------------------
 void KCalcBitset::setValue(quint64 value)
 {
     if (value_ == value) return;
@@ -122,11 +109,19 @@ void KCalcBitset::setValue(quint64 value)
     }
 }
 
+//------------------------------------------------------------------------------
+// Name: 
+// Desc: 
+//------------------------------------------------------------------------------
 quint64 KCalcBitset::getValue()
 {
     return value_;
 }
 
+//------------------------------------------------------------------------------
+// Name: 
+// Desc: 
+//------------------------------------------------------------------------------
 void KCalcBitset::slotToggleBit(int bit)
 {
     quint64 nv = getValue() ^(1LL << bit);

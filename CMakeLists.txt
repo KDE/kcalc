@@ -66,6 +66,7 @@ add_subdirectory( knumber )
 
 set(kcalc_KDEINIT_SRCS ${libknumber_la_SRCS}
    kcalc.cpp 
+   bitbutton.cpp
    kcalc_bitset.cpp
    kcalc_button.cpp 
    kcalc_const_button.cpp 

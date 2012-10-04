@@ -42,19 +42,6 @@ private:
     quint64 value_;
 };
 
-class BitButton : public QAbstractButton
-{
-    Q_OBJECT
-public:
-    explicit BitButton(QWidget *parent = 0);
-    bool isOn() const;
-    void setOn(bool value);
 
-protected:
-    void paintEvent(QPaintEvent *event);
-
-private:
-    bool on_;
-};
 
 #endif
