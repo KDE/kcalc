@@ -8,7 +8,7 @@
 ]>
 
 <book id="kcalc" lang="&language;">
-<book id="kcalc"info>
+<bookinfo>
 <title>The &kcalc; Handbook</title>
 
 <authorgroup>
