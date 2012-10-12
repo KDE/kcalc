@@ -7,7 +7,7 @@
   <!ENTITY commands SYSTEM "commands.docbook">
 ]>
 
-<book lang="&language;">
+<book id="kcalc" lang="&language;">
 <bookinfo>
 <title>The &kcalc; Handbook</title>
 
