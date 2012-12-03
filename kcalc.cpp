@@ -401,11 +401,14 @@ void KCalculator::setupNumericKeypad() {
 	pbPeriod->setText(KGlobal::locale()->decimalSymbol());
 	pbPeriod->setShortcut(KGlobal::locale()->decimalSymbol());
 
+	// TODO: is this needed? the above line look slike it should do the right thing?
+	/*
 	if (KGlobal::locale()->decimalSymbol() == QLatin1String(".")) {
 		new QShortcut(Qt::Key_Comma, pbPeriod, SLOT(animateClick()));
 	} else if (KGlobal::locale()->decimalSymbol() == QLatin1String(",")) {
 		new QShortcut(Qt::Key_Period, pbPeriod, SLOT(animateClick()));
 	}
+	*/
 
 	connect(pbPeriod, SIGNAL(clicked()), SLOT(slotPeriodclicked()));
 	connect(this, SIGNAL(switchShowAccels(bool)), pbPeriod, SLOT(slotSetAccelDisplayMode(bool)));
@@ -1389,7 +1392,9 @@ void KCalculator::slotRightShiftclicked() {
 //------------------------------------------------------------------------------
 void KCalculator::slotPeriodclicked() {
 
-    calc_display->newCharacter(QLatin1Char('.'));
+	// i know this isn't locale friendly, should be converted to appropriate
+	// value at lower levels
+    calc_display->newCharacter(KGlobal::locale()->decimalSymbol()[0]);
 }
 
 //------------------------------------------------------------------------------

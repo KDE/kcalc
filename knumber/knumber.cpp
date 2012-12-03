@@ -3,7 +3,7 @@ Copyright 2012  Evan Teran evan.teran@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as
-published by the Free Software Foundation; either version 2 of 
+published by the Free Software Foundation; either version 2 of
 the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
@@ -41,7 +41,7 @@ namespace {
 namespace impl {
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 void increment(QString &str, int position) {
 
@@ -89,7 +89,7 @@ void increment(QString &str, int position) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 void round(QString &str, int precision) {
 
@@ -142,10 +142,10 @@ void round(QString &str, int precision) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 QString round(const QString &s, int precision) {
-    	
+
 	QString tmp = s;
     if (precision < 0 || !QRegExp(QLatin1String("^[+-]?\\d+(\\.\\d+)*(e[+-]?\\d+)?$")).exactMatch(tmp)) {
         return s;
@@ -176,35 +176,35 @@ QString round(const QString &s, int precision) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 void KNumber::setGroupSeparator(const QString &ch) {
 	GroupSeparator = ch;
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 void KNumber::setDecimalSeparator(const QString &ch) {
 	DecimalSeparator = ch;
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 QString KNumber::groupSeparator() {
 	return GroupSeparator;
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 QString KNumber::decimalSeparator() {
 	return DecimalSeparator;
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 void KNumber::setDefaultFloatPrecision(int precision) {
     // Need to transform decimal digits into binary digits
@@ -213,28 +213,28 @@ void KNumber::setDefaultFloatPrecision(int precision) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 void KNumber::setSplitoffIntegerForFractionOutput(bool x) {
 	detail::knumber_fraction::set_split_off_integer_for_fraction_output(x);
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 void KNumber::setDefaultFractionalInput(bool x) {
 	detail::knumber_fraction::set_default_fractional_input(x);
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 void KNumber::setDefaultFloatOutput(bool x) {
 	detail::knumber_fraction::set_default_fractional_output(!x);
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::Pi() {
 	static const KNumber pi(QLatin1String("3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117068"));
@@ -242,7 +242,7 @@ KNumber KNumber::Pi() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::Euler() {
 	static const KNumber e(QLatin1String("2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945713821785251664274"));
@@ -250,13 +250,13 @@ KNumber KNumber::Euler() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber::KNumber() : value_(new detail::knumber_integer(0)) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber::KNumber(const QString &s) : value_(0) {
 
@@ -267,18 +267,18 @@ KNumber::KNumber(const QString &s) : value_(0) {
 
 	if (special_regex.exactMatch(s)) {
 		value_ = new detail::knumber_error(s);
-	} else if (integer_regex.exactMatch(s)) {		
+	} else if (integer_regex.exactMatch(s)) {
 		value_ = new detail::knumber_integer(s);
 	} else if (fraction_regex.exactMatch(s)) {
 		value_ = new detail::knumber_fraction(s);
 		simplify();
 	} else if (float_regex.exactMatch(s)) {
-		
+
 		if(detail::knumber_fraction::default_fractional_input) {
 
 			const QStringList list = float_regex.capturedTexts();
 			if(list.size() == 5) {
-					
+
 				QString ipart = list[1];
 				QString fpart = list[2];
 				QString epart = list[3];
@@ -298,12 +298,12 @@ KNumber::KNumber(const QString &s) : value_(0) {
 				return;
 			}
 		}
-		
+
 		// we need to normalize the decimal searator to US style because that's
 		// the only type that the GMP function accept
 		QString new_s = s;
 		new_s.replace(DecimalSeparator, QLatin1String("."));
-		
+
 		value_ = new detail::knumber_float(new_s);
 		simplify();
 	} else {
@@ -312,44 +312,44 @@ KNumber::KNumber(const QString &s) : value_(0) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber::KNumber(qint32 value) : value_(new detail::knumber_integer(value)) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber::KNumber(qint64 value) : value_(new detail::knumber_integer(value)) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber::KNumber(quint32 value) : value_(new detail::knumber_integer(value)) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber::KNumber(quint64 value) : value_(new detail::knumber_integer(value)) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber::KNumber(qint64 num, quint64 den) : value_(new detail::knumber_fraction(num, den)) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber::KNumber(quint64 num, quint64 den) : value_(new detail::knumber_fraction(num, den)) {
 }
 
 #ifdef HAVE_LONG_DOUBLE
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber::KNumber(long double value) : value_(new detail::knumber_float(value)) {
 	simplify();
@@ -357,14 +357,14 @@ KNumber::KNumber(long double value) : value_(new detail::knumber_float(value)) {
 #endif
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber::KNumber(double value) : value_(new detail::knumber_float(value)) {
 	simplify();
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber::KNumber(const KNumber &other) : value_(0) {
 	if(&other != this) {
@@ -373,14 +373,14 @@ KNumber::KNumber(const KNumber &other) : value_(0) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber::~KNumber() {
 	delete value_;
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber::Type KNumber::type() const {
 
@@ -399,7 +399,7 @@ KNumber::Type KNumber::type() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber &KNumber::operator=(const KNumber &rhs) {
 	KNumber(rhs).swap(*this);
@@ -407,19 +407,19 @@ KNumber &KNumber::operator=(const KNumber &rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 void KNumber::swap(KNumber &other) {
 	qSwap(value_, other.value_);
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::integerPart() const {
 
 	KNumber x(*this);
-	
+
 	if(detail::knumber_integer *const p = dynamic_cast<detail::knumber_integer *>(value_)) {
 		// NO-OP
 		Q_UNUSED(p);
@@ -437,17 +437,17 @@ KNumber KNumber::integerPart() const {
 	} else {
 		Q_ASSERT(0);
 	}
-	
+
 	return x;
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 void KNumber::simplify() {
 
 	if(value_->is_integer()) {
-			
+
 		if(detail::knumber_integer *const p = dynamic_cast<detail::knumber_integer *>(value_)) {
 			// NO-OP
 			Q_UNUSED(p);
@@ -469,7 +469,7 @@ void KNumber::simplify() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber &KNumber::operator+=(const KNumber &rhs) {
 	value_ = value_->add(rhs.value_);
@@ -478,7 +478,7 @@ KNumber &KNumber::operator+=(const KNumber &rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber &KNumber::operator-=(const KNumber &rhs) {
 	value_ = value_->sub(rhs.value_);
@@ -487,7 +487,7 @@ KNumber &KNumber::operator-=(const KNumber &rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber &KNumber::operator*=(const KNumber &rhs) {
 	value_ = value_->mul(rhs.value_);
@@ -496,7 +496,7 @@ KNumber &KNumber::operator*=(const KNumber &rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber &KNumber::operator/=(const KNumber &rhs) {
 	value_ = value_->div(rhs.value_);
@@ -505,7 +505,7 @@ KNumber &KNumber::operator/=(const KNumber &rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber &KNumber::operator%=(const KNumber &rhs) {
 	value_ = value_->mod(rhs.value_);
@@ -514,7 +514,7 @@ KNumber &KNumber::operator%=(const KNumber &rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber &KNumber::operator&=(const KNumber &rhs) {
 	value_ = value_->bitwise_and(rhs.value_);
@@ -522,7 +522,7 @@ KNumber &KNumber::operator&=(const KNumber &rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber &KNumber::operator|=(const KNumber &rhs) {
 	value_ = value_->bitwise_or(rhs.value_);
@@ -530,7 +530,7 @@ KNumber &KNumber::operator|=(const KNumber &rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber &KNumber::operator^=(const KNumber &rhs) {
 	value_ = value_->bitwise_xor(rhs.value_);
@@ -538,7 +538,7 @@ KNumber &KNumber::operator^=(const KNumber &rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber &KNumber::operator<<=(const KNumber &rhs) {
 	value_ = value_->bitwise_shift(rhs.value_);
@@ -546,7 +546,7 @@ KNumber &KNumber::operator<<=(const KNumber &rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber &KNumber::operator>>=(const KNumber &rhs) {
 	const KNumber rhs_neg(-rhs);
@@ -555,7 +555,7 @@ KNumber &KNumber::operator>>=(const KNumber &rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::operator-() const {
 	KNumber x(*this);
@@ -564,7 +564,7 @@ KNumber KNumber::operator-() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::operator~() const {
 	KNumber x(*this);
@@ -573,16 +573,16 @@ KNumber KNumber::operator~() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 QString KNumber::toQString(int width, int precision) const {
 
 	if(value_->is_zero()) {
 		return QLatin1String("0");
 	}
-	
+
 	QString s;
-	
+
 	if(detail::knumber_integer *const p = dynamic_cast<detail::knumber_integer *>(value_)) {
 		if(width > 0) {
 			s = detail::knumber_float(p).toString(width);
@@ -610,21 +610,21 @@ QString KNumber::toQString(int width, int precision) const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 quint64 KNumber::toUint64() const {
 	return value_->toUint64();
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 qint64 KNumber::toInt64() const {
 	return value_->toInt64();
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::abs() const {
 	KNumber z(*this);
@@ -634,7 +634,7 @@ KNumber KNumber::abs() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::cbrt() const {
 	KNumber z(*this);
@@ -644,7 +644,7 @@ KNumber KNumber::cbrt() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::sqrt() const {
 	KNumber z(*this);
@@ -654,7 +654,7 @@ KNumber KNumber::sqrt() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::pow(const KNumber &x) const {
 	KNumber z(*this);
@@ -664,7 +664,7 @@ KNumber KNumber::pow(const KNumber &x) const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::sin() const {
 	KNumber z(*this);
@@ -674,7 +674,7 @@ KNumber KNumber::sin() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::cos() const {
 	KNumber z(*this);
@@ -684,7 +684,7 @@ KNumber KNumber::cos() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::tan() const {
 	KNumber z(*this);
@@ -694,7 +694,7 @@ KNumber KNumber::tan() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::asin() const {
 	KNumber z(*this);
@@ -704,7 +704,7 @@ KNumber KNumber::asin() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::acos() const {
 	KNumber z(*this);
@@ -714,7 +714,7 @@ KNumber KNumber::acos() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::atan() const {
 	KNumber z(*this);
@@ -724,7 +724,7 @@ KNumber KNumber::atan() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::sinh() const {
 	KNumber z(*this);
@@ -734,7 +734,7 @@ KNumber KNumber::sinh() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::cosh() const {
 	KNumber z(*this);
@@ -744,7 +744,7 @@ KNumber KNumber::cosh() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::tanh() const {
 	KNumber z(*this);
@@ -754,7 +754,7 @@ KNumber KNumber::tanh() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::asinh() const {
 	KNumber z(*this);
@@ -764,7 +764,7 @@ KNumber KNumber::asinh() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::acosh() const {
 	KNumber z(*this);
@@ -774,7 +774,7 @@ KNumber KNumber::acosh() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::atanh() const {
 	KNumber z(*this);
@@ -784,24 +784,24 @@ KNumber KNumber::atanh() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::factorial() const {
 	KNumber z(*this);
-	
+
 	// number much bigger than this tend to crash GMP with
 	// an abort
 	if(z > KNumber(QLatin1String("10000000000"))) {
 		return PosInfinity;
 	}
-	
+
 	z.value_ = z.value_->factorial();
 	z.simplify();
 	return z;
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::log2() const {
 	KNumber z(*this);
@@ -811,7 +811,7 @@ KNumber KNumber::log2() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::log10() const {
 	KNumber z(*this);
@@ -821,7 +821,7 @@ KNumber KNumber::log10() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::ln() const {
 	KNumber z(*this);
@@ -831,7 +831,7 @@ KNumber KNumber::ln() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::exp2() const {
 	KNumber z(*this);
@@ -841,7 +841,7 @@ KNumber KNumber::exp2() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::exp10() const {
 	KNumber z(*this);
@@ -851,7 +851,7 @@ KNumber KNumber::exp10() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::exp() const {
 	KNumber z(*this);
@@ -861,7 +861,7 @@ KNumber KNumber::exp() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::bin(const KNumber &x) const {
 	KNumber z(*this);

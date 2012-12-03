@@ -367,7 +367,7 @@ void KCalcDisplay::setText(const QString &string)
         // when input ends with "." (because incomplete), the
         // formatNumber method does not work; fix by hand by
         // truncating, formatting and appending again
-        if (string.endsWith(QLatin1Char('.'))) {
+        if (string.endsWith(KGlobal::locale()->decimalSymbol())) {
             text_.chop(1);
             // Note: rounding happened already above!
             text_ = KGlobal::locale()->formatNumber(text_, false, 0);
@@ -500,16 +500,6 @@ void KCalcDisplay::newCharacter(const QChar new_char)
         eestate_ = true;
         break;
 
-    case '.':
-        // Period can be set only once and only in decimal
-        // mode, also not in EE-mode
-        if (num_base_ != NB_DECIMAL || period_ || eestate_) {
-            if (beep_) KNotification::beep();
-            return;
-        }
-        period_ = true;
-        break;
-
     case 'F':
     case 'E':
     case 'D':
@@ -544,14 +534,24 @@ void KCalcDisplay::newCharacter(const QChar new_char)
         break;
 
     default:
-        if (beep_) KNotification::beep();
-        return;
+		if(new_char == KGlobal::locale()->decimalSymbol()[0]) {
+			// Period can be set only once and only in decimal
+			// mode, also not in EE-mode
+			if (num_base_ != NB_DECIMAL || period_ || eestate_) {
+				if (beep_) KNotification::beep();
+				return;
+			}
+			period_ = true;
+		} else {
+			if (beep_) KNotification::beep();
+			return;
+		}
     }
 
     // change exponent or mantissa
     if (eestate_) {
-        // ignore ',' before 'e'. turn e.g. '123.e' into '123e'
-        if (new_char == QLatin1Char('e') && str_int_.endsWith(QLatin1Char('.'))) {
+        // ignore '.' before 'e'. turn e.g. '123.e' into '123e'
+        if (new_char == QLatin1Char('e') && str_int_.endsWith(KGlobal::locale()->decimalSymbol())) {
             str_int_.chop(1);
             period_ = false;
         }
@@ -565,18 +565,19 @@ void KCalcDisplay::newCharacter(const QChar new_char)
         // handle first character
         if (str_int_ == QLatin1String("0")) {
             switch (new_char.toLatin1()) {
-            case '.':
-                // display "0." not just "."
-                str_int_.append(new_char);
-                break;
             case 'e':
                 // display "0e" not just "e"
                 // "0e" does not make sense either, but...
                 str_int_.append(new_char);
                 break;
             default:
-                // no leading '0's
-                str_int_[0] = new_char;
+				if(new_char == KGlobal::locale()->decimalSymbol()[0]) {
+					// display "0." not just "."
+					str_int_.append(new_char);
+				} else {
+					// no leading '0's
+					str_int_[0] = new_char;
+				}
             }
         } else
             str_int_.append(new_char);
@@ -602,7 +603,7 @@ void KCalcDisplay::deleteLastDigit()
     } else {
         int length = str_int_.length();
         if (length > 1) {
-            if (str_int_[length-1] == QLatin1Char('.'))
+            if (str_int_[length-1] == KGlobal::locale()->decimalSymbol()[0])
                 period_ = false;
             str_int_.chop(1);
         } else {
