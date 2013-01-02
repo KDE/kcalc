@@ -493,7 +493,7 @@ void CalcEngine::CosHyp(const KNumber &input)
     if (input.type() == KNumber::TYPE_ERROR) {
         if (input == KNumber::NaN)         last_number_ = KNumber::NaN;
         if (input == KNumber::PosInfinity) last_number_ = KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity) last_number_ = KNumber::PosInfinity;
+        if (input == KNumber::NegInfinity) last_number_ = KNumber::NegInfinity;
         return;
     }
 
