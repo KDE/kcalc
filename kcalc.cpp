@@ -747,7 +747,9 @@ void KCalculator::updateGeometry() {
 //------------------------------------------------------------------------------
 void KCalculator::slotConstantToDisplay(const science_constant &const_chosen) {
 
-    calc_display->setAmount(KNumber(const_chosen.value));
+	QString val = const_chosen.value;
+	val.replace(QLatin1Char('.'), KNumber::decimalSeparator());
+	calc_display->setAmount(KNumber(val));
     updateDisplay(0);
 }
 
