@@ -742,8 +742,8 @@ void KCalculator::updateGeometry() {
 }
 
 //------------------------------------------------------------------------------
-// Name: updateGeometry()
-// Desc: makes all the buttons have reasonable sizes
+// Name: slotConstantToDisplay(const science_constant &const_chosen)
+// Desc: inserts a constant
 //------------------------------------------------------------------------------
 void KCalculator::slotConstantToDisplay(const science_constant &const_chosen) {
 
@@ -1564,11 +1564,18 @@ void KCalculator::slotConstclicked(int button) {
 	if(KCalcConstButton *btn = qobject_cast<KCalcConstButton*>(const_buttons_[button])) {
 		if (!shift_mode_) {
 			// set the display to the configured value of constant button
-			calc_display->setAmount(KNumber(btn->constant()));
+			// internally, we deal with C locale style numbers, we need to convert
+			QString val = btn->constant();
+			val.replace(QLatin1Char('.'), KNumber::decimalSeparator());
+			calc_display->setAmount(KNumber(val));
 
 		} else {
 			pbShift->setChecked(false);
-			KCalcSettings::setValueConstant(button, calc_display->text());
+			
+			// internally, we deal with C locale style numbers, we need to convert
+			QString val = calc_display->text();
+			val.replace(KNumber::decimalSeparator(), QLatin1String("."));
+			KCalcSettings::setValueConstant(button, val);
 
 			// below set new tooltip
 			btn->setLabelAndTooltip();
