@@ -160,7 +160,6 @@ public:
 	
 private:
 	void simplify();
-	void stringInit(const QLatin1String &s);
 
 private:
 	detail::knumber_base *value_;

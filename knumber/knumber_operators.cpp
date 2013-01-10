@@ -136,10 +136,6 @@ KNumber sqrt(const KNumber &x) {
 // Name: 
 //------------------------------------------------------------------------------
 KNumber sin(const KNumber &x) {
-
-	//KNumber pi =  4 * atan(KNumber(1.0));
-	//KNumber radians = KNumber(2) * KNumber::Pi() / KNumber(360) * x;
-
 	return x.sin();
 }
 
