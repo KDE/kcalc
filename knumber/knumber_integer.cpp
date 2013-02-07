@@ -372,7 +372,11 @@ knumber_base *knumber_integer::bitwise_shift(knumber_base *rhs) {
 		const signed long int bit_count = mpz_get_si(p->mpz_);
 		
 		// TODO: left shift with high bit set is broken in
-		//       non decimal modes :-/, always returns 0
+		//       non decimal modes :-/, always displays 0
+		//       interestingly, the bit is not "lost"
+		//       we simply don't have a mechanism to display
+		//       values in HEX/DEC/OCT mode which are greater than
+		//       64-bits
 		
 		if(bit_count > 0) {
 			// left shift
