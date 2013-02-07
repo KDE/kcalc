@@ -48,7 +48,7 @@ class KCalcConstMenu;
   operation button is pressed, e.g. "core.Plus(display_number)".
  */
 
-#include "config-kcalc.h"
+#include <config-kcalc.h>
 
 // IMPORTANT this has to come after config-kcalc.h - DF: why?
 #include "kcalc_core.h"
@@ -68,7 +68,7 @@ class KCalcConstMenu;
 class General: public QWidget, public Ui::General
 {
 public:
-    General(QWidget *parent) : QWidget(parent) {
+    explicit General(QWidget *parent) : QWidget(parent) {
         setupUi(this);
     }
 };
@@ -76,7 +76,7 @@ public:
 class Fonts: public QWidget, public Ui::Fonts
 {
 public:
-    Fonts(QWidget *parent) : QWidget(parent) {
+    explicit Fonts(QWidget *parent) : QWidget(parent) {
         setupUi(this);
     }
 };
@@ -84,7 +84,7 @@ public:
 class Constants : public QWidget, public Ui::Constants
 {
 public:
-    Constants(QWidget *parent) : QWidget(parent) {
+    explicit Constants(QWidget *parent) : QWidget(parent) {
         setupUi(this);
     }
 };
@@ -92,7 +92,7 @@ public:
 class Colors : public QWidget, public Ui::Colors
 {
 public:
-    Colors(QWidget *parent) : QWidget(parent) {
+    explicit Colors(QWidget *parent) : QWidget(parent) {
         setupUi(this);
     }
 };
@@ -103,7 +103,7 @@ class KCalculator : public KXmlGuiWindow, private Ui::KCalculator
     Q_OBJECT
 
 public:
-    KCalculator(QWidget *parent = 0);
+    explicit KCalculator(QWidget *parent = 0);
     ~KCalculator();
 
 signals:

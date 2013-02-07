@@ -66,7 +66,7 @@ class KCalcDisplay : public QFrame
     Q_OBJECT
 
 public:
-    KCalcDisplay(QWidget *parent = 0);
+    explicit KCalcDisplay(QWidget *parent = 0);
     ~KCalcDisplay();
 
     enum Event {

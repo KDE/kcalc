@@ -369,7 +369,10 @@ knumber_base *knumber_integer::bitwise_shift(knumber_base *rhs) {
 
 	if(knumber_integer *const p = dynamic_cast<knumber_integer *>(rhs)) {
 		
-		signed long int bit_count = mpz_get_si(p->mpz_);
+		const signed long int bit_count = mpz_get_si(p->mpz_);
+		
+		// TODO: left shift with high bit set is broken in
+		//       non decimal modes :-/, always returns 0
 		
 		if(bit_count > 0) {
 			// left shift

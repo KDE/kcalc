@@ -58,7 +58,7 @@ class KCalcButton : public KPushButton
     Q_OBJECT
 
 public:
-    KCalcButton(QWidget *parent);
+    explicit KCalcButton(QWidget *parent);
     KCalcButton(const QString &label, QWidget *parent,
                 const QString &tooltip = QString());
 

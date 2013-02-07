@@ -36,7 +36,7 @@ class KCalcConstButton : public KCalcButton
 
 public:
 
-    KCalcConstButton(QWidget *parent);
+    explicit KCalcConstButton(QWidget *parent);
 
     KCalcConstButton(const QString &label, QWidget *parent,
                      const QString &tooltip = QString());
