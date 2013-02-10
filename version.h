@@ -17,5 +17,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifndef KCALCVERSION
-#define KCALCVERSION "2.12"
+#define KCALCVERSION "2.13"
 #endif
