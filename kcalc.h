@@ -1,25 +1,22 @@
-// -*- indent-tabs-mode: nil -*-
 /*
-    KCalc, a scientific calculator for the X window system using the
-    Qt widget libraries, available at no cost at http://www.troll.no
+Copyright (C) 2001 - 2013 Evan Teran
+                          evan.teran@gmail.com
 
-    Copyright (C) 1996 Bernd Johannes Wuebben
-                       wuebben@math.cornell.edu
+Copyright (C) 1996 - 2000 Bernd Johannes Wuebben
+                          wuebben@kde.org
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation; either version 2 of 
+the License, or (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifndef KCALC_H_
@@ -48,7 +45,7 @@ class KCalcConstMenu;
   operation button is pressed, e.g. "core.Plus(display_number)".
  */
 
-#include "config-kcalc.h"
+#include <config-kcalc.h>
 
 // IMPORTANT this has to come after config-kcalc.h - DF: why?
 #include "kcalc_core.h"
@@ -68,7 +65,7 @@ class KCalcConstMenu;
 class General: public QWidget, public Ui::General
 {
 public:
-    General(QWidget *parent) : QWidget(parent) {
+    explicit General(QWidget *parent) : QWidget(parent) {
         setupUi(this);
     }
 };
@@ -76,7 +73,7 @@ public:
 class Fonts: public QWidget, public Ui::Fonts
 {
 public:
-    Fonts(QWidget *parent) : QWidget(parent) {
+    explicit Fonts(QWidget *parent) : QWidget(parent) {
         setupUi(this);
     }
 };
@@ -84,7 +81,7 @@ public:
 class Constants : public QWidget, public Ui::Constants
 {
 public:
-    Constants(QWidget *parent) : QWidget(parent) {
+    explicit Constants(QWidget *parent) : QWidget(parent) {
         setupUi(this);
     }
 };
@@ -92,7 +89,7 @@ public:
 class Colors : public QWidget, public Ui::Colors
 {
 public:
-    Colors(QWidget *parent) : QWidget(parent) {
+    explicit Colors(QWidget *parent) : QWidget(parent) {
         setupUi(this);
     }
 };
@@ -103,7 +100,7 @@ class KCalculator : public KXmlGuiWindow, private Ui::KCalculator
     Q_OBJECT
 
 public:
-    KCalculator(QWidget *parent = 0);
+    explicit KCalculator(QWidget *parent = 0);
     ~KCalculator();
 
 signals:

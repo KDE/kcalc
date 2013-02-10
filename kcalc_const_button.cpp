@@ -1,7 +1,28 @@
 /*
+Copyright (C) 2001 - 2013 Evan Teran
+                          evan.teran@gmail.com
+						  
+Copyright (C) 2003 - 2005 Klaus Niederkrueger
+                          kniederk@math.uni-koeln.de
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+/*
     kCalculator, a simple scientific calculator for KDE
 
-    Copyright (C) 2003 Klaus Niederkrueger <kniederk@math.uni-koeln.de>
+    Copyright (C) 2003 
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -29,7 +50,7 @@
 #include "kcalc_const_button.moc"
 
 //------------------------------------------------------------------------------
-// Name: KCalcConstButton(QWidget *parent)
+// Name: KCalcConstButton
 // Desc: constructor
 //------------------------------------------------------------------------------
 KCalcConstButton::KCalcConstButton(QWidget *parent) : KCalcButton(parent), button_num_(-1) {
@@ -40,7 +61,7 @@ KCalcConstButton::KCalcConstButton(QWidget *parent) : KCalcButton(parent), butto
 }
 
 //------------------------------------------------------------------------------
-// Name: KCalcConstButton(const QString &label, QWidget *parent, const QString &tooltip)
+// Name: KCalcConstButton
 // Desc: constructor
 //------------------------------------------------------------------------------
 KCalcConstButton::KCalcConstButton(const QString &label, QWidget *parent, const QString &tooltip) : KCalcButton(label, parent, tooltip), button_num_(-1) {
@@ -50,7 +71,7 @@ KCalcConstButton::KCalcConstButton(const QString &label, QWidget *parent, const 
 }
 
 //------------------------------------------------------------------------------
-// Name: constant() const
+// Name: constant
 // Desc: get the value of the const as a QString
 //------------------------------------------------------------------------------
 QString KCalcConstButton::constant() const {
@@ -59,7 +80,7 @@ QString KCalcConstButton::constant() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: setButtonNumber(int num)
+// Name: setButtonNumber
 // Desc: remembers the "index" of the const button
 //------------------------------------------------------------------------------
 void KCalcConstButton::setButtonNumber(int num) {
@@ -68,7 +89,7 @@ void KCalcConstButton::setButtonNumber(int num) {
 }
 
 //------------------------------------------------------------------------------
-// Name: setLabelAndTooltip()
+// Name: setLabelAndTooltip
 // Desc: sets both the label and the tooltip for the const button
 //------------------------------------------------------------------------------
 void KCalcConstButton::setLabelAndTooltip() {
@@ -84,7 +105,7 @@ void KCalcConstButton::setLabelAndTooltip() {
 }
 
 //------------------------------------------------------------------------------
-// Name: initPopupMenu()
+// Name: initPopupMenu
 // Desc: initializes the const button popup
 //------------------------------------------------------------------------------
 void KCalcConstButton::initPopupMenu() {
@@ -104,7 +125,7 @@ void KCalcConstButton::initPopupMenu() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotConfigureButton()
+// Name: slotConfigureButton
 // Desc: lets the user set the name for a constant
 //------------------------------------------------------------------------------
 void KCalcConstButton::slotConfigureButton() {
@@ -118,7 +139,7 @@ void KCalcConstButton::slotConfigureButton() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotChooseScientificConst(const science_constant &const_chosen)
+// Name: slotChooseScientificConst
 // Desc: set the buttons's scientific constant
 //------------------------------------------------------------------------------
 void KCalcConstButton::slotChooseScientificConst(const science_constant &const_chosen) {
@@ -129,7 +150,7 @@ void KCalcConstButton::slotChooseScientificConst(const science_constant &const_c
 }
 
 //------------------------------------------------------------------------------
-// Name: slotClicked()
+// Name: slotClicked
 // Desc: constant button was clicked
 //------------------------------------------------------------------------------
 void KCalcConstButton::slotClicked() {

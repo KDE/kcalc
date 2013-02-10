@@ -1,10 +1,11 @@
 /*
-Copyright 2012  Evan Teran evan.teran@gmail.com
+Copyright (C) 2001 - 2013 Evan Teran
+                          evan.teran@gmail.com
 
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License as
-published by the Free Software Foundation; either version 2 of
-the License, or (at your option) any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -208,7 +209,7 @@ QString KNumber::decimalSeparator() {
 //------------------------------------------------------------------------------
 void KNumber::setDefaultFloatPrecision(int precision) {
     // Need to transform decimal digits into binary digits
-    unsigned long int bin_prec = static_cast<unsigned long int>(double(precision) * M_LN10 / M_LN2 + 1);
+    const unsigned long int bin_prec = static_cast<unsigned long int>(double(precision) * M_LN10 / M_LN2 + 1);
     mpf_set_default_prec(bin_prec);
 }
 
@@ -244,7 +245,7 @@ KNumber KNumber::Pi() {
 	//       characters, this will allow things to be done slightly more
 	// efficiently
 	QString s(QLatin1String("3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117068"));
-	s.replace(".", DecimalSeparator);
+	s.replace('.', DecimalSeparator);
 	return KNumber(s);
 }
 
@@ -259,7 +260,7 @@ KNumber KNumber::Euler() {
 	//       characters, this will allow things to be done slightly more
 	// efficiently
 	QString s(QLatin1String("2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945713821785251664274"));
-	s.replace(".", DecimalSeparator);
+	s.replace('.', DecimalSeparator);
 	return KNumber(s);
 }
 
@@ -293,10 +294,10 @@ KNumber::KNumber(const QString &s) : value_(0) {
 			const QStringList list = float_regex.capturedTexts();
 			if(list.size() == 5) {
 
-				QString ipart = list[1];
-				QString fpart = list[2];
-				QString epart = list[3];
-				int e_val     = list[4].toInt();
+				const QString ipart = list[1];
+				const QString fpart = list[2];
+				const QString epart = list[3];
+				const int e_val     = list[4].toInt();
 
 				QString num = ipart + fpart.mid(1);
 				QString den = QLatin1String("1") + QString(fpart.size() - 1, QLatin1Char('0'));

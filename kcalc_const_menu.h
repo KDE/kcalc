@@ -1,24 +1,22 @@
 /*
-    KCalc, a scientific calculator for the X window system using the
-    Qt widget libraries, available at no cost at http://www.troll.no
+Copyright (C) 2001 - 2013 Evan Teran
+                          evan.teran@gmail.com
+						  
+Copyright (C) 2003 - 2005 Klaus Niederkrueger
+                          kniederk@math.uni-koeln.de
 
-    Copyright (C) 2004 Klaus Niederkruger
-                       kniederk@ulb.ac.be
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifndef KCALC_CONST_MENU_H_
@@ -48,7 +46,7 @@ class KCalcConstMenu : public QMenu {
     Q_OBJECT
 
 public:
-    KCalcConstMenu(QWidget * parent = 0);
+    explicit KCalcConstMenu(QWidget * parent = 0);
     explicit KCalcConstMenu(const QString &title, QWidget * parent = 0);
 
 public:

@@ -1,5 +1,9 @@
 /*
-Copyright 2006  Michel Marti <mma@objectxp.com>
+Copyright (C) 2012 - 2013 Evan Teran
+                          evan.teran@gmail.com
+
+Copyright (C) 2006        Michel Marti
+                          mma@objectxp.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as

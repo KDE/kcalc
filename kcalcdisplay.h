@@ -1,27 +1,23 @@
 /*
+Copyright (C) 2001 - 2013 Evan Teran
+                          evan.teran@gmail.com
 
- KCalc
+Copyright (C) 1996 - 2000 Bernd Johannes Wuebben
+                          wuebben@kde.org
 
- Copyright (C) Bernd Johannes Wuebben
-               wuebben@math.cornell.edu
-               wuebben@kde.org
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation; either version 2 of 
+the License, or (at your option) any later version.
 
- This program is free software; you can redistribute it and/or
- modify it under the terms of the GNU General Public License
- as published by the Free Software Foundation; either version 2
- of the License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License
- along with this program; if not, write to the Free Software
- Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
- */
-
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #ifndef KCALCDISPLAY_H_
 #define KCALCDISPLAY_H_
@@ -66,7 +62,7 @@ class KCalcDisplay : public QFrame
     Q_OBJECT
 
 public:
-    KCalcDisplay(QWidget *parent = 0);
+    explicit KCalcDisplay(QWidget *parent = 0);
     ~KCalcDisplay();
 
     enum Event {
@@ -85,11 +81,15 @@ public:
     void setBeep(bool flag);
     void setGroupDigits(bool flag);
     void setTwosComplement(bool flag);
+    void setBinaryGrouping(int digits);
+    void setOctalGrouping(int digits);
+    void setHexadecimalGrouping(int digits);
     void setFixedPrecision(int precision);
     void setPrecision(int precision);
     void setText(const QString &string);
+    QString groupDigits(const QString &displayString, int numDigits);
     QString text() const;
-    bool updateDisplay();
+    void updateDisplay();
     void setStatusText(int i, const QString &text);
     virtual QSize sizeHint() const;
 
@@ -128,6 +128,9 @@ private:
     bool beep_;
     bool groupdigits_;
     bool twoscomplement_;
+    int  binaryGrouping_;
+    int  octalGrouping_;
+    int  hexadecimalGrouping_;
     int  button_;
     bool lit_;
     NumBase num_base_;
