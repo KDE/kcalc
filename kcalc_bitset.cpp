@@ -1,20 +1,22 @@
 /*
-    Copyright (C) 2006  Michel Marti <mma@objectxp.com>
+Copyright (C) 2012 - 2013 Evan Teran
+                          evan.teran@gmail.com
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
+Copyright (C) 2006        Michel Marti
+                          mma@objectxp.com
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation; either version 2 of 
+the License, or (at your option) any later version.
 
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "kcalc_bitset.h"
@@ -32,7 +34,7 @@
 //       the only real caveat is the conversion to/from quint64
 
 //------------------------------------------------------------------------------
-// Name: paintEvent(QPaintEvent *)
+// Name: paintEvent
 // Desc: draws the button
 //------------------------------------------------------------------------------
 void BitButton::paintEvent(QPaintEvent *) {
@@ -52,7 +54,7 @@ void BitButton::paintEvent(QPaintEvent *) {
 }
 
 //------------------------------------------------------------------------------
-// Name: KCalcBitset(QWidget *parent)
+// Name: KCalcBitset
 // Desc: constructor
 //------------------------------------------------------------------------------
 KCalcBitset::KCalcBitset(QWidget *parent) : QFrame(parent), value_(0) {
@@ -100,7 +102,7 @@ KCalcBitset::KCalcBitset(QWidget *parent) : QFrame(parent), value_(0) {
 }
 
 //------------------------------------------------------------------------------
-// Name: setValue(quint64 value)
+// Name: setValue
 // Desc: set the value of the bitset based on an unsigned 64-bit number
 //------------------------------------------------------------------------------
 void KCalcBitset::setValue(quint64 value) {
@@ -122,7 +124,7 @@ void KCalcBitset::setValue(quint64 value) {
 }
 
 //------------------------------------------------------------------------------
-// Name: getValue()
+// Name: getValue
 // Desc: returns the bitset value as an unsigned 64-bit number
 //------------------------------------------------------------------------------
 quint64 KCalcBitset::getValue() const {
@@ -130,7 +132,7 @@ quint64 KCalcBitset::getValue() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotToggleBit(int bit)
+// Name: slotToggleBit
 // Desc: inverts the value of a single bit
 //------------------------------------------------------------------------------
 void KCalcBitset::slotToggleBit(int bit) {

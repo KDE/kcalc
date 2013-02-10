@@ -1,24 +1,25 @@
-// -*- indent-tabs-mode: nil -*-
 /*
-    kCalculator, a simple scientific calculator for KDE
+Copyright (C) 2001 - 2013 Evan Teran
+                          evan.teran@gmail.com
 
-    Copyright (C) 1996-2000 Bernd Johannes Wuebben
-                            wuebben@kde.org
+Copyright (C) 2006        Michel Marti
+                          mma@objectxp.com
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
+Copyright (C) 1996 - 2000 Bernd Johannes Wuebben
+                          wuebben@kde.org
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation; either version 2 of 
+the License, or (at your option) any later version.
 
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "kcalc.h"
@@ -75,7 +76,7 @@ const int maxprecision   = 1000;
 
 
 //------------------------------------------------------------------------------
-// Name: KCalculator(QWidget *parent)
+// Name: KCalculator
 // Desc: constructor
 //------------------------------------------------------------------------------
 KCalculator::KCalculator(QWidget *parent) :
@@ -174,7 +175,7 @@ KCalculator::KCalculator(QWidget *parent) :
 }
 
 //------------------------------------------------------------------------------
-// Name: ~KCalculator()
+// Name: ~KCalculator
 // Desc: deconstructor
 //------------------------------------------------------------------------------
 KCalculator::~KCalculator() {
@@ -183,7 +184,7 @@ KCalculator::~KCalculator() {
 }
 
 //------------------------------------------------------------------------------
-// Name: setupMainActions()
+// Name: setupMainActions
 // Desc: connects all of the basic actions
 //------------------------------------------------------------------------------
 void KCalculator::setupMainActions() {
@@ -237,7 +238,7 @@ void KCalculator::setupMainActions() {
 }
 
 //------------------------------------------------------------------------------
-// Name: createConstantsMenu()
+// Name: createConstantsMenu
 // Desc: creates and returns a pointer to the constant menu
 //------------------------------------------------------------------------------
 KCalcConstMenu *KCalculator::createConstantsMenu() {
@@ -248,7 +249,7 @@ KCalcConstMenu *KCalculator::createConstantsMenu() {
 }
 
 //------------------------------------------------------------------------------
-// Name: setupStatusbar()
+// Name: setupStatusbar
 // Desc: sets up the status bar with default text
 //------------------------------------------------------------------------------
 void KCalculator::setupStatusbar() {
@@ -268,7 +269,7 @@ void KCalculator::setupStatusbar() {
 }
 
 //------------------------------------------------------------------------------
-// Name: setupNumberKeys()
+// Name: setupNumberKeys
 // Desc: sets up number keys and related shortcuts
 //------------------------------------------------------------------------------
 void KCalculator::setupNumberKeys() {
@@ -311,7 +312,7 @@ void KCalculator::setupNumberKeys() {
 }
 
 //------------------------------------------------------------------------------
-// Name: setupRightKeypad()
+// Name: setupRightKeypad
 // Desc: sets up right keypad keys and related shortcuts
 //------------------------------------------------------------------------------
 void KCalculator::setupRightKeypad() {
@@ -368,7 +369,7 @@ void KCalculator::setupRightKeypad() {
 }
 
 //------------------------------------------------------------------------------
-// Name: setupNumericKeypad()
+// Name: setupNumericKeypad
 // Desc: sets up numeric keys and related shortcuts
 //------------------------------------------------------------------------------
 void KCalculator::setupNumericKeypad() {
@@ -421,7 +422,7 @@ void KCalculator::setupNumericKeypad() {
 }
 
 //------------------------------------------------------------------------------
-// Name: setupLogicKeys()
+// Name: setupLogicKeys
 // Desc: sets up logic keys and related shortcuts
 //------------------------------------------------------------------------------
 void KCalculator::setupLogicKeys() {
@@ -458,7 +459,7 @@ void KCalculator::setupLogicKeys() {
 }
 
 //------------------------------------------------------------------------------
-// Name: setupLogicKeys()
+// Name: setupLogicKeys
 // Desc: sets up scientific keys and related shortcuts
 //------------------------------------------------------------------------------
 void KCalculator::setupScientificKeys() {
@@ -510,7 +511,7 @@ void KCalculator::setupScientificKeys() {
 }
 
 //------------------------------------------------------------------------------
-// Name: setupStatisticKeys()
+// Name: setupStatisticKeys
 // Desc: sets up statistical keys and related shortcuts
 //------------------------------------------------------------------------------
 void KCalculator::setupStatisticKeys() {
@@ -554,7 +555,7 @@ void KCalculator::setupStatisticKeys() {
 }
 
 //------------------------------------------------------------------------------
-// Name: setupConstantsKeys()
+// Name: setupConstantsKeys
 // Desc: sets up constants keys and related shortcuts
 //------------------------------------------------------------------------------
 void KCalculator::setupConstantsKeys() {
@@ -600,7 +601,7 @@ void KCalculator::setupConstantsKeys() {
 }
 
 //------------------------------------------------------------------------------
-// Name: setupMiscKeys()
+// Name: setupMiscKeys
 // Desc: sets up misc keys and related shortcuts
 //------------------------------------------------------------------------------
 void KCalculator::setupMiscKeys() {
@@ -644,7 +645,7 @@ void KCalculator::setupMiscKeys() {
 }
 
 //------------------------------------------------------------------------------
-// Name: createConstantsMenu()
+// Name: createConstantsMenu
 // Desc: additional setup for button keys
 // NOTE: all alphanumeric shorts set in ui file
 //------------------------------------------------------------------------------
@@ -702,7 +703,7 @@ void KCalculator::setupKeys() {
 }
 
 //------------------------------------------------------------------------------
-// Name: updateGeometry()
+// Name: updateGeometry
 // Desc: makes all the buttons have reasonable sizes
 //------------------------------------------------------------------------------
 void KCalculator::updateGeometry() {
@@ -742,7 +743,7 @@ void KCalculator::updateGeometry() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotConstantToDisplay(const science_constant &const_chosen)
+// Name: slotConstantToDisplay
 // Desc: inserts a constant
 //------------------------------------------------------------------------------
 void KCalculator::slotConstantToDisplay(const science_constant &const_chosen) {
@@ -754,7 +755,7 @@ void KCalculator::slotConstantToDisplay(const science_constant &const_chosen) {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotBaseSelected(int base)
+// Name: slotBaseSelected
 // Desc: changes the selected numeric base
 //------------------------------------------------------------------------------
 void KCalculator::slotBaseSelected(int base) {
@@ -820,10 +821,22 @@ void KCalculator::slotBaseSelected(int base) {
 }
 
 //------------------------------------------------------------------------------
-// Name: keyPressEvent(QKeyEvent *e)
+// Name: keyPressEvent
 // Desc: handles keypress events
 //------------------------------------------------------------------------------
 void KCalculator::keyPressEvent(QKeyEvent *e) {
+
+	// Fix for bug #314586
+	// Basically, on some keyboards such as French, even though the decimal separator
+	// is "," the numeric keypad has a "." key. So we fake it so people can more seemlessly
+	// enter numbers using the keypad
+	if(KNumber::decimalSeparator() != ".") {
+		if(e->key() == Qt::Key_Period && e->modifiers() & Qt::KeypadModifier) {
+			//emit slotPeriodclicked();
+			pbPeriod->animateClick();
+		}
+	}
+
 
 	if (((e->modifiers() & Qt::NoModifier) == 0) || (e->modifiers() & Qt::ShiftModifier)) {
 		switch (e->key()) {
@@ -839,7 +852,7 @@ void KCalculator::keyPressEvent(QKeyEvent *e) {
 }
 
 //------------------------------------------------------------------------------
-// Name: keyReleaseEvent(QKeyEvent *e)
+// Name: keyReleaseEvent
 // Desc: handles keyrelease events
 //------------------------------------------------------------------------------
 void KCalculator::keyReleaseEvent(QKeyEvent *e) {
@@ -850,7 +863,7 @@ void KCalculator::keyReleaseEvent(QKeyEvent *e) {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotAngleSelected(int mode)
+// Name: slotAngleSelected
 // Desc: changes the selected angle system
 //------------------------------------------------------------------------------
 void KCalculator::slotAngleSelected(int mode) {
@@ -886,7 +899,7 @@ void KCalculator::slotEEclicked() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotShifttoggled(bool flag)
+// Name: slotShifttoggled
 // Desc: updates the shift state for alternate button functionality
 //------------------------------------------------------------------------------
 void KCalculator::slotShifttoggled(bool flag) {
@@ -905,7 +918,7 @@ void KCalculator::slotShifttoggled(bool flag) {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotHyptoggled(bool flag)
+// Name: slotHyptoggled
 // Desc: updates the Hyp state for alternate trig button functionality
 //------------------------------------------------------------------------------
 void KCalculator::slotHyptoggled(bool flag) {
@@ -917,7 +930,7 @@ void KCalculator::slotHyptoggled(bool flag) {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotMemRecallclicked()
+// Name: slotMemRecallclicked
 // Desc: recalls a value from memory
 //------------------------------------------------------------------------------
 void KCalculator::slotMemRecallclicked() {
@@ -930,7 +943,7 @@ void KCalculator::slotMemRecallclicked() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotMemStoreclicked()
+// Name: slotMemStoreclicked
 // Desc: stores a value into memory
 //------------------------------------------------------------------------------
 void KCalculator::slotMemStoreclicked() {
@@ -944,7 +957,7 @@ void KCalculator::slotMemStoreclicked() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotNumberclicked()
+// Name: slotNumberclicked
 // Desc: user has entered a digit
 //------------------------------------------------------------------------------
 void KCalculator::slotNumberclicked(int number_clicked) {
@@ -953,7 +966,7 @@ void KCalculator::slotNumberclicked(int number_clicked) {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotSinclicked()
+// Name: slotSinclicked
 // Desc: executes the sine function
 //------------------------------------------------------------------------------
 void KCalculator::slotSinclicked() {
@@ -998,7 +1011,7 @@ void KCalculator::slotSinclicked() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotPlusMinusclicked()
+// Name: slotPlusMinusclicked
 // Desc: changes sign of number being displayed
 //------------------------------------------------------------------------------
 void KCalculator::slotPlusMinusclicked() {
@@ -1012,7 +1025,7 @@ void KCalculator::slotPlusMinusclicked() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotMemPlusMinusclicked()
+// Name: slotMemPlusMinusclicked
 // Desc: handles arithmetic on values stored in memory
 //------------------------------------------------------------------------------
 void KCalculator::slotMemPlusMinusclicked() {
@@ -1033,7 +1046,7 @@ void KCalculator::slotMemPlusMinusclicked() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotSinclicked()
+// Name: slotSinclicked
 // Desc: executes the cosine function
 //------------------------------------------------------------------------------
 void KCalculator::slotCosclicked() {
@@ -1078,7 +1091,7 @@ void KCalculator::slotCosclicked() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotSinclicked()
+// Name: slotSinclicked
 // Desc: executes the recipricol function
 //------------------------------------------------------------------------------
 void KCalculator::slotReciclicked() {
@@ -1099,7 +1112,7 @@ void KCalculator::slotReciclicked() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotSinclicked()
+// Name: slotSinclicked
 // Desc: executes the tangent function
 //------------------------------------------------------------------------------
 void KCalculator::slotTanclicked() {
@@ -1144,7 +1157,7 @@ void KCalculator::slotTanclicked() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotFactorialclicked()
+// Name: slotFactorialclicked
 // Desc: executes the factorial function
 //------------------------------------------------------------------------------
 void KCalculator::slotFactorialclicked() {
@@ -1159,7 +1172,7 @@ void KCalculator::slotFactorialclicked() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotLogclicked()
+// Name: slotLogclicked
 // Desc: executes the Log function
 //------------------------------------------------------------------------------
 void KCalculator::slotLogclicked() {
@@ -1174,7 +1187,7 @@ void KCalculator::slotLogclicked() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotSquareclicked()
+// Name: slotSquareclicked
 // Desc: executes the x^2 function
 //------------------------------------------------------------------------------
 void KCalculator::slotSquareclicked() {
@@ -1189,7 +1202,7 @@ void KCalculator::slotSquareclicked() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotCubeclicked()
+// Name: slotCubeclicked
 // Desc: executes the x^3 function
 //------------------------------------------------------------------------------
 void KCalculator::slotCubeclicked() {
@@ -1204,7 +1217,7 @@ void KCalculator::slotCubeclicked() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotCubeclicked()
+// Name: slotCubeclicked
 // Desc: executes the ln function
 //------------------------------------------------------------------------------
 void KCalculator::slotLnclicked() {
@@ -1219,7 +1232,7 @@ void KCalculator::slotLnclicked() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotPowerclicked()
+// Name: slotPowerclicked
 // Desc: executes the x^y function
 //------------------------------------------------------------------------------
 void KCalculator::slotPowerclicked() {
@@ -1239,7 +1252,7 @@ void KCalculator::slotPowerclicked() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotMemClearclicked()
+// Name: slotMemClearclicked
 // Desc: executes the MC function
 //------------------------------------------------------------------------------
 void KCalculator::slotMemClearclicked() {
@@ -1556,7 +1569,7 @@ void KCalculator::slotStatClearDataclicked() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotConstclicked(int button)
+// Name: slotConstclicked
 // Desc: enters a constant
 //------------------------------------------------------------------------------
 void KCalculator::slotConstclicked(int button) {
@@ -1590,7 +1603,7 @@ void KCalculator::slotConstclicked(int button) {
 }
 
 //------------------------------------------------------------------------------
-// Name: showSettings()
+// Name: showSettings
 // Desc: opens the shows the settings dialog
 //------------------------------------------------------------------------------
 void KCalculator::showSettings() {
@@ -1663,7 +1676,7 @@ void KCalculator::showSettings() {
 // Settingvalues themselves!!
 
 //------------------------------------------------------------------------------
-// Name: slotChooseScientificConst0(const science_constant &chosen_const)
+// Name: slotChooseScientificConst0
 // Desc: updates constants value
 //------------------------------------------------------------------------------
 void KCalculator::slotChooseScientificConst0(const science_constant &chosen_const) {
@@ -1672,7 +1685,7 @@ void KCalculator::slotChooseScientificConst0(const science_constant &chosen_cons
 }
 
 //------------------------------------------------------------------------------
-// Name: slotChooseScientificConst1(const science_constant &chosen_const)
+// Name: slotChooseScientificConst1
 // Desc: updates constants value
 //------------------------------------------------------------------------------
 void KCalculator::slotChooseScientificConst1(const science_constant &chosen_const) {
@@ -1681,7 +1694,7 @@ void KCalculator::slotChooseScientificConst1(const science_constant &chosen_cons
 }
 
 //------------------------------------------------------------------------------
-// Name: slotChooseScientificConst2(const science_constant &chosen_const)
+// Name: slotChooseScientificConst2
 // Desc: updates constants value
 //------------------------------------------------------------------------------
 void KCalculator::slotChooseScientificConst2(const science_constant &chosen_const) {
@@ -1690,7 +1703,7 @@ void KCalculator::slotChooseScientificConst2(const science_constant &chosen_cons
 }
 
 //------------------------------------------------------------------------------
-// Name: slotChooseScientificConst3(const science_constant &chosen_const)
+// Name: slotChooseScientificConst3
 // Desc: updates constants value
 //------------------------------------------------------------------------------
 void KCalculator::slotChooseScientificConst3(const science_constant &chosen_const) {
@@ -1699,7 +1712,7 @@ void KCalculator::slotChooseScientificConst3(const science_constant &chosen_cons
 }
 
 //------------------------------------------------------------------------------
-// Name: slotChooseScientificConst4(const science_constant &chosen_const)
+// Name: slotChooseScientificConst4
 // Desc: updates constants value
 //------------------------------------------------------------------------------
 void KCalculator::slotChooseScientificConst4(const science_constant &chosen_const) {
@@ -1708,7 +1721,7 @@ void KCalculator::slotChooseScientificConst4(const science_constant &chosen_cons
 }
 
 //------------------------------------------------------------------------------
-// Name: slotChooseScientificConst5(const science_constant &chosen_const)
+// Name: slotChooseScientificConst5
 // Desc: updates constants value
 //------------------------------------------------------------------------------
 void KCalculator::slotChooseScientificConst5(const science_constant &chosen_const) {
@@ -1717,7 +1730,7 @@ void KCalculator::slotChooseScientificConst5(const science_constant &chosen_cons
 }
 
 //------------------------------------------------------------------------------
-// Name: slotSetSimpleMode()
+// Name: slotSetSimpleMode
 // Desc: sets the calculator to have a simple layout
 //------------------------------------------------------------------------------
 void KCalculator::slotSetSimpleMode() {
@@ -1750,7 +1763,7 @@ void KCalculator::slotSetSimpleMode() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotSetScienceMode()
+// Name: slotSetScienceMode
 // Desc: sets the calculator to science mode
 //------------------------------------------------------------------------------
 void KCalculator::slotSetScienceMode() {
@@ -1786,7 +1799,7 @@ void KCalculator::slotSetScienceMode() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotSetStatisticMode()
+// Name: slotSetStatisticMode
 // Desc: sets the calculator to stats mode
 //------------------------------------------------------------------------------
 void KCalculator::slotSetStatisticMode() {
@@ -1822,7 +1835,7 @@ void KCalculator::slotSetStatisticMode() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotSetNumeralMode()
+// Name: slotSetNumeralMode
 // Desc: sets the calculator to numerical ("programmers") mode
 //------------------------------------------------------------------------------
 void KCalculator::slotSetNumeralMode() {
@@ -1858,7 +1871,7 @@ void KCalculator::slotSetNumeralMode() {
 }
 
 //------------------------------------------------------------------------------
-// Name: showMemButtons(bool toggled)
+// Name: showMemButtons
 // Desc: hides or shows the memory buttons
 //------------------------------------------------------------------------------
 void KCalculator::showMemButtons(bool toggled) {
@@ -1879,7 +1892,7 @@ void KCalculator::showMemButtons(bool toggled) {
 }
 
 //------------------------------------------------------------------------------
-// Name: showStatButtons(bool toggled)
+// Name: showStatButtons
 // Desc: hides or shows the stat buttons
 //------------------------------------------------------------------------------
 void KCalculator::showStatButtons(bool toggled) {
@@ -1896,7 +1909,7 @@ void KCalculator::showStatButtons(bool toggled) {
 }
 
 //------------------------------------------------------------------------------
-// Name: showScienceButtons(bool toggled)
+// Name: showScienceButtons
 // Desc: hides or shows the science buttons
 //------------------------------------------------------------------------------
 void KCalculator::showScienceButtons(bool toggled) {
@@ -1928,7 +1941,7 @@ void KCalculator::showScienceButtons(bool toggled) {
 }
 
 //------------------------------------------------------------------------------
-// Name: showLogicButtons(bool toggled)
+// Name: showLogicButtons
 // Desc: hides or shows the logic buttons
 //------------------------------------------------------------------------------
 void KCalculator::showLogicButtons(bool toggled) {
@@ -1978,7 +1991,7 @@ void KCalculator::showLogicButtons(bool toggled) {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotConstantsShow(bool toggled)
+// Name: slotConstantsShow
 // Desc: hides or shows the constants buttons
 //------------------------------------------------------------------------------
 void KCalculator::slotConstantsShow(bool toggled) {
@@ -1997,7 +2010,7 @@ void KCalculator::slotConstantsShow(bool toggled) {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotBitsetshow(bool toggled)
+// Name: slotBitsetshow
 // Desc: hides or shows the bitset buttons
 //------------------------------------------------------------------------------
 void KCalculator::slotBitsetshow(bool toggled) {
@@ -2007,7 +2020,7 @@ void KCalculator::slotBitsetshow(bool toggled) {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotBitsetshow(bool toggled)
+// Name: slotBitsetshow
 // Desc: This function is for setting the constant names configured in the
 //       kcalc settings menu. If the user doesn't enter a name for the
 //       constant C1 to C6 is used.
@@ -2022,7 +2035,7 @@ void KCalculator::changeButtonNames() {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotBitsetChanged(quint64 value)
+// Name: slotBitsetChanged
 // Desc: updates the bitset display
 // NOTE: sets display to *unsigned* value
 //------------------------------------------------------------------------------
@@ -2033,7 +2046,7 @@ void KCalculator::slotBitsetChanged(quint64 value) {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotUpdateBitset(const KNumber &nr)
+// Name: slotUpdateBitset
 // Desc: updates the bitset itself
 //------------------------------------------------------------------------------
 void KCalculator::slotUpdateBitset(const KNumber &nr) {
@@ -2042,7 +2055,7 @@ void KCalculator::slotUpdateBitset(const KNumber &nr) {
 }
 
 //------------------------------------------------------------------------------
-// Name: updateSettings()
+// Name: updateSettings
 // Desc: updates the persistent settings
 //------------------------------------------------------------------------------
 void KCalculator::updateSettings() {
@@ -2066,7 +2079,7 @@ void KCalculator::updateSettings() {
 }
 
 //------------------------------------------------------------------------------
-// Name: updateDisplay(UpdateFlags flags)
+// Name: updateDisplay
 // Desc: updates the display
 //------------------------------------------------------------------------------
 void KCalculator::updateDisplay(UpdateFlags flags) {
@@ -2082,7 +2095,7 @@ void KCalculator::updateDisplay(UpdateFlags flags) {
 }
 
 //------------------------------------------------------------------------------
-// Name: setColors()
+// Name: setColors
 // Desc: set the various colours
 //------------------------------------------------------------------------------
 void KCalculator::setColors() {
@@ -2135,7 +2148,7 @@ void KCalculator::setColors() {
 }
 
 //------------------------------------------------------------------------------
-// Name: setFonts()
+// Name: setFonts
 // Desc: set the various fonts
 //------------------------------------------------------------------------------
 void KCalculator::setFonts() {
@@ -2162,7 +2175,7 @@ void KCalculator::setFonts() {
 }
 
 //------------------------------------------------------------------------------
-// Name: setPrecision()
+// Name: setPrecision
 // Desc: set the precision of the display
 //------------------------------------------------------------------------------
 void KCalculator::setPrecision() {
@@ -2172,7 +2185,7 @@ void KCalculator::setPrecision() {
 }
 
 //------------------------------------------------------------------------------
-// Name: setAngle()
+// Name: setAngle
 // Desc: sets the angle mode
 //------------------------------------------------------------------------------
 void KCalculator::setAngle() {
@@ -2183,7 +2196,7 @@ void KCalculator::setAngle() {
 }
 
 //------------------------------------------------------------------------------
-// Name: setBase()
+// Name: setBase
 // Desc: sets the numeric base
 //------------------------------------------------------------------------------
 void KCalculator::setBase() {
@@ -2193,7 +2206,7 @@ void KCalculator::setBase() {
 }
 
 //------------------------------------------------------------------------------
-// Name: eventFilter(QObject *o, QEvent *e)
+// Name: eventFilter
 // Desc: general event filter used to track events like drag/drop
 //------------------------------------------------------------------------------
 bool KCalculator::eventFilter(QObject *o, QEvent *e) {
@@ -2264,7 +2277,7 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e) {
 #include "kcalc.moc"
 
 //------------------------------------------------------------------------------
-// Name: kdemain(int argc, char *argv[])
+// Name: kdemain
 // Desc: entry point of the application
 //------------------------------------------------------------------------------
 extern "C" KDE_EXPORT int kdemain(int argc, char *argv[]) {

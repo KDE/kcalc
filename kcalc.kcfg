@@ -138,6 +138,35 @@
       <default>10</default>
     </entry>
   </group>
+  <group name="Grouping">
+    <entry name="BinaryGrouping" type="UInt" key="binaryGrouping">
+        <label>Binary figures will be separated by a whitespace after every Xth digit.</label>
+        <whatsthis>
+            For easier readability it's possible to visible group the individual digits into pairs
+            for example instead of 10111001 you can display 1011 1001, by setting the setting to
+            4, thus inserting a whitespace after every 4th digit.
+        </whatsthis>
+        <default>4</default>
+    </entry>
+    <entry name="OctalGrouping" type="UInt" key="octalGrouping">
+        <label>Octal figures will be separated by a whitespace after every Xth digit.</label>
+        <whatsthis>
+            For easier readability it's possible to visible group the individual digits into pairs
+            for example instead of 42140213 you can display 4214 0213, by setting the setting to
+            4, thus inserting a whitespace after every 4th digit.
+        </whatsthis>
+        <default>4</default>
+    </entry>
+    <entry name="HexadecimalGrouping" type="UInt" key="hexadecimalGrouping">
+        <label>Binary figures will be separated by a whitespace after every Xth number.</label>
+        <whatsthis>
+            For easier readability it's possible to visible group the individual digits into pairs
+            for example instead of AF1C42 you can display AF 1C 42, by setting the setting to
+            2, thus inserting a whitespace after every 2nd digit.
+        </whatsthis>
+        <default>2</default>
+    </entry>
+  </group>
   <group name="UserConstants">
 	<entry name="nameConstant$(ConstIndex)" type="String" key="nameConstant$(ConstIndex)">
 	<label>Name of the user programmable constants.</label>

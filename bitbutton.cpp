@@ -1,5 +1,9 @@
 /*
-Copyright 2006  Michel Marti <mma@objectxp.com>
+Copyright (C) 2012 - 2013 Evan Teran
+                          evan.teran@gmail.com
+
+Copyright (C) 2006        Michel Marti
+                          mma@objectxp.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as
@@ -21,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "bitbutton.moc"
 
 //------------------------------------------------------------------------------
-// Name: BitButton(QWidget *parent)
+// Name: BitButton
 // Desc: constructor
 //------------------------------------------------------------------------------
 BitButton::BitButton(QWidget *parent) : QAbstractButton(parent), on_(false) {
@@ -42,7 +46,7 @@ BitButton::BitButton(QWidget *parent) : QAbstractButton(parent), on_(false) {
 }
 
 //------------------------------------------------------------------------------
-// Name: isOn() const
+// Name: isOn
 // Desc: returns true if this bit-button is "on"
 //------------------------------------------------------------------------------
 bool BitButton::isOn() const {
@@ -51,7 +55,7 @@ bool BitButton::isOn() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: setOn(bool value)
+// Name: setOn
 // Desc: changes the "on" value for the bitset
 //------------------------------------------------------------------------------
 void BitButton::setOn(bool value) {

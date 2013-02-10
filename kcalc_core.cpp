@@ -1,32 +1,45 @@
 /*
-    kCalculator, a scientific calculator for the X window system using the
-    Qt widget libraries, available at no cost at http://www.troll.no
+Copyright (C) 2001 - 2013 Evan Teran
+                          evan.teran@gmail.com
 
-    The stack engine contained in this file was take from
-    Martin Bartlett's xfrmcalc
+Copyright (C) 2003 - 2005 Klaus Niederkrueger
+                          kniederk@math.uni-koeln.de
 
-    portions: Copyright (C) 2003-2006 Klaus Niederkrueger
-                                        kniederk@ulb.ac.be
+Copyright (C) 1996 - 2000 Bernd Johannes Wuebben
+                          wuebben@kde.org
+						  
+Copyright (C) 1995        Martin Bartlett
 
-    portions: Copyright (C) 1996 Bernd Johannes Wuebben
-                                   wuebben@math.cornell.edu
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation; either version 2 of 
+the License, or (at your option) any later version.
 
-    portions:  Copyright (C) 1995 Martin Bartlett
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+/*
+Copyright 2003-2006  Klaus Niederkrueger <kniederk@math.uni-koeln.de>
 
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation; either version 2 of 
+the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "kcalc_core.h"
@@ -107,7 +120,6 @@ KNumber ExecIntDiv(const KNumber &left_op, const KNumber &right_op) {
 }
 
 KNumber ExecBinom(const KNumber &left_op, const KNumber &right_op) {
-
 	return left_op.bin(right_op);
 }
 
@@ -151,28 +163,37 @@ KNumber moveIntoGradInterval(const KNumber &num) {
     return tmp_num;
 }
 
-}
+typedef KNumber(*Arith)(const KNumber &, const KNumber &);
+typedef KNumber(*Prcnt)(const KNumber &, const KNumber &);
+
+struct operator_data {
+    int precedence;  // priority of operators in " enum Operation"
+    Arith arith_ptr;
+    Prcnt prcnt_ptr;
+};
 
 // build precedence list
-const struct operator_data CalcEngine::Operator[] = {
-    { 0, NULL,     NULL}, // FUNC_EQUAL
-    { 0, NULL,     NULL}, // FUNC_PERCENT
-    { 0, NULL,     NULL}, // FUNC_BRACKET
-    { 1, ExecOr,   NULL}, // FUNC_OR
-    { 2, ExecXor,  NULL}, // FUNC_XOR
-    { 3, ExecAnd,  NULL}, // FUNC_AND
-    { 4, ExecLsh,  NULL}, // FUNC_LSH
-    { 4, ExecRsh,  NULL}, // FUNC_RSH
-    { 5, ExecAdd,  ExecAddP}, // FUNC_ADD
-    { 5, ExecSubtract, ExecSubP}, // FUNC_SUBTRACT
+const struct operator_data Operator[] = {
+    { 0, NULL,         NULL},          // FUNC_EQUAL
+    { 0, NULL,         NULL},          // FUNC_PERCENT
+    { 0, NULL,         NULL},          // FUNC_BRACKET
+    { 1, ExecOr,       NULL},          // FUNC_OR
+    { 2, ExecXor,      NULL},          // FUNC_XOR
+    { 3, ExecAnd,      NULL},          // FUNC_AND
+    { 4, ExecLsh,      NULL},          // FUNC_LSH
+    { 4, ExecRsh,      NULL},          // FUNC_RSH
+    { 5, ExecAdd,      ExecAddP},      // FUNC_ADD
+    { 5, ExecSubtract, ExecSubP},      // FUNC_SUBTRACT
     { 6, ExecMultiply, ExecMultiplyP}, // FUNC_MULTIPLY
-    { 6, ExecDivide,   ExecDivideP}, // FUNC_DIVIDE
-    { 6, ExecMod,  NULL}, // FUNC_MOD
-    { 6, ExecIntDiv, NULL}, // FUNC_INTDIV
-    { 7, ExecBinom, NULL},  // FUNC_BINOM
-    { 7, ExecPower,  NULL}, // FUNC_POWER
-    { 7, ExecPwrRoot, NULL} // FUNC_PWR_ROOT
+    { 6, ExecDivide,   ExecDivideP},   // FUNC_DIVIDE
+    { 6, ExecMod,      NULL},          // FUNC_MOD
+    { 6, ExecIntDiv,   NULL},          // FUNC_INTDIV
+    { 7, ExecBinom,    NULL},          // FUNC_BINOM
+    { 7, ExecPower,    NULL},          // FUNC_POWER
+    { 7, ExecPwrRoot,  NULL}           // FUNC_PWR_ROOT
 };
+
+}
 
 
 CalcEngine::CalcEngine() : percent_mode_(false) {

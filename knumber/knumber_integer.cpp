@@ -1,10 +1,11 @@
 /*
-Copyright 2012  Evan Teran evan.teran@gmail.com
+Copyright (C) 2001 - 2013 Evan Teran
+                          evan.teran@gmail.com
 
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License as
-published by the Free Software Foundation; either version 2 of 
-the License, or (at your option) any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 namespace detail {
 
 //------------------------------------------------------------------------------
-// Name: knumber_integer(const QString &s)
+// Name: knumber_integer
 //------------------------------------------------------------------------------
 knumber_integer::knumber_integer(const QString &s) {
     mpz_init(mpz_);
@@ -34,14 +35,14 @@ knumber_integer::knumber_integer(const QString &s) {
 }
 
 //------------------------------------------------------------------------------
-// Name: knumber_integer(qint32 value)
+// Name: knumber_integer
 //------------------------------------------------------------------------------
 knumber_integer::knumber_integer(qint32 value) {
 	mpz_init_set_si(mpz_, static_cast<signed long int>(value));
 }
 
 //------------------------------------------------------------------------------
-// Name: knumber_integer(qint64 value)
+// Name: knumber_integer
 //------------------------------------------------------------------------------
 knumber_integer::knumber_integer(qint64 value) {
     mpz_init(mpz_);
@@ -57,14 +58,14 @@ knumber_integer::knumber_integer(qint64 value) {
 }
 
 //------------------------------------------------------------------------------
-// Name: knumber_integer(quint32 value)
+// Name: knumber_integer
 //------------------------------------------------------------------------------
 knumber_integer::knumber_integer(quint32 value) {
 	mpz_init_set_ui(mpz_, static_cast<unsigned long int>(value));
 }
 
 //------------------------------------------------------------------------------
-// Name: knumber_integer(quint64 value)
+// Name: knumber_integer
 //------------------------------------------------------------------------------
 knumber_integer::knumber_integer(quint64 value) {
     mpz_init(mpz_);
@@ -80,21 +81,21 @@ knumber_integer::knumber_integer(quint64 value) {
 }
 
 //------------------------------------------------------------------------------
-// Name: knumber_integer(mpz_t mpz)
+// Name: knumber_integer
 //------------------------------------------------------------------------------
 knumber_integer::knumber_integer(mpz_t mpz) {
 	mpz_init_set(mpz_, mpz);
 }
 
 //------------------------------------------------------------------------------
-// Name: knumber_integer(const knumber_integer *value)
+// Name: knumber_integer
 //------------------------------------------------------------------------------
 knumber_integer::knumber_integer(const knumber_integer *value) {
 	mpz_init_set(mpz_, value->mpz_);
 }
 
 //------------------------------------------------------------------------------
-// Name: knumber_integer(const knumber_float *value)
+// Name: knumber_integer
 //------------------------------------------------------------------------------
 knumber_integer::knumber_integer(const knumber_float *value) {
 	mpz_init(mpz_);
@@ -102,7 +103,7 @@ knumber_integer::knumber_integer(const knumber_float *value) {
 }
 
 //------------------------------------------------------------------------------
-// Name: knumber_integer(const knumber_fraction *value)
+// Name: knumber_integer
 //------------------------------------------------------------------------------
 knumber_integer::knumber_integer(const knumber_fraction *value) {
 	mpz_init(mpz_);
@@ -110,21 +111,21 @@ knumber_integer::knumber_integer(const knumber_fraction *value) {
 }
 
 //------------------------------------------------------------------------------
-// Name: clone()
+// Name: clone
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::clone() {
 	return new knumber_integer(this);
 }
 
 //------------------------------------------------------------------------------
-// Name: ~knumber_integer()
+// Name: ~knumber_integer
 //------------------------------------------------------------------------------
 knumber_integer::~knumber_integer() {
 	mpz_clear(mpz_);
 }
 
 //------------------------------------------------------------------------------
-// Name: add(knumber_base *rhs)
+// Name: add
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::add(knumber_base *rhs) {
 
@@ -149,7 +150,7 @@ knumber_base *knumber_integer::add(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: sub(knumber_base *rhs)
+// Name: sub
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::sub(knumber_base *rhs) {
 
@@ -175,7 +176,7 @@ knumber_base *knumber_integer::sub(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: mul(knumber_base *rhs)
+// Name: mul
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::mul(knumber_base *rhs) {
 
@@ -213,7 +214,7 @@ knumber_base *knumber_integer::mul(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: div(knumber_base *rhs)
+// Name: div
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::div(knumber_base *rhs) {
 
@@ -258,7 +259,7 @@ knumber_base *knumber_integer::div(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: mod(knumber_base *rhs)
+// Name: mod
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::mod(knumber_base *rhs) {
 
@@ -288,7 +289,7 @@ knumber_base *knumber_integer::mod(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: bitwise_and(knumber_base *rhs)
+// Name: bitwise_and
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::bitwise_and(knumber_base *rhs) {
 	
@@ -313,7 +314,7 @@ knumber_base *knumber_integer::bitwise_and(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: bitwise_xor(knumber_base *rhs)
+// Name: bitwise_xor
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::bitwise_xor(knumber_base *rhs) {
 	
@@ -338,7 +339,7 @@ knumber_base *knumber_integer::bitwise_xor(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: bitwise_or(knumber_base *rhs)
+// Name: bitwise_or
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::bitwise_or(knumber_base *rhs) {
 
@@ -363,7 +364,7 @@ knumber_base *knumber_integer::bitwise_or(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: bitwise_shift(knumber_base *rhs)
+// Name: bitwise_shift
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::bitwise_shift(knumber_base *rhs) {
 
@@ -412,7 +413,7 @@ knumber_base *knumber_integer::bitwise_shift(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: neg()
+// Name: neg
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::neg() {
 
@@ -421,7 +422,7 @@ knumber_base *knumber_integer::neg() {
 }
 
 //------------------------------------------------------------------------------
-// Name: cmp()
+// Name: cmp
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::cmp() {
 	
@@ -436,7 +437,7 @@ knumber_base *knumber_integer::cmp() {
 }
 
 //------------------------------------------------------------------------------
-// Name: abs()
+// Name: abs
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::abs() {
 
@@ -445,7 +446,7 @@ knumber_base *knumber_integer::abs() {
 }
 
 //------------------------------------------------------------------------------
-// Name: sqrt()
+// Name: sqrt
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::sqrt() {
 
@@ -465,7 +466,7 @@ knumber_base *knumber_integer::sqrt() {
 }
 
 //------------------------------------------------------------------------------
-// Name: cbrt()
+// Name: cbrt
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::cbrt() {
 
@@ -484,7 +485,7 @@ knumber_base *knumber_integer::cbrt() {
 }
 
 //------------------------------------------------------------------------------
-// Name: pow(knumber_base *rhs)
+// Name: pow
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::pow(knumber_base *rhs) {
 
@@ -530,7 +531,7 @@ knumber_base *knumber_integer::pow(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: sin()
+// Name: sin
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::sin() {
 
@@ -540,7 +541,7 @@ knumber_base *knumber_integer::sin() {
 }
 
 //------------------------------------------------------------------------------
-// Name: cos()
+// Name: cos
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::cos() {
 
@@ -550,7 +551,7 @@ knumber_base *knumber_integer::cos() {
 }
 
 //------------------------------------------------------------------------------
-// Name: tan()
+// Name: tan
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::tan() {
 
@@ -560,7 +561,7 @@ knumber_base *knumber_integer::tan() {
 }
 
 //------------------------------------------------------------------------------
-// Name: asin()
+// Name: asin
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::asin() {
 
@@ -570,7 +571,7 @@ knumber_base *knumber_integer::asin() {
 }
 
 //------------------------------------------------------------------------------
-// Name: acos()
+// Name: acos
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::acos() {
 
@@ -580,7 +581,7 @@ knumber_base *knumber_integer::acos() {
 }
 
 //------------------------------------------------------------------------------
-// Name: atan()
+// Name: atan
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::atan() {
 
@@ -644,7 +645,7 @@ knumber_base *knumber_integer::atanh() {
 }
 
 //------------------------------------------------------------------------------
-// Name: factorial()
+// Name: factorial
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::factorial() {
 
@@ -658,7 +659,7 @@ knumber_base *knumber_integer::factorial() {
 }
 
 //------------------------------------------------------------------------------
-// Name: compare(knumber_base *rhs)
+// Name: compare
 //------------------------------------------------------------------------------
 int knumber_integer::compare(knumber_base *rhs) {
 
@@ -679,7 +680,7 @@ int knumber_integer::compare(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: toString(int precision) const
+// Name: toString
 //------------------------------------------------------------------------------
 QString knumber_integer::toString(int precision) const {
 
@@ -736,42 +737,42 @@ qint64 knumber_integer::toInt64() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: is_integer() const
+// Name: is_integer
 //------------------------------------------------------------------------------
 bool knumber_integer::is_integer() const {
 	return true;
 }
 
 //------------------------------------------------------------------------------
-// Name: is_zero() const
+// Name: is_zero
 //------------------------------------------------------------------------------
 bool knumber_integer::is_zero() const {
 	return mpz_sgn(mpz_) == 0;
 }
 
 //------------------------------------------------------------------------------
-// Name: sign() const
+// Name: sign
 //------------------------------------------------------------------------------
 int knumber_integer::sign() const {
 	return mpz_sgn(mpz_);
 }
 
 //------------------------------------------------------------------------------
-// Name: is_even() const
+// Name: is_even
 //------------------------------------------------------------------------------
 bool knumber_integer::is_even() const {
 	return mpz_even_p(mpz_);
 }
 
 //------------------------------------------------------------------------------
-// Name: is_odd() const
+// Name: is_odd
 //------------------------------------------------------------------------------
 bool knumber_integer::is_odd() const {
 	return mpz_odd_p(mpz_);
 }
 
 //------------------------------------------------------------------------------
-// Name: reciprocal()
+// Name: reciprocal
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::reciprocal() {
 	knumber_fraction *q = new knumber_fraction(this);

@@ -1,24 +1,22 @@
-// -*- indent-tabs-mode: t -*-
 /*
-    kCalculator, a simple scientific calculator for KDE
+Copyright (C) 2001 - 2013 Evan Teran
+                          evan.teran@gmail.com
 
-    Copyright (C) 1996-2000 Bernd Johannes Wuebben
-                            wuebben@kde.org
+Copyright (C) 1996 - 2000 Bernd Johannes Wuebben
+                          wuebben@kde.org
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation; either version 2 of 
+the License, or (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "kcalc_button.h"
@@ -32,7 +30,7 @@
 #include "kcalc_button.moc"
 
 //------------------------------------------------------------------------------
-// Name: KCalcButton(QWidget *parent)
+// Name: KCalcButton
 // Desc: constructor
 //------------------------------------------------------------------------------
 KCalcButton::KCalcButton(QWidget *parent) : KPushButton(parent), show_shortcut_mode_(false), mode_flags_(ModeNormal), size_() {
@@ -46,7 +44,7 @@ KCalcButton::KCalcButton(QWidget *parent) : KPushButton(parent), show_shortcut_m
 }
 
 //------------------------------------------------------------------------------
-// Name: KCalcButton(const QString &label, QWidget *parent, const QString &tooltip)
+// Name: KCalcButton
 // Desc: constructor
 //------------------------------------------------------------------------------
 KCalcButton::KCalcButton(const QString &label, QWidget *parent, const QString &tooltip) : KPushButton(label, parent), show_shortcut_mode_(false), mode_flags_(ModeNormal), size_() {
@@ -59,7 +57,7 @@ KCalcButton::KCalcButton(const QString &label, QWidget *parent, const QString &t
 }
 
 //------------------------------------------------------------------------------
-// Name: addMode(ButtonModeFlags mode, const QString &label, const QString &tooltip)
+// Name: addMode
 // Desc: 
 //------------------------------------------------------------------------------
 void KCalcButton::addMode(ButtonModeFlags mode, const QString &label, const QString &tooltip) {
@@ -78,7 +76,7 @@ void KCalcButton::addMode(ButtonModeFlags mode, const QString &label, const QStr
 }
 
 //------------------------------------------------------------------------------
-// Name: slotSetMode(ButtonModeFlags mode, bool flag)
+// Name: slotSetMode
 // Desc: 
 //------------------------------------------------------------------------------
 void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag) {
@@ -115,7 +113,7 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag) {
 }
 
 //------------------------------------------------------------------------------
-// Name: slotSetAccelDisplayMode(bool flag)
+// Name: slotSetAccelDisplayMode
 // Desc: 
 //------------------------------------------------------------------------------
 void KCalcButton::slotSetAccelDisplayMode(bool flag) {
@@ -137,7 +135,7 @@ void KCalcButton::slotSetAccelDisplayMode(bool flag) {
 }
 
 //------------------------------------------------------------------------------
-// Name: paintEvent(QPaintEvent *)
+// Name: paintEvent
 // Desc: draws the button
 //------------------------------------------------------------------------------
 void KCalcButton::paintEvent(QPaintEvent *) {
@@ -177,7 +175,7 @@ void KCalcButton::paintEvent(QPaintEvent *) {
 }
 
 //------------------------------------------------------------------------------
-// Name: sizeHint() const
+// Name: sizeHint
 // Desc: 
 //------------------------------------------------------------------------------
 QSize KCalcButton::sizeHint() const {
@@ -186,7 +184,7 @@ QSize KCalcButton::sizeHint() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: calcSizeHint()
+// Name: calcSizeHint
 // Desc: 
 //------------------------------------------------------------------------------
 void KCalcButton::calcSizeHint() {
@@ -211,7 +209,7 @@ void KCalcButton::calcSizeHint() {
 }
 
 //------------------------------------------------------------------------------
-// Name: setFont(const QFont &fnt)
+// Name: setFont
 // Desc: 
 //------------------------------------------------------------------------------
 void KCalcButton::setFont(const QFont &fnt) {
@@ -221,7 +219,7 @@ void KCalcButton::setFont(const QFont &fnt) {
 }
 
 //------------------------------------------------------------------------------
-// Name: setText(const QString &text)
+// Name: setText
 // Desc: 
 //------------------------------------------------------------------------------
 void KCalcButton::setText(const QString &text) {
@@ -237,7 +235,7 @@ void KCalcButton::setText(const QString &text) {
 }
 
 //------------------------------------------------------------------------------
-// Name: setToolTip(const QString &tip)
+// Name: setToolTip
 // Desc: 
 //------------------------------------------------------------------------------
 void KCalcButton::setToolTip(const QString &tip) {

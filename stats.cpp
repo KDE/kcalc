@@ -1,48 +1,43 @@
 /*
-    $Id$
+Copyright (C) 2001 - 2013 Evan Teran
+                          evan.teran@gmail.com
 
-    KCalc, a scientific calculator for the X window system using the
-    Qt widget libraries, available at no cost at http://www.troll.no
+Copyright (C) 1996 - 2000 Bernd Johannes Wuebben
+                          wuebben@kde.org
 
-    Copyright (C) 1996 Bernd Johannes Wuebben
-                       wuebben@math.cornell.edu
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation; either version 2 of 
+the License, or (at your option) any later version.
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 
 #include "stats.h"
 #include <kdebug.h>
 
 //------------------------------------------------------------------------------
-// Name: KStats()
+// Name: KStats
 // Desc: constructor
 //------------------------------------------------------------------------------
 KStats::KStats() : error_flag_(false) {
 }
 
 //------------------------------------------------------------------------------
-// Name: ~KStats()
+// Name: ~KStats
 // Desc: destructor
 //------------------------------------------------------------------------------
 KStats::~KStats() {
 }
 
 //------------------------------------------------------------------------------
-// Name: clearAll()
+// Name: clearAll
 // Desc: empties the data set
 //------------------------------------------------------------------------------
 void KStats::clearAll() {
@@ -50,7 +45,7 @@ void KStats::clearAll() {
 }
 
 //------------------------------------------------------------------------------
-// Name: enterData(const KNumber &data)
+// Name: enterData
 // Desc: adds an item to the data set
 //------------------------------------------------------------------------------
 void KStats::enterData(const KNumber &data) {
@@ -64,7 +59,7 @@ void KStats::enterData(const KNumber &data) {
 }
 
 //------------------------------------------------------------------------------
-// Name: clearLast()
+// Name: clearLast
 // Desc: remoaves the last item from the data set
 //------------------------------------------------------------------------------
 void KStats::clearLast() {
@@ -78,7 +73,7 @@ void KStats::clearLast() {
 }
 
 //------------------------------------------------------------------------------
-// Name: sum()
+// Name: sum
 // Desc: calculates the SUM of all values in the data set
 //------------------------------------------------------------------------------
 KNumber KStats::sum() const {
@@ -97,7 +92,7 @@ KNumber KStats::sum() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: median()
+// Name: median
 // Desc: calculates the MEDIAN of all values in the data set
 //------------------------------------------------------------------------------
 KNumber KStats::median() {
@@ -161,7 +156,7 @@ KNumber KStats::sum_of_squares() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: median()
+// Name: median
 // Desc: calculates the MEAN of all values in the data set
 //------------------------------------------------------------------------------
 KNumber KStats::mean() {
@@ -175,7 +170,7 @@ KNumber KStats::mean() {
 }
 
 //------------------------------------------------------------------------------
-// Name: median()
+// Name: median
 // Desc: calculates the STANDARD DEVIATION of all values in the data set
 //------------------------------------------------------------------------------
 KNumber KStats::std() {
@@ -189,7 +184,7 @@ KNumber KStats::std() {
 }
 
 //------------------------------------------------------------------------------
-// Name: median()
+// Name: median
 // Desc: calculates the SAMPLE STANDARD DEVIATION of all values in the data set
 //------------------------------------------------------------------------------
 KNumber KStats::sample_std() {
@@ -211,7 +206,7 @@ KNumber KStats::sample_std() {
 }
 
 //------------------------------------------------------------------------------
-// Name: count() const
+// Name: count
 // Desc: returns the amount of values in the data set
 //------------------------------------------------------------------------------
 int KStats::count() const {
@@ -220,7 +215,7 @@ int KStats::count() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: error()
+// Name: error
 // Desc: returns the error state AND clears it
 //------------------------------------------------------------------------------
 bool KStats::error() {
