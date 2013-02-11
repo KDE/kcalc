@@ -158,7 +158,7 @@
         <default>4</default>
     </entry>
     <entry name="HexadecimalGrouping" type="UInt" key="hexadecimalGrouping">
-        <label>Binary figures will be separated by a whitespace after every Xth number.</label>
+        <label>Hexadecimal figures will be separated by a whitespace after every Xth digit.</label>
         <whatsthis>
             For easier readability it's possible to visible group the individual digits into pairs
             for example instead of AF1C42 you can display AF 1C 42, by setting the setting to
