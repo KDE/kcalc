@@ -302,6 +302,8 @@ just do the following: Select <guilabel>Hex</guilabel> from the radio buttons. T
 use the letters <guibutton>A</guibutton> to <guibutton>F</guibutton>
 for numbers larger than 9. If you would like to see this number in binary, just select <guilabel>Bin</guilabel> from the radio buttons.</para>
 
+ <para>Binary, octal and hexadecimal numbers can be displayed as groups of digits separated by whitespaces. Such grouping can improve readability of numbers. For example, hexadecimal number <emphasis>AF1C42</emphasis> can be displayed as <emphasis>AF 1C 42</emphasis> with separation every second digit. Grouping can be turned off or tweaked. Select <menuchoice><guimenu>Settings</guimenu><guimenuitem>Configure &kcalc;...</guimenuitem></menuchoice> to bring up the configuration dialog and change the setting on <guilabel>General</guilabel> page as appropriate.</para>
+
 <para>You may want to select <guimenu>Show Bit Edit</guimenu> from the <guimenu>Settings</guimenu> menu to see selected bits.</para>
 
 <para>There are logic operators available in this mode. These operators are: 
