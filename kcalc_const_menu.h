@@ -22,9 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef KCALC_CONST_MENU_H_
 #define KCALC_CONST_MENU_H_
 
-#include <QList>
 #include <QMenu>
-
+#include <QString>
 
 enum ConstantCategory {
 	Mathematics     = 1,
@@ -58,7 +57,6 @@ signals:
 
 private:
     void init_all();
-
 
 public slots:
     void slotPassSignalThrough(QAction  *chosen_const);

@@ -22,14 +22,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef KCALC_CONST_BUTTON_H_
 #define KCALC_CONST_BUTTON_H_
 
-#include <klocale.h>
 #include "kcalc_button.h"
 
 struct science_constant;
 
 
-class KCalcConstButton : public KCalcButton
-{
+class KCalcConstButton : public KCalcButton {
     Q_OBJECT
 
 public:
@@ -56,6 +54,7 @@ private slots:
 private:
     void initPopupMenu();
 
+private:
     int button_num_;
 };
 

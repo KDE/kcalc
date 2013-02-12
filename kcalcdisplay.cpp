@@ -539,7 +539,15 @@ void KCalcDisplay::setText(const QString &string)
 			text_ = groupDigits(text_, hexadecimalGrouping_);
 			break;
 		}
-    }
+    } else if(special) {
+#if 0
+		// TODO: enable this code, it replaces the "inf" with an actual infinity
+		//       symbol, but what should be put into the clip board when they copy?
+		if(string.contains(QLatin1String("inf"))) {
+			text_.replace("inf", QChar(0x221e));
+		}
+#endif
+	}
 
     update();
     emit changedText(text_);

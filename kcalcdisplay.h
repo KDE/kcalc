@@ -50,16 +50,15 @@ class QStyleOptionFrame;
 */
 
 enum NumBase {
-    NB_BINARY = 2,
-    NB_OCTAL = 8,
+    NB_BINARY  = 2,
+    NB_OCTAL   = 8,
     NB_DECIMAL = 10,
-    NB_HEX = 16
+    NB_HEX     = 16
 };
 
 
-class KCalcDisplay : public QFrame
-{
-    Q_OBJECT
+class KCalcDisplay : public QFrame {
+	Q_OBJECT
 
 public:
     explicit KCalcDisplay(QWidget *parent = 0);

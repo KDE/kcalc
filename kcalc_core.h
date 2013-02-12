@@ -105,6 +105,7 @@ public:
     void TangensHyp(const KNumber &input);
 
     void Reset();
+
 private:
     KStats stats;
 

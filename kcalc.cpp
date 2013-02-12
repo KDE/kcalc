@@ -2282,7 +2282,7 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[]) {
 		ki18n(description),
 		KAboutData::License_GPL,
 		ki18n(
-			"&copy; 2008-2012, Evan Teran\n"
+			"&copy; 2008-2013, Evan Teran\n"
 			"&copy; 2000-2008, The KDE Team\n"
 			"&copy; 2003-2005, Klaus Niederkr" "\xc3\xbc" "ger\n"
 			"&copy; 1996-2000, Bernd Johannes Wuebben"),

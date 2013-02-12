@@ -25,18 +25,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "kcalc_core.h"
-#include <csignal>
 #include <kdebug.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 
 namespace {
-
-void fpe_handler(int fpe_parm) {
-    Q_UNUSED(fpe_parm);
-    // display_error = true;
-    //tmp_number = 0L;
-}
 
 KNumber Deg2Rad(const KNumber &x) {
 	return x * (KNumber::Pi() / KNumber(180));
@@ -178,30 +171,14 @@ const struct operator_data Operator[] = {
 
 
 CalcEngine::CalcEngine() : percent_mode_(false) {
-    //
-    // Basic initialization involves initializing the calcultion
-    // stack, and setting up the floating point excetion signal
-    // handler to trap the errors that the code can/has not been
-    // written to trap.
-    //
-#ifndef Q_OS_WIN
-    struct sigaction fpe_trap;
 
-    sigemptyset(&fpe_trap.sa_mask);
-    fpe_trap.sa_handler = &fpe_handler;
-#ifdef SA_RESTART
-    fpe_trap.sa_flags = SA_RESTART;
-#endif
-    sigaction(SIGFPE, &fpe_trap, NULL);
-#endif
     last_number_ = KNumber::Zero;
     error_ = false;
 }
 
-KNumber CalcEngine::lastOutput(bool &error) const
-{
-    error = error_;
-    return last_number_;
+KNumber CalcEngine::lastOutput(bool &error) const {
+	error = error_;
+	return last_number_;
 }
 
 void CalcEngine::ArcCosDeg(const KNumber &input)

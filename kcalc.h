@@ -45,9 +45,6 @@ class KCalcConstMenu;
   operation button is pressed, e.g. "core.Plus(display_number)".
  */
 
-#include <config-kcalc.h>
-
-// IMPORTANT this has to come after config-kcalc.h - DF: why?
 #include "kcalc_core.h"
 #include "kcalc_button.h"
 #include "kcalc_const_button.h"
@@ -228,12 +225,14 @@ private:
         AngleField,
         MemField
     };
+	
     enum AngleMode {
         DegMode = 0,
         RadMode,
         GradMode
     };
-    enum BaseMode {
+    
+	enum BaseMode {
         BinMode = 2,
         OctMode = 8,
         DecMode = 10,

@@ -33,27 +33,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // label is displayed.
 
 
-enum ButtonModeFlags {ModeNormal = 0, ModeShift = 1, ModeHyperbolic = 2};
+enum ButtonModeFlags {
+	ModeNormal     = 0,
+	ModeShift      = 1,
+	ModeHyperbolic = 2
+};
 
 
 // Each kcalc button can be in one of several modes.
 // The following class describes label, tooltip etc. for each mode...
-class ButtonMode
-{
+class ButtonMode {
 public:
-    ButtonMode() {}
-    ButtonMode(const QString &label,
-               const QString &tooltip)
-            : label(label), tooltip(tooltip) { }
+    ButtonMode() {
+	}
+	
+    ButtonMode(const QString &label, const QString &tooltip) : label(label), tooltip(tooltip) {
+	}
 
     QString label;
     QString tooltip;
 };
 
 
-class KCalcButton : public KPushButton
-{
-    Q_OBJECT
+class KCalcButton : public KPushButton {
+	Q_OBJECT
 
 public:
     explicit KCalcButton(QWidget *parent);
@@ -80,10 +83,10 @@ private:
     void calcSizeHint();
 
 private:
-    bool show_shortcut_mode_;
-    ButtonModeFlags mode_flags_;
+    bool                              show_shortcut_mode_;
+    ButtonModeFlags                   mode_flags_;
     QMap<ButtonModeFlags, ButtonMode> mode_;
-    QSize size_;
+    QSize                             size_;
 };
 
 #endif

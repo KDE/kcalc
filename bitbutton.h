@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class BitButton : public QAbstractButton {
 	Q_OBJECT
+
 public:
 	explicit BitButton(QWidget *parent = 0);
 	bool isOn() const;

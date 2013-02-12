@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "stats.h"
-#include <kdebug.h>
 
 //------------------------------------------------------------------------------
 // Name: KStats
@@ -49,13 +48,7 @@ void KStats::clearAll() {
 // Desc: adds an item to the data set
 //------------------------------------------------------------------------------
 void KStats::enterData(const KNumber &data) {
-
     data_.push_back(data);
-#ifdef DEBUG_STATS
-    kDebug() << "Added " << data.toQString();
-    kDebug() << "count" <<  data_.size();
-#endif
-
 }
 
 //------------------------------------------------------------------------------
@@ -66,9 +59,6 @@ void KStats::clearLast() {
 
 	if(!data_.isEmpty()) {
 	    data_.pop_back();
-	#ifdef DEBUG_STATS
-	    kDebug() << "count " << data_.size();
-	#endif
 	}
 }
 
@@ -83,10 +73,6 @@ KNumber KStats::sum() const {
     for (QVector<KNumber>::const_iterator p = data_.constBegin(); p != data_.constEnd(); ++p) {
         result += *p;
     }
-
-#ifdef DEBUG_STATS
-    kDebug() << "Sum " << result.toQString();
-#endif
 
     return result;
 }
@@ -126,22 +112,24 @@ KNumber KStats::median() {
 }
 
 //------------------------------------------------------------------------------
-// Name: std_kernel() 
+// Name: std_kernel
 // Desc: calculates the STD Kernel of all values in the data set
 //------------------------------------------------------------------------------
 KNumber KStats::std_kernel() {
     KNumber result           = KNumber::Zero;
     const KNumber mean_value = mean();
 
-    for (QVector<KNumber>::const_iterator p = data_.constBegin(); p != data_.constEnd(); ++p) {
-        result += (*p - mean_value) * (*p - mean_value);
-    }
+	if(mean_value.type() != KNumber::TYPE_ERROR) {
+	    for (QVector<KNumber>::const_iterator p = data_.constBegin(); p != data_.constEnd(); ++p) {
+	        result += (*p - mean_value) * (*p - mean_value);
+	    }
+	}
 
     return result;
 }
 
 //------------------------------------------------------------------------------
-// Name: std_kernel() const 
+// Name: sum_of_squares
 // Desc: calculates the SUM of all values in the data set (each squared)
 //------------------------------------------------------------------------------
 KNumber KStats::sum_of_squares() const {
@@ -156,7 +144,7 @@ KNumber KStats::sum_of_squares() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: median
+// Name: mean
 // Desc: calculates the MEAN of all values in the data set
 //------------------------------------------------------------------------------
 KNumber KStats::mean() {
@@ -170,7 +158,7 @@ KNumber KStats::mean() {
 }
 
 //------------------------------------------------------------------------------
-// Name: median
+// Name: std
 // Desc: calculates the STANDARD DEVIATION of all values in the data set
 //------------------------------------------------------------------------------
 KNumber KStats::std() {
@@ -184,7 +172,7 @@ KNumber KStats::std() {
 }
 
 //------------------------------------------------------------------------------
-// Name: median
+// Name: sample_std
 // Desc: calculates the SAMPLE STANDARD DEVIATION of all values in the data set
 //------------------------------------------------------------------------------
 KNumber KStats::sample_std() {
@@ -197,10 +185,6 @@ KNumber KStats::sample_std() {
 	}
 
 	result = (std_kernel() / KNumber(count() - 1)).sqrt();
-
-#ifdef DEBUG_STATS
-	kDebug() << "sample std: " << result.toQString();
-#endif
 
 	return result;
 }

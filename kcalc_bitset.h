@@ -23,8 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define KCALC_BITSET_H_
 
 #include <QFrame>
-#include <QAbstractButton>
-#include <QButtonGroup>
+
+class QButtonGroup;
 
 class KCalcBitset : public QFrame {
 	Q_OBJECT

@@ -22,9 +22,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "kcalc_bitset.h"
 #include "bitbutton.h"
 
+#include <QButtonGroup>
 #include <QGridLayout>
-#include <QLabel>
 #include <QHBoxLayout>
+#include <QLabel>
 #include <QPainter>
 
 #include "kcalc_bitset.moc"
