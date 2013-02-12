@@ -24,11 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "kcalc.h"
 
-#include <cctype>
 #include <clocale>
-#include <cstdio>
-#include <cstdlib>
-#include <unistd.h>
 
 #include <QApplication>
 #include <QCursor>
@@ -60,13 +56,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <ktoolbar.h>
 #include <kxmlguifactory.h>
 
-#include "kcalcdisplay.h"
-#include "kcalc_const_menu.h"
-#include "version.h"
-#include "kcalc_settings.h"
 #include "kcalc_bitset.h"
-
-class QActionGroup;
+#include "kcalc_const_menu.h"
+#include "kcalc_settings.h"
+#include "kcalcdisplay.h"
+#include "version.h"
 
 namespace {
 const char description[] = I18N_NOOP("KDE Calculator");

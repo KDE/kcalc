@@ -17,9 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <config-kcalc.h>
+#include "knumber_fraction.h"
 #include "knumber_integer.h"
 #include "knumber_float.h"
-#include "knumber_fraction.h"
 #include "knumber_error.h"
 #include <QScopedArrayPointer>
 #include <QDebug>

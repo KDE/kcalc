@@ -25,7 +25,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "kcalc_core.h"
-#include <config-kcalc.h>
 #include <csignal>
 #include <kdebug.h>
 #include <klocale.h>
