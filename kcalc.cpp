@@ -832,7 +832,6 @@ void KCalculator::keyPressEvent(QKeyEvent *e) {
 	// enter numbers using the keypad
 	if(KNumber::decimalSeparator() != ".") {
 		if(e->key() == Qt::Key_Period && e->modifiers() & Qt::KeypadModifier) {
-			//emit slotPeriodclicked();
 			pbPeriod->animateClick();
 		}
 	}
