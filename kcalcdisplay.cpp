@@ -238,15 +238,15 @@ void KCalcDisplay::slotCopy() {
 	switch(num_base_) {
 	case NB_HEX:
 		txt.prepend(QLatin1String("0x"));
-		txt.replace(' ', "");
+		txt.remove(QLatin1Char(' '));
 		break;
 	case NB_BINARY:
 		txt.prepend(QLatin1String("0b"));
-		txt.replace(' ', "");
+		txt.remove(QLatin1Char(' '));
 		break;
 	case NB_OCTAL:
 		txt.prepend(QLatin1String("0"));
-		txt.replace(' ', "");
+		txt.remove(QLatin1Char(' '));
 		break;
 	case NB_DECIMAL:
 		break;
@@ -554,7 +554,7 @@ QString KCalcDisplay::groupDigits(const QString &displayString, int numDigits) {
 
 	for (int i = stringLength; i > 0 ; i--){
 		if(i % numDigits == 0 && i != stringLength) {
-			tmpDisplayString = tmpDisplayString + " ";
+			tmpDisplayString = tmpDisplayString + ' ';
 		}
 
 		tmpDisplayString = tmpDisplayString + displayString[stringLength - i];
