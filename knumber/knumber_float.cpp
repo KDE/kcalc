@@ -683,7 +683,12 @@ knumber_base *knumber_float::pow(knumber_base *rhs) {
 
 	if(knumber_integer *const p = dynamic_cast<knumber_integer *>(rhs)) {
 		mpf_pow_ui(mpf_, mpf_, mpz_get_ui(p->mpz_));
-		return this;
+
+		if(p->sign() < 0) {
+			return reciprocal();
+		} else {
+			return this;
+		}
 	} else if(knumber_float *const p = dynamic_cast<knumber_float *>(rhs)) {
 		return execute_libc_func< ::pow>(mpf_get_d(mpf_), mpf_get_d(p->mpf_));
 	} else if(knumber_fraction *const p = dynamic_cast<knumber_fraction *>(rhs)) {

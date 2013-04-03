@@ -453,8 +453,12 @@ knumber_base *knumber_fraction::pow(knumber_base *rhs) {
 		mpq_canonicalize(mpq_);
 		mpz_clear(num);
 		mpz_clear(den);
-		return this;
 
+		if(p->sign() < 0) {
+			return reciprocal();
+		} else {
+			return this;
+		}
 	} else if(knumber_float *const p = dynamic_cast<knumber_float *>(rhs)) {
 		Q_UNUSED(p);
 		knumber_float *f = new knumber_float(this);
