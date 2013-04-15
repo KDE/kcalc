@@ -1,7 +1,7 @@
 /*
 Copyright (C) 2001 - 2013 Evan Teran
                           evan.teran@gmail.com
-						  
+
 Copyright (C) 2003 - 2005 Klaus Niederkrueger
                           kniederk@math.uni-koeln.de
 
@@ -45,7 +45,7 @@ QString numtypeToString(int arg) {
 
 void checkResult(const QString &string, const KNumber &result, const QString &desired_string, int desired) {
 
-	std::cout 
+	std::cout
 		<< "Testing result of: "
 		<< qPrintable(string)
 		<< " should give "
@@ -72,13 +72,13 @@ void checkResult(const QString &string, const KNumber &result, const QString &de
 
 void checkTruth(const QString &string, bool computation, bool desired_result) {
 
-	std::cout 
-		<< "Testing truth of: " 
-		<< qPrintable(string) 
-		<< " should be " 
-		<< desired_result 
-		<< " and is " 
-		<< computation 
+	std::cout
+		<< "Testing truth of: "
+		<< qPrintable(string)
+		<< " should be "
+		<< desired_result
+		<< " and is "
+		<< computation
 		<< " ... ";
 
 	if (computation == desired_result) {
@@ -92,7 +92,7 @@ void checkTruth(const QString &string, bool computation, bool desired_result) {
 
 void checkType(const QString &string, int test_arg, int desired) {
 
-	std::cout 
+	std::cout
 		<< "Testing type of: "
 		<< qPrintable(string)
 		<< " should give "
@@ -547,7 +547,19 @@ void testingPower() {
 
 	checkResult("KNumber::Pi() ^ KNumber::Pi()", KNumber::Pi().pow(KNumber::Pi()), QLatin1String("36.4621596072"), KNumber::TYPE_FLOAT);
 	checkResult("KNumber::Euler() ^ KNumber::Pi()", KNumber::Euler().pow(KNumber::Pi()), QLatin1String("23.1406926328"), KNumber::TYPE_FLOAT);
-	
+
+
+	checkResult("KNumber(2.0) ^ KNumber(0.5)", KNumber(2.0).pow(KNumber(0.5)), QLatin1String("1.41421356237"), KNumber::TYPE_FLOAT);
+	checkResult("KNumber(2.0) ^ KNumber(-0.5)", KNumber(2.0).pow(KNumber(-0.5)), QLatin1String("0.707106781187"), KNumber::TYPE_FLOAT);
+
+
+	checkResult("KNumber(-2.0).exp()", KNumber(-2.0).exp(), QLatin1String("0.135335283237"), KNumber::TYPE_FLOAT);
+	checkResult("KNumber::Euler() ^ KNumber(-2.0)", KNumber::Euler().pow(KNumber(-2.0)), QLatin1String("0.135335283237"), KNumber::TYPE_FLOAT);
+
+
+	checkResult("KNumber(2.0).exp()", KNumber(2.0).exp(), QLatin1String("7.38905609893"), KNumber::TYPE_FLOAT);
+	checkResult("KNumber::Euler() ^ KNumber(2.0)", KNumber::Euler().pow(KNumber(2.0)), QLatin1String("7.38905609893"), KNumber::TYPE_FLOAT);
+
 	// TODO: kinda odd that this ends up being an integer
 	// i guess since my euler constant is only 100 digits, we've exceeded the fractional part
 	checkResult("KNumber::Euler() ^ 1000", KNumber::Euler().pow(KNumber(1000)), QLatin1String("1.97007111402e+434"), KNumber::TYPE_INTEGER);
@@ -738,27 +750,27 @@ void testingFloatPrecision() {
 
 	KNumber::setDefaultFloatPrecision(1000);
 	checkResult("Precision >= 1000: (KNumber(1) + KNumber(\"1e-980\")) - KNumber(1)", (KNumber(1) + KNumber(QLatin1String("1e-980"))) - KNumber(1), QLatin1String("1e-980"), KNumber::TYPE_FLOAT);
-	
+
 	KNumber::setDefaultFloatPrecision(20);
 	checkResult("Precision >= 20: sin(KNumber(30))", sin(KNumber(30) * (KNumber::Pi() / KNumber(180))), QLatin1String("0.5"), KNumber::TYPE_FLOAT);
-	
+
 }
 
 void testingOutput() {
 
 	KNumber::setDefaultFloatOutput(false);
 	checkResult("Fractional output: KNumber(\"1/4\")", KNumber(QLatin1String("1/4")), QLatin1String("1/4"), KNumber::TYPE_FRACTION);
-	
+
 	KNumber::setDefaultFloatOutput(true);
 	checkResult("Float: KNumber(\"1/4\")", KNumber(QLatin1String("1/4")), QLatin1String("0.25"), KNumber::TYPE_FRACTION);
-	
+
 	KNumber::setDefaultFloatOutput(false);
 	KNumber::setSplitoffIntegerForFractionOutput(true);
 	checkResult("Fractional output: KNumber(\"1/4\")", KNumber(QLatin1String("1/4")), QLatin1String("1/4"), KNumber::TYPE_FRACTION);
 	checkResult("Fractional output: KNumber(\"-1/4\")", KNumber(QLatin1String("-1/4")), QLatin1String("-1/4"), KNumber::TYPE_FRACTION);
 	checkResult("Fractional output: KNumber(\"21/4\")", KNumber(QLatin1String("21/4")), QLatin1String("5 1/4"), KNumber::TYPE_FRACTION);
 	checkResult("Fractional output: KNumber(\"-21/4\")", KNumber(QLatin1String("-21/4")), QLatin1String("-5 1/4"), KNumber::TYPE_FRACTION);
-	
+
 	KNumber::setSplitoffIntegerForFractionOutput(false);
 	checkResult("Fractional output: KNumber(\"1/4\")", KNumber(QLatin1String("1/4")), QLatin1String("1/4"), KNumber::TYPE_FRACTION);
 	checkResult("Fractional output: KNumber(\"-1/4\")", KNumber(QLatin1String("-1/4")), QLatin1String("-1/4"), KNumber::TYPE_FRACTION);

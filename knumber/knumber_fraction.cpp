@@ -31,28 +31,28 @@ bool knumber_fraction::default_fractional_output             = true;
 bool knumber_fraction::split_off_integer_for_fraction_output = false;
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 void knumber_fraction::set_default_fractional_input(bool value) {
 	default_fractional_input = value;
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 void knumber_fraction::set_default_fractional_output(bool value) {
 	default_fractional_output = value;
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 void knumber_fraction::set_split_off_integer_for_fraction_output(bool value) {
 	split_off_integer_for_fraction_output = value;
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_fraction::knumber_fraction(const QString &s) {
 	mpq_init(mpq_);
@@ -61,7 +61,7 @@ knumber_fraction::knumber_fraction(const QString &s) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_fraction::knumber_fraction(qint64 num, quint64 den) {
 	mpq_init(mpq_);
@@ -70,7 +70,7 @@ knumber_fraction::knumber_fraction(qint64 num, quint64 den) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_fraction::knumber_fraction(quint64 num, quint64 den) {
 	mpq_init(mpq_);
@@ -79,7 +79,7 @@ knumber_fraction::knumber_fraction(quint64 num, quint64 den) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_fraction::knumber_fraction(mpq_t mpq) {
 	mpq_init(mpq_);
@@ -87,7 +87,7 @@ knumber_fraction::knumber_fraction(mpq_t mpq) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_fraction::knumber_fraction(const knumber_fraction *value) {
 	mpq_init(mpq_);
@@ -95,7 +95,7 @@ knumber_fraction::knumber_fraction(const knumber_fraction *value) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_fraction::knumber_fraction(const knumber_integer *value) {
 	mpq_init(mpq_);
@@ -104,7 +104,7 @@ knumber_fraction::knumber_fraction(const knumber_integer *value) {
 
 #if 0
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_fraction::knumber_fraction(const knumber_float *value) {
 	mpq_init(mpq_);
@@ -113,31 +113,31 @@ knumber_fraction::knumber_fraction(const knumber_float *value) {
 #endif
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::clone() {
 	return new knumber_fraction(this);
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_fraction::~knumber_fraction() {
 	mpq_clear(mpq_);
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 bool knumber_fraction::is_integer() const {
 	return (mpz_cmp_ui(mpq_denref(mpq_), 1) == 0);
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::add(knumber_base *rhs) {
-	
+
 	if(knumber_integer *const p = dynamic_cast<knumber_integer *>(rhs)) {
 		knumber_fraction q(p);
 		mpq_add(mpq_, mpq_, q.mpq_);
@@ -154,13 +154,13 @@ knumber_base *knumber_fraction::add(knumber_base *rhs) {
 		delete this;
 		return e;
 	}
-	
+
 	Q_ASSERT(0);
 	return 0;
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::sub(knumber_base *rhs) {
 
@@ -180,13 +180,13 @@ knumber_base *knumber_fraction::sub(knumber_base *rhs) {
 		delete this;
 		return e->neg();
 	}
-	
+
 	Q_ASSERT(0);
 	return 0;
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::mul(knumber_base *rhs) {
 
@@ -218,13 +218,13 @@ knumber_base *knumber_fraction::mul(knumber_base *rhs) {
 			return e;
 		}
 	}
-	
+
 	Q_ASSERT(0);
 	return 0;
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::div(knumber_base *rhs) {
 
@@ -249,7 +249,7 @@ knumber_base *knumber_fraction::div(knumber_base *rhs) {
 		mpq_div(mpq_, mpq_, p->mpq_);
 		return this;
 	} else if(knumber_error *const p = dynamic_cast<knumber_error *>(rhs)) {
-	
+
 		if(p->sign() > 0) {
 			delete this;
 			return new knumber_integer(0);
@@ -257,18 +257,18 @@ knumber_base *knumber_fraction::div(knumber_base *rhs) {
 			delete this;
 			return new knumber_integer(0);
 		}
-		
+
 		knumber_error *e = new knumber_error(p);
 		delete this;
 		return e;
 	}
-	
+
 	Q_ASSERT(0);
 	return 0;
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::mod(knumber_base *rhs) {
 
@@ -283,7 +283,7 @@ knumber_base *knumber_fraction::mod(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::bitwise_and(knumber_base *rhs) {
 
@@ -294,7 +294,7 @@ knumber_base *knumber_fraction::bitwise_and(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::bitwise_xor(knumber_base *rhs) {
 
@@ -305,7 +305,7 @@ knumber_base *knumber_fraction::bitwise_xor(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::bitwise_or(knumber_base *rhs) {
 
@@ -316,7 +316,7 @@ knumber_base *knumber_fraction::bitwise_or(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::bitwise_shift(knumber_base *rhs) {
 
@@ -327,7 +327,7 @@ knumber_base *knumber_fraction::bitwise_shift(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::neg() {
 	mpq_neg(mpq_, mpq_);
@@ -335,7 +335,7 @@ knumber_base *knumber_fraction::neg() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::abs() {
 	mpq_abs(mpq_, mpq_);
@@ -343,7 +343,7 @@ knumber_base *knumber_fraction::abs() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::cmp() {
 
@@ -352,7 +352,7 @@ knumber_base *knumber_fraction::cmp() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::sqrt() {
 
@@ -360,7 +360,7 @@ knumber_base *knumber_fraction::sqrt() {
 		delete this;
 		return new knumber_error(knumber_error::ERROR_UNDEFINED);
 	}
-	
+
 	if(mpz_perfect_square_p(mpq_numref(mpq_)) && mpz_perfect_square_p(mpq_denref(mpq_))) {
 		mpz_t num;
 		mpz_t den;
@@ -384,20 +384,20 @@ knumber_base *knumber_fraction::sqrt() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::cbrt() {
 
 	// TODO: figure out how to properly use mpq_numref/mpq_denref here
 	mpz_t num;
 	mpz_t den;
-	
+
 	mpz_init(num);
 	mpz_init(den);
-	
+
 	mpq_get_num(num, mpq_);
 	mpq_get_den(den, mpq_);
-	
+
 	if(mpz_root(num, num, 3) && mpz_root(den, den, 3)) {
 		mpq_set_num(mpq_, num);
 		mpq_set_den(mpq_, den);
@@ -415,10 +415,10 @@ knumber_base *knumber_fraction::cbrt() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::factorial() {
-	
+
 	if(sign() < 0) {
 		delete this;
 		return new knumber_error(knumber_error::ERROR_UNDEFINED);
@@ -430,13 +430,13 @@ knumber_base *knumber_fraction::factorial() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::pow(knumber_base *rhs) {
 
 	// TODO: figure out how to properly use mpq_numref/mpq_denref here
 	if(knumber_integer *const p = dynamic_cast<knumber_integer *>(rhs)) {
-		
+
 		mpz_t num;
 		mpz_t den;
 
@@ -445,7 +445,7 @@ knumber_base *knumber_fraction::pow(knumber_base *rhs) {
 
 		mpq_get_num(num, mpq_);
 		mpq_get_den(den, mpq_);
-		
+
 		mpz_pow_ui(num, num, mpz_get_ui(p->mpz_));
 		mpz_pow_ui(den, den, mpz_get_ui(p->mpz_));
 		mpq_set_num(mpq_, num);
@@ -466,8 +466,7 @@ knumber_base *knumber_fraction::pow(knumber_base *rhs) {
 		return f->pow(rhs);
 	} else if(knumber_fraction *const p = dynamic_cast<knumber_fraction *>(rhs)) {
 
-
-		// ok, so if any part of the number is > 1,000,000, then we risk 
+		// ok, so if any part of the number is > 1,000,000, then we risk
 		// the pow function overflowing... so we'll just convert to float to be safe
 		// TODO: at some point, we should figure out exactly what the threashold is
 		//       and if there is a better way to determine if the pow function will
@@ -477,7 +476,7 @@ knumber_base *knumber_fraction::pow(knumber_base *rhs) {
 			delete this;
 			return f->pow(rhs);
 		}
-		
+
 		mpz_t lhs_num;
 		mpz_t lhs_den;
 		mpz_t rhs_num;
@@ -495,7 +494,7 @@ knumber_base *knumber_fraction::pow(knumber_base *rhs) {
 
 		mpz_pow_ui(lhs_num, lhs_num, mpz_get_ui(rhs_num));
 		mpz_pow_ui(lhs_den, lhs_den, mpz_get_ui(rhs_num));
-		
+
 		if(mpz_sgn(lhs_num) < 0 && mpz_even_p(rhs_den)) {
 			mpz_clear(lhs_num);
 			mpz_clear(lhs_den);
@@ -504,7 +503,7 @@ knumber_base *knumber_fraction::pow(knumber_base *rhs) {
 			delete this;
 			return new knumber_error(knumber_error::ERROR_UNDEFINED);
 		}
-		
+
 		if(mpz_sgn(lhs_den) < 0 && mpz_even_p(rhs_den)) {
 			mpz_clear(lhs_num);
 			mpz_clear(lhs_den);
@@ -513,12 +512,12 @@ knumber_base *knumber_fraction::pow(knumber_base *rhs) {
 			delete this;
 			return new knumber_error(knumber_error::ERROR_UNDEFINED);
 		}
-		
+
 		const int n1 = mpz_root(lhs_num, lhs_num, mpz_get_ui(rhs_den));
 		const int n2 = mpz_root(lhs_den, lhs_den, mpz_get_ui(rhs_den));
 
 		if(n1 && n2) {
-			
+
 			mpq_set_num(mpq_, lhs_num);
 			mpq_set_den(mpq_, lhs_den);
 			mpq_canonicalize(mpq_);
@@ -526,7 +525,7 @@ knumber_base *knumber_fraction::pow(knumber_base *rhs) {
 			mpz_clear(lhs_den);
 			mpz_clear(rhs_num);
 			mpz_clear(rhs_den);
-			
+
 			if(p->sign() < 0) {
 				return reciprocal();
 			} else {
@@ -539,11 +538,8 @@ knumber_base *knumber_fraction::pow(knumber_base *rhs) {
 			mpz_clear(rhs_den);
 			knumber_float *f = new knumber_float(this);
 			delete this;
-			if(p->sign() < 0) {
-				return f->pow(rhs)->reciprocal();
-			} else {
-				return f->pow(rhs);
-			}
+
+			return f->pow(rhs);
 		}
 
 	} else if(knumber_error *const p = dynamic_cast<knumber_error *>(rhs)) {
@@ -561,13 +557,13 @@ knumber_base *knumber_fraction::pow(knumber_base *rhs) {
 			return e;
 		}
 	}
-	
+
 	Q_ASSERT(0);
 	return 0;
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::sin() {
 
@@ -577,7 +573,7 @@ knumber_base *knumber_fraction::sin() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::cos() {
 
@@ -587,7 +583,7 @@ knumber_base *knumber_fraction::cos() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::tan() {
 
@@ -597,7 +593,7 @@ knumber_base *knumber_fraction::tan() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::asin() {
 
@@ -607,7 +603,7 @@ knumber_base *knumber_fraction::asin() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::acos() {
 
@@ -617,7 +613,7 @@ knumber_base *knumber_fraction::acos() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::atan() {
 
@@ -627,7 +623,7 @@ knumber_base *knumber_fraction::atan() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::sinh() {
 	knumber_float *f = new knumber_float(this);
@@ -636,7 +632,7 @@ knumber_base *knumber_fraction::sinh() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::cosh() {
 	knumber_float *f = new knumber_float(this);
@@ -645,7 +641,7 @@ knumber_base *knumber_fraction::cosh() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::tanh() {
 	knumber_float *f = new knumber_float(this);
@@ -654,7 +650,7 @@ knumber_base *knumber_fraction::tanh() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::asinh() {
 	knumber_float *f = new knumber_float(this);
@@ -663,7 +659,7 @@ knumber_base *knumber_fraction::asinh() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::acosh() {
 	knumber_float *f = new knumber_float(this);
@@ -672,7 +668,7 @@ knumber_base *knumber_fraction::acosh() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::atanh() {
 	knumber_float *f = new knumber_float(this);
@@ -681,7 +677,7 @@ knumber_base *knumber_fraction::atanh() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 int knumber_fraction::compare(knumber_base *rhs) {
 
@@ -698,38 +694,38 @@ int knumber_fraction::compare(knumber_base *rhs) {
 		//       at the moment
 		return -1;
 	}
-	
+
 	Q_ASSERT(0);
 	return 0;
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 QString knumber_fraction::toString(int precision) const {
 
 
 	if(knumber_fraction::default_fractional_output) {
-	
+
 		// TODO: figure out how to properly use mpq_numref/mpq_denref here
-	
+
 		knumber_integer integer_part(this);
-		if(split_off_integer_for_fraction_output && !integer_part.is_zero()) {		
-			
+		if(split_off_integer_for_fraction_output && !integer_part.is_zero()) {
+
 			mpz_t num;
 			mpz_init(num);
 			mpq_get_num(num, mpq_);
-			
+
 			knumber_integer integer_part_1(this);
-			
+
 			mpz_mul(integer_part.mpz_, integer_part.mpz_, mpq_denref(mpq_));
 			mpz_sub(num, num, integer_part.mpz_);
-			
+
 			if(mpz_sgn(num) < 0) {
 				mpz_neg(num, num);
 			}
 
-    		const size_t size = gmp_snprintf(NULL, 0, "%Zd %Zd/%Zd", integer_part_1.mpz_, num, mpq_denref(mpq_)) + 1;	
+    		const size_t size = gmp_snprintf(NULL, 0, "%Zd %Zd/%Zd", integer_part_1.mpz_, num, mpq_denref(mpq_)) + 1;
 			QScopedArrayPointer<char> buf(new char[size]);
     		gmp_snprintf(&buf[0], size, "%Zd %Zd/%Zd", integer_part_1.mpz_, num, mpq_denref(mpq_));
 
@@ -737,12 +733,12 @@ QString knumber_fraction::toString(int precision) const {
 
     		return QLatin1String(&buf[0]);
 		} else {
-	
+
 			mpz_t num;
 			mpz_init(num);
 			mpq_get_num(num, mpq_);
 
-    		const size_t size = gmp_snprintf(NULL, 0, "%Zd/%Zd", num, mpq_denref(mpq_)) + 1;	
+    		const size_t size = gmp_snprintf(NULL, 0, "%Zd/%Zd", num, mpq_denref(mpq_)) + 1;
 			QScopedArrayPointer<char> buf(new char[size]);
     		gmp_snprintf(&buf[0], size, "%Zd/%Zd", num, mpq_denref(mpq_));
 
@@ -756,21 +752,21 @@ QString knumber_fraction::toString(int precision) const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 bool knumber_fraction::is_zero() const {
 	return mpq_sgn(mpq_) == 0;
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 int knumber_fraction::sign() const {
 	return mpq_sgn(mpq_);
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::reciprocal() {
 
@@ -779,7 +775,7 @@ knumber_base *knumber_fraction::reciprocal() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_integer *knumber_fraction::numerator() const {
 
@@ -792,7 +788,7 @@ knumber_integer *knumber_fraction::numerator() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_integer *knumber_fraction::denominator() const {
 
@@ -805,7 +801,7 @@ knumber_integer *knumber_fraction::denominator() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::log2() {
 	knumber_float *f = new knumber_float(this);
@@ -814,7 +810,7 @@ knumber_base *knumber_fraction::log2() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::log10() {
 	knumber_float *f = new knumber_float(this);
@@ -823,7 +819,7 @@ knumber_base *knumber_fraction::log10() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::ln() {
 	knumber_float *f = new knumber_float(this);
@@ -832,7 +828,7 @@ knumber_base *knumber_fraction::ln() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::exp2() {
 	knumber_float *f = new knumber_float(this);
@@ -841,7 +837,7 @@ knumber_base *knumber_fraction::exp2() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::exp10() {
 	knumber_float *f = new knumber_float(this);
@@ -850,7 +846,7 @@ knumber_base *knumber_fraction::exp10() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::exp() {
 	knumber_float *f = new knumber_float(this);
@@ -859,21 +855,21 @@ knumber_base *knumber_fraction::exp() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 quint64 knumber_fraction::toUint64() const {
 	return knumber_integer(this).toUint64();
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 qint64 knumber_fraction::toInt64() const {
 	return knumber_integer(this).toInt64();
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_fraction::bin(knumber_base *rhs) {
 	Q_UNUSED(rhs);
