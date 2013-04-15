@@ -691,9 +691,9 @@ knumber_base *knumber_float::pow(knumber_base *rhs) {
 		}
 	} else if(knumber_float *const p = dynamic_cast<knumber_float *>(rhs)) {
 		if(p->sign() < 0) {
-			return execute_libc_func< ::pow>(mpf_get_d(mpf_), mpf_get_d(p->mpf_));
-		} else {
 			return execute_libc_func< ::pow>(mpf_get_d(mpf_), -1 * mpf_get_d(p->mpf_));
+		} else {
+			return execute_libc_func< ::pow>(mpf_get_d(mpf_), mpf_get_d(p->mpf_));
 		}
 	} else if(knumber_fraction *const p = dynamic_cast<knumber_fraction *>(rhs)) {
 		knumber_float f(p);
