@@ -76,7 +76,7 @@ knumber_base *knumber_float::execute_libc_func(double x, double y) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_float::knumber_float(const QString &s) {
 
@@ -85,7 +85,7 @@ knumber_float::knumber_float(const QString &s) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_float::knumber_float(double value) {
 
@@ -97,7 +97,7 @@ knumber_float::knumber_float(double value) {
 
 #ifdef HAVE_LONG_DOUBLE
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_float::knumber_float(long double value) {
 
@@ -109,16 +109,16 @@ knumber_float::knumber_float(long double value) {
 #endif
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_float::knumber_float(mpf_t mpf) {
-	
+
 	mpf_init(mpf_);
 	mpf_set(mpf_, mpf);
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_float::knumber_float(const knumber_float *value) {
 
@@ -126,7 +126,7 @@ knumber_float::knumber_float(const knumber_float *value) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_float::knumber_float(const knumber_integer *value) {
 
@@ -135,7 +135,7 @@ knumber_float::knumber_float(const knumber_integer *value) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_float::knumber_float(const knumber_fraction *value) {
 
@@ -144,7 +144,7 @@ knumber_float::knumber_float(const knumber_fraction *value) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::clone() {
 
@@ -152,7 +152,7 @@ knumber_base *knumber_float::clone() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_float::~knumber_float() {
 
@@ -160,7 +160,7 @@ knumber_float::~knumber_float() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::add(knumber_base *rhs) {
 
@@ -184,7 +184,7 @@ knumber_base *knumber_float::add(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::sub(knumber_base *rhs) {
 
@@ -208,7 +208,7 @@ knumber_base *knumber_float::sub(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::mul(knumber_base *rhs) {
 
@@ -242,7 +242,7 @@ knumber_base *knumber_float::mul(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::div(knumber_base *rhs) {
 
@@ -280,12 +280,12 @@ knumber_base *knumber_float::div(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::mod(knumber_base *rhs) {
 
 	Q_UNUSED(rhs);
-	
+
 	if(rhs->is_zero()) {
 		delete this;
 		return new knumber_error(knumber_error::ERROR_UNDEFINED);
@@ -296,27 +296,27 @@ knumber_base *knumber_float::mod(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::bitwise_and(knumber_base *rhs) {
-	
+
 	Q_UNUSED(rhs);
 	delete this;
 	return new knumber_integer(0);
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::bitwise_xor(knumber_base *rhs) {
-	
+
 	Q_UNUSED(rhs);
 	delete this;
 	return new knumber_integer(0);
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::bitwise_or(knumber_base *rhs) {
 
@@ -326,7 +326,7 @@ knumber_base *knumber_float::bitwise_or(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::bitwise_shift(knumber_base *rhs) {
 
@@ -336,7 +336,7 @@ knumber_base *knumber_float::bitwise_shift(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::neg() {
 
@@ -345,7 +345,7 @@ knumber_base *knumber_float::neg() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::cmp() {
 
@@ -354,7 +354,7 @@ knumber_base *knumber_float::cmp() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::abs() {
 
@@ -363,7 +363,7 @@ knumber_base *knumber_float::abs() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::sqrt() {
 
@@ -385,7 +385,7 @@ knumber_base *knumber_float::sqrt() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::cbrt() {
 
@@ -405,14 +405,14 @@ knumber_base *knumber_float::cbrt() {
 		return execute_libc_func< ::pow>(x, 1.0 / 3.0);
 #else
 		return execute_libc_func< ::cbrt>(x);
-#endif		
+#endif
 	}
 #endif
 	return this;
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::factorial() {
 
@@ -427,7 +427,7 @@ knumber_base *knumber_float::factorial() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::sin() {
 
@@ -447,11 +447,11 @@ knumber_base *knumber_float::sin() {
 		return execute_libc_func< ::sin>(x);
 	}
 #endif
-	
+
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::cos() {
 
@@ -463,7 +463,7 @@ knumber_base *knumber_float::cos() {
 	mpfr_clear(mpfr);
 	return this;
 #else
-	const double x = mpf_get_d(mpf_);	
+	const double x = mpf_get_d(mpf_);
 	if(isinf(x)) {
 		delete this;
 		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
@@ -474,7 +474,7 @@ knumber_base *knumber_float::cos() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::tan() {
 
@@ -497,14 +497,14 @@ knumber_base *knumber_float::tan() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::asin() {
 	if(mpf_cmp_d(mpf_, 1.0) > 0 || mpf_cmp_d(mpf_, -1.0) < 0) {
 		delete this;
 		return new knumber_error(knumber_error::ERROR_UNDEFINED);
 	}
-	
+
 #ifdef KNUMBER_USE_MPFR
 	mpfr_t mpfr;
 	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
@@ -524,14 +524,14 @@ knumber_base *knumber_float::asin() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------s
 knumber_base *knumber_float::acos() {
 	if(mpf_cmp_d(mpf_, 1.0) > 0 || mpf_cmp_d(mpf_, -1.0) < 0) {
 		delete this;
 		return new knumber_error(knumber_error::ERROR_UNDEFINED);
 	}
-	
+
 #ifdef KNUMBER_USE_MPFR
 	mpfr_t mpfr;
 	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
@@ -551,7 +551,7 @@ knumber_base *knumber_float::acos() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::atan() {
 
@@ -574,7 +574,7 @@ knumber_base *knumber_float::atan() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::sinh() {
 #ifdef KNUMBER_USE_MPFR
@@ -592,7 +592,7 @@ knumber_base *knumber_float::sinh() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::cosh() {
 #ifdef KNUMBER_USE_MPFR
@@ -609,7 +609,7 @@ knumber_base *knumber_float::cosh() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::tanh() {
 #ifdef KNUMBER_USE_MPFR
@@ -626,7 +626,7 @@ knumber_base *knumber_float::tanh() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::asinh() {
 #ifdef KNUMBER_USE_MPFR
@@ -643,7 +643,7 @@ knumber_base *knumber_float::asinh() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::acosh() {
 #ifdef KNUMBER_USE_MPFR
@@ -660,7 +660,7 @@ knumber_base *knumber_float::acosh() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::atanh() {
 #ifdef KNUMBER_USE_MPFR
@@ -677,7 +677,7 @@ knumber_base *knumber_float::atanh() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::pow(knumber_base *rhs) {
 
@@ -690,18 +690,10 @@ knumber_base *knumber_float::pow(knumber_base *rhs) {
 			return this;
 		}
 	} else if(knumber_float *const p = dynamic_cast<knumber_float *>(rhs)) {
-		if(p->sign() < 0) {
-			return execute_libc_func< ::pow>(mpf_get_d(mpf_), mpf_get_d(p->mpf_));
-		} else {
-			return execute_libc_func< ::pow>(mpf_get_d(mpf_), -1 * mpf_get_d(p->mpf_));
-		}
+		return execute_libc_func< ::pow>(mpf_get_d(mpf_), mpf_get_d(p->mpf_));
 	} else if(knumber_fraction *const p = dynamic_cast<knumber_fraction *>(rhs)) {
 		knumber_float f(p);
-		if(p->sign() < 0) {
-			return execute_libc_func< ::pow>(mpf_get_d(mpf_), -1 * mpf_get_d(f.mpf_));
-		} else {
-			return execute_libc_func< ::pow>(mpf_get_d(mpf_), mpf_get_d(f.mpf_));
-		}
+		return execute_libc_func< ::pow>(mpf_get_d(mpf_), mpf_get_d(f.mpf_));
 	} else if(knumber_error *const p = dynamic_cast<knumber_error *>(rhs)) {
 		if(p->sign() > 0) {
 			knumber_error *e = new knumber_error(knumber_error::ERROR_POS_INFINITY);
@@ -723,10 +715,10 @@ knumber_base *knumber_float::pow(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 int knumber_float::compare(knumber_base *rhs) {
-		
+
 	if(knumber_integer *const p = dynamic_cast<knumber_integer *>(rhs)) {
 		knumber_float f(p);
 		return compare(&f);
@@ -746,10 +738,10 @@ int knumber_float::compare(knumber_base *rhs) {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 QString knumber_float::toString(int precision) const {
-	
+
 	size_t size;
 	if (precision > 0) {
 		size = gmp_snprintf(NULL, 0, "%.*Fg", precision, mpf_) + 1;
@@ -764,12 +756,12 @@ QString knumber_float::toString(int precision) const {
 	} else {
 		gmp_snprintf(&buf[0], size, "%.Fg", mpf_);
 	}
-	
+
 	return QLatin1String(&buf[0]);
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 bool knumber_float::is_integer() const {
 
@@ -777,7 +769,7 @@ bool knumber_float::is_integer() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 bool knumber_float::is_zero() const {
 
@@ -785,7 +777,7 @@ bool knumber_float::is_zero() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 int knumber_float::sign() const {
 
@@ -793,10 +785,10 @@ int knumber_float::sign() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::reciprocal() {
-	
+
 	mpf_t mpf;
 	mpf_init_set_d(mpf, 1.0);
 	mpf_div(mpf_, mpf, mpf_);
@@ -804,7 +796,7 @@ knumber_base *knumber_float::reciprocal() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::log2() {
 #ifdef KNUMBER_USE_MPFR
@@ -826,7 +818,7 @@ knumber_base *knumber_float::log2() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::log10() {
 #ifdef KNUMBER_USE_MPFR
@@ -848,7 +840,7 @@ knumber_base *knumber_float::log10() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::ln() {
 #ifdef KNUMBER_USE_MPFR
@@ -870,7 +862,7 @@ knumber_base *knumber_float::ln() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::exp2() {
 #ifdef KNUMBER_USE_MPFR
@@ -892,7 +884,7 @@ knumber_base *knumber_float::exp2() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::exp10() {
 #ifdef KNUMBER_USE_MPFR
@@ -914,7 +906,7 @@ knumber_base *knumber_float::exp10() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::exp() {
 #ifdef KNUMBER_USE_MPFR
@@ -936,21 +928,21 @@ knumber_base *knumber_float::exp() {
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 quint64 knumber_float::toUint64() const {
 	return knumber_integer(this).toUint64();
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 qint64 knumber_float::toInt64() const {
 	return knumber_integer(this).toInt64();
 }
 
 //------------------------------------------------------------------------------
-// Name: 
+// Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::bin(knumber_base *rhs) {
 	Q_UNUSED(rhs);
