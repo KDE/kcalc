@@ -842,11 +842,6 @@ void KCalculator::keyPressEvent(QKeyEvent *e) {
 	if (e->key() == Qt::Key_Control) {
 		emit switchShowAccels(true);
 	}
-	
-	if (e->key() == Qt::Key_Shift) {
-		emit slotShifttoggled(true);
-		emit pbShift->toggle();
-	}
 }
 
 //------------------------------------------------------------------------------
@@ -857,11 +852,6 @@ void KCalculator::keyReleaseEvent(QKeyEvent *e) {
 
 	if (e->key() == Qt::Key_Control) {
 		emit switchShowAccels(false);
-	}
-	
-	if (e->key() == Qt::Key_Shift) {
-		emit slotShifttoggled(false);
-		emit pbShift->toggle();
 	}
 }
 
