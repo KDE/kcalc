@@ -278,7 +278,7 @@ KNumber::KNumber(const QString &s) : value_(0) {
 	const QRegExp special_regex(QLatin1String("^(inf|-inf|nan)$"));
 	const QRegExp integer_regex(QLatin1String("^[+-]?\\d+$"));
 	const QRegExp fraction_regex(QLatin1String("^[+-]?\\d+/\\d+$"));
-	const QRegExp float_regex(QString(QLatin1String("^([+-]?\\d+)(%1\\d*)?(e([+-]?\\d+))?$")).arg(QRegExp::escape(DecimalSeparator)));
+	const QRegExp float_regex(QString(QLatin1String("^([+-]?\\d*)(%1\\d*)?(e([+-]?\\d+))?$")).arg(QRegExp::escape(DecimalSeparator)));
 
 	if (special_regex.exactMatch(s)) {
 		value_ = new detail::knumber_error(s);

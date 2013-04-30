@@ -31,8 +31,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <kglobal.h>
 #include <klocale.h>
 #include <knotification.h>
+
 #include "kcalc_core.h"
 #include "kcalc_settings.h"
+
 #include "kcalcdisplay.moc"
 
 //------------------------------------------------------------------------------
@@ -290,8 +292,11 @@ void KCalcDisplay::slotPaste(bool bClipboard) {
 		tmp_num_base = NB_BINARY;
 		tmp_str.remove(0, 2);
 	} else if (tmp_str.startsWith(QLatin1String("0"))) {
-		tmp_num_base = NB_OCTAL;
-		tmp_str.remove(0, 1);
+		// we don't want this to trigger on "0.xxxxxx" cases
+		if(tmp_str.length() < 2 || QString(tmp_str[1]) != KNumber::decimalSeparator()) {
+			tmp_num_base = NB_OCTAL;
+			tmp_str.remove(0, 1);
+		}
 	}
 
 	if (tmp_num_base != NB_DECIMAL) {
@@ -537,7 +542,15 @@ void KCalcDisplay::setText(const QString &string)
 			text_ = groupDigits(text_, hexadecimalGrouping_);
 			break;
 		}
-    }
+    } else if(special) {
+#if 0
+		// TODO: enable this code, it replaces the "inf" with an actual infinity
+		//       symbol, but what should be put into the clip board when they copy?
+		if(string.contains(QLatin1String("inf"))) {
+			text_.replace("inf", QChar(0x221e));
+		}
+#endif
+	}
 
     update();
     emit changedText(text_);
