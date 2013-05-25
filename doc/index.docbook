@@ -37,8 +37,8 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2010-05-13</date>
-<releaseinfo>2.7 (&kde; 4.5)</releaseinfo>
+<date>2013-05-24</date>
+<releaseinfo>2.13 (&kde; 4.11)</releaseinfo>
 
 <abstract><para>&kcalc; is a scientific calculator for &kde;</para></abstract>
 
@@ -52,7 +52,7 @@
 <chapter id="introduction">
 <title>Introduction</title>
 
-<para>This document describes &kcalc; version 2.7.</para>
+<para>This document describes &kcalc; version 2.13.</para>
 
 <para>&kcalc; offers many more mathematical functions than meet the eye
 on a first glance. Please study the section on keyboard accelerators and
@@ -167,8 +167,8 @@ slightly change as &kcalc; evolves.</para>
 <varlistentry>
 <term>Button Layout</term>
 <listitem>
-<para>To give easy access to all the functions in &kcalc;, many keys have a second layout. Click 
-on <guibutton>&Shift;</guibutton> or press the shortcut <keycap>I</keycap> to make 
+<para>To give easy access to all the functions in advanced modes in &kcalc;, many keys have a second layout. Click
+on <guibutton>&Shift;</guibutton> or press the shortcut <keycombo action="simul">&Ctrl;<keycap>2</keycap></keycombo> to make
 the second layout of the buttons visible.</para> 
 </listitem>
 </varlistentry>
@@ -205,32 +205,78 @@ sinh</entry></row>
 <row><entry><guibutton>Sin</guibutton></entry>
 <entry>Compute the sine</entry></row>
 
-<row><entry><guibutton>&Shift;</guibutton> <guibutton>Sin</guibutton></entry>
+<row><entry>&Shift; <guibutton>Sin</guibutton> or <guibutton>Asin</guibutton></entry>
 <entry>Compute the inverse sine</entry></row>
 
 <row><entry><guibutton>Cos</guibutton></entry>
 <entry>Compute the cosine</entry></row>
 
-<row><entry><guibutton>&Shift;</guibutton> <guibutton>Cos</guibutton></entry>
+<row><entry>&Shift; <guibutton>Cos</guibutton> or <guibutton>Acos</guibutton></entry>
 <entry>Compute the inverse cosine</entry></row>
 
 <row><entry><guibutton>Tan</guibutton></entry>
 <entry>Compute the tangent</entry></row>
 
-<row><entry><guibutton>&Shift;</guibutton> <guibutton>Tan</guibutton></entry>
+<row><entry>&Shift; <guibutton>Tan</guibutton> or <guibutton>Atan</guibutton></entry>
 <entry>Compute the inverse tangent</entry></row>
 
 <row><entry><guibutton>Log</guibutton></entry>
 <entry>Compute the Log base 10</entry></row>
 
-<row><entry><guibutton>&Shift;</guibutton> <guibutton>Log</guibutton></entry>
+<row><entry>&Shift; <guibutton>Log</guibutton> or 10<superscript>x</superscript></entry>
 <entry>Compute 10 to the power of x</entry></row>
 
 <row><entry><guibutton>Ln</guibutton></entry>
 <entry>Compute the natural logarithm. That is the log to base e</entry></row>
 
-<row><entry><guibutton>&Shift;</guibutton> <guibutton>Ln</guibutton></entry>
-<entry>Compute e to the power of x</entry></row>
+<row><entry>&Shift; <guibutton>Ln</guibutton> or e<superscript>x</superscript></entry>
+<entry>Compute e (the base of the natural logarithm) to the power of x</entry></row>
+
+</tbody></tgroup></informaltable>
+
+<para>The second column has buttons for algebraic functions:</para>
+
+<informaltable><tgroup cols="2">
+<thead>
+<row><entry>Buttons</entry>
+<entry>Function</entry></row>
+</thead>
+<tbody>
+<row><entry><guibutton>Mod</guibutton></entry>
+<entry>Compute the remainder in Euclidean division</entry></row>
+
+<row><entry><guibutton>&Shift;</guibutton> <guibutton>Mod</guibutton> or <guibutton>IntDiv</guibutton></entry>
+<entry>Integer division (integer part of the quotient)</entry></row>
+
+<row><entry><guibutton>1/x</guibutton></entry>
+<entry>Compute the reciprocal for a number</entry></row>
+
+<row><entry><guibutton>&Shift;</guibutton> <guibutton>1/x</guibutton> or <guibutton>nCm</guibutton></entry>
+<entry>Compute the number of distinct second-operand-element subsets of it that can be formed for any set containing first operand elements (binomial coefficient)</entry></row>
+
+<row><entry><guibutton>x!</guibutton></entry>
+<entry>Compute the product of all positive integers less than or equal to the current integer operand (factorial)</entry></row>
+
+<row><entry><guibutton>x²</guibutton></entry>
+<entry>Compute the square of x</entry></row>
+
+ <row><entry><guibutton>&Shift;</guibutton> <guibutton>x²</guibutton> or <guibutton>√x</guibutton></entry>
+<entry>Compute the square root of x</entry></row>
+
+<row><entry><guibutton>xʸ</guibutton></entry>
+<entry>x power y</entry></row>
+
+<row><entry>&Shift; x<superscript>y</superscript> or x<superscript>1/y</superscript></entry>
+<entry>x power 1/y</entry></row>
+
+<row><entry><guibutton>x³</guibutton></entry>
+<entry>Computes the third (cubic) power of x</entry></row>
+
+<row><entry><guibutton>&Shift;</guibutton> <guibutton>x³</guibutton> or <guibutton>∛x</guibutton></entry>
+<entry>Computes the third (cubic) root of x</entry></row>
+
+<row><entry><guibutton>x·10ʸ</guibutton></entry>
+<entry>Computes the product of the first operand and decimal exponent of the second operand</entry></row>
 
 </tbody></tgroup></informaltable>
 
@@ -260,19 +306,19 @@ functions:</para>
 <row><entry><guibutton>N</guibutton></entry>
 <entry>Recall the number of data items entered</entry></row>
 
-<row><entry><guibutton>&Shift;</guibutton> <guibutton>N</guibutton></entry>
+<row><entry><guibutton>&Shift;</guibutton> <guibutton>N</guibutton> or <guibutton>&Sgr;x</guibutton></entry>
 <entry>Display the sum of all data items entered</entry></row>
 
 <row><entry><guibutton>Mea</guibutton></entry>
 <entry>Display the mean of the data items entered</entry></row>
 
-<row><entry><guibutton>&Shift;</guibutton> <guibutton>Mea</guibutton></entry>
+<row><entry><guibutton>&Shift;</guibutton> <guibutton>Mea</guibutton> or <guibutton>&Sgr;x²</guibutton></entry>
 <entry>Display the sum of the square of all data items entered</entry></row>
 
-<row><entry><guibutton>Std</guibutton></entry>
+<row><entry>&sgr;<subscript>N</subscript></entry>
 <entry>Display the standard deviation (n)</entry></row>
 
-<row><entry><guibutton>&Shift;</guibutton> <guibutton>Std</guibutton></entry>
+<row><entry><guibutton>&Shift;</guibutton> &sgr;<subscript>N</subscript> or &sgr;<subscript>N-1</subscript> </entry>
 <entry>Display the population standard deviation (n-1)</entry></row>
 
 <row><entry><guibutton>Med</guibutton></entry>
@@ -281,7 +327,7 @@ functions:</para>
 <row><entry><guibutton>Dat</guibutton></entry>
 <entry>Enter a data item</entry></row>
 
-<row><entry><guibutton>&Shift;</guibutton> <guibutton>Dat</guibutton></entry>
+<row><entry><guibutton>&Shift;</guibutton> <guibutton>Dat</guibutton> or <guibutton>CDat</guibutton></entry>
 <entry>Clear last data item entered</entry></row>
 
 <row><entry><guibutton>CSt</guibutton></entry>
@@ -289,6 +335,8 @@ functions:</para>
 
 </tbody></tgroup></informaltable>
 
+<para>The next two columns hold the buttons with trigonometric and algebraic functions described in the
+<link linkend="science-mode">Science</link> mode section.</para>
 
 </sect1>
 
@@ -321,12 +369,25 @@ for numbers larger than 9. If you would like to see this number in binary, just 
 <row><entry><guibutton>XOR</guibutton></entry>
 <entry>Two numbers are logically exclusive ored</entry></row>
 
-</tbody></tgroup></informaltable>
+<row><entry><guibutton>Lsh</guibutton></entry>
+<entry>Left shift the value</entry></row>
 
+<row><entry><guibutton>Rsh</guibutton></entry>
+<entry>Right shift the value</entry></row>
+
+<row><entry><guibutton>Cmp</guibutton></entry>
+<entry>Perform a 1's complement</entry></row>
+
+</tbody></tgroup></informaltable>
+</para>
+
+<para>The second columns holds the buttons with algebraic functions described in the
+<link linkend="science-mode">Science</link> mode section.</para>
+
+<para>The third column with the buttons <guibutton>A</guibutton> to <guibutton>F</guibutton> is
+enabled only in <guilabel>Hex</guilabel> mode.
 </para>
 </sect1>
-
-
 
 <!-- end of MODES -->
 
@@ -386,6 +447,8 @@ the status bar, next to the calculator mode indicator</para>
 item <guilabel>Constants Buttons</guilabel> in the menu
 <guimenu>Settings</guimenu> of the menu bar. They are available in <guilabel>Science mode</guilabel>
 and <guilabel>Statistics mode</guilabel></para>
+
+<para>To see the value stored in each constant hoover the button with the mouse ponter.</para>
 
 <para>To store the number shown in the &kcalc; display in one of the
 six constants, first press <guibutton>&Shift;</guibutton> followed
@@ -480,6 +543,10 @@ you want arcsin type <userinput>Ctrl-2 s </userinput></entry></row>
 <entry><guibutton>x!</guibutton></entry>
 <entry>Factorial</entry></row>
 
+<row><entry><keysym>E</keysym></entry>
+<entry>x10<superscript>y</superscript></entry>
+<entry>Exponent</entry></row>
+
 <row><entry><keysym>&lt;</keysym></entry>
 <entry><guibutton>Lsh</guibutton></entry>
 <entry>Left shift</entry></row>
@@ -520,6 +587,10 @@ you want arcsin type <userinput>Ctrl-2 s </userinput></entry></row>
 <entry><guibutton>=</guibutton></entry>
 <entry></entry></row>
 
+<row><entry>&Backspace;</entry>
+<entry><guibutton>&lt;=</guibutton></entry>
+<entry>Delete last number</entry></row>
+
 <row><entry><keycap>PgUp</keycap></entry>
 <entry><guibutton>C</guibutton></entry>
 <entry>Clear</entry></row>
@@ -544,7 +615,7 @@ you want arcsin type <userinput>Ctrl-2 s </userinput></entry></row>
 <entry><guibutton>AC</guibutton></entry>
 <entry>Clear all</entry></row>
 
-<row><entry>&Shift;+<keycap>:</keycap></entry>
+<row><entry><keycap>:</keycap></entry>
 <entry><guibutton>Mod</guibutton></entry>
 <entry>remainder of dividing</entry></row>
 

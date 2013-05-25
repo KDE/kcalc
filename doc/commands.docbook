@@ -2,99 +2,10 @@
 
 <title>Command Reference</title>
 
-<sect1 id="filemenu">
-<title>The File Menu</title>
-<para>
-<variablelist>
+<sect1 id="menus">
+<title>Menu Items</title>
 
-<varlistentry>
-<term><menuchoice>
-<shortcut>
-<keycombo action="simul">&Ctrl;<keycap>Q</keycap></keycombo>
-</shortcut>
-<guimenu>File</guimenu>
-<guimenuitem>Quit</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Quit</action> &kcalc;.</para></listitem>
-</varlistentry>
-</variablelist>
-</para>
-
-</sect1>
-
-<sect1 id="editmenu">
-<title>The Edit Menu</title>
-<para>
-<variablelist>
-
-<varlistentry>
-<term><menuchoice>
-<shortcut>
-<keycombo action="simul">&Ctrl;<keycap>Z</keycap></keycombo>
-</shortcut>
-<guimenu>Edit</guimenu>
-<guimenuitem>Undo</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Go back in the result
-stack.</action></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice>
-<shortcut>
-<keycombo action="simul">&Ctrl;&Shift;<keycap>Z</keycap></keycombo>
-</shortcut>
-<guimenu>Edit</guimenu>
-<guimenuitem>Redo</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Go forward in the result
-stack.</action>
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice>
-<shortcut>
-<keycombo action="simul">&Ctrl;<keycap>X</keycap></keycombo>
-</shortcut>
-<guimenu>Edit</guimenu>
-<guimenuitem>Cut</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Delete the displayed result and copy it to the
-clipboard.</action></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice>
-<shortcut>
-<keycombo action="simul">&Ctrl;<keycap>C</keycap></keycombo>
-</shortcut>
-<guimenu>Edit</guimenu>
-<guimenuitem>Copy</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Copy the displayed result to the
-clipboard.</action></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice>
-<shortcut>
-<keycombo action="simul">&Ctrl;<keycap>V</keycap></keycombo>
-</shortcut>
-<guimenu>Edit</guimenu>
-<guimenuitem>Paste</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Insert the cut or copied result in the
-display.</action></para></listitem>
-</varlistentry>
-
-</variablelist>
-</para>
-</sect1>
-
-<sect1 id="viewmenu">
-<title>The Constants Menu</title>
-<para>
+ <para>A brief overview of some special menu items in &kcalc;:</para>
 <variablelist>
 
 <varlistentry>
@@ -144,14 +55,6 @@ Constant, Stefan-Boltzmann Constant or Avogadro's Number.</action>
 <listitem><para>Display Constant of Gravitation or Earth Acceleration.
 </para></listitem>
 </varlistentry>
-
-</variablelist>
-</para>
-</sect1>
-
-<sect1 id="settingsmenu">
-<title>The Settings Menu</title>
-<para><variablelist>
 
 <varlistentry>
 <term><menuchoice>
@@ -211,33 +114,15 @@ buttons</link> and allows changing the numeral system.</action>
 </para></listitem>
 </varlistentry>
 
-<varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu>
-<guimenuitem>Configure Shortcuts...</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Configure the keyboard shortcuts used by &kcalc;.
-</action> 
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu>
-<guimenuitem>Configure &kcalc;...</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Display</action> the &kcalc; settings dialog.
-</para></listitem>
-</varlistentry>
-
 </variablelist>
+
+<para>
+Additionally &kcalc; has the common &kde; <guimenu>File</guimenu>, <guimenu>Edit</guimenu>,
+<guimenu>Settings</guimenu> and <guimenu>Help</guimenu> menu items, for more information
+read the sections about the <ulink url="help:/fundamentals/ui.html#menus">Menus</ulink>
+in the &kde; Fundamentals.
+
 </para>
-</sect1>
-
-<sect1 id="helpmenu">
-<title>The Help Menu</title>
-
-&help.menu.documentation;
 
 </sect1>
 
