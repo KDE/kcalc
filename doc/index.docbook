@@ -448,7 +448,7 @@ item <guilabel>Constants Buttons</guilabel> in the menu
 <guimenu>Settings</guimenu> of the menu bar. They are available in <guilabel>Science mode</guilabel>
 and <guilabel>Statistics mode</guilabel></para>
 
-<para>To see the value stored in each constant hoover the button with the mouse ponter.</para>
+<para>To see the value stored in each constant hover the button with the mouse ponter.</para>
 
 <para>To store the number shown in the &kcalc; display in one of the
 six constants, first press <guibutton>&Shift;</guibutton> followed
