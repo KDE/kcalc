@@ -381,7 +381,7 @@ for numbers larger than 9. If you would like to see this number in binary, just 
 </tbody></tgroup></informaltable>
 </para>
 
-<para>The second columns holds the buttons with algebraic functions described in the
+<para>The second column holds the buttons with algebraic functions described in the
 <link linkend="science-mode">Science</link> mode section.</para>
 
 <para>The third column with the buttons <guibutton>A</guibutton> to <guibutton>F</guibutton> is
@@ -448,7 +448,7 @@ item <guilabel>Constants Buttons</guilabel> in the menu
 <guimenu>Settings</guimenu> of the menu bar. They are available in <guilabel>Science mode</guilabel>
 and <guilabel>Statistics mode</guilabel></para>
 
-<para>To see the value stored in each constant hover the button with the mouse ponter.</para>
+<para>To see the value stored in each constant hover the button with the mouse pointer.</para>
 
 <para>To store the number shown in the &kcalc; display in one of the
 six constants, first press <guibutton>&Shift;</guibutton> followed
