@@ -672,6 +672,13 @@ KNumber KNumber::sqrt() const {
 // Name:
 //------------------------------------------------------------------------------
 KNumber KNumber::pow(const KNumber &x) const {
+
+	// number much bigger than this tend to crash GMP with
+	// an abort
+	if(x > KNumber(QLatin1String("1000000000"))) {
+		return PosInfinity;
+	}
+
 	KNumber z(*this);
 	z.value_ = z.value_->pow(x.value_);
 	z.simplify();
