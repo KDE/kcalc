@@ -858,45 +858,6 @@ normally be provided as part of a &kde; installation. For more details about
 
 </sect1>
 
-<sect1 id="enable-long-double-precision">
-<title>How to enable long double precision for &kcalc;</title>
-
-<para>If your machine supports the C data type <type>long double</type>
-and if you have a working libc you can enable <type>long double</type>
-precision for &kcalc;.</para>
-
-<para>Here is what to do:</para>
-
-<procedure>
-<step>
-<para> Check <filename>config-kcalc.h</filename> and see whether
-HAVE&lowbar;LONG&lowbar;DOUBLE is defined, &ie; you should be able to locate a
-line saying:</para>
-
-<screen>#define HAVE_LONG_DOUBLE 1</screen>
-
-<para>If you cannot find such a line your system doesn't support long
-double IEEE precision. </para>
-</step>
-<step>
-<para>Edit the files <filename class="headerfile">kcalctype.h</filename>,
-<filename>configdlg.cpp</filename>, <filename>kcalc.cpp</filename> and
-<filename>kcalc&lowbar;core.cpp</filename> and remove the lines:</para>
-
-<screen>
-#ifdef HAVE_LONG_DOUBLE
-#undef HAVE_LONG_DOUBLE
-#endif
-</screen>
-
-</step>
-<step>
-<para> Recompile &kcalc;.
-</para>
-</step>
-</procedure>
-
-</sect1>
 </appendix>
 
 </book>
