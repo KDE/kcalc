@@ -40,7 +40,9 @@
 <date>2013-05-24</date>
 <releaseinfo>2.13 (&kde; 4.11)</releaseinfo>
 
-<abstract><para>&kcalc; is a scientific calculator for &kde;</para></abstract>
+<abstract><para>&kcalc; is a calculator for &kde;. In the simple mode it can 
+be used for basic arithmetic operations, but provides advanced modes for scientific, 
+statistical and numeral system calculations.</para></abstract>
 
 <keywordset>
 <keyword>KDE</keyword>
@@ -51,8 +53,6 @@
 
 <chapter id="introduction">
 <title>Introduction</title>
-
-<para>This document describes &kcalc; version 2.13.</para>
 
 <para>&kcalc; offers many more mathematical functions than meet the eye
 on a first glance. Please study the section on keyboard accelerators and
@@ -79,8 +79,8 @@ you conveniently recall previous results.</para>
 <para>You can configure &kcalc;'s display colors and font.</para>
 </listitem>
 <listitem>
-<para>You can configure &kcalc;'s  precision and the number
-of digits after the period.</para>
+<para>You can configure &kcalc;'s  precision, the number of displayed digits and the number
+of digits after the period in the settings dialog.</para>
 </listitem>
 <listitem>
 <para> &kcalc; offers a great number of useful  <link linkend="key-accels">
