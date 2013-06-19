@@ -673,10 +673,14 @@ KNumber KNumber::sqrt() const {
 //------------------------------------------------------------------------------
 KNumber KNumber::pow(const KNumber &x) const {
 
-	// number much bigger than this tend to crash GMP with
-	// an abort
-	if(x > KNumber(QLatin1String("1000000000"))) {
-		return PosInfinity;
+	// if the LHS is a special then we can use this function
+	// no matter what, cause the result is a special too
+	if(!dynamic_cast<detail::knumber_error *>(value_)) {
+		// number much bigger than this tend to crash GMP with
+		// an abort
+		if(x > KNumber(QLatin1String("1000000000"))) {
+			return PosInfinity;
+		}
 	}
 
 	KNumber z(*this);
