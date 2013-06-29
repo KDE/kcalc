@@ -900,7 +900,7 @@ knumber_base *knumber_float::exp10() {
 		delete this;
 		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
 	} else {
-		return execute_libc_func< ::exp10>(x);
+		return execute_libc_func< ::pow>(10, x);
 	}
 #endif
 }
