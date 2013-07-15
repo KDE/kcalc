@@ -23,18 +23,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "knumber_error.h"
 #include <QScopedArrayPointer>
 #include <QDebug>
-#if defined(Q_OS_MAC) || defined(Q_OS_OPENBSD)
 #include <math.h>
-#else
-#include <cmath>
-#endif
 
 // NOTE: these assume IEEE floats..
-#ifndef HAVE_FUNC_ISINF
+#ifndef isinf
 #define isinf(x) ((x) != 0.0 && (x) + (x) == (x))
 #endif
 
-#ifndef HAVE_FUNC_ISNAN
+#ifndef isnan
 #define isnan(x) ((x) != (x))
 #endif
 
