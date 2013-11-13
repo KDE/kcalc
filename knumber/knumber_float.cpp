@@ -25,6 +25,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QDebug>
 #include <math.h>
 
+#ifdef _MSC_VER
+double log2(double x) { return log(x) / log(2); }
+double exp2(double x) { return exp(x * log(2)); }
+double exp10(double x) { return exp(x * log(10)); }
+#endif
+
 // NOTE: these assume IEEE floats..
 #ifndef isinf
 #define isinf(x) ((x) != 0.0 && (x) + (x) == (x))
