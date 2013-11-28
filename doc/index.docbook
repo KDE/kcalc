@@ -90,6 +90,13 @@ every button,the corresponding key-binding.</para>
 </listitem>
 </itemizedlist>
 
+<!--see https://bugs.kde.org/show_bug.cgi?id=326481-->
+<note><para>&kcalc; uses <ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Infix_notation">Infix 
+notation</ulink> which enforces correct order of operations as taught in school; contrary to  
+<ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Immediate_execution">Immediate execution</ulink>
+used by many simple calculators.
+</para></note>
+
 <para>Have fun with &kcalc;!</para>
 
 <para>&Bernd.Johannes.Wuebben;</para>
