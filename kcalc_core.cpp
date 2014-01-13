@@ -754,6 +754,13 @@ void CalcEngine::TangensDeg(const KNumber &input)
     KNumber arg1 = last_number_;
     CosDeg(input);
     KNumber arg2 = last_number_;
+
+	// Fix for bug #329897, tan(90) is undefined, not infinity
+	if(arg2 == KNumber::Zero) {
+        last_number_ = KNumber::NaN;
+        return;
+	}
+
     last_number_ = arg1 / arg2;
 }
 
@@ -768,6 +775,13 @@ void CalcEngine::TangensRad(const KNumber &input)
     KNumber arg1 = last_number_;
     CosRad(input);
     KNumber arg2 = last_number_;
+
+	// Fix for bug #329897, tan(1.57079633...) is undefined, not infinity
+	if(arg2 == KNumber::Zero) {
+        last_number_ = KNumber::NaN;
+        return;
+	}
+
     last_number_ = arg1 / arg2;
 }
 
@@ -782,6 +796,13 @@ void CalcEngine::TangensGrad(const KNumber &input)
     KNumber arg1 = last_number_;
     CosGrad(input);
     KNumber arg2 = last_number_;
+
+	// Fix for bug #329897, tan(100) is undefined, not infinity
+	if(arg2 == KNumber::Zero) {
+        last_number_ = KNumber::NaN;
+        return;
+	}
+
     last_number_ = arg1 / arg2;
 }
 
