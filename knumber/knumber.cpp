@@ -681,11 +681,6 @@ KNumber KNumber::sqrt() const {
 //------------------------------------------------------------------------------
 KNumber KNumber::pow(const KNumber &x) const {
 
-	// 0^0 is not 1! it is technically undefined!
-	if(*this == Zero && x == Zero) {
-		return NaN;
-	}
-
 	// if the LHS is a special then we can use this function
 	// no matter what, cause the result is a special too
 	if(!dynamic_cast<detail::knumber_error *>(value_)) {
