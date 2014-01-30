@@ -514,6 +514,14 @@ KNumber &KNumber::operator*=(const KNumber &rhs) {
 // Name:
 //------------------------------------------------------------------------------
 KNumber &KNumber::operator/=(const KNumber &rhs) {
+
+	// Fix for bug #330577, x /0  is undefined, not infinity
+	// Also indirectly fixes bug #329897, tan(90) is undefined, not infinity
+	if(rhs == Zero) {
+		*this = NaN;
+		return *this;
+	}
+
 	value_ = value_->div(rhs.value_);
 	simplify();
 	return *this;
