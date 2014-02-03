@@ -681,6 +681,14 @@ KNumber KNumber::sqrt() const {
 //------------------------------------------------------------------------------
 KNumber KNumber::pow(const KNumber &x) const {
 
+	// Fix for bug #330711 (pow(0, -x) was causing crashes
+	// Fix for bug #330597 (pow(0,0) was 1 now it is NaN
+	// Thanks to Raushan Kumar for identifying the issue and submitting 
+	// patches
+	if(*this == Zero && x <= Zero) {
+		return NaN;
+	}
+
 	// if the LHS is a special then we can use this function
 	// no matter what, cause the result is a special too
 	if(!dynamic_cast<detail::knumber_error *>(value_)) {
