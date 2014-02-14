@@ -316,30 +316,30 @@ void testingDivisions() {
 
 	checkResult("KNumber(5) / KNumber(2)", KNumber(5) / KNumber(2), QLatin1String("5/2"), KNumber::TYPE_FRACTION);
 	checkResult("KNumber(122) / KNumber(2)", KNumber(122) / KNumber(2), QLatin1String("61"), KNumber::TYPE_INTEGER);
-	checkResult("KNumber(12) / KNumber(0)", KNumber(12) / KNumber(0), QLatin1String("inf"), KNumber::TYPE_ERROR);
-	checkResult("KNumber(-12) / KNumber(0)", KNumber(-12) / KNumber(0), QLatin1String("-inf"), KNumber::TYPE_ERROR);
+	checkResult("KNumber(12) / KNumber(0)", KNumber(12) / KNumber(0), QLatin1String("nan"), KNumber::TYPE_ERROR);
+	checkResult("KNumber(-12) / KNumber(0)", KNumber(-12) / KNumber(0), QLatin1String("nan"), KNumber::TYPE_ERROR);
 	checkResult("KNumber(5) / KNumber(\"2/3\")", KNumber(5) / KNumber(QLatin1String("2/3")), QLatin1String("15/2"), KNumber::TYPE_FRACTION);
 	checkResult("KNumber(6) / KNumber(\"2/3\")", KNumber(6) / KNumber(QLatin1String("2/3")), QLatin1String("9"), KNumber::TYPE_INTEGER);
 	checkResult("KNumber(5) / KNumber(2.5)", KNumber(5) / KNumber(2.5), QLatin1String("2"), KNumber::TYPE_INTEGER);
-	checkResult("KNumber(5) / KNumber(0.0)", KNumber(5) / KNumber(0.0), QLatin1String("inf"), KNumber::TYPE_ERROR);
-	checkResult("KNumber(-5) / KNumber(0.0)", KNumber(-5) / KNumber(0.0), QLatin1String("-inf"), KNumber::TYPE_ERROR);
+	checkResult("KNumber(5) / KNumber(0.0)", KNumber(5) / KNumber(0.0), QLatin1String("nan"), KNumber::TYPE_ERROR);
+	checkResult("KNumber(-5) / KNumber(0.0)", KNumber(-5) / KNumber(0.0), QLatin1String("nan"), KNumber::TYPE_ERROR);
 
 	checkResult("KNumber(\"5/3\") / KNumber(2)", KNumber(QLatin1String("5/3")) / KNumber(2), QLatin1String("5/6"), KNumber::TYPE_FRACTION);
-	checkResult("KNumber(\"5/3\") / KNumber(0)", KNumber(QLatin1String("5/3")) / KNumber(0), QLatin1String("inf"), KNumber::TYPE_ERROR);
-	checkResult("KNumber(\"-5/3\") / KNumber(0)", KNumber(QLatin1String("-5/3")) / KNumber(0), QLatin1String("-inf"), KNumber::TYPE_ERROR);
+	checkResult("KNumber(\"5/3\") / KNumber(0)", KNumber(QLatin1String("5/3")) / KNumber(0), QLatin1String("nan"), KNumber::TYPE_ERROR);
+	checkResult("KNumber(\"-5/3\") / KNumber(0)", KNumber(QLatin1String("-5/3")) / KNumber(0), QLatin1String("nan"), KNumber::TYPE_ERROR);
 	checkResult("KNumber(\"5/3\") / KNumber(\"2/3\")", KNumber(QLatin1String("5/3")) / KNumber(QLatin1String("2/3")), QLatin1String("5/2"), KNumber::TYPE_FRACTION);
 	checkResult("KNumber(\"49/3\") / KNumber(\"7/9\")", KNumber(QLatin1String("49/3")) / KNumber(QLatin1String("7/9")), QLatin1String("21"), KNumber::TYPE_INTEGER);
 	checkResult("KNumber(\"5/2\") / KNumber(2.5)", KNumber(QLatin1String("5/2")) / KNumber(2.5), QLatin1String("1"), KNumber::TYPE_INTEGER);
-	checkResult("KNumber(\"5/2\") / KNumber(0.0)", KNumber(QLatin1String("5/2")) / KNumber(0.0), QLatin1String("inf"), KNumber::TYPE_ERROR);
-	checkResult("KNumber(\"-5/2\") / KNumber(0.0)", KNumber(QLatin1String("-5/2")) / KNumber(0.0), QLatin1String("-inf"), KNumber::TYPE_ERROR);
+	checkResult("KNumber(\"5/2\") / KNumber(0.0)", KNumber(QLatin1String("5/2")) / KNumber(0.0), QLatin1String("nan"), KNumber::TYPE_ERROR);
+	checkResult("KNumber(\"-5/2\") / KNumber(0.0)", KNumber(QLatin1String("-5/2")) / KNumber(0.0), QLatin1String("nan"), KNumber::TYPE_ERROR);
 
 	checkResult("KNumber(5.3) / KNumber(2)", KNumber(5.3) / KNumber(2), QLatin1String("2.65"), KNumber::TYPE_FLOAT);
-	checkResult("KNumber(5.3) / KNumber(0)", KNumber(5.3) / KNumber(0), QLatin1String("inf"), KNumber::TYPE_ERROR);
-	checkResult("KNumber(-5.3) / KNumber(0)", KNumber(-5.3) / KNumber(0), QLatin1String("-inf"), KNumber::TYPE_ERROR);
+	checkResult("KNumber(5.3) / KNumber(0)", KNumber(5.3) / KNumber(0), QLatin1String("nan"), KNumber::TYPE_ERROR);
+	checkResult("KNumber(-5.3) / KNumber(0)", KNumber(-5.3) / KNumber(0), QLatin1String("nan"), KNumber::TYPE_ERROR);
 	checkResult("KNumber(5.3) / KNumber(\"2/3\")", KNumber(5.3) / KNumber(QLatin1String("2/3")), QLatin1String("7.95"), KNumber::TYPE_FLOAT);
 	checkResult("KNumber(5.5) / KNumber(2.5)", KNumber(5.5) / KNumber(2.5), QLatin1String("2.2"), KNumber::TYPE_FLOAT);
-	checkResult("KNumber(5.5) / KNumber(0.0)", KNumber(5.5) / KNumber(0.0), QLatin1String("inf"), KNumber::TYPE_ERROR);
-	checkResult("KNumber(-5.5) / KNumber(0.0)", KNumber(-5.5) / KNumber(0.0), QLatin1String("-inf"), KNumber::TYPE_ERROR);
+	checkResult("KNumber(5.5) / KNumber(0.0)", KNumber(5.5) / KNumber(0.0), QLatin1String("nan"), KNumber::TYPE_ERROR);
+	checkResult("KNumber(-5.5) / KNumber(0.0)", KNumber(-5.5) / KNumber(0.0), QLatin1String("nan"), KNumber::TYPE_ERROR);
 }
 
 void testingModulus() {
@@ -513,7 +513,8 @@ void testingPower() {
 	std::cout << "Testing Power:\n";
 	std::cout << "--------------\n";
 
-	checkResult("KNumber(0) ^ KNumber(-4)", KNumber(0).pow(KNumber(-4)), QLatin1String("inf"), KNumber::TYPE_ERROR);
+	checkResult("KNumber(0) ^ KNumber(0)", KNumber(0).pow(KNumber(0)), QLatin1String("nan"), KNumber::TYPE_ERROR);
+	checkResult("KNumber(0) ^ KNumber(-4)", KNumber(0).pow(KNumber(-4)), QLatin1String("nan"), KNumber::TYPE_ERROR);
 	checkResult("KNumber(5) ^ KNumber(4)", KNumber(5).pow(KNumber(4)), QLatin1String("625"), KNumber::TYPE_INTEGER);
 	checkResult("KNumber(122) ^ KNumber(0)", KNumber(122).pow(KNumber(0)), QLatin1String("1"), KNumber::TYPE_INTEGER);
 	checkResult("KNumber(-5) ^ KNumber(0)", KNumber(-5).pow(KNumber(0)), QLatin1String("1"), KNumber::TYPE_INTEGER);
@@ -700,12 +701,12 @@ void testingInfArithmetic() {
 	checkResult("-inf / nan", KNumber::NegInfinity / KNumber::NaN, QLatin1String("nan"), KNumber::TYPE_ERROR);
 	checkResult("KNumber(0) / inf", KNumber(0) / KNumber::PosInfinity, QLatin1String("0"), KNumber::TYPE_INTEGER);
 	checkResult("KNumber(0) / -inf", KNumber(0) / KNumber::NegInfinity, QLatin1String("0"), KNumber::TYPE_INTEGER);
-	checkResult("inf / KNumber(0)", KNumber::PosInfinity / KNumber(0), QLatin1String("inf"), KNumber::TYPE_ERROR);
-	checkResult("-inf / KNumber(0)", KNumber::NegInfinity / KNumber(0), QLatin1String("-inf"), KNumber::TYPE_ERROR);
+	checkResult("inf / KNumber(0)", KNumber::PosInfinity / KNumber(0), QLatin1String("nan"), KNumber::TYPE_ERROR);
+	checkResult("-inf / KNumber(0)", KNumber::NegInfinity / KNumber(0), QLatin1String("nan"), KNumber::TYPE_ERROR);
 	checkResult("KNumber(0.0) / inf", KNumber(0.0) / KNumber::PosInfinity, QLatin1String("0"), KNumber::TYPE_INTEGER);
 	checkResult("KNumber(0.0) / -inf", KNumber(0.0) / KNumber::NegInfinity, QLatin1String("0"), KNumber::TYPE_INTEGER);
-	checkResult("inf / KNumber(0.0)", KNumber::PosInfinity / KNumber(0.0), QLatin1String("inf"), KNumber::TYPE_ERROR);
-	checkResult("-inf / KNumber(0.0)", KNumber::NegInfinity / KNumber(0.0), QLatin1String("-inf"), KNumber::TYPE_ERROR);
+	checkResult("inf / KNumber(0.0)", KNumber::PosInfinity / KNumber(0.0), QLatin1String("nan"), KNumber::TYPE_ERROR);
+	checkResult("-inf / KNumber(0.0)", KNumber::NegInfinity / KNumber(0.0), QLatin1String("nan"), KNumber::TYPE_ERROR);
 
 	checkResult("KNumber(5) ^ KNumber(\"inf\")", KNumber(5).pow(KNumber::PosInfinity), QLatin1String("inf"), KNumber::TYPE_ERROR);
 	checkResult("KNumber(-5) ^ KNumber(\"inf\")", KNumber(-5).pow(KNumber::PosInfinity), QLatin1String("inf"), KNumber::TYPE_ERROR);
