@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define KNUMBER_H_
 
 #include "knumber_operators.h"
-#include <QSharedPointer>
 #include <QString>
 #include <QtGlobal>
 
