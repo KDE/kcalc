@@ -323,7 +323,7 @@ knumber_base *knumber_fraction::bitwise_shift(knumber_base *rhs) {
 	Q_UNUSED(rhs);
 	delete this;
 	// NOTE: we don't support bitwise operations with non-integer operands
-	return new knumber_integer(0);
+	return new knumber_error(knumber_error::ERROR_UNDEFINED);
 }
 
 //------------------------------------------------------------------------------
