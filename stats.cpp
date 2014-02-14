@@ -40,7 +40,7 @@ KStats::~KStats() {
 // Desc: empties the data set
 //------------------------------------------------------------------------------
 void KStats::clearAll() {
-    data_.clear();
+	data_.clear();
 }
 
 //------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ void KStats::clearAll() {
 // Desc: adds an item to the data set
 //------------------------------------------------------------------------------
 void KStats::enterData(const KNumber &data) {
-    data_.push_back(data);
+	data_.push_back(data);
 }
 
 //------------------------------------------------------------------------------
@@ -58,7 +58,7 @@ void KStats::enterData(const KNumber &data) {
 void KStats::clearLast() {
 
 	if(!data_.isEmpty()) {
-	    data_.pop_back();
+		data_.pop_back();
 	}
 }
 
@@ -68,13 +68,13 @@ void KStats::clearLast() {
 //------------------------------------------------------------------------------
 KNumber KStats::sum() const {
 
-    KNumber result = KNumber::Zero;
+	KNumber result = KNumber::Zero;
 	
 	Q_FOREACH(const KNumber &x, data_) {
-        result += x;
-    }
+		result += x;
+	}
 
-    return result;
+	return result;
 }
 
 //------------------------------------------------------------------------------
@@ -89,23 +89,23 @@ KNumber KStats::median() {
 	unsigned int bound = count();
 
 	if (bound == 0) {
-    	error_flag_ = true;
-    	return KNumber::Zero;
+		error_flag_ = true;
+		return KNumber::Zero;
 	}
 
 	if (bound == 1)
-    	return data_.at(0);
+		return data_.at(0);
 
 	// need to copy data_-list, because sorting afterwards
 	QVector<KNumber> tmp_data(data_);
 	qSort(tmp_data);
 
 	if (bound & 1) {    // odd
-    	index = (bound - 1) / 2 + 1;
-    	result =  tmp_data.at(index - 1);
+		index = (bound - 1) / 2 + 1;
+		result =  tmp_data.at(index - 1);
 	} else { // even
-    	index = bound / 2;
-    	result = ((tmp_data.at(index - 1))  + (tmp_data.at(index))) / KNumber(2);
+		index = bound / 2;
+		result = ((tmp_data.at(index - 1)) + (tmp_data.at(index))) / KNumber(2);
 	}
 
 	return result;
@@ -116,16 +116,16 @@ KNumber KStats::median() {
 // Desc: calculates the STD Kernel of all values in the data set
 //------------------------------------------------------------------------------
 KNumber KStats::std_kernel() {
-    KNumber result           = KNumber::Zero;
-    const KNumber mean_value = mean();
+	KNumber result           = KNumber::Zero;
+	const KNumber mean_value = mean();
 
 	if(mean_value.type() != KNumber::TYPE_ERROR) {
 		Q_FOREACH(const KNumber &x, data_) {
-	        result += (x - mean_value) * (x - mean_value);
-	    }
+			result += (x - mean_value) * (x - mean_value);
+		}
 	}
 
-    return result;
+	return result;
 }
 
 //------------------------------------------------------------------------------
@@ -134,13 +134,13 @@ KNumber KStats::std_kernel() {
 //------------------------------------------------------------------------------
 KNumber KStats::sum_of_squares() const {
 
-    KNumber result = KNumber::Zero;
+	KNumber result = KNumber::Zero;
 
-    Q_FOREACH(const KNumber &x, data_) {
-        result += (x * x);
-    }
+	Q_FOREACH(const KNumber &x, data_) {
+		result += (x * x);
+	}
 
-    return result;
+	return result;
 }
 
 //------------------------------------------------------------------------------
@@ -149,9 +149,9 @@ KNumber KStats::sum_of_squares() const {
 //------------------------------------------------------------------------------
 KNumber KStats::mean() {
 
-	if (count() == 0) {
-    	error_flag_ = true;
-    	return KNumber::Zero;
+	if (data_.isEmpty()) {
+		error_flag_ = true;
+		return KNumber::Zero;
 	}
 
 	return (sum() / KNumber(count()));
@@ -163,9 +163,9 @@ KNumber KStats::mean() {
 //------------------------------------------------------------------------------
 KNumber KStats::std() {
 
-	if (count() == 0) {
-    	error_flag_ = true;
-    	return KNumber::Zero;
+	if (data_.isEmpty()) {
+		error_flag_ = true;
+		return KNumber::Zero;
 	}
 
 	return (std_kernel() / KNumber(count())).sqrt();
@@ -180,8 +180,8 @@ KNumber KStats::sample_std() {
 	KNumber result = KNumber::Zero;
 
 	if (count() < 2) {
-    	error_flag_ = true;
-    	return KNumber::Zero;
+		error_flag_ = true;
+		return KNumber::Zero;
 	}
 
 	result = (std_kernel() / KNumber(count() - 1)).sqrt();
@@ -195,7 +195,7 @@ KNumber KStats::sample_std() {
 //------------------------------------------------------------------------------
 int KStats::count() const {
 
-    return data_.size();
+	return data_.size();
 }
 
 //------------------------------------------------------------------------------
@@ -204,9 +204,9 @@ int KStats::count() const {
 //------------------------------------------------------------------------------
 bool KStats::error() {
 
-    bool value = error_flag_;
-    error_flag_ = false;
-    return value;
+	bool value = error_flag_;
+	error_flag_ = false;
+	return value;
 }
 
 

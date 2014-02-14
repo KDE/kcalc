@@ -109,8 +109,16 @@ void KCalcDisplay::updateFromCore(const CalcEngine &core, bool store_result_in_h
 
 	bool tmp_error;
 	const KNumber &output = core.lastOutput(tmp_error);
-	
+
+#if 0
+	// TODO: do we really need explicit error tracking?
+	// isn't the type of the KNumber good enough?
+	// I think it is and that this error tracking is cruft
+	// left over from a LONG time ago...
+	if(output.type() == KNumber::TYPE_ERROR) {
+#else
 	if (tmp_error) {
+#endif
 		sendEvent(EventError);
 	}
 	
