@@ -694,7 +694,7 @@ void CalcEngine::StatDataDel(const KNumber &input)
 {
     Q_UNUSED(input);
     stats.clearLast();
-    last_number_ = KNumber::Zero;
+    last_number_ = KNumber(stats.count());
 }
 
 void CalcEngine::StatMean(const KNumber &input)
