@@ -139,6 +139,8 @@ public:
 	KNumber log2() const;
 	KNumber log10() const;
 	KNumber ln() const;
+	KNumber floor() const;
+	KNumber ceil() const;
 	KNumber exp2() const;
 	KNumber exp10() const;
 	KNumber exp() const;

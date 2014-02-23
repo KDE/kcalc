@@ -781,7 +781,7 @@ knumber_base *knumber_integer::reciprocal() {
 }
 
 //------------------------------------------------------------------------------
-// Name:
+// Name: log2
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::log2() {
 	knumber_float *f = new knumber_float(this);
@@ -790,7 +790,23 @@ knumber_base *knumber_integer::log2() {
 }
 
 //------------------------------------------------------------------------------
-// Name:
+// Name: floor
+//------------------------------------------------------------------------------
+knumber_base *knumber_integer::floor() {
+	// should have no effect on the value
+	return this;
+}
+
+//------------------------------------------------------------------------------
+// Name: ceil
+//------------------------------------------------------------------------------
+knumber_base *knumber_integer::ceil() {
+	// should have no effect on the value
+	return this;
+}
+
+//------------------------------------------------------------------------------
+// Name: log10
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::log10() {
 	knumber_float *f = new knumber_float(this);
@@ -799,7 +815,7 @@ knumber_base *knumber_integer::log10() {
 }
 
 //------------------------------------------------------------------------------
-// Name:
+// Name: ln
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::ln() {
 	knumber_float *f = new knumber_float(this);
@@ -808,7 +824,7 @@ knumber_base *knumber_integer::ln() {
 }
 
 //------------------------------------------------------------------------------
-// Name:
+// Name: exp2
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::exp2() {
 	knumber_float *f = new knumber_float(this);
@@ -817,7 +833,7 @@ knumber_base *knumber_integer::exp2() {
 }
 
 //------------------------------------------------------------------------------
-// Name:
+// Name: exp10
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::exp10() {
 	knumber_float *f = new knumber_float(this);
@@ -826,7 +842,7 @@ knumber_base *knumber_integer::exp10() {
 }
 
 //------------------------------------------------------------------------------
-// Name:
+// Name: exp
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::exp() {
 	knumber_float *f = new knumber_float(this);
@@ -835,7 +851,7 @@ knumber_base *knumber_integer::exp() {
 }
 
 //------------------------------------------------------------------------------
-// Name:
+// Name: bin
 //------------------------------------------------------------------------------
 knumber_base *knumber_integer::bin(knumber_base *rhs) {
 

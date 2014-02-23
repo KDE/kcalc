@@ -460,6 +460,49 @@ knumber_base *knumber_float::sin() {
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
+knumber_base *knumber_float::floor() {
+#ifdef KNUMBER_USE_MPFR
+	mpfr_t mpfr;
+	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
+	mpfr_floor(mpfr, mpfr, rounding_mode);
+	mpfr_get_f(mpf_, mpfr, rounding_mode);
+	mpfr_clear(mpfr);
+	return this;
+#else
+	const double x = mpf_get_d(mpf_);
+	if(isinf(x)) {
+		delete this;
+		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
+	} else {
+		return execute_libc_func< ::floor>(x);
+	}
+#endif
+}
+ 
+//------------------------------------------------------------------------------
+// Name:
+//------------------------------------------------------------------------------
+knumber_base *knumber_float::ceil() {
+#ifdef KNUMBER_USE_MPFR
+	mpfr_t mpfr;
+	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
+	mpfr_ceil(mpfr, mpfr, rounding_mode);
+	mpfr_get_f(mpf_, mpfr, rounding_mode);
+	mpfr_clear(mpfr);
+	return this;
+#else
+	const double x = mpf_get_d(mpf_);
+	if(isinf(x)) {
+		delete this;
+		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
+	} else {
+		return execute_libc_func< ::ceil>(x);
+	}
+#endif
+}
+//------------------------------------------------------------------------------
+// Name:
+//------------------------------------------------------------------------------
 knumber_base *knumber_float::cos() {
 
 #ifdef KNUMBER_USE_MPFR

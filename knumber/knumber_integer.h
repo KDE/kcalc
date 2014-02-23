@@ -83,6 +83,8 @@ public:
 	virtual knumber_base *log10();
 	virtual knumber_base *ln();
 	virtual knumber_base *exp2();
+	virtual knumber_base *floor();
+	virtual knumber_base *ceil();
 	virtual knumber_base *exp10();
 	virtual knumber_base *exp();
 	virtual knumber_base *bin(knumber_base *rhs);

@@ -56,6 +56,8 @@ KNumber factorial(const KNumber &x);
 
 KNumber log2(const KNumber &x);
 KNumber log10(const KNumber &x);
+KNumber ceil(const KNumber &x);
+KNumber floor(const KNumber &x);
 KNumber ln(const KNumber &x);
 KNumber exp2(const KNumber &x);
 KNumber exp10(const KNumber &x);

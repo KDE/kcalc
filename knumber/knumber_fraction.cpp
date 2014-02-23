@@ -575,6 +575,24 @@ knumber_base *knumber_fraction::sin() {
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
+knumber_base *knumber_fraction::floor() {
+	knumber_float *f = new knumber_float(this);
+	delete this;
+	return f->floor();
+}
+
+//------------------------------------------------------------------------------
+// Name:
+//------------------------------------------------------------------------------
+knumber_base *knumber_fraction::ceil() {
+	knumber_float *f = new knumber_float(this);
+	delete this;
+	return f->ceil();
+}
+
+//------------------------------------------------------------------------------
+// Name:
+//------------------------------------------------------------------------------
 knumber_base *knumber_fraction::cos() {
 
 	knumber_float *f = new knumber_float(this);
