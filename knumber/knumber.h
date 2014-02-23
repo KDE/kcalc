@@ -28,14 +28,14 @@ class knumber_base;
 }
 
 class KNumber {
-private:	
+private:
 	friend bool operator==(const KNumber &lhs, const KNumber &rhs);
 	friend bool operator!=(const KNumber &lhs, const KNumber &rhs);
 	friend bool operator>=(const KNumber &lhs, const KNumber &rhs);
 	friend bool operator<=(const KNumber &lhs, const KNumber &rhs);
 	friend bool operator>(const KNumber &lhs, const KNumber &rhs);
 	friend bool operator<(const KNumber &lhs, const KNumber &rhs);
-	
+
 public:
 	enum Type {
 		TYPE_ERROR,
@@ -43,7 +43,7 @@ public:
 		TYPE_FLOAT,
 		TYPE_FRACTION
 	};
-	
+
 public:
 	// useful constants
 	static const KNumber Zero;
@@ -52,29 +52,29 @@ public:
 	static const KNumber PosInfinity;
 	static const KNumber NegInfinity;
 	static const KNumber NaN;
-	
+
 public:
 	static KNumber Pi();
 	static KNumber Euler();
-	
+
 public:
 	// construction/destruction
 	KNumber();
 	explicit KNumber(const QString &s);
-	
+
 	explicit KNumber(qint32 value);
 	explicit KNumber(qint64 value);
 	explicit KNumber(quint32 value);
 	explicit KNumber(quint64 value);
-	
+
 	KNumber(qint64 num, quint64 den);
 	KNumber(quint64 num, quint64 den);
-	
+
 #ifdef HAVE_LONG_DOUBLE
 	explicit KNumber(long double value);
 #endif
 	explicit KNumber(double value);
-	
+
 	KNumber(const KNumber &other);
 	~KNumber();
 
@@ -84,7 +84,7 @@ public:
 public:
 	// assignment
 	KNumber &operator=(const KNumber &rhs);
-	
+
 public:
 	// basic math operators
 	KNumber &operator+=(const KNumber &rhs);
@@ -105,7 +105,7 @@ public:
 	// neg/cmp
 	KNumber operator-() const;
 	KNumber operator~() const;
-	
+
 public:
 	KNumber integerPart() const;
 
@@ -113,8 +113,8 @@ public:
 	QString toQString(int width = -1, int precision = -1) const;
 	quint64 toUint64() const;
 	qint64 toInt64() const;
-	
-	
+
+
 public:
 	KNumber abs() const;
 	KNumber cbrt() const;
@@ -133,9 +133,10 @@ public:
 	KNumber asinh() const;
 	KNumber acosh() const;
 	KNumber atanh() const;
-	
+	KNumber tgamma() const;
+
 	KNumber factorial() const;
-	
+
 	KNumber log2() const;
 	KNumber log10() const;
 	KNumber ln() const;
@@ -145,7 +146,7 @@ public:
 	KNumber exp10() const;
 	KNumber exp() const;
 	KNumber bin(const KNumber &x) const;
-	
+
 public:
 	static void setDefaultFloatPrecision(int precision);
 	static void setSplitoffIntegerForFractionOutput(bool x);
@@ -153,19 +154,19 @@ public:
 	static void setDefaultFloatOutput(bool x);
 	static void setGroupSeparator(const QString &ch);
 	static void setDecimalSeparator(const QString &ch);
-	
+
 	static QString groupSeparator();
 	static QString decimalSeparator();
 
 public:
 	void swap(KNumber &other);
-	
+
 private:
 	void simplify();
 
 private:
 	detail::knumber_base *value_;
-	
+
 private:
 	static QString GroupSeparator;
 	static QString DecimalSeparator;

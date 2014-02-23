@@ -49,6 +49,7 @@ KNumber sin(const KNumber &x);
 KNumber cos(const KNumber &x);
 KNumber tan(const KNumber &x);
 KNumber asin(const KNumber &x);
+KNumber tgamma(const KNumber &x);
 KNumber acos(const KNumber &x);
 KNumber atan(const KNumber &x);
 

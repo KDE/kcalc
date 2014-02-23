@@ -603,6 +603,16 @@ knumber_base *knumber_fraction::cos() {
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
+knumber_base *knumber_fraction::tgamma() {
+
+	knumber_float *f = new knumber_float(this);
+	delete this;
+	return f->tgamma();
+}
+
+//------------------------------------------------------------------------------
+// Name:
+//------------------------------------------------------------------------------
 knumber_base *knumber_fraction::tan() {
 
 	knumber_float *f = new knumber_float(this);

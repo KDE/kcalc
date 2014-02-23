@@ -478,7 +478,7 @@ knumber_base *knumber_float::floor() {
 	}
 #endif
 }
- 
+
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
@@ -673,6 +673,31 @@ knumber_base *knumber_float::tanh() {
 	const double x = mpf_get_d(mpf_);
 	return execute_libc_func< ::tanh>(x);
 #endif
+}
+
+//------------------------------------------------------------------------------
+// Name:
+//------------------------------------------------------------------------------
+knumber_base *knumber_float::tgamma() {
+
+#ifdef KNUMBER_USE_MPFR
+	mpfr_t mpfr;
+	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
+	mpfr_gamma(mpfr, mpfr, rounding_mode);
+	mpfr_get_f(mpf_, mpfr, rounding_mode);
+	mpfr_clear(mpfr);
+	return this;
+#else
+	const double x = mpf_get_d(mpf_);
+	if(isinf(x)) {
+		delete this;
+		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
+
+	} else {
+		return execute_libc_func< ::tgamma>(x);
+	}
+#endif
+
 }
 
 //------------------------------------------------------------------------------

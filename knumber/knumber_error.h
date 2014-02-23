@@ -43,12 +43,12 @@ public:
 	explicit knumber_error(Error e);
 	knumber_error();
 	virtual ~knumber_error();
-	
+
 public:
 	virtual QString toString(int precision) const;
 	virtual quint64 toUint64() const;
 	virtual qint64 toInt64() const;
-	
+
 public:
 	virtual bool is_integer() const;
 	virtual bool is_zero() const;
@@ -60,13 +60,13 @@ public:
 	virtual knumber_base *mul(knumber_base *rhs);
 	virtual knumber_base *div(knumber_base *rhs);
 	virtual knumber_base *mod(knumber_base *rhs);
-	
+
 public:
 	virtual knumber_base *bitwise_and(knumber_base *rhs);
 	virtual knumber_base *bitwise_xor(knumber_base *rhs);
 	virtual knumber_base *bitwise_or(knumber_base *rhs);
 	virtual knumber_base *bitwise_shift(knumber_base *rhs);
-	
+
 public:
 	virtual knumber_base *pow(knumber_base *rhs);
 	virtual knumber_base *neg();
@@ -76,7 +76,8 @@ public:
 	virtual knumber_base *cbrt();
 	virtual knumber_base *factorial();
 	virtual knumber_base *reciprocal();
-	
+	virtual knumber_base *tgamma();
+
 public:
 	virtual knumber_base *log2();
 	virtual knumber_base *log10();
@@ -87,7 +88,7 @@ public:
 	virtual knumber_base *ceil();
 	virtual knumber_base *exp();
 	virtual knumber_base *bin(knumber_base *rhs);
-	
+
 public:
 	virtual knumber_base *sin();
 	virtual knumber_base *cos();
@@ -101,7 +102,7 @@ public:
 	virtual knumber_base *asinh();
 	virtual knumber_base *acosh();
 	virtual knumber_base *atanh();
-	
+
 public:
 	virtual int compare(knumber_base *rhs);
 
@@ -114,7 +115,7 @@ private:
 
 public:
 	virtual knumber_base *clone();
-	
+
 private:
 	Error error_;
 };
