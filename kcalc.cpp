@@ -614,8 +614,10 @@ void KCalculator::setupMiscKeys() {
 	connect(pbReci, SIGNAL(clicked()), SLOT(slotReciclicked()));
 
 	pbFactorial->addMode(ModeNormal, i18nc("Factorial", "x!"), i18n("Factorial"));
+	pbFactorial->addMode(ModeShift, QLatin1String("&#915;"), i18n("Gamma"));
 	pbFactorial->setShortcut(QKeySequence(Qt::Key_Exclam));
 	connect(this, SIGNAL(switchShowAccels(bool)), pbFactorial, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbFactorial, SLOT(slotSetMode(ButtonModeFlags,bool)));
 	connect(pbFactorial, SIGNAL(clicked()), SLOT(slotFactorialclicked()));
 
 	pbSquare->addMode(ModeNormal, i18nc("Square", "x<sup>2</sup>"), i18n("Square"));
@@ -1159,7 +1161,11 @@ void KCalculator::slotFactorialclicked() {
     // time and UI frezes with large numbers. User needs some
     // visual feedback.
     QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-    core.Factorial(calc_display->getAmount());
+	if (!shift_mode_) {
+	    core.Factorial(calc_display->getAmount());
+	} else {
+		core.Gamma(calc_display->getAmount());
+	}
     QApplication::restoreOverrideCursor();
     updateDisplay(UPDATE_FROM_CORE);
 }

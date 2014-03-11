@@ -77,6 +77,7 @@ public:
     void Exp(const KNumber &input);
     void Exp10(const KNumber &input);
     void Factorial(const KNumber &input);
+	void Gamma(const KNumber &input);
     void InvertSign(const KNumber &input);
     void Ln(const KNumber &input);
     void Log10(const KNumber &input);

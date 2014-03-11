@@ -528,6 +528,18 @@ void CalcEngine::Factorial(const KNumber &input)
     last_number_ = input.integerPart().factorial();
 }
 
+void CalcEngine::Gamma(const KNumber &input)
+{
+    if (input == KNumber::PosInfinity) return;
+    if (input < KNumber::Zero || input.type() == KNumber::TYPE_ERROR) {
+        error_ = true;
+        last_number_ = KNumber::NaN;
+        return;
+    }
+	
+    last_number_ = input.tgamma();
+}
+
 void CalcEngine::InvertSign(const KNumber &input)
 {
     last_number_ = -input;
