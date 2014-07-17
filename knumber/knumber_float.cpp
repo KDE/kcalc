@@ -464,7 +464,7 @@ knumber_base *knumber_float::floor() {
 #ifdef KNUMBER_USE_MPFR
 	mpfr_t mpfr;
 	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_floor(mpfr, mpfr, rounding_mode);
+	mpfr_floor(mpfr, mpfr);
 	mpfr_get_f(mpf_, mpfr, rounding_mode);
 	mpfr_clear(mpfr);
 	return this;
@@ -486,7 +486,7 @@ knumber_base *knumber_float::ceil() {
 #ifdef KNUMBER_USE_MPFR
 	mpfr_t mpfr;
 	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_ceil(mpfr, mpfr, rounding_mode);
+	mpfr_ceil(mpfr, mpfr);
 	mpfr_get_f(mpf_, mpfr, rounding_mode);
 	mpfr_clear(mpfr);
 	return this;
