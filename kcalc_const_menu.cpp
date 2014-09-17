@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 #include <kdebug.h>
 #include <klocale.h>
-#include <kstandarddirs.h>
+#include <QStandardPaths>
 
 namespace {
 	QList<science_constant> Constants;
@@ -60,7 +60,7 @@ namespace {
 
 void KCalcConstMenu::init_consts() {
     QDomDocument doc(QLatin1String("list_of_constants"));
-    QFile file(KGlobal::dirs()->findResource("appdata", QLatin1String("scienceconstants.xml")));
+    QFile file(QStandardPaths::locate(QStandardPaths::DataLocation, QLatin1String("scienceconstants.xml")));
 
     if (!file.open(QIODevice::ReadOnly)) {
         kDebug() << "Did not find file \"scienceconstants.xml\". No constants will be available.";

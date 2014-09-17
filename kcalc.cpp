@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QShortcut>
 #include <QStyle>
 
-#include <kaboutdata.h>
+#include <k4aboutdata.h>
 #include <kacceleratormanager.h>
 #include <kaction.h>
 #include <kactioncollection.h>
@@ -243,10 +243,19 @@ KCalcConstMenu *KCalculator::createConstantsMenu() {
 }
 
 //------------------------------------------------------------------------------
+// Name: statusBar
+// Desc: temporary KF5 porting helper
+//------------------------------------------------------------------------------
+KStatusBar *KCalculator::statusBar() {
+	return static_cast<KStatusBar *>(KXmlGuiWindow::statusBar());
+}
+
+//------------------------------------------------------------------------------
 // Name: setupStatusbar
 // Desc: sets up the status bar with default text
 //------------------------------------------------------------------------------
 void KCalculator::setupStatusbar() {
+	setStatusBar(new KStatusBar(this));
 
 	// Status bar contents
 	statusBar()->insertPermanentFixedItem(QLatin1String(" NORM "), ShiftField);
@@ -1615,7 +1624,6 @@ void KCalculator::showSettings() {
 
 	// Create a new dialog with the same name as the above checking code.
 	KConfigDialog *const dialog = new KConfigDialog(this, QLatin1String("settings"), KCalcSettings::self());
-	dialog->showButtonSeparator(true);
 
 	// general settings
 	General *const general = new General(0);
@@ -2279,14 +2287,14 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e) {
 // Name: kdemain
 // Desc: entry point of the application
 //------------------------------------------------------------------------------
-extern "C" KDE_EXPORT int kdemain(int argc, char *argv[]) {
+extern "C" Q_DECL_EXPORT int kdemain(int argc, char *argv[]) {
 
-	KAboutData aboutData("kcalc",
+	K4AboutData aboutData("kcalc",
 		0,
 		ki18n("KCalc"),
 		version,
 		ki18n(description),
-		KAboutData::License_GPL,
+		K4AboutData::License_GPL,
 		ki18n(
 			"&copy; 2008-2013, Evan Teran\n"
 			"&copy; 2000-2008, The KDE Team\n"

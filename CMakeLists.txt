@@ -1,40 +1,32 @@
 project(kcalc)
 
-if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
-    find_package(KDE4)
-    include(KDE4Defaults)
-    include_directories(${KDE4_INCLUDES})
+cmake_minimum_required (VERSION 2.8.12 FATAL_ERROR)
+set (QT_MIN_VERSION "5.2.0")
 
-    add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
-    add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
+find_package (ECM 1.3.0 REQUIRED NO_MODULE)
+set (CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
-    # If definitions like -D_GNU_SOURCE are needed for these checks they
-    # should be added to _KDE4_PLATFORM_DEFINITIONS when it is originally
-    # defined outside this file.  Here we include these definitions in
-    # CMAKE_REQUIRED_DEFINITIONS so they will be included in the build of
-    # checks below.
-    set( CMAKE_REQUIRED_DEFINITIONS ${_KDE4_PLATFORM_DEFINITIONS} )
+include(KDEInstallDirs)
+include(KDECompilerSettings)
+include(KDECMakeSettings)
+include(FeatureSummary)
 
-    set(GMP_REQUIRED TRUE)
-else()
-    set(GMP_REQUIRED FALSE)
-endif()
+find_package (Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
+    Core
+    Widgets
+)
+
+find_package(KF5 REQUIRED COMPONENTS
+    KDELibs4Support
+)
+
+add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
 
 set (CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" ${CMAKE_SOURCE_DIR}/cmake/modules)
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  ${KDE4_ENABLE_EXCEPTIONS}")
+kde_enable_exceptions()
 
-add_definitions (-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
-
-find_package(GMP)
-macro_log_feature( GMP_FOUND "GMP" "The GNU Multiple Precision Arithmetic Library" "http://gmplib.org/" ${GMP_REQUIRED} "" "Required for building KCalc.")
-
-if(NOT GMP_FOUND)
-    if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
-        macro_display_feature_log()
-    else()
-        return()
-    endif()
-endif(NOT GMP_FOUND)
+find_package(GMP REQUIRED)
+# macro_log_feature( GMP_FOUND "GMP" "The GNU Multiple Precision Arithmetic Library" "http://gmplib.org/" TRUE "" "Required for building KCalc.")
 
 include(CheckTypeSize)
 include(CheckIncludeFiles)
@@ -72,20 +64,20 @@ set(kcalc_KDEINIT_SRCS ${libknumber_la_SRCS}
    kcalcdisplay.cpp 
    stats.cpp )
 
-kde4_add_ui_files(kcalc_KDEINIT_SRCS
+qt5_wrap_ui(kcalc_KDEINIT_SRCS
    kcalc.ui
    constants.ui
    colors.ui
    fonts.ui
    general.ui)
 
-kde4_add_kcfg_files(kcalc_KDEINIT_SRCS kcalc_settings.kcfgc )
+kconfig_add_kcfg_files(kcalc_KDEINIT_SRCS kcalc_settings.kcfgc )
 
-kde4_add_app_icon(kcalc_KDEINIT_SRCS "${KDE4_INSTALL_DIR}/share/icons/oxygen/*/apps/accessories-calculator.png")
+#kde4_add_app_icon(kcalc_KDEINIT_SRCS "${KDE4_INSTALL_DIR}/share/icons/oxygen/*/apps/accessories-calculator.png")
 
-kde4_add_kdeinit_executable( kcalc ${kcalc_KDEINIT_SRCS})
+kf5_add_kdeinit_executable( kcalc ${kcalc_KDEINIT_SRCS})
 
-target_link_libraries(kdeinit_kcalc ${QT_QTXML_LIBRARY} ${KDE4_KDEUI_LIBS} ${GMP_LIBRARIES} ${MPFR_LIBRARIES})
+target_link_libraries(kdeinit_kcalc Qt5::Widgets KF5::KDELibs4Support ${GMP_LIBRARIES} ${MPFR_LIBRARIES})
 
 install(TARGETS kdeinit_kcalc ${INSTALL_TARGETS_DEFAULT_ARGS})
 
@@ -96,10 +88,8 @@ install(TARGETS kcalc  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 install( PROGRAMS kcalc.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})
 install( FILES kcalc.kcfg  DESTINATION ${KCFG_INSTALL_DIR})
-install( FILES kcalcui.rc  DESTINATION ${DATA_INSTALL_DIR}/kcalc)
+install( FILES kcalcui.rc  DESTINATION ${KXMLGUI_INSTALL_DIR}/kcalc)
 install( FILES scienceconstants.xml  DESTINATION ${DATA_INSTALL_DIR}/kcalc)
 install( FILES kcalcrc.upd  DESTINATION ${DATA_INSTALL_DIR}/kconf_update)
-
-kde4_install_icons( ${ICON_INSTALL_DIR}   )
 
 add_subdirectory(doc)
