@@ -6,6 +6,8 @@ set (QT_MIN_VERSION "5.2.0")
 find_package (ECM 1.3.0 REQUIRED NO_MODULE)
 set (CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
+add_definitions(-DTRANSLATION_DOMAIN="kcalc")
+
 include(KDEInstallDirs)
 include(KDECompilerSettings)
 include(KDECMakeSettings)
@@ -64,7 +66,7 @@ set(kcalc_KDEINIT_SRCS ${libknumber_la_SRCS}
    kcalcdisplay.cpp 
    stats.cpp )
 
-qt5_wrap_ui(kcalc_KDEINIT_SRCS
+ki18n_wrap_ui(kcalc_KDEINIT_SRCS
    kcalc.ui
    constants.ui
    colors.ui
