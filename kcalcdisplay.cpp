@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "kcalcdisplay.h"
 
+#include <QApplication>
 #include <QClipboard>
 #include <QMouseEvent>
 #include <QPainter>
