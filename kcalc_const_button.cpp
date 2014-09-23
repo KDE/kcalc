@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <kinputdialog.h>
 #include <kmenu.h>
+#include <KLocalizedString>
 
 #include "kcalc_const_button.moc"
 

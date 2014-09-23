@@ -44,7 +44,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <kconfig.h>
 #include <kconfigdialog.h>
 #include <kdialog.h>
-#include <kglobal.h>
 #include <kglobalsettings.h>
 #include <kmenu.h>
 #include <kmenubar.h>
@@ -402,8 +401,8 @@ void KCalculator::setupNumericKeypad() {
 	connect(pbPlus, SIGNAL(clicked()), SLOT(slotPlusclicked()));
 	connect(this, SIGNAL(switchShowAccels(bool)), pbPlus, SLOT(slotSetAccelDisplayMode(bool)));
 
-	pbPeriod->setText(KGlobal::locale()->decimalSymbol());
-	pbPeriod->setShortcut(KGlobal::locale()->decimalSymbol());
+    pbPeriod->setText(QString(QLocale().decimalPoint()));
+    pbPeriod->setShortcut(QString(QLocale().decimalPoint()));
 
 	// TODO: is this needed? the above line look slike it should do the right thing?
 	/*
@@ -1417,7 +1416,7 @@ void KCalculator::slotPeriodclicked() {
 
 	// i know this isn't locale friendly, should be converted to appropriate
 	// value at lower levels
-    calc_display->newCharacter(KGlobal::locale()->decimalSymbol()[0]);
+    calc_display->newCharacter(QLocale().decimalPoint());
 }
 
 //------------------------------------------------------------------------------
@@ -2325,8 +2324,8 @@ extern "C" Q_DECL_EXPORT int kdemain(int argc, char *argv[]) {
 	// force system locale to "C" internally [bug 159168]
 	setlocale(LC_NUMERIC, "C");
 
-	KNumber::setGroupSeparator(KGlobal::locale()->thousandsSeparator());
-	KNumber::setDecimalSeparator(KGlobal::locale()->decimalSymbol());
+    KNumber::setGroupSeparator(QLocale().groupSeparator());
+    KNumber::setDecimalSeparator(QString(QLocale().decimalPoint()));
 
 	KCalculator *calc = new KCalculator(0);
 	app.setTopWidget(calc);

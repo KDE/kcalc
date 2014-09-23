@@ -29,8 +29,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QTimer>
 
 #include <kglobal.h>
-#include <klocale.h>
 #include <knotification.h>
+#include <KLocalizedString>
 
 #include "kcalc_core.h"
 #include "kcalc_settings.h"

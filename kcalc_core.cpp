@@ -26,7 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "kcalc_core.h"
 #include <kdebug.h>
-#include <klocale.h>
 #include <kmessagebox.h>
 
 namespace {

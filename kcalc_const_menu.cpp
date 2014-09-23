@@ -24,8 +24,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QDomDocument>
 #include <QFile>
 #include <kdebug.h>
-#include <klocale.h>
 #include <QStandardPaths>
+
+#include <KLocalizedString>
 
 namespace {
 	QList<science_constant> Constants;

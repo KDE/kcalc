@@ -6,7 +6,7 @@
   <include>KApplication</include>
   <include>KGlobalSettings</include>
   <include>KColorScheme</include>
-  <include>KLocale</include>
+  <include>KLocalizedString</include>
   <kcfgfile name="kcalcrc"/>
   <group name="Colors">
     <entry name="ForeColor" type="Color">
