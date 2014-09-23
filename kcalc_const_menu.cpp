@@ -21,9 +21,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "kcalc_const_menu.h"
 
+#include <QDebug>
 #include <QDomDocument>
 #include <QFile>
-#include <kdebug.h>
 #include <QStandardPaths>
 
 #include <KLocalizedString>
@@ -52,7 +52,7 @@ namespace {
         	return Gravitation;
 		}
 
-		kDebug() << "Invalid Category For Constant: " << s;
+		qDebug() << "Invalid Category For Constant: " << s;
 		return Mathematics;
 	}
 	
@@ -64,12 +64,12 @@ void KCalcConstMenu::init_consts() {
     QFile file(QStandardPaths::locate(QStandardPaths::DataLocation, QLatin1String("scienceconstants.xml")));
 
     if (!file.open(QIODevice::ReadOnly)) {
-        kDebug() << "Did not find file \"scienceconstants.xml\". No constants will be available.";
+        qDebug() << "Did not find file \"scienceconstants.xml\". No constants will be available.";
         return;
     }
     if (!doc.setContent(&file)) {
         file.close();
-        kDebug() << "The file \"scienceconstants.xml\" does not seem to be a valid description file. No constants will be available.";
+        qDebug() << "The file \"scienceconstants.xml\" does not seem to be a valid description file. No constants will be available.";
         return;
     }
     file.close();

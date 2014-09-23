@@ -25,8 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "kcalc_core.h"
-#include <kdebug.h>
-#include <kmessagebox.h>
+
+#include <QDebug>
 
 namespace {
 
@@ -420,7 +420,7 @@ void CalcEngine::CosDeg(const KNumber &input)
                 last_number_ = KNumber::NegOne;
             else if (mult == KNumber(3))
                 last_number_ = KNumber::Zero;
-            else kDebug() << "Something wrong in CalcEngine::CosDeg";
+            else qDebug() << "Something wrong in CalcEngine::CosDeg";
             return;
         }
     }
@@ -457,7 +457,7 @@ void CalcEngine::CosGrad(const KNumber &input)
                 last_number_ = KNumber::NegOne;
             else if (mult == KNumber(3))
                 last_number_ = KNumber::Zero;
-            else kDebug() << "Something wrong in CalcEngine::CosGrad";
+            else qDebug() << "Something wrong in CalcEngine::CosGrad";
             return;
         }
     }
@@ -613,7 +613,7 @@ void CalcEngine::SinDeg(const KNumber &input)
                 last_number_ = KNumber::Zero;
             else if (mult == KNumber(3))
                 last_number_ = KNumber::NegOne;
-            else kDebug() << "Something wrong in CalcEngine::SinDeg";
+            else qDebug() << "Something wrong in CalcEngine::SinDeg";
             return;
         }
     }
@@ -651,7 +651,7 @@ void CalcEngine::SinGrad(const KNumber &input)
                 last_number_ = KNumber::Zero;
             else if (mult == KNumber(3))
                 last_number_ = KNumber::NegOne;
-            else kDebug() << "Something wrong in CalcEngine::SinGrad";
+            else qDebug() << "Something wrong in CalcEngine::SinGrad";
             return;
         }
     }
