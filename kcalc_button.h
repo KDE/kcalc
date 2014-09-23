@@ -23,9 +23,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define KCALC_BUTTON_H_
 
 #include <QMap>
-#include <kpushbutton.h>
+#include <QPushButton>
 
-// The class KCalcButton is an overridden KPushButton. It offers extra
+// The class KCalcButton is an overridden QPushButton. It offers extra
 // functionality e.g. text can be richtext, and the button can be
 // told to display its shortcuts in the label, but the most important
 // thing is that the button may have several modes with corresponding
@@ -55,7 +55,7 @@ public:
 };
 
 
-class KCalcButton : public KPushButton {
+class KCalcButton : public QPushButton {
 	Q_OBJECT
 
 public:

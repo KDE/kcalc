@@ -48,7 +48,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <kmenu.h>
 #include <kmenubar.h>
 #include <knumvalidator.h>
-#include <kpushbutton.h>
 #include <kstandardaction.h>
 #include <kstatusbar.h>
 #include <ktoggleaction.h>
@@ -2120,7 +2119,7 @@ void KCalculator::setColors() {
 		return;
 	}
 
-	const QString sheet = QLatin1String("KPushButton { background-color: %1 }");
+	const QString sheet = QLatin1String("QPushButton { background-color: %1 }");
 
 	const QColor numPal(KCalcSettings::numberButtonsColor());
 	for (int i = 0; i < 10; ++i) {
