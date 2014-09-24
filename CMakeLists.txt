@@ -11,6 +11,7 @@ add_definitions(-DTRANSLATION_DOMAIN="kcalc")
 include(KDEInstallDirs)
 include(KDECompilerSettings)
 include(KDECMakeSettings)
+include(ECMMarkAsTest)
 include(FeatureSummary)
 
 find_package (Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
