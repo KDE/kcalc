@@ -172,7 +172,7 @@ KCalculator::KCalculator(QWidget *parent) :
 //------------------------------------------------------------------------------
 KCalculator::~KCalculator() {
 
-	KCalcSettings::self()->writeConfig();
+	KCalcSettings::self()->save();
 }
 
 //------------------------------------------------------------------------------
