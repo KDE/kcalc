@@ -116,6 +116,7 @@ public:
 
 private:
     virtual bool eventFilter(QObject *o, QEvent *e);
+    virtual bool event(QEvent *e);
     void updateGeometry();
     void setupMainActions();
     void setupKeys();

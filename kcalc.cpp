@@ -159,10 +159,6 @@ KCalculator::KCalculator(QWidget *parent) :
 	setAngle();
 	setBase();
 
-	// connections
-	connect(KGlobalSettings::self(), SIGNAL(kdisplayPaletteChanged()), SLOT(setColors()));
-	connect(KGlobalSettings::self(), SIGNAL(kdisplayFontChanged()), SLOT(setFonts()));
-
 	calc_display->setFocus();
 }
 
@@ -2148,6 +2144,25 @@ void KCalculator::setFonts() {
 	}
 
 	updateGeometry();
+}
+
+//------------------------------------------------------------------------------
+// Name: event
+// Desc: catch application's palette and font change events
+//------------------------------------------------------------------------------
+bool KCalculator::event(QEvent *e) {
+
+	switch (e->type()) {
+	case QEvent::ApplicationFontChange:
+		setFonts();
+		break;
+	case QEvent::ApplicationPaletteChange:
+		setColors();
+		break;
+	default:
+		break;
+	}
+	return KXmlGuiWindow::event(e);
 }
 
 //------------------------------------------------------------------------------
