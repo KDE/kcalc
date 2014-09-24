@@ -23,8 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "kcalc_const_menu.h"
 #include "kcalc_settings.h"
 
-#include <kinputdialog.h>
-#include <kmenu.h>
+#include <QInputDialog>
+
 #include <KLocalizedString>
 
 #include "kcalc_const_button.moc"
@@ -111,8 +111,8 @@ void KCalcConstButton::initPopupMenu() {
 void KCalcConstButton::slotConfigureButton() {
 
 	bool yes_no;
-	const QString input = KInputDialog::getText(i18n("New Name for Constant"), i18n("New name:"), text(), &yes_no, this);  // "nameUserConstants-Dialog"
-	if (yes_no) {
+	const QString input = QInputDialog::getText(this, i18n("New Name for Constant"), i18n("New name:"), QLineEdit::Normal, text(), &yes_no);  // "nameUserConstants-Dialog"
+	if (yes_no && !input.isEmpty()) {
 		KCalcSettings::setNameConstant(button_num_, input);
 		setLabelAndTooltip();
 	}
