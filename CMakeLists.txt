@@ -71,6 +71,7 @@ set(kcalc_KDEINIT_SRCS ${libknumber_la_SRCS}
    kcalc_const_menu.cpp 
    kcalc_core.cpp 
    kcalcdisplay.cpp 
+   kcalc_statusbar.cpp
    stats.cpp )
 
 ki18n_wrap_ui(kcalc_KDEINIT_SRCS

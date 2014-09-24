@@ -26,7 +26,7 @@ class Constants;
 class QButtonGroup;
 class KToggleAction;
 class KCalcConstMenu;
-class KStatusBar;
+class KCalcStatusBar;
 
 /*
   Kcalc basically consist of a class for the GUI (here), a class for
@@ -118,7 +118,6 @@ private:
     virtual bool eventFilter(QObject *o, QEvent *e);
     void updateGeometry();
     void setupMainActions();
-    void setupStatusbar();
     void setupKeys();
 	void setupNumberKeys();
 	void setupRightKeypad();
@@ -135,7 +134,7 @@ private:
     void setBase();
 
     void updateDisplay(UpdateFlags flags);
-    KStatusBar *statusBar();
+    KCalcStatusBar *statusBar();
 	
     // button sets
     void showMemButtons(bool toggled);

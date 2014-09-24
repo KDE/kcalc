@@ -49,7 +49,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <kmenubar.h>
 #include <knumvalidator.h>
 #include <kstandardaction.h>
-#include <kstatusbar.h>
 #include <ktoggleaction.h>
 #include <ktoolbar.h>
 #include <kxmlguifactory.h>
@@ -57,6 +56,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "kcalc_bitset.h"
 #include "kcalc_const_menu.h"
 #include "kcalc_settings.h"
+#include "kcalc_statusbar.h"
 #include "kcalcdisplay.h"
 #include "version.h"
 
@@ -92,7 +92,7 @@ KCalculator::KCalculator(QWidget *parent) :
 	// setup interface (order is critical)
 	setupUi(central);
 	setupMainActions();
-	setupStatusbar();
+	setStatusBar(new KCalcStatusBar(this));
 	createGUI();
 	setupKeys();
 
@@ -242,31 +242,11 @@ KCalcConstMenu *KCalculator::createConstantsMenu() {
 
 //------------------------------------------------------------------------------
 // Name: statusBar
-// Desc: temporary KF5 porting helper
+// Desc: returns a pointer to the status bar
 //------------------------------------------------------------------------------
-KStatusBar *KCalculator::statusBar() {
-	return static_cast<KStatusBar *>(KXmlGuiWindow::statusBar());
-}
+KCalcStatusBar *KCalculator::statusBar() {
 
-//------------------------------------------------------------------------------
-// Name: setupStatusbar
-// Desc: sets up the status bar with default text
-//------------------------------------------------------------------------------
-void KCalculator::setupStatusbar() {
-	setStatusBar(new KStatusBar(this));
-
-	// Status bar contents
-	statusBar()->insertPermanentFixedItem(QLatin1String(" NORM "), ShiftField);
-	statusBar()->setItemAlignment(ShiftField, Qt::AlignCenter);
-
-	statusBar()->insertPermanentFixedItem(QLatin1String(" HEX "), BaseField);
-	statusBar()->setItemAlignment(BaseField, Qt::AlignCenter);
-
-	statusBar()->insertPermanentFixedItem(QLatin1String(" DEG "), AngleField);
-	statusBar()->setItemAlignment(AngleField, Qt::AlignCenter);
-
-	statusBar()->insertPermanentFixedItem(QLatin1String(" \xa0\xa0 "), MemField);   // nbsp
-	statusBar()->setItemAlignment(MemField, Qt::AlignCenter);
+	return static_cast<KCalcStatusBar *>(KXmlGuiWindow::statusBar());
 }
 
 //------------------------------------------------------------------------------
@@ -766,29 +746,25 @@ void KCalculator::slotBaseSelected(int base) {
 	int current_base;
 
 	// set display & statusbar (if item exist in statusbar)
+	statusBar()->setBase(base);
 	switch (base) {
 	case BinMode:
 		current_base = calc_display->setBase(NumBase(2));
-		statusBar()->changeItem(QLatin1String("BIN"), BaseField);
 		calc_display->setStatusText(BaseField, QLatin1String("Bin"));
 		break;
 	case OctMode:
 		current_base = calc_display->setBase(NumBase(8));
-		statusBar()->changeItem(QLatin1String("OCT"), BaseField);
 		calc_display->setStatusText(BaseField, QLatin1String("Oct"));
 		break;
 	case DecMode:
 		current_base = calc_display->setBase(NumBase(10));
-		statusBar()->changeItem(QLatin1String("DEC"), BaseField);
 		calc_display->setStatusText(BaseField, QLatin1String("Dec"));
 		break;
 	case HexMode:
 		current_base = calc_display->setBase(NumBase(16));
-		statusBar()->changeItem(QLatin1String("HEX"), BaseField);
 		calc_display->setStatusText(BaseField, QLatin1String("Hex"));
 		break;
 	default:
-		statusBar()->changeItem(QLatin1String("Error"), BaseField);
 		calc_display->setStatusText(BaseField, QLatin1String("Error"));
 		return;
 	}
@@ -872,17 +848,15 @@ void KCalculator::slotAngleSelected(int mode) {
 
 	angle_mode_ = mode;
 
+	statusBar()->setAngleMode(KCalcStatusBar::AngleMode(mode));
 	switch (mode) {
 	case DegMode:
-		statusBar()->changeItem(QLatin1String("DEG"), AngleField);
 		calc_display->setStatusText(AngleField, QLatin1String("Deg"));
 		break;
 	case RadMode:
-		statusBar()->changeItem(QLatin1String("RAD"), AngleField);
 		calc_display->setStatusText(AngleField, QLatin1String("Rad"));
 		break;
 	case GradMode:
-		statusBar()->changeItem(QLatin1String("GRA"), AngleField);
 		calc_display->setStatusText(AngleField, QLatin1String("Gra"));
 		break;
 	default: // we shouldn't ever end up here
@@ -910,11 +884,10 @@ void KCalculator::slotShifttoggled(bool flag) {
 
 	emit switchMode(ModeShift, flag);
 
+	statusBar()->setShiftIndicator(shift_mode_);
 	if (shift_mode_) {
-		statusBar()->changeItem(i18nc("Second button functions are active", "SHIFT"), ShiftField);
 		calc_display->setStatusText(ShiftField, i18n("Shift"));
 	} else {
-		statusBar()->changeItem(i18nc("Normal button functions are active", "NORM"), ShiftField);
 		calc_display->setStatusText(ShiftField, QString());
 	}
 }
@@ -954,7 +927,7 @@ void KCalculator::slotMemStoreclicked() {
 
 	memory_num_ = calc_display->getAmount();
 	calc_display->setStatusText(MemField, QLatin1String("M"));
-	statusBar()->changeItem(QLatin1String("M"), MemField);
+	statusBar()->setMemoryIndicator(true);
 	pbMemRecall->setEnabled(true);
 }
 
@@ -1042,7 +1015,7 @@ void KCalculator::slotMemPlusMinusclicked() {
 	}
 
 	pbShift->setChecked(false);
-	statusBar()->changeItem(i18n("M"), MemField);
+	statusBar()->setMemoryIndicator(true);
 	calc_display->setStatusText(MemField, i18n("M"));
 	pbMemRecall->setEnabled(true);
 }
@@ -1264,7 +1237,7 @@ void KCalculator::slotPowerclicked() {
 void KCalculator::slotMemClearclicked() {
 
 	memory_num_ = KNumber::Zero;
-	statusBar()->changeItem(QLatin1String(" \xa0\xa0 "), MemField); // nbsp
+	statusBar()->setMemoryIndicator(false);
 	calc_display->setStatusText(MemField, QString());
 	pbMemRecall->setDisabled(true);
 }
@@ -1929,7 +1902,7 @@ void KCalculator::showScienceButtons(bool toggled) {
 		}
 
 		setAngle();
-		statusBar()->setItemFixed(AngleField, -1);
+		statusBar()->setAngleModeIndicatorVisible(true);
 	} else {
 		foreach(QAbstractButton* btn, scientific_buttons_) {
 			btn->hide();
@@ -1939,8 +1912,7 @@ void KCalculator::showScienceButtons(bool toggled) {
 			btn->hide();
 		}
 
-		statusBar()->changeItem(QString(), AngleField);
-		statusBar()->setItemFixed(AngleField, 0);
+		statusBar()->setAngleModeIndicatorVisible(false);
 		calc_display->setStatusText(AngleField, QString());
 	}
 }
@@ -1961,7 +1933,7 @@ void KCalculator::showLogicButtons(bool toggled) {
 		}
 
 		setBase();
-		statusBar()->setItemFixed(BaseField, -1);
+		statusBar()->setBaseIndicatorVisible(true);
 
 		foreach(QAbstractButton *btn, base_choose_group_->buttons()) {
 			btn->show();
@@ -1986,8 +1958,7 @@ void KCalculator::showLogicButtons(bool toggled) {
 			btn->hide();
 		}
 
-		statusBar()->changeItem(QString(), BaseField);
-		statusBar()->setItemFixed(BaseField, 0);
+		statusBar()->setBaseIndicatorVisible(false);
 		calc_display->setStatusText(BaseField, QString());
 		for (int i = 10; i < 16; ++i) {
 			(num_button_group_->button(i))->hide();
