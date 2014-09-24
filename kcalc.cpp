@@ -29,28 +29,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QApplication>
 #include <QCursor>
 #include <QKeyEvent>
+#include <QMenuBar>
 #include <QShortcut>
 #include <QStyle>
 
 #include <KAboutData>
-#include <kacceleratormanager.h>
-#include <kaction.h>
-#include <kactioncollection.h>
-#include <kapplication.h>
-#include <kbuttongroup.h>
-#include <kcmdlineargs.h>
-#include <kcolorbutton.h>
-#include <kcolormimedata.h>
-#include <kconfig.h>
-#include <kconfigdialog.h>
-#include <kdialog.h>
-#include <kglobalsettings.h>
-#include <kmenu.h>
-#include <kmenubar.h>
-#include <knumvalidator.h>
-#include <kstandardaction.h>
-#include <ktoggleaction.h>
-#include <ktoolbar.h>
+#include <KAcceleratorManager>
+#include <KActionCollection>
+#include <KColorMimeData>
+#include <KConfigDialog>
+#include <KStandardAction>
+#include <KToggleAction>
+#include <KToolBar>
 #include <kxmlguifactory.h>
 
 #include "kcalc_bitset.h"
