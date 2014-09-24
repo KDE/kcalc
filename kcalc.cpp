@@ -2284,10 +2284,9 @@ extern "C" Q_DECL_EXPORT int kdemain(int argc, char *argv[]) {
 	aboutData.addAuthor(i18n("Michel Marti"), QString(), "mma@objectxp.com");
 	aboutData.addAuthor(i18n("David Johnson"), QString(), "david@usermode.org");
 
-	aboutData.setProgramIconName(QLatin1String("accessories-calculator"));
-
 	QApplication app(argc, argv);
 	KAboutData::setApplicationData(aboutData);
+	app.setWindowIcon(QIcon::fromTheme(QLatin1String("accessories-calculator")));
 
 	// force system locale to "C" internally [bug 159168]
 	setlocale(LC_NUMERIC, "C");
