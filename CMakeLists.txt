@@ -20,8 +20,14 @@ find_package (Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
 )
 
 find_package(KF5 REQUIRED COMPONENTS
+    Config
+    ConfigWidgets
     DocTools
-    KDELibs4Support
+    GuiAddons
+    I18n
+    Init
+    Notifications
+    XmlGui
 )
 
 add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
@@ -87,7 +93,17 @@ kconfig_add_kcfg_files(kcalc_KDEINIT_SRCS kcalc_settings.kcfgc )
 
 kf5_add_kdeinit_executable( kcalc ${kcalc_KDEINIT_SRCS})
 
-target_link_libraries(kdeinit_kcalc Qt5::Widgets KF5::KDELibs4Support ${GMP_LIBRARIES} ${MPFR_LIBRARIES})
+target_link_libraries(kdeinit_kcalc
+    Qt5::Core
+    Qt5::Widgets
+    KF5::ConfigWidgets
+    KF5::GuiAddons
+    KF5::I18n
+    KF5::Notifications
+    KF5::XmlGui
+    ${GMP_LIBRARIES}
+    ${MPFR_LIBRARIES}
+)
 
 install(TARGETS kdeinit_kcalc ${INSTALL_TARGETS_DEFAULT_ARGS})
 
