@@ -28,8 +28,13 @@ add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
 set (CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" ${CMAKE_SOURCE_DIR}/cmake/modules)
 kde_enable_exceptions()
 
-find_package(GMP REQUIRED)
-# macro_log_feature( GMP_FOUND "GMP" "The GNU Multiple Precision Arithmetic Library" "http://gmplib.org/" TRUE "" "Required for building KCalc.")
+find_package(GMP)
+set_package_properties(GMP PROPERTIES
+    DESCRIPTION "The GNU Multiple Precision Arithmetic Library"
+    URL "http://gmplib.org/"
+    TYPE REQUIRED
+    PURPOSE "Required for building KCalc."
+)
 
 include(CheckTypeSize)
 include(CheckIncludeFiles)
@@ -96,3 +101,5 @@ install( FILES scienceconstants.xml  DESTINATION ${DATA_INSTALL_DIR}/kcalc)
 install( FILES kcalcrc.upd  DESTINATION ${DATA_INSTALL_DIR}/kconf_update)
 
 add_subdirectory(doc)
+
+feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
