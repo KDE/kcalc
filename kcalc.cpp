@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <clocale>
 
 #include <QApplication>
+#include <QCommandLineParser>
 #include <QCursor>
 #include <QKeyEvent>
 #include <QMenuBar>
@@ -2292,6 +2293,11 @@ extern "C" Q_DECL_EXPORT int kdemain(int argc, char *argv[]) {
 	QApplication app(argc, argv);
 	KAboutData::setApplicationData(aboutData);
 	app.setWindowIcon(QIcon::fromTheme(QLatin1String("accessories-calculator")));
+
+	QCommandLineParser parser;
+	parser.addHelpOption();
+	parser.addVersionOption();
+	parser.process(app);
 
 	// force system locale to "C" internally [bug 159168]
 	setlocale(LC_NUMERIC, "C");
