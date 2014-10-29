@@ -112,7 +112,7 @@ install(TARGETS kcalc  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 ########### install files ###############
 
-install( PROGRAMS kcalc.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})
+install( PROGRAMS org.kde.kcalc.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})
 install( FILES kcalc.kcfg  DESTINATION ${KCFG_INSTALL_DIR})
 install( FILES kcalcui.rc  DESTINATION ${KXMLGUI_INSTALL_DIR}/kcalc)
 install( FILES scienceconstants.xml  DESTINATION ${DATA_INSTALL_DIR}/kcalc)

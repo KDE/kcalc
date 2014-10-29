@@ -152,3 +152,4 @@ Terminal=false
 Type=Application
 X-KDE-StartupNotify=true
 Categories=Qt;KDE;Utility;X-KDE-Utilities-Desktop;
+X-DBUS-ServiceName=org.kde.kcalc.desktop
