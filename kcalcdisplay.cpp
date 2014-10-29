@@ -57,8 +57,8 @@ KCalcDisplay::KCalcDisplay(QWidget *parent) : QFrame(parent), beep_(false),
 	KNumber::setDefaultFloatOutput(true);
 	KNumber::setDefaultFractionalInput(true);
 
-	connect(this, SIGNAL(clicked()), this, SLOT(slotDisplaySelected()));
-	connect(selection_timer_, SIGNAL(timeout()), this, SLOT(slotSelectionTimedOut()));
+	connect(this, &KCalcDisplay::clicked, this, &KCalcDisplay::slotDisplaySelected);
+	connect(selection_timer_, &QTimer::timeout, this, &KCalcDisplay::slotSelectionTimedOut);
 
 	sendEvent(EventReset);
 }

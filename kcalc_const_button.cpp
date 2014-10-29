@@ -37,7 +37,7 @@ KCalcConstButton::KCalcConstButton(QWidget *parent) : KCalcButton(parent), butto
 
 	addMode(ModeShift, i18nc("Write display data into memory", "Store"), i18n("Write display data into memory"));
 	initPopupMenu();
-	connect(this, SIGNAL(clicked()), SLOT(slotClicked()));
+	connect(this, &KCalcConstButton::clicked, this, &KCalcConstButton::slotClicked);
 }
 
 //------------------------------------------------------------------------------
@@ -92,7 +92,7 @@ void KCalcConstButton::initPopupMenu() {
 
     QAction *const a = new QAction(this);
     a->setText(i18n("Set Name"));
-    connect(a, SIGNAL(triggered()), this, SLOT(slotConfigureButton()));
+    connect(a, &QAction::triggered, this, &KCalcConstButton::slotConfigureButton);
     addAction(a);
 	
 	KCalcConstMenu *const tmp_menu = new KCalcConstMenu(this);
@@ -100,7 +100,7 @@ void KCalcConstButton::initPopupMenu() {
     addAction(tmp_menu->menuAction());
     setContextMenuPolicy(Qt::ActionsContextMenu);
 
-    connect(tmp_menu, SIGNAL(triggeredConstant(science_constant)), SLOT(slotChooseScientificConst(science_constant)));
+    connect(tmp_menu, &KCalcConstMenu::triggeredConstant, this, &KCalcConstButton::slotChooseScientificConst);
 
 }
 

@@ -96,16 +96,14 @@ KCalculator::KCalculator(QWidget *parent) :
 	base_choose_group_->addButton(decRadio, DecMode);
 	base_choose_group_->addButton(octRadio, OctMode);
 	base_choose_group_->addButton(binRadio, BinMode);
-	connect(base_choose_group_, SIGNAL(buttonClicked(int)),
-	SLOT(slotBaseSelected(int)));
+	connect(base_choose_group_, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &KCalculator::slotBaseSelected);
 
 	angle_choose_group_ =  new QButtonGroup(this);
 	angle_choose_group_->setExclusive(true);
 	angle_choose_group_->addButton(degRadio, DegMode);
 	angle_choose_group_->addButton(radRadio, RadMode);
 	angle_choose_group_->addButton(gradRadio, GradMode);
-	connect(angle_choose_group_, SIGNAL(buttonClicked(int)),
-	SLOT(slotAngleSelected(int)));
+	connect(angle_choose_group_, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &KCalculator::slotAngleSelected);
 
 	// additional menu setup
 	constants_menu_ = createConstantsMenu();
@@ -117,9 +115,9 @@ KCalculator::KCalculator(QWidget *parent) :
 
 	// Show the result in the app's caption in taskbar (wishlist - bug #52858)
 	if (KCalcSettings::captionResult() == true) {
-		connect(calc_display, SIGNAL(changedText(QString)), SLOT(setCaption(QString)));
+                connect(calc_display, &KCalcDisplay::changedText, this, &KCalculator::setWindowTitle);
 	}
-
+     
 	calc_display->changeSettings();
 	setPrecision();
 
@@ -184,33 +182,33 @@ void KCalculator::setupMainActions() {
 	action_mode_simple_ = actionCollection()->add<KToggleAction>(QLatin1String("mode_simple"));
 	action_mode_simple_->setActionGroup(modeGroup);
 	action_mode_simple_->setText(i18n("Simple Mode"));
-	connect(action_mode_simple_, SIGNAL(toggled(bool)), SLOT(slotSetSimpleMode()));
+	connect(action_mode_simple_, &KToggleAction::toggled, this, &KCalculator::slotSetSimpleMode);
 
 	action_mode_science_ = actionCollection()->add<KToggleAction>(QLatin1String("mode_science"));
 	action_mode_science_->setActionGroup(modeGroup);
 	action_mode_science_->setText(i18n("Science Mode"));
-	connect(action_mode_science_, SIGNAL(toggled(bool)), SLOT(slotSetScienceMode()));
+	connect(action_mode_science_, &KToggleAction::toggled, this, &KCalculator::slotSetScienceMode);
 
 	action_mode_statistic_ = actionCollection()->add<KToggleAction>(QLatin1String("mode_statistics"));
 	action_mode_statistic_->setActionGroup(modeGroup);
 	action_mode_statistic_->setText(i18n("Statistic Mode"));
-	connect(action_mode_statistic_, SIGNAL(toggled(bool)), SLOT(slotSetStatisticMode()));
+	connect(action_mode_statistic_, &KToggleAction::toggled, this, &KCalculator::slotSetStatisticMode);
 
 	action_mode_numeral_ = actionCollection()->add<KToggleAction>(QLatin1String("mode_numeral"));
 	action_mode_numeral_->setActionGroup(modeGroup);
 	action_mode_numeral_->setText(i18n("Numeral System Mode"));
-	connect(action_mode_numeral_, SIGNAL(toggled(bool)), SLOT(slotSetNumeralMode()));
+	connect(action_mode_numeral_, &KToggleAction::toggled, this, &KCalculator::slotSetNumeralMode);
 
 	// settings menu
 	action_constants_show_ = actionCollection()->add<KToggleAction>(QLatin1String("show_constants"));
 	action_constants_show_->setText(i18n("Constants &Buttons"));
 	action_constants_show_->setChecked(true);
-	connect(action_constants_show_, SIGNAL(toggled(bool)), SLOT(slotConstantsShow(bool)));
+	connect(action_constants_show_, &KToggleAction::toggled, this, &KCalculator::slotConstantsShow);
 
 	action_bitset_show_ = actionCollection()->add<KToggleAction>(QLatin1String("show_bitset"));
 	action_bitset_show_->setText(i18n("Show B&it Edit"));
 	action_bitset_show_->setChecked(true);
-	connect(action_bitset_show_, SIGNAL(toggled(bool)), SLOT(slotBitsetshow(bool)));
+	connect(action_bitset_show_, &KToggleAction::toggled, this, &KCalculator::slotBitsetshow);
 
 	KStandardAction::preferences(this, SLOT(showSettings()), actionCollection());
 	KStandardAction::keyBindings(guiFactory(), SLOT(configureShortcuts()), actionCollection());
@@ -223,7 +221,7 @@ void KCalculator::setupMainActions() {
 KCalcConstMenu *KCalculator::createConstantsMenu() {
 
 	KCalcConstMenu *const menu = new KCalcConstMenu(i18n("&Constants"), this);
-	connect(menu, SIGNAL(triggeredConstant(science_constant)), this, SLOT(slotConstantToDisplay(science_constant)));
+	connect(menu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotConstantToDisplay);
 	return menu;
 }
 
@@ -243,7 +241,7 @@ KCalcStatusBar *KCalculator::statusBar() {
 void KCalculator::setupNumberKeys() {
 
     num_button_group_ = new QButtonGroup(this);
-    connect(num_button_group_, SIGNAL(buttonClicked(int)), SLOT(slotNumberclicked(int)));
+    connect(num_button_group_, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &KCalculator::slotNumberclicked);
 
     num_button_group_->addButton(pb0, 0);
     num_button_group_->addButton(pb1, 1);
@@ -261,22 +259,22 @@ void KCalculator::setupNumberKeys() {
     num_button_group_->addButton(pbD, 0xD);
     num_button_group_->addButton(pbE, 0xE);
     num_button_group_->addButton(pbF, 0xF);
-    connect(this, SIGNAL(switchShowAccels(bool)), pb0, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(this, SIGNAL(switchShowAccels(bool)), pb1, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(this, SIGNAL(switchShowAccels(bool)), pb2, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(this, SIGNAL(switchShowAccels(bool)), pb3, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(this, SIGNAL(switchShowAccels(bool)), pb4, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(this, SIGNAL(switchShowAccels(bool)), pb5, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(this, SIGNAL(switchShowAccels(bool)), pb6, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(this, SIGNAL(switchShowAccels(bool)), pb7, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(this, SIGNAL(switchShowAccels(bool)), pb8, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(this, SIGNAL(switchShowAccels(bool)), pb9, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(this, SIGNAL(switchShowAccels(bool)), pbA, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(this, SIGNAL(switchShowAccels(bool)), pbB, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(this, SIGNAL(switchShowAccels(bool)), pbC, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(this, SIGNAL(switchShowAccels(bool)), pbD, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(this, SIGNAL(switchShowAccels(bool)), pbE, SLOT(slotSetAccelDisplayMode(bool)));
-    connect(this, SIGNAL(switchShowAccels(bool)), pbF, SLOT(slotSetAccelDisplayMode(bool)));
+    connect(this, &KCalculator::switchShowAccels, pb0, &KCalcButton::slotSetAccelDisplayMode);
+    connect(this, &KCalculator::switchShowAccels, pb1, &KCalcButton::slotSetAccelDisplayMode);
+    connect(this, &KCalculator::switchShowAccels, pb2, &KCalcButton::slotSetAccelDisplayMode);
+    connect(this, &KCalculator::switchShowAccels, pb3, &KCalcButton::slotSetAccelDisplayMode);
+    connect(this, &KCalculator::switchShowAccels, pb4, &KCalcButton::slotSetAccelDisplayMode);
+    connect(this, &KCalculator::switchShowAccels, pb5, &KCalcButton::slotSetAccelDisplayMode);
+    connect(this, &KCalculator::switchShowAccels, pb6, &KCalcButton::slotSetAccelDisplayMode);
+    connect(this, &KCalculator::switchShowAccels, pb7, &KCalcButton::slotSetAccelDisplayMode);
+    connect(this, &KCalculator::switchShowAccels, pb8, &KCalcButton::slotSetAccelDisplayMode);
+    connect(this, &KCalculator::switchShowAccels, pb9, &KCalcButton::slotSetAccelDisplayMode);
+    connect(this, &KCalculator::switchShowAccels, pbA, &KCalcButton::slotSetAccelDisplayMode);
+    connect(this, &KCalculator::switchShowAccels, pbB, &KCalcButton::slotSetAccelDisplayMode);
+    connect(this, &KCalculator::switchShowAccels, pbC, &KCalcButton::slotSetAccelDisplayMode);
+    connect(this, &KCalculator::switchShowAccels, pbD, &KCalcButton::slotSetAccelDisplayMode);
+    connect(this, &KCalculator::switchShowAccels, pbE, &KCalcButton::slotSetAccelDisplayMode);
+    connect(this, &KCalculator::switchShowAccels, pbF, &KCalcButton::slotSetAccelDisplayMode);
 }
 
 //------------------------------------------------------------------------------
@@ -285,55 +283,55 @@ void KCalculator::setupNumberKeys() {
 //------------------------------------------------------------------------------
 void KCalculator::setupRightKeypad() {
 
-	connect(pbShift, SIGNAL(toggled(bool)), SLOT(slotShifttoggled(bool)));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbShift, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbShift, &KCalcButton::toggled, this, &KCalculator::slotShifttoggled);
+	connect(this, &KCalculator::switchShowAccels, pbShift, &KCalcButton::slotSetAccelDisplayMode);
 
 	pbBackspace->setShortcut(QKeySequence(Qt::Key_Backspace));
 	new QShortcut(Qt::Key_PageUp, pbBackspace, SLOT(animateClick()));
-	connect(pbBackspace, SIGNAL(clicked()), SLOT(slotBackspaceclicked()));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbBackspace, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbBackspace, &KCalcButton::clicked, this, &KCalculator::slotBackspaceclicked);
+	connect(this, &KCalculator::switchShowAccels, pbBackspace, &KCalcButton::slotSetAccelDisplayMode);
 
 	pbClear->setShortcut(QKeySequence(Qt::Key_Escape));
 	new QShortcut(Qt::Key_PageUp, pbClear, SLOT(animateClick()));
-	connect(pbClear, SIGNAL(clicked()), SLOT(slotClearclicked()));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbClear, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbClear, &KCalcButton::clicked, this, &KCalculator::slotClearclicked);
+	connect(this, &KCalculator::switchShowAccels, pbClear, &KCalcButton::slotSetAccelDisplayMode);
 
 	pbAllClear->setShortcut(QKeySequence(Qt::Key_Delete));
 	new QShortcut(Qt::Key_PageDown, pbAllClear, SLOT(animateClick()));
-	connect(pbAllClear, SIGNAL(clicked()), SLOT(slotAllClearclicked()));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbAllClear, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbAllClear, &KCalcButton::clicked, this, &KCalculator::slotAllClearclicked);
+	connect(this, &KCalculator::switchShowAccels, pbAllClear, &KCalcButton::slotSetAccelDisplayMode);
 
 	pbParenOpen->setShortcut(QKeySequence(Qt::Key_ParenLeft));
-	connect(pbParenOpen, SIGNAL(clicked()), SLOT(slotParenOpenclicked()));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbParenOpen, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbParenOpen, &KCalcButton::clicked, this, &KCalculator::slotParenOpenclicked);
+	connect(this, &KCalculator::switchShowAccels, pbParenOpen, &KCalcButton::slotSetAccelDisplayMode);
 
 	pbParenClose->setShortcut(QKeySequence(Qt::Key_ParenRight));
-	connect(pbParenClose, SIGNAL(clicked()), SLOT(slotParenCloseclicked()));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbParenClose, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbParenClose, &KCalcButton::clicked, this, &KCalculator::slotParenCloseclicked);
+	connect(this, &KCalculator::switchShowAccels, pbParenClose, &KCalcButton::slotSetAccelDisplayMode);
 
 	pbMemRecall->setDisabled(true);   // nothing in memory at start
-	connect(pbMemRecall, SIGNAL(clicked()), SLOT(slotMemRecallclicked()));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbMemRecall, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbMemRecall, &KCalcButton::clicked, this, &KCalculator::slotMemRecallclicked);
+	connect(this, &KCalculator::switchShowAccels, pbMemRecall, &KCalcButton::slotSetAccelDisplayMode);
 
-	connect(pbMemClear, SIGNAL(clicked()), SLOT(slotMemClearclicked()));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbMemClear, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbMemClear, &KCalcButton::clicked, this, &KCalculator::slotMemClearclicked);
+	connect(this, &KCalculator::switchShowAccels, pbMemClear, &KCalcButton::slotSetAccelDisplayMode);
 
 	pbMemPlusMinus->addMode(ModeNormal, i18nc("Add display to memory", "M+"), i18n("Add display to memory"));
 	pbMemPlusMinus->addMode(ModeShift, i18nc("Subtract from memory", "M\xe2\x88\x92"), i18n("Subtract from memory"));
-	connect(pbMemPlusMinus, SIGNAL(clicked()), SLOT(slotMemPlusMinusclicked()));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbMemPlusMinus, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbMemPlusMinus, SLOT(slotSetMode(ButtonModeFlags,bool)));
+	connect(pbMemPlusMinus, &KCalcButton::clicked, this, &KCalculator::slotMemPlusMinusclicked);
+	connect(this, &KCalculator::switchShowAccels, pbMemPlusMinus, &KCalcButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbMemPlusMinus, &KCalcButton::slotSetMode);
 
-	connect(pbMemStore, SIGNAL(clicked()), SLOT(slotMemStoreclicked()));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbMemStore, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbMemStore, &KCalcButton::clicked, this, &KCalculator::slotMemStoreclicked);
+	connect(this, &KCalculator::switchShowAccels, pbMemStore, &KCalcButton::slotSetAccelDisplayMode);
 
 	pbPercent->setShortcut(QKeySequence(Qt::Key_Percent));
-	connect(pbPercent, SIGNAL(clicked()), SLOT(slotPercentclicked()));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbPercent, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbPercent, &KCalcButton::clicked, this, &KCalculator::slotPercentclicked);
+	connect(this, &KCalculator::switchShowAccels, pbPercent, &KCalcButton::slotSetAccelDisplayMode);
 
 	pbPlusMinus->setShortcut(QKeySequence(Qt::Key_Backslash));
-	connect(pbPlusMinus, SIGNAL(clicked()), SLOT(slotPlusMinusclicked()));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbPlusMinus, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbPlusMinus, &KCalcButton::clicked, this, &KCalculator::slotPlusMinusclicked);
+	connect(this, &KCalculator::switchShowAccels, pbPlusMinus, &KCalcButton::slotSetAccelDisplayMode);
 }
 
 //------------------------------------------------------------------------------
@@ -344,28 +342,28 @@ void KCalculator::setupNumericKeypad() {
 
 	pbCube->addMode(ModeNormal, i18nc("Third power", "x<sup>3</sup>"), i18n("Third power"));
 	pbCube->addMode(ModeShift, QLatin1String("<sup>3</sup>&radic;x"), i18n("Cube root"));
-	connect(pbCube, SIGNAL(clicked()), SLOT(slotCubeclicked()));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbCube, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbCube, SLOT(slotSetMode(ButtonModeFlags,bool)));
+	connect(pbCube, &KCalcButton::clicked, this, &KCalculator::slotCubeclicked);
+	connect(this, &KCalculator::switchShowAccels, pbCube, &KCalcButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbCube, &KCalcButton::slotSetMode);
 
 	pbDivision->setShortcut(QKeySequence(Qt::Key_Slash));
 	new QShortcut(Qt::Key_division, pbDivision, SLOT(animateClick()));
-	connect(pbDivision, SIGNAL(clicked()), SLOT(slotDivisionclicked()));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbDivision, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbDivision, &KCalcButton::clicked, this, &KCalculator::slotDivisionclicked);
+	connect(this, &KCalculator::switchShowAccels, pbDivision, &KCalcButton::slotSetAccelDisplayMode);
 
 	pbMultiplication->setShortcut(QKeySequence(Qt::Key_Asterisk));
 	new QShortcut(Qt::Key_X, pbMultiplication, SLOT(animateClick()));
 	new QShortcut(Qt::Key_multiply, pbMultiplication, SLOT(animateClick()));
-	connect(pbMultiplication, SIGNAL(clicked()), SLOT(slotMultiplicationclicked()));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbMultiplication, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbMultiplication, &KCalcButton::clicked, this, &KCalculator::slotMultiplicationclicked);
+	connect(this, &KCalculator::switchShowAccels, pbMultiplication, &KCalcButton::slotSetAccelDisplayMode);
 
 	pbMinus->setShortcut(QKeySequence(Qt::Key_Minus));
-	connect(pbMinus, SIGNAL(clicked()), SLOT(slotMinusclicked()));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbMinus, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbMinus, &KCalcButton::clicked, this, &KCalculator::slotMinusclicked);
+	connect(this, &KCalculator::switchShowAccels, pbMinus, &KCalcButton::slotSetAccelDisplayMode);
 
 	pbPlus->setShortcut(QKeySequence(Qt::Key_Plus));
-	connect(pbPlus, SIGNAL(clicked()), SLOT(slotPlusclicked()));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbPlus, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbPlus, &KCalcButton::clicked, this, &KCalculator::slotPlusclicked);
+	connect(this, &KCalculator::switchShowAccels, pbPlus, &KCalcButton::slotSetAccelDisplayMode);
 
     pbPeriod->setText(QString(QLocale().decimalPoint()));
     pbPeriod->setShortcut(QString(QLocale().decimalPoint()));
@@ -379,14 +377,14 @@ void KCalculator::setupNumericKeypad() {
 	}
 	*/
 
-	connect(pbPeriod, SIGNAL(clicked()), SLOT(slotPeriodclicked()));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbPeriod, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbPeriod, &KCalcButton::clicked, this, &KCalculator::slotPeriodclicked);
+	connect(this, &KCalculator::switchShowAccels, pbPeriod, &KCalcButton::slotSetAccelDisplayMode);
 
 	pbEqual->setShortcut(QKeySequence(Qt::Key_Enter));
 	new QShortcut(Qt::Key_Equal, pbEqual, SLOT(animateClick()));
 	new QShortcut(Qt::Key_Return, pbEqual, SLOT(animateClick()));
-	connect(pbEqual, SIGNAL(clicked()), SLOT(slotEqualclicked()));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbEqual, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(pbEqual, &KCalcButton::clicked, this, &KCalculator::slotEqualclicked);
+	connect(this, &KCalculator::switchShowAccels, pbEqual, &KCalcButton::slotSetAccelDisplayMode);
 }
 
 //------------------------------------------------------------------------------
@@ -403,27 +401,27 @@ void KCalculator::setupLogicKeys() {
 	logic_buttons_.append(pbCmp);
 
 	pbAND->setShortcut(QKeySequence(Qt::Key_Ampersand));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbAND, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(pbAND, SIGNAL(clicked()), SLOT(slotANDclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbAND, &KCalcButton::slotSetAccelDisplayMode);
+	connect(pbAND, &KCalcButton::clicked, this, &KCalculator::slotANDclicked);
 
 	pbOR->setShortcut(QKeySequence(Qt::Key_Bar));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbOR, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(pbOR, SIGNAL(clicked()), SLOT(slotORclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbOR, &KCalcButton::slotSetAccelDisplayMode);
+	connect(pbOR, &KCalcButton::clicked, this, &KCalculator::slotORclicked);
 
-	connect(this, SIGNAL(switchShowAccels(bool)), pbXOR, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(pbXOR, SIGNAL(clicked()), SLOT(slotXORclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbXOR, &KCalcButton::slotSetAccelDisplayMode);
+	connect(pbXOR, &KCalcButton::clicked, this, &KCalculator::slotXORclicked);
 
 	pbLsh->setShortcut(QKeySequence(Qt::Key_Less));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbLsh, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(pbLsh, SIGNAL(clicked()), SLOT(slotLeftShiftclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbLsh, &KCalcButton::slotSetAccelDisplayMode);
+	connect(pbLsh, &KCalcButton::clicked, this, &KCalculator::slotLeftShiftclicked);
 
 	pbRsh->setShortcut(QKeySequence(Qt::Key_Greater));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbRsh, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(pbRsh, SIGNAL(clicked()), SLOT(slotRightShiftclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbRsh, &KCalcButton::slotSetAccelDisplayMode);
+	connect(pbRsh, &KCalcButton::clicked, this, &KCalculator::slotRightShiftclicked);
 
 	pbCmp->setShortcut(QKeySequence(Qt::Key_AsciiTilde));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbCmp, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(pbCmp, SIGNAL(clicked()), SLOT(slotNegateclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbCmp, &KCalcButton::slotSetAccelDisplayMode);
+	connect(pbCmp, &KCalcButton::clicked, this, &KCalculator::slotNegateclicked);
 }
 
 //------------------------------------------------------------------------------
@@ -439,43 +437,43 @@ void KCalculator::setupScientificKeys() {
 	scientific_buttons_.append(pbLog);
 	scientific_buttons_.append(pbLn);
 
-	connect(this, SIGNAL(switchShowAccels(bool)), pbHyp, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(pbHyp, SIGNAL(toggled(bool)), SLOT(slotHyptoggled(bool)));
+	connect(this, &KCalculator::switchShowAccels, pbHyp, &KCalcButton::slotSetAccelDisplayMode);
+	connect(pbHyp, &KCalcButton::toggled, this, &KCalculator::slotHyptoggled);
 
 	pbSin->addMode(ModeNormal, i18nc("Sine", "Sin"), i18n("Sine"));
 	pbSin->addMode(ModeShift, i18nc("Arc sine", "Asin"), i18n("Arc sine"));
 	pbSin->addMode(ModeHyperbolic, i18nc("Hyperbolic sine", "Sinh"), i18n("Hyperbolic sine"));
 	pbSin->addMode(ButtonModeFlags(ModeShift | ModeHyperbolic), i18nc("Inverse hyperbolic sine", "Asinh"), i18n("Inverse hyperbolic sine"));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbSin, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbSin, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(pbSin, SIGNAL(clicked()), SLOT(slotSinclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbSin, &KCalcButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbSin, &KCalcButton::slotSetMode);
+	connect(pbSin, &KCalcButton::clicked, this, &KCalculator::slotSinclicked);
 
 	pbCos->addMode(ModeNormal, i18nc("Cosine", "Cos"), i18n("Cosine"));
 	pbCos->addMode(ModeShift, i18nc("Arc cosine", "Acos"), i18n("Arc cosine"));
 	pbCos->addMode(ModeHyperbolic, i18nc("Hyperbolic cosine", "Cosh"), i18n("Hyperbolic cosine"));
 	pbCos->addMode(ButtonModeFlags(ModeShift | ModeHyperbolic), i18nc("Inverse hyperbolic cosine", "Acosh"), i18n("Inverse hyperbolic cosine"));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbCos, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbCos, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(pbCos, SIGNAL(clicked()), SLOT(slotCosclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbCos, &KCalcButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbCos, &KCalcButton::slotSetMode);
+	connect(pbCos, &KCalcButton::clicked, this, &KCalculator::slotCosclicked);
 
 	pbTan->addMode(ModeNormal, i18nc("Tangent", "Tan"), i18n("Tangent"));
 	pbTan->addMode(ModeShift, i18nc("Arc tangent", "Atan"), i18n("Arc tangent"));
 	pbTan->addMode(ModeHyperbolic, i18nc("Hyperbolic tangent", "Tanh"), i18n("Hyperbolic tangent"));
 	pbTan->addMode(ButtonModeFlags(ModeShift | ModeHyperbolic), i18nc("Inverse hyperbolic tangent", "Atanh"), i18n("Inverse hyperbolic tangent"));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbTan, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbTan, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(pbTan, SIGNAL(clicked()), SLOT(slotTanclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbTan, &KCalcButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbTan, &KCalcButton::slotSetMode);
+	connect(pbTan, &KCalcButton::clicked, this, &KCalculator::slotTanclicked);
 
 	pbLog->addMode(ModeNormal, i18nc("Logarithm to base 10", "Log"), i18n("Logarithm to base 10"));
 	pbLog->addMode(ModeShift, i18nc("10 to the power of x", "10<sup>x</sup>"), i18n("10 to the power of x"));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbLog, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbLog, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(pbLog, SIGNAL(clicked()), SLOT(slotLogclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbLog, &KCalcButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbLog, &KCalcButton::slotSetMode);
+	connect(pbLog, &KCalcButton::clicked, this, &KCalculator::slotLogclicked);
 	pbLn->addMode(ModeNormal, i18nc("Natural log", "Ln"), i18n("Natural log"));
 	pbLn->addMode(ModeShift, i18nc("Exponential function", "e<sup>x</sup>"), i18n("Exponential function"));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbLn, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbLn, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(pbLn, SIGNAL(clicked()), SLOT(slotLnclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbLn, &KCalcButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbLn, &KCalcButton::slotSetMode);
+	connect(pbLn, &KCalcButton::clicked, this, &KCalculator::slotLnclicked);
 }
 
 //------------------------------------------------------------------------------
@@ -493,33 +491,33 @@ void KCalculator::setupStatisticKeys() {
 
 	pbNData->addMode(ModeNormal, i18nc("Number of data entered", "N"), i18n("Number of data entered"));
 	pbNData->addMode(ModeShift, QString::fromUtf8("\xce\xa3") + QLatin1Char('x'), i18n("Sum of all data items"));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbNData, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbNData, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(pbNData, SIGNAL(clicked()), SLOT(slotStatNumclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbNData, &KCalcButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbNData, &KCalcButton::slotSetMode);
+	connect(pbNData, &KCalcButton::clicked, this, &KCalculator::slotStatNumclicked);
 
 	pbMean->addMode(ModeNormal, i18nc("Mean", "Mea"), i18n("Mean"));
 	pbMean->addMode(ModeShift, QString::fromUtf8("\xce\xa3") + QLatin1String("x<sup>2</sup>"), i18n("Sum of all data items squared"));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbMean, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbMean, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(pbMean, SIGNAL(clicked()), SLOT(slotStatMeanclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbMean, &KCalcButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbMean, &KCalcButton::slotSetMode);
+	connect(pbMean, &KCalcButton::clicked, this, &KCalculator::slotStatMeanclicked);
 
 	pbSd->addMode(ModeNormal, QString::fromUtf8("\xcf\x83") + QLatin1String("<sub>N</sub>"), i18n("Standard deviation"));
 	pbSd->addMode(ModeShift, QString::fromUtf8("\xcf\x83") + QLatin1String("<sub>N-1</sub>"), i18n("Sample standard deviation"));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbSd, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbSd, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(pbSd, SIGNAL(clicked()), SLOT(slotStatStdDevclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbSd, &KCalcButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbSd, &KCalcButton::slotSetMode);
+	connect(pbSd, &KCalcButton::clicked, this, &KCalculator::slotStatStdDevclicked);
 
-	connect(this, SIGNAL(switchShowAccels(bool)), pbMed, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(pbMed, SIGNAL(clicked()), SLOT(slotStatMedianclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbMed, &KCalcButton::slotSetAccelDisplayMode);
+	connect(pbMed, &KCalcButton::clicked, this, &KCalculator::slotStatMedianclicked);
 
 	pbDat->addMode(ModeNormal, i18nc("Enter data", "Dat"), i18n("Enter data"));
 	pbDat->addMode(ModeShift, i18nc("Delete last data item", "CDat"), i18n("Delete last data item"));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbDat, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbDat, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(pbDat, SIGNAL(clicked()), SLOT(slotStatDataInputclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbDat, &KCalcButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbDat, &KCalcButton::slotSetMode);
+	connect(pbDat, &KCalcButton::clicked, this, &KCalculator::slotStatDataInputclicked);
 
-	connect(this, SIGNAL(switchShowAccels(bool)), pbCSt, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(pbCSt, SIGNAL(clicked()), SLOT(slotStatClearDataclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbCSt, &KCalcButton::slotSetAccelDisplayMode);
+	connect(pbCSt, &KCalcButton::clicked, this, &KCalculator::slotStatClearDataclicked);
 }
 
 //------------------------------------------------------------------------------
@@ -536,34 +534,34 @@ void KCalculator::setupConstantsKeys() {
 	const_buttons_.append(pbC6);
 
 	pbC1->setButtonNumber(0);
-	connect(this, SIGNAL(switchShowAccels(bool)), pbC1, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbC1, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(pbC1, SIGNAL(clicked(int)), this, SLOT(slotConstclicked(int)));
+	connect(this, &KCalculator::switchShowAccels, pbC1, &KCalcConstButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbC1, &KCalcConstButton::slotSetMode);
+	connect(pbC1, &KCalcConstButton::clicked, this, &KCalculator::slotConstclicked);
 
 	pbC2->setButtonNumber(1);
-	connect(this, SIGNAL(switchShowAccels(bool)), pbC2, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbC2, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(pbC2, SIGNAL(clicked(int)), this, SLOT(slotConstclicked(int)));
+	connect(this, &KCalculator::switchShowAccels, pbC2, &KCalcConstButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbC2, &KCalcConstButton::slotSetMode);
+	connect(pbC2, &KCalcConstButton::clicked, this, &KCalculator::slotConstclicked);
 
 	pbC3->setButtonNumber(2);
-	connect(this, SIGNAL(switchShowAccels(bool)), pbC3, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbC3, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(pbC3, SIGNAL(clicked(int)), this, SLOT(slotConstclicked(int)));
+	connect(this, &KCalculator::switchShowAccels, pbC3, &KCalcConstButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbC3, &KCalcConstButton::slotSetMode);
+	connect(pbC3, &KCalcConstButton::clicked, this, &KCalculator::slotConstclicked);
 
 	pbC4->setButtonNumber(3);
-	connect(this, SIGNAL(switchShowAccels(bool)), pbC4, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbC4, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(pbC4, SIGNAL(clicked(int)), this, SLOT(slotConstclicked(int)));
+	connect(this, &KCalculator::switchShowAccels, pbC4, &KCalcConstButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbC4, &KCalcConstButton::slotSetMode);
+	connect(pbC4, &KCalcConstButton::clicked, this, &KCalculator::slotConstclicked);
 
 	pbC5->setButtonNumber(4);
-	connect(this, SIGNAL(switchShowAccels(bool)), pbC5, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbC5, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(pbC5, SIGNAL(clicked(int)), this, SLOT(slotConstclicked(int)));
+	connect(this, &KCalculator::switchShowAccels, pbC5, &KCalcConstButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbC5, &KCalcConstButton::slotSetMode);
+	connect(pbC5, &KCalcConstButton::clicked, this, &KCalculator::slotConstclicked);
 
 	pbC6->setButtonNumber(5);
-	connect(this, SIGNAL(switchShowAccels(bool)), pbC6, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbC6, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(pbC6, SIGNAL(clicked(int)), this, SLOT(slotConstclicked(int)));
+	connect(this, &KCalculator::switchShowAccels, pbC6, &KCalcConstButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbC6, &KCalcConstButton::slotSetMode);
+	connect(pbC6, &KCalcConstButton::clicked, this, &KCalculator::slotConstclicked);
 
 	changeButtonNames();
 }
@@ -576,42 +574,42 @@ void KCalculator::setupMiscKeys() {
 
 	pbMod->addMode(ModeNormal, i18nc("Modulo", "Mod"), i18n("Modulo"));
 	pbMod->addMode(ModeShift, i18nc("Integer division", "IntDiv"), i18n("Integer division"));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbMod, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbMod, SLOT(slotSetAccelDisplayMode(bool)));
+	connect(this, &KCalculator::switchMode, pbMod, &KCalcButton::slotSetMode);
+	connect(this, &KCalculator::switchShowAccels, pbMod, &KCalcButton::slotSetAccelDisplayMode);
 	pbMod->setShortcut(QKeySequence(Qt::Key_Colon));
-	connect(pbMod, SIGNAL(clicked()), SLOT(slotModclicked()));
+	connect(pbMod, &KCalcButton::clicked, this, &KCalculator::slotModclicked);
 
 	pbReci->addMode(ModeNormal, i18nc("Reciprocal", "1/x"), i18n("Reciprocal"));
 	pbReci->addMode(ModeShift, i18nc("n Choose m", "nCm"), i18n("n Choose m"));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbReci, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbReci, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(pbReci, SIGNAL(clicked()), SLOT(slotReciclicked()));
+	connect(this, &KCalculator::switchMode, pbReci, &KCalcButton::slotSetMode);
+	connect(this, &KCalculator::switchShowAccels, pbReci, &KCalcButton::slotSetAccelDisplayMode);
+	connect(pbReci, &KCalcButton::clicked, this, &KCalculator::slotReciclicked);
 
 	pbFactorial->addMode(ModeNormal, i18nc("Factorial", "x!"), i18n("Factorial"));
 	pbFactorial->addMode(ModeShift, QLatin1String("&#915;"), i18n("Gamma"));
 	pbFactorial->setShortcut(QKeySequence(Qt::Key_Exclam));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbFactorial, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbFactorial, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(pbFactorial, SIGNAL(clicked()), SLOT(slotFactorialclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbFactorial, &KCalcButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbFactorial, &KCalcButton::slotSetMode);
+	connect(pbFactorial, &KCalcButton::clicked, this, &KCalculator::slotFactorialclicked);
 
 	pbSquare->addMode(ModeNormal, i18nc("Square", "x<sup>2</sup>"), i18n("Square"));
 	pbSquare->addMode(ModeShift, QLatin1String("&radic;x"), i18n("Square root"));
 	pbSquare->setShortcut(QKeySequence(Qt::Key_BracketLeft));
 	new QShortcut(Qt::Key_twosuperior, pbSquare, SLOT(animateClick()));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbSquare, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbSquare, SLOT(slotSetMode(ButtonModeFlags,bool)));
-	connect(pbSquare, SIGNAL(clicked()), SLOT(slotSquareclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbSquare, &KCalcButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbSquare, &KCalcButton::slotSetMode);
+	connect(pbSquare, &KCalcButton::clicked, this, &KCalculator::slotSquareclicked);
 
 	pbPower->addMode(ModeNormal, i18nc("x to the power of y", "x<sup>y</sup>"), i18n("x to the power of y"));
 	pbPower->addMode(ModeShift, i18nc("x to the power of 1/y", "x<sup>1/y</sup>"), i18n("x to the power of 1/y"));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbPower, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(this, SIGNAL(switchMode(ButtonModeFlags,bool)), pbPower, SLOT(slotSetMode(ButtonModeFlags,bool)));
+	connect(this, &KCalculator::switchShowAccels, pbPower, &KCalcButton::slotSetAccelDisplayMode);
+	connect(this, &KCalculator::switchMode, pbPower, &KCalcButton::slotSetMode);
 	pbPower->setShortcut(QKeySequence(Qt::Key_AsciiCircum));
-	connect(pbPower, SIGNAL(clicked()), SLOT(slotPowerclicked()));
+	connect(pbPower, &KCalcButton::clicked, this, &KCalculator::slotPowerclicked);
 
 	pbEE->addMode(ModeNormal, QLatin1String("x<small>" "\xb7" "10</small><sup>y</sup>"), i18n("Exponent"));
-	connect(this, SIGNAL(switchShowAccels(bool)), pbEE, SLOT(slotSetAccelDisplayMode(bool)));
-	connect(pbEE, SIGNAL(clicked()), SLOT(slotEEclicked()));
+	connect(this, &KCalculator::switchShowAccels, pbEE, &KCalcButton::slotSetAccelDisplayMode);
+	connect(pbEE, &KCalcButton::clicked, this, &KCalculator::slotEEclicked);
 }
 
 //------------------------------------------------------------------------------
@@ -1603,33 +1601,33 @@ void KCalculator::showSettings() {
 
 	KCalcConstMenu *tmp_menu;
 	tmp_menu = new KCalcConstMenu(this);
-	connect(tmp_menu, SIGNAL(triggeredConstant(science_constant)), this, SLOT(slotChooseScientificConst0(science_constant)));
+	connect(tmp_menu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotChooseScientificConst0);
 	constants_->pushButton0->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
-	connect(tmp_menu, SIGNAL(triggeredConstant(science_constant)), this, SLOT(slotChooseScientificConst1(science_constant)));
+	connect(tmp_menu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotChooseScientificConst1);
 	constants_->pushButton1->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
-	connect(tmp_menu, SIGNAL(triggeredConstant(science_constant)), this, SLOT(slotChooseScientificConst2(science_constant)));
+	connect(tmp_menu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotChooseScientificConst2);
 	constants_->pushButton2->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
-	connect(tmp_menu, SIGNAL(triggeredConstant(science_constant)), this, SLOT(slotChooseScientificConst3(science_constant)));
+	connect(tmp_menu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotChooseScientificConst3);
 	constants_->pushButton3->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
-	connect(tmp_menu, SIGNAL(triggeredConstant(science_constant)), this, SLOT(slotChooseScientificConst4(science_constant)));
+	connect(tmp_menu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotChooseScientificConst4);
 	constants_->pushButton4->setMenu(tmp_menu);
 
 	tmp_menu = new KCalcConstMenu(this);
-	connect(tmp_menu, SIGNAL(triggeredConstant(science_constant)), this, SLOT(slotChooseScientificConst5(science_constant)));
+	connect(tmp_menu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotChooseScientificConst5);
 	constants_->pushButton5->setMenu(tmp_menu);
 
 	dialog->addPage(constants_, i18n("Constants"), QLatin1String("preferences-kcalc-constants"), i18n("Define Constants"));
 
 	// When the user clicks OK or Apply we want to update our settings.
-	connect(dialog, SIGNAL(settingsChanged(QString)), SLOT(updateSettings()));
+	connect(dialog, &KConfigDialog::settingsChanged, this, &KCalculator::updateSettings);
 
 	// Display the dialog.
 	dialog->show();
@@ -1912,8 +1910,8 @@ void KCalculator::showLogicButtons(bool toggled) {
 
 	if (toggled) {
 		mBitset->setEnabled(true);
-		connect(mBitset, SIGNAL(valueChanged(quint64)), this, SLOT(slotBitsetChanged(quint64)));
-		connect(calc_display, SIGNAL(changedAmount(KNumber)), SLOT(slotUpdateBitset(KNumber)));
+		connect(mBitset, &KCalcBitset::valueChanged, this, &KCalculator::slotBitsetChanged);
+		connect(calc_display, &KCalcDisplay::changedAmount, this, &KCalculator::slotUpdateBitset);
 
 		foreach(QAbstractButton* btn, logic_buttons_) {
 			btn->show();
@@ -1931,8 +1929,8 @@ void KCalculator::showLogicButtons(bool toggled) {
 		}
 	} else {
 		mBitset->setEnabled(false);
-		disconnect(mBitset, SIGNAL(valueChanged(quint64)), this, SLOT(slotBitsetChanged(quint64)));
-		disconnect(calc_display, SIGNAL(changedAmount(KNumber)), this, SLOT(slotUpdateBitset(KNumber)));
+		disconnect(mBitset, &KCalcBitset::valueChanged, this, &KCalculator::slotBitsetChanged);
+		disconnect(calc_display, &KCalcDisplay::changedAmount, this, &KCalculator::slotUpdateBitset);
 
 		foreach(QAbstractButton* btn, logic_buttons_) {
 			btn->hide();
@@ -2032,7 +2030,7 @@ void KCalculator::updateSettings() {
 	disconnect(calc_display, SIGNAL(changedText(QString)), this, 0);
 
 	if (KCalcSettings::captionResult()) {
-		connect(calc_display, SIGNAL(changedText(QString)), SLOT(setCaption(QString)));
+		connect(calc_display, &KCalcDisplay::changedText, this, &KCalculator::setWindowTitle);
 	} else {
 		setCaption(QString());
 	}

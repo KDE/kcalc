@@ -109,7 +109,7 @@ void KCalcConstMenu::init_all()
     QMenu *thermo_menu      = addMenu(i18n("Thermodynamics"));
     QMenu *gravitation_menu = addMenu(i18n("Gravitation"));
 
-    connect(this, SIGNAL(triggered(QAction*)), SLOT(slotPassSignalThrough(QAction*)));
+    connect(this, &KCalcConstMenu::triggered, this, &KCalcConstMenu::slotPassSignalThrough);
 
 
     for (int i = 0; i < Constants.size(); i++) {
