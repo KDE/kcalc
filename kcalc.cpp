@@ -43,6 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <KToggleAction>
 #include <KToolBar>
 #include <kxmlguifactory.h>
+#include <Kdelibs4ConfigMigrator>
 
 #include "kcalc_bitset.h"
 #include "kcalc_const_menu.h"
@@ -2261,6 +2262,11 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e) {
 // Desc: entry point of the application
 //------------------------------------------------------------------------------
 extern "C" Q_DECL_EXPORT int kdemain(int argc, char *argv[]) {
+
+    Kdelibs4ConfigMigrator migrate(QLatin1String("kcalc"));
+    migrate.setConfigFiles(QStringList() << QLatin1String("kcalcrc"));
+    migrate.setUiFiles(QStringList() << QLatin1String("kcalcui.rc"));
+    migrate.migrate();
 
 	KAboutData aboutData("kcalc",
 		i18n("KCalc"),
