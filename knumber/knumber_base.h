@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef KNUMBER_BASE_H_
 #define KNUMBER_BASE_H_
 
+// Workaround: include before gmp.h to fix build with gcc-4.9
+#include <cstddef>
 #include <gmp.h>
 
 #ifdef KNUMBER_USE_MPFR
