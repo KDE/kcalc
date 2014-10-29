@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <KLocalizedString>
 
-#include "kcalc_const_button.moc"
+
 
 //------------------------------------------------------------------------------
 // Name: KCalcConstButton

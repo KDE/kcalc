@@ -22,7 +22,7 @@
 
 #include <KLocalizedString>
 
-#include "kcalc_statusbar.moc"
+
 
 KCalcStatusBar::KCalcStatusBar(QWidget *parent)
     : QStatusBar(parent)

@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QLabel>
 #include <QPainter>
 
-#include "kcalc_bitset.moc"
+
 
 // TODO: I think it would actually be appropriate to use a std::bitset<64>
 //       for the internal representation of this class perhaps

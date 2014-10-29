@@ -148,4 +148,4 @@ KCalcConstMenu::KCalcConstMenu(QWidget * parent)
 }
 
 
-#include "kcalc_const_menu.moc"
+
