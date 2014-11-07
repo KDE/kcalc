@@ -2274,10 +2274,10 @@ extern "C" Q_DECL_EXPORT int kdemain(int argc, char *argv[]) {
 		i18n(description),
 		KAboutLicense::GPL,
 		i18n(
-			"&copy; 2008-2013, Evan Teran\n"
-			"&copy; 2000-2008, The KDE Team\n"
-			"&copy; 2003-2005, Klaus Niederkr" "\xc3\xbc" "ger\n"
-			"&copy; 1996-2000, Bernd Johannes Wuebben"),
+			"Copyright © 2008-2013, Evan Teran\n"
+			"Copyright © 2000-2008, The KDE Team\n"
+			"Copyright © 2003-2005, Klaus Niederkr" "\xc3\xbc" "ger\n"
+			"Copyright © 1996-2000, Bernd Johannes Wuebben"),
 		QString(),
 		"http://utils.kde.org/projects/kcalc");
 
@@ -2298,10 +2298,13 @@ extern "C" Q_DECL_EXPORT int kdemain(int argc, char *argv[]) {
 	KAboutData::setApplicationData(aboutData);
 	app.setWindowIcon(QIcon::fromTheme(QLatin1String("accessories-calculator")));
 
+
 	QCommandLineParser parser;
 	parser.addHelpOption();
 	parser.addVersionOption();
+        aboutData.setupCommandLine(&parser);
 	parser.process(app);
+        aboutData.processCommandLine(&parser);
 
 	// force system locale to "C" internally [bug 159168]
 	setlocale(LC_NUMERIC, "C");

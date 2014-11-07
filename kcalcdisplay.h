@@ -27,7 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "knumber.h"
 
 class CalcEngine;
-class KAction;
 class QTimer;
 class QStyleOptionFrame;
 
