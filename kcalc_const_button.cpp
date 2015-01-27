@@ -23,10 +23,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "kcalc_const_menu.h"
 #include "kcalc_settings.h"
 
-#include <kinputdialog.h>
-#include <kmenu.h>
+#include <QInputDialog>
 
-#include "kcalc_const_button.moc"
+#include <KLocalizedString>
+
+
 
 //------------------------------------------------------------------------------
 // Name: KCalcConstButton
@@ -36,7 +37,7 @@ KCalcConstButton::KCalcConstButton(QWidget *parent) : KCalcButton(parent), butto
 
 	addMode(ModeShift, i18nc("Write display data into memory", "Store"), i18n("Write display data into memory"));
 	initPopupMenu();
-	connect(this, SIGNAL(clicked()), SLOT(slotClicked()));
+	connect(this, &KCalcConstButton::clicked, this, &KCalcConstButton::slotClicked);
 }
 
 //------------------------------------------------------------------------------
@@ -91,7 +92,7 @@ void KCalcConstButton::initPopupMenu() {
 
     QAction *const a = new QAction(this);
     a->setText(i18n("Set Name"));
-    connect(a, SIGNAL(triggered()), this, SLOT(slotConfigureButton()));
+    connect(a, &QAction::triggered, this, &KCalcConstButton::slotConfigureButton);
     addAction(a);
 	
 	KCalcConstMenu *const tmp_menu = new KCalcConstMenu(this);
@@ -99,7 +100,7 @@ void KCalcConstButton::initPopupMenu() {
     addAction(tmp_menu->menuAction());
     setContextMenuPolicy(Qt::ActionsContextMenu);
 
-    connect(tmp_menu, SIGNAL(triggeredConstant(science_constant)), SLOT(slotChooseScientificConst(science_constant)));
+    connect(tmp_menu, &KCalcConstMenu::triggeredConstant, this, &KCalcConstButton::slotChooseScientificConst);
 
 }
 
@@ -110,8 +111,8 @@ void KCalcConstButton::initPopupMenu() {
 void KCalcConstButton::slotConfigureButton() {
 
 	bool yes_no;
-	const QString input = KInputDialog::getText(i18n("New Name for Constant"), i18n("New name:"), text(), &yes_no, this);  // "nameUserConstants-Dialog"
-	if (yes_no) {
+	const QString input = QInputDialog::getText(this, i18n("New Name for Constant"), i18n("New name:"), QLineEdit::Normal, text(), &yes_no);  // "nameUserConstants-Dialog"
+	if (yes_no && !input.isEmpty()) {
 		KCalcSettings::setNameConstant(button_num_, input);
 		setLabelAndTooltip();
 	}

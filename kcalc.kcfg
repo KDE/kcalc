@@ -3,10 +3,9 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
-  <include>KApplication</include>
-  <include>KGlobalSettings</include>
+  <include>QFontDatabase</include>
   <include>KColorScheme</include>
-  <include>KLocale</include>
+  <include>KLocalizedString</include>
   <kcfgfile name="kcalcrc"/>
   <group name="Colors">
     <entry name="ForeColor" type="Color">
@@ -50,11 +49,14 @@
   <group name="Font">
     <entry name="ButtonFont" type="Font">
       <label>The font to use for the buttons.</label>
-      <default code="true">KGlobalSettings::generalFont()</default>
+      <default code="true">QFontDatabase::systemFont(QFontDatabase::GeneralFont)</default>
     </entry>
     <entry name="DisplayFont" type="Font">
       <label>The font to use in the display.</label>
-      <default code="true">QFont(KGlobalSettings::generalFont().family(), 14, QFont::Bold)</default>
+      <code>QFont defaultDisplayFont = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
+            defaultDisplayFont.setWeight(QFont::Bold);
+            defaultDisplayFont.setPointSizeF(defaultDisplayFont.pointSizeF() * 1.4);</code>
+      <default code="true">defaultDisplayFont</default>
     </entry>
   </group>
   <group name="Precision">

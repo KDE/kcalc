@@ -27,13 +27,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QStylePainter>
 #include <QTextDocument>
 
-#include "kcalc_button.moc"
+
 
 //------------------------------------------------------------------------------
 // Name: KCalcButton
 // Desc: constructor
 //------------------------------------------------------------------------------
-KCalcButton::KCalcButton(QWidget *parent) : KPushButton(parent), show_shortcut_mode_(false), mode_flags_(ModeNormal), size_() {
+KCalcButton::KCalcButton(QWidget *parent) : QPushButton(parent), show_shortcut_mode_(false), mode_flags_(ModeNormal), size_() {
 
 	setAcceptDrops(true);   // allow color drops
 	setFocusPolicy(Qt::TabFocus);
@@ -47,7 +47,7 @@ KCalcButton::KCalcButton(QWidget *parent) : KPushButton(parent), show_shortcut_m
 // Name: KCalcButton
 // Desc: constructor
 //------------------------------------------------------------------------------
-KCalcButton::KCalcButton(const QString &label, QWidget *parent, const QString &tooltip) : KPushButton(label, parent), show_shortcut_mode_(false), mode_flags_(ModeNormal), size_() {
+KCalcButton::KCalcButton(const QString &label, QWidget *parent, const QString &tooltip) : QPushButton(label, parent), show_shortcut_mode_(false), mode_flags_(ModeNormal), size_() {
 
 	setAutoDefault(false);
 	addMode(ModeNormal, label, tooltip);
@@ -124,7 +124,7 @@ void KCalcButton::slotSetAccelDisplayMode(bool flag) {
 	QKeySequence current_shortcut = shortcut();
 
 	if (flag) {
-		setText(QString(shortcut()));
+		setText(shortcut().toString(QKeySequence::NativeText));
 	} else {
 		setText(mode_[mode_flags_].label);
 	}
@@ -214,7 +214,7 @@ void KCalcButton::calcSizeHint() {
 //------------------------------------------------------------------------------
 void KCalcButton::setFont(const QFont &fnt) {
 
-	KPushButton::setFont(fnt);
+	QPushButton::setFont(fnt);
 	calcSizeHint();
 }
 
@@ -224,7 +224,7 @@ void KCalcButton::setFont(const QFont &fnt) {
 //------------------------------------------------------------------------------
 void KCalcButton::setText(const QString &text) {
 
-	KPushButton::setText(text);
+	QPushButton::setText(text);
 
 	// normal mode may not have been explicitly set
 	if (mode_[ModeNormal].label.isEmpty()) {
@@ -240,7 +240,7 @@ void KCalcButton::setText(const QString &text) {
 //------------------------------------------------------------------------------
 void KCalcButton::setToolTip(const QString &tip) {
 
-	KPushButton::setToolTip(tip);
+	QPushButton::setToolTip(tip);
 
 	// normal mode may not have been explicitly set
 	if (mode_[ModeNormal].tooltip.isEmpty()) {

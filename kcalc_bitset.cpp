@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QLabel>
 #include <QPainter>
 
-#include "kcalc_bitset.moc"
+
 
 // TODO: I think it would actually be appropriate to use a std::bitset<64>
 //       for the internal representation of this class perhaps
@@ -63,7 +63,7 @@ KCalcBitset::KCalcBitset(QWidget *parent) : QFrame(parent), value_(0) {
 	setFrameStyle(QFrame::Panel | QFrame::Sunken);
 	
 	bit_button_group_ = new QButtonGroup(this);
-	connect(bit_button_group_, SIGNAL(buttonClicked(int)), SLOT(slotToggleBit(int)));
+	connect(bit_button_group_, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &KCalcBitset::slotToggleBit);
 
 	// smaller label font
 	QFont fnt = font();

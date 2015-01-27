@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "kcalcdisplay.h"
 
+#include <QApplication>
 #include <QClipboard>
 #include <QMouseEvent>
 #include <QPainter>
@@ -28,14 +29,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QStyleOption>
 #include <QTimer>
 
-#include <kglobal.h>
-#include <klocale.h>
 #include <knotification.h>
+#include <KLocalizedString>
 
 #include "kcalc_core.h"
 #include "kcalc_settings.h"
 
-#include "kcalcdisplay.moc"
+
 
 //------------------------------------------------------------------------------
 // Name: KCalcDisplay
@@ -57,8 +57,8 @@ KCalcDisplay::KCalcDisplay(QWidget *parent) : QFrame(parent), beep_(false),
 	KNumber::setDefaultFloatOutput(true);
 	KNumber::setDefaultFractionalInput(true);
 
-	connect(this, SIGNAL(clicked()), this, SLOT(slotDisplaySelected()));
-	connect(selection_timer_, SIGNAL(timeout()), this, SLOT(slotSelectionTimedOut()));
+	connect(this, &KCalcDisplay::clicked, this, &KCalcDisplay::slotDisplaySelected);
+	connect(selection_timer_, &QTimer::timeout, this, &KCalcDisplay::slotSelectionTimedOut);
 
 	sendEvent(EventReset);
 }
@@ -287,7 +287,7 @@ void KCalcDisplay::slotPaste(bool bClipboard) {
 	tmp_str = tmp_str.trimmed();
 	
 	if (groupdigits_) {
-		tmp_str.remove(KGlobal::locale()->thousandsSeparator());
+		tmp_str.remove(QLocale().groupSeparator());
 	}
 	
 	tmp_str = tmp_str.toLower();
@@ -495,7 +495,7 @@ bool KCalcDisplay::setAmount(const KNumber &new_amount) {
 			
 			display_str = QString::number(tmp_workaround, num_base_).toUpper();
 			if (neg) {
-				display_str.prepend(KGlobal::locale()->negativeSign());
+				display_str.prepend(QLocale().negativeSign());
 			}
 		}
 	} else {
@@ -524,18 +524,10 @@ void KCalcDisplay::setText(const QString &string)
 	// The decimal mode needs special treatment for two reasons, because: a) it uses KGlobal::locale() to get a localized 
 	// format and b) it has possible numbers after the decimal place. Neither applies to Binary, Hexadecimal or Octal.
 	
-	if (groupdigits_ && !special){
+	if ((groupdigits_ || num_base_ == NB_DECIMAL) && !special){
 		switch (num_base_) {
 		case NB_DECIMAL:
-	        if (string.endsWith(QLatin1Char('.'))) {
-	            text_.chop(1);
-	            // Note: rounding happened already above!
-	            text_ = KGlobal::locale()->formatNumber(text_, false, 0);
-	            text_.append(KGlobal::locale()->decimalSymbol());
-	        } else {
-	            // Note: rounding happened already above!
-	            text_ = KGlobal::locale()->formatNumber(text_, false, 0);
-			}
+			text_ = formatDecimalNumber(text_);
 			break;
 			
 		case NB_BINARY:
@@ -562,6 +554,53 @@ void KCalcDisplay::setText(const QString &string)
 
     update();
     emit changedText(text_);
+}
+
+//------------------------------------------------------------------------------
+// Name: formatDecimalNumber
+// Desc: Convert decimal number to locale-dependend format.
+//      We cannot use QLocale::formatNumber(), because the
+//      precision is limited to "double".
+//------------------------------------------------------------------------------
+QString KCalcDisplay::formatDecimalNumber(QString string)
+{
+	QLocale locale;
+
+	string.replace(QLatin1Char('.'), locale.decimalPoint());
+
+	if (groupdigits_ && !(locale.numberOptions() & QLocale::OmitGroupSeparator)) {
+		// find position after last digit
+		int pos = string.indexOf(locale.decimalPoint());
+		if (pos < 0) {
+			// do not group digits after the exponent part
+			const int expPos = string.indexOf(QLatin1Char('e'));
+			if (expPos > 0) {
+				pos = expPos;
+			} else {
+				pos = string.length();
+			}
+		}
+
+		const QChar groupSeparator = locale.groupSeparator();
+		const int groupSize = 3;
+
+		string.reserve(string.length() + (pos - 1) / groupSize);
+		while ((pos -= groupSize) > 0) {
+			string.insert(pos, groupSeparator);
+		}
+	}
+
+	string.replace(QLatin1Char('-'), locale.negativeSign());
+	string.replace(QLatin1Char('+'), locale.positiveSign());
+
+	unsigned short zero = locale.zeroDigit().unicode();
+	for (int i = 0; i < string.length(); ++i) {
+		if (string.at(i).isDigit()) {
+			string[i] = QChar(zero + string.at(i).digitValue());
+		}
+	}
+
+	return string;
 }
 
 //------------------------------------------------------------------------------
@@ -766,7 +805,7 @@ void KCalcDisplay::newCharacter(const QChar new_char) {
 		break;
 
 	default:
-		if(new_char == KGlobal::locale()->decimalSymbol()[0]) {
+		if(new_char == QLocale().decimalPoint()) {
 			// Period can be set only once and only in decimal
 			// mode, also not in EE-mode
 			if (num_base_ != NB_DECIMAL || period_ || eestate_) {
@@ -787,7 +826,7 @@ void KCalcDisplay::newCharacter(const QChar new_char) {
 	// change exponent or mantissa
 	if (eestate_) {
 		// ignore '.' before 'e'. turn e.g. '123.e' into '123e'
-		if (new_char == QLatin1Char('e') && str_int_.endsWith(KGlobal::locale()->decimalSymbol())) {
+		if (new_char == QLatin1Char('e') && str_int_.endsWith(QLocale().decimalPoint())) {
 			str_int_.chop(1);
 			period_ = false;
 		}
@@ -807,7 +846,7 @@ void KCalcDisplay::newCharacter(const QChar new_char) {
 				str_int_.append(new_char);
 				break;
 			default:
-				if(new_char == KGlobal::locale()->decimalSymbol()[0]) {
+				if(new_char == QLocale().decimalPoint()) {
 					// display "0." not just "."
 					str_int_.append(new_char);
 				} else {
@@ -844,7 +883,7 @@ void KCalcDisplay::deleteLastDigit() {
 	} else {
 		const int length = str_int_.length();
 		if (length > 1) {
-			if (str_int_[length-1] == KGlobal::locale()->decimalSymbol()[0]) {
+			if (str_int_[length-1] == QLocale().decimalPoint()) {
 				period_ = false;
 			}
 			str_int_.chop(1);

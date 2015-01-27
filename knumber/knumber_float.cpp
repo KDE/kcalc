@@ -87,7 +87,7 @@ knumber_base *knumber_float::execute_libc_func(double x, double y) {
 knumber_float::knumber_float(const QString &s) {
 
 	mpf_init(mpf_);
-	mpf_set_str(mpf_, s.toAscii(), 10);
+	mpf_set_str(mpf_, s.toLatin1(), 10);
 }
 
 //------------------------------------------------------------------------------

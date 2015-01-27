@@ -21,11 +21,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "kcalc_const_menu.h"
 
+#include <QDebug>
 #include <QDomDocument>
 #include <QFile>
-#include <kdebug.h>
-#include <klocale.h>
-#include <kstandarddirs.h>
+#include <QStandardPaths>
+
+#include <KLocalizedString>
 
 namespace {
 	QList<science_constant> Constants;
@@ -51,7 +52,7 @@ namespace {
         	return Gravitation;
 		}
 
-		kDebug() << "Invalid Category For Constant: " << s;
+		qDebug() << "Invalid Category For Constant: " << s;
 		return Mathematics;
 	}
 	
@@ -60,15 +61,15 @@ namespace {
 
 void KCalcConstMenu::init_consts() {
     QDomDocument doc(QLatin1String("list_of_constants"));
-    QFile file(KGlobal::dirs()->findResource("appdata", QLatin1String("scienceconstants.xml")));
+    QFile file(QStandardPaths::locate(QStandardPaths::DataLocation, QLatin1String("scienceconstants.xml")));
 
     if (!file.open(QIODevice::ReadOnly)) {
-        kDebug() << "Did not find file \"scienceconstants.xml\". No constants will be available.";
+        qDebug() << "Did not find file \"scienceconstants.xml\". No constants will be available.";
         return;
     }
     if (!doc.setContent(&file)) {
         file.close();
-        kDebug() << "The file \"scienceconstants.xml\" does not seem to be a valid description file. No constants will be available.";
+        qDebug() << "The file \"scienceconstants.xml\" does not seem to be a valid description file. No constants will be available.";
         return;
     }
     file.close();
@@ -108,11 +109,11 @@ void KCalcConstMenu::init_all()
     QMenu *thermo_menu      = addMenu(i18n("Thermodynamics"));
     QMenu *gravitation_menu = addMenu(i18n("Gravitation"));
 
-    connect(this, SIGNAL(triggered(QAction*)), SLOT(slotPassSignalThrough(QAction*)));
+    connect(this, &KCalcConstMenu::triggered, this, &KCalcConstMenu::slotPassSignalThrough);
 
 
     for (int i = 0; i < Constants.size(); i++) {
-        QAction *tmp_action = new QAction(i18n(Constants.at(i).name.toAscii().data()), this);
+        QAction *tmp_action = new QAction(i18n(Constants.at(i).name.toLatin1().data()), this);
         tmp_action->setData(QVariant(i));
         if (Constants.at(i).category  &  Mathematics)
             math_menu->addAction(tmp_action);
@@ -147,4 +148,4 @@ KCalcConstMenu::KCalcConstMenu(QWidget * parent)
 }
 
 
-#include "kcalc_const_menu.moc"
+

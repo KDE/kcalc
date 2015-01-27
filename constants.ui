@@ -166,9 +166,6 @@
    </item>
   </layout>
  </widget>
-  <includes>
-  <include location="local" >kpushbutton.h</include>
- </includes>
  <resources/>
  <connections/>
 </ui>
