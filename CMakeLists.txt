@@ -3,7 +3,7 @@ project(kcalc)
 cmake_minimum_required (VERSION 2.8.12 FATAL_ERROR)
 set (QT_MIN_VERSION "5.2.0")
 
-find_package (ECM 1.3.0 REQUIRED NO_MODULE)
+find_package (ECM 1.7.0 REQUIRED NO_MODULE)
 set (CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
 add_definitions(-DTRANSLATION_DOMAIN="kcalc")
@@ -13,6 +13,7 @@ include(KDECompilerSettings)
 include(KDECMakeSettings)
 include(ECMMarkAsTest)
 include(FeatureSummary)
+include(ECMAddAppIcon)
 
 find_package (Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
     Core
@@ -105,18 +106,18 @@ target_link_libraries(kdeinit_kcalc
     ${MPFR_LIBRARIES}
 )
 
-install(TARGETS kdeinit_kcalc ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS kdeinit_kcalc ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 target_link_libraries( kcalc kdeinit_kcalc )
-install(TARGETS kcalc  ${INSTALL_TARGETS_DEFAULT_ARGS} )
+install(TARGETS kcalc  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
 ########### install files ###############
 
-install( PROGRAMS org.kde.kcalc.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})
-install( FILES kcalc.kcfg  DESTINATION ${KCFG_INSTALL_DIR})
-install( FILES kcalcui.rc  DESTINATION ${KXMLGUI_INSTALL_DIR}/kcalc)
-install( FILES scienceconstants.xml  DESTINATION ${DATA_INSTALL_DIR}/kcalc)
-install( FILES kcalcrc.upd  DESTINATION ${DATA_INSTALL_DIR}/kconf_update)
+install( PROGRAMS org.kde.kcalc.desktop  DESTINATION ${KDE_INSTALL_APPDIR})
+install( FILES kcalc.kcfg  DESTINATION ${KDE_INSTALL_KCFGDIR})
+install( FILES kcalcui.rc  DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/kcalc)
+install( FILES scienceconstants.xml  DESTINATION ${KDE_INSTALL_DATADIR}/kcalc)
+install( FILES kcalcrc.upd  DESTINATION ${KDE_INSTALL_DATADIR}/kconf_update)
 
 add_subdirectory(doc)
 
