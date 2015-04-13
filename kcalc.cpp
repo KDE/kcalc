@@ -2263,6 +2263,8 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e) {
 //------------------------------------------------------------------------------
 extern "C" Q_DECL_EXPORT int kdemain(int argc, char *argv[]) {
 
+       QApplication app(argc, argv);
+ 
     Kdelibs4ConfigMigrator migrate(QLatin1String("kcalc"));
     migrate.setConfigFiles(QStringList() << QLatin1String("kcalcrc"));
     migrate.setUiFiles(QStringList() << QLatin1String("kcalcui.rc"));
@@ -2294,7 +2296,6 @@ extern "C" Q_DECL_EXPORT int kdemain(int argc, char *argv[]) {
 	aboutData.addAuthor(i18n("Michel Marti"), QString(), "mma@objectxp.com");
 	aboutData.addAuthor(i18n("David Johnson"), QString(), "david@usermode.org");
 
-	QApplication app(argc, argv);
 	KAboutData::setApplicationData(aboutData);
 	app.setWindowIcon(QIcon::fromTheme(QLatin1String("accessories-calculator")));
 
