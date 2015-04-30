@@ -2,6 +2,7 @@
 Name=KCalc
 Name[af]=Kcalc
 Name[ar]=حاسبة ك
+Name[ast]=KCalc
 Name[bg]=KCalc
 Name[br]=KCalc
 Name[bs]=KCalc
@@ -76,6 +77,7 @@ X-DocPath=kcalc/index.html
 GenericName=Scientific Calculator
 GenericName[af]=Wetenskaplike Sakrekenaar
 GenericName[ar]=آلة حاسبة علمية
+GenericName[ast]=Calculadora científica
 GenericName[bg]=Калкулатор
 GenericName[br]=Ur jederez skiantel
 GenericName[bs]=Naučni kalkulator
