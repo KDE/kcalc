@@ -10,7 +10,7 @@ Copyright (C) 1996 - 2000 Bernd Johannes Wuebben
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as
-published by the Free Software Foundation; either version 2 of 
+published by the Free Software Foundation; either version 2 of
 the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
@@ -118,7 +118,7 @@ KCalculator::KCalculator(QWidget *parent) :
 	if (KCalcSettings::captionResult() == true) {
                 connect(calc_display, &KCalcDisplay::changedText, this, &KCalculator::setWindowTitle);
 	}
-     
+
 	calc_display->changeSettings();
 	setPrecision();
 
@@ -1549,7 +1549,7 @@ void KCalculator::slotConstclicked(int button) {
 
 		} else {
 			pbShift->setChecked(false);
-			
+
 			// internally, we deal with C locale style numbers, we need to convert
 			QString val = calc_display->text();
 			val.replace(KNumber::decimalSeparator(), QLatin1String("."));
@@ -2263,8 +2263,13 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e) {
 //------------------------------------------------------------------------------
 extern "C" Q_DECL_EXPORT int kdemain(int argc, char *argv[]) {
 
-       QApplication app(argc, argv);
- 
+    QApplication app(argc, argv);
+
+    /**
+     * enable high dpi support
+     */
+    app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+
     Kdelibs4ConfigMigrator migrate(QLatin1String("kcalc"));
     migrate.setConfigFiles(QStringList() << QLatin1String("kcalcrc"));
     migrate.setUiFiles(QStringList() << QLatin1String("kcalcui.rc"));
