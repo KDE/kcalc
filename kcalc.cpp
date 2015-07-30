@@ -22,6 +22,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "kcalc_version.h"
 #include "kcalc.h"
 
 #include <clocale>
@@ -50,11 +51,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "kcalc_settings.h"
 #include "kcalc_statusbar.h"
 #include "kcalcdisplay.h"
-#include "version.h"
 
 namespace {
 const char description[] = I18N_NOOP("KDE Calculator");
-const char version[]	 = KCALCVERSION;
 const int maxprecision   = 1000;
 }
 
@@ -2270,18 +2269,17 @@ extern "C" Q_DECL_EXPORT int kdemain(int argc, char *argv[]) {
     migrate.setUiFiles(QStringList() << QLatin1String("kcalcui.rc"));
     migrate.migrate();
 
-	KAboutData aboutData("kcalc",
-		i18n("KCalc"),
-		version,
-		i18n(description),
-		KAboutLicense::GPL,
-		i18n(
-			"Copyright © 2008-2013, Evan Teran\n"
-			"Copyright © 2000-2008, The KDE Team\n"
-			"Copyright © 2003-2005, Klaus Niederkr" "\xc3\xbc" "ger\n"
-			"Copyright © 1996-2000, Bernd Johannes Wuebben"),
-		QString(),
-		"http://utils.kde.org/projects/kcalc");
+    KAboutData aboutData(QStringLiteral("kcalc"),
+                         i18n("KCalc"),
+                         QStringLiteral(KCALC_VERSION_STRING),
+                         i18n(description),
+                         KAboutLicense::GPL,
+                         i18n("Copyright © 2008-2013, Evan Teran\n"
+                              "Copyright © 2000-2008, The KDE Team\n"
+                              "Copyright © 2003-2005, Klaus Niederkr" "\xc3\xbc" "ger\n"
+                              "Copyright © 1996-2000, Bernd Johannes Wuebben"),
+                         QStringLiteral(),
+                         QStringLiteral("http://utils.kde.org/projects/kcalc"));
 
 	// Klaus Niederkrueger
 	aboutData.addAuthor(i18n("Klaus Niederkr" "\xc3\xbc" "ger"), QString(), "kniederk@math.uni-koeln.de");

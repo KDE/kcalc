@@ -1,5 +1,11 @@
 project(kcalc)
 
+# KDE Application Version, managed by release script
+set (KDE_APPLICATIONS_VERSION_MAJOR "15")
+set (KDE_APPLICATIONS_VERSION_MINOR "07")
+set (KDE_APPLICATIONS_VERSION_MICRO "80")
+set (KDE_APPLICATIONS_VERSION "${KDE_APPLICATIONS_VERSION_MAJOR}.${KDE_APPLICATIONS_VERSION_MINOR}.${KDE_APPLICATIONS_VERSION_MICRO}")
+
 cmake_minimum_required (VERSION 2.8.12 FATAL_ERROR)
 set (QT_MIN_VERSION "5.2.0")
 
@@ -14,6 +20,12 @@ include(KDECMakeSettings)
 include(ECMMarkAsTest)
 include(FeatureSummary)
 include(ECMAddAppIcon)
+include(ECMSetupVersion)
+
+## Generate header with version number
+ecm_setup_version(${KDE_APPLICATIONS_VERSION} VARIABLE_PREFIX KCALC
+                  VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kcalc_version.h"
+)
 
 find_package (Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
     Core
