@@ -1,7 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
   <!ENTITY kappname "&kcalc;" > 
-  <!ENTITY package "kdeutils">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE" > <!-- change language only here -->
   <!ENTITY commands SYSTEM "commands.docbook">
@@ -37,10 +36,10 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2013-05-24</date>
-<releaseinfo>2.13 (&kde; 4.11)</releaseinfo>
+<date>2015-08-04</date>
+<releaseinfo>2.13 (Applications 15.08)</releaseinfo>
 
-<abstract><para>&kcalc; is a calculator for &kde;. In the simple mode it can 
+<abstract><para>&kcalc; is a calculator for your desktop environment. In the simple mode it can 
 be used for basic arithmetic operations, but provides advanced modes for scientific, 
 statistical and numeral system calculations.</para></abstract>
 
@@ -820,6 +819,7 @@ the precision and you will see what I mean.</para>
 <para>&kcalc; Program Copyright &copy;:</para>
 <para>&Bernd.Johannes.Wuebben; 1996-2000</para>
 <para>The &kde; Team 2000-2008</para>
+<para>&Evan.Teran; 2008-2013</para>
 
 <itemizedlist>
 <listitem><para>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para></listitem>
@@ -849,23 +849,6 @@ whose stack engine is still part of &kcalc;.</para>
 &underGPL;
 
 </chapter>
-
-<appendix id="installation">
-<title>Installation</title>
-
-<para>&kcalc; is part of the kdeutils package within the &kde; project and will
-normally be provided as part of a &kde; installation. For more details about
-&kde; visit <ulink url="http://www.kde.org">http://www.kde.org</ulink>.</para>
-
-<sect1 id="compilation-and-installation">
-<title>Compilation and Installation</title>
-
-&install.intro.documentation;
-&install.compile.documentation;
-
-</sect1>
-
-</appendix>
 
 </book>
 
