@@ -558,7 +558,7 @@ void KCalcDisplay::setText(const QString &string)
 
 //------------------------------------------------------------------------------
 // Name: formatDecimalNumber
-// Desc: Convert decimal number to locale-dependend format.
+// Desc: Convert decimal number to locale-dependent format.
 //      We cannot use QLocale::formatNumber(), because the
 //      precision is limited to "double".
 //------------------------------------------------------------------------------
