@@ -259,6 +259,7 @@ void KCalcDisplay::slotCopy() {
 		txt.remove(QLatin1Char(' '));
 		break;
 	case NB_DECIMAL:
+		txt.remove(QLocale().groupSeparator());
 		break;
 	}
 
