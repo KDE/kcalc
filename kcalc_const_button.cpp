@@ -37,7 +37,7 @@ KCalcConstButton::KCalcConstButton(QWidget *parent) : KCalcButton(parent), butto
 
 	addMode(ModeShift, i18nc("Write display data into memory", "Store"), i18n("Write display data into memory"));
 	initPopupMenu();
-	connect(this, &KCalcConstButton::clicked, this, &KCalcConstButton::slotClicked);
+	connect(this, &QAbstractButton::clicked, this, &KCalcConstButton::slotClicked);
 }
 
 //------------------------------------------------------------------------------
