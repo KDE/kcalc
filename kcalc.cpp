@@ -123,7 +123,7 @@ KCalculator::KCalculator(QWidget *parent) :
 
 	updateGeometry();
 
-	setFixedSize(minimumSize());
+	layout()->setSizeConstraint(QLayout::SetFixedSize);
 
 	updateDisplay(UPDATE_FROM_CORE);
 
