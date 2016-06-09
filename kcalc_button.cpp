@@ -41,6 +41,7 @@ KCalcButton::KCalcButton(QWidget *parent) : QPushButton(parent), show_shortcut_m
 
 	// use preferred size policy for vertical
 	setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
+	setAttribute(Qt::WA_LayoutUsesWidgetRect);
 }
 
 //------------------------------------------------------------------------------
@@ -54,6 +55,7 @@ KCalcButton::KCalcButton(const QString &label, QWidget *parent, const QString &t
 
 	// use preferred size policy for vertical
 	setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
+	setAttribute(Qt::WA_LayoutUsesWidgetRect);
 }
 
 //------------------------------------------------------------------------------
