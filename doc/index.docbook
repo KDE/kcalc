@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
-  <!ENTITY kappname "&kcalc;" > 
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE" > <!-- change language only here -->
   <!ENTITY commands SYSTEM "commands.docbook">
@@ -36,8 +35,8 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2015-08-04</date>
-<releaseinfo>2.13 (Applications 15.08)</releaseinfo>
+<date>2016-07-25</date>
+<releaseinfo>Applications 16.08</releaseinfo>
 
 <abstract><para>&kcalc; is a calculator for your desktop environment. In the simple mode it can 
 be used for basic arithmetic operations, but provides advanced modes for scientific, 
@@ -780,7 +779,10 @@ XOR (exclusive OR) operation.</term>
 
 <qandaentry>
 <question><para>How do I get e, the Euler number?</para></question>
-<answer><para>Type <userinput>1 Shift Ln</userinput>.</para></answer>
+<answer><para>Press <userinput>1 Shift e<superscript>x</superscript></userinput> in the &kcalc; window,
+press <userinput>1 <keycombo action="simul">&Ctrl;<keycap>2</keycap></keycombo> <keycap>N</keycap></userinput> on the keyboard
+or use the <menuchoice><guimenu>Constants</guimenu><guimenuitem>Mathematics</guimenuitem>
+</menuchoice> menu.</para></answer>
 </qandaentry>
 
 <qandaentry>
