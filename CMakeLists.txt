@@ -124,6 +124,7 @@ install(TARGETS kcalc  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 ########### install files ###############
 
 install( PROGRAMS org.kde.kcalc.desktop  DESTINATION ${KDE_INSTALL_APPDIR})
+install( FILES org.kde.kcalc.appdata.xml   DESTINATION ${KDE_INSTALL_METAINFODIR})
 install( FILES kcalc.kcfg  DESTINATION ${KDE_INSTALL_KCFGDIR})
 install( FILES kcalcui.rc  DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/kcalc)
 install( FILES scienceconstants.xml  DESTINATION ${KDE_INSTALL_DATADIR}/kcalc)

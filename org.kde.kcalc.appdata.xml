@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component type="desktop">
+  <id>org.kde.kcalc.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0+</project_license>
+  <name>KCalc</name>
+  <summary>Scientific Calculator</summary>
+  <description>
+    <p>
+      KCalc has everything you would expect from a scientific calculator, plus:
+      <ul>
+        <li>Trigonometric functions, logic operations and statistical calculations</li>
+        <li>A results stack which enables convenient recall of previous calculation results</li>
+        <li>Precision is user-definable</li>
+        <li>The display allows cut and paste of numbers</li>
+        <li>The display colors and font are configurable, aiding usability</li>
+        <li>The use of key-bindings make it easy to use without a pointing device</li>
+      </ul>
+    </p>
+  </description>
+  <url type="homepage">https://utils.kde.org/projects/kcalc/</url>
+  <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?product=kcalc</url>
+  <url type="help">https://docs.kde.org/trunk5/en/kdeutils/kcalc</url>
+  <url type="donation">https://www.kde.org/community/donations</url>
+  <provides>
+    <binary>kcalc</binary>
+  </provides>
+  <project_group>KDE</project_group>
+</component>
+
