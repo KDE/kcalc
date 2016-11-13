@@ -6,6 +6,7 @@
   <name>KCalc</name>
   <name xml:lang="ca">KCalc</name>
   <name xml:lang="ca-valencia">KCalc</name>
+  <name xml:lang="en-GB">KCalc</name>
   <name xml:lang="es">KCalc</name>
   <name xml:lang="nl">KCalc</name>
   <name xml:lang="pt">KCalc</name>
@@ -17,6 +18,7 @@
   <summary>Scientific Calculator</summary>
   <summary xml:lang="ca">Calculadora científica</summary>
   <summary xml:lang="ca-valencia">Calculadora científica</summary>
+  <summary xml:lang="en-GB">Scientific Calculator</summary>
   <summary xml:lang="es">Calculadora científica</summary>
   <summary xml:lang="nl">Wetenschappelijke rekenmachine</summary>
   <summary xml:lang="pt">Calculadora Científica</summary>
@@ -30,6 +32,14 @@
       KCalc has everything you would expect from a scientific calculator, plus:
       
     </p>
+    <p xml:lang="ca">El KCalc té tot allò que espereu d'una calculadora científica, més:</p>
+    <p xml:lang="en-GB">KCalc has everything you would expect from a scientific calculator, plus:</p>
+    <p xml:lang="pt">O KCalc tem tudo o que poderá esperar de uma calculadora científica, e ainda mais:</p>
+    <p xml:lang="sk">KCalc má všetko, čo by ste očakávali od vedeckej kalkulačky, plus:</p>
+    <p xml:lang="sl">KCalc poleg zmožnosti znanstvenega računala ponuja še naslednje zmožnosti:</p>
+    <p xml:lang="sv">Miniräknaren har allt som man kan förvänta sig av en vetenskaplig räknare, samt:</p>
+    <p xml:lang="uk">KCalc вміє усе, що ви могли б очікувати від інженерного калькулятора, а крім того, вміє таке:</p>
+    <p xml:lang="x-test">xxKCalc has everything you would expect from a scientific calculator, plus:xx</p>
   </description>
   <url type="homepage">https://utils.kde.org/projects/kcalc/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?product=kcalc</url>
