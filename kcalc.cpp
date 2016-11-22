@@ -2302,7 +2302,7 @@ extern "C" Q_DECL_EXPORT int kdemain(int argc, char *argv[]) {
 	aboutData.addAuthor(i18n("David Johnson"), QString(), "david@usermode.org");
 
 	KAboutData::setApplicationData(aboutData);
-	app.setWindowIcon(QIcon::fromTheme(QLatin1String("accessories-calculator")));
+	app.setWindowIcon(QIcon::fromTheme(QLatin1String("accessories-calculator"), app.windowIcon()));
 
 
 	QCommandLineParser parser;
