@@ -6,6 +6,7 @@
   <name>KCalc</name>
   <name xml:lang="ca">KCalc</name>
   <name xml:lang="ca-valencia">KCalc</name>
+  <name xml:lang="de">KCalc</name>
   <name xml:lang="en-GB">KCalc</name>
   <name xml:lang="es">KCalc</name>
   <name xml:lang="it">KCalc</name>
@@ -25,6 +26,7 @@
   <summary>Scientific Calculator</summary>
   <summary xml:lang="ca">Calculadora científica</summary>
   <summary xml:lang="ca-valencia">Calculadora científica</summary>
+  <summary xml:lang="de">Wissenschaftlicher Taschenrechner</summary>
   <summary xml:lang="en-GB">Scientific Calculator</summary>
   <summary xml:lang="es">Calculadora científica</summary>
   <summary xml:lang="it">Calcolatrice scientifica</summary>
@@ -48,6 +50,7 @@
     </p>
     <p xml:lang="ca">El KCalc té tot allò que espereu d'una calculadora científica, més:</p>
     <p xml:lang="ca-valencia">El KCalc té tot allò que espereu d'una calculadora científica, més:</p>
+    <p xml:lang="de">KCalc bietet alles, was Sie von einem wissenschaftlichen Taschenrechner erwarten, plus:</p>
     <p xml:lang="en-GB">KCalc has everything you would expect from a scientific calculator, plus:</p>
     <p xml:lang="es">KCalc tiene todo lo que cabría esperar de una calculadora científica, además de:</p>
     <p xml:lang="it">KCalc ha tutto quello che ci si aspetta da una calcolatrice scientifica.</p>
