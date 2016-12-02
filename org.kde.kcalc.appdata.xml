@@ -6,6 +6,7 @@
   <name>KCalc</name>
   <name xml:lang="ca">KCalc</name>
   <name xml:lang="ca-valencia">KCalc</name>
+  <name xml:lang="cs">KCalc</name>
   <name xml:lang="de">KCalc</name>
   <name xml:lang="en-GB">KCalc</name>
   <name xml:lang="es">KCalc</name>
@@ -26,6 +27,7 @@
   <summary>Scientific Calculator</summary>
   <summary xml:lang="ca">Calculadora científica</summary>
   <summary xml:lang="ca-valencia">Calculadora científica</summary>
+  <summary xml:lang="cs">Vědecká kalkulačka</summary>
   <summary xml:lang="de">Wissenschaftlicher Taschenrechner</summary>
   <summary xml:lang="en-GB">Scientific Calculator</summary>
   <summary xml:lang="es">Calculadora científica</summary>
