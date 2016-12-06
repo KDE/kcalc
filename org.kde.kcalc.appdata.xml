@@ -10,6 +10,7 @@
   <name xml:lang="en-GB">KCalc</name>
   <name xml:lang="es">KCalc</name>
   <name xml:lang="it">KCalc</name>
+  <name xml:lang="ko">KCalc</name>
   <name xml:lang="nl">KCalc</name>
   <name xml:lang="nn">KCalc</name>
   <name xml:lang="pl">KCalc</name>
@@ -31,6 +32,7 @@
   <summary xml:lang="en-GB">Scientific Calculator</summary>
   <summary xml:lang="es">Calculadora científica</summary>
   <summary xml:lang="it">Calcolatrice scientifica</summary>
+  <summary xml:lang="ko">공학용 계산기</summary>
   <summary xml:lang="nl">Wetenschappelijke rekenmachine</summary>
   <summary xml:lang="nn">Vitskapleg kalkulator</summary>
   <summary xml:lang="pl">Kalkulator naukowy</summary>
@@ -55,6 +57,7 @@
     <p xml:lang="en-GB">KCalc has everything you would expect from a scientific calculator, plus:</p>
     <p xml:lang="es">KCalc tiene todo lo que cabría esperar de una calculadora científica, además de:</p>
     <p xml:lang="it">KCalc ha tutto quello che ci si aspetta da una calcolatrice scientifica.</p>
+    <p xml:lang="ko">KCalc는 공학용 계산기에서 찾을 수 있는 기능 외에도 다음을 더 지원합니다:</p>
     <p xml:lang="nl">KCalc heeft alles wat u verwacht van een wetenschappelijke rekenmachine, plus:</p>
     <p xml:lang="nn">KCalc har alt du forventar av ein vitskapleg kalkulator, pluss:</p>
     <p xml:lang="pl">KCalc ma wszystko czego możnaby oczekiwać od kalkulatora naukowego, plus:</p>
