@@ -4,6 +4,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>KCalc</name>
+  <name xml:lang="ast">KCalc</name>
   <name xml:lang="ca">KCalc</name>
   <name xml:lang="ca-valencia">KCalc</name>
   <name xml:lang="cs">KCalc</name>
@@ -28,6 +29,7 @@
   <name xml:lang="x-test">xxKCalcxx</name>
   <name xml:lang="zh-TW">KDE 計算機</name>
   <summary>Scientific Calculator</summary>
+  <summary xml:lang="ast">Calculadora científica</summary>
   <summary xml:lang="ca">Calculadora científica</summary>
   <summary xml:lang="ca-valencia">Calculadora científica</summary>
   <summary xml:lang="cs">Vědecká kalkulačka</summary>
@@ -56,6 +58,7 @@
       KCalc has everything you would expect from a scientific calculator, plus:
       
     </p>
+    <p xml:lang="ast">KCal tien tolo qu'esperaríes d'una calculadora científica, amás:</p>
     <p xml:lang="ca">El KCalc té tot allò que espereu d'una calculadora científica, més:</p>
     <p xml:lang="ca-valencia">El KCalc té tot allò que espereu d'una calculadora científica, més:</p>
     <p xml:lang="de">KCalc bietet alles, was Sie von einem wissenschaftlichen Taschenrechner erwarten, plus:</p>
