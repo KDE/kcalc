@@ -102,7 +102,6 @@ kconfig_add_kcfg_files(kcalc_KDEINIT_SRCS kcalc_settings.kcfgc )
 
 # Sets the icon on Windows and OSX
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*.png")
-message(STATUS "${ICONS_SRCS}")
 ecm_add_app_icon(kcalc_KDEINIT_SRCS ICONS ${ICONS_SRCS})
 
 kf5_add_kdeinit_executable( kcalc ${kcalc_KDEINIT_SRCS})
