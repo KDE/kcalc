@@ -26,6 +26,7 @@
   <name xml:lang="sv">Kcalc</name>
   <name xml:lang="uk">KCalc</name>
   <name xml:lang="x-test">xxKCalcxx</name>
+  <name xml:lang="zh-CN">KCalc</name>
   <name xml:lang="zh-TW">KDE 計算機</name>
   <summary>Scientific Calculator</summary>
   <summary xml:lang="ca">Calculadora científica</summary>
@@ -50,6 +51,7 @@
   <summary xml:lang="sv">Vetenskaplig miniräknare</summary>
   <summary xml:lang="uk">Інженерний калькулятор</summary>
   <summary xml:lang="x-test">xxScientific Calculatorxx</summary>
+  <summary xml:lang="zh-CN">科学计算器</summary>
   <summary xml:lang="zh-TW">科學計算機</summary>
   <description>
     <p>
@@ -76,6 +78,7 @@
     <p xml:lang="sv">Miniräknaren har allt som man kan förvänta sig av en vetenskaplig räknare, samt:</p>
     <p xml:lang="uk">KCalc вміє усе, що ви могли б очікувати від інженерного калькулятора, а крім того, вміє таке:</p>
     <p xml:lang="x-test">xxKCalc has everything you would expect from a scientific calculator, plus:xx</p>
+    <p xml:lang="zh-CN">KCalc 具有您所期待的科学计算器的全部功能，以及：</p>
     <p xml:lang="zh-TW">KCalac 有所有您預期科學計算機會有的功能，再加上：</p>
   </description>
   <url type="homepage">https://utils.kde.org/projects/kcalc/</url>
