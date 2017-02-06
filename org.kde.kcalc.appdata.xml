@@ -12,6 +12,7 @@
   <name xml:lang="en-GB">KCalc</name>
   <name xml:lang="es">KCalc</name>
   <name xml:lang="et">KCalc</name>
+  <name xml:lang="ia">KCalc</name>
   <name xml:lang="it">KCalc</name>
   <name xml:lang="ko">KCalc</name>
   <name xml:lang="nl">KCalc</name>
@@ -38,6 +39,7 @@
   <summary xml:lang="en-GB">Scientific Calculator</summary>
   <summary xml:lang="es">Calculadora científica</summary>
   <summary xml:lang="et">Teaduslik kalkulaator</summary>
+  <summary xml:lang="ia">Calculator scientific</summary>
   <summary xml:lang="it">Calcolatrice scientifica</summary>
   <summary xml:lang="ko">공학용 계산기</summary>
   <summary xml:lang="nl">Wetenschappelijke rekenmachine</summary>
