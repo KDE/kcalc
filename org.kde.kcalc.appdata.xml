@@ -26,6 +26,7 @@
   <name xml:lang="sr-ijekavian">К‑калк</name>
   <name xml:lang="sr-ijekavianlatin">KCalc</name>
   <name xml:lang="sv">Kcalc</name>
+  <name xml:lang="tr">KCalc</name>
   <name xml:lang="uk">KCalc</name>
   <name xml:lang="x-test">xxKCalcxx</name>
   <name xml:lang="zh-CN">KCalc</name>
@@ -53,6 +54,7 @@
   <summary xml:lang="sr-ijekavian">Научни калкулатор</summary>
   <summary xml:lang="sr-ijekavianlatin">Naučni kalkulator</summary>
   <summary xml:lang="sv">Vetenskaplig miniräknare</summary>
+  <summary xml:lang="tr">Bilimsel Hesap Makinesi</summary>
   <summary xml:lang="uk">Інженерний калькулятор</summary>
   <summary xml:lang="x-test">xxScientific Calculatorxx</summary>
   <summary xml:lang="zh-CN">科学计算器</summary>
@@ -82,6 +84,7 @@
     <p xml:lang="sr-ijekavian">К‑калк има све што бисте очекивали код једног научног калкулатора, плус:</p>
     <p xml:lang="sr-ijekavianlatin">KCalc ima sve što biste očekivali kod jednog naučnog kalkulatora, plus:</p>
     <p xml:lang="sv">Miniräknaren har allt som man kan förvänta sig av en vetenskaplig räknare, samt:</p>
+    <p xml:lang="tr">KCalc, bilimsel bir hesap makinesinden bekleyebileceğiniz her şeye sahiptir. Ayrıca:</p>
     <p xml:lang="uk">KCalc вміє усе, що ви могли б очікувати від інженерного калькулятора, а крім того, вміє таке:</p>
     <p xml:lang="x-test">xxKCalc has everything you would expect from a scientific calculator, plus:xx</p>
     <p xml:lang="zh-CN">KCalc 具有您所期待的科学计算器的全部功能，以及：</p>
