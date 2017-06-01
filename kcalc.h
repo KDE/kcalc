@@ -115,8 +115,8 @@ public:
     Q_DECLARE_FLAGS(UpdateFlags, UpdateFlag)
 
 private:
-    virtual bool eventFilter(QObject *o, QEvent *e);
-    virtual bool event(QEvent *e);
+    bool eventFilter(QObject *o, QEvent *e) Q_DECL_OVERRIDE;
+    bool event(QEvent *e) Q_DECL_OVERRIDE;
     void updateGeometry();
     void setupMainActions();
     void setupKeys();
@@ -128,8 +128,8 @@ private:
 	void setupStatisticKeys();
 	void setupConstantsKeys();
 	void setupMiscKeys();
-    void keyPressEvent(QKeyEvent *e);
-    void keyReleaseEvent(QKeyEvent *e);
+    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    void keyReleaseEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
     void setPrecision();
     void setAngle();
     void setBase();

@@ -41,71 +41,71 @@ public:
 	virtual ~knumber_integer();
 
 public:
-	virtual knumber_base *clone();
+	knumber_base *clone() Q_DECL_OVERRIDE;
 
 public:
-	virtual QString toString(int precision) const;
-	virtual quint64 toUint64() const;
-	virtual qint64 toInt64() const;
+	QString toString(int precision) const Q_DECL_OVERRIDE;
+	quint64 toUint64() const Q_DECL_OVERRIDE;
+	qint64 toInt64() const Q_DECL_OVERRIDE;
 
 public:
 	virtual bool is_even() const;
 	virtual bool is_odd() const;
-	virtual bool is_integer() const;
-	virtual bool is_zero() const;
-	virtual int sign() const;
+	bool is_integer() const Q_DECL_OVERRIDE;
+	bool is_zero() const Q_DECL_OVERRIDE;
+	int sign() const Q_DECL_OVERRIDE;
 
 public:
-	virtual knumber_base *add(knumber_base *rhs);
-	virtual knumber_base *sub(knumber_base *rhs);
-	virtual knumber_base *mul(knumber_base *rhs);
-	virtual knumber_base *div(knumber_base *rhs);
-	virtual knumber_base *mod(knumber_base *rhs);
+	knumber_base *add(knumber_base *rhs) Q_DECL_OVERRIDE;
+	knumber_base *sub(knumber_base *rhs) Q_DECL_OVERRIDE;
+	knumber_base *mul(knumber_base *rhs) Q_DECL_OVERRIDE;
+	knumber_base *div(knumber_base *rhs) Q_DECL_OVERRIDE;
+	knumber_base *mod(knumber_base *rhs) Q_DECL_OVERRIDE;
 
 public:
-	virtual knumber_base *bitwise_and(knumber_base *rhs);
-	virtual knumber_base *bitwise_xor(knumber_base *rhs);
-	virtual knumber_base *bitwise_or(knumber_base *rhs);
-	virtual knumber_base *bitwise_shift(knumber_base *rhs);
+	knumber_base *bitwise_and(knumber_base *rhs) Q_DECL_OVERRIDE;
+	knumber_base *bitwise_xor(knumber_base *rhs) Q_DECL_OVERRIDE;
+	knumber_base *bitwise_or(knumber_base *rhs) Q_DECL_OVERRIDE;
+	knumber_base *bitwise_shift(knumber_base *rhs) Q_DECL_OVERRIDE;
 
 public:
-	virtual knumber_base *pow(knumber_base *rhs);
-	virtual knumber_base *neg();
-	virtual knumber_base *cmp();
-	virtual knumber_base *abs();
-	virtual knumber_base *sqrt();
-	virtual knumber_base *cbrt();
-	virtual knumber_base *factorial();
-	virtual knumber_base *reciprocal();
+	knumber_base *pow(knumber_base *rhs) Q_DECL_OVERRIDE;
+	knumber_base *neg() Q_DECL_OVERRIDE;
+	knumber_base *cmp() Q_DECL_OVERRIDE;
+	knumber_base *abs() Q_DECL_OVERRIDE;
+	knumber_base *sqrt() Q_DECL_OVERRIDE;
+	knumber_base *cbrt() Q_DECL_OVERRIDE;
+	knumber_base *factorial() Q_DECL_OVERRIDE;
+	knumber_base *reciprocal() Q_DECL_OVERRIDE;
 
 public:
-	virtual knumber_base *log2();
-	virtual knumber_base *log10();
-	virtual knumber_base *ln();
-	virtual knumber_base *exp2();
-	virtual knumber_base *floor();
-	virtual knumber_base *ceil();
-	virtual knumber_base *exp10();
-	virtual knumber_base *exp();
-	virtual knumber_base *bin(knumber_base *rhs);
+	knumber_base *log2() Q_DECL_OVERRIDE;
+	knumber_base *log10() Q_DECL_OVERRIDE;
+	knumber_base *ln() Q_DECL_OVERRIDE;
+	knumber_base *exp2() Q_DECL_OVERRIDE;
+	knumber_base *floor() Q_DECL_OVERRIDE;
+	knumber_base *ceil() Q_DECL_OVERRIDE;
+	knumber_base *exp10() Q_DECL_OVERRIDE;
+	knumber_base *exp() Q_DECL_OVERRIDE;
+	knumber_base *bin(knumber_base *rhs) Q_DECL_OVERRIDE;
 
 public:
-	virtual knumber_base *sin();
-	virtual knumber_base *cos();
-	virtual knumber_base *tan();
-	virtual knumber_base *asin();
-	virtual knumber_base *acos();
-	virtual knumber_base *atan();
-	virtual knumber_base *sinh();
-	virtual knumber_base *cosh();
-	virtual knumber_base *tanh();
-	virtual knumber_base *asinh();
-	virtual knumber_base *acosh();
-	virtual knumber_base *atanh();
-	virtual knumber_base *tgamma();
+	knumber_base *sin() Q_DECL_OVERRIDE;
+	knumber_base *cos() Q_DECL_OVERRIDE;
+	knumber_base *tan() Q_DECL_OVERRIDE;
+	knumber_base *asin() Q_DECL_OVERRIDE;
+	knumber_base *acos() Q_DECL_OVERRIDE;
+	knumber_base *atan() Q_DECL_OVERRIDE;
+	knumber_base *sinh() Q_DECL_OVERRIDE;
+	knumber_base *cosh() Q_DECL_OVERRIDE;
+	knumber_base *tanh() Q_DECL_OVERRIDE;
+	knumber_base *asinh() Q_DECL_OVERRIDE;
+	knumber_base *acosh() Q_DECL_OVERRIDE;
+	knumber_base *atanh() Q_DECL_OVERRIDE;
+	knumber_base *tgamma() Q_DECL_OVERRIDE;
 
 public:
-	virtual int compare(knumber_base *rhs);
+	int compare(knumber_base *rhs) Q_DECL_OVERRIDE;
 
 private:
 	// conversion constructors

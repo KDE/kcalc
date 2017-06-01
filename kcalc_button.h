@@ -66,7 +66,7 @@ public:
     void addMode(ButtonModeFlags mode, const QString &label,
                  const QString &tooltip);
 
-    virtual QSize sizeHint() const; // reimp
+    QSize sizeHint() const; // reimp
 
     void setFont(const QFont &fnt);
     void setText(const QString &text);   // reimp
@@ -77,7 +77,7 @@ public slots:
     void slotSetAccelDisplayMode(bool flag);
 
 protected:
-    virtual void paintEvent(QPaintEvent *e);
+    void paintEvent(QPaintEvent *e) Q_DECL_OVERRIDE;
 
 private:
     void calcSizeHint();
