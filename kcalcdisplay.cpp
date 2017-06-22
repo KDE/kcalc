@@ -582,11 +582,20 @@ QString KCalcDisplay::formatDecimalNumber(QString string)
 			}
 		}
 
+		// find first digit to not group leading spaces or signs
+		int firstDigitPos = 0;
+		for (int i = 0; i < string.length(); ++i) {
+			if (string.at(i).isDigit()) {
+				firstDigitPos = i;
+				break;
+			}
+		}
+
 		const QChar groupSeparator = locale.groupSeparator();
 		const int groupSize = 3;
 
 		string.reserve(string.length() + (pos - 1) / groupSize);
-		while ((pos -= groupSize) > 0) {
+		while ((pos -= groupSize) > firstDigitPos) {
 			string.insert(pos, groupSeparator);
 		}
 	}
