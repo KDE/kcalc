@@ -151,5 +151,5 @@ GenericName[zh_TW]=科學計算機
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=Qt;KDE;Utility;X-KDE-Utilities-Desktop;
+Categories=Qt;KDE;Utility;Calculator;X-KDE-Utilities-Desktop;
 X-DBUS-ServiceName=org.kde.kcalc.desktop
