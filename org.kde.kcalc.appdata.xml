@@ -24,6 +24,7 @@
   <name xml:lang="nn">KCalc</name>
   <name xml:lang="pl">KCalc</name>
   <name xml:lang="pt">KCalc</name>
+  <name xml:lang="pt-BR">KCalc</name>
   <name xml:lang="ru">KCalc</name>
   <name xml:lang="sk">KCalc</name>
   <name xml:lang="sl">KCalc</name>
@@ -58,6 +59,7 @@
   <summary xml:lang="nn">Vitskapleg kalkulator</summary>
   <summary xml:lang="pl">Kalkulator naukowy</summary>
   <summary xml:lang="pt">Calculadora Científica</summary>
+  <summary xml:lang="pt-BR">Calculadora científica</summary>
   <summary xml:lang="ru">Калькулятор</summary>
   <summary xml:lang="sk">Vedecká kalkulačka</summary>
   <summary xml:lang="sl">Znanstveno računalo</summary>
@@ -94,6 +96,7 @@
     <p xml:lang="nn">KCalc har alt du forventar av ein vitskapleg kalkulator, pluss:</p>
     <p xml:lang="pl">KCalc ma wszystko czego możnaby oczekiwać od kalkulatora naukowego, plus:</p>
     <p xml:lang="pt">O KCalc tem tudo o que poderá esperar de uma calculadora científica, e ainda mais:</p>
+    <p xml:lang="pt-BR">O KCalc tem tudo que você pode esperar de uma calculadora científica, mais:</p>
     <p xml:lang="sk">KCalc má všetko, čo by ste očakávali od vedeckej kalkulačky, plus:</p>
     <p xml:lang="sl">KCalc poleg zmožnosti znanstvenega računala ponuja še naslednje zmožnosti:</p>
     <p xml:lang="sr">К‑калк има све што бисте очекивали код једног научног калкулатора, плус:</p>
@@ -109,7 +112,7 @@
   </description>
   <url type="homepage">https://utils.kde.org/projects/kcalc/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?product=kcalc</url>
-  <url type="help">https://docs.kde.org/trunk5/en/kdeutils/kcalc</url>
+  <url type="help">https://docs.kde.org/?application=kcalc</url>
   <url type="donation">https://www.kde.org/community/donations</url>
   <provides>
     <binary>kcalc</binary>
