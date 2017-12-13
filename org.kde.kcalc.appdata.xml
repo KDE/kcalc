@@ -15,6 +15,7 @@
   <name xml:lang="es">KCalc</name>
   <name xml:lang="et">KCalc</name>
   <name xml:lang="eu">KCalc</name>
+  <name xml:lang="fi">KCalc</name>
   <name xml:lang="fr">KCalc</name>
   <name xml:lang="gl">KCalc</name>
   <name xml:lang="ia">KCalc</name>
@@ -49,6 +50,7 @@
   <summary xml:lang="es">Calculadora científica</summary>
   <summary xml:lang="et">Teaduslik kalkulaator</summary>
   <summary xml:lang="eu">Kalkulagailu zientifikoa</summary>
+  <summary xml:lang="fi">Tieteellinen laskin</summary>
   <summary xml:lang="fr">Calculatrice scientifique</summary>
   <summary xml:lang="gl">Unha calculadora científica</summary>
   <summary xml:lang="ia">Calculator scientific</summary>
@@ -86,6 +88,7 @@
     <p xml:lang="es">KCalc tiene todo lo que cabría esperar de una calculadora científica, además de:</p>
     <p xml:lang="et">KCalc pakub kõike, mida oskad soovida ühelt teaduslikult kalkulaatorilt ja sellele lisaks veel:</p>
     <p xml:lang="eu">KCalc-ek kalkulagailu zientifiko batean aurkituko zenukeen guztia du, gehi:</p>
+    <p xml:lang="fi">KCalcissä on kaikki, mitä odotat tieteelliseltä laskimelta, ja lisäksi:</p>
     <p xml:lang="fr">KCalc dispose de tout ce que vous attendez d'une calculatrice scientifique, plus :</p>
     <p xml:lang="gl">KCalc ten todo o que esperaría dunha calculadora científica, e ademais:</p>
     <p xml:lang="it">KCalc ha tutto quello che ci si aspetta da una calcolatrice scientifica.</p>
