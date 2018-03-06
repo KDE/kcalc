@@ -34,6 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QMenuBar>
 #include <QShortcut>
 #include <QStyle>
+#include <QButtonGroup>
 
 #include <KAboutData>
 #include <KAcceleratorManager>
