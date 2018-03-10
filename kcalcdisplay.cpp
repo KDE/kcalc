@@ -1003,9 +1003,9 @@ QSize KCalcDisplay::sizeHint() const {
 	// basic size
 	QSize sz = fontMetrics().size(Qt::TextSingleLine, text_);
 
-	// expanded by half font height to make room for  the status texts
+	// expanded by 3/4 font height to make room for the status texts
 	QFont fnt(font());
-	fnt.setPointSize(qMax((fnt.pointSize() / 2), 7));
+	fnt.setPointSize(qMax(((fnt.pointSize() * 3) / 4), 7));
 	
 	const QFontMetrics fm(fnt);
 	sz.setHeight(sz.height() + fm.height());
