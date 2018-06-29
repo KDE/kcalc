@@ -624,7 +624,7 @@ QString KCalcDisplay::groupDigits(const QString &displayString, int numDigits) {
 
 	for (int i = stringLength; i > 0 ; i--){
 		if(i % numDigits == 0 && i != stringLength) {
-			tmpDisplayString = tmpDisplayString + ' ';
+            tmpDisplayString = tmpDisplayString + QLatin1Char(' ');
 		}
 
 		tmpDisplayString = tmpDisplayString + displayString[stringLength - i];

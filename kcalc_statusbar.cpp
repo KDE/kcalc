@@ -30,8 +30,8 @@ KCalcStatusBar::KCalcStatusBar(QWidget *parent)
     setSizeGripEnabled(false);
 
     shift_indicator_ = addIndicator(QList<QString>() << i18nc("Normal button functions are active", "NORM") << i18nc("Second button functions are active", "SHIFT"));
-    base_indicator_ = addIndicator(QList<QString>() << "DEC" << "BIN" << "OCT" << "HEX");
-    angle_mode_indicator_ = addIndicator(QList<QString>() << "DEG" << "RAD" << "GRA");
+    base_indicator_ = addIndicator(QList<QString>() << QStringLiteral("DEC") << QStringLiteral("BIN") << QStringLiteral("OCT") << QStringLiteral("HEX"));
+    angle_mode_indicator_ = addIndicator(QList<QString>() << QStringLiteral("DEG") << QStringLiteral("RAD") << QStringLiteral("GRA"));
     memory_indicator_ = addIndicator(QList<QString>() << QString() << i18nc("Memory indicator in status bar", "M"));
 }
 
@@ -80,17 +80,17 @@ void KCalcStatusBar::setBase(int base)
 
     switch (base) {
     case 2:
-        text = "BIN";
+        text = QStringLiteral("BIN");
         break;
     case 8:
-        text = "OCT";
+        text = QStringLiteral("OCT");
         break;
     case 10:
     default:
-        text = "DEC";
+        text = QStringLiteral("DEC");
         break;
     case 16:
-        text = "HEX";
+        text = QStringLiteral("HEX");
         break;
     }
     base_indicator_->setText(text);
@@ -102,13 +102,13 @@ void KCalcStatusBar::setAngleMode(AngleMode mode)
 
     switch (mode) {
     case DegMode:
-        text = "DEG";
+        text = QStringLiteral("DEG");
         break;
     case RadMode:
-        text = "RAD";
+        text = QStringLiteral("RAD");
         break;
     case GradMode:
-        text = "GRA";
+        text = QStringLiteral("GRA");
         break;
     }
     angle_mode_indicator_->setText(text);

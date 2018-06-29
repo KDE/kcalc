@@ -245,7 +245,7 @@ KNumber KNumber::Pi() {
 	//       characters, this will allow things to be done slightly more
 	// efficiently
 	QString s(QLatin1String("3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117068"));
-	s.replace('.', DecimalSeparator);
+    s.replace(QLatin1Char('.'), DecimalSeparator);
 	return KNumber(s);
 }
 
@@ -260,7 +260,7 @@ KNumber KNumber::Euler() {
 	//       characters, this will allow things to be done slightly more
 	// efficiently
 	QString s(QLatin1String("2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945713821785251664274"));
-	s.replace('.', DecimalSeparator);
+    s.replace(QLatin1Char('.'), DecimalSeparator);
 	return KNumber(s);
 }
 

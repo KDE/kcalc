@@ -795,7 +795,7 @@ void KCalculator::keyPressEvent(QKeyEvent *e) {
 	// Basically, on some keyboards such as French, even though the decimal separator
 	// is "," the numeric keypad has a "." key. So we fake it so people can more seemlessly
 	// enter numbers using the keypad
-	if(KNumber::decimalSeparator() != ".") {
+    if(KNumber::decimalSeparator() != QLatin1String(".")) {
 		if(e->key() == Qt::Key_Period && e->modifiers() & Qt::KeypadModifier) {
 			pbPeriod->animateClick();
 		}
@@ -2290,17 +2290,17 @@ extern "C" Q_DECL_EXPORT int kdemain(int argc, char *argv[]) {
                          QStringLiteral("http://utils.kde.org/projects/kcalc"));
 
 	// Klaus Niederkrueger
-	aboutData.addAuthor(i18n("Klaus Niederkr" "\xc3\xbc" "ger"), QString(), "kniederk@math.uni-koeln.de");
-	aboutData.addAuthor(i18n("Bernd Johannes Wuebben"), QString(), "wuebben@kde.org");
-	aboutData.addAuthor(i18n("Evan Teran"), i18n("Maintainer"), "eteran@alum.rit.edu");
-	aboutData.addAuthor(i18n("Espen Sand"), QString(), "espen@kde.org");
-	aboutData.addAuthor(i18n("Chris Howells"), QString(), "howells@kde.org");
-	aboutData.addAuthor(i18n("Aaron J. Seigo"), QString(), "aseigo@olympusproject.org");
-	aboutData.addAuthor(i18n("Charles Samuels"), QString(), "charles@altair.dhs.org");
+    aboutData.addAuthor(i18n("Klaus Niederkr" "\xc3\xbc" "ger"), QString(), QStringLiteral("kniederk@math.uni-koeln.de"));
+    aboutData.addAuthor(i18n("Bernd Johannes Wuebben"), QString(), QStringLiteral("wuebben@kde.org"));
+    aboutData.addAuthor(i18n("Evan Teran"), i18n("Maintainer"), QStringLiteral("eteran@alum.rit.edu"));
+    aboutData.addAuthor(i18n("Espen Sand"), QString(), QStringLiteral("espen@kde.org"));
+    aboutData.addAuthor(i18n("Chris Howells"), QString(), QStringLiteral("howells@kde.org"));
+    aboutData.addAuthor(i18n("Aaron J. Seigo"), QString(), QStringLiteral("aseigo@olympusproject.org"));
+    aboutData.addAuthor(i18n("Charles Samuels"), QString(), QStringLiteral("charles@altair.dhs.org"));
 	// Rene Merou
-	aboutData.addAuthor(i18n("Ren" "\xc3\xa9" " M" "\xc3\xa9"  "rou"), QString(), "ochominutosdearco@yahoo.es");
-	aboutData.addAuthor(i18n("Michel Marti"), QString(), "mma@objectxp.com");
-	aboutData.addAuthor(i18n("David Johnson"), QString(), "david@usermode.org");
+    aboutData.addAuthor(i18n("Ren" "\xc3\xa9" " M" "\xc3\xa9"  "rou"), QString(), QStringLiteral("ochominutosdearco@yahoo.es"));
+    aboutData.addAuthor(i18n("Michel Marti"), QString(), QStringLiteral("mma@objectxp.com"));
+    aboutData.addAuthor(i18n("David Johnson"), QString(), QStringLiteral("david@usermode.org"));
 
 	KAboutData::setApplicationData(aboutData);
 	app.setWindowIcon(QIcon::fromTheme(QLatin1String("accessories-calculator"), app.windowIcon()));
@@ -2319,7 +2319,7 @@ extern "C" Q_DECL_EXPORT int kdemain(int argc, char *argv[]) {
     KNumber::setGroupSeparator(QLocale().groupSeparator());
     KNumber::setDecimalSeparator(QString(QLocale().decimalPoint()));
 
-	KCalculator *calc = new KCalculator(0);
+    KCalculator *calc = new KCalculator(nullptr);
 
 	calc->show();
 	return app.exec();
