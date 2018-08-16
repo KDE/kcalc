@@ -1701,7 +1701,6 @@ void KCalculator::slotSetSimpleMode() {
 
 	action_constants_show_->setChecked(false);
 	action_constants_show_->setEnabled(false);
-	action_bitset_show_->setChecked(false);
 	action_bitset_show_->setEnabled(false);
 	showMemButtons(false);
 	showScienceButtons(false);
@@ -1724,6 +1723,9 @@ void KCalculator::slotSetSimpleMode() {
 	constants_menu_ = 0;
 
 	KCalcSettings::setCalculatorMode(KCalcSettings::EnumCalculatorMode::simple);
+	// must be done after setting the calculator mode because the
+	// slotBitsetshow slot should save the state only in numeral mode
+	action_bitset_show_->setChecked(false);
 }
 
 //------------------------------------------------------------------------------
@@ -1734,7 +1736,6 @@ void KCalculator::slotSetScienceMode() {
 
 	action_constants_show_->setEnabled(true);
 	action_constants_show_->setChecked(KCalcSettings::showConstants());
-	action_bitset_show_->setChecked(false);
 	action_bitset_show_->setEnabled(false);
 
 	// show some individual buttons
@@ -1760,6 +1761,9 @@ void KCalculator::slotSetScienceMode() {
 	}
 
 	KCalcSettings::setCalculatorMode(KCalcSettings::EnumCalculatorMode::science);
+	// must be done after setting the calculator mode because the
+	// slotBitsetshow slot should save the state only in numeral mode
+	action_bitset_show_->setChecked(false);
 }
 
 //------------------------------------------------------------------------------
@@ -1770,7 +1774,6 @@ void KCalculator::slotSetStatisticMode() {
 
 	action_constants_show_->setEnabled(true);
 	action_constants_show_->setChecked(KCalcSettings::showConstants());
-	action_bitset_show_->setChecked(false);
 	action_bitset_show_->setEnabled(false);
 
 	// show some individual buttons
@@ -1796,6 +1799,9 @@ void KCalculator::slotSetStatisticMode() {
 	}
 
 	KCalcSettings::setCalculatorMode(KCalcSettings::EnumCalculatorMode::statistics);
+	// must be done after setting the calculator mode because the
+	// slotBitsetshow slot should save the state only in numeral mode
+	action_bitset_show_->setChecked(false);
 }
 
 //------------------------------------------------------------------------------
@@ -1978,7 +1984,9 @@ void KCalculator::slotConstantsShow(bool toggled) {
 void KCalculator::slotBitsetshow(bool toggled) {
 
 	mBitset->setVisible(toggled);
-	KCalcSettings::setShowBitset(toggled);
+	if (KCalcSettings::calculatorMode() == KCalcSettings::EnumCalculatorMode::numeral) {
+		KCalcSettings::setShowBitset(toggled);
+	}
 }
 
 //------------------------------------------------------------------------------
