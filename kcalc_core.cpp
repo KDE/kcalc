@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "kcalc_core.h"
+#include "kcalc_settings.h"
 
 #include <QDebug>
 
@@ -169,10 +170,11 @@ const struct operator_data Operator[] = {
 }
 
 
-CalcEngine::CalcEngine() : percent_mode_(false) {
+CalcEngine::CalcEngine() : repeat_mode_(false), percent_mode_(false) {
 
     last_number_ = KNumber::Zero;
     error_ = false;
+    last_operation_ = FUNC_EQUAL;
 }
 
 KNumber CalcEngine::lastOutput(bool &error) const {
@@ -841,6 +843,26 @@ void CalcEngine::enterOperation(const KNumber &number, Operation func)
     tmp_node.number = number;
     tmp_node.operation = func;
 
+    if (KCalcSettings::repeatLastOperation()) {
+        if (func != FUNC_EQUAL && func != FUNC_PERCENT) {
+            last_operation_ = tmp_node.operation;
+            repeat_mode_ = false;
+        }
+
+        if (func == FUNC_EQUAL || func == FUNC_PERCENT) {
+            if (!repeat_mode_) {
+                repeat_mode_ = last_operation_ != FUNC_EQUAL;
+                last_repeat_number_ = number;
+            } else {
+                Node repeat_node;
+                repeat_node.operation = last_operation_;
+                repeat_node.number = number;
+                tmp_node.number = last_repeat_number_;
+                stack_.push(repeat_node);
+            }
+        }
+    }
+
     stack_.push(tmp_node);
 
     evalStack();
@@ -877,6 +899,8 @@ bool CalcEngine::evalStack()
 void CalcEngine::Reset()
 {
     percent_mode_ = false;
+    repeat_mode_ = false;
+    last_operation_ = FUNC_EQUAL;
     error_ = false;
     last_number_ = KNumber::Zero;
 

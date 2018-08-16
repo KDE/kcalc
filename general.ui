@@ -193,6 +193,16 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QCheckBox" name="kcfg_RepeatLastOperation">
+          <property name="text">
+           <string>Repeat operation for each result</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
      </layout>
