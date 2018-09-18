@@ -43,10 +43,10 @@ public:
 
     void setLabelAndTooltip();
 
-signals:
+Q_SIGNALS:
     void clicked(int num);
 
-private slots:
+private Q_SLOTS:
     void slotConfigureButton();
     void slotChooseScientificConst(const science_constant &const_chosen);
     void slotClicked();

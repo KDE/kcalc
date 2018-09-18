@@ -101,7 +101,7 @@ public:
     explicit KCalculator(QWidget *parent = 0);
     ~KCalculator();
 
-signals:
+Q_SIGNALS:
     void switchShift(bool);
     void switchMode(ButtonModeFlags, bool);
     void switchShowAccels(bool);
@@ -145,7 +145,7 @@ private:
 	
 	KCalcConstMenu *createConstantsMenu();
 
-protected slots:
+protected Q_SLOTS:
     void changeButtonNames();
     void updateSettings();
     void setColors();

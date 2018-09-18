@@ -72,7 +72,7 @@ public:
     void setText(const QString &text);   // reimp
     void setToolTip(const QString &tip);   // reimp
 
-public slots:
+public Q_SLOTS:
     void slotSetMode(ButtonModeFlags mode, bool flag);
     void slotSetAccelDisplayMode(bool flag);
 

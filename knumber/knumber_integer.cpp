@@ -31,7 +31,7 @@ namespace detail {
 //------------------------------------------------------------------------------
 knumber_integer::knumber_integer(const QString &s) {
     mpz_init(mpz_);
-    mpz_set_str(mpz_, s.toLatin1(), 10);
+    mpz_set_str(mpz_, s.toLatin1().constData(), 10);
 }
 
 //------------------------------------------------------------------------------

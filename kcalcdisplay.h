@@ -97,12 +97,12 @@ public:
     void updateFromCore(const CalcEngine &core,
                         bool store_result_in_history = false);
 
-public slots:
+public Q_SLOTS:
     void slotCut();
     void slotCopy();
     void slotPaste(bool bClipboard = true);
 
-signals:
+Q_SIGNALS:
     void clicked();
     void changedText(const QString &);
     void changedAmount(const KNumber &);
@@ -116,7 +116,7 @@ private:
     void invertColors();
     void initStyleOption(QStyleOptionFrame *option) const;
 
-private slots:
+private Q_SLOTS:
     void slotSelectionTimedOut();
     void slotDisplaySelected();
     void slotHistoryBack();

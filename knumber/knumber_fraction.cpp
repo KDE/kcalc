@@ -56,7 +56,7 @@ void knumber_fraction::set_split_off_integer_for_fraction_output(bool value) {
 //------------------------------------------------------------------------------
 knumber_fraction::knumber_fraction(const QString &s) {
 	mpq_init(mpq_);
-	mpq_set_str(mpq_, s.toLatin1(), 10);
+        mpq_set_str(mpq_, s.toLatin1().constData(), 10);
 	mpq_canonicalize(mpq_);
 }
 

@@ -33,11 +33,11 @@ public:
 	explicit KCalcBitset(QWidget *parent = 0);
 	quint64 getValue() const;
 
-public slots:
+public Q_SLOTS:
 	void setValue(quint64 value);
 	void slotToggleBit(int bit);
 
-signals:
+Q_SIGNALS:
 	void valueChanged(quint64 value);
 
 private:
