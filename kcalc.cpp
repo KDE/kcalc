@@ -366,17 +366,16 @@ void KCalculator::setupNumericKeypad() {
 	connect(pbPlus, &KCalcButton::clicked, this, &KCalculator::slotPlusclicked);
 	connect(this, &KCalculator::switchShowAccels, pbPlus, &KCalcButton::slotSetAccelDisplayMode);
 
+	// set decimal separator from locale
     pbPeriod->setText(QString(QLocale().decimalPoint()));
     pbPeriod->setShortcut(QString(QLocale().decimalPoint()));
 
-	// TODO: is this needed? the above line look slike it should do the right thing?
-	/*
-	if (KGlobal::locale()->decimalSymbol() == QLatin1String(".")) {
+	// add shortcut for the other decimal separator (point or comma)
+	if (QLocale().decimalPoint() == QLatin1Char('.')) {
 		new QShortcut(Qt::Key_Comma, pbPeriod, SLOT(animateClick()));
-	} else if (KGlobal::locale()->decimalSymbol() == QLatin1String(",")) {
+	} else if (QLocale().decimalPoint() == QLatin1Char(',')) {
 		new QShortcut(Qt::Key_Period, pbPeriod, SLOT(animateClick()));
 	}
-	*/
 
 	connect(pbPeriod, &KCalcButton::clicked, this, &KCalculator::slotPeriodclicked);
 	connect(this, &KCalculator::switchShowAccels, pbPeriod, &KCalcButton::slotSetAccelDisplayMode);
