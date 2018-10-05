@@ -169,8 +169,8 @@ const struct operator_data Operator[] = {
 
 }
 
-
-CalcEngine::CalcEngine() : repeat_mode_(false), percent_mode_(false) {
+CalcEngine::CalcEngine()
+    : only_update_operation_(false), repeat_mode_(false), percent_mode_(false) {
 
     last_number_ = KNumber::Zero;
     error_ = false;
@@ -863,7 +863,11 @@ void CalcEngine::enterOperation(const KNumber &number, Operation func)
         }
     }
 
-    stack_.push(tmp_node);
+    if (getOnlyUpdateOperation() && !stack_.isEmpty() &&
+        !(func == FUNC_EQUAL || func == FUNC_PERCENT))
+        stack_.top().operation = func;
+    else
+        stack_.push(tmp_node);
 
     evalStack();
 }
@@ -903,8 +907,18 @@ void CalcEngine::Reset()
     last_operation_ = FUNC_EQUAL;
     error_ = false;
     last_number_ = KNumber::Zero;
+    only_update_operation_ = false;
 
     stack_.clear();
 }
 
+void CalcEngine::setOnlyUpdateOperation(bool update)
+{
+    only_update_operation_ = update;
+}
+
+bool CalcEngine::getOnlyUpdateOperation() const
+{
+    return only_update_operation_;
+}
 
