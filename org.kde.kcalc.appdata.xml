@@ -113,7 +113,7 @@
   <url type="homepage">https://utils.kde.org/projects/kcalc/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?product=kcalc</url>
   <url type="help">https://docs.kde.org/?application=kcalc</url>
-  <url type="donation">https://www.kde.org/community/donations</url>
+  <url type="donation">https://www.kde.org/community/donations/?app=kcalc&amp;source=appdata</url>
   <provides>
     <binary>kcalc</binary>
   </provides>
