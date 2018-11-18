@@ -90,7 +90,7 @@ public:
     QString text() const;
     void updateDisplay();
     void setStatusText(int i, const QString &text);
-    QSize sizeHint() const Q_DECL_OVERRIDE;
+    QSize sizeHint() const override;
 
     void changeSettings();
     void enterDigit(int data);
@@ -108,8 +108,8 @@ Q_SIGNALS:
     void changedAmount(const KNumber &);
 
 protected:
-    void  mousePressEvent(QMouseEvent *) Q_DECL_OVERRIDE;
-    void paintEvent(QPaintEvent *p) Q_DECL_OVERRIDE;
+    void  mousePressEvent(QMouseEvent *) override;
+    void paintEvent(QPaintEvent *p) override;
 
 private:
     bool changeSign();

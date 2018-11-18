@@ -45,66 +45,66 @@ public:
 	virtual ~knumber_error();
 
 public:
-	QString toString(int precision) const Q_DECL_OVERRIDE;
-	quint64 toUint64() const Q_DECL_OVERRIDE;
-	qint64 toInt64() const Q_DECL_OVERRIDE;
+	QString toString(int precision) const override;
+	quint64 toUint64() const override;
+	qint64 toInt64() const override;
 
 public:
-	bool is_integer() const Q_DECL_OVERRIDE;
-	bool is_zero() const Q_DECL_OVERRIDE;
-	int sign() const Q_DECL_OVERRIDE;
+	bool is_integer() const override;
+	bool is_zero() const override;
+	int sign() const override;
 
 public:
-	knumber_base *add(knumber_base *rhs) Q_DECL_OVERRIDE;
-	knumber_base *sub(knumber_base *rhs) Q_DECL_OVERRIDE;
-	knumber_base *mul(knumber_base *rhs) Q_DECL_OVERRIDE;
-	knumber_base *div(knumber_base *rhs) Q_DECL_OVERRIDE;
-	knumber_base *mod(knumber_base *rhs) Q_DECL_OVERRIDE;
+	knumber_base *add(knumber_base *rhs) override;
+	knumber_base *sub(knumber_base *rhs) override;
+	knumber_base *mul(knumber_base *rhs) override;
+	knumber_base *div(knumber_base *rhs) override;
+	knumber_base *mod(knumber_base *rhs) override;
 
 public:
-	knumber_base *bitwise_and(knumber_base *rhs) Q_DECL_OVERRIDE;
-	knumber_base *bitwise_xor(knumber_base *rhs) Q_DECL_OVERRIDE;
-	knumber_base *bitwise_or(knumber_base *rhs) Q_DECL_OVERRIDE;
-	knumber_base *bitwise_shift(knumber_base *rhs) Q_DECL_OVERRIDE;
+	knumber_base *bitwise_and(knumber_base *rhs) override;
+	knumber_base *bitwise_xor(knumber_base *rhs) override;
+	knumber_base *bitwise_or(knumber_base *rhs) override;
+	knumber_base *bitwise_shift(knumber_base *rhs) override;
 
 public:
-	knumber_base *pow(knumber_base *rhs) Q_DECL_OVERRIDE;
-	knumber_base *neg() Q_DECL_OVERRIDE;
-	knumber_base *cmp() Q_DECL_OVERRIDE;
-	knumber_base *abs() Q_DECL_OVERRIDE;
-	knumber_base *sqrt() Q_DECL_OVERRIDE;
-	knumber_base *cbrt() Q_DECL_OVERRIDE;
-	knumber_base *factorial() Q_DECL_OVERRIDE;
-	knumber_base *reciprocal() Q_DECL_OVERRIDE;
-	knumber_base *tgamma() Q_DECL_OVERRIDE;
+	knumber_base *pow(knumber_base *rhs) override;
+	knumber_base *neg() override;
+	knumber_base *cmp() override;
+	knumber_base *abs() override;
+	knumber_base *sqrt() override;
+	knumber_base *cbrt() override;
+	knumber_base *factorial() override;
+	knumber_base *reciprocal() override;
+	knumber_base *tgamma() override;
 
 public:
-	knumber_base *log2() Q_DECL_OVERRIDE;
-	knumber_base *log10() Q_DECL_OVERRIDE;
-	knumber_base *ln() Q_DECL_OVERRIDE;
-	knumber_base *exp2() Q_DECL_OVERRIDE;
-	knumber_base *exp10() Q_DECL_OVERRIDE;
-	knumber_base *floor() Q_DECL_OVERRIDE;
-	knumber_base *ceil() Q_DECL_OVERRIDE;
-	knumber_base *exp() Q_DECL_OVERRIDE;
-	knumber_base *bin(knumber_base *rhs) Q_DECL_OVERRIDE;
+	knumber_base *log2() override;
+	knumber_base *log10() override;
+	knumber_base *ln() override;
+	knumber_base *exp2() override;
+	knumber_base *exp10() override;
+	knumber_base *floor() override;
+	knumber_base *ceil() override;
+	knumber_base *exp() override;
+	knumber_base *bin(knumber_base *rhs) override;
 
 public:
-	knumber_base *sin() Q_DECL_OVERRIDE;
-	knumber_base *cos() Q_DECL_OVERRIDE;
-	knumber_base *tan() Q_DECL_OVERRIDE;
-	knumber_base *asin() Q_DECL_OVERRIDE;
-	knumber_base *acos() Q_DECL_OVERRIDE;
-	knumber_base *atan() Q_DECL_OVERRIDE;
-	knumber_base *sinh() Q_DECL_OVERRIDE;
-	knumber_base *cosh() Q_DECL_OVERRIDE;
-	knumber_base *tanh() Q_DECL_OVERRIDE;
-	knumber_base *asinh() Q_DECL_OVERRIDE;
-	knumber_base *acosh() Q_DECL_OVERRIDE;
-	knumber_base *atanh() Q_DECL_OVERRIDE;
+	knumber_base *sin() override;
+	knumber_base *cos() override;
+	knumber_base *tan() override;
+	knumber_base *asin() override;
+	knumber_base *acos() override;
+	knumber_base *atan() override;
+	knumber_base *sinh() override;
+	knumber_base *cosh() override;
+	knumber_base *tanh() override;
+	knumber_base *asinh() override;
+	knumber_base *acosh() override;
+	knumber_base *atanh() override;
 
 public:
-	int compare(knumber_base *rhs) Q_DECL_OVERRIDE;
+	int compare(knumber_base *rhs) override;
 
 private:
 	// conversion constructors
@@ -114,7 +114,7 @@ private:
 	explicit knumber_error(const knumber_error *value);
 
 public:
-	knumber_base *clone() Q_DECL_OVERRIDE;
+	knumber_base *clone() override;
 
 private:
 	Error error_;

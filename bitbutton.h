@@ -33,7 +33,7 @@ public:
 	void setOn(bool value);
 
 protected:
-	void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
+	void paintEvent(QPaintEvent *event) override;
 
 private:
 	bool on_;
