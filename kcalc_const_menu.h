@@ -45,8 +45,8 @@ class KCalcConstMenu : public QMenu {
     Q_OBJECT
 
 public:
-    explicit KCalcConstMenu(QWidget * parent = 0);
-    explicit KCalcConstMenu(const QString &title, QWidget * parent = 0);
+    explicit KCalcConstMenu(QWidget * parent = nullptr);
+    explicit KCalcConstMenu(const QString &title, QWidget * parent = nullptr);
 
 public:
     static void init_consts();

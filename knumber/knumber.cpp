@@ -273,7 +273,7 @@ KNumber::KNumber() : value_(new detail::knumber_integer(0)) {
 //------------------------------------------------------------------------------
 // Name: KNumber
 //------------------------------------------------------------------------------
-KNumber::KNumber(const QString &s) : value_(0) {
+KNumber::KNumber(const QString &s) : value_(nullptr) {
 
 	const QRegExp special_regex(QLatin1String("^(inf|-inf|nan)$"));
 	const QRegExp integer_regex(QLatin1String("^[+-]?\\d+$"));
@@ -381,7 +381,7 @@ KNumber::KNumber(double value) : value_(new detail::knumber_float(value)) {
 //------------------------------------------------------------------------------
 // Name: KNumber
 //------------------------------------------------------------------------------
-KNumber::KNumber(const KNumber &other) : value_(0) {
+KNumber::KNumber(const KNumber &other) : value_(nullptr) {
 	if(&other != this) {
 		value_ = other.value_->clone();
 	}

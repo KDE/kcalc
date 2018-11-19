@@ -28,7 +28,7 @@ class BitButton : public QAbstractButton {
 	Q_OBJECT
 
 public:
-	explicit BitButton(QWidget *parent = 0);
+    explicit BitButton(QWidget *parent = nullptr);
 	bool isOn() const;
 	void setOn(bool value);
 

@@ -28,7 +28,7 @@ class KCalcStatusBar : public QStatusBar
     Q_OBJECT
 
 public:
-    KCalcStatusBar(QWidget *parent = 0);
+    explicit KCalcStatusBar(QWidget *parent = nullptr);
     ~KCalcStatusBar();
 
 public:

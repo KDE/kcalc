@@ -42,7 +42,7 @@ public:
 	explicit knumber_error(const QString &s);
 	explicit knumber_error(Error e);
 	knumber_error();
-	virtual ~knumber_error();
+    ~knumber_error() override;
 
 public:
 	QString toString(int precision) const override;

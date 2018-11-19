@@ -38,7 +38,7 @@ public:
 	explicit knumber_integer(quint32 value);
 	explicit knumber_integer(quint64 value);
 	explicit knumber_integer(mpz_t mpz);
-	virtual ~knumber_integer();
+    ~knumber_integer() override;
 
 public:
 	knumber_base *clone() override;

@@ -62,6 +62,7 @@ class KCalcStatusBar;
 
 class General: public QWidget, public Ui::General
 {
+    Q_OBJECT
 public:
     explicit General(QWidget *parent) : QWidget(parent) {
         setupUi(this);
@@ -70,6 +71,7 @@ public:
 
 class Fonts: public QWidget, public Ui::Fonts
 {
+    Q_OBJECT
 public:
     explicit Fonts(QWidget *parent) : QWidget(parent) {
         setupUi(this);
@@ -78,6 +80,7 @@ public:
 
 class Constants : public QWidget, public Ui::Constants
 {
+    Q_OBJECT
 public:
     explicit Constants(QWidget *parent) : QWidget(parent) {
         setupUi(this);
@@ -86,6 +89,7 @@ public:
 
 class Colors : public QWidget, public Ui::Colors
 {
+    Q_OBJECT
 public:
     explicit Colors(QWidget *parent) : QWidget(parent) {
         setupUi(this);
@@ -98,7 +102,7 @@ class KCalculator : public KXmlGuiWindow, private Ui::KCalculator
     Q_OBJECT
 
 public:
-    explicit KCalculator(QWidget *parent = 0);
+    explicit KCalculator(QWidget *parent = nullptr);
     ~KCalculator();
 
 Q_SIGNALS:

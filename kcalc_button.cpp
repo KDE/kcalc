@@ -191,7 +191,7 @@ QSize KCalcButton::sizeHint() const {
 //------------------------------------------------------------------------------
 void KCalcButton::calcSizeHint() {
 
-	int margin = style()->pixelMetric(QStyle::PM_ButtonMargin, 0, this);
+    int margin = style()->pixelMetric(QStyle::PM_ButtonMargin, nullptr, this);
 	
 	// want narrow margin than normal
 	margin = qMax(margin / 2, 3);

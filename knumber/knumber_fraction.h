@@ -46,7 +46,7 @@ public:
 	knumber_fraction(qint64 num, quint64 den);
 	knumber_fraction(quint64 num, quint64 den);
 	explicit knumber_fraction(mpq_t mpq);
-	virtual ~knumber_fraction();
+    ~knumber_fraction() override;
 
 public:
 	knumber_base *clone() override;

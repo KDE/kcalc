@@ -156,7 +156,7 @@ knumber_base *knumber_fraction::add(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+    return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -182,7 +182,7 @@ knumber_base *knumber_fraction::sub(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+    return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -220,7 +220,7 @@ knumber_base *knumber_fraction::mul(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+    return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -264,7 +264,7 @@ knumber_base *knumber_fraction::div(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+    return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -559,7 +559,7 @@ knumber_base *knumber_fraction::pow(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+    return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -753,7 +753,7 @@ QString knumber_fraction::toString(int precision) const {
 				mpz_neg(num, num);
 			}
 
-    		const size_t size = gmp_snprintf(NULL, 0, "%Zd %Zd/%Zd", integer_part_1.mpz_, num, mpq_denref(mpq_)) + 1;
+            const size_t size = gmp_snprintf(nullptr, 0, "%Zd %Zd/%Zd", integer_part_1.mpz_, num, mpq_denref(mpq_)) + 1;
 			QScopedArrayPointer<char> buf(new char[size]);
     		gmp_snprintf(&buf[0], size, "%Zd %Zd/%Zd", integer_part_1.mpz_, num, mpq_denref(mpq_));
 
@@ -766,7 +766,7 @@ QString knumber_fraction::toString(int precision) const {
 			mpz_init(num);
 			mpq_get_num(num, mpq_);
 
-    		const size_t size = gmp_snprintf(NULL, 0, "%Zd/%Zd", num, mpq_denref(mpq_)) + 1;
+            const size_t size = gmp_snprintf(nullptr, 0, "%Zd/%Zd", num, mpq_denref(mpq_)) + 1;
 			QScopedArrayPointer<char> buf(new char[size]);
     		gmp_snprintf(&buf[0], size, "%Zd/%Zd", num, mpq_denref(mpq_));
 

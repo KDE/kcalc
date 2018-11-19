@@ -39,7 +39,7 @@ class knumber_float;
 
 class knumber_base {
 public:
-	virtual ~knumber_base() { }
+    virtual ~knumber_base() = default;
 
 public:
 	virtual knumber_base *clone() = 0;

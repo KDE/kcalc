@@ -60,8 +60,8 @@ class KCalcDisplay : public QFrame {
 	Q_OBJECT
 
 public:
-    explicit KCalcDisplay(QWidget *parent = 0);
-    ~KCalcDisplay();
+    explicit KCalcDisplay(QWidget *parent = nullptr);
+    ~KCalcDisplay() override;
 
     enum Event {
         EventReset, // resets display
