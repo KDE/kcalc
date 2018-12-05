@@ -120,6 +120,12 @@
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?product=kcalc</url>
   <url type="help">https://docs.kde.org/?application=kcalc</url>
   <url type="donation">https://www.kde.org/community/donations/?app=kcalc&amp;source=appdata</url>
+  <screenshots>
+​    <screenshot type="default">
+​      <caption>Main window of KCalc</caption>
+​      <image>https://www.kde.org/images/screenshots/kcalc.png</image>
+​    </screenshot>
+​  </screenshots>
   <provides>
     <binary>kcalc</binary>
   </provides>
