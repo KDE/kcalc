@@ -109,11 +109,67 @@
     <p xml:lang="zh-TW">KCalac 有所有您預期科學計算機會有的功能，再加上：</p>
     <ul>
       <li>Trigonometric functions, logic operations and statistical calculations</li>
+      <li xml:lang="ca">Funcions trigonomètriques, operacions lògiques i càlculs estadístics</li>
+      <li xml:lang="ca-valencia">Funcions trigonomètriques, operacions lògiques i càlculs estadístics</li>
+      <li xml:lang="de">Trigonometrische Funktionen, logische Operationen und statistische Berechnungen</li>
+      <li xml:lang="es">Funciones trigonométricas, operaciones lógicas y cálculos estadísticos</li>
+      <li xml:lang="gl">Funcións trigonométricas, operacións lóxicas e cálculos estatísticos</li>
+      <li xml:lang="nl">Goniometrische functies, logische bewerkingen en statistische berekeningen</li>
+      <li xml:lang="sk">Trigonometrické funkcie, logické operácie a štatistické výpočty</li>
+      <li xml:lang="sv">Trigonometriska funktioner, logiska operationer och statistiska beräkningar</li>
+      <li xml:lang="uk">Обчислювати тригонометричні функції, виконувати операції логіки та статистичні обчислення.</li>
+      <li xml:lang="x-test">xxTrigonometric functions, logic operations and statistical calculationsxx</li>
       <li>A results stack which enables convenient recall of previous calculation results</li>
+      <li xml:lang="ca">Una pila de resultats que permet la invocació adequada dels resultats de càlculs anteriors</li>
+      <li xml:lang="ca-valencia">Una pila de resultats que permet la invocació adequada dels resultats de càlculs anteriors</li>
+      <li xml:lang="de">Ein Ergebnis-Stack, mit dem Sie bequem frühere Resultate abrufen können</li>
+      <li xml:lang="es">Una pila de resultados que permite reutilizar los resultados de cálculos anteriores</li>
+      <li xml:lang="gl">Unha rima de resultados que permite recuperar comodamente os resultados de cálculos anteriores</li>
+      <li xml:lang="nl">Een stapelgeheugen voor uitkomsten dat u de mogelijkheid geeft om vorige uitkomsten van berekeningen terug te halen</li>
+      <li xml:lang="sk">Zásobník výsledkov, ktorý umožní ľahké zavolanie predošlých výsledkov výpočtov</li>
+      <li xml:lang="sv">En resultatstack som gör det möjligt att bekvämt hämta tidigare beräkningsresultat</li>
+      <li xml:lang="uk">Має стек результатів, за допомогою якого зручно викликати результати попередніх обчислень.</li>
+      <li xml:lang="x-test">xxA results stack which enables convenient recall of previous calculation resultsxx</li>
       <li>Precision is user-definable</li>
+      <li xml:lang="ca">La precisió és definible per l'usuari</li>
+      <li xml:lang="ca-valencia">La precisió és definible per l'usuari</li>
+      <li xml:lang="es">El usuario puede definir la precisión</li>
+      <li xml:lang="gl">A precisión pode personalizarse</li>
+      <li xml:lang="nl">Precisie is door de gebruiker te definiëren</li>
+      <li xml:lang="sk">Presnosť je definovaná používateľom</li>
+      <li xml:lang="sv">Precisionen är användardefinierbar</li>
+      <li xml:lang="uk">Точність обчислень може бути визначена користувачем.</li>
+      <li xml:lang="x-test">xxPrecision is user-definablexx</li>
       <li>The display allows cut and paste of numbers</li>
+      <li xml:lang="ca">El visor permet retallar i enganxar nombres</li>
+      <li xml:lang="ca-valencia">El visor permet retallar i enganxar nombres</li>
+      <li xml:lang="es">La pantalla permite cortar y pegar números</li>
+      <li xml:lang="gl">A pantalla permite cortar e pegar números</li>
+      <li xml:lang="nl">Het scherm biedt knippen en plakken van getallen</li>
+      <li xml:lang="sk">Displej umožní vystrihnúť a vložiť čísla</li>
+      <li xml:lang="sv">Displayen tillåter att tal klipps ut och klistras in</li>
+      <li xml:lang="uk">Передбачено можливість вирізання чисел з дисплея калькулятора та вставляння чисел з буфера обміну даними.</li>
+      <li xml:lang="x-test">xxThe display allows cut and paste of numbersxx</li>
       <li>The display colors and font are configurable, aiding usability</li>
+      <li xml:lang="ca">Els colors del visor i el tipus de lletra són configurables, ajudant a la usabilitat</li>
+      <li xml:lang="ca-valencia">Els colors del visor i el tipus de lletra són configurables, ajudant a la usabilitat</li>
+      <li xml:lang="es">Puede configurar el color de la pantalla y el tipo de letra, lo que ayuda a la usabilidad</li>
+      <li xml:lang="gl">Poden configurarse as cores e os tipos de letra, para maior facilidade de uso</li>
+      <li xml:lang="nl">De kleuren en het lettertype in het scherm is aan te passen, helpt bruikbaarheid</li>
+      <li xml:lang="sk">Farby a písma displeja sú nastaviteľné, čo napomáha použiteľnosti</li>
+      <li xml:lang="sv">Displayens färger och teckensnitt kan ställas in, för förbättrat handikappstöd</li>
+      <li xml:lang="uk">Можна налаштувати кольори та шрифт дисплея.</li>
+      <li xml:lang="x-test">xxThe display colors and font are configurable, aiding usabilityxx</li>
       <li>The use of key-bindings make it easy to use without a pointing device</li>
+      <li xml:lang="ca">L'ús dels lligams de tecles facilita l'ús sense un dispositiu apuntador</li>
+      <li xml:lang="ca-valencia">L'ús dels lligams de tecles facilita l'ús sense un dispositiu apuntador</li>
+      <li xml:lang="es">El uso de asignaciones de teclas facilita su uso sin un dispositivo apuntador</li>
+      <li xml:lang="gl">O uso de atallos de teclado facilita o uso sen un dispositivo de apuntar</li>
+      <li xml:lang="nl">Het gebruik van sneltoetsen maakt het gemakkelijk om het te gebruiken zonder muis</li>
+      <li xml:lang="sk">Použitie klávesových väzieb uľahčuje použitie bez ukazovacieho zariadenia</li>
+      <li xml:lang="sv">Användning av tangentbindningar gör det lätt att använda den utan en pekenhet</li>
+      <li xml:lang="uk">Використання у калькуляторі клавіатурних скорочень надає змогу користуватися ним без координатного або сенсорного пристрою.</li>
+      <li xml:lang="x-test">xxThe use of key-bindings make it easy to use without a pointing devicexx</li>
     </ul>
   </description>
   <url type="homepage">https://utils.kde.org/projects/kcalc/</url>
