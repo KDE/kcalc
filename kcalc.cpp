@@ -792,7 +792,7 @@ void KCalculator::keyPressEvent(QKeyEvent *e) {
 
 	// Fix for bug #314586
 	// Basically, on some keyboards such as French, even though the decimal separator
-	// is "," the numeric keypad has a "." key. So we fake it so people can more seemlessly
+	// is "," the numeric keypad has a "." key. So we fake it so people can more seamlessly
 	// enter numbers using the keypad
     if(KNumber::decimalSeparator() != QLatin1String(".")) {
 		if(e->key() == Qt::Key_Period && e->modifiers() & Qt::KeypadModifier) {
@@ -853,7 +853,7 @@ void KCalculator::slotAngleSelected(int mode) {
 
 //------------------------------------------------------------------------------
 // Name: slotEEclicked
-// Desc: starts the entering of numers using scientific notation
+// Desc: starts the entering of numbers using scientific notation
 //------------------------------------------------------------------------------
 void KCalculator::slotEEclicked() {
     calc_display->newCharacter(QLatin1Char('e'));
@@ -883,7 +883,7 @@ void KCalculator::slotShifttoggled(bool flag) {
 //------------------------------------------------------------------------------
 void KCalculator::slotHyptoggled(bool flag) {
 
-	// toggle between hyperbolic and standart trig functions
+	// toggle between hyperbolic and standard trig functions
 	hyp_mode_ = flag;
 
 	emit switchMode(ModeHyperbolic, flag);

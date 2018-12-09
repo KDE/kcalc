@@ -468,7 +468,7 @@ knumber_base *knumber_fraction::pow(knumber_base *rhs) {
 
 		// ok, so if any part of the number is > 1,000,000, then we risk
 		// the pow function overflowing... so we'll just convert to float to be safe
-		// TODO: at some point, we should figure out exactly what the threashold is
+		// TODO: at some point, we should figure out exactly what the threshold is
 		//       and if there is a better way to determine if the pow function will
 		//       overflow.
 		if(mpz_cmpabs_ui(mpq_numref(mpq_), 1000000) > 0 || mpz_cmpabs_ui(mpq_denref(mpq_), 1000000) > 0 || mpz_cmpabs_ui(mpq_numref(p->mpq_), 1000000) > 0 || mpz_cmpabs_ui(mpq_denref(p->mpq_), 1000000) > 0) {

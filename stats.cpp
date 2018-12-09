@@ -53,7 +53,7 @@ void KStats::enterData(const KNumber &data) {
 
 //------------------------------------------------------------------------------
 // Name: clearLast
-// Desc: remoaves the last item from the data set
+// Desc: removes the last item from the data set
 //------------------------------------------------------------------------------
 void KStats::clearLast() {
 

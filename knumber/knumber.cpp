@@ -314,7 +314,7 @@ KNumber::KNumber(const QString &s) : value_(nullptr) {
 			}
 		}
 
-		// we need to normalize the decimal searator to US style because that's
+		// we need to normalize the decimal separator to US style because that's
 		// the only type that the GMP function accept
 		QString new_s = s;
 		new_s.replace(DecimalSeparator, QLatin1String("."));
