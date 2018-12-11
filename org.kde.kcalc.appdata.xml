@@ -191,6 +191,17 @@
   <screenshots>
     <screenshot type="default">
       <caption>Main window of KCalc</caption>
+      <caption xml:lang="ca">Finestra principal del KCalc</caption>
+      <caption xml:lang="ca-valencia">Finestra principal del KCalc</caption>
+      <caption xml:lang="de">Hauptfenster von KCalc</caption>
+      <caption xml:lang="es">Ventana principal de KCalc</caption>
+      <caption xml:lang="gl">Xanela principal de KCalc</caption>
+      <caption xml:lang="nl">Hoofdvenster van KCalc</caption>
+      <caption xml:lang="pt">Janela principal do KCalc</caption>
+      <caption xml:lang="sv">Huvudfönstret i miniräknaren</caption>
+      <caption xml:lang="uk">Головне вікно KCalc</caption>
+      <caption xml:lang="x-test">xxMain window of KCalcxx</caption>
+      <caption xml:lang="zh-TW">KDE 計算機的主視窗</caption>
       <image>https://www.kde.org/images/screenshots/kcalc.png</image>
     </screenshot>
   </screenshots>
