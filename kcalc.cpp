@@ -46,6 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <KToolBar>
 #include <kxmlguifactory.h>
 #include <Kdelibs4ConfigMigrator>
+#include <KCrash>
 
 #include "kcalc_bitset.h"
 #include "kcalc_const_menu.h"
@@ -2280,7 +2281,7 @@ extern "C" Q_DECL_EXPORT int kdemain(int argc, char *argv[]) {
      * enable high dpi support
      */
     app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
-
+    KCrash::initialize();
     Kdelibs4ConfigMigrator migrate(QLatin1String("kcalc"));
     migrate.setConfigFiles(QStringList() << QLatin1String("kcalcrc"));
     migrate.setUiFiles(QStringList() << QLatin1String("kcalcui.rc"));

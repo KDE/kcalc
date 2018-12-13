@@ -32,6 +32,7 @@ find_package (Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
 )
 
 find_package(KF5 ${KF5_VERSION} REQUIRED COMPONENTS
+    Crash
     Config
     ConfigWidgets
     DocTools
@@ -116,6 +117,7 @@ target_link_libraries(kdeinit_kcalc
     KF5::I18n
     KF5::Notifications
     KF5::XmlGui
+    KF5::Crash
     ${GMP_LIBRARIES}
     ${MPFR_LIBRARIES}
 )
