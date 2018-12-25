@@ -115,6 +115,7 @@
       <li xml:lang="es">Funciones trigonométricas, operaciones lógicas y cálculos estadísticos</li>
       <li xml:lang="fr">Fonctions trigonométriques, opérations logiques et calculs statistiques</li>
       <li xml:lang="gl">Funcións trigonométricas, operacións lóxicas e cálculos estatísticos</li>
+      <li xml:lang="it">Funzioni trigonometriche, operazioni logiche e calcoli statistici</li>
       <li xml:lang="nl">Goniometrische functies, logische bewerkingen en statistische berekeningen</li>
       <li xml:lang="pt">Funções trigonométricas, operações lógicas e cálculos estatísticos</li>
       <li xml:lang="pt-BR">Funções trigonométricas, operações de lógica e cálculos estatísticos</li>
@@ -146,6 +147,7 @@
       <li xml:lang="es">El usuario puede definir la precisión</li>
       <li xml:lang="fr">Précision définie par l'utilisateur</li>
       <li xml:lang="gl">A precisión pode personalizarse</li>
+      <li xml:lang="it">La precisione è definibile dall'utente</li>
       <li xml:lang="nl">Precisie is door de gebruiker te definiëren</li>
       <li xml:lang="pt">A precisão pode ser definida pelo utilizador</li>
       <li xml:lang="pt-BR">A precisão é definida pelo usuário</li>
@@ -215,6 +217,7 @@
       <caption xml:lang="es">Ventana principal de KCalc</caption>
       <caption xml:lang="fr">Fenêtre principale de KCalc</caption>
       <caption xml:lang="gl">Xanela principal de KCalc</caption>
+      <caption xml:lang="it">Finestra principale di KCalc</caption>
       <caption xml:lang="nl">Hoofdvenster van KCalc</caption>
       <caption xml:lang="pt">Janela principal do KCalc</caption>
       <caption xml:lang="pt-BR">Janela principal do KCalc</caption>
