@@ -18,6 +18,7 @@
   <name xml:lang="fr">KCalc</name>
   <name xml:lang="gl">KCalc</name>
   <name xml:lang="ia">KCalc</name>
+  <name xml:lang="id">KCalc</name>
   <name xml:lang="it">KCalc</name>
   <name xml:lang="ko">KCalc</name>
   <name xml:lang="nl">KCalc</name>
@@ -53,6 +54,7 @@
   <summary xml:lang="fr">Calculatrice scientifique</summary>
   <summary xml:lang="gl">Unha calculadora científica</summary>
   <summary xml:lang="ia">Calculator scientific</summary>
+  <summary xml:lang="id">Kalkulator Ilmiah</summary>
   <summary xml:lang="it">Calcolatrice scientifica</summary>
   <summary xml:lang="ko">공학용 계산기</summary>
   <summary xml:lang="nl">Wetenschappelijke rekenmachine</summary>
@@ -87,6 +89,7 @@
     <p xml:lang="fi">KCalcissä on kaikki, mitä odotat tieteelliseltä laskimelta, ja lisäksi:</p>
     <p xml:lang="fr">KCalc dispose de tout ce que vous attendez d'une calculatrice scientifique, plus :</p>
     <p xml:lang="gl">KCalc ten todo o que esperaría dunha calculadora científica, e ademais:</p>
+    <p xml:lang="id">KCalc memiliki semua yang kamu harapkan dari kalkulator ilmiah, plus:</p>
     <p xml:lang="it">KCalc ha tutto quello che ci si aspetta da una calcolatrice scientifica.</p>
     <p xml:lang="ko">KCalc는 공학용 계산기에서 찾을 수 있는 기능 외에도 다음을 더 지원합니다:</p>
     <p xml:lang="nl">KCalc heeft alles wat u verwacht van een wetenschappelijke rekenmachine, plus:</p>
@@ -115,6 +118,7 @@
       <li xml:lang="es">Funciones trigonométricas, operaciones lógicas y cálculos estadísticos</li>
       <li xml:lang="fr">Fonctions trigonométriques, opérations logiques et calculs statistiques</li>
       <li xml:lang="gl">Funcións trigonométricas, operacións lóxicas e cálculos estatísticos</li>
+      <li xml:lang="id">Fungsi trigonometri, operasi logika dan perhitungan statistik</li>
       <li xml:lang="it">Funzioni trigonometriche, operazioni logiche e calcoli statistici</li>
       <li xml:lang="nl">Goniometrische functies, logische bewerkingen en statistische berekeningen</li>
       <li xml:lang="pt">Funções trigonométricas, operações lógicas e cálculos estatísticos</li>
@@ -132,6 +136,7 @@
       <li xml:lang="es">Una pila de resultados que permite reutilizar los resultados de cálculos anteriores</li>
       <li xml:lang="fr">Une pile de résultats permettant un rappel aisé des résultats des calculs précédents</li>
       <li xml:lang="gl">Unha rima de resultados que permite recuperar comodamente os resultados de cálculos anteriores</li>
+      <li xml:lang="id">Tumpukan hasil yang memungkinkan pemanggilan ulang yang mudah dari hasil perhitungan sebelumnya</li>
       <li xml:lang="nl">Een stapelgeheugen voor uitkomsten dat u de mogelijkheid geeft om vorige uitkomsten van berekeningen terug te halen</li>
       <li xml:lang="pt">Uma pilha de resultados que permite a reposição adequada dos resultados de cálculos anteriores</li>
       <li xml:lang="pt-BR">Uma pilha de resultados que permite a recuperação conveniente de resultados de cálculos anteriores</li>
@@ -147,6 +152,7 @@
       <li xml:lang="es">El usuario puede definir la precisión</li>
       <li xml:lang="fr">Précision définie par l'utilisateur</li>
       <li xml:lang="gl">A precisión pode personalizarse</li>
+      <li xml:lang="id">Presisi dapat ditentukan pengguna</li>
       <li xml:lang="it">La precisione è definibile dall'utente</li>
       <li xml:lang="nl">Precisie is door de gebruiker te definiëren</li>
       <li xml:lang="pt">A precisão pode ser definida pelo utilizador</li>
@@ -163,6 +169,7 @@
       <li xml:lang="es">La pantalla permite cortar y pegar números</li>
       <li xml:lang="fr">L'affichage permet de couper et coller des nombres</li>
       <li xml:lang="gl">A pantalla permite cortar e pegar números</li>
+      <li xml:lang="id">Displai memungkinkan pemotongan dan penempelan angka</li>
       <li xml:lang="nl">Het scherm biedt knippen en plakken van getallen</li>
       <li xml:lang="pt">O ecrã permite cortar e colar números</li>
       <li xml:lang="pt-BR">O visor permite copiar e colar números</li>
@@ -178,6 +185,7 @@
       <li xml:lang="es">Puede configurar el color de la pantalla y el tipo de letra, lo que ayuda a la usabilidad</li>
       <li xml:lang="fr">Les couleurs et la police d'affichage sont configurables pour une plus grande utilisabilité</li>
       <li xml:lang="gl">Poden configurarse as cores e os tipos de letra, para maior facilidade de uso</li>
+      <li xml:lang="id">Warna displai dan font dapat dikonfigurasi, membantu kegunaan</li>
       <li xml:lang="nl">De kleuren en het lettertype in het scherm is aan te passen, helpt bruikbaarheid</li>
       <li xml:lang="pt">As cores e tipo de letra do ecrã são configuráveis, o que ajuda à usabilidade</li>
       <li xml:lang="pt-BR">As cores e fonte do visor são configuráveis, ajudando na usabilidade</li>
@@ -193,6 +201,7 @@
       <li xml:lang="es">El uso de asignaciones de teclas facilita su uso sin un dispositivo apuntador</li>
       <li xml:lang="fr">L'utilisation de raccourcis claviers rend facile l'utilisation sans dispositif de pointage</li>
       <li xml:lang="gl">O uso de atallos de teclado facilita o uso sen un dispositivo de apuntar</li>
+      <li xml:lang="id">Penggunaan tuts pengikat membuatnya mudah digunakan tanpa alat penunjuk</li>
       <li xml:lang="nl">Het gebruik van sneltoetsen maakt het gemakkelijk om het te gebruiken zonder muis</li>
       <li xml:lang="pt">O uso de combinações de teclas permite não usar um rato</li>
       <li xml:lang="pt-BR">O uso de combinação de teclas facilita o uso sem um dispositivo apontador</li>
@@ -217,6 +226,7 @@
       <caption xml:lang="es">Ventana principal de KCalc</caption>
       <caption xml:lang="fr">Fenêtre principale de KCalc</caption>
       <caption xml:lang="gl">Xanela principal de KCalc</caption>
+      <caption xml:lang="id">Window utama KCalc</caption>
       <caption xml:lang="it">Finestra principale di KCalc</caption>
       <caption xml:lang="nl">Hoofdvenster van KCalc</caption>
       <caption xml:lang="pt">Janela principal do KCalc</caption>
