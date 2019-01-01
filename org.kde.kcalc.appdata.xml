@@ -137,6 +137,7 @@
       <li xml:lang="fr">Une pile de résultats permettant un rappel aisé des résultats des calculs précédents</li>
       <li xml:lang="gl">Unha rima de resultados que permite recuperar comodamente os resultados de cálculos anteriores</li>
       <li xml:lang="id">Tumpukan hasil yang memungkinkan pemanggilan ulang yang mudah dari hasil perhitungan sebelumnya</li>
+      <li xml:lang="it">Una pila di risultati che permette di richiamare opportunamente i risultati dei calcoli precedenti</li>
       <li xml:lang="nl">Een stapelgeheugen voor uitkomsten dat u de mogelijkheid geeft om vorige uitkomsten van berekeningen terug te halen</li>
       <li xml:lang="pt">Uma pilha de resultados que permite a reposição adequada dos resultados de cálculos anteriores</li>
       <li xml:lang="pt-BR">Uma pilha de resultados que permite a recuperação conveniente de resultados de cálculos anteriores</li>
@@ -170,6 +171,7 @@
       <li xml:lang="fr">L'affichage permet de couper et coller des nombres</li>
       <li xml:lang="gl">A pantalla permite cortar e pegar números</li>
       <li xml:lang="id">Displai memungkinkan pemotongan dan penempelan angka</li>
+      <li xml:lang="it">Il display permette di copiare e incollare i numeri</li>
       <li xml:lang="nl">Het scherm biedt knippen en plakken van getallen</li>
       <li xml:lang="pt">O ecrã permite cortar e colar números</li>
       <li xml:lang="pt-BR">O visor permite copiar e colar números</li>
@@ -186,6 +188,7 @@
       <li xml:lang="fr">Les couleurs et la police d'affichage sont configurables pour une plus grande utilisabilité</li>
       <li xml:lang="gl">Poden configurarse as cores e os tipos de letra, para maior facilidade de uso</li>
       <li xml:lang="id">Warna displai dan font dapat dikonfigurasi, membantu kegunaan</li>
+      <li xml:lang="it">I colori e i caratteri del display possono essere configurati, supportando l'usabilità</li>
       <li xml:lang="nl">De kleuren en het lettertype in het scherm is aan te passen, helpt bruikbaarheid</li>
       <li xml:lang="pt">As cores e tipo de letra do ecrã são configuráveis, o que ajuda à usabilidade</li>
       <li xml:lang="pt-BR">As cores e fonte do visor são configuráveis, ajudando na usabilidade</li>
@@ -202,6 +205,7 @@
       <li xml:lang="fr">L'utilisation de raccourcis claviers rend facile l'utilisation sans dispositif de pointage</li>
       <li xml:lang="gl">O uso de atallos de teclado facilita o uso sen un dispositivo de apuntar</li>
       <li xml:lang="id">Penggunaan tuts pengikat membuatnya mudah digunakan tanpa alat penunjuk</li>
+      <li xml:lang="it">L'uso di combinazioni di tastiera ne rende semplice l'uso senza un dispositivo di puntamento</li>
       <li xml:lang="nl">Het gebruik van sneltoetsen maakt het gemakkelijk om het te gebruiken zonder muis</li>
       <li xml:lang="pt">O uso de combinações de teclas permite não usar um rato</li>
       <li xml:lang="pt-BR">O uso de combinação de teclas facilita o uso sem um dispositivo apontador</li>
