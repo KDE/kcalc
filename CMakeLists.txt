@@ -52,7 +52,7 @@ kde_enable_exceptions()
 find_package(GMP)
 set_package_properties(GMP PROPERTIES
     DESCRIPTION "The GNU Multiple Precision Arithmetic Library"
-    URL "http://gmplib.org/"
+    URL "https://gmplib.org/"
     TYPE REQUIRED
     PURPOSE "Required for building KCalc."
 )

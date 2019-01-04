@@ -2297,7 +2297,7 @@ extern "C" Q_DECL_EXPORT int kdemain(int argc, char *argv[]) {
                               "Copyright © 2003-2005, Klaus Niederkr" "\xc3\xbc" "ger\n"
                               "Copyright © 1996-2000, Bernd Johannes Wuebben"),
                          QStringLiteral(),
-                         QStringLiteral("http://utils.kde.org/projects/kcalc"));
+                         QStringLiteral("https://utils.kde.org/projects/kcalc"));
 
 	// Klaus Niederkrueger
     aboutData.addAuthor(i18n("Klaus Niederkr" "\xc3\xbc" "ger"), QString(), QStringLiteral("kniederk@math.uni-koeln.de"));
