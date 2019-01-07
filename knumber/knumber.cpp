@@ -28,15 +28,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QStringList>
 #include <cmath>
 
-QString KNumber::GroupSeparator   = QLatin1String(",");
-QString KNumber::DecimalSeparator = QLatin1String(".");
+QString KNumber::GroupSeparator   = QStringLiteral(",");
+QString KNumber::DecimalSeparator = QStringLiteral(".");
 
-const KNumber KNumber::Zero(QLatin1String("0"));
-const KNumber KNumber::One(QLatin1String("1"));
-const KNumber KNumber::NegOne(QLatin1String("-1"));
-const KNumber KNumber::PosInfinity(QLatin1String("inf"));
-const KNumber KNumber::NegInfinity(QLatin1String("-inf"));
-const KNumber KNumber::NaN(QLatin1String("nan"));
+const KNumber KNumber::Zero(QStringLiteral("0"));
+const KNumber KNumber::One(QStringLiteral("1"));
+const KNumber KNumber::NegOne(QStringLiteral("-1"));
+const KNumber KNumber::PosInfinity(QStringLiteral("inf"));
+const KNumber KNumber::NegInfinity(QStringLiteral("-inf"));
+const KNumber KNumber::NaN(QStringLiteral("nan"));
 
 namespace {
 namespace impl {
@@ -244,7 +244,7 @@ KNumber KNumber::Pi() {
 	//       accepting constructor, but allows us to specify separator
 	//       characters, this will allow things to be done slightly more
 	// efficiently
-	QString s(QLatin1String("3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117068"));
+	QString s(QStringLiteral("3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117068"));
     s.replace(QLatin1Char('.'), DecimalSeparator);
 	return KNumber(s);
 }
@@ -259,7 +259,7 @@ KNumber KNumber::Euler() {
 	//       accepting constructor, but allows us to specify separator
 	//       characters, this will allow things to be done slightly more
 	// efficiently
-	QString s(QLatin1String("2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945713821785251664274"));
+	QString s(QStringLiteral("2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945713821785251664274"));
     s.replace(QLatin1Char('.'), DecimalSeparator);
 	return KNumber(s);
 }
@@ -308,7 +308,7 @@ KNumber::KNumber(const QString &s) : value_(nullptr) {
 					num = num + QString(::abs(e_val), QLatin1Char('0'));
 				}
 
-				value_ = new detail::knumber_fraction(QString(QLatin1String("%1/%2")).arg(num, den));
+				value_ = new detail::knumber_fraction(QStringLiteral("%1/%2").arg(num, den));
 				simplify();
 				return;
 			}
@@ -601,7 +601,7 @@ KNumber KNumber::operator~() const {
 QString KNumber::toQString(int width, int precision) const {
 
 	if(value_->is_zero()) {
-		return QLatin1String("0");
+		return QStringLiteral("0");
 	}
 
 	QString s;
@@ -694,7 +694,7 @@ KNumber KNumber::pow(const KNumber &x) const {
 	if(!dynamic_cast<detail::knumber_error *>(value_)) {
 		// number much bigger than this tend to crash GMP with
 		// an abort
-		if(x > KNumber(QLatin1String("1000000000"))) {
+		if(x > KNumber(QStringLiteral("1000000000"))) {
 			return PosInfinity;
 		}
 	}
@@ -740,7 +740,7 @@ KNumber KNumber::tan() const {
 //------------------------------------------------------------------------------
 KNumber KNumber::tgamma() const {
 	KNumber z(*this);
-	if(z > KNumber(QLatin1String("10000000000"))) {
+	if(z > KNumber(QStringLiteral("10000000000"))) {
 		return PosInfinity;
 	}
 	z.value_ = z.value_->tgamma();
@@ -846,7 +846,7 @@ KNumber KNumber::factorial() const {
 
 	// number much bigger than this tend to crash GMP with
 	// an abort
-	if(z > KNumber(QLatin1String("10000000000"))) {
+	if(z > KNumber(QStringLiteral("10000000000"))) {
 		return PosInfinity;
 	}
 

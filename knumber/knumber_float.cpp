@@ -186,7 +186,7 @@ knumber_base *knumber_float::add(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -210,7 +210,7 @@ knumber_base *knumber_float::sub(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -244,7 +244,7 @@ knumber_base *knumber_float::mul(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -282,7 +282,7 @@ knumber_base *knumber_float::div(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -786,7 +786,7 @@ knumber_base *knumber_float::pow(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -819,9 +819,9 @@ QString knumber_float::toString(int precision) const {
 
 	size_t size;
 	if (precision > 0) {
-		size = gmp_snprintf(NULL, 0, "%.*Fg", precision, mpf_) + 1;
+		size = gmp_snprintf(nullptr, 0, "%.*Fg", precision, mpf_) + 1;
 	} else {
-		size = gmp_snprintf(NULL, 0, "%.Fg", mpf_) + 1;
+		size = gmp_snprintf(nullptr, 0, "%.Fg", mpf_) + 1;
 	}
 
 	QScopedArrayPointer<char> buf(new char[size]);

@@ -146,7 +146,7 @@ knumber_base *knumber_integer::add(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -172,7 +172,7 @@ knumber_base *knumber_integer::sub(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -210,7 +210,7 @@ knumber_base *knumber_integer::mul(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -255,7 +255,7 @@ knumber_base *knumber_integer::div(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -285,7 +285,7 @@ knumber_base *knumber_integer::mod(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -310,7 +310,7 @@ knumber_base *knumber_integer::bitwise_and(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -335,7 +335,7 @@ knumber_base *knumber_integer::bitwise_xor(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -360,7 +360,7 @@ knumber_base *knumber_integer::bitwise_or(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -409,7 +409,7 @@ knumber_base *knumber_integer::bitwise_shift(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -527,7 +527,7 @@ knumber_base *knumber_integer::pow(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -696,7 +696,7 @@ QString knumber_integer::toString(int precision) const {
 
 	Q_UNUSED(precision);
 
-    const size_t size = gmp_snprintf(NULL, 0, "%Zd", mpz_) + 1;
+    const size_t size = gmp_snprintf(nullptr, 0, "%Zd", mpz_) + 1;
 	QScopedArrayPointer<char> buf(new char[size]);
     gmp_snprintf(&buf[0], size, "%Zd", mpz_);
     return QLatin1String(&buf[0]);
@@ -882,7 +882,7 @@ knumber_base *knumber_integer::bin(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 }

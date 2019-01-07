@@ -60,8 +60,8 @@ namespace {
 
 
 void KCalcConstMenu::init_consts() {
-    QDomDocument doc(QLatin1String("list_of_constants"));
-    QFile file(QStandardPaths::locate(QStandardPaths::DataLocation, QLatin1String("scienceconstants.xml")));
+    QDomDocument doc(QStringLiteral("list_of_constants"));
+    QFile file(QStandardPaths::locate(QStandardPaths::DataLocation, QStringLiteral("scienceconstants.xml")));
 
     if (!file.open(QIODevice::ReadOnly)) {
         qDebug() << "Did not find file \"scienceconstants.xml\". No constants will be available.";
@@ -86,13 +86,13 @@ void KCalcConstMenu::init_consts() {
             science_constant tmp_const;
 
             tmp_const.name = I18N_NOOP(e.attributeNode(QLatin1String("name")).value());
-            tmp_const.label = e.attributeNode(QLatin1String("symbol")).value();
-            tmp_const.value = e.attributeNode(QLatin1String("value")).value();
+            tmp_const.label = e.attributeNode(QStringLiteral("symbol")).value();
+            tmp_const.value = e.attributeNode(QStringLiteral("value")).value();
 
-            QString tmp_str_category = e.attributeNode(QLatin1String("category")).value();
+            QString tmp_str_category = e.attributeNode(QStringLiteral("category")).value();
 
 			tmp_const.category  = stringToCategory(tmp_str_category);
-            tmp_const.whatsthis = e.firstChildElement(QLatin1String("description")).text();
+            tmp_const.whatsthis = e.firstChildElement(QStringLiteral("description")).text();
 
             Constants.append(tmp_const);
         }

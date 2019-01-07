@@ -91,12 +91,12 @@ QString knumber_error::toString(int precision) const {
 
 	switch(error_) {
 	case ERROR_POS_INFINITY:
-		return QLatin1String("inf");
+		return QStringLiteral("inf");
 	case ERROR_NEG_INFINITY:
-		return QLatin1String("-inf");
+		return QStringLiteral("-inf");
 	case ERROR_UNDEFINED:
 	default:
-		return QLatin1String("nan");
+		return QStringLiteral("nan");
 	}
 }
 
@@ -126,7 +126,7 @@ knumber_base *knumber_error::add(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -155,7 +155,7 @@ knumber_base *knumber_error::sub(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -192,7 +192,7 @@ knumber_base *knumber_error::mul(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -216,7 +216,7 @@ knumber_base *knumber_error::div(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -240,7 +240,7 @@ knumber_base *knumber_error::mod(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------
@@ -291,7 +291,7 @@ knumber_base *knumber_error::pow(knumber_base *rhs) {
 	}
 
 	Q_ASSERT(0);
-	return 0;
+	return nullptr;
 }
 
 //------------------------------------------------------------------------------

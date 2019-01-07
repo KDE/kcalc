@@ -148,23 +148,23 @@ struct operator_data {
 
 // build precedence list
 const struct operator_data Operator[] = {
-    { 0, NULL,         NULL},          // FUNC_EQUAL
-    { 0, NULL,         NULL},          // FUNC_PERCENT
-    { 0, NULL,         NULL},          // FUNC_BRACKET
-    { 1, ExecOr,       NULL},          // FUNC_OR
-    { 2, ExecXor,      NULL},          // FUNC_XOR
-    { 3, ExecAnd,      NULL},          // FUNC_AND
-    { 4, ExecLsh,      NULL},          // FUNC_LSH
-    { 4, ExecRsh,      NULL},          // FUNC_RSH
+    { 0, nullptr,         nullptr},          // FUNC_EQUAL
+    { 0, nullptr,         nullptr},          // FUNC_PERCENT
+    { 0, nullptr,         nullptr},          // FUNC_BRACKET
+    { 1, ExecOr,       nullptr},          // FUNC_OR
+    { 2, ExecXor,      nullptr},          // FUNC_XOR
+    { 3, ExecAnd,      nullptr},          // FUNC_AND
+    { 4, ExecLsh,      nullptr},          // FUNC_LSH
+    { 4, ExecRsh,      nullptr},          // FUNC_RSH
     { 5, ExecAdd,      ExecAddP},      // FUNC_ADD
     { 5, ExecSubtract, ExecSubP},      // FUNC_SUBTRACT
     { 6, ExecMultiply, ExecMultiplyP}, // FUNC_MULTIPLY
     { 6, ExecDivide,   ExecDivideP},   // FUNC_DIVIDE
-    { 6, ExecMod,      NULL},          // FUNC_MOD
-    { 6, ExecIntDiv,   NULL},          // FUNC_INTDIV
-    { 7, ExecBinom,    NULL},          // FUNC_BINOM
-    { 7, ExecPower,    NULL},          // FUNC_POWER
-    { 7, ExecPwrRoot,  NULL}           // FUNC_PWR_ROOT
+    { 6, ExecMod,      nullptr},          // FUNC_MOD
+    { 6, ExecIntDiv,   nullptr},          // FUNC_INTDIV
+    { 7, ExecBinom,    nullptr},          // FUNC_BINOM
+    { 7, ExecPower,    nullptr},          // FUNC_POWER
+    { 7, ExecPwrRoot,  nullptr}           // FUNC_PWR_ROOT
 };
 
 }
@@ -815,7 +815,7 @@ void CalcEngine::TangensHyp(const KNumber &input)
 
 KNumber CalcEngine::evalOperation(const KNumber &arg1, Operation operation, const KNumber &arg2)
 {
-    if (!percent_mode_ || Operator[operation].prcnt_ptr == NULL) {
+    if (!percent_mode_ || Operator[operation].prcnt_ptr == nullptr) {
         return (Operator[operation].arith_ptr)(arg1, arg2);
     } else {
         percent_mode_ = false;

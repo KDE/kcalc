@@ -34,7 +34,7 @@ BitButton::BitButton(QWidget *parent) : QAbstractButton(parent), on_(false) {
 	setFocusPolicy(Qt::ClickFocus);
 
 	// size button by font
-	QSize size = fontMetrics().size(0, QLatin1String("M"));
+	QSize size = fontMetrics().size(0, QStringLiteral("M"));
 	
 	if (size.width() < size.height()) {
 		size.setHeight(size.width());

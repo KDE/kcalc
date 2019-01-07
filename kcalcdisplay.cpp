@@ -204,7 +204,7 @@ bool KCalcDisplay::sendEvent(Event event) {
 	case EventClear:
 	case EventReset:
 		display_amount_ = KNumber::Zero;
-		str_int_ = QLatin1String("0");
+		str_int_ = QStringLiteral("0");
 		str_int_exp_.clear();
 
 		eestate_ = false;
@@ -473,7 +473,7 @@ bool KCalcDisplay::setAmount(const KNumber &new_amount) {
 
 	QString display_str;
 
-	str_int_ = QLatin1String("0");
+	str_int_ = QStringLiteral("0");
 	str_int_exp_.clear();
 	period_   = false;
 	neg_sign_ = false;
@@ -887,7 +887,7 @@ void KCalcDisplay::deleteLastDigit() {
 			if (length > 1) {
 				str_int_exp_.chop(1);
 			} else {
-				str_int_exp_ = QLatin1String((const char *)0);
+				str_int_exp_ = QLatin1String((const char *)nullptr);
 			}
 		}
 	} else {
@@ -972,7 +972,7 @@ void KCalcDisplay::paintEvent(QPaintEvent *) {
 	style()->drawPrimitive(QStyle::PE_PanelLineEdit, &option, &painter, this);
 
 	// draw display text
-	const int margin = style()->pixelMetric(QStyle::PM_DefaultFrameWidth, 0, 0);
+	const int margin = style()->pixelMetric(QStyle::PM_DefaultFrameWidth, nullptr, nullptr);
 	QRect cr = contentsRect();
 	cr.adjust(margin*2, 0, -margin*2, 0);   // provide a margin
 	
@@ -986,7 +986,7 @@ void KCalcDisplay::paintEvent(QPaintEvent *) {
 	painter.setFont(fnt);
 	
 	QFontMetrics fm(fnt);
-	const uint w = fm.width(QLatin1String("________"));
+	const uint w = fm.width(QStringLiteral("________"));
 	const uint h = fm.height();
 
 	for (int n = 0; n < NUM_STATUS_TEXT; ++n) {
