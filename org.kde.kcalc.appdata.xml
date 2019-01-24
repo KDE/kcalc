@@ -116,6 +116,7 @@
       <li xml:lang="ca-valencia">Funcions trigonomètriques, operacions lògiques i càlculs estadístics</li>
       <li xml:lang="de">Trigonometrische Funktionen, logische Operationen und statistische Berechnungen</li>
       <li xml:lang="es">Funciones trigonométricas, operaciones lógicas y cálculos estadísticos</li>
+      <li xml:lang="fi">Trigonometriset funktiot, loogiset operaatiot ja tilastolaskenta</li>
       <li xml:lang="fr">Fonctions trigonométriques, opérations logiques et calculs statistiques</li>
       <li xml:lang="gl">Funcións trigonométricas, operacións lóxicas e cálculos estatísticos</li>
       <li xml:lang="id">Fungsi trigonometri, operasi logika dan perhitungan statistik</li>
@@ -134,6 +135,7 @@
       <li xml:lang="ca-valencia">Una pila de resultats que permet la invocació adequada dels resultats de càlculs anteriors</li>
       <li xml:lang="de">Ein Ergebnis-Stack, mit dem Sie bequem frühere Resultate abrufen können</li>
       <li xml:lang="es">Una pila de resultados que permite reutilizar los resultados de cálculos anteriores</li>
+      <li xml:lang="fi">Tulospino, jonka ansiosta aiemmat laskentatulokset on helppo palauttaa</li>
       <li xml:lang="fr">Une pile de résultats permettant un rappel aisé des résultats des calculs précédents</li>
       <li xml:lang="gl">Unha rima de resultados que permite recuperar comodamente os resultados de cálculos anteriores</li>
       <li xml:lang="id">Tumpukan hasil yang memungkinkan pemanggilan ulang yang mudah dari hasil perhitungan sebelumnya</li>
@@ -151,6 +153,7 @@
       <li xml:lang="ca">La precisió és definible per l'usuari</li>
       <li xml:lang="ca-valencia">La precisió és definible per l'usuari</li>
       <li xml:lang="es">El usuario puede definir la precisión</li>
+      <li xml:lang="fi">Tarkkuus käyttäjän määritettävissä</li>
       <li xml:lang="fr">Précision définie par l'utilisateur</li>
       <li xml:lang="gl">A precisión pode personalizarse</li>
       <li xml:lang="id">Presisi dapat ditentukan pengguna</li>
@@ -168,6 +171,7 @@
       <li xml:lang="ca">El visor permet retallar i enganxar nombres</li>
       <li xml:lang="ca-valencia">El visor permet retallar i enganxar nombres</li>
       <li xml:lang="es">La pantalla permite cortar y pegar números</li>
+      <li xml:lang="fi">Näyttö sallii lukujen leikkaamisen ja liittämisen</li>
       <li xml:lang="fr">L'affichage permet de couper et coller des nombres</li>
       <li xml:lang="gl">A pantalla permite cortar e pegar números</li>
       <li xml:lang="id">Displai memungkinkan pemotongan dan penempelan angka</li>
@@ -185,6 +189,7 @@
       <li xml:lang="ca">Els colors del visor i el tipus de lletra són configurables, ajudant a la usabilitat</li>
       <li xml:lang="ca-valencia">Els colors del visor i el tipus de lletra són configurables, ajudant a la usabilitat</li>
       <li xml:lang="es">Puede configurar el color de la pantalla y el tipo de letra, lo que ayuda a la usabilidad</li>
+      <li xml:lang="fi">Näyttövärit ja -fontti ovat mukautettavissa, mikä parantaa käytettävyyttä</li>
       <li xml:lang="fr">Les couleurs et la police d'affichage sont configurables pour une plus grande utilisabilité</li>
       <li xml:lang="gl">Poden configurarse as cores e os tipos de letra, para maior facilidade de uso</li>
       <li xml:lang="id">Warna displai dan font dapat dikonfigurasi, membantu kegunaan</li>
@@ -202,6 +207,7 @@
       <li xml:lang="ca">L'ús dels lligams de tecles facilita l'ús sense un dispositiu apuntador</li>
       <li xml:lang="ca-valencia">L'ús dels lligams de tecles facilita l'ús sense un dispositiu apuntador</li>
       <li xml:lang="es">El uso de asignaciones de teclas facilita su uso sin un dispositivo apuntador</li>
+      <li xml:lang="fi">Näppäinsidosten avulla osoitinlaitteetonkin käyttö on helppoa</li>
       <li xml:lang="fr">L'utilisation de raccourcis claviers rend facile l'utilisation sans dispositif de pointage</li>
       <li xml:lang="gl">O uso de atallos de teclado facilita o uso sen un dispositivo de apuntar</li>
       <li xml:lang="id">Penggunaan tuts pengikat membuatnya mudah digunakan tanpa alat penunjuk</li>
@@ -228,6 +234,7 @@
       <caption xml:lang="ca-valencia">Finestra principal del KCalc</caption>
       <caption xml:lang="de">Hauptfenster von KCalc</caption>
       <caption xml:lang="es">Ventana principal de KCalc</caption>
+      <caption xml:lang="fi">KCalcin pääikkuna</caption>
       <caption xml:lang="fr">Fenêtre principale de KCalc</caption>
       <caption xml:lang="gl">Xanela principal de KCalc</caption>
       <caption xml:lang="id">Window utama KCalc</caption>
