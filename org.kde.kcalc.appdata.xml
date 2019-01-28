@@ -94,7 +94,7 @@
     <p xml:lang="ko">KCalc는 공학용 계산기에서 찾을 수 있는 기능 외에도 다음을 더 지원합니다:</p>
     <p xml:lang="nl">KCalc heeft alles wat u verwacht van een wetenschappelijke rekenmachine, plus:</p>
     <p xml:lang="nn">KCalc har alt du forventar av ein vitskapleg kalkulator, pluss:</p>
-    <p xml:lang="pl">KCalc ma wszystko czego możnaby oczekiwać od kalkulatora naukowego, plus:</p>
+    <p xml:lang="pl">KCalc ma wszystko czego można by oczekiwać od kalkulatora naukowego, plus:</p>
     <p xml:lang="pt">O KCalc tem tudo o que poderá esperar de uma calculadora científica, e ainda mais:</p>
     <p xml:lang="pt-BR">O KCalc tem tudo o necessário para uma calculadora científica e adicionalmente:</p>
     <p xml:lang="ru">В калькуляторе KCalc есть всё, что только можно ожидать от научного калькулятора, а также:</p>
@@ -122,6 +122,7 @@
       <li xml:lang="id">Fungsi trigonometri, operasi logika dan perhitungan statistik</li>
       <li xml:lang="it">Funzioni trigonometriche, operazioni logiche e calcoli statistici</li>
       <li xml:lang="nl">Goniometrische functies, logische bewerkingen en statistische berekeningen</li>
+      <li xml:lang="pl">Funkcje trygonometryczne, działania logiczne i obliczenia statystyczne</li>
       <li xml:lang="pt">Funções trigonométricas, operações lógicas e cálculos estatísticos</li>
       <li xml:lang="pt-BR">Funções trigonométricas, operações de lógica e cálculos estatísticos</li>
       <li xml:lang="sk">Trigonometrické funkcie, logické operácie a štatistické výpočty</li>
@@ -141,6 +142,7 @@
       <li xml:lang="id">Tumpukan hasil yang memungkinkan pemanggilan ulang yang mudah dari hasil perhitungan sebelumnya</li>
       <li xml:lang="it">Una pila di risultati che permette di richiamare opportunamente i risultati dei calcoli precedenti</li>
       <li xml:lang="nl">Een stapelgeheugen voor uitkomsten dat u de mogelijkheid geeft om vorige uitkomsten van berekeningen terug te halen</li>
+      <li xml:lang="pl">Stos wyników, który umożliwia wygodne przywoływanie wyników poprzednich obliczeń</li>
       <li xml:lang="pt">Uma pilha de resultados que permite a reposição adequada dos resultados de cálculos anteriores</li>
       <li xml:lang="pt-BR">Uma pilha de resultados que permite a recuperação conveniente de resultados de cálculos anteriores</li>
       <li xml:lang="sk">Zásobník výsledkov, ktorý umožní ľahké zavolanie predošlých výsledkov výpočtov</li>
@@ -160,6 +162,7 @@
       <li xml:lang="id">Presisi dapat ditentukan pengguna</li>
       <li xml:lang="it">La precisione è definibile dall'utente</li>
       <li xml:lang="nl">Precisie is door de gebruiker te definiëren</li>
+      <li xml:lang="pl">Precyzja jest określana przez użytkownika</li>
       <li xml:lang="pt">A precisão pode ser definida pelo utilizador</li>
       <li xml:lang="pt-BR">A precisão é definida pelo usuário</li>
       <li xml:lang="sk">Presnosť je definovaná používateľom</li>
@@ -178,6 +181,7 @@
       <li xml:lang="id">Displai memungkinkan pemotongan dan penempelan angka</li>
       <li xml:lang="it">Il display permette di copiare e incollare i numeri</li>
       <li xml:lang="nl">Het scherm biedt knippen en plakken van getallen</li>
+      <li xml:lang="pl">Wyświetlacz umożliwia wycinanie i wklejanie liczb</li>
       <li xml:lang="pt">O ecrã permite cortar e colar números</li>
       <li xml:lang="pt-BR">O visor permite copiar e colar números</li>
       <li xml:lang="sk">Displej umožní vystrihnúť a vložiť čísla</li>
@@ -196,6 +200,7 @@
       <li xml:lang="id">Warna displai dan font dapat dikonfigurasi, membantu kegunaan</li>
       <li xml:lang="it">I colori e i caratteri del display possono essere configurati, supportando l'usabilità</li>
       <li xml:lang="nl">De kleuren en het lettertype in het scherm is aan te passen, helpt bruikbaarheid</li>
+      <li xml:lang="pl">Kolory i czcionka wyświetlacza jest do ustawienia, co polepsza użyteczność</li>
       <li xml:lang="pt">As cores e tipo de letra do ecrã são configuráveis, o que ajuda à usabilidade</li>
       <li xml:lang="pt-BR">As cores e fonte do visor são configuráveis, ajudando na usabilidade</li>
       <li xml:lang="sk">Farby a písma displeja sú nastaviteľné, čo napomáha použiteľnosti</li>
@@ -214,6 +219,7 @@
       <li xml:lang="id">Penggunaan tuts pengikat membuatnya mudah digunakan tanpa alat penunjuk</li>
       <li xml:lang="it">L'uso di combinazioni di tastiera ne rende semplice l'uso senza un dispositivo di puntamento</li>
       <li xml:lang="nl">Het gebruik van sneltoetsen maakt het gemakkelijk om het te gebruiken zonder muis</li>
+      <li xml:lang="pl">Wykorzystanie skrótów klawiszowych czyni aplikację użyteczną bez urządzenia wskazującego</li>
       <li xml:lang="pt">O uso de combinações de teclas permite não usar um rato</li>
       <li xml:lang="pt-BR">O uso de combinação de teclas facilita o uso sem um dispositivo apontador</li>
       <li xml:lang="sk">Použitie klávesových väzieb uľahčuje použitie bez ukazovacieho zariadenia</li>
@@ -241,6 +247,7 @@
       <caption xml:lang="id">Window utama KCalc</caption>
       <caption xml:lang="it">Finestra principale di KCalc</caption>
       <caption xml:lang="nl">Hoofdvenster van KCalc</caption>
+      <caption xml:lang="pl">Główne okno KCalc</caption>
       <caption xml:lang="pt">Janela principal do KCalc</caption>
       <caption xml:lang="pt-BR">Janela principal do KCalc</caption>
       <caption xml:lang="sv">Huvudfönstret i miniräknaren</caption>
