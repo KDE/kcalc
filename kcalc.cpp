@@ -98,14 +98,14 @@ KCalculator::KCalculator(QWidget *parent) :
 	base_choose_group_->addButton(decRadio, DecMode);
 	base_choose_group_->addButton(octRadio, OctMode);
 	base_choose_group_->addButton(binRadio, BinMode);
-	connect(base_choose_group_, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &KCalculator::slotBaseSelected);
+	connect(base_choose_group_, QOverload<int>::of(&QButtonGroup::buttonClicked), this, &KCalculator::slotBaseSelected);
 
 	angle_choose_group_ =  new QButtonGroup(this);
 	angle_choose_group_->setExclusive(true);
 	angle_choose_group_->addButton(degRadio, DegMode);
 	angle_choose_group_->addButton(radRadio, RadMode);
 	angle_choose_group_->addButton(gradRadio, GradMode);
-	connect(angle_choose_group_, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &KCalculator::slotAngleSelected);
+	connect(angle_choose_group_, QOverload<int>::of(&QButtonGroup::buttonClicked), this, &KCalculator::slotAngleSelected);
 
 	// additional menu setup
 	constants_menu_ = createConstantsMenu();
@@ -243,7 +243,7 @@ KCalcStatusBar *KCalculator::statusBar() {
 void KCalculator::setupNumberKeys() {
 
     num_button_group_ = new QButtonGroup(this);
-    connect(num_button_group_, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &KCalculator::slotNumberclicked);
+    connect(num_button_group_, QOverload<int>::of(&QButtonGroup::buttonClicked), this, &KCalculator::slotNumberclicked);
 
     num_button_group_->addButton(pb0, 0);
     num_button_group_->addButton(pb1, 1);

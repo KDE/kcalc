@@ -63,7 +63,7 @@ KCalcBitset::KCalcBitset(QWidget *parent) : QFrame(parent), value_(0) {
 	setFrameStyle(QFrame::Panel | QFrame::Sunken);
 	
 	bit_button_group_ = new QButtonGroup(this);
-	connect(bit_button_group_, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &KCalcBitset::slotToggleBit);
+	connect(bit_button_group_, QOverload<int>::of(&QButtonGroup::buttonClicked), this, &KCalcBitset::slotToggleBit);
 
 	// smaller label font
 	QFont fnt = font();
