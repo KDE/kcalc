@@ -29,7 +29,7 @@ class KCalcStatusBar : public QStatusBar
 
 public:
     explicit KCalcStatusBar(QWidget *parent = nullptr);
-    ~KCalcStatusBar();
+    ~KCalcStatusBar() override = default;
 
 public:
     enum AngleMode {

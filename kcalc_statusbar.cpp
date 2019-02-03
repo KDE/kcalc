@@ -34,10 +34,6 @@ KCalcStatusBar::KCalcStatusBar(QWidget *parent)
     setSizeGripEnabled(false);
 }
 
-KCalcStatusBar::~KCalcStatusBar()
-{
-}
-
 QLabel *KCalcStatusBar::addIndicator(QList<QString> indicatorTexts)
 {
     QLabel *l = new QLabel(indicatorTexts.at(0), this);
