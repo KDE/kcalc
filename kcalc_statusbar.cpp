@@ -26,13 +26,12 @@
 
 KCalcStatusBar::KCalcStatusBar(QWidget *parent)
     : QStatusBar(parent)
+    , shift_indicator_(addIndicator(QList<QString>() << i18nc("Normal button functions are active", "NORM") << i18nc("Second button functions are active", "SHIFT")))
+    , base_indicator_(addIndicator(QList<QString>() << QStringLiteral("DEC") << QStringLiteral("BIN") << QStringLiteral("OCT") << QStringLiteral("HEX")))
+    , angle_mode_indicator_(addIndicator(QList<QString>() << QStringLiteral("DEG") << QStringLiteral("RAD") << QStringLiteral("GRA")))
+    , memory_indicator_(addIndicator(QList<QString>() << QString() << i18nc("Memory indicator in status bar", "M")))
 {
     setSizeGripEnabled(false);
-
-    shift_indicator_ = addIndicator(QList<QString>() << i18nc("Normal button functions are active", "NORM") << i18nc("Second button functions are active", "SHIFT"));
-    base_indicator_ = addIndicator(QList<QString>() << QStringLiteral("DEC") << QStringLiteral("BIN") << QStringLiteral("OCT") << QStringLiteral("HEX"));
-    angle_mode_indicator_ = addIndicator(QList<QString>() << QStringLiteral("DEG") << QStringLiteral("RAD") << QStringLiteral("GRA"));
-    memory_indicator_ = addIndicator(QList<QString>() << QString() << i18nc("Memory indicator in status bar", "M"));
 }
 
 KCalcStatusBar::~KCalcStatusBar()

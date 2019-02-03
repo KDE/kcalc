@@ -41,7 +41,7 @@ Q_SIGNALS:
 	void valueChanged(quint64 value);
 
 private:
-	QButtonGroup *bit_button_group_;
+	QButtonGroup * const bit_button_group_;
 	quint64       value_;
 };
 

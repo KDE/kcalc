@@ -58,11 +58,10 @@ void BitButton::paintEvent(QPaintEvent *) {
 // Name: KCalcBitset
 // Desc: constructor
 //------------------------------------------------------------------------------
-KCalcBitset::KCalcBitset(QWidget *parent) : QFrame(parent), value_(0) {
+KCalcBitset::KCalcBitset(QWidget *parent) : QFrame(parent), bit_button_group_(new QButtonGroup(this)), value_(0) {
 
 	setFrameStyle(QFrame::Panel | QFrame::Sunken);
-	
-	bit_button_group_ = new QButtonGroup(this);
+
 	connect(bit_button_group_, QOverload<int>::of(&QButtonGroup::buttonClicked), this, &KCalcBitset::slotToggleBit);
 
 	// smaller label font

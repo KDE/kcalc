@@ -51,10 +51,10 @@ private:
     QLabel *addIndicator(QList<QString> indicatorTexts);
 
 private:
-    QLabel *shift_indicator_;
-    QLabel *base_indicator_;
-    QLabel *angle_mode_indicator_;
-    QLabel *memory_indicator_;
+    QLabel * const shift_indicator_;
+    QLabel * const base_indicator_;
+    QLabel * const angle_mode_indicator_;
+    QLabel * const memory_indicator_;
 };
 
 #endif
