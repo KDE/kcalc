@@ -308,6 +308,17 @@ void KCalcDisplay::slotPaste(bool bClipboard) {
 		}
 	}
 
+	// for locales where the groups separator is not a comma (,) but a non breaking space
+	// accept (and correct) both decimal separators (comma and dot) for convenience
+	if (KNumber::decimalSeparator() == QChar::fromLatin1(',')
+			&& (
+				QLocale().groupSeparator() != QChar::fromLatin1(',')
+				&& QLocale().groupSeparator() != QChar::fromLatin1('.')
+				)
+			&& tmp_str.count(QChar::fromLatin1('.')) == 1) {
+		tmp_str = tmp_str.replace(QChar::fromLatin1('.'), QChar::fromLatin1(','));
+	}
+
 	if (tmp_num_base != NB_DECIMAL) {
 		bool was_ok;
 		const qint64 tmp_result = tmp_str.toULongLong(&was_ok, tmp_num_base);
