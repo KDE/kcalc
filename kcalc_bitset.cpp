@@ -72,7 +72,7 @@ KCalcBitset::KCalcBitset(QWidget *parent) : QFrame(parent), bit_button_group_(ne
 
 	// main layout
 	QGridLayout *layout = new QGridLayout(this);
-	layout->setMargin(2);
+    layout->setContentsMargins(2, 2, 2, 2);
 	layout->setSpacing(0);
 
 	// create bits
@@ -81,7 +81,7 @@ KCalcBitset::KCalcBitset(QWidget *parent) : QFrame(parent), bit_button_group_(ne
 		for (int cols = 0; cols < 4; cols++) {
 			// two rows of four words
 			QHBoxLayout *const wordlayout = new QHBoxLayout();
-			wordlayout->setMargin(2);
+            wordlayout->setContentsMargins(2, 2, 2, 2);
 			wordlayout->setSpacing(2);
 			layout->addLayout(wordlayout, rows, cols);
 
