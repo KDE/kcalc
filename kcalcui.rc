@@ -1,5 +1,5 @@
-<!DOCTYPE kpartgui>
-<kpartgui name="kcalc" version="20">
+<!DOCTYPE gui SYSTEM "kpartgui.dtd">
+<gui name="kcalc" version="20">
 <MenuBar>
   <Menu name="settings" noMerge="1"><text>&amp;Settings</text>
     <Action name="mode_simple"/>
@@ -14,4 +14,4 @@
     <Action name="options_configure"/>
   </Menu>
 </MenuBar>
-</kpartgui>
+</gui>
