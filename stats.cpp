@@ -98,7 +98,7 @@ KNumber KStats::median() {
 
 	// need to copy data_-list, because sorting afterwards
 	QVector<KNumber> tmp_data(data_);
-	qSort(tmp_data);
+	std::sort(tmp_data.begin(), tmp_data.end());
 
 	if (bound & 1) {    // odd
 		index = (bound - 1) / 2 + 1;
