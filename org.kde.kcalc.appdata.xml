@@ -122,6 +122,7 @@
       <li xml:lang="id">Fungsi trigonometri, operasi logika dan perhitungan statistik</li>
       <li xml:lang="it">Funzioni trigonometriche, operazioni logiche e calcoli statistici</li>
       <li xml:lang="nl">Goniometrische functies, logische bewerkingen en statistische berekeningen</li>
+      <li xml:lang="nn">Trigonometriske funksjonar, logiske operatorar og statistiske utrekningar</li>
       <li xml:lang="pl">Funkcje trygonometryczne, działania logiczne i obliczenia statystyczne</li>
       <li xml:lang="pt">Funções trigonométricas, operações lógicas e cálculos estatísticos</li>
       <li xml:lang="pt-BR">Funções trigonométricas, operações de lógica e cálculos estatísticos</li>
@@ -142,6 +143,7 @@
       <li xml:lang="id">Tumpukan hasil yang memungkinkan pemanggilan ulang yang mudah dari hasil perhitungan sebelumnya</li>
       <li xml:lang="it">Una pila di risultati che permette di richiamare opportunamente i risultati dei calcoli precedenti</li>
       <li xml:lang="nl">Een stapelgeheugen voor uitkomsten dat u de mogelijkheid geeft om vorige uitkomsten van berekeningen terug te halen</li>
+      <li xml:lang="nn">Resultata av alle utrekningar vert teken vare på, for seinare uthenting</li>
       <li xml:lang="pl">Stos wyników, który umożliwia wygodne przywoływanie wyników poprzednich obliczeń</li>
       <li xml:lang="pt">Uma pilha de resultados que permite a reposição adequada dos resultados de cálculos anteriores</li>
       <li xml:lang="pt-BR">Uma pilha de resultados que permite a recuperação conveniente de resultados de cálculos anteriores</li>
@@ -162,6 +164,7 @@
       <li xml:lang="id">Presisi dapat ditentukan pengguna</li>
       <li xml:lang="it">La precisione è definibile dall'utente</li>
       <li xml:lang="nl">Precisie is door de gebruiker te definiëren</li>
+      <li xml:lang="nn">Talpresisjon kan veljast av brukaren</li>
       <li xml:lang="pl">Precyzja jest określana przez użytkownika</li>
       <li xml:lang="pt">A precisão pode ser definida pelo utilizador</li>
       <li xml:lang="pt-BR">A precisão é definida pelo usuário</li>
@@ -181,6 +184,7 @@
       <li xml:lang="id">Displai memungkinkan pemotongan dan penempelan angka</li>
       <li xml:lang="it">Il display permette di copiare e incollare i numeri</li>
       <li xml:lang="nl">Het scherm biedt knippen en plakken van getallen</li>
+      <li xml:lang="nn">Kan kopiera og lim inn tal</li>
       <li xml:lang="pl">Wyświetlacz umożliwia wycinanie i wklejanie liczb</li>
       <li xml:lang="pt">O ecrã permite cortar e colar números</li>
       <li xml:lang="pt-BR">O visor permite copiar e colar números</li>
@@ -200,6 +204,7 @@
       <li xml:lang="id">Warna displai dan font dapat dikonfigurasi, membantu kegunaan</li>
       <li xml:lang="it">I colori e i caratteri del display possono essere configurati, supportando l'usabilità</li>
       <li xml:lang="nl">De kleuren en het lettertype in het scherm is aan te passen, helpt bruikbaarheid</li>
+      <li xml:lang="nn">Skrifter og fargar kan tilpassast brukarens ønskjer</li>
       <li xml:lang="pl">Kolory i czcionka wyświetlacza jest do ustawienia, co polepsza użyteczność</li>
       <li xml:lang="pt">As cores e tipo de letra do ecrã são configuráveis, o que ajuda à usabilidade</li>
       <li xml:lang="pt-BR">As cores e fonte do visor são configuráveis, ajudando na usabilidade</li>
@@ -219,6 +224,7 @@
       <li xml:lang="id">Penggunaan tuts pengikat membuatnya mudah digunakan tanpa alat penunjuk</li>
       <li xml:lang="it">L'uso di combinazioni di tastiera ne rende semplice l'uso senza un dispositivo di puntamento</li>
       <li xml:lang="nl">Het gebruik van sneltoetsen maakt het gemakkelijk om het te gebruiken zonder muis</li>
+      <li xml:lang="nn">Snøggtastar gjer kalkulatoren lett å bruka frå tastaturet</li>
       <li xml:lang="pl">Wykorzystanie skrótów klawiszowych czyni aplikację użyteczną bez urządzenia wskazującego</li>
       <li xml:lang="pt">O uso de combinações de teclas permite não usar um rato</li>
       <li xml:lang="pt-BR">O uso de combinação de teclas facilita o uso sem um dispositivo apontador</li>
