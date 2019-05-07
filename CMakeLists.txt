@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 # KDE Application Version, managed by release script
 set (KDE_APPLICATIONS_VERSION_MAJOR "19")
@@ -43,7 +43,6 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     XmlGui
 )
 
-add_definitions(-DQT_NO_NARROWING_CONVERSIONS_IN_CONNECT)
 #add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x060000)
 
 set (CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" ${CMAKE_SOURCE_DIR}/cmake/modules)
