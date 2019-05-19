@@ -85,7 +85,7 @@
     <p xml:lang="en-GB">KCalc has everything you would expect from a scientific calculator, plus:</p>
     <p xml:lang="es">KCalc tiene todo lo que cabría esperar de una calculadora científica, además de:</p>
     <p xml:lang="et">KCalc pakub kõike, mida oskad soovida ühelt teaduslikult kalkulaatorilt ja sellele lisaks veel:</p>
-    <p xml:lang="eu">KCalc-ek kalkulagailu zientifiko batean aurkituko zenukeen guztia du, gehi:</p>
+    <p xml:lang="eu">KCalc-ek kalkulagailu zientifiko batean aurkituko zenukeen guztia dauka, gehi:</p>
     <p xml:lang="fi">KCalcissä on kaikki, mitä odotat tieteelliseltä laskimelta, ja lisäksi:</p>
     <p xml:lang="fr">KCalc dispose de tout ce que vous attendez d'une calculatrice scientifique, plus :</p>
     <p xml:lang="gl">KCalc ten todo o que esperaría dunha calculadora científica, e ademais:</p>
@@ -117,6 +117,7 @@
       <li xml:lang="de">Trigonometrische Funktionen, logische Operationen und statistische Berechnungen</li>
       <li xml:lang="en-GB">Trigonometric functions, logic operations and statistical calculations</li>
       <li xml:lang="es">Funciones trigonométricas, operaciones lógicas y cálculos estadísticos</li>
+      <li xml:lang="eu">Funtzio trigonometrikoak, eragiketa logikoak eta kalkulu estatistikoak</li>
       <li xml:lang="fi">Trigonometriset funktiot, loogiset operaatiot ja tilastolaskenta</li>
       <li xml:lang="fr">Fonctions trigonométriques, opérations logiques et calculs statistiques</li>
       <li xml:lang="gl">Funcións trigonométricas, operacións lóxicas e cálculos estatísticos</li>
@@ -140,6 +141,7 @@
       <li xml:lang="de">Ein Ergebnis-Stack, mit dem Sie bequem frühere Resultate abrufen können</li>
       <li xml:lang="en-GB">A results stack which enables convenient recall of previous calculation results</li>
       <li xml:lang="es">Una pila de resultados que permite reutilizar los resultados de cálculos anteriores</li>
+      <li xml:lang="eu">Emaitza-meta bat, egoki denerako, aurreko kalkulu-emaitzen itzularaztea gaitzen duena</li>
       <li xml:lang="fi">Tulospino, jonka ansiosta aiemmat laskentatulokset on helppo palauttaa</li>
       <li xml:lang="fr">Une pile de résultats permettant un rappel aisé des résultats des calculs précédents</li>
       <li xml:lang="gl">Unha rima de resultados que permite recuperar comodamente os resultados de cálculos anteriores</li>
@@ -163,6 +165,7 @@
       <li xml:lang="cs">Volitelná přesnost</li>
       <li xml:lang="en-GB">Precision is user-definable</li>
       <li xml:lang="es">El usuario puede definir la precisión</li>
+      <li xml:lang="eu">Doitasuna erabiltzaileak zehaztu dezake</li>
       <li xml:lang="fi">Tarkkuus käyttäjän määritettävissä</li>
       <li xml:lang="fr">Précision définie par l'utilisateur</li>
       <li xml:lang="gl">A precisión pode personalizarse</li>
@@ -185,6 +188,7 @@
       <li xml:lang="ca-valencia">El visor permet retallar i enganxar nombres</li>
       <li xml:lang="en-GB">The display allows cut and paste of numbers</li>
       <li xml:lang="es">La pantalla permite cortar y pegar números</li>
+      <li xml:lang="eu">Bistaratzaileak zenbakiak ebakitzea eta itsastea onartzen du</li>
       <li xml:lang="fi">Näyttö sallii lukujen leikkaamisen ja liittämisen</li>
       <li xml:lang="fr">L'affichage permet de couper et coller des nombres</li>
       <li xml:lang="gl">A pantalla permite cortar e pegar números</li>
@@ -207,6 +211,7 @@
       <li xml:lang="ca-valencia">Els colors del visor i el tipus de lletra són configurables, ajudant a la usabilitat</li>
       <li xml:lang="en-GB">The display colours and font are configurable, aiding usability</li>
       <li xml:lang="es">Puede configurar el color de la pantalla y el tipo de letra, lo que ayuda a la usabilidad</li>
+      <li xml:lang="eu">Bistaratzailearen koloreak eta letra-tipoak konfiguragarriak dira, erabilerraztasuna hobetuz</li>
       <li xml:lang="fi">Näyttövärit ja -fontti ovat mukautettavissa, mikä parantaa käytettävyyttä</li>
       <li xml:lang="fr">Les couleurs et la police d'affichage sont configurables pour une plus grande utilisabilité</li>
       <li xml:lang="gl">Poden configurarse as cores e os tipos de letra, para maior facilidade de uso</li>
@@ -229,6 +234,7 @@
       <li xml:lang="ca-valencia">L'ús dels lligams de tecles facilita l'ús sense un dispositiu apuntador</li>
       <li xml:lang="en-GB">The use of key-bindings make it easy to use without a pointing device</li>
       <li xml:lang="es">El uso de asignaciones de teclas facilita su uso sin un dispositivo apuntador</li>
+      <li xml:lang="eu">Tekla-konbinazioen erabilerak errazten du erakusle-gailurik gabe erabiltzea</li>
       <li xml:lang="fi">Näppäinsidosten avulla osoitinlaitteetonkin käyttö on helppoa</li>
       <li xml:lang="fr">L'utilisation de raccourcis claviers rend facile l'utilisation sans dispositif de pointage</li>
       <li xml:lang="gl">O uso de atallos de teclado facilita o uso sen un dispositivo de apuntar</li>
@@ -260,6 +266,7 @@
       <caption xml:lang="de">Hauptfenster von KCalc</caption>
       <caption xml:lang="en-GB">Main window of KCalc</caption>
       <caption xml:lang="es">Ventana principal de KCalc</caption>
+      <caption xml:lang="eu">KCalc leiho nagusia</caption>
       <caption xml:lang="fi">KCalcin pääikkuna</caption>
       <caption xml:lang="fr">Fenêtre principale de KCalc</caption>
       <caption xml:lang="gl">Xanela principal de KCalc</caption>
