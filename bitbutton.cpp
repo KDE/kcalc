@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Name: BitButton
 // Desc: constructor
 //------------------------------------------------------------------------------
-BitButton::BitButton(QWidget *parent) : QAbstractButton(parent), on_(false) {
+BitButton::BitButton(QWidget *parent) : QAbstractButton(parent), on_(false) , over_(false) {
 
 	// too many bits for tab focus
 	setFocusPolicy(Qt::ClickFocus);
@@ -43,6 +43,8 @@ BitButton::BitButton(QWidget *parent) : QAbstractButton(parent), on_(false) {
 	}
 	
 	setFixedSize(size.expandedTo(QApplication::globalStrut()));
+
+	this->setAttribute(Qt::WA_Hover, true);
 }
 
 //------------------------------------------------------------------------------
@@ -62,4 +64,28 @@ void BitButton::setOn(bool value) {
 
 	on_ = value;
 	update();
+}
+
+//------------------------------------------------------------------------------
+// Name: enterEvent
+// Desc: sets to true the "over" variable on Enter event
+//------------------------------------------------------------------------------
+void BitButton::enterEvent(QEvent * event) {
+
+	if (event->type() == QEvent::Enter) {
+		over_ = true;
+		update();
+	}
+}
+
+//------------------------------------------------------------------------------
+// Name: leaveEvent
+// Desc: sets to false the "over" variable on Leave event
+//------------------------------------------------------------------------------
+void BitButton::leaveEvent(QEvent * event) {
+
+	if (event->type() == QEvent::Leave) {
+		over_ = false;
+		update();
+	}
 }

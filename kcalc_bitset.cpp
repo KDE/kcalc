@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPainter>
+#include <klocalizedstring.h>
 
 
 
@@ -40,15 +41,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //------------------------------------------------------------------------------
 void BitButton::paintEvent(QPaintEvent *) {
 
+	uint8_t alpha = 0x60;
 	QPainter painter(this);
-	QPen pen(palette().text(), 2);
+	QPen pen(palette().text(), 1);
 	pen.setJoinStyle(Qt::MiterJoin);
 	painter.setPen(pen);
 
 	if (on_) {
 		painter.setBrush(palette().text());
+		alpha = 0xB0;
 	} else {
 		painter.setBrush(palette().base());
+	}
+
+	if (over_) {
+		painter.setBrush(QColor(palette().text().color().red(),
+					palette().text().color().green(),
+					palette().text().color().blue(),
+					alpha));
 	}
 
 	painter.drawRect(rect().adjusted(1, 1, -1, -1));
@@ -87,6 +97,7 @@ KCalcBitset::KCalcBitset(QWidget *parent) : QFrame(parent), bit_button_group_(ne
 
 			for (int bit = 0; bit < 8; bit++) {
 				BitButton *const tmpBitButton = new BitButton(this);
+				tmpBitButton->setToolTip(i18n("Bit %1", bitCounter));
 				wordlayout->addWidget(tmpBitButton);
 				bit_button_group_->addButton(tmpBitButton, bitCounter);
 				bitCounter--;
