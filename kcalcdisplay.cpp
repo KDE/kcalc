@@ -997,7 +997,7 @@ void KCalcDisplay::paintEvent(QPaintEvent *) {
 	painter.setFont(fnt);
 	
 	QFontMetrics fm(fnt);
-	const uint w = fm.width(QStringLiteral("________"));
+        const uint w = fm.boundingRect(QStringLiteral("________")).width();
 	const uint h = fm.height();
 
 	for (int n = 0; n < NUM_STATUS_TEXT; ++n) {
