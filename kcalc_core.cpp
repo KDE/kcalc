@@ -170,7 +170,10 @@ const struct operator_data Operator[] = {
 }
 
 CalcEngine::CalcEngine()
-    : only_update_operation_(false), repeat_mode_(false), percent_mode_(false) {
+    : only_update_operation_(false)
+    , percent_mode_(false)
+    , repeat_mode_(false)
+{
 
     last_number_ = KNumber::Zero;
     error_ = false;

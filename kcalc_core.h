@@ -142,10 +142,10 @@ private:
 
     Operation last_operation_;
     KNumber last_repeat_number_;
-    bool repeat_mode_;
     bool only_update_operation_;
 
     bool percent_mode_;
+    bool repeat_mode_;
 
     bool evalStack();
 
