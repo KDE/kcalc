@@ -209,8 +209,8 @@ QString KNumber::decimalSeparator() {
 //------------------------------------------------------------------------------
 void KNumber::setDefaultFloatPrecision(int precision) {
     // Need to transform decimal digits into binary digits
-    const unsigned long int bin_prec = static_cast<unsigned long int>(double(precision) * M_LN10 / M_LN2 + 1);
-    mpf_set_default_prec(bin_prec);
+    const unsigned long int bin_prec = static_cast<unsigned long int>(::ceil(precision * M_LN10 / M_LN2) + 1);
+    mpfr_set_default_prec(static_cast<mpfr_prec_t>(bin_prec));
 }
 
 //------------------------------------------------------------------------------

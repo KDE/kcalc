@@ -16,7 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <config-kcalc.h>
 #include "knumber_integer.h"
 #include "knumber_float.h"
 #include "knumber_fraction.h"
@@ -42,52 +41,46 @@ double exp10(double x) { return exp(x * log(10)); }
 
 namespace detail {
 
-#ifdef KNUMBER_USE_MPFR
 const mpfr_rnd_t  knumber_float::rounding_mode = MPFR_RNDN;
 const mpfr_prec_t knumber_float::precision     = 1024;
-#endif
 
-template <double F(double)>
-knumber_base *knumber_float::execute_libc_func(double x) {
-	const double r = F(x);
-	if(isnan(r)) {
+knumber_base *knumber_float::ensureIsValid(mpfr_ptr mpfr) {
+	if (mpfr_nan_p(mpfr)) {
 		knumber_error *e = new knumber_error(knumber_error::ERROR_UNDEFINED);
 		delete this;
 		return e;
-	} else if(isinf(r)) {
+	} else if (mpfr_inf_p(mpfr)) {
 		knumber_error *e = new knumber_error(knumber_error::ERROR_POS_INFINITY);
 		delete this;
 		return e;
 	} else {
-		mpf_set_d(mpf_, r);
 		return this;
 	}
 }
 
-template <double F(double, double)>
-knumber_base *knumber_float::execute_libc_func(double x, double y) {
-	const double r = F(x, y);
-	if(isnan(r)) {
-		knumber_error *e = new knumber_error(knumber_error::ERROR_UNDEFINED);
-		delete this;
-		return e;
-	} else if(isinf(r)) {
-		knumber_error *e = new knumber_error(knumber_error::ERROR_POS_INFINITY);
-		delete this;
-		return e;
-	} else {
-		mpf_set_d(mpf_, r);
-		return this;
-	}
+template <int F(mpfr_ptr rop, mpfr_srcptr op)>
+knumber_base *knumber_float::execute_mpfr_func() {
+	F(mpfr_, mpfr_);
+	return ensureIsValid(mpfr_);
+}
+
+template <int F(mpfr_ptr rop, mpfr_srcptr op, mpfr_rnd_t rnd)>
+knumber_base *knumber_float::execute_mpfr_func() {
+	F(mpfr_, mpfr_, rounding_mode);
+	return ensureIsValid(mpfr_);
+}
+
+template <int F(mpfr_ptr rop, mpfr_srcptr op1, mpfr_srcptr op2, mpfr_rnd_t rnd)>
+knumber_base *knumber_float::execute_mpfr_func(mpfr_srcptr op) {
+	F(mpfr_, mpfr_, op, rounding_mode);
+	return ensureIsValid(mpfr_);
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_float::knumber_float(const QString &s) {
-
-	mpf_init(mpf_);
-        mpf_set_str(mpf_, s.toLatin1().constData(), 10);
+	mpfr_set_str(new_mpfr(), s.toLatin1().constData(), 10, rounding_mode);
 }
 
 //------------------------------------------------------------------------------
@@ -98,7 +91,7 @@ knumber_float::knumber_float(double value) {
 	Q_ASSERT(!isinf(value));
 	Q_ASSERT(!isnan(value));
 
-	mpf_init_set_d(mpf_, value);
+	mpfr_set_d(new_mpfr(), value, rounding_mode);
 }
 
 #ifdef HAVE_LONG_DOUBLE
@@ -110,43 +103,37 @@ knumber_float::knumber_float(long double value) {
 	Q_ASSERT(!isinf(value));
 	Q_ASSERT(!isnan(value));
 
-	mpf_init_set_d(mpf_, value);
+	mpfr_set_ld(new_mpfr(), value, rounding_mode);
 }
 #endif
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-knumber_float::knumber_float(mpf_t mpf) {
+knumber_float::knumber_float(mpfr_t mpfr) {
 
-	mpf_init(mpf_);
-	mpf_set(mpf_, mpf);
+	mpfr_set(new_mpfr(), mpfr, rounding_mode);
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_float::knumber_float(const knumber_float *value) {
-
-	mpf_init_set(mpf_, value->mpf_);
+	mpfr_set(new_mpfr(), value->mpfr_, rounding_mode);
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_float::knumber_float(const knumber_integer *value) {
-
-	mpf_init(mpf_);
-	mpf_set_z(mpf_, value->mpz_);
+	mpfr_set_z(new_mpfr(), value->mpz_, rounding_mode);
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_float::knumber_float(const knumber_fraction *value) {
-
-	mpf_init(mpf_);
-	mpf_set_q(mpf_, value->mpq_);
+	mpfr_set_q(new_mpfr(), value->mpq_, rounding_mode);
 }
 
 //------------------------------------------------------------------------------
@@ -157,12 +144,16 @@ knumber_base *knumber_float::clone() {
 	return new knumber_float(this);
 }
 
+mpfr_ptr knumber_float::new_mpfr() {
+	mpfr_init(mpfr_);
+	return mpfr_;
+}
+
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_float::~knumber_float() {
-
-	mpf_clear(mpf_);
+	mpfr_clear(mpfr_);
 }
 
 //------------------------------------------------------------------------------
@@ -174,7 +165,7 @@ knumber_base *knumber_float::add(knumber_base *rhs) {
 		knumber_float f(p);
 		return add(&f);
 	} else if(knumber_float *const p = dynamic_cast<knumber_float *>(rhs)) {
-		mpf_add(mpf_, mpf_, p->mpf_);
+		mpfr_add(mpfr_, mpfr_, p->mpfr_, rounding_mode);
 		return this;
 	} else if(knumber_fraction *const p = dynamic_cast<knumber_fraction *>(rhs)) {
 		knumber_float f(p);
@@ -198,7 +189,7 @@ knumber_base *knumber_float::sub(knumber_base *rhs) {
 		knumber_float f(p);
 		return sub(&f);
 	} else if(knumber_float *const p = dynamic_cast<knumber_float *>(rhs)) {
-		mpf_sub(mpf_, mpf_, p->mpf_);
+		mpfr_sub(mpfr_, mpfr_, p->mpfr_, rounding_mode);
 		return this;
 	} else if(knumber_fraction *const p = dynamic_cast<knumber_fraction *>(rhs)) {
 		knumber_float f(p);
@@ -222,7 +213,7 @@ knumber_base *knumber_float::mul(knumber_base *rhs) {
 		knumber_float f(p);
 		return mul(&f);
 	} else if(knumber_float *const p = dynamic_cast<knumber_float *>(rhs)) {
-		mpf_mul(mpf_, mpf_, p->mpf_);
+		mpfr_mul(mpfr_, mpfr_, p->mpfr_, rounding_mode);
 		return this;
 	} else if(knumber_fraction *const p = dynamic_cast<knumber_fraction *>(rhs)) {
 		knumber_float f(p);
@@ -266,7 +257,7 @@ knumber_base *knumber_float::div(knumber_base *rhs) {
 		knumber_float f(p);
 		return div(&f);
 	} else if(knumber_float *const p = dynamic_cast<knumber_float *>(rhs)) {
-		mpf_div(mpf_, mpf_, p->mpf_);
+		mpfr_div(mpfr_, mpfr_, p->mpfr_, rounding_mode);
 		return this;
 	} else if(knumber_fraction *const p = dynamic_cast<knumber_fraction *>(rhs)) {
 		knumber_float f(p);
@@ -346,8 +337,7 @@ knumber_base *knumber_float::bitwise_shift(knumber_base *rhs) {
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::neg() {
-
-	mpf_neg(mpf_, mpf_);
+	mpfr_neg(mpfr_, mpfr_, rounding_mode);
 	return this;
 }
 
@@ -364,8 +354,7 @@ knumber_base *knumber_float::cmp() {
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::abs() {
-
-	mpf_abs(mpf_, mpf_);
+	mpfr_abs(mpfr_, mpfr_, rounding_mode);
 	return this;
 }
 
@@ -379,15 +368,7 @@ knumber_base *knumber_float::sqrt() {
 		return new knumber_error(knumber_error::ERROR_UNDEFINED);
 	}
 
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_sqrt(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-#else
-	mpf_sqrt(mpf_, mpf_);
-#endif
+	mpfr_sqrt(mpfr_, mpfr_, rounding_mode);
 	return this;
 }
 
@@ -395,27 +376,7 @@ knumber_base *knumber_float::sqrt() {
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::cbrt() {
-
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_cbrt(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-#else
-	const double x = mpf_get_d(mpf_);
-	if(isinf(x)) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
-	} else {
-#ifdef Q_CC_MSVC
-		return execute_libc_func< ::pow>(x, 1.0 / 3.0);
-#else
-		return execute_libc_func< ::cbrt>(x);
-#endif
-	}
-#endif
-	return this;
+	return execute_mpfr_func< ::mpfr_cbrt>();
 }
 
 //------------------------------------------------------------------------------
@@ -437,318 +398,114 @@ knumber_base *knumber_float::factorial() {
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::sin() {
-
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_sin(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	if(isinf(x)) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
-	} else {
-		return execute_libc_func< ::sin>(x);
-	}
-#endif
-
+	return execute_mpfr_func< ::mpfr_sin>();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::floor() {
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_floor(mpfr, mpfr);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	if(isinf(x)) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
-	} else {
-		return execute_libc_func< ::floor>(x);
-	}
-#endif
+	return execute_mpfr_func< ::mpfr_floor>();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::ceil() {
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_ceil(mpfr, mpfr);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	if(isinf(x)) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
-	} else {
-		return execute_libc_func< ::ceil>(x);
-	}
-#endif
+	return execute_mpfr_func< ::mpfr_ceil>();
 }
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::cos() {
-
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_cos(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	if(isinf(x)) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
-	} else {
-		return execute_libc_func< ::cos>(x);
-	}
-#endif
+	return execute_mpfr_func< ::mpfr_cos>();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::tan() {
-
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_tan(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	if(isinf(x)) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
-	} else {
-		return execute_libc_func< ::tan>(x);
-	}
-#endif
+	return execute_mpfr_func< ::mpfr_tan>();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::asin() {
-	if(mpf_cmp_d(mpf_, 1.0) > 0 || mpf_cmp_d(mpf_, -1.0) < 0) {
+	if (mpfr_cmp_d(mpfr_, 1.0) > 0 || mpfr_cmp_d(mpfr_, -1.0) < 0) {
 		delete this;
 		return new knumber_error(knumber_error::ERROR_UNDEFINED);
 	}
 
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_asin(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	if(isinf(x)) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
-	} else {
-		return execute_libc_func< ::asin>(x);
-	}
-#endif
+	return execute_mpfr_func< ::mpfr_asin>();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------s
 knumber_base *knumber_float::acos() {
-	if(mpf_cmp_d(mpf_, 1.0) > 0 || mpf_cmp_d(mpf_, -1.0) < 0) {
+	if (mpfr_cmp_d(mpfr_, 1.0) > 0 || mpfr_cmp_d(mpfr_, -1.0) < 0) {
 		delete this;
 		return new knumber_error(knumber_error::ERROR_UNDEFINED);
 	}
 
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_acos(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	if(isinf(x)) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
-	} else {
-		return execute_libc_func< ::acos>(x);
-	}
-#endif
+	return execute_mpfr_func< ::mpfr_acos>();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::atan() {
-
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_atan(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	if(isinf(x)) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
-	} else {
-		return execute_libc_func< ::atan>(x);
-	}
-#endif
+	return execute_mpfr_func< ::mpfr_atan>();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::sinh() {
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_sinh(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	return execute_libc_func< ::sinh>(x);
-#endif
-
+	return execute_mpfr_func< ::mpfr_sinh>();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::cosh() {
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_cosh(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	return execute_libc_func< ::cosh>(x);
-#endif
+	return execute_mpfr_func< ::mpfr_cosh>();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::tanh() {
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_tanh(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	return execute_libc_func< ::tanh>(x);
-#endif
+	return execute_mpfr_func< ::mpfr_tanh>();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::tgamma() {
-
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_gamma(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	if(isinf(x)) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
-
-	} else {
-		return execute_libc_func< ::tgamma>(x);
-	}
-#endif
-
+	return execute_mpfr_func< ::mpfr_gamma>();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::asinh() {
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_asinh(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	return execute_libc_func< ::asinh>(x);
-#endif
+	return execute_mpfr_func< ::mpfr_asinh>();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::acosh() {
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_acosh(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	return execute_libc_func< ::acosh>(x);
-#endif
+	return execute_mpfr_func< ::mpfr_acosh>();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::atanh() {
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_atanh(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	return execute_libc_func< ::atanh>(x);
-#endif
+	return execute_mpfr_func< ::mpfr_atanh>();
 }
 
 //------------------------------------------------------------------------------
@@ -757,7 +514,7 @@ knumber_base *knumber_float::atanh() {
 knumber_base *knumber_float::pow(knumber_base *rhs) {
 
 	if(knumber_integer *const p = dynamic_cast<knumber_integer *>(rhs)) {
-		mpf_pow_ui(mpf_, mpf_, mpz_get_ui(p->mpz_));
+		mpfr_pow_ui(mpfr_, mpfr_, mpz_get_ui(p->mpz_), rounding_mode);
 
 		if(p->sign() < 0) {
 			return reciprocal();
@@ -765,10 +522,10 @@ knumber_base *knumber_float::pow(knumber_base *rhs) {
 			return this;
 		}
 	} else if(knumber_float *const p = dynamic_cast<knumber_float *>(rhs)) {
-		return execute_libc_func< ::pow>(mpf_get_d(mpf_), mpf_get_d(p->mpf_));
+		return execute_mpfr_func< ::mpfr_pow>(p->mpfr_);
 	} else if(knumber_fraction *const p = dynamic_cast<knumber_fraction *>(rhs)) {
 		knumber_float f(p);
-		return execute_libc_func< ::pow>(mpf_get_d(mpf_), mpf_get_d(f.mpf_));
+		return execute_mpfr_func< ::mpfr_pow>(f.mpfr_);
 	} else if(knumber_error *const p = dynamic_cast<knumber_error *>(rhs)) {
 		if(p->sign() > 0) {
 			knumber_error *e = new knumber_error(knumber_error::ERROR_POS_INFINITY);
@@ -798,7 +555,7 @@ int knumber_float::compare(knumber_base *rhs) {
 		knumber_float f(p);
 		return compare(&f);
 	} else if(knumber_float *const p = dynamic_cast<knumber_float *>(rhs)) {
-		return mpf_cmp(mpf_, p->mpf_);
+		return mpfr_cmp(mpfr_, p->mpfr_);
 	} else if(knumber_fraction *const p = dynamic_cast<knumber_fraction *>(rhs)) {
 		knumber_float f(p);
 		return compare(&f);
@@ -818,18 +575,19 @@ int knumber_float::compare(knumber_base *rhs) {
 QString knumber_float::toString(int precision) const {
 
 	size_t size;
+
 	if (precision > 0) {
-		size = gmp_snprintf(nullptr, 0, "%.*Fg", precision, mpf_) + 1;
+		size = static_cast<size_t>(mpfr_snprintf(nullptr, 0, "%.*Rg", precision, mpfr_) + 1);
 	} else {
-		size = gmp_snprintf(nullptr, 0, "%.Fg", mpf_) + 1;
+		size = static_cast<size_t>(mpfr_snprintf(nullptr, 0, "%.Rg", mpfr_) + 1);
 	}
 
 	QScopedArrayPointer<char> buf(new char[size]);
 
 	if (precision > 0) {
-		gmp_snprintf(&buf[0], size, "%.*Fg", precision, mpf_);
+		mpfr_snprintf(&buf[0], size, "%.*Rg", precision, mpfr_);
 	} else {
-		gmp_snprintf(&buf[0], size, "%.Fg", mpf_);
+		mpfr_snprintf(&buf[0], size, "%.Rg", mpfr_);
 	}
 
 	return QLatin1String(&buf[0]);
@@ -839,34 +597,31 @@ QString knumber_float::toString(int precision) const {
 // Name:
 //------------------------------------------------------------------------------
 bool knumber_float::is_integer() const {
-
-	return mpf_integer_p(mpf_) != 0;
+	return mpfr_integer_p(mpfr_) != 0;
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 bool knumber_float::is_zero() const {
-
-	return mpf_sgn(mpf_) == 0;
+	return mpfr_zero_p(mpfr_);
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 int knumber_float::sign() const {
-
-	return mpf_sgn(mpf_);
+	return mpfr_sgn(mpfr_);
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::reciprocal() {
-
-	mpf_t mpf;
-	mpf_init_set_d(mpf, 1.0);
-	mpf_div(mpf_, mpf, mpf_);
+	mpfr_t mpfr;
+	mpfr_init_set_d(mpfr, 1.0, rounding_mode);
+	mpfr_div(mpfr_, mpfr, mpfr_, rounding_mode);
+	mpfr_clear(mpfr);
 	return this;
 }
 
@@ -874,132 +629,42 @@ knumber_base *knumber_float::reciprocal() {
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::log2() {
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_log2(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	if(isinf(x)) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
-	} else {
-		return execute_libc_func< ::log2>(x);
-	}
-#endif
+	return execute_mpfr_func< ::mpfr_log2>();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::log10() {
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_log10(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	if(isinf(x)) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
-	} else {
-		return execute_libc_func< ::log10>(x);
-	}
-#endif
+	return execute_mpfr_func< ::mpfr_log10>();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::ln() {
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_log(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	if(isinf(x)) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
-	} else {
-		return execute_libc_func< ::log>(x);
-	}
-#endif
+	return execute_mpfr_func< ::mpfr_log>();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::exp2() {
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_exp2(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	if(isinf(x)) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
-	} else {
-		return execute_libc_func< ::exp2>(x);
-	}
-#endif
+	return execute_mpfr_func< ::mpfr_exp2>();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::exp10() {
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_exp10(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	if(isinf(x)) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
-	} else {
-		return execute_libc_func< ::pow>(10, x);
-	}
-#endif
+	return execute_mpfr_func< ::mpfr_exp10>();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::exp() {
-#ifdef KNUMBER_USE_MPFR
-	mpfr_t mpfr;
-	mpfr_init_set_f(mpfr, mpf_, rounding_mode);
-	mpfr_exp(mpfr, mpfr, rounding_mode);
-	mpfr_get_f(mpf_, mpfr, rounding_mode);
-	mpfr_clear(mpfr);
-	return this;
-#else
-	const double x = mpf_get_d(mpf_);
-	if(isinf(x)) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_POS_INFINITY);
-	} else {
-		return execute_libc_func< ::exp>(x);
-	}
-#endif
+	return execute_mpfr_func< ::mpfr_exp>();
 }
 
 //------------------------------------------------------------------------------

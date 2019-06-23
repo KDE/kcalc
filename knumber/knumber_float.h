@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef KNUMBER_FLOAT_H_
 #define KNUMBER_FLOAT_H_
 
+#include <config-kcalc.h>
 #include "knumber_base.h"
 
 class KNumber;
@@ -32,10 +33,8 @@ class knumber_float : public knumber_base {
 	friend class knumber_fraction;
 
 private:
-#ifdef KNUMBER_USE_MPFR
 	static const mpfr_rnd_t  rounding_mode;
 	static const mpfr_prec_t precision;
-#endif
 
 public:
 	explicit knumber_float(const QString &s);
@@ -44,7 +43,7 @@ public:
 	explicit knumber_float(long double value);
 #endif
 
-	explicit knumber_float(mpf_t mpf);
+	explicit knumber_float(mpfr_t mpfr);
     ~knumber_float() override;
 
 private:
@@ -120,14 +119,21 @@ public:
 	knumber_base *clone() override;
 
 private:
-	template <double F(double)>
-	knumber_base *execute_libc_func(double x);
+	knumber_base *ensureIsValid(mpfr_ptr mpfr);
 
-	template <double F(double, double)>
-	knumber_base *execute_libc_func(double x, double y);
+	template <int F(mpfr_ptr rop, mpfr_srcptr op)>
+	knumber_base *execute_mpfr_func();
+
+	template <int F(mpfr_ptr rop, mpfr_srcptr op, mpfr_rnd_t rnd)>
+	knumber_base *execute_mpfr_func();
+
+	template <int F(mpfr_ptr rop, mpfr_srcptr op1, mpfr_srcptr op2, mpfr_rnd_t rnd)>
+	knumber_base *execute_mpfr_func(mpfr_srcptr op);
+
+	mpfr_ptr new_mpfr();
 
 private:
-	mpf_t mpf_;
+	mpfr_t mpfr_;
 };
 
 }

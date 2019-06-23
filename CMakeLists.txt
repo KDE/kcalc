@@ -56,6 +56,14 @@ set_package_properties(GMP PROPERTIES
     PURPOSE "Required for building KCalc."
 )
 
+find_package(MPFR)
+set_package_properties(MPFR PROPERTIES
+    DESCRIPTION "The GNU Multiple Precision Floating-Point Reliable Library"
+    URL "https://www.mpfr.org/"
+    TYPE REQUIRED
+    PURPOSE "Required for building KCalc."
+)
+
 include(CheckTypeSize)
 include(CheckIncludeFiles)
 

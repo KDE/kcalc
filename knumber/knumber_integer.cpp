@@ -99,7 +99,14 @@ knumber_integer::knumber_integer(const knumber_integer *value) {
 //------------------------------------------------------------------------------
 knumber_integer::knumber_integer(const knumber_float *value) {
 	mpz_init(mpz_);
-	mpz_set_f(mpz_, value->mpf_);
+
+	mpf_t mpf;
+	mpf_init(mpf);
+
+	mpfr_get_f(mpf, value->mpfr_, knumber_float::rounding_mode);
+	mpz_set_f(mpz_, mpf);
+
+	mpf_clear(mpf);
 }
 
 //------------------------------------------------------------------------------
