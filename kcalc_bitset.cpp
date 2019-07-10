@@ -43,6 +43,7 @@ void BitButton::paintEvent(QPaintEvent *) {
 
 	uint8_t alpha = 0x60;
 	QPainter painter(this);
+	painter.setRenderHint(QPainter::Antialiasing, true);
 	QPen pen(palette().text(), 1);
 	pen.setJoinStyle(Qt::MiterJoin);
 	painter.setPen(pen);
