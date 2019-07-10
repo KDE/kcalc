@@ -813,6 +813,34 @@ void KCalculator::keyPressEvent(QKeyEvent *e) {
 	if (e->key() == Qt::Key_Control) {
 		emit switchShowAccels(true);
 	}
+
+	// Workaround for bug #283521
+	// Unfortunately adding multiple shortcuts (A, Shift+A) to pushbuttons
+	// does not work properly, so we handle the A-F keypresses with shift in Hex mode here
+	if (hexRadio->isChecked() && e->modifiers() & Qt::ShiftModifier) {
+		switch (e->key()) {
+		case Qt::Key_A:
+			pbA->animateClick();
+			break;
+		case Qt::Key_B:
+			pbB->animateClick();
+			break;
+		case Qt::Key_C:
+			pbC->animateClick();
+			break;
+		case Qt::Key_D:
+			pbD->animateClick();
+			break;
+		case Qt::Key_E:
+			pbE->animateClick();
+			break;
+		case Qt::Key_F:
+			pbF->animateClick();
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 //------------------------------------------------------------------------------
