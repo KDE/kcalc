@@ -56,7 +56,6 @@ class KCalcStatusBar;
 #include "ui_constants.h"
 #include "ui_colors.h"
 
-#include <QFlags>
 
 #include <kxmlguiwindow.h>
 

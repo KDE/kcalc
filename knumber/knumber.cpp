@@ -23,7 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "knumber_float.h"
 #include "knumber_fraction.h"
 #include "knumber_integer.h"
-#include <QDebug>
 #include <QRegExp>
 #include <QStringList>
 #include <cmath>

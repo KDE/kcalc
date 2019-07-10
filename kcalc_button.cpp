@@ -24,9 +24,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QAbstractTextDocumentLayout>
 #include <QApplication>
 #include <QStyleOptionButton>
-#include <QStylePainter>
 #include <QTextDocument>
-
+#include <QPainter>
 
 
 //------------------------------------------------------------------------------

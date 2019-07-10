@@ -22,7 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "knumber_fraction.h"
 #include "knumber_error.h"
 #include <cmath> // for M_PI
-#include <QDebug>
 
 namespace detail {
 

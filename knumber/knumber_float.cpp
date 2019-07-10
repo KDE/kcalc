@@ -21,7 +21,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "knumber_fraction.h"
 #include "knumber_error.h"
 #include <QScopedArrayPointer>
-#include <QDebug>
 #include <math.h>
 
 #ifdef _MSC_VER

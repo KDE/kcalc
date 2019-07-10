@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "knumber_operators.h"
 #include "knumber.h"
 #include "knumber_base.h"
-#include <QDebug>
 
 //------------------------------------------------------------------------------
 // Name:
