@@ -73,6 +73,7 @@ Name[zh_TW]=KDE 計算機
 Exec=kcalc
 Icon=accessories-calculator
 X-DocPath=kcalc/index.html
+Comment=Calculator which offers many mathematical functions, such as trigonometric functions, logic operations, and statistical calculations
 GenericName=Scientific Calculator
 GenericName[af]=Wetenskaplike Sakrekenaar
 GenericName[ar]=آلة حاسبة علمية
