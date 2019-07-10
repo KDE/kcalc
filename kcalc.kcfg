@@ -45,6 +45,32 @@
       <label>The color of operation buttons.</label>
       <default code="true">defaultButtonColor</default>
     </entry>
+    <entry name="NumberFontsColor" type="Color">
+      <label>The color of number fonts.</label>
+      <code>KColorScheme schemeFonts(QPalette::Active, KColorScheme::Button);
+            QColor defaultFontColor = schemeFonts.foreground().color();</code>
+      <default code="true">defaultFontColor</default>
+    </entry>
+    <entry name="FunctionFontsColor" type="Color">
+      <label>The color of function fonts.</label>
+      <default code="true">defaultFontColor</default>
+    </entry>
+    <entry name="StatFontsColor" type="Color">
+      <label>The color of statistical fonts.</label>
+      <default code="true">defaultFontColor</default>
+    </entry>
+    <entry name="HexFontsColor" type="Color">
+      <label>The color of hex fonts.</label>
+      <default code="true">defaultFontColor</default>
+    </entry>
+    <entry name="MemoryFontsColor" type="Color">
+      <label>The color of memory fonts.</label>
+      <default code="true">defaultFontColor</default>
+    </entry>
+    <entry name="OperationFontsColor" type="Color">
+      <label>The color of operation font.</label>
+      <default code="true">defaultFontColor</default>
+    </entry>
   </group>
   <group name="Font">
     <entry name="ButtonFont" type="Font">

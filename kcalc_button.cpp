@@ -160,7 +160,11 @@ void KCalcButton::paintEvent(QPaintEvent *) {
 	doc.setHtml(QLatin1String("<center>") + text() + QLatin1String("</center>"));
 	doc.setDefaultFont(font());
 	context.palette = palette();
-	context.palette.setColor(QPalette::Text, context.palette.buttonText().color());
+	QColor color = text_color_;
+	if (!isEnabled()) {
+		color.setAlphaF(0.6);
+	}
+	context.palette.setColor(QPalette::Text, color);
 
 	p.translate((width() / 2 - doc.size().width() / 2) + x_offset, (height() / 2 - doc.size().height() / 2) + y_offset);
 	doc.documentLayout()->draw(&p, context);
@@ -217,6 +221,16 @@ void KCalcButton::setFont(const QFont &fnt) {
 
 	QPushButton::setFont(fnt);
 	calcSizeHint();
+}
+
+//------------------------------------------------------------------------------
+// Name: setTextColor
+// Desc: 
+//------------------------------------------------------------------------------
+void KCalcButton::setTextColor(const QColor &color) {
+
+	text_color_ = color;
+	update();
 }
 
 //------------------------------------------------------------------------------

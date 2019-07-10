@@ -69,6 +69,7 @@ public:
     QSize sizeHint() const override;
 
     void setFont(const QFont &fnt);
+    void setTextColor(const QColor &color);
     void setText(const QString &text);   // reimp
     void setToolTip(const QString &tip);   // reimp
 
@@ -87,6 +88,7 @@ private:
     ButtonModeFlags                   mode_flags_;
     QMap<ButtonModeFlags, ButtonMode> mode_;
     QSize                             size_;
+    QColor                            text_color_;
 };
 
 #endif

@@ -2102,9 +2102,40 @@ void KCalculator::setColors() {
 
 	calc_display->changeSettings();
 
+	const QColor numFontColor(KCalcSettings::numberFontsColor());
+	for (int i = 0; i < 10; ++i) {
+		qobject_cast<KCalcButton*>((num_button_group_->button(i)))->setTextColor(numFontColor);
+	}
+
+	const QColor funcFontColor(KCalcSettings::functionFontsColor());
+	foreach(QAbstractButton *btn, function_button_list_) {
+		qobject_cast<KCalcButton*>(btn)->setTextColor(funcFontColor);
+	}
+
+	const QColor statFontColor(KCalcSettings::statFontsColor());
+	foreach(QAbstractButton *btn, stat_buttons_) {
+		qobject_cast<KCalcButton*>(btn)->setTextColor(statFontColor);
+	}
+
+	const QColor hexFontColor(KCalcSettings::hexFontsColor());
+	for (int i = 10; i < 16; ++i) {
+		qobject_cast<KCalcButton*>((num_button_group_->button(i)))->setTextColor(hexFontColor);
+	}
+
+	const QColor memFontColor(KCalcSettings::memoryFontsColor());
+	foreach(QAbstractButton *btn, mem_button_list_) {
+		qobject_cast<KCalcButton*>(btn)->setTextColor(memFontColor);
+	}
+
+	const QColor opFontColor(KCalcSettings::operationFontsColor());
+	foreach(QAbstractButton *btn, operation_button_list_) {
+		qobject_cast<KCalcButton*>(btn)->setTextColor(opFontColor);
+	}
+
 	KColorScheme schemeButtons(QPalette::Active, KColorScheme::Button);
 	const QColor defaultColor = schemeButtons.background().color();
 
+	// Do not apply style sheets when using default background colors, see bug 237513
 	if (KCalcSettings::numberButtonsColor()           == defaultColor
 			&& KCalcSettings::functionButtonsColor()  == defaultColor
 			&& KCalcSettings::statButtonsColor()      == defaultColor
@@ -2128,7 +2159,7 @@ void KCalculator::setColors() {
 
 	const QColor statPal(KCalcSettings::statButtonsColor());
 	foreach(QAbstractButton *btn, stat_buttons_) {
-	btn->setStyleSheet(sheet.arg(statPal.name()));
+		btn->setStyleSheet(sheet.arg(statPal.name()));
 	}
 
 	const QColor hexPal(KCalcSettings::hexButtonsColor());
