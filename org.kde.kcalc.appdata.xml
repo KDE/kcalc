@@ -81,7 +81,7 @@
     <p xml:lang="ca-valencia">El KCalc té tot allò que espereu d'una calculadora científica, més:</p>
     <p xml:lang="da">KCalc har alt hvad du forventer fra en videnskabelig lommeregner, plus:</p>
     <p xml:lang="de">KCalc bietet alles, was Sie von einem wissenschaftlichen Taschenrechner erwarten, plus:</p>
-    <p xml:lang="el">Το KCalc περιέχει όλα όσα αναζητά κανείς από μία επιστημονική αριθμομηχανή και ακόμη:</p>
+    <p xml:lang="el">Το KCalc έχει όλα όσα αναμένετε να βρείτε σε μία επιστημονική αριθμομηχανή, και ακόμη:</p>
     <p xml:lang="en-GB">KCalc has everything you would expect from a scientific calculator, plus:</p>
     <p xml:lang="es">KCalc tiene todo lo que cabría esperar de una calculadora científica, además de:</p>
     <p xml:lang="et">KCalc pakub kõike, mida oskad soovida ühelt teaduslikult kalkulaatorilt ja sellele lisaks veel:</p>
@@ -115,6 +115,7 @@
       <li xml:lang="ca">Funcions trigonomètriques, operacions lògiques i càlculs estadístics</li>
       <li xml:lang="ca-valencia">Funcions trigonomètriques, operacions lògiques i càlculs estadístics</li>
       <li xml:lang="de">Trigonometrische Funktionen, logische Operationen und statistische Berechnungen</li>
+      <li xml:lang="el">Τριγωνομετρικές συναρτήσεις, λογικές πράξεις και στατιστικούς υπολογισμούς</li>
       <li xml:lang="en-GB">Trigonometric functions, logic operations and statistical calculations</li>
       <li xml:lang="es">Funciones trigonométricas, operaciones lógicas y cálculos estadísticos</li>
       <li xml:lang="eu">Funtzio trigonometrikoak, eragiketa logikoak eta kalkulu estatistikoak</li>
@@ -139,6 +140,7 @@
       <li xml:lang="ca">Una pila de resultats que permet la invocació adequada dels resultats de càlculs anteriors</li>
       <li xml:lang="ca-valencia">Una pila de resultats que permet la invocació adequada dels resultats de càlculs anteriors</li>
       <li xml:lang="de">Ein Ergebnis-Stack, mit dem Sie bequem frühere Resultate abrufen können</li>
+      <li xml:lang="el">Μια στοίβα αποτελεσμάτων η οποία επιτρέπει τη βολική επαναφορά προηγούμενων αποτελεσμάτων υπολογισμών</li>
       <li xml:lang="en-GB">A results stack which enables convenient recall of previous calculation results</li>
       <li xml:lang="es">Una pila de resultados que permite reutilizar los resultados de cálculos anteriores</li>
       <li xml:lang="eu">Emaitza-meta bat, egoki denerako, aurreko kalkulu-emaitzen itzularaztea gaitzen duena</li>
@@ -163,6 +165,7 @@
       <li xml:lang="ca">La precisió és definible per l'usuari</li>
       <li xml:lang="ca-valencia">La precisió és definible per l'usuari</li>
       <li xml:lang="cs">Volitelná přesnost</li>
+      <li xml:lang="el">Η ακρίβεια μπορεί να ορισθεί από το χρήστη</li>
       <li xml:lang="en-GB">Precision is user-definable</li>
       <li xml:lang="es">El usuario puede definir la precisión</li>
       <li xml:lang="eu">Doitasuna erabiltzaileak zehaztu dezake</li>
@@ -186,6 +189,7 @@
       <li>The display allows cut and paste of numbers</li>
       <li xml:lang="ca">El visor permet retallar i enganxar nombres</li>
       <li xml:lang="ca-valencia">El visor permet retallar i enganxar nombres</li>
+      <li xml:lang="el">Η οθόνη επιτρέπει αποκοπή και επικόλληση αριθμών</li>
       <li xml:lang="en-GB">The display allows cut and paste of numbers</li>
       <li xml:lang="es">La pantalla permite cortar y pegar números</li>
       <li xml:lang="eu">Bistaratzaileak zenbakiak ebakitzea eta itsastea onartzen du</li>
@@ -209,6 +213,7 @@
       <li>The display colors and font are configurable, aiding usability</li>
       <li xml:lang="ca">Els colors del visor i el tipus de lletra són configurables, ajudant a la usabilitat</li>
       <li xml:lang="ca-valencia">Els colors del visor i el tipus de lletra són configurables, ajudant a la usabilitat</li>
+      <li xml:lang="el">Τα χρώματα και η γραμματοσειρά της οθόνης είναι διαμορφώσιμα, βοηθητικά της χρηστικότητας</li>
       <li xml:lang="en-GB">The display colours and font are configurable, aiding usability</li>
       <li xml:lang="es">Puede configurar el color de la pantalla y el tipo de letra, lo que ayuda a la usabilidad</li>
       <li xml:lang="eu">Bistaratzailearen koloreak eta letra-tipoak konfiguragarriak dira, erabilerraztasuna hobetuz</li>
@@ -232,6 +237,7 @@
       <li>The use of key-bindings make it easy to use without a pointing device</li>
       <li xml:lang="ca">L'ús dels lligams de tecles facilita l'ús sense un dispositiu apuntador</li>
       <li xml:lang="ca-valencia">L'ús dels lligams de tecles facilita l'ús sense un dispositiu apuntador</li>
+      <li xml:lang="el">Η χρήση συνδυασμών πλήκτρων διευκολύνει τη χρήση αν δεν υπάρχει συσκευή δεικτοδότησης</li>
       <li xml:lang="en-GB">The use of key-bindings make it easy to use without a pointing device</li>
       <li xml:lang="es">El uso de asignaciones de teclas facilita su uso sin un dispositivo apuntador</li>
       <li xml:lang="eu">Tekla-konbinazioen erabilerak errazten du erakusle-gailurik gabe erabiltzea</li>
@@ -264,6 +270,7 @@
       <caption xml:lang="ca">Finestra principal del KCalc</caption>
       <caption xml:lang="ca-valencia">Finestra principal del KCalc</caption>
       <caption xml:lang="de">Hauptfenster von KCalc</caption>
+      <caption xml:lang="el">Κύριο παράθυρο του KCalc</caption>
       <caption xml:lang="en-GB">Main window of KCalc</caption>
       <caption xml:lang="es">Ventana principal de KCalc</caption>
       <caption xml:lang="eu">KCalc leiho nagusia</caption>
