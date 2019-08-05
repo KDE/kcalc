@@ -165,6 +165,7 @@
       <li xml:lang="ca">La precisió és definible per l'usuari</li>
       <li xml:lang="ca-valencia">La precisió és definible per l'usuari</li>
       <li xml:lang="cs">Volitelná přesnost</li>
+      <li xml:lang="de">Benutzerdefinierbare Genauigkeit</li>
       <li xml:lang="el">Η ακρίβεια μπορεί να ορισθεί από το χρήστη</li>
       <li xml:lang="en-GB">Precision is user-definable</li>
       <li xml:lang="es">El usuario puede definir la precisión</li>
@@ -189,6 +190,7 @@
       <li>The display allows cut and paste of numbers</li>
       <li xml:lang="ca">El visor permet retallar i enganxar nombres</li>
       <li xml:lang="ca-valencia">El visor permet retallar i enganxar nombres</li>
+      <li xml:lang="de">In der Anzeige können Zahlen kopiert und eingefügt werden</li>
       <li xml:lang="el">Η οθόνη επιτρέπει αποκοπή και επικόλληση αριθμών</li>
       <li xml:lang="en-GB">The display allows cut and paste of numbers</li>
       <li xml:lang="es">La pantalla permite cortar y pegar números</li>
