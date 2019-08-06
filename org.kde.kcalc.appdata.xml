@@ -211,6 +211,7 @@
       <li>The display colors and font are configurable, aiding usability</li>
       <li xml:lang="ca">Els colors del visor i el tipus de lletra són configurables, ajudant a la usabilitat</li>
       <li xml:lang="ca-valencia">Els colors del visor i el tipus de lletra són configurables, ajudant a la usabilitat</li>
+      <li xml:lang="de">Farbe und Zeichensatz der Anzeige können angepasst werden und verbessern damit die Lesbarkeit</li>
       <li xml:lang="en-GB">The display colours and font are configurable, aiding usability</li>
       <li xml:lang="es">Puede configurar el color de la pantalla y el tipo de letra, lo que ayuda a la usabilidad</li>
       <li xml:lang="eu">Bistaratzailearen koloreak eta letra-tipoak konfiguragarriak dira, erabilerraztasuna hobetuz</li>
@@ -234,6 +235,7 @@
       <li>The use of key-bindings make it easy to use without a pointing device</li>
       <li xml:lang="ca">L'ús dels lligams de tecles facilita l'ús sense un dispositiu apuntador</li>
       <li xml:lang="ca-valencia">L'ús dels lligams de tecles facilita l'ús sense un dispositiu apuntador</li>
+      <li xml:lang="de">Tastenbelegungen ermöglichen das Arbeiten ohne Zeigergerät</li>
       <li xml:lang="en-GB">The use of key-bindings make it easy to use without a pointing device</li>
       <li xml:lang="es">El uso de asignaciones de teclas facilita su uso sin un dispositivo apuntador</li>
       <li xml:lang="eu">Tekla-konbinazioen erabilerak errazten du erakusle-gailurik gabe erabiltzea</li>
