@@ -315,7 +315,7 @@ void KCalcDisplay::slotPaste(bool bClipboard) {
 				&& QLocale().groupSeparator() != QChar::fromLatin1('.')
 				)
 			&& tmp_str.count(QChar::fromLatin1('.')) == 1) {
-		tmp_str = tmp_str.replace(QChar::fromLatin1('.'), QChar::fromLatin1(','));
+		tmp_str.replace(QChar::fromLatin1('.'), QChar::fromLatin1(','));
 	}
 
 	if (tmp_num_base != NB_DECIMAL) {
