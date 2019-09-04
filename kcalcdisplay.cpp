@@ -299,7 +299,7 @@ void KCalcDisplay::slotPaste(bool bClipboard) {
 	} else if (tmp_str.startsWith(QLatin1String("0b"))) {
 		tmp_num_base = NB_BINARY;
 		tmp_str.remove(0, 2);
-	} else if (tmp_str.startsWith(QLatin1String("0"))) {
+	} else if (tmp_str.startsWith(QLatin1Char('0'))) {
 		// we don't want this to trigger on "0.xxxxxx" cases
 		if(tmp_str.length() < 2 || QString(tmp_str[1]) != KNumber::decimalSeparator()) {
 			tmp_num_base = NB_OCTAL;
@@ -858,7 +858,7 @@ void KCalcDisplay::newCharacter(const QChar new_char) {
 		}
 	} else {
 		// handle first character
-		if (str_int_ == QLatin1String("0")) {
+		if (str_int_ == QLatin1Char('0')) {
 			switch (new_char.toLatin1()) {
 			case 'e':
 				// display "0e" not just "e"
@@ -925,7 +925,7 @@ void KCalcDisplay::deleteLastDigit() {
 bool KCalcDisplay::changeSign() {
 
 	//stupid way, to see if in input_mode or display_mode
-	if (str_int_ == QLatin1String("0")) {
+	if (str_int_ == QLatin1Char('0')) {
 		return false;
 	}
 
