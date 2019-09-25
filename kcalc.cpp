@@ -100,6 +100,8 @@ KCalculator::KCalculator(QWidget *parent) :
 	base_choose_group_->addButton(binRadio, BinMode);
 	connect(base_choose_group_, QOverload<int>::of(&QButtonGroup::buttonClicked), this, &KCalculator::slotBaseSelected);
 
+	base_conversion_labels_ = { binDisplay, hexDisplay, decDisplay, octDisplay };
+
 	angle_choose_group_ =  new QButtonGroup(this);
 	angle_choose_group_->setExclusive(true);
 	angle_choose_group_->addButton(degRadio, DegMode);
@@ -1870,6 +1872,19 @@ void KCalculator::slotSetNumeralMode() {
 }
 
 //------------------------------------------------------------------------------
+// Name: slotBaseModeAmountChanged
+// Desc: updates numerical base conversions
+//------------------------------------------------------------------------------
+void KCalculator::slotBaseModeAmountChanged(KNumber number) {
+	quint64 n = number.toUint64();
+
+	decDisplay->setText(QString::number(n, 10));
+	binDisplay->setText(QString::number(n, 2));
+	octDisplay->setText(QString::number(n, 8));
+	hexDisplay->setText(QString::number(n, 16).toUpper());
+}
+
+//------------------------------------------------------------------------------
 // Name: showMemButtons
 // Desc: hides or shows the memory buttons
 //------------------------------------------------------------------------------
@@ -1960,6 +1975,11 @@ void KCalculator::showLogicButtons(bool toggled) {
 			btn->show();
 		}
 
+		for (QLabel* lbl : base_conversion_labels_) {
+			lbl->show();
+		}
+		connect(calc_display, &KCalcDisplay::changedAmount, this, &KCalculator::slotBaseModeAmountChanged);
+
 		for (int i = 10; i < 16; ++i) {
 			(num_button_group_->button(i))->show();
 		}
@@ -1978,6 +1998,11 @@ void KCalculator::showLogicButtons(bool toggled) {
 		foreach(QAbstractButton *btn, base_choose_group_->buttons()) {
 			btn->hide();
 		}
+
+		for (QLabel* lbl : base_conversion_labels_) {
+			lbl->hide();
+		}
+		connect(calc_display, &KCalcDisplay::changedAmount, this, &KCalculator::slotBaseModeAmountChanged);
 
 		statusBar()->setBaseIndicatorVisible(false);
 		calc_display->setStatusText(BaseField, QString());

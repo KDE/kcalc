@@ -223,6 +223,8 @@ protected Q_SLOTS:
     void slotBitsetChanged(quint64);
     void slotUpdateBitset(const KNumber &);
 
+    void slotBaseModeAmountChanged(KNumber number);
+
 private:
     enum StatusField {
         ShiftField = 0,
@@ -264,6 +266,8 @@ private:
     QList<QAbstractButton*> scientific_buttons_;
     QList<QAbstractButton*> stat_buttons_;
     QList<QAbstractButton*> const_buttons_;
+
+    std::array<QLabel*, 4> base_conversion_labels_;
 
     KToggleAction *action_bitset_show_;
     KToggleAction *action_constants_show_;
