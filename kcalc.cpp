@@ -1622,7 +1622,7 @@ void KCalculator::showSettings() {
 
 	// color settings
     Colors *const color = new Colors(nullptr);
-	dialog->addPage(color, i18n("Colors"), QStringLiteral("format-fill-color"), i18n("Button & Display Colors"));
+	dialog->addPage(color, i18n("Colors"), QStringLiteral("preferences-desktop-color"), i18n("Button & Display Colors"));
 
 	// constant settings
 	if (!constants_) {
