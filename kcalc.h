@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class Constants;
 class QButtonGroup;
+class QLabel;
 class KToggleAction;
 class KCalcConstMenu;
 class KCalcStatusBar;
@@ -56,7 +57,7 @@ class KCalcStatusBar;
 #include "ui_constants.h"
 #include "ui_colors.h"
 
-
+#include <array>
 #include <kxmlguiwindow.h>
 
 class General: public QWidget, public Ui::General
