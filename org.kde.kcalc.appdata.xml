@@ -118,6 +118,7 @@
       <li xml:lang="el">Τριγωνομετρικές συναρτήσεις, λογικές πράξεις και στατιστικούς υπολογισμούς</li>
       <li xml:lang="en-GB">Trigonometric functions, logic operations and statistical calculations</li>
       <li xml:lang="es">Funciones trigonométricas, operaciones lógicas y cálculos estadísticos</li>
+      <li xml:lang="et">Trigonomeetrilised funktsioonid, loogikatehted ja statistilised arvutused</li>
       <li xml:lang="eu">Funtzio trigonometrikoak, eragiketa logikoak eta kalkulu estatistikoak</li>
       <li xml:lang="fi">Trigonometriset funktiot, loogiset operaatiot ja tilastolaskenta</li>
       <li xml:lang="fr">Fonctions trigonométriques, opérations logiques et calculs statistiques</li>
@@ -143,6 +144,7 @@
       <li xml:lang="el">Μια στοίβα αποτελεσμάτων η οποία επιτρέπει τη βολική επαναφορά προηγούμενων αποτελεσμάτων υπολογισμών</li>
       <li xml:lang="en-GB">A results stack which enables convenient recall of previous calculation results</li>
       <li xml:lang="es">Una pila de resultados que permite reutilizar los resultados de cálculos anteriores</li>
+      <li xml:lang="et">Tulemuste pinu, mis lubab mugavalt kätte saada varasemaid arvutustulemusi</li>
       <li xml:lang="eu">Emaitza-meta bat, egoki denerako, aurreko kalkulu-emaitzen itzularaztea gaitzen duena</li>
       <li xml:lang="fi">Tulospino, jonka ansiosta aiemmat laskentatulokset on helppo palauttaa</li>
       <li xml:lang="fr">Une pile de résultats permettant un rappel aisé des résultats des calculs précédents</li>
@@ -169,6 +171,7 @@
       <li xml:lang="el">Η ακρίβεια μπορεί να ορισθεί από το χρήστη</li>
       <li xml:lang="en-GB">Precision is user-definable</li>
       <li xml:lang="es">El usuario puede definir la precisión</li>
+      <li xml:lang="et">Täpsuse saab määrata kasutaja</li>
       <li xml:lang="eu">Doitasuna erabiltzaileak zehaztu dezake</li>
       <li xml:lang="fi">Tarkkuus käyttäjän määritettävissä</li>
       <li xml:lang="fr">Précision définie par l'utilisateur</li>
@@ -194,6 +197,7 @@
       <li xml:lang="el">Η οθόνη επιτρέπει αποκοπή και επικόλληση αριθμών</li>
       <li xml:lang="en-GB">The display allows cut and paste of numbers</li>
       <li xml:lang="es">La pantalla permite cortar y pegar números</li>
+      <li xml:lang="et">Rakendus võimaldab arve lõigata ja asetada</li>
       <li xml:lang="eu">Bistaratzaileak zenbakiak ebakitzea eta itsastea onartzen du</li>
       <li xml:lang="fi">Näyttö sallii lukujen leikkaamisen ja liittämisen</li>
       <li xml:lang="fr">L'affichage permet de couper et coller des nombres</li>
@@ -219,6 +223,7 @@
       <li xml:lang="el">Τα χρώματα και η γραμματοσειρά της οθόνης είναι διαμορφώσιμα, βοηθητικά της χρηστικότητας</li>
       <li xml:lang="en-GB">The display colours and font are configurable, aiding usability</li>
       <li xml:lang="es">Puede configurar el color de la pantalla y el tipo de letra, lo que ayuda a la usabilidad</li>
+      <li xml:lang="et">Vaate värve ja fonte saab ise määrata</li>
       <li xml:lang="eu">Bistaratzailearen koloreak eta letra-tipoak konfiguragarriak dira, erabilerraztasuna hobetuz</li>
       <li xml:lang="fi">Näyttövärit ja -fontti ovat mukautettavissa, mikä parantaa käytettävyyttä</li>
       <li xml:lang="fr">Les couleurs et la police d'affichage sont configurables pour une plus grande utilisabilité</li>
@@ -244,6 +249,7 @@
       <li xml:lang="el">Η χρήση συνδυασμών πλήκτρων διευκολύνει τη χρήση αν δεν υπάρχει συσκευή δεικτοδότησης</li>
       <li xml:lang="en-GB">The use of key-bindings make it easy to use without a pointing device</li>
       <li xml:lang="es">El uso de asignaciones de teclas facilita su uso sin un dispositivo apuntador</li>
+      <li xml:lang="et">Kiirklahvid võimaldavad rakendust kasutada isegi ilma osutusseadmeta</li>
       <li xml:lang="eu">Tekla-konbinazioen erabilerak errazten du erakusle-gailurik gabe erabiltzea</li>
       <li xml:lang="fi">Näppäinsidosten avulla osoitinlaitteetonkin käyttö on helppoa</li>
       <li xml:lang="fr">L'utilisation de raccourcis claviers rend facile l'utilisation sans dispositif de pointage</li>
@@ -277,6 +283,7 @@
       <caption xml:lang="el">Κύριο παράθυρο του KCalc</caption>
       <caption xml:lang="en-GB">Main window of KCalc</caption>
       <caption xml:lang="es">Ventana principal de KCalc</caption>
+      <caption xml:lang="et">KCalci peaaken</caption>
       <caption xml:lang="eu">KCalc leiho nagusia</caption>
       <caption xml:lang="fi">KCalcin pääikkuna</caption>
       <caption xml:lang="fr">Fenêtre principale de KCalc</caption>
