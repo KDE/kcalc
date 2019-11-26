@@ -119,7 +119,7 @@ buttons</link> and allows changing the numeral system.</action>
 <para>
 Additionally &kcalc; has the common <guimenu>File</guimenu>, <guimenu>Edit</guimenu>,
 <guimenu>Settings</guimenu> and <guimenu>Help</guimenu> menu items, for more information
-read the sections about the <ulink url="help:/fundamentals/ui.html#menus">Menus</ulink>
+read the sections about the <ulink url="help:/fundamentals/menus.html">Menus</ulink>
 in the &kde; Fundamentals.
 
 </para>
