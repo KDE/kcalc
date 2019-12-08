@@ -44,7 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <KStandardAction>
 #include <KToggleAction>
 #include <KToolBar>
-#include <kxmlguifactory.h>
+#include <KXMLGUIFactory>
 #include <Kdelibs4ConfigMigrator>
 #include <KCrash>
 

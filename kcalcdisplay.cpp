@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QStyleOption>
 #include <QTimer>
 
-#include <knotification.h>
+#include <KNotification>
 
 #include "kcalc_core.h"
 #include "kcalc_settings.h"
