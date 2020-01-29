@@ -165,9 +165,9 @@ protected Q_SLOTS:
 
     void slotConstantsShow(bool toggled);
     void slotBitsetshow(bool toggled);
-    void slotAngleSelected(int mode);
-    void slotBaseSelected(int base);
-    void slotNumberclicked(int number_clicked);
+    void slotAngleSelected(QAbstractButton *button);
+    void slotBaseSelected(QAbstractButton *button);
+    void slotNumberclicked(QAbstractButton *button);
     void slotEEclicked();
     void slotShifttoggled(bool myboolean);
     void slotMemRecallclicked();

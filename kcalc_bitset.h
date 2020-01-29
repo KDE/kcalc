@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QFrame>
 
 class QButtonGroup;
-
+class QAbstractButton;
 class KCalcBitset : public QFrame {
 	Q_OBJECT
 	
@@ -35,7 +35,7 @@ public:
 
 public Q_SLOTS:
 	void setValue(quint64 value);
-	void slotToggleBit(int bit);
+	void slotToggleBit(QAbstractButton *button);
 
 Q_SIGNALS:
 	void valueChanged(quint64 value);

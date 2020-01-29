@@ -98,7 +98,7 @@ KCalculator::KCalculator(QWidget *parent) :
 	base_choose_group_->addButton(decRadio, DecMode);
 	base_choose_group_->addButton(octRadio, OctMode);
 	base_choose_group_->addButton(binRadio, BinMode);
-	connect(base_choose_group_, QOverload<int>::of(&QButtonGroup::buttonClicked), this, &KCalculator::slotBaseSelected);
+	connect(base_choose_group_, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &KCalculator::slotBaseSelected);
 
 	base_conversion_labels_ = { binDisplay, hexDisplay, decDisplay, octDisplay };
 
@@ -107,7 +107,7 @@ KCalculator::KCalculator(QWidget *parent) :
 	angle_choose_group_->addButton(degRadio, DegMode);
 	angle_choose_group_->addButton(radRadio, RadMode);
 	angle_choose_group_->addButton(gradRadio, GradMode);
-	connect(angle_choose_group_, QOverload<int>::of(&QButtonGroup::buttonClicked), this, &KCalculator::slotAngleSelected);
+	connect(angle_choose_group_, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &KCalculator::slotAngleSelected);
 
 	// additional menu setup
 	constants_menu_ = createConstantsMenu();
@@ -245,7 +245,7 @@ KCalcStatusBar *KCalculator::statusBar() {
 void KCalculator::setupNumberKeys() {
 
     num_button_group_ = new QButtonGroup(this);
-    connect(num_button_group_, QOverload<int>::of(&QButtonGroup::buttonClicked), this, &KCalculator::slotNumberclicked);
+    connect(num_button_group_, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &KCalculator::slotNumberclicked);
 
     num_button_group_->addButton(pb0, 0);
     num_button_group_->addButton(pb1, 1);
@@ -729,8 +729,9 @@ void KCalculator::slotConstantToDisplay(const science_constant &const_chosen) {
 // Name: slotBaseSelected
 // Desc: changes the selected numeric base
 //------------------------------------------------------------------------------
-void KCalculator::slotBaseSelected(int base) {
-
+void KCalculator::slotBaseSelected(QAbstractButton *button) {
+    if (button) {
+        const int base = base_choose_group_->id(button);
 	int current_base;
 
 	// set display & statusbar (if item exist in statusbar)
@@ -785,6 +786,7 @@ void KCalculator::slotBaseSelected(int base) {
 	}
 
 	KCalcSettings::setBaseMode(base);
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -860,8 +862,10 @@ void KCalculator::keyReleaseEvent(QKeyEvent *e) {
 // Name: slotAngleSelected
 // Desc: changes the selected angle system
 //------------------------------------------------------------------------------
-void KCalculator::slotAngleSelected(int mode) {
+void KCalculator::slotAngleSelected(QAbstractButton *button) {
 
+    if (button) {
+        const int mode = angle_choose_group_->id(button);
 	angle_mode_ = mode;
 
 	statusBar()->setAngleMode(KCalcStatusBar::AngleMode(mode));
@@ -880,6 +884,7 @@ void KCalculator::slotAngleSelected(int mode) {
 	}
 
 	KCalcSettings::setAngleMode(angle_mode_);
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -951,10 +956,13 @@ void KCalculator::slotMemStoreclicked() {
 // Name: slotNumberclicked
 // Desc: user has entered a digit
 //------------------------------------------------------------------------------
-void KCalculator::slotNumberclicked(int number_clicked) {
+void KCalculator::slotNumberclicked(QAbstractButton *button) {
 
+    if (button) {
+        const int number_clicked = num_button_group_->id(button);
 	calc_display->enterDigit(number_clicked);
 	core.setOnlyUpdateOperation(false);
+    }
 }
 
 //------------------------------------------------------------------------------

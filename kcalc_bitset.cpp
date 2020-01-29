@@ -73,7 +73,7 @@ KCalcBitset::KCalcBitset(QWidget *parent) : QFrame(parent), bit_button_group_(ne
 
 	setFrameStyle(QFrame::Panel | QFrame::Sunken);
 
-	connect(bit_button_group_, QOverload<int>::of(&QButtonGroup::buttonClicked), this, &KCalcBitset::slotToggleBit);
+	connect(bit_button_group_, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &KCalcBitset::slotToggleBit);
 
 	// smaller label font
 	QFont fnt = font();
@@ -147,10 +147,13 @@ quint64 KCalcBitset::getValue() const {
 // Name: slotToggleBit
 // Desc: inverts the value of a single bit
 //------------------------------------------------------------------------------
-void KCalcBitset::slotToggleBit(int bit) {
+void KCalcBitset::slotToggleBit(QAbstractButton *button) {
 
-    const quint64 nv = getValue() ^(1LL << bit);
-    setValue(nv);
-    emit valueChanged(value_);
+    if (button) {
+        const int bit = bit_button_group_->id(button);
+        const quint64 nv = getValue() ^(1LL << bit);
+        setValue(nv);
+        emit valueChanged(value_);
+    }
 }
 
