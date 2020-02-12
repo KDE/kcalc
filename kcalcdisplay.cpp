@@ -1023,5 +1023,5 @@ QSize KCalcDisplay::sizeHint() const {
 	QStyleOptionFrame option;
 	initStyleOption(&option);
 
-	return (style()->sizeFromContents(QStyle::CT_LineEdit, &option, sz.expandedTo(QApplication::globalStrut()),	this));
+	return (style()->sizeFromContents(QStyle::CT_LineEdit, &option, sz,	this));
 }

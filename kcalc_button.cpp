@@ -210,7 +210,6 @@ void KCalcButton::calcSizeHint() {
 	}
 
 	size_ += QSize(margin * 2, margin * 2);
-	size_ = size_.expandedTo(QApplication::globalStrut());
 }
 
 //------------------------------------------------------------------------------

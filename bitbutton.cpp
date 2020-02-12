@@ -42,7 +42,7 @@ BitButton::BitButton(QWidget *parent) : QAbstractButton(parent), on_(false) , ov
 		size.setWidth(size.height());
 	}
 	
-	setFixedSize(size.expandedTo(QApplication::globalStrut()));
+	setFixedSize(size);
 
 	this->setAttribute(Qt::WA_Hover, true);
 }
