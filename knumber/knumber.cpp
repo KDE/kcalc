@@ -295,7 +295,6 @@ KNumber::KNumber(const QString &s) : value_(nullptr) {
 
 				const QString ipart = list[1];
 				const QString fpart = list[2];
-				const QString epart = list[3];
 				const int e_val     = list[4].toInt();
 
 				QString num = ipart + fpart.mid(1);
