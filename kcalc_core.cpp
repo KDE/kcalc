@@ -872,6 +872,10 @@ void CalcEngine::enterOperation(const KNumber &number, Operation func)
     else
         stack_.push(tmp_node);
 
+    // The check for '=' or '%' is unnecessary; it is just a safety measure
+    if (!((func == FUNC_EQUAL) || (func == FUNC_PERCENT)))
+        setOnlyUpdateOperation(true);
+
     evalStack();
 }
 

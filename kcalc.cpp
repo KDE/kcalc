@@ -2127,7 +2127,6 @@ void KCalculator::updateDisplay(UpdateFlags flags) {
 
 	if(flags & UPDATE_FROM_CORE) {
 		calc_display->updateFromCore(core, (flags & UPDATE_STORE_RESULT) != 0);
-		core.setOnlyUpdateOperation(true);
 	} else {
 		calc_display->update();
 	}
