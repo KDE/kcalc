@@ -1515,11 +1515,11 @@ void KCalculator::slotStatStdDevclicked() {
 
 	if (shift_mode_) {
 		// std (n-1)
-		core.StatStdDeviation(KNumber::Zero);
+		core.StatStdSample(KNumber::Zero);
 		pbShift->setChecked(false);
 	} else {
 		// std (n)
-		core.StatStdSample(KNumber::Zero);
+		core.StatStdDeviation(KNumber::Zero);
 	}
 
 	updateDisplay(UPDATE_FROM_CORE);
@@ -1533,10 +1533,8 @@ void KCalculator::slotStatStdDevclicked() {
 void KCalculator::slotStatMedianclicked() {
 
 	if (!shift_mode_) {
-		// std (n-1)
 		core.StatMedian(KNumber::Zero);
 	} else {
-		// std (n)
 		core.StatMedian(KNumber::Zero);
 		pbShift->setChecked(false);
 	}
