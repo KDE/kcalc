@@ -760,12 +760,12 @@ void KCalculator::slotBaseSelected(QAbstractButton *button) {
 
 	// Enable the buttons available in this base
 	for (int i = 0; i < current_base; ++i) {
-		(num_button_group_->buttons()[i])->setEnabled(true);
+                (num_button_group_->buttons().at(i))->setEnabled(true);
 	}
 
 	// Disable the buttons not available in this base
 	for (int i = current_base; i < 16; ++i) {
-		(num_button_group_->buttons()[i])->setEnabled(false);
+                (num_button_group_->buttons().at(i))->setEnabled(false);
 	}
 
 	// Only enable the decimal point in decimal
@@ -1883,7 +1883,7 @@ void KCalculator::slotSetNumeralMode() {
 // Name: slotBaseModeAmountChanged
 // Desc: updates numerical base conversions
 //------------------------------------------------------------------------------
-void KCalculator::slotBaseModeAmountChanged(KNumber number) {
+void KCalculator::slotBaseModeAmountChanged(const KNumber &number) {
 	quint64 n = number.toUint64();
 
 	decDisplay->setText(QString::number(n, 10));
@@ -2322,11 +2322,11 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e) {
 				// Was it hex-button or normal digit??
 				if (num_but < 10) {
 					for (int i = 0; i < 10; ++i) {
-						(num_button_group_->buttons()[i])->setStyleSheet(sheet.arg(cn));
+                                                (num_button_group_->buttons().at(i))->setStyleSheet(sheet.arg(cn));
 					}
 				} else {
 					for (int i = 10; i < 16; ++i) {
-						(num_button_group_->buttons()[i])->setStyleSheet(sheet.arg(cn));
+                                                (num_button_group_->buttons().at(i))->setStyleSheet(sheet.arg(cn));
 					}
 				}
 				return true;
@@ -2388,7 +2388,7 @@ extern "C" Q_DECL_EXPORT int kdemain(int argc, char *argv[]) {
                               "Copyright © 2000-2008, The KDE Team\n"
                               "Copyright © 2003-2005, Klaus Niederkr" "\xc3\xbc" "ger\n"
                               "Copyright © 1996-2000, Bernd Johannes Wuebben"),
-                         QStringLiteral(),
+                         QString(),
                          QStringLiteral("https://utils.kde.org/projects/kcalc"));
 
 	// Klaus Niederkrueger

@@ -224,7 +224,7 @@ protected Q_SLOTS:
     void slotBitsetChanged(quint64);
     void slotUpdateBitset(const KNumber &);
 
-    void slotBaseModeAmountChanged(KNumber number);
+    void slotBaseModeAmountChanged(const KNumber &number);
 
 private:
     enum StatusField {
