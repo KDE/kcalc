@@ -226,6 +226,8 @@ protected Q_SLOTS:
 
     void slotBaseModeAmountChanged(const KNumber &number);
 
+    void slotPaste();
+
 private:
     enum StatusField {
         ShiftField = 0,

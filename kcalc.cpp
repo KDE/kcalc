@@ -178,7 +178,7 @@ void KCalculator::setupMainActions() {
 	KStandardAction::redo(calc_display, SLOT(slotHistoryForward()), actionCollection());
 	KStandardAction::cut(calc_display, SLOT(slotCut()), actionCollection());
 	KStandardAction::copy(calc_display, SLOT(slotCopy()), actionCollection());
-	KStandardAction::paste(calc_display, SLOT(slotPaste()), actionCollection());
+	KStandardAction::paste(this, SLOT(slotPaste()), actionCollection());
 
 	// mode menu
 	QActionGroup *modeGroup = new QActionGroup(this);
@@ -723,6 +723,7 @@ void KCalculator::slotConstantToDisplay(const science_constant &const_chosen) {
 	val.replace(QLatin1Char('.'), KNumber::decimalSeparator());
 	calc_display->setAmount(KNumber(val));
     updateDisplay({});
+    core.setOnlyUpdateOperation(false);
 }
 
 //------------------------------------------------------------------------------
@@ -936,6 +937,7 @@ void KCalculator::slotMemRecallclicked() {
 
 	calc_display->setAmount(memory_num_);
     updateDisplay({});
+    core.setOnlyUpdateOperation(false);
 }
 
 //------------------------------------------------------------------------------
@@ -1485,6 +1487,7 @@ void KCalculator::slotStatNumclicked() {
 	}
 
 	updateDisplay(UPDATE_FROM_CORE);
+    core.setOnlyUpdateOperation(false);
 }
 
 //------------------------------------------------------------------------------
@@ -1501,6 +1504,7 @@ void KCalculator::slotStatMeanclicked() {
 	}
 
 	updateDisplay(UPDATE_FROM_CORE);
+    core.setOnlyUpdateOperation(false);
 }
 
 //------------------------------------------------------------------------------
@@ -1519,6 +1523,7 @@ void KCalculator::slotStatStdDevclicked() {
 	}
 
 	updateDisplay(UPDATE_FROM_CORE);
+    core.setOnlyUpdateOperation(false);
 }
 
 //------------------------------------------------------------------------------
@@ -1538,6 +1543,7 @@ void KCalculator::slotStatMedianclicked() {
 
 	// TODO: it seems two different modes should be implemented, but...?
 	updateDisplay(UPDATE_FROM_CORE);
+    core.setOnlyUpdateOperation(false);
 }
 
 //------------------------------------------------------------------------------
@@ -1555,6 +1561,7 @@ void KCalculator::slotStatDataInputclicked() {
 	}
 
 	updateDisplay(UPDATE_FROM_CORE);
+    core.setOnlyUpdateOperation(false);
 }
 
 //------------------------------------------------------------------------------
@@ -1603,6 +1610,7 @@ void KCalculator::slotConstclicked(int button) {
 		}
 
         updateDisplay({});
+        core.setOnlyUpdateOperation(false);
 	}
 }
 
@@ -2075,6 +2083,7 @@ void KCalculator::slotBitsetChanged(quint64 value) {
 
     calc_display->setAmount(KNumber(value));
     updateDisplay({});
+    core.setOnlyUpdateOperation(false);
 }
 
 //------------------------------------------------------------------------------
@@ -2352,6 +2361,15 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e) {
 	default:
 		return KXmlGuiWindow::eventFilter(o, e);
 	}
+}
+
+//------------------------------------------------------------------------------
+// Name: slotPaste
+// Desc: paste a number from the clipboard
+//------------------------------------------------------------------------------
+void KCalculator::slotPaste() {
+    calc_display->slotPaste();
+    core.setOnlyUpdateOperation(false);
 }
 
 ////////////////////////////////////////////////////////////////
