@@ -36,7 +36,6 @@
   <name xml:lang="sv">Kcalc</name>
   <name xml:lang="tr">KCalc</name>
   <name xml:lang="uk">KCalc</name>
-  <name xml:lang="x-test">xxKCalcxx</name>
   <name xml:lang="zh-CN">KCalc</name>
   <name xml:lang="zh-TW">KDE 計算機</name>
   <summary>Scientific Calculator</summary>
@@ -72,7 +71,6 @@
   <summary xml:lang="sv">Vetenskaplig miniräknare</summary>
   <summary xml:lang="tr">Bilimsel Hesap Makinesi</summary>
   <summary xml:lang="uk">Інженерний калькулятор</summary>
-  <summary xml:lang="x-test">xxScientific Calculatorxx</summary>
   <summary xml:lang="zh-CN">科学计算器</summary>
   <summary xml:lang="zh-TW">科學計算機</summary>
   <description>
@@ -107,7 +105,6 @@
     <p xml:lang="sv">Miniräknaren har allt som man kan förvänta sig av en vetenskaplig räknare, samt:</p>
     <p xml:lang="tr">KCalc, bilimsel bir hesap makinesinden bekleyebileceğiniz her şeye sahiptir. Ayrıca:</p>
     <p xml:lang="uk">KCalc вміє усе, що ви могли б очікувати від інженерного калькулятора, а крім того, вміє таке:</p>
-    <p xml:lang="x-test">xxKCalc has everything you would expect from a scientific calculator, plus:xx</p>
     <p xml:lang="zh-CN">KCalc 具有您所期待的科学计算器的全部功能，以及：</p>
     <p xml:lang="zh-TW">KDE 計算機有所有您預期科學計算機會有的功能，再加上：</p>
     <ul>
@@ -136,7 +133,6 @@
       <li xml:lang="sl">Trigonometrične funkcije, logične operacije in statistične izračune</li>
       <li xml:lang="sv">Trigonometriska funktioner, logiska operationer och statistiska beräkningar</li>
       <li xml:lang="uk">Обчислювати тригонометричні функції, виконувати операції логіки та статистичні обчислення.</li>
-      <li xml:lang="x-test">xxTrigonometric functions, logic operations and statistical calculationsxx</li>
       <li xml:lang="zh-CN">三角函数、逻辑运算和统计计算</li>
       <li xml:lang="zh-TW">三角函數，邏輯運算和統計計算</li>
       <li>A results stack which enables convenient recall of previous calculation results</li>
@@ -164,7 +160,6 @@
       <li xml:lang="sl">Sklad rezultatov, ki omogoča priročen priklic prejšnjega rezultata izračuna</li>
       <li xml:lang="sv">En resultatstack som gör det möjligt att bekvämt hämta tidigare beräkningsresultat</li>
       <li xml:lang="uk">Має стек результатів, за допомогою якого зручно викликати результати попередніх обчислень.</li>
-      <li xml:lang="x-test">xxA results stack which enables convenient recall of previous calculation resultsxx</li>
       <li xml:lang="zh-CN">结果堆栈，可以方便地召回以前的计算结果</li>
       <li xml:lang="zh-TW">有個能幫助以方便重新取得前次計算結果的結果記錄堆疊</li>
       <li>Precision is user-definable</li>
@@ -193,7 +188,6 @@
       <li xml:lang="sl">Natančnost lahko določi uporabnik</li>
       <li xml:lang="sv">Precisionen är användardefinierbar</li>
       <li xml:lang="uk">Точність обчислень може бути визначена користувачем.</li>
-      <li xml:lang="x-test">xxPrecision is user-definablexx</li>
       <li xml:lang="zh-CN">精度是用户可定义的</li>
       <li xml:lang="zh-TW">使用者能定義精確度</li>
       <li>The display allows cut and paste of numbers</li>
@@ -221,7 +215,6 @@
       <li xml:lang="sl">Prikaz omogoča rezanje in lepljenje števil</li>
       <li xml:lang="sv">Displayen tillåter att tal klipps ut och klistras in</li>
       <li xml:lang="uk">Передбачено можливість вирізання чисел з дисплея калькулятора та вставляння чисел з буфера обміну даними.</li>
-      <li xml:lang="x-test">xxThe display allows cut and paste of numbersxx</li>
       <li xml:lang="zh-CN">显示屏允许剪切和粘贴数字</li>
       <li xml:lang="zh-TW">顯示畫面允許剪下數字並貼上</li>
       <li>The display colors and font are configurable, aiding usability</li>
@@ -249,7 +242,6 @@
       <li xml:lang="sl">Barve in pisava prikaza so nastavljivi, kar izboljšuje uporabnost</li>
       <li xml:lang="sv">Displayens färger och teckensnitt kan ställas in, för förbättrat handikappstöd</li>
       <li xml:lang="uk">Можна налаштувати кольори та шрифт дисплея.</li>
-      <li xml:lang="x-test">xxThe display colors and font are configurable, aiding usabilityxx</li>
       <li xml:lang="zh-CN">显示颜色和字体是可配置的，有助于可用性</li>
       <li xml:lang="zh-TW">能變更顯示的顏色和字型，有助於實用性</li>
       <li>The use of key-bindings make it easy to use without a pointing device</li>
@@ -277,7 +269,6 @@
       <li xml:lang="sl">Uporaba bližnjic s tipkami olajša uporabo kalkulatorja brez kazalne naprave</li>
       <li xml:lang="sv">Användning av tangentbindningar gör det lätt att använda den utan en pekenhet</li>
       <li xml:lang="uk">Використання у калькуляторі клавіатурних скорочень надає змогу користуватися ним без координатного або сенсорного пристрою.</li>
-      <li xml:lang="x-test">xxThe use of key-bindings make it easy to use without a pointing devicexx</li>
       <li xml:lang="zh-CN">键绑定的运用可以在没有指点设备的情况下轻松使用</li>
       <li xml:lang="zh-TW">使用按鍵綁定來讓 KDE 計算機不必指標裝置就能簡單操作</li>
     </ul>
@@ -313,7 +304,6 @@
       <caption xml:lang="sl">Glavno okno KCalc</caption>
       <caption xml:lang="sv">Huvudfönstret i miniräknaren</caption>
       <caption xml:lang="uk">Головне вікно KCalc</caption>
-      <caption xml:lang="x-test">xxMain window of KCalcxx</caption>
       <caption xml:lang="zh-CN">KCalc 主窗口</caption>
       <caption xml:lang="zh-TW">KDE 計算機的主視窗</caption>
       <image>https://www.kde.org/images/screenshots/kcalc.png</image>
