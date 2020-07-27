@@ -322,7 +322,10 @@
       <caption>KCalc window in numeral system mode</caption>
       <caption xml:lang="ca">Finestra del KCalc en mode de sistema numèric</caption>
       <caption xml:lang="es">Ventana de KCalc en el modo de sistema de numeración</caption>
+      <caption xml:lang="nl">Venster van KCalc in systeemmodus numeriek</caption>
       <caption xml:lang="pt">A janela do KCalc no modo do sistema numeral</caption>
+      <caption xml:lang="pt-BR">Janela do KCalc no modo de sistema numérico</caption>
+      <caption xml:lang="sv">Kcalc-fönster i nummersystemläge</caption>
       <caption xml:lang="uk">Вікно KCalc у режимі системи числення</caption>
       <caption xml:lang="x-test">xxKCalc window in numeral system modexx</caption>
       <image>https://cdn.kde.org/screenshots/kcalc/kcalc-numeral.png</image>
@@ -331,7 +334,10 @@
       <caption>Kcalc window in scientific mode</caption>
       <caption xml:lang="ca">Finestra del KCalc en mode de sistema científic</caption>
       <caption xml:lang="es">Ventana de KCalc en el modo científico</caption>
+      <caption xml:lang="nl">Venster van Kcalc in wetenschappelijke modus</caption>
       <caption xml:lang="pt">A janela do KCalc no modo científico</caption>
+      <caption xml:lang="pt-BR">Janela do KCalc no modo científico</caption>
+      <caption xml:lang="sv">Kcalc-fönster i vetenskapligt läge</caption>
       <caption xml:lang="uk">Вікно KCalc в інженерному режимі</caption>
       <caption xml:lang="x-test">xxKcalc window in scientific modexx</caption>
       <image>https://cdn.kde.org/screenshots/kcalc/kcalc-science.png</image>
@@ -340,7 +346,10 @@
       <caption>Kcalc window in statistics mode</caption>
       <caption xml:lang="ca">Finestra del KCalc en mode de sistema estadístic</caption>
       <caption xml:lang="es">Ventana de KCalc en el modo estadístico</caption>
+      <caption xml:lang="nl">Venster van Kcalc in statistische modus</caption>
       <caption xml:lang="pt">A janela do KCalc no modo estatístico</caption>
+      <caption xml:lang="pt-BR">Janela do KCalc no modo estatístico</caption>
+      <caption xml:lang="sv">Kcalc-fönster i statistikläge</caption>
       <caption xml:lang="uk">Вікно KCalc у статистичному режимі</caption>
       <caption xml:lang="x-test">xxKcalc window in statistics modexx</caption>
       <image>https://cdn.kde.org/screenshots/kcalc/kcalc-statistics.png</image>
