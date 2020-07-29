@@ -322,6 +322,7 @@
       <caption>KCalc window in numeral system mode</caption>
       <caption xml:lang="ca">Finestra del KCalc en mode de sistema numèric</caption>
       <caption xml:lang="es">Ventana de KCalc en el modo de sistema de numeración</caption>
+      <caption xml:lang="fr">Fenêtre de KCalc en mode « Système numérique »</caption>
       <caption xml:lang="nl">Venster van KCalc in systeemmodus numeriek</caption>
       <caption xml:lang="pt">A janela do KCalc no modo do sistema numeral</caption>
       <caption xml:lang="pt-BR">Janela do KCalc no modo de sistema numérico</caption>
@@ -334,6 +335,7 @@
       <caption>Kcalc window in scientific mode</caption>
       <caption xml:lang="ca">Finestra del KCalc en mode de sistema científic</caption>
       <caption xml:lang="es">Ventana de KCalc en el modo científico</caption>
+      <caption xml:lang="fr">Fenêtre de KCalc en mode « Scientifique »</caption>
       <caption xml:lang="nl">Venster van Kcalc in wetenschappelijke modus</caption>
       <caption xml:lang="pt">A janela do KCalc no modo científico</caption>
       <caption xml:lang="pt-BR">Janela do KCalc no modo científico</caption>
@@ -346,6 +348,7 @@
       <caption>Kcalc window in statistics mode</caption>
       <caption xml:lang="ca">Finestra del KCalc en mode de sistema estadístic</caption>
       <caption xml:lang="es">Ventana de KCalc en el modo estadístico</caption>
+      <caption xml:lang="fr">Fenêtre de KCalc en mode « Statistiques »</caption>
       <caption xml:lang="nl">Venster van Kcalc in statistische modus</caption>
       <caption xml:lang="pt">A janela do KCalc no modo estatístico</caption>
       <caption xml:lang="pt-BR">Janela do KCalc no modo estatístico</caption>
