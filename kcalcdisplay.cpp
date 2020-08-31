@@ -391,7 +391,7 @@ void KCalcDisplay::mousePressEvent(QMouseEvent *e) {
 		lit_ = !lit_;
 		button_ = Qt::LeftButton;
 	} else {
-		button_ = Qt::MidButton;
+		button_ = Qt::MiddleButton;
 	}
 
 	emit clicked();
