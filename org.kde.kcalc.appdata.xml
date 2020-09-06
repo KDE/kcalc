@@ -334,6 +334,7 @@
       <caption xml:lang="pt-BR">Janela do KCalc no modo de sistema numérico</caption>
       <caption xml:lang="ru">Окно KCalc в режиме систем счисления</caption>
       <caption xml:lang="sk">Okno KCalc v číselnom režime</caption>
+      <caption xml:lang="sl">Okno KCalc v številskem načinu</caption>
       <caption xml:lang="sv">Kcalc-fönster i nummersystemläge</caption>
       <caption xml:lang="uk">Вікно KCalc у режимі системи числення</caption>
       <caption xml:lang="x-test">xxKCalc window in numeral system modexx</caption>
@@ -355,6 +356,7 @@
       <caption xml:lang="pt-BR">Janela do KCalc no modo científico</caption>
       <caption xml:lang="ru">Окно KCalc в инженерном режиме</caption>
       <caption xml:lang="sk">Okno KCalc vo vedeckom režime</caption>
+      <caption xml:lang="sl">Okno KCalc v znanstvenem načinu</caption>
       <caption xml:lang="sv">Kcalc-fönster i vetenskapligt läge</caption>
       <caption xml:lang="uk">Вікно KCalc в інженерному режимі</caption>
       <caption xml:lang="x-test">xxKcalc window in scientific modexx</caption>
@@ -376,6 +378,7 @@
       <caption xml:lang="pt-BR">Janela do KCalc no modo estatístico</caption>
       <caption xml:lang="ru">Окно KCalc в статистическом режиме</caption>
       <caption xml:lang="sk">Okno KCalc v štatistickom režime</caption>
+      <caption xml:lang="sl">Okno KCalc v statističnem načinu</caption>
       <caption xml:lang="sv">Kcalc-fönster i statistikläge</caption>
       <caption xml:lang="uk">Вікно KCalc у статистичному режимі</caption>
       <caption xml:lang="x-test">xxKcalc window in statistics modexx</caption>
