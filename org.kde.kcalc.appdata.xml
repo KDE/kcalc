@@ -328,6 +328,7 @@
       <caption xml:lang="fr">Fenêtre de KCalc en mode « Système numérique »</caption>
       <caption xml:lang="id">Window KCalc dalam mode sistem numerik</caption>
       <caption xml:lang="it">Finestra di KCalc in modalità base di numerazione</caption>
+      <caption xml:lang="ko">진수 모드 KCalc 창</caption>
       <caption xml:lang="nl">Venster van KCalc in systeemmodus numeriek</caption>
       <caption xml:lang="nn">KCalc-vindauge i numerisk modus</caption>
       <caption xml:lang="pt">A janela do KCalc no modo do sistema numeral</caption>
@@ -350,6 +351,7 @@
       <caption xml:lang="fr">Fenêtre de KCalc en mode « Scientifique »</caption>
       <caption xml:lang="id">Window KCalc dalam mode ilmiah</caption>
       <caption xml:lang="it">Finestra di KCalc in modalità scientifica</caption>
+      <caption xml:lang="ko">과학 모드 KCalc 창</caption>
       <caption xml:lang="nl">Venster van Kcalc in wetenschappelijke modus</caption>
       <caption xml:lang="nn">KCalc-vindauge i vitskapleg modus</caption>
       <caption xml:lang="pt">A janela do KCalc no modo científico</caption>
@@ -372,6 +374,7 @@
       <caption xml:lang="fr">Fenêtre de KCalc en mode « Statistiques »</caption>
       <caption xml:lang="id">Window KCalc dalam mode statistik</caption>
       <caption xml:lang="it">Finestra di KCalc in modalità statistica</caption>
+      <caption xml:lang="ko">통계 모드 KCalc 창</caption>
       <caption xml:lang="nl">Venster van Kcalc in statistische modus</caption>
       <caption xml:lang="nn">KCalc-vindauge i statistikkmodus</caption>
       <caption xml:lang="pt">A janela do KCalc no modo estatístico</caption>
