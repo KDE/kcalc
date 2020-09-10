@@ -321,6 +321,7 @@
     <screenshot>
       <caption>KCalc window in numeral system mode</caption>
       <caption xml:lang="ca">Finestra del KCalc en mode de sistema numèric</caption>
+      <caption xml:lang="de">KCalc-Fenster im Logik-Modus</caption>
       <caption xml:lang="el">Παράθυρο KCalc σε λειτουργία αριθμητικού συστήματος</caption>
       <caption xml:lang="es">Ventana de KCalc en el modo de sistema de numeración</caption>
       <caption xml:lang="eu">Kcalc leihoa zenbaki-sistema moduan</caption>
@@ -344,6 +345,7 @@
     <screenshot>
       <caption>Kcalc window in scientific mode</caption>
       <caption xml:lang="ca">Finestra del KCalc en mode de sistema científic</caption>
+      <caption xml:lang="de">KCalc-Fenster im Wissenschafts-Modus</caption>
       <caption xml:lang="el">Παράθυρο KCalc σε επιστημονική λειτουργία</caption>
       <caption xml:lang="es">Ventana de KCalc en el modo científico</caption>
       <caption xml:lang="eu">Kcalc leihoa zientzia moduan</caption>
@@ -367,6 +369,7 @@
     <screenshot>
       <caption>Kcalc window in statistics mode</caption>
       <caption xml:lang="ca">Finestra del KCalc en mode de sistema estadístic</caption>
+      <caption xml:lang="de">KCalc-Fenster im Statistik-Modus</caption>
       <caption xml:lang="el">Παράθυρο KCalc σε στατιστική λειτουργία</caption>
       <caption xml:lang="es">Ventana de KCalc en el modo estadístico</caption>
       <caption xml:lang="eu">Kcalc leihoa estatistika moduan</caption>
