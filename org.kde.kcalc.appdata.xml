@@ -340,6 +340,7 @@
       <caption xml:lang="sv">Kcalc-fönster i nummersystemläge</caption>
       <caption xml:lang="uk">Вікно KCalc у режимі системи числення</caption>
       <caption xml:lang="x-test">xxKCalc window in numeral system modexx</caption>
+      <caption xml:lang="zh-TW">KCalc 視窗目前為數值系統模式</caption>
       <image>https://cdn.kde.org/screenshots/kcalc/kcalc-numeral.png</image>
     </screenshot>
     <screenshot>
@@ -364,6 +365,7 @@
       <caption xml:lang="sv">Kcalc-fönster i vetenskapligt läge</caption>
       <caption xml:lang="uk">Вікно KCalc в інженерному режимі</caption>
       <caption xml:lang="x-test">xxKcalc window in scientific modexx</caption>
+      <caption xml:lang="zh-TW">Kcalc 視窗目前為科學模式</caption>
       <image>https://cdn.kde.org/screenshots/kcalc/kcalc-science.png</image>
     </screenshot>
     <screenshot>
@@ -388,6 +390,7 @@
       <caption xml:lang="sv">Kcalc-fönster i statistikläge</caption>
       <caption xml:lang="uk">Вікно KCalc у статистичному режимі</caption>
       <caption xml:lang="x-test">xxKcalc window in statistics modexx</caption>
+      <caption xml:lang="zh-TW">Kcalc 視窗目前為統計模式</caption>
       <image>https://cdn.kde.org/screenshots/kcalc/kcalc-statistics.png</image>
     </screenshot>
   </screenshots>
