@@ -26,6 +26,7 @@
   <name xml:lang="pl">KCalc</name>
   <name xml:lang="pt">KCalc</name>
   <name xml:lang="pt-BR">KCalc</name>
+  <name xml:lang="ro">KCalc</name>
   <name xml:lang="ru">KCalc</name>
   <name xml:lang="sk">KCalc</name>
   <name xml:lang="sl">KCalc</name>
@@ -62,6 +63,7 @@
   <summary xml:lang="pl">Kalkulator naukowy</summary>
   <summary xml:lang="pt">Calculadora Científica</summary>
   <summary xml:lang="pt-BR">Calculadora científica</summary>
+  <summary xml:lang="ro">Calculator științific</summary>
   <summary xml:lang="ru">Калькулятор</summary>
   <summary xml:lang="sk">Vedecká kalkulačka</summary>
   <summary xml:lang="sl">Znanstveno računalo</summary>
@@ -188,6 +190,7 @@
       <li xml:lang="pl">Precyzja jest określana przez użytkownika</li>
       <li xml:lang="pt">A precisão pode ser definida pelo utilizador</li>
       <li xml:lang="pt-BR">A precisão é definida pelo usuário</li>
+      <li xml:lang="ro">Precizia e definită de utilizator</li>
       <li xml:lang="ru">Задаваемая пользователем точность вычислений;</li>
       <li xml:lang="sk">Presnosť je definovaná používateľom</li>
       <li xml:lang="sl">Natančnost lahko določi uporabnik</li>
@@ -216,6 +219,7 @@
       <li xml:lang="pl">Wyświetlacz umożliwia wycinanie i wklejanie liczb</li>
       <li xml:lang="pt">O ecrã permite cortar e colar números</li>
       <li xml:lang="pt-BR">O visor permite copiar e colar números</li>
+      <li xml:lang="ro">Afișajul permite tăierea și lipirea numerelor</li>
       <li xml:lang="ru">Копирование и вставка чисел;</li>
       <li xml:lang="sk">Displej umožní vystrihnúť a vložiť čísla</li>
       <li xml:lang="sl">Prikaz omogoča rezanje in lepljenje števil</li>
@@ -308,6 +312,7 @@
       <caption xml:lang="pl">Główne okno KCalc</caption>
       <caption xml:lang="pt">Janela principal do KCalc</caption>
       <caption xml:lang="pt-BR">Janela principal do KCalc</caption>
+      <caption xml:lang="ro">Fereastra principală KCalc</caption>
       <caption xml:lang="ru">Основное окно приложения KCalc</caption>
       <caption xml:lang="sk">Hlavné okno KCalc</caption>
       <caption xml:lang="sl">Glavno okno KCalc</caption>
@@ -359,6 +364,7 @@
       <caption xml:lang="nn">KCalc-vindauge i vitskapleg modus</caption>
       <caption xml:lang="pt">A janela do KCalc no modo científico</caption>
       <caption xml:lang="pt-BR">Janela do KCalc no modo científico</caption>
+      <caption xml:lang="ro">Fereastra KCalc în regim științific</caption>
       <caption xml:lang="ru">Окно KCalc в инженерном режиме</caption>
       <caption xml:lang="sk">Okno KCalc vo vedeckom režime</caption>
       <caption xml:lang="sl">Okno KCalc v znanstvenem načinu</caption>
@@ -384,6 +390,7 @@
       <caption xml:lang="nn">KCalc-vindauge i statistikkmodus</caption>
       <caption xml:lang="pt">A janela do KCalc no modo estatístico</caption>
       <caption xml:lang="pt-BR">Janela do KCalc no modo estatístico</caption>
+      <caption xml:lang="ro">Fereastra KCalc în regim statistic</caption>
       <caption xml:lang="ru">Окно KCalc в статистическом режиме</caption>
       <caption xml:lang="sk">Okno KCalc v štatistickom režime</caption>
       <caption xml:lang="sl">Okno KCalc v statističnem načinu</caption>
