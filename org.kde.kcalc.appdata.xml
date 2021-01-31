@@ -94,6 +94,7 @@
     <p xml:lang="fr">KCalc dispose de tout ce que vous attendez d'une calculatrice scientifique, plus :</p>
     <p xml:lang="gl">KCalc ten todo o que esperaría dunha calculadora científica, e ademais:</p>
     <p xml:lang="hu">A KCalc tud mindent, amit egy tudományos számológéptől elvárhat, továbbá:</p>
+    <p xml:lang="ia">KCalc ha toto que tu expectara ab un calculator scientific, plus:</p>
     <p xml:lang="id">KCalc memiliki semua yang kamu harapkan dari kalkulator ilmiah, plus:</p>
     <p xml:lang="it">KCalc ha tutto quello che ci si aspetta da una calcolatrice scientifica.</p>
     <p xml:lang="ko">KCalc는 공학용 계산기에서 찾을 수 있는 기능 외에도 다음을 더 지원합니다:</p>
@@ -129,6 +130,7 @@
       <li xml:lang="fr">Fonctions trigonométriques, opérations logiques et calculs statistiques</li>
       <li xml:lang="gl">Funcións trigonométricas, operacións lóxicas e cálculos estatísticos</li>
       <li xml:lang="hu">Trigonometriai függvények, logikai műveletek és statisztikai számítások</li>
+      <li xml:lang="ia">Functiones trigonometric, operationes logic e calculos statistic</li>
       <li xml:lang="id">Fungsi trigonometri, operasi logika dan perhitungan statistik</li>
       <li xml:lang="it">Funzioni trigonometriche, operazioni logiche e calcoli statistici</li>
       <li xml:lang="ko">삼각함수, 논리 연산 및 통계 계산입니다</li>
@@ -158,6 +160,7 @@
       <li xml:lang="fr">Une pile de résultats permettant un rappel aisé des résultats des calculs précédents</li>
       <li xml:lang="gl">Unha rima de resultados que permite recuperar comodamente os resultados de cálculos anteriores</li>
       <li xml:lang="hu">Eredménytároló, amely lehetővé teszi a korábbi számítási eredmények kényelmes előhívását</li>
+      <li xml:lang="ia">Un pila de resultatos que habilita conveniente momoration de previe  resultatos</li>
       <li xml:lang="id">Tumpukan hasil yang memungkinkan pemanggilan ulang yang mudah dari hasil perhitungan sebelumnya</li>
       <li xml:lang="it">Una pila di risultati che permette di richiamare opportunamente i risultati dei calcoli precedenti</li>
       <li xml:lang="ko">이전 계산 결과를 편리하게 호출할 수 있는 결과 스택입니다</li>
@@ -188,6 +191,7 @@
       <li xml:lang="fr">Précision définie par l'utilisateur</li>
       <li xml:lang="gl">A precisión pode personalizarse</li>
       <li xml:lang="hu">Felhasználó által definiálható precizitás</li>
+      <li xml:lang="ia">Precision es definibile per le usator</li>
       <li xml:lang="id">Presisi dapat ditentukan pengguna</li>
       <li xml:lang="it">La precisione è definibile dall'utente</li>
       <li xml:lang="ko">정밀도는 사용자가 정의할 수 있습니다</li>
@@ -218,6 +222,7 @@
       <li xml:lang="fr">L'affichage permet de couper et coller des nombres</li>
       <li xml:lang="gl">A pantalla permite cortar e pegar números</li>
       <li xml:lang="hu">Számok kivághatósága és beilleszthetősége</li>
+      <li xml:lang="ia">Le monstrator permitte taliar e collar de numeros</li>
       <li xml:lang="id">Displai memungkinkan pemotongan dan penempelan angka</li>
       <li xml:lang="it">Il display permette di copiare e incollare i numeri</li>
       <li xml:lang="ko">디스플레이는 숫자의 잘라내기 및 붙여넣기를 할 수 있습니다</li>
@@ -248,6 +253,7 @@
       <li xml:lang="fr">Les couleurs et la police d'affichage sont configurables pour une plus grande utilisabilité</li>
       <li xml:lang="gl">Poden configurarse as cores e as fontes, para maior facilidade de uso</li>
       <li xml:lang="hu">A színek és betűkészletek testre szabhatóak, megkönnyítve a használatóságot</li>
+      <li xml:lang="ia">Le colores e font de monstrator es configurbile, adjutante usabilitate</li>
       <li xml:lang="id">Warna displai dan font dapat dikonfigurasi, membantu kegunaan</li>
       <li xml:lang="it">I colori e i caratteri del display possono essere configurati, supportando l'usabilità</li>
       <li xml:lang="ko">디스플레이 색상과 글꼴을 구성할 수 있어 사용 편의성을 지원합니다</li>
@@ -277,6 +283,7 @@
       <li xml:lang="fr">L'utilisation de raccourcis claviers rend facile l'utilisation sans dispositif de pointage</li>
       <li xml:lang="gl">O uso de atallos de teclado facilita o uso sen un dispositivo de apuntar</li>
       <li xml:lang="hu">Gyorsbillentyűk támogatása a mutatóeszköz nélküli használat megkönnyítéséhez</li>
+      <li xml:lang="ia">Le uso de ligaturas de clave face facile su uso sin dispositivo punctator </li>
       <li xml:lang="id">Penggunaan tuts pengikat membuatnya mudah digunakan tanpa alat penunjuk</li>
       <li xml:lang="it">L'uso di combinazioni di tastiera ne rende semplice l'uso senza un dispositivo di puntamento</li>
       <li xml:lang="ko">키 바인딩을 사용하면 포인팅 장치 없이도 쉽게 사용할 수 있습니다</li>
@@ -314,6 +321,7 @@
       <caption xml:lang="fr">Fenêtre principale de KCalc</caption>
       <caption xml:lang="gl">Xanela principal de KCalc</caption>
       <caption xml:lang="hu">A KCalc főablaka</caption>
+      <caption xml:lang="ia">Fenestra principal de KCalc</caption>
       <caption xml:lang="id">Window utama KCalc</caption>
       <caption xml:lang="it">Finestra principale di KCalc</caption>
       <caption xml:lang="ko">KCalc 주 창</caption>
@@ -345,6 +353,7 @@
       <caption xml:lang="fi">KCalc-ikkuna numerojärjestelmätilassa</caption>
       <caption xml:lang="fr">Fenêtre de KCalc en mode « Système numérique »</caption>
       <caption xml:lang="hu">A KCalc számrendszer módjának ablaka</caption>
+      <caption xml:lang="ia">Fenestra de KCalc in modo de systema numeral</caption>
       <caption xml:lang="id">Window KCalc dalam mode sistem numerik</caption>
       <caption xml:lang="it">Finestra di KCalc in modalità base di numerazione</caption>
       <caption xml:lang="ko">진수 모드 KCalc 창</caption>
@@ -375,6 +384,7 @@
       <caption xml:lang="fi">KCalc-ikkuna tiedelaskentatilassa</caption>
       <caption xml:lang="fr">Fenêtre de KCalc en mode « Scientifique »</caption>
       <caption xml:lang="hu">A KCalc tudományos módjának ablaka</caption>
+      <caption xml:lang="ia">Fenestra de KCalc in modo scientific</caption>
       <caption xml:lang="id">Window KCalc dalam mode ilmiah</caption>
       <caption xml:lang="it">Finestra di KCalc in modalità scientifica</caption>
       <caption xml:lang="ko">과학 모드 KCalc 창</caption>
@@ -406,6 +416,7 @@
       <caption xml:lang="fi">KCalc-ikkuna tilastolaskentatilassa</caption>
       <caption xml:lang="fr">Fenêtre de KCalc en mode « Statistiques »</caption>
       <caption xml:lang="hu">A KCalc statisztikai módjának ablaka</caption>
+      <caption xml:lang="ia">Fenestra de KCalc in modo statistic</caption>
       <caption xml:lang="id">Window KCalc dalam mode statistik</caption>
       <caption xml:lang="it">Finestra di KCalc in modalità statistica</caption>
       <caption xml:lang="ko">통계 모드 KCalc 창</caption>
