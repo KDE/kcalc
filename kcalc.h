@@ -106,7 +106,6 @@ public:
     ~KCalculator();
 
 Q_SIGNALS:
-    void switchShift(bool);
     void switchMode(ButtonModeFlags, bool);
     void switchShowAccels(bool);
 
