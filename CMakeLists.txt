@@ -46,7 +46,6 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
 
 
 set (CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" ${CMAKE_SOURCE_DIR}/cmake/modules)
-kde_enable_exceptions()
 
 find_package(GMP)
 set_package_properties(GMP PROPERTIES
