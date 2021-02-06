@@ -73,23 +73,9 @@ check_type_size("unsigned long"  SIZEOF_UNSIGNED_LONG)
 
 configure_file(config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
 
-include_directories( ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/knumber ${GMP_INCLUDE_DIR} )
+add_subdirectory(knumber)
 
-########### next target ###############
-# Needs absolute paths due to the test program for knumber
-set(libknumber_la_SRCS  
-	${kcalc_SOURCE_DIR}/knumber/knumber.cpp
-	${kcalc_SOURCE_DIR}/knumber/knumber_error.cpp
-	${kcalc_SOURCE_DIR}/knumber/knumber_float.cpp
-	${kcalc_SOURCE_DIR}/knumber/knumber_fraction.cpp
-	${kcalc_SOURCE_DIR}/knumber/knumber_integer.cpp
-	${kcalc_SOURCE_DIR}/knumber/knumber_operators.cpp
-)
-
-add_subdirectory( knumber )
-# add_subdirectory( tests )
-
-set(kcalc_KDEINIT_SRCS ${libknumber_la_SRCS}
+set(kcalc_KDEINIT_SRCS
    kcalc.cpp 
    bitbutton.cpp
    kcalc_bitset.cpp
@@ -133,8 +119,7 @@ target_link_libraries(kdeinit_kcalc
     KF5::Notifications
     KF5::XmlGui
     KF5::Crash
-    ${GMP_LIBRARIES}
-    ${MPFR_LIBRARIES}
+    knumber
 )
 
 install(TARGETS kdeinit_kcalc ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
