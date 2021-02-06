@@ -32,6 +32,7 @@ find_package (Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
 )
 
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
+    CoreAddons
     Crash
     Config
     ConfigWidgets
@@ -125,6 +126,7 @@ kf5_add_kdeinit_executable( kcalc ${kcalc_KDEINIT_SRCS})
 target_link_libraries(kdeinit_kcalc
     Qt5::Core
     Qt5::Widgets
+    KF5::CoreAddons
     KF5::ConfigWidgets
     KF5::GuiAddons
     KF5::I18n
