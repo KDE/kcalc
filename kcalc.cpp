@@ -444,36 +444,36 @@ void KCalculator::setupScientificKeys() {
 	connect(this, &KCalculator::switchShowAccels, pbHyp, &KCalcButton::slotSetAccelDisplayMode);
 	connect(pbHyp, &KCalcButton::toggled, this, &KCalculator::slotHyptoggled);
 
-	pbSin->addMode(ModeNormal, i18nc("Sine", "Sin"), i18n("Sine"));
-	pbSin->addMode(ModeShift, i18nc("Arc sine", "Asin"), i18n("Arc sine"));
-	pbSin->addMode(ModeHyperbolic, i18nc("Hyperbolic sine", "Sinh"), i18n("Hyperbolic sine"));
-	pbSin->addMode(ButtonModeFlags(ModeShift | ModeHyperbolic), i18nc("Inverse hyperbolic sine", "Asinh"), i18n("Inverse hyperbolic sine"));
+	pbSin->addMode(ModeNormal, i18nc("Sine", "sin"), i18n("Sine"));
+	pbSin->addMode(ModeShift, i18nc("Arc sine", "asin"), i18n("Arc sine"));
+	pbSin->addMode(ModeHyperbolic, i18nc("Hyperbolic sine", "sinh"), i18n("Hyperbolic sine"));
+	pbSin->addMode(ButtonModeFlags(ModeShift | ModeHyperbolic), i18nc("Inverse hyperbolic sine", "asinh"), i18n("Inverse hyperbolic sine"));
 	connect(this, &KCalculator::switchShowAccels, pbSin, &KCalcButton::slotSetAccelDisplayMode);
 	connect(this, &KCalculator::switchMode, pbSin, &KCalcButton::slotSetMode);
 	connect(pbSin, &KCalcButton::clicked, this, &KCalculator::slotSinclicked);
 
-	pbCos->addMode(ModeNormal, i18nc("Cosine", "Cos"), i18n("Cosine"));
-	pbCos->addMode(ModeShift, i18nc("Arc cosine", "Acos"), i18n("Arc cosine"));
-	pbCos->addMode(ModeHyperbolic, i18nc("Hyperbolic cosine", "Cosh"), i18n("Hyperbolic cosine"));
-	pbCos->addMode(ButtonModeFlags(ModeShift | ModeHyperbolic), i18nc("Inverse hyperbolic cosine", "Acosh"), i18n("Inverse hyperbolic cosine"));
+	pbCos->addMode(ModeNormal, i18nc("Cosine", "cos"), i18n("Cosine"));
+	pbCos->addMode(ModeShift, i18nc("Arc cosine", "acos"), i18n("Arc cosine"));
+	pbCos->addMode(ModeHyperbolic, i18nc("Hyperbolic cosine", "cosh"), i18n("Hyperbolic cosine"));
+	pbCos->addMode(ButtonModeFlags(ModeShift | ModeHyperbolic), i18nc("Inverse hyperbolic cosine", "acosh"), i18n("Inverse hyperbolic cosine"));
 	connect(this, &KCalculator::switchShowAccels, pbCos, &KCalcButton::slotSetAccelDisplayMode);
 	connect(this, &KCalculator::switchMode, pbCos, &KCalcButton::slotSetMode);
 	connect(pbCos, &KCalcButton::clicked, this, &KCalculator::slotCosclicked);
 
-	pbTan->addMode(ModeNormal, i18nc("Tangent", "Tan"), i18n("Tangent"));
-	pbTan->addMode(ModeShift, i18nc("Arc tangent", "Atan"), i18n("Arc tangent"));
-	pbTan->addMode(ModeHyperbolic, i18nc("Hyperbolic tangent", "Tanh"), i18n("Hyperbolic tangent"));
-	pbTan->addMode(ButtonModeFlags(ModeShift | ModeHyperbolic), i18nc("Inverse hyperbolic tangent", "Atanh"), i18n("Inverse hyperbolic tangent"));
+	pbTan->addMode(ModeNormal, i18nc("Tangent", "tan"), i18n("Tangent"));
+	pbTan->addMode(ModeShift, i18nc("Arc tangent", "atan"), i18n("Arc tangent"));
+	pbTan->addMode(ModeHyperbolic, i18nc("Hyperbolic tangent", "tanh"), i18n("Hyperbolic tangent"));
+	pbTan->addMode(ButtonModeFlags(ModeShift | ModeHyperbolic), i18nc("Inverse hyperbolic tangent", "atanh"), i18n("Inverse hyperbolic tangent"));
 	connect(this, &KCalculator::switchShowAccels, pbTan, &KCalcButton::slotSetAccelDisplayMode);
 	connect(this, &KCalculator::switchMode, pbTan, &KCalcButton::slotSetMode);
 	connect(pbTan, &KCalcButton::clicked, this, &KCalculator::slotTanclicked);
 
-	pbLog->addMode(ModeNormal, i18nc("Logarithm to base 10", "Log"), i18n("Logarithm to base 10"));
+	pbLog->addMode(ModeNormal, i18nc("Logarithm to base 10", "log"), i18n("Logarithm to base 10"));
 	pbLog->addMode(ModeShift, i18nc("10 to the power of x", "10<sup>x</sup>"), i18n("10 to the power of x"));
 	connect(this, &KCalculator::switchShowAccels, pbLog, &KCalcButton::slotSetAccelDisplayMode);
 	connect(this, &KCalculator::switchMode, pbLog, &KCalcButton::slotSetMode);
 	connect(pbLog, &KCalcButton::clicked, this, &KCalculator::slotLogclicked);
-	pbLn->addMode(ModeNormal, i18nc("Natural log", "Ln"), i18n("Natural log"));
+	pbLn->addMode(ModeNormal, i18nc("Natural log", "ln"), i18n("Natural log"));
 	pbLn->addMode(ModeShift, i18nc("Exponential function", "e<sup>x</sup>"), i18n("Exponential function"));
 	connect(this, &KCalculator::switchShowAccels, pbLn, &KCalcButton::slotSetAccelDisplayMode);
 	connect(this, &KCalculator::switchMode, pbLn, &KCalcButton::slotSetMode);
@@ -576,7 +576,7 @@ void KCalculator::setupConstantsKeys() {
 //------------------------------------------------------------------------------
 void KCalculator::setupMiscKeys() {
 
-	pbMod->addMode(ModeNormal, i18nc("Modulo", "Mod"), i18n("Modulo"));
+	pbMod->addMode(ModeNormal, i18nc("Modulo", "mod"), i18n("Modulo"));
 	pbMod->addMode(ModeShift, i18nc("Integer division", "IntDiv"), i18n("Integer division"));
 	connect(this, &KCalculator::switchMode, pbMod, &KCalcButton::slotSetMode);
 	connect(this, &KCalculator::switchShowAccels, pbMod, &KCalcButton::slotSetAccelDisplayMode);
