@@ -45,6 +45,10 @@
       <label>The color of operation buttons.</label>
       <default code="true">defaultButtonColor</default>
     </entry>
+    <entry name="ConstantsButtonsColor" type="Color">
+      <label>The color of constants buttons.</label>
+      <default code="true">defaultButtonColor</default>
+    </entry>
     <entry name="NumberFontsColor" type="Color">
       <label>The color of number fonts.</label>
       <code>KColorScheme schemeFonts(QPalette::Active, KColorScheme::Button);
@@ -69,6 +73,10 @@
     </entry>
     <entry name="OperationFontsColor" type="Color">
       <label>The color of operation font.</label>
+      <default code="true">defaultFontColor</default>
+    </entry>
+    <entry name="ConstantsFontsColor" type="Color">
+      <label>The color of constants fonts.</label>
       <default code="true">defaultFontColor</default>
     </entry>
   </group>

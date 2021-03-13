@@ -35,6 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //------------------------------------------------------------------------------
 KCalcConstButton::KCalcConstButton(QWidget *parent) : KCalcButton(parent), button_num_(-1) {
 
+	setTextColor(KCalcSettings::constantsFontsColor());
 	addMode(ModeShift, i18nc("Write display data into memory", "Store"), i18n("Write display data into memory"));
 	initPopupMenu();
 	connect(this, &QAbstractButton::clicked, this, &KCalcConstButton::slotClicked);
@@ -46,6 +47,7 @@ KCalcConstButton::KCalcConstButton(QWidget *parent) : KCalcButton(parent), butto
 //------------------------------------------------------------------------------
 KCalcConstButton::KCalcConstButton(const QString &label, QWidget *parent, const QString &tooltip) : KCalcButton(label, parent, tooltip), button_num_(-1) {
 
+	setTextColor(KCalcSettings::constantsFontsColor());
 	addMode(ModeShift, i18nc("Write display data into memory", "Store"), i18n("Write display data into memory"));
 	initPopupMenu();
 }

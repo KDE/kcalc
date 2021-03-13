@@ -2169,6 +2169,11 @@ void KCalculator::setColors() {
 		qobject_cast<KCalcButton*>(btn)->setTextColor(opFontColor);
 	}
 
+	const QColor coFontColor(KCalcSettings::constantsFontsColor());
+	foreach(QAbstractButton *btn, const_buttons_) {
+		qobject_cast<KCalcButton*>(btn)->setTextColor(coFontColor);
+	}
+
 	KColorScheme schemeButtons(QPalette::Active, KColorScheme::Button);
 	const QColor defaultColor = schemeButtons.background().color();
 
@@ -2178,7 +2183,8 @@ void KCalculator::setColors() {
 			&& KCalcSettings::statButtonsColor()      == defaultColor
 			&& KCalcSettings::hexButtonsColor()       == defaultColor
 			&& KCalcSettings::memoryButtonsColor()    == defaultColor
-			&& KCalcSettings::operationButtonsColor() == defaultColor) {
+			&& KCalcSettings::operationButtonsColor() == defaultColor
+			&& KCalcSettings::constantsButtonsColor() == defaultColor) {
 		return;
 	}
 
@@ -2212,6 +2218,11 @@ void KCalculator::setColors() {
 	const QColor opPal(KCalcSettings::operationButtonsColor());
 	foreach(QAbstractButton *btn, operation_button_list_) {
 		btn->setStyleSheet(sheet.arg(opPal.name()));
+	}
+
+	const QColor coPal(KCalcSettings::constantsButtonsColor());
+	foreach(QAbstractButton *btn, const_buttons_) {
+		btn->setStyleSheet(sheet.arg(coPal.name()));
 	}
 }
 
