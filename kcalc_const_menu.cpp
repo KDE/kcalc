@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <KLocalizedString>
 
 namespace {
-	QList<science_constant> Constants;
+    QList<science_constant> scienceConstantList;
 	
 	ConstantCategory stringToCategory(const QString &s) {
     	if (s == QLatin1String("mathematics")) {
@@ -94,7 +94,7 @@ void KCalcConstMenu::init_consts() {
 			tmp_const.category  = stringToCategory(tmp_str_category);
             tmp_const.whatsthis = e.firstChildElement(QStringLiteral("description")).text();
 
-            Constants.append(tmp_const);
+            scienceConstantList.append(tmp_const);
         }
         n = n.nextSibling();
         i++;
@@ -112,18 +112,18 @@ void KCalcConstMenu::init_all()
     connect(this, &KCalcConstMenu::triggered, this, &KCalcConstMenu::slotPassSignalThrough);
 
 
-    for (int i = 0; i < Constants.size(); i++) {
-        QAction *tmp_action = new QAction(i18n(Constants.at(i).name.toLatin1().data()), this);
+    for (int i = 0; i < scienceConstantList.size(); i++) {
+        QAction *tmp_action = new QAction(i18n(scienceConstantList.at(i).name.toLatin1().data()), this);
         tmp_action->setData(QVariant(i));
-        if (Constants.at(i).category  &  Mathematics)
+        if (scienceConstantList.at(i).category  &  Mathematics)
             math_menu->addAction(tmp_action);
-        if (Constants.at(i).category  &  Electromagnetic)
+        if (scienceConstantList.at(i).category  &  Electromagnetic)
             em_menu->addAction(tmp_action);
-        if (Constants.at(i).category  &  Nuclear)
+        if (scienceConstantList.at(i).category  &  Nuclear)
             nuclear_menu->addAction(tmp_action);
-        if (Constants.at(i).category  &  Thermodynamics)
+        if (scienceConstantList.at(i).category  &  Thermodynamics)
             thermo_menu->addAction(tmp_action);
-        if (Constants.at(i).category  &  Gravitation)
+        if (scienceConstantList.at(i).category  &  Gravitation)
             gravitation_menu->addAction(tmp_action);
     }
 }
@@ -132,7 +132,7 @@ void KCalcConstMenu::slotPassSignalThrough(QAction  *chosen_const)
 {
     bool tmp_bool;
     int chosen_const_idx = (chosen_const->data()).toInt(& tmp_bool);
-    emit triggeredConstant(Constants.at(chosen_const_idx));
+    emit triggeredConstant(scienceConstantList.at(chosen_const_idx));
 }
 
 KCalcConstMenu::KCalcConstMenu(const QString &title, QWidget * parent)
