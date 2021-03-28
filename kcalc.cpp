@@ -2384,10 +2384,10 @@ void KCalculator::slotPaste() {
 
 
 //------------------------------------------------------------------------------
-// Name: kdemain
+// Name: main
 // Desc: entry point of the application
 //------------------------------------------------------------------------------
-extern "C" Q_DECL_EXPORT int kdemain(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
 
     QApplication app(argc, argv);
 

@@ -39,7 +39,6 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     DocTools
     GuiAddons
     I18n
-    Init
     Notifications
     XmlGui
 )
@@ -106,9 +105,9 @@ if (INSTALL_ICONS)
     ecm_install_icons( ICONS ${ICONS_SRCS} DESTINATION ${KDE_INSTALL_ICONDIR} )
 endif()
 
-kf5_add_kdeinit_executable( kcalc ${kcalc_KDEINIT_SRCS})
+add_executable(kcalc ${kcalc_KDEINIT_SRCS})
 
-target_link_libraries(kdeinit_kcalc
+target_link_libraries(kcalc
     Qt5::Core
     Qt5::Widgets
     KF5::CoreAddons
@@ -121,9 +120,6 @@ target_link_libraries(kdeinit_kcalc
     knumber
 )
 
-install(TARGETS kdeinit_kcalc ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
-
-target_link_libraries( kcalc kdeinit_kcalc )
 install(TARGETS kcalc  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
 ########### install files ###############
