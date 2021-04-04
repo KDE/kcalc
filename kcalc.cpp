@@ -1677,6 +1677,8 @@ void KCalculator::showSettings() {
 	// When the user clicks OK or Apply we want to update our settings.
 	connect(dialog, &KConfigDialog::settingsChanged, this, &KCalculator::updateSettings);
 
+	dialog->setGeometry(x(), y(), dialog->minimumSizeHint().width(), dialog->minimumSizeHint().height() + 25);
+
 	// Display the dialog.
 	dialog->show();
 }
