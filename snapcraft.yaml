@@ -6,19 +6,12 @@ base: core20
 adopt-info: kcalc
 apps:
     kcalc:
+        extensions:
+        - kde-neon
         common-id: org.kde.kcalc.desktop
-        command: kf5-launch kcalc
+        command: usr/bin/kcalc
         plugs:
         - kde-frameworks-5-plug
-        - home
-        - x11
-        - opengl
-        - network
-        - network-bind
-        - audio-playback
-        - desktop
-        - desktop-legacy
-        - removable-media
 slots:
     session-dbus-interface:
         interface: dbus
@@ -43,10 +36,6 @@ parts:
     kcalc:
         parse-info:
         - usr/share/metainfo/org.kde.kcalc.appdata.xml
-        build-snaps:
-        - kde-frameworks-5-qt-5-15-core20-sdk/latest/candidate
-        after:
-        - kde-frameworks-5-env
         plugin: cmake
         build-environment:
         - CMAKE_BUILD_PARALLEL_LEVEL: "4"
@@ -58,7 +47,6 @@ parts:
         - docbook-xsl
         build-environment:
         - CMAKE_BUILD_PARALLEL_LEVEL: "4"
-        - VERBOSE: "1"
         stage-packages:
         - libmpfr6
         - libgmp10
@@ -71,7 +59,6 @@ parts:
         - "-DBUILD_TESTING=OFF"
         - "-DKDE_SKIP_TEST_SETTINGS=ON"
         - "-DCMAKE_FIND_ROOT_PATH=/root/stage\\;/snap/kde-frameworks-5-qt-5-15-core20-sdk/current"
-        - "-DCMAKE_FIND_ROOT_PATH=/snap/kde-frameworks-5-qt-5-15-core20-sdk/current"
         filesets:
             exclusion:
             - "-usr/lib/*/cmake/*"
@@ -85,6 +72,3 @@ parts:
             - "-usr/lib/aspell/*"
         prime:
         - "$exclusion"
-    kde-frameworks-5-env:
-        plugin: dump
-        source: https://invent.kde.org/packaging/snap-kf5-launcher.git
