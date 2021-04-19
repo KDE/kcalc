@@ -37,17 +37,14 @@ parts:
         parse-info:
         - usr/share/metainfo/org.kde.kcalc.appdata.xml
         plugin: cmake
-        build-environment:
-        - CMAKE_BUILD_PARALLEL_LEVEL: "4"
         build-packages:
         - libmpfr-dev
         - libgmp-dev
-        - docbook-xml
-        - docbook-xsl
+        - libkf5doctools-dev
         stage-packages:
         - libmpfr6
         - libgmp10
-        source: http://download.kde.org/stable/release-service/20.12.3/src/kcalc-20.12.3.tar.xz
+        source: http://download.kde.org/stable/release-service/21.04.0/src/kcalc-21.04.0.tar.xz
         cmake-parameters:
         - "-DKDE_INSTALL_USE_QT_SYS_PATHS=ON"
         - "-DCMAKE_INSTALL_PREFIX=/usr"
