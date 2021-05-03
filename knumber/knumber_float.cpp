@@ -45,11 +45,11 @@ const mpfr_prec_t knumber_float::precision     = 1024;
 
 knumber_base *knumber_float::ensureIsValid(mpfr_ptr mpfr) {
 	if (mpfr_nan_p(mpfr)) {
-		knumber_error *e = new knumber_error(knumber_error::ERROR_UNDEFINED);
+		auto e = new knumber_error(knumber_error::ERROR_UNDEFINED);
 		delete this;
 		return e;
 	} else if (mpfr_inf_p(mpfr)) {
-		knumber_error *e = new knumber_error(knumber_error::ERROR_POS_INFINITY);
+		auto e = new knumber_error(knumber_error::ERROR_POS_INFINITY);
 		delete this;
 		return e;
 	} else {
@@ -160,17 +160,17 @@ knumber_float::~knumber_float() {
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::add(knumber_base *rhs) {
 
-	if(knumber_integer *const p = dynamic_cast<knumber_integer *>(rhs)) {
+	if(auto const p = dynamic_cast<knumber_integer *>(rhs)) {
 		knumber_float f(p);
 		return add(&f);
-	} else if(knumber_float *const p = dynamic_cast<knumber_float *>(rhs)) {
+	} else if(auto const p = dynamic_cast<knumber_float *>(rhs)) {
 		mpfr_add(mpfr_, mpfr_, p->mpfr_, rounding_mode);
 		return this;
-	} else if(knumber_fraction *const p = dynamic_cast<knumber_fraction *>(rhs)) {
+	} else if(auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
 		knumber_float f(p);
 		return add(&f);
-	} else if(knumber_error *const p = dynamic_cast<knumber_error *>(rhs)) {
-		knumber_error *e = new knumber_error(p);
+	} else if(auto const p = dynamic_cast<knumber_error *>(rhs)) {
+		auto e = new knumber_error(p);
 		delete this;
 		return e;
 	}
@@ -184,17 +184,17 @@ knumber_base *knumber_float::add(knumber_base *rhs) {
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::sub(knumber_base *rhs) {
 
-	if(knumber_integer *const p = dynamic_cast<knumber_integer *>(rhs)) {
+	if(auto const p = dynamic_cast<knumber_integer *>(rhs)) {
 		knumber_float f(p);
 		return sub(&f);
-	} else if(knumber_float *const p = dynamic_cast<knumber_float *>(rhs)) {
+	} else if(auto const p = dynamic_cast<knumber_float *>(rhs)) {
 		mpfr_sub(mpfr_, mpfr_, p->mpfr_, rounding_mode);
 		return this;
-	} else if(knumber_fraction *const p = dynamic_cast<knumber_fraction *>(rhs)) {
+	} else if(auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
 		knumber_float f(p);
 		return sub(&f);
-	} else if(knumber_error *const p = dynamic_cast<knumber_error *>(rhs)) {
-		knumber_error *e = new knumber_error(p);
+	} else if(auto const p = dynamic_cast<knumber_error *>(rhs)) {
+		auto e = new knumber_error(p);
 		delete this;
 		return e->neg();
 	}
@@ -208,16 +208,16 @@ knumber_base *knumber_float::sub(knumber_base *rhs) {
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::mul(knumber_base *rhs) {
 
-	if(knumber_integer *const p = dynamic_cast<knumber_integer *>(rhs)) {
+	if(auto const p = dynamic_cast<knumber_integer *>(rhs)) {
 		knumber_float f(p);
 		return mul(&f);
-	} else if(knumber_float *const p = dynamic_cast<knumber_float *>(rhs)) {
+	} else if(auto const p = dynamic_cast<knumber_float *>(rhs)) {
 		mpfr_mul(mpfr_, mpfr_, p->mpfr_, rounding_mode);
 		return this;
-	} else if(knumber_fraction *const p = dynamic_cast<knumber_fraction *>(rhs)) {
+	} else if(auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
 		knumber_float f(p);
 		return mul(&f);
-	} else if(knumber_error *const p = dynamic_cast<knumber_error *>(rhs)) {
+	} else if(auto const p = dynamic_cast<knumber_error *>(rhs)) {
 		if(is_zero()) {
 			delete this;
 			return new knumber_error(knumber_error::ERROR_UNDEFINED);
@@ -225,7 +225,7 @@ knumber_base *knumber_float::mul(knumber_base *rhs) {
 
 		if(sign() < 0) {
 			delete this;
-			knumber_error *e = new knumber_error(p);
+			auto e = new knumber_error(p);
 			return e->neg();
 		} else {
 			delete this;
@@ -252,16 +252,16 @@ knumber_base *knumber_float::div(knumber_base *rhs) {
 		}
 	}
 
-	if(knumber_integer *const p = dynamic_cast<knumber_integer *>(rhs)) {
+	if(auto const p = dynamic_cast<knumber_integer *>(rhs)) {
 		knumber_float f(p);
 		return div(&f);
-	} else if(knumber_float *const p = dynamic_cast<knumber_float *>(rhs)) {
+	} else if(auto const p = dynamic_cast<knumber_float *>(rhs)) {
 		mpfr_div(mpfr_, mpfr_, p->mpfr_, rounding_mode);
 		return this;
-	} else if(knumber_fraction *const p = dynamic_cast<knumber_fraction *>(rhs)) {
+	} else if(auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
 		knumber_float f(p);
 		return div(&f);
-	} else if(knumber_error *const p = dynamic_cast<knumber_error *>(rhs)) {
+	} else if(auto const p = dynamic_cast<knumber_error *>(rhs)) {
 		if(p->sign() > 0 || p->sign() < 0) {
 			delete this;
 			return new knumber_integer(0);
@@ -388,7 +388,7 @@ knumber_base *knumber_float::factorial() {
 		return new knumber_error(knumber_error::ERROR_UNDEFINED);
 	}
 
-	knumber_integer *i = new knumber_integer(this);
+	auto i = new knumber_integer(this);
 	delete this;
 	return i->factorial();
 }
@@ -512,7 +512,7 @@ knumber_base *knumber_float::atanh() {
 //------------------------------------------------------------------------------
 knumber_base *knumber_float::pow(knumber_base *rhs) {
 
-	if(knumber_integer *const p = dynamic_cast<knumber_integer *>(rhs)) {
+	if(auto const p = dynamic_cast<knumber_integer *>(rhs)) {
 		mpfr_pow_ui(mpfr_, mpfr_, mpz_get_ui(p->mpz_), rounding_mode);
 
 		if(p->sign() < 0) {
@@ -520,22 +520,22 @@ knumber_base *knumber_float::pow(knumber_base *rhs) {
 		} else {
 			return this;
 		}
-	} else if(knumber_float *const p = dynamic_cast<knumber_float *>(rhs)) {
+	} else if(auto const p = dynamic_cast<knumber_float *>(rhs)) {
 		return execute_mpfr_func< ::mpfr_pow>(p->mpfr_);
-	} else if(knumber_fraction *const p = dynamic_cast<knumber_fraction *>(rhs)) {
+	} else if(auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
 		knumber_float f(p);
 		return execute_mpfr_func< ::mpfr_pow>(f.mpfr_);
-	} else if(knumber_error *const p = dynamic_cast<knumber_error *>(rhs)) {
+	} else if(auto const p = dynamic_cast<knumber_error *>(rhs)) {
 		if(p->sign() > 0) {
-			knumber_error *e = new knumber_error(knumber_error::ERROR_POS_INFINITY);
+			auto e = new knumber_error(knumber_error::ERROR_POS_INFINITY);
 			delete this;
 			return e;
 		} else if(p->sign() < 0) {
-			knumber_integer *n = new knumber_integer(0);
+			auto n = new knumber_integer(0);
 			delete this;
 			return n;
 		} else {
-			knumber_error *e = new knumber_error(knumber_error::ERROR_UNDEFINED);
+			auto e = new knumber_error(knumber_error::ERROR_UNDEFINED);
 			delete this;
 			return e;
 		}
@@ -550,15 +550,15 @@ knumber_base *knumber_float::pow(knumber_base *rhs) {
 //------------------------------------------------------------------------------
 int knumber_float::compare(knumber_base *rhs) {
 
-	if(knumber_integer *const p = dynamic_cast<knumber_integer *>(rhs)) {
+	if(auto const p = dynamic_cast<knumber_integer *>(rhs)) {
 		knumber_float f(p);
 		return compare(&f);
-	} else if(knumber_float *const p = dynamic_cast<knumber_float *>(rhs)) {
+	} else if(auto const p = dynamic_cast<knumber_float *>(rhs)) {
 		return mpfr_cmp(mpfr_, p->mpfr_);
-	} else if(knumber_fraction *const p = dynamic_cast<knumber_fraction *>(rhs)) {
+	} else if(auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
 		knumber_float f(p);
 		return compare(&f);
-	} else if(knumber_error *const p = dynamic_cast<knumber_error *>(rhs)) {
+	} else if(auto const p = dynamic_cast<knumber_error *>(rhs)) {
 		// NOTE: any number compared to NaN/Inf/-Inf always compares less
 		//       at the moment
 		return -1;

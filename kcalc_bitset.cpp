@@ -82,7 +82,7 @@ KCalcBitset::KCalcBitset(QWidget *parent) : QFrame(parent), bit_button_group_(ne
 	}
 
 	// main layout
-	QGridLayout *layout = new QGridLayout(this);
+	auto layout = new QGridLayout(this);
     layout->setContentsMargins(2, 2, 2, 2);
 	layout->setSpacing(0);
 
@@ -91,13 +91,13 @@ KCalcBitset::KCalcBitset(QWidget *parent) : QFrame(parent), bit_button_group_(ne
 	for (int rows = 0; rows < 2; rows++) {
 		for (int cols = 0; cols < 4; cols++) {
 			// two rows of four words
-			QHBoxLayout *const wordlayout = new QHBoxLayout();
+			auto const wordlayout = new QHBoxLayout();
             wordlayout->setContentsMargins(2, 2, 2, 2);
 			wordlayout->setSpacing(2);
 			layout->addLayout(wordlayout, rows, cols);
 
 			for (int bit = 0; bit < 8; bit++) {
-				BitButton *const tmpBitButton = new BitButton(this);
+				auto const tmpBitButton = new BitButton(this);
 				tmpBitButton->setToolTip(i18n("Bit %1 = %2", bitCounter, 1ULL << bitCounter));
 				wordlayout->addWidget(tmpBitButton);
 				bit_button_group_->addButton(tmpBitButton, bitCounter);
@@ -105,7 +105,7 @@ KCalcBitset::KCalcBitset(QWidget *parent) : QFrame(parent), bit_button_group_(ne
 			}
 
 			// label word
-			QLabel *label = new QLabel(this);
+			auto label = new QLabel(this);
 			label->setText(QString::number(bitCounter + 1));
 			label->setFont(fnt);
 			wordlayout->addWidget(label);
@@ -128,7 +128,7 @@ void KCalcBitset::setValue(quint64 value) {
 	
 	// set each bit button
 	for (int i = 0; i < 64; i++) {	
-		if(BitButton *bb = qobject_cast<BitButton*>(bit_button_group_->button(i))) {
+		if(auto bb = qobject_cast<BitButton*>(bit_button_group_->button(i))) {
 			bb->setOn(value & 1);
 		}
 		value >>= 1;

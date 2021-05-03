@@ -75,7 +75,7 @@ KCalculator::KCalculator(QWidget *parent) :
 		core() {
 
 	// central widget to contain all the elements
-	QWidget *const central = new QWidget(this);
+	auto const central = new QWidget(this);
 	central->setLayoutDirection(Qt::LeftToRight);
 	setCentralWidget(central);
 	KAcceleratorManager::setNoAccel(central);
@@ -182,7 +182,7 @@ void KCalculator::setupMainActions() {
 	KStandardAction::paste(this, SLOT(slotPaste()), actionCollection());
 
 	// mode menu
-	QActionGroup *modeGroup = new QActionGroup(this);
+	auto modeGroup = new QActionGroup(this);
 
 	action_mode_simple_ = actionCollection()->add<KToggleAction>(QStringLiteral("mode_simple"));
 	action_mode_simple_->setActionGroup(modeGroup);
@@ -225,7 +225,7 @@ void KCalculator::setupMainActions() {
 //------------------------------------------------------------------------------
 KCalcConstMenu *KCalculator::createConstantsMenu() {
 
-	KCalcConstMenu *const menu = new KCalcConstMenu(i18n("&Constants"), this);
+	auto const menu = new KCalcConstMenu(i18n("&Constants"), this);
 	connect(menu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotConstantToDisplay);
 	return menu;
 }
@@ -687,7 +687,7 @@ void KCalculator::updateGeometry() {
 
 	// left pad
 	foreach(QObject *obj, leftPad->children()) {
-		if (KCalcButton *const button = qobject_cast<KCalcButton *>(obj)) {
+		if (auto const button = qobject_cast<KCalcButton *>(obj)) {
 			button->setFixedWidth(em.width() * 4 + margin * 2);
 			button->installEventFilter(this);
 		}
@@ -695,7 +695,7 @@ void KCalculator::updateGeometry() {
 
 	// right pad
 	foreach(QObject *obj, rightPad->children()) {
-		KCalcButton *const button = qobject_cast<KCalcButton *>(obj);
+		auto const button = qobject_cast<KCalcButton *>(obj);
 		// let Shift expand freely
 		if (button && button != pbShift) {
 			button->setFixedWidth(em.width() * 3 + margin * 2);
@@ -705,7 +705,7 @@ void KCalculator::updateGeometry() {
 
 	// numeric pad
 	foreach(QObject *obj, numericPad->children()) {
-		if (KCalcButton *const button = qobject_cast<KCalcButton *>(obj)) {
+		if (auto const button = qobject_cast<KCalcButton *>(obj)) {
 			// let pb0 expand freely
 			if (button != pb0) {
 				button->setFixedWidth(em.width() * 3 + margin * 2);
@@ -1585,7 +1585,7 @@ void KCalculator::slotStatClearDataclicked() {
 //------------------------------------------------------------------------------
 void KCalculator::slotConstclicked(int button) {
 
-	if(KCalcConstButton *btn = qobject_cast<KCalcConstButton*>(const_buttons_[button])) {
+	if(auto btn = qobject_cast<KCalcConstButton*>(const_buttons_[button])) {
 		if (!shift_mode_) {
 			// set the display to the configured value of constant button
 			// internally, we deal with C locale style numbers, we need to convert
@@ -1627,19 +1627,19 @@ void KCalculator::showSettings() {
 	}
 
 	// Create a new dialog with the same name as the above checking code.
-	KConfigDialog *const dialog = new KConfigDialog(this, QStringLiteral("settings"), KCalcSettings::self());
+	auto const dialog = new KConfigDialog(this, QStringLiteral("settings"), KCalcSettings::self());
 
 	// general settings
-    General *const general = new General(nullptr);
+    auto const general = new General(nullptr);
 	general->kcfg_Precision->setMaximum(maxprecision);
 	dialog->addPage(general, i18n("General"), QStringLiteral("accessories-calculator"), i18n("General Settings"));
 
 	// font settings
-    Fonts *const fonts = new Fonts(nullptr);
+    auto const fonts = new Fonts(nullptr);
 	dialog->addPage(fonts, i18n("Font"), QStringLiteral("preferences-desktop-font"), i18n("Select Display Font"));
 
 	// color settings
-    Colors *const color = new Colors(nullptr);
+    auto const color = new Colors(nullptr);
 	dialog->addPage(color, i18n("Colors"), QStringLiteral("preferences-desktop-color"), i18n("Button & Display Colors"));
 
 	// constant settings
@@ -2064,7 +2064,7 @@ void KCalculator::slotBitsetshow(bool toggled) {
 void KCalculator::changeButtonNames() {
 
     foreach(QAbstractButton *btn, const_buttons_) {
-        if (KCalcConstButton *const constbtn = qobject_cast<KCalcConstButton*>(btn)) {
+        if (auto const constbtn = qobject_cast<KCalcConstButton*>(btn)) {
 			constbtn->setLabelAndTooltip();
 		}
     }
@@ -2233,19 +2233,19 @@ void KCalculator::setColors() {
 void KCalculator::setFonts() {
 
 	foreach(QObject *obj, leftPad->children()) {
-		if (KCalcButton *const button = qobject_cast<KCalcButton*>(obj)) {
+		if (auto const button = qobject_cast<KCalcButton*>(obj)) {
 			button->setFont(KCalcSettings::buttonFont());
 		}
 	}
 
 	foreach(QObject *obj, numericPad->children()) {
-		if (KCalcButton *const button = qobject_cast<KCalcButton*>(obj)) {
+		if (auto const button = qobject_cast<KCalcButton*>(obj)) {
 			button->setFont(KCalcSettings::buttonFont());
 		}
 	}
 
 	foreach(QObject *obj, rightPad->children()) {
-		if (KCalcButton *const button = qobject_cast<KCalcButton*>(obj)) {
+		if (auto const button = qobject_cast<KCalcButton*>(obj)) {
 			button->setFont(KCalcSettings::buttonFont());
 		}
 	}
@@ -2311,7 +2311,7 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e) {
 
 	switch (e->type()) {
 	case QEvent::DragEnter: {
-		QDragEnterEvent *const ev = reinterpret_cast<QDragEnterEvent *>(e);
+		auto const ev = reinterpret_cast<QDragEnterEvent *>(e);
 		ev->setAccepted(KColorMimeData::canDecode(ev->mimeData()));
 		return true;
 	}
@@ -2319,12 +2319,12 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e) {
 		return true;
 	}
 	case QEvent::Drop: {
-		KCalcButton *const calcButton = qobject_cast<KCalcButton *>(o);
+		auto const calcButton = qobject_cast<KCalcButton *>(o);
 		if (!calcButton) {
 			return false;
 		}
 
-		QDropEvent *const ev = reinterpret_cast<QDropEvent *>(e);
+		auto const ev = reinterpret_cast<QDropEvent *>(e);
 		QColor c = KColorMimeData::fromMimeData(ev->mimeData());
 
 		if (c.isValid()) {
@@ -2443,7 +2443,7 @@ int main(int argc, char *argv[]) {
     KNumber::setGroupSeparator(QLocale().groupSeparator());
     KNumber::setDecimalSeparator(QString(QLocale().decimalPoint()));
 
-    KCalculator *calc = new KCalculator(nullptr);
+    auto calc = new KCalculator(nullptr);
 
 	calc->show();
 	return app.exec();

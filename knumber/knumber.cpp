@@ -147,7 +147,7 @@ void round(QString &str, int precision) {
 QString round(const QString &s, int precision) {
 
 	QString tmp = s;
-    if (precision < 0 || !QRegExp(QLatin1String("^[+-]?\\d+(\\.\\d+)*(e[+-]?\\d+)?$")).exactMatch(tmp)) {
+    if (precision < 0 || !QRegExp(QLatin1String(R"(^[+-]?\d+(\.\d+)*(e[+-]?\d+)?$)")).exactMatch(tmp)) {
         return s;
     }
 
@@ -208,7 +208,7 @@ QString KNumber::decimalSeparator() {
 //------------------------------------------------------------------------------
 void KNumber::setDefaultFloatPrecision(int precision) {
     // Need to transform decimal digits into binary digits
-    const unsigned long int bin_prec = static_cast<unsigned long int>(::ceil(precision * M_LN10 / M_LN2) + 1);
+    const auto bin_prec = static_cast<unsigned long int>(::ceil(precision * M_LN10 / M_LN2) + 1);
     mpfr_set_default_prec(static_cast<mpfr_prec_t>(bin_prec));
 }
 
@@ -277,7 +277,7 @@ KNumber::KNumber(const QString &s) : value_(nullptr) {
 	const QRegExp special_regex(QLatin1String("^(inf|-inf|nan)$"));
 	const QRegExp integer_regex(QLatin1String("^[+-]?\\d+$"));
 	const QRegExp fraction_regex(QLatin1String("^[+-]?\\d+/\\d+$"));
-	const QRegExp float_regex(QString(QLatin1String("^([+-]?\\d*)(%1\\d*)?(e([+-]?\\d+))?$")).arg(QRegExp::escape(DecimalSeparator)));
+	const QRegExp float_regex(QString(QLatin1String(R"(^([+-]?\d*)(%1\d*)?(e([+-]?\d+))?$)")).arg(QRegExp::escape(DecimalSeparator)));
 
 	if (special_regex.exactMatch(s)) {
 		value_ = new detail::knumber_error(s);
@@ -433,18 +433,18 @@ KNumber KNumber::integerPart() const {
 
 	KNumber x(*this);
 
-	if(detail::knumber_integer *const p = dynamic_cast<detail::knumber_integer *>(value_)) {
+	if(auto const p = dynamic_cast<detail::knumber_integer *>(value_)) {
 		// NO-OP
 		Q_UNUSED(p);
-	} else if(detail::knumber_float *const p = dynamic_cast<detail::knumber_float *>(value_)) {
+	} else if(auto const p = dynamic_cast<detail::knumber_float *>(value_)) {
 		detail::knumber_base *v = new detail::knumber_integer(p);
 		qSwap(v, x.value_);
 		delete v;
-	} else if(detail::knumber_fraction *const p = dynamic_cast<detail::knumber_fraction *>(value_)) {
+	} else if(auto const p = dynamic_cast<detail::knumber_fraction *>(value_)) {
 		detail::knumber_base *v = new detail::knumber_integer(p);
 		qSwap(v, x.value_);
 		delete v;
-	} else if(detail::knumber_error *const p = dynamic_cast<detail::knumber_error *>(value_)) {
+	} else if(auto const p = dynamic_cast<detail::knumber_error *>(value_)) {
 		// NO-OP
 		Q_UNUSED(p);
 	} else {
@@ -461,18 +461,18 @@ void KNumber::simplify() {
 
 	if(value_->is_integer()) {
 
-		if(detail::knumber_integer *const p = dynamic_cast<detail::knumber_integer *>(value_)) {
+		if(auto const p = dynamic_cast<detail::knumber_integer *>(value_)) {
 			// NO-OP
 			Q_UNUSED(p);
-		} else if(detail::knumber_float *const p = dynamic_cast<detail::knumber_float *>(value_)) {
+		} else if(auto const p = dynamic_cast<detail::knumber_float *>(value_)) {
 			detail::knumber_base *v = new detail::knumber_integer(p);
 			qSwap(v, value_);
 			delete v;
-		} else if(detail::knumber_fraction *const p = dynamic_cast<detail::knumber_fraction *>(value_)) {
+		} else if(auto const p = dynamic_cast<detail::knumber_fraction *>(value_)) {
 			detail::knumber_base *v = new detail::knumber_integer(p);
 			qSwap(v, value_);
 			delete v;
-		} else if(detail::knumber_error *const p = dynamic_cast<detail::knumber_error *>(value_)) {
+		} else if(auto const p = dynamic_cast<detail::knumber_error *>(value_)) {
 			// NO-OP
 			Q_UNUSED(p);
 		} else {
@@ -604,19 +604,19 @@ QString KNumber::toQString(int width, int precision) const {
 
 	QString s;
 
-	if(detail::knumber_integer *const p = dynamic_cast<detail::knumber_integer *>(value_)) {
+	if(auto const p = dynamic_cast<detail::knumber_integer *>(value_)) {
 		if(width > 0) {
 			s = detail::knumber_float(p).toString(width);
 		} else {
 			s = value_->toString(width);
 		}
-	} else if(detail::knumber_float *const p = dynamic_cast<detail::knumber_float *>(value_)) {
+	} else if(auto const p = dynamic_cast<detail::knumber_float *>(value_)) {
 		if(width > 0) {
 			s = value_->toString(width);
 		} else {
 			s = value_->toString(3 * mpf_get_default_prec() / 10);
 		}
-	} else if(detail::knumber_fraction *const p = dynamic_cast<detail::knumber_fraction *>(value_)) {
+	} else if(auto const p = dynamic_cast<detail::knumber_fraction *>(value_)) {
 		s = value_->toString(width);
 	} else {
 		return value_->toString(width);

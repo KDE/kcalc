@@ -36,7 +36,7 @@ KCalcStatusBar::KCalcStatusBar(QWidget *parent)
 
 QLabel *KCalcStatusBar::addIndicator(QList<QString> indicatorTexts)
 {
-    QLabel *l = new QLabel(indicatorTexts.at(0), this);
+    auto l = new QLabel(indicatorTexts.at(0), this);
 
     // find widest indicator text
     QFontMetrics fm(l->font());

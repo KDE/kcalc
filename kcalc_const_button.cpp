@@ -92,12 +92,12 @@ void KCalcConstButton::setLabelAndTooltip() {
 //------------------------------------------------------------------------------
 void KCalcConstButton::initPopupMenu() {
 
-    QAction *const a = new QAction(this);
+    auto const a = new QAction(this);
     a->setText(i18n("Set Name"));
     connect(a, &QAction::triggered, this, &KCalcConstButton::slotConfigureButton);
     addAction(a);
 	
-	KCalcConstMenu *const tmp_menu = new KCalcConstMenu(this);
+	auto const tmp_menu = new KCalcConstMenu(this);
     tmp_menu->menuAction()->setText(i18n("Choose From List"));
     addAction(tmp_menu->menuAction());
     setContextMenuPolicy(Qt::ActionsContextMenu);

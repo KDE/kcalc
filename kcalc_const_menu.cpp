@@ -113,7 +113,7 @@ void KCalcConstMenu::init_all()
 
 
     for (int i = 0; i < scienceConstantList.size(); i++) {
-        QAction *tmp_action = new QAction(i18n(scienceConstantList.at(i).name.toLatin1().data()), this);
+        auto tmp_action = new QAction(i18n(scienceConstantList.at(i).name.toLatin1().data()), this);
         tmp_action->setData(QVariant(i));
         if (scienceConstantList.at(i).category  &  Mathematics)
             math_menu->addAction(tmp_action);
