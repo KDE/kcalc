@@ -948,7 +948,7 @@ void KCalculator::slotMemRecallclicked() {
 //------------------------------------------------------------------------------
 void KCalculator::slotMemStoreclicked() {
 
-	EnterEqual();
+	EnterEqual(CalcEngine::REPEAT_PREVENT);
 
 	memory_num_ = calc_display->getAmount();
 	calc_display->setStatusText(MemField, QStringLiteral("M"));
@@ -1424,9 +1424,9 @@ void KCalculator::slotPeriodclicked() {
 // Name: EnterEqual
 // Desc: calculates and displays the result of the pending operations
 //------------------------------------------------------------------------------
-void KCalculator::EnterEqual() {
+void KCalculator::EnterEqual(CalcEngine::Repeat allow_repeat) {
 
-    core.enterOperation(calc_display->getAmount(), CalcEngine::FUNC_EQUAL);
+    core.enterOperation(calc_display->getAmount(), CalcEngine::FUNC_EQUAL, allow_repeat);
     updateDisplay(UPDATE_FROM_CORE | UPDATE_STORE_RESULT);
 }
 

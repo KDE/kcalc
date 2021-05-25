@@ -49,11 +49,16 @@ public:
         FUNC_PWR_ROOT
     };
 
+    enum Repeat {
+        REPEAT_ALLOW,
+        REPEAT_PREVENT
+    };
+
     CalcEngine();
 
     KNumber lastOutput(bool &error) const;
 
-    void enterOperation(const KNumber &num, Operation func);
+    void enterOperation(const KNumber &num, Operation func, Repeat allow_repeat = REPEAT_ALLOW);
 
     void ArcCosDeg(const KNumber &input);
     void ArcCosRad(const KNumber &input);

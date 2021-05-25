@@ -114,6 +114,7 @@ public:
         UPDATE_FROM_CORE    = 1,
         UPDATE_STORE_RESULT = 2
     };
+
     
     Q_DECLARE_FLAGS(UpdateFlags, UpdateFlag)
 
@@ -153,7 +154,7 @@ protected Q_SLOTS:
     void updateSettings();
     void setColors();
     void setFonts();
-    void EnterEqual();
+    void EnterEqual(CalcEngine::Repeat allow_repeat = CalcEngine::REPEAT_ALLOW);
     void showSettings();
 
     // Mode

@@ -826,7 +826,7 @@ KNumber CalcEngine::evalOperation(const KNumber &arg1, Operation operation, cons
     }
 }
 
-void CalcEngine::enterOperation(const KNumber &number, Operation func)
+void CalcEngine::enterOperation(const KNumber &number, Operation func, Repeat allow_repeat)
 {
     Node tmp_node;
 
@@ -856,7 +856,7 @@ void CalcEngine::enterOperation(const KNumber &number, Operation func)
             if (!repeat_mode_) {
                 repeat_mode_ = last_operation_ != FUNC_EQUAL;
                 last_repeat_number_ = number;
-            } else {
+            } else if(allow_repeat == REPEAT_ALLOW) {
                 Node repeat_node;
                 repeat_node.operation = last_operation_;
                 repeat_node.number = number;
