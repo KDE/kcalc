@@ -132,7 +132,7 @@ void KCalcConstMenu::slotPassSignalThrough(QAction  *chosen_const)
 {
     bool tmp_bool;
     int chosen_const_idx = (chosen_const->data()).toInt(& tmp_bool);
-    emit triggeredConstant(scienceConstantList.at(chosen_const_idx));
+    Q_EMIT triggeredConstant(scienceConstantList.at(chosen_const_idx));
 }
 
 KCalcConstMenu::KCalcConstMenu(const QString &title, QWidget * parent)

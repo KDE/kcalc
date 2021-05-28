@@ -34,14 +34,14 @@ KCalcStatusBar::KCalcStatusBar(QWidget *parent)
     setSizeGripEnabled(false);
 }
 
-QLabel *KCalcStatusBar::addIndicator(QList<QString> indicatorTexts)
+QLabel *KCalcStatusBar::addIndicator(const QList<QString> &indicatorTexts)
 {
     auto l = new QLabel(indicatorTexts.at(0), this);
 
     // find widest indicator text
     QFontMetrics fm(l->font());
     int maxWidth = 0;
-    foreach (const QString &text, indicatorTexts) {
+    for (const QString &text : indicatorTexts) {
         maxWidth = qMax(maxWidth, fm.boundingRect(text).width());
     }
     // add some padding

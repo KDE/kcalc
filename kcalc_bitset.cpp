@@ -153,7 +153,7 @@ void KCalcBitset::slotToggleBit(QAbstractButton *button) {
         const int bit = bit_button_group_->id(button);
         const quint64 nv = getValue() ^(1LL << bit);
         setValue(nv);
-        emit valueChanged(value_);
+        Q_EMIT valueChanged(value_);
     }
 }
 

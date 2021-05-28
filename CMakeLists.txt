@@ -7,8 +7,8 @@ set (RELEASE_SERVICE_VERSION_MICRO "70")
 set (RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_MICRO}")
 project(kcalc VERSION ${RELEASE_SERVICE_VERSION})
 
-set(QT_MIN_VERSION "5.14.0")
-set(KF5_MIN_VERSION "5.70.0")
+set(QT_MIN_VERSION "5.15.0")
+set(KF5_MIN_VERSION "5.83.0")
 
 find_package (ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
 set (CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
@@ -76,8 +76,9 @@ check_type_size("unsigned long"  SIZEOF_UNSIGNED_LONG)
 configure_file(config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
 
 add_subdirectory(knumber)
+add_executable(kcalc)
 
-set(kcalc_SRCS
+target_sources(kcalc PRIVATE
    kcalc.cpp 
    bitbutton.cpp
    kcalc_bitset.cpp
@@ -89,14 +90,14 @@ set(kcalc_SRCS
    kcalc_statusbar.cpp
    stats.cpp )
 
-ki18n_wrap_ui(kcalc_SRCS
+ki18n_wrap_ui(kcalc
    kcalc.ui
    constants.ui
    colors.ui
    fonts.ui
    general.ui)
 
-kconfig_add_kcfg_files(kcalc_SRCS kcalc_settings.kcfgc )
+kconfig_add_kcfg_files(kcalc kcalc_settings.kcfgc )
 
 # Sets the icon on Windows and OSX
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*.png")
@@ -109,7 +110,6 @@ if (INSTALL_ICONS)
     ecm_install_icons( ICONS ${ICONS_SRCS} DESTINATION ${KDE_INSTALL_ICONDIR} )
 endif()
 
-add_executable(kcalc ${kcalc_SRCS})
 
 target_link_libraries(kcalc
     Qt5::Core

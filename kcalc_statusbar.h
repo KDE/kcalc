@@ -48,7 +48,7 @@ public:
     void setMemoryIndicator(bool memory);
 
 private:
-    QLabel *addIndicator(QList<QString> indicatorTexts);
+    QLabel *addIndicator(const QList<QString> &indicatorTexts);
 
 private:
     QLabel * const shift_indicator_;

@@ -686,7 +686,8 @@ void KCalculator::updateGeometry() {
 	margin = qMax(qMin(margin / 2, 3), 3);
 
 	// left pad
-	foreach(QObject *obj, leftPad->children()) {
+    const auto leftPadList = leftPad->children();
+    for (QObject *obj : leftPadList) {
 		if (auto const button = qobject_cast<KCalcButton *>(obj)) {
 			button->setFixedWidth(em.width() * 4 + margin * 2);
 			button->installEventFilter(this);
@@ -694,7 +695,8 @@ void KCalculator::updateGeometry() {
 	}
 
 	// right pad
-	foreach(QObject *obj, rightPad->children()) {
+    const auto rightPadList = rightPad->children();
+    for (QObject *obj : rightPadList) {
 		auto const button = qobject_cast<KCalcButton *>(obj);
 		// let Shift expand freely
 		if (button && button != pbShift) {
@@ -704,7 +706,8 @@ void KCalculator::updateGeometry() {
 	}
 
 	// numeric pad
-	foreach(QObject *obj, numericPad->children()) {
+    const auto numericPadList = numericPad->children();
+    for (QObject *obj : numericPadList) {
 		if (auto const button = qobject_cast<KCalcButton *>(obj)) {
 			// let pb0 expand freely
 			if (button != pb0) {
@@ -779,11 +782,12 @@ void KCalculator::slotBaseSelected(QAbstractButton *button) {
 
 	// Disable buttons that make only sense with floating point numbers
 	if (current_base != NB_DECIMAL)  {
-		foreach(QAbstractButton *btn, scientific_buttons_) {
+        for (QAbstractButton *btn : qAsConst(scientific_buttons_)) {
 			btn->setEnabled(false);
 		}
 	} else {
-		foreach(QAbstractButton *btn, scientific_buttons_) {
+
+        for (QAbstractButton *btn : qAsConst(scientific_buttons_)) {
 			btn->setEnabled(true);
 		}
 	}
@@ -818,7 +822,7 @@ void KCalculator::keyPressEvent(QKeyEvent *e) {
 	}
 
 	if (e->key() == Qt::Key_Control) {
-		emit switchShowAccels(true);
+		Q_EMIT switchShowAccels(true);
 	}
 
 	// Workaround for bug #283521
@@ -857,7 +861,7 @@ void KCalculator::keyPressEvent(QKeyEvent *e) {
 void KCalculator::keyReleaseEvent(QKeyEvent *e) {
 
 	if (e->key() == Qt::Key_Control) {
-		emit switchShowAccels(false);
+		Q_EMIT switchShowAccels(false);
 	}
 }
 
@@ -906,7 +910,7 @@ void KCalculator::slotShifttoggled(bool flag) {
 
 	shift_mode_ = flag;
 
-	emit switchMode(ModeShift, flag);
+	Q_EMIT switchMode(ModeShift, flag);
 
 	statusBar()->setShiftIndicator(shift_mode_);
 	if (shift_mode_) {
@@ -925,7 +929,7 @@ void KCalculator::slotHyptoggled(bool flag) {
 	// toggle between hyperbolic and standard trig functions
 	hyp_mode_ = flag;
 
-	emit switchMode(ModeHyperbolic, flag);
+	Q_EMIT switchMode(ModeHyperbolic, flag);
 }
 
 //------------------------------------------------------------------------------
@@ -1903,11 +1907,11 @@ void KCalculator::slotBaseModeAmountChanged(const KNumber &number) {
 void KCalculator::showMemButtons(bool toggled) {
 
 	if (toggled) {
-		foreach(QAbstractButton *btn, mem_button_list_) {
+        for (QAbstractButton *btn : qAsConst(mem_button_list_)) {
 			btn->show();
 		}
 	} else {
-		foreach(QAbstractButton *btn, mem_button_list_) {
+        for (QAbstractButton *btn : qAsConst(mem_button_list_)) {
 			btn->hide();
 		}
 
@@ -1924,11 +1928,12 @@ void KCalculator::showMemButtons(bool toggled) {
 void KCalculator::showStatButtons(bool toggled) {
 
 	if (toggled) {
-		foreach(QAbstractButton *btn, stat_buttons_) {
+
+        for (QAbstractButton *btn : qAsConst(stat_buttons_)) {
 			btn->show();
 		}
 	} else {
-		foreach(QAbstractButton *btn, stat_buttons_) {
+        for (QAbstractButton *btn : qAsConst(stat_buttons_)) {
 			btn->hide();
 		}
 	}
@@ -1941,22 +1946,23 @@ void KCalculator::showStatButtons(bool toggled) {
 void KCalculator::showScienceButtons(bool toggled) {
 
 	if (toggled) {
-		foreach(QAbstractButton* btn, scientific_buttons_) {
+        for (QAbstractButton *btn : qAsConst(scientific_buttons_)) {
 			btn->show();
 		}
-
-		foreach(QAbstractButton* btn, angle_choose_group_->buttons()) {
+        const auto buttons = angle_choose_group_->buttons();
+        for (QAbstractButton* btn : buttons) {
 			btn->show();
 		}
 
 		setAngle();
 		statusBar()->setAngleModeIndicatorVisible(true);
 	} else {
-		foreach(QAbstractButton* btn, scientific_buttons_) {
+        for (QAbstractButton *btn : qAsConst(scientific_buttons_)) {
 			btn->hide();
 		}
 
-		foreach(QAbstractButton* btn, angle_choose_group_->buttons()) {
+        const auto buttons = angle_choose_group_->buttons();
+        for (QAbstractButton* btn : buttons) {
 			btn->hide();
 		}
 
@@ -1976,15 +1982,16 @@ void KCalculator::showLogicButtons(bool toggled) {
 		connect(mBitset, &KCalcBitset::valueChanged, this, &KCalculator::slotBitsetChanged);
 		connect(calc_display, &KCalcDisplay::changedAmount, this, &KCalculator::slotUpdateBitset);
 
-		foreach(QAbstractButton* btn, logic_buttons_) {
+        for (QAbstractButton *btn : qAsConst(logic_buttons_)) {
 			btn->show();
 		}
 
 		setBase();
 		statusBar()->setBaseIndicatorVisible(true);
 
-		foreach(QAbstractButton *btn, base_choose_group_->buttons()) {
-			btn->show();
+        const auto buttons = base_choose_group_->buttons();
+        for (QAbstractButton* btn : buttons) {
+            btn->show();
 		}
 
 		for (QLabel* lbl : base_conversion_labels_) {
@@ -2000,14 +2007,15 @@ void KCalculator::showLogicButtons(bool toggled) {
 		disconnect(mBitset, &KCalcBitset::valueChanged, this, &KCalculator::slotBitsetChanged);
 		disconnect(calc_display, &KCalcDisplay::changedAmount, this, &KCalculator::slotUpdateBitset);
 
-		foreach(QAbstractButton* btn, logic_buttons_) {
+        for (QAbstractButton *btn : qAsConst(logic_buttons_)) {
 			btn->hide();
 		}
 
 		// Hide Hex-Buttons, but first switch back to decimal
 		decRadio->animateClick(0);
 
-		foreach(QAbstractButton *btn, base_choose_group_->buttons()) {
+        const auto buttons = base_choose_group_->buttons();
+        for (QAbstractButton* btn : buttons) {
 			btn->hide();
 		}
 
@@ -2031,11 +2039,11 @@ void KCalculator::showLogicButtons(bool toggled) {
 void KCalculator::slotConstantsShow(bool toggled) {
 
 	if (toggled) {
-		foreach(QAbstractButton *btn, const_buttons_) {
+        for(QAbstractButton *btn : qAsConst(const_buttons_)) {
 			btn->show();
 		}
 	} else {
-		foreach(QAbstractButton *btn, const_buttons_) {
+        for(QAbstractButton *btn : qAsConst(const_buttons_)) {
 			btn->hide();
 		}
 	}
@@ -2063,7 +2071,7 @@ void KCalculator::slotBitsetshow(bool toggled) {
 //------------------------------------------------------------------------------
 void KCalculator::changeButtonNames() {
 
-    foreach(QAbstractButton *btn, const_buttons_) {
+    for (QAbstractButton *btn : qAsConst(const_buttons_)) {
         if (auto const constbtn = qobject_cast<KCalcConstButton*>(btn)) {
 			constbtn->setLabelAndTooltip();
 		}
@@ -2145,12 +2153,12 @@ void KCalculator::setColors() {
 	}
 
 	const QColor funcFontColor(KCalcSettings::functionFontsColor());
-	foreach(QAbstractButton *btn, function_button_list_) {
+    for (QAbstractButton *btn : qAsConst(function_button_list_)) {
 		qobject_cast<KCalcButton*>(btn)->setTextColor(funcFontColor);
 	}
 
 	const QColor statFontColor(KCalcSettings::statFontsColor());
-	foreach(QAbstractButton *btn, stat_buttons_) {
+    for (QAbstractButton *btn : qAsConst(stat_buttons_)) {
 		qobject_cast<KCalcButton*>(btn)->setTextColor(statFontColor);
 	}
 
@@ -2160,17 +2168,17 @@ void KCalculator::setColors() {
 	}
 
 	const QColor memFontColor(KCalcSettings::memoryFontsColor());
-	foreach(QAbstractButton *btn, mem_button_list_) {
+    for (QAbstractButton *btn : qAsConst(mem_button_list_)) {
 		qobject_cast<KCalcButton*>(btn)->setTextColor(memFontColor);
 	}
 
 	const QColor opFontColor(KCalcSettings::operationFontsColor());
-	foreach(QAbstractButton *btn, operation_button_list_) {
+    for (QAbstractButton *btn : qAsConst(operation_button_list_)) {
 		qobject_cast<KCalcButton*>(btn)->setTextColor(opFontColor);
 	}
 
 	const QColor coFontColor(KCalcSettings::constantsFontsColor());
-	foreach(QAbstractButton *btn, const_buttons_) {
+    for (QAbstractButton *btn : qAsConst(const_buttons_)) {
 		qobject_cast<KCalcButton*>(btn)->setTextColor(coFontColor);
 	}
 
@@ -2196,12 +2204,12 @@ void KCalculator::setColors() {
 	}
 
 	const QColor funcPal(KCalcSettings::functionButtonsColor());
-	foreach(QAbstractButton *btn, function_button_list_) {
+    for (QAbstractButton *btn : qAsConst(function_button_list_)) {
 		btn->setStyleSheet(sheet.arg(funcPal.name()));
 	}
 
 	const QColor statPal(KCalcSettings::statButtonsColor());
-	foreach(QAbstractButton *btn, stat_buttons_) {
+    for (QAbstractButton *btn : qAsConst(stat_buttons_)) {
 		btn->setStyleSheet(sheet.arg(statPal.name()));
 	}
 
@@ -2211,17 +2219,17 @@ void KCalculator::setColors() {
 	}
 
 	const QColor memPal(KCalcSettings::memoryButtonsColor());
-	foreach(QAbstractButton *btn, mem_button_list_) {
+    for (QAbstractButton *btn : qAsConst(mem_button_list_)) {
 		btn->setStyleSheet(sheet.arg(memPal.name()));
 	}
 
 	const QColor opPal(KCalcSettings::operationButtonsColor());
-	foreach(QAbstractButton *btn, operation_button_list_) {
+    for (QAbstractButton *btn : qAsConst(operation_button_list_)) {
 		btn->setStyleSheet(sheet.arg(opPal.name()));
 	}
 
 	const QColor coPal(KCalcSettings::constantsButtonsColor());
-	foreach(QAbstractButton *btn, const_buttons_) {
+    for (QAbstractButton *btn : qAsConst(const_buttons_)) {
 		btn->setStyleSheet(sheet.arg(coPal.name()));
 	}
 }
@@ -2232,19 +2240,22 @@ void KCalculator::setColors() {
 //------------------------------------------------------------------------------
 void KCalculator::setFonts() {
 
-	foreach(QObject *obj, leftPad->children()) {
+    const auto leftPadLst = leftPad->children();
+    for (QObject *obj : leftPadLst) {
 		if (auto const button = qobject_cast<KCalcButton*>(obj)) {
 			button->setFont(KCalcSettings::buttonFont());
 		}
 	}
 
-	foreach(QObject *obj, numericPad->children()) {
+    const auto numericPadLst = numericPad->children();
+    for (QObject *obj : numericPadLst) {
 		if (auto const button = qobject_cast<KCalcButton*>(obj)) {
 			button->setFont(KCalcSettings::buttonFont());
 		}
 	}
 
-	foreach(QObject *obj, rightPad->children()) {
+    const auto rightPadLst = rightPad->children();
+    for (QObject *obj : rightPadLst) {
 		if (auto const button = qobject_cast<KCalcButton*>(obj)) {
 			button->setFont(KCalcSettings::buttonFont());
 		}

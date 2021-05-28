@@ -69,8 +69,7 @@ void KStats::clearLast() {
 KNumber KStats::sum() const {
 
 	KNumber result = KNumber::Zero;
-	
-	Q_FOREACH(const KNumber &x, data_) {
+    for (const KNumber &x : qAsConst(data_)) {
 		result += x;
 	}
 
@@ -120,7 +119,7 @@ KNumber KStats::std_kernel() {
 	const KNumber mean_value = mean();
 
 	if(mean_value.type() != KNumber::TYPE_ERROR) {
-		Q_FOREACH(const KNumber &x, data_) {
+        for (const KNumber &x : qAsConst(data_)) {
 			result += (x - mean_value) * (x - mean_value);
 		}
 	}
@@ -136,7 +135,7 @@ KNumber KStats::sum_of_squares() const {
 
 	KNumber result = KNumber::Zero;
 
-	Q_FOREACH(const KNumber &x, data_) {
+    for (const KNumber &x : qAsConst(data_)) {
 		result += (x * x);
 	}
 

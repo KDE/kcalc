@@ -394,7 +394,7 @@ void KCalcDisplay::mousePressEvent(QMouseEvent *e) {
 		button_ = Qt::MiddleButton;
 	}
 
-	emit clicked();
+	Q_EMIT clicked();
 }
 
 //------------------------------------------------------------------------------
@@ -516,7 +516,7 @@ bool KCalcDisplay::setAmount(const KNumber &new_amount) {
 	}
 
 	setText(display_str);
-	emit changedAmount(display_amount_);
+	Q_EMIT changedAmount(display_amount_);
 	return true;
 }
 
@@ -564,7 +564,7 @@ void KCalcDisplay::setText(const QString &string)
 	}
 
     update();
-    emit changedText(text_);
+    Q_EMIT changedText(text_);
 }
 
 //------------------------------------------------------------------------------
@@ -763,7 +763,7 @@ void KCalcDisplay::updateDisplay() {
 		Q_ASSERT(0);
 	}
 
-	emit changedAmount(display_amount_);
+	Q_EMIT changedAmount(display_amount_);
 }
 
 //------------------------------------------------------------------------------
