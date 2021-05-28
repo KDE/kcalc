@@ -112,8 +112,8 @@ endif()
 
 
 target_link_libraries(kcalc
-    Qt5::Core
-    Qt5::Widgets
+    Qt::Core
+    Qt::Widgets
     KF5::CoreAddons
     KF5::ConfigWidgets
     KF5::GuiAddons
