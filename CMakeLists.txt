@@ -76,6 +76,8 @@ check_type_size("unsigned long"  SIZEOF_UNSIGNED_LONG)
 configure_file(config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
 
 add_subdirectory(knumber)
+add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050e00)
+add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055200)
 add_executable(kcalc)
 
 target_sources(kcalc PRIVATE
@@ -88,7 +90,10 @@ target_sources(kcalc PRIVATE
    kcalc_core.cpp 
    kcalcdisplay.cpp 
    kcalc_statusbar.cpp
-   stats.cpp )
+   stats.cpp 
+   kcalc.qrc
+   )
+
 
 ki18n_wrap_ui(kcalc
    kcalc.ui
@@ -131,7 +136,6 @@ install(TARGETS kcalc  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 install( PROGRAMS org.kde.kcalc.desktop  DESTINATION ${KDE_INSTALL_APPDIR})
 install( FILES org.kde.kcalc.appdata.xml   DESTINATION ${KDE_INSTALL_METAINFODIR})
 install( FILES kcalc.kcfg  DESTINATION ${KDE_INSTALL_KCFGDIR})
-install( FILES kcalcui.rc  DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/kcalc)
 install( FILES scienceconstants.xml  DESTINATION ${KDE_INSTALL_DATADIR}/kcalc)
 install( FILES kcalcrc.upd  DESTINATION ${KDE_INSTALL_DATADIR}/kconf_update)
 
