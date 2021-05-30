@@ -25,7 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Name: KStats
 // Desc: constructor
 //------------------------------------------------------------------------------
-KStats::KStats() : error_flag_(false) {
+KStats::KStats()
+{
 }
 
 //------------------------------------------------------------------------------

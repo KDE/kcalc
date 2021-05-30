@@ -46,7 +46,7 @@ public:
 
 private:
     QVector<KNumber> data_;
-    bool             error_flag_;
+    bool             error_flag_ = false;
 };
 
 #endif
