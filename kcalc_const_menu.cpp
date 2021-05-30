@@ -85,7 +85,7 @@ void KCalcConstMenu::init_consts() {
         if (!e.isNull() && e.tagName() == QLatin1String("constant")) {
             science_constant tmp_const;
 
-            tmp_const.name = I18N_NOOP(e.attributeNode(QLatin1String("name")).value());
+            tmp_const.name = I18N_NOOP(e.attributeNode(QStringLiteral("name")).value());
             tmp_const.label = e.attributeNode(QStringLiteral("symbol")).value();
             tmp_const.value = e.attributeNode(QStringLiteral("value")).value();
 
