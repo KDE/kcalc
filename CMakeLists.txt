@@ -20,6 +20,7 @@ include(ECMMarkAsTest)
 include(FeatureSummary)
 include(ECMAddAppIcon)
 include(ECMSetupVersion)
+include(KDEGitCommitHooks)
 
 ## Generate header with version number
 ecm_setup_version(${RELEASE_SERVICE_VERSION} VARIABLE_PREFIX KCALC
@@ -144,5 +145,6 @@ if (KF5DocTools_FOUND)
     kdoctools_install(po)
     add_subdirectory(doc)
 endif()
+kde_configure_git_pre_commit_hook(CHECKS CLANG_FORMAT)
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
