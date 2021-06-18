@@ -303,8 +303,8 @@ void KCalcDisplay::slotCopy()
         break;
     }
 
-    (QApplication::clipboard())->setText(txt, QClipboard::Clipboard);
-    (QApplication::clipboard())->setText(txt, QClipboard::Selection);
+    QApplication::clipboard()->setText(txt, QClipboard::Clipboard);
+    QApplication::clipboard()->setText(txt, QClipboard::Selection);
 }
 
 //------------------------------------------------------------------------------
@@ -639,7 +639,7 @@ QString KCalcDisplay::formatDecimalNumber(QString string)
 
         // find first digit to not group leading spaces or signs
         int firstDigitPos = 0;
-        for (int i = 0; i < string.length(); ++i) {
+        for (int i = 0, total = string.length(); i < total; ++i) {
             if (string.at(i).isDigit()) {
                 firstDigitPos = i;
                 break;
@@ -660,8 +660,9 @@ QString KCalcDisplay::formatDecimalNumber(QString string)
 
     unsigned short zero = locale.zeroDigit().unicode();
     for (int i = 0; i < string.length(); ++i) {
-        if (string.at(i).isDigit()) {
-            string[i] = QChar(zero + string.at(i).digitValue());
+        const auto stringAtI = string.at(i);
+        if (stringAtI.isDigit()) {
+            string[i] = QChar(zero + stringAtI.digitValue());
         }
     }
 

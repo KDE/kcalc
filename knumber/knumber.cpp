@@ -15,7 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
+// clang-format off
+#include "config-kcalc.h"
+// clang-format on
 #include "knumber.h"
 #include "knumber_base.h"
 #include "knumber_error.h"
@@ -25,7 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QRegExp>
 #include <QStringList>
 #include <cmath>
-#include <config-kcalc.h>
 
 QString KNumber::GroupSeparator = QStringLiteral(",");
 QString KNumber::DecimalSeparator = QStringLiteral(".");
