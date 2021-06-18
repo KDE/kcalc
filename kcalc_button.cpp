@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Name: KCalcButton
 // Desc: constructor
 //------------------------------------------------------------------------------
-KCalcButton::KCalcButton(QWidget *parent) : QPushButton(parent), show_shortcut_mode_(false), mode_flags_(ModeNormal), size_() {
+KCalcButton::KCalcButton(QWidget *parent) : QPushButton(parent), mode_flags_(ModeNormal), size_() {
 
 	setAcceptDrops(true);   // allow color drops
 	setFocusPolicy(Qt::TabFocus);
@@ -47,7 +47,7 @@ KCalcButton::KCalcButton(QWidget *parent) : QPushButton(parent), show_shortcut_m
 // Name: KCalcButton
 // Desc: constructor
 //------------------------------------------------------------------------------
-KCalcButton::KCalcButton(const QString &label, QWidget *parent, const QString &tooltip) : QPushButton(label, parent), show_shortcut_mode_(false), mode_flags_(ModeNormal), size_() {
+KCalcButton::KCalcButton(const QString &label, QWidget *parent, const QString &tooltip) : QPushButton(label, parent), mode_flags_(ModeNormal), size_() {
 
 	setAutoDefault(false);
 	addMode(ModeNormal, label, tooltip);

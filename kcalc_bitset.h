@@ -31,7 +31,7 @@ class KCalcBitset : public QFrame {
 	
 public:
 	explicit KCalcBitset(QWidget *parent = nullptr);
-	quint64 getValue() const;
+    Q_REQUIRED_RESULT quint64 getValue() const;
 
 public Q_SLOTS:
 	void setValue(quint64 value);

@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Name: KCalcConstButton
 // Desc: constructor
 //------------------------------------------------------------------------------
-KCalcConstButton::KCalcConstButton(QWidget *parent) : KCalcButton(parent), button_num_(-1) {
+KCalcConstButton::KCalcConstButton(QWidget *parent) : KCalcButton(parent) {
 
 	setTextColor(KCalcSettings::constantsFontsColor());
 	addMode(ModeShift, i18nc("Write display data into memory", "Store"), i18n("Write display data into memory"));
@@ -45,7 +45,7 @@ KCalcConstButton::KCalcConstButton(QWidget *parent) : KCalcButton(parent), butto
 // Name: KCalcConstButton
 // Desc: constructor
 //------------------------------------------------------------------------------
-KCalcConstButton::KCalcConstButton(const QString &label, QWidget *parent, const QString &tooltip) : KCalcButton(label, parent, tooltip), button_num_(-1) {
+KCalcConstButton::KCalcConstButton(const QString &label, QWidget *parent, const QString &tooltip) : KCalcButton(label, parent, tooltip) {
 
 	setTextColor(KCalcSettings::constantsFontsColor());
 	addMode(ModeShift, i18nc("Write display data into memory", "Store"), i18n("Write display data into memory"));

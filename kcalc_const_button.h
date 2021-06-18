@@ -55,7 +55,7 @@ private:
     void initPopupMenu();
 
 private:
-    int button_num_;
+    int button_num_ = -1;
 };
 
 

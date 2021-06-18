@@ -150,7 +150,7 @@ private:
     QString str_int_exp_;
     QString str_status_[NUM_STATUS_TEXT];
 
-    QTimer* selection_timer_;
+    QTimer *const selection_timer_;
 };
 
 #endif

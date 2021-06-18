@@ -67,11 +67,7 @@ const int maxprecision   = 1000;
 //------------------------------------------------------------------------------
 KCalculator::KCalculator(QWidget *parent) :
 		KXmlGuiWindow(parent),
-		shift_mode_(false),
-		hyp_mode_(false),
 		memory_num_(0.0),
-        constants_menu_(nullptr),
-        constants_(nullptr),
 		core() {
 
 	// central widget to contain all the elements
@@ -611,7 +607,7 @@ void KCalculator::setupMiscKeys() {
 	pbPower->setShortcut(QKeySequence(Qt::Key_AsciiCircum));
 	connect(pbPower, &KCalcButton::clicked, this, &KCalculator::slotPowerclicked);
 
-	pbEE->addMode(ModeNormal, QLatin1String("x<small>" "\xb7" "10</small><sup>y</sup>"), i18n("Exponent"));
+    pbEE->addMode(ModeNormal, QStringLiteral("x<small>" "\xb7" "10</small><sup>y</sup>"), i18n("Exponent"));
 	connect(this, &KCalculator::switchShowAccels, pbEE, &KCalcButton::slotSetAccelDisplayMode);
 	connect(pbEE, &KCalcButton::clicked, this, &KCalculator::slotEEclicked);
 }

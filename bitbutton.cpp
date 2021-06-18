@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Name: BitButton
 // Desc: constructor
 //------------------------------------------------------------------------------
-BitButton::BitButton(QWidget *parent) : QAbstractButton(parent), on_(false) , over_(false) {
+BitButton::BitButton(QWidget *parent) : QAbstractButton(parent) {
 
 	// too many bits for tab focus
 	setFocusPolicy(Qt::ClickFocus);

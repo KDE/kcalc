@@ -250,20 +250,20 @@ private:
     };
 
 private:
-    bool shift_mode_;
-    bool hyp_mode_;
+    bool shift_mode_ = false;
+    bool hyp_mode_ = false;
     KNumber memory_num_;
 
     int angle_mode_; // angle modes for trigonometric values
 
-	KCalcConstMenu* constants_menu_;
+    KCalcConstMenu* constants_menu_ = nullptr;
 
-    Constants*          constants_; // this is the dialog for configuring const buttons
+    Constants*          constants_ = nullptr; // this is the dialog for configuring const buttons
 
-    QButtonGroup* angle_choose_group_;
-    QButtonGroup*  base_choose_group_;
+    QButtonGroup* angle_choose_group_ = nullptr;
+    QButtonGroup*  base_choose_group_ = nullptr;
     // num_button_group_: 0-9 = digits, 0xA-0xF = hex-keys
-    QButtonGroup*  num_button_group_;
+    QButtonGroup*  num_button_group_ = nullptr;
 
     QList<QAbstractButton*> logic_buttons_;
     QList<QAbstractButton*> scientific_buttons_;
@@ -272,13 +272,13 @@ private:
 
     std::array<QLabel*, 4> base_conversion_labels_;
 
-    KToggleAction *action_bitset_show_;
-    KToggleAction *action_constants_show_;
+    KToggleAction *action_bitset_show_ = nullptr;
+    KToggleAction *action_constants_show_ = nullptr;
 
-    KToggleAction *action_mode_simple_;
-    KToggleAction *action_mode_science_;
-    KToggleAction *action_mode_statistic_;
-    KToggleAction *action_mode_numeral_;
+    KToggleAction *action_mode_simple_ = nullptr;
+    KToggleAction *action_mode_science_ = nullptr;
+    KToggleAction *action_mode_statistic_ = nullptr;
+    KToggleAction *action_mode_numeral_ = nullptr;
 
     QList<QAbstractButton*> function_button_list_;
     QList<QAbstractButton*> stat_button_list_;

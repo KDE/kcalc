@@ -29,7 +29,7 @@ class BitButton : public QAbstractButton {
 
 public:
     explicit BitButton(QWidget *parent = nullptr);
-	bool isOn() const;
+    Q_REQUIRED_RESULT bool isOn() const;
 	void setOn(bool value);
 
 protected:
@@ -38,8 +38,8 @@ protected:
 private:
 	void enterEvent(QEvent * event) override;
 	void leaveEvent(QEvent * event) override;
-	bool on_;
-	bool over_;
+    bool on_ = false;
+    bool over_ = false;
 };
 
 #endif

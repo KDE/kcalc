@@ -112,18 +112,19 @@ void KCalcConstMenu::init_all()
     connect(this, &KCalcConstMenu::triggered, this, &KCalcConstMenu::slotPassSignalThrough);
 
 
-    for (int i = 0; i < scienceConstantList.size(); i++) {
-        auto tmp_action = new QAction(i18n(scienceConstantList.at(i).name.toLatin1().data()), this);
+    for (int i = 0, total = scienceConstantList.size(); i < total; ++i) {
+        const auto scienceConstantListItem = scienceConstantList.at(i);
+        auto tmp_action = new QAction(i18n(scienceConstantListItem.name.toLatin1().data()), this);
         tmp_action->setData(QVariant(i));
-        if (scienceConstantList.at(i).category  &  Mathematics)
+        if (scienceConstantListItem.category  &  Mathematics)
             math_menu->addAction(tmp_action);
-        if (scienceConstantList.at(i).category  &  Electromagnetic)
+        if (scienceConstantListItem.category  &  Electromagnetic)
             em_menu->addAction(tmp_action);
-        if (scienceConstantList.at(i).category  &  Nuclear)
+        if (scienceConstantListItem.category  &  Nuclear)
             nuclear_menu->addAction(tmp_action);
-        if (scienceConstantList.at(i).category  &  Thermodynamics)
+        if (scienceConstantListItem.category  &  Thermodynamics)
             thermo_menu->addAction(tmp_action);
-        if (scienceConstantList.at(i).category  &  Gravitation)
+        if (scienceConstantListItem.category  &  Gravitation)
             gravitation_menu->addAction(tmp_action);
     }
 }
