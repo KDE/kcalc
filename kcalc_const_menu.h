@@ -1,7 +1,7 @@
 /*
 Copyright (C) 2001 - 2013 Evan Teran
                           evan.teran@gmail.com
-						  
+
 Copyright (C) 2003 - 2005 Klaus Niederkrueger
                           kniederk@math.uni-koeln.de
 
@@ -25,13 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QMenu>
 #include <QString>
 
-enum ConstantCategory {
-	Mathematics     = 1,
-	Electromagnetic = 2,
-	Nuclear         = 4,
-	Thermodynamics  = 8,
-	Gravitation     = 16
-};
+enum ConstantCategory { Mathematics = 1, Electromagnetic = 2, Nuclear = 4, Thermodynamics = 8, Gravitation = 16 };
 
 struct science_constant {
     QString label;
@@ -41,12 +35,13 @@ struct science_constant {
     ConstantCategory category;
 };
 
-class KCalcConstMenu : public QMenu {
+class KCalcConstMenu : public QMenu
+{
     Q_OBJECT
 
 public:
-    explicit KCalcConstMenu(QWidget * parent = nullptr);
-    explicit KCalcConstMenu(const QString &title, QWidget * parent = nullptr);
+    explicit KCalcConstMenu(QWidget *parent = nullptr);
+    explicit KCalcConstMenu(const QString &title, QWidget *parent = nullptr);
 
 public:
     static void init_consts();
@@ -54,12 +49,11 @@ public:
 Q_SIGNALS:
     void triggeredConstant(const science_constant &);
 
-
 private:
     void init_all();
 
 public Q_SLOTS:
-    void slotPassSignalThrough(QAction  *chosen_const);
+    void slotPassSignalThrough(QAction *chosen_const);
 };
 
 #endif

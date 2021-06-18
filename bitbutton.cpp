@@ -7,7 +7,7 @@ Copyright (C) 2006        Michel Marti
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as
-published by the Free Software Foundation; either version 2 of 
+published by the Free Software Foundation; either version 2 of
 the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
@@ -22,70 +22,69 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "bitbutton.h"
 #include <QApplication>
 
-
-
 //------------------------------------------------------------------------------
 // Name: BitButton
 // Desc: constructor
 //------------------------------------------------------------------------------
-BitButton::BitButton(QWidget *parent) : QAbstractButton(parent) {
+BitButton::BitButton(QWidget *parent)
+    : QAbstractButton(parent)
+{
+    // too many bits for tab focus
+    setFocusPolicy(Qt::ClickFocus);
 
-	// too many bits for tab focus
-	setFocusPolicy(Qt::ClickFocus);
+    // size button by font
+    QSize size = fontMetrics().size(0, QStringLiteral("M"));
 
-	// size button by font
-	QSize size = fontMetrics().size(0, QStringLiteral("M"));
-	
-	if (size.width() < size.height()) {
-		size.setHeight(size.width());
-	} else {
-		size.setWidth(size.height());
-	}
-	
-	setFixedSize(size);
+    if (size.width() < size.height()) {
+        size.setHeight(size.width());
+    } else {
+        size.setWidth(size.height());
+    }
 
-	this->setAttribute(Qt::WA_Hover, true);
+    setFixedSize(size);
+
+    this->setAttribute(Qt::WA_Hover, true);
 }
 
 //------------------------------------------------------------------------------
 // Name: isOn
 // Desc: returns true if this bit-button is "on"
 //------------------------------------------------------------------------------
-bool BitButton::isOn() const {
-
-	return on_;
+bool BitButton::isOn() const
+{
+    return on_;
 }
 
 //------------------------------------------------------------------------------
 // Name: setOn
 // Desc: changes the "on" value for the bitset
 //------------------------------------------------------------------------------
-void BitButton::setOn(bool value) {
-
-	on_ = value;
-	update();
+void BitButton::setOn(bool value)
+{
+    on_ = value;
+    update();
 }
 
 //------------------------------------------------------------------------------
 // Name: enterEvent
 // Desc: sets to true the "over" variable on Enter event
 //------------------------------------------------------------------------------
-void BitButton::enterEvent(QEvent * event) {
-
-	if (event->type() == QEvent::Enter) {
-		over_ = true;
-		update();
-	}
+void BitButton::enterEvent(QEvent *event)
+{
+    if (event->type() == QEvent::Enter) {
+        over_ = true;
+        update();
+    }
 }
 
 //------------------------------------------------------------------------------
 // Name: leaveEvent
 // Desc: sets to false the "over" variable on Leave event
 //------------------------------------------------------------------------------
-void BitButton::leaveEvent(QEvent * event) {
-
-	if (event->type() == QEvent::Leave) {
-		over_ = false;
-		update();
-	}
+void BitButton::leaveEvent(QEvent *event)
+{
+    if (event->type() == QEvent::Leave) {
+        over_ = false;
+        update();
+    }
 }

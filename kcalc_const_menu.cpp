@@ -1,7 +1,7 @@
 /*
 Copyright (C) 2001 - 2013 Evan Teran
                           evan.teran@gmail.com
-						  
+
 Copyright (C) 2003 - 2005 Klaus Niederkrueger
                           kniederk@math.uni-koeln.de
 
@@ -28,38 +28,40 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <KLocalizedString>
 
-namespace {
-    QList<science_constant> scienceConstantList;
-	
-	ConstantCategory stringToCategory(const QString &s) {
-    	if (s == QLatin1String("mathematics")) {
-        	return Mathematics;
-		}
+namespace
+{
+QList<science_constant> scienceConstantList;
 
-    	if (s == QLatin1String("electromagnetism")) {
-        	return Electromagnetic;
-		}
+ConstantCategory stringToCategory(const QString &s)
+{
+    if (s == QLatin1String("mathematics")) {
+        return Mathematics;
+    }
 
-    	if (s == QLatin1String("nuclear")) {
-        	return Nuclear;
-		}
+    if (s == QLatin1String("electromagnetism")) {
+        return Electromagnetic;
+    }
 
-    	if (s == QLatin1String("thermodynamics")) {
-        	return Thermodynamics;
-		}
+    if (s == QLatin1String("nuclear")) {
+        return Nuclear;
+    }
 
-    	if (s == QLatin1String("gravitation")) {
-        	return Gravitation;
-		}
+    if (s == QLatin1String("thermodynamics")) {
+        return Thermodynamics;
+    }
 
-		qDebug() << "Invalid Category For Constant: " << s;
-		return Mathematics;
-	}
-	
+    if (s == QLatin1String("gravitation")) {
+        return Gravitation;
+    }
+
+    qDebug() << "Invalid Category For Constant: " << s;
+    return Mathematics;
 }
 
+}
 
-void KCalcConstMenu::init_consts() {
+void KCalcConstMenu::init_consts()
+{
     QDomDocument doc(QStringLiteral("list_of_constants"));
     QFile file(QStandardPaths::locate(QStandardPaths::DataLocation, QStringLiteral("scienceconstants.xml")));
 
@@ -91,7 +93,7 @@ void KCalcConstMenu::init_consts() {
 
             QString tmp_str_category = e.attributeNode(QStringLiteral("category")).value();
 
-			tmp_const.category  = stringToCategory(tmp_str_category);
+            tmp_const.category = stringToCategory(tmp_str_category);
             tmp_const.whatsthis = e.firstChildElement(QStringLiteral("description")).text();
 
             scienceConstantList.append(tmp_const);
@@ -103,50 +105,46 @@ void KCalcConstMenu::init_consts() {
 
 void KCalcConstMenu::init_all()
 {
-    QMenu *math_menu        = addMenu(i18n("Mathematics"));
-    QMenu *em_menu          = addMenu(i18n("Electromagnetism"));
-    QMenu *nuclear_menu     = addMenu(i18n("Atomic && Nuclear"));
-    QMenu *thermo_menu      = addMenu(i18n("Thermodynamics"));
+    QMenu *math_menu = addMenu(i18n("Mathematics"));
+    QMenu *em_menu = addMenu(i18n("Electromagnetism"));
+    QMenu *nuclear_menu = addMenu(i18n("Atomic && Nuclear"));
+    QMenu *thermo_menu = addMenu(i18n("Thermodynamics"));
     QMenu *gravitation_menu = addMenu(i18n("Gravitation"));
 
     connect(this, &KCalcConstMenu::triggered, this, &KCalcConstMenu::slotPassSignalThrough);
-
 
     for (int i = 0, total = scienceConstantList.size(); i < total; ++i) {
         const auto scienceConstantListItem = scienceConstantList.at(i);
         auto tmp_action = new QAction(i18n(scienceConstantListItem.name.toLatin1().data()), this);
         tmp_action->setData(QVariant(i));
-        if (scienceConstantListItem.category  &  Mathematics)
+        if (scienceConstantListItem.category & Mathematics)
             math_menu->addAction(tmp_action);
-        if (scienceConstantListItem.category  &  Electromagnetic)
+        if (scienceConstantListItem.category & Electromagnetic)
             em_menu->addAction(tmp_action);
-        if (scienceConstantListItem.category  &  Nuclear)
+        if (scienceConstantListItem.category & Nuclear)
             nuclear_menu->addAction(tmp_action);
-        if (scienceConstantListItem.category  &  Thermodynamics)
+        if (scienceConstantListItem.category & Thermodynamics)
             thermo_menu->addAction(tmp_action);
-        if (scienceConstantListItem.category  &  Gravitation)
+        if (scienceConstantListItem.category & Gravitation)
             gravitation_menu->addAction(tmp_action);
     }
 }
 
-void KCalcConstMenu::slotPassSignalThrough(QAction  *chosen_const)
+void KCalcConstMenu::slotPassSignalThrough(QAction *chosen_const)
 {
     bool tmp_bool;
-    int chosen_const_idx = (chosen_const->data()).toInt(& tmp_bool);
+    int chosen_const_idx = (chosen_const->data()).toInt(&tmp_bool);
     Q_EMIT triggeredConstant(scienceConstantList.at(chosen_const_idx));
 }
 
-KCalcConstMenu::KCalcConstMenu(const QString &title, QWidget * parent)
-        : QMenu(title, parent)
+KCalcConstMenu::KCalcConstMenu(const QString &title, QWidget *parent)
+    : QMenu(title, parent)
 {
     init_all();
 }
 
-KCalcConstMenu::KCalcConstMenu(QWidget * parent)
-        : QMenu(parent)
+KCalcConstMenu::KCalcConstMenu(QWidget *parent)
+    : QMenu(parent)
 {
     init_all();
 }
-
-
-

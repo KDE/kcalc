@@ -1,7 +1,7 @@
 /*
 Copyright (C) 2001 - 2013 Evan Teran
                           evan.teran@gmail.com
-						  
+
 Copyright (C) 2003 - 2005 Klaus Niederkrueger
                           kniederk@math.uni-koeln.de
 
@@ -32,46 +32,43 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // labels and tooltips. When one switches modes, the corresponding
 // label is displayed.
 
-
-enum ButtonModeFlags {
-	ModeNormal     = 0,
-	ModeShift      = 1,
-	ModeHyperbolic = 2
-};
-
+enum ButtonModeFlags { ModeNormal = 0, ModeShift = 1, ModeHyperbolic = 2 };
 
 // Each kcalc button can be in one of several modes.
 // The following class describes label, tooltip etc. for each mode...
-class ButtonMode {
+class ButtonMode
+{
 public:
-    ButtonMode() {
-	}
-	
-    ButtonMode(const QString &label, const QString &tooltip) : label(label), tooltip(tooltip) {
-	}
+    ButtonMode()
+    {
+    }
+
+    ButtonMode(const QString &label, const QString &tooltip)
+        : label(label)
+        , tooltip(tooltip)
+    {
+    }
 
     QString label;
     QString tooltip;
 };
 
-
-class KCalcButton : public QPushButton {
-	Q_OBJECT
+class KCalcButton : public QPushButton
+{
+    Q_OBJECT
 
 public:
     explicit KCalcButton(QWidget *parent);
-    KCalcButton(const QString &label, QWidget *parent,
-                const QString &tooltip = QString());
+    KCalcButton(const QString &label, QWidget *parent, const QString &tooltip = QString());
 
-    void addMode(ButtonModeFlags mode, const QString &label,
-                 const QString &tooltip);
+    void addMode(ButtonModeFlags mode, const QString &label, const QString &tooltip);
 
     QSize sizeHint() const override;
 
     void setFont(const QFont &fnt);
     void setTextColor(const QColor &color);
-    void setText(const QString &text);   // reimp
-    void setToolTip(const QString &tip);   // reimp
+    void setText(const QString &text); // reimp
+    void setToolTip(const QString &tip); // reimp
 
 public Q_SLOTS:
     void slotSetMode(ButtonModeFlags mode, bool flag);
@@ -84,11 +81,11 @@ private:
     void calcSizeHint();
 
 private:
-    bool                              show_shortcut_mode_ = false;
-    ButtonModeFlags                   mode_flags_;
+    bool show_shortcut_mode_ = false;
+    ButtonModeFlags mode_flags_;
     QMap<ButtonModeFlags, ButtonMode> mode_;
-    QSize                             size_;
-    QColor                            text_color_;
+    QSize size_;
+    QColor text_color_;
 };
 
 #endif

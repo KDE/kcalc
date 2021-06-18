@@ -32,11 +32,7 @@ public:
     ~KCalcStatusBar() override = default;
 
 public:
-    enum AngleMode {
-        DegMode,
-        RadMode,
-        GradMode
-    };
+    enum AngleMode { DegMode, RadMode, GradMode };
 
 public:
     void setBaseIndicatorVisible(bool visible);
@@ -51,10 +47,10 @@ private:
     QLabel *addIndicator(const QList<QString> &indicatorTexts);
 
 private:
-    QLabel * const shift_indicator_;
-    QLabel * const base_indicator_;
-    QLabel * const angle_mode_indicator_;
-    QLabel * const memory_indicator_;
+    QLabel *const shift_indicator_;
+    QLabel *const base_indicator_;
+    QLabel *const angle_mode_indicator_;
+    QLabel *const memory_indicator_;
 };
 
 #endif

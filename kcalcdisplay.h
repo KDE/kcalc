@@ -7,7 +7,7 @@ Copyright (C) 1996 - 2000 Bernd Johannes Wuebben
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as
-published by the Free Software Foundation; either version 2 of 
+published by the Free Software Foundation; either version 2 of
 the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
@@ -22,9 +22,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef KCALCDISPLAY_H_
 #define KCALCDISPLAY_H_
 
+#include "knumber.h"
 #include <QFrame>
 #include <QVector>
-#include "knumber.h"
 
 class CalcEngine;
 class QTimer;
@@ -48,16 +48,11 @@ class QStyleOptionFrame;
   TODO: Check overflows, number of digits and such...
 */
 
-enum NumBase {
-    NB_BINARY  = 2,
-    NB_OCTAL   = 8,
-    NB_DECIMAL = 10,
-    NB_HEX     = 16
-};
+enum NumBase { NB_BINARY = 2, NB_OCTAL = 8, NB_DECIMAL = 10, NB_HEX = 16 };
 
-
-class KCalcDisplay : public QFrame {
-	Q_OBJECT
+class KCalcDisplay : public QFrame
+{
+    Q_OBJECT
 
 public:
     explicit KCalcDisplay(QWidget *parent = nullptr);
@@ -94,8 +89,7 @@ public:
 
     void changeSettings();
     void enterDigit(int data);
-    void updateFromCore(const CalcEngine &core,
-                        bool store_result_in_history = false);
+    void updateFromCore(const CalcEngine &core, bool store_result_in_history = false);
 
 public Q_SLOTS:
     void slotCut();
@@ -108,7 +102,7 @@ Q_SIGNALS:
     void changedAmount(const KNumber &);
 
 protected:
-    void  mousePressEvent(QMouseEvent *) override;
+    void mousePressEvent(QMouseEvent *) override;
     void paintEvent(QPaintEvent *p) override;
 
 private:
@@ -127,10 +121,10 @@ private:
     bool beep_;
     bool groupdigits_;
     bool twoscomplement_;
-    int  binaryGrouping_;
-    int  octalGrouping_;
-    int  hexadecimalGrouping_;
-    int  button_;
+    int binaryGrouping_;
+    int octalGrouping_;
+    int hexadecimalGrouping_;
+    int button_;
     bool lit_;
     NumBase num_base_;
 

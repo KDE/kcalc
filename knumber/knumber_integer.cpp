@@ -16,19 +16,20 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <config-kcalc.h>
 #include "knumber_integer.h"
+#include "knumber_error.h"
 #include "knumber_float.h"
 #include "knumber_fraction.h"
-#include "knumber_error.h"
 #include <QScopedArrayPointer>
+#include <config-kcalc.h>
 
-namespace detail {
-
+namespace detail
+{
 //------------------------------------------------------------------------------
 // Name: knumber_integer
 //------------------------------------------------------------------------------
-knumber_integer::knumber_integer(const QString &s) {
+knumber_integer::knumber_integer(const QString &s)
+{
     mpz_init(mpz_);
     mpz_set_str(mpz_, s.toLatin1().constData(), 10);
 }
@@ -36,14 +37,16 @@ knumber_integer::knumber_integer(const QString &s) {
 //------------------------------------------------------------------------------
 // Name: knumber_integer
 //------------------------------------------------------------------------------
-knumber_integer::knumber_integer(qint32 value) {
-	mpz_init_set_si(mpz_, static_cast<signed long int>(value));
+knumber_integer::knumber_integer(qint32 value)
+{
+    mpz_init_set_si(mpz_, static_cast<signed long int>(value));
 }
 
 //------------------------------------------------------------------------------
 // Name: knumber_integer
 //------------------------------------------------------------------------------
-knumber_integer::knumber_integer(qint64 value) {
+knumber_integer::knumber_integer(qint64 value)
+{
     mpz_init(mpz_);
 #if SIZEOF_SIGNED_LONG == 8
     mpz_set_si(mpz_, static_cast<signed long int>(value));
@@ -59,14 +62,16 @@ knumber_integer::knumber_integer(qint64 value) {
 //------------------------------------------------------------------------------
 // Name: knumber_integer
 //------------------------------------------------------------------------------
-knumber_integer::knumber_integer(quint32 value) {
-	mpz_init_set_ui(mpz_, static_cast<unsigned long int>(value));
+knumber_integer::knumber_integer(quint32 value)
+{
+    mpz_init_set_ui(mpz_, static_cast<unsigned long int>(value));
 }
 
 //------------------------------------------------------------------------------
 // Name: knumber_integer
 //------------------------------------------------------------------------------
-knumber_integer::knumber_integer(quint64 value) {
+knumber_integer::knumber_integer(quint64 value)
+{
     mpz_init(mpz_);
 #if SIZEOF_UNSIGNED_LONG == 8
     mpz_set_ui(mpz_, static_cast<unsigned long int>(value));
@@ -82,628 +87,636 @@ knumber_integer::knumber_integer(quint64 value) {
 //------------------------------------------------------------------------------
 // Name: knumber_integer
 //------------------------------------------------------------------------------
-knumber_integer::knumber_integer(mpz_t mpz) {
-	mpz_init_set(mpz_, mpz);
+knumber_integer::knumber_integer(mpz_t mpz)
+{
+    mpz_init_set(mpz_, mpz);
 }
 
 //------------------------------------------------------------------------------
 // Name: knumber_integer
 //------------------------------------------------------------------------------
-knumber_integer::knumber_integer(const knumber_integer *value) {
-	mpz_init_set(mpz_, value->mpz_);
+knumber_integer::knumber_integer(const knumber_integer *value)
+{
+    mpz_init_set(mpz_, value->mpz_);
 }
 
 //------------------------------------------------------------------------------
 // Name: knumber_integer
 //------------------------------------------------------------------------------
-knumber_integer::knumber_integer(const knumber_float *value) {
-	mpz_init(mpz_);
+knumber_integer::knumber_integer(const knumber_float *value)
+{
+    mpz_init(mpz_);
 
-	mpf_t mpf;
-	mpf_init(mpf);
+    mpf_t mpf;
+    mpf_init(mpf);
 
-	mpfr_get_f(mpf, value->mpfr_, knumber_float::rounding_mode);
-	mpz_set_f(mpz_, mpf);
+    mpfr_get_f(mpf, value->mpfr_, knumber_float::rounding_mode);
+    mpz_set_f(mpz_, mpf);
 
-	mpf_clear(mpf);
+    mpf_clear(mpf);
 }
 
 //------------------------------------------------------------------------------
 // Name: knumber_integer
 //------------------------------------------------------------------------------
-knumber_integer::knumber_integer(const knumber_fraction *value) {
-	mpz_init(mpz_);
-	mpz_set_q(mpz_, value->mpq_);
+knumber_integer::knumber_integer(const knumber_fraction *value)
+{
+    mpz_init(mpz_);
+    mpz_set_q(mpz_, value->mpq_);
 }
 
 //------------------------------------------------------------------------------
 // Name: clone
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::clone() {
-	return new knumber_integer(this);
+knumber_base *knumber_integer::clone()
+{
+    return new knumber_integer(this);
 }
 
 //------------------------------------------------------------------------------
 // Name: ~knumber_integer
 //------------------------------------------------------------------------------
-knumber_integer::~knumber_integer() {
-	mpz_clear(mpz_);
+knumber_integer::~knumber_integer()
+{
+    mpz_clear(mpz_);
 }
 
 //------------------------------------------------------------------------------
 // Name: add
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::add(knumber_base *rhs) {
+knumber_base *knumber_integer::add(knumber_base *rhs)
+{
+    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+        mpz_add(mpz_, mpz_, p->mpz_);
+        return this;
+    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
+        auto const f = new knumber_float(this);
+        delete this;
+        return f->add(p);
+    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
+        auto const q = new knumber_fraction(this);
+        delete this;
+        return q->add(p);
+    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
+        delete this;
+        return p->clone();
+    }
 
-	if(auto const p = dynamic_cast<knumber_integer *>(rhs)) {
-		mpz_add(mpz_, mpz_, p->mpz_);
-		return this;
-	} else if(auto const p = dynamic_cast<knumber_float *>(rhs)) {
-		auto const f = new knumber_float(this);
-		delete this;
-		return f->add(p);
-	} else if(auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
-		auto const q = new knumber_fraction(this);
-		delete this;
-		return q->add(p);
-	} else if(auto const p = dynamic_cast<knumber_error *>(rhs)) {
-		delete this;
-		return p->clone();
-	}
-
-	Q_ASSERT(0);
-	return nullptr;
+    Q_ASSERT(0);
+    return nullptr;
 }
 
 //------------------------------------------------------------------------------
 // Name: sub
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::sub(knumber_base *rhs) {
+knumber_base *knumber_integer::sub(knumber_base *rhs)
+{
+    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+        mpz_sub(mpz_, mpz_, p->mpz_);
+        return this;
+    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
+        auto f = new knumber_float(this);
+        delete this;
+        return f->sub(p);
+    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
+        auto q = new knumber_fraction(this);
+        delete this;
+        return q->sub(p);
+    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
+        knumber_base *e = p->clone();
+        delete this;
+        return e->neg();
+    }
 
-	if(auto const p = dynamic_cast<knumber_integer *>(rhs)) {
-		mpz_sub(mpz_, mpz_, p->mpz_);
-		return this;
-	} else if(auto const p = dynamic_cast<knumber_float *>(rhs)) {
-		auto f = new knumber_float(this);
-		delete this;
-		return f->sub(p);
-	} else if(auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
-		auto q = new knumber_fraction(this);
-		delete this;
-		return q->sub(p);
-	} else if(auto const p = dynamic_cast<knumber_error *>(rhs)) {
-		knumber_base *e = p->clone();
-		delete this;
-		return e->neg();
-	}
-
-	Q_ASSERT(0);
-	return nullptr;
+    Q_ASSERT(0);
+    return nullptr;
 }
 
 //------------------------------------------------------------------------------
 // Name: mul
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::mul(knumber_base *rhs) {
+knumber_base *knumber_integer::mul(knumber_base *rhs)
+{
+    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+        mpz_mul(mpz_, mpz_, p->mpz_);
+        return this;
+    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
+        auto f = new knumber_float(this);
+        delete this;
+        return f->mul(p);
+    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
+        auto q = new knumber_fraction(this);
+        delete this;
+        return q->mul(p);
+    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
+        if (is_zero()) {
+            delete this;
+            auto e = new knumber_error(knumber_error::ERROR_UNDEFINED);
+            return e->neg();
+        }
 
-	if(auto const p = dynamic_cast<knumber_integer *>(rhs)) {
-		mpz_mul(mpz_, mpz_, p->mpz_);
-		return this;
-	} else if(auto const p = dynamic_cast<knumber_float *>(rhs)) {
-		auto f = new knumber_float(this);
-		delete this;
-		return f->mul(p);
-	} else if(auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
-		auto q = new knumber_fraction(this);
-		delete this;
-		return q->mul(p);
-	} else if(auto const p = dynamic_cast<knumber_error *>(rhs)) {
+        if (sign() < 0) {
+            delete this;
+            knumber_base *e = p->clone();
+            return e->neg();
+        } else {
+            delete this;
+            return p->clone();
+        }
+    }
 
-		if(is_zero()) {
-			delete this;
-			auto e = new knumber_error(knumber_error::ERROR_UNDEFINED);
-			return e->neg();
-		}
-
-		if(sign() < 0) {
-			delete this;
-			knumber_base *e = p->clone();
-			return e->neg();
-		} else {
-			delete this;
-			return p->clone();
-		}
-	}
-
-	Q_ASSERT(0);
-	return nullptr;
+    Q_ASSERT(0);
+    return nullptr;
 }
 
 //------------------------------------------------------------------------------
 // Name: div
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::div(knumber_base *rhs) {
+knumber_base *knumber_integer::div(knumber_base *rhs)
+{
+    if (rhs->is_zero()) {
+        if (sign() < 0) {
+            delete this;
+            return new knumber_error(knumber_error::ERROR_NEG_INFINITY);
+        } else {
+            delete this;
+            return new knumber_error(knumber_error::ERROR_POS_INFINITY);
+        }
+    }
 
-	if(rhs->is_zero()) {
-		if(sign() < 0) {
-			delete this;
-			return new knumber_error(knumber_error::ERROR_NEG_INFINITY);
-		} else {
-			delete this;
-			return new knumber_error(knumber_error::ERROR_POS_INFINITY);
-		}
-	}
+    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+        auto q = new knumber_fraction(this);
+        delete this;
+        return q->div(p);
+    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
+        auto f = new knumber_float(this);
+        delete this;
+        return f->div(p);
+    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
+        auto q = new knumber_fraction(this);
+        delete this;
+        return q->div(p);
+    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
+        if (p->sign() > 0) {
+            delete this;
+            return new knumber_integer(0);
+        } else if (p->sign() < 0) {
+            delete this;
+            return new knumber_integer(0);
+        }
 
-	if(auto const p = dynamic_cast<knumber_integer *>(rhs)) {
-		auto q = new knumber_fraction(this);
-		delete this;
-		return q->div(p);
-	} else if(auto const p = dynamic_cast<knumber_float *>(rhs)) {
-		auto f = new knumber_float(this);
-		delete this;
-		return f->div(p);
-	} else if(auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
-		auto q = new knumber_fraction(this);
-		delete this;
-		return q->div(p);
-	} else if(auto const p = dynamic_cast<knumber_error *>(rhs)) {
+        delete this;
+        return p->clone();
+    }
 
-		if(p->sign() > 0) {
-			delete this;
-			return new knumber_integer(0);
-		} else if(p->sign() < 0) {
-			delete this;
-			return new knumber_integer(0);
-		}
-
-		delete this;
-		return p->clone();
-	}
-
-	Q_ASSERT(0);
-	return nullptr;
+    Q_ASSERT(0);
+    return nullptr;
 }
 
 //------------------------------------------------------------------------------
 // Name: mod
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::mod(knumber_base *rhs) {
+knumber_base *knumber_integer::mod(knumber_base *rhs)
+{
+    if (rhs->is_zero()) {
+        delete this;
+        return new knumber_error(knumber_error::ERROR_UNDEFINED);
+    }
 
-	if(rhs->is_zero()) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_UNDEFINED);
-	}
+    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+        mpz_mod(mpz_, mpz_, p->mpz_);
+        return this;
+    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
+        auto f = new knumber_float(this);
+        delete this;
+        return f->mod(p);
+    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
+        auto q = new knumber_fraction(this);
+        delete this;
+        return q->mod(p);
+    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
+        delete this;
+        return p->clone();
+    }
 
-	if(auto const p = dynamic_cast<knumber_integer *>(rhs)) {
-		mpz_mod(mpz_, mpz_, p->mpz_);
-		return this;
-	} else if(auto const p = dynamic_cast<knumber_float *>(rhs)) {
-		auto f = new knumber_float(this);
-		delete this;
-		return f->mod(p);
-	} else if(auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
-		auto q = new knumber_fraction(this);
-		delete this;
-		return q->mod(p);
-	} else if(auto const p = dynamic_cast<knumber_error *>(rhs)) {
-		delete this;
-		return p->clone();
-	}
-
-	Q_ASSERT(0);
-	return nullptr;
+    Q_ASSERT(0);
+    return nullptr;
 }
 
 //------------------------------------------------------------------------------
 // Name: bitwise_and
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::bitwise_and(knumber_base *rhs) {
+knumber_base *knumber_integer::bitwise_and(knumber_base *rhs)
+{
+    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+        mpz_and(mpz_, mpz_, p->mpz_);
+        return this;
+    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
+        auto f = new knumber_float(this);
+        delete this;
+        return f->bitwise_and(p);
+    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
+        auto f = new knumber_fraction(this);
+        delete this;
+        return f->bitwise_and(p);
+    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
+        delete this;
+        return p->clone();
+    }
 
-	if(auto const p = dynamic_cast<knumber_integer *>(rhs)) {
-		mpz_and(mpz_, mpz_, p->mpz_);
-		return this;
-	} else if(auto const p = dynamic_cast<knumber_float *>(rhs)) {
-		auto f = new knumber_float(this);
-		delete this;
-		return f->bitwise_and(p);
-	} else if(auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
-		auto f = new knumber_fraction(this);
-		delete this;
-		return f->bitwise_and(p);
-	} else if(auto const p = dynamic_cast<knumber_error *>(rhs)) {
-		delete this;
-		return p->clone();
-	}
-
-	Q_ASSERT(0);
-	return nullptr;
+    Q_ASSERT(0);
+    return nullptr;
 }
 
 //------------------------------------------------------------------------------
 // Name: bitwise_xor
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::bitwise_xor(knumber_base *rhs) {
+knumber_base *knumber_integer::bitwise_xor(knumber_base *rhs)
+{
+    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+        mpz_xor(mpz_, mpz_, p->mpz_);
+        return this;
+    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
+        auto f = new knumber_float(this);
+        delete this;
+        return f->bitwise_xor(p);
+    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
+        auto f = new knumber_fraction(this);
+        delete this;
+        return f->bitwise_xor(p);
+    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
+        delete this;
+        return p->clone();
+    }
 
-	if(auto const p = dynamic_cast<knumber_integer *>(rhs)) {
-		mpz_xor(mpz_, mpz_, p->mpz_);
-		return this;
-	} else if(auto const p = dynamic_cast<knumber_float *>(rhs)) {
-		auto f = new knumber_float(this);
-		delete this;
-		return f->bitwise_xor(p);
-	} else if(auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
-		auto f = new knumber_fraction(this);
-		delete this;
-		return f->bitwise_xor(p);
-	} else if(auto const p = dynamic_cast<knumber_error *>(rhs)) {
-		delete this;
-		return p->clone();
-	}
-
-	Q_ASSERT(0);
-	return nullptr;
+    Q_ASSERT(0);
+    return nullptr;
 }
 
 //------------------------------------------------------------------------------
 // Name: bitwise_or
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::bitwise_or(knumber_base *rhs) {
+knumber_base *knumber_integer::bitwise_or(knumber_base *rhs)
+{
+    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+        mpz_ior(mpz_, mpz_, p->mpz_);
+        return this;
+    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
+        auto f = new knumber_float(this);
+        delete this;
+        return f->bitwise_or(p);
+    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
+        auto f = new knumber_fraction(this);
+        delete this;
+        return f->bitwise_or(p);
+    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
+        delete this;
+        return p->clone();
+    }
 
-	if(auto const p = dynamic_cast<knumber_integer *>(rhs)) {
-		mpz_ior(mpz_, mpz_, p->mpz_);
-		return this;
-	} else if(auto const p = dynamic_cast<knumber_float *>(rhs)) {
-		auto f = new knumber_float(this);
-		delete this;
-		return f->bitwise_or(p);
-	} else if(auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
-		auto f = new knumber_fraction(this);
-		delete this;
-		return f->bitwise_or(p);
-	} else if(auto const p = dynamic_cast<knumber_error *>(rhs)) {
-		delete this;
-		return p->clone();
-	}
-
-	Q_ASSERT(0);
-	return nullptr;
+    Q_ASSERT(0);
+    return nullptr;
 }
 
 //------------------------------------------------------------------------------
 // Name: bitwise_shift
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::bitwise_shift(knumber_base *rhs) {
+knumber_base *knumber_integer::bitwise_shift(knumber_base *rhs)
+{
+    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+        const signed long int bit_count = mpz_get_si(p->mpz_);
 
-	if(auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+        // TODO: left shift with high bit set is broken in
+        //       non decimal modes :-/, always displays 0
+        //       interestingly, the bit is not "lost"
+        //       we simply don't have a mechanism to display
+        //       values in HEX/DEC/OCT mode which are greater than
+        //       64-bits
 
-		const signed long int bit_count = mpz_get_si(p->mpz_);
+        if (bit_count > 0) {
+            // left shift
+            mpz_mul_2exp(mpz_, mpz_, bit_count);
+        } else if (bit_count < 0) {
+            // right shift
+            if (mpz_sgn(mpz_) < 0) {
+                mpz_fdiv_q_2exp(mpz_, mpz_, -bit_count);
+            } else {
+                mpz_tdiv_q_2exp(mpz_, mpz_, -bit_count);
+            }
+        }
+        return this;
+    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
+        Q_UNUSED(p);
+        auto e = new knumber_error(knumber_error::ERROR_UNDEFINED);
+        delete this;
+        return e;
+    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
+        Q_UNUSED(p);
+        auto e = new knumber_error(knumber_error::ERROR_UNDEFINED);
+        delete this;
+        return e;
+    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
+        Q_UNUSED(p);
+        auto e = new knumber_error(knumber_error::ERROR_UNDEFINED);
+        delete this;
+        return e;
+    }
 
-		// TODO: left shift with high bit set is broken in
-		//       non decimal modes :-/, always displays 0
-		//       interestingly, the bit is not "lost"
-		//       we simply don't have a mechanism to display
-		//       values in HEX/DEC/OCT mode which are greater than
-		//       64-bits
-
-		if(bit_count > 0) {
-			// left shift
-			mpz_mul_2exp(mpz_, mpz_, bit_count);
-		} else if(bit_count < 0) {
-        	// right shift
-        	if(mpz_sgn(mpz_) < 0) {
-            	mpz_fdiv_q_2exp(mpz_, mpz_, -bit_count);
-        	} else {
-            	mpz_tdiv_q_2exp(mpz_, mpz_, -bit_count);
-        	}
-		}
-		return this;
-	} else if(auto const p = dynamic_cast<knumber_float *>(rhs)) {
-		Q_UNUSED(p);
-		auto e = new knumber_error(knumber_error::ERROR_UNDEFINED);
-		delete this;
-		return e;
-	} else if(auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
-		Q_UNUSED(p);
-		auto e = new knumber_error(knumber_error::ERROR_UNDEFINED);
-		delete this;
-		return e;
-	} else if(auto const p = dynamic_cast<knumber_error *>(rhs)) {
-		Q_UNUSED(p);
-		auto e = new knumber_error(knumber_error::ERROR_UNDEFINED);
-		delete this;
-		return e;
-	}
-
-	Q_ASSERT(0);
-	return nullptr;
+    Q_ASSERT(0);
+    return nullptr;
 }
 
 //------------------------------------------------------------------------------
 // Name: neg
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::neg() {
-
-	mpz_neg(mpz_, mpz_);
-	return this;
+knumber_base *knumber_integer::neg()
+{
+    mpz_neg(mpz_, mpz_);
+    return this;
 }
 
 //------------------------------------------------------------------------------
 // Name: cmp
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::cmp() {
-
+knumber_base *knumber_integer::cmp()
+{
 #if 0
 	// unfortunately this breaks things pretty badly
 	// for non-decimal modes :-(
 	mpz_com(mpz_, mpz_);
 #else
-	mpz_swap(mpz_, knumber_integer(~toUint64()).mpz_);
+    mpz_swap(mpz_, knumber_integer(~toUint64()).mpz_);
 #endif
-	return this;
+    return this;
 }
 
 //------------------------------------------------------------------------------
 // Name: abs
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::abs() {
-
-	mpz_abs(mpz_, mpz_);
-	return this;
+knumber_base *knumber_integer::abs()
+{
+    mpz_abs(mpz_, mpz_);
+    return this;
 }
 
 //------------------------------------------------------------------------------
 // Name: sqrt
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::sqrt() {
+knumber_base *knumber_integer::sqrt()
+{
+    if (sign() < 0) {
+        delete this;
+        return new knumber_error(knumber_error::ERROR_UNDEFINED);
+    }
 
-	if(sign() < 0) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_UNDEFINED);
-	}
-
-	if(mpz_perfect_square_p(mpz_)) {
-		mpz_sqrt(mpz_, mpz_);
-		return this;
-	} else {
-		auto f = new knumber_float(this);
-		delete this;
-		return f->sqrt();
-	}
+    if (mpz_perfect_square_p(mpz_)) {
+        mpz_sqrt(mpz_, mpz_);
+        return this;
+    } else {
+        auto f = new knumber_float(this);
+        delete this;
+        return f->sqrt();
+    }
 }
 
 //------------------------------------------------------------------------------
 // Name: cbrt
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::cbrt() {
+knumber_base *knumber_integer::cbrt()
+{
+    mpz_t x;
+    mpz_init_set(x, mpz_);
+    if (mpz_root(x, x, 3)) {
+        mpz_swap(mpz_, x);
+        mpz_clear(x);
+        return this;
+    }
 
-	mpz_t x;
-	mpz_init_set(x, mpz_);
-	if(mpz_root(x, x, 3)) {
-		mpz_swap(mpz_, x);
-		mpz_clear(x);
-		return this;
-	}
-
-	mpz_clear(x);
-	auto f = new knumber_float(this);
-	delete this;
-	return f->cbrt();
+    mpz_clear(x);
+    auto f = new knumber_float(this);
+    delete this;
+    return f->cbrt();
 }
 
 //------------------------------------------------------------------------------
 // Name: pow
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::pow(knumber_base *rhs) {
+knumber_base *knumber_integer::pow(knumber_base *rhs)
+{
+    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+        if (is_zero() && p->is_even() && p->sign() < 0) {
+            delete this;
+            return new knumber_error(knumber_error::ERROR_POS_INFINITY);
+        }
 
-	if(auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+        mpz_pow_ui(mpz_, mpz_, mpz_get_ui(p->mpz_));
 
-		if(is_zero() && p->is_even() && p->sign() < 0) {
-			delete this;
-			return new knumber_error(knumber_error::ERROR_POS_INFINITY);
-		}
+        if (p->sign() < 0) {
+            return reciprocal();
+        } else {
+            return this;
+        }
+    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
+        auto f = new knumber_float(this);
+        delete this;
+        return f->pow(p);
+    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
+        auto f = new knumber_fraction(this);
+        delete this;
+        return f->pow(p);
+    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
+        if (p->sign() > 0) {
+            auto e = new knumber_error(knumber_error::ERROR_POS_INFINITY);
+            delete this;
+            return e;
+        } else if (p->sign() < 0) {
+            mpz_init_set_si(mpz_, 0);
+            return this;
+        } else {
+            auto e = new knumber_error(knumber_error::ERROR_UNDEFINED);
+            delete this;
+            return e;
+        }
+    }
 
-		mpz_pow_ui(mpz_, mpz_, mpz_get_ui(p->mpz_));
-
-		if(p->sign() < 0) {
-			return reciprocal();
-		} else {
-			return this;
-		}
-	} else if(auto const p = dynamic_cast<knumber_float *>(rhs)) {
-		auto f = new knumber_float(this);
-		delete this;
-		return f->pow(p);
-	} else if(auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
-		auto f = new knumber_fraction(this);
-		delete this;
-		return f->pow(p);
-	} else if(auto const p = dynamic_cast<knumber_error *>(rhs)) {
-		if(p->sign() > 0) {
-			auto e = new knumber_error(knumber_error::ERROR_POS_INFINITY);
-			delete this;
-			return e;
-		} else if(p->sign() < 0) {
-			mpz_init_set_si(mpz_, 0);
-			return this;
-		} else {
-			auto e = new knumber_error(knumber_error::ERROR_UNDEFINED);
-			delete this;
-			return e;
-		}
-	}
-
-	Q_ASSERT(0);
-	return nullptr;
+    Q_ASSERT(0);
+    return nullptr;
 }
 
 //------------------------------------------------------------------------------
 // Name: sin
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::sin() {
-
-	auto f = new knumber_float(this);
-	delete this;
-	return f->sin();
+knumber_base *knumber_integer::sin()
+{
+    auto f = new knumber_float(this);
+    delete this;
+    return f->sin();
 }
 
 //------------------------------------------------------------------------------
 // Name: cos
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::cos() {
-
-	auto f = new knumber_float(this);
-	delete this;
-	return f->cos();
+knumber_base *knumber_integer::cos()
+{
+    auto f = new knumber_float(this);
+    delete this;
+    return f->cos();
 }
 
 //------------------------------------------------------------------------------
 // Name: tan
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::tan() {
-
-	auto f = new knumber_float(this);
-	delete this;
-	return f->tan();
+knumber_base *knumber_integer::tan()
+{
+    auto f = new knumber_float(this);
+    delete this;
+    return f->tan();
 }
 
 //------------------------------------------------------------------------------
 // Name: asin
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::asin() {
-
-	auto f = new knumber_float(this);
-	delete this;
-	return f->asin();
+knumber_base *knumber_integer::asin()
+{
+    auto f = new knumber_float(this);
+    delete this;
+    return f->asin();
 }
 
 //------------------------------------------------------------------------------
 // Name: acos
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::acos() {
-
-	auto f = new knumber_float(this);
-	delete this;
-	return f->acos();
+knumber_base *knumber_integer::acos()
+{
+    auto f = new knumber_float(this);
+    delete this;
+    return f->acos();
 }
 
 //------------------------------------------------------------------------------
 // Name: atan
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::atan() {
-
-	auto f = new knumber_float(this);
-	delete this;
-	return f->atan();
+knumber_base *knumber_integer::atan()
+{
+    auto f = new knumber_float(this);
+    delete this;
+    return f->atan();
 }
 
 //------------------------------------------------------------------------------
 // Name: tgamma
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::tgamma() {
-
-	auto f = new knumber_float(this);
-	delete this;
-	return f->tgamma();
+knumber_base *knumber_integer::tgamma()
+{
+    auto f = new knumber_float(this);
+    delete this;
+    return f->tgamma();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::sinh() {
-	auto f = new knumber_float(this);
-	delete this;
-	return f->sinh();
+knumber_base *knumber_integer::sinh()
+{
+    auto f = new knumber_float(this);
+    delete this;
+    return f->sinh();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::cosh() {
-	auto f = new knumber_float(this);
-	delete this;
-	return f->cosh();
+knumber_base *knumber_integer::cosh()
+{
+    auto f = new knumber_float(this);
+    delete this;
+    return f->cosh();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::tanh() {
-	auto f = new knumber_float(this);
-	delete this;
-	return f->tanh();
+knumber_base *knumber_integer::tanh()
+{
+    auto f = new knumber_float(this);
+    delete this;
+    return f->tanh();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::asinh() {
-	auto f = new knumber_float(this);
-	delete this;
-	return f->asinh();
+knumber_base *knumber_integer::asinh()
+{
+    auto f = new knumber_float(this);
+    delete this;
+    return f->asinh();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::acosh() {
-	auto f = new knumber_float(this);
-	delete this;
-	return f->acosh();
+knumber_base *knumber_integer::acosh()
+{
+    auto f = new knumber_float(this);
+    delete this;
+    return f->acosh();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::atanh() {
-	auto f = new knumber_float(this);
-	delete this;
-	return f->atanh();
+knumber_base *knumber_integer::atanh()
+{
+    auto f = new knumber_float(this);
+    delete this;
+    return f->atanh();
 }
 
 //------------------------------------------------------------------------------
 // Name: factorial
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::factorial() {
+knumber_base *knumber_integer::factorial()
+{
+    if (sign() < 0) {
+        delete this;
+        return new knumber_error(knumber_error::ERROR_UNDEFINED);
+    }
 
-	if(sign() < 0) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_UNDEFINED);
-	}
-
-	mpz_fac_ui(mpz_, mpz_get_ui(mpz_));
-	return this;
+    mpz_fac_ui(mpz_, mpz_get_ui(mpz_));
+    return this;
 }
 
 //------------------------------------------------------------------------------
 // Name: compare
 //------------------------------------------------------------------------------
-int knumber_integer::compare(knumber_base *rhs) {
+int knumber_integer::compare(knumber_base *rhs)
+{
+    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+        return mpz_cmp(mpz_, p->mpz_);
+    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
+        return knumber_float(this).compare(p);
+    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
+        return knumber_fraction(this).compare(p);
+    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
+        // NOTE: any number compared to NaN/Inf/-Inf always compares less
+        //       at the moment
+        return -1;
+    }
 
-	if(auto const p = dynamic_cast<knumber_integer *>(rhs)) {
-		return mpz_cmp(mpz_, p->mpz_);
-	} else if(auto const p = dynamic_cast<knumber_float *>(rhs)) {
-		return knumber_float(this).compare(p);
-	} else if(auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
-		return knumber_fraction(this).compare(p);
-	} else if(auto const p = dynamic_cast<knumber_error *>(rhs)) {
-		// NOTE: any number compared to NaN/Inf/-Inf always compares less
-		//       at the moment
-		return -1;
-	}
-
-	Q_ASSERT(0);
-	return 0;
+    Q_ASSERT(0);
+    return 0;
 }
 
 //------------------------------------------------------------------------------
 // Name: toString
 //------------------------------------------------------------------------------
-QString knumber_integer::toString(int precision) const {
-
-	Q_UNUSED(precision);
+QString knumber_integer::toString(int precision) const
+{
+    Q_UNUSED(precision);
 
     const size_t size = gmp_snprintf(nullptr, 0, "%Zd", mpz_) + 1;
-	QScopedArrayPointer<char> buf(new char[size]);
+    QScopedArrayPointer<char> buf(new char[size]);
     gmp_snprintf(&buf[0], size, "%Zd", mpz_);
     return QLatin1String(&buf[0]);
 }
@@ -711,7 +724,8 @@ QString knumber_integer::toString(int precision) const {
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-quint64 knumber_integer::toUint64() const {
+quint64 knumber_integer::toUint64() const
+{
     // libgmp doesn't have unsigned long long conversion
     // so convert to string and then to unsigned long long
     const QString tmpstring = toString(-1);
@@ -736,159 +750,173 @@ quint64 knumber_integer::toUint64() const {
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-qint64 knumber_integer::toInt64() const {
-	// libgmp doesn't have long long conversion
-	// so convert to string and then to long long
-	const QString tmpstring = toString(-1);
+qint64 knumber_integer::toInt64() const
+{
+    // libgmp doesn't have long long conversion
+    // so convert to string and then to long long
+    const QString tmpstring = toString(-1);
 
-	bool ok;
-	qint64 value = tmpstring.toLongLong(&ok, 10);
+    bool ok;
+    qint64 value = tmpstring.toLongLong(&ok, 10);
 
-	if (!ok) {
-		// TODO: what to do if error?
-		value = 0;
-	}
+    if (!ok) {
+        // TODO: what to do if error?
+        value = 0;
+    }
 
-	return value;
+    return value;
 }
 
 //------------------------------------------------------------------------------
 // Name: is_integer
 //------------------------------------------------------------------------------
-bool knumber_integer::is_integer() const {
-	return true;
+bool knumber_integer::is_integer() const
+{
+    return true;
 }
 
 //------------------------------------------------------------------------------
 // Name: is_zero
 //------------------------------------------------------------------------------
-bool knumber_integer::is_zero() const {
-	return mpz_sgn(mpz_) == 0;
+bool knumber_integer::is_zero() const
+{
+    return mpz_sgn(mpz_) == 0;
 }
 
 //------------------------------------------------------------------------------
 // Name: sign
 //------------------------------------------------------------------------------
-int knumber_integer::sign() const {
-	return mpz_sgn(mpz_);
+int knumber_integer::sign() const
+{
+    return mpz_sgn(mpz_);
 }
 
 //------------------------------------------------------------------------------
 // Name: is_even
 //------------------------------------------------------------------------------
-bool knumber_integer::is_even() const {
-	return mpz_even_p(mpz_);
+bool knumber_integer::is_even() const
+{
+    return mpz_even_p(mpz_);
 }
 
 //------------------------------------------------------------------------------
 // Name: is_odd
 //------------------------------------------------------------------------------
-bool knumber_integer::is_odd() const {
-	return mpz_odd_p(mpz_);
+bool knumber_integer::is_odd() const
+{
+    return mpz_odd_p(mpz_);
 }
 
 //------------------------------------------------------------------------------
 // Name: reciprocal
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::reciprocal() {
-	auto q = new knumber_fraction(this);
-	delete this;
-	return q->reciprocal();
+knumber_base *knumber_integer::reciprocal()
+{
+    auto q = new knumber_fraction(this);
+    delete this;
+    return q->reciprocal();
 }
 
 //------------------------------------------------------------------------------
 // Name: log2
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::log2() {
-	auto f = new knumber_float(this);
-	delete this;
-	return f->log2();
+knumber_base *knumber_integer::log2()
+{
+    auto f = new knumber_float(this);
+    delete this;
+    return f->log2();
 }
 
 //------------------------------------------------------------------------------
 // Name: floor
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::floor() {
-	// should have no effect on the value
-	return this;
+knumber_base *knumber_integer::floor()
+{
+    // should have no effect on the value
+    return this;
 }
 
 //------------------------------------------------------------------------------
 // Name: ceil
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::ceil() {
-	// should have no effect on the value
-	return this;
+knumber_base *knumber_integer::ceil()
+{
+    // should have no effect on the value
+    return this;
 }
 
 //------------------------------------------------------------------------------
 // Name: log10
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::log10() {
-	auto f = new knumber_float(this);
-	delete this;
-	return f->log10();
+knumber_base *knumber_integer::log10()
+{
+    auto f = new knumber_float(this);
+    delete this;
+    return f->log10();
 }
 
 //------------------------------------------------------------------------------
 // Name: ln
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::ln() {
-	auto f = new knumber_float(this);
-	delete this;
-	return f->ln();
+knumber_base *knumber_integer::ln()
+{
+    auto f = new knumber_float(this);
+    delete this;
+    return f->ln();
 }
 
 //------------------------------------------------------------------------------
 // Name: exp2
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::exp2() {
-	auto f = new knumber_float(this);
-	delete this;
-	return f->exp2();
+knumber_base *knumber_integer::exp2()
+{
+    auto f = new knumber_float(this);
+    delete this;
+    return f->exp2();
 }
 
 //------------------------------------------------------------------------------
 // Name: exp10
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::exp10() {
-	auto f = new knumber_float(this);
-	delete this;
-	return f->exp10();
+knumber_base *knumber_integer::exp10()
+{
+    auto f = new knumber_float(this);
+    delete this;
+    return f->exp10();
 }
 
 //------------------------------------------------------------------------------
 // Name: exp
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::exp() {
-	auto f = new knumber_float(this);
-	delete this;
-	return f->exp();
+knumber_base *knumber_integer::exp()
+{
+    auto f = new knumber_float(this);
+    delete this;
+    return f->exp();
 }
 
 //------------------------------------------------------------------------------
 // Name: bin
 //------------------------------------------------------------------------------
-knumber_base *knumber_integer::bin(knumber_base *rhs) {
+knumber_base *knumber_integer::bin(knumber_base *rhs)
+{
+    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+        mpz_bin_ui(mpz_, mpz_, mpz_get_ui(p->mpz_));
+        return this;
 
+    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
+        delete this;
+        return new knumber_error(knumber_error::ERROR_UNDEFINED);
+    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
+        delete this;
+        return new knumber_error(knumber_error::ERROR_UNDEFINED);
+    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
+        delete this;
+        return new knumber_error(knumber_error::ERROR_UNDEFINED);
+    }
 
-	if(auto const p = dynamic_cast<knumber_integer *>(rhs)) {
-		mpz_bin_ui(mpz_, mpz_, mpz_get_ui(p->mpz_));
-		return this;
-
-	} else if(auto const p = dynamic_cast<knumber_float *>(rhs)) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_UNDEFINED);
-	} else if(auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_UNDEFINED);
-	} else if(auto const p = dynamic_cast<knumber_error *>(rhs)) {
-		delete this;
-		return new knumber_error(knumber_error::ERROR_UNDEFINED);
-	}
-
-	Q_ASSERT(0);
-	return nullptr;
+    Q_ASSERT(0);
+    return nullptr;
 }
 
 }

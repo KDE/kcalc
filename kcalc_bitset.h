@@ -7,7 +7,7 @@ Copyright (C) 2006        Michel Marti
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as
-published by the Free Software Foundation; either version 2 of 
+published by the Free Software Foundation; either version 2 of
 the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
@@ -26,23 +26,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class QButtonGroup;
 class QAbstractButton;
-class KCalcBitset : public QFrame {
-	Q_OBJECT
-	
+class KCalcBitset : public QFrame
+{
+    Q_OBJECT
+
 public:
-	explicit KCalcBitset(QWidget *parent = nullptr);
+    explicit KCalcBitset(QWidget *parent = nullptr);
     Q_REQUIRED_RESULT quint64 getValue() const;
 
 public Q_SLOTS:
-	void setValue(quint64 value);
-	void slotToggleBit(QAbstractButton *button);
+    void setValue(quint64 value);
+    void slotToggleBit(QAbstractButton *button);
 
 Q_SIGNALS:
-	void valueChanged(quint64 value);
+    void valueChanged(quint64 value);
 
 private:
-	QButtonGroup * const bit_button_group_;
-	quint64       value_;
+    QButtonGroup *const bit_button_group_;
+    quint64 value_;
 };
 
 #endif

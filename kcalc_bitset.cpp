@@ -7,7 +7,7 @@ Copyright (C) 2006        Michel Marti
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as
-published by the Free Software Foundation; either version 2 of 
+published by the Free Software Foundation; either version 2 of
 the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
@@ -22,14 +22,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "kcalc_bitset.h"
 #include "bitbutton.h"
 
+#include <KLocalizedString>
 #include <QButtonGroup>
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPainter>
-#include <KLocalizedString>
-
-
 
 // TODO: I think it would actually be appropriate to use a std::bitset<64>
 //       for the internal representation of this class perhaps
@@ -39,107 +37,108 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Name: paintEvent
 // Desc: draws the button
 //------------------------------------------------------------------------------
-void BitButton::paintEvent(QPaintEvent *) {
+void BitButton::paintEvent(QPaintEvent *)
+{
+    uint8_t alpha = 0x60;
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    QPen pen(palette().text(), 1);
+    pen.setJoinStyle(Qt::MiterJoin);
+    painter.setPen(pen);
 
-	uint8_t alpha = 0x60;
-	QPainter painter(this);
-	painter.setRenderHint(QPainter::Antialiasing, true);
-	QPen pen(palette().text(), 1);
-	pen.setJoinStyle(Qt::MiterJoin);
-	painter.setPen(pen);
+    if (on_) {
+        painter.setBrush(palette().text());
+        alpha = 0xB0;
+    } else {
+        painter.setBrush(palette().base());
+    }
 
-	if (on_) {
-		painter.setBrush(palette().text());
-		alpha = 0xB0;
-	} else {
-		painter.setBrush(palette().base());
-	}
+    if (over_) {
+        painter.setBrush(QColor(palette().text().color().red(), palette().text().color().green(), palette().text().color().blue(), alpha));
+    }
 
-	if (over_) {
-		painter.setBrush(QColor(palette().text().color().red(),
-					palette().text().color().green(),
-					palette().text().color().blue(),
-					alpha));
-	}
-
-	painter.drawRect(rect().adjusted(1, 1, -1, -1));
+    painter.drawRect(rect().adjusted(1, 1, -1, -1));
 }
 
 //------------------------------------------------------------------------------
 // Name: KCalcBitset
 // Desc: constructor
 //------------------------------------------------------------------------------
-KCalcBitset::KCalcBitset(QWidget *parent) : QFrame(parent), bit_button_group_(new QButtonGroup(this)), value_(0) {
+KCalcBitset::KCalcBitset(QWidget *parent)
+    : QFrame(parent)
+    , bit_button_group_(new QButtonGroup(this))
+    , value_(0)
+{
+    setFrameStyle(QFrame::Panel | QFrame::Sunken);
 
-	setFrameStyle(QFrame::Panel | QFrame::Sunken);
+    connect(bit_button_group_, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &KCalcBitset::slotToggleBit);
 
-	connect(bit_button_group_, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &KCalcBitset::slotToggleBit);
+    // smaller label font
+    QFont fnt = font();
+    if (fnt.pointSize() > 6) {
+        fnt.setPointSize(fnt.pointSize() - 1);
+    }
 
-	// smaller label font
-	QFont fnt = font();
-	if (fnt.pointSize() > 6) {
-		fnt.setPointSize(fnt.pointSize() - 1);
-	}
-
-	// main layout
-	auto layout = new QGridLayout(this);
+    // main layout
+    auto layout = new QGridLayout(this);
     layout->setContentsMargins(2, 2, 2, 2);
-	layout->setSpacing(0);
+    layout->setSpacing(0);
 
-	// create bits
-	int bitCounter = 63;
-	for (int rows = 0; rows < 2; rows++) {
-		for (int cols = 0; cols < 4; cols++) {
-			// two rows of four words
-			auto const wordlayout = new QHBoxLayout();
+    // create bits
+    int bitCounter = 63;
+    for (int rows = 0; rows < 2; rows++) {
+        for (int cols = 0; cols < 4; cols++) {
+            // two rows of four words
+            auto const wordlayout = new QHBoxLayout();
             wordlayout->setContentsMargins(2, 2, 2, 2);
-			wordlayout->setSpacing(2);
-			layout->addLayout(wordlayout, rows, cols);
+            wordlayout->setSpacing(2);
+            layout->addLayout(wordlayout, rows, cols);
 
-			for (int bit = 0; bit < 8; bit++) {
-				auto const tmpBitButton = new BitButton(this);
-				tmpBitButton->setToolTip(i18n("Bit %1 = %2", bitCounter, 1ULL << bitCounter));
-				wordlayout->addWidget(tmpBitButton);
-				bit_button_group_->addButton(tmpBitButton, bitCounter);
-				bitCounter--;
-			}
+            for (int bit = 0; bit < 8; bit++) {
+                auto const tmpBitButton = new BitButton(this);
+                tmpBitButton->setToolTip(i18n("Bit %1 = %2", bitCounter, 1ULL << bitCounter));
+                wordlayout->addWidget(tmpBitButton);
+                bit_button_group_->addButton(tmpBitButton, bitCounter);
+                bitCounter--;
+            }
 
-			// label word
-			auto label = new QLabel(this);
-			label->setText(QString::number(bitCounter + 1));
-			label->setFont(fnt);
-			wordlayout->addWidget(label);
-		}
-	}
+            // label word
+            auto label = new QLabel(this);
+            label->setText(QString::number(bitCounter + 1));
+            label->setFont(fnt);
+            wordlayout->addWidget(label);
+        }
+    }
 }
 
 //------------------------------------------------------------------------------
 // Name: setValue
 // Desc: set the value of the bitset based on an unsigned 64-bit number
 //------------------------------------------------------------------------------
-void KCalcBitset::setValue(quint64 value) {
+void KCalcBitset::setValue(quint64 value)
+{
+    if (value_ == value) {
+        // don't waste time if there was no change..
+        return;
+    }
 
-	if (value_ == value) {
-		// don't waste time if there was no change..
-		return;
-	}
+    value_ = value;
 
-	value_ = value;
-	
-	// set each bit button
-	for (int i = 0; i < 64; i++) {	
-		if(auto bb = qobject_cast<BitButton*>(bit_button_group_->button(i))) {
-			bb->setOn(value & 1);
-		}
-		value >>= 1;
-	}
+    // set each bit button
+    for (int i = 0; i < 64; i++) {
+        if (auto bb = qobject_cast<BitButton *>(bit_button_group_->button(i))) {
+            bb->setOn(value & 1);
+        }
+        value >>= 1;
+    }
 }
 
 //------------------------------------------------------------------------------
 // Name: getValue
 // Desc: returns the bitset value as an unsigned 64-bit number
 //------------------------------------------------------------------------------
-quint64 KCalcBitset::getValue() const {
+quint64 KCalcBitset::getValue() const
+{
     return value_;
 }
 
@@ -147,13 +146,12 @@ quint64 KCalcBitset::getValue() const {
 // Name: slotToggleBit
 // Desc: inverts the value of a single bit
 //------------------------------------------------------------------------------
-void KCalcBitset::slotToggleBit(QAbstractButton *button) {
-
+void KCalcBitset::slotToggleBit(QAbstractButton *button)
+{
     if (button) {
         const int bit = bit_button_group_->id(button);
-        const quint64 nv = getValue() ^(1LL << bit);
+        const quint64 nv = getValue() ^ (1LL << bit);
         setValue(nv);
         Q_EMIT valueChanged(value_);
     }
 }
-

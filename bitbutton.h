@@ -7,7 +7,7 @@ Copyright (C) 2006        Michel Marti
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as
-published by the Free Software Foundation; either version 2 of 
+published by the Free Software Foundation; either version 2 of
 the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
@@ -24,20 +24,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QAbstractButton>
 
-class BitButton : public QAbstractButton {
-	Q_OBJECT
+class BitButton : public QAbstractButton
+{
+    Q_OBJECT
 
 public:
     explicit BitButton(QWidget *parent = nullptr);
     Q_REQUIRED_RESULT bool isOn() const;
-	void setOn(bool value);
+    void setOn(bool value);
 
 protected:
-	void paintEvent(QPaintEvent *event) override;
+    void paintEvent(QPaintEvent *event) override;
 
 private:
-	void enterEvent(QEvent * event) override;
-	void leaveEvent(QEvent * event) override;
+    void enterEvent(QEvent *event) override;
+    void leaveEvent(QEvent *event) override;
     bool on_ = false;
     bool over_ = false;
 };

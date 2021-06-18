@@ -16,280 +16,315 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <config-kcalc.h>
 #include "knumber_operators.h"
 #include "knumber.h"
 #include "knumber_base.h"
+#include <config-kcalc.h>
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber operator+(const KNumber &lhs, const KNumber &rhs) {
-	KNumber x(lhs);
-	x += rhs;
-	return x;
+KNumber operator+(const KNumber &lhs, const KNumber &rhs)
+{
+    KNumber x(lhs);
+    x += rhs;
+    return x;
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber operator-(const KNumber &lhs, const KNumber &rhs) {
-	KNumber x(lhs);
-	x -= rhs;
-	return x;
+KNumber operator-(const KNumber &lhs, const KNumber &rhs)
+{
+    KNumber x(lhs);
+    x -= rhs;
+    return x;
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber operator*(const KNumber &lhs, const KNumber &rhs) {
-	KNumber x(lhs);
-	x *= rhs;
-	return x;
+KNumber operator*(const KNumber &lhs, const KNumber &rhs)
+{
+    KNumber x(lhs);
+    x *= rhs;
+    return x;
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber operator/(const KNumber &lhs, const KNumber &rhs) {
-	KNumber x(lhs);
-	x /= rhs;
-	return x;
+KNumber operator/(const KNumber &lhs, const KNumber &rhs)
+{
+    KNumber x(lhs);
+    x /= rhs;
+    return x;
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber operator%(const KNumber &lhs, const KNumber &rhs) {
-	KNumber x(lhs);
-	x %= rhs;
-	return x;
+KNumber operator%(const KNumber &lhs, const KNumber &rhs)
+{
+    KNumber x(lhs);
+    x %= rhs;
+    return x;
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber operator&(const KNumber &lhs, const KNumber &rhs) {
-	KNumber x(lhs);
-	x &= rhs;
-	return x;
+KNumber operator&(const KNumber &lhs, const KNumber &rhs)
+{
+    KNumber x(lhs);
+    x &= rhs;
+    return x;
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber operator|(const KNumber &lhs, const KNumber &rhs) {
-	KNumber x(lhs);
-	x |= rhs;
-	return x;
+KNumber operator|(const KNumber &lhs, const KNumber &rhs)
+{
+    KNumber x(lhs);
+    x |= rhs;
+    return x;
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber operator^(const KNumber &lhs, const KNumber &rhs) {
-	KNumber x(lhs);
-	x ^= rhs;
-	return x;
+KNumber operator^(const KNumber &lhs, const KNumber &rhs)
+{
+    KNumber x(lhs);
+    x ^= rhs;
+    return x;
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber operator>>(const KNumber &lhs, const KNumber &rhs) {
-	KNumber x(lhs);
-	x >>= rhs;
-	return x;
+KNumber operator>>(const KNumber &lhs, const KNumber &rhs)
+{
+    KNumber x(lhs);
+    x >>= rhs;
+    return x;
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber operator<<(const KNumber &lhs, const KNumber &rhs) {
-	KNumber x(lhs);
-	x <<= rhs;
-	return x;
+KNumber operator<<(const KNumber &lhs, const KNumber &rhs)
+{
+    KNumber x(lhs);
+    x <<= rhs;
+    return x;
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber abs(const KNumber &x) {
-	return x.abs();
+KNumber abs(const KNumber &x)
+{
+    return x.abs();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber cbrt(const KNumber &x) {
-	return x.cbrt();
+KNumber cbrt(const KNumber &x)
+{
+    return x.cbrt();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber sqrt(const KNumber &x) {
-	return x.sqrt();
+KNumber sqrt(const KNumber &x)
+{
+    return x.sqrt();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber sin(const KNumber &x) {
-	return x.sin();
+KNumber sin(const KNumber &x)
+{
+    return x.sin();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber cos(const KNumber &x) {
-	return x.cos();
+KNumber cos(const KNumber &x)
+{
+    return x.cos();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber tan(const KNumber &x) {
-	return x.tan();
-}
-
-
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-KNumber asin(const KNumber &x) {
-	return x.asin();
+KNumber tan(const KNumber &x)
+{
+    return x.tan();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber acos(const KNumber &x) {
-	return x.acos();
+KNumber asin(const KNumber &x)
+{
+    return x.asin();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber tgamma(const KNumber &x) {
-	return x.tgamma();
+KNumber acos(const KNumber &x)
+{
+    return x.acos();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber atan(const KNumber &x) {
-	return x.atan();
+KNumber tgamma(const KNumber &x)
+{
+    return x.tgamma();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber pow(const KNumber &x, const KNumber &y) {
-	return x.pow(y);
+KNumber atan(const KNumber &x)
+{
+    return x.atan();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber factorial(const KNumber &x) {
-	return x.factorial();
+KNumber pow(const KNumber &x, const KNumber &y)
+{
+    return x.pow(y);
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber log2(const KNumber &x) {
-	return x.log2();
+KNumber factorial(const KNumber &x)
+{
+    return x.factorial();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber floor(const KNumber &x) {
-	return x.floor();
+KNumber log2(const KNumber &x)
+{
+    return x.log2();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber ceil(const KNumber &x) {
-	return x.ceil();
+KNumber floor(const KNumber &x)
+{
+    return x.floor();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber log10(const KNumber &x) {
-	return x.log10();
+KNumber ceil(const KNumber &x)
+{
+    return x.ceil();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber ln(const KNumber &x) {
-	return x.ln();
+KNumber log10(const KNumber &x)
+{
+    return x.log10();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber exp2(const KNumber &x) {
-	return x.exp2();
+KNumber ln(const KNumber &x)
+{
+    return x.ln();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber exp10(const KNumber &x) {
-	return x.exp10();
+KNumber exp2(const KNumber &x)
+{
+    return x.exp2();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-KNumber exp(const KNumber &x) {
-	return x.exp();
+KNumber exp10(const KNumber &x)
+{
+    return x.exp10();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-bool operator==(const KNumber &lhs, const KNumber &rhs) {
-	return lhs.value_->compare(rhs.value_) == 0;
+KNumber exp(const KNumber &x)
+{
+    return x.exp();
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-bool operator!=(const KNumber &lhs, const KNumber &rhs) {
-	return lhs.value_->compare(rhs.value_) != 0;
+bool operator==(const KNumber &lhs, const KNumber &rhs)
+{
+    return lhs.value_->compare(rhs.value_) == 0;
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-bool operator>=(const KNumber &lhs, const KNumber &rhs) {
-	return lhs.value_->compare(rhs.value_) >= 0;
+bool operator!=(const KNumber &lhs, const KNumber &rhs)
+{
+    return lhs.value_->compare(rhs.value_) != 0;
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-bool operator<=(const KNumber &lhs, const KNumber &rhs) {
-	return lhs.value_->compare(rhs.value_) <= 0;
+bool operator>=(const KNumber &lhs, const KNumber &rhs)
+{
+    return lhs.value_->compare(rhs.value_) >= 0;
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-bool operator>(const KNumber &lhs, const KNumber &rhs) {
-	return lhs.value_->compare(rhs.value_) > 0;
+bool operator<=(const KNumber &lhs, const KNumber &rhs)
+{
+    return lhs.value_->compare(rhs.value_) <= 0;
 }
 
 //------------------------------------------------------------------------------
 // Name:
 //------------------------------------------------------------------------------
-bool operator<(const KNumber &lhs, const KNumber &rhs) {
-	return lhs.value_->compare(rhs.value_) < 0;
+bool operator>(const KNumber &lhs, const KNumber &rhs)
+{
+    return lhs.value_->compare(rhs.value_) > 0;
+}
+
+//------------------------------------------------------------------------------
+// Name:
+//------------------------------------------------------------------------------
+bool operator<(const KNumber &lhs, const KNumber &rhs)
+{
+    return lhs.value_->compare(rhs.value_) < 0;
 }
