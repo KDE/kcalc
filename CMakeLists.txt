@@ -74,10 +74,10 @@ check_type_size("signed long"    SIZEOF_SIGNED_LONG)
 check_type_size("unsigned long"  SIZEOF_UNSIGNED_LONG)
 
 configure_file(config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
+add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050f00)
+add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055300)
 
 add_subdirectory(knumber)
-add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050e00)
-add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055200)
 add_executable(kcalc)
 
 target_sources(kcalc PRIVATE
