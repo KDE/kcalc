@@ -4,6 +4,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>KCalc</name>
+  <name xml:lang="az">KCalc</name>
   <name xml:lang="ca">KCalc</name>
   <name xml:lang="ca-valencia">KCalc</name>
   <name xml:lang="cs">KCalc</name>
@@ -44,6 +45,7 @@
   <name xml:lang="zh-CN">KCalc</name>
   <name xml:lang="zh-TW">KDE 計算機</name>
   <summary>Scientific Calculator</summary>
+  <summary xml:lang="az">Elmi hesablayıcı</summary>
   <summary xml:lang="ca">Calculadora científica</summary>
   <summary xml:lang="ca-valencia">Calculadora científica</summary>
   <summary xml:lang="cs">Vědecká kalkulačka</summary>
@@ -85,6 +87,7 @@
   <summary xml:lang="zh-TW">科學計算機</summary>
   <description>
     <p>KCalc has everything you would expect from a scientific calculator, plus:</p>
+    <p xml:lang="az">KCalc-da elmi hesablayıcıdan gözlənilən hər şey var, həmçinin:</p>
     <p xml:lang="ca">El KCalc té tot allò que espereu d'una calculadora científica, més:</p>
     <p xml:lang="ca-valencia">El KCalc té tot allò que espereu d'una calculadora científica, més:</p>
     <p xml:lang="da">KCalc har alt hvad du forventer fra en videnskabelig lommeregner, plus:</p>
@@ -124,6 +127,7 @@
     <p xml:lang="zh-TW">KDE 計算機有所有您預期科學計算機會有的功能，再加上：</p>
     <ul>
       <li>Trigonometric functions, logic operations and statistical calculations</li>
+      <li xml:lang="az">Tirqonometrik funksiyalar, məntiqi əməliyyatlar və statistik hesablamalar</li>
       <li xml:lang="ca">Funcions trigonomètriques, operacions lògiques i càlculs estadístics</li>
       <li xml:lang="ca-valencia">Funcions trigonomètriques, operacions lògiques i càlculs estadístics</li>
       <li xml:lang="de">Trigonometrische Funktionen, logische Operationen und statistische Berechnungen</li>
@@ -155,6 +159,7 @@
       <li xml:lang="zh-CN">三角函数、逻辑运算和统计计算</li>
       <li xml:lang="zh-TW">三角函數，邏輯運算和統計計算</li>
       <li>A results stack which enables convenient recall of previous calculation results</li>
+      <li xml:lang="az">Əvvəlki hesablama nəticələrinin rahat geri çağırılmasına imkan verən nəticələr yığını</li>
       <li xml:lang="ca">Una pila de resultats que permet la invocació adequada dels resultats de càlculs anteriors</li>
       <li xml:lang="ca-valencia">Una pila de resultats que permet la invocació adequada dels resultats de càlculs anteriors</li>
       <li xml:lang="de">Ein Ergebnis-Stack, mit dem Sie bequem frühere Resultate abrufen können</li>
@@ -186,6 +191,7 @@
       <li xml:lang="zh-CN">结果堆栈，可以方便地召回以前的计算结果</li>
       <li xml:lang="zh-TW">有個能幫助以方便重新取得前次計算結果的結果記錄堆疊</li>
       <li>Precision is user-definable</li>
+      <li xml:lang="az">İstifadəçinin təyin edə biləcəyi dəqiqlik</li>
       <li xml:lang="ca">La precisió és definible per l'usuari</li>
       <li xml:lang="ca-valencia">La precisió és definible per l'usuari</li>
       <li xml:lang="cs">Volitelná přesnost</li>
@@ -219,6 +225,7 @@
       <li xml:lang="zh-CN">精度是用户可定义的</li>
       <li xml:lang="zh-TW">使用者能定義精確度</li>
       <li>The display allows cut and paste of numbers</li>
+      <li xml:lang="az">Rəqəmlərin kəsilməsi və yerləşdirilməsi</li>
       <li xml:lang="ca">El visor permet retallar i enganxar nombres</li>
       <li xml:lang="ca-valencia">El visor permet retallar i enganxar nombres</li>
       <li xml:lang="de">In der Anzeige können Zahlen kopiert und eingefügt werden</li>
@@ -251,6 +258,7 @@
       <li xml:lang="zh-CN">显示屏允许剪切和粘贴数字</li>
       <li xml:lang="zh-TW">顯示畫面允許剪下數字並貼上</li>
       <li>The display colors and font are configurable, aiding usability</li>
+      <li xml:lang="az">Şriftlərin və rənglərin ayarlanması mümkünlüyü</li>
       <li xml:lang="ca">Els colors del visor i el tipus de lletra són configurables, ajudant a la usabilitat</li>
       <li xml:lang="ca-valencia">Els colors del visor i el tipus de lletra són configurables, ajudant a la usabilitat</li>
       <li xml:lang="de">Farbe und Zeichensatz der Anzeige können angepasst werden und verbessern damit die Lesbarkeit</li>
@@ -282,6 +290,7 @@
       <li xml:lang="zh-CN">显示颜色和字体是可配置的，有助于可用性</li>
       <li xml:lang="zh-TW">能變更顯示的顏色和字型，有助於實用性</li>
       <li>The use of key-bindings make it easy to use without a pointing device</li>
+      <li xml:lang="az">Siçan olmadan rahat işləmək üçün klaviatura qısayolları</li>
       <li xml:lang="ca">L'ús dels lligams de tecla facilita l'ús sense un dispositiu apuntador</li>
       <li xml:lang="ca-valencia">L'ús dels lligams de tecles facilita l'ús sense un dispositiu apuntador</li>
       <li xml:lang="de">Tastenbelegungen ermöglichen das Arbeiten ohne Zeigergerät</li>
@@ -321,6 +330,7 @@
   <screenshots>
     <screenshot type="default">
       <caption>Main window of KCalc</caption>
+      <caption xml:lang="az">KCalc-ın əsas pəncərəsi</caption>
       <caption xml:lang="ca">Finestra principal del KCalc</caption>
       <caption xml:lang="ca-valencia">Finestra principal del KCalc</caption>
       <caption xml:lang="de">Hauptfenster von KCalc</caption>
@@ -356,6 +366,7 @@
     </screenshot>
     <screenshot>
       <caption>KCalc window in numeral system mode</caption>
+      <caption xml:lang="az">KCalc pəncərəsi hesablama sistemi rejimində</caption>
       <caption xml:lang="ca">Finestra del KCalc en mode de sistema numèric</caption>
       <caption xml:lang="de">KCalc-Fenster im Logik-Modus</caption>
       <caption xml:lang="el">Παράθυρο KCalc σε λειτουργία αριθμητικού συστήματος</caption>
@@ -388,6 +399,7 @@
     </screenshot>
     <screenshot>
       <caption>Kcalc window in scientific mode</caption>
+      <caption xml:lang="az">KCalc pəncərəsi elmi rejimdə</caption>
       <caption xml:lang="ca">Finestra del KCalc en mode de sistema científic</caption>
       <caption xml:lang="de">KCalc-Fenster im Wissenschafts-Modus</caption>
       <caption xml:lang="el">Παράθυρο KCalc σε επιστημονική λειτουργία</caption>
@@ -421,6 +433,7 @@
     </screenshot>
     <screenshot>
       <caption>Kcalc window in statistics mode</caption>
+      <caption xml:lang="az">KCalc pəncərəsi statistika rejimində</caption>
       <caption xml:lang="ca">Finestra del KCalc en mode de sistema estadístic</caption>
       <caption xml:lang="de">KCalc-Fenster im Statistik-Modus</caption>
       <caption xml:lang="el">Παράθυρο KCalc σε στατιστική λειτουργία</caption>
