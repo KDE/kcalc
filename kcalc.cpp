@@ -37,6 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QShortcut>
 #include <QStyle>
 
+#include <kxmlgui_version.h>
 #include <KAboutData>
 #include <KAcceleratorManager>
 #include <KActionCollection>
@@ -212,7 +213,12 @@ void KCalculator::setupMainActions()
     connect(action_bitset_show_, &KToggleAction::toggled, this, &KCalculator::slotBitsetshow);
 
     KStandardAction::preferences(this, SLOT(showSettings()), actionCollection());
+
+#if KXMLGUI_VERSION >= QT_VERSION_CHECK(5, 84, 0)
+    KStandardAction::keyBindings(guiFactory(), &KXMLGUIFactory::showConfigureShortcutsDialog, actionCollection());
+#else
     KStandardAction::keyBindings(guiFactory(), SLOT(configureShortcuts()), actionCollection());
+#endif
 }
 
 //------------------------------------------------------------------------------
