@@ -19,8 +19,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef KCALC_CORE_H_
-#define KCALC_CORE_H_
+#pragma once
 
 #include "knumber.h"
 #include "stats.h"
@@ -155,4 +154,3 @@ private:
     KNumber evalOperation(const KNumber &arg1, Operation operation, const KNumber &arg2);
 };
 
-#endif

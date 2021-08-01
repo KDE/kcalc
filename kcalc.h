@@ -19,8 +19,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef KCALC_H_
-#define KCALC_H_
+#pragma once
 
 class Constants;
 class QButtonGroup;
@@ -279,4 +278,3 @@ private:
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(KCalculator::UpdateFlags)
 
-#endif

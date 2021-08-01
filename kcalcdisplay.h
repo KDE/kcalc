@@ -19,8 +19,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef KCALCDISPLAY_H_
-#define KCALCDISPLAY_H_
+#pragma once
 
 #include "knumber.h"
 #include <QFrame>
@@ -147,4 +146,3 @@ private:
     QTimer *const selection_timer_;
 };
 
-#endif

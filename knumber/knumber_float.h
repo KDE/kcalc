@@ -16,8 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef KNUMBER_FLOAT_H_
-#define KNUMBER_FLOAT_H_
+#pragma once
 
 #include "knumber_base.h"
 #include <config-kcalc.h>
@@ -139,4 +138,3 @@ private:
 
 }
 
-#endif

@@ -19,8 +19,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef KCALC_BUTTON_H_
-#define KCALC_BUTTON_H_
+#pragma once
 
 #include <QMap>
 #include <QPushButton>
@@ -88,4 +87,3 @@ private:
     QColor text_color_;
 };
 
-#endif

@@ -19,8 +19,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef KCALC_CONST_BUTTON_H_
-#define KCALC_CONST_BUTTON_H_
+#pragma once
 
 #include "kcalc_button.h"
 
@@ -56,4 +55,3 @@ private:
     int button_num_ = -1;
 };
 
-#endif

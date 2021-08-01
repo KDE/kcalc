@@ -19,8 +19,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef KCALC_CONST_MENU_H_
-#define KCALC_CONST_MENU_H_
+#pragma once
 
 #include <QMenu>
 #include <QString>
@@ -56,4 +55,3 @@ public Q_SLOTS:
     void slotPassSignalThrough(QAction *chosen_const);
 };
 
-#endif

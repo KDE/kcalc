@@ -16,8 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef KNUMBER_BASE_H_
-#define KNUMBER_BASE_H_
+#pragma once
 
 // Workaround: include before gmp.h to fix build with gcc-4.9
 #include <cstddef>
@@ -112,4 +111,3 @@ public:
 
 }
 
-#endif

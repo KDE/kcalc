@@ -16,8 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef KNUMBER_OPERATORS_H_
-#define KNUMBER_OPERATORS_H_
+#pragma once
 
 class KNumber;
 
@@ -64,4 +63,3 @@ KNumber exp2(const KNumber &x);
 KNumber exp10(const KNumber &x);
 KNumber exp(const KNumber &x);
 
-#endif

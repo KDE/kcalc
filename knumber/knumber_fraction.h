@@ -16,8 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef KNUMBER_FRACTION_H_
-#define KNUMBER_FRACTION_H_
+#pragma once
 
 #include "knumber_base.h"
 
@@ -135,4 +134,3 @@ private:
 
 }
 
-#endif

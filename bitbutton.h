@@ -19,8 +19,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef BITBUTTON_H_20120104_
-#define BITBUTTON_H_20120104_
+#pragma once
 
 #include <QAbstractButton>
 
@@ -43,4 +42,3 @@ private:
     bool over_ = false;
 };
 
-#endif

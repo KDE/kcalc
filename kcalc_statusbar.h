@@ -16,8 +16,7 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef KCALC_STATUSBAR_H_
-#define KCALC_STATUSBAR_H_
+#pragma once
 
 #include <QStatusBar>
 
@@ -53,4 +52,3 @@ private:
     QLabel *const memory_indicator_;
 };
 
-#endif
