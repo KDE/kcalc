@@ -785,11 +785,11 @@ void KCalculator::slotBaseSelected(QAbstractButton *button)
 
         // Disable buttons that make only sense with floating point numbers
         if (current_base != NB_DECIMAL) {
-            for (QAbstractButton *btn : qAsConst(scientific_buttons_)) {
+            for (QAbstractButton *btn : std::as_const(scientific_buttons_)) {
                 btn->setEnabled(false);
             }
         } else {
-            for (QAbstractButton *btn : qAsConst(scientific_buttons_)) {
+            for (QAbstractButton *btn : std::as_const(scientific_buttons_)) {
                 btn->setEnabled(true);
             }
         }
@@ -1915,11 +1915,11 @@ void KCalculator::slotBaseModeAmountChanged(const KNumber &number)
 void KCalculator::showMemButtons(bool toggled)
 {
     if (toggled) {
-        for (QAbstractButton *btn : qAsConst(mem_button_list_)) {
+        for (QAbstractButton *btn : std::as_const(mem_button_list_)) {
             btn->show();
         }
     } else {
-        for (QAbstractButton *btn : qAsConst(mem_button_list_)) {
+        for (QAbstractButton *btn : std::as_const(mem_button_list_)) {
             btn->hide();
         }
 
@@ -1936,11 +1936,11 @@ void KCalculator::showMemButtons(bool toggled)
 void KCalculator::showStatButtons(bool toggled)
 {
     if (toggled) {
-        for (QAbstractButton *btn : qAsConst(stat_buttons_)) {
+        for (QAbstractButton *btn : std::as_const(stat_buttons_)) {
             btn->show();
         }
     } else {
-        for (QAbstractButton *btn : qAsConst(stat_buttons_)) {
+        for (QAbstractButton *btn : std::as_const(stat_buttons_)) {
             btn->hide();
         }
     }
@@ -1953,7 +1953,7 @@ void KCalculator::showStatButtons(bool toggled)
 void KCalculator::showScienceButtons(bool toggled)
 {
     if (toggled) {
-        for (QAbstractButton *btn : qAsConst(scientific_buttons_)) {
+        for (QAbstractButton *btn : std::as_const(scientific_buttons_)) {
             btn->show();
         }
         const auto buttons = angle_choose_group_->buttons();
@@ -1964,7 +1964,7 @@ void KCalculator::showScienceButtons(bool toggled)
         setAngle();
         statusBar()->setAngleModeIndicatorVisible(true);
     } else {
-        for (QAbstractButton *btn : qAsConst(scientific_buttons_)) {
+        for (QAbstractButton *btn : std::as_const(scientific_buttons_)) {
             btn->hide();
         }
 
@@ -1989,7 +1989,7 @@ void KCalculator::showLogicButtons(bool toggled)
         connect(mBitset, &KCalcBitset::valueChanged, this, &KCalculator::slotBitsetChanged);
         connect(calc_display, &KCalcDisplay::changedAmount, this, &KCalculator::slotUpdateBitset);
 
-        for (QAbstractButton *btn : qAsConst(logic_buttons_)) {
+        for (QAbstractButton *btn : std::as_const(logic_buttons_)) {
             btn->show();
         }
 
@@ -2014,7 +2014,7 @@ void KCalculator::showLogicButtons(bool toggled)
         disconnect(mBitset, &KCalcBitset::valueChanged, this, &KCalculator::slotBitsetChanged);
         disconnect(calc_display, &KCalcDisplay::changedAmount, this, &KCalculator::slotUpdateBitset);
 
-        for (QAbstractButton *btn : qAsConst(logic_buttons_)) {
+        for (QAbstractButton *btn : std::as_const(logic_buttons_)) {
             btn->hide();
         }
 
@@ -2046,11 +2046,11 @@ void KCalculator::showLogicButtons(bool toggled)
 void KCalculator::slotConstantsShow(bool toggled)
 {
     if (toggled) {
-        for (QAbstractButton *btn : qAsConst(const_buttons_)) {
+        for (QAbstractButton *btn : std::as_const(const_buttons_)) {
             btn->show();
         }
     } else {
-        for (QAbstractButton *btn : qAsConst(const_buttons_)) {
+        for (QAbstractButton *btn : std::as_const(const_buttons_)) {
             btn->hide();
         }
     }
@@ -2078,7 +2078,7 @@ void KCalculator::slotBitsetshow(bool toggled)
 //------------------------------------------------------------------------------
 void KCalculator::changeButtonNames()
 {
-    for (QAbstractButton *btn : qAsConst(const_buttons_)) {
+    for (QAbstractButton *btn : std::as_const(const_buttons_)) {
         if (auto const constbtn = qobject_cast<KCalcConstButton *>(btn)) {
             constbtn->setLabelAndTooltip();
         }
@@ -2159,12 +2159,12 @@ void KCalculator::setColors()
     }
 
     const QColor funcFontColor(KCalcSettings::functionFontsColor());
-    for (QAbstractButton *btn : qAsConst(function_button_list_)) {
+    for (QAbstractButton *btn : std::as_const(function_button_list_)) {
         qobject_cast<KCalcButton *>(btn)->setTextColor(funcFontColor);
     }
 
     const QColor statFontColor(KCalcSettings::statFontsColor());
-    for (QAbstractButton *btn : qAsConst(stat_buttons_)) {
+    for (QAbstractButton *btn : std::as_const(stat_buttons_)) {
         qobject_cast<KCalcButton *>(btn)->setTextColor(statFontColor);
     }
 
@@ -2174,17 +2174,17 @@ void KCalculator::setColors()
     }
 
     const QColor memFontColor(KCalcSettings::memoryFontsColor());
-    for (QAbstractButton *btn : qAsConst(mem_button_list_)) {
+    for (QAbstractButton *btn : std::as_const(mem_button_list_)) {
         qobject_cast<KCalcButton *>(btn)->setTextColor(memFontColor);
     }
 
     const QColor opFontColor(KCalcSettings::operationFontsColor());
-    for (QAbstractButton *btn : qAsConst(operation_button_list_)) {
+    for (QAbstractButton *btn : std::as_const(operation_button_list_)) {
         qobject_cast<KCalcButton *>(btn)->setTextColor(opFontColor);
     }
 
     const QColor coFontColor(KCalcSettings::constantsFontsColor());
-    for (QAbstractButton *btn : qAsConst(const_buttons_)) {
+    for (QAbstractButton *btn : std::as_const(const_buttons_)) {
         qobject_cast<KCalcButton *>(btn)->setTextColor(coFontColor);
     }
 
@@ -2207,12 +2207,12 @@ void KCalculator::setColors()
     }
 
     const QColor funcPal(KCalcSettings::functionButtonsColor());
-    for (QAbstractButton *btn : qAsConst(function_button_list_)) {
+    for (QAbstractButton *btn : std::as_const(function_button_list_)) {
         btn->setStyleSheet(sheet.arg(funcPal.name()));
     }
 
     const QColor statPal(KCalcSettings::statButtonsColor());
-    for (QAbstractButton *btn : qAsConst(stat_buttons_)) {
+    for (QAbstractButton *btn : std::as_const(stat_buttons_)) {
         btn->setStyleSheet(sheet.arg(statPal.name()));
     }
 
@@ -2222,17 +2222,17 @@ void KCalculator::setColors()
     }
 
     const QColor memPal(KCalcSettings::memoryButtonsColor());
-    for (QAbstractButton *btn : qAsConst(mem_button_list_)) {
+    for (QAbstractButton *btn : std::as_const(mem_button_list_)) {
         btn->setStyleSheet(sheet.arg(memPal.name()));
     }
 
     const QColor opPal(KCalcSettings::operationButtonsColor());
-    for (QAbstractButton *btn : qAsConst(operation_button_list_)) {
+    for (QAbstractButton *btn : std::as_const(operation_button_list_)) {
         btn->setStyleSheet(sheet.arg(opPal.name()));
     }
 
     const QColor coPal(KCalcSettings::constantsButtonsColor());
-    for (QAbstractButton *btn : qAsConst(const_buttons_)) {
+    for (QAbstractButton *btn : std::as_const(const_buttons_)) {
         btn->setStyleSheet(sheet.arg(coPal.name()));
     }
 }

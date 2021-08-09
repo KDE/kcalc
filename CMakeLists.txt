@@ -21,6 +21,8 @@ include(FeatureSummary)
 include(ECMAddAppIcon)
 include(ECMSetupVersion)
 include(KDEGitCommitHooks)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 ## Generate header with version number
 ecm_setup_version(${RELEASE_SERVICE_VERSION} VARIABLE_PREFIX KCALC
