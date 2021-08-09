@@ -212,7 +212,7 @@ void KCalculator::setupMainActions()
     action_bitset_show_->setChecked(true);
     connect(action_bitset_show_, &KToggleAction::toggled, this, &KCalculator::slotBitsetshow);
 
-    KStandardAction::preferences(this, SLOT(showSettings()), actionCollection());
+    KStandardAction::preferences(this, &KCalculator::showSettings, actionCollection());
 
     KStandardAction::keyBindings(guiFactory(), &KXMLGUIFactory::showConfigureShortcutsDialog, actionCollection());
 }
