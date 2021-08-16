@@ -8,21 +8,19 @@ set (RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE
 project(kcalc VERSION ${RELEASE_SERVICE_VERSION})
 
 set(QT_MIN_VERSION "5.15.0")
-set(KF5_MIN_VERSION "5.84.0")
+set(KF5_MIN_VERSION "5.85.0")
 
 find_package (ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
 set (CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
 include(KDEInstallDirs)
-include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
+include(KDECompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
 include(ECMMarkAsTest)
 include(FeatureSummary)
 include(ECMAddAppIcon)
 include(ECMSetupVersion)
 include(KDEGitCommitHooks)
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 ## Generate header with version number
 ecm_setup_version(${RELEASE_SERVICE_VERSION} VARIABLE_PREFIX KCALC
@@ -78,7 +76,7 @@ check_type_size("unsigned long"  SIZEOF_UNSIGNED_LONG)
 
 configure_file(config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
 add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050f00)
-add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055300)
+add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055500)
 
 add_subdirectory(knumber)
 add_executable(kcalc)
