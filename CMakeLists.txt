@@ -133,6 +133,8 @@ target_link_libraries(kcalc
     knumber
 )
 
+set_target_properties(kcalc PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/MacOSXBundleInfo.plist.in)
+
 install(TARGETS kcalc  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
 ########### install files ###############
