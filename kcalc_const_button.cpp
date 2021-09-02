@@ -137,5 +137,5 @@ void KCalcConstButton::slotChooseScientificConst(const science_constant &const_c
 //------------------------------------------------------------------------------
 void KCalcConstButton::slotClicked()
 {
-    Q_EMIT clicked(button_num_);
+    Q_EMIT constButtonClicked(button_num_);
 }

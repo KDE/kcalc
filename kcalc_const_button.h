@@ -41,7 +41,7 @@ public:
     void setLabelAndTooltip();
 
 Q_SIGNALS:
-    void clicked(int num);
+    void constButtonClicked(int num);
 
 private Q_SLOTS:
     void slotConfigureButton();

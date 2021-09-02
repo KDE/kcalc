@@ -538,32 +538,32 @@ void KCalculator::setupConstantsKeys()
     pbC1->setButtonNumber(0);
     connect(this, &KCalculator::switchShowAccels, pbC1, &KCalcConstButton::slotSetAccelDisplayMode);
     connect(this, &KCalculator::switchMode, pbC1, &KCalcConstButton::slotSetMode);
-    connect(pbC1, &KCalcConstButton::clicked, this, &KCalculator::slotConstclicked);
+    connect(pbC1, &KCalcConstButton::constButtonClicked, this, &KCalculator::slotConstclicked);
 
     pbC2->setButtonNumber(1);
     connect(this, &KCalculator::switchShowAccels, pbC2, &KCalcConstButton::slotSetAccelDisplayMode);
     connect(this, &KCalculator::switchMode, pbC2, &KCalcConstButton::slotSetMode);
-    connect(pbC2, &KCalcConstButton::clicked, this, &KCalculator::slotConstclicked);
+    connect(pbC2, &KCalcConstButton::constButtonClicked, this, &KCalculator::slotConstclicked);
 
     pbC3->setButtonNumber(2);
     connect(this, &KCalculator::switchShowAccels, pbC3, &KCalcConstButton::slotSetAccelDisplayMode);
     connect(this, &KCalculator::switchMode, pbC3, &KCalcConstButton::slotSetMode);
-    connect(pbC3, &KCalcConstButton::clicked, this, &KCalculator::slotConstclicked);
+    connect(pbC3, &KCalcConstButton::constButtonClicked, this, &KCalculator::slotConstclicked);
 
     pbC4->setButtonNumber(3);
     connect(this, &KCalculator::switchShowAccels, pbC4, &KCalcConstButton::slotSetAccelDisplayMode);
     connect(this, &KCalculator::switchMode, pbC4, &KCalcConstButton::slotSetMode);
-    connect(pbC4, &KCalcConstButton::clicked, this, &KCalculator::slotConstclicked);
+    connect(pbC4, &KCalcConstButton::constButtonClicked, this, &KCalculator::slotConstclicked);
 
     pbC5->setButtonNumber(4);
     connect(this, &KCalculator::switchShowAccels, pbC5, &KCalcConstButton::slotSetAccelDisplayMode);
     connect(this, &KCalculator::switchMode, pbC5, &KCalcConstButton::slotSetMode);
-    connect(pbC5, &KCalcConstButton::clicked, this, &KCalculator::slotConstclicked);
+    connect(pbC5, &KCalcConstButton::constButtonClicked, this, &KCalculator::slotConstclicked);
 
     pbC6->setButtonNumber(5);
     connect(this, &KCalculator::switchShowAccels, pbC6, &KCalcConstButton::slotSetAccelDisplayMode);
     connect(this, &KCalculator::switchMode, pbC6, &KCalcConstButton::slotSetMode);
-    connect(pbC6, &KCalcConstButton::clicked, this, &KCalculator::slotConstclicked);
+    connect(pbC6, &KCalcConstButton::constButtonClicked, this, &KCalculator::slotConstclicked);
 
     changeButtonNames();
 }
