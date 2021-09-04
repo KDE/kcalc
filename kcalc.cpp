@@ -706,10 +706,7 @@ void KCalculator::updateGeometry()
     const auto numericPadList = numericPad->children();
     for (QObject *obj : numericPadList) {
         if (auto const button = qobject_cast<KCalcButton *>(obj)) {
-            // let pb0 expand freely
-            if (button != pb0) {
-                button->setMinimumWidth(em.width() * 3 + margin * 2);
-            }
+            button->setMinimumWidth(em.width() * 3 + margin * 2);
             button->installEventFilter(this);
         }
     }
@@ -1893,6 +1890,11 @@ void KCalculator::slotSetSimpleMode()
     // must be done after setting the calculator mode because the
     // slotBitsetshow slot should save the state only in numeral mode
     action_bitset_show_->setChecked(false);
+    
+    // disable leftPad from affecting the layout
+    QSizePolicy policy = leftPad->sizePolicy();
+    policy.setHorizontalStretch(0);
+    leftPad->setSizePolicy(policy);
 }
 
 //------------------------------------------------------------------------------
@@ -1931,6 +1933,11 @@ void KCalculator::slotSetScienceMode()
     // must be done after setting the calculator mode because the
     // slotBitsetshow slot should save the state only in numeral mode
     action_bitset_show_->setChecked(false);
+    
+    // enable leftPad to affect the layout
+    QSizePolicy policy = leftPad->sizePolicy();
+    policy.setHorizontalStretch(1);
+    leftPad->setSizePolicy(policy);
 }
 
 //------------------------------------------------------------------------------
@@ -1969,6 +1976,11 @@ void KCalculator::slotSetStatisticMode()
     // must be done after setting the calculator mode because the
     // slotBitsetshow slot should save the state only in numeral mode
     action_bitset_show_->setChecked(false);
+    
+    // enable leftPad to affect the layout
+    QSizePolicy policy = leftPad->sizePolicy();
+    policy.setHorizontalStretch(1);
+    leftPad->setSizePolicy(policy);
 }
 
 //------------------------------------------------------------------------------
@@ -2005,6 +2017,11 @@ void KCalculator::slotSetNumeralMode()
     }
 
     KCalcSettings::setCalculatorMode(KCalcSettings::EnumCalculatorMode::numeral);
+    
+    // enable leftPad to affect the layout
+    QSizePolicy policy = leftPad->sizePolicy();
+    policy.setHorizontalStretch(1);
+    leftPad->setSizePolicy(policy);
 }
 
 //------------------------------------------------------------------------------

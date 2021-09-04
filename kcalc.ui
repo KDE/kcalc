@@ -231,9 +231,18 @@
      </item>
      <item>
       <layout class="QHBoxLayout">
+       <property name="spacing">
+        <number>6</number>
+       </property>
        <item>
         <widget class="QWidget" name="leftPad" native="true">
-         <layout class="QGridLayout">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <layout class="QGridLayout" columnstretch="0,0,0,0,0,0">
           <property name="leftMargin">
            <number>2</number>
           </property>
@@ -251,6 +260,12 @@
           </property>
           <item row="7" column="0">
            <widget class="KCalcButton" name="pbCSt">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Clear data store</string>
             </property>
@@ -261,6 +276,12 @@
           </item>
           <item row="7" column="5">
            <widget class="KCalcConstButton" name="pbC6">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>C6</string>
             </property>
@@ -271,6 +292,12 @@
           </item>
           <item row="1" column="2">
            <widget class="KCalcButton" name="pbOR">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Bitwise OR</string>
             </property>
@@ -281,6 +308,12 @@
           </item>
           <item row="2" column="0">
            <widget class="KCalcButton" name="pbSd">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Standard deviation</string>
             </property>
@@ -291,6 +324,12 @@
           </item>
           <item row="0" column="5">
            <widget class="KCalcConstButton" name="pbC1">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>C1</string>
             </property>
@@ -301,6 +340,12 @@
           </item>
           <item row="0" column="1">
            <widget class="KCalcButton" name="pbHyp">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Hyperbolic mode</string>
             </property>
@@ -317,6 +362,12 @@
           </item>
           <item row="4" column="2">
            <widget class="KCalcButton" name="pbRsh">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Right bit shift</string>
             </property>
@@ -327,6 +378,12 @@
           </item>
           <item row="7" column="1">
            <widget class="KCalcButton" name="pbLn">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Natural log</string>
             </property>
@@ -341,7 +398,7 @@
           <item row="7" column="3">
            <widget class="KCalcButton" name="pbCube">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -356,6 +413,12 @@
           </item>
           <item row="2" column="1">
            <widget class="KCalcButton" name="pbCos">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Cosine</string>
             </property>
@@ -369,6 +432,12 @@
           </item>
           <item row="9" column="3">
            <widget class="KCalcButton" name="pbEE">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Exponent</string>
             </property>
@@ -382,6 +451,12 @@
           </item>
           <item row="0" column="3">
            <widget class="KCalcButton" name="pbMod">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Modulo</string>
             </property>
@@ -392,6 +467,12 @@
           </item>
           <item row="3" column="3">
            <widget class="KCalcButton" name="pbSquare">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Square</string>
             </property>
@@ -402,6 +483,12 @@
           </item>
           <item row="3" column="1">
            <widget class="KCalcButton" name="pbTan">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Tangent</string>
             </property>
@@ -415,6 +502,12 @@
           </item>
           <item row="3" column="4">
            <widget class="KCalcButton" name="pbD">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>D</string>
             </property>
@@ -425,6 +518,12 @@
           </item>
           <item row="3" column="5">
            <widget class="KCalcConstButton" name="pbC4">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>C4</string>
             </property>
@@ -435,6 +534,12 @@
           </item>
           <item row="2" column="2">
            <widget class="KCalcButton" name="pbXOR">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Bitwise XOR</string>
             </property>
@@ -445,6 +550,12 @@
           </item>
           <item row="0" column="4">
            <widget class="KCalcButton" name="pbA">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>A</string>
             </property>
@@ -455,6 +566,12 @@
           </item>
           <item row="0" column="2">
            <widget class="KCalcButton" name="pbAND">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Bitwise AND</string>
             </property>
@@ -465,6 +582,12 @@
           </item>
           <item row="0" column="0">
            <widget class="KCalcButton" name="pbNData">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Number of data entered</string>
             </property>
@@ -475,6 +598,12 @@
           </item>
           <item row="1" column="3">
            <widget class="KCalcButton" name="pbReci">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Reciprocal</string>
             </property>
@@ -488,6 +617,12 @@
           </item>
           <item row="3" column="2">
            <widget class="KCalcButton" name="pbLsh">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Left bit shift</string>
             </property>
@@ -498,6 +633,12 @@
           </item>
           <item row="4" column="0">
            <widget class="KCalcButton" name="pbDat">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Enter data</string>
             </property>
@@ -511,6 +652,12 @@
           </item>
           <item row="2" column="5">
            <widget class="KCalcConstButton" name="pbC3">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>C3</string>
             </property>
@@ -521,6 +668,12 @@
           </item>
           <item row="1" column="1">
            <widget class="KCalcButton" name="pbSin">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Sine</string>
             </property>
@@ -534,6 +687,12 @@
           </item>
           <item row="1" column="0">
            <widget class="KCalcButton" name="pbMean">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Mean</string>
             </property>
@@ -544,6 +703,12 @@
           </item>
           <item row="3" column="0">
            <widget class="KCalcButton" name="pbMed">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Median</string>
             </property>
@@ -554,6 +719,12 @@
           </item>
           <item row="4" column="3">
            <widget class="KCalcButton" name="pbPower">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>x to the power of y</string>
             </property>
@@ -564,6 +735,12 @@
           </item>
           <item row="4" column="4">
            <widget class="KCalcButton" name="pbE">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>E</string>
             </property>
@@ -574,6 +751,12 @@
           </item>
           <item row="1" column="4">
            <widget class="KCalcButton" name="pbB">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>B</string>
             </property>
@@ -584,6 +767,12 @@
           </item>
           <item row="7" column="2">
            <widget class="KCalcButton" name="pbCmp">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>One's complement</string>
             </property>
@@ -594,6 +783,12 @@
           </item>
           <item row="4" column="1">
            <widget class="KCalcButton" name="pbLog">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Logarithm to base 10</string>
             </property>
@@ -607,6 +802,12 @@
           </item>
           <item row="7" column="4">
            <widget class="KCalcButton" name="pbF">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>F</string>
             </property>
@@ -617,6 +818,12 @@
           </item>
           <item row="1" column="5">
            <widget class="KCalcConstButton" name="pbC2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>C2</string>
             </property>
@@ -627,6 +834,12 @@
           </item>
           <item row="2" column="4">
            <widget class="KCalcButton" name="pbC">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>C</string>
             </property>
@@ -637,6 +850,12 @@
           </item>
           <item row="2" column="3">
            <widget class="KCalcButton" name="pbFactorial">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Factorial</string>
             </property>
@@ -647,6 +866,12 @@
           </item>
           <item row="4" column="5">
            <widget class="KCalcConstButton" name="pbC5">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>C5</string>
             </property>
@@ -662,7 +887,7 @@
         <widget class="QWidget" name="numericPad" native="true">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
+           <horstretch>2</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -685,7 +910,7 @@
           <item row="1" column="0">
            <widget class="KCalcButton" name="pb7">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -701,7 +926,7 @@
           <item row="1" column="1">
            <widget class="KCalcButton" name="pb8">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -717,7 +942,7 @@
           <item row="1" column="3">
            <widget class="KCalcButton" name="pb9">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -733,7 +958,7 @@
           <item row="2" column="0">
            <widget class="KCalcButton" name="pb4">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -749,7 +974,7 @@
           <item row="2" column="1">
            <widget class="KCalcButton" name="pb5">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -765,7 +990,7 @@
           <item row="2" column="3">
            <widget class="KCalcButton" name="pb6">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -781,7 +1006,7 @@
           <item row="3" column="0">
            <widget class="KCalcButton" name="pb1">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -797,7 +1022,7 @@
           <item row="3" column="1">
            <widget class="KCalcButton" name="pb2">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -813,7 +1038,7 @@
           <item row="3" column="3">
            <widget class="KCalcButton" name="pb3">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -829,7 +1054,7 @@
           <item row="4" column="0" colspan="2">
            <widget class="KCalcButton" name="pb0">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -845,7 +1070,7 @@
           <item row="0" column="0">
            <widget class="KCalcButton" name="pbPercent">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -861,7 +1086,7 @@
           <item row="0" column="1">
            <widget class="KCalcButton" name="pbDivision">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -877,7 +1102,7 @@
           <item row="0" column="3">
            <widget class="KCalcButton" name="pbMultiplication">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -893,7 +1118,7 @@
           <item row="0" column="4">
            <widget class="KCalcButton" name="pbMinus">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -909,7 +1134,7 @@
           <item row="1" column="4" rowspan="2">
            <widget class="KCalcButton" name="pbPlus">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -925,7 +1150,7 @@
           <item row="3" column="4" rowspan="2">
            <widget class="KCalcButton" name="pbEqual">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -941,7 +1166,7 @@
           <item row="4" column="3">
            <widget class="KCalcButton" name="pbPeriod">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -959,6 +1184,12 @@
        </item>
        <item>
         <widget class="QWidget" name="rightPad" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <layout class="QGridLayout">
           <property name="leftMargin">
            <number>2</number>
@@ -977,6 +1208,12 @@
           </property>
           <item row="2" column="0">
            <widget class="KCalcButton" name="pbAllClear">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Clear all</string>
             </property>
@@ -987,6 +1224,12 @@
           </item>
           <item row="3" column="1">
            <widget class="KCalcButton" name="pbMemClear">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Memory clear</string>
             </property>
@@ -997,6 +1240,12 @@
           </item>
           <item row="4" column="1">
            <widget class="KCalcButton" name="pbMemRecall">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Memory recall</string>
             </property>
@@ -1007,6 +1256,12 @@
           </item>
           <item row="5" column="0">
            <widget class="KCalcButton" name="pbPlusMinus">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Change sign</string>
             </property>
@@ -1017,6 +1272,12 @@
           </item>
           <item row="3" column="0">
            <widget class="KCalcButton" name="pbParenOpen">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Open parenthesis</string>
             </property>
@@ -1027,6 +1288,12 @@
           </item>
           <item row="1" column="0">
            <widget class="KCalcButton" name="pbClear">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Clear</string>
             </property>
@@ -1037,6 +1304,12 @@
           </item>
           <item row="5" column="1">
            <widget class="KCalcButton" name="pbMemPlusMinus">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Add to memory</string>
             </property>
@@ -1047,6 +1320,12 @@
           </item>
           <item row="2" column="1">
            <widget class="KCalcButton" name="pbMemStore">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Memory store</string>
             </property>
@@ -1057,6 +1336,12 @@
           </item>
           <item row="4" column="0">
            <widget class="KCalcButton" name="pbParenClose">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Close parenthesis</string>
             </property>
@@ -1067,6 +1352,12 @@
           </item>
           <item row="1" column="1">
            <widget class="KCalcButton" name="pbBackspace">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>←</string>
             </property>
@@ -1077,6 +1368,12 @@
           </item>
           <item row="0" column="0" colspan="2">
            <widget class="KCalcButton" name="pbShift">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Second button function</string>
             </property>
