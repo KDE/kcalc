@@ -112,6 +112,9 @@ KCalculator::KCalculator(QWidget *parent)
 
     updateGeometry();
 
+    // Make window launch at its minimum size
+    KCalculator::resize(0,0);
+
     updateDisplay(UPDATE_FROM_CORE);
     // clear history, otherwise we have a leading "0" in it
     calc_history->clearHistory();
