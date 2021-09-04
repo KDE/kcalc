@@ -112,8 +112,6 @@ KCalculator::KCalculator(QWidget *parent)
 
     updateGeometry();
 
-    layout()->setSizeConstraint(QLayout::SetFixedSize);
-
     updateDisplay(UPDATE_FROM_CORE);
     // clear history, otherwise we have a leading "0" in it
     calc_history->clearHistory();
@@ -688,7 +686,7 @@ void KCalculator::updateGeometry()
     const auto leftPadList = leftPad->children();
     for (QObject *obj : leftPadList) {
         if (auto const button = qobject_cast<KCalcButton *>(obj)) {
-            button->setFixedWidth(em.width() * 4 + margin * 2);
+            button->setMinimumWidth(em.width() * 4 + margin * 2);
             button->installEventFilter(this);
         }
     }
@@ -699,7 +697,7 @@ void KCalculator::updateGeometry()
         auto const button = qobject_cast<KCalcButton *>(obj);
         // let Shift expand freely
         if (button && button != pbShift) {
-            button->setFixedWidth(em.width() * 3 + margin * 2);
+            button->setMinimumWidth(em.width() * 3 + margin * 2);
             button->installEventFilter(this);
         }
     }
@@ -710,7 +708,7 @@ void KCalculator::updateGeometry()
         if (auto const button = qobject_cast<KCalcButton *>(obj)) {
             // let pb0 expand freely
             if (button != pb0) {
-                button->setFixedWidth(em.width() * 3 + margin * 2);
+                button->setMinimumWidth(em.width() * 3 + margin * 2);
             }
             button->installEventFilter(this);
         }
