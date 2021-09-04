@@ -1922,10 +1922,10 @@ void KCalculator::slotSetScienceMode()
     pbEE->show();
 
     // show or hide some groups of buttons
-    showMemButtons(true);
-    showScienceButtons(true);
     showStatButtons(false);
     showLogicButtons(false);
+    showMemButtons(true);
+    showScienceButtons(true);
 
     if (!constants_menu_) {
         constants_menu_ = createConstantsMenu();
@@ -1965,10 +1965,10 @@ void KCalculator::slotSetStatisticMode()
     pbEE->show();
 
     // show or hide some groups of buttons
+    showLogicButtons(false);
     showMemButtons(true);
     showScienceButtons(true);
     showStatButtons(true);
-    showLogicButtons(false);
 
     if (!constants_menu_) {
         constants_menu_ = createConstantsMenu();
@@ -2009,9 +2009,9 @@ void KCalculator::slotSetNumeralMode()
     pbEE->show();
 
     // show or hide some groups of buttons
-    showMemButtons(true);
     showScienceButtons(false);
     showStatButtons(false);
+    showMemButtons(true);
     showLogicButtons(true);
 
     if (!constants_menu_) {
