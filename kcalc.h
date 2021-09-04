@@ -126,6 +126,8 @@ private:
     void setAngle();
     void setBase();
 
+    void resizeEvent(QResizeEvent* event) override;
+
     void updateDisplay(UpdateFlags flags);
     void updateHistoryWithFunction(CalcEngine::Operation);
     KCalcStatusBar *statusBar();

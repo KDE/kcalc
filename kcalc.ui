@@ -24,7 +24,7 @@
     <enum>QLayout::SetMinimumSize</enum>
    </property>
    <item>
-    <layout class="QVBoxLayout">
+    <layout class="QVBoxLayout" name="firstVerticalLayout">
      <item>
       <widget class="KCalcDisplay" name="calc_display">
        <property name="sizePolicy">

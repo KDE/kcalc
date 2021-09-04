@@ -2550,6 +2550,25 @@ void KCalculator::slotPaste()
     core.setOnlyUpdateOperation(false);
 }
 
+//------------------------------------------------------------------------------
+// Name: resizeEvent
+// Desc: resize window and make sure it's large enough for its content
+//------------------------------------------------------------------------------
+void KCalculator::resizeEvent(QResizeEvent* event)
+{
+    // Call the overridden resize event
+    KXmlGuiWindow::resizeEvent(event);
+    
+    // If the content size is now larger than the window size, resize window to fit
+    QSize contentSize = firstVerticalLayout->contentsRect().size();
+    QMargins contentMargins = KCalculator::contentsMargins();
+    QSize windowSize = KCalculator::frameSize();
+    if (contentSize.width() + contentMargins.left() + contentMargins.right() > windowSize.width() || contentSize.height() + contentMargins.top() + contentMargins.bottom() > windowSize.height()) {
+        KCalculator::resize(0,0); // force window as small as possible for current layout
+    }
+}
+
+
 ////////////////////////////////////////////////////////////////
 // Include the meta-object code for classes in this file
 //
