@@ -191,15 +191,8 @@ void KCalcButton::calcSizeHint()
     // want narrow margin than normal
     margin = qMax(margin / 2, 3);
 
-    // approximation because metrics doesn't account for richtext
-    size_ = fontMetrics().size(0, mode_[ModeNormal].label);
-    if (mode_.contains(ModeShift)) {
-        size_ = size_.expandedTo(fontMetrics().size(0, mode_[ModeShift].label));
-    }
-
-    if (mode_.contains(ModeHyperbolic)) {
-        size_ = size_.expandedTo(fontMetrics().size(0, mode_[ModeHyperbolic].label));
-    }
+    // simply use font size of a single letter
+    size_ = fontMetrics().size(0, QStringLiteral("M"));
 
     size_ += QSize(margin * 2, margin * 2);
 }

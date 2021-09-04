@@ -697,9 +697,7 @@ void KCalculator::updateGeometry()
     // right pad
     const auto rightPadList = rightPad->children();
     for (QObject *obj : rightPadList) {
-        auto const button = qobject_cast<KCalcButton *>(obj);
-        // let Shift expand freely
-        if (button && button != pbShift) {
+        if (auto const button = qobject_cast<KCalcButton *>(obj)) {
             button->setMinimumWidth(em.width() * 3 + margin * 2);
             button->installEventFilter(this);
         }
