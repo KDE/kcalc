@@ -106,6 +106,9 @@ public:
 
     Q_DECLARE_FLAGS(UpdateFlags, UpdateFlag)
 
+protected:
+    void resizeEvent(QResizeEvent* event) override;
+    
 private:
     bool eventFilter(QObject *o, QEvent *e) override;
     bool event(QEvent *e) override;
@@ -125,8 +128,6 @@ private:
     void setPrecision();
     void setAngle();
     void setBase();
-
-    void resizeEvent(QResizeEvent* event) override;
 
     void updateDisplay(UpdateFlags flags);
     void updateHistoryWithFunction(CalcEngine::Operation);

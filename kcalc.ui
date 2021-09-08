@@ -24,11 +24,11 @@
     <enum>QLayout::SetMinimumSize</enum>
    </property>
    <item>
-    <layout class="QVBoxLayout" name="firstVerticalLayout">
+    <layout class="QVBoxLayout" name="firstVerticalLayout" stretch="1,1,0,3">
      <item>
       <widget class="KCalcDisplay" name="calc_display">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>

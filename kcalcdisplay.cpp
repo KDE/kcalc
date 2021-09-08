@@ -599,6 +599,26 @@ void KCalcDisplay::setText(const QString &string)
 }
 
 //------------------------------------------------------------------------------
+// Name: setFont
+// Desc: Set the font and recalculate the font size to better fit
+//------------------------------------------------------------------------------
+void KCalcDisplay::setFont(const QFont &font)
+{
+    // Make a copy of the font
+    QFont* newFont = new QFont(font);
+    
+    // Calculate ideal font size
+    // constant arbitrarily chosen, adjust/increase if scaling issues arise
+    newFont->setPointSizeF(qMax(double(font.pointSize()), contentsRect().height() / 3.6));
+    
+    // Apply font
+    QFrame::setFont(*newFont);
+    
+    // Free the memory
+    delete newFont;
+}
+
+//------------------------------------------------------------------------------
 // Name: formatDecimalNumber
 // Desc: Convert decimal number to locale-dependent format.
 //      We cannot use QLocale::formatNumber(), because the
@@ -1025,7 +1045,7 @@ void KCalcDisplay::paintEvent(QPaintEvent *)
     // draw the status texts using half of the normal
     // font size but not smaller than 7pt
     QFont fnt(font());
-    fnt.setPointSize(qMax((fnt.pointSize() / 2), 7));
+    fnt.setPointSizeF(qMax((fnt.pointSize() / 2.0), 7.0));
     painter.setFont(fnt);
 
     QFontMetrics fm(fnt);
@@ -1035,6 +1055,18 @@ void KCalcDisplay::paintEvent(QPaintEvent *)
     for (int n = 0; n < NUM_STATUS_TEXT; ++n) {
         painter.drawText(5 + n * w, h, str_status_[n]);
     }
+}
+
+//------------------------------------------------------------------------------
+// Name: resizeEvent
+// Desc: resize display and adjust font size
+//------------------------------------------------------------------------------
+void KCalcDisplay::resizeEvent(QResizeEvent* event)
+{
+    QFrame::resizeEvent(event);
+
+    // Set font again (forcing size recalculation)
+    setFont(KCalcSettings::displayFont());
 }
 
 //------------------------------------------------------------------------------

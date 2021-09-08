@@ -2687,6 +2687,7 @@ int main(int argc, char *argv[])
                         QStringLiteral("ochominutosdearco@yahoo.es"));
     aboutData.addAuthor(i18n("Michel Marti"), QString(), QStringLiteral("mma@objectxp.com"));
     aboutData.addAuthor(i18n("David Johnson"), QString(), QStringLiteral("david@usermode.org"));
+    aboutData.addAuthor(i18n("Niklas Freund"), QString(), QStringLiteral("nalquas.dev@gmail.com"));
 
     KAboutData::setApplicationData(aboutData);
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("accessories-calculator"), app.windowIcon()));

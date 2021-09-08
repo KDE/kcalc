@@ -65,6 +65,7 @@ public:
     void setFixedPrecision(int precision);
     void setPrecision(int precision);
     void setText(const QString &string);
+    void setFont(const QFont &font);
     QString formatDecimalNumber(QString string);
     QString groupDigits(const QString &displayString, int numDigits);
     QString text() const;
@@ -89,6 +90,7 @@ Q_SIGNALS:
 protected:
     void mousePressEvent(QMouseEvent *) override;
     void paintEvent(QPaintEvent *p) override;
+    void resizeEvent(QResizeEvent* event) override;
 
 private:
     bool changeSign();
