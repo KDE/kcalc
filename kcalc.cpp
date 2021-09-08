@@ -2452,30 +2452,27 @@ void KCalculator::setFonts()
         // Please note these constants are arbitrarily chosen for lack of a better solution.
         // If issues with scaling arise (due to abnormally wide/tall fonts), increase them to compensate.
         buttonFont.setPointSizeF(qMax(KCalcSettings::buttonFont().pointSizeF(), qMin(minButtonWidth / 4.8, minButtonHeight / 3.6)));
+        
+    }
 
-        // Step 3: Apply the new font size to all buttons.
+    // Step 3: Apply the new font (and size) to all buttons.
 
-        const auto leftPadLst = leftPad->children();
-        for (QObject *obj : leftPadLst) {
-            if (auto const button = qobject_cast<KCalcButton *>(obj)) {
-                button->setFont(buttonFont);
-            }
+    for (QObject *obj : leftPadLst) {
+        if (auto const button = qobject_cast<KCalcButton *>(obj)) {
+            button->setFont(buttonFont);
         }
+    }
 
-        const auto numericPadLst = numericPad->children();
-        for (QObject *obj : numericPadLst) {
-            if (auto const button = qobject_cast<KCalcButton *>(obj)) {
-                button->setFont(buttonFont);
-            }
+    for (QObject *obj : numericPadLst) {
+        if (auto const button = qobject_cast<KCalcButton *>(obj)) {
+            button->setFont(buttonFont);
         }
+    }
 
-        const auto rightPadLst = rightPad->children();
-        for (QObject *obj : rightPadLst) {
-            if (auto const button = qobject_cast<KCalcButton *>(obj)) {
-                button->setFont(buttonFont);
-            }
+    for (QObject *obj : rightPadLst) {
+        if (auto const button = qobject_cast<KCalcButton *>(obj)) {
+            button->setFont(buttonFont);
         }
-
     }
 
     updateGeometry();
