@@ -2400,25 +2400,82 @@ void KCalculator::setColors()
 //------------------------------------------------------------------------------
 void KCalculator::setFonts()
 {
+    // Get the font selected in the settings
+    QFont buttonFont = KCalcSettings::buttonFont();
+
+    // Step 1: Gather the minimum button width and height of all buttons
+
+    int minButtonWidth = INT_MAX;
+    int minButtonHeight = INT_MAX;
+
     const auto leftPadLst = leftPad->children();
     for (QObject *obj : leftPadLst) {
         if (auto const button = qobject_cast<KCalcButton *>(obj)) {
-            button->setFont(KCalcSettings::buttonFont());
+            if (button->isVisible()) {
+                if (button->width() < minButtonWidth)
+                    minButtonWidth = button->width();
+                if (button->height() < minButtonHeight)
+                    minButtonHeight = button->height();
+            }
         }
     }
 
     const auto numericPadLst = numericPad->children();
     for (QObject *obj : numericPadLst) {
         if (auto const button = qobject_cast<KCalcButton *>(obj)) {
-            button->setFont(KCalcSettings::buttonFont());
+            if (button->isVisible()) {
+                if (button->width() < minButtonWidth)
+                    minButtonWidth = button->width();
+                if (button->height() < minButtonHeight)
+                    minButtonHeight = button->height();
+            }
         }
     }
 
     const auto rightPadLst = rightPad->children();
     for (QObject *obj : rightPadLst) {
         if (auto const button = qobject_cast<KCalcButton *>(obj)) {
-            button->setFont(KCalcSettings::buttonFont());
+            if (button->isVisible() && button != pbShift) {
+                if (button->width() < minButtonWidth)
+                    minButtonWidth = button->width();
+                if (button->height() < minButtonHeight)
+                    minButtonHeight = button->height();
+            }
         }
+    }
+
+    // Step 2: If step 1 worked, calculate new font size
+
+    if (!(minButtonWidth == INT_MAX || minButtonHeight == INT_MAX)) {
+
+        // Calculate new font size. Use the font size from the settings as minimum font size.
+        // Please note these constants are arbitrarily chosen for lack of a better solution.
+        // If issues with scaling arise (due to abnormally wide/tall fonts), increase them to compensate.
+        buttonFont.setPointSizeF(qMax(KCalcSettings::buttonFont().pointSizeF(), qMin(minButtonWidth / 4.8, minButtonHeight / 3.6)));
+
+        // Step 3: Apply the new font size to all buttons.
+
+        const auto leftPadLst = leftPad->children();
+        for (QObject *obj : leftPadLst) {
+            if (auto const button = qobject_cast<KCalcButton *>(obj)) {
+                button->setFont(buttonFont);
+            }
+        }
+
+        const auto numericPadLst = numericPad->children();
+        for (QObject *obj : numericPadLst) {
+            if (auto const button = qobject_cast<KCalcButton *>(obj)) {
+                button->setFont(buttonFont);
+            }
+        }
+
+        const auto rightPadLst = rightPad->children();
+        for (QObject *obj : rightPadLst) {
+            if (auto const button = qobject_cast<KCalcButton *>(obj)) {
+                button->setFont(buttonFont);
+            }
+        }
+
     }
 
     updateGeometry();
@@ -2567,6 +2624,9 @@ void KCalculator::resizeEvent(QResizeEvent* event)
     if (contentSize.width() + contentMargins.left() + contentMargins.right() > windowSize.width() || contentSize.height() + contentMargins.top() + contentMargins.bottom() > windowSize.height()) {
         KCalculator::resize(0,0); // force window as small as possible for current layout
     }
+
+    // Adjust button fonts
+    setFonts();
 }
 
 
