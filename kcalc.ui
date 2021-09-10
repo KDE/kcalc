@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -24,7 +24,7 @@
     <enum>QLayout::SetMinimumSize</enum>
    </property>
    <item>
-    <layout class="QVBoxLayout" name="firstVerticalLayout" stretch="1,1,0,3">
+    <layout class="QVBoxLayout" name="firstVerticalLayout" stretch="2,1,0,6">
      <item>
       <widget class="KCalcDisplay" name="calc_display">
        <property name="sizePolicy">
@@ -44,10 +44,10 @@
        </property>
       </widget>
      </item>
-     <item alignment="Qt::AlignHCenter">
+     <item>
       <widget class="KCalcBitset" name="mBitset" native="true">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>

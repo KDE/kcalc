@@ -27,7 +27,8 @@ BitButton::BitButton(QWidget *parent)
         size.setWidth(size.height());
     }
 
-    setFixedSize(size);
+    setMinimumSize(size);
+    setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 
     this->setAttribute(Qt::WA_Hover, true);
 }

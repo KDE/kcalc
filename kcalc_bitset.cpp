@@ -42,8 +42,17 @@ void BitButton::paintEvent(QPaintEvent *)
     if (over_) {
         painter.setBrush(QColor(palette().text().color().red(), palette().text().color().green(), palette().text().color().blue(), alpha));
     }
+    
+    // Calculate button size (make it square)
+    QRectF square = rect();
+    if (square.width() > square.height())
+        square.setWidth(square.height());
+    else if (square.height() > square.width())
+        square.setHeight(square.width());
 
-    painter.drawRect(rect().adjusted(1, 1, -1, -1));
+    // Draw button
+    painter.translate(QPointF(0.0, (rect().height() - square.height()) / 2.0)); // center button
+    painter.drawRect(square.adjusted(1.0, 1.0, -1.0, -1.0));
 }
 
 //------------------------------------------------------------------------------
@@ -84,6 +93,7 @@ KCalcBitset::KCalcBitset(QWidget *parent)
                 auto const tmpBitButton = new BitButton(this);
                 tmpBitButton->setToolTip(i18n("Bit %1 = %2", bitCounter, 1ULL << bitCounter));
                 wordlayout->addWidget(tmpBitButton);
+                wordlayout->setStretch(bit, 1);
                 bit_button_group_->addButton(tmpBitButton, bitCounter);
                 bitCounter--;
             }
@@ -93,7 +103,14 @@ KCalcBitset::KCalcBitset(QWidget *parent)
             label->setText(QString::number(bitCounter + 1));
             label->setFont(fnt);
             wordlayout->addWidget(label);
+            wordlayout->setStretch(8, 1);
         }
+        layout->setRowStretch(rows, 1);
+    }
+    
+    // layout stretch for columns
+    for (int cols = 0; cols < 4; cols++) {
+        layout->setColumnStretch(cols, 1);
     }
 }
 
