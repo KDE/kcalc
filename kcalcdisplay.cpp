@@ -38,6 +38,8 @@ KCalcDisplay::KCalcDisplay(QWidget *parent)
     , history_index_(0)
     , selection_timer_(new QTimer(this))
 {
+    baseFont_ = nullptr;
+    
     setFocusPolicy(Qt::StrongFocus);
 
     setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed));
@@ -600,22 +602,46 @@ void KCalcDisplay::setText(const QString &string)
 
 //------------------------------------------------------------------------------
 // Name: setFont
-// Desc: Set the font and recalculate the font size to better fit
+// Desc: Set the base font and recalculate the font size to better fit
 //------------------------------------------------------------------------------
 void KCalcDisplay::setFont(const QFont &font)
 {
-    // Make a copy of the font
-    QFont* newFont = new QFont(font);
+    // Overwrite current baseFont
+    if (baseFont_) {
+        delete baseFont_;
+    }
+    baseFont_ = new QFont(font);
+    
+    updateFont();
+}
+
+//------------------------------------------------------------------------------
+// Name: updateFont
+// Desc: Update font using baseFont to better fit
+//------------------------------------------------------------------------------
+void KCalcDisplay::updateFont()
+{
+    // Make a working copy of the font
+    QFont* newFont = new QFont(baseFont());
     
     // Calculate ideal font size
     // constant arbitrarily chosen, adjust/increase if scaling issues arise
-    newFont->setPointSizeF(qMax(double(font.pointSize()), contentsRect().height() / 3.6));
+    newFont->setPointSizeF(qMax(double(baseFont().pointSize()), contentsRect().height() / 3.6));
     
     // Apply font
     QFrame::setFont(*newFont);
     
     // Free the memory
     delete newFont;
+}
+
+//------------------------------------------------------------------------------
+// Name: baseFont
+// Desc:
+//------------------------------------------------------------------------------
+const QFont& KCalcDisplay::baseFont() const
+{
+    return *baseFont_;
 }
 
 //------------------------------------------------------------------------------
@@ -1065,8 +1091,8 @@ void KCalcDisplay::resizeEvent(QResizeEvent* event)
 {
     QFrame::resizeEvent(event);
 
-    // Set font again (forcing size recalculation)
-    setFont(KCalcSettings::displayFont());
+    // Update font size
+    updateFont();
 }
 
 //------------------------------------------------------------------------------
@@ -1075,11 +1101,14 @@ void KCalcDisplay::resizeEvent(QResizeEvent* event)
 //------------------------------------------------------------------------------
 QSize KCalcDisplay::sizeHint() const
 {
+    // font metrics of base font
+    const QFontMetrics fmBase(baseFont());
+    
     // basic size
-    QSize sz = fontMetrics().size(Qt::TextSingleLine, text_);
+    QSize sz = fmBase.size(Qt::TextSingleLine, text_);
 
     // expanded by 3/4 font height to make room for the status texts
-    QFont fnt(font());
+    QFont fnt(baseFont());
     fnt.setPointSize(qMax(((fnt.pointSize() * 3) / 4), 7));
 
     const QFontMetrics fm(fnt);

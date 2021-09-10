@@ -66,6 +66,8 @@ public:
     void setPrecision(int precision);
     void setText(const QString &string);
     void setFont(const QFont &font);
+    void updateFont();
+    const QFont &baseFont() const;
     QString formatDecimalNumber(QString string);
     QString groupDigits(const QString &displayString, int numDigits);
     QString text() const;
@@ -119,6 +121,8 @@ private:
     int fixed_precision_; // "-1" = no fixed_precision
 
     KNumber display_amount_;
+    
+    QFont* baseFont_;
 
     QVector<KNumber> history_list_;
     int history_index_;

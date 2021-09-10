@@ -690,6 +690,7 @@ void KCalculator::updateGeometry()
     for (QObject *obj : leftPadList) {
         if (auto const button = qobject_cast<KCalcButton *>(obj)) {
             button->setMinimumWidth(em.width() * 4 + margin * 2);
+            button->setMinimumHeight(em.height() * 1.25 + margin * 2);
             button->installEventFilter(this);
         }
     }
@@ -699,6 +700,7 @@ void KCalculator::updateGeometry()
     for (QObject *obj : rightPadList) {
         if (auto const button = qobject_cast<KCalcButton *>(obj)) {
             button->setMinimumWidth(em.width() * 3 + margin * 2);
+            button->setMinimumHeight(em.height() * 1.25 + margin * 2);
             button->installEventFilter(this);
         }
     }
@@ -708,6 +710,7 @@ void KCalculator::updateGeometry()
     for (QObject *obj : numericPadList) {
         if (auto const button = qobject_cast<KCalcButton *>(obj)) {
             button->setMinimumWidth(em.width() * 3 + margin * 2);
+            button->setMinimumHeight(em.height() * 1.25 + margin * 2);
             button->installEventFilter(this);
         }
     }
@@ -1896,6 +1899,10 @@ void KCalculator::slotSetSimpleMode()
     QSizePolicy policy = leftPad->sizePolicy();
     policy.setHorizontalStretch(0);
     leftPad->setSizePolicy(policy);
+    
+    // update font size
+    QApplication::processEvents();
+    setFonts();
 }
 
 //------------------------------------------------------------------------------
@@ -1939,6 +1946,10 @@ void KCalculator::slotSetScienceMode()
     QSizePolicy policy = leftPad->sizePolicy();
     policy.setHorizontalStretch(1);
     leftPad->setSizePolicy(policy);
+    
+    // update font size
+    QApplication::processEvents();
+    setFonts();
 }
 
 //------------------------------------------------------------------------------
@@ -1982,6 +1993,10 @@ void KCalculator::slotSetStatisticMode()
     QSizePolicy policy = leftPad->sizePolicy();
     policy.setHorizontalStretch(1);
     leftPad->setSizePolicy(policy);
+    
+    // update font size
+    QApplication::processEvents();
+    setFonts();
 }
 
 //------------------------------------------------------------------------------
@@ -2023,6 +2038,10 @@ void KCalculator::slotSetNumeralMode()
     QSizePolicy policy = leftPad->sizePolicy();
     policy.setHorizontalStretch(1);
     leftPad->setSizePolicy(policy);
+    
+    // update font size
+    QApplication::processEvents();
+    setFonts();
 }
 
 //------------------------------------------------------------------------------
@@ -2474,8 +2493,6 @@ void KCalculator::setFonts()
             button->setFont(buttonFont);
         }
     }
-
-    updateGeometry();
 }
 
 //------------------------------------------------------------------------------
@@ -2487,6 +2504,7 @@ bool KCalculator::event(QEvent *e)
     switch (e->type()) {
     case QEvent::ApplicationFontChange:
         setFonts();
+        updateGeometry();
         break;
     case QEvent::ApplicationPaletteChange:
         setColors();
@@ -2615,6 +2633,8 @@ void KCalculator::resizeEvent(QResizeEvent* event)
     KXmlGuiWindow::resizeEvent(event);
     
     // If the content size is now larger than the window size, resize window to fit
+    // (Workaround for bug where changing from simple to science mode in maximized state
+    // and then restoring results in the window being too small for content)
     QSize contentSize = firstVerticalLayout->contentsRect().size();
     QMargins contentMargins = KCalculator::contentsMargins();
     QSize windowSize = KCalculator::frameSize();
