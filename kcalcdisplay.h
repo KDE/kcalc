@@ -66,7 +66,6 @@ public:
     void setPrecision(int precision);
     void setText(const QString &string);
     void setFont(const QFont &font);
-    void updateFont();
     const QFont &baseFont() const;
     QString formatDecimalNumber(QString string);
     QString groupDigits(const QString &displayString, int numDigits);
@@ -98,6 +97,7 @@ private:
     bool changeSign();
     void invertColors();
     void initStyleOption(QStyleOptionFrame *option) const;
+    void updateFont();
 
 private Q_SLOTS:
     void slotSelectionTimedOut();

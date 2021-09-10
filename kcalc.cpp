@@ -55,6 +55,9 @@ KCalculator::KCalculator(QWidget *parent)
     , memory_num_(0.0)
     , core()
 {
+    // initialize pointers
+    baseFont_ = nullptr;
+    
     // central widget to contain all the elements
     auto const central = new QWidget(this);
     central->setLayoutDirection(Qt::LeftToRight);
@@ -98,6 +101,7 @@ KCalculator::KCalculator(QWidget *parent)
 
     // misc setup
     setColors();
+    setBaseFont(KCalcSettings::buttonFont());
     setFonts();
 
     // Show the result in the app's caption in taskbar (wishlist - bug #52858)
@@ -681,7 +685,11 @@ void KCalculator::setupKeys()
 //------------------------------------------------------------------------------
 void KCalculator::updateGeometry()
 {
-    const QSize em = pbAND->fontMetrics().size(0, QStringLiteral("M"));
+    // Create font metrics using base font (at base size)
+    const QFontMetrics fm(baseFont());
+    
+    // Calculate some useful values
+    const QSize em = fm.size(0, QStringLiteral("M"));
     int margin = QApplication::style()->pixelMetric(QStyle::PM_ButtonMargin, nullptr, nullptr);
     margin = qMax(qMin(margin / 2, 3), 3);
 
@@ -2274,6 +2282,7 @@ void KCalculator::updateSettings()
 {
     changeButtonNames();
     setColors();
+    setBaseFont(KCalcSettings::buttonFont());
     setFonts();
     setPrecision();
 
@@ -2420,7 +2429,7 @@ void KCalculator::setColors()
 void KCalculator::setFonts()
 {
     // Get the font selected in the settings
-    QFont buttonFont = KCalcSettings::buttonFont();
+    QFont buttonFont = baseFont();
 
     // Step 1: Gather the minimum button width and height of all buttons
 
@@ -2496,6 +2505,28 @@ void KCalculator::setFonts()
 }
 
 //------------------------------------------------------------------------------
+// Name: setBaseFont
+// Desc: set the base font
+//------------------------------------------------------------------------------
+void KCalculator::setBaseFont(const QFont &font)
+{
+    // Overwrite current baseFont
+    if (baseFont_) {
+        delete baseFont_;
+    }
+    baseFont_ = new QFont(font);
+}
+
+//------------------------------------------------------------------------------
+// Name: baseFont
+// Desc: get the base font
+//------------------------------------------------------------------------------
+const QFont& KCalculator::baseFont() const
+{
+    return *baseFont_;
+}
+
+//------------------------------------------------------------------------------
 // Name: event
 // Desc: catch application's palette and font change events
 //------------------------------------------------------------------------------
@@ -2503,6 +2534,7 @@ bool KCalculator::event(QEvent *e)
 {
     switch (e->type()) {
     case QEvent::ApplicationFontChange:
+        setBaseFont(KCalcSettings::buttonFont());
         setFonts();
         updateGeometry();
         break;

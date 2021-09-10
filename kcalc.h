@@ -128,6 +128,9 @@ private:
     void setPrecision();
     void setAngle();
     void setBase();
+    
+    void setBaseFont(const QFont &font);
+    const QFont &baseFont() const;
 
     void updateDisplay(UpdateFlags flags);
     void updateHistoryWithFunction(CalcEngine::Operation);
@@ -265,6 +268,8 @@ private:
     QList<QAbstractButton *> stat_button_list_;
     QList<QAbstractButton *> mem_button_list_;
     QList<QAbstractButton *> operation_button_list_;
+    
+    QFont* baseFont_;
 
     CalcEngine core;
 };
