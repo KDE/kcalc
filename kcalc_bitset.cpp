@@ -44,15 +44,15 @@ void BitButton::paintEvent(QPaintEvent *)
     }
     
     // Calculate button size (make it square)
-    QRectF square = rect();
+    QRect square = rect();
     if (square.width() > square.height())
         square.setWidth(square.height());
     else if (square.height() > square.width())
         square.setHeight(square.width());
 
     // Draw button
-    painter.translate(QPointF(0.0, (rect().height() - square.height()) / 2.0)); // center button
-    painter.drawRect(square.adjusted(1.0, 1.0, -1.0, -1.0));
+    painter.translate(QPoint(0, (rect().height() - square.height()) / 2)); // center button
+    painter.drawRect(square.adjusted(1, 1, -1, -1));
 }
 
 //------------------------------------------------------------------------------
