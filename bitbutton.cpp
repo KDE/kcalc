@@ -28,6 +28,7 @@ BitButton::BitButton(QWidget *parent)
     }
 
     setMinimumSize(size);
+    setRenderSize(size);
     setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 
     this->setAttribute(Qt::WA_Hover, true);
@@ -50,6 +51,27 @@ void BitButton::setOn(bool value)
 {
     on_ = value;
     update();
+}
+
+//------------------------------------------------------------------------------
+// Name: renderSize
+// Desc: returns current render size
+//------------------------------------------------------------------------------
+void BitButton::setRenderSize(const QSize &size)
+{
+    if (renderSize_) {
+        delete renderSize_;
+    }
+    renderSize_ = new QSize(size);
+}
+
+//------------------------------------------------------------------------------
+// Name: renderSize
+// Desc: returns current render size
+//------------------------------------------------------------------------------
+const QSize& BitButton::renderSize() const
+{
+    return *renderSize_;
 }
 
 //------------------------------------------------------------------------------

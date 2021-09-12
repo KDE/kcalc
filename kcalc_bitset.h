@@ -19,6 +19,9 @@ public:
     explicit KCalcBitset(QWidget *parent = nullptr);
     Q_REQUIRED_RESULT quint64 getValue() const;
 
+protected:
+    void resizeEvent(QResizeEvent *event) override;
+
 public Q_SLOTS:
     void setValue(quint64 value);
     void slotToggleBit(QAbstractButton *button);

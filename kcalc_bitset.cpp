@@ -43,12 +43,9 @@ void BitButton::paintEvent(QPaintEvent *)
         painter.setBrush(QColor(palette().text().color().red(), palette().text().color().green(), palette().text().color().blue(), alpha));
     }
     
-    // Calculate button size (make it square)
+    // Prepare button size (should be square)
     QRect square = rect();
-    if (square.width() > square.height())
-        square.setWidth(square.height());
-    else if (square.height() > square.width())
-        square.setHeight(square.width());
+    square.setSize(renderSize());
 
     // Draw button
     painter.translate(QPoint(0, (rect().height() - square.height()) / 2)); // center button
@@ -157,5 +154,44 @@ void KCalcBitset::slotToggleBit(QAbstractButton *button)
         const quint64 nv = getValue() ^ (1LL << bit);
         setValue(nv);
         Q_EMIT valueChanged(value_);
+    }
+}
+
+//------------------------------------------------------------------------------
+// Name: resizeEvent
+// Desc: make sure all bitButtons have the same size
+//------------------------------------------------------------------------------
+void KCalcBitset::resizeEvent(QResizeEvent *event)
+{
+    // Call the overridden resize event
+    QFrame::resizeEvent(event);
+    
+    // Get the minimum size of all buttons
+    int minWidth = INT_MAX;
+    int minHeight = INT_MAX;
+    for (QObject *obj : bit_button_group_->buttons()) {
+        if (auto const button = qobject_cast<BitButton *>(obj)) {
+            minWidth = qMin(minWidth, button->rect().width());
+            minHeight = qMin(minHeight, button->rect().height());
+        }
+    }
+    
+    // If this worked, set the renderSize for all BitButtons
+    if (minWidth != INT_MAX && minHeight != INT_MAX) {
+        // Make sure the size is square
+        if (minWidth > minHeight)
+            minWidth = minHeight;
+        else if (minHeight > minWidth)
+            minHeight = minWidth;
+        
+        // Set it for all buttons
+        for (QObject *obj : bit_button_group_->buttons()) {
+            if (auto const button = qobject_cast<BitButton *>(obj)) {
+                QSize size = QSize(button->renderSize());
+                size.setWidth(minWidth);
+                size.setHeight(minHeight);
+                button->setRenderSize(size);
+            }
+        }
     }
 }
