@@ -102,6 +102,7 @@ KCalcBitset::KCalcBitset(QWidget *parent)
             auto label = new QLabel(this);
             label->setText(QString::number(bitCounter + 1));
             label->setFont(fnt);
+            label->setMinimumSize(label->fontMetrics().size(Qt::TextSingleLine, QStringLiteral("56"))); // Make all labels have same size
             wordlayout->addWidget(label);
             wordlayout->setStretch(8, 1);
         }
