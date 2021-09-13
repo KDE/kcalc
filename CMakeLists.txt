@@ -21,6 +21,9 @@ include(FeatureSummary)
 include(ECMAddAppIcon)
 include(ECMSetupVersion)
 include(KDEGitCommitHooks)
+include(KDEClangFormat)
+file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h *.c)
+kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
 
 ## Generate header with version number
 ecm_setup_version(${RELEASE_SERVICE_VERSION} VARIABLE_PREFIX KCALC
