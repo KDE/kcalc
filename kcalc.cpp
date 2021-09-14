@@ -211,7 +211,7 @@ void KCalculator::setupMainActions()
     action_history_show_ = actionCollection()->add<KToggleAction>(QStringLiteral("show_history"));
     action_history_show_->setText(i18n("Show &History"));
     action_history_show_->setChecked(true);
-    action_history_show_->setShortcut(Qt::CTRL | Qt::Key_H);
+    actionCollection()->setDefaultShortcut(action_history_show_, Qt::CTRL | Qt::Key_H);
     connect(action_history_show_, &KToggleAction::toggled, this, &KCalculator::slotHistoryshow);
 
     action_constants_show_ = actionCollection()->add<KToggleAction>(QStringLiteral("show_constants"));
