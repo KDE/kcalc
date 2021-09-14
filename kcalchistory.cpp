@@ -25,7 +25,6 @@
 //------------------------------------------------------------------------------
 KCalcHistory::KCalcHistory(QWidget *parent) : QTextEdit(parent) {
     setReadOnly(true);
-    setAlignment(Qt::AlignRight);
     setWordWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
 }
 
@@ -41,11 +40,11 @@ KCalcHistory::~KCalcHistory() {
 // Desc: Adds the latest calculations to the history window
 //------------------------------------------------------------------------------
 void KCalcHistory::addToHistory(const QString &str, bool new_lines_) {
-    setAlignment(Qt::AlignRight);
     insertHtml(str);
     if (new_lines_) {
         insertHtml(QStringLiteral("<br>"));
     }
+    setAlignment(Qt::AlignRight);
     ensureCursorVisible();
 }
 
@@ -55,7 +54,7 @@ void KCalcHistory::addToHistory(const QString &str, bool new_lines_) {
 //       adds "=" and the result with newline endings
 //------------------------------------------------------------------------------
 void KCalcHistory::addResultToHistory(const QString &display_content) {
-    addToHistory(QStringLiteral(" = ") + display_content, true);
+    addToHistory(QStringLiteral("&nbsp;=&nbsp;") + display_content, true);
 }
 
 //------------------------------------------------------------------------------
@@ -64,36 +63,37 @@ void KCalcHistory::addResultToHistory(const QString &display_content) {
 //       to the history window
 //------------------------------------------------------------------------------
 void KCalcHistory::addFuncToHistory(const CalcEngine::Operation FUNC) {
-    QString textToHistroy;
+    QString textToHistroy = QStringLiteral("&nbsp;");
 
     if (FUNC == CalcEngine::FUNC_PERCENT) {
-        textToHistroy = QStringLiteral(" % ");
+        textToHistroy += QStringLiteral("%");
     } else if (FUNC == CalcEngine::FUNC_OR) {
-        textToHistroy = QStringLiteral(" OR ");
+        textToHistroy += QStringLiteral("OR");
     } else if (FUNC == CalcEngine::FUNC_XOR) {
-        textToHistroy = QStringLiteral(" XOR ");
+        textToHistroy += QStringLiteral("XOR");
     } else if (FUNC == CalcEngine::FUNC_AND) {
-        textToHistroy = QStringLiteral(" AND ");
+        textToHistroy += QStringLiteral("AND");
     } else if (FUNC == CalcEngine::FUNC_LSH) {
-        textToHistroy = QStringLiteral(" Lsh ");
+        textToHistroy += QStringLiteral("Lsh");
     } else if (FUNC == CalcEngine::FUNC_RSH) {
-        textToHistroy = QStringLiteral(" Rsh ");
+        textToHistroy += QStringLiteral("Rsh");
     } else if (FUNC == CalcEngine::FUNC_ADD) {
-        textToHistroy = QStringLiteral(" + ");
+        textToHistroy += QStringLiteral("+");
     } else if (FUNC == CalcEngine::FUNC_SUBTRACT) {
-        textToHistroy = QStringLiteral(" - ");
+        textToHistroy += QStringLiteral("-");
     } else if (FUNC == CalcEngine::FUNC_MULTIPLY) {
-        textToHistroy = QStringLiteral(" × ");
+        textToHistroy += QStringLiteral("×");
     } else if (FUNC == CalcEngine::FUNC_DIVIDE) {
-        textToHistroy = QStringLiteral(" ÷ ");
+        textToHistroy += QStringLiteral("÷");
     } else if (FUNC == CalcEngine::FUNC_MOD) {
-        textToHistroy = QStringLiteral(" Mod ");
+        textToHistroy += QStringLiteral("Mod");
     } else if (FUNC == CalcEngine::FUNC_INTDIV) {
-        textToHistroy = QStringLiteral(" IntDiv ");
+        textToHistroy += QStringLiteral("IntDiv");
     } else if (FUNC == CalcEngine::FUNC_BINOM) {
-        textToHistroy = QStringLiteral(" Binom ");
+        textToHistroy += QStringLiteral("Binom");
     }
 
+    textToHistroy += QStringLiteral("&nbsp;");
     addToHistory(textToHistroy, false);
 }
 
@@ -102,7 +102,8 @@ void KCalcHistory::addFuncToHistory(const CalcEngine::Operation FUNC) {
 // Desc: Adds the current function symbol the history window
 //------------------------------------------------------------------------------
 void KCalcHistory::addFuncToHistory(const QString &func) {
-    addToHistory(func, false);
+    QString textToHistroy = QStringLiteral("&nbsp;") + func + QStringLiteral("&nbsp;");
+    addToHistory(textToHistroy, false);
 }
 
 //------------------------------------------------------------------------------
@@ -111,8 +112,6 @@ void KCalcHistory::addFuncToHistory(const QString &func) {
 //------------------------------------------------------------------------------
 void KCalcHistory::clearHistory() {
     clear();
-    // somehow the alignment gets also reset, so we set it again
-    setAlignment(Qt::AlignRight);
 }
 
 void KCalcHistory::changeSettings() {
