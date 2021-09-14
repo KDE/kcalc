@@ -178,6 +178,16 @@ the second layout of the buttons visible.</para>
 </listitem>
 </varlistentry>
 
+<varlistentry>
+<term>History</term>
+<listitem>
+<para>The history area shows all the calculations done in &kcalc; for the active session of &kcalc;.
+Click on <guibutton>AC</guibutton> or press the shortcut <keycap>Del</keycap> to clear the content of the history.
+To activate or deactivate it, use the item <guilabel>Show History</guilabel> in the menu <guimenu>Settings</guimenu> of the
+menu bar, or press <keycombo action="simul">&Ctrl;<keycap>H</keycap></keycombo>.</para>
+</listitem>
+</varlistentry>
+
 </variablelist>
 </sect1>
 

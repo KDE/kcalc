@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1084</width>
+    <width>1100</width>
     <height>350</height>
    </rect>
   </property>
@@ -112,7 +112,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KSqueezedTextLabel" name="hexDisplay" native="true">
+          <widget class="KSqueezedTextLabel" name="hexDisplay">
            <property name="minimumSize">
             <size>
              <width>65</width>
@@ -125,8 +125,8 @@
              <height>16777215</height>
             </size>
            </property>
-           <property name="text" stdset="0">
-            <string>0</string>
+           <property name="text">
+            <string>KSq…bel</string>
            </property>
           </widget>
          </item>
@@ -148,7 +148,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KSqueezedTextLabel" name="decDisplay" native="true">
+          <widget class="KSqueezedTextLabel" name="decDisplay">
            <property name="minimumSize">
             <size>
              <width>65</width>
@@ -161,8 +161,8 @@
              <height>16777215</height>
             </size>
            </property>
-           <property name="text" stdset="0">
-            <string>0</string>
+           <property name="text">
+            <string>KSq…bel</string>
            </property>
           </widget>
          </item>
@@ -184,7 +184,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KSqueezedTextLabel" name="octDisplay" native="true">
+          <widget class="KSqueezedTextLabel" name="octDisplay">
            <property name="minimumSize">
             <size>
              <width>65</width>
@@ -197,8 +197,8 @@
              <height>16777215</height>
             </size>
            </property>
-           <property name="text" stdset="0">
-            <string>0</string>
+           <property name="text">
+            <string>KSq…bel</string>
            </property>
           </widget>
          </item>
@@ -220,7 +220,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KSqueezedTextLabel" name="binDisplay" native="true">
+          <widget class="KSqueezedTextLabel" name="binDisplay">
            <property name="minimumSize">
             <size>
              <width>65</width>
@@ -233,8 +233,8 @@
              <height>16777215</height>
             </size>
            </property>
-           <property name="text" stdset="0">
-            <string>0</string>
+           <property name="text">
+            <string>KSq…bel</string>
            </property>
           </widget>
          </item>
@@ -1111,9 +1111,39 @@
      </item>
     </layout>
    </item>
+   <item>
+    <widget class="KCalcHistory" name="calc_history">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>80</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::WheelFocus</enum>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>KSqueezedTextLabel</class>
+   <extends>QLabel</extends>
+   <header>ksqueezedtextlabel.h</header>
+  </customwidget>
   <customwidget>
    <class>KCalcButton</class>
    <extends>QPushButton</extends>
@@ -1135,11 +1165,6 @@
    <class>KCalcConstButton</class>
    <extends>QPushButton</extends>
    <header>kcalc_const_button.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KSqueezedTextLabel</class>
-   <extends>QWidget</extends>
-   <header>ksqueezedtextlabel.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
@@ -1210,6 +1235,7 @@
   <tabstop>radRadio</tabstop>
   <tabstop>gradRadio</tabstop>
   <tabstop>calc_display</tabstop>
+  <tabstop>calc_history</tabstop>
  </tabstops>
  <resources/>
  <connections/>

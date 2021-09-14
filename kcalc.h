@@ -141,6 +141,7 @@ private:
     void setBase();
 
     void updateDisplay(UpdateFlags flags);
+    void updateHistoryWithFunction(CalcEngine::Operation);
     KCalcStatusBar *statusBar();
 
     // button sets
@@ -165,6 +166,7 @@ protected Q_SLOTS:
     void slotSetStatisticMode();
     void slotSetNumeralMode();
 
+    void slotHistoryshow(bool toggled);
     void slotConstantsShow(bool toggled);
     void slotBitsetshow(bool toggled);
     void slotAngleSelected(QAbstractButton *button);
@@ -240,6 +242,7 @@ private:
 private:
     bool shift_mode_ = false;
     bool hyp_mode_ = false;
+    bool update_history_window_ = false;
     KNumber memory_num_;
 
     int angle_mode_; // angle modes for trigonometric values
@@ -260,6 +263,7 @@ private:
 
     std::array<QLabel *, 4> base_conversion_labels_;
 
+    KToggleAction *action_history_show_ = nullptr;
     KToggleAction *action_bitset_show_ = nullptr;
     KToggleAction *action_constants_show_ = nullptr;
 

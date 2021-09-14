@@ -1,5 +1,5 @@
 <!DOCTYPE gui SYSTEM "kpartgui.dtd">
-<gui name="kcalc" version="20">
+<gui name="kcalc" version="21">
 <MenuBar>
   <Menu name="settings" noMerge="1"><text>&amp;Settings</text>
     <Action name="mode_simple"/>
@@ -7,6 +7,7 @@
     <Action name="mode_statistics"/>
     <Action name="mode_numeral"/>
     <Separator/>
+    <Action name="show_history"/>
     <Action name="show_constants"/>
     <Action name="show_bitset"/>
     <Separator/>

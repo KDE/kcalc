@@ -97,6 +97,15 @@ buttons</link> and allows changing the numeral system.</action>
 <varlistentry>
 <term><menuchoice>
 <guimenu>Settings</guimenu>
+<guimenuitem>Show History</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Display the history.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
 <guimenuitem>Constants Buttons</guimenuitem>
 </menuchoice></term>
 <listitem><para><action>Display constants buttons. They are available in <link linkend="science-mode">science mode</link> and

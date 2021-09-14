@@ -96,7 +96,9 @@ target_sources(kcalc PRIVATE
    kcalc_statusbar.cpp
    stats.cpp 
    kcalc.qrc
-   )
+   kcalchistory.cpp
+   stats.cpp
+   kcalc.qrc )
 
 
 ki18n_wrap_ui(kcalc

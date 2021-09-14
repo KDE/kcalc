@@ -55,6 +55,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "kcalc_settings.h"
 #include "kcalc_statusbar.h"
 #include "kcalcdisplay.h"
+#include "kcalchistory.h"
 
 namespace
 {
@@ -101,7 +102,8 @@ KCalculator::KCalculator(QWidget *parent)
     base_conversion_labels_ = {binDisplay, hexDisplay, decDisplay, octDisplay};
 
     angle_choose_group_ = new QButtonGroup(this);
-    angle_choose_group_->setExclusive(true);
+    angle_choose_group_->
+    setExclusive(true);
     angle_choose_group_->addButton(degRadio, DegMode);
     angle_choose_group_->addButton(radRadio, RadMode);
     angle_choose_group_->addButton(gradRadio, GradMode);
@@ -121,6 +123,8 @@ KCalculator::KCalculator(QWidget *parent)
     }
 
     calc_display->changeSettings();
+    calc_history->changeSettings();
+    update_history_window_ = true;
     setPrecision();
 
     updateGeometry();
@@ -128,6 +132,8 @@ KCalculator::KCalculator(QWidget *parent)
     layout()->setSizeConstraint(QLayout::SetFixedSize);
 
     updateDisplay(UPDATE_FROM_CORE);
+    // clear history, otherwise we have a leading "0" in it
+    calc_history->clearHistory();
 
     // misc settings
     KCalcSettings::EnumCalculatorMode::type calculatorMode = KCalcSettings::calculatorMode();
@@ -202,6 +208,12 @@ void KCalculator::setupMainActions()
     connect(action_mode_numeral_, &KToggleAction::toggled, this, &KCalculator::slotSetNumeralMode);
 
     // settings menu
+    action_history_show_ = actionCollection()->add<KToggleAction>(QStringLiteral("show_history"));
+    action_history_show_->setText(i18n("Show &History"));
+    action_history_show_->setChecked(true);
+    action_history_show_->setShortcut(Qt::CTRL | Qt::Key_H);
+    connect(action_history_show_, &KToggleAction::toggled, this, &KCalculator::slotHistoryshow);
+
     action_constants_show_ = actionCollection()->add<KToggleAction>(QStringLiteral("show_constants"));
     action_constants_show_->setText(i18n("Constants &Buttons"));
     action_constants_show_->setChecked(true);
@@ -303,6 +315,8 @@ void KCalculator::setupRightKeypad()
     new QShortcut(Qt::Key_PageDown, pbAllClear, SLOT(animateClick()));
     connect(pbAllClear, &KCalcButton::clicked, this, &KCalculator::slotAllClearclicked);
     connect(this, &KCalculator::switchShowAccels, pbAllClear, &KCalcButton::slotSetAccelDisplayMode);
+    // also clear the content of the history when clicked
+    connect(pbAllClear, &KCalcButton::clicked, calc_history, &KCalcHistory::clearHistory);
 
     pbParenOpen->setShortcut(QKeySequence(Qt::Key_ParenLeft));
     connect(pbParenOpen, &KCalcButton::clicked, this, &KCalculator::slotParenOpenclicked);
@@ -943,9 +957,15 @@ void KCalculator::slotMemRecallclicked()
     // temp. work-around
     calc_display->sendEvent(KCalcDisplay::EventReset);
 
-    calc_display->setAmount(memory_num_);
+	// temp. work-around
+	calc_display->sendEvent(KCalcDisplay::EventReset);
+
+    calc_history->addToHistory(QStringLiteral(" MR"), false);
+
+	calc_display->setAmount(memory_num_);
     updateDisplay({});
     core.setOnlyUpdateOperation(false);
+    calc_history->addResultToHistory(memory_num_.toQString());
 }
 
 //------------------------------------------------------------------------------
@@ -954,6 +974,8 @@ void KCalculator::slotMemRecallclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotMemStoreclicked()
 {
+    calc_history->addToHistory(QStringLiteral(" M"), false);
+    update_history_window_ = false;
     EnterEqual(CalcEngine::REPEAT_PREVENT);
 
     memory_num_ = calc_display->getAmount();
@@ -1018,6 +1040,7 @@ void KCalculator::slotSinclicked()
     }
 
     updateDisplay(UPDATE_FROM_CORE);
+    calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
 }
 
 //------------------------------------------------------------------------------
@@ -1030,6 +1053,7 @@ void KCalculator::slotPlusMinusclicked()
     // need the core to do this.
     if (!calc_display->sendEvent(KCalcDisplay::EventChangeSign)) {
         core.InvertSign(calc_display->getAmount());
+        update_history_window_ = false;
         updateDisplay(UPDATE_FROM_CORE);
     }
 }
@@ -1041,6 +1065,13 @@ void KCalculator::slotPlusMinusclicked()
 void KCalculator::slotMemPlusMinusclicked()
 {
     bool tmp_shift_mode = shift_mode_; // store this, because next command deletes shift_mode_
+    update_history_window_ = false;
+    if (!tmp_shift_mode) {
+        calc_history->addToHistory(QStringLiteral(" M+"), false);
+    } else {
+        calc_history->addToHistory(QStringLiteral(" M-"), false);
+    }
+
     EnterEqual(); // finish calculation so far, to store result into MEM
 
     if (!tmp_shift_mode) {
@@ -1064,13 +1095,16 @@ void KCalculator::slotCosclicked()
     if (hyp_mode_) {
         // cosh or arcosh
         if (!shift_mode_) {
+            calc_history->addFuncToHistory(QStringLiteral(" cosh "));
             core.CosHyp(calc_display->getAmount());
         } else {
+            calc_history->addFuncToHistory(QStringLiteral(" arcosh "));
             core.AreaCosHyp(calc_display->getAmount());
         }
     } else {
         // cosine or arccosine
         if (!shift_mode_) {
+            calc_history->addFuncToHistory(QStringLiteral(" cos "));
             switch (angle_mode_) {
             case DegMode:
                 core.CosDeg(calc_display->getAmount());
@@ -1083,6 +1117,7 @@ void KCalculator::slotCosclicked()
                 break;
             }
         } else {
+            calc_history->addFuncToHistory(QStringLiteral(" arccos "));
             switch (angle_mode_) {
             case DegMode:
                 core.ArcCosDeg(calc_display->getAmount());
@@ -1098,19 +1133,23 @@ void KCalculator::slotCosclicked()
     }
 
     updateDisplay(UPDATE_FROM_CORE);
+    calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
 }
 
 //------------------------------------------------------------------------------
 // Name: slotSinclicked
-// Desc: executes the recipricol function
+// Desc: executes the reciprocal function
 //------------------------------------------------------------------------------
 void KCalculator::slotReciclicked()
 {
     if (shift_mode_) {
+        calc_history->addFuncToHistory(QStringLiteral(" nCm "));
         core.enterOperation(calc_display->getAmount(), CalcEngine::FUNC_BINOM);
     } else {
+        calc_history->addFuncToHistory(QStringLiteral(" 1/"));
         core.Reciprocal(calc_display->getAmount());
         updateDisplay(UPDATE_FROM_CORE);
+        calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
         return;
     }
 
@@ -1119,6 +1158,10 @@ void KCalculator::slotReciclicked()
     calc_display->sendEvent(KCalcDisplay::EventReset);
     calc_display->setAmount(tmp_num);
     updateDisplay({});
+    calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
+    if (shift_mode_) {
+        updateHistoryWithFunction(CalcEngine::FUNC_BINOM);
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -1130,13 +1173,16 @@ void KCalculator::slotTanclicked()
     if (hyp_mode_) {
         // tanh or artanh
         if (!shift_mode_) {
+            calc_history->addFuncToHistory(QStringLiteral(" tanh "));
             core.TangensHyp(calc_display->getAmount());
         } else {
+            calc_history->addFuncToHistory(QStringLiteral(" artanh "));
             core.AreaTangensHyp(calc_display->getAmount());
         }
     } else {
         // tan or arctan
         if (!shift_mode_) {
+            calc_history->addFuncToHistory(QStringLiteral(" tan "));
             switch (angle_mode_) {
             case DegMode:
                 core.TangensDeg(calc_display->getAmount());
@@ -1149,6 +1195,7 @@ void KCalculator::slotTanclicked()
                 break;
             }
         } else {
+            calc_history->addFuncToHistory(QStringLiteral(" arctan "));
             switch (angle_mode_) {
             case DegMode:
                 core.ArcTangensDeg(calc_display->getAmount());
@@ -1164,6 +1211,7 @@ void KCalculator::slotTanclicked()
     }
 
     updateDisplay(UPDATE_FROM_CORE);
+    calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
 }
 
 //------------------------------------------------------------------------------
@@ -1183,6 +1231,12 @@ void KCalculator::slotFactorialclicked()
     }
     QApplication::restoreOverrideCursor();
     updateDisplay(UPDATE_FROM_CORE);
+    if (!shift_mode_) {
+        calc_history->addFuncToHistory(QStringLiteral(" ! "));
+    } else {
+        calc_history->addFuncToHistory(QStringLiteral(" &#915; "));
+    }
+    calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
 }
 
 //------------------------------------------------------------------------------
@@ -1193,11 +1247,14 @@ void KCalculator::slotLogclicked()
 {
     if (!shift_mode_) {
         core.Log10(calc_display->getAmount());
+        calc_history->addFuncToHistory(QStringLiteral(" log "));
     } else {
         core.Exp10(calc_display->getAmount());
+        calc_history->addFuncToHistory(QStringLiteral(" 10<sup>x</sup> "));
     }
 
     updateDisplay(UPDATE_FROM_CORE);
+    calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
 }
 
 //------------------------------------------------------------------------------
@@ -1206,13 +1263,19 @@ void KCalculator::slotLogclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotSquareclicked()
 {
+    bool tmp_shift_mode = shift_mode_;
     if (!shift_mode_) {
         core.Square(calc_display->getAmount());
     } else {
+        calc_history->addFuncToHistory(QStringLiteral(" &radic; "));
         core.SquareRoot(calc_display->getAmount());
     }
 
     updateDisplay(UPDATE_FROM_CORE);
+    if (!tmp_shift_mode) {
+        calc_history->addFuncToHistory(QStringLiteral(" <sup>2</sup> "));
+    }
+    calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
 }
 
 //------------------------------------------------------------------------------
@@ -1221,13 +1284,19 @@ void KCalculator::slotSquareclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotCubeclicked()
 {
+    bool tmp_shift_mode = shift_mode_;
     if (!shift_mode_) {
         core.Cube(calc_display->getAmount());
     } else {
+        calc_history->addFuncToHistory(QStringLiteral(" <sup>3</sup>&radic; "));
         core.CubeRoot(calc_display->getAmount());
     }
 
     updateDisplay(UPDATE_FROM_CORE);
+    if (!tmp_shift_mode) {
+        calc_history->addFuncToHistory(QStringLiteral(" <sup>3</sup> "));
+    }
+    calc_history->addResultToHistory(calc_display->formatDecimalNumber(calc_display->getAmount().toQString(KCalcSettings::precision())));
 }
 
 //------------------------------------------------------------------------------
@@ -1237,12 +1306,15 @@ void KCalculator::slotCubeclicked()
 void KCalculator::slotLnclicked()
 {
     if (!shift_mode_) {
+        calc_history->addFuncToHistory(QStringLiteral(" ln "));
         core.Ln(calc_display->getAmount());
     } else {
+        calc_history->addFuncToHistory(QStringLiteral(" e<sup>") + calc_display->getAmount().toQString(KCalcSettings::precision()) + QStringLiteral("</sup>"));
         core.Exp(calc_display->getAmount());
     }
 
     updateDisplay(UPDATE_FROM_CORE);
+    calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
 }
 
 //------------------------------------------------------------------------------
@@ -1252,9 +1324,11 @@ void KCalculator::slotLnclicked()
 void KCalculator::slotPowerclicked()
 {
     if (shift_mode_) {
+        calc_history->addFuncToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()) + QStringLiteral("^ 1/"));
         core.enterOperation(calc_display->getAmount(), CalcEngine::FUNC_PWR_ROOT);
         pbShift->setChecked(false);
     } else {
+        calc_history->addFuncToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()) + QStringLiteral("^"));
         core.enterOperation(calc_display->getAmount(), CalcEngine::FUNC_POWER);
     }
 
@@ -1275,6 +1349,7 @@ void KCalculator::slotMemClearclicked()
     statusBar()->setMemoryIndicator(false);
     calc_display->setStatusText(MemField, QString());
     pbMemRecall->setDisabled(true);
+    calc_history->addToHistory(QStringLiteral(" M cleared "), true);
 }
 
 //------------------------------------------------------------------------------
@@ -1313,6 +1388,7 @@ void KCalculator::slotAllClearclicked()
 void KCalculator::slotParenOpenclicked()
 {
     core.ParenOpen(calc_display->getAmount());
+    calc_history->addFuncToHistory(QStringLiteral(" ( "));
 }
 
 //------------------------------------------------------------------------------
@@ -1323,6 +1399,8 @@ void KCalculator::slotParenCloseclicked()
 {
     core.ParenClose(calc_display->getAmount());
     updateDisplay(UPDATE_FROM_CORE);
+    calc_history->addFuncToHistory(QStringLiteral(" ) "));
+    update_history_window_ = false;
 }
 
 //------------------------------------------------------------------------------
@@ -1333,6 +1411,7 @@ void KCalculator::slotANDclicked()
 {
     core.enterOperation(calc_display->getAmount(), CalcEngine::FUNC_AND);
     updateDisplay(UPDATE_FROM_CORE);
+    updateHistoryWithFunction(CalcEngine::FUNC_AND);
 }
 
 //------------------------------------------------------------------------------
@@ -1343,6 +1422,7 @@ void KCalculator::slotMultiplicationclicked()
 {
     core.enterOperation(calc_display->getAmount(), CalcEngine::FUNC_MULTIPLY);
     updateDisplay(UPDATE_FROM_CORE);
+    updateHistoryWithFunction(CalcEngine::FUNC_MULTIPLY);
 }
 
 //------------------------------------------------------------------------------
@@ -1353,6 +1433,7 @@ void KCalculator::slotDivisionclicked()
 {
     core.enterOperation(calc_display->getAmount(), CalcEngine::FUNC_DIVIDE);
     updateDisplay(UPDATE_FROM_CORE);
+    updateHistoryWithFunction(CalcEngine::FUNC_DIVIDE);
 }
 
 //------------------------------------------------------------------------------
@@ -1363,6 +1444,7 @@ void KCalculator::slotORclicked()
 {
     core.enterOperation(calc_display->getAmount(), CalcEngine::FUNC_OR);
     updateDisplay(UPDATE_FROM_CORE);
+    updateHistoryWithFunction(CalcEngine::FUNC_OR);
 }
 
 //------------------------------------------------------------------------------
@@ -1373,6 +1455,7 @@ void KCalculator::slotXORclicked()
 {
     core.enterOperation(calc_display->getAmount(), CalcEngine::FUNC_XOR);
     updateDisplay(UPDATE_FROM_CORE);
+    updateHistoryWithFunction(CalcEngine::FUNC_XOR);
 }
 
 //------------------------------------------------------------------------------
@@ -1383,6 +1466,7 @@ void KCalculator::slotPlusclicked()
 {
     core.enterOperation(calc_display->getAmount(), CalcEngine::FUNC_ADD);
     updateDisplay(UPDATE_FROM_CORE);
+    updateHistoryWithFunction(CalcEngine::FUNC_ADD);
 }
 
 //------------------------------------------------------------------------------
@@ -1393,6 +1477,7 @@ void KCalculator::slotMinusclicked()
 {
     core.enterOperation(calc_display->getAmount(), CalcEngine::FUNC_SUBTRACT);
     updateDisplay(UPDATE_FROM_CORE);
+    updateHistoryWithFunction(CalcEngine::FUNC_SUBTRACT);
 }
 
 //------------------------------------------------------------------------------
@@ -1403,6 +1488,7 @@ void KCalculator::slotLeftShiftclicked()
 {
     core.enterOperation(calc_display->getAmount(), CalcEngine::FUNC_LSH);
     updateDisplay(UPDATE_FROM_CORE);
+    updateHistoryWithFunction(CalcEngine::FUNC_LSH);
 }
 
 //------------------------------------------------------------------------------
@@ -1413,6 +1499,7 @@ void KCalculator::slotRightShiftclicked()
 {
     core.enterOperation(calc_display->getAmount(), CalcEngine::FUNC_RSH);
     updateDisplay(UPDATE_FROM_CORE);
+    updateHistoryWithFunction(CalcEngine::FUNC_RSH);
 }
 
 //------------------------------------------------------------------------------
@@ -1434,6 +1521,7 @@ void KCalculator::EnterEqual(CalcEngine::Repeat allow_repeat)
 {
     core.enterOperation(calc_display->getAmount(), CalcEngine::FUNC_EQUAL, allow_repeat);
     updateDisplay(UPDATE_FROM_CORE | UPDATE_STORE_RESULT);
+    calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
 }
 
 //------------------------------------------------------------------------------
@@ -1453,6 +1541,8 @@ void KCalculator::slotPercentclicked()
 {
     core.enterOperation(calc_display->getAmount(), CalcEngine::FUNC_PERCENT);
     updateDisplay(UPDATE_FROM_CORE);
+    updateHistoryWithFunction(CalcEngine::FUNC_PERCENT);
+    calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
 }
 
 //------------------------------------------------------------------------------
@@ -1462,8 +1552,10 @@ void KCalculator::slotPercentclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotNegateclicked()
 {
+    calc_history->addFuncToHistory(QStringLiteral(" ~ "));
     core.Complement(calc_display->getAmount());
     updateDisplay(UPDATE_FROM_CORE);
+    calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
 }
 
 //------------------------------------------------------------------------------
@@ -1479,6 +1571,12 @@ void KCalculator::slotModclicked()
     }
 
     updateDisplay(UPDATE_FROM_CORE);
+
+    if (shift_mode_) {
+        updateHistoryWithFunction(CalcEngine::FUNC_INTDIV);
+    } else {
+        updateHistoryWithFunction(CalcEngine::FUNC_MOD);
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -1487,15 +1585,19 @@ void KCalculator::slotModclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotStatNumclicked()
 {
+    update_history_window_ = false;
     if (!shift_mode_) {
         core.StatCount(KNumber::Zero);
+        calc_history->addToHistory(i18n("Number of data entered"), false);
     } else {
         pbShift->setChecked(false);
         core.StatSum(KNumber::Zero);
+        calc_history->addToHistory(QString::fromUtf8("\xce\xa3") + QLatin1Char('x'), false);
     }
 
     updateDisplay(UPDATE_FROM_CORE);
     core.setOnlyUpdateOperation(false);
+    calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
 }
 
 //------------------------------------------------------------------------------
@@ -1504,15 +1606,19 @@ void KCalculator::slotStatNumclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotStatMeanclicked()
 {
+    update_history_window_ = false;
     if (!shift_mode_) {
         core.StatMean(KNumber::Zero);
+        calc_history->addToHistory(i18n("Mean"), false);
     } else {
         pbShift->setChecked(false);
         core.StatSumSquares(KNumber::Zero);
+        calc_history->addToHistory(QString::fromUtf8("\xce\xa3") + QLatin1String("x^2"), false);
     }
 
     updateDisplay(UPDATE_FROM_CORE);
     core.setOnlyUpdateOperation(false);
+    calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
 }
 
 //------------------------------------------------------------------------------
@@ -1521,17 +1627,21 @@ void KCalculator::slotStatMeanclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotStatStdDevclicked()
 {
+    update_history_window_ = false;
     if (shift_mode_) {
         // std (n-1)
         core.StatStdSample(KNumber::Zero);
         pbShift->setChecked(false);
+        calc_history->addToHistory(QString::fromUtf8("\xcf\x83") + QLatin1String("<sub>N-1</sub>"), false);
     } else {
         // std (n)
         core.StatStdDeviation(KNumber::Zero);
+        calc_history->addToHistory(QString::fromUtf8("\xcf\x83") + QLatin1String(" N"), false);
     }
 
     updateDisplay(UPDATE_FROM_CORE);
     core.setOnlyUpdateOperation(false);
+    calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
 }
 
 //------------------------------------------------------------------------------
@@ -1540,6 +1650,7 @@ void KCalculator::slotStatStdDevclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotStatMedianclicked()
 {
+    update_history_window_ = false;
     if (!shift_mode_) {
         core.StatMedian(KNumber::Zero);
     } else {
@@ -1547,9 +1658,11 @@ void KCalculator::slotStatMedianclicked()
         pbShift->setChecked(false);
     }
 
+    calc_history->addToHistory(i18n("Median"), false);
     // TODO: it seems two different modes should be implemented, but...?
     updateDisplay(UPDATE_FROM_CORE);
     core.setOnlyUpdateOperation(false);
+    calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
 }
 
 //------------------------------------------------------------------------------
@@ -1558,12 +1671,18 @@ void KCalculator::slotStatMedianclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotStatDataInputclicked()
 {
+    update_history_window_ = false;
     if (!shift_mode_) {
+        bool tmp_error;
         core.StatDataNew(calc_display->getAmount());
+        calc_history->addToHistory(i18n("DAT [") + core.lastOutput(tmp_error).toQString() + i18n("] = ")
+                                       + calc_display->getAmount().toQString(KCalcSettings::precision()),
+                                   true);
     } else {
         pbShift->setChecked(false);
         core.StatDataDel(KNumber::Zero);
         statusBar()->showMessage(i18n("Last stat item erased"), 3000);
+        calc_history->addToHistory(i18n("Last stat item erased"), true);
     }
 
     updateDisplay(UPDATE_FROM_CORE);
@@ -1579,6 +1698,7 @@ void KCalculator::slotStatClearDataclicked()
     if (!shift_mode_) {
         core.StatClearAll(KNumber::Zero);
         statusBar()->showMessage(i18n("Stat mem cleared"), 3000);
+        calc_history->addToHistory(i18n("Stat mem cleared"), true);
     } else {
         pbShift->setChecked(false);
         updateDisplay({});
@@ -1760,6 +1880,7 @@ void KCalculator::slotSetSimpleMode()
     action_constants_show_->setChecked(false);
     action_constants_show_->setEnabled(false);
     action_bitset_show_->setEnabled(false);
+    action_history_show_->setChecked(KCalcSettings::showHistory());
     showMemButtons(false);
     showScienceButtons(false);
     showStatButtons(false);
@@ -1794,6 +1915,7 @@ void KCalculator::slotSetScienceMode()
     action_constants_show_->setEnabled(true);
     action_constants_show_->setChecked(KCalcSettings::showConstants());
     action_bitset_show_->setEnabled(false);
+    action_history_show_->setChecked(KCalcSettings::showHistory());
 
     // show some individual buttons
     pbShift->show();
@@ -1831,6 +1953,7 @@ void KCalculator::slotSetStatisticMode()
     action_constants_show_->setEnabled(true);
     action_constants_show_->setChecked(KCalcSettings::showConstants());
     action_bitset_show_->setEnabled(false);
+    action_history_show_->setChecked(KCalcSettings::showHistory());
 
     // show some individual buttons
     pbShift->show();
@@ -1869,6 +1992,7 @@ void KCalculator::slotSetNumeralMode()
     action_constants_show_->setEnabled(false);
     action_bitset_show_->setEnabled(true);
     action_bitset_show_->setChecked(KCalcSettings::showBitset());
+    action_history_show_->setChecked(KCalcSettings::showHistory());
 
     // show some individual buttons
     pbShift->show();
@@ -2040,6 +2164,16 @@ void KCalculator::showLogicButtons(bool toggled)
 }
 
 //------------------------------------------------------------------------------
+// Name: slotHistoryshow
+// Desc: hides or shows the history
+//------------------------------------------------------------------------------
+void KCalculator::slotHistoryshow(bool toggled) {
+
+    calc_history->setVisible(toggled);
+    KCalcSettings::setShowHistory(toggled);
+}
+
+//------------------------------------------------------------------------------
 // Name: slotConstantsShow
 // Desc: hides or shows the constants buttons
 //------------------------------------------------------------------------------
@@ -2127,6 +2261,7 @@ void KCalculator::updateSettings()
     }
 
     calc_display->changeSettings();
+    calc_history->changeSettings();
     updateGeometry();
 }
 
@@ -2134,9 +2269,15 @@ void KCalculator::updateSettings()
 // Name: updateDisplay
 // Desc: updates the display
 //------------------------------------------------------------------------------
+
 void KCalculator::updateDisplay(UpdateFlags flags)
 {
     if (flags & UPDATE_FROM_CORE) {
+        if (update_history_window_) {
+            calc_history->addToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()), false);
+        } else {
+            update_history_window_ = true;
+        }
         calc_display->updateFromCore(core, (flags & UPDATE_STORE_RESULT) != 0);
     } else {
         calc_display->update();
@@ -2146,12 +2287,21 @@ void KCalculator::updateDisplay(UpdateFlags flags)
 }
 
 //------------------------------------------------------------------------------
+// Name: updateHistoryWithFunction
+// Desc: updates the history with the last used function
+//------------------------------------------------------------------------------
+void KCalculator::updateHistoryWithFunction(CalcEngine::Operation func) {
+    calc_history->addFuncToHistory(func);
+}
+
+//------------------------------------------------------------------------------
 // Name: setColors
 // Desc: set the various colours
 //------------------------------------------------------------------------------
 void KCalculator::setColors()
 {
     calc_display->changeSettings();
+    calc_history->changeSettings();
 
     const QColor numFontColor(KCalcSettings::numberFontsColor());
     for (int i = 0; i < 10; ++i) {

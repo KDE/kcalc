@@ -55,6 +55,26 @@
        </property>
       </widget>
      </item>
+     <item row="2" column="0" >
+      <widget class="QLabel" name="historylabel" >
+       <property name="text" >
+        <string>&amp;History font:</string>
+       </property>
+       <property name="buddy" >
+        <cstring>kcfg_HistoryFont</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1" >
+      <widget class="KFontRequester" name="kcfg_HistoryFont" >
+       <property name="focusPolicy" >
+        <enum>Qt::WheelFocus</enum>
+       </property>
+       <property name="toolTip" >
+        <string>The font to use in the history</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>
