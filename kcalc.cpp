@@ -1006,13 +1006,16 @@ void KCalculator::slotSinclicked()
     if (hyp_mode_) {
         // sinh or arsinh
         if (!shift_mode_) {
+            calc_history->addFuncToHistory(QStringLiteral("sinh"));
             core.SinHyp(calc_display->getAmount());
         } else {
+            calc_history->addFuncToHistory(QStringLiteral("arcsin"));
             core.AreaSinHyp(calc_display->getAmount());
         }
     } else {
         // sine or arcsine
         if (!shift_mode_) {
+            calc_history->addFuncToHistory(QStringLiteral("sin"));
             switch (angle_mode_) {
             case DegMode:
                 core.SinDeg(calc_display->getAmount());
