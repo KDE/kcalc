@@ -1223,6 +1223,7 @@ void KCalculator::slotTanclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotFactorialclicked()
 {
+    bool gamma_ = false;
     // Set WaitCursor, as this operation may take looooong
     // time and UI frezes with large numbers. User needs some
     // visual feedback.
@@ -1231,13 +1232,14 @@ void KCalculator::slotFactorialclicked()
         core.Factorial(calc_display->getAmount());
     } else {
         core.Gamma(calc_display->getAmount());
+        gamma_ = true;
     }
     QApplication::restoreOverrideCursor();
     updateDisplay(UPDATE_FROM_CORE);
-    if (!shift_mode_) {
-        calc_history->addFuncToHistory(QStringLiteral("!"));
-    } else {
+    if (gamma_) {
         calc_history->addFuncToHistory(QStringLiteral("&#915;"));
+    } else {
+        calc_history->addFuncToHistory(QStringLiteral("!"));
     }
     calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
 }
