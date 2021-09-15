@@ -1009,7 +1009,7 @@ void KCalculator::slotSinclicked()
             calc_history->addFuncToHistory(QStringLiteral("sinh"));
             core.SinHyp(calc_display->getAmount());
         } else {
-            calc_history->addFuncToHistory(QStringLiteral("arcsin"));
+            calc_history->addFuncToHistory(QStringLiteral("arcsinh"));
             core.AreaSinHyp(calc_display->getAmount());
         }
     } else {
@@ -1028,6 +1028,7 @@ void KCalculator::slotSinclicked()
                 break;
             }
         } else {
+            calc_history->addFuncToHistory(QStringLiteral("arcsin"));
             switch (angle_mode_) {
             case DegMode:
                 core.ArcSinDeg(calc_display->getAmount());
