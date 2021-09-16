@@ -23,7 +23,9 @@
 // Name: KCalcHistory
 // Desc: constructor
 //------------------------------------------------------------------------------
-KCalcHistory::KCalcHistory(QWidget *parent) : QTextEdit(parent) {
+KCalcHistory::KCalcHistory(QWidget *parent)
+    : QTextEdit(parent)
+{
     setReadOnly(true);
     setWordWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
 }
@@ -32,18 +34,31 @@ KCalcHistory::KCalcHistory(QWidget *parent) : QTextEdit(parent) {
 // Name: KCalcHistory
 // Desc: destructor
 //------------------------------------------------------------------------------
-KCalcHistory::~KCalcHistory() {
+KCalcHistory::~KCalcHistory()
+{
 }
 
 //------------------------------------------------------------------------------
 // Name: addToHistory
-// Desc: Adds the latest calculations to the history window
+// Desc: Adds the latest calculations to  history window
 //------------------------------------------------------------------------------
-void KCalcHistory::addToHistory(const QString &str, bool new_lines_) {
-    insertHtml(str);
-    if (new_lines_) {
+void KCalcHistory::addToHistory(const QString &str, bool set_new_line_)
+{
+    // add_new_line is false on launch and after clearHistory()
+    // so the first line doesn't get an unnecessary new line
+    if (add_new_line) {
         insertHtml(QStringLiteral("<br>"));
+        moveCursor(QTextCursor::Start);
+        add_new_line = false;
     }
+
+    insertHtml(str);
+
+    if (set_new_line_) {
+        moveCursor(QTextCursor::Start);
+        add_new_line = true;
+    }
+
     setAlignment(Qt::AlignRight);
     ensureCursorVisible();
 }
@@ -53,7 +68,8 @@ void KCalcHistory::addToHistory(const QString &str, bool new_lines_) {
 // Desc: Used mostly for functions that are not in CalcEngine::Operation
 //       adds "=" and the result with newline endings
 //------------------------------------------------------------------------------
-void KCalcHistory::addResultToHistory(const QString &display_content) {
+void KCalcHistory::addResultToHistory(const QString &display_content)
+{
     addToHistory(QStringLiteral("&nbsp;=&nbsp;") + display_content, true);
 }
 
@@ -62,7 +78,8 @@ void KCalcHistory::addResultToHistory(const QString &display_content) {
 // Desc: Adds the current function symbol, taken via CalcEngine::Operation
 //       to the history window
 //------------------------------------------------------------------------------
-void KCalcHistory::addFuncToHistory(const CalcEngine::Operation FUNC) {
+void KCalcHistory::addFuncToHistory(const CalcEngine::Operation FUNC)
+{
     QString textToHistroy = QStringLiteral("&nbsp;");
 
     if (FUNC == CalcEngine::FUNC_PERCENT) {
@@ -101,7 +118,8 @@ void KCalcHistory::addFuncToHistory(const CalcEngine::Operation FUNC) {
 // Name: addFuncToHistory
 // Desc: Adds the current function symbol the history window
 //------------------------------------------------------------------------------
-void KCalcHistory::addFuncToHistory(const QString &func) {
+void KCalcHistory::addFuncToHistory(const QString &func)
+{
     QString textToHistroy = QStringLiteral("&nbsp;") + func + QStringLiteral("&nbsp;");
     addToHistory(textToHistroy, false);
 }
@@ -110,11 +128,14 @@ void KCalcHistory::addFuncToHistory(const QString &func) {
 // Name: clearHistory
 // Desc: Clears the content of the history window
 //------------------------------------------------------------------------------
-void KCalcHistory::clearHistory() {
+void KCalcHistory::clearHistory()
+{
     clear();
+    add_new_line = false;
 }
 
-void KCalcHistory::changeSettings() {
+void KCalcHistory::changeSettings()
+{
     QPalette pal = palette();
 
     pal.setColor(QPalette::Text, KCalcSettings::foreColor());

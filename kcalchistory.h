@@ -27,8 +27,9 @@
   This class provides a history display.
 */
 
-class KCalcHistory : public QTextEdit {
-	Q_OBJECT
+class KCalcHistory : public QTextEdit
+{
+    Q_OBJECT
 
 public:
     explicit KCalcHistory(QWidget *parent = nullptr);
@@ -44,6 +45,8 @@ public:
 public Q_SLOTS:
     void clearHistory();
 
+private:
+    bool add_new_line = false;
 };
 
 #endif
