@@ -3,7 +3,7 @@
 #  MPFR_INCLUDE_DIR - the MPFR include directory
 #  MPFR_LIBRARIES - Libraries needed to use MPFR
 
-# Copyright (c) 2012, Evan Teran <evan.teran@gmail.com>
+# SPDX-FileCopyrightText: 2012 Evan Teran <evan.teran@gmail.com>
 #
 # Redistribution and use is allowed according to the terms of the BSD license.
 # For details see the accompanying COPYING-CMAKE-SCRIPTS file.
