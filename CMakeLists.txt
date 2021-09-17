@@ -144,7 +144,6 @@ install(TARGETS kcalc  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 install( PROGRAMS org.kde.kcalc.desktop  DESTINATION ${KDE_INSTALL_APPDIR})
 install( FILES org.kde.kcalc.appdata.xml   DESTINATION ${KDE_INSTALL_METAINFODIR})
 install( FILES kcalc.kcfg  DESTINATION ${KDE_INSTALL_KCFGDIR})
-install( FILES scienceconstants.xml  DESTINATION ${KDE_INSTALL_DATADIR}/kcalc)
 install( FILES kcalcrc.upd  DESTINATION ${KDE_INSTALL_DATADIR}/kconf_update)
 
 ki18n_install(po)

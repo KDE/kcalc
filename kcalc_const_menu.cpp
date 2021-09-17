@@ -49,7 +49,7 @@ ConstantCategory stringToCategory(const QString &s)
 void KCalcConstMenu::init_consts()
 {
     QDomDocument doc(QStringLiteral("list_of_constants"));
-    QFile file(QStandardPaths::locate(QStandardPaths::DataLocation, QStringLiteral("scienceconstants.xml")));
+    QFile file(QStringLiteral(":/kcalc/scienceconstants.xml"));
 
     if (!file.open(QIODevice::ReadOnly)) {
         qDebug() << "Did not find file \"scienceconstants.xml\". No constants will be available.";
