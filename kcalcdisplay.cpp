@@ -38,8 +38,6 @@ KCalcDisplay::KCalcDisplay(QWidget *parent)
     , history_index_(0)
     , selection_timer_(new QTimer(this))
 {
-    baseFont_ = nullptr;
-    
     setFocusPolicy(Qt::StrongFocus);
 
     setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed));

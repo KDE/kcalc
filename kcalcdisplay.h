@@ -122,7 +122,7 @@ private:
 
     KNumber display_amount_;
     
-    QFont* baseFont_;
+    QFont* baseFont_ = nullptr;
 
     QVector<KNumber> history_list_;
     int history_index_;

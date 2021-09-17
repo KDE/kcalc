@@ -32,19 +32,19 @@ KCalcHistory::~KCalcHistory()
 //------------------------------------------------------------------------------
 void KCalcHistory::addToHistory(const QString &str, bool set_new_line_)
 {
-    // add_new_line is false on launch and after clearHistory()
+    // add_new_line_ is false on launch and after clearHistory()
     // so the first line doesn't get an unnecessary new line
-    if (add_new_line) {
+    if (add_new_line_) {
         insertHtml(QStringLiteral("<br>"));
         moveCursor(QTextCursor::Start);
-        add_new_line = false;
+        add_new_line_ = false;
     }
 
     insertHtml(str);
 
     if (set_new_line_) {
         moveCursor(QTextCursor::Start);
-        add_new_line = true;
+        add_new_line_ = true;
     }
 
     setAlignment(Qt::AlignRight);
@@ -119,9 +119,13 @@ void KCalcHistory::addFuncToHistory(const QString &func)
 void KCalcHistory::clearHistory()
 {
     clear();
-    add_new_line = false;
+    add_new_line_ = false;
 }
 
+//------------------------------------------------------------------------------
+// Name: changeSettings
+// Desc:
+//------------------------------------------------------------------------------
 void KCalcHistory::changeSettings()
 {
     QPalette pal = palette();
@@ -132,4 +136,60 @@ void KCalcHistory::changeSettings()
     setPalette(pal);
 
     setFont(KCalcSettings::historyFont());
+}
+
+//------------------------------------------------------------------------------
+// Name: setFont
+// Desc: Set the base font and recalculate the font size to better fit
+//------------------------------------------------------------------------------
+void KCalcHistory::setFont(const QFont &font)
+{
+    // Overwrite current baseFont
+    if (baseFont_) {
+        delete baseFont_;
+    }
+    baseFont_ = new QFont(font);
+    
+    updateFont();
+}
+
+//------------------------------------------------------------------------------
+// Name: updateFont
+// Desc: Update font using baseFont to better fit
+//------------------------------------------------------------------------------
+void KCalcHistory::updateFont()
+{
+    // Make a working copy of the font
+    QFont* newFont = new QFont(baseFont());
+    
+    // Calculate ideal font size based on width, using historyFont as minimum size
+    // constant arbitrarily chosen: 252 is min content width. 252/x = 10pt. Thus, x = 252/10 = 25.2
+    newFont->setPointSizeF(qMax(double(baseFont().pointSizeF()), contentsRect().width() / 25.2));
+    
+    // Apply font
+    QTextEdit::setFont(*newFont);
+    
+    // Free the memory
+    delete newFont;
+}
+
+//------------------------------------------------------------------------------
+// Name: baseFont
+// Desc:
+//------------------------------------------------------------------------------
+const QFont& KCalcHistory::baseFont() const
+{
+    return *baseFont_;
+}
+
+//------------------------------------------------------------------------------
+// Name: resizeEvent
+// Desc: resize history and adjust font size
+//------------------------------------------------------------------------------
+void KCalcHistory::resizeEvent(QResizeEvent* event)
+{
+    QTextEdit::resizeEvent(event);
+
+    // Update font size
+    updateFont();
 }

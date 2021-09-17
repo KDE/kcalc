@@ -29,12 +29,19 @@ public:
     void addFuncToHistory(const QString &);
 
     void changeSettings();
+    void setFont(const QFont &font);
+    const QFont &baseFont() const;
 
 public Q_SLOTS:
     void clearHistory();
 
+protected:
+    void resizeEvent(QResizeEvent* event) override;
+
 private:
-    bool add_new_line = false;
+    bool add_new_line_ = false;
+    QFont* baseFont_ = nullptr;
+    void updateFont();
 };
 
 #endif
