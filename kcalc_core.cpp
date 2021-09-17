@@ -1,13 +1,10 @@
 /*
-SPDX-FileCopyrightText: 2001-2013 Evan Teran <evan.teran@gmail.com>
+    SPDX-FileCopyrightText: 2001-2013 Evan Teran <evan.teran@gmail.com>
+    SPDX-FileCopyrightText: 2003-2005 Klaus Niederkrueger <kniederk@math.uni-koeln.de>
+    SPDX-FileCopyrightText: 1996-2000 Bernd Johannes Wuebben <wuebben@kde.org>
+    SPDX-FileCopyrightText: 1995 Martin Bartlett
 
-SPDX-FileCopyrightText: 2003-2005 Klaus Niederkrueger <kniederk@math.uni-koeln.de>
-
-SPDX-FileCopyrightText: 1996-2000 Bernd Johannes Wuebben <wuebben@kde.org>
-
-SPDX-FileCopyrightText: 1995 Martin Bartlett
-
-SPDX-License-Identifier: GPL-2.0-or-later
+    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
 #include "kcalc_core.h"
