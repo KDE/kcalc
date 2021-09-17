@@ -1,9 +1,7 @@
 /*
-SPDX-FileCopyrightText: 2012-2013 Evan Teran
-    evan.teran@gmail.com
+SPDX-FileCopyrightText: 2012-2013 Evan Teran <evan.teran@gmail.com>
 
-SPDX-FileCopyrightText: 2006 Michel Marti
-    mma@objectxp.com
+SPDX-FileCopyrightText: 2006 Michel Marti <mma@objectxp.com>
 
 SPDX-License-Identifier: GPL-2.0-or-later
 */
