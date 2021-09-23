@@ -168,7 +168,7 @@ void KCalcHistory::updateFont(double zoomFactor)
     // Calculate actual font size by keeping the ratio, keeping previous zoomFactor, using historyFont as minimum size
     double ratio = (minimumSize().width() - contentsMargins().left() - contentsMargins().right()) / baseFont().pointSizeF();
     idealPointSizeF_ = contentsRect().width() / ratio;
-    newFont->setPointSizeF(qMax(double(baseFont().pointSizeF()), idealPointSizeF_ *zoomFactor));
+    newFont->setPointSizeF(qMax(double(baseFont().pointSizeF()), idealPointSizeF_) * zoomFactor);
 
     // Apply font
     QTextEdit::setFont(*newFont);
