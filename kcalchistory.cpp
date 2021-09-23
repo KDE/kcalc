@@ -16,6 +16,9 @@ KCalcHistory::KCalcHistory(QWidget *parent)
 {
     setReadOnly(true);
     setWordWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
+
+    // Initialize idealPointSizeF_
+    idealPointSizeF_ = currentFont().pointSizeF();
 }
 
 //------------------------------------------------------------------------------
@@ -157,15 +160,16 @@ void KCalcHistory::setFont(const QFont &font)
 // Name: updateFont
 // Desc: Update font using baseFont to better fit
 //------------------------------------------------------------------------------
-void KCalcHistory::updateFont()
+void KCalcHistory::updateFont(double zoomFactor)
 {
     // Make a working copy of the font
     QFont* newFont = new QFont(baseFont());
-    
-    // Calculate ideal font size based on width, using historyFont as minimum size
-    // constant arbitrarily chosen: 252 is min content width. 252/x = 10pt. Thus, x = 252/10 = 25.2
-    newFont->setPointSizeF(qMax(double(baseFont().pointSizeF()), contentsRect().width() / 25.2));
-    
+
+    // Calculate actual font size by keeping the ratio, keeping previous zoomFactor, using historyFont as minimum size
+    double ratio = (minimumSize().width() - contentsMargins().left() - contentsMargins().right()) / baseFont().pointSizeF();
+    idealPointSizeF_ = contentsRect().width() / ratio;
+    newFont->setPointSizeF(qMax(double(baseFont().pointSizeF()), idealPointSizeF_ *zoomFactor));
+
     // Apply font
     QTextEdit::setFont(*newFont);
     
@@ -190,6 +194,9 @@ void KCalcHistory::resizeEvent(QResizeEvent* event)
 {
     QTextEdit::resizeEvent(event);
 
+    // Determine current zoom
+    double zoomFactor = currentFont().pointSizeF() / idealPointSizeF_;
+
     // Update font size
-    updateFont();
+    updateFont(zoomFactor);
 }
