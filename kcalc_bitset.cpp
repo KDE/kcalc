@@ -110,6 +110,14 @@ KCalcBitset::KCalcBitset(QWidget *parent)
     for (int cols = 0; cols < 4; cols++) {
         layout->setColumnStretch(cols, 1);
     }
+
+    // store current aspect ratio (using width:height)
+    QSize initialSize(size());
+    if (initialSize.height() != 0.0 && float(initialSize.width()) / float(initialSize.height()) < 2.5) {
+        ratio_ = float(initialSize.width()) / float(initialSize.height());
+    } else {
+        ratio_ = 1.355163727959698; // 538/397
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -165,7 +173,26 @@ void KCalcBitset::resizeEvent(QResizeEvent *event)
 {
     // Call the overridden resize event
     QFrame::resizeEvent(event);
-    
+
+    // Set our maximum size based on the space available in the parent (to keep aspect ratio)
+    QWidget *parent = parentWidget();
+    if (parent) {
+        QSize maxSize(parent->contentsRect().width(), parent->contentsRect().height());
+        if (maxSize.width() != 0 && maxSize.height() != 0) {
+            float actualRatio = float(maxSize.width()) / float(maxSize.height());
+
+            if (actualRatio > ratio_) {
+                // available space is too wide, limit width
+                maxSize.setWidth(ratio_ * maxSize.height());
+            } else if (actualRatio < ratio_) {
+                // available space is too tall, limit height
+                maxSize.setHeight(maxSize.width() / ratio_);
+            }
+
+            setMaximumSize(maxSize.width(), maxSize.height());
+        }
+    }
+
     // Get the minimum size of all buttons
     int minWidth = INT_MAX;
     int minHeight = INT_MAX;
@@ -194,4 +221,6 @@ void KCalcBitset::resizeEvent(QResizeEvent *event)
             }
         }
     }
+
+    updateGeometry();
 }

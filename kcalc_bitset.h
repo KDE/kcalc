@@ -32,5 +32,6 @@ Q_SIGNALS:
 private:
     QButtonGroup *const bit_button_group_;
     quint64 value_;
+    float ratio_;
 };
 

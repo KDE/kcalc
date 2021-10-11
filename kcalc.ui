@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1346</width>
-    <height>350</height>
+    <height>352</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -45,17 +45,21 @@
       </widget>
      </item>
      <item>
-      <widget class="KCalcBitset" name="mBitset" native="true">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Click on a Bit to toggle it.</string>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="bitsetHelper">
+       <item>
+        <widget class="KCalcBitset" name="mBitset" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Click on a Bit to toggle it.</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
       <layout class="QHBoxLayout">

@@ -2143,6 +2143,7 @@ void KCalculator::showScienceButtons(bool toggled)
 void KCalculator::showLogicButtons(bool toggled)
 {
     if (toggled) {
+        firstVerticalLayout->setStretch(1, 1);
         mBitset->setEnabled(true);
         connect(mBitset, &KCalcBitset::valueChanged, this, &KCalculator::slotBitsetChanged);
         connect(calc_display, &KCalcDisplay::changedAmount, this, &KCalculator::slotUpdateBitset);
@@ -2168,6 +2169,7 @@ void KCalculator::showLogicButtons(bool toggled)
             (num_button_group_->button(i))->show();
         }
     } else {
+        firstVerticalLayout->setStretch(1, 0);
         mBitset->setEnabled(false);
         disconnect(mBitset, &KCalcBitset::valueChanged, this, &KCalculator::slotBitsetChanged);
         disconnect(calc_display, &KCalcDisplay::changedAmount, this, &KCalculator::slotUpdateBitset);
@@ -2676,6 +2678,9 @@ void KCalculator::resizeEvent(QResizeEvent* event)
 
     // Adjust button fonts
     setFonts();
+
+    // Force mBitset to call its resizeEvent
+    mBitset->resize(0, 0);
 }
 
 
