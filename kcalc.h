@@ -134,6 +134,7 @@ private:
     bool isMinimumSize();
     void forceResizeEvent();
     void setLeftPadLayoutActive(bool active);
+    void setBitsetLayoutActive(bool active);
 
     void updateDisplay(UpdateFlags flags);
     void updateHistoryWithFunction(CalcEngine::Operation);

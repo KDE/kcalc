@@ -2180,7 +2180,6 @@ void KCalculator::showScienceButtons(bool toggled)
 void KCalculator::showLogicButtons(bool toggled)
 {
     if (toggled) {
-        firstVerticalLayout->setStretch(1, 1);
         mBitset->setEnabled(true);
         connect(mBitset, &KCalcBitset::valueChanged, this, &KCalculator::slotBitsetChanged);
         connect(calc_display, &KCalcDisplay::changedAmount, this, &KCalculator::slotUpdateBitset);
@@ -2206,7 +2205,6 @@ void KCalculator::showLogicButtons(bool toggled)
             (num_button_group_->button(i))->show();
         }
     } else {
-        firstVerticalLayout->setStretch(1, 0);
         mBitset->setEnabled(false);
         disconnect(mBitset, &KCalcBitset::valueChanged, this, &KCalculator::slotBitsetChanged);
         disconnect(calc_display, &KCalcDisplay::changedAmount, this, &KCalculator::slotUpdateBitset);
@@ -2295,6 +2293,7 @@ void KCalculator::slotBitsetshow(bool toggled)
     bool wasMinimumSize = isMinimumSize();
 
     mBitset->setVisible(toggled);
+    setBitsetLayoutActive(toggled);
     if (KCalcSettings::calculatorMode() == KCalcSettings::EnumCalculatorMode::numeral) {
         KCalcSettings::setShowBitset(toggled);
     }
@@ -2629,6 +2628,15 @@ void KCalculator::setLeftPadLayoutActive(bool active)
     QSizePolicy policy = leftPad->sizePolicy();
     policy.setHorizontalStretch((int)active); // 0 or 1
     leftPad->setSizePolicy(policy);
+}
+
+//------------------------------------------------------------------------------
+// Name: setBitsetLayoutActive
+// Desc: Enable/disable whether mBitset affects the layout
+//------------------------------------------------------------------------------
+void KCalculator::setBitsetLayoutActive(bool active)
+{
+    firstVerticalLayout->setStretch(1, (int)active); // 0 or 1
 }
 
 //------------------------------------------------------------------------------
