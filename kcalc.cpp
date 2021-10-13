@@ -2665,15 +2665,19 @@ void KCalculator::resizeEvent(QResizeEvent* event)
 {
     // Call the overridden resize event
     KXmlGuiWindow::resizeEvent(event);
-    
+
+    updateGeometry();
+
     // If the content size is now larger than the window size, resize window to fit
     // (Workaround for bug where changing from simple to science mode in maximized state
     // and then restoring results in the window being too small for content)
-    QSize contentSize = firstVerticalLayout->contentsRect().size();
+    QSize contentSize = KCalculator::contentsRect().size();
     QMargins contentMargins = KCalculator::contentsMargins();
-    QSize windowSize = KCalculator::frameSize();
-    if (contentSize.width() + contentMargins.left() + contentMargins.right() > windowSize.width() || contentSize.height() + contentMargins.top() + contentMargins.bottom() > windowSize.height()) {
-        KCalculator::resize(0,0); // force window as small as possible for current layout
+    QSize actualSize(contentSize.width() + contentMargins.left() + contentMargins.right(),
+                     contentSize.height() + contentMargins.top() + contentMargins.bottom());
+    QSize minSize = KCalculator::minimumSize();
+    if (actualSize.width() < minSize.width() || actualSize.height() < minSize.height()) {
+        KCalculator::resize(minSize); // force window as small as possible for current layout
     }
 
     // Adjust button fonts
