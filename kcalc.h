@@ -131,6 +131,7 @@ private:
     
     void setBaseFont(const QFont &font);
     const QFont &baseFont() const;
+    bool isMinimumSize();
 
     void updateDisplay(UpdateFlags flags);
     void updateHistoryWithFunction(CalcEngine::Operation);
@@ -270,6 +271,7 @@ private:
     QList<QAbstractButton *> operation_button_list_;
     
     QFont* baseFont_;
+    bool is_still_in_launch_ = true; // necessary for startup at minimum size
 
     CalcEngine core;
 };

@@ -140,6 +140,7 @@ KCalculator::KCalculator(QWidget *parent)
     default:
         action_mode_simple_->setChecked(true);
     }
+    is_still_in_launch_ = false;
 
     setAngle();
     setBase();
@@ -1875,6 +1876,8 @@ void KCalculator::slotChooseScientificConst5(const science_constant &chosen_cons
 //------------------------------------------------------------------------------
 void KCalculator::slotSetSimpleMode()
 {
+    bool wasMinimumSize = isMinimumSize();
+
     action_constants_show_->setChecked(false);
     action_constants_show_->setEnabled(false);
     action_bitset_show_->setEnabled(false);
@@ -1911,6 +1914,15 @@ void KCalculator::slotSetSimpleMode()
     // update font size
     QApplication::processEvents();
     setFonts();
+    updateGeometry();
+
+    if (!is_still_in_launch_) {
+        QApplication::postEvent(this, new QResizeEvent(size(), size())); // force a resizeEvent
+        QApplication::processEvents();
+        if (wasMinimumSize) {
+            resize(minimumSize());
+        }
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -1919,6 +1931,8 @@ void KCalculator::slotSetSimpleMode()
 //------------------------------------------------------------------------------
 void KCalculator::slotSetScienceMode()
 {
+    bool wasMinimumSize = isMinimumSize();
+
     action_constants_show_->setEnabled(true);
     action_constants_show_->setChecked(KCalcSettings::showConstants());
     action_bitset_show_->setEnabled(false);
@@ -1958,6 +1972,15 @@ void KCalculator::slotSetScienceMode()
     // update font size
     QApplication::processEvents();
     setFonts();
+    updateGeometry();
+
+    if (!is_still_in_launch_) {
+        QApplication::postEvent(this, new QResizeEvent(size(), size())); // force a resizeEvent
+        QApplication::processEvents();
+        if (wasMinimumSize) {
+            resize(minimumSize());
+        }
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -1966,6 +1989,8 @@ void KCalculator::slotSetScienceMode()
 //------------------------------------------------------------------------------
 void KCalculator::slotSetStatisticMode()
 {
+    bool wasMinimumSize = isMinimumSize();
+
     action_constants_show_->setEnabled(true);
     action_constants_show_->setChecked(KCalcSettings::showConstants());
     action_bitset_show_->setEnabled(false);
@@ -2005,6 +2030,15 @@ void KCalculator::slotSetStatisticMode()
     // update font size
     QApplication::processEvents();
     setFonts();
+    updateGeometry();
+
+    if (!is_still_in_launch_) {
+        QApplication::postEvent(this, new QResizeEvent(size(), size())); // force a resizeEvent
+        QApplication::processEvents();
+        if (wasMinimumSize) {
+            resize(minimumSize());
+        }
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -2013,6 +2047,8 @@ void KCalculator::slotSetStatisticMode()
 //------------------------------------------------------------------------------
 void KCalculator::slotSetNumeralMode()
 {
+    bool wasMinimumSize = isMinimumSize();
+
     action_constants_show_->setChecked(false);
     action_constants_show_->setEnabled(false);
     action_bitset_show_->setEnabled(true);
@@ -2050,6 +2086,15 @@ void KCalculator::slotSetNumeralMode()
     // update font size
     QApplication::processEvents();
     setFonts();
+    updateGeometry();
+
+    if (!is_still_in_launch_) {
+        QApplication::postEvent(this, new QResizeEvent(size(), size())); // force a resizeEvent
+        QApplication::processEvents();
+        if (wasMinimumSize) {
+            resize(minimumSize());
+        }
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -2204,9 +2249,19 @@ void KCalculator::showLogicButtons(bool toggled)
 // Desc: hides or shows the history
 //------------------------------------------------------------------------------
 void KCalculator::slotHistoryshow(bool toggled) {
+    bool wasMinimumSize = isMinimumSize();
 
     calc_history->setVisible(toggled);
     KCalcSettings::setShowHistory(toggled);
+    updateGeometry();
+
+    if (!is_still_in_launch_) {
+        QApplication::postEvent(this, new QResizeEvent(size(), size())); // force a resizeEvent
+        QApplication::processEvents();
+        if (wasMinimumSize) {
+            resize(minimumSize());
+        }
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -2215,6 +2270,8 @@ void KCalculator::slotHistoryshow(bool toggled) {
 //------------------------------------------------------------------------------
 void KCalculator::slotConstantsShow(bool toggled)
 {
+    bool wasMinimumSize = isMinimumSize();
+
     if (toggled) {
         for (QAbstractButton *btn : std::as_const(const_buttons_)) {
             btn->show();
@@ -2226,6 +2283,15 @@ void KCalculator::slotConstantsShow(bool toggled)
     }
 
     KCalcSettings::setShowConstants(toggled);
+    updateGeometry();
+
+    if (!is_still_in_launch_) {
+        QApplication::postEvent(this, new QResizeEvent(size(), size())); // force a resizeEvent
+        QApplication::processEvents();
+        if (wasMinimumSize) {
+            resize(minimumSize());
+        }
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -2234,9 +2300,20 @@ void KCalculator::slotConstantsShow(bool toggled)
 //------------------------------------------------------------------------------
 void KCalculator::slotBitsetshow(bool toggled)
 {
+    bool wasMinimumSize = isMinimumSize();
+
     mBitset->setVisible(toggled);
     if (KCalcSettings::calculatorMode() == KCalcSettings::EnumCalculatorMode::numeral) {
         KCalcSettings::setShowBitset(toggled);
+    }
+    updateGeometry();
+
+    if (!is_still_in_launch_) {
+        QApplication::postEvent(this, new QResizeEvent(size(), size())); // force a resizeEvent
+        QApplication::processEvents();
+        if (wasMinimumSize) {
+            resize(minimumSize());
+        }
     }
 }
 
@@ -2526,6 +2603,20 @@ void KCalculator::setBaseFont(const QFont &font)
 const QFont& KCalculator::baseFont() const
 {
     return *baseFont_;
+}
+
+//------------------------------------------------------------------------------
+// Name: isMinimumSize
+// Desc: Is KCalc currently at minimum size?
+//------------------------------------------------------------------------------
+bool KCalculator::isMinimumSize()
+{
+    QSize contentSize = KCalculator::contentsRect().size();
+    QMargins contentMargins = KCalculator::contentsMargins();
+    QSize actualSize(contentSize.width() + contentMargins.left() + contentMargins.right(),
+                     contentSize.height() + contentMargins.top() + contentMargins.bottom());
+    QSize minSize = KCalculator::minimumSize();
+    return actualSize == minSize;
 }
 
 //------------------------------------------------------------------------------

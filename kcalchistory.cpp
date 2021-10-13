@@ -199,4 +199,6 @@ void KCalcHistory::resizeEvent(QResizeEvent* event)
 
     // Update font size
     updateFont(zoomFactor);
+
+    updateGeometry();
 }
