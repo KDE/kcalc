@@ -132,6 +132,8 @@ private:
     void setBaseFont(const QFont &font);
     const QFont &baseFont() const;
     bool isMinimumSize();
+    void forceResizeEvent();
+    void setLeftPadLayoutActive(bool active);
 
     void updateDisplay(UpdateFlags flags);
     void updateHistoryWithFunction(CalcEngine::Operation);

@@ -1907,17 +1907,15 @@ void KCalculator::slotSetSimpleMode()
     action_bitset_show_->setChecked(false);
     
     // disable leftPad from affecting the layout
-    QSizePolicy policy = leftPad->sizePolicy();
-    policy.setHorizontalStretch(0);
-    leftPad->setSizePolicy(policy);
-    
+    setLeftPadLayoutActive(false);
+
     // update font size
     QApplication::processEvents();
     setFonts();
     updateGeometry();
 
     if (!is_still_in_launch_) {
-        QApplication::postEvent(this, new QResizeEvent(size(), size())); // force a resizeEvent
+        forceResizeEvent();
         QApplication::processEvents();
         if (wasMinimumSize) {
             resize(minimumSize());
@@ -1965,17 +1963,15 @@ void KCalculator::slotSetScienceMode()
     action_bitset_show_->setChecked(false);
     
     // enable leftPad to affect the layout
-    QSizePolicy policy = leftPad->sizePolicy();
-    policy.setHorizontalStretch(1);
-    leftPad->setSizePolicy(policy);
-    
+    setLeftPadLayoutActive(true);
+
     // update font size
     QApplication::processEvents();
     setFonts();
     updateGeometry();
 
     if (!is_still_in_launch_) {
-        QApplication::postEvent(this, new QResizeEvent(size(), size())); // force a resizeEvent
+        forceResizeEvent();
         QApplication::processEvents();
         if (wasMinimumSize) {
             resize(minimumSize());
@@ -2023,17 +2019,15 @@ void KCalculator::slotSetStatisticMode()
     action_bitset_show_->setChecked(false);
     
     // enable leftPad to affect the layout
-    QSizePolicy policy = leftPad->sizePolicy();
-    policy.setHorizontalStretch(1);
-    leftPad->setSizePolicy(policy);
-    
+    setLeftPadLayoutActive(true);
+
     // update font size
     QApplication::processEvents();
     setFonts();
     updateGeometry();
 
     if (!is_still_in_launch_) {
-        QApplication::postEvent(this, new QResizeEvent(size(), size())); // force a resizeEvent
+        forceResizeEvent();
         QApplication::processEvents();
         if (wasMinimumSize) {
             resize(minimumSize());
@@ -2079,17 +2073,15 @@ void KCalculator::slotSetNumeralMode()
     KCalcSettings::setCalculatorMode(KCalcSettings::EnumCalculatorMode::numeral);
     
     // enable leftPad to affect the layout
-    QSizePolicy policy = leftPad->sizePolicy();
-    policy.setHorizontalStretch(1);
-    leftPad->setSizePolicy(policy);
-    
+    setLeftPadLayoutActive(true);
+
     // update font size
     QApplication::processEvents();
     setFonts();
     updateGeometry();
 
     if (!is_still_in_launch_) {
-        QApplication::postEvent(this, new QResizeEvent(size(), size())); // force a resizeEvent
+        forceResizeEvent();
         QApplication::processEvents();
         if (wasMinimumSize) {
             resize(minimumSize());
@@ -2256,7 +2248,7 @@ void KCalculator::slotHistoryshow(bool toggled) {
     updateGeometry();
 
     if (!is_still_in_launch_) {
-        QApplication::postEvent(this, new QResizeEvent(size(), size())); // force a resizeEvent
+        forceResizeEvent();
         QApplication::processEvents();
         if (wasMinimumSize) {
             resize(minimumSize());
@@ -2286,7 +2278,7 @@ void KCalculator::slotConstantsShow(bool toggled)
     updateGeometry();
 
     if (!is_still_in_launch_) {
-        QApplication::postEvent(this, new QResizeEvent(size(), size())); // force a resizeEvent
+        forceResizeEvent();
         QApplication::processEvents();
         if (wasMinimumSize) {
             resize(minimumSize());
@@ -2309,7 +2301,7 @@ void KCalculator::slotBitsetshow(bool toggled)
     updateGeometry();
 
     if (!is_still_in_launch_) {
-        QApplication::postEvent(this, new QResizeEvent(size(), size())); // force a resizeEvent
+        forceResizeEvent();
         QApplication::processEvents();
         if (wasMinimumSize) {
             resize(minimumSize());
@@ -2617,6 +2609,26 @@ bool KCalculator::isMinimumSize()
                      contentSize.height() + contentMargins.top() + contentMargins.bottom());
     QSize minSize = KCalculator::minimumSize();
     return actualSize == minSize;
+}
+
+//------------------------------------------------------------------------------
+// Name: forceResizeEvent
+// Desc: Force a resize event with no size changes
+//------------------------------------------------------------------------------
+void KCalculator::forceResizeEvent()
+{
+    QApplication::postEvent(this, new QResizeEvent(size(), size()));
+}
+
+//------------------------------------------------------------------------------
+// Name: setLeftPadLayoutActive
+// Desc: Enable/disable whether leftPad affects the layout
+//------------------------------------------------------------------------------
+void KCalculator::setLeftPadLayoutActive(bool active)
+{
+    QSizePolicy policy = leftPad->sizePolicy();
+    policy.setHorizontalStretch((int)active); // 0 or 1
+    leftPad->setSizePolicy(policy);
 }
 
 //------------------------------------------------------------------------------
