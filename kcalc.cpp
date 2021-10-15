@@ -2782,10 +2782,7 @@ void KCalculator::resizeEvent(QResizeEvent* event)
     // If the content size is now larger than the window size, resize window to fit
     // (Workaround for bug where changing from simple to science mode in maximized state
     // and then restoring results in the window being too small for content)
-    QSize contentSize = KCalculator::contentsRect().size();
-    QMargins contentMargins = KCalculator::contentsMargins();
-    QSize actualSize(contentSize.width() + contentMargins.left() + contentMargins.right(),
-                     contentSize.height() + contentMargins.top() + contentMargins.bottom());
+    QSize actualSize = KCalculator::size();
     QSize minSize = KCalculator::minimumSize();
     if (actualSize.width() < minSize.width() || actualSize.height() < minSize.height()) {
         KCalculator::resize(minSize); // force window as small as possible for current layout
