@@ -95,7 +95,7 @@ class KCalculator : public KXmlGuiWindow, private Ui::KCalculator
 
 public:
     explicit KCalculator(QWidget *parent = nullptr);
-    ~KCalculator();
+    ~KCalculator() override;
 
 Q_SIGNALS:
     void switchMode(ButtonModeFlags, bool);
