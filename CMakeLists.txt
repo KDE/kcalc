@@ -98,6 +98,17 @@ target_sources(kcalc PRIVATE
    kcalc.qrc
    kcalchistory.cpp
    stats.cpp
+   kcalc_const_menu.h
+   kcalc_core.h
+   kcalc_bitset.h
+   bitbutton.h
+   kcalc.h
+   kcalc_button.h
+   stats.h
+   kcalc_const_button.h
+   kcalc_statusbar.h
+   kcalcdisplay.h
+   kcalchistory.h
    kcalc.qrc )
 
 
