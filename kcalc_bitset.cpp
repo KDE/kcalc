@@ -13,38 +13,10 @@
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QPainter>
 
 // TODO: I think it would actually be appropriate to use a std::bitset<64>
 //       for the internal representation of this class perhaps
 //       the only real caveat is the conversion to/from quint64
-
-//------------------------------------------------------------------------------
-// Name: paintEvent
-// Desc: draws the button
-//------------------------------------------------------------------------------
-void BitButton::paintEvent(QPaintEvent *)
-{
-    uint8_t alpha = 0x60;
-    QPainter painter(this);
-    painter.setRenderHint(QPainter::Antialiasing, true);
-    QPen pen(palette().text(), 1);
-    pen.setJoinStyle(Qt::MiterJoin);
-    painter.setPen(pen);
-
-    if (on_) {
-        painter.setBrush(palette().text());
-        alpha = 0xB0;
-    } else {
-        painter.setBrush(palette().base());
-    }
-
-    if (over_) {
-        painter.setBrush(QColor(palette().text().color().red(), palette().text().color().green(), palette().text().color().blue(), alpha));
-    }
-
-    painter.drawRect(rect().adjusted(1, 1, -1, -1));
-}
 
 //------------------------------------------------------------------------------
 // Name: KCalcBitset
