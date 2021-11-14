@@ -43,7 +43,6 @@
 
 namespace
 {
-const char description[] = I18N_NOOP("KDE Calculator");
 const int maxprecision = 1000;
 }
 
@@ -2563,7 +2562,7 @@ int main(int argc, char *argv[])
     KAboutData aboutData(QStringLiteral("kcalc"),
                          i18n("KCalc"),
                          QStringLiteral(KCALC_VERSION_STRING),
-                         i18n(description),
+                         i18n("KDE Calculator"),
                          KAboutLicense::GPL,
                          i18n("Copyright © 2008-2013, Evan Teran\n"
                               "Copyright © 2000-2008, The KDE Team\n"
