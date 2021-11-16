@@ -7,6 +7,7 @@
 
 #include "bitbutton.h"
 #include <QApplication>
+#include <QPainter>
 
 //------------------------------------------------------------------------------
 // Name: BitButton
@@ -32,6 +33,39 @@ BitButton::BitButton(QWidget *parent)
     setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 
     this->setAttribute(Qt::WA_Hover, true);
+}
+
+//------------------------------------------------------------------------------
+// Name: paintEvent
+// Desc: draws the button
+//------------------------------------------------------------------------------
+void BitButton::paintEvent(QPaintEvent *)
+{
+    uint8_t alpha = 0x60;
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    QPen pen(palette().text(), 1);
+    pen.setJoinStyle(Qt::MiterJoin);
+    painter.setPen(pen);
+
+    if (on_) {
+        painter.setBrush(palette().text());
+        alpha = 0xB0;
+    } else {
+        painter.setBrush(palette().base());
+    }
+
+    if (over_) {
+        painter.setBrush(QColor(palette().text().color().red(), palette().text().color().green(), palette().text().color().blue(), alpha));
+    }
+
+    // Prepare button size (should be square)
+    QRect square = rect();
+    square.setSize(renderSize());
+
+    // Draw button
+    painter.translate(QPoint(0, (rect().height() - square.height()) / 2)); // center button
+    painter.drawRect(square.adjusted(1, 1, -1, -1));
 }
 
 //------------------------------------------------------------------------------
