@@ -179,7 +179,7 @@ void KCalcHistory::updateFont(double zoomFactor)
 
 //------------------------------------------------------------------------------
 // Name: baseFont
-// Desc:
+// Desc: Returns current baseFont
 //------------------------------------------------------------------------------
 const QFont& KCalcHistory::baseFont() const
 {
