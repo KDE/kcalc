@@ -59,9 +59,7 @@ KCalcDisplay::KCalcDisplay(QWidget *parent)
 // Name: ~KCalcDisplay
 // Desc: destructor
 //------------------------------------------------------------------------------
-KCalcDisplay::~KCalcDisplay()
-{
-}
+KCalcDisplay::~KCalcDisplay() = default;
 
 //------------------------------------------------------------------------------
 // Name: changeSettings
