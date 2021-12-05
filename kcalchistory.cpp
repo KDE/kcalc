@@ -25,9 +25,7 @@ KCalcHistory::KCalcHistory(QWidget *parent)
 // Name: KCalcHistory
 // Desc: destructor
 //------------------------------------------------------------------------------
-KCalcHistory::~KCalcHistory()
-{
-}
+KCalcHistory::~KCalcHistory() = default;
 
 //------------------------------------------------------------------------------
 // Name: addToHistory

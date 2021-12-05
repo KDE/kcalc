@@ -9,7 +9,7 @@
 #include "knumber_fraction.h"
 #include "knumber_integer.h"
 #include <QScopedArrayPointer>
-#include <math.h>
+#include <cmath>
 
 #ifdef _MSC_VER
 double log2(double x)

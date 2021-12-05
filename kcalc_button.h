@@ -24,9 +24,7 @@ enum ButtonModeFlags { ModeNormal = 0, ModeShift = 1, ModeHyperbolic = 2 };
 class ButtonMode
 {
 public:
-    ButtonMode()
-    {
-    }
+    ButtonMode() = default;
 
     ButtonMode(const QString &label, const QString &tooltip)
         : label(label)
