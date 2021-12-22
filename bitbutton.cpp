@@ -112,9 +112,16 @@ const QSize& BitButton::renderSize() const
 // Name: enterEvent
 // Desc: sets to true the "over" variable on Enter event
 //------------------------------------------------------------------------------
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+void BitButton::enterEvent(QEnterEvent *event)
+#else
 void BitButton::enterEvent(QEvent *event)
+#endif
 {
-    if (event->type() == QEvent::Enter) {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    if (event->type() == QEvent::Enter)
+#endif
+    {
         over_ = true;
         update();
     }

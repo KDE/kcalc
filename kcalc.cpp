@@ -21,7 +21,6 @@
 #include <QShortcut>
 #include <QStyle>
 
-#include <kxmlgui_version.h>
 #include <KAboutData>
 #include <KAcceleratorManager>
 #include <KActionCollection>
@@ -2214,7 +2213,11 @@ void KCalculator::showLogicButtons(bool toggled)
         }
 
         // Hide Hex-Buttons, but first switch back to decimal
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        decRadio->animateClick();
+#else
         decRadio->animateClick(0);
+#endif
 
         const auto buttons = base_choose_group_->buttons();
         for (QAbstractButton *btn : buttons) {
@@ -2677,7 +2680,11 @@ void KCalculator::setPrecision()
 void KCalculator::setAngle()
 {
     if (QAbstractButton *const btn = angle_choose_group_->button(KCalcSettings::angleMode())) {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        btn->animateClick();
+#else
         btn->animateClick(0);
+#endif
     }
 }
 
@@ -2688,7 +2695,11 @@ void KCalculator::setAngle()
 void KCalculator::setBase()
 {
     if (QAbstractButton *const btn = base_choose_group_->button(KCalcSettings::baseMode())) {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        btn->animateClick();
+#else
         btn->animateClick(0);
+#endif
     }
 }
 
@@ -2807,17 +2818,17 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     KLocalizedString::setApplicationDomain("kcalc");
-
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     /**
      * enable high dpi support
      */
     app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
-    KCrash::initialize();
     Kdelibs4ConfigMigrator migrate(QStringLiteral("kcalc"));
     migrate.setConfigFiles(QStringList() << QStringLiteral("kcalcrc"));
     migrate.setUiFiles(QStringList() << QStringLiteral("kcalcui.rc"));
     migrate.migrate();
-
+#endif
+    KCrash::initialize();
     KAboutData aboutData(QStringLiteral("kcalc"),
                          i18n("KCalc"),
                          QStringLiteral(KCALC_VERSION_STRING),
