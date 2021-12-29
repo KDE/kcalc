@@ -54,9 +54,6 @@ KCalculator::KCalculator(QWidget *parent)
     , memory_num_(0.0)
     , core()
 {
-    // initialize pointers
-    baseFont_ = nullptr;
-    
     // central widget to contain all the elements
     auto const central = new QWidget(this);
     central->setLayoutDirection(Qt::LeftToRight);
@@ -2584,10 +2581,7 @@ void KCalculator::setFonts()
 void KCalculator::setBaseFont(const QFont &font)
 {
     // Overwrite current baseFont
-    if (baseFont_) {
-        delete baseFont_;
-    }
-    baseFont_ = new QFont(font);
+    baseFont_ = font;
 }
 
 //------------------------------------------------------------------------------
@@ -2596,7 +2590,7 @@ void KCalculator::setBaseFont(const QFont &font)
 //------------------------------------------------------------------------------
 const QFont& KCalculator::baseFont() const
 {
-    return *baseFont_;
+    return baseFont_;
 }
 
 //------------------------------------------------------------------------------

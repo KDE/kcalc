@@ -40,7 +40,7 @@ protected:
 
 private:
     bool add_new_line_ = false;
-    QFont* baseFont_ = nullptr;
+    QFont baseFont_;
     double idealPointSizeF_;
     void updateFont(double zoomFactor = 1.0);
 };

@@ -18,7 +18,7 @@ public:
     Q_REQUIRED_RESULT bool isOn() const;
     void setOn(bool value);
     void setRenderSize(const QSize &size);
-    const QSize &renderSize() const;
+    QSize renderSize() const;
 
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -32,6 +32,6 @@ private:
     void leaveEvent(QEvent *event) override;
     bool on_ = false;
     bool over_ = false;
-    QSize* renderSize_ = nullptr;
+    QSize renderSize_;
 };
 

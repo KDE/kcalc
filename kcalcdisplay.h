@@ -121,8 +121,8 @@ private:
     int fixed_precision_; // "-1" = no fixed_precision
 
     KNumber display_amount_;
-    
-    QFont* baseFont_ = nullptr;
+
+    QFont baseFont_;
 
     QVector<KNumber> history_list_;
     int history_index_;

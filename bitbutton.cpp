@@ -93,19 +93,16 @@ void BitButton::setOn(bool value)
 //------------------------------------------------------------------------------
 void BitButton::setRenderSize(const QSize &size)
 {
-    if (renderSize_) {
-        delete renderSize_;
-    }
-    renderSize_ = new QSize(size);
+    renderSize_ = size;
 }
 
 //------------------------------------------------------------------------------
 // Name: renderSize
 // Desc: returns current render size
 //------------------------------------------------------------------------------
-const QSize& BitButton::renderSize() const
+QSize BitButton::renderSize() const
 {
-    return *renderSize_;
+    return renderSize_;
 }
 
 //------------------------------------------------------------------------------

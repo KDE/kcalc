@@ -146,11 +146,7 @@ void KCalcHistory::changeSettings()
 void KCalcHistory::setFont(const QFont &font)
 {
     // Overwrite current baseFont
-    if (baseFont_) {
-        delete baseFont_;
-    }
-    baseFont_ = new QFont(font);
-    
+    baseFont_ = font;
     updateFont();
 }
 
@@ -181,7 +177,7 @@ void KCalcHistory::updateFont(double zoomFactor)
 //------------------------------------------------------------------------------
 const QFont& KCalcHistory::baseFont() const
 {
-    return *baseFont_;
+    return baseFont_;
 }
 
 //------------------------------------------------------------------------------

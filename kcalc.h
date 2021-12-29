@@ -272,8 +272,8 @@ private:
     QList<QAbstractButton *> stat_button_list_;
     QList<QAbstractButton *> mem_button_list_;
     QList<QAbstractButton *> operation_button_list_;
-    
-    QFont* baseFont_;
+
+    QFont baseFont_;
     bool is_still_in_launch_ = true; // necessary for startup at minimum size
 
     CalcEngine core;

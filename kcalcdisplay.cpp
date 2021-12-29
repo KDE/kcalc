@@ -603,11 +603,7 @@ void KCalcDisplay::setText(const QString &string)
 void KCalcDisplay::setFont(const QFont &font)
 {
     // Overwrite current baseFont
-    if (baseFont_) {
-        delete baseFont_;
-    }
-    baseFont_ = new QFont(font);
-    
+    baseFont_ = font;
     updateFont();
 }
 
@@ -637,7 +633,7 @@ void KCalcDisplay::updateFont()
 //------------------------------------------------------------------------------
 const QFont& KCalcDisplay::baseFont() const
 {
-    return *baseFont_;
+    return baseFont_;
 }
 
 //------------------------------------------------------------------------------
