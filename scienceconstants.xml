@@ -16,11 +16,11 @@
     <description>
     </description>
   </constant>
-  <constant name="Planck's Constant" symbol="h" category="nuclear" value="6.6260693e-34">
+  <constant name="Planck's Constant" symbol="h" category="nuclear" value="6.62607015e-34">
     <description>
     </description>
   </constant>
-  <constant name="Gravitational Constant" symbol="G" category="gravitation" value="6.6742e-11">
+  <constant name="Gravitational Constant" symbol="G" category="gravitation" value="6.67430e-11">
     <description>
     </description>
   </constant>
@@ -28,48 +28,48 @@
     <description>
     </description>
   </constant>
-  <constant name="Elementary Charge" symbol="e" category="nuclear" value="1.60217653e-19">
+  <constant name="Elementary Charge" symbol="e" category="nuclear" value="1.602176634e-19">
     <description>
     </description>
   </constant>
-  <constant name="Elementary Charge" symbol="e" category="electromagnetism" value="1.60217653e-19">
+  <constant name="Elementary Charge" symbol="e" category="electromagnetism" value="1.602176634e-19">
     <description>
     </description>
   </constant>
-  <constant name="Impedance of Vacuum" symbol="Z₀" category="electromagnetism" value="376.730313461">
+  <constant name="Impedance of Vacuum" symbol="Z₀" category="electromagnetism" value="376.730313668">
     <description>
     </description>
   </constant>
-  <constant name="Fine-Structure Constant" symbol="α" category="nuclear" value="7.297352568e-3">
+  <constant name="Fine-Structure Constant" symbol="α" category="nuclear" value="7.2973525693e-3">
     <description>
     </description>
   </constant>
-  <constant name="Permeability of Vacuum" symbol="μ₀" category="electromagnetism" value="1.2566370614e-6">
+  <constant name="Permeability of Vacuum" symbol="μ₀" category="electromagnetism" value="1.25663706212e-6">
     <description>
     </description>
   </constant>
-  <constant name="Permittivity of Vacuum" symbol="ε₀" category="electromagnetism" value="8.854187817e-12">
+  <constant name="Permittivity of Vacuum" symbol="ε₀" category="electromagnetism" value="8.8541878128e-12">
     <description>
     </description>
   </constant>
-  <constant name="Boltzmann Constant" symbol="k" category="thermodynamics" value="1.3806505e-23">
+  <constant name="Boltzmann Constant" symbol="k" category="thermodynamics" value="1.380649e-23">
     <description>
     </description>
   </constant>
 
-  <constant name="Atomic Mass Unit" symbol="1u" category="thermodynamics" value="1.66053886e-27">
+  <constant name="Atomic Mass Unit" symbol="1u" category="thermodynamics" value="1.66053906660e-27">
     <description>
     </description>
   </constant>
-  <constant name="Molar Gas Constant" symbol="R" category="thermodynamics" value="8.314472">
+  <constant name="Molar Gas Constant" symbol="R" category="thermodynamics" value="8.31446261815324">
     <description>
     </description>
   </constant>
-  <constant name="Stefan-Boltzmann Constant" symbol="σ" category="thermodynamics" value="5.670400e-8">
+  <constant name="Stefan-Boltzmann Constant" symbol="σ" category="thermodynamics" value="5.670374419e-8">
     <description>
     </description>
   </constant>
-  <constant name="Avogadro's Number" symbol="N_A" category="thermodynamics" value="6.0221415e23">
+  <constant name="Avogadro's Number" symbol="N_A" category="thermodynamics" value="6.02214076e23">
     <description>
     </description>
   </constant>
