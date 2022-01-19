@@ -8,7 +8,7 @@ set (RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE
 project(kcalc VERSION ${RELEASE_SERVICE_VERSION})
 
 set(QT_MIN_VERSION "5.15.0")
-set(KF5_MIN_VERSION "5.85.0")
+set(KF5_MIN_VERSION "5.90.0")
 
 find_package (ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
 set (CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
@@ -30,10 +30,13 @@ ecm_setup_version(${RELEASE_SERVICE_VERSION} VARIABLE_PREFIX KCALC
                   VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kcalc_version.h"
 )
 
-find_package (Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
+find_package (Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
     Core
     Widgets
 )
+if (QT_MAJOR_VERSION STREQUAL "6")
+    find_package(Qt6Core5Compat)
+endif()
 
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     CoreAddons
@@ -134,8 +137,8 @@ endif()
 
 
 target_link_libraries(kcalc
-    Qt::Core
-    Qt::Widgets
+    Qt${QT_MAJOR_VERSION}::Core
+    Qt${QT_MAJOR_VERSION}::Widgets
     KF5::CoreAddons
     KF5::ConfigWidgets
     KF5::GuiAddons
