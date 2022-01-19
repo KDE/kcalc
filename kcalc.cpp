@@ -31,7 +31,9 @@
 #include <KToggleAction>
 #include <KToolBar>
 #include <KXMLGUIFactory>
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #include <Kdelibs4ConfigMigrator>
+#endif
 
 #include "kcalc_bitset.h"
 #include "kcalc_const_menu.h"
