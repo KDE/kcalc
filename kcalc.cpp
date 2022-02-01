@@ -2281,6 +2281,9 @@ void KCalculator::slotConstantsShow(bool toggled)
         forceResizeEvent();
         QApplication::processEvents();
         if (wasMinimumSize) {
+            // In this specific case, we need to invalidate the layout before resize
+            layout()->invalidate();
+            QApplication::processEvents();
             resize(minimumSize());
         }
     }
