@@ -105,7 +105,7 @@
     <p xml:lang="gl">KCalc ten todo o que esperaría dunha calculadora científica, e ademais:</p>
     <p xml:lang="hu">A KCalc tud mindent, amit egy tudományos számológéptől elvárhat, továbbá:</p>
     <p xml:lang="ia">KCalc ha toto que tu expectara ab un calculator scientific, plus:</p>
-    <p xml:lang="id">KCalc memiliki semua yang kamu harapkan dari kalkulator ilmiah, plus:</p>
+    <p xml:lang="id">KCalc memiliki semua yang Anda ingin dari kalkulator ilmiah, dengan:</p>
     <p xml:lang="it">KCalc ha tutto quello che ci si aspetta da una calcolatrice scientifica.</p>
     <p xml:lang="ko">KCalc는 공학용 계산기에서 찾을 수 있는 기능 외에도 다음을 더 지원합니다:</p>
     <p xml:lang="nl">KCalc heeft alles wat u verwacht van een wetenschappelijke rekenmachine, plus:</p>
@@ -246,7 +246,7 @@
       <li xml:lang="gl">A pantalla permite cortar e pegar números</li>
       <li xml:lang="hu">Számok kivághatósága és beilleszthetősége</li>
       <li xml:lang="ia">Le monstrator permitte taliar e collar de numeros</li>
-      <li xml:lang="id">Displai memungkinkan pemotongan dan penempelan angka</li>
+      <li xml:lang="id">Tampilan memungkinkan pemotongan dan penempelan angka</li>
       <li xml:lang="it">Il display permette di copiare e incollare i numeri</li>
       <li xml:lang="ko">디스플레이는 숫자의 잘라내기 및 붙여넣기를 할 수 있습니다</li>
       <li xml:lang="nl">Het scherm biedt knippen en plakken van getallen</li>
@@ -280,7 +280,7 @@
       <li xml:lang="gl">Poden configurarse as cores e as fontes, para maior facilidade de uso</li>
       <li xml:lang="hu">A színek és betűkészletek testre szabhatóak, megkönnyítve a használatóságot</li>
       <li xml:lang="ia">Le colores e font de monstrator es configurbile, adjutante usabilitate</li>
-      <li xml:lang="id">Warna displai dan font dapat dikonfigurasi, membantu kegunaan</li>
+      <li xml:lang="id">Warna tampilan dan font dapat dikonfigurasi, membantu kegunaan</li>
       <li xml:lang="it">I colori e i caratteri del display possono essere configurati, supportando l'usabilità</li>
       <li xml:lang="ko">디스플레이 색상과 글꼴을 구성할 수 있어 사용 편의성을 지원합니다</li>
       <li xml:lang="nl">De kleuren en het lettertype in het scherm is aan te passen, helpt bruikbaarheid</li>
