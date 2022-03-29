@@ -94,7 +94,7 @@
     <p xml:lang="ar">تحوي حاسبة ك على ما تتوقعه من حاسبة عملية بالإضافة إلى:</p>
     <p xml:lang="az">KCalc-da elmi hesablayıcıdan gözlənilən hər şey var, həmçinin:</p>
     <p xml:lang="ca">El KCalc té tot allò que espereu d'una calculadora científica, més:</p>
-    <p xml:lang="ca-valencia">El KCalc té tot allò que espereu d'una calculadora científica, més:</p>
+    <p xml:lang="ca-valencia">KCalc té tot allò que espereu d'una calculadora científica, més:</p>
     <p xml:lang="da">KCalc har alt hvad du forventer fra en videnskabelig lommeregner, plus:</p>
     <p xml:lang="de">KCalc bietet alles, was Sie von einem wissenschaftlichen Taschenrechner erwarten, plus:</p>
     <p xml:lang="el">Το KCalc έχει όλα όσα αναμένετε να βρείτε σε μία επιστημονική αριθμομηχανή, και ακόμη:</p>
@@ -351,7 +351,7 @@
       <caption xml:lang="ar">النافذة الرئيسة لحاسبة ك</caption>
       <caption xml:lang="az">KCalc-ın əsas pəncərəsi</caption>
       <caption xml:lang="ca">Finestra principal del KCalc</caption>
-      <caption xml:lang="ca-valencia">Finestra principal del KCalc</caption>
+      <caption xml:lang="ca-valencia">Finestra principal de KCalc</caption>
       <caption xml:lang="de">Hauptfenster von KCalc</caption>
       <caption xml:lang="el">Κύριο παράθυρο του KCalc</caption>
       <caption xml:lang="en-GB">Main window of KCalc</caption>
@@ -389,7 +389,7 @@
       <caption xml:lang="ar">نافذة حاسبة ك في الوضع الرقمي</caption>
       <caption xml:lang="az">KCalc pəncərəsi hesablama sistemi rejimində</caption>
       <caption xml:lang="ca">Finestra del KCalc en mode de sistema numèric</caption>
-      <caption xml:lang="ca-valencia">Finestra del KCalc en mode de sistema numèric</caption>
+      <caption xml:lang="ca-valencia">Finestra de KCalc en mode de sistema numèric</caption>
       <caption xml:lang="de">KCalc-Fenster im Logik-Modus</caption>
       <caption xml:lang="el">Παράθυρο KCalc σε λειτουργία αριθμητικού συστήματος</caption>
       <caption xml:lang="en-GB">KCalc window in numeral system mode</caption>
@@ -425,7 +425,7 @@
       <caption xml:lang="ar">نافذة حاسبة ك في الوضع العلمي</caption>
       <caption xml:lang="az">KCalc pəncərəsi elmi rejimdə</caption>
       <caption xml:lang="ca">Finestra del KCalc en mode de sistema científic</caption>
-      <caption xml:lang="ca-valencia">Finestra del KCalc en mode de sistema científic</caption>
+      <caption xml:lang="ca-valencia">Finestra de KCalc en mode de sistema científic</caption>
       <caption xml:lang="de">KCalc-Fenster im Wissenschafts-Modus</caption>
       <caption xml:lang="el">Παράθυρο KCalc σε επιστημονική λειτουργία</caption>
       <caption xml:lang="en-GB">Kcalc window in scientific mode</caption>
@@ -462,7 +462,7 @@
       <caption xml:lang="ar">نافذة حاسبة ك في الوضع الإحصائي</caption>
       <caption xml:lang="az">KCalc pəncərəsi statistika rejimində</caption>
       <caption xml:lang="ca">Finestra del KCalc en mode de sistema estadístic</caption>
-      <caption xml:lang="ca-valencia">Finestra del KCalc en mode de sistema estadístic</caption>
+      <caption xml:lang="ca-valencia">Finestra de KCalc en mode de sistema estadístic</caption>
       <caption xml:lang="de">KCalc-Fenster im Statistik-Modus</caption>
       <caption xml:lang="el">Παράθυρο KCalc σε στατιστική λειτουργία</caption>
       <caption xml:lang="en-GB">Kcalc window in statistics mode</caption>
