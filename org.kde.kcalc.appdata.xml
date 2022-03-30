@@ -162,6 +162,7 @@
       <li xml:lang="sl">Trigonometrične funkcije, logične operacije in statistične izračune</li>
       <li xml:lang="sq">funksione trigonometrike, operacione logjike dhe lloritje statistikore</li>
       <li xml:lang="sv">Trigonometriska funktioner, logiska operationer och statistiska beräkningar</li>
+      <li xml:lang="tr">Trigonometrik işlevler, mantık işlemleri ve istatistiksel hesaplamalar</li>
       <li xml:lang="uk">Обчислювати тригонометричні функції, виконувати операції логіки та статистичні обчислення.</li>
       <li xml:lang="x-test">xxTrigonometric functions, logic operations and statistical calculationsxx</li>
       <li xml:lang="zh-CN">三角函数、逻辑运算和统计计算</li>
@@ -196,6 +197,7 @@
       <li xml:lang="sl">Sklad rezultatov, ki omogoča priročen priklic prejšnjega rezultata izračuna</li>
       <li xml:lang="sq">Një shirit i rezultateve që mundëson kthimin e vlerave llogaritjeve të mëparshme</li>
       <li xml:lang="sv">En resultatstack som gör det möjligt att bekvämt hämta tidigare beräkningsresultat</li>
+      <li xml:lang="tr">Bir önceki hesaplama sonuçlarını size anımsatan kullanıcı dostu bir sonuçlar rafı</li>
       <li xml:lang="uk">Має стек результатів, за допомогою якого зручно викликати результати попередніх обчислень.</li>
       <li xml:lang="x-test">xxA results stack which enables convenient recall of previous calculation resultsxx</li>
       <li xml:lang="zh-CN">结果堆栈，可以方便地召回以前的计算结果</li>
@@ -232,6 +234,7 @@
       <li xml:lang="sl">Natančnost lahko določi uporabnik</li>
       <li xml:lang="sq">Saktësi është e definuar nga përdoruesi</li>
       <li xml:lang="sv">Precisionen är användardefinierbar</li>
+      <li xml:lang="tr">Kesinlik, kullanıcı tarafından tanımlanabilir</li>
       <li xml:lang="uk">Точність обчислень може бути визначена користувачем.</li>
       <li xml:lang="x-test">xxPrecision is user-definablexx</li>
       <li xml:lang="zh-CN">精度是用户可定义的</li>
@@ -267,6 +270,7 @@
       <li xml:lang="sl">Prikaz omogoča rezanje in lepljenje števil</li>
       <li xml:lang="sq">Pamja lejon kapjen dhe ngjitjen e numrave</li>
       <li xml:lang="sv">Displayen tillåter att tal klipps ut och klistras in</li>
+      <li xml:lang="tr">Ekran, sayıların kesimine ve yapıştırmasına izin verir</li>
       <li xml:lang="uk">Передбачено можливість вирізання чисел з дисплея калькулятора та вставляння чисел з буфера обміну даними.</li>
       <li xml:lang="x-test">xxThe display allows cut and paste of numbersxx</li>
       <li xml:lang="zh-CN">显示屏允许剪切和粘贴数字</li>
@@ -301,6 +305,7 @@
       <li xml:lang="sl">Barve in pisava prikaza so nastavljivi, kar izboljšuje uporabnost</li>
       <li xml:lang="sq">Fontet the ngjyrat e pamjes mund të ndryshon, gjë që rritë përdorshmërinë</li>
       <li xml:lang="sv">Displayens färger och teckensnitt kan ställas in, för förbättrat handikappstöd</li>
+      <li xml:lang="tr">Ekran renkleri ve yazıtipleri yapılandırılabilir, böylelikle kullanılabilirliğe katkıda bulunur</li>
       <li xml:lang="uk">Можна налаштувати кольори та шрифт дисплея.</li>
       <li xml:lang="x-test">xxThe display colors and font are configurable, aiding usabilityxx</li>
       <li xml:lang="zh-CN">显示颜色和字体是可配置的，有助于可用性</li>
@@ -335,6 +340,7 @@
       <li xml:lang="sl">Uporaba bližnjic s tipkami olajša uporabo kalkulatorja brez kazalne naprave</li>
       <li xml:lang="sq">Shkurtoret ju lehtësojnë përdorimin pa maus</li>
       <li xml:lang="sv">Användning av tangentbindningar gör det lätt att använda den utan en pekenhet</li>
+      <li xml:lang="tr">Düğme bağıntılarının kullanımı, bir işaret aygıtı olmadan rahatça kullanıma olanak verir</li>
       <li xml:lang="uk">Використання у калькуляторі клавіатурних скорочень надає змогу користуватися ним без координатного або сенсорного пристрою.</li>
       <li xml:lang="x-test">xxThe use of key-bindings make it easy to use without a pointing devicexx</li>
       <li xml:lang="zh-CN">键绑定的运用可以在没有指点设备的情况下轻松使用</li>
@@ -378,6 +384,7 @@
       <caption xml:lang="sl">Glavno okno KCalc</caption>
       <caption xml:lang="sq">Dritarja Kryesore  e KCalc</caption>
       <caption xml:lang="sv">Huvudfönstret i miniräknaren</caption>
+      <caption xml:lang="tr">KCalc ana penceresi</caption>
       <caption xml:lang="uk">Головне вікно KCalc</caption>
       <caption xml:lang="x-test">xxMain window of KCalcxx</caption>
       <caption xml:lang="zh-CN">KCalc 主窗口</caption>
@@ -414,6 +421,7 @@
       <caption xml:lang="sl">Okno KCalc v številskem načinu</caption>
       <caption xml:lang="sq">Dritarja e KCalc në gjendje të sistemit të numrave</caption>
       <caption xml:lang="sv">Kcalc-fönster i nummersystemläge</caption>
+      <caption xml:lang="tr">Sayısal sistem kipinde KCalc penceresi</caption>
       <caption xml:lang="uk">Вікно KCalc у режимі системи числення</caption>
       <caption xml:lang="x-test">xxKCalc window in numeral system modexx</caption>
       <caption xml:lang="zh-CN">数字系统模式下的 KCalc 窗口</caption>
@@ -451,6 +459,7 @@
       <caption xml:lang="sl">Okno KCalc v znanstvenem načinu</caption>
       <caption xml:lang="sq">Dritarja e KCalc në gjendje shkencore </caption>
       <caption xml:lang="sv">Kcalc-fönster i vetenskapligt läge</caption>
+      <caption xml:lang="tr">Bilimsel kipte KCalc penceresi</caption>
       <caption xml:lang="uk">Вікно KCalc в інженерному режимі</caption>
       <caption xml:lang="x-test">xxKcalc window in scientific modexx</caption>
       <caption xml:lang="zh-CN">科学模式下的 Kcalc 窗口</caption>
@@ -488,6 +497,7 @@
       <caption xml:lang="sl">Okno KCalc v statističnem načinu</caption>
       <caption xml:lang="sq">Dritarja e KCalc në gjendje statistikore </caption>
       <caption xml:lang="sv">Kcalc-fönster i statistikläge</caption>
+      <caption xml:lang="tr">İstatistik kipinde KCalc penceresi</caption>
       <caption xml:lang="uk">Вікно KCalc у статистичному режимі</caption>
       <caption xml:lang="x-test">xxKcalc window in statistics modexx</caption>
       <caption xml:lang="zh-CN">统计模式下的 Kcalc 窗口</caption>
