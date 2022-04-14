@@ -12,3 +12,6 @@ Dependencies:
     'frameworks/ki18n': '@stable'
     'frameworks/knotifications': '@stable'
     'frameworks/kxmlgui': '@stable'
+
+Options:
+  require-passing-tests-on: [ 'Linux', 'FreeBSD']
