@@ -188,7 +188,7 @@ void KCalcButton::calcSizeHint()
 {
     int margin = style()->pixelMetric(QStyle::PM_ButtonMargin, nullptr, this);
 
-    // want narrow margin than normal
+    // want narrower margin than normal
     margin = qMax(margin / 2, 3);
 
     // simply use font size of a single letter
