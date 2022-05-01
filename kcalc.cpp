@@ -2451,7 +2451,7 @@ void KCalculator::setColors()
     KColorScheme schemeButtons(QPalette::Active, KColorScheme::Button);
     const QColor defaultColor = schemeButtons.background().color();
 
-    // Do not apply style sheets when using default background colors, see bug 237513
+    // Do not apply style sheets when using default background colors, see bug #237513
     if (KCalcSettings::numberButtonsColor() == defaultColor && KCalcSettings::functionButtonsColor() == defaultColor
         && KCalcSettings::statButtonsColor() == defaultColor && KCalcSettings::hexButtonsColor() == defaultColor
         && KCalcSettings::memoryButtonsColor() == defaultColor && KCalcSettings::operationButtonsColor() == defaultColor
@@ -2874,7 +2874,8 @@ int main(int argc, char *argv[])
     parser.process(app);
     aboutData.processCommandLine(&parser);
 
-    // force system locale to "C" internally [bug 159168]
+    // Force system locale to "C" internally. Fix for bug #159168, showing multiple commas
+    // in floating point operations because of different thousands separator and comma separator.
     setlocale(LC_NUMERIC, "C");
 
     KNumber::setGroupSeparator(QLocale().groupSeparator());

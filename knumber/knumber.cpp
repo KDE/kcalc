@@ -534,7 +534,7 @@ KNumber &KNumber::operator*=(const KNumber &rhs)
 //------------------------------------------------------------------------------
 KNumber &KNumber::operator/=(const KNumber &rhs)
 {
-    // Fix for bug #330577, x /0  is undefined, not infinity
+    // Fix for bug #330577, x/0  is undefined, not infinity
     // Also indirectly fixes bug #329897, tan(90) is undefined, not infinity
     if (rhs == Zero) {
         *this = NaN;
@@ -713,8 +713,8 @@ KNumber KNumber::sqrt() const
 //------------------------------------------------------------------------------
 KNumber KNumber::pow(const KNumber &x) const
 {
-    // Fix for bug #330711 (pow(0, -x) was causing crashes
-    // Fix for bug #330597 (pow(0,0) was 1 now it is NaN
+    // Fix for bug #330711, pow(0, -x) was causing crashes
+    // Fix for bug #330597, pow(0,0) was 1 now it is NaN
     // Thanks to Raushan Kumar for identifying the issue and submitting
     // patches
     if (*this == Zero && x <= Zero) {
