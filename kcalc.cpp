@@ -2840,7 +2840,7 @@ int main(int argc, char *argv[])
                               "ger\n"
                               "Copyright © 1996-2000, Bernd Johannes Wuebben"),
                          QString(),
-                         QStringLiteral("https://utils.kde.org/projects/kcalc"));
+                         QStringLiteral("https://apps.kde.org/kcalc/"));
 
     // Klaus Niederkrueger
     aboutData.addAuthor(i18n("Klaus Niederkr"
