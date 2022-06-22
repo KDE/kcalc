@@ -77,7 +77,7 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
 
     if (flag) { // if the specified mode is to be set (i.e. flag = true)
         new_mode = ButtonModeFlags(mode_flags_ | mode);
-    } else if (mode_flags_ && mode) { // if the specified mode is to be cleared (i.e. flag = false)
+    } else if (mode_flags_ & mode) { // if the specified mode is to be cleared (i.e. flag = false)
         new_mode = ButtonModeFlags(mode_flags_ - mode);
     } else {
         return; // nothing to do
