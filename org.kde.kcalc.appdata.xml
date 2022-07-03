@@ -45,7 +45,7 @@
   <name xml:lang="tr">KCalc</name>
   <name xml:lang="uk">KCalc</name>
   <name xml:lang="x-test">xxKCalcxx</name>
-  <name xml:lang="zh-CN">KCalc</name>
+  <name xml:lang="zh-CN">KCalc 计算器</name>
   <name xml:lang="zh-TW">KDE 計算機</name>
   <summary>Scientific Calculator</summary>
   <summary xml:lang="ar">حاسبة علمية</summary>
@@ -132,7 +132,7 @@
     <p xml:lang="tr">KCalc, bilimsel bir hesap makinesinden bekleyebileceğiniz her şeye sahiptir. Ayrıca:</p>
     <p xml:lang="uk">KCalc вміє усе, що ви могли б очікувати від інженерного калькулятора, а крім того, вміє таке:</p>
     <p xml:lang="x-test">xxKCalc has everything you would expect from a scientific calculator, plus:xx</p>
-    <p xml:lang="zh-CN">KCalc 具有您所期待的科学计算器的全部功能，以及：</p>
+    <p xml:lang="zh-CN">KCalc 能提供一款科学计算器具备的全部功能，并且还有以下功能：</p>
     <p xml:lang="zh-TW">KDE 計算機有所有您預期科學計算機會有的功能，再加上：</p>
     <ul>
       <li>Trigonometric functions, logic operations and statistical calculations</li>
