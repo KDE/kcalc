@@ -1,6 +1,7 @@
 /*
     SPDX-FileCopyrightText: 2001-2013 Evan Teran <evan.teran@gmail.com>
     SPDX-FileCopyrightText: 1996-2000 Bernd Johannes Wuebben <wuebben@kde.org>
+    SPDX-FileCopyrightText: 2022 Harald Sitter <sitter@kde.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -38,6 +39,7 @@ KCalcDisplay::KCalcDisplay(QWidget *parent)
     , history_index_(0)
     , selection_timer_(new QTimer(this))
 {
+    setAccessibleDescription(i18nc("@label accessibility description of the calculation result display", "Result Display"));
     setFocusPolicy(Qt::StrongFocus);
 
     setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed));
@@ -593,6 +595,7 @@ void KCalcDisplay::setText(const QString &string)
     }
 
     update();
+    setAccessibleName(text_); // "Labels should be represented by only QAccessibleInterface and return their text as name"
     Q_EMIT changedText(text_);
 }
 
