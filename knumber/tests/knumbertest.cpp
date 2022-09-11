@@ -346,9 +346,7 @@ void testingModulus()
     checkResult(QStringLiteral("KNumber(12) % KNumber(0)"), KNumber(-12) % KNumber(0), QStringLiteral("nan"), KNumber::TYPE_ERROR);
     checkResult(QStringLiteral("KNumber(-12) % KNumber(0)"), KNumber(-12) % KNumber(0), QStringLiteral("nan"), KNumber::TYPE_ERROR);
 
-#ifdef __GNUC__
-#warning test for other types
-#endif
+    // TODO: test for other types
 }
 
 void testingAndOr()
@@ -362,9 +360,7 @@ void testingAndOr()
     checkResult(QStringLiteral("KNumber(1023) & KNumber(255)"), KNumber(1023) & KNumber(255), QStringLiteral("255"), KNumber::TYPE_INTEGER);
     checkResult(QStringLiteral("KNumber(1023) | KNumber(255)"), KNumber(1023) | KNumber(255), QStringLiteral("1023"), KNumber::TYPE_INTEGER);
 
-#ifdef __GNUC__
-#warning test for other types
-#endif
+    // TODO: test for other types
 }
 
 void testingAbs()
@@ -420,9 +416,7 @@ void testingSqrt()
     checkResult(QStringLiteral("KNumber(-27).cbrt()"), KNumber(-27).cbrt(), QStringLiteral("-3"), KNumber::TYPE_INTEGER);
     checkResult(QStringLiteral("KNumber(\"27/8\").cbrt()"), KNumber(QStringLiteral("27/8")).cbrt(), QStringLiteral("3/2"), KNumber::TYPE_FRACTION);
     checkResult(QStringLiteral("KNumber(\"-8/27\").cbrt()"), KNumber(QStringLiteral("-8/27")).cbrt(), QStringLiteral("-2/3"), KNumber::TYPE_FRACTION);
-#ifdef __GNUC__
-#warning need to check non-perfect cube roots
-#endif
+    // TODO: need to check non-perfect cube roots
     checkResult(QStringLiteral("KNumber(2).cbrt()"), KNumber(2).cbrt(), QStringLiteral("1.25992104989"), KNumber::TYPE_FLOAT);
     checkResult(QStringLiteral("KNumber(\"2/3\").cbrt()"), KNumber(QStringLiteral("2/3")).cbrt(), QStringLiteral("0.873580464736"), KNumber::TYPE_FLOAT);
     checkResult(QStringLiteral("KNumber(\"0.25\").cbrt()"), KNumber(QStringLiteral("0.25")).cbrt(), QStringLiteral("0.629960524947"), KNumber::TYPE_FLOAT);
