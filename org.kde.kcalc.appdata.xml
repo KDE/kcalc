@@ -249,8 +249,8 @@
       <li xml:lang="ar">شاشة عرض تسمح قص ولص الأرقام</li>
       <li xml:lang="az">Rəqəmlərin kəsilməsi və yerləşdirilməsi</li>
       <li xml:lang="bg">Екранът позволя изрязване и поставяне на числа в клипборда</li>
-      <li xml:lang="ca">El visor permet retallar i enganxar nombres</li>
-      <li xml:lang="ca-valencia">El visor permet retallar i apegar nombres</li>
+      <li xml:lang="ca">La pantalla permet retallar i enganxar nombres</li>
+      <li xml:lang="ca-valencia">La pantalla permet retallar i apegar nombres</li>
       <li xml:lang="de">In der Anzeige können Zahlen kopiert und eingefügt werden</li>
       <li xml:lang="el">Η οθόνη επιτρέπει αποκοπή και επικόλληση αριθμών</li>
       <li xml:lang="en-GB">The display allows cut and paste of numbers</li>
@@ -286,8 +286,8 @@
       <li xml:lang="ar">تحسين الاستخدامية عن طريق تغيير ضبط ألوان العرض ونوع الخط</li>
       <li xml:lang="az">Şriftlərin və rənglərin ayarlanması mümkünlüyü</li>
       <li xml:lang="bg">Цветът на екрана и шрифта могат да се настройват за по-добра използваемост</li>
-      <li xml:lang="ca">Els colors i el tipus de lletra del visor són configurables, ajudant a la usabilitat</li>
-      <li xml:lang="ca-valencia">Els colors i el tipus de lletra del visor són configurables, ajudant a la usabilitat</li>
+      <li xml:lang="ca">Els colors i el tipus de lletra de la pantalla són configurables, ajudant a la usabilitat</li>
+      <li xml:lang="ca-valencia">Els colors i el tipus de lletra de la pantalla són configurables, ajudant a la usabilitat</li>
       <li xml:lang="de">Farbe und Zeichensatz der Anzeige können angepasst werden und verbessern damit die Lesbarkeit</li>
       <li xml:lang="el">Τα χρώματα και η γραμματοσειρά της οθόνης είναι διαμορφώσιμα, βοηθητικά της χρηστικότητας</li>
       <li xml:lang="en-GB">The display colours and font are configurable, aiding usability</li>
