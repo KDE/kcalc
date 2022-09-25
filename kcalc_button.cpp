@@ -8,7 +8,6 @@
 #include "kcalc_button.h"
 
 #include <QAbstractTextDocumentLayout>
-#include <QApplication>
 #include <QPainter>
 #include <QStyleOptionButton>
 #include <QTextDocument>

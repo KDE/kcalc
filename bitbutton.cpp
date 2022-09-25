@@ -6,7 +6,7 @@
 */
 
 #include "bitbutton.h"
-#include <QApplication>
+#include <QEvent>
 #include <QPainter>
 
 //------------------------------------------------------------------------------
