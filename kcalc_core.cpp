@@ -9,7 +9,6 @@
 
 #include "kcalc_core.h"
 #include "kcalc_settings.h"
-#include "kcalchistory.h"
 
 #include <QDebug>
 
