@@ -1,0 +1,255 @@
+<chapter id="commands">
+
+<title
+>Kommandoreferens</title>
+
+<sect1 id="menus">
+<title
+>Menyalternativ</title>
+
+ <para
+>En kortfattad översikt av några speciella menyalternativ i Miniräknare:</para>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstanter</guimenu
+> <guimenuitem
+>Matematik</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Visa pi, Eulers tal eller gyllene snittet.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstanter</guimenu
+> <guimenuitem
+>Elektromagnetism</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Visa ljushastigheten, elementarladdningen, impedansen i vakuum, permeabiliteten i vakuum eller kapacitiviteten i vakuum.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstanter</guimenu
+> <guimenuitem
+>Atomer och kärnfysik</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Visa Plancks konstant, elementarladdningen eller finstrukturkonstanten.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstanter</guimenu
+> <guimenuitem
+>Termodynamik</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Visa Boltzmanns konstant, atommassenheten, allmänna gaskonstanten, Stefan-Boltzmanns konstant eller Avogadros tal.</action
+> 
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstanter</guimenu
+> <guimenuitem
+>Gravitation</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Visa gravitationskonstanten eller jordaccelerationen. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Enkelt läge</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Visar de enkla matematikknapparna.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Vetenskapligt läge</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Visar trigonometriska och vetenskapliga knappar.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Statistiskläge</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Visar <link linkend="statistical-mode"
+>statistikknappar.</link
+></action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Nummersystemläge</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Visar <link linkend="and-or-xor"
+>logiska knappar</link
+> och tillåter att nummersystemet ändras.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Visa historik</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Visa historiken.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Konstantknappar</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Visar konstantknappar. De är tillgängliga i <link linkend="science-mode"
+>Vetenskapligt läge</link
+> och <link linkend="statistical-mode"
+>Statistiskläge</link
+>. </action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Visa bitredigering</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Visar ett bitredigeringsfält. Klicka på en bit för att ändra den. Bara tillgängligt i <link linkend="numeral-system-mode"
+>Nummersystemläge</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Dessutom har Miniräknare de vanliga menyalternativen <guimenu
+>Arkiv</guimenu
+>, <guimenu
+>Redigera</guimenu
+>, <guimenu
+>Inställningar</guimenu
+> och <guimenu
+>Hjälp</guimenu
+>. För mer information, läs avsnitten om <ulink url="help:/fundamentals/menus.html"
+>menyer</ulink
+> i &kde;:s Grunder. </para>
+
+</sect1>
+
+</chapter>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-parent-document: ("index.docbook" "book" "chapter")
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

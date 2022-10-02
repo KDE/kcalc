@@ -1,0 +1,1858 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Dutch "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY commands SYSTEM "commands.docbook">
+]>
+
+<book id="kcalc" lang="&language;">
+<bookinfo>
+<title
+>Het handboek van &kcalc;</title>
+
+<authorgroup>
+<author
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail; </author>
+
+<author
+>&Pamela.Roberts;&Pamela.Roberts.mail; </author>
+<author
+>&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail; </author>
+&Jaap.Woldringh; 
+</authorgroup>
+
+<copyright>
+<year
+>2001</year
+> <year
+>2002</year
+> <year
+>2005</year
+>	<year
+>2006</year>
+<holder
+>&Bernd.Johannes.Wuebben;, &Pamela.Roberts;, &Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2016-07-25</date>
+<releaseinfo
+>Applications 16.08</releaseinfo>
+
+<abstract
+><para
+>&kcalc; is een rekenmachine voor uw desktop. In de eenvoudige modus kunnen er eenvoudigere rekenkundige bewerkingen mee worden gedaan, maar er kunnen ook wetenschappelijke en statistische berekeningen worden gedaan.</para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Kcalc</keyword>
+<keyword
+>rekenmachine</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Inleiding</title>
+
+<para
+>&kcalc; biedt veel meer wiskundige functies dan u op het eerste gezicht ziet. In het gedeelte van dit handboek over sneltoetsen en modi vindt u meer over de vele beschikbare functies.</para>
+
+<para
+>Naast de gebruikelijke functionaliteit van de meeste wetenschappelijke rekenmachines, biedt &kcalc; een aantal mogelijkheden waarvan ik denk dat ze het waard zijn die even te noemen:</para>
+
+<itemizedlist>
+<listitem>
+<para
+>In &kcalc; zijn goniometrische functies en logische bewerkingen beschikbaar, en het kan statistische berekeningen doen.</para>
+</listitem>
+<listitem>
+<para
+>U kunt getallen knippen en plakken vanuit of naar het scherm van &kcalc;.</para>
+</listitem>
+<listitem>
+<para
+>&kcalc; heeft een <firstterm
+>stapelgeheugen voor uitkomsten</firstterm
+> dat u de mogelijkheid geeft om vorige uitkomsten eenvoudig terug te halen.</para>
+</listitem>
+<listitem>
+<para
+>U kunt de kleuren en het lettertype in het scherm van &kcalc; aanpassen.</para>
+</listitem>
+<listitem>
+<para
+>U kunt de nauwkeurigheid van &kcalc;, het aantal getoonde cijfers, en het aantal decimalen instellen in het dialoogvenster voor de instellingen.</para>
+</listitem>
+<listitem>
+<para
+>&kcalc; heeft een groot aantal handige <link linkend="key-accels"
+>sneltoetsen</link
+> die het gebruik van &kcalc; zonder muis vereenvoudigen.</para>
+<para
+>Tip: Als u de &Ctrl;-toets ingedrukt houdt, ziet u bij iedere knop de bijbehorende sneltoets.</para>
+</listitem>
+</itemizedlist>
+
+<!--see https://bugs.kde.org/show_bug.cgi?id=326481-->
+<note
+><para
+>In &kcalc; wordt de zogenaamde <ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Infix_notation"
+>infix-notatie</ulink
+> gebruikt. Hierbij wordt de rekenformule ingevoerd, waarna die wordt berekend. De bewerkingsvolgorde is zoals die op school wordt onderwezen. Dit in tegenstelling tot  de <ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Immediate_execution"
+>onmiddellijke bewerking (immediate execution)</ulink
+> die in veel eenvoudige rekenmachines wordt gebruikt. </para
+></note>
+
+<para
+>Veel plezier met &kcalc;!</para>
+
+<para
+>&Bernd.Johannes.Wuebben;</para>
+
+</chapter>
+
+
+<chapter id="usage">
+<title
+>Gebruik</title>
+<sect1 id="general-usage">
+<title
+>Algemeen gebruik</title>
+
+<para
+>Over het algemeen is het gebruik overzichtelijk en vergelijkbaar met dat van de meeste eenvoudige wetenschappelijke rekenmachines, maar let op de volgende speciale mogelijkheden van &kcalc;:</para>
+
+<variablelist>
+<varlistentry>
+<term
+>Stapelgeheugen voor de uitkomsten</term>
+<listitem
+><para
+>Iedere keer als u met de &LMB; klikt op de <guibutton
+>=</guibutton
+> knop, of als u de <keycap
+>Enter</keycap
+> of de <keysym
+>=</keysym
+> toets op uw toetsenbord gebruikt, wordt het resultaat op het scherm in het stapelgeheugen van &kcalc; opgeslagen. U kunt in dit stapelgeheugen navigeren met de toetsen <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> en <keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>Z</keycap
+></keycombo
+>.</para
+> 
+</listitem>
+</varlistentry
+> 
+
+<varlistentry>
+<term
+>Procentfunctie</term>
+<listitem>
+<para
+>De procentfunctie werkt net even anders dan op de meeste rekenmachines. Maar als u het eenmaal doorheeft is die zeer handig. Zie het gedeelte over de <link linkend="percent"
+>procent</link
+>functie voor verdere bijzonderheden.</para>
+</listitem
+></varlistentry>
+      
+<varlistentry>
+<term
+>Knippen en plakken</term>
+<listitem>
+<para
+><itemizedlist>
+<listitem>
+<para
+>Met <keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> wordt het getal in het scherm naar het klembord gekopieerd.</para>
+</listitem>
+<listitem>
+<para
+>Met <keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> wordt de inhoud van het klembord naar het scherm van &kcalc; gekopieerd indien dit een geldig getal is.</para>
+</listitem>
+<listitem>
+<para
+>Kopiëren/plakken kan nog steeds door op het scherm van &kcalc; te klikken, maar dit kan in toekomstige versies anders zijn.</para>
+</listitem>
+</itemizedlist>
+</para
+></listitem
+></varlistentry>
+
+<varlistentry>
+<term
+>Geavanceerde functies</term>
+<listitem>
+<para
+>Als u &kcalc; voor de eerste keer start ziet u alleen de knoppen voor de eenvoudige rekenkundige berekeningen.</para>
+<para
+>In het menu <guimenu
+>Instellingen</guimenu
+> is het mogelijk een modus voor &kcalc; te selecteren:  <link linkend="simple-mode"
+>Eenvoudig</link
+> of <link linkend="science-mode"
+>Wetenschappelijk</link
+> of <link linkend="statistical-mode"
+>Statistisch</link
+> of <link linkend="numeral-system-mode"
+>Getalsysteem</link
+>. Let erop dat deze modi wat zullen veranderen tijdens de ontwikkeling van &kcalc;.</para
+> 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Knoppen-indeling</term>
+<listitem>
+<para
+>Om eenvoudig toegang te krijgen tot alle functies die in &kcalc; beschikbaar zijn, is er nog een tweede indeling beschikbaar voor vele knoppen. Door te klikken op de knop <guibutton
+>&Shift;</guibutton
+>, of met de sneltoets <keycap
+>2</keycap
+>, wordt deze tweede indeling zichtbaar.</para
+> 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Geschiedenis</term>
+<listitem>
+<para
+>De Geschiedenis toont alle in de huidige sessie van &kcalc; gedane berekeningen.Klikken op <guibutton
+>AC</guibutton
+> of drukken op de sneltoets<keycap
+>Del</keycap
+> maakt de geschiedenis leeg. U maakt de Geschiedenis actief of inactief met  <guilabel
+>Geschiedenis tonen</guilabel
+> in het menu <guimenu
+>Instellingen</guimenu
+> in de menubalk, of met<keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+>.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+
+
+<!-- describing MODES here -->
+
+<sect1 id="simple-mode">
+<title
+>Eenvoudige modus</title>
+<para
+>In deze modus zijn alleen de knoppen en functies beschikbaar voor de eenvoudigste berekeningen.</para>
+<para
+>Als u alleen maar alle getallen op een rekening wilt optellen, dan kan dit de beste modus zijn om in te werken.</para>
+</sect1>
+
+
+<sect1 id="science-mode">
+<title
+>Wetenschappelijke modus</title>
+
+<para
+>In deze modus worden de knoppen in de linker kolom toegekend aan goniometrische functies:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Knoppen</entry>
+<entry
+>Functie</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>Hyperbolische functies. Hyp Sin is bijvoorbeeld de hyperbolische sinus: sinh(x)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+>Bereken de sinus</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Sin</guibutton
+> of <guibutton
+>Asin</guibutton
+></entry>
+<entry
+>Berekenen van de inverse sinus (arcsinus, inverse sinus is NIET 1/sin)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+>Bereken de cosinus</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Cos</guibutton
+> of <guibutton
+>Acos</guibutton
+></entry>
+<entry
+>Bereken de inverse cosinus (arccosinus, inverse cosinus is NIET 1/cosin)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+>Bereken de tangens</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Tan</guibutton
+> of <guibutton
+>Atan</guibutton
+></entry>
+<entry
+>Bereken de inverse tangens (arctangens, inverse tangens is NIET 1/tangens)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>Bereken de logaritme met grondtal 10</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Log</guibutton
+> of 10<superscript
+>x</superscript
+></entry>
+<entry
+>Bereken 10 tot de macht x (is de inverse functie van log)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>Bereken de natuurlijke logaritme. Dat is de logaritme met grondtal e</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Ln</guibutton
+> of e<superscript
+>x</superscript
+></entry>
+<entry
+>Bereken e tot de macht x (e is het grondtal van natuurlijke logaritmes)</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>In de tweede kolom staan knoppen voor algebraïsche functies:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Knoppen</entry>
+<entry
+>Functie</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Mod</guibutton
+></entry>
+<entry
+>Bereken de rest bij delen met alleen gehele getallen</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Mod</guibutton
+> of <guibutton
+>IntDiv</guibutton
+></entry>
+<entry
+>Delen met alleen gehele getallen (gehele deel quotiënt)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>Bereken 1/x, het omgekeerde van een getal</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>1/x</guibutton
+> of <guibutton
+>nCm</guibutton
+></entry>
+<entry
+>Bereken de binomiale coëfficiënt n-over-m. Dit is het aantal verschillende keuzes (combinaties) dat kan worden gemaakt van m elementen uit een verzameling van n elementen, zonder terugleggen.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x!</guibutton
+></entry>
+<entry
+>Bereken het product van alle gehele positieve getallen van 1 tot en met x (x faculteit, x moet een geheel getal zijn)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x²</guibutton
+></entry>
+<entry
+>Bereken het kwadraat van x (x * x)</entry
+></row>
+
+ <row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>x²</guibutton
+> of <guibutton
+>√x</guibutton
+></entry>
+<entry
+>Bereken de (vierkants)wortel van x</entry
+></row>
+
+<row
+><entry
+><guibutton
+>xʸ</guibutton
+></entry>
+<entry
+>Bereken x tot de macht y</entry
+></row>
+
+<row
+><entry
+>&Shift; x<superscript
+>y</superscript
+> of x<superscript
+>1/y</superscript
+></entry>
+<entry
+>Bereken x tot de macht 1/y (y-de machtswortel van x)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x³</guibutton
+></entry>
+<entry
+>Bereken de derdemachts wortel van x</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>x³</guibutton
+> of <guibutton
+>∛x</guibutton
+></entry>
+<entry
+>Bereken de derdemachts wortel van x</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x·10ʸ</guibutton
+></entry>
+<entry
+>Bereken het product van x en 10 tot de (gehele) macht y</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+
+
+<sect1 id="statistical-mode">
+<title
+>Statistische Modus</title>
+
+<para
+>In deze modus kunnen de knoppen in de linker kolom worden gebruikt voor statistische functies:</para>
+<para
+>De meeste functionaliteit in deze modus is beschikbaar rond de knop <guibutton
+>Dat</guibutton
+>. Om een gegevenslijst van getallen te maken, voert u een getal in in de rekenmachine en drukt u op <guibutton
+>Dat</guibutton
+>. Een oplopend getal in het scherm geeft aan welke positie in de gegevens <quote
+>lijst</quote
+> het getal heeft. Een traditionele rekenmachine bewaart maar drie waarden voor statistische functies: het aantal getallen in de lijst, de som van de getallen en de som van de kwadraten van de getallen. &kcalc; wijkt af door elk getal apart op te slaan, waardoor bijvoorbeeld de mediaan berekend kan worden. </para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Knoppen</entry>
+<entry
+>Functie</entry
+></row
+></thead>
+
+<tbody>
+<row
+><entry
+><guibutton
+>N</guibutton
+></entry>
+<entry
+>Geeft het aantal ingevoerde getallen</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>N</guibutton
+> of <guibutton
+>&Sgr;x</guibutton
+></entry>
+<entry
+>Toon de som van alle ingevoerde getallen</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Gem</guibutton
+></entry>
+<entry
+>Toon het (rekenkundige) gemiddelde van de ingevoerde getallen</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Gem</guibutton
+> of <guibutton
+>&Sgr;x²</guibutton
+></entry>
+<entry
+>Toon de som van de kwadraten van alle ingevoerde getallen</entry
+></row>
+
+<row
+><entry
+>&sgr;<subscript
+>N</subscript
+></entry>
+<entry
+>Toon de (n) standaard deviatie</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> &sgr;<subscript
+>N</subscript
+> or &sgr;<subscript
+>N-1</subscript
+> </entry>
+<entry
+>Toon de (n-1) standaard deviatie van de populatie</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Med</guibutton
+></entry>
+<entry
+>Toon de mediaan</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>Een gegeven getal invoeren</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Dat</guibutton
+> of <guibutton
+>CDat</guibutton
+></entry>
+<entry
+>Het laatst ingevoerde getal wissen</entry
+></row>
+
+<row
+><entry
+><guibutton
+>CSt</guibutton
+></entry>
+<entry
+>Alle ingevoerde getallen uit het stapelgeheugen wissen ("Clear stack": stapelgeheugen wissen)</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>De twee volgende kolommen bevatten de knoppen voor goniometrische en algebraïsche functies, zoals beschreven in het deel <link linkend="science-mode"
+>Wetenschappelijke</link
+> modus.</para>
+
+</sect1>
+
+
+<sect1 id="numeral-system-mode">
+<title
+>Modus voor getalsystemen</title>
+<para
+>In deze modus zijn knoppen en functies beschikbaar voor het rekenen met binaire, hexadecimale, octale en decimale getallen.</para>
+
+<para
+>U kunt met de keuzerondjes rechts een getalsysteem selecteren. U kunt bijvoorbeeld op de volgende manier een hexadecimaal getal invoeren:Selecteer het keuzerondje <guilabel
+>Hex</guilabel
+>. Voer daarna een getal in, u kunt hierbij de letters <guibutton
+>A</guibutton
+> tot en met <guibutton
+>F</guibutton
+> gebruiken als cijfers hoger dan 9. U kunt hierna dit getal in het binaire getalsysteem zien als u nu op het keuzerondje <guilabel
+>Bin</guilabel
+> klikt.</para>
+
+ <para
+>Binaire, octale en hexadecimale getallen kunnen weergegeven worden als groepen tekens gescheiden door witruimte. Deze groepering kan de leesbaarheid van getallen verbeteren. Bijvoorbeeld, hexadecimaal getal <emphasis
+>AF1C42</emphasis
+> kan weergegeven worden als <emphasis
+>AF 1C 42</emphasis
+> met een scheiding op elk tweede teken. Groepering kan aan of uit gezet worden. Selecteer <menuchoice
+><guimenu
+>Instellingen</guimenu
+><guimenuitem
+>&kcalc; instellen...</guimenuitem
+></menuchoice
+> om de instellingendialoog te starten en wijzig de instelling op de pagina <guilabel
+>Algemeen</guilabel
+> naar behoefte.</para>
+
+<para
+>U kunt geselecteerde bits bekijken als u <guimenu
+>Bitbewerking tonen</guimenu
+> selecteert in het menu <guimenu
+>Instellingen</guimenu
+>.</para>
+
+<para
+>In deze modus zijn logische bewerkingen beschikbaar, namelijk: <informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Knoppen</entry>
+<entry
+>Functie</entry
+></row
+></thead>
+<tbody>
+<row
+><entry
+><guibutton
+>EN</guibutton
+></entry>
+<entry
+>Hiermee is de logische EN-bewerking toegepast op twee getallen</entry
+></row>
+
+<row
+><entry
+><guibutton
+>OF</guibutton
+></entry>
+<entry
+>Hiermee is de logische OF-bewerking toegepast op twee getallen</entry
+></row>
+
+<row
+><entry
+><guibutton
+>XOF</guibutton
+></entry>
+<entry
+>Hiermee is de logische exclusieve OF-bewerking toegepast op twee getallen</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>Left shift (alle bitjes een positie naar links schuiven)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>Right shift (alle bitjes een positie naar rechts schuiven).</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cmp</guibutton
+></entry>
+<entry
+>1-complement bewerking uitvoeren</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+</para>
+
+<para
+>De twee tweede kolom bevat de knoppen voor algebraïsche functies, zoals beschreven in het deel <link linkend="science-mode"
+>Wetenschappelijke</link
+> modus.</para>
+
+<para
+>De derde kolom met de knoppen <guibutton
+>A</guibutton
+> tot en met <guibutton
+>F</guibutton
+> is alleen beschikbaar in <guilabel
+>Hex</guilabel
+>-modus. </para>
+</sect1>
+
+<!-- end of MODES -->
+
+
+<sect1 id="memory-operations">
+<title
+>Geheugenbewerkingen</title>
+
+<para
+>&kcalc; ondersteunt de geheugenbewerkingen van standaard rekenmachines en zes geheugenplaatsen om constanten in te bewaren.</para>
+
+<sect2 id="standard_memory">
+<title
+>Standaard geheugenbewerkingen</title>
+
+<para
+>&kcalc; kan de resultaten van bewerkingen voor u onthouden, zodat u die in latere berekeningen weer kunt gebruiken. U kunt deze functies oproepen met de knoppen<guibutton
+>MR</guibutton
+>, <guibutton
+>MS</guibutton
+>, <guibutton
+>M+</guibutton
+> en <guibutton
+>MC</guibutton
+>.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>MS</guibutton
+></term>
+<listitem
+><para
+>De knop <guibutton
+>MS</guibutton
+> slaat het huidige resultaat op in het geheugen (memory store).</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>M+</guibutton
+></term>
+<listitem
+><para
+>De knop <guibutton
+>M+</guibutton
+> telt het huidige resultaat op bij dat in het geheugen. Dus met 20 in het geheugen, en het huidige resultaat 5, wordt de inhoud van het geheugen 25. Als het geheugen leeg is, werkt het net als de knop <guibutton
+>MS</guibutton
+> en wordt het resultaat gewoon opgeslagen.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MR</guibutton
+></term>
+<listitem
+><para
+>De knop <guibutton
+>MR</guibutton
+> haalt de waarde uit het geheugen op en zet deze in het scherm (memory recall).</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MC</guibutton
+></term>
+<listitem
+><para
+>De knop <guibutton
+>MC</guibutton
+> wist het geheugen (memory clear).</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Als er een waarde  (ongelijk 0) in het geheugen staat verschijnt er een <guilabel
+>M</guilabel
+> in de statusbalk, naast de indicator voor de modus</para>
+</sect2>
+
+<sect2 id="constant_buttons">
+<title
+>Constanten</title>
+
+<para
+>De zes knoppen voor constanten <guibutton
+>C1</guibutton
+> tot en met <guibutton
+>C6</guibutton
+> zijn alleen zichtbaar na activering van het item <guilabel
+>Knoppen constanten</guilabel
+> in het menu <guimenu
+>Instellingen</guimenu
+> in de menubalk. Ze zijn alleen beschikbaar in de <guilabel
+>Wetenschappelijke modus</guilabel
+> en in de <guilabel
+>Statistische modus</guilabel
+></para>
+
+<para
+>Door de muisaanwijzer boven een van deze knoppen te houden kunt u zien welke constante hier is opgeslagen.</para>
+
+<para
+>Om het huidige getal in het scherm in een van de zes constanten op te slaan, drukt u eerst op <guibutton
+>&Shift;</guibutton
+> en daarna op de gewenste toets <guibutton
+>C1</guibutton
+> t/m <guibutton
+>C6</guibutton
+>.</para>
+
+<para
+>Om de waarde in een van de constanten in een berekening te gebruiken, drukt u op de gewenste knop (<guibutton
+>C1</guibutton
+> t/m <guibutton
+>C6</guibutton
+>), waarna het overeenkomende getal verschijnt in het scherm. </para>
+
+<para
+>U kunt de tekst op de knoppen van de constanten wijzigen om te onthouden welke knop welke constante bevat. Klik met de rechtermuisknop op een van de knoppen <guibutton
+>C1</guibutton
+> t/m <guibutton
+>C6</guibutton
+>. Er verschijnt een menu, kies hierin <guilabel
+>Voer naam in</guilabel
+>. </para>
+
+<para
+>Er zijn veel (meest natuurkundige) voorgedefinieerde constanten, die op elk van de zes knoppen <guibutton
+>C1</guibutton
+> t/m <guibutton
+>C6</guibutton
+> gezet kunnen worden, door de gewenste constante uit het menu te kiezen, dat verschijnt na met de rechtermuisknop op de knop te klikken en <guilabel
+>Uit lijst kiezen</guilabel
+> te kiezen. Hoewel de voorgedefinieerde constanten ook via <guimenu
+>Constanten</guimenu
+> in de menubalk gekozen kunnen worden, is het erg handig een constante aan een knop toe te kennen, als die veel gebruikt wordt.</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="key-accels">
+<title
+>Enkelvoudige sneltoetsen</title>
+
+<para
+>Om de invoer voor berekeningen met behulp van het toetsenbord te vereenvoudigen, heeft &kcalc; enkelvoudige sneltoetsen voor de meeste functies. Bijvoorbeeld, met <userinput
+>7R</userinput
+> of <userinput
+>7r</userinput
+> berekent u het omgekeerde (is: reciproke) van 7 (1/7).</para>
+
+<para
+>Tijdens een berekening kunt u altijd door op &Ctrl; te drukken, de bij elke knop behorende sneltoets zien.</para>
+<!-- Shift works like Caps Lock-->
+<informaltable
+><tgroup cols="3">
+<thead>
+<row
+><entry
+>Toets</entry>
+<entry
+>Functie</entry>
+<entry
+>Notities</entry
+></row>
+</thead>
+<tbody>
+
+<row
+><entry
+><keycap
+>H</keycap
+></entry>
+<entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>Hyperbolisch, zoals in hyperbolische sinus, sinh(x)</entry
+></row>
+
+<row
+><entry
+><keycap
+>S</keycap
+></entry>
+<entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>C</keycap
+></entry>
+<entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>T</keycap
+></entry>
+<entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>N</keycap
+></entry>
+<entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>logaritme met grondtal e (natuurlijke logaritme)</entry
+></row>
+
+<row
+><entry
+><keycap
+>L</keycap
+></entry>
+<entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>Logaritme met grondtal 10</entry
+></row>
+
+<row
+><entry
+><keycap
+>Ctrl-2</keycap
+></entry>
+<entry
+> <guibutton
+>&Shift;</guibutton
+></entry>
+<entry
+>Tweede functie voor deze knop. &eg;, is arcsin(x) (of: inverse sinus van x) nodig, dan typt u <userinput
+>Ctrl-2 s </userinput
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>\</keysym
+></entry>
+<entry
+><guibutton
+>+/-</guibutton
+></entry>
+<entry
+>Ander teken (of: vermenigvuldigen met -1)</entry
+></row>
+
+<row
+><entry
+><keysym
+>[</keysym
+></entry>
+<entry
+><guibutton
+>x^2</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>^</keysym
+></entry>
+<entry
+><guibutton
+>x^y</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>!</keysym
+></entry>
+<entry
+><guibutton
+>x!</guibutton
+></entry>
+<entry
+>Faculteit (Bijv. 3! = 1*2*3 = 6; 4! = 24)</entry
+></row>
+
+<row
+><entry
+><keysym
+>E</keysym
+></entry>
+<entry
+>x10<superscript
+>y</superscript
+></entry>
+<entry
+>Exponent</entry
+></row>
+
+<row
+><entry
+><keysym
+>&lt;</keysym
+></entry>
+<entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>Left shift (alle bits een positie naar links schuiven)</entry
+></row>
+<!-- no "<" on Lsh key only "
+>" on Rsh key-->
+<row
+><entry
+><keysym
+>&gt;</keysym
+></entry>
+<entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>Right shift (alle bits een positie naar rechts schuiven).</entry
+></row>
+<row
+><entry
+><keysym
+>&amp;</keysym
+></entry>
+<entry
+><guibutton
+>EN</guibutton
+></entry>
+<entry
+>Logische EN (AND)</entry
+></row>
+
+<row
+><entry
+><keysym
+>x</keysym
+> of <keysym
+>*</keysym
+></entry>
+<entry
+><guibutton
+>X</guibutton
+></entry>
+<entry
+>Vermenigvuldigen</entry
+></row>
+
+<row
+><entry
+><keysym
+>/</keysym
+></entry>
+<entry
+><guibutton
+>/</guibutton
+></entry>
+<entry
+>Delen</entry
+></row>
+
+<row
+><entry
+><keycap
+>D</keycap
+></entry>
+<entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>Voer een getal in in statistische modus</entry
+></row>
+
+<row
+><entry
+><keycap
+>|</keycap
+></entry>
+<entry
+><guibutton
+>OF</guibutton
+></entry>
+<entry
+>Logische OF (OR). Let op: <guibutton
+>&Shift;</guibutton
+> <guibutton
+>OF</guibutton
+> is XOF</entry
+></row>
+
+<row
+><entry
+><keycap
+>R</keycap
+></entry>
+<entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>Omgekeerde waarde (x naar 1/x)</entry
+></row>
+
+<row
+><entry
+>&Enter;</entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>Return</keycap
+></entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+>&Backspace;</entry>
+<entry
+><guibutton
+>&lt;=</guibutton
+></entry>
+<entry
+>Laatste getal wissen</entry
+></row>
+
+<row
+><entry
+><keycap
+>PgUp</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Wissen</entry
+></row>
+
+<row
+><entry
+>&Esc;</entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Wissen</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Prior</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Clear</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>PgDown</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Alles wissen</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Next</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Clear all</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>Del</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Alles wissen</entry
+></row>
+
+<row
+><entry
+><keycap
+>:</keycap
+></entry>
+<entry
+><guibutton
+>Mod</guibutton
+></entry>
+<entry
+>rest bij deling</entry
+></row>
+
+<row
+><entry
+>&Alt;+<keycap
+>1</keycap
+> tot &Alt;+<keycap
+>6</keycap
+></entry>
+<entry
+><guibutton
+>C1</guibutton
+></entry>
+<entry
+>een waarde opgeslagen in C1 tot C6 gebruiken</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+</chapter>
+
+<chapter id="comments-on-specific-functions">
+<title
+>Opmerkingen over specifieke functies</title>
+
+<sect1 id="mod">
+<title
+>Mod en IntDiv</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Mod</guibutton
+> geeft de rest van de deling van het getal in het scherm door het daarna ingevoerde getal.</term>
+<listitem
+><para
+><userinput
+>22 Mod 8 = </userinput
+> geeft de uitkomst <emphasis
+>6</emphasis
+></para>
+<para
+><userinput
+>22.345 Mod 8 = </userinput
+> geeft de uitkomst <emphasis
+>6.345</emphasis
+> (Vertaler: ?)</para>
+</listitem
+></varlistentry>
+
+<varlistentry>
+<term
+>Met <guibutton
+>&Shift;</guibutton
+> <guibutton
+>IntDiv</guibutton
+> deelt u een getal, dat niet noodzakelijk geheel hoeft te zijn, door het volgende ingevoerde getal. Het antwoord is het gehele gedeelte van het resultaat.</term>
+<listitem
+><para
+><userinput
+>22 &Shift; IntDiv 8 = </userinput
+> geeft de uitkomst <emphasis
+>2</emphasis
+></para>
+<para
+><userinput
+>22.345 &Shift; IntDiv 8 = </userinput
+> geeft ook <emphasis
+>2</emphasis
+> </para
+></listitem
+></varlistentry>
+</variablelist>
+
+</sect1>
+
+
+<sect1 id="percent">
+<title
+>&percnt;</title>
+
+<para
+>Wanneer<guibutton
+>%</guibutton
+> wordt gebruikt in plaats van de toets <guibutton
+>=</guibutton
+> wordt de laatste bewerking van de huidige berekening als volgt uitgevoerd:</para>
+
+<para
+><itemizedlist>
+<listitem>
+<para
+>Als de laatste bewerking een + is of een - wordt het tweede argument beschouwd als percentage van het eerste getal . </para>
+</listitem>
+<listitem>
+<para
+>Als de laatste bewerking een * is wordt het resultaat van de vermenigvuldiging gedeeld door 100. </para>
+</listitem>
+<listitem>
+<para
+>Als de laatste bewerking een / is geef dan de linker operand (getal) als een percentage van de rechter operand. </para>
+</listitem>
+<listitem>
+<para
+>In alle andere gevallen geeft de &percnt;-toets dezelfde resultaten als de =-toets. </para>
+</listitem>
+</itemizedlist
+></para>
+
+<variablelist>
+<varlistentry>
+<term
+>Voorbeelden:</term>
+<listitem>
+<para
+><userinput
+>150 + 50 %</userinput
+>geeft <emphasis
+>225</emphasis
+> (150 plus 50 procent van 150)</para>
+<para
+><userinput
+>42 * 3 %</userinput
+>geeft <emphasis
+>1.26</emphasis
+> (42 * 3 / 100)</para>
+<para
+><userinput
+>11 / 55 %</userinput
+> geeft <emphasis
+>20</emphasis
+> (11 is 20 procent van 55)</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="lsh-rsh">
+<title
+>Lsh en Rsh</title>
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Lsh</guibutton
+> verschuift de binaire representatie van het gehele gedeelte van het getal in het scherm over n posities, waarbij n het volgende ingevoerde getal is. Per positie betekent een verschuiving naar links een vermenigvuldiging met twee, het resultaat is een geheel getal (grondtal is ingesteld op 2, dus binaire getallen):</term>
+<listitem
+><para
+><userinput
+>10 Lsh 3 =</userinput
+> geeft <emphasis
+>80</emphasis
+> (10 drie keer met 2 vermenigvuldigd).</para>
+<para
+><userinput
+>10,345 Lsh 3 =</userinput
+> geeft ook <emphasis
+>80</emphasis
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Rsh</guibutton
+> verschuift n keer de binaire gehele waarde (voert n keer een deling uit door 2).</term>
+<listitem
+><para
+><userinput
+>16 Rsh 2 =</userinput
+> geeft <emphasis
+>4</emphasis
+> (16 twee keer door 2 gedeeld).</para>
+<para
+><userinput
+>16.999 Rsh 2 =</userinput
+> geeft ook <emphasis
+>4</emphasis
+>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="and-or-xor">
+<title
+>Cmp, EN, OF en XOF</title>
+
+<para
+>De functies <guibutton
+>Cmp</guibutton
+>, <guibutton
+>EN</guibutton
+> en <guibutton
+>OF</guibutton
+> voeren per bit logische bewerkingen uit en hebben daarom waarschijnlijk meer betekenis als het <guilabel
+>Grondtal</guilabel
+> wordt ingesteld op <guilabel
+>Hex</guilabel
+>, <guilabel
+>Oct</guilabel
+> of <guilabel
+>Bin</guilabel
+> in plaats van op <guilabel
+>Dec</guilabel
+>.In de volgende voorbeelden is het <guilabel
+>Grondtal</guilabel
+> ingesteld op <guilabel
+>Bin</guilabel
+>.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Cmp</guibutton
+> voert een "1's complement"-bewerking uit (keert alle bitjes om, dat wil zeggen elke 1 wordt een 0 en elke 0 wordt een 1).</term>
+<listitem
+><para
+><userinput
+>101 Cmp</userinput
+> geeft <emphasis
+>111...111010</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>EN</guibutton
+> voert de logische AND-bewerking uit.</term>
+<listitem
+><para
+><userinput
+>1100 EN 1010 =</userinput
+> geeft <emphasis
+>1000</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>OF</guibutton
+>voert de logische OR-bewerking uit.</term>
+<listitem
+><para
+><userinput
+>1100 OF 1010 =</userinput
+> geeft <emphasis
+>1110</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>XOF</guibutton
+> voert de logische XOR-bewerking uit (exclusieve OR) .</term>
+<listitem
+><para
+><userinput
+>1100 XOF 1010 =</userinput
+> geeft <emphasis
+>0110</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+</chapter>
+
+
+<chapter id="questions-and-answers">
+<title
+>Vragen en Antwoorden</title>
+
+<qandaset>
+
+
+<qandaentry>
+<question
+><para
+>Hoe krijg ik e, het getal van Euler (2.718281828459045...)?</para
+></question>
+<answer
+><para
+>Druk op <userinput
+>1 Shift e<superscript
+>x</superscript
+></userinput
+> in het venster van &kcalc;, druk op <userinput
+>1 <keycombo action="simul"
+>&Ctrl;<keycap
+>2</keycap
+></keycombo
+> <keycap
+>N</keycap
+></userinput
+> op het toetsenbord of gebruik het menu <menuchoice
+><guimenu
+>Constanten</guimenu
+><guimenuitem
+>Wiskunde</guimenuitem
+> </menuchoice
+>.</para
+></answer>
+</qandaentry>
+
+<qandaentry>
+<question
+><para
+>Hoe krijg ik twee vaste decimalen?</para
+></question>
+<answer
+><para
+>Kies <menuchoice
+><guimenu
+>Instellingen</guimenu
+><guimenuitem
+> &kcalc; instellen...</guimenuitem
+></menuchoice
+> in de menubalk, u krijgt dan het dialoogscherm voor de instellingen. Kruis aan <guilabel
+>Nauwkeurigheid instellen</guilabel
+> en draai het spinveld naar 2.</para
+></answer
+> </qandaentry>
+
+<qandaentry>
+<question
+><para
+>Hoe zit het met de nauwkeurigheid?</para
+></question>
+<answer
+><para
+>Het belangrijkste dat de nauwkeurigheid van &kcalc; bepaalt is of uw libc en libmath het gegevenstype <type
+>long double</type
+> in C ondersteunen. In dat geval zal &kcalc; dit tijdens het compileren detecteren en dit als het fundamentele gegevenstype gebruiken voor het opslaan van getallen. </para>
+
+<para
+>Verander de <guilabel
+>Nauwkeurigheid</guilabel
+> in het dialoogscherm <guibutton
+>Instellingen</guibutton
+> van &kcalc; zo dat de bovenstaande berekeningen goed worden uitgevoerd. Ik raad een nauwkeurigheid aan van 14 cijfers als het fundamentele gegevenstype van uw &kcalc; <type
+>long double</type
+> is, en anders 8 of 10.</para>
+
+<para
+>Een grotere nauwkeurigheid betekent niet noodzakelijk betere resultaten. Speel een beetje met de nauwkeurigheidsinstelling en u zult zien wat ik hiermee bedoel.</para>
+</answer>
+</qandaentry>
+
+</qandaset>
+</chapter>
+
+&commands;
+
+<chapter id="copyright">
+<title
+>Dankbetuigingen en Licentie</title>
+
+<para
+>&kcalc; Programma Copyright &copy;:</para>
+<para
+>&Bernd.Johannes.Wuebben; 1996-2000</para>
+<para
+>Het &kde;-team 2000-2008</para>
+<para
+>&Evan.Teran; 2008-2013</para>
+
+<itemizedlist>
+<listitem
+><para
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+>&Evan.Teran; &Evan.Teran.mail;</para
+></listitem>
+<listitem
+><para
+>&Espen.Sand; &Espen.Sand.mail;</para
+></listitem>
+<listitem
+><para
+>&Chris.Howells; &Chris.Howells.mail;</para
+></listitem>
+<listitem
+><para
+>&Aaron.J.Seigo; &Aaron.J.Seigo.mail;</para
+></listitem>
+<listitem
+><para
+>&Charles.Samuels; &Charles.Samuels.mail;</para
+></listitem>
+<listitem
+><para
+>&David.Johnson; &David.Johnson.mail;</para
+></listitem>
+</itemizedlist>
+
+<para
+>De inspiratie voor &kcalc; kwam door de applicatie <application
+>xfrmcalc</application
+> van <personname
+><firstname
+>Martin</firstname
+> <surname
+>Bartlett</surname
+></personname
+>. In &kcalc; wordt van dit programma de manier waarop het stapelgeheugen is georganiseerd nog steeds gebruikt.</para>
+
+<para
+>Documentatie Copyright &copy; 2001,2002,2005, 2006,2010:</para>
+<itemizedlist>
+<listitem
+><para
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+>&Pamela.Roberts; &Pamela.Roberts.mail;</para
+></listitem>
+<listitem
+><para
+>&J.Hall; &J.Hall.mail;</para
+></listitem>
+<listitem
+><para
+>&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Eike</firstname
+><surname
+>Krumbacher</surname
+></personname
+> <email
+>eike.krumbacher@x-eike.de</email
+></para
+></listitem>
+</itemizedlist>
+
+&meld.fouten;&vertaling.jaap; &underFDL; &underGPL; </chapter>
+
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

@@ -1,0 +1,238 @@
+<chapter id="commands">
+
+<title
+>Referência de Comandos</title>
+
+<sect1 id="menus">
+<title
+>Opções do Menu</title>
+
+ <para
+>Uma visão geral breve sobre alguns itens de menu especiais no &kcalc;:</para>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constantes</guimenu
+> <guimenuitem
+>Matemáticas</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra o Pi, o número de Euler ou a Proporção Dourada.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constantes</guimenu
+> <guimenuitem
+>Electromagnetismo</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra a Velocidade da Luz, a Carga Elementar, a Impedância do Vácuo, a Permeabilidade do Vácuo ou a Permissividade do Vácuo.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constantes</guimenu
+> <guimenuitem
+>Atómica &amp; Nuclear</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra a Constante de Planck, a Carga Elementar ou a Constante das Estruturas Finas.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constantes</guimenu
+> <guimenuitem
+>Termodinâmica</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra a Constante de Boltzmann, a Unidade de Massa Atómica, a Constante dos Gases molares, a Constante de Stefan-Boltzmann ou o Número de Avogadro.</action
+> 
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constantes</guimenu
+> <guimenuitem
+>Gravidade</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Mostra a Constante de Gravidade ou a Aceleração da Terra. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Modo Simples</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra as teclas de operações matemáticas simples.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Modo Científico</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra os botões científicos e trigonométricos.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Modo Estatístico</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra os <link linkend="statistical-mode"
+>botões estatísticos.</link
+></action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Modo de Sistema Numérico</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra os <link linkend="and-or-xor"
+>botões lógicos</link
+> e permite mudar o sistema numérico.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Botões das Constantes</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra as teclas das constantes. Estas estão disponíveis no <link linkend="science-mode"
+>modo científico</link
+> e no <link linkend="statistical-mode"
+>modo estatístico</link
+>. </action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configuração</guimenu
+> <guimenuitem
+>Mostrar a Edição de 'Bits'</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra um campo de edição de 'bits'. Carregue num 'bit' para comutar o seu estado. Só está disponível no <link linkend="numeral-system-mode"
+>modo de sistemas numéricos</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Para além disso, o &kcalc; tem os menus <guimenu
+>Ficheiro</guimenu
+>, <guimenu
+>Editar</guimenu
+>, <guimenu
+>Configuração</guimenu
+> e <guimenu
+>Ajuda</guimenu
+> normais; para mais informações, leia as secções sobre os <ulink url="help:/fundamentals/ui.html#menus"
+>Menus</ulink
+> nos Fundamentos do &kde;. </para>
+
+</sect1>
+
+</chapter>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-parent-document: ("index.docbook" "book" "chapter")
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

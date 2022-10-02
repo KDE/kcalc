@@ -1,0 +1,255 @@
+<chapter id="commands">
+
+<title
+>Referencia de órdenes</title>
+
+<sect1 id="menus">
+<title
+>Opciones de menú</title>
+
+ <para
+>Un breve resumen de algunas opciones de menú especiales en &kcalc;:</para>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constantes</guimenu
+> <guimenuitem
+>Matemáticas</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Muestra pi, el número e (o de Euler) y la sección áurea.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constantes</guimenu
+> <guimenuitem
+>Electromagnetismo</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Muestra la velocidad de la luz, la carga elemental, la impedancia del vacío, la permeabilidad del vacío y la permitividad del vacío.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constantes</guimenu
+> <guimenuitem
+>Física atómica y nuclear</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Muestra la constante de Planck, la carga elemental y la constante de estructura fina.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constantes</guimenu
+> <guimenuitem
+>Termodinámica</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Muestra la constante de Boltzmann, la unidad de masa atómica, la constante molar de los gases, la constante de Stefan-Boltzmann y el número de Avogadro.</action
+> 
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constantes</guimenu
+> <guimenuitem
+>Gravitación</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Muestra la constante de gravitación y la aceleración de la Tierra. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Preferencias</guimenu
+> <guimenuitem
+>Modo simple</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Muestra los botones matemáticos sencillos.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Preferencias</guimenu
+> <guimenuitem
+>Modo científico</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Muestra los botones trigonométricos y científicos.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Preferencias</guimenu
+> <guimenuitem
+>Modo estadístico</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Muestra los <link linkend="statistical-mode"
+>botones estadísticos</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Preferencias</guimenu
+> <guimenuitem
+>Modo sistema de numeración</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Muestra los <link linkend="and-or-xor"
+>botones lógicos</link
+> y permite cambiar el sistema de numeración.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Preferencias</guimenu
+> <guimenuitem
+>Mostrar historial</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Muestra el historial.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Preferencias</guimenu
+> <guimenuitem
+>Botones de constantes</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Muestra botones de constantes. Están disponibles en el <link linkend="science-mode"
+>modo científico</link
+> y en el <link linkend="statistical-mode"
+>modo estadístico</link
+>. </action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Preferencias</guimenu
+> <guimenuitem
+>Mostrar edición de bits</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Muestra un campo de edición de bits. Pulse sobre un bit para cambiarlo. Solo está disponible en el <link linkend="numeral-system-mode"
+>modo sistema de numeración</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Adicionalmente &kcalc; dispone de las opciones de menu comunes <guimenu
+>Archivo</guimenu
+>, <guimenu
+>Editar</guimenu
+>, <guimenu
+>Preferencias</guimenu
+> y <guimenu
+>Ayuda</guimenu
+>, para más información, lea las secciones sobre los <ulink url="help:/fundamentals/menus.html"
+>Menús</ulink
+> en los fundamentos de &kde;. </para>
+
+</sect1>
+
+</chapter>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-parent-document: ("index.docbook" "book" "chapter")
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

@@ -1,0 +1,242 @@
+<chapter id="commands">
+
+<title
+>Наредбе</title>
+
+<sect1 id="menus">
+<title
+>Ставке менија</title>
+
+ <para
+>Кратак преглед неких посебних ставки менија у <application
+>К‑калку</application
+>:</para>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Константе</guimenu
+> <guimenuitem
+>Математика</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>π, Ојлеров број, златни пресек.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Константе</guimenu
+> <guimenuitem
+>Електромагнетизам</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Брзина светлости, елементарно наелектрисање, импеданса вакуума, пермеабилност вакуума, диелектричност вакуума.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Константе</guimenu
+> <guimenuitem
+>Атомске и нуклеарне</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Планкова константа, елементарно наелектрисање, константа фине структуре.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Константе</guimenu
+> <guimenuitem
+>Термодинамика</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Болцманова константа, јединица атомске масе, моларна гасна константа, Штефан-Болцманова константа, Авогадров број.</action
+> 
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Константе</guimenu
+> <guimenuitem
+>Гравитација</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Гравитациона константа, убрзање Земљине теже. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Подешавање</guimenu
+> <guimenuitem
+>Једноставни режим</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Приказује дугмад за једноставна израчунавања.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Подешавање</guimenu
+> <guimenuitem
+>Научни режим</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Приказује тригонометријску и научну дугмад.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Подешавање</guimenu
+> <guimenuitem
+>Статистички режим</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Приказује <link linkend="statistical-mode"
+>статистичку дугмад</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Подешавање</guimenu
+> <guimenuitem
+>Режим бројевних система</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Приказује <link linkend="and-or-xor"
+>логичку дугмад</link
+> и омогућава мењање бројевних система.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Подешавање</guimenu
+> <guimenuitem
+>Дугмад константи</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Приказује дугмад константи. Доступна су у <link linkend="science-mode"
+>научном</link
+> и <link linkend="statistical-mode"
+>статистичком режиму</link
+>. </action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Подешавање</guimenu
+> <guimenuitem
+>Уређивање битова</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Приказује поље за уређивање битова. Кликните на бит да га измените. Доступно само у <link linkend="numeral-system-mode"
+>режиму бројевних система</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+><application
+>К‑калк</application
+> такође има уобичајене меније <guimenu
+>Фајл</guimenu
+>, <guimenu
+>Уређивање</guimenu
+>, <guimenu
+>Подешавање</guimenu
+> и <guimenu
+>Помоћ</guimenu
+>. Детаље о њима потражите у Основама КДЕ‑а, <ulink url="help:/fundamentals/ui.html#menus"
+>одељак о менијима</ulink
+>. </para>
+
+</sect1>
+
+</chapter>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-parent-document: ("index.docbook" "book" "chapter")
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

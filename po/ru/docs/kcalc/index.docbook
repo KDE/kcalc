@@ -1,0 +1,1910 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Russian "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY commands SYSTEM "commands.docbook">
+]>
+
+<book id="kcalc" lang="&language;">
+<bookinfo>
+<title
+>Руководство пользователя &kcalc;</title>
+
+<authorgroup>
+<author
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail; </author>
+
+<author
+>&Pamela.Roberts;&Pamela.Roberts.mail; </author>
+<author
+>&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail; </author>
+<othercredit role="translator"
+><firstname
+>Олег</firstname
+> <surname
+>Баталов</surname
+> <affiliation
+><address
+><email
+>batalov@twiga.kz</email
+></address
+></affiliation
+><contrib
+>Перевод на русский</contrib
+></othercredit
+><othercredit role="translator"
+><firstname
+>Алексей</firstname
+><surname
+>Андросов</surname
+><affiliation
+><address
+><email
+>alexey@androsov.net</email
+></address
+></affiliation
+><contrib
+>Перевод на русский</contrib
+></othercredit
+><othercredit role="translator"
+><firstname
+>Мария</firstname
+><surname
+>Шикунова</surname
+><affiliation
+><address
+><email
+>translation-team@basealt.ru</email
+></address
+></affiliation
+><contrib
+>Перевод на русский</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2001</year
+> <year
+>2002</year
+> <year
+>2005</year
+>	<year
+>2006</year>
+<holder
+>&Bernd.Johannes.Wuebben;, &Pamela.Roberts;, &Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>25 июля 2016 г.</date>
+<releaseinfo
+>Приложения KDE 16.08</releaseinfo>
+
+<abstract
+><para
+>&kcalc; — калькулятор для рабочей среды. В просто режиме его возможно использовать для основных арифметических операций, но помимо этого он также предоставляет расширенные режимы для научных, статистических и системных расчётов.</para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>KCalc</keyword>
+<keyword
+>калькулятор</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Введение</title>
+
+<para
+>&kcalc; предоставляет больше математических функций, чем кажется сначала. В разделах этого руководства о клавиатурных акселераторах и режимах доступна информация о большинстве имеющихся функций.</para>
+
+<para
+>В дополнение к обычным функциональным возможностям, предлагаемым большинством научных калькуляторов, &kcalc; имеет много других полезных функций:</para>
+
+<itemizedlist>
+<listitem>
+<para
+>&kcalc; предоставляет тригонометрические функции, логические операции и статистические расчёты.</para>
+</listitem>
+<listitem>
+<para
+>&kcalc; позволяет вырезать и вставлять числа с экрана.</para>
+</listitem>
+<listitem>
+<para
+>&kcalc; имеет <firstterm
+>стек результатов</firstterm
+>, который позволяет легко получать доступ к предыдущим результатам.</para>
+</listitem>
+<listitem>
+<para
+>Возможно настроить цвета и шрифт экрана &kcalc;.</para>
+</listitem>
+<listitem>
+<para
+>В диалоге настройки возможно указать точность &kcalc; и количество знаков после десятичной точки.</para>
+</listitem>
+<listitem>
+<para
+>В &kcalc; имеется большое количество <link linkend="key-accels"
+>комбинаций клавиш</link
+>, которые позволяют работать в &kcalc; без использования мыши.</para>
+<para
+>Подсказка: при нажатом <keycap
+>&Ctrl;</keycap
+> на каждой кнопке отображаются соответствующие комбинации клавиш.</para>
+</listitem>
+</itemizedlist>
+
+<!--see https://bugs.kde.org/show_bug.cgi?id=326481-->
+<note
+><para
+>&kcalc; использует <ulink url="https://ru.wikipedia.org/wiki/Инфиксная_запись"
+>инфиксную запись</ulink
+>, которая обеспечивает правильный порядок операций, как это обучалось в школе, в отличие от <ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Immediate_execution"
+>немедленного исполнения</ulink
+>, используемого многими простыми калькуляторами. </para
+></note>
+
+<para
+>Приятной работы в &kcalc;!</para>
+
+<para
+>&Bernd.Johannes.Wuebben;</para>
+
+</chapter>
+
+
+<chapter id="usage">
+<title
+>Использование</title>
+<sect1 id="general-usage">
+<title
+>Общее использование</title>
+
+<para
+>Общие принципы использования аналогичны большинству простых научных калькуляторов, но &kcalc; также имеет следующие специальные особенности:</para>
+
+<variablelist>
+<varlistentry>
+<term
+>Стек результатов</term>
+<listitem
+><para
+>При каждом нажатии на кнопку <guibutton
+>=</guibutton
+>, нажатии клавиш <keycap
+>Enter</keycap
+> или <keysym
+>=</keysym
+>, число с экрана будет записано в стек результатов &kcalc;. Возможно перемещаться по стеку с помощью комбинаций клавиш <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> и <keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>Z</keycap
+></keycombo
+>.</para
+> 
+</listitem>
+</varlistentry
+> 
+
+<varlistentry>
+<term
+>Процентные функции</term>
+<listitem>
+<para
+>Процентные функции работают немного не так, как в большинстве калькуляторов. Однако, если изучить их более подробно, станет понятно, что они более полезны, чем кажется. Более подробная информация содержится в разделе о <link linkend="percent"
+>процентных</link
+> функциях.</para>
+</listitem
+></varlistentry>
+      
+<varlistentry>
+<term
+>Копирование и вставка</term>
+<listitem>
+<para
+><itemizedlist>
+<listitem>
+<para
+>Нажатие <keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> помещает отображаемое число в буфер обмена.</para>
+</listitem>
+<listitem>
+<para
+>Нажатие <keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+>вставляет содержимое буфера обмена в экран, если это корректное число с плавающей точкой.</para>
+</listitem>
+<listitem>
+<para
+>Всё ещё возможно копировать и вставлять данные с помощью щелчка левой кнопкой мыши по дисплею &kcalc;, но это может быть отключено в следующих версиях.</para>
+</listitem>
+</itemizedlist>
+</para
+></listitem
+></varlistentry>
+
+<varlistentry>
+<term
+>Дополнительные функции</term>
+<listitem>
+<para
+>При первом запуске &kcalc;, будут отображаться только кнопки основных арифметических операций.</para>
+<para
+>Меню <guimenu
+>Параметры</guimenu
+> позволяет выбрать режим для &kcalc;: <link linkend="simple-mode"
+>Простой</link
+>, <link linkend="science-mode"
+>Инженерный</link
+>, <link linkend="statistical-mode"
+>Статистический</link
+> или режим <link linkend="numeral-system-mode"
+>Систем счисления</link
+>. Обратите внимание, что эти режимы немного меняются в процессе развития &kcalc;.</para
+> 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Кнопки</term>
+<listitem>
+<para
+>Для быстрого доступа ко всем функциям расширенного режима &kcalc; многие клавиши и комбинации имеют вторую раскладку. Чтобы увидеть вторую раскладку, нажмите клавишу <guibutton
+>&Shift;</guibutton
+> или комбинацию клавиш <keycombo action="simul"
+>&Ctrl;<keycap
+>2</keycap
+></keycombo
+>.</para
+> 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>История</term>
+<listitem>
+<para
+>Область истории показывает все вычисления активного сеанса &kcalc;. Чтобы очистить содержимое истории, нажмите <guibutton
+>AC</guibutton
+> или клавишу <keycap
+>Del</keycap
+>. Чтобы включить или отключить эту функцию, установите или снимите флажок <guilabel
+>Показывать историю</guilabel
+> в меню <guimenu
+>Настройка</guimenu
+> панели меню, либо нажмите комбинацию клавиш <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+>.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+
+
+<!-- describing MODES here -->
+
+<sect1 id="simple-mode">
+<title
+>Простой режим</title>
+<para
+>Этот режим содержит только те кнопки и функции, которые необходимы для базовых операций.</para>
+<para
+>Если требуется всего лишь сложить числа в счёте, это наиболее подходящий режим.</para>
+</sect1>
+
+
+<sect1 id="science-mode">
+<title
+>Инженерный режим</title>
+
+<para
+>В этом режиме левая колонка кнопок содержит тригонометрические функции:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Кнопки</entry>
+<entry
+>Функции</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>Вход в гиперболический режим. Например, Hyp Sin — гиперболический синус: sinh</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+>Вычислить синус</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Sin</guibutton
+> или <guibutton
+>Asin</guibutton
+></entry>
+<entry
+>Вычислить арксинус</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+>Вычислить косинус</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Cos</guibutton
+> или <guibutton
+>Acos</guibutton
+></entry>
+<entry
+>Вычислить арккосинус</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+>Вычислить тангенс</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Tan</guibutton
+> или <guibutton
+>Atan</guibutton
+></entry>
+<entry
+>Вычислить арктангенс</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>Вычислить десятичный логарифм</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Log</guibutton
+> или 10<superscript
+>x</superscript
+></entry>
+<entry
+>Вычислить 10 в степени x</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>Вычислить натуральный логарифм. Это логарифм по основанию e</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Ln</guibutton
+> или e<superscript
+>x</superscript
+></entry>
+<entry
+>Вычислить e (основание натурального логарифма) в степени x</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>Второй столбец содержит кнопки для алгебраических функций:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Кнопки</entry>
+<entry
+>Функции</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Mod</guibutton
+></entry>
+<entry
+>Вычислить остаток в евклидовом делении</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Mod</guibutton
+> или <guibutton
+>IntDiv</guibutton
+></entry>
+<entry
+>Целочисленное деление (целая часть от частного)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>Вычислить обратное число</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>1/x</guibutton
+> или <guibutton
+>nCm</guibutton
+></entry>
+<entry
+>Вычислить количество различных подмножеств элементов второго операнда, которые могут быть сформированы для любого набора, содержащего элементы первого операнда (биномиальный коэффициент)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x!</guibutton
+></entry>
+<entry
+>Вычислить произведение всех положительных целых чисел, меньших или равных текущему целочисленному операнду (факториал)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x²</guibutton
+></entry>
+<entry
+>Вычислить x в квадратной степени</entry
+></row>
+
+ <row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>x²</guibutton
+> или <guibutton
+>√x</guibutton
+></entry>
+<entry
+>Вычислить квадратный корень x</entry
+></row>
+
+<row
+><entry
+><guibutton
+>xʸ</guibutton
+></entry>
+<entry
+>x в степени y</entry
+></row>
+
+<row
+><entry
+>&Shift; x<superscript
+>y</superscript
+> или x<superscript
+>1/y</superscript
+></entry>
+<entry
+>x в степени 1/y</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x³</guibutton
+></entry>
+<entry
+>Вычислить x в третьей (кубической) степени</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>x³</guibutton
+> или <guibutton
+>∛x</guibutton
+></entry>
+<entry
+>Вычислить корень x в третьей (кубической) степени</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x·10ʸ</guibutton
+></entry>
+<entry
+>Вычисляет произведение первого операнда и десятичной степени второго операнда</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+
+
+<sect1 id="statistical-mode">
+<title
+>Статистический режим</title>
+
+<para
+>В этом режиме левый столбец кнопок содержит статистические функции:</para>
+<para
+>Большинство функциональности в этом режиме сосредоточено вокруг кнопки <guibutton
+>Dat</guibutton
+>. Чтобы создать массив чисел, введите число в калькулятор и нажмите кнопку <guibutton
+>Dat</guibutton
+>. Числа на дисплее последовательно увеличиваются, показывая какую позицию занимает число в <quote
+>списке</quote
+>. Традиционный калькулятор запоминает только три значения для статистических функций: количество чисел в массиве, сумма чисел и сумма квадратов чисел. &kcalc; отличается тем, что дополнительно запоминает каждое значение, позволяя рассчитать среднее значение. </para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Кнопки</entry>
+<entry
+>Функции</entry
+></row
+></thead>
+
+<tbody>
+<row
+><entry
+><guibutton
+>N</guibutton
+></entry>
+<entry
+>Выбрать номер введённого элемента данных</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>N</guibutton
+> или <guibutton
+>&Sgr;x</guibutton
+></entry>
+<entry
+>Отобразить сумму всех введённых элементов данных</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Mea</guibutton
+></entry>
+<entry
+>Отобразить среднее из введённых элементов данных.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Mea</guibutton
+> или <guibutton
+>&Sgr;x²</guibutton
+></entry>
+<entry
+>Отобразить сумму квадрата введённых данных</entry
+></row>
+
+<row
+><entry
+>&sgr;<subscript
+>N</subscript
+></entry>
+<entry
+>Отобразить среднеквадратичное отклонение (n)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> &sgr;<subscript
+>N</subscript
+> или &sgr;<subscript
+>N-1</subscript
+> </entry>
+<entry
+>Отобразить среднеквадратичное отклонение совокупности (n-1)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Med</guibutton
+></entry>
+<entry
+>Отобразить медиану</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>Ввод элемента данных</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Dat</guibutton
+> или <guibutton
+>CDat</guibutton
+></entry>
+<entry
+>Очистить последнюю введённую запись</entry
+></row>
+
+<row
+><entry
+><guibutton
+>CSt</guibutton
+></entry>
+<entry
+>Очистить весь массив введённых данных</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>Следующие два столбца содержат кнопки с тригонометрическими и алгебраическими функциями, описанными в разделе «<link linkend="science-mode"
+>Инженерный</link
+> режим».</para>
+
+</sect1>
+
+
+<sect1 id="numeral-system-mode">
+<title
+>Режим систем счисления</title>
+<para
+>Этот режим содержит кнопки и функции для расчёта в двоичном, шестнадцатеричном, восьмеричном и десятичном форматах.</para>
+
+<para
+>Систему счисления возможно выбрать с помощью переключателей слева. Например, чтобы вставить шестнадцатеричное число, сделайте следующее: выберите <guilabel
+>Hex</guilabel
+> и введите число (обратите внимание, что возможно использовать буквы от <guibutton
+>A</guibutton
+> до <guibutton
+>F</guibutton
+> для чисел больше 9). Чтобы увидеть это число в двоичном формате, выберите <guilabel
+>Bin</guilabel
+>.</para>
+
+ <para
+>Двоичные, восьмеричные и шестнадцатеричные числа могут отображаться в виде групп цифр, разделенных пробелами, что делает их удобочитаемыми. Например, шестнадцатеричное число <emphasis
+>AF1C42</emphasis
+> будет отображаться как <emphasis
+>AF 1C 42</emphasis
+> с пробелом после каждой второй цифры. Группировку возможно выключить или изменить. Чтобы сделать это, выберите пункт меню <menuchoice
+><guimenu
+>Настройка</guimenu
+><guimenuitem
+>Настроить &kcalc;...</guimenuitem
+></menuchoice
+> и выберите соответствующий параметр на вкладке <guilabel
+>Общие</guilabel
+>.</para>
+
+<para
+>Чтобы видеть выбранные биты, установите флажок <guimenu
+>Редактор битов</guimenu
+> в меню <guimenu
+>Настройка</guimenu
+>.</para>
+
+<para
+>В этом режиме доступны следующие логические операции: <informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Кнопки</entry>
+<entry
+>Функции</entry
+></row
+></thead>
+<tbody>
+<row
+><entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>Логически объединить два числа</entry
+></row>
+
+<row
+><entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>Логически связать два числа</entry
+></row>
+
+<row
+><entry
+><guibutton
+>XOR</guibutton
+></entry>
+<entry
+>Логически исключить два числа</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>Поразрядный сдвиг значения влево</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>Поразрядный сдвиг значения вправо</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cmp</guibutton
+></entry>
+<entry
+>Выполнить первое дополнение</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+</para>
+
+<para
+>Второй столбец содержит кнопки с алгебраическими функциями, описанными в разделе «<link linkend="science-mode"
+>Инженерный</link
+> режим».</para>
+
+<para
+>Третий столбец с кнопками от <guibutton
+>A</guibutton
+> до <guibutton
+>F</guibutton
+> функционирует только в режиме <guilabel
+>Hex</guilabel
+>. </para>
+</sect1>
+
+<!-- end of MODES -->
+
+
+<sect1 id="memory-operations">
+<title
+>Операции в памяти</title>
+
+<para
+>&kcalc; поддерживает операции в памяти, доступные в обычных калькуляторах, и шесть дополнительных ячеек для хранения констант.</para>
+
+<sect2 id="standard_memory">
+<title
+>Стандартные операции в памяти</title>
+
+<para
+>&kcalc; может запоминать результаты операций и использовать их в следующих вычислениях. Чтобы получить доступ к этим функциям, воспользуйтесь кнопками <guibutton
+>MR</guibutton
+>, <guibutton
+>MS</guibutton
+>, <guibutton
+>M+</guibutton
+> и <guibutton
+>MC</guibutton
+>.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>MS</guibutton
+></term>
+<listitem
+><para
+>Кнопка <guibutton
+>MS</guibutton
+> сохраняет текущее число в памяти.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>M+</guibutton
+></term>
+<listitem
+><para
+>Кнопка <guibutton
+>M+</guibutton
+> добавляет результат к текущему значению в памяти. Например, если в памяти сохранено число 20, а текущий результат — 5, после нажатия кнопки в памяти окажется число 25. Если память пустая, то функция работает как <guibutton
+>MS</guibutton
+> и просто сохраняет результат.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MR</guibutton
+></term>
+<listitem
+><para
+>Кнопка <guibutton
+>MR</guibutton
+> возвращает значение, сохранённое в памяти, и показывает его на экране.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MC</guibutton
+></term>
+<listitem
+><para
+>Кнопка <guibutton
+>MC</guibutton
+> очищает память.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Если значение сохранено в памяти, в строке состояния появится надпись <guilabel
+>M</guilabel
+>, следующая за текущим режимом вычислений.</para>
+</sect2>
+
+<sect2 id="constant_buttons">
+<title
+>Константы</title>
+
+<para
+>Шесть кнопок с константами от <guibutton
+>C1</guibutton
+> до <guibutton
+>C6</guibutton
+> будут отображаться только после включения пункта <guilabel
+>Константы</guilabel
+> в меню <guimenu
+>Настройка</guimenu
+> панели инструментов. Они доступны в режимах <guilabel
+>Инженерный</guilabel
+> и <guilabel
+>Статистический</guilabel
+>.</para>
+
+<para
+>Чтобы увидеть значение, хранящееся в каждой константе, наведите указатель мыши на кнопку.</para>
+
+<para
+>Чтобы сохранить отображаемое на дисплее &kcalc; число в качестве одной их шести констант, нажмите кнопку <guibutton
+>&Shift;</guibutton
+>, а затем одну из кнопок от <guibutton
+>C1</guibutton
+> до <guibutton
+>C6</guibutton
+>.</para>
+
+<para
+>Чтобы использовать значения, сохранённые как константы, необходимо нажать соответствующую кнопку (от <guibutton
+>C1</guibutton
+> до <guibutton
+>C6</guibutton
+>), и это значение появится на экране. </para>
+
+<para
+>Возможно поменять метку константы для лучшего запоминания какая кнопка хранит какую константу. Для этого щёлкните правой кнопкой мыши по соответствующей кнопке от <guibutton
+>C1</guibutton
+> до <guibutton
+> C6</guibutton
+>. В появившемся меню выберите пункт <guilabel
+>Дать имя</guilabel
+>. </para>
+
+<para
+>На любую из шести кнопок возможно сохранить предопределённую постоянную (в большинстве случаев физическую). Для этого щёлкните правой кнопкой мыши по кнопке <guibutton
+>C1</guibutton
+> — <guibutton
+>C6</guibutton
+>, в появившемся меню выберите пункт <guilabel
+>Выбрать из списка</guilabel
+> и укажите требуемую постоянную. Хотя доступ к постоянным возможно получить с помощью пункта <guimenu
+>Константы</guimenu
+> на панели инструментов, установка их в качестве констант, очень удобна, если они часто используются.</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="key-accels">
+<title
+>Однокнопочные акселераторы</title>
+
+<para
+>Для более простого ведения расчётов с использованием клавиатуры &kcalc; поддерживает однокнопочные акселераторы для большинства функций. Например, набор <userinput
+>7R</userinput
+> или <userinput
+>7r</userinput
+> вычислит обратную величину 7 (1/7).</para>
+
+<para
+>Всегда возможно нажать <keycap
+>&Ctrl;</keycap
+> для просмотра доступных комбинаций клавиш прямо на кнопках.</para>
+<!-- Shift works like Caps Lock-->
+<informaltable
+><tgroup cols="3">
+<thead>
+<row
+><entry
+>Кнопка</entry>
+<entry
+>Функции</entry>
+<entry
+>Примечания</entry
+></row>
+</thead>
+<tbody>
+
+<row
+><entry
+><keycap
+>H</keycap
+></entry>
+<entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>Гиперболический, как в Hyp Sin, sinh</entry
+></row>
+
+<row
+><entry
+><keycap
+>S</keycap
+></entry>
+<entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>C</keycap
+></entry>
+<entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>T</keycap
+></entry>
+<entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>N</keycap
+></entry>
+<entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>Натуральный логарифм</entry
+></row>
+
+<row
+><entry
+><keycap
+>L</keycap
+></entry>
+<entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>Десятичный логарифм</entry
+></row>
+
+<row
+><entry
+><keycap
+>Ctrl-2</keycap
+></entry>
+<entry
+> <guibutton
+>&Shift;</guibutton
+></entry>
+<entry
+>Вторая функция для этой кнопки. Например, чтобы вычислить arcsin, введите <userinput
+>Ctrl-2 s </userinput
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>\</keysym
+></entry>
+<entry
+><guibutton
+>+/-</guibutton
+></entry>
+<entry
+>Смена знака</entry
+></row>
+
+<row
+><entry
+><keysym
+>[</keysym
+></entry>
+<entry
+><guibutton
+>x^2</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>^</keysym
+></entry>
+<entry
+><guibutton
+>x^y</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>!</keysym
+></entry>
+<entry
+><guibutton
+>x!</guibutton
+></entry>
+<entry
+>Факториал</entry
+></row>
+
+<row
+><entry
+><keysym
+>E</keysym
+></entry>
+<entry
+>x10<superscript
+>y</superscript
+></entry>
+<entry
+>Экспоненциальная</entry
+></row>
+
+<row
+><entry
+><keysym
+>&lt;</keysym
+></entry>
+<entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>Поразрядный сдвиг влево</entry
+></row>
+<!-- no "<" on Lsh key only "
+>" on Rsh key-->
+<row
+><entry
+><keysym
+>&gt;</keysym
+></entry>
+<entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>Поразрядный сдвиг вправо.</entry
+></row>
+<row
+><entry
+><keysym
+>&amp;</keysym
+></entry>
+<entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>Логическое И</entry
+></row>
+
+<row
+><entry
+><keysym
+>x</keysym
+> или <keysym
+>*</keysym
+></entry>
+<entry
+><guibutton
+>X</guibutton
+></entry>
+<entry
+>Умножение</entry
+></row>
+
+<row
+><entry
+><keysym
+>/</keysym
+></entry>
+<entry
+><guibutton
+>/</guibutton
+></entry>
+<entry
+>Деление</entry
+></row>
+
+<row
+><entry
+><keycap
+>D</keycap
+></entry>
+<entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>Ввод записи в статистическом режиме</entry
+></row>
+
+<row
+><entry
+><keycap
+>|</keycap
+></entry>
+<entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>Логическое ИЛИ. Обратите внимание: <guibutton
+>&Shift;</guibutton
+> <guibutton
+>OR</guibutton
+> — это XOR (исключающее ИЛИ).</entry
+></row>
+
+<row
+><entry
+><keycap
+>R</keycap
+></entry>
+<entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>Обратная величина</entry
+></row>
+
+<row
+><entry
+>&Enter;</entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>Return</keycap
+></entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+>&Backspace;</entry>
+<entry
+><guibutton
+>&lt;=</guibutton
+></entry>
+<entry
+>Удалить последнее число</entry
+></row>
+
+<row
+><entry
+><keycap
+>PgUp</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Очистить</entry
+></row>
+
+<row
+><entry
+>&Esc;</entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Очистить</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Prior</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Clear</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>PgDown</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Очистить всё</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Next</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Clear all</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>Del</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Очистить всё</entry
+></row>
+
+<row
+><entry
+><keycap
+>:</keycap
+></entry>
+<entry
+><guibutton
+>Mod</guibutton
+></entry>
+<entry
+>Остаток от деления</entry
+></row>
+
+<row
+><entry
+>&Alt;+<keycap
+>1</keycap
+> до &Alt;+<keycap
+>6</keycap
+></entry>
+<entry
+><guibutton
+>C1</guibutton
+></entry>
+<entry
+>Использовать значения, сохранённые в C1-C6</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+</chapter>
+
+<chapter id="comments-on-specific-functions">
+<title
+>Комментарии к специфичным функциям</title>
+
+<sect1 id="mod">
+<title
+>Mod и IntDiv</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Mod</guibutton
+> вычисляет остаток от деления числа на экране и введённого вслед за ним.</term>
+<listitem
+><para
+><userinput
+>22 Mod 8 = </userinput
+> отобразит результат <emphasis
+>6</emphasis
+></para>
+<para
+><userinput
+>22.345 Mod 8 = </userinput
+> отобразит результат <emphasis
+>6.345</emphasis
+></para>
+</listitem
+></varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>IntDiv</guibutton
+> вычисляет округлённый до целого остаток от деления числа на экране и введённого вслед за ним.</term>
+<listitem
+><para
+><userinput
+>22 Shift IntDiv 8 = </userinput
+> отобразит результат <emphasis
+>2</emphasis
+></para>
+<para
+><userinput
+>22.345 Shift IntDiv 8 = </userinput
+> также отобразит <emphasis
+>2</emphasis
+> </para
+></listitem
+></varlistentry>
+</variablelist>
+
+</sect1>
+
+
+<sect1 id="percent">
+<title
+>&percnt;</title>
+
+<para
+>Используемый вместо кнопки <guibutton
+>=</guibutton
+>, <guibutton
+>%</guibutton
+> интерпретируется как завершающая операция в потоке и вычисляется следующим образом:</para>
+
+<para
+><itemizedlist>
+<listitem>
+<para
+>Если последний оператор + или - отображает результат как процент от последнего операнда. </para>
+</listitem>
+<listitem>
+<para
+>Если последний оператор * то делит результат умножения на 100. </para>
+</listitem>
+<listitem>
+<para
+>Если последний оператор / даёт левый операнд как процент от правого. </para>
+</listitem>
+<listitem>
+<para
+>Во всех остальных случаях клавиша &percnt; даёт идентичный результат с клавишей =. </para>
+</listitem>
+</itemizedlist
+></para>
+
+<variablelist>
+<varlistentry>
+<term
+>Примеры:</term>
+<listitem>
+<para
+><userinput
+>150 + 50 %</userinput
+> отобразит <emphasis
+>225</emphasis
+> (150 плюс 50 процентов от этого числа)</para>
+<para
+><userinput
+>42 * 3 %</userinput
+> отобразит <emphasis
+>1.26</emphasis
+> (42 * 3 / 100)</para>
+<para
+><userinput
+>45 / 55 %</userinput
+> отобразит <emphasis
+>81.81...</emphasis
+> (45 — это 81.81.. процент от 55)</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="lsh-rsh">
+<title
+>Lsh и Rsh</title>
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Lsh</guibutton
+> сдвигает влево целую часть числа на экране (умножает его на 2) n раз, где n — следующее введённое число, и возвращает целое число (основание системы счисления устанавливается кнопкой <guibutton
+>Bin</guibutton
+>)</term>
+<listitem
+><para
+><userinput
+>10 Lsh 3 =</userinput
+> отобразит <emphasis
+>80</emphasis
+> (10, умноженное на 2 три раза).</para>
+<para
+><userinput
+>10.345 Lsh 3 =</userinput
+> также отобразит <emphasis
+>80</emphasis
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Rsh</guibutton
+> поразрядно сдвигает вправо (выполняет целочисленное деление на 2) n раз.</term>
+<listitem
+><para
+><userinput
+>16 Rsh 2 =</userinput
+> отобразит <emphasis
+>4</emphasis
+> (16, дважды делённое на 2).</para>
+<para
+><userinput
+>16.999 Rsh 2 =</userinput
+> также отобразит <emphasis
+>4</emphasis
+>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="and-or-xor">
+<title
+>Cmp, And, Or и Inv Or</title>
+
+<para
+>Функции <guibutton
+>Cmp</guibutton
+>, <guibutton
+>And</guibutton
+> и <guibutton
+>Or</guibutton
+> выполняют побитовые логические операции и являются более значимыми, если система счисления установлена в <guilabel
+>Hex</guilabel
+>, <guilabel
+>Oct</guilabel
+> или <guilabel
+>Bin</guilabel
+>, а не в <guilabel
+>Dec</guilabel
+>. В следующих примерах система счисления установлена в <guilabel
+>Bin</guilabel
+>.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Cmp</guibutton
+> выполняет дополнение до 1 (инвертирует все биты).</term>
+<listitem
+><para
+><userinput
+>101 Cmp</userinput
+> отобразит <emphasis
+>111...111010</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>And</guibutton
+> — логическое И.</term>
+<listitem
+><para
+><userinput
+>101 AND 110 =</userinput
+> отобразит <emphasis
+>100</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>ИЛИ</guibutton
+> — логическое ИЛИ.</term>
+<listitem
+><para
+><userinput
+>101 OR 110 =</userinput
+> отобразит <emphasis
+>111</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>XOR</guibutton
+> выполняет операцию логическое XOR (исключающее ИЛИ).</term>
+<listitem
+><para
+><userinput
+>101 XOR 110 =</userinput
+> отобразит <emphasis
+>111</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+</chapter>
+
+
+<chapter id="questions-and-answers">
+<title
+>Вопросы и ответы</title>
+
+<qandaset>
+
+
+<qandaentry>
+<question
+><para
+>Как получить e, число Эйлера?</para
+></question>
+<answer
+><para
+>Нажмите <userinput
+>1 Shift e<superscript
+>x</superscript
+></userinput
+> в окне &kcalc;, либо <userinput
+>1 <keycombo action="simul"
+>&Ctrl;<keycap
+>2</keycap
+></keycombo
+> <keycap
+>N</keycap
+></userinput
+> на клавиатуре, либо воспользуйтесь меню <menuchoice
+><guimenu
+>Константы</guimenu
+><guimenuitem
+>Математика</guimenuitem
+> </menuchoice
+>.</para
+></answer>
+</qandaentry>
+
+<qandaentry>
+<question
+><para
+>Как установить два знака после запятой?</para
+></question>
+<answer
+><para
+>Выберите <menuchoice
+><guimenu
+>Параметры</guimenu
+><guimenuitem
+> Настроить &kcalc;...</guimenuitem
+></menuchoice
+> на панели инструментов, это вызовет диалог настройки. Установите флажок <guilabel
+>Установить фиксированную точность</guilabel
+> и укажите точность 2.</para
+></answer
+> </qandaentry>
+
+<qandaentry>
+<question
+><para
+>Что насчёт точности?</para
+></question>
+<answer
+><para
+>Основной фактор, определяющий точность &kcalc; — поддерживают ли используемые библиотеки libc и libmath тип данных C <type
+>long double</type
+>. Если это так, то во время компиляции &kcalc; обнаружит это и будет использовать его как свой основной тип данных для представления чисел. </para>
+
+<para
+>Скорректируйте <guilabel
+>точность</guilabel
+> в диалоге <guibutton
+>Настройки</guibutton
+> &kcalc;, чтобы вышеупомянутые вычисления работали нормально. Рекомендуется указать точность в 14 разрядов, если основной тип данных используемой копии &kcalc; — это <type
+>long double</type
+>. В другом случае используйте значение 8 или 10.</para>
+
+<para
+>Более высокая точность не всегда даёт наилучший результат. Попробуйте разные варианты, чтобы решить, какой лучше.</para>
+</answer>
+</qandaentry>
+
+</qandaset>
+</chapter>
+
+&commands;
+
+<chapter id="copyright">
+<title
+>Авторские права и лицензия</title>
+
+<para
+>Программа &kcalc; Copyright &copy;:</para>
+<para
+>&Bernd.Johannes.Wuebben; 1996-2000</para>
+<para
+>Команде &kde; 2000-2008</para>
+<para
+>&Evan.Teran; 2008-2013</para>
+
+<itemizedlist>
+<listitem
+><para
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+>&Evan.Teran; &Evan.Teran.mail;</para
+></listitem>
+<listitem
+><para
+>&Espen.Sand; &Espen.Sand.mail;</para
+></listitem>
+<listitem
+><para
+>&Chris.Howells; &Chris.Howells.mail;</para
+></listitem>
+<listitem
+><para
+>&Aaron.J.Seigo; &Aaron.J.Seigo.mail;</para
+></listitem>
+<listitem
+><para
+>&Charles.Samuels; &Charles.Samuels.mail;</para
+></listitem>
+<listitem
+><para
+>&David.Johnson; &David.Johnson.mail;</para
+></listitem>
+</itemizedlist>
+
+<para
+>&kcalc; был основан на приложении <application
+>xfrmcalc</application
+>, созданном <personname
+><firstname
+>Martin</firstname
+> <surname
+>Bartlett</surname
+></personname
+>, механизм стека которого — это часть &kcalc;.</para>
+
+<para
+>Авторские права на документацию &copy; 2001,2002,2005, 2006,2010:</para>
+<itemizedlist>
+<listitem
+><para
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+>&Pamela.Roberts; &Pamela.Roberts.mail;</para
+></listitem>
+<listitem
+><para
+>&J.Hall; &J.Hall.mail;</para
+></listitem>
+<listitem
+><para
+>&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Eike</firstname
+><surname
+>Krumbacher</surname
+></personname
+> <email
+>eike.krumbacher@x-eike.de</email
+></para
+></listitem>
+</itemizedlist>
+
+<para
+>Перевод на русский: Алексей Андросов<email
+>alexey@androsov.net</email
+>, Мария Шикунова<email
+>translation-team@basealt.ru</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

@@ -1,0 +1,3448 @@
+# translation of kcalc.po to Galician
+#
+# Xosé <xosecalvo@gmail.com>, 2008, 2012.
+# mvillarino <mvillarino@users.sourceforge.net>, 2008.
+# Marce Villarino <mvillarino@kde-espana.es>, 2009, 2013.
+# Adrian Chaves Fernandez <adriyetichaves@gmail.com>, 2013, 2015.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019.
+msgid ""
+msgstr ""
+"Project-Id-Version: kcalc\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-08-20 00:48+0000\n"
+"PO-Revision-Date: 2019-11-13 22:30+0100\n"
+"Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
+"Language-Team: Galician <proxecto@trasno.gal>\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 19.08.2\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Adrián Chaves Fernández"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "adrian@chaves.io"
+
+#. i18n: ectx: property (title), widget (QGroupBox, displayColorsBox)
+#: colors.ui:17
+#, kde-format
+msgid "Display Colors"
+msgstr "Cores da pantalla"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: colors.ui:25
+#, kde-format
+msgid "&Foreground:"
+msgstr "&Primeiro plano:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2)
+#: colors.ui:52
+#, kde-format
+msgid "&Background:"
+msgstr "&Fondo:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, buttonColorsBox)
+#: colors.ui:97
+#, kde-format
+msgid "Button Colors"
+msgstr "Cores dos botóns"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel6)
+#: colors.ui:105
+#, kde-format
+msgid "Background"
+msgstr "Fondo"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: colors.ui:115
+#, kde-format
+msgid "Foreground"
+msgstr "Primeiro plano"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel5)
+#: colors.ui:125
+#, kde-format
+msgid "&Functions:"
+msgstr "&Funcións:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel4)
+#: colors.ui:152
+#, kde-format
+msgid "St&atistic functions:"
+msgstr "Funcións de est&atísticas:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel9)
+#: colors.ui:179
+#, kde-format
+msgid "He&xadecimals:"
+msgstr "He&xadecimais:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel11)
+#: colors.ui:206
+#, kde-format
+msgid "&Numbers:"
+msgstr "&Números:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel10)
+#: colors.ui:233
+#, kde-format
+msgid "&Memory:"
+msgstr "&Memoria:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel12)
+#: colors.ui:260
+#, kde-format
+msgid "O&perations:"
+msgstr "O&peracións:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel13)
+#: colors.ui:287
+#, fuzzy, kde-format
+#| msgid "&Constants"
+msgid "&Constants:"
+msgstr "&Constantes"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
+#. i18n: ectx: property (title), widget (QGroupBox, constantsBox)
+#: constants.ui:13 constants.ui:19 kcalc.cpp:1798
+#, kde-format
+msgid "Constants"
+msgstr "Constantes"
+
+#. i18n: ectx: property (text), widget (QPushButton, pushButton0)
+#. i18n: ectx: property (text), widget (QPushButton, pushButton1)
+#. i18n: ectx: property (text), widget (QPushButton, pushButton2)
+#. i18n: ectx: property (text), widget (QPushButton, pushButton3)
+#. i18n: ectx: property (text), widget (QPushButton, pushButton4)
+#. i18n: ectx: property (text), widget (QPushButton, pushButton5)
+#: constants.ui:39 constants.ui:60 constants.ui:81 constants.ui:102
+#: constants.ui:123 constants.ui:144
+#, kde-format
+msgid "Predefined"
+msgstr "Predefinido"
+
+#. i18n: ectx: property (text), widget (QLabel, buttonlabel)
+#: fonts.ui:21
+#, kde-format
+msgid "&Button font:"
+msgstr "Fonte do &botón:"
+
+#. i18n: ectx: property (toolTip), widget (KFontRequester, kcfg_ButtonFont)
+#: fonts.ui:34
+#, kde-format
+msgid "The font to use for the buttons"
+msgstr "A fonte para usar nos botóns."
+
+#. i18n: ectx: property (text), widget (QLabel, displaylabel)
+#: fonts.ui:41
+#, kde-format
+msgid "&Display font:"
+msgstr "Fonte &da pantalla:"
+
+#. i18n: ectx: property (toolTip), widget (KFontRequester, kcfg_DisplayFont)
+#: fonts.ui:54
+#, kde-format
+msgid "The font to use in the display"
+msgstr "A fonte para usar na pantalla"
+
+#. i18n: ectx: property (text), widget (QLabel, historylabel)
+#: fonts.ui:61
+#, fuzzy, kde-format
+#| msgid "&Display font:"
+msgid "&History font:"
+msgstr "Fonte &da pantalla:"
+
+#. i18n: ectx: property (toolTip), widget (KFontRequester, kcfg_HistoryFont)
+#: fonts.ui:74
+#, fuzzy, kde-format
+#| msgid "The font to use in the display"
+msgid "The font to use in the history"
+msgstr "A fonte para usar na pantalla"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, General)
+#: general.ui:14 kcalc.cpp:1758
+#, kde-format
+msgid "General"
+msgstr "Xeral"
+
+#. i18n: ectx: property (title), widget (QGroupBox, precisionGroupBox)
+#: general.ui:20
+#, kde-format
+msgid "Precision"
+msgstr "Precisión"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: general.ui:28
+#, kde-format
+msgid "&Maximum number of digits:"
+msgstr "Número &máximo de díxitos:"
+
+#. i18n: ectx: property (toolTip), widget (QSpinBox, kcfg_Precision)
+#: general.ui:41
+#, kde-format
+msgid "Maximum number of digits displayed"
+msgstr "Número máximo de díxitos mostrados."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, kcfg_Precision)
+#: general.ui:44
+#, kde-format
+msgid ""
+"KCalc can compute with many more digits than the number that fits on the "
+"display. This setting gives the maximum number of digits displayed, before "
+"KCalc starts using scientific notation, i.e. notation of the type 2.34e12."
+msgstr ""
+"KCalc pode realizar cálculos con moitos máis números dos que caben na "
+"pantalla. Esta opción permite estabelecer o número máximo de díxitos que "
+"aparecerán na pantalla, antes de que KCalc empece a empregar a notación "
+"científica, como por exemplo «2.34e12»."
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_Fixed)
+#: general.ui:51
+#, kde-format
+msgid "Whether to use fixed decimal places"
+msgstr "Se usar lugares fixos para os decimais."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_Fixed)
+#: general.ui:54
+#, kde-format
+msgid "Set &decimal precision"
+msgstr "Definir a precisión &decimal."
+
+#. i18n: ectx: property (toolTip), widget (QSpinBox, kcfg_FixedPrecision)
+#: general.ui:64
+#, kde-format
+msgid "Number of fixed decimal digits"
+msgstr "Número de díxitos fixos nos decimais."
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: general.ui:89
+#, kde-format
+msgid "Grouping"
+msgstr "Agrupamento"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GroupDigits)
+#: general.ui:97
+#, kde-format
+msgid "Whether to group digits"
+msgstr "Se agrupar ou non os díxitos."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_GroupDigits)
+#: general.ui:100
+#, kde-format
+msgid "Group digits"
+msgstr "Agrupar os díxitos."
+
+#. i18n: ectx: property (text), widget (QLabel, grouping_binary_lb)
+#: general.ui:115
+#, kde-format
+msgid "Binary"
+msgstr "Binario"
+
+#. i18n: ectx: property (text), widget (QLabel, grouping_octal_lb)
+#: general.ui:122
+#, kde-format
+msgid "Octal"
+msgstr "Octal"
+
+#. i18n: ectx: property (text), widget (QLabel, grouping_hexadecimal_lb)
+#: general.ui:129
+#, kde-format
+msgid "Hexadecimal"
+msgstr "Hexadecimal"
+
+#. i18n: ectx: property (title), widget (QGroupBox, miscGroupBox)
+#: general.ui:152
+#, kde-format
+msgid "Misc"
+msgstr "Diversos"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_Beep)
+#: general.ui:160
+#, kde-format
+msgid "Whether to beep on error"
+msgstr "Se emitir un son de aviso cando se produza un erro."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_Beep)
+#: general.ui:163
+#, kde-format
+msgid "&Beep on error"
+msgstr "Emitir un ton de &aviso cando se produza un erro."
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_CaptionResult)
+#: general.ui:173
+#, kde-format
+msgid "Whether to show the result in the window title"
+msgstr "Se mostrar o resultado no título da xanela."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CaptionResult)
+#: general.ui:176
+#, kde-format
+msgid "Show &result in window title"
+msgstr "Mostrar o &resultado no título da xanela."
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_TwosComplement)
+#: general.ui:183
+#, kde-format
+msgid "Whether to use Two's Complement for non-decimal numbers"
+msgstr "Se usar o complemento a dous para os números que non sexan decimais."
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_TwosComplement)
+#: general.ui:186
+#, kde-format
+msgid ""
+"Select to use Two's Complement notation for Binary, Octal and Hexidecimal "
+"numbers. This is a common notation to represent negative numbers for non-"
+"decimal numbers in computers."
+msgstr ""
+"Decidir usar a notación de complemento a dous para números binarios, octais "
+"e hexadecimais. Trátase dunha notación moi común para representar números "
+"negativos en sistemas non decimais en informática."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_TwosComplement)
+#: general.ui:189
+#, kde-format
+msgid "Two's complement"
+msgstr "Complemento a dous."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_RepeatLastOperation)
+#: general.ui:199
+#, kde-format
+msgid "Repeat operation for each result"
+msgstr "Repetir a operación para cada resultado."
+
+#: kcalc.cpp:179
+#, kde-format
+msgid "Simple Mode"
+msgstr "Modo simple"
+
+#: kcalc.cpp:184
+#, kde-format
+msgid "Science Mode"
+msgstr "Modo científico"
+
+#: kcalc.cpp:189
+#, kde-format
+msgid "Statistic Mode"
+msgstr "Modo estatístico"
+
+#. i18n: ectx: label, entry (CalculatorMode), group (General)
+#: kcalc.cpp:194 kcalc.kcfg:163
+#, kde-format
+msgid "Numeral System Mode"
+msgstr "Modo de sistema numérico"
+
+#: kcalc.cpp:199
+#, kde-format
+msgid "Show &History"
+msgstr ""
+
+#: kcalc.cpp:205
+#, kde-format
+msgid "Constants &Buttons"
+msgstr "&Botóns de constantes"
+
+#: kcalc.cpp:210
+#, kde-format
+msgid "Show B&it Edit"
+msgstr "Mostrar a edición de b&its"
+
+#: kcalc.cpp:225
+#, kde-format
+msgid "&Constants"
+msgstr "&Constantes"
+
+#: kcalc.cpp:323
+#, kde-format
+msgctxt "Add display to memory"
+msgid "M+"
+msgstr "M+"
+
+#: kcalc.cpp:323
+#, kde-format
+msgid "Add display to memory"
+msgstr "Engadir o da pantalla á memoria."
+
+#: kcalc.cpp:324
+#, kde-format
+msgctxt "Subtract from memory"
+msgid "M−"
+msgstr "M−"
+
+#: kcalc.cpp:324
+#, kde-format
+msgid "Subtract from memory"
+msgstr "Restar da memoria."
+
+#: kcalc.cpp:347
+#, kde-format
+msgctxt "Third power"
+msgid "x<sup>3</sup>"
+msgstr "x<sup>3</sup>"
+
+#: kcalc.cpp:347
+#, kde-format
+msgid "Third power"
+msgstr "Terceira potencia."
+
+#: kcalc.cpp:348
+#, kde-format
+msgid "Cube root"
+msgstr "Raíz cadrada."
+
+#: kcalc.cpp:446
+#, fuzzy, kde-format
+#| msgctxt "Arc sine"
+#| msgid "Asin"
+msgctxt "Sine"
+msgid "sin"
+msgstr "Asin"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbSin)
+#: kcalc.cpp:446 kcalc.ui:708
+#, kde-format
+msgid "Sine"
+msgstr "Seno."
+
+#: kcalc.cpp:447
+#, kde-format
+msgctxt "Arc sine"
+msgid "asin"
+msgstr ""
+
+#: kcalc.cpp:447
+#, kde-format
+msgid "Arc sine"
+msgstr "Arcoseno."
+
+#: kcalc.cpp:448
+#, fuzzy, kde-format
+#| msgctxt "Inverse hyperbolic sine"
+#| msgid "Asinh"
+msgctxt "Hyperbolic sine"
+msgid "sinh"
+msgstr "Asinh"
+
+#: kcalc.cpp:448
+#, kde-format
+msgid "Hyperbolic sine"
+msgstr "Seno hiperbólico."
+
+#: kcalc.cpp:449
+#, fuzzy, kde-format
+#| msgctxt "Inverse hyperbolic sine"
+#| msgid "Asinh"
+msgctxt "Inverse hyperbolic sine"
+msgid "asinh"
+msgstr "Asinh"
+
+#: kcalc.cpp:449
+#, kde-format
+msgid "Inverse hyperbolic sine"
+msgstr "Seno hiperbólico inverso."
+
+#: kcalc.cpp:454
+#, fuzzy, kde-format
+#| msgctxt "Arc cosine"
+#| msgid "Acos"
+msgctxt "Cosine"
+msgid "cos"
+msgstr "Acos"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbCos)
+#: kcalc.cpp:454 kcalc.ui:453
+#, kde-format
+msgid "Cosine"
+msgstr "Coseno."
+
+#: kcalc.cpp:455
+#, kde-format
+msgctxt "Arc cosine"
+msgid "acos"
+msgstr ""
+
+#: kcalc.cpp:455
+#, kde-format
+msgid "Arc cosine"
+msgstr "Arcocoseno."
+
+#: kcalc.cpp:456
+#, fuzzy, kde-format
+#| msgctxt "Inverse hyperbolic cosine"
+#| msgid "Acosh"
+msgctxt "Hyperbolic cosine"
+msgid "cosh"
+msgstr "Acosh"
+
+#: kcalc.cpp:456
+#, kde-format
+msgid "Hyperbolic cosine"
+msgstr "Coseno hiperbólico."
+
+#: kcalc.cpp:457
+#, fuzzy, kde-format
+#| msgctxt "Inverse hyperbolic cosine"
+#| msgid "Acosh"
+msgctxt "Inverse hyperbolic cosine"
+msgid "acosh"
+msgstr "Acosh"
+
+#: kcalc.cpp:457
+#, kde-format
+msgid "Inverse hyperbolic cosine"
+msgstr "Coseno hiperbólico inverso."
+
+#: kcalc.cpp:462
+#, fuzzy, kde-format
+#| msgctxt "Arc tangent"
+#| msgid "Atan"
+msgctxt "Tangent"
+msgid "tan"
+msgstr "Atan"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbTan)
+#: kcalc.cpp:462 kcalc.ui:523
+#, kde-format
+msgid "Tangent"
+msgstr "Tanxente."
+
+#: kcalc.cpp:463
+#, kde-format
+msgctxt "Arc tangent"
+msgid "atan"
+msgstr ""
+
+#: kcalc.cpp:463
+#, kde-format
+msgid "Arc tangent"
+msgstr "Arcotanxente."
+
+#: kcalc.cpp:464
+#, fuzzy, kde-format
+#| msgctxt "Inverse hyperbolic tangent"
+#| msgid "Atanh"
+msgctxt "Hyperbolic tangent"
+msgid "tanh"
+msgstr "Atanh"
+
+#: kcalc.cpp:464
+#, kde-format
+msgid "Hyperbolic tangent"
+msgstr "Tanxente hiperbólica."
+
+#: kcalc.cpp:465
+#, fuzzy, kde-format
+#| msgctxt "Inverse hyperbolic tangent"
+#| msgid "Atanh"
+msgctxt "Inverse hyperbolic tangent"
+msgid "atanh"
+msgstr "Atanh"
+
+#: kcalc.cpp:465
+#, kde-format
+msgid "Inverse hyperbolic tangent"
+msgstr "Tanxente hiperbólica inversa."
+
+#: kcalc.cpp:470
+#, fuzzy, kde-format
+#| msgctxt "Logarithm to base 10"
+#| msgid "Log"
+msgctxt "Logarithm to base 10"
+msgid "log"
+msgstr "Log"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbLog)
+#: kcalc.cpp:470 kcalc.ui:823
+#, kde-format
+msgid "Logarithm to base 10"
+msgstr "Logaritmo en base 10."
+
+#: kcalc.cpp:471
+#, kde-format
+msgctxt "10 to the power of x"
+msgid "10<sup>x</sup>"
+msgstr "10<sup>x</sup>"
+
+#: kcalc.cpp:471
+#, kde-format
+msgid "10 to the power of x"
+msgstr "10 elevado a x."
+
+#: kcalc.cpp:475
+#, kde-format
+msgctxt "Natural log"
+msgid "ln"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbLn)
+#: kcalc.cpp:475 kcalc.ui:418
+#, kde-format
+msgid "Natural log"
+msgstr "Logaritmo natural."
+
+#: kcalc.cpp:476
+#, kde-format
+msgctxt "Exponential function"
+msgid "e<sup>x</sup>"
+msgstr "e<sup>x</sup>"
+
+#: kcalc.cpp:476
+#, kde-format
+msgid "Exponential function"
+msgstr "Función exponencial."
+
+#: kcalc.cpp:495
+#, kde-format
+msgctxt "Number of data entered"
+msgid "N"
+msgstr "N"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbNData)
+#: kcalc.cpp:495 kcalc.cpp:1588 kcalc.ui:622
+#, kde-format
+msgid "Number of data entered"
+msgstr "Número de datos inseridos."
+
+#: kcalc.cpp:496
+#, kde-format
+msgid "Sum of all data items"
+msgstr "Suma de todos os elementos de datos."
+
+#: kcalc.cpp:501
+#, kde-format
+msgctxt "Mean"
+msgid "Mea"
+msgstr "Mea"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbMean)
+#: kcalc.cpp:501 kcalc.cpp:1609 kcalc.ui:727
+#, kde-format
+msgid "Mean"
+msgstr "Media."
+
+#: kcalc.cpp:502
+#, kde-format
+msgid "Sum of all data items squared"
+msgstr "Suma do cadrado de todos os elementos de datos."
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbSd)
+#: kcalc.cpp:507 kcalc.ui:348
+#, kde-format
+msgid "Standard deviation"
+msgstr "Desviación estándar."
+
+#: kcalc.cpp:508
+#, kde-format
+msgid "Sample standard deviation"
+msgstr "Desviación estándar de exemplo."
+
+#: kcalc.cpp:516
+#, kde-format
+msgctxt "Enter data"
+msgid "Dat"
+msgstr "Dat"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbDat)
+#: kcalc.cpp:516 kcalc.ui:673
+#, kde-format
+msgid "Enter data"
+msgstr "Inserir datos."
+
+#: kcalc.cpp:517
+#, kde-format
+msgctxt "Delete last data item"
+msgid "CDat"
+msgstr "LDat"
+
+#: kcalc.cpp:517
+#, kde-format
+msgid "Delete last data item"
+msgstr "Eliminar o último elemento dos datos."
+
+#: kcalc.cpp:578
+#, fuzzy, kde-format
+#| msgctxt "Modulo"
+#| msgid "Mod"
+msgctxt "Modulo"
+msgid "mod"
+msgstr "Mod"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbMod)
+#: kcalc.cpp:578 kcalc.ui:491
+#, kde-format
+msgid "Modulo"
+msgstr "Módulo."
+
+#: kcalc.cpp:579
+#, kde-format
+msgctxt "Integer division"
+msgid "IntDiv"
+msgstr "IntDiv"
+
+#: kcalc.cpp:579
+#, kde-format
+msgid "Integer division"
+msgstr "División de enteiros."
+
+#: kcalc.cpp:585
+#, kde-format
+msgctxt "Reciprocal"
+msgid "1/x"
+msgstr "1/x"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbReci)
+#: kcalc.cpp:585 kcalc.ui:638
+#, kde-format
+msgid "Reciprocal"
+msgstr "Recíproco."
+
+#: kcalc.cpp:586
+#, kde-format
+msgctxt "n Choose m"
+msgid "nCm"
+msgstr "Cmb"
+
+#: kcalc.cpp:586
+#, kde-format
+msgid "n Choose m"
+msgstr "n-combinacións de m."
+
+#: kcalc.cpp:591
+#, kde-format
+msgctxt "Factorial"
+msgid "x!"
+msgstr "x!"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbFactorial)
+#: kcalc.cpp:591 kcalc.ui:890
+#, kde-format
+msgid "Factorial"
+msgstr "Factorial."
+
+#: kcalc.cpp:592
+#, kde-format
+msgid "Gamma"
+msgstr "Gamma"
+
+#: kcalc.cpp:598
+#, kde-format
+msgctxt "Square"
+msgid "x<sup>2</sup>"
+msgstr "x<sup>2</sup>"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbSquare)
+#: kcalc.cpp:598 kcalc.ui:507
+#, kde-format
+msgid "Square"
+msgstr "Cadrado."
+
+#: kcalc.cpp:599
+#, kde-format
+msgid "Square root"
+msgstr "Raíz cadrada."
+
+#: kcalc.cpp:606
+#, kde-format
+msgctxt "x to the power of y"
+msgid "x<sup>y</sup>"
+msgstr "x<sup>y</sup>"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbPower)
+#: kcalc.cpp:606 kcalc.ui:759
+#, kde-format
+msgid "x to the power of y"
+msgstr "x elevado a y."
+
+#: kcalc.cpp:607
+#, kde-format
+msgctxt "x to the power of 1/y"
+msgid "x<sup>1/y</sup>"
+msgstr "x<sup>1/y</sup>"
+
+#: kcalc.cpp:607
+#, kde-format
+msgid "x to the power of 1/y"
+msgstr "x elevado a 1/y."
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbEE)
+#: kcalc.cpp:617 kcalc.ui:472
+#, kde-format
+msgid "Exponent"
+msgstr "Expoñente"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbShift)
+#: kcalc.cpp:922 kcalc.ui:1411
+#, kde-format
+msgid "Shift"
+msgstr "Maiúsculas"
+
+#: kcalc.cpp:1078
+#, kde-format
+msgid "M"
+msgstr "M"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbMed)
+#: kcalc.cpp:1658 kcalc.ui:743
+#, kde-format
+msgid "Median"
+msgstr "Mediana."
+
+#: kcalc.cpp:1675
+#, kde-format
+msgid "DAT ["
+msgstr ""
+
+#: kcalc.cpp:1675
+#, kde-format
+msgid "] = "
+msgstr ""
+
+#: kcalc.cpp:1681 kcalc.cpp:1682
+#, kde-format
+msgid "Last stat item erased"
+msgstr "Borrouse o último elemento das estatísticas."
+
+#: kcalc.cpp:1697 kcalc.cpp:1698
+#, kde-format
+msgid "Stat mem cleared"
+msgstr "Baleirouse a memoria das estatísticas."
+
+#: kcalc.cpp:1758
+#, kde-format
+msgid "General Settings"
+msgstr "Configuración xeral"
+
+#: kcalc.cpp:1762
+#, kde-format
+msgid "Font"
+msgstr "Fonte"
+
+#: kcalc.cpp:1762
+#, kde-format
+msgid "Select Display Font"
+msgstr "Seleccionar a fonte da pantalla"
+
+#: kcalc.cpp:1766
+#, kde-format
+msgid "Colors"
+msgstr "Cores"
+
+#: kcalc.cpp:1766
+#, kde-format
+msgid "Button & Display Colors"
+msgstr "Cores dos botóns e a pantalla"
+
+#: kcalc.cpp:1798
+#, kde-format
+msgid "Define Constants"
+msgstr "Definir constantes"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
+#: kcalc.cpp:2832 kcalc.ui:20
+#, kde-format
+msgid "KCalc"
+msgstr "KCalc"
+
+#: kcalc.cpp:2834
+#, kde-format
+msgid "KDE Calculator"
+msgstr "Calculadora de KDE"
+
+#: kcalc.cpp:2836
+#, kde-format
+msgid ""
+"Copyright © 2008-2013, Evan Teran\n"
+"Copyright © 2000-2008, The KDE Team\n"
+"Copyright © 2003-2005, Klaus Niederkrüger\n"
+"Copyright © 1996-2000, Bernd Johannes Wuebben"
+msgstr ""
+"© 2008-2013, Evan Teran\n"
+"© 2000-2008, The KDE Team\n"
+"© 2003-2005, Klaus Niederkrüger\n"
+"© 1996-2000, Bernd Johannes Wuebben"
+
+#: kcalc.cpp:2846
+#, kde-format
+msgid "Klaus Niederkrüger"
+msgstr "Klaus Niederkrüger"
+
+#: kcalc.cpp:2851
+#, kde-format
+msgid "Bernd Johannes Wuebben"
+msgstr "Bernd Johannes Wuebben"
+
+#: kcalc.cpp:2852
+#, kde-format
+msgid "Evan Teran"
+msgstr "Evan Teran"
+
+#: kcalc.cpp:2852
+#, kde-format
+msgid "Maintainer"
+msgstr "Mantedor."
+
+#: kcalc.cpp:2853
+#, kde-format
+msgid "Espen Sand"
+msgstr "Espen Sand"
+
+#: kcalc.cpp:2854
+#, kde-format
+msgid "Chris Howells"
+msgstr "Chris Howells"
+
+#: kcalc.cpp:2855
+#, kde-format
+msgid "Aaron J. Seigo"
+msgstr "Aaron J. Seigo"
+
+#: kcalc.cpp:2856
+#, kde-format
+msgid "Charles Samuels"
+msgstr "Charles Samuels"
+
+#: kcalc.cpp:2858
+#, kde-format
+msgid "René Mérou"
+msgstr "René Mérou"
+
+#: kcalc.cpp:2865
+#, kde-format
+msgid "Michel Marti"
+msgstr "Michel Marti"
+
+#: kcalc.cpp:2866
+#, kde-format
+msgid "David Johnson"
+msgstr "David Johnson"
+
+#: kcalc.cpp:2867
+#, kde-format
+msgid "Niklas Freund"
+msgstr ""
+
+#. i18n: ectx: label, entry (ForeColor), group (Colors)
+#: kcalc.kcfg:12
+#, kde-format
+msgid "The foreground color of the display."
+msgstr "A cor do texto da pantalla."
+
+#. i18n: ectx: label, entry (BackColor), group (Colors)
+#: kcalc.kcfg:18
+#, kde-format
+msgid "The background color of the display."
+msgstr "A cor de fondo da pantalla."
+
+#. i18n: ectx: label, entry (NumberButtonsColor), group (Colors)
+#: kcalc.kcfg:23
+#, kde-format
+msgid "The color of number buttons."
+msgstr "A cor dos botóns dos números."
+
+#. i18n: ectx: label, entry (FunctionButtonsColor), group (Colors)
+#: kcalc.kcfg:29
+#, kde-format
+msgid "The color of function buttons."
+msgstr "A cor dos botóns das funcións."
+
+#. i18n: ectx: label, entry (StatButtonsColor), group (Colors)
+#: kcalc.kcfg:33
+#, kde-format
+msgid "The color of statistical buttons."
+msgstr "A cor dos botóns estatísticos."
+
+#. i18n: ectx: label, entry (HexButtonsColor), group (Colors)
+#: kcalc.kcfg:37
+#, kde-format
+msgid "The color of hex buttons."
+msgstr "A cor dos botóns hexadecimais."
+
+#. i18n: ectx: label, entry (MemoryButtonsColor), group (Colors)
+#: kcalc.kcfg:41
+#, kde-format
+msgid "The color of memory buttons."
+msgstr "A cor dos botóns da memoria."
+
+#. i18n: ectx: label, entry (OperationButtonsColor), group (Colors)
+#: kcalc.kcfg:45
+#, kde-format
+msgid "The color of operation buttons."
+msgstr "A cor dos botóns de operacións."
+
+#. i18n: ectx: label, entry (ConstantsButtonsColor), group (Colors)
+#: kcalc.kcfg:49
+#, fuzzy, kde-format
+#| msgid "The color of statistical buttons."
+msgid "The color of constants buttons."
+msgstr "A cor dos botóns estatísticos."
+
+#. i18n: ectx: label, entry (NumberFontsColor), group (Colors)
+#: kcalc.kcfg:53
+#, kde-format
+msgid "The color of number fonts."
+msgstr "A cor da fonte dos números."
+
+#. i18n: ectx: label, entry (FunctionFontsColor), group (Colors)
+#: kcalc.kcfg:59
+#, kde-format
+msgid "The color of function fonts."
+msgstr "A cor da fonte das funcións."
+
+#. i18n: ectx: label, entry (StatFontsColor), group (Colors)
+#: kcalc.kcfg:63
+#, kde-format
+msgid "The color of statistical fonts."
+msgstr "A cor da fonte das estatísticas."
+
+#. i18n: ectx: label, entry (HexFontsColor), group (Colors)
+#: kcalc.kcfg:67
+#, kde-format
+msgid "The color of hex fonts."
+msgstr "A cor da fonte dos hexadecimais."
+
+#. i18n: ectx: label, entry (MemoryFontsColor), group (Colors)
+#: kcalc.kcfg:71
+#, kde-format
+msgid "The color of memory fonts."
+msgstr "A cor da fonte da memoria."
+
+#. i18n: ectx: label, entry (OperationFontsColor), group (Colors)
+#: kcalc.kcfg:75
+#, kde-format
+msgid "The color of operation font."
+msgstr "A cor da fonte das operacións."
+
+#. i18n: ectx: label, entry (ConstantsFontsColor), group (Colors)
+#: kcalc.kcfg:79
+#, fuzzy, kde-format
+#| msgid "The color of statistical fonts."
+msgid "The color of constants fonts."
+msgstr "A cor da fonte das estatísticas."
+
+#. i18n: ectx: label, entry (ButtonFont), group (Font)
+#: kcalc.kcfg:85
+#, kde-format
+msgid "The font to use for the buttons."
+msgstr "A fonte para usar nos botóns."
+
+#. i18n: ectx: label, entry (DisplayFont), group (Font)
+#: kcalc.kcfg:89
+#, kde-format
+msgid "The font to use in the display."
+msgstr "A fonte para usar na pantalla."
+
+#. i18n: ectx: label, entry (HistoryFont), group (Font)
+#: kcalc.kcfg:96
+#, fuzzy, kde-format
+#| msgid "The font to use in the display."
+msgid "The font to use in the history."
+msgstr "A fonte para usar na pantalla."
+
+#. i18n: ectx: label, entry (Precision), group (Precision)
+#: kcalc.kcfg:102
+#, kde-format
+msgid "Maximum number of digits displayed."
+msgstr "Número máximo de díxitos mostrados."
+
+#. i18n: ectx: whatsthis, entry (Precision), group (Precision)
+#: kcalc.kcfg:108
+#, kde-format
+msgid ""
+"\n"
+"\tKCalc can compute with many more digits than the number that\n"
+"\tfits on the display. This setting gives the maximum number of\n"
+"\tdigits displayed, before KCalc starts using scientific notation,\n"
+"\ti.e. notation of the type 2.34e12.\n"
+"      "
+msgstr ""
+"\n"
+"\tKCalc pode realizar cálculos con moitos máis números dos que\n"
+"\tcaben na pantalla Esta opción permite estabelecer o número\n"
+"\tmáximo de díxitos que aparecerán na pantalla, antes de que\n"
+"\tKCalc empece a empregar a notación científica, como por\n"
+"\texemplo «2.34e12».\n"
+"      "
+
+#. i18n: ectx: label, entry (FixedPrecision), group (Precision)
+#: kcalc.kcfg:114
+#, kde-format
+msgid "Number of fixed decimal digits."
+msgstr "Número de díxitos fixos nos decimais."
+
+#. i18n: ectx: label, entry (Fixed), group (Precision)
+#: kcalc.kcfg:118
+#, kde-format
+msgid "Whether to use fixed decimal places."
+msgstr "Se usar lugares fixos para os decimais."
+
+#. i18n: ectx: label, entry (Beep), group (General)
+#: kcalc.kcfg:124
+#, kde-format
+msgid "Whether to beep on error."
+msgstr "Se emitir un son de aviso cando se produza un erro."
+
+#. i18n: ectx: label, entry (CaptionResult), group (General)
+#: kcalc.kcfg:128
+#, kde-format
+msgid "Whether to show the result in the window title."
+msgstr "Se mostrar o resultado no título da xanela."
+
+#. i18n: ectx: label, entry (GroupDigits), group (General)
+#: kcalc.kcfg:132
+#, kde-format
+msgid "Whether to group digits."
+msgstr "Se agrupar ou non os díxitos."
+
+#. i18n: ectx: label, entry (TwosComplement), group (General)
+#: kcalc.kcfg:136
+#, kde-format
+msgid "Whether to use Two's Complement for non-decimal numbers."
+msgstr "Se usar o complemento a dous para os números que non sexan decimais."
+
+#. i18n: ectx: whatsthis, entry (TwosComplement), group (General)
+#: kcalc.kcfg:141
+#, kde-format
+msgid ""
+"\n"
+"        Select to use Two's Complement notation for Binary, Octal\n"
+"        and Hexidecimal numbers. This is a common notation to represent\n"
+"        negative numbers in computers.\n"
+"      "
+msgstr ""
+"\n"
+"        Decidir usar a notación de complemento a dous para números\n"
+"        binarios, octais e hexadecimais. Trátase dunha notación moi\n"
+"        común para representar números negativos en informática.\n"
+"      "
+
+#. i18n: ectx: label, entry (RepeatLastOperation), group (General)
+#: kcalc.kcfg:145
+#, kde-format
+msgid "Enables that the last operation is repeated when \"=\" is pressed"
+msgstr "Activa a repetición da última operación ao premer «=»."
+
+#. i18n: ectx: label, entry (CalculatorMode), group (General)
+#: kcalc.kcfg:151
+#, kde-format
+msgid "Easy Calculator Mode"
+msgstr "Modo fácil"
+
+#. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
+#: kcalc.kcfg:152
+#, kde-format
+msgid "A very simple mode where only the basic calculator buttons are shown"
+msgstr ""
+"Un modo moi sinxelo no que só se mostran os botóns básicos dunha calculadora."
+
+#. i18n: ectx: label, entry (CalculatorMode), group (General)
+#: kcalc.kcfg:155
+#, kde-format
+msgid "Science Calculator Mode"
+msgstr "Modo científico"
+
+#. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
+#: kcalc.kcfg:156
+#, kde-format
+msgid "Mode with science buttons and optional constants buttons"
+msgstr "Modo con botóns científicos e botóns de constantes opcionais."
+
+#. i18n: ectx: label, entry (CalculatorMode), group (General)
+#: kcalc.kcfg:159
+#, kde-format
+msgid "Statistic Calculator Mode"
+msgstr "Modo estatístico"
+
+#. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
+#: kcalc.kcfg:160
+#, kde-format
+msgid "Mode with additional statistics buttons and optional constants buttons"
+msgstr ""
+"Modo con botóns adicionais para estatísticas e botóns de constantes "
+"opcionais."
+
+#. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
+#: kcalc.kcfg:164
+#, kde-format
+msgid ""
+"Mode with logic buttons and selectable base. Optional bit edit available."
+msgstr ""
+"Modo con botóns lóxicos e posibilidade de escoller a base numérica. "
+"Opcionalmente permítese a edición de bits."
+
+#. i18n: ectx: label, entry (ShowBitset), group (General)
+#: kcalc.kcfg:169
+#, kde-format
+msgid "Whether to show the bit edit widget."
+msgstr "Se mostrar o trebello de edición de bits."
+
+#. i18n: ectx: label, entry (ShowConstants), group (General)
+#: kcalc.kcfg:173
+#, kde-format
+msgid "Whether to show constant buttons."
+msgstr "Se mostrar os botóns das constantes."
+
+#. i18n: ectx: label, entry (ShowHistory), group (General)
+#: kcalc.kcfg:177
+#, fuzzy, kde-format
+#| msgid "Whether to show the bit edit widget."
+msgid "Whether to show the history window."
+msgstr "Se mostrar o trebello de edición de bits."
+
+#. i18n: ectx: label, entry (AngleMode), group (General)
+#: kcalc.kcfg:181
+#, kde-format
+msgid "Degrees, radians or grads"
+msgstr "Graos, radiáns ou centesimais."
+
+#. i18n: ectx: label, entry (BaseMode), group (General)
+#: kcalc.kcfg:185
+#, kde-format
+msgid "Numeric base"
+msgstr "Base numérica."
+
+#. i18n: ectx: label, entry (BinaryGrouping), group (Grouping)
+#: kcalc.kcfg:191
+#, kde-format
+msgid "Binary figures will be separated by a whitespace after every Xth digit."
+msgstr "As cifras binarias separaranse cun espazo cada X díxitos."
+
+#. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
+#: kcalc.kcfg:196
+#, kde-format
+msgid ""
+"\n"
+"            For easier readability it's possible to visible group the "
+"individual digits into pairs\n"
+"            for example instead of 10111001 you can display 1011 1001, by "
+"setting the setting to\n"
+"            4, thus inserting a whitespace after every 4th digit.\n"
+"        "
+msgstr ""
+"\n"
+"            Para facilitar a súa lectura, pódense agrupar visiblemente os "
+"díxitos individuais\n"
+"            en grupos; por exemplo, en vez de «10111001» pode mostrar «1011 "
+"1001», dándolle\n"
+"            o valor «4» á opción, para que se insira un espazo entre cada "
+"grupo de 4 cifras.\n"
+"        "
+
+#. i18n: ectx: label, entry (OctalGrouping), group (Grouping)
+#: kcalc.kcfg:200
+#, kde-format
+msgid "Octal figures will be separated by a whitespace after every Xth digit."
+msgstr "As cifras octais separaranse cun espazo cada X díxitos."
+
+#. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
+#: kcalc.kcfg:205
+#, kde-format
+msgid ""
+"\n"
+"            For easier readability it's possible to visible group the "
+"individual digits into pairs\n"
+"            for example instead of 42140213 you can display 4214 0213, by "
+"setting the setting to\n"
+"            4, thus inserting a whitespace after every 4th digit.\n"
+"        "
+msgstr ""
+"\n"
+"            Para facilitar a súa lectura, pódense agrupar visiblemente os "
+"díxitos individuais\n"
+"            en grupos; por exemplo, en vez de «42140213» pode mostrar «4214 "
+"0213», dándolle\n"
+"            o valor «4» á opción, para que se insira un espazo entre cada "
+"grupo de 4 cifras.\n"
+"        "
+
+#. i18n: ectx: label, entry (HexadecimalGrouping), group (Grouping)
+#: kcalc.kcfg:209
+#, kde-format
+msgid ""
+"Hexadecimal figures will be separated by a whitespace after every Xth digit."
+msgstr "As cantidades hexadecimais separaranse cun espazo cada X díxitos."
+
+#. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
+#: kcalc.kcfg:214
+#, kde-format
+msgid ""
+"\n"
+"            For easier readability it's possible to visible group the "
+"individual digits into pairs\n"
+"            for example instead of AF1C42 you can display AF 1C 42, by "
+"setting the setting to\n"
+"            2, thus inserting a whitespace after every 2nd digit.\n"
+"        "
+msgstr ""
+"\n"
+"            Para facilitar a súa lectura, pódense agrupar visiblemente os "
+"díxitos individuais\n"
+"            en grupos; por exemplo, en vez de «AF1C42» pode mostrar «AF 1C "
+"42», dándolle\n"
+"            o valor «2» á opción, para que se insira un espazo entre cada "
+"grupo de 2 cifras.\n"
+"        "
+
+#. i18n: ectx: label, entry (nameConstant$(ConstIndex)), group (UserConstants)
+#: kcalc.kcfg:220
+#, kde-format
+msgid "Name of the user programmable constants."
+msgstr "Nome das constantes personalizadas."
+
+#: kcalc.kcfg:230
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C1"
+msgstr "C1"
+
+#: kcalc.kcfg:231
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C2"
+msgstr "C2"
+
+#: kcalc.kcfg:232
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C3"
+msgstr "C3"
+
+#: kcalc.kcfg:233
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C4"
+msgstr "C4"
+
+#: kcalc.kcfg:234
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C5"
+msgstr "C5"
+
+#: kcalc.kcfg:235
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C6"
+msgstr "C6"
+
+#. i18n: ectx: label, entry (valueConstant$(ConstIndex)), group (UserConstants)
+#: kcalc.kcfg:239
+#, kde-format
+msgid "List of user programmable constants"
+msgstr "Lista das constantes personalizadas."
+
+#. i18n: ectx: property (toolTip), widget (KCalcBitset, mBitset)
+#: kcalc.ui:58
+#, kde-format
+msgid "Click on a Bit to toggle it."
+msgstr "Prema nun bit para invertelo."
+
+#. i18n: ectx: property (text), widget (QRadioButton, degRadio)
+#: kcalc.ui:69
+#, kde-format
+msgid "&Deg"
+msgstr "&Grao"
+
+#. i18n: ectx: property (text), widget (QRadioButton, radRadio)
+#: kcalc.ui:76
+#, kde-format
+msgid "&Rad"
+msgstr "&Rad"
+
+#. i18n: ectx: property (text), widget (QRadioButton, gradRadio)
+#: kcalc.ui:83
+#, kde-format
+msgid "&Grad"
+msgstr "&Cent"
+
+#. i18n: ectx: property (toolTip), widget (QRadioButton, hexRadio)
+#: kcalc.ui:111
+#, kde-format
+msgid "Switch base to hexadecimal."
+msgstr "Cambiar a base a hexadecimal."
+
+#. i18n: ectx: property (text), widget (QRadioButton, hexRadio)
+#: kcalc.ui:114
+#, kde-format
+msgid "He&x"
+msgstr "He&x"
+
+#. i18n: ectx: property (text), widget (KSqueezedTextLabel, hexDisplay)
+#. i18n: ectx: property (text), widget (KSqueezedTextLabel, decDisplay)
+#. i18n: ectx: property (text), widget (KSqueezedTextLabel, octDisplay)
+#. i18n: ectx: property (text), widget (KSqueezedTextLabel, binDisplay)
+#: kcalc.ui:133 kcalc.ui:169 kcalc.ui:205 kcalc.ui:241
+#, kde-format
+msgid "KSq…bel"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QRadioButton, decRadio)
+#: kcalc.ui:147
+#, kde-format
+msgid "Switch base to decimal."
+msgstr "Cambiar a base a decimal."
+
+#. i18n: ectx: property (text), widget (QRadioButton, decRadio)
+#: kcalc.ui:150
+#, kde-format
+msgid "&Dec"
+msgstr "&Dec"
+
+#. i18n: ectx: property (toolTip), widget (QRadioButton, octRadio)
+#: kcalc.ui:183
+#, kde-format
+msgid "Switch base to octal."
+msgstr "Cambiar a base a octal."
+
+#. i18n: ectx: property (text), widget (QRadioButton, octRadio)
+#: kcalc.ui:186
+#, kde-format
+msgid "Oc&t"
+msgstr "Oc&t"
+
+#. i18n: ectx: property (toolTip), widget (QRadioButton, binRadio)
+#: kcalc.ui:219
+#, kde-format
+msgid "Switch base to binary."
+msgstr "Cambiar a base a binario."
+
+#. i18n: ectx: property (text), widget (QRadioButton, binRadio)
+#: kcalc.ui:222
+#, kde-format
+msgid "&Bin"
+msgstr "&Bin"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbCSt)
+#: kcalc.ui:300
+#, kde-format
+msgid "Clear data store"
+msgstr "Baleirar os datos almacenados."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbCSt)
+#: kcalc.ui:303
+#, kde-format
+msgid "CSt"
+msgstr "BDA"
+
+#. i18n: ectx: property (text), widget (KCalcConstButton, pbC6)
+#: kcalc.ui:316
+#, kde-format
+msgid "C6"
+msgstr "C6"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbOR)
+#: kcalc.ui:332
+#, kde-format
+msgid "Bitwise OR"
+msgstr "OU bit a bit."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbOR)
+#: kcalc.ui:335
+#, kde-format
+msgid "OR"
+msgstr "OU"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbSd)
+#: kcalc.ui:351
+#, kde-format
+msgid "SD"
+msgstr "SD"
+
+#. i18n: ectx: property (text), widget (KCalcConstButton, pbC1)
+#: kcalc.ui:364
+#, kde-format
+msgid "C1"
+msgstr "C1"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbHyp)
+#: kcalc.ui:380
+#, kde-format
+msgid "Hyperbolic mode"
+msgstr "Modo hiperbólico."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbHyp)
+#: kcalc.ui:383
+#, kde-format
+msgid "Hyp"
+msgstr "Hip"
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbHyp)
+#: kcalc.ui:386
+#, kde-format
+msgid "H"
+msgstr "H"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbRsh)
+#: kcalc.ui:402
+#, kde-format
+msgid "Right bit shift"
+msgstr "Desprazamento dos bits á dereita."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbRsh)
+#: kcalc.ui:405
+#, kde-format
+msgid "Rsh"
+msgstr "DsD"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbLn)
+#: kcalc.ui:421
+#, kde-format
+msgid "Ln"
+msgstr "Ln"
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbLn)
+#. i18n: ectx: property (text), widget (KCalcButton, pbNData)
+#: kcalc.ui:424 kcalc.ui:625
+#, kde-format
+msgid "N"
+msgstr "N"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbCube)
+#: kcalc.ui:437
+#, kde-format
+msgid "Cube"
+msgstr "Cubo."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbCube)
+#: kcalc.ui:440
+#, kde-format
+msgid "x3"
+msgstr "x3"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbCos)
+#: kcalc.ui:456
+#, kde-format
+msgid "Cos"
+msgstr "Cos"
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbCos)
+#. i18n: ectx: property (text), widget (KCalcButton, pbC)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbC)
+#. i18n: ectx: property (text), widget (KCalcButton, pbClear)
+#: kcalc.ui:459 kcalc.ui:874 kcalc.ui:877 kcalc.ui:1331
+#, kde-format
+msgid "C"
+msgstr "C"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbEE)
+#: kcalc.ui:475
+#, kde-format
+msgid "EXP"
+msgstr "EXP"
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbEE)
+#. i18n: ectx: property (text), widget (KCalcButton, pbE)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbE)
+#: kcalc.ui:478 kcalc.ui:775 kcalc.ui:778
+#, kde-format
+msgid "E"
+msgstr "E"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbMod)
+#: kcalc.ui:494
+#, kde-format
+msgid "Mod"
+msgstr "Mod"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbSquare)
+#: kcalc.ui:510
+#, kde-format
+msgid "x2"
+msgstr "x2"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbTan)
+#: kcalc.ui:526
+#, kde-format
+msgid "Tan"
+msgstr "Tan"
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbTan)
+#: kcalc.ui:529
+#, kde-format
+msgid "T"
+msgstr "T"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbD)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbD)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbDat)
+#: kcalc.ui:542 kcalc.ui:545 kcalc.ui:679
+#, kde-format
+msgid "D"
+msgstr "D"
+
+#. i18n: ectx: property (text), widget (KCalcConstButton, pbC4)
+#: kcalc.ui:558
+#, kde-format
+msgid "C4"
+msgstr "C4"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbXOR)
+#: kcalc.ui:574
+#, kde-format
+msgid "Bitwise XOR"
+msgstr "OU-exclusivo bit a bit."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbXOR)
+#: kcalc.ui:577
+#, kde-format
+msgid "XOR"
+msgstr "XOR"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbA)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbA)
+#: kcalc.ui:590 kcalc.ui:593
+#, kde-format
+msgid "A"
+msgstr "A"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbAND)
+#: kcalc.ui:606
+#, kde-format
+msgid "Bitwise AND"
+msgstr "E bit a bit."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbAND)
+#: kcalc.ui:609
+#, kde-format
+msgid "AND"
+msgstr "E"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbReci)
+#: kcalc.ui:641
+#, kde-format
+msgid "1/X"
+msgstr "1/X"
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbReci)
+#: kcalc.ui:644
+#, kde-format
+msgid "R"
+msgstr "R"
+
+# https://en.wikipedia.org/wiki/Bitwise_operation#Bit_shifts
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbLsh)
+#: kcalc.ui:657
+#, kde-format
+msgid "Left bit shift"
+msgstr "Desprazamento dos bits á esquerda."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbLsh)
+#: kcalc.ui:660
+#, kde-format
+msgid "Lsh"
+msgstr "DsE"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbDat)
+#: kcalc.ui:676
+#, kde-format
+msgid "Dat"
+msgstr "Dat"
+
+#. i18n: ectx: property (text), widget (KCalcConstButton, pbC3)
+#: kcalc.ui:692
+#, kde-format
+msgid "C3"
+msgstr "C3"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbSin)
+#: kcalc.ui:711
+#, kde-format
+msgid "Sin"
+msgstr "Sin"
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbSin)
+#: kcalc.ui:714
+#, kde-format
+msgid "S"
+msgstr "S"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbMean)
+#: kcalc.ui:730
+#, kde-format
+msgid "Mea"
+msgstr "Mea"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbMed)
+#: kcalc.ui:746
+#, kde-format
+msgid "Med"
+msgstr "Med"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbPower)
+#: kcalc.ui:762
+#, kde-format
+msgid "pow"
+msgstr "pot"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbB)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbB)
+#: kcalc.ui:791 kcalc.ui:794
+#, kde-format
+msgid "B"
+msgstr "B"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbCmp)
+#: kcalc.ui:807
+#, kde-format
+msgid "One's complement"
+msgstr "Complemento a un."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbCmp)
+#: kcalc.ui:810
+#, kde-format
+msgid "Cmp"
+msgstr "Cmp"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbLog)
+#: kcalc.ui:826
+#, kde-format
+msgid "Log"
+msgstr "Log"
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbLog)
+#: kcalc.ui:829
+#, kde-format
+msgid "L"
+msgstr "L"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbF)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbF)
+#: kcalc.ui:842 kcalc.ui:845
+#, kde-format
+msgid "F"
+msgstr "F"
+
+#. i18n: ectx: property (text), widget (KCalcConstButton, pbC2)
+#: kcalc.ui:858
+#, kde-format
+msgid "C2"
+msgstr "C2"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbFactorial)
+#: kcalc.ui:893
+#, kde-format
+msgid "x!"
+msgstr "x!"
+
+#. i18n: ectx: property (text), widget (KCalcConstButton, pbC5)
+#: kcalc.ui:906
+#, kde-format
+msgid "C5"
+msgstr "C5"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pb7)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb7)
+#: kcalc.ui:949 kcalc.ui:952
+#, kde-format
+msgid "7"
+msgstr "7"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pb8)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb8)
+#: kcalc.ui:965 kcalc.ui:968
+#, kde-format
+msgid "8"
+msgstr "8"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pb9)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb9)
+#: kcalc.ui:981 kcalc.ui:984
+#, kde-format
+msgid "9"
+msgstr "9"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pb4)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb4)
+#: kcalc.ui:997 kcalc.ui:1000
+#, kde-format
+msgid "4"
+msgstr "4"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pb5)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb5)
+#: kcalc.ui:1013 kcalc.ui:1016
+#, kde-format
+msgid "5"
+msgstr "5"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pb6)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb6)
+#: kcalc.ui:1029 kcalc.ui:1032
+#, kde-format
+msgid "6"
+msgstr "6"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pb1)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb1)
+#: kcalc.ui:1045 kcalc.ui:1048
+#, kde-format
+msgid "1"
+msgstr "1"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pb2)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb2)
+#: kcalc.ui:1061 kcalc.ui:1064
+#, kde-format
+msgid "2"
+msgstr "2"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pb3)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb3)
+#: kcalc.ui:1077 kcalc.ui:1080
+#, kde-format
+msgid "3"
+msgstr "3"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pb0)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb0)
+#: kcalc.ui:1093 kcalc.ui:1096
+#, kde-format
+msgid "0"
+msgstr "0"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbPercent)
+#: kcalc.ui:1109
+#, kde-format
+msgid "Percent"
+msgstr "Porcentaxe."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbPercent)
+#: kcalc.ui:1112
+#, no-c-format, kde-format
+msgid "%"
+msgstr "%"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbDivision)
+#: kcalc.ui:1125
+#, kde-format
+msgid "Division"
+msgstr "División."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbDivision)
+#: kcalc.ui:1128
+#, kde-format
+msgid "÷"
+msgstr "÷"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbMultiplication)
+#: kcalc.ui:1141
+#, kde-format
+msgid "Multiplication"
+msgstr "Multiplicación."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbMultiplication)
+#: kcalc.ui:1144
+#, kde-format
+msgid "×"
+msgstr "×"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbMinus)
+#: kcalc.ui:1157
+#, kde-format
+msgid "Minus"
+msgstr "Resta."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbMinus)
+#: kcalc.ui:1160
+#, kde-format
+msgctxt "- calculator button"
+msgid "−"
+msgstr "−"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbPlus)
+#: kcalc.ui:1173
+#, kde-format
+msgid "Plus"
+msgstr "Suma."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbPlus)
+#: kcalc.ui:1176
+#, kde-format
+msgctxt "+ calculator button"
+msgid "+"
+msgstr "+"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbEqual)
+#: kcalc.ui:1189
+#, kde-format
+msgid "Result"
+msgstr "Resultado."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbEqual)
+#: kcalc.ui:1192
+#, kde-format
+msgctxt "= calculator button"
+msgid "="
+msgstr "="
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbPeriod)
+#: kcalc.ui:1205
+#, kde-format
+msgid "Decimal point"
+msgstr "Separador dos decimais."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbPeriod)
+#: kcalc.ui:1208
+#, kde-format
+msgctxt ". calculator button"
+msgid "."
+msgstr ","
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbAllClear)
+#: kcalc.ui:1248
+#, kde-format
+msgid "Clear all"
+msgstr "Borralo todo."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbAllClear)
+#: kcalc.ui:1251
+#, kde-format
+msgid "AC"
+msgstr "BT"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbMemClear)
+#: kcalc.ui:1264
+#, kde-format
+msgid "Memory clear"
+msgstr "Baleirar a memoria."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbMemClear)
+#: kcalc.ui:1267
+#, kde-format
+msgid "MC"
+msgstr "BM"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbMemRecall)
+#: kcalc.ui:1280
+#, kde-format
+msgid "Memory recall"
+msgstr "Restaurar a memoria."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbMemRecall)
+#: kcalc.ui:1283
+#, kde-format
+msgid "MR"
+msgstr "RM"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbPlusMinus)
+#: kcalc.ui:1296
+#, kde-format
+msgid "Change sign"
+msgstr "Cambiar o signo."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbPlusMinus)
+#: kcalc.ui:1299
+#, kde-format
+msgid "+/−"
+msgstr "+/−"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbParenOpen)
+#: kcalc.ui:1312
+#, kde-format
+msgid "Open parenthesis"
+msgstr "Abrir parénteses."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbParenOpen)
+#: kcalc.ui:1315
+#, kde-format
+msgctxt "( calculator button"
+msgid "("
+msgstr "("
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbClear)
+#: kcalc.ui:1328
+#, kde-format
+msgid "Clear"
+msgstr "Borrar"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbMemPlusMinus)
+#: kcalc.ui:1344
+#, kde-format
+msgid "Add to memory"
+msgstr "Engadir á memoria."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbMemPlusMinus)
+#: kcalc.ui:1347
+#, kde-format
+msgid "M+"
+msgstr "M+"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbMemStore)
+#: kcalc.ui:1360
+#, kde-format
+msgid "Memory store"
+msgstr "Almacenar a memoria."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbMemStore)
+#: kcalc.ui:1363
+#, kde-format
+msgid "MS"
+msgstr "AM"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbParenClose)
+#: kcalc.ui:1376
+#, kde-format
+msgid "Close parenthesis"
+msgstr "Pechar os parénteses."
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbParenClose)
+#: kcalc.ui:1379
+#, kde-format
+msgctxt ") calculator button"
+msgid ")"
+msgstr ")"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbBackspace)
+#: kcalc.ui:1392
+#, kde-format
+msgid "←"
+msgstr "←"
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbBackspace)
+#: kcalc.ui:1395
+#, kde-format
+msgid "Backspace"
+msgstr "Borrar."
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbShift)
+#: kcalc.ui:1408
+#, kde-format
+msgid "Second button function"
+msgstr "Segundo grupo de botóns de funcións."
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbShift)
+#: kcalc.ui:1414
+#, kde-format
+msgid "Ctrl+2"
+msgstr "Ctrl+2"
+
+#: kcalc_bitset.cpp:57
+#, fuzzy, kde-format
+#| msgid "Bit %1"
+msgid "Bit %1 = %2"
+msgstr "Bit %1"
+
+#: kcalc_const_button.cpp:24 kcalc_const_button.cpp:37
+#, kde-format
+msgctxt "Write display data into memory"
+msgid "Store"
+msgstr "Almacenar"
+
+#: kcalc_const_button.cpp:24 kcalc_const_button.cpp:37
+#, kde-format
+msgid "Write display data into memory"
+msgstr "Escribir os datos da pantalla na memoria."
+
+#: kcalc_const_button.cpp:82
+#, kde-format
+msgid "Set Name"
+msgstr "Definir o nome"
+
+#: kcalc_const_button.cpp:87
+#, kde-format
+msgid "Choose From List"
+msgstr "Escoller da lista"
+
+#: kcalc_const_button.cpp:102
+#, kde-format
+msgid "New Name for Constant"
+msgstr "Novo nome para a constante"
+
+#: kcalc_const_button.cpp:102
+#, kde-format
+msgid "New name:"
+msgstr "Novo nome:"
+
+#: kcalc_const_menu.cpp:94
+#, kde-format
+msgid "Mathematics"
+msgstr "Matemáticas"
+
+#: kcalc_const_menu.cpp:95
+#, kde-format
+msgid "Electromagnetism"
+msgstr "Electromagnetismo"
+
+#: kcalc_const_menu.cpp:96
+#, kde-format
+msgid "Atomic && Nuclear"
+msgstr "Atómico e nuclear"
+
+#: kcalc_const_menu.cpp:97
+#, kde-format
+msgid "Thermodynamics"
+msgstr "Termodinámica"
+
+#: kcalc_const_menu.cpp:98
+#, kde-format
+msgid "Gravitation"
+msgstr "Gravitación"
+
+#: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:56
+#, kde-format
+msgctxt "Normal button functions are active"
+msgid "NORM"
+msgstr "Normal"
+
+#: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:56
+#, kde-format
+msgctxt "Second button functions are active"
+msgid "SHIFT"
+msgstr "Maiúsculas"
+
+#: kcalc_statusbar.cpp:19 kcalc_statusbar.cpp:101
+#, kde-format
+msgctxt "Memory indicator in status bar"
+msgid "M"
+msgstr "M"
+
+#: kcalcdisplay.cpp:42
+#, fuzzy, kde-format
+#| msgid "Select Display Font"
+msgctxt "@label accessibility description of the calculation result display"
+msgid "Result Display"
+msgstr "Seleccionar a fonte da pantalla"
+
+#. i18n: ectx: Menu (settings)
+#: kcalcui.rc:4
+#, kde-format
+msgid "&Settings"
+msgstr "&Configuración"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:3
+#, kde-format
+msgid "Pi"
+msgstr "Pi"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:7
+#, kde-format
+msgid "Euler Number"
+msgstr "Número de Euler"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:11
+#, kde-format
+msgid "Golden Ratio"
+msgstr "Proporción áurea"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:15
+#, kde-format
+msgid "Light Speed"
+msgstr "Velocidade da luz"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:19
+#, kde-format
+msgid "Planck's Constant"
+msgstr "Constante de Planck"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:23
+#, kde-format
+msgid "Gravitational Constant"
+msgstr "Constante gravitacional"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:27
+#, kde-format
+msgid "Earth Acceleration"
+msgstr "Aceleración terrestre"
+
+#. i18n: tag constant attribute name
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:31 scienceconstants.xml:35
+#, kde-format
+msgid "Elementary Charge"
+msgstr "Carga elemental"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:39
+#, kde-format
+msgid "Impedance of Vacuum"
+msgstr "Resistencia do baleiro"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:43
+#, kde-format
+msgid "Fine-Structure Constant"
+msgstr "Constante de estruturas finas"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:47
+#, kde-format
+msgid "Permeability of Vacuum"
+msgstr "Permeabilidade do baleiro"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:51
+#, kde-format
+msgid "Permittivity of Vacuum"
+msgstr "Permisividade do baleiro"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:55
+#, kde-format
+msgid "Boltzmann Constant"
+msgstr "Constante de Boltzmann"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:60
+#, kde-format
+msgid "Atomic Mass Unit"
+msgstr "Unidade da masa atómica"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:64
+#, kde-format
+msgid "Molar Gas Constant"
+msgstr "Constante molar dos gases"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:68
+#, kde-format
+msgid "Stefan-Boltzmann Constant"
+msgstr "Constante de Stefan-Boltzmann"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:72
+#, kde-format
+msgid "Avogadro's Number"
+msgstr "Número de Avogadro"
+
+#~ msgctxt "Sine"
+#~ msgid "Sin"
+#~ msgstr "Sin"
+
+#~ msgctxt "Hyperbolic sine"
+#~ msgid "Sinh"
+#~ msgstr "Sinh"
+
+#~ msgctxt "Cosine"
+#~ msgid "Cos"
+#~ msgstr "Cos"
+
+#~ msgctxt "Hyperbolic cosine"
+#~ msgid "Cosh"
+#~ msgstr "Cosh"
+
+#~ msgctxt "Tangent"
+#~ msgid "Tan"
+#~ msgstr "Tan"
+
+#~ msgctxt "Hyperbolic tangent"
+#~ msgid "Tanh"
+#~ msgstr "Tanh"
+
+#~ msgctxt "Natural log"
+#~ msgid "Ln"
+#~ msgstr "Ln"
+
+#~ msgid "Deg"
+#~ msgstr "Grao"
+
+#~ msgid "Rad"
+#~ msgstr "Rad"
+
+#~ msgid "&Oct"
+#~ msgstr "&Oct"
+
+#~ msgid ""
+#~ "Binary figures will be separated by a whitespace after every Xth number."
+#~ msgstr "As cifras hexadecimais separaranse cun espazo cada X díxitos."
+
+#~ msgid "Numbers"
+#~ msgstr "Números"
+
+#~ msgid "The &kcalc; Handbook"
+#~ msgstr "Manual do &kcalc;"
+
+#~ msgid ""
+#~ "<author>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</author>"
+#~ msgstr ""
+#~ "<author>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</author>"
+
+#~ msgid "&Pamela.Roberts;&Pamela.Roberts.mail;"
+#~ msgstr "&Pamela.Roberts;&Pamela.Roberts.mail;"
+
+#~| msgid "<para>&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail;</para>"
+#~ msgid "&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail;"
+#~ msgstr "&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail;"
+
+#~ msgid "ROLES_OF_TRANSLATORS"
+#~ msgstr ""
+#~ "<othercredit role=\"translator\"><firstname>Xosé</"
+#~ "firstname><surname>Calvo</surname> "
+#~ "<affiliation><address><email>xosecalvo@edu.xunta.es</email></address></"
+#~ "affiliation><contrib>Tradutor do proxecto Trasno</contrib></othercredit>"
+
+#~ msgid "&Bernd.Johannes.Wuebben;, &Pamela.Roberts;, &Anne-Marie.Mahfouf;"
+#~ msgstr "&Bernd.Johannes.Wuebben;, &Pamela.Roberts;, &Anne-Marie.Mahfouf;"
+
+#~ msgid "2010-05-13"
+#~ msgstr "2010-05-13"
+
+#~ msgid "2.7 (&kde; 4.5)"
+#~ msgstr "2.7 (&kde; 4.5)"
+
+#~ msgid "&kcalc; is a scientific calculator for &kde;"
+#~ msgstr "O &kcalc; é unha calculadora científica para o &kde;"
+
+#~ msgid "<keyword>KDE</keyword>"
+#~ msgstr "<keyword>KDE</keyword>"
+
+#~ msgid "Introduction"
+#~ msgstr "Introdución"
+
+#~| msgid "This document describes &kcalc; version 2.4."
+#~ msgid "This document describes &kcalc; version 2.7."
+#~ msgstr "Este documento describe o &kcalc;, versión 2.7."
+
+#~ msgid ""
+#~ "&kcalc; offers many more mathematical functions than meet the eye on a "
+#~ "first glance. Please study the section on keyboard accelerators and modes "
+#~ "in this handbook to learn more about the many functions available."
+#~ msgstr ""
+#~ "O &kcalc; ofrece muitas máis funcións matemáticas do que dá a entender á  primeira vista. Estude por favor a sección sobre os atallos de teclado e "
+#~ "os modos neste manual para aprender máis sobre as moitas funcións "
+#~ "disponíbeis."
+
+#~ msgid ""
+#~ "In addition to the usual functionality offered by most scientific "
+#~ "calculators, &kcalc; offers a number of features, which I think are "
+#~ "worthwhile pointing out:"
+#~ msgstr ""
+#~ "Para alén da funcionalidade normal ofrecida pola maioría das calculadoras "
+#~ "científicas, o &kcalc; ofrece un monte de funcionalidades que merecen ser "
+#~ "resaltadas:"
+
+#~ msgid ""
+#~ "&kcalc; provides trigonometric functions, logic operations, and it is "
+#~ "able to do statistical calculations."
+#~ msgstr ""
+#~ "O &kcalc; ofrece funcións trigonométricas, operacións lóxicas e é capaz "
+#~ "de efectuar cálculos estatísticos."
+
+#~ msgid "&kcalc; allows you to cut and paste numbers from/into its display."
+#~ msgstr "O &kcalc; permite cortar e apegar os números de e para o pantalla."
+
+#~ msgid ""
+#~ "&kcalc; features a <firstterm>results-stack</firstterm> which lets you "
+#~ "conveniently recall previous results."
+#~ msgstr ""
+#~ "O &kcalc; contén unha <firstterm>pila de resultados</firstterm> que "
+#~ "permite recuperar comodadamente os resultados anteriores."
+
+#~ msgid "You can configure &kcalc;'s display colors and font."
+#~ msgstr "Pódense configurar as cores e o tipo de letra do &kcalc;."
+
+#~ msgid ""
+#~ "You can configure &kcalc;'s precision and the number of digits after the "
+#~ "period."
+#~ msgstr ""
+#~ "Pódese configurar a precisión do &kcalc; e o número de díxitos a seguir á "
+#~ "vírgula."
+
+#~ msgid ""
+#~ "&kcalc; offers a great number of useful <link linkend=\"key-accels\"> key-"
+#~ "bindings</link>, which make using &kcalc; without using a pointing device "
+#~ "easy."
+#~ msgstr ""
+#~ "O &kcalc; ofrece un monte de <link linkend=\"key-accels\">atallos de "
+#~ "teclado</link> útiles que posibilitan e facilitan o uso do &kcalc; sen  usar o rato."
+
+#~| msgid ""
+#~| "Hint: pressing (and holding) the <keycap>&Ctrl;</keycap>-key, displays "
+#~| "on every button, the corresponding key-binding."
+#~ msgid ""
+#~ "Hint: pressing (and holding) the &Ctrl;-key, displays on every button,the "
+#~ "corresponding key-binding."
+#~ msgstr ""
+#~ "Suxestión: Ao premer (e manter premida) a tecla &Ctrl;, aparece en todos "
+#~ "os botóns a combinación de teclas correspondente."
+
+#~ msgid "Have fun with &kcalc;!"
+#~ msgstr "Divírtase co &kcalc;!"
+
+#~ msgid "Usage"
+#~ msgstr "Utilización"
+
+#~ msgid ""
+#~ "General usage is straight forward and similar to the way most simple "
+#~ "scientific calculators operate, but take note of the following special "
+#~ "&kcalc; features:"
+#~ msgstr ""
+#~ "A utilización xeral é intuitiva e semellante a como funcionan a maioría "
+#~ "das calculadoras científicas simples, mais hai que ter en conta as "
+#~ "seguintes funcionalidades especiais do &kcalc;:"
+
+#~ msgid ""
+#~ "Each time you &LMB; click on the <guibutton>=</guibutton> button or press "
+#~ "your keyboard's &Enter; or <keysym>=</keysym> keys, the display result is "
+#~ "written to &kcalc;'s result stack. You can navigate through the result "
+#~ "stack with your keyboard's <keycombo action=\"simul\">&Ctrl;<keycap>Z</"
+#~ "keycap></keycombo> and <keycombo action=\"simul\">&Ctrl; &Shift;"
+#~ "<keycap>Z</keycap></keycombo> keys."
+#~ msgstr ""
+#~ "De cada vez que se preme co &LMB; no botón <guibutton>=</guibutton> ou se "
+#~ "premen as teclas &Enter; ou <keysym>=</keysym>, o resultado presentado "
+#~ "gárdase na de resultados do &kcalc;. Pódese  navegar pola pila de resultados coas teclas <keycombo action=\"simul"
+#~ "\">&Ctrl;<keycap>Z</keycap></keycombo> e <keycombo action=\"simul"
+#~ "\">&Ctrl; &Shift;<keycap>Z</keycap></keycombo>."
+
+#~ msgid ""
+#~ "The percent function works somewhat differently to that on most "
+#~ "calculators. However, once understood, its enhanced functionality proves "
+#~ "quite useful. See the section about the <link linkend=\"percent"
+#~ "\">percent</link> function for further details."
+#~ msgstr ""
+#~ "A tecla de porcentaxe funciona de forma lixeiramente diferente da que "
+#~ "costuma existir na maioría das calculadoras. Porén, unha vez entendida, a "
+#~ "súa funcionalidade mellorada tórnase bastante útil. Vexa a sección sobre "
+#~ "a función <link linkend=\"percent\">porcentaxe</link> para máis detalles."
+
+#~ msgid "Cut and Paste"
+#~ msgstr "Cortar e apegar"
+
+#~ msgid ""
+#~ "Pressing <keycombo action=\"simul\">&Ctrl;<keycap>C</keycap></keycombo> "
+#~ "will place the displayed number on to the clipboard."
+#~ msgstr ""
+#~ "Ao premer <keycombo action=\"simul\">&Ctrl;<keycap>C</keycap></keycombo> "
+#~ "o número pasa para o porta-retallos."
+
+#~ msgid ""
+#~ "Pressing <keycombo action=\"simul\">&Ctrl;<keycap>V</keycap></keycombo> "
+#~ "will paste the clipboard content into the display if the content of the "
+#~ "clipboard is a valid floating point number."
+#~ msgstr ""
+#~ "Ao premer <keycombo action=\"simul\">&Ctrl;<keycap>V</keycap></keycombo> "
+#~ "apégase na pantalla o contido do porta-retallos - se o contido do porta-"
+#~ "retallos é un número de vírgula flotante válido."
+
+#~ msgid ""
+#~ "It is still possible to copy/paste by clicking on &kcalc;'s display, but "
+#~ "this may disappear in future versions."
+#~ msgstr ""
+#~ "Ainda é posíbel copiar/apegar premendo na pantalla do &kcalc;, mas isto "
+#~ "podería desaparecer en versións futuras."
+
+#~ msgid ""
+#~ "When you start &kcalc; for the first time, the calculator will only "
+#~ "display buttons for basic arithmetic computations."
+#~ msgstr "Ao iniciar &kcalc; pola primeira vez, a calculadora só mostra os botóns para os cálculos aritméticos básicos."
+
+#~| msgid ""
+#~| "Under the menu entry <guimenu>Settings</guimenu> it is possible to open "
+#~| "extra buttons for &kcalc;: it is for example possible to choose <link "
+#~| "linkend=\"statistical-mode\">Statistic</link> or <link linkend="
+#~| "\"trigonometric-mode\">Science/Engineering</link> buttons."
+#~ msgid ""
+#~ "Under the menu entry <guimenu>Settings</guimenu> it is possible to select "
+#~ "a mode for &kcalc;: it is possible to choose <link linkend=\"simple-mode"
+#~ "\">Simple</link> or <link linkend=\"science-mode\">Science</link> or "
+#~ "<link linkend=\"statistical-mode\">Statistic</link> or <link linkend="
+#~ "\"numeral-system-mode\">Numeral System</link> mode. Please note, that "
+#~ "these modes will slightly change as &kcalc; evolves."
+#~ msgstr ""
+#~ "No menú <guimenu>Configuración</guimenu> é posíbel escoller un modo para "
+#~ "o &kcalc;: é posíbel escoller <link linkend=\"simple-mode\">Simple</"
+#~ "link>  ou <link linkend=\"science-mode\">Científica</link> ou <link "
+#~ "linkend=\"statistical-mode\">Estatística</link> ou <link linkend="
+#~ "\"numeral-system-mode\">Sistema numérico</link>. Teña en conta que estes "
+#~ "modos mudarán lixeiramente segundo evoluciona o &kcalc;."
+
+#~| msgid ""
+#~| "To give easy access to all the functions in &kcalc;, many keys have a "
+#~| "second layout. Click on <guibutton>Inv</guibutton> or press the shortcut "
+#~| "<keycap>I</keycap> to make the second layout of the buttons visible."
+#~ msgid ""
+#~ "To give easy access to all the functions in &kcalc;, many keys have a "
+#~ "second layout. Click on <guibutton>&Shift;</guibutton> or press the "
+#~ "shortcut <keycap>I</keycap> to make the second layout of the buttons "
+#~ "visible."
+#~ msgstr ""
+#~ "Para dar un acceso simplificado a todas as funcións do &kcalc;, algunhas "
+#~ "teclas teñen unha segunda disposición. Prema <guibutton>&Shift;</"
+#~ "guibutton> ou o seu atallo <keycap>I</keycap> para tornar visíbel a "
+#~ "segunda disposición dos botóns."
+
+#~ msgid ""
+#~ "This mode contains only those buttons and functions, which are essential "
+#~ "necessary for basic calculations."
+#~ msgstr ""
+#~ "Este modo contén só os botóns e funcións esenciais para os cálculos "
+#~ "básicos."
+
+#~ msgid ""
+#~ "If you just want to sum up all items on an invoice this mode may be your "
+#~ "choice."
+#~ msgstr ""
+#~ "Se só se quere sumar todos os elementos dunha factura, isto é o que "
+#~ "convén escoller."
+
+#~ msgid ""
+#~ "In this mode the left column of buttons is allocated to trigonometric "
+#~ "functions:"
+#~ msgstr ""
+#~ "Neste modo a columna esquerda dos botóns fica destinada ás funcións  "
+#~ "trigonométricas:"
+
+#~ msgid "<guibutton>Hyp</guibutton>"
+#~ msgstr "<guibutton>Hyp</guibutton>"
+
+#~| msgid ""
+#~| "Enter Hyperbolic sub mode. Hyp Sin for example is the hyperbolic sine: "
+#~| "sinh(x)"
+#~ msgid ""
+#~ "Enter Hyperbolic sub mode. Hyp Sin for example is the hyperbolic sine: "
+#~ "sinh"
+#~ msgstr ""
+#~ "Entra no submodo hiperbólico. Hyp Sin, por exemplo, corresponde ao seno "
+#~ "hiperbólico: sinh"
+
+#~ msgid "<guibutton>Sin</guibutton>"
+#~ msgstr "<guibutton>Sin</guibutton>"
+
+#~ msgid "Compute the sine"
+#~ msgstr "Calcula o seno"
+
+#~| msgid "<guibutton>Inv</guibutton> <guibutton>Sin</guibutton>"
+#~ msgid "<guibutton>&Shift;</guibutton> <guibutton>Sin</guibutton>"
+#~ msgstr "<guibutton>&Shift;</guibutton> <guibutton>Sin</guibutton>"
+
+#~ msgid "Compute the inverse sine"
+#~ msgstr "Calcula o arco-seno"
+
+#~ msgid "<guibutton>Cos</guibutton>"
+#~ msgstr "<guibutton>Cos</guibutton>"
+
+#~ msgid "Compute the cosine"
+#~ msgstr "Calcula o coseno"
+
+#~| msgid "<guibutton>Inv</guibutton> <guibutton>Cos</guibutton>"
+#~ msgid "<guibutton>&Shift;</guibutton> <guibutton>Cos</guibutton>"
+#~ msgstr "<guibutton>&Shift;</guibutton> <guibutton>Cos</guibutton>"
+
+#~ msgid "Compute the inverse cosine"
+#~ msgstr "Calcula o arco-coseno"
+
+#~ msgid "<guibutton>Tan</guibutton>"
+#~ msgstr "<guibutton>Tan</guibutton>"
+
+#~ msgid "Compute the tangent"
+#~ msgstr "Calcula a tanxente"
+
+#~| msgid "<guibutton>Inv</guibutton> <guibutton>Tan</guibutton>"
+#~ msgid "<guibutton>&Shift;</guibutton> <guibutton>Tan</guibutton>"
+#~ msgstr "<guibutton>&Shift;</guibutton> <guibutton>Tan</guibutton>"
+
+#~ msgid "Compute the inverse tangent"
+#~ msgstr "Calcula a arco-tanxente"
+
+#~ msgid "<guibutton>Log</guibutton>"
+#~ msgstr "<guibutton>Log</guibutton>"
+
+#~ msgid "Compute the Log base 10"
+#~ msgstr "Calcula o logaritmo de base 10"
+
+#~| msgid "<guibutton>Inv</guibutton> <guibutton>Log</guibutton>"
+#~ msgid "<guibutton>&Shift;</guibutton> <guibutton>Log</guibutton>"
+#~ msgstr "<guibutton>&Shift;</guibutton> <guibutton>Log</guibutton>"
+
+#~ msgid "<guibutton>Ln</guibutton>"
+#~ msgstr "<guibutton>Ln</guibutton>"
+
+#~ msgid "Compute the natural logarithm. That is the log to base e"
+#~ msgstr "Calcula o logaritmo natural. Este é o logaritmo na base e"
+
+#~| msgid "<guibutton>Inv</guibutton> <guibutton>Ln</guibutton>"
+#~ msgid "<guibutton>&Shift;</guibutton> <guibutton>Ln</guibutton>"
+#~ msgstr "<guibutton>&Shift;</guibutton> <guibutton>Ln</guibutton>"
+
+#~ msgid ""
+#~ "In this mode the left column of buttons is allocated to statistical "
+#~ "functions:"
+#~ msgstr ""
+#~ "Neste modo a columna esquerda dos botóns destínase ás funcións "
+#~ "estatísticas:"
+
+#~ msgid ""
+#~ "Most of the functionality in this mode is centered around the "
+#~ "<guibutton>Dat</guibutton> button. To create a data list of numbers, "
+#~ "enter a number into the calculator and press <guibutton>Dat</guibutton>. "
+#~ "A sequentially increasing number is shown on the display indicating which "
+#~ "position in the Data <quote>list</quote> the number occupies. A "
+#~ "traditional calculator only stores three values for statistical "
+#~ "functions: The number of discrete items in a list, the sum of the data "
+#~ "items entered and the sum of the square of all data items in the list. "
+#~ "&kcalc; differs by actually storing each discrete value, allowing you to "
+#~ "calculate the median value of the data."
+#~ msgstr ""
+#~ "A maioria das funcionalidades deste modo están centradas no botón "
+#~ "<guibutton>Dat</guibutton>. Para crear unha lista de datos numéricos, "
+#~ "introduza un número na calculadora e prema <guibutton>Dat</guibutton>. Na "
+#~ "pantalla pareceun número secuencial incremental que indica a posición que "
+#~ "ocupa o número na  <quote>lista</quote> de datos. Unha calculadora tradicional só garda tres "
+#~ "valores para as funcións  estatísticas: O número de elementos discretos "
+#~ "dunha lista, o sumatorio dos elementos de datos introducidos e a suma dos "
+#~ "cadrados de todos os elementos da lista. O &kcalc; é diferente porque "
+#~ "almacena realmente todos os valores discretos, o que permite calcular a "
+#~ "mediana dos datos."
+
+#~ msgid "<guibutton>N</guibutton>"
+#~ msgstr "<guibutton>N</guibutton>"
+
+#~| msgid "<guibutton>Inv</guibutton> <guibutton>N</guibutton>"
+#~ msgid "<guibutton>&Shift;</guibutton> <guibutton>N</guibutton>"
+#~ msgstr "<guibutton>&Shift;</guibutton> <guibutton>N</guibutton>"
+
+#~ msgid "<guibutton>Mea</guibutton>"
+#~ msgstr "<guibutton>Mea</guibutton>"
+
+#~ msgid "Display the mean of the data items entered"
+#~ msgstr "Mostra a media dos elementos de dados introducidos"
+
+#~| msgid "<guibutton>Inv</guibutton> <guibutton>Mea</guibutton>"
+#~ msgid "<guibutton>&Shift;</guibutton> <guibutton>Mea</guibutton>"
+#~ msgstr "<guibutton>&Shift;</guibutton> <guibutton>Mea</guibutton>"
+
+#~ msgid "Display the sum of the square of all data items entered"
+#~ msgstr ""
+#~ "Mostra a suma do cadrado de todos os elementos de datos introducidos"
+
+#~ msgid "<guibutton>Std</guibutton>"
+#~ msgstr "<guibutton>Std</guibutton>"
+
+#~| msgid "<guibutton>Inv</guibutton> <guibutton>Std</guibutton>"
+#~ msgid "<guibutton>&Shift;</guibutton> <guibutton>Std</guibutton>"
+#~ msgstr "<guibutton>&Shift;</guibutton> <guibutton>Std</guibutton>"
+
+#~ msgid "Display the population standard deviation (n-1)"
+#~ msgstr "Mostra a desviación estándar da poboación (n-1)"
+
+#~ msgid "<guibutton>Med</guibutton>"
+#~ msgstr "<guibutton>Med</guibutton>"
+
+#~ msgid "Display the median"
+#~ msgstr "Mostra a mediana"
+
+#~ msgid "<guibutton>Dat</guibutton>"
+#~ msgstr "<guibutton>Dat</guibutton>"
+
+#~| msgid "<guibutton>Inv</guibutton> <guibutton>Dat</guibutton>"
+#~ msgid "<guibutton>&Shift;</guibutton> <guibutton>Dat</guibutton>"
+#~ msgstr "<guibutton>&Shift;</guibutton> <guibutton>Dat</guibutton>"
+
+#~ msgid "<guibutton>CSt</guibutton>"
+#~ msgstr "<guibutton>CSt</guibutton>"
+
+#~ msgid "Clear the store of all data item entered"
+#~ msgstr "Borra o almacenamento de todos os elementos de datos introducidos"
+
+#~ msgid ""
+#~ "This mode contains buttons and functions to calculate in binary, "
+#~ "hexadecimal, octal and decimal."
+#~ msgstr ""
+#~ "Este modo contén botóns e funcións para calcular en binario, hexadecimal, "
+#~ "octal e decimal."
+
+#~ msgid ""
+#~ "You select the numeral system with the radio buttons on the right. To "
+#~ "insert a hexadecimal number for example, just do the following: Select "
+#~ "<guilabel>Hex</guilabel> from the radio buttons. Then enter a number and "
+#~ "note, that you can use the letters <guibutton>A</guibutton> to "
+#~ "<guibutton>F</guibutton> for numbers larger than 9. If you would like to "
+#~ "see this number in binary, just select <guilabel>Bin</guilabel> from the "
+#~ "radio buttons."
+#~ msgstr ""
+#~ "Escóllese o sistema numérico cos botóns de radio da dereita. Para inserir "
+#~ "un número en hexadecimal, por exemplo, faga o seguinte: Escolle "
+#~ "<guilabel>hex</guilabel> nos botóns de radio. A seguir introduza un "
+#~ "número e lembre que pode empregar as letras <guibutton>A</guibutton> a "
+#~ "<guibutton>F</guibutton> para os números maiores de 9. Se desexa ver este "
+#~ "número en binario, simplemente escolle <guilabel>Bin</guilabel> nos "
+#~ "botóns de radio."
+
+#~ msgid ""
+#~ "You may want to select <guimenu>Show Bit Edit</guimenu> from the "
+#~ "<guimenu>Settings</guimenu> menu to see selected bits."
+#~ msgstr ""
+#~ "Pode escoller <guimenu>Mostrar a edición de bits</guimenu> no menú "
+#~ "<guimenu>Configuración</guimenu> para ver os bits seleccionados."
+
+#~ msgid ""
+#~ "There are logic operators available in this mode. These operators are:"
+#~ msgstr "Este modo dispón de operadores lóxicos. Son:"
+
+#~ msgid "<guibutton>AND</guibutton>"
+#~ msgstr "<guibutton>E</guibutton>"
+
+#~ msgid "Two numbers are logically anded"
+#~ msgstr "Opérase con AND sobre dous números"
+
+#~ msgid "<guibutton>OR</guibutton>"
+#~ msgstr "<guibutton>OU</guibutton>"
+
+#~ msgid "Two numbers are logically ored"
+#~ msgstr "Opérase con OR sobre dous números"
+
+#~| msgid "<guibutton>OR</guibutton>"
+#~ msgid "<guibutton>XOR</guibutton>"
+#~ msgstr "<guibutton>XOR</guibutton>"
+
+#~ msgid "Two numbers are logically exclusive ored"
+#~ msgstr "Opérase coa exclusión lóxica OR sobre dous números"
+
+#~ msgid ""
+#~ "&kcalc; supports the memory operations given by standard calculators plus "
+#~ "six slots to hold constants."
+#~ msgstr ""
+#~ "O &kcalc; permite as operacións de memoria que fornecen as máquinas de "
+#~ "calcular  normais, mais seis lugares onde gardar constantes."
+
+#~| msgid ""
+#~| "&kcalc; can remember results of operations for you, and re-use them in "
+#~| "later calculations. You can access these functions via several buttons "
+#~| "labelled <guibutton>MR</guibutton>, <guibutton>MS</guibutton>, "
+#~| "<guibutton>M+</guibutton> and <guibutton>MC</guibutton>."
+#~ msgid ""
+#~ "&kcalc; can remember results of operations for you, and re-use them in "
+#~ "later calculations. You can access these functions via several buttons "
+#~ "labeled <guibutton>MR</guibutton>, <guibutton>MS</guibutton>, <guibutton>M"
+#~ "+</guibutton> and <guibutton>MC</guibutton>."
+#~ msgstr ""
+#~ "O &kcalc; pode lembrar os resultados das operacións e reutilizalas nos "
+#~ "cálculos posteriores. Pódese acceder a estas funcións a través de varios "
+#~ "botóns chamados <guibutton>MR</guibutton>, <guibutton>MS</guibutton>, "
+#~ "<guibutton>M+</guibutton> e <guibutton>MC</guibutton>."
+
+#~ msgid "<guibutton>MS</guibutton>"
+#~ msgstr "<guibutton>MS</guibutton>"
+
+#~ msgid ""
+#~ "The <guibutton>MS</guibutton> button stores the currently displayed "
+#~ "result in memory."
+#~ msgstr ""
+#~ "<guibutton>MS</guibutton> garda na memoria o resultado actual da pantalla."
+
+#~ msgid "<guibutton>M+</guibutton>"
+#~ msgstr "<guibutton>M+</guibutton>"
+
+#~ msgid ""
+#~ "The <guibutton>M+</guibutton> button adds the current result to the one "
+#~ "in memory. So, if you had stored a 20, and the current result is a 5, "
+#~ "your memory would contain 25 when you press it. If the memory is empty, "
+#~ "it acts like <guibutton>MS</guibutton> and simply stores the result."
+#~ msgstr ""
+#~ "<guibutton>M+</guibutton> engade o resultado actual ao que se encontra na "
+#~ "memoria. Así, se tiver almacenado un 20 e o resultado actual for 5, a "
+#~ "memoria conterá 25 cando prema o botón. Se a memoria estiver baleria "
+#~ "actúa como o <guibutton>MS</guibutton> e simplemente garda o  resultado."
+
+#~ msgid "<guibutton>MR</guibutton>"
+#~ msgstr "<guibutton>MR</guibutton>"
+
+#~ msgid ""
+#~ "The <guibutton>MR</guibutton> button gets the value stored in memory and "
+#~ "puts it in the display."
+#~ msgstr ""
+#~ "O botón <guibutton>MR</guibutton> recupera o valor gardado na memoria e  colócao na pantalla."
+
+#~ msgid "<guibutton>MC</guibutton>"
+#~ msgstr "<guibutton>MC</guibutton>"
+
+#~ msgid "The <guibutton>MC</guibutton> button clears the memory."
+#~ msgstr "O botón <guibutton>MC</guibutton> borra a memoria."
+
+#~ msgid ""
+#~ "If a value is stored in memory a <guilabel>M</guilabel> will appear in "
+#~ "the status bar, next to the calculator mode indicator"
+#~ msgstr ""
+#~ "Se un valor for gardado en memoria, aparece un <guilabel>M</guilabel> na "
+#~ "barra de estado, ao lado do indicador do modo da calculadora"
+
+#~| msgid ""
+#~| "The six constants buttons <guibutton>C1</guibutton> to <guibutton>C6</"
+#~| "guibutton> will only be visible after activating the item "
+#~| "<guilabel>Constants Buttons</guilabel> in the menu <guimenu>Settings</"
+#~| "guimenu> of the menu bar."
+#~ msgid ""
+#~ "The six constants buttons <guibutton>C1</guibutton> to <guibutton>C6</"
+#~ "guibutton> will only be visible after activating the item "
+#~ "<guilabel>Constants Buttons</guilabel> in the menu <guimenu>Settings</"
+#~ "guimenu> of the menu bar. They are available in <guilabel>Science mode</"
+#~ "guilabel> and <guilabel>Statistics mode</guilabel>"
+#~ msgstr ""
+#~ "Os seis botóns de constantes <guibutton>C1</guibutton> a <guibutton>C6</"
+#~ "guibutton> só son visíbeis cando se activa o elemento <guilabel>Botóns de "
+#~ "constantes</guilabel> no menú <guimenu>Configuración</guimenu> da barra "
+#~ "de menú. Están dispoñíbeis no <guilabel>Modo científico</guilabel> e no "
+#~ "<guilabel>Modo estatístico</guilabel>"
+
+#~| msgid ""
+#~| "To store the number shown in the &kcalc; display in one of the six "
+#~| "constants, first press <guibutton>Inv</guibutton> followed by the "
+#~| "desired button key <guibutton>C1</guibutton> up to <guibutton>C6</"
+#~| "guibutton>."
+#~ msgid ""
+#~ "To store the number shown in the &kcalc; display in one of the six "
+#~ "constants, first press <guibutton>&Shift;</guibutton> followed by the "
+#~ "desired button key <guibutton>C1</guibutton> up to <guibutton>C6</"
+#~ "guibutton>."
+#~ msgstr ""
+#~ "Para gardar o número presentado na pantalla do &kcalc; nun dos seis "
+#~ "botóns de constantes, prema primeiro o botón <guibutton>&Shift;</"
+#~ "guibutton>, seguido  do botón de constante desexado, de <guibutton>C1</guibutton> a  <guibutton>C6</guibutton>."
+
+#~| msgid ""
+#~| "To use the value stored in any of the contants in a calculation, just "
+#~| "press the desired button (<guibutton>C1</guibutton> to <guibutton>C6</"
+#~| "guibutton>), and the corresponding number will appear in the display."
+#~ msgid ""
+#~ "To use the value stored in any of the constants in a calculation, just "
+#~ "press the desired button (<guibutton>C1</guibutton> to <guibutton>C6</"
+#~ "guibutton>), and the corresponding number will appear in the display."
+#~ msgstr ""
+#~ "Para usar o valor gardado nun dos botóns de constantes, abonda con premer "
+#~ "o botón desexado (<guibutton>C1</guibutton> a <guibutton>C6</guibutton>) "
+#~ "para que o número correspondente apareza na pantalla."
+
+#~ msgid ""
+#~ "It is possible to change the label of the constants button to make it "
+#~ "easier to remember which button holds which constant. Click with the "
+#~ "right mouse button on one of the buttons <guibutton>C1</guibutton> to "
+#~ "<guibutton> C6</guibutton>. A popup menu appears, in which you select "
+#~ "<guilabel> Set Name</guilabel>."
+#~ msgstr ""
+#~ "É posíbel alterar a lenda dos botóns de constantes para facilitar que o "
+#~ "usuario lembre cal é a constante que contén cada botón. Prema cobotón "
+#~ "dereito un dos botóns (<guibutton>C1</guibutton> a <guibutton>C6</"
+#~ "guibutton>). Aparece un menú no que se pode seleccionar a opción  <guilabel>Escoller o nome</guilabel>."
+
+#~ msgid ""
+#~ "There are many (mostly physical) predefined constants, which can be put "
+#~ "on any of the six buttons <guibutton>C1</guibutton> - <guibutton>C6</"
+#~ "guibutton> by selecting the desired constant in the popup menu that "
+#~ "appears after right clicking on one of the constant buttons and selecting "
+#~ "<guilabel>Choose from List</guilabel>. Though the predefined constants "
+#~ "can also be accessed via the <guimenu>Constants</guimenu> in the menu "
+#~ "bar, storing it on a constants button is very handy, if the number is "
+#~ "used frequently."
+#~ msgstr ""
+#~ "Existen varias constantes (a maioría delas son físicas) que se poden "
+#~ "colocar en calquera dos seis botóns <guibutton>C1</guibutton> - "
+#~ "<guibutton>C6</guibutton>, se se selecciona a constante desexada no menú "
+#~ "de contexto que aparece ao premer un dos botóns de constantes e "
+#~ "seleccionar a opción <guilabel>Escoller da lista</guilabel>. Ainda que "
+#~ "tamén se poida acceder ás  constantes predefinidas a través do menú <guimenu>Constantes</guimenu>, "
+#~ "pode ser útil gardalas nun botón de constantes se o número for usado con "
+#~ "frecuencia."
+
+#~ msgid "Single Key Accelerators"
+#~ msgstr "Atallos de teclado simples"
+
+#~ msgid ""
+#~ "To simplify entering calculations from the keyboard &kcalc; has single "
+#~ "key accelerators for most functions. For example entering <userinput>7R</"
+#~ "userinput> or <userinput>7r</userinput> will calculate the reciprocal of "
+#~ "7 (1/7)."
+#~ msgstr ""
+#~ "Para simplificar a introdución de cálculos a partir do teclado, o &kcalc; "
+#~ "ten algúns aceleradores de teclado simples para a maioría das funcións. "
+#~ "Por exemplo, introducindo <userinput>7R</userinput> ou <userinput>7r</"
+#~ "userinput> calcúlase o inverso de 7 (1/7)."
+
+#~ msgid ""
+#~ "During a computation, you can always press &Ctrl; to make each button "
+#~ "display its key-binding."
+#~ msgstr "Durante un cálculo, pódese premer sempre a tecla &Ctrl; para que  cada botón mostre a súa combinación de teclas."
+
+#~ msgid "<entry>Key</entry>"
+#~ msgstr "<entry>Tecla</entry>"
+
+#~ msgid "Notes"
+#~ msgstr "Notas"
+
+#~ msgid "<keycap>H</keycap>"
+#~ msgstr "<keycap>H</keycap>"
+
+#~ msgid "<keycap>S</keycap>"
+#~ msgstr "<keycap>S</keycap>"
+
+#~ msgid "<keycap>C</keycap>"
+#~ msgstr "<keycap>C</keycap>"
+
+#~ msgid "<keycap>T</keycap>"
+#~ msgstr "<keycap>T</keycap>"
+
+#~ msgid "<keycap>N</keycap>"
+#~ msgstr "<keycap>N</keycap>"
+
+#~ msgid "log base e"
+#~ msgstr "Logaritmo en base e"
+
+#~ msgid "<keycap>L</keycap>"
+#~ msgstr "<keycap>L</keycap>"
+
+#~| msgid ""
+#~| "Inverse, &eg; if you want arcsin(x) type <userinput>i s </userinput>"
+#~ msgid ""
+#~ "Second function for this button. &eg; if you want arcsin type "
+#~ "<userinput>Ctrl-2 s </userinput>"
+#~ msgstr ""
+#~ "Segunda función deste botón. &eg;, se se desexa o arco-seno, escrita "
+#~ "<userinput>Ctrl-2 s </userinput>"
+
+#~ msgid "<keysym>\\</keysym>"
+#~ msgstr "<keysym>\\</keysym>"
+
+#~ msgid "<guibutton>+/-</guibutton>"
+#~ msgstr "<guibutton>+/-</guibutton>"
+
+#~ msgid "<keysym>[</keysym>"
+#~ msgstr "<keysym>[</keysym>"
+
+#~ msgid "<guibutton>x^2</guibutton>"
+#~ msgstr "<guibutton>x^2</guibutton>"
+
+#~ msgid "<keysym>^</keysym>"
+#~ msgstr "<keysym>^</keysym>"
+
+#~ msgid "<guibutton>x^y</guibutton>"
+#~ msgstr "<guibutton>x^y</guibutton>"
+
+#~ msgid "<keysym>!</keysym>"
+#~ msgstr "<keysym>!</keysym>"
+
+#~ msgid "<guibutton>x!</guibutton>"
+#~ msgstr "<guibutton>x!</guibutton>"
+
+#~ msgid "&lt;"
+#~ msgstr "&lt;"
+
+#~ msgid "<guibutton>Lsh</guibutton>"
+#~ msgstr "<guibutton>Lsh</guibutton>"
+
+#~ msgid "&gt;"
+#~ msgstr "&gt;"
+
+#~ msgid "<guibutton>Rsh</guibutton>"
+#~ msgstr "<guibutton>Rsh</guibutton>"
+
+#~ msgid "&amp;"
+#~ msgstr "&amp;"
+
+#~ msgid "Logical AND"
+#~ msgstr "E lóxico (AND)"
+
+#~ msgid "<keysym>x</keysym> or <keysym>*</keysym>"
+#~ msgstr "<keysym>x</keysym> ou <keysym>*</keysym>"
+
+#~ msgid "<guibutton>X</guibutton>"
+#~ msgstr "<guibutton>X</guibutton>"
+
+#~ msgid "<keysym>/</keysym>"
+#~ msgstr "<keysym>/</keysym>"
+
+#~ msgid "<guibutton>/</guibutton>"
+#~ msgstr "<guibutton>/</guibutton>"
+
+#~ msgid "Divide"
+#~ msgstr "Dividir"
+
+#~ msgid "<keycap>D</keycap>"
+#~ msgstr "<keycap>D</keycap>"
+
+#~ msgid "Enter data item in statistical mode"
+#~ msgstr "Introduce un elemento de datos no modo estatístico"
+
+#~ msgid "<keycap>|</keycap>"
+#~ msgstr "<keycap>|</keycap>"
+
+#~| msgid ""
+#~| "Logical OR. Note: <guibutton>Inv</guibutton> <guibutton>OR</guibutton> "
+#~| "is XOR"
+#~ msgid ""
+#~ "Logical OR. Note: <guibutton>&Shift;</guibutton> <guibutton>OR</"
+#~ "guibutton> is XOR"
+#~ msgstr ""
+#~ "OU lóxico (OR). Nota: <guibutton>&Shift;</guibutton> <guibutton>OR</"
+#~ "guibutton> é XOR"
+
+#~ msgid "<keycap>R</keycap>"
+#~ msgstr "<keycap>R</keycap>"
+
+#~ msgid "<guibutton>1/x</guibutton>"
+#~ msgstr "<guibutton>1/x</guibutton>"
+
+#~ msgid "&Enter;"
+#~ msgstr "&Enter;"
+
+#~ msgid "<guibutton>=</guibutton>"
+#~ msgstr "<guibutton>=</guibutton>"
+
+#~ msgid "Return"
+#~ msgstr "Return"
+
+#~ msgid "PgUp"
+#~ msgstr "RePág"
+
+#~ msgid "<guibutton>C</guibutton>"
+#~ msgstr "<guibutton>C</guibutton>"
+
+#~ msgid "&Esc;"
+#~ msgstr "&Esc;"
+
+#~ msgid "PgDown"
+#~ msgstr "AvPág"
+
+#~ msgid "<guibutton>AC</guibutton>"
+#~ msgstr "<guibutton>AC</guibutton>"
+
+#~ msgid "<keycap>Del</keycap>"
+#~ msgstr "<keycap>Del</keycap>"
+
+#~ msgid "&Shift;+<keycap>:</keycap>"
+#~ msgstr "&Shift;+<keycap>:</keycap>"
+
+#~ msgid "<guibutton>Mod</guibutton>"
+#~ msgstr "<guibutton>Mod</guibutton>"
+
+#~ msgid "remainder of dividing"
+#~ msgstr "resto da división"
+
+#~ msgid "&Alt;+<keycap>1</keycap> to &Alt;+<keycap>6</keycap>"
+#~ msgstr "&Alt;+<keycap>1</keycap> até &Alt;+<keycap>6</keycap>"
+
+#~ msgid "<guibutton>C1</guibutton>"
+#~ msgstr "<guibutton>C1</guibutton>"
+
+#~ msgid "use the value stored in C1 to C6"
+#~ msgstr "usar o valor gardado en C1 até C6"
+
+#~ msgid "Comments on Specific Functions"
+#~ msgstr "Comentarios sobre funcións específicas"
+
+#~ msgid ""
+#~ "<guibutton>Mod</guibutton> gives the remainder of dividing the displayed "
+#~ "number by the next input number."
+#~ msgstr ""
+#~ "<guibutton>Mod</guibutton> devolve o resto da división do número "
+#~ "presentado polo próximo número que se introduza."
+
+#~ msgid ""
+#~ "<userinput>22 Mod 8 = </userinput> will give the result <emphasis>6</"
+#~ "emphasis>"
+#~ msgstr ""
+#~ "<userinput>22 Mod 8 = </userinput> dá como resultado <emphasis>6</"
+#~ "emphasis>"
+
+#~ msgid ""
+#~ "<userinput>22.345 Mod 8 = </userinput> will give the result "
+#~ "<emphasis>6.345</emphasis>"
+#~ msgstr ""
+#~ "<userinput>22 Mod 8 = </userinput> dá como resultado <emphasis>6</"
+#~ "emphasis>"
+
+#~| msgid ""
+#~| "<guibutton>Inv</guibutton> <guibutton>IntDiv</guibutton> does integer "
+#~| "division of the displayed number by the next input number."
+#~ msgid ""
+#~ "<guibutton>&Shift;</guibutton> <guibutton>IntDiv</guibutton> does integer "
+#~ "division of the displayed number by the next input number."
+#~ msgstr ""
+#~ "<guibutton>&Shift;</guibutton> <guibutton>IntDiv</guibutton> fai a "
+#~ "división enteira do número presentado polo próximo número que se "
+#~ "introduza."
+
+#~| msgid ""
+#~| "<userinput>22 Inv IntDiv 8 = </userinput> will give the result "
+#~| "<emphasis>2</emphasis>"
+#~ msgid ""
+#~ "<userinput>22 Shift IntDiv 8 = </userinput> will give the result "
+#~ "<emphasis>2</emphasis>"
+#~ msgstr ""
+#~ "<userinput>22 Maiúsculas IntDiv 8 = </userinput> dá como resultado "
+#~ "<emphasis>2</emphasis>"
+
+#~| msgid ""
+#~| "<userinput>22.345 Inv IntDiv 8 = </userinput> also gives <emphasis>2</"
+#~| "emphasis>"
+#~ msgid ""
+#~ "<userinput>22.345 Shift IntDiv 8 = </userinput> also gives <emphasis>2</"
+#~ "emphasis>"
+#~ msgstr ""
+#~ "<userinput>22.345 Maiúsculas IntDiv 8 = </userinput> tamén dá o resultado "
+#~ "<emphasis>2</emphasis>"
+
+#~ msgid "&percnt;"
+#~ msgstr "&percnt;"
+
+#~ msgid ""
+#~ "Used instead of the <guibutton>=</guibutton> key, <guibutton>%</"
+#~ "guibutton> interprets the final operation carried out in the current "
+#~ "calculation as follows:"
+#~ msgstr ""
+#~ "Usado no canto da tecla <guibutton>=</guibutton>, <guibutton>%</"
+#~ "guibutton> interpreta a operación final executada no cálculo actual como "
+#~ "se indica a seguir:"
+
+#~ msgid ""
+#~ "If the final operator is + or - the second argument is interpreted as "
+#~ "percentage of the first operand."
+#~ msgstr ""
+#~ "Se o operador final for + ou -, o segundo argumento interprétase como "
+#~ "porcentaxe do segundo operando."
+
+#~ msgid ""
+#~ "If the final operator is * divide the result of the multiplication by 100."
+#~ msgstr ""
+#~ "Se o operador final for *, divídese o resultado da multiplicación por 100."
+
+#~ msgid ""
+#~ "If the final operator is / give the left operand as a percentage of the "
+#~ "right operand."
+#~ msgstr ""
+#~ "Se o operador final for /, dá o operando esquerdo como porcentaxe do "
+#~ "operando dereito."
+
+#~ msgid ""
+#~ "In all other cases the &percnt; key gives identical results to the = key."
+#~ msgstr ""
+#~ "En todos os outros casos a tecla &percnt; dá resultados iguais á tecla =."
+
+#~ msgid "Examples:"
+#~ msgstr "Exemplos:"
+
+#~ msgid ""
+#~ "<userinput>150 + 50 %</userinput> gives <emphasis>225</emphasis> (150 "
+#~ "plus 50 percent of this amount)"
+#~ msgstr ""
+#~ "<userinput>150 + 50 %</userinput> dá <emphasis>225</emphasis> (150 máis "
+#~ "50 por cento deste valor)"
+
+#~ msgid ""
+#~ "<userinput>42 * 3 %</userinput> gives <emphasis>1.26</emphasis> (42 * 3 / "
+#~ "100)"
+#~ msgstr ""
+#~ "<userinput>42 * 3 %</userinput> dá <emphasis>1.26</emphasis> (42 * 3 / "
+#~ "100)"
+
+#~ msgid ""
+#~ "<userinput>45 / 55 %</userinput> gives <emphasis>81.81...</emphasis> (45 "
+#~ "is 81.81.. percent of 55)"
+#~ msgstr ""
+#~ "<userinput>45 / 55 %</userinput> dá <emphasis>81,81...</emphasis> (45 é "
+#~ "81,81.. por cento de 55)"
+
+#~ msgid "Lsh and Rsh"
+#~ msgstr "Lsh e Rsh"
+
+#~ msgid ""
+#~ "<guibutton>Lsh</guibutton> left shifts the integer part of the displayed "
+#~ "value (multiplies it by 2) n times, where n is the next input number, and "
+#~ "gives an integer result (base is set to <guibutton>Bin</guibutton>):"
+#~ msgstr ""
+#~ "<guibutton>Lsh</guibutton> despraza á esquerda a parte enteira do valor "
+#~ "presentado (multiplícaa por 2) n veces, onde n é o próximo número que se "
+#~ "introduza, e dá un resultado enteiro (coa base definida como "
+#~ "<guibutton>Bin</guibutton>):"
+
+#~ msgid ""
+#~ "<userinput>10 Lsh 3 =</userinput> gives <emphasis>80</emphasis> (10 "
+#~ "multiplied by 2 three times)."
+#~ msgstr ""
+#~ "<userinput>10 Lsh 3 =</userinput> dá <emphasis>80</emphasis> (10 "
+#~ "multiplicado por 2, tres veces)."
+
+#~ msgid ""
+#~ "<userinput>10.345 Lsh 3 =</userinput> also gives <emphasis>80</emphasis>."
+#~ msgstr ""
+#~ "<userinput>10.345 Lsh 3 =</userinput> tamén dá <emphasis>80</emphasis>."
+
+#~ msgid ""
+#~ "<guibutton>Rsh</guibutton> right shifts the value (performs an integer "
+#~ "divide by 2) n times."
+#~ msgstr ""
+#~ "<guibutton>Rsh</guibutton> despraza á dereita o valor (fai unha división "
+#~ "enteira por 2), n veces."
+
+#~ msgid ""
+#~ "<userinput>16 Rsh 2 =</userinput> gives <emphasis>4</emphasis> (16 "
+#~ "divided by 2 twice)."
+#~ msgstr ""
+#~ "<userinput>16 Rsh 2 =</userinput> dá <emphasis>4</emphasis> (16 dividido "
+#~ "por 2, dúas veces)."
+
+#~ msgid ""
+#~ "<userinput>16.999 Rsh 2 =</userinput> also gives <emphasis>4</emphasis>."
+#~ msgstr ""
+#~ "<userinput>16.999 Rsh 2 =</userinput> tamén dá <emphasis>4</emphasis>."
+
+#~ msgid "Cmp, And, Or and Xor"
+#~ msgstr "Cmp, E, OU e Xor"
+
+#~ msgid ""
+#~ "The <guibutton>Cmp</guibutton>, <guibutton>And</guibutton> and "
+#~ "<guibutton>Or</guibutton> functions perform bitwise logical operations "
+#~ "and therefore appear more meaningful if the base is set to <guilabel>Hex</"
+#~ "guilabel>, <guilabel>Oct</guilabel> or <guilabel>Bin</guilabel> rather "
+#~ "than <guilabel>Dec</guilabel>. In the following examples base is set to "
+#~ "<guilabel>Bin</guilabel>."
+#~ msgstr ""
+#~ "As funcións  <guibutton>Cmp</guibutton>, <guibutton>E</guibutton> e "
+#~ "<guibutton>OU</guibutton> efectúan operacións lóxicas con bits, e como "
+#~ "tal  parecen máis significativas se a <guilabel>Base</guilabel> estiver "
+#~ "definida como <guilabel>Hex</guilabel>, <guilabel>Oct</guilabel> ou "
+#~ "<guilabel>Bin</guilabel> en vez de <guilabel>Dec</guilabel>. Nos "
+#~ "seguintes exemplos, a <guilabel>Base</guilabel> está definida como "
+#~ "<guilabel>Bin</guilabel>."
+
+#~ msgid ""
+#~ "<guibutton>Cmp</guibutton> performs a 1's complement (inverts the bits)."
+#~ msgstr ""
+#~ "<guibutton>Cmp</guibutton> efectúa un complemento a 1 (inverte os bits)."
+
+#~ msgid ""
+#~ "<userinput>101 Cmp</userinput> gives <emphasis>111...111010</emphasis>"
+#~ msgstr "<userinput>101 Cmp</userinput> dá <emphasis>111...111010</emphasis>"
+
+#~ msgid "<guibutton>AND</guibutton> does a logical AND."
+#~ msgstr "<guibutton>E</guibutton> efectúa un E lóxico."
+
+#~ msgid "<userinput>101 AND 110 =</userinput> gives <emphasis>100</emphasis>"
+#~ msgstr "<userinput>101 E 110 =</userinput> dá <emphasis>100</emphasis>"
+
+#~ msgid "<guibutton>OR</guibutton> does the logical OR."
+#~ msgstr "<guibutton>OU</guibutton> efectúa o OU lóxico."
+
+#~ msgid "<userinput>101 OR 110 =</userinput> gives <emphasis>111</emphasis>"
+#~ msgstr "<userinput>101 OU 110 =</userinput> dá <emphasis>111</emphasis>"
+
+#~ msgid ""
+#~ "<guibutton>XOR</guibutton> performs the logical XOR (exclusive OR) "
+#~ "operation."
+#~ msgstr ""
+#~ "<guibutton>XOR</guibutton> efectúa a operación de XOR lóxico (OU "
+#~ "exclusivo)."
+
+#~ msgid "<userinput>101 XOR 110 =</userinput> gives <emphasis>11</emphasis>"
+#~ msgstr "<userinput>101 XOR 110 =</userinput> dá <emphasis>11</emphasis>"
+
+#~ msgid "Questions and Answers"
+#~ msgstr "Preguntas e respostas"
+
+#~ msgid "How do I get e, the Euler number?"
+#~ msgstr "Como se pode obter e, o número de Euler?"
+
+#~| msgid "Type <userinput>1 Inv Ln</userinput>."
+#~ msgid "Type <userinput>1 Shift Ln</userinput>."
+#~ msgstr "Escriba <userinput>1 Maiúsculas Ln</userinput>."
+
+#~ msgid "How do I get two fixed digits after the period?"
+#~ msgstr "Como se obteñen dous algarismos fixos despois da vírgula?"
+
+#~ msgid ""
+#~ "Select <menuchoice><guimenu>Settings</guimenu><guimenuitem> Configure "
+#~ "&kcalc;...</guimenuitem></menuchoice> on the menubar, this will bring up "
+#~ "the configuration dialog. Check <guilabel>Set decimal precision</"
+#~ "guilabel> and adjust the spin control so that it shows a 2."
+#~ msgstr ""
+#~ "Prema o botón <menuchoice><guimenu>Configuración</guimenu><guimenuitem> "
+#~ "Configurar &kcalc;...</guimenuitem></menuchoice>, para que este mostre o "
+#~ "diálogo de configuración. Seleccione a opción <guilabel>Escoller a "
+#~ "precisión decimal</guilabel> e axuste o valor para que mostre un 2."
+
+#~ msgid ""
+#~ "The main factor determining the precision of &kcalc; is whether your libc "
+#~ "and libmath supports the C data type <type>long double</type>. If this is "
+#~ "the case, &kcalc; will detect this at compile time and use it as its "
+#~ "fundamental data type to represent numbers."
+#~ msgstr ""
+#~ "O factor principal que determina a precisión do &kcalc; é se o libc e "
+#~ "olibmath do sistema admiten o tipo de datos do C <type>long double</"
+#~ "type>. Se este for o caso, o &kcalc; detecta isto cando se compila e úsao  como tipo de datos fundamental para representar os números."
+
+#~ msgid ""
+#~ "Adjust the <guilabel>Precision</guilabel> in &kcalc;'s "
+#~ "<guibutton>Configure</guibutton> dialog so that the above computations "
+#~ "work correctly. I recommend a precision of 14 if the fundamental data "
+#~ "type for your copy of &kcalc; is <type>long double</type>, otherwise 8 or "
+#~ "10."
+#~ msgstr ""
+#~ "Axuste a <guilabel>Precisión</guilabel> no diálogo <guibutton>Configurar</"
+#~ "guibutton> do &kcalc; para que as contas anteriores funcionen "
+#~ "correctamente. Recoméndase unha precisión de 14 se o tipo de datos da "
+#~ "versión do &kcalc;  for o <type>long double</type>; caso contrario, recoméndase 8 ou 10."
+
+#~ msgid ""
+#~ "Higher precision doesn't necessarily lead to better results. Play with "
+#~ "the precision and you will see what I mean."
+#~ msgstr ""
+#~ "Unha maior precisión non significa necesariamente mellores resultados. "
+#~ "Brinque coa precisión e comprenderá o que se está a dicir."
+
+#~ msgid "Credits and License"
+#~ msgstr "Créditos e licenza"
+
+#~ msgid "&kcalc; Program Copyright &copy;:"
+#~ msgstr "&kcalc; Programa Copyright &copy;:"
+
+#~ msgid "&Bernd.Johannes.Wuebben; 1996-2000"
+#~ msgstr "&Bernd.Johannes.Wuebben; 1996-2000"
+
+#~ msgid "The &kde; Team 2000-2008"
+#~ msgstr "A Equipa do &kde; 2000-2008"
+
+#~ msgid "<para>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para>"
+#~ msgstr "<para>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para>"
+
+#~ msgid "&Evan.Teran; &Evan.Teran.mail;"
+#~ msgstr "&Evan.Teran; &Evan.Teran.mail;"
+
+#~ msgid "&Espen.Sand; &Espen.Sand.mail;"
+#~ msgstr "&Espen.Sand; &Espen.Sand.mail;"
+
+#~ msgid "&Chris.Howells; &Chris.Howells.mail;"
+#~ msgstr "&Chris.Howells; &Chris.Howells.mail;"
+
+#~ msgid "&Aaron.J.Seigo; &Aaron.J.Seigo.mail;"
+#~ msgstr "&Aaron.J.Seigo; &Aaron.J.Seigo.mail;"
+
+#~ msgid "&Charles.Samuels; &Charles.Samuels.mail;"
+#~ msgstr "&Charles.Samuels; &Charles.Samuels.mail;"
+
+#~ msgid "&David.Johnson; &David.Johnson.mail;"
+#~ msgstr "&David.Johnson; &David.Johnson.mail;"
+
+#~ msgid ""
+#~ "&kcalc; was inspired by <personname><firstname>Martin</firstname> "
+#~ "<surname>Bartlett</surname></personname>'s <application>xfrmcalc</"
+#~ "application>, whose stack engine is still part of &kcalc;."
+#~ msgstr ""
+#~ "O &kcalc; inspirouse no <application>xfrmcalc</application> de "
+#~ "<personname><firstname>Martin</firstname> <surname>Bartlett</surname></"
+#~ "personname>, cuxa pila é ainda parte do &kcalc;."
+
+#~| msgid "Documentation Copyright &copy; 2001,2002,2005, 2006:"
+#~ msgid "Documentation Copyright &copy; 2001,2002,2005, 2006,2010:"
+#~ msgstr "Copyright da documentación &copy; 2001,2002,2005, 2006,2010:"
+
+#~ msgid "&Pamela.Roberts; &Pamela.Roberts.mail;"
+#~ msgstr "&Pamela.Roberts; &Pamela.Roberts.mail;"
+
+#~ msgid "&J.Hall; &J.Hall.mail;"
+#~ msgstr "&J.Hall; &J.Hall.mail;"
+
+#~| msgid "<para>&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail;</para>"
+#~ msgid "&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail;"
+#~ msgstr "&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail;"
+
+#~ msgid ""
+#~ "<personname><firstname>Eike</firstname><surname>Krumbacher</surname></"
+#~ "personname> <email>eike.krumbacher@x-eike.de</email>"
+#~ msgstr ""
+#~ "<personname><firstname>Eike</firstname><surname>Krumbacher</surname></"
+#~ "personname> <email>eike.krumbacher@x-eike.de</email>"
+
+#~ msgid "CREDIT_FOR_TRANSLATORS"
+#~ msgstr ""
+#~ "<para>Tradución da documentación: Xosé Calvo - http://trasno.net/</para>"
+
+#~ msgid "&underFDL; &underGPL;"
+#~ msgstr "&underFDL; &underGPL;"
+
+#~ msgid "Installation"
+#~ msgstr "Instalación"
+
+#~ msgid ""
+#~ "&kcalc; is part of the kdeutils package within the &kde; project and will "
+#~ "normally be provided as part of a &kde; installation. For more details "
+#~ "about &kde; visit <ulink url=\"http://www.kde.org\">http://www.kde.org</"
+#~ "ulink>."
+#~ msgstr ""
+#~ "O &kcalc; é parte do paquete kdeutils do proxecto &kde; e fornécese como "
+#~ "parte dunha instalación do &kde;. Para máis detalles sobre o  &kde; vaia a <ulink url=\"http://www.kde.org\">http://www.kde.org</ulink>."
+
+#~ msgid "Compilation and Installation"
+#~ msgstr "Compilación e instalación"
+
+#~ msgid "&install.intro.documentation; &install.compile.documentation;"
+#~ msgstr "&install.intro.documentation; &install.compile.documentation;"
+
+#~ msgid "How to enable long double precision for &kcalc;"
+#~ msgstr "Como activar a precisión \"long double\" para o &kcalc;"
+
+#~ msgid ""
+#~ "If your machine supports the C data type <type>long double</type> and if "
+#~ "you have a working libc you can enable <type>long double</type> precision "
+#~ "for &kcalc;."
+#~ msgstr ""
+#~ "Se a máquina permite o tipo de datos do C <type>long double</type> e se "
+#~ "ten unha libc funcional, pódese activar a precisión <type>long double</"
+#~ "type> para o &kcalc;."
+
+#~ msgid "Here is what to do:"
+#~ msgstr "Velaquí o que hai que facer:"
+
+#~ msgid ""
+#~ "Check <filename>config-kcalc.h</filename> and see whether HAVE&lowbar;"
+#~ "LONG&lowbar;DOUBLE is defined, &ie; you should be able to locate a line "
+#~ "saying:"
+#~ msgstr ""
+#~ "Verifique o <filename>config-kcalc.h</filename> e vexa se o HAVE&lowbar;"
+#~ "LONG&lowbar;DOUBLE está definido, &ie; debería poder localizar unha  liña que di:"
+
+#~ msgid "#define HAVE_LONG_DOUBLE 1"
+#~ msgstr "#define HAVE_LONG_DOUBLE 1"
+
+#~ msgid ""
+#~ "If you cannot find such a line your system doesn't support long double "
+#~ "IEEE precision."
+#~ msgstr ""
+#~ "Se non se dá atopado esa liña, o sistema non permite a precisión \"long "
+#~ "double\" do IEEE."
+
+#~ msgid ""
+#~ "Edit the files <filename class=\"headerfile\">kcalctype.h</filename>, "
+#~ "<filename>configdlg.cpp</filename>, <filename>kcalc.cpp</filename> and "
+#~ "<filename>kcalc&lowbar;core.cpp</filename> and remove the lines:"
+#~ msgstr ""
+#~ "Altere os ficheiros <filename class=\"headerfile\">kcalctype.h</"
+#~ "filename>, <filename>configdlg.cpp</filename>, <filename>kcalc.cpp</"
+#~ "filename> e <filename>kcalc&lowbar;core.cpp</filename> e retire as liñas:"
+
+#~ msgid ""
+#~ "#ifdef HAVE_LONG_DOUBLE\n"
+#~ "#undef HAVE_LONG_DOUBLE\n"
+#~ "#endif"
+#~ msgstr ""
+#~ "#ifdef HAVE_LONG_DOUBLE\n"
+#~ "#undef HAVE_LONG_DOUBLE\n"
+#~ "#endif"
+
+#~ msgid "Recompile &kcalc;."
+#~ msgstr "Recompile o &kcalc;."
+
+#~ msgid "<author>&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail;</author>"
+#~ msgstr "<author>&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail;</author>"
+
+#~ msgid "<keycap>I</keycap>"
+#~ msgstr "<keycap>I</keycap>"
+
+#~ msgid "<guibutton>Inv</guibutton>"
+#~ msgstr "<guibutton>Inv</guibutton>"
+
+#~ msgid "Trigonometric Mode"
+#~ msgstr "Modo trigonométrico"
+
+#~ msgid "<keycap>Esc</keycap>"
+#~ msgstr "<keycap>Esc</keycap>"

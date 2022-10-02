@@ -1,0 +1,255 @@
+<chapter id="commands">
+
+<title
+>De opdrachten</title>
+
+<sect1 id="menus">
+<title
+>Menu-onderdelen</title>
+
+ <para
+>Een kort overzicht van enkele speciale menu-onderdelen in &kcalc;:</para>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constanten</guimenu
+> <guimenuitem
+>Wiskunde</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Tonen van pi, het getal van Euler (e) of de gulden snede.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constanten</guimenu
+> <guimenuitem
+>Elektromagnetisme</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Tonen van de lichtsnelheid, elementaire lading, impedantie van het vacuüm,  permeabiliteit van het vacuüm of permittiviteit van het vacuüm.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constanten</guimenu
+> <guimenuitem
+>Atomair &amp; nucleair</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Tonen van de constante van Planck, elementaire lading of fijnstructuurconstante.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constanten</guimenu
+> <guimenuitem
+>Thermodynamica</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Tonen van de Boltzmannconstante, atomaire massa-eenheid, molaire gasconstante, constante van Stefan-Boltzmann of getal van Avogadro.</action
+> 
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constanten</guimenu
+> <guimenuitem
+>Zwaartekracht</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Tonen van de zwaartekrachtconstante of valversnelling op aarde. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Eenvoudig</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Tonen van de knoppen voor rekenen.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Wetenschappelijk</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Tonen van de knoppen voor goniometrie en wetenschap.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Statistiek</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Tonen van de <link linkend="statistical-mode"
+>knoppen voor statistiek.</link
+></action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Getalsystemen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Tonen van <link linkend="and-or-xor"
+>knoppen voor logica</link
+>, en voor het wijzigen van het getalsysteem.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Geschiedenis</guimenu
+> <guimenuitem
+>Geschiedenis tonen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>De geschiedenis tonen.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Constanten </guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Tonen van de knoppen voor constanten. Deze zijn beschikbaar in de <link linkend="science-mode"
+>wetenschappelijke modus</link
+> en in de <link linkend="statistical-mode"
+>statistische modus</link
+>. </action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Bitbewerking tonen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Tonen van het veld voor bitbewerkingen. Door op een bit te klikken wordt die gewijzigd. Alleen beschikbaar in de modus voor <link linkend="numeral-system-mode"
+>getalsystemen</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Bovendien heeft &kcalc; de gebruikelijke menu's <guimenu
+>Bestand</guimenu
+>, <guimenu
+>Bewerken</guimenu
+>, <guimenu
+>Instellingen</guimenu
+> en <guimenu
+>Help</guimenu
+>.Voor meer informatie zie de secties over de <ulink url="help:/fundamentals/menus.html"
+>Menu's</ulink
+> in de Basisinformatie van &kde;. </para>
+
+</sect1>
+
+</chapter>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-parent-document: ("index.docbook" "book" "chapter")
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

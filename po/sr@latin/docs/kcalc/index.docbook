@@ -1,0 +1,2098 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Serbian-Latin "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY commands SYSTEM "commands.docbook">
+]>
+
+<book id="kcalc" lang="&language;">
+<bookinfo>
+<title
+>Priručnik za <application
+>KCalc</application
+></title>
+
+<authorgroup>
+<author
+><personname
+><firstname
+>Bernd</firstname
+> <othername
+>Johanes</othername
+> <surname
+>Viben</surname
+></personname
+> &Bernd.Johannes.Wuebben.mail; </author>
+
+<author
+><personname
+><firstname
+>Pamela</firstname
+> <surname
+>Roberts</surname
+></personname
+> &Pamela.Roberts.mail; </author>
+<author
+><personname
+><firstname
+>An Mari</firstname
+> <surname
+>Mafu</surname
+></personname
+> &Anne-Marie.Mahfouf.mail; </author>
+<othercredit role="translator"
+><firstname
+>Dragan</firstname
+><surname
+>Pantelić</surname
+><affiliation
+><address
+><email
+>falcon-10@gmx.de</email
+></address
+></affiliation
+><contrib
+>prevod</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2001</year
+> <year
+>2002</year
+> <year
+>2005</year
+>	<year
+>2006</year>
+<holder
+>Bernd Johanes Viben, Pamela Roberts, An Mari Mafu</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>25. 7. 2016.</date>
+<releaseinfo
+>Programi KDE‑a 16.08</releaseinfo>
+
+<abstract
+><para
+><application
+>KCalc</application
+> je kalkulator za okruženje radne površi. Može se koristiti u jednostavnom režimu, za osnovne aritmetičke operacije, ali i u naprednijim režimima, za naučna i statistička izračunavanja, kao i za baratanje brojevnim sistemima.</para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>KCalc</keyword>
+<keyword
+>kalkulator</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Uvod</title>
+
+<para
+><application
+>KCalc</application
+> pruža mnogo više matematičkih funkcija nego što se vidi na prvi pogled. Proučite sekciju o prečicama s tastature i režimima u ovom priručniku da biste saznali više o raspoloživim funkcijama.</para>
+
+<para
+>U dodatak uobičajenoj funkcionalnosti većine naučnih kalkulatora, <application
+>KCalc</application
+> pruža i sledeće mogućnosti vredne isticanja:</para>
+
+<itemizedlist>
+<listitem>
+<para
+>Trigonometrijske funkcije, logičke operacije, i statistička izračunavanja.</para>
+</listitem>
+<listitem>
+<para
+>Isecanje i nalepljivanje brojeva sa i na ekran <application
+>KCalca</application
+>.</para>
+</listitem>
+<listitem>
+<para
+><firstterm
+>Stek rezultata</firstterm
+>, preko koga možete zgodno pozivati prethodne rezultate.</para>
+</listitem>
+<listitem>
+<para
+>Možete da podesite boje i font ekrana.</para>
+</listitem>
+<listitem>
+<para
+>U dijalogu za podešavanje možete da podesite tačnost s kojom <application
+>KCalc</application
+> računa, broj prikazanih cifara i broj decimala.</para>
+</listitem>
+<listitem>
+<para
+><application
+>KCalc</application
+> pruža veliki broj korisnih <link linkend="key-accels"
+>sveza tastera</link
+>, koje olakšavaju korišćenje <application
+>KCalca</application
+> bez uređaja s pokazivačem.</para>
+<para
+>Savet: pritiskanjem (i držanjem) tastera <keycap
+>Ctrl</keycap
+>, videćete za svako dugme pridruženu svezu tastera.</para>
+</listitem>
+</itemizedlist>
+
+<!--see https://bugs.kde.org/show_bug.cgi?id=326481-->
+<note
+><para
+><application
+>KCalc</application
+> koristi <ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Infix_notation"
+>infiksnu notaciju</ulink
+>, koja se uči u školama kao pravilan redosled operacija; ovo je nasuprot <ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Immediate_execution"
+>trenutnom izvršavanju</ulink
+>, koje koriste mnogi jednostavni kalkulatori. </para
+></note>
+
+<para
+>Zabavite se sa <application
+>KCalcom</application
+>!</para>
+
+<para
+><personname
+><firstname
+>Bernd</firstname
+> <othername
+>Johanes</othername
+> <surname
+>Viben</surname
+></personname
+></para>
+
+</chapter>
+
+
+<chapter id="usage">
+<title
+>Upotreba</title>
+<sect1 id="general-usage">
+<title
+>Opšta upotreba</title>
+
+<para
+>Opšta upotreba je jednostavna i slična načinu funkcionisanja većine običnih naučnih kalkulatora, ali zapazite sledeće specijalne mogućnosti <application
+>KCalca</application
+>:</para>
+
+<variablelist>
+<varlistentry>
+<term
+>Stek rezultata</term>
+<listitem
+><para
+>Svaki put kad kliknete levim na dugme <guibutton
+>=</guibutton
+> ili pritisnete taster <keycap
+>Enter</keycap
+> ili <keysym
+>=</keysym
+>, prikazani rezultat biva upisan u <application
+>KCalcov</application
+> stek rezultata. Kroz stek rezultata možete se kretati tasterima <keycombo action="simul"
+><keycap
+>Ctrl</keycap
+><keycap
+>Z</keycap
+></keycombo
+> i <keycombo action="simul"
+><keycap
+>Ctrl</keycap
+><keycap
+>Shift</keycap
+><keycap
+>Z</keycap
+></keycombo
+>.</para
+> 
+</listitem>
+</varlistentry
+> 
+
+<varlistentry>
+<term
+>Funkcija procenta</term>
+<listitem>
+<para
+>Funkcija procenta radi donekle drugačije nego na većini kalkulatora. Međutim, kad se jednom shvati, njena proširena funkcionalnost pokazuje vrlo korisnom. Za detalje pogledajte sekciju o <link linkend="percent"
+>funkciji procenta</link
+>.</para>
+</listitem
+></varlistentry>
+      
+<varlistentry>
+<term
+>Isecanje i nalepljivanje</term>
+<listitem>
+<para
+><itemizedlist>
+<listitem>
+<para
+>Prečica <keycombo action="simul"
+><keycap
+>Ctrl</keycap
+><keycap
+>C</keycap
+></keycombo
+> kopira prikazani broj u klipbord.</para>
+</listitem>
+<listitem>
+<para
+>Prečica <keycombo action="simul"
+><keycap
+>Ctrl</keycap
+><keycap
+>V</keycap
+></keycombo
+> nalepljuje sadržaj klipborda na ekran, pod uslovom da je pravilan broj u pokretnom zarezu.</para>
+</listitem>
+<listitem>
+<para
+>Još uvek je moguće kopirati i nalepljivati kliktanjem na <application
+>KCalcov</application
+> ekran, ali može biti izbačeno iz budućih izdanja.</para>
+</listitem>
+</itemizedlist>
+</para
+></listitem
+></varlistentry>
+
+<varlistentry>
+<term
+>Napredne funkcije</term>
+<listitem>
+<para
+>Kad prvi put pokrenete <application
+>KCalc</application
+>, biće prikazana samo dugmad za osnovne aritmetičke operacije.</para>
+<para
+>Kroz meni <guimenu
+>Podešavanje</guimenu
+> moguće je izabrati režim rada: <link linkend="simple-mode"
+>jednostavan</link
+>, <link linkend="science-mode"
+>naučni</link
+>, <link linkend="statistical-mode"
+>statistički</link
+> ili <link linkend="numeral-system-mode"
+>brojevni sistemi</link
+>. Imajte u vidu da će se ovi režimi pomalo menjati sa budućim izdanjima <application
+>KCalca</application
+>.</para
+> 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Raspored dugmadi</term>
+<listitem>
+<para
+>U naprednim režimima mnoga dugmad imaju sekundarni raspored, kako bi se obezbedio lak pristup svim funkcijama <application
+>KCalca</application
+>. Kliknite na dugme <guibutton
+>Shift</guibutton
+> ili pritisnite prečicu <keycombo action="simul"
+><keycap
+>Ctrl</keycap
+><keycap
+>2</keycap
+></keycombo
+> da učinite sekundarni raspored vidljivim.</para
+> 
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+
+
+<!-- describing MODES here -->
+
+<sect1 id="simple-mode">
+<title
+>Jednostavni režim</title>
+<para
+>Ovaj režim sadrži samo onu dugmad i funkcije koje su neophodne za osnovna izračunavanja.</para>
+<para
+>Ako želite samo da saberete sve stavke sa fakture, ovaj režim vam može najviše odgovarati.</para>
+</sect1>
+
+
+<sect1 id="science-mode">
+<title
+>Naučni režim</title>
+
+<para
+>U ovom režimu, leva kolona dugmadi dodeljena je trigonometrijskim funkcijama:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>dugmad</entry>
+<entry
+>funkcija</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>Ulazi u hiperbolički podrežim. Na primer, <guibutton
+>Hyp</guibutton
+> <guibutton
+>Sin</guibutton
+> daje sinus hiperbolički, sinh.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+>Računa sinus.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>Sin</guibutton
+> ili <guibutton
+>Asin</guibutton
+></entry>
+<entry
+>Računa inverzni sinus.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+>Računa kosinus.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>Cos</guibutton
+> ili <guibutton
+>Acos</guibutton
+></entry>
+<entry
+>Računa inverzni kosinus.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+>Računa tangens.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>Tan</guibutton
+> ili <guibutton
+>Atan</guibutton
+></entry>
+<entry
+>Računa inverzni tangens.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>Računa logaritam za osnovu 10.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>Log</guibutton
+> ili 10<superscript
+>x</superscript
+></entry>
+<entry
+>Računa 10 na x.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>Računa prirodni logaritam (logaritam za osnovu e).</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>Ln</guibutton
+> ili e<superscript
+>x</superscript
+></entry>
+<entry
+>Računa e (osnova prirodnog logaritma) na x.</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>Druga kolona ima dugmad za algebarske funkcije:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>dugmad</entry>
+<entry
+>funkcija</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Mod</guibutton
+></entry>
+<entry
+>Računa ostatak u euklidskom deljenju.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>Mod</guibutton
+> ili <guibutton
+>IntDiv</guibutton
+></entry>
+<entry
+>Celobrojno deljenje (ceo deo količnika).</entry
+></row>
+
+<row
+><entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>Računa recipročnu vrednost broja.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>1/x</guibutton
+> ili <guibutton
+>(n m)</guibutton
+></entry>
+<entry
+>Računa broj različitih podskupova veličine drugog operanda elemenata iz skupa veličine prvog operanda (binomni koeficijenti).</entry
+></row>
+
+<row
+><entry
+><guibutton
+>n!</guibutton
+></entry>
+<entry
+>Računa proizvod svih pozitivnih celih brojeva manjih ili jednakih datom celobrojnom operandu (faktorijel).</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x²</guibutton
+></entry>
+<entry
+>Računa x na kvadrat.</entry
+></row>
+
+ <row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>x²</guibutton
+> ili <guibutton
+>√x</guibutton
+></entry>
+<entry
+>Računa kvadratni koren iz x.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>xʸ</guibutton
+></entry>
+<entry
+>x stepenovano sa y.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> x<superscript
+>y</superscript
+> ili x<superscript
+>1/y</superscript
+></entry>
+<entry
+>x stepenovano sa 1/y.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x³</guibutton
+></entry>
+<entry
+>Računa x na treći stepen (kub).</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>x³</guibutton
+> ili <guibutton
+>∛x</guibutton
+></entry>
+<entry
+>Računa treći (kubni) koren iz x.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x·10ʸ</guibutton
+></entry>
+<entry
+>Računa proizvod prvog operanda i stepena baze deset drugog operanda.</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+
+
+<sect1 id="statistical-mode">
+<title
+>Statistički režim</title>
+
+<para
+>U ovom režimu, leva kolona dugmadi dodeljena je statističkim funkcijama:</para>
+<para
+>Najveći deo funkcionalnosti u ovom režimu vrti se oko dugmeta <guibutton
+>Dat</guibutton
+>. Spisak brojevnih podataka stvarate tako što unosite brojeve u kalkulator i pritiskate dugme <guibutton
+>Dat</guibutton
+>. Na ekranu je dat sekvencijalno rastući broj, koji ukazuje na položaj stavke na spisku podataka. Tradicionalni kalkulator skladišti samo tri vrednosti za statističke funkcije: broj diskretnih stavki na spisku, zbir svih stavki i zbir kvadrata svih stavki. <application
+>KCalc</application
+> se ovde razlikuje po tome što zaista skladišti sve diskretne vrednosti, tako da možete izračunati i medijan podataka. </para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>dugmad</entry>
+<entry
+>funkcija</entry
+></row
+></thead>
+
+<tbody>
+<row
+><entry
+><guibutton
+>N</guibutton
+></entry>
+<entry
+>Vraća broj unetih stavki.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>N</guibutton
+> ili <guibutton
+>Σx</guibutton
+></entry>
+<entry
+>Prikazuje zbir svih unetih stavki.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Mea</guibutton
+></entry>
+<entry
+>Prikazuje srednju vrednost unetih stavki.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>Mea</guibutton
+> ili <guibutton
+>Σx²</guibutton
+></entry>
+<entry
+>Prikazuje zbir kvadrata unetih stavki.</entry
+></row>
+
+<row
+><entry
+>σ<subscript
+>N</subscript
+></entry>
+<entry
+>Prikazuje standardnu devijaciju (n).</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> σ<subscript
+>N</subscript
+> ili σ<subscript
+>N-1</subscript
+> </entry>
+<entry
+>Prikazuje standardnu devijaciju populacije (n-1).</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Med</guibutton
+></entry>
+<entry
+>Prikazuje medijan.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>Unosi stavku.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>Dat</guibutton
+> ili <guibutton
+>CDat</guibutton
+></entry>
+<entry
+>Briše poslednju unesenu stavku.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>CSt</guibutton
+></entry>
+<entry
+>Čisti skladište unesenih stavki.</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>Naredne dve kolone sadrže dugmad sa trigonometrijskim i algebarskim funkcijama, opisanim u <link linkend="science-mode"
+>odeljku o naučnom režimu</link
+>.</para>
+
+</sect1>
+
+
+<sect1 id="numeral-system-mode">
+<title
+>Režim brojevnih sistema</title>
+<para
+>Ovaj režim sadrži dugmad i funkcije za binarno, heksadekadno, oktalno i dekadno računanje.</para>
+
+<para
+>Brojevni sistem birate radio dugmadima na desnoj strani. Na primer, heksadekadni broj unosite tako što izaberete radio dugme <guilabel
+>Heks.</guilabel
+>, pa unesete cifre, uključujući i slova <guibutton
+>A</guibutton
+> do <guibutton
+>F</guibutton
+> za brojeve veće od 9. Ako potom želite da vidite broj binarno, samo izaberite <guilabel
+>Bin.</guilabel
+>.</para>
+
+ <para
+>Binarni, oktalni i heksadekadni brojevi mogu se prikazati kao grupe cifara razdvojenih prazninama. Ovo grupisanje može da poboljša čitljivost brojeva. Na primer, heksadekadni broj <emphasis
+>AF1C42</emphasis
+> može da se prikaže kao <emphasis
+>AF 1C 42</emphasis
+>, sa razmakom između svake dve cifre. Grupisanje se može isključiti ili naštelovati. Idite na <menuchoice
+><guimenu
+>Podešavanje</guimenu
+><guimenuitem
+>Podesi KCalc...</guimenuitem
+></menuchoice
+> da pozovete dijalog za podešavanje i na stranici <guilabel
+>Opšte</guilabel
+> izmenite ovu postavku.</para>
+
+<para
+>Može vam odgovarati da vidite pojedinačne bitove, tako što izaberete <guimenu
+>Uređivanje bitova</guimenu
+> iz menija <guimenu
+>Podešavanje</guimenu
+>.</para>
+
+<para
+>Ovaj režim daje naredne logičke operatore: <informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>dugmad</entry>
+<entry
+>funkcija</entry
+></row
+></thead>
+<tbody>
+<row
+><entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>Dva broja se uvode u logičku konjunkciju.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>Dva broja se uvode u logičku disjunkciju.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>XOR</guibutton
+></entry>
+<entry
+>Dva broja se uvode u ekskluzivnu logičku disjunkciju.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>Levi pomak vrednosti.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>Desni pomak vrednosti.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cmp</guibutton
+></entry>
+<entry
+>Jedinični komplement.</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+</para>
+
+<para
+>Druga kolona sadrži dugmad sa algebarskim funkcijama, opisanim u <link linkend="science-mode"
+>odeljku o naučnom režimu</link
+>.</para>
+
+<para
+>Treća kolona, sa dugmadima <guibutton
+>A</guibutton
+> do <guibutton
+>F</guibutton
+>, aktivna je samo u heksadekadnom režimu. </para>
+</sect1>
+
+<!-- end of MODES -->
+
+
+<sect1 id="memory-operations">
+<title
+>Operacije s memorijom</title>
+
+<para
+><application
+>KCalc</application
+> podržava operacije s memorijom kakve daju standardni kalkulatori, kao i šest mesta za držanje konstanti.</para>
+
+<sect2 id="standard_memory">
+<title
+>Standardne operacije s memorijom</title>
+
+<para
+><application
+>KCalc</application
+> može da pamti rezultate operacija mesto vas, radi upotrebe u narednim računanjima. Ovim funkcijama pristupate preko dugmadi <guibutton
+>MR</guibutton
+>, <guibutton
+>MS</guibutton
+>, <guibutton
+>M+</guibutton
+> i <guibutton
+>MC</guibutton
+>.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>MS</guibutton
+></term>
+<listitem
+><para
+>Dugme <guibutton
+>MS</guibutton
+> skladišti u memoriju trenutno prikazani rezultat. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>M+</guibutton
+></term>
+<listitem
+><para
+>Dugme <guibutton
+>M+</guibutton
+> dodaje tekući rezultat vrednosti u memoriji. Na primer, ako ste uskladištili 20, a tekući rezultat je 5, po pritisku na ovo dugme memorija će sadržati 25. Ako je memorija prazna, ponaša se kao dugme <guibutton
+>MS</guibutton
+>, prosto skladišteći rezultat.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MR</guibutton
+></term>
+<listitem
+><para
+>Dugme <guibutton
+>MR</guibutton
+> dobavlja vrednost uskladištenu u memoriji i stavlja je na ekran.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MC</guibutton
+></term>
+<listitem
+><para
+>Dugme <guibutton
+>MC</guibutton
+> čisti memoriju.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Ako je vrednost uskladištena u memoriji, na traci stanja se vidi jedno <guilabel
+>M</guilabel
+>, pored pokazatelja režima kalkulatora.</para>
+</sect2>
+
+<sect2 id="constant_buttons">
+<title
+>Konstante</title>
+
+<para
+>Šest dugmadi za konstante, <guibutton
+>C1</guibutton
+> do <guibutton
+>C6</guibutton
+>, vide se samo kada je aktivirana stavka <guilabel
+>Dugmad konstanti</guilabel
+> u meniju <guimenu
+>Podešavanje</guimenu
+> na traci menija. Dostupna su u naučnom i statističkom režimu.</para>
+
+<para
+>Vrednost skladištenu u konstanti možete videti tako što lebdite pokazivačem miša nad dugmetom.</para>
+
+<para
+>Za skladištenje broja prikazanog na ekranu <application
+>KCalca</application
+> kao jedne od šest konstanti, prvo pritisnite dugme <guibutton
+>Shift</guibutton
+>, pa jedno od dugmadi <guibutton
+>C1</guibutton
+> do <guibutton
+>C6</guibutton
+>.</para>
+
+<para
+>Za unošenje vrednosti skladištene pod konstantom u račun, pritisnite željeno dugme (<guibutton
+>C1</guibutton
+> do <guibutton
+>C6</guibutton
+>) i odgovarajući broj će se pojaviti na ekranu. </para>
+
+<para
+>Možete menjati etikete dugmadi konstanti, kako biste lakše zapamtili koje dugme daje koju konstantu. Kliknite desnim dugmetom miša na jedno od dugmadi od <guibutton
+>C1</guibutton
+> do <guibutton
+>C6</guibutton
+>, i iskočiće meni u kojem možete izabrati <guilabel
+>Postavi ime</guilabel
+>. </para>
+
+<para
+>Postoje mnoge predefinisane konstante (većinom fizičke) koje se mogu staviti na dugmad <guibutton
+>C1</guibutton
+> do <guibutton
+>C6</guibutton
+>, tako što iz iskačućeg menija koji se poziva desnim klikom na dugme konstante izaberete <guilabel
+>Izaberi sa spiska</guilabel
+>. Mada se predefinisanim konstantama može pristupiti i preko menija <guimenu
+>Konstante</guimenu
+> u traci menija, skladištenje na dugmad konstante je vrlo praktično ako se vrednost često koristi.</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="key-accels">
+<title
+>Jednotasterske prečice</title>
+
+<para
+>Radi jednostavnijeg unosa sa tastature pri računanju, <application
+>KCalc</application
+> ima jednotasterske prečice za većinu funkcija. Na primer, unosom <userinput
+>7R</userinput
+> ili <userinput
+>7r</userinput
+> računate recipročnu vrednost od 7 (1/7).</para>
+
+<para
+>Tokom računanja, uvek možete pritisnuti <keycap
+>Ctrl</keycap
+> da bi svako dugme pokazalo svoju svezu tastera.</para>
+<!-- Shift works like Caps Lock-->
+<informaltable
+><tgroup cols="3">
+<thead>
+<row
+><entry
+>taster</entry>
+<entry
+>funkcija</entry>
+<entry
+>napomene</entry
+></row>
+</thead>
+<tbody>
+
+<row
+><entry
+><keycap
+>H</keycap
+></entry>
+<entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>Hiperboličko, npr. <guibutton
+>Hyp</guibutton
+> <guibutton
+>Sin</guibutton
+> za sinh.</entry
+></row>
+
+<row
+><entry
+><keycap
+>S</keycap
+></entry>
+<entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>C</keycap
+></entry>
+<entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>T</keycap
+></entry>
+<entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>N</keycap
+></entry>
+<entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>Logaritam za osnovu e.</entry
+></row>
+
+<row
+><entry
+><keycap
+>L</keycap
+></entry>
+<entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>Logaritam za osnovu 10.</entry
+></row>
+
+<row
+><entry
+><keycap
+>Ctrl-2</keycap
+></entry>
+<entry
+> <guibutton
+>Shift</guibutton
+></entry>
+<entry
+>Druga funkcija za ovo dugme. Na primer, ako želite arcsin otkucajte <userinput
+>Ctrl-2 s </userinput
+>.</entry
+></row>
+
+<row
+><entry
+><keysym
+>\</keysym
+></entry>
+<entry
+><guibutton
+>+/−</guibutton
+></entry>
+<entry
+>Izvrće znak.</entry
+></row>
+
+<row
+><entry
+><keysym
+>[</keysym
+></entry>
+<entry
+><guibutton
+>x^2</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>^</keysym
+></entry>
+<entry
+><guibutton
+>x^y</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>!</keysym
+></entry>
+<entry
+><guibutton
+>n!</guibutton
+></entry>
+<entry
+>Faktorijel.</entry
+></row>
+
+<row
+><entry
+><keysym
+>E</keysym
+></entry>
+<entry
+>x 10<superscript
+>y</superscript
+></entry>
+<entry
+>Izložilac.</entry
+></row>
+
+<row
+><entry
+><keysym
+>&lt;</keysym
+></entry>
+<entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>Levi pomak.</entry
+></row>
+<!-- no "<" on Lsh key only "
+>" on Rsh key-->
+<row
+><entry
+><keysym
+>&gt;</keysym
+></entry>
+<entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>Desni pomak.</entry
+></row>
+<row
+><entry
+><keysym
+>&amp;</keysym
+></entry>
+<entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>Logičko I.</entry
+></row>
+
+<row
+><entry
+><keysym
+>x</keysym
+> ili <keysym
+>*</keysym
+></entry>
+<entry
+><guibutton
+>×</guibutton
+></entry>
+<entry
+>Množenje.</entry
+></row>
+
+<row
+><entry
+><keysym
+>/</keysym
+></entry>
+<entry
+><guibutton
+>÷</guibutton
+></entry>
+<entry
+>Deljenje.</entry
+></row>
+
+<row
+><entry
+><keycap
+>D</keycap
+></entry>
+<entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>Unos stavke u statističkom režimu.</entry
+></row>
+
+<row
+><entry
+><keycap
+>|</keycap
+></entry>
+<entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>Logičko ILI. <guibutton
+>Shift</guibutton
+> <guibutton
+>OR</guibutton
+> daje KSILI.</entry
+></row>
+
+<row
+><entry
+><keycap
+>R</keycap
+></entry>
+<entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>Recipročno.</entry
+></row>
+
+<row
+><entry
+><keycap
+>Enter</keycap
+></entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+><keycap
+>Return</keycap
+></keycap
+></entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>Backspace</keycap
+></entry>
+<entry
+><guibutton
+>←</guibutton
+></entry>
+<entry
+>Briše poslednju cifru.</entry
+></row>
+
+<row
+><entry
+><keycap
+><keycap
+>PageUp</keycap
+></keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Čisti.</entry
+></row>
+
+<row
+><entry
+><keycap
+>Escape</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Čisti.</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Prior</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Clear</entry
+></row>
+-->
+<row
+><entry
+><keycap
+><keycap
+>PageDown</keycap
+></keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Čisti sve.</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Next</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Clear all</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>Del</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Čisti sve.</entry
+></row>
+
+<row
+><entry
+><keycap
+>:</keycap
+></entry>
+<entry
+><guibutton
+>Mod</guibutton
+></entry>
+<entry
+>Ostatak pri deljenju.</entry
+></row>
+
+<row
+><entry
+><keycap
+>Alt</keycap
+>+<keycap
+>1</keycap
+> do <keycap
+>Alt</keycap
+>+<keycap
+>6</keycap
+></entry>
+<entry
+><guibutton
+>C1</guibutton
+></entry>
+<entry
+>Poziva vrednost skladištenu u <guibutton
+>C1</guibutton
+> do <guibutton
+>C6</guibutton
+>.</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+</chapter>
+
+<chapter id="comments-on-specific-functions">
+<title
+>Komentari o specifičnim funkcijama</title>
+
+<sect1 id="mod">
+<title
+><guibutton
+>Mod</guibutton
+> i <guibutton
+>IntDiv</guibutton
+></title>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Mod</guibutton
+> daje ostatak pri deljenju prikazanog broja sa sledećim unesenim brojem.</term>
+<listitem
+><para
+><userinput
+>22 Mod 8 = </userinput
+> daje rezultat <emphasis
+>6</emphasis
+>.</para>
+<para
+><userinput
+>22.345 Mod 8 = </userinput
+> daje rezultat <emphasis
+>6.345</emphasis
+>.</para>
+</listitem
+></varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Shift</guibutton
+> <guibutton
+>IntDiv</guibutton
+> daje celobrojni rezultat deljenja prikazanog broja sa sledećim unesenim brojem.</term>
+<listitem
+><para
+><userinput
+>22 Shift IntDiv 8 = </userinput
+> daje rezultat <emphasis
+>2</emphasis
+>.</para>
+<para
+><userinput
+>22.345 Shift IntDiv 8 = </userinput
+> takođe daje <emphasis
+>2</emphasis
+>. </para
+></listitem
+></varlistentry>
+</variablelist>
+
+</sect1>
+
+
+<sect1 id="percent">
+<title
+>%</title>
+
+<para
+>Kao zamena za <guibutton
+>=</guibutton
+>, dugme <guibutton
+>%</guibutton
+> tumači poslednju izvedenu operaciju ovako:</para>
+
+<para
+><itemizedlist>
+<listitem>
+<para
+>Ako je krajnji operator + ili -, drugi argument se shvata kao procenat prvog operanda. </para>
+</listitem>
+<listitem>
+<para
+>Ako je krajnji operator *, rezultat množenja se deli sa 100. </para>
+</listitem>
+<listitem>
+<para
+>Ako je krajnji operator /, daje levi operand kao procenat desnog operanda. </para>
+</listitem>
+<listitem>
+<para
+>U svim ostalim slučajevima, <guibutton
+>%</guibutton
+> daje isti rezultat kao <guibutton
+>=</guibutton
+>. </para>
+</listitem>
+</itemizedlist
+></para>
+
+<variablelist>
+<varlistentry>
+<term
+>Primeri:</term>
+<listitem>
+<para
+><userinput
+>150 + 50 %</userinput
+> daje <emphasis
+>225</emphasis
+> (150 plus 50 procenata od 150)</para>
+<para
+><userinput
+>42 * 3 %</userinput
+> daje <emphasis
+>1.26</emphasis
+>  (42 * 3 / 100)</para>
+<para
+><userinput
+>45 / 55 %</userinput
+> daje <emphasis
+>81.81...</emphasis
+> (45 je 81.81... procenata od 55)</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="lsh-rsh">
+<title
+><guibutton
+>Lsh</guibutton
+> i <guibutton
+>Rsh</guibutton
+></title>
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Lsh</guibutton
+> pomiče ulevo (množi sa 2) celobrojni deo prikazane vrednosti n puta, gde je n sledeći uneseni broj, i daje celobrojan rezultat (osnova se postavlja na <guilabel
+>Bin.</guilabel
+>):</term>
+<listitem
+><para
+><userinput
+>10 Lsh 3 =</userinput
+> daje <emphasis
+>80</emphasis
+> (10 tri puta pomnoženo sa 2).</para>
+<para
+><userinput
+>10.345 Lsh 3 =</userinput
+> takođe daje <emphasis
+>80</emphasis
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Rsh</guibutton
+> pomiče vrednost udesno (celobrojno deli sa 2) n puta.</term>
+<listitem
+><para
+><userinput
+>16 Rsh 2 =</userinput
+> daje <emphasis
+>4</emphasis
+> (16 dvaput podeljeno sa 2).</para>
+<para
+><userinput
+>16.999 Rsh 2 =</userinput
+> takođe daje <emphasis
+>4</emphasis
+>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="and-or-xor">
+<title
+><guibutton
+>Cmp</guibutton
+>, <guibutton
+>AND</guibutton
+>, <guibutton
+>OR</guibutton
+> i <guibutton
+>XOR</guibutton
+></title>
+
+<para
+>Funkcije <guibutton
+>Cmp</guibutton
+>, <guibutton
+>AND</guibutton
+> i <guibutton
+>OR</guibutton
+> izvode bitske logičke operacije, te su smislenije ako je osnova postavljena na <guilabel
+>Heks.</guilabel
+>, <guilabel
+>Okt.</guilabel
+> ili <guilabel
+>Bin.</guilabel
+> pre nego na <guilabel
+>Dek.</guilabel
+>. U sledećim primerima osnova je postavljena na <guilabel
+>Bin.</guilabel
+>.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Cmp</guibutton
+> izvodi jedinični komplement (obrće bitove).</term>
+<listitem
+><para
+><userinput
+>101 Cmp</userinput
+> daje <emphasis
+>111...111010</emphasis
+>.</para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>AND</guibutton
+> izvodi logičko I.</term>
+<listitem
+><para
+><userinput
+>101 AND 110 =</userinput
+> daje <emphasis
+>100</emphasis
+>.</para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>OR</guibutton
+> izvodi logičko ILI.</term>
+<listitem
+><para
+><userinput
+>101 OR 110 =</userinput
+> daje <emphasis
+>111</emphasis
+>.</para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>XOR</guibutton
+> izvodi logičko KSILI (ekskluzivno ILI).</term>
+<listitem
+><para
+><userinput
+>101 XOR 110 =</userinput
+> daje <emphasis
+>11</emphasis
+>.</para
+> </listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+</chapter>
+
+
+<chapter id="questions-and-answers">
+<title
+>Pitanja i odgovori</title>
+
+<qandaset>
+
+
+<qandaentry>
+<question
+><para
+>Kako da dobijem e, Ojlerov broj?</para
+></question>
+<answer
+><para
+>Pritisnite <userinput
+>1 <keycap
+>Shift</keycap
+> e<superscript
+>x</superscript
+></userinput
+> u prozoru <application
+>KCalca</application
+>, pritisnite <userinput
+>1 <keycombo action="simul"
+><keycap
+>Ctrl</keycap
+><keycap
+>2</keycap
+></keycombo
+> <keycap
+>N</keycap
+></userinput
+> na tastaturi ili upotrebite meni <menuchoice
+><guimenu
+>Konstante</guimenu
+><guimenuitem
+>Matematika</guimenuitem
+> </menuchoice
+>.</para
+></answer>
+</qandaentry>
+
+<qandaentry>
+<question
+><para
+>Kako da imam dve fiksne cifre posle tačke?</para
+></question>
+<answer
+><para
+>Pozovite dijalog za podešavanje preko trake menija, <menuchoice
+><guimenu
+>Podešavanje</guimenu
+><guimenuitem
+>Podesi KCalc...</guimenuitem
+></menuchoice
+>. Popunite <guilabel
+>Postavi decimalnu tačnost</guilabel
+> i namestite obrtač tako da pokazuje 2.</para
+></answer
+> </qandaentry>
+
+<qandaentry>
+<question
+><para
+>Šta je sa tačnošću?</para
+></question>
+<answer
+><para
+>Glavni faktor koji određuje tačnost <application
+>KCalca</application
+> jeste da li C biblioteka podržava tip <type
+>long double</type
+>. Ako podržava, to će se otkriti pri kompilovanju <application
+>KCalca</application
+> i upotrebiti kao osnovni tip podataka za predstavljanje brojeva. </para>
+
+<para
+>Postavite <guilabel
+>Tačnost</guilabel
+> u <application
+>KCalcovom</application
+> dijalogu za podešavanje tako da gornja računanja rade ispravno. Preporučujemo tačnost 14 ako je osnovni tip podataka u vašoj kopiji <application
+>KCalca</application
+> <type
+>long double</type
+>, inače 8 do 10.</para>
+
+<para
+>Veća tačnost ne vodi nužno boljim rezultatima. Poigrajte se malo s tačnošću da biste videli na šta mislimo.</para>
+</answer>
+</qandaentry>
+
+</qandaset>
+</chapter>
+
+&commands;
+
+<chapter id="copyright">
+<title
+>Zasluge i licenca</title>
+
+<para
+>© na <application
+>KCalc</application
+>:</para>
+<para
+><personname
+><firstname
+>Bernd</firstname
+> <othername
+>Johanes</othername
+> <surname
+>Viben</surname
+></personname
+>, 1996–2000</para>
+<para
+>tim KDE‑a, 2000–2008</para>
+<para
+><personname
+><firstname
+>Ivan</firstname
+> <surname
+>Teran</surname
+></personname
+> 2008–2013</para>
+
+<itemizedlist>
+<listitem
+><para
+><personname
+><firstname
+>Bernd</firstname
+> <othername
+>Johanes</othername
+> <surname
+>Viben</surname
+></personname
+> &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Ivan</firstname
+> <surname
+>Teran</surname
+></personname
+> &Evan.Teran.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Espen</firstname
+> <surname
+>Sand</surname
+></personname
+> &Espen.Sand.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Kris</firstname
+> <surname
+>Hauels</surname
+></personname
+> &Chris.Howells.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Aron</firstname
+> <othername
+>Dž.</othername
+> <surname
+>Sajgo</surname
+></personname
+> &Aaron.J.Seigo.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Čarls</firstname
+> <surname
+>Semjuels</surname
+></personname
+> &Charles.Samuels.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Dejvid</firstname
+> <surname
+>Džonson</surname
+></personname
+> &David.Johnson.mail;</para
+></listitem>
+</itemizedlist>
+
+<para
+><application
+>KCalc</application
+> je inspirisan programom <command
+>xfrmcalc</command
+> <personname
+><firstname
+>Martina</firstname
+> <surname
+>Bartleta</surname
+></personname
+>, čiji je motor steka još uvek deo <application
+>KCalca</application
+>.</para>
+
+<para
+>© na dokumentaciju, 2001, 2002, 2005, 2006, 2010:</para>
+<itemizedlist>
+<listitem
+><para
+><personname
+><firstname
+>Bernd</firstname
+> <othername
+>Johanes</othername
+> <surname
+>Viben</surname
+></personname
+> &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Pamela</firstname
+> <surname
+>Roberts</surname
+></personname
+> &Pamela.Roberts.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Džesika</firstname
+> <surname
+>Hol</surname
+></personname
+> &J.Hall.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>An Mari</firstname
+> <surname
+>Mafu</surname
+></personname
+> &Anne-Marie.Mahfouf.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Ajke</firstname
+> <surname
+>Krumbaher</surname
+></personname
+> <email
+>eike.krumbacher@x-eike.de</email
+></para
+></listitem>
+</itemizedlist>
+
+<para
+>Preveo Dragan Pantelić <email
+>falcon-10@gmx.de</email
+>.</para
+> 
+&underFDL; &underGPL; </chapter>
+
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

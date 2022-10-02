@@ -1,0 +1,255 @@
+<chapter id="commands">
+
+<title
+>Список команд</title>
+
+<sect1 id="menus">
+<title
+>Команды меню</title>
+
+ <para
+>Ниже представлен краткий обзор особых пунктов меню &kcalc;:</para>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Константы</guimenu
+> <guimenuitem
+>Математика</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Отобразить число Пи, число Эйлера или Золотое сечение.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Константы</guimenu
+> <guimenuitem
+>Электромагнетизм</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Отобразить скорость света, элементарный заряд, волновое сопротивление вакуума, магнитную постоянную или электрическую постоянную.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Константы</guimenu
+> <guimenuitem
+>Элементарные частицы</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Отобразить постоянную Планка, элементарный заряд или постоянную тонкой структуры.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Константы</guimenu
+> <guimenuitem
+>Термодинамика</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Отобразить постоянную Больцмана, атомную единицу массы, универсальную газовую постоянную, постоянную Стефана-Больцмана или число Авогадро.</action
+> 
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Константы</guimenu
+> <guimenuitem
+>Гравитация</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Отобразить гравитационную постоянную или ускорение свободного падения на Земле. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Простой режим</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Отобразить простые математические кнопки.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Инженерный режим</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Отобразить тригонометрические и инженерные кнопки.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Статистический режим</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Отобразить <link linkend="statistical-mode"
+>статистические кнопки</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Режим систем счисления</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Отобразить <link linkend="and-or-xor"
+>логические кнопки</link
+> и позволяет изменить систему счисления.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Показать историю</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Отобразить историю.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Константы</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Отобразить кнопки констант. Они доступны в <link linkend="science-mode"
+>инженерном</link
+> и <link linkend="statistical-mode"
+>статистическом</link
+> режимах. </action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Редактор битов</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Отобржает поле редактирования битов. Чтобы переключить бит, нажмите н него. Доступно только в режиме <link linkend="numeral-system-mode"
+>системы счисления</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>В дополнение к перечисленным пунктам меню, &kcalc; имеет общие для приложений &kde; меню <guimenu
+>Файл</guimenu
+>, <guimenu
+>Правка</guimenu
+>, <guimenu
+>Настройка</guimenu
+> и <guimenu
+>Справка</guimenu
+>. Более подробная информация о них содердится в разделах документации об этих <ulink url="help:/fundamentals/menus.html"
+>меню</ulink
+> основ &kde;. </para>
+
+</sect1>
+
+</chapter>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-parent-document: ("index.docbook" "book" "chapter")
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

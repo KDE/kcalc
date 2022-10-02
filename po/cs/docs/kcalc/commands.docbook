@@ -1,0 +1,238 @@
+<chapter id="commands">
+
+<title
+>Návod na příkazy</title>
+
+<sect1 id="menus">
+<title
+>Menu Items</title>
+
+ <para
+>A brief overview of some special menu items in &kcalc;:</para>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstanty</guimenu
+> <guimenuitem
+>Matematika</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Zobrazuje Pi, Eulerovo číslo nebo Zlatý poměr.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstanty</guimenu
+> <guimenuitem
+>Elektromagnetismus</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Zobrazuje rychlost světla, elementární náboj, impedanci vakua, permeabilitu vakua nebo permitivitu vakua.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstanty</guimenu
+> <guimenuitem
+>Atomové a nukleární</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Zobrazuje Planckovu konstantu, elementární náboj nebo konstantu jemné struktury.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstanty</guimenu
+> <guimenuitem
+>Termodynamika</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Zobrazuje Boltzmannovu konstantu, jednotku atomové hmotnosti, konstantu molárního plynu, Stefan-Boltzmannovu konstantu nebo Avogadrovo číslo.</action
+> 
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstanty</guimenu
+> <guimenuitem
+>Gravitace</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Zobrazuje gravitační konstantu nebo zrychlení země. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nastavení</guimenu
+> <guimenuitem
+>Jednoduchý režim</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Zobrazuje základní matematická tlačítka.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nastavení</guimenu
+> <guimenuitem
+>Vědecký režim</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Zobrazuje trigonometrická a vědecká tlačítka.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nastavení</guimenu
+> <guimenuitem
+>Statistický režim</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Zobrazuje <link linkend="statistical-mode"
+>statistická tlačítka</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nastavení</guimenu
+> <guimenuitem
+>Číselný režim</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Zobrazuje <link linkend="and-or-xor"
+>logická tlačítka</link
+> a umožňuje změnit číselnou soustavu.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nastavení</guimenu
+> <guimenuitem
+>Tlačítka s konstantami</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Zobrazuje tlačítka s konstantami. Dostupné jsou ve <link linkend="science-mode"
+>vědeckém režimu</link
+> a ve <link linkend="statistical-mode"
+>statistickém režimu</link
+>. </action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nastavení</guimenu
+> <guimenuitem
+>Zobrazit editaci bitů</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Zobrazuje oblast editace bitů. Abyste bit přepnuli, klikněte na něj. Je dostupná pouze v <link linkend="numeral-system-mode"
+>režimu číselných soustav</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Additionally &kcalc; has the common &kde; <guimenu
+>File</guimenu
+>, <guimenu
+>Edit</guimenu
+>, <guimenu
+>Settings</guimenu
+> and <guimenu
+>Help</guimenu
+> menu items, for more information read the sections about the <ulink url="help:/fundamentals/ui.html#menus"
+>Menus</ulink
+> in the &kde; Fundamentals. </para>
+
+</sect1>
+
+</chapter>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-parent-document: ("index.docbook" "book" "chapter")
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

@@ -1,0 +1,1847 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % German "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY commands SYSTEM "commands.docbook">
+]>
+
+<book id="kcalc" lang="&language;">
+<bookinfo>
+<title
+>Das Handbuch zu &kcalc;</title>
+
+<authorgroup>
+<author
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail; </author>
+
+<author
+>&Pamela.Roberts;&Pamela.Roberts.mail; </author>
+<author
+>&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail; </author>
+<othercredit role="translator"
+><firstname
+>Gregor</firstname
+><surname
+>Zumstein</surname
+><contrib
+>Deutsche Übersetzung</contrib
+><affiliation
+><address
+><email
+>zumstein@ssd.ethz.ch</email
+></address
+></affiliation
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2001</year
+> <year
+>2002</year
+> <year
+>2005</year
+>	<year
+>2006</year>
+<holder
+>&Bernd.Johannes.Wuebben;, &Pamela.Roberts;, &Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2016-07-25</date>
+<releaseinfo
+>Anwendungen 16.08</releaseinfo>
+
+<abstract
+><para
+>&kcalc; ist ein Taschenrechner für Ihre Arbeitsumgebung. Im einfachen Modus kann das Programm für grundlegende arithmetische Operationen benutzt werden, aber es gibt zusätzlich noch erweitere Modi für wissenschaftliche, statistische und numerische Berechnungen.</para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>KCalc</keyword>
+<keyword
+>Taschenrechner</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Einleitung</title>
+
+<para
+>&kcalc; bietet viel mehr mathematische Funktionen, als auf den ersten Blick sichtbar sind. Bitte lesen Sie den Abschnitt über Tastenkürzel und -modi in diesem Handbuch, um mehr über die vielen verfügbaren Funktionen zu lernen.</para>
+
+<para
+>Über die Funktionalität von üblichen Taschenrechnern hinaus bietet &kcalc; eine Anzahl zusätzlicher Eigenschaften, die es Wert sind, genannt zu werden:</para>
+
+<itemizedlist>
+<listitem>
+<para
+>&kcalc; beherrscht trigonometrische Funktionen, logische Operationen und kann statistische Berechnungen durchführen.</para>
+</listitem>
+<listitem>
+<para
+>&kcalc; erlaubt das Ausschneiden und Einfügen von Zahlen in der Anzeige.</para>
+</listitem>
+<listitem>
+<para
+>&kcalc; besitzt einen <firstterm
+>Ergebnis-Stack</firstterm
+>, mit dem Sie bequem frühere Resultate abrufen können.</para>
+</listitem>
+<listitem>
+<para
+>Sie können die Farbe und den Zeichensatz in der Anzeige von &kcalc; einstellen.</para>
+</listitem>
+<listitem>
+<para
+>Sie können die Genauigkeit von &kcalc; und die Anzahl der angezeigten Stellen und die Nachkommastellen im Einrichtungsdialog festlegen.</para>
+</listitem>
+<listitem>
+<para
+>&kcalc; bietet eine große Zahl nützlicher <link linkend="key-accels"
+>Tastenbelegungen</link
+>, welche das Arbeiten mit &kcalc; ohne Maus vereinfachen.</para>
+<para
+>Tipp: Wird die &Ctrl;-Taste gedrückt gehalten, so wird auf jeder virtuellen Taste die echte Tastaturbelegung angezeigt.</para>
+</listitem>
+</itemizedlist>
+
+<!--see https://bugs.kde.org/show_bug.cgi?id=326481-->
+<note
+><para
+>&kcalc; verwendet als <ulink url="https://de.wikipedia.org/wiki/Taschenrechner#Eingabelogik"
+>Eingabelogik</ulink
+> die Algebraische Notation, bei der die Rangfolge der Operatoren berücksichtigt wird, im Gegensatz zur Sequentielle Eingabe mit sofortiger Ausführung wie bei vielen einfachen Rechnern. </para
+></note>
+
+<para
+>Viel Spaß mit &kcalc;!</para>
+
+<para
+>&Bernd.Johannes.Wuebben;</para>
+
+</chapter>
+
+
+<chapter id="usage">
+<title
+>Arbeiten mit &kcalc;</title>
+<sect1 id="general-usage">
+<title
+>Allgemeine Anwendung</title>
+
+<para
+>Die normale Verwendung von &kcalc; ist einfach und ähnlich wie die der meisten einfachen wissenschaftlichen Taschenrechner. Beachten Sie aber die folgenden zusätzlichen Möglichkeiten in &kcalc;:</para>
+
+<variablelist>
+<varlistentry>
+<term
+>Ergebnis-Stack</term>
+<listitem
+><para
+>Jedesmal wenn Sie mit der &LMBn; auf den Knopf <guibutton
+>=</guibutton
+> klicken oder die &Enter;- oder <keysym
+>=</keysym
+>-Taste drücken, wird das Ergebnis auf &kcalc;s Ergebnis-Stack gelegt. Sie können diesen durch Drücken von der <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> und <keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>Z</keycap
+></keycombo
+> durchsuchen.</para
+> 
+</listitem>
+</varlistentry
+> 
+
+<varlistentry>
+<term
+>Prozentfunktion</term>
+<listitem>
+<para
+>Die Prozentfunktion arbeitet ein wenig anders, als die der meisten anderen Rechner. Wenn Sie sie aber einmal verstanden haben, erweist sich die erweiterte Funktionalität als nützlich. Details finden Sie im Abschnitt <link linkend="percent"
+>Prozente</link
+>.</para>
+</listitem
+></varlistentry>
+      
+<varlistentry>
+<term
+>Ausschneiden und Einfügen</term>
+<listitem>
+<para
+><itemizedlist>
+<listitem>
+<para
+>Wenn Sie <keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> drücken, wird der angezeigte Wert in die Zwischenablage kopiert.</para>
+</listitem>
+<listitem>
+<para
+>Das Drücken von <keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> fügt den Inhalt der Zwischenablage in die Anzeige ein, sofern es sich um eine gültige Gleitkommazahl handelt.</para>
+</listitem>
+<listitem>
+<para
+>Es ist immer noch möglich durch Klicken auf die Anzeige von &kcalc; zu kopieren und einzufügen, es kann aber sein, dass dies in zukünftigen Versionen nicht mehr unterstützt wird.</para>
+</listitem>
+</itemizedlist>
+</para
+></listitem
+></varlistentry>
+
+<varlistentry>
+<term
+>Fortgeschrittene Funktionen</term>
+<listitem>
+<para
+>Wird &kcalc; zum ersten Mal gestartet, werden nur die grundlegenden arithmetischen Funktionen angeboten.</para>
+<para
+>Im Menü <guimenu
+>Einstellungen</guimenu
+> können Sie einen Modus für &kcalc; auswählen: Es gibt einen <link linkend="simple-mode"
+>einfachen</link
+>, einen <link linkend="science-mode"
+>wissenschaftlichen</link
+>, einen <link linkend="statistical-mode"
+>statistischen</link
+> und einen <link linkend="numeral-system-mode"
+>logischen</link
+> Modus.</para
+> 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Tastenanordnung</term>
+<listitem>
+<para
+>Um alle Funktionen in &kcalc; schnell zu erreichen, haben viele Tasten in den erweiterten Modi eine zweite Belegung. Klicken Sie auf <guibutton
+>Shift</guibutton
+> oder drücken Sie die Tastenkombination <keycombo action="simul"
+>&Ctrl;<keycap
+>2</keycap
+></keycombo
+>, um diese zweite Tastenbelegung anzuzeigen.</para
+> 
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+
+
+<!-- describing MODES here -->
+
+<sect1 id="simple-mode">
+<title
+>Einfacher Modus</title>
+<para
+>In diesem Modus werden nur die wichtigsten Tasten und Funktionen für einfache Berechnungen angezeigt.</para>
+<para
+>Dies ist ein geeigneter Modus, wenn Sie nur alle Beträge auf einer Rechnung addieren möchten.</para>
+</sect1>
+
+
+<sect1 id="science-mode">
+<title
+>Wissenschaftlicher Modus</title>
+
+<para
+>In diesem Modus sind die Tasten auf der linken Seite mit den trigonometrischen Funktionen belegt:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Tasten</entry>
+<entry
+>Funktion</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>Schaltet in den hyperbolischen Modus um. Zum Beispiel ist Hyp Sin der hyperbolische Sinus: sinh</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+>Berechnet den Sinus</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Sin</guibutton
+> oder <guibutton
+>Asin</guibutton
+></entry>
+<entry
+>Berechnet den Arcussinus</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+>Berechnet den Cosinus</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Cos</guibutton
+> oder <guibutton
+>Acos</guibutton
+></entry>
+<entry
+>Berechnet den Arcuscosinus</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+>Berechnet den Tangens</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Tan</guibutton
+> oder <guibutton
+>Atan</guibutton
+></entry>
+<entry
+>Berechnet den Arcustangens</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>Berechnet den Zehnerlogarithmus</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Log</guibutton
+> oder 10<superscript
+>x</superscript
+></entry>
+<entry
+>Berechnet die Zehnerpotenz</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>Berechnet den natürlichen Logarithmus, also den Logarithmus zur Basis e</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Ln</guibutton
+> oder e<superscript
+>x</superscript
+></entry>
+<entry
+>Berechnet e (Basis des natürlichen Logarithmus) hoch x</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>Die zweite Spalte hat Knöpfe für folgende algebraische Funktionen:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Tasten</entry>
+<entry
+>Funktion</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Mod</guibutton
+></entry>
+<entry
+>Berechnet den Rest der Division</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Mod</guibutton
+> oder <guibutton
+>IntDiv</guibutton
+></entry>
+<entry
+>Ganzzahlige Division (Teil des Quotienten als ganze Zahl)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>Berechnet den reziproken Wert oder Kehrwert einer Zahl</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>1/x</guibutton
+> oder <guibutton
+>nTm</guibutton
+></entry>
+<entry
+>Berechnet den Binomialkoeffizienten</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x!</guibutton
+></entry>
+<entry
+>Berechnet die Fakultät (Produkt aller positiven ganzen natürlichen Zahlen bis zum Operanden)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x²</guibutton
+></entry>
+<entry
+>Berechnet das Quadrat von x</entry
+></row>
+
+ <row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>x²</guibutton
+> oder <guibutton
+>√x</guibutton
+></entry>
+<entry
+>Berechnet die Quadratwurzel von x</entry
+></row>
+
+<row
+><entry
+><guibutton
+>xʸ</guibutton
+></entry>
+<entry
+>x hoch y</entry
+></row>
+
+<row
+><entry
+>&Shift; x<superscript
+>y</superscript
+> oder x<superscript
+>1/y</superscript
+></entry>
+<entry
+>x hoch 1/y</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x³</guibutton
+></entry>
+<entry
+>Berechnet die dritte (kubische) Potenz von x</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>x³</guibutton
+> oder <guibutton
+>∛x</guibutton
+></entry>
+<entry
+>Berechnet die dritte (kubische) Wurzel von x</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x·10ʸ</guibutton
+></entry>
+<entry
+>Berechnet das Produkt aus dem ersten Operanden und der Zehnerpotenz des zweiten Operanden.</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+
+
+<sect1 id="statistical-mode">
+<title
+>Statistik-Modus</title>
+
+<para
+>Im Statistik-Modus sind die Tasten auf der linken Seite mit statistischen Funktionen belegt:</para>
+<para
+>Die Funktionsweise in diesem Modus ist auf die Taste <guibutton
+>Dat</guibutton
+> ausgerichtet. Um eine Datenliste mit Zahlen zu erstellen, geben Sie eine Zahl ein und drücken die Taste <guibutton
+>Dat</guibutton
+>. Eine fortlaufend ansteigende Zahl zur Kennzeichnung der Position in der Daten-<quote
+>Liste</quote
+> wird angezeigt. Ein üblicher Taschenrechner speichert nur drei Werte für statistische Funktionen: Die Anzahl der einzelnen Einträge in der Liste, die Summe der eingegebenen Werte und die Summer der Quadrate der Listeneinträge. &kcalc; dagegen speichert jeden einzelnen Wert, damit Sie den Median der Daten berechnen können. </para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Tasten</entry>
+<entry
+>Funktion</entry
+></row
+></thead>
+
+<tbody>
+<row
+><entry
+><guibutton
+>N</guibutton
+></entry>
+<entry
+>Zeigt die Anzahl der eingegebenen Werte an</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>N</guibutton
+> oder <guibutton
+>&Sgr;x</guibutton
+></entry>
+<entry
+>Zeigt die Summe aller eingegebenen Werte an</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Mea</guibutton
+></entry>
+<entry
+>Zeigt das arithmetische Mittel aller eingegebenen Werte an</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Mea</guibutton
+> oder <guibutton
+>&Sgr;x²</guibutton
+></entry>
+<entry
+>Zeigt die Summe der Quadrate aller eingegebenen Werte an</entry
+></row>
+
+<row
+><entry
+>&sgr;<subscript
+>N</subscript
+></entry>
+<entry
+>Zeigt die Standardabweichung der Gesamtheit an (n)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> &sgr;<subscript
+>N</subscript
+> oder &sgr;<subscript
+>N-1</subscript
+> </entry>
+<entry
+>Zeigt die Stichprobenstandardabweichung an (n-1)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Med</guibutton
+></entry>
+<entry
+>Zeigt den Median (Zentralwert) an</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>Eingabe eines Wertes</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Dat</guibutton
+> oder <guibutton
+>CDat</guibutton
+></entry>
+<entry
+>Löscht den zuletzt eingegebenen Wert</entry
+></row>
+
+<row
+><entry
+><guibutton
+>CSt</guibutton
+></entry>
+<entry
+>Löscht den gesamten Statistikspeicher</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>Die nächste beiden Spalten enthalten die Knöpfe mit trigonometrischen und algebraischen Funktionen wie im Abschnitt <link linkend="science-mode"
+>Wissenschaftlicher Modus</link
+> beschrieben.</para>
+
+</sect1>
+
+
+<sect1 id="numeral-system-mode">
+<title
+>Logik-Modus</title>
+<para
+>In diesem Modus werden Tasten und Funktionen für Berechnungen in den Zahlensystemen Binär, Hexadezimal, Oktal und Dezimal angezeigt.</para>
+
+<para
+>Das Zahlensystem wird mit den Auswahlknöpfen rechts im Fenster eingestellt. Eine hexadezimale Zahl geben Sie zum Beispiel auf folgende Weise ein: Wählen Sie den Auswahlknopf <guilabel
+>Hex</guilabel
+> und geben dann eine Zahl ein. Dabei können Sie alle Zahlen und die Buchstaben <keycap
+>A</keycap
+> bis <keycap
+>F</keycap
+> für hexadezimale Zahlen größer 9 benutzen, Möchten Sie diese Zahl im Binärformat sehen, klicken Sie den auf Auswahlknopf <guilabel
+>Bin</guilabel
+> </para>
+
+ <para
+>Binäre, oktale und hexadezimale Zahlen können als Zifferngruppen mit Leerzeichen als Trennzeichen dargestellt werden. Diese Gruppierung verbessert die Lesbarkeit der Zahlen. Zum Beispiel kann die hexadezimale Zahl <emphasis
+>AF1C42</emphasis
+> als <emphasis
+>AF 1C 42</emphasis
+> mit Trennung zwischen je zwei Zeichen angezeigt werden. Die Gruppierung kann abgeschaltet und eingerichtet werden. Wählen Sie <menuchoice
+><guimenu
+>Einstellungen</guimenu
+><guimenuitem
+>&kcalc; einrichten ...</guimenuitem
+></menuchoice
+>, um den Einrichtungsdialog zu öffnen und die Einstellungen auf der Seite <guilabel
+>Allgemein</guilabel
+> anzupassen.</para>
+
+<para
+>Aktivieren Sie im Menü <guimenu
+>Einstellungen</guimenu
+> <guimenu
+>Bitbearbeitung zeigen</guimenu
+>, dann werden die ausgewählten Bits angezeigt.</para>
+
+<para
+>Dieser Modus enthält logische folgende Operatoren: <informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Tasten</entry>
+<entry
+>Funktion</entry
+></row
+></thead>
+<tbody>
+<row
+><entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>Zwei Zahlen werden durch ein logisches UND verknüpft</entry
+></row>
+
+<row
+><entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>Zwei Zahlen werden durch ein logisches ODER verknüpft</entry
+></row>
+
+<row
+><entry
+><guibutton
+>XOR</guibutton
+></entry>
+<entry
+>Zwei Zahlen werden durch ein logisches exklusives ODER verknüpft</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>Bit-Verschiebung des Werts nach links</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>Bit-Verschiebung des Werts nach rechts</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cmp</guibutton
+></entry>
+<entry
+>Berechnet das Einerkomplement (alle Bits werden invertiert)</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+</para>
+
+<para
+>Die zweite Spalte enthält die Knöpfe mit algebraischen Funktionen wie im Abschnitt <link linkend="science-mode"
+>Wissenschaftlicher Modus</link
+> beschrieben.</para>
+
+<para
+>Die dritte Spalte mit den Knöpfen <guibutton
+>A</guibutton
+> bis <guibutton
+>F</guibutton
+> wird nur im <guilabel
+>Hex</guilabel
+>-Modus angezeigt. </para>
+</sect1>
+
+<!-- end of MODES -->
+
+
+<sect1 id="memory-operations">
+<title
+>Speicherbefehle</title>
+
+<para
+>&kcalc; unterstützt die üblichen Speicherbefehle von Standardrechnern und zusätzlich 6 Register für Konstanten.</para>
+
+<sect2 id="standard_memory">
+<title
+>Standard-Speicherbefehle</title>
+
+<para
+>&kcalc; kann das Ergebnis von Berechnungen zur späteren Wiederverwendung speichern. Diese Funktionen erreichen Sie über mehrere Tasten (<guibutton
+>MR</guibutton
+>, <guibutton
+>MS</guibutton
+>, <guibutton
+>M+</guibutton
+> und <guibutton
+>MC</guibutton
+>).</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>MS</guibutton
+></term>
+<listitem
+><para
+><guibutton
+>MS</guibutton
+> speichert den aktuellen angezeigten Wert.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>M+</guibutton
+></term>
+<listitem
+><para
+><guibutton
+>M+</guibutton
+> addiert das aktuelle Ergebnis zum Wert im Speicher. Wenn sie also den Wert 20 gespeichert haben und das aktuelle Ergebnis 5 beträgt, enthält der Speicher nach diesem Tastendruck den Wert 25. Wenn der Speicher leer ist, funktioniert diese Taste wie <guibutton
+>MS</guibutton
+> und speichert nur das Ergebnis.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MR</guibutton
+></term>
+<listitem
+><para
+><guibutton
+>MR</guibutton
+> holt den Wert aus dem Speicher und zeigt ihn an.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MC</guibutton
+></term>
+<listitem
+><para
+>Die Taste <guibutton
+>MC</guibutton
+> löscht den Speicher.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Enthält der Speicher einen Wert, erscheint ein <guilabel
+>M</guilabel
+> in der Statusleiste neben der Anzeige des Berechnungsmodus.</para>
+</sect2>
+
+<sect2 id="constant_buttons">
+<title
+>Konstanten</title>
+
+<para
+>Die sechs Tasten für Konstanten <guibutton
+>K1</guibutton
+> bis <guibutton
+>K6</guibutton
+> werden nur dann angezeigt, wenn Sie sie mit <guilabel
+>Konstantentasten</guilabel
+> im Menü <guimenu
+>Einstellungen</guimenu
+> in der Menüleiste einschalten. Diese Tasten für Konstanten können nur im <guilabel
+>wissenschaftlichen</guilabel
+> und <guilabel
+>statistischen</guilabel
+> Modus aktiviert werden.</para>
+
+<para
+>Um den gespeicherten Wert jeder Konstante anzuzeigen, bewegen Sie den Mauszeiger über die Konstantentasten.</para>
+
+<para
+>Um die Zahl in der Anzeige von &kcalc; in einer der sechs Konstanten zu speichern, drücken Sie zuerst auf <guibutton
+>Shift</guibutton
+> und dann auf den gewünschten Speicherplatz <guibutton
+>K1</guibutton
+> bis <guibutton
+>K6</guibutton
+>.</para>
+
+<para
+>Um den in einer Konstanten gespeicherten Wert in einer Berechnung zu benutzen, drücken Sie die gewünschte Taste (<guibutton
+>K1</guibutton
+> bis <guibutton
+>K6</guibutton
+>) und der Wert wird in die Anzeige eingefügt. </para>
+
+<para
+>Sie können die Beschriftung der Konstantentasten ändern, um dadurch den darin enthaltenen Wert anzuzeigen. Klicken Sie dazu mit der rechten Maustaste auf eine der Tasten <guibutton
+>K1</guibutton
+> bis <guibutton
+>K6</guibutton
+>. Damit öffnen Sie ein Kontextmenü, in dem Sie <guilabel
+>Namen angeben</guilabel
+> auswählen. </para>
+
+<para
+>Es gibt viele vordefinierte Konstanten (meistens aus der Physik), die Sie als Beschriftung der sechs Tasten <guibutton
+>K1</guibutton
+> bis <guibutton
+>K6</guibutton
+> verwenden können. Klicken Sie dazu mit der rechten Maustaste auf einen der Konstantentasten und wählen Sie eine Konstante mit <guilabel
+>Aus Liste wählen</guilabel
+>. Obwohl Sie die vordefinierten Konstanten auch im Menü mit <guimenu
+>Konstanten</guimenu
+> einfügen können, ist die Belegung einer Konstantentaste sehr praktisch, wenn Sie einen Wert mehrfach verwenden wollen.</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="key-accels">
+<title
+>Bedeutung der Tasten und Knöpfe</title>
+
+<para
+>Um die Eingabe für die Berechnungen zu vereinfachen, benutzt &kcalc; einzelne Tasten auf der Tastatur für die meisten Funktionen. Zum Beispiel führt die Eingabe von <userinput
+>7R</userinput
+> oder <userinput
+>7r</userinput
+> zur Berechnung des Reziproken von 7 (also 1/7).</para>
+
+<para
+>Während einer Berechnung können Sie immer &Ctrl; drücken, um die Tastaturbelegung zu sehen.</para>
+<!-- Shift works like Caps Lock-->
+<informaltable
+><tgroup cols="3">
+<thead>
+<row
+><entry
+>Taste</entry>
+<entry
+>Funktion</entry>
+<entry
+>Bemerkung</entry
+></row>
+</thead>
+<tbody>
+
+<row
+><entry
+><keycap
+>H</keycap
+></entry>
+<entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>Hyperbolisch wie in Hyp Sin, der sinh</entry
+></row>
+
+<row
+><entry
+><keycap
+>S</keycap
+></entry>
+<entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>C</keycap
+></entry>
+<entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>T</keycap
+></entry>
+<entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>N</keycap
+></entry>
+<entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>Logarithmus zur Basis e</entry
+></row>
+
+<row
+><entry
+><keycap
+>L</keycap
+></entry>
+<entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>Logarithmus zur Basis 10</entry
+></row>
+
+<row
+><entry
+><keycap
+>Ctrl-2</keycap
+></entry>
+<entry
+> <guibutton
+>Shift</guibutton
+></entry>
+<entry
+>Die zweite Funktion dieser Taste. Wenn Sie &eg; den Arcussinus von x berechnen wollen, tippen Sie <userinput
+>Shift-2 + s</userinput
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>\</keysym
+></entry>
+<entry
+><guibutton
+>+/-</guibutton
+></entry>
+<entry
+>Das Vorzeichen wechseln</entry
+></row>
+
+<row
+><entry
+><keysym
+>[</keysym
+></entry>
+<entry
+><guibutton
+>x^2</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>^</keysym
+></entry>
+<entry
+><guibutton
+>x^y</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>!</keysym
+></entry>
+<entry
+><guibutton
+>x!</guibutton
+></entry>
+<entry
+>Fakultät</entry
+></row>
+
+<row
+><entry
+><keysym
+>E</keysym
+></entry>
+<entry
+>x10<superscript
+>y</superscript
+></entry>
+<entry
+>Exponent</entry
+></row>
+
+<row
+><entry
+><keysym
+>&lt;</keysym
+></entry>
+<entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>Bit-Verschiebung nach links</entry
+></row>
+<!-- no "<" on Lsh key only "
+>" on Rsh key-->
+<row
+><entry
+><keysym
+>&gt;</keysym
+></entry>
+<entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>Bit-Verschiebung nach rechts.</entry
+></row>
+<row
+><entry
+><keysym
+>&amp;</keysym
+></entry>
+<entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>Logisches UND</entry
+></row>
+
+<row
+><entry
+><keysym
+>x</keysym
+> oder <keysym
+>*</keysym
+></entry>
+<entry
+><guibutton
+>X</guibutton
+></entry>
+<entry
+>Multiplikation</entry
+></row>
+
+<row
+><entry
+><keysym
+>/</keysym
+></entry>
+<entry
+><guibutton
+>/</guibutton
+></entry>
+<entry
+>Division</entry
+></row>
+
+<row
+><entry
+><keycap
+>D</keycap
+></entry>
+<entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>Dateneingabe im Statistik-Modus</entry
+></row>
+
+<row
+><entry
+><keycap
+>|</keycap
+></entry>
+<entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>Logisches ODER. <guibutton
+>Shift</guibutton
+> <guibutton
+>OR</guibutton
+> ist XOR</entry
+></row>
+
+<row
+><entry
+><keycap
+>R</keycap
+></entry>
+<entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>Berechnet den reziproken Wert</entry
+></row>
+
+<row
+><entry
+>&Enter;</entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>Eingabe</keycap
+></entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+>&Backspace;</entry>
+<entry
+><guibutton
+>&lt;=</guibutton
+></entry>
+<entry
+>Löscht die letzte Zahl</entry
+></row>
+
+<row
+><entry
+><keycap
+>Bild auf</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Löschen</entry
+></row>
+
+<row
+><entry
+>&Esc;</entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Löschen</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Prior</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Clear</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>Bild ab</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Alles löschen</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Next</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Clear all</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>Entf</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Alles löschen</entry
+></row>
+
+<row
+><entry
+><keycap
+>:</keycap
+></entry>
+<entry
+><guibutton
+>Mod</guibutton
+></entry>
+<entry
+>Rest der Division</entry
+></row>
+
+<row
+><entry
+>&Alt;+<keycap
+>1</keycap
+> bis &Alt;+<keycap
+>6</keycap
+></entry>
+<entry
+><guibutton
+>K1</guibutton
+></entry>
+<entry
+>benutzt den Wert aus Speicher K1 bis K6</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+</chapter>
+
+<chapter id="comments-on-specific-functions">
+<title
+>Bemerkungen zu einzelnen Funktionen</title>
+
+<sect1 id="mod">
+<title
+>Mod und IntDiv</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Mod</guibutton
+> berechnet den Rest der Division der angezeigten Zahl durch die nächste eingegebene Zahl.</term>
+<listitem
+><para
+><userinput
+>22 Mod 8 = </userinput
+> ergibt das Resulat <emphasis
+>6</emphasis
+></para>
+<para
+><userinput
+>22,345 Mod 8 = </userinput
+> ergibt das Resultat <emphasis
+>6,345</emphasis
+></para>
+</listitem
+></varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Shift</guibutton
+> <guibutton
+>IntDiv</guibutton
+> führt eine Ganzzahldivision der angezeigten Zahl durch die nächste eingegebene Zahl durch.</term>
+<listitem
+><para
+><userinput
+>22 Shift IntDiv 8 = </userinput
+> ergibt das Resultat <emphasis
+>2</emphasis
+></para>
+<para
+><userinput
+>22,345 Shift IntDiv 8 = </userinput
+> ergibt ebenfalls das Resultat <emphasis
+>2</emphasis
+> </para
+></listitem
+></varlistentry>
+</variablelist>
+
+</sect1>
+
+
+<sect1 id="percent">
+<title
+>Prozente</title>
+
+<para
+>Anstelle des <guibutton
+>=</guibutton
+> können Sie <guibutton
+>%</guibutton
+> verwenden, um ein Resultat zu erhalten. Die Berechnungen werden dann wie folgt durchgeführt:</para>
+
+<para
+><itemizedlist>
+<listitem>
+<para
+>Wenn die letzte Operation die Addition oder Subtraktion ist, dann wird das Ergebnis in Prozenten des zweiten Operanden ausgegeben. </para>
+</listitem>
+<listitem>
+<para
+>Wenn die letzte Operation die Multiplikation ist, wird das Resultat der Multiplikation durch 100 geteilt. </para>
+</listitem>
+<listitem>
+<para
+>Wenn die letzte Operation die Division oder Restbildung ist, dann wird der Prozentsatz des linken Operanden auf Basis des rechten Operanden ausgegeben. </para>
+</listitem>
+<listitem>
+<para
+>In allen anderen Fällen hat die &percnt;-Taste die gleiche Wirkung wie die =-Taste. </para>
+</listitem>
+</itemizedlist
+></para>
+
+<variablelist>
+<varlistentry>
+<term
+>Beispiele:</term>
+<listitem>
+<para
+><userinput
+>150 + 50 %</userinput
+> ergibt <emphasis
+>225</emphasis
+> (150 plus 50 Prozent von diesem Betrag)</para>
+<para
+><userinput
+>42 * 3 %</userinput
+> ergibt <emphasis
+>1.26</emphasis
+> (42 * 3 / 100)</para>
+<para
+><userinput
+>45 / 55 %</userinput
+> ergibt <emphasis
+>81.81...</emphasis
+> (45 ist 81.81.. Prozent von 55)</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="lsh-rsh">
+<title
+>Lsh und Rsh</title>
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Lsh</guibutton
+> schiebt den ganzzahligen Anteil des angezeigten Wertes um n Stellen nach links (entspricht einer Multiplikation mit 2^n). n ist dabei die nächste eingegebene Zahl. Das Resultat ist immer ganzzahlig mit der Basis <guibutton
+>Bin</guibutton
+>:</term>
+<listitem
+><para
+><userinput
+>10 Lsh 3 =</userinput
+> ergibt <emphasis
+>80</emphasis
+> (10 multipliziert mit 2^3 ).</para>
+<para
+><userinput
+>10.345 Lsh 3 =</userinput
+> ergibt ebenfalls <emphasis
+>80</emphasis
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Rsh</guibutton
+> schiebt den ganzzahligen Anteil des angezeigten Wertes um n Stellen nach rechts (entspricht einer Division durch 2^n). Das Resultat ist immer ganzzahlig:</term>
+<listitem
+><para
+><userinput
+>16 Rsh 2 =</userinput
+> ergibt <emphasis
+>4</emphasis
+> (16 geteilt durch 2^2).</para>
+<para
+><userinput
+>16.999 Rsh 2 =</userinput
+> ergibt ebenfalls <emphasis
+>4</emphasis
+>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="and-or-xor">
+<title
+>Cmp, And, Or und Xor</title>
+
+<para
+>Die <guibutton
+>Cmp</guibutton
+>, <guibutton
+>And</guibutton
+> und <guibutton
+>Or</guibutton
+> Funktionen führen bitweise logische Operationen durch. Diese Funktionen machen daher insbesondere Sinn, wenn die Basis auf <guilabel
+>Hex</guilabel
+>, <guilabel
+>Oct</guilabel
+> oder <guilabel
+>Bin</guilabel
+> gesetzt ist. In den folgenden Beispielen ist die Basis auf <guilabel
+>Bin</guilabel
+> gesetzt.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Cmp</guibutton
+> berechnet das Einerkomplement (invertiert die Bits).</term>
+<listitem
+><para
+><userinput
+>101 Cmp</userinput
+> ergibt <emphasis
+>111...111010</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>AND</guibutton
+> führt ein logisches UND durch.</term>
+<listitem
+><para
+><userinput
+>101 AND 110 =</userinput
+> ergibt <emphasis
+>100</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>OR</guibutton
+> führt ein logisches ODER durch.</term>
+<listitem
+><para
+><userinput
+>101 OR 110 =</userinput
+> ergibt <emphasis
+>111</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>XOR</guibutton
+> führt ein logisches XOR (exklusives ODER) durch.</term>
+<listitem
+><para
+><userinput
+>101 XOR 110 =</userinput
+> ergibt <emphasis
+>11</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+</chapter>
+
+
+<chapter id="questions-and-answers">
+<title
+>Fragen und Antworten</title>
+
+<qandaset>
+
+
+<qandaentry>
+<question
+><para
+>Wie gebe ich die Eulersche Zahl e ein?</para
+></question>
+<answer
+><para
+>Klicken Sie auf <userinput
+>1 Shift e<superscript
+>x</superscript
+></userinput
+> im &kcalc;-Fenster oder drücken Sie  <userinput
+>1 <keycombo action="simul"
+>&Ctrl;<keycap
+>2</keycap
+></keycombo
+> <keycap
+>N</keycap
+></userinput
+> auf der Tastatur oder benutzen Sie im Menü <menuchoice
+><guimenu
+>Konstanten</guimenu
+><guimenuitem
+>Mathematik</guimenuitem
+> </menuchoice
+>.</para
+></answer>
+</qandaentry>
+
+<qandaentry>
+<question
+><para
+>Wie erhalte ich genau zwei Nachkommastellen?</para
+></question>
+<answer
+><para
+>Wählen Sie <menuchoice
+><guimenu
+>Einstellungen</guimenu
+><guimenuitem
+>&kcalc; einrichten ...</guimenuitem
+></menuchoice
+> in der Menüleiste. Damit öffnen Sie den Einrichtungsdialog, in dem Sie <guilabel
+>Genauigkeit für Dezimal setzen</guilabel
+> ankreuzen können und mit dem Drehfeld die Anzahl Nachkommastellen auf 2 einstellen können.</para
+></answer
+> </qandaentry>
+
+<qandaentry>
+<question
+><para
+>Wie ist das mit der Genauigkeit?</para
+></question>
+<answer
+><para
+>Entscheidend für die Genauigkeit von &kcalc; ist die Unterstützung des C-Datentyps <type
+>long double</type
+> durch die Bibliotheken libc und libmath. Ist diese Unterstützung vorhanden, erkennt &kcalc; dies bei der Übersetzung und verwendet diesen Datentyp. </para>
+
+<para
+>Stellen Sie die <guilabel
+>Genauigkeit</guilabel
+> im Einrichtungsdialog von &kcalc; so ein, dass die oben genannten Berechnungen richtig gelöst werden. Wenn der Datentyp <type
+>long double</type
+> ist, so empfiehlt sich eine Genauigkeit von 14, sonst von 8 bis 10 Stellen.</para>
+
+<para
+>Eine höhere Genauigkeit führt nicht zwingend zu besseren Resultaten. Spielen Sie ein wenig mit der Genauigkeit, um zu verstehen, was gemeint ist.</para>
+</answer>
+</qandaentry>
+
+</qandaset>
+</chapter>
+
+&commands;
+
+<chapter id="copyright">
+<title
+>Danksagungen und Lizenz</title>
+
+<para
+>&kcalc; Copyright für das Programm &copy;:</para>
+<para
+>&Bernd.Johannes.Wuebben; 1996-2000</para>
+<para
+>Das &kde;-Team 2000-2008</para>
+<para
+>&Evan.Teran; 2008-2013</para>
+
+<itemizedlist>
+<listitem
+><para
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+>&Evan.Teran; &Evan.Teran.mail;</para
+></listitem>
+<listitem
+><para
+>&Espen.Sand; &Espen.Sand.mail;</para
+></listitem>
+<listitem
+><para
+>&Chris.Howells; &Chris.Howells.mail;</para
+></listitem>
+<listitem
+><para
+>&Aaron.J.Seigo; &Aaron.J.Seigo.mail;</para
+></listitem>
+<listitem
+><para
+>&Charles.Samuels; &Charles.Samuels.mail;</para
+></listitem>
+<listitem
+><para
+>&David.Johnson; &David.Johnson.mail;</para
+></listitem>
+</itemizedlist>
+
+<para
+>&kcalc; wurde von <personname
+><firstname
+>Martin</firstname
+> <surname
+>Bartletts</surname
+></personname
+>  <application
+>xfrmcalc</application
+> angeregt, dessen Stack-Implementierung immer noch von &kcalc; verwendet wird.</para>
+
+<para
+>Copyright für die Dokumentation &copy; 2001, 2002, 2005, 2006,2010:</para>
+<itemizedlist>
+<listitem
+><para
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+>&Pamela.Roberts; &Pamela.Roberts.mail;</para
+></listitem>
+<listitem
+><para
+>&J.Hall; &J.Hall.mail;</para
+></listitem>
+<listitem
+><para
+>&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Eike</firstname
+><surname
+>Krumbacher</surname
+></personname
+> <email
+>eike.krumbacher@x-eike.de</email
+></para
+></listitem>
+</itemizedlist>
+
+<para
+>Übersetzung Gregor Zumstein <email
+>zumstein@ssd.ethz.ch</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

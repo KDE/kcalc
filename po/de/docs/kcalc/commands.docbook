@@ -1,0 +1,254 @@
+<chapter id="commands">
+
+<title
+>Befehlsreferenz</title>
+
+<sect1 id="menus">
+<title
+>Menüeinträge</title>
+
+ <para
+>Ein kurzer Überblick über die speziellen Menüeinträge für &kcalc;:</para>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstanten</guimenu
+> <guimenuitem
+>Mathematik</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Enthält Pi, Eulersche Zahl und Goldener Schnitt.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstanten</guimenu
+><guimenuitem
+>Elektromagnetismus</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Enthält Lichtgeschwindigkeit, Elementarladung, Wellenimpedanz des Vakuums, Magnetische Feldkonstante und Dielektrizitätskonstante des Vakuums.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstanten</guimenu
+><guimenuitem
+>Atomkerne und Elementarteilchen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Enthält Plancksche Konstante, Elementarladung und Feinstrukturkonstante.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstanten</guimenu
+><guimenuitem
+>Thermodynamik</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Enthält Boltzmann-Konstante, Atomare Masseneinheit, Molare Gaskonstante, Stefan-Boltzmann-Konstante und die Avogadrozahl.</action
+> 
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstanten</guimenu
+><guimenuitem
+>Gravitation</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Enthält Gravitationskonstante und Erdbeschleunigung. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Einfach</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Zeigt die Tasten für einfache mathematische Operationen an.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Wissenschaftlich</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Zeigt die Tasten für trigonometrische und wissenschaftliche Operationen an.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Statistisch</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Zeigt die <link linkend="statistical-mode"
+>Tasten für Statistik an.</link
+></action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Logik</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Zeigt die <link linkend="and-or-xor"
+>Tasten für logische Operationen</link
+> an und ermöglicht das Ändern des Zahlensystems.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Verlauf anzeigen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Zeigt den Verlauf der Berechnungen an.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Konstantentasten</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Zeigt im <link linkend="science-mode"
+>wissenschaftlichen</link
+> und <link linkend="statistical-mode"
+>statistischen</link
+> Modus die Konstantentasten K1 bis K6 an, </action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Bitbearbeitung zeigen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Zeigt ein Bitbearbeitungsfeld an, klicken Sie auf ein Bit, um dessen Wert ein- oder ausschalten.
+>. Dieses Bitbearbeitungsfeld kann nur im logischen Modus aktiviert werden.</action>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Zusätzlich benutzt &kcalc; die bekannten Menüs <guimenu
+>Datei</guimenu
+>, <guimenu
+>Bearbeiten</guimenu
+>, <guimenu
+>Einstellungen</guimenu
+> und <guimenu
+>Hilfe</guimenu
+> , weitere Informationen dazu finden Sie im Abschnitt über die <ulink url="help:/fundamentals/menus.html"
+>Menüs</ulink
+> in den &kde;-Grundlagen. </para>
+
+</sect1>
+
+</chapter>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-parent-document: ("index.docbook" "book" "chapter")
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

@@ -1,0 +1,1659 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kappname "&kcalc;"
+> 
+  <!ENTITY package "kdeutils">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Lithuanian "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY commands SYSTEM "commands.docbook">
+]>
+
+<book lang="&language;">
+<bookinfo>
+<title
+>&kcalc; vadovas</title>
+
+<authorgroup>
+<author
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail; </author>
+
+<author
+>&Pamela.Roberts;&Pamela.Roberts.mail; </author>
+<author
+>&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail; </author>
+<othercredit role="translator"
+><firstname
+>Tomas</firstname
+><surname
+>Straupis</surname
+><affiliation
+><address
+><email
+>tomasstraupis@gmail.com</email
+></address
+></affiliation
+><contrib
+>Vertė</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2001</year
+> <year
+>2002</year
+> <year
+>2005</year
+>	<year
+>2006</year>
+<holder
+>&Bernd.Johannes.Wuebben;, &Pamela.Roberts;, &Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2010-05-13</date>
+<releaseinfo
+>2.7 (&kde; 4.5)</releaseinfo>
+
+<abstract
+><para
+>&kcalc; yra mokslinis &kde; skaičiuotuvas</para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>KCalc</keyword>
+<keyword
+>skaičiuotuvas</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Įvadas</title>
+
+<para
+>Šiame dokumente aprašyta 2.7 &kcalc; versija.</para>
+
+<para
+>&kcalc; turi daug daugiau matematinių funkcijų, nei gali pasirodyti po pirmo žvilgsnio. Norėdami daugiau sužinoti apie funkcijas, panagrinėkite šios knygos sparčiųjų klavišų ir režimų skiltį.</para>
+
+<para
+>Kartu su įprastu funkcionalumu, kurį teikia dauguma mokslinių skaičiuotuvų, &kcalc; turi ir papildomų savybių, kurias būtų verta paminėti:</para>
+
+<itemizedlist>
+<listitem>
+<para
+>&kcalc; turi trigonometrines funkcijas, logines operacijas bei gali atlikti statistinius skaičiavimus.</para>
+</listitem>
+<listitem>
+<para
+>Su &kcalc; jūs galite iškirpti ir įkelti skaičius iš ir į vaizduoklį.</para>
+</listitem>
+<listitem>
+<para
+>&kcalc; turi <firstterm
+>rezultatų dėklą</firstterm
+>, kurio pagalba galite patogiai atsiminti prieš tai gautus rezultatus.</para>
+</listitem>
+<listitem>
+<para
+>Jūs galite pakeisti &kcalc; vaizduoklio spalvas ir šriftus.</para>
+</listitem>
+<listitem>
+<para
+>Galite keisti &kcalc; tikslumą ir skaitmenų po kablelio skaičių.</para>
+</listitem>
+<listitem>
+<para
+>&kcalc; turi daug <link linkend="key-accels"
+>sparčiūjų klavišų</link
+>, kurių pagalba galima patogiai naudoti &kcalc; be pelės.</para>
+<para
+>Patarimas: paspaudus (ir laikant) klavišą &Ctrl;, ant kiekvieno klavišo rodomas jo spartusis klavišas.</para>
+</listitem>
+</itemizedlist>
+
+<para
+>Pasismaginkite su &kcalc;!</para>
+
+<para
+>&Bernd.Johannes.Wuebben;</para>
+
+</chapter>
+
+
+<chapter id="usage">
+<title
+>Naudojimas</title>
+<sect1 id="general-usage">
+<title
+>Bendras naudojimas</title>
+
+<para
+>Bendras naudojimas yra paprastas ir panašus į daugumos mokslinių skaičiuotuvų. Atkreipkite dėmesį į keletą ypatingų &kcalc; savybių:</para>
+
+<variablelist>
+<varlistentry>
+<term
+>Rezultatų dėklas</term>
+<listitem
+><para
+>Kiekvieną kartą kairiu pelės mygtuku paspaudus mygtuką <guibutton
+>=</guibutton
+> arba klaviatūra paspaudus &Enter; ar <keysym
+>=</keysym
+> klavišą, rezultatas įrašomas į &kcalc; rezultatų dėklą. Galite peržiūrėti dėklo elementus spausdami klaviatūros kombinacijas <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> ir <keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>Z</keycap
+></keycombo
+>.</para
+> 
+</listitem>
+</varlistentry
+> 
+
+<varlistentry>
+<term
+>Procentų funkcija</term>
+<listitem>
+<para
+>Procentų funkcija veikia kiek kitaip, nei daugumoje skaičiuotuvų. Kaip ten bebūtų, kai tik ją perprasite, jos išplėstas funkcionalumas bus tikrai naudingas. Daugiau informacijos rasite <link linkend="percent"
+>procentų</link
+> funkcijos skyriuje.</para>
+</listitem
+></varlistentry>
+      
+<varlistentry>
+<term
+>Iškirpimas ir įkėlimas</term>
+<listitem>
+<para
+><itemizedlist>
+<listitem>
+<para
+>Paspaudus <keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> ekrane rodomas skaičius bus įkeltas į iškarpinę.</para>
+</listitem>
+<listitem>
+<para
+>Paspaudus <keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> bus įkeltas iškarpinėje esantis skaičius (jei tai tinkamas skaičius).</para>
+</listitem>
+<listitem>
+<para
+>Kopijuoti ir įkelti galima ir spaudžiant ant &kcalc; vaizduoklio, bet šis funkcionalumas gali būti panaikintas iš būsimų versijų.</para>
+</listitem>
+</itemizedlist>
+</para
+></listitem
+></varlistentry>
+
+<varlistentry>
+<term
+>Sudėtingesnės funkcijos</term>
+<listitem>
+<para
+>Pirmą kartą paleidus &kcalc;, skaičiuotuvas rodys tik paprasto aritmetinio skaičiavimo funkcijų mygtukus.</para>
+<para
+>Naudojant meniu <guimenu
+>Nustatymai</guimenu
+> galima parinkti kitą &kcalc; režimą: <link linkend="simple-mode"
+>Paprastą</link
+>, <link linkend="science-mode"
+>Mokslinį</link
+>, <link linkend="statistical-mode"
+>Statistikos</link
+> arba <link linkend="numeral-system-mode"
+>Skaičių sistemos</link
+>. Pastebėtina, kad šie režimai gali šiek tiek keistis vystantis &kcalc;.</para
+> 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Mygtukų išdėliojimas</term>
+<listitem>
+<para
+>Kad būtų lengviau iškviesti visas &kcalc; funkcijas, dauguma mygtkų turi antrą funkciją. Paspaudę mygtuką <guibutton
+>&Shift;</guibutton
+> arba klavišą <keycap
+>I</keycap
+> įjungsite antrą mygtukų funkciją.</para
+> 
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+
+
+<!-- describing MODES here -->
+
+<sect1 id="simple-mode">
+<title
+>Paprastas režimas</title>
+<para
+>Šiame režime bus matomi tik tie mygtukai ir funkcijos, kurie yra būtini, norint altikti paprastus skaičiavimus.</para>
+<para
+>Jei tiesiog norite susumuoti visus sąskaitoje pateiktus elementus, šis režimas jums turėtų tikti.</para>
+</sect1>
+
+
+<sect1 id="science-mode">
+<title
+>Mokslinis režimas</title>
+
+<para
+>Šiame režime kairiajame mygtukų stulpelyje rasite trigonometrijos funkcijas:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Mygtukas</entry>
+<entry
+>Funkcija</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>Persijungti į hiperbolinį režimą. Pavyzdžiui Hyp Sin yra hiperbolinis sinusas: sinh</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+>Skaičiuoti sinusą</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Sin</guibutton
+></entry>
+<entry
+>Skaičiuoti atvirkštinį sinusą</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+>Skaičiuoti kosinusą</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Cos</guibutton
+></entry>
+<entry
+>Skaičiuoti atvirkštinį kosinusą</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+>Skaičiuoti tangentą</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Tan</guibutton
+></entry>
+<entry
+>Skaičiuoti atvirkštinį tangentą</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>Skaičiuoti logaritmą pagrindu 10</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Log</guibutton
+></entry>
+<entry
+>Pakelti 10 laipsniu x</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>Skaičiuoti natūralų logaritmą. Tai logaritmas pagrindu e.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Ln</guibutton
+></entry>
+<entry
+>Pakelti e laipsniu x</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+
+
+<sect1 id="statistical-mode">
+<title
+>Statistinis režimas</title>
+
+<para
+>Šiame režime kairiame mygtukų stulpelyje rodomos statistinės funkcijos:</para>
+<para
+>Didžioji dalis šio režimo funkcionalumo susijusi su mygtuku <guibutton
+>Dat</guibutton
+>. Norėdami sukurti skaičių sąrašą, įveskite skaičių į skaičiuotuvą ir spauskite <guibutton
+>Dat</guibutton
+>. Ekrane bus rodoma, kurią poziciją duomenų <quote
+>sekoje</quote
+> užima dabartinis skaičius. Tradicinis skaičiuotuvas saugo tik tris reikšmes, naudojamas statistinėms funkcijoms: diskrečiųjų reikšmių sąraše skaičių, įvestų skaičių sumą bei visų skaičių kvadratų sumą. &kcalc; skiriasi tuo, kad realiai išsaugo kiekvieną diskrečiąją reikšmę, dėl ko galima suskaičiuoti vidurkį. </para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Mygtukas</entry>
+<entry
+>Funkcija</entry
+></row
+></thead>
+
+<tbody>
+<row
+><entry
+><guibutton
+>N</guibutton
+></entry>
+<entry
+>Prisiminti įvestų skaičių kiekį</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>N</guibutton
+></entry>
+<entry
+>Parodyti visų įvestų skaičių sumą</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Vid</guibutton
+></entry>
+<entry
+>Rodyti visų įvestų skaičių vidurkį</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Mea</guibutton
+></entry>
+<entry
+>Rodyti visų skaičių kvadratų sumą</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Std</guibutton
+></entry>
+<entry
+>Rodyti standartinę deviaciją (n)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Std</guibutton
+></entry>
+<entry
+>Rodyti populiacijos standartinę deviaciją (n-1)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Vid</guibutton
+></entry>
+<entry
+>Rodyti vidurkį</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>Įvesti duomenų elementą</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Dat</guibutton
+></entry>
+<entry
+>Išvalyti paskutinį įvestą elementą</entry
+></row>
+
+<row
+><entry
+><guibutton
+>CSt</guibutton
+></entry>
+<entry
+>Išvalyti visus įvestus elementus</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+
+</sect1>
+
+
+<sect1 id="numeral-system-mode">
+<title
+>Skaičių sistemos režimas</title>
+<para
+>Šiame režime rasite funkcijas, skaičiavimui dvejetainėje, šešioliktainėje, aštuntainėje ir dešimtainėje sistemose.</para>
+
+<para
+>Dešinėje pusėje pasirinkite skaičių sistemą. Norėdami įrašyti sakykime šešioliktainį skaičių, parinkite <guilabel
+>Hex</guilabel
+>. Tada įveskite skaičių. Didesnių nei 9 skaitmenų įvedimui galite naudoti ir raides nuo <guibutton
+>A</guibutton
+> iki <guibutton
+>F</guibutton
+>. Jei norite pamatyti, kaip šis skaičius atrodo dvejetainėje sistemoje, tiesiog paspauskite <guilabel
+>Bin</guilabel
+>.</para>
+
+<para
+>Jei norite matyti įjungtus bitus, iš <guimenu
+>Nustatymų</guimenu
+> meniu parinkite <guimenu
+>Rodyti bitų redaktorių</guimenu
+>.</para>
+
+<para
+>Šiame režime matomi ir loginiai operatoriai. Yra šie loginiai operatoriai: <informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Mygtukas</entry>
+<entry
+>Funkcija</entry
+></row
+></thead>
+<tbody>
+<row
+><entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>Du skaičiai sudedami logine AND (ir) operacija</entry
+></row>
+
+<row
+><entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>Du skaičiai sudedami logine OR (arba) operacija</entry
+></row>
+
+<row
+><entry
+><guibutton
+>XOR</guibutton
+></entry>
+<entry
+>Du skaičiai sudedami logine XOR operacija</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</para>
+</sect1>
+
+
+
+<!-- end of MODES -->
+
+
+<sect1 id="memory-operations">
+<title
+>Atminties operacijos</title>
+
+<para
+>&kcalc; palaiko standartiniuose skaičiuotuvuose esančias atminties operacijas bei šešias vietas konstantoms.</para>
+
+<sect2 id="standard_memory">
+<title
+>Standartinės atminties operacijos</title>
+
+<para
+>&kcalc; gali atsminti skaičiavimų rezultatus, kuriuos jūs vėliau galite panaudoti kituose skaičiavimuose. Šias funkcijas galite valdyti keliais mygtukais, pažymėtais <guibutton
+>MR</guibutton
+>, <guibutton
+>MS</guibutton
+>, <guibutton
+>M+</guibutton
+> ir <guibutton
+>MC</guibutton
+>.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>MS</guibutton
+></term>
+<listitem
+><para
+>Mygtukas <guibutton
+>MS</guibutton
+> įrašo į atmintį dabar rodomą skaičių.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>M+</guibutton
+></term>
+<listitem
+><para
+>Mygtukas <guibutton
+>M+</guibutton
+> prideda dabar rodomo skaičiaus reikšmę prie atmintyje esančio skaičiaus. Taigi, jei šiuo metu atmintyje yra skaičius 20, dabartinis ekrane rodomas rezultatas yra 5, paspaudus šį mygtuką amintyje bus skaičius 25. Jei atmintis tuščia, tai šis mygtukas veiks lygiai taip pat, kaip <guibutton
+>MS</guibutton
+> ir tiesiog įrašys rezultatą į atmintį.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MR</guibutton
+></term>
+<listitem
+><para
+>Mygtukas <guibutton
+>MR</guibutton
+> išima skaičių iš aminties ir patalpina jį į ekraną.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MC</guibutton
+></term>
+<listitem
+><para
+><guibutton
+>MC</guibutton
+> mygtukas išvalo atmintį.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Jei atmintyje saugomas koks nors skaičius, žymė <guilabel
+>M</guilabel
+> bus rodoma būsenos juostoje grete skaičiuotuvo režimo indikatoriaus.</para>
+</sect2>
+
+<sect2 id="constant_buttons">
+<title
+>Konstantos</title>
+
+<para
+>Šeši konstantų mygtukai (nuo <guibutton
+>C1</guibutton
+> iki <guibutton
+>C6</guibutton
+>) bus matomi tik aktyvavus meniu <guimenu
+>Nustatymai</guimenu
+> esantį elementą <guilabel
+>Konstantų mygtukai</guilabel
+>. Juos galima įjungti <guilabel
+>Moksliniame režime</guilabel
+> ir <guilabel
+>Statistikos režime</guilabel
+>.</para>
+
+<para
+>Norėdami išsaugoti skaičių, rodomą &kcalc; ekrane, pirma spauskite <guibutton
+>&Shift;</guibutton
+>, o tada norimos konstantos mygtuką – nuo <guibutton
+>C1</guibutton
+> iki <guibutton
+>C6</guibutton
+>.</para>
+
+<para
+>Norėdami panaudoti bet kurią iš konstantų, tiesiog spauskite atitinkamą mygtuką (nuo <guibutton
+>C1</guibutton
+> iki <guibutton
+>C6</guibutton
+>) ir parinktas skaičius bus įkeltas į ekraną. </para>
+
+<para
+>Kad būtų lengviau atsminiti, kuris mygtukas saugo kurią konstantą, galite pakeisti mygtukų žymes. Ant atitinkamo mygtuko <guibutton
+>C1</guibutton
+> - <guibutton
+> C6</guibutton
+> spauskite dešinį pelės mygtuką ir iššokančiame meniu pasirinkite <guilabel
+>Nurodyti vardą</guilabel
+>. </para>
+
+<para
+>Iš anksto jau yra nustatyta daug (daugiau fizinių) konstantų, kurios gali būti priskirtos bet kuriam iš šešių mygtukų. Norėdami tą padaryti po dešinio mygtuko paspaudimo iššokančiame meniu pasirinkite punktą <guilabel
+>Rinktis iš sąrašo</guilabel
+>. Nors iš anksto nustatytas konstantas visada galima panaudoti per meniu <guimenu
+>Konstantos</guimenu
+>, jei jas naudojate dažnai, konstantų priskyrimas mygtukams padarys darbą daugh patogesniu.</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="key-accels">
+<title
+>Vieno mygtuko spartieji klavišai</title>
+
+<para
+>Kad supaprastintų skaičiavimą, naudojant tik klaviatūrą, &kcalc; turi vieno klavišo sparčiuosius klavišus beveik visoms funkcijoms. Pavyzdžiui įvedus <userinput
+>7R</userinput
+> arba <userinput
+>7r</userinput
+> bus paskaičiuota atvirkštinė 7 reikšmė (1/7).</para>
+
+<para
+>Skaičiuojant paspaudus ir laikant &Ctrl; ant kiekvieno mygtuko bus rodomas jo greitasis klavišas.</para>
+<!-- Shift works like Caps Lock-->
+<informaltable
+><tgroup cols="3">
+<thead>
+<row
+><entry
+>Key</entry>
+<entry
+>Funkcija</entry>
+<entry
+>Pastabos</entry
+></row>
+</thead>
+<tbody>
+
+<row
+><entry
+><keycap
+>H</keycap
+></entry>
+<entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>Hiperbolinė, kaip antai Hyp Sin – sinh</entry
+></row>
+
+<row
+><entry
+><keycap
+>S</keycap
+></entry>
+<entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>C</keycap
+></entry>
+<entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>T</keycap
+></entry>
+<entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>N</keycap
+></entry>
+<entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>e pagrindo logaritmas</entry
+></row>
+
+<row
+><entry
+><keycap
+>L</keycap
+></entry>
+<entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>10 pagrindo logaritmas</entry
+></row>
+
+<row
+><entry
+><keycap
+>Ctrl-2</keycap
+></entry>
+<entry
+> <guibutton
+>&Shift;</guibutton
+></entry>
+<entry
+>Antra šio mygtuko reikšmė. Pavyzdžiui, jei norite arcsin, rašykite <userinput
+>Ctrl-2 s</userinput
+>.</entry
+></row>
+
+<row
+><entry
+><keysym
+>\</keysym
+></entry>
+<entry
+><guibutton
+>+/-</guibutton
+></entry>
+<entry
+>Keisti ženklą</entry
+></row>
+
+<row
+><entry
+><keysym
+>[</keysym
+></entry>
+<entry
+><guibutton
+>x^2</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>^</keysym
+></entry>
+<entry
+><guibutton
+>x^y</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>!</keysym
+></entry>
+<entry
+><guibutton
+>x!</guibutton
+></entry>
+<entry
+>Faktorialas</entry
+></row>
+
+<row
+><entry
+><keysym
+>&lt;</keysym
+></entry>
+<entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>Bitų slinkimas kairėn</entry
+></row>
+<!-- no "<" on Lsh key only "
+>" on Rsh key-->
+<row
+><entry
+><keysym
+>&gt;</keysym
+></entry>
+<entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>Bitų slinkimas dešinėn</entry
+></row>
+<row
+><entry
+><keysym
+>&amp;</keysym
+></entry>
+<entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>Loginė AND (ir)</entry
+></row>
+
+<row
+><entry
+><keysym
+>x</keysym
+> arba <keysym
+>*</keysym
+></entry>
+<entry
+><guibutton
+>X</guibutton
+></entry>
+<entry
+>Daugyba</entry
+></row>
+
+<row
+><entry
+><keysym
+>/</keysym
+></entry>
+<entry
+><guibutton
+>/</guibutton
+></entry>
+<entry
+>Dalyba</entry
+></row>
+
+<row
+><entry
+><keycap
+>D</keycap
+></entry>
+<entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>Duomenų įvedinėjimas statistiniame režime</entry
+></row>
+
+<row
+><entry
+><keycap
+>|</keycap
+></entry>
+<entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>Loginis OR (arba). Pastaba: <guibutton
+>&Shift;</guibutton
+> <guibutton
+>OR</guibutton
+> reiškia XOR</entry
+></row>
+
+<row
+><entry
+><keycap
+>R</keycap
+></entry>
+<entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>Reciprocal</entry
+></row>
+
+<row
+><entry
+>&Enter;</entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>Įvesti</keycap
+></entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>PgUp</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Išvalyti</entry
+></row>
+
+<row
+><entry
+>&Esc;</entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Išvalyti</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Prior</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Clear</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>PgDown</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Išvalyti viską</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Next</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Clear all</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>Del</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Išvalyti viską</entry
+></row>
+
+<row
+><entry
+>&Shift;+<keycap
+>:</keycap
+></entry>
+<entry
+><guibutton
+>Mod</guibutton
+></entry>
+<entry
+>Dalybos liekana</entry
+></row>
+
+<row
+><entry
+>&Alt;+<keycap
+>1</keycap
+> iki &Alt;+<keycap
+>6</keycap
+></entry>
+<entry
+><guibutton
+>C1</guibutton
+></entry>
+<entry
+>Naudo reikšmę, išsaugota C1 - C6</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+</chapter>
+
+<chapter id="comments-on-specific-functions">
+<title
+>Pastabos apie konkrečias funkcijas</title>
+
+<sect1 id="mod">
+<title
+>Mod ir IntDiv</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Mod</guibutton
+> paskaičiuoja ekrane rodomo skaičiaus dalybos iš sekančio įvesto skaičiaus liekaną.</term>
+<listitem
+><para
+><userinput
+>22 Mod 8 = </userinput
+> reultatas bus <emphasis
+>6</emphasis
+></para>
+<para
+><userinput
+>22.345 Mod 8 = </userinput
+> rezultatas bus <emphasis
+>6.345</emphasis
+></para>
+</listitem
+></varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>IntDiv</guibutton
+> vykdo sveikų skaičių dalybą ekrane rodomo skaičiaus iš sekančio įvesto skaičiaus.</term>
+<listitem
+><para
+><userinput
+>22 &Shift; IntDiv 8 = </userinput
+> skaičiavimo rezultatas bus <emphasis
+>2</emphasis
+></para>
+<para
+><userinput
+>22.345 &Shift; IntDiv 8 = </userinput
+> taip pat bus <emphasis
+>2</emphasis
+> </para
+></listitem
+></varlistentry>
+</variablelist>
+
+</sect1>
+
+
+<sect1 id="percent">
+<title
+>&percnt;</title>
+
+<para
+><guibutton
+>%</guibutton
+> panaudojus vietoj mygtuko <guibutton
+>=</guibutton
+>, paskutinė skaičiavimo operacija bus interpretuojama taip:</para>
+
+<para
+><itemizedlist>
+<listitem>
+<para
+>Jei paskutinis operatorius yra + arba -, tai antrasis argumentas interpretuojamas kaip pirmo dėmens procentas. </para>
+</listitem>
+<listitem>
+<para
+>Jei paskutinis operatorius yra *, daugybos rezultatas dalinamas iš 100. </para>
+</listitem>
+<listitem>
+<para
+>Jei paskutinis operatorius yra /, tai kairysis argumentas yra procentai dešiniojo argumento. </para>
+</listitem>
+<listitem>
+<para
+>Visais kitais atvejais &percnt; mygtukas veikia taip pat, kaip mygtukas =. </para>
+</listitem>
+</itemizedlist
+></para>
+
+<variablelist>
+<varlistentry>
+<term
+>Pavyzdžiai:</term>
+<listitem>
+<para
+><userinput
+>150 + 50 %</userinput
+> grąžina <emphasis
+>225</emphasis
+> (150 plius 50 šio skaičiaus procentų)</para>
+<para
+><userinput
+>42 * 3 %</userinput
+> grąžina <emphasis
+>1.26</emphasis
+> (42 * 3 / 100)</para>
+<para
+><userinput
+>45 / 55 %</userinput
+> grąžina <emphasis
+>81.81...</emphasis
+> (45 yra 81.81.. percentai 55'ių)</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="lsh-rsh">
+<title
+>Lsh ir Rsh</title>
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Lsh</guibutton
+> pastumia į kairę sveikąją rodom skaičiaus dalį (padaugina iš 2) n kartų, kur n yra sekantis įvestas skaičius. Rezultatas grąžinamas kaip sveikas skaičius (skaičiavimo sistema nustatoma į dvejetainę – <guibutton
+>Bin</guibutton
+>):</term>
+<listitem
+><para
+><userinput
+>10 Lsh 3 =</userinput
+> grąžina <emphasis
+>80</emphasis
+> (10 tris kartus padauginta iš 2).</para>
+<para
+><userinput
+>10.345 Lsh 3 =</userinput
+> irgi grąžina <emphasis
+>80</emphasis
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Rsh</guibutton
+> n kartų stumia reikšmę į dešinę (dalina iš 2).</term>
+<listitem
+><para
+><userinput
+>16 Rsh 2 =</userinput
+> rezultatas yra <emphasis
+>4</emphasis
+> (16 du kartus padalintas iš 2).</para>
+<para
+><userinput
+>16.999 Rsh 2 =</userinput
+> rezultatas irgi <emphasis
+>4</emphasis
+>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="and-or-xor">
+<title
+>Cmp, And, Or ir Xor</title>
+
+<para
+><guibutton
+>Cmp</guibutton
+>, <guibutton
+>And</guibutton
+> ir <guibutton
+>Or</guibutton
+> funkcijos atlieka dvejetainės logikos operacijas, todėl natūraliau atrodo tada, kai parinkta <guilabel
+>Hex</guilabel
+>, <guilabel
+>Oct</guilabel
+> arba <guilabel
+>Bin</guilabel
+>, o ne <guilabel
+>Dec</guilabel
+> skaičių sistemą. Žemiau pateikiamuose pavyzdžiuose nustatyta <guilabel
+>Bin</guilabel
+> (dvejetainė) skaičių sistema.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Cmp</guibutton
+> pakeičia visus bitus (1 į 0, o į 1).</term>
+<listitem
+><para
+><userinput
+>101 Cmp</userinput
+> rezultatas <emphasis
+>111...111010</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>AND</guibutton
+> vykdo loginę AND (ir).</term>
+<listitem
+><para
+><userinput
+>101 AND 110 =</userinput
+> rezultatas <emphasis
+>100</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>OR</guibutton
+> vykdo loginę OR (arba).</term>
+<listitem
+><para
+><userinput
+>101 OR 110 =</userinput
+> rezultatas <emphasis
+>111</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>XOR</guibutton
+> vykdo loginę XOR operaciją.</term>
+<listitem
+><para
+><userinput
+>101 XOR 110 =</userinput
+> rezultatas <emphasis
+>11</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+</chapter>
+
+
+<chapter id="questions-and-answers">
+<title
+>Klausimai ir atsakymai</title>
+
+<qandaset>
+
+
+<qandaentry>
+<question
+><para
+>Kaip man gauti e, Eulerio skaičių?</para
+></question>
+<answer
+><para
+>Rašykite <userinput
+>1 &Shift; Ln</userinput
+>.</para
+></answer>
+</qandaentry>
+
+<qandaentry>
+<question
+><para
+>Kaip padaryti, kad po kablelio visada būtų rodomi du skaitmenys?</para
+></question>
+<answer
+><para
+>Parinkite meniu punktą <menuchoice
+><guimenu
+>Nustatymai</guimenu
+><guimenuitem
+>Konfigūruoti &kcalc;...</guimenuitem
+></menuchoice
+>, kad būtų atvertas konfigūracijos dialogas. Jame įjunkite<guilabel
+>Fiksuotas skaitmenų skaičius po kablelio</guilabel
+> ir pakeiskite rodomą skaičių į 2.</para
+></answer
+> </qandaentry>
+
+<qandaentry>
+<question
+><para
+>Kaip su tikslumu?</para
+></question>
+<answer
+><para
+>Pagrindinis kriterijus, nuo kurio priklauso &kcalc; skaičiavimo tiklsumas yra tai, ar jūsų libc ir libmath palaiko C duomenų tipą <type
+>long double</type
+>. Jei palaiko, tai &kcalc; tai aptiks kompiliavimo metu ir naudos šį tipą visiems skaičiavimams. </para>
+
+<para
+>Kad aukščiau pateikti skaičiavimai veiktų teisingai, sureguliuokite meniu <guibutton
+>Konfigūruoti &kcalc;</guibutton
+> parinktį <guilabel
+>Tikslumas</guilabel
+>. Jei jūsų sistema suprantą tipą <type
+>long double</type
+> – nustatykite 14, priešingu atveju – 8 - 10.</para>
+
+<para
+>Didesnis tikslumas ne visada reiškia geresnius rezultatus. Pažaiskite su tiklsumu ir suprasite, ką noriu pasakyti.</para>
+</answer>
+</qandaentry>
+
+</qandaset>
+</chapter>
+
+&commands;
+
+<chapter id="copyright">
+<title
+>Padėkos ir licencija</title>
+
+<para
+>&kcalc; Programos autorinės teisės &copy;:</para>
+<para
+>&Bernd.Johannes.Wuebben; 1996-2000</para>
+<para
+>&kde; komanda 2000-2008</para>
+
+<itemizedlist>
+<listitem
+><para
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+>&Evan.Teran; &Evan.Teran.mail;</para
+></listitem>
+<listitem
+><para
+>&Espen.Sand; &Espen.Sand.mail;</para
+></listitem>
+<listitem
+><para
+>&Chris.Howells; &Chris.Howells.mail;</para
+></listitem>
+<listitem
+><para
+>&Aaron.J.Seigo; &Aaron.J.Seigo.mail;</para
+></listitem>
+<listitem
+><para
+>&Charles.Samuels; &Charles.Samuels.mail;</para
+></listitem>
+<listitem
+><para
+>&David.Johnson; &David.Johnson.mail;</para
+></listitem>
+</itemizedlist>
+
+<para
+>Įkvėpimą kurti &kcalc; davė <personname
+><firstname
+>Martin</firstname
+> <surname
+>Bartlett</surname
+></personname
+> programa <application
+>xfrmcalc</application
+>, kurios dėklo varikliukas vis dar yra &kcalc; dalis.</para>
+
+<para
+>Dokumentacijos autorinės teisės &copy; 2001,2002,2005, 2006,2010:</para>
+<itemizedlist>
+<listitem
+><para
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+>&Pamela.Roberts; &Pamela.Roberts.mail;</para
+></listitem>
+<listitem
+><para
+>&J.Hall; &J.Hall.mail;</para
+></listitem>
+<listitem
+><para
+>&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Eike</firstname
+><surname
+>Krumbacher</surname
+></personname
+> <email
+>eike.krumbacher@x-eike.de</email
+></para
+></listitem>
+</itemizedlist>
+
+<para
+>Tomas Straupis<email
+>tomasstraupis@gmail.com</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+
+<appendix id="installation">
+<title
+>Diegimas</title>
+
+<para
+>&kcalc; yra &kde; projekto kdeutils paketo dalis, todėl dažniausiai bus įdiegtas kartu su &kde;. Daugiau informacijos rasite &kde; svetainėje  <ulink url="http://www.kde.org"
+>http://www.kde.org</ulink
+>.</para>
+
+<sect1 id="compilation-and-installation">
+<title
+>Kompiliavimas ir diegimas</title>
+&install.intro.documentation; &install.compile.documentation; </sect1>
+
+<sect1 id="enable-long-double-precision">
+<title
+>Kaip įjungti didelį (angl. long double) &kcalc; tikslumą.</title>
+
+<para
+>Jei jūsų sistema palaiko C duomenų tipą <type
+>long double</type
+> ir jei jūs turite veikiančią libc biblioteką, galite įjungti <type
+>long double</type
+> tikslumą.</para>
+
+<para
+>Štai ką reikia daryti:</para>
+
+<procedure>
+<step>
+<para
+>Patikrinkite, ar faile <filename
+>config-kcalc.h</filename
+> nustatytas HAVE&lowbar;LONG&lowbar;DOUBLE. T.y. jūs turėtumėte rasti eilutę, kurioje yra toks tekstas:</para>
+
+<screen
+>#define HAVE_LONG_DOUBLE 1</screen>
+
+<para
+>Jei tokios eilutės nerasite, reiškia jūsų sitema nepalaiko „long double IEEE“ tikslumo. </para>
+</step>
+<step>
+<para
+>Pakoreguokite failus <filename class="headerfile"
+>kcalctype.h</filename
+>, <filename
+>configdlg.cpp</filename
+>, <filename
+>kcalc.cpp</filename
+> ir <filename
+>kcalc&lowbar;core.cpp</filename
+>. Ištrinkite šias eilutes:</para>
+
+<screen
+>#ifdef HAVE_LONG_DOUBLE
+#undef HAVE_LONG_DOUBLE
+#endif
+</screen>
+
+</step>
+<step>
+<para
+>Perkompiliuokite &kcalc;. </para>
+</step>
+</procedure>
+
+</sect1>
+</appendix>
+
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

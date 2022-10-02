@@ -1,0 +1,431 @@
+<chapter id="commands">
+
+<title
+>Komandų aprašas</title>
+
+<sect1 id="filemenu">
+<title
+>Meniu „Failas“</title>
+<para>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Filas</guimenu
+> <guimenuitem
+>Išjungti</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Išjungti</action
+> &kcalc;.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</para>
+
+</sect1>
+
+<sect1 id="editmenu">
+<title
+>Meniu „Keisti“</title>
+<para>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Keisti</guimenu
+> <guimenuitem
+>Atšaukti</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Grįžti prie prieš tai dėkle buvusios reikšmės.</action
+></para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Keisti</guimenu
+> <guimenuitem
+>Pakartoti</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Pakartotinai įrašyti sekančią dėklo reikšmę.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>X</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Keisti</guimenu
+> <guimenuitem
+>Iškirpti</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ištrinti rodomą rezultatą ir įkelti jį į iškarpinę.</action
+></para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Keisti</guimenu
+> <guimenuitem
+>Kopijuoti</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Nukopijuoti rodomą rezultatą į iškarpinę.</action
+></para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Keisti</guimenu
+> <guimenuitem
+>Padėti</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Įkelti anksčiau iškirptą ar nukopijuotą reikšmę.</action
+></para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</para>
+</sect1>
+
+<sect1 id="viewmenu">
+<title
+>Konstantų meniu</title>
+<para>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstantos</guimenu
+> <guimenuitem
+>Matematika</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Rodyti Pi, Eulerio skaičius arba aukso pjūvį.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstantos</guimenu
+> <guimenuitem
+>Elektromagnetizmas</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Rodyti šviesos greitį, elementarųjį krūvį, vakuumo varžą, vaakumo pralaidumą arba vakuumo skvarbą.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstantos</guimenu
+> <guimenuitem
+>Atomai ir branduoliai</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Rodyti Planko konstantą, elementarųjį krūvį arba smulkiosios struktūros konstantą.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstantos</guimenu
+> <guimenuitem
+>Termodinamika</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Rodyti Bolcmano konstantą, atominį masės vienetą, universaliąją dujų konstantą, Stefano-Bolcmano konstantą arba Avogadro skaičių.</action
+> 
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstantos</guimenu
+> <guimenuitem
+>Gravitacija</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Rodyti gravitacijos ir laisvoko kritimo pagreičio konstantas. </para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</para>
+</sect1>
+
+<sect1 id="settingsmenu">
+<title
+>Nustatymų meniu</title>
+<para
+><variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nustatymai</guimenu
+> <guimenuitem
+>Paprastas režimas</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Rodo paprastus matematinius mygtukus.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nustatymai</guimenu
+> <guimenuitem
+>Mokslinis režimas</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Rodo trigonometrinius ir mokslinius mygtukus.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nustatymai</guimenu
+> <guimenuitem
+>Statiskos režimas</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Rodo <link linkend="statistical-mode"
+>statistinius mygtukus.</link
+></action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nustatymai</guimenu
+> <guimenuitem
+>Skaičių sistemų režimai</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Rodo <link linkend="and-or-xor"
+>loginių operacijų mygtukus</link
+> bei leidžia keisti skaičiavimo sistemą.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nustatymai</guimenu
+> <guimenuitem
+>Konstantų mygtukai</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Rodo konstantų mygtukus. Jie taipogi matomi <link linkend="science-mode"
+>moksliniame režime</link
+> ir <link linkend="statistical-mode"
+>statistikos režime</link
+>. </action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nustatymai</guimenu
+> <guimenuitem
+>Rodyti bitų redaktorių</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Rodo bitų redagavimo lauką. Norėdami įjungti ar išjungti bitą spauskite ant jo. Rodoma tik <link linkend="numeral-system-mode"
+>skaičių sistemų režime</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nustatymai</guimenu
+> <guimenuitem
+>Konfigūruoti sparčiuosius klavišus...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Konfigūruoti &kcalc; naudojamus sparčiuosius klavišus. </action
+> 
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Nustatymai</guimenu
+> <guimenuitem
+>Konfigūruoti &kcalc;...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Rodyti</action
+> &kcalc; nustatymų dialogą. </para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</para>
+</sect1>
+
+<sect1 id="helpmenu">
+<title
+>Pagalbos meniu</title>
+&help.menu.documentation; </sect1>
+
+</chapter>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-parent-document: ("index.docbook" "book" "chapter")
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

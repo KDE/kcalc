@@ -1,0 +1,1858 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Catalan  "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY commands SYSTEM "commands.docbook">
+]>
+
+<book id="kcalc" lang="&language;">
+<bookinfo>
+<title
+>El manual del &kcalc;</title>
+
+<authorgroup>
+<author
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail; </author>
+
+<author
+>&Pamela.Roberts;&Pamela.Roberts.mail; </author>
+<author
+>&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail; </author>
+&traductor.JosepMa.Ferrer; 
+</authorgroup>
+
+<copyright>
+<year
+>2001</year
+> <year
+>2002</year
+> <year
+>2005</year
+>	<year
+>2006</year>
+<holder
+>&Bernd.Johannes.Wuebben;, &Pamela.Roberts;, &Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>25 de juliol de 2016</date>
+<releaseinfo
+>Aplicacions 16.08</releaseinfo>
+
+<abstract
+><para
+>El &kcalc; és una calculadora per al vostre entorn d'escriptori. En el mode simple es pot utilitzar per a operacions aritmètiques bàsiques, però proporciona modes avançats per a càlculs científics, estadístics i numèrics.</para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>KCalc</keyword>
+<keyword
+>calculadora</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introducció</title>
+
+<para
+>El &kcalc; ofereix moltes més funcions matemàtiques que les que es troben a la vista en una primera mirada. Estudieu la secció sobre els acceleradors de teclat i els modes d'aquest manual per aprendre més sobre les moltes funcions disponibles.</para>
+
+<para
+>A més de la funcionalitat habitual oferta per la majoria de les calculadores científiques, el &kcalc; ofereix una sèrie de característiques, que crec que val la pena assenyalar:</para>
+
+<itemizedlist>
+<listitem>
+<para
+>El &kcalc; proporciona funcions trigonomètriques, operacions lògiques, i és capaç de fer càlculs estadístics.</para>
+</listitem>
+<listitem>
+<para
+>El &kcalc; permet retallar i enganxar nombres des de/a la seva pantalla.</para>
+</listitem>
+<listitem>
+<para
+>El &kcalc; compta amb una <firstterm
+>pila de resultats</firstterm
+> que permet recordar còmodament els resultats anteriors.</para>
+</listitem>
+<listitem>
+<para
+>Podeu configurar els colors de visualització i el tipus de lletra del &kcalc;.</para>
+</listitem>
+<listitem>
+<para
+>Podeu configurar la precisió del &kcalc;, el nombre de dígits mostrats i el nombre de dígits decimals en el diàleg de configuració.</para>
+</listitem>
+<listitem>
+<para
+>El &kcalc; ofereix un nombre gran <link linkend="key-accels"
+>d'enllaços de tecles</link
+>, que faciliten l'ús del &kcalc; sense utilitzar un dispositiu apuntador.</para>
+<para
+>Pista: prement (i mantenint premuda) la tecla &Ctrl;, es mostra en cada botó, la vinculació de tecla corresponent.</para>
+</listitem>
+</itemizedlist>
+
+<!--see https://bugs.kde.org/show_bug.cgi?id=326481-->
+<note
+><para
+>El &kcalc; utilitza la notació <ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Infix_notation"
+>Infix</ulink
+> que aplica l'ordre correcte de les operacions tal com s'ensenyen a l'escola; contràriament a l'execució immediata <ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Immediate_execution"
+>utilitzada</ulink
+> per moltes calculadores senzilles. </para
+></note>
+
+<para
+>Divertiu-vos amb el &kcalc;!</para>
+
+<para
+>&Bernd.Johannes.Wuebben;</para>
+
+</chapter>
+
+
+<chapter id="usage">
+<title
+>Ús</title>
+<sect1 id="general-usage">
+<title
+>Ús general</title>
+
+<para
+>L'ús general és simple i similar a la manera en què operen les calculadores científiques més senzilles, però preneu nota de les característiques especials següents del &kcalc;:</para>
+
+<variablelist>
+<varlistentry>
+<term
+>Pila de resultats</term>
+<listitem
+><para
+>Cada vegada que feu clic amb el &BER; sobre el botó <guibutton
+>=</guibutton
+> o premeu les tecles &Intro; o <keysym
+>=</keysym
+>, el resultat de la pantalla s'escriu a la pila de resultats del &kcalc;. Podeu navegar a través de la pila de resultats amb les tecles <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> i <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>Z</keycap
+></keycombo
+> del teclat.</para
+> 
+</listitem>
+</varlistentry
+> 
+
+<varlistentry>
+<term
+>Funció tant per cent</term>
+<listitem>
+<para
+>La funció tant per cent funciona d'una manera diferent de la majoria de les calculadores. No obstant això, una vegada entès, la seva funcionalitat millorada és força útil. Vegeu la secció sobre la funció <link linkend="percent"
+>tant per cent</link
+> per a més detalls.</para>
+</listitem
+></varlistentry>
+      
+<varlistentry>
+<term
+>Retallar i enganxar</term>
+<listitem>
+<para
+><itemizedlist>
+<listitem>
+<para
+>Prement <keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> col·locarà el nombre visualitzat al porta-retalls.</para>
+</listitem>
+<listitem>
+<para
+>Prement <keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> enganxarà el contingut del porta-retalls a la pantalla si el contingut del porta-retalls és un nombre de coma flotant vàlid.</para>
+</listitem>
+<listitem>
+<para
+>Encara és possible copiar/enganxar fent clic a la pantalla del &kcalc;, però això pot desaparèixer en versions futures.</para>
+</listitem>
+</itemizedlist>
+</para
+></listitem
+></varlistentry>
+
+<varlistentry>
+<term
+>Funcions avançades</term>
+<listitem>
+<para
+>Quan inicieu el &kcalc; per primera vegada, la calculadora només mostrarà botons per a càlculs aritmètics bàsics.</para>
+<para
+>A l'entrada de menú <guimenu
+>Arranjament</guimenu
+> és possible seleccionar un mode per al &kcalc;: és possible triar el mode <link linkend="simple-mode"
+>Senzill</link
+> o <link linkend="science-mode"
+>Científic</link
+> o <link linkend="statistical-mode"
+>Estadístic</link
+> o <link linkend="numeral-system-mode"
+>Sistema numeral</link
+>. Tingueu en compte que aquests modes canviaran lleugerament a mesura que el &kcalc; evolucioni.</para
+> 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Disposició dels botons</term>
+<listitem>
+<para
+>Per facilitar l'accés a totes les funcions en els modes avançats del &kcalc;, moltes tecles tenen una segona disposició. Feu clic a <guibutton
+>&Maj;</guibutton
+> o premeu la drecera <keycombo action="simul"
+>&Ctrl;<keycap
+>2</keycap
+></keycombo
+> per fer visible la segona disposició dels botons.</para
+> 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Historial</term>
+<listitem>
+<para
+>L'àrea de l'historial mostra tots els càlculs fets al &kcalc; per a la sessió activa del &kcalc;. Feu clic a <guibutton
+>AC</guibutton
+> o premeu la drecera <keycap
+>Supr</keycap
+> per netejar el contingut de l'historial. Per activar-lo o desactivar-lo, utilitzeu l'element <guilabel
+>Mostra l'historial</guilabel
+> al menú <guimenu
+>Arranjament</guimenu
+> de la barra de menús, o premeu <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+>.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+
+
+<!-- describing MODES here -->
+
+<sect1 id="simple-mode">
+<title
+>Mode senzill</title>
+<para
+>Aquest mode només conté els botons i funcions que són essencials per als càlculs bàsics.</para>
+<para
+>Si només voleu sumar tots els elements d'una factura podeu triar aquest mode.</para>
+</sect1>
+
+
+<sect1 id="science-mode">
+<title
+>Mode científic</title>
+
+<para
+>En aquest mode la columna esquerra de botons s'assigna a funcions trigonomètriques:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Botons</entry>
+<entry
+>Funció</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Hip</guibutton
+></entry>
+<entry
+>Entra el mode hiperbòlic. Hip Sin, per exemple, és el sinus hiperbòlic: sinh</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+>Calcula el sinus</entry
+></row>
+
+<row
+><entry
+>&Maj; <guibutton
+>Sin</guibutton
+> o <guibutton
+>Asin</guibutton
+></entry>
+<entry
+>Calcula l'invers del sinus</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+>Calcula el cosinus</entry
+></row>
+
+<row
+><entry
+>&Maj; <guibutton
+>Cos</guibutton
+> o <guibutton
+>Acos</guibutton
+></entry>
+<entry
+>Calcula l'invers del cosinus</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+>Calcula la tangent</entry
+></row>
+
+<row
+><entry
+>&Maj; <guibutton
+>Tan</guibutton
+> o <guibutton
+>Atan</guibutton
+></entry>
+<entry
+>Calcula la inversa de la tangent</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>Calcula el logaritme en base 10</entry
+></row>
+
+<row
+><entry
+>&Maj; <guibutton
+>Log</guibutton
+> o 10<superscript
+>x</superscript
+></entry>
+<entry
+>Calcula 10 a la potència de x</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>Calcula el logaritme natural. Això és el logaritme en base e</entry
+></row>
+
+<row
+><entry
+>&Maj; <guibutton
+>Ln</guibutton
+> o e<superscript
+>x</superscript
+></entry>
+<entry
+>Calcula e (la base del logaritme natural) a la potència de x</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>La segona columna té botons per a funcions algebraiques:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Botons</entry>
+<entry
+>Funció</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Mod</guibutton
+></entry>
+<entry
+>Calcula el residu de la divisió euclidiana</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Maj;</guibutton
+> <guibutton
+>Mod</guibutton
+> o <guibutton
+>IntDiv</guibutton
+></entry>
+<entry
+>Divisió d'enters (part entera del quocient)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>Calcula el recíproc per a un nombre</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Maj;</guibutton
+> <guibutton
+>1/x</guibutton
+> o <guibutton
+>nCm</guibutton
+></entry>
+<entry
+>Calcula el nombre de subconjunts d'elements del segon operand que es poden formar per a qualsevol conjunt que contingui els elements del primer operand (coeficient binomial)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x!</guibutton
+></entry>
+<entry
+>Calcula el producte de tots els enters positius menor o igual que l'operand de l'enter actual (factorial)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x²</guibutton
+></entry>
+<entry
+>Calcula el quadrat de x</entry
+></row>
+
+ <row
+><entry
+><guibutton
+>&Maj;</guibutton
+> <guibutton
+>x²</guibutton
+> o <guibutton
+>√x</guibutton
+></entry>
+<entry
+>Calcula l'arrel quadrada de x</entry
+></row>
+
+<row
+><entry
+><guibutton
+>xʸ</guibutton
+></entry>
+<entry
+>x a la potència de y</entry
+></row>
+
+<row
+><entry
+>&Maj; x<superscript
+>y</superscript
+> o x<superscript
+>1/y</superscript
+></entry>
+<entry
+>x a la potència de 1/y</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x³</guibutton
+></entry>
+<entry
+>Calcula la potència tercera (cub) de x</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Maj;</guibutton
+> <guibutton
+>x³</guibutton
+> o <guibutton
+>∛x</guibutton
+></entry>
+<entry
+>Calcula l'arrel tercera (cúbica) de x</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x·10ʸ</guibutton
+></entry>
+<entry
+>Calcula el producte del primer operand i l'exponent decimal del segon operand</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+
+
+<sect1 id="statistical-mode">
+<title
+>Mode estadístic</title>
+
+<para
+>En aquest mode la columna esquerra dels botons s'assigna a funcions estadístiques:</para>
+<para
+>La major part de la funcionalitat en aquest mode està centrada al voltant del botó <guibutton
+>Dad</guibutton
+>. Per crear una llista de dades de nombres, introduïu un nombre a la calculadora i premeu <guibutton
+>Dad</guibutton
+>. Es mostra un número que augmenta seqüencialment en la pantalla indicant quina posició en la <quote
+>llista</quote
+> de dades ocupa el nombre. Una calculadora tradicional només emmagatzema tres valors per a funcions estadístiques: El nombre d'elements discrets en una llista, la suma dels elements de dades introduïts i la suma del quadrat de tots els elements de dades de la llista. El &kcalc; es diferencia per l'emmagatzematge real de cada valor discret, permetent-vos calcular el valor mitjà de les dades. </para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Botons</entry>
+<entry
+>Funció</entry
+></row
+></thead>
+
+<tbody>
+<row
+><entry
+><guibutton
+>N</guibutton
+></entry>
+<entry
+>Recorda el nombre d'elements de dades introduïts</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Maj;</guibutton
+> <guibutton
+>N</guibutton
+> o <guibutton
+>&Sgr;x</guibutton
+></entry>
+<entry
+>Mostra la suma de tots els elements de dades introduïts</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Mitj</guibutton
+></entry>
+<entry
+>Mostra la mitjana dels elements de dades introduïts</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Maj;</guibutton
+> <guibutton
+>Mitj</guibutton
+> o <guibutton
+>&Sgr;x²</guibutton
+></entry>
+<entry
+>Mostra la suma del quadrat de tots els elements de dades introduïts</entry
+></row>
+
+<row
+><entry
+>&sgr;<subscript
+>N</subscript
+></entry>
+<entry
+>Mostra la desviació estàndard (n)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Maj;</guibutton
+> &sgr;<subscript
+>N</subscript
+> o &sgr;<subscript
+>N-1</subscript
+> </entry>
+<entry
+>Mostra la desviació estàndard de la població (n-1)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Med</guibutton
+></entry>
+<entry
+>Mostra la mediana</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Dad</guibutton
+></entry>
+<entry
+>Introduir un element de dades</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Maj;</guibutton
+> <guibutton
+>Dad</guibutton
+> o <guibutton
+>CDad</guibutton
+></entry>
+<entry
+>Neteja l'últim element de dades introduït</entry
+></row>
+
+<row
+><entry
+><guibutton
+>CSt</guibutton
+></entry>
+<entry
+>Neteja l'emmagatzematge de tots els elements de dades introduïts</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>Les dues columnes següents tenen els botons amb funcions trigonomètriques i algebraiques descrites a la secció del mode <link linkend="science-mode"
+>Científic</link
+>.</para>
+
+</sect1>
+
+
+<sect1 id="numeral-system-mode">
+<title
+>Mode de sistema numeral</title>
+<para
+>Aquest mode conté botons i funcions per calcular en binari, hexadecimal, octal i decimal.</para>
+
+<para
+>Seleccioneu el sistema numeral amb els botons d'opció de la dreta. Per a inserir un nombre hexadecimal per exemple, només cal fer el següent: Seleccioneu <guilabel
+>Hex</guilabel
+> als botons d'opció. Després introduïu un nombre, tenint en compte que podeu utilitzar les lletres <guibutton
+>A</guibutton
+> a <guibutton
+>F</guibutton
+> per a nombres més grans que 9. Si voleu veure aquest nombre en binari, seleccioneu <guilabel
+>Bin</guilabel
+> als botons d'opció.</para>
+
+ <para
+>Els nombres binaris, octals i hexadecimals es poden mostrar com a grups de dígits separats per espais en blanc. Aquest agrupament pot millorar la llegibilitat dels nombres. Per exemple, el nombre hexadecimal <emphasis
+>AF1C42</emphasis
+> es pot mostrar com <emphasis
+>AF 1C 42</emphasis
+> amb separació de cada segon dígit. L'agrupació es pot desactivar o retocar. Seleccioneu <menuchoice
+><guimenu
+>Arranjament</guimenu
+><guimenuitem
+>Configura el &kcalc;...</guimenuitem
+></menuchoice
+> per a mostrar el diàleg de configuració i canviar la configuració a la pàgina <guilabel
+>General</guilabel
+> segons correspongui.</para>
+
+<para
+>És possible que vulgueu seleccionar <guimenu
+>Mostra l'edició de bits</guimenu
+> des del menú <guimenu
+>Arranjament</guimenu
+> per veure els bits seleccionats.</para>
+
+<para
+>Hi ha operadors lògics disponibles en aquest mode. Aquests operadors són: <informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Botons</entry>
+<entry
+>Funció</entry
+></row
+></thead>
+<tbody>
+<row
+><entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>Dos nombres se'ls aplica l'operador lògic de conjunció (AND)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>Dos nombres se'ls aplica l'operador lògic de disjunció (OR)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>XOR</guibutton
+></entry>
+<entry
+>Dos nombres se'ls aplica l'operador lògic de disjunció exclusiva (XOR)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>Desplaçament esquerre del valor</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>Desplaçament dret del valor</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cmp</guibutton
+></entry>
+<entry
+>Realitza un complement d'1</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+</para>
+
+<para
+>La segona columna conté els botons amb funcions algebraiques descrites a la secció del mode <link linkend="science-mode"
+>Científic</link
+>.</para>
+
+<para
+>La tercera columna amb els botons <guibutton
+>A</guibutton
+> a <guibutton
+>F</guibutton
+> només està habilitada en el mode <guilabel
+>Hex</guilabel
+>. </para>
+</sect1>
+
+<!-- end of MODES -->
+
+
+<sect1 id="memory-operations">
+<title
+>Operacions de memòria</title>
+
+<para
+>El &kcalc; admet les operacions de memòria donades per les calculadores estàndard més sis ranures per a contenir constants.</para>
+
+<sect2 id="standard_memory">
+<title
+>Operacions estàndard de memòria</title>
+
+<para
+>El &kcalc; pot recordar els resultats de les operacions, i reutilitzar-les en càlculs posteriors. Es pot accedir a aquestes funcions mitjançant diversos botons etiquetats <guibutton
+>MR</guibutton
+>, <guibutton
+>MS</guibutton
+>, <guibutton
+>M+</guibutton
+> i <guibutton
+>MC</guibutton
+>.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>MS</guibutton
+></term>
+<listitem
+><para
+>El botó <guibutton
+>MS</guibutton
+> emmagatzema el resultat actualment mostrat en la memòria.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>M+</guibutton
+></term>
+<listitem
+><para
+>El botó <guibutton
+>M+</guibutton
+> afegeix el resultat actual al de la memòria. Així que si heu emmagatzemat un 20, i el resultat actual és un 5, la memòria conté 25 quan el premeu. Si la memòria està buida, actua com <guibutton
+>MS</guibutton
+> i simplement emmagatzema el resultat.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MR</guibutton
+></term>
+<listitem
+><para
+>El botó <guibutton
+>MR</guibutton
+> obté el valor emmagatzemat en la memòria i el posa a la pantalla.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MC</guibutton
+></term>
+<listitem
+><para
+>El botó <guibutton
+>MC</guibutton
+> neteja la memòria.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Si s'emmagatzema un valor en la memòria, apareixerà una <guilabel
+>M</guilabel
+> a la barra d'estat, al costat de l'indicador del mode de la calculadora</para>
+</sect2>
+
+<sect2 id="constant_buttons">
+<title
+>Constants</title>
+
+<para
+>Els sis botons de constants <guibutton
+>C1</guibutton
+> a <guibutton
+>C6</guibutton
+> només seran visibles després d'activar l'element <guilabel
+>Botons de constants</guilabel
+> al menú <guimenu
+>Arranjament</guimenu
+> de la barra de menús. Estan disponibles en el <guilabel
+>Mode científic</guilabel
+> i el <guilabel
+>Mode estadístic</guilabel
+></para>
+
+<para
+>Per veure el valor emmagatzemat en cada constant passeu el punter del ratolí per sobre del botó.</para>
+
+<para
+>Per emmagatzemar el nombre que es mostra a la visualització del &kcalc; en una de les sis constants, primer premeu <guibutton
+>&Maj;</guibutton
+> seguit de la tecla de botó desitjada <guibutton
+>C1</guibutton
+> fins a <guibutton
+>C6</guibutton
+>.</para>
+
+<para
+>Per utilitzar el valor emmagatzemat en qualsevol de les constants en un càlcul, simplement premeu el botó desitjat (<guibutton
+>C1</guibutton
+> a <guibutton
+>C6</guibutton
+>), i el nombre corresponent apareixerà a la pantalla. </para>
+
+<para
+>És possible canviar l'etiqueta del botó de les constants per fer més fàcil recordar quin botó conté quina constant. Feu clic amb el botó dret del ratolí en un dels botons <guibutton
+>C1</guibutton
+> a <guibutton
+>C6</guibutton
+>. Apareix un menú emergent, en el qual seleccioneu <guilabel
+> Estableix un nom</guilabel
+>. </para>
+
+<para
+>Hi ha moltes (principalment físiques) constants predefinides, que es poden posar en qualsevol dels sis botons <guibutton
+>C1</guibutton
+> - <guibutton
+>C6</guibutton
+> seleccionant la constant desitjada en el menú emergent que apareix després de fer clic dret en un dels botons constants i seleccionant <guilabel
+>Escull de la llista</guilabel
+>. Encara que les constants predefinides també es poden accedir a través de les <guimenu
+>Constants</guimenu
+> a la barra de menús, l'emmagatzematge en un botó de constants és molt pràctic, si el nombre s'utilitza amb freqüència.</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="key-accels">
+<title
+>Acceleradors de tecla única</title>
+
+<para
+>Per simplificar els càlculs d'introducció des del teclat el &kcalc; té acceleradors de tecles individuals per a la majoria de funcions. Per exemple, introduir <userinput
+>7R</userinput
+> o <userinput
+>7r</userinput
+> calcularà el recíproc de 7 (1/7).</para>
+
+<para
+>Durant un càlcul, sempre es pot prémer &Ctrl; per fer que cada botó mostri la seva vinculació de tecles.</para>
+<!-- Shift works like Caps Lock-->
+<informaltable
+><tgroup cols="3">
+<thead>
+<row
+><entry
+>Tecla</entry>
+<entry
+>Funció</entry>
+<entry
+>Notes</entry
+></row>
+</thead>
+<tbody>
+
+<row
+><entry
+><keycap
+>H</keycap
+></entry>
+<entry
+><guibutton
+>Hip</guibutton
+></entry>
+<entry
+>Hiperbòlic com a Hip Sin, el sinh</entry
+></row>
+
+<row
+><entry
+><keycap
+>S</keycap
+></entry>
+<entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>C</keycap
+></entry>
+<entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>T</keycap
+></entry>
+<entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>N</keycap
+></entry>
+<entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>log base e</entry
+></row>
+
+<row
+><entry
+><keycap
+>L</keycap
+></entry>
+<entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>log base 10</entry
+></row>
+
+<row
+><entry
+><keycap
+>Ctrl-2</keycap
+></entry>
+<entry
+> <guibutton
+>&Maj;</guibutton
+></entry>
+<entry
+>Segona funció per a aquest botó. Per exemple, si voleu «arcsin» escriviu <userinput
+>Ctrl-2 s </userinput
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>\</keysym
+></entry>
+<entry
+><guibutton
+>+/-</guibutton
+></entry>
+<entry
+>Canvia el signe</entry
+></row>
+
+<row
+><entry
+><keysym
+>[</keysym
+></entry>
+<entry
+><guibutton
+>x^2</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>^</keysym
+></entry>
+<entry
+><guibutton
+>x^y</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>!</keysym
+></entry>
+<entry
+><guibutton
+>x!</guibutton
+></entry>
+<entry
+>Factorial</entry
+></row>
+
+<row
+><entry
+><keysym
+>E</keysym
+></entry>
+<entry
+>x10<superscript
+>y</superscript
+></entry>
+<entry
+>Exponent</entry
+></row>
+
+<row
+><entry
+><keysym
+>&lt;</keysym
+></entry>
+<entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>Desplaçament esquerre</entry
+></row>
+<!-- no "<" on Lsh key only "
+>" on Rsh key-->
+<row
+><entry
+><keysym
+>&gt;</keysym
+></entry>
+<entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>Desplaçament dret.</entry
+></row>
+<row
+><entry
+><keysym
+>&amp;</keysym
+></entry>
+<entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>«AND» lògic</entry
+></row>
+
+<row
+><entry
+><keysym
+>x</keysym
+> o <keysym
+>*</keysym
+></entry>
+<entry
+><guibutton
+>X</guibutton
+></entry>
+<entry
+>Multiplicació</entry
+></row>
+
+<row
+><entry
+><keysym
+>/</keysym
+></entry>
+<entry
+><guibutton
+>/</guibutton
+></entry>
+<entry
+>Divisió</entry
+></row>
+
+<row
+><entry
+><keycap
+>D</keycap
+></entry>
+<entry
+><guibutton
+>Dad</guibutton
+></entry>
+<entry
+>Introduïu l'element de dades en mode estadístic</entry
+></row>
+
+<row
+><entry
+><keycap
+>|</keycap
+></entry>
+<entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>OR lògic. Nota: <guibutton
+>&Maj;</guibutton
+> <guibutton
+>O</guibutton
+> és XOR</entry
+></row>
+
+<row
+><entry
+><keycap
+>R</keycap
+></entry>
+<entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>Recíproc</entry
+></row>
+
+<row
+><entry
+>&Intro;</entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>Retorn</keycap
+></entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+>&Retro;</entry>
+<entry
+><guibutton
+>&lt;=</guibutton
+></entry>
+<entry
+>Suprimeix l'últim nombre</entry
+></row>
+
+<row
+><entry
+><keycap
+>Re Pàg</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Neteja</entry
+></row>
+
+<row
+><entry
+>&Esc;</entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Neteja</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Prior</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Clear</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>Av Pàg</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Neteja-ho tot</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Next</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Clear all</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>Supr</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Neteja-ho tot</entry
+></row>
+
+<row
+><entry
+><keycap
+>:</keycap
+></entry>
+<entry
+><guibutton
+>Mod</guibutton
+></entry>
+<entry
+>residu de la divisió</entry
+></row>
+
+<row
+><entry
+>&Alt;+<keycap
+>1</keycap
+> a &Alt;+<keycap
+>6</keycap
+></entry>
+<entry
+><guibutton
+>C1</guibutton
+></entry>
+<entry
+>utilitza el valor emmagatzemat en C1 a C6</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+</chapter>
+
+<chapter id="comments-on-specific-functions">
+<title
+>Comentaris sobre funcions específiques</title>
+
+<sect1 id="mod">
+<title
+>Mod i IntDiv</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Mod</guibutton
+> dona el residu de dividir el nombre mostrat pel nombre de l'entrada següent.</term>
+<listitem
+><para
+><userinput
+>22 Mod 8 = </userinput
+> donarà el resultat <emphasis
+>6</emphasis
+></para>
+<para
+><userinput
+>22,345 Mod 8 = </userinput
+> donarà el resultat <emphasis
+>6,345</emphasis
+></para>
+</listitem
+></varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>&Maj;</guibutton
+> <guibutton
+>IntDiv</guibutton
+> fa la divisió entera del nombre mostrat pel nombre de l'entrada següent.</term>
+<listitem
+><para
+><userinput
+>22 Maj IntDiv 8 = </userinput
+> donarà el resultat <emphasis
+>2</emphasis
+></para>
+<para
+><userinput
+>22,345 Maj IntDiv 8 = </userinput
+> també dona <emphasis
+>2</emphasis
+> </para
+></listitem
+></varlistentry>
+</variablelist>
+
+</sect1>
+
+
+<sect1 id="percent">
+<title
+>&percnt;</title>
+
+<para
+>Utilitzat en lloc de la tecla <guibutton
+>=</guibutton
+>, <guibutton
+>%</guibutton
+> interpreta l'operació final portada a terme en el càlcul actual de la manera següent:</para>
+
+<para
+><itemizedlist>
+<listitem>
+<para
+>Si l'operador final és + o -, el segon argument s'interpreta com a percentatge del primer operand. </para>
+</listitem>
+<listitem>
+<para
+>Si l'operador final és *, divideix el resultat de la multiplicació per 100. </para>
+</listitem>
+<listitem>
+<para
+>Si l'operador final és / dona l'operand esquerre com a percentatge de l'operand dret. </para>
+</listitem>
+<listitem>
+<para
+>En tots els altres casos la tecla &percnt; dona resultats idèntics a la tecla =. </para>
+</listitem>
+</itemizedlist
+></para>
+
+<variablelist>
+<varlistentry>
+<term
+>Exemples:</term>
+<listitem>
+<para
+><userinput
+>150 + 50 %</userinput
+> dona <emphasis
+>225</emphasis
+> (150 més el 50 per cent d'aquesta quantitat)</para>
+<para
+><userinput
+>42 * 3 %</userinput
+> dona <emphasis
+>1,26</emphasis
+> (42 * 3 / 100)</para>
+<para
+><userinput
+>45 / 55 %</userinput
+> dona <emphasis
+>81,81...</emphasis
+> (45 és el 81,81.. per cent de 55)</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="lsh-rsh">
+<title
+>Lsh i Rsh</title>
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Lsh</guibutton
+> desplaça a l'esquerra la part entera del valor mostrat (multiplica per 2) n vegades, on n és el nombre de l'entrada següent, i dona un resultat enter (la base s'estableix a <guibutton
+>Bin</guibutton
+>):</term>
+<listitem
+><para
+><userinput
+>10 Lsh 3 =</userinput
+> dona <emphasis
+>80</emphasis
+> (10 multiplicat per 2 tres vegades).</para>
+<para
+><userinput
+>10,345 Lsh 3 =</userinput
+> també dona <emphasis
+>80</emphasis
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Rsh</guibutton
+> desplaça a la dreta el valor (porta a terme una divisió d'enters per 2) n vegades.</term>
+<listitem
+><para
+><userinput
+>16 Rsh 2 =</userinput
+> dona <emphasis
+>4</emphasis
+> (16 dividit per 2 dues vegades).</para>
+<para
+><userinput
+>16,999 Rsh 2 =</userinput
+> també dona <emphasis
+>4</emphasis
+>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="and-or-xor">
+<title
+>Cmp, And, Or i Xor</title>
+
+<para
+>Les funcions <guibutton
+>Cmp</guibutton
+>, <guibutton
+>And</guibutton
+> i <guibutton
+>Or</guibutton
+> realitzen operacions lògiques bit a bit i, per tant, semblen més significatives si la base s'estableix a <guilabel
+>Hex</guilabel
+>, <guilabel
+>Oct</guilabel
+> o <guilabel
+>Bin</guilabel
+> en lloc de <guilabel
+>Dec</guilabel
+>. En els exemples següents la base s'estableix a <guilabel
+>Bin</guilabel
+>.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Cmp</guibutton
+> realitza un complement d'1 (inverteix els bits).</term>
+<listitem
+><para
+><userinput
+>101 Cmp</userinput
+> dona <emphasis
+>111...111010</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>AND</guibutton
+> fa un AND lògic.</term>
+<listitem
+><para
+><userinput
+>101 AND 110 =</userinput
+> dona <emphasis
+>100</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>OR</guibutton
+> fa l'OR lògic.</term>
+<listitem
+><para
+><userinput
+>101 OR 110 =</userinput
+> dona <emphasis
+>111</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>XOR</guibutton
+> realitza l'operació lògica XOR (OR exclusiu).</term>
+<listitem
+><para
+><userinput
+>101 XOR 110 =</userinput
+> dona <emphasis
+>11</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+</chapter>
+
+
+<chapter id="questions-and-answers">
+<title
+>Preguntes i respostes</title>
+
+<qandaset>
+
+
+<qandaentry>
+<question
+><para
+>Com puc obtenir e, el nombre d'Euler?</para
+></question>
+<answer
+><para
+>Premeu <userinput
+>1 Maj e<superscript
+>x</superscript
+></userinput
+> a la finestra del &kcalc;, premeu <userinput
+>1 <keycombo action="simul"
+>&Ctrl;<keycap
+>2</keycap
+></keycombo
+> <keycap
+>N</keycap
+></userinput
+> en el teclat o utilitzeu el menú <menuchoice
+><guimenu
+>Constants</guimenu
+><guimenuitem
+>Matemàtiques</guimenuitem
+></menuchoice
+>.</para
+></answer>
+</qandaentry>
+
+<qandaentry>
+<question
+><para
+>Com puc obtenir dos dígits fixos després de la coma?</para
+></question>
+<answer
+><para
+>Seleccioneu <menuchoice
+><guimenu
+>Arranjament</guimenu
+><guimenuitem
+> Configura el &kcalc;...</guimenuitem
+></menuchoice
+> a la barra de menús, això mostrarà el diàleg de configuració. Activeu <guilabel
+>Estableix la precisió decimal</guilabel
+> i ajusteu el botó de selecció de valors de manera que mostri un 2.</para
+></answer
+> </qandaentry>
+
+<qandaentry>
+<question
+><para
+>Què passa amb la precisió?</para
+></question>
+<answer
+><para
+>El factor principal que determina la precisió del &kcalc; és si les biblioteques «libc» i «libmath» admeten el tipus de dades <type
+>«long double»</type
+> del C. Si aquest és el cas, el &kcalc; detectarà això en el moment de compilació i l'utilitzarà com a tipus de dades fonamental per representar els nombres. </para>
+
+<para
+>Ajusteu la precisió <guilabel
+></guilabel
+> en el diàleg <guibutton
+>Arranjament</guibutton
+> del &kcalc; de manera que els càlculs anteriors funcionin correctament. Recomano una precisió de 14 si el tipus de dades fonamentals per a la vostra còpia del &kcalc; és <type
+>«long double»</type
+>, en cas contrari 8 o 10.</para>
+
+<para
+>Una precisió més alta no condueix necessàriament a millors resultats. Jugueu amb la precisió i veureu el que vull dir.</para>
+</answer>
+</qandaentry>
+
+</qandaset>
+</chapter>
+
+&commands;
+
+<chapter id="copyright">
+<title
+>Crèdits i llicència</title>
+
+<para
+>Copyright del programa &kcalc; &copy;:</para>
+<para
+>&Bernd.Johannes.Wuebben; 1996-2000</para>
+<para
+>L'equip del &kde; 2000-2008</para>
+<para
+>&Evan.Teran; 2008-2013</para>
+
+<itemizedlist>
+<listitem
+><para
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+>&Evan.Teran; &Evan.Teran.mail;</para
+></listitem>
+<listitem
+><para
+>&Espen.Sand; &Espen.Sand.mail;</para
+></listitem>
+<listitem
+><para
+>&Chris.Howells; &Chris.Howells.mail;</para
+></listitem>
+<listitem
+><para
+>&Aaron.J.Seigo; &Aaron.J.Seigo.mail;</para
+></listitem>
+<listitem
+><para
+>&Charles.Samuels; &Charles.Samuels.mail;</para
+></listitem>
+<listitem
+><para
+>&David.Johnson; &David.Johnson.mail;</para
+></listitem>
+</itemizedlist>
+
+<para
+>El &kcalc; es va inspirar en el <application
+>xfrmcalc</application
+> de <personname
+><firstname
+>Martin</firstname
+> <surname
+>Bartlett</surname
+></personname
+>, i el seu motor de pila encara forma part del &kcalc;.</para>
+
+<para
+>Copyright de la documentació &copy; 2001, 2002, 2005, 2006, 2010:</para>
+<itemizedlist>
+<listitem
+><para
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+>&Pamela.Roberts; &Pamela.Roberts.mail;</para
+></listitem>
+<listitem
+><para
+>&J.Hall; &J.Hall.mail;</para
+></listitem>
+<listitem
+><para
+>&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Eike</firstname
+><surname
+>Krumbacher</surname
+></personname
+> <email
+>eike.krumbacher@x-eike.de</email
+></para
+></listitem>
+</itemizedlist>
+
+<para
+>Traductor de la documentació: &credits.JosepMa.Ferrer;</para
+> &underFDL; &underGPL; </chapter>
+
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

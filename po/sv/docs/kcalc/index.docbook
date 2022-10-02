@@ -1,0 +1,1888 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Swedish "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY commands SYSTEM "commands.docbook">
+]>
+
+<book id="kcalc" lang="&language;">
+<bookinfo>
+<title
+>Handbok Miniräknare</title>
+
+<authorgroup>
+<author
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail; </author>
+
+<author
+>&Pamela.Roberts;&Pamela.Roberts.mail; </author>
+<author
+>&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail; </author>
+<othercredit role="translator"
+> <firstname
+>Stefan</firstname
+> <surname
+>Asserhäll</surname
+> <affiliation
+><address
+><email
+>stefan.asserhall@bredband.net</email
+></address
+></affiliation
+> <contrib
+>Översättare</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2001</year
+> <year
+>2002</year
+> <year
+>2005</year
+>	<year
+>2006</year>
+<holder
+>&Bernd.Johannes.Wuebben;, &Pamela.Roberts;, &Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2016-07-25</date>
+<releaseinfo
+>Program 16.08</releaseinfo>
+
+<abstract
+><para
+>&kcalc; är en miniräknare för din skrivbordsmiljö. I det enkla läget kan den användas för grundläggande aritmetiska operationer, men den tillhandahåller avancerade lägen för vetenskapliga, statistiska och nummersystemberäkningar.</para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>KCalc</keyword>
+<keyword
+>miniräknare</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Inledning</title>
+
+<para
+>Miniräknaren erbjuder många fler matematiska funktioner än som syns vid ett snabbt ögonkast. Studera gärna avsnittet om snabbtangenter och lägen i den här handboken för att lära dig mer om de många tillgängliga funktionerna.</para>
+
+<para
+>Förutom de vanliga funktionerna som erbjuds av de flesta vetenskapliga räknare, erbjuder Miniräknaren ett antal funktioner som jag tycker det är värt att poängtera:</para>
+
+<itemizedlist>
+<listitem>
+<para
+>Miniräknaren tillhandahåller trigonometriska funktioner, logiska operationer och har möjlighet att göra statistiska beräkningar.</para>
+</listitem>
+<listitem>
+<para
+>Miniräknaren låter dig klippa ut och klistra in tal från/till dess nummerfönster.</para>
+</listitem>
+<listitem>
+<para
+>Miniräknaren tillhandahåller en <firstterm
+>resultatstack</firstterm
+> som låter dig hämta tidigare resultat på ett smidigt sätt.</para>
+</listitem>
+<listitem>
+<para
+>Du kan ställa in Miniräknarens färger och teckensnitt.</para>
+</listitem>
+<listitem>
+<para
+>Du kan ställa in Miniräknarens noggrannhet, antalet visade siffror och antalet siffror efter decimalkommat i inställningsdialogrutan.</para>
+</listitem>
+<listitem>
+<para
+>Miniräknaren erbjuder ett stort antal användbara <link linkend="key-accels"
+>tangentbindningar</link
+>, som gör det lätt att använda den utan ett pekdon.</para>
+<para
+>Tips: Genom att trycka på &Ctrl;-tangenten (och hålla nere den), visas motsvarande snabbtangent på varje knapp.</para>
+</listitem>
+</itemizedlist>
+
+<!--see https://bugs.kde.org/show_bug.cgi?id=326481-->
+<note
+><para
+>Miniräknaren använder <ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Infix_notation"
+>infix notation</ulink
+> vilket upprätthåller operatorernas rätta ordning som man lärt sig i skolan, i motsats till <ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Immediate_execution"
+>direkt beräkning</ulink
+> använt av många enklare räknare. </para
+></note>
+
+<para
+>Ha det så trevligt när du använder Miniräknaren!</para>
+
+<para
+>&Bernd.Johannes.Wuebben;</para>
+
+</chapter>
+
+
+<chapter id="usage">
+<title
+>Användning</title>
+<sect1 id="general-usage">
+<title
+>Allmän användning</title>
+
+<para
+>Allmän användning är rättfram och liknar sättet som de flesta enkla vetenskapliga räknare fungerar, men observera följande speciella funktioner i Miniräknaren:</para>
+
+<variablelist>
+<varlistentry>
+<term
+>Resultatstacken</term>
+<listitem
+><para
+>Varje gång du vänsterklickar på knappen <guibutton
+>=</guibutton
+> eller trycker på tangentbordets <keycap
+>Enter</keycap
+> eller <keysym
+>=</keysym
+> tangenter, skrivs nummerfönstrets resultat till Miniräknarens resultatstack. Du kan bläddra igenom resultatstacken med tangentbordets tangenter <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> och <keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>Z</keycap
+></keycombo
+>.</para
+> 
+</listitem>
+</varlistentry
+> 
+
+<varlistentry>
+<term
+>Procentfunktionen</term>
+<listitem>
+<para
+>Procentfunktionen fungerar något annorlunda än för de flesta miniräknare. Dock visar det sig att den utökade funktionaliteten är riktigt användbar, när man väl förstår den. Se avsnittet om <link linkend="percent"
+>procentfunktionen</link
+> för ytterligare detaljer.</para>
+</listitem
+></varlistentry>
+      
+<varlistentry>
+<term
+>Klipp och klistra</term>
+<listitem>
+<para
+><itemizedlist>
+<listitem>
+<para
+>Genom att trycka på <keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+> placeras talet som visas på klippbordet.</para>
+</listitem>
+<listitem>
+<para
+>Genom att trycka på <keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> klistras klippbordets innehåll in i fönstret om innehållet är ett giltigt flyttal.</para>
+</listitem>
+<listitem>
+<para
+>Det är fortfarande möjligt att kopiera eller klistra in genom att klicka på Miniräknarens nummerfönster, men funktionen kanske försvinner i framtida versioner.</para>
+</listitem>
+</itemizedlist>
+</para
+></listitem
+></varlistentry>
+
+<varlistentry>
+<term
+>Avancerade funktioner</term>
+<listitem>
+<para
+>När du startar Miniräknaren för första gången, visar räknaren bara knappar för grundläggande aritmetiska beräkningar.</para>
+<para
+>Under menyalternativet <guimenu
+>Inställningar</guimenu
+> är det möjligt att välja Miniräknarens läge. Det är möjligt att välja <link linkend="simple-mode"
+>Enkelt läge</link
+>, <link linkend="science-mode"
+>Vetenskapligt läge</link
+>, <link linkend="statistical-mode"
+>Statistikläge</link
+> eller <link linkend="numeral-system-mode"
+>Nummersystemläge</link
+>. Observera att de kan komma att ändras något allt eftersom Miniräknaren utvecklas.</para
+> 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Knapparnas funktion</term>
+<listitem>
+<para
+>För att enkelt komma åt alla funktioner i Miniräknarens avancerade lägen har många tangenter två funktioner. Klicka på <guibutton
+>&Shift;</guibutton
+> eller tryck på snabbtangenten <keycombo action="simul"
+>&Ctrl;<keycap
+>2</keycap
+></keycombo
+> för att visa knapparnas alternativa funktion.</para
+> 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Historik</term>
+<listitem>
+<para
+>Historikområdet visar alla beräkningar som gjorts i &kcalc; för den aktiva sessionen i &kcalc;. Klicka på <guibutton
+>AC</guibutton
+> eller tryck på genvägen <keycap
+>Del</keycap
+> för att rensa historikens innehåll. För att aktivera eller inaktivera den, använd alternativet <guilabel
+>Visa historik</guilabel
+> i menyradens meny <guimenu
+>Inställningar</guimenu
+>, eller tryck på <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+>.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+
+
+<!-- describing MODES here -->
+
+<sect1 id="simple-mode">
+<title
+>Enkelt läge</title>
+<para
+>Det här läget innehåller bara de knappar och funktioner som är väsentliga för grundläggande beräkningar.</para>
+<para
+>Om du bara vill summera alla poster i en faktura, kan det här läget vara bra att välja.</para>
+</sect1>
+
+
+<sect1 id="science-mode">
+<title
+>Vetenskapligt läge</title>
+
+<para
+>I det här läget är vänsterkolumnen med knappar tilldelade trigonometriska funktioner:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Knappar</entry>
+<entry
+>Funktion</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>Aktivera hyperboliskt delläge. Hyp Sin är till exempel den hyperboliska sinusfunktionen: sinh</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+>Beräkna sinus</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Sin</guibutton
+> eller <guibutton
+>Asin</guibutton
+></entry>
+<entry
+>Beräkna invers sinus</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+>Beräkna cosinus</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Cos</guibutton
+> eller <guibutton
+>Acos</guibutton
+></entry>
+<entry
+>Beräkna invers cosinus</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+>Beräkna tangens</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Tan</guibutton
+> eller <guibutton
+>Atan</guibutton
+></entry>
+<entry
+>Beräkna invers tangens</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>Beräkna logaritmen med basen 10</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Log</guibutton
+> eller 10<superscript
+>x</superscript
+></entry>
+<entry
+>Beräkna 10 upphöjt till x</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>Beräkna den naturliga logaritmen, dvs. logaritmen med basen e</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Ln</guibutton
+> eller e<superscript
+>x</superscript
+></entry>
+<entry
+>Beräkna e (den naturliga logaritmens bas) upphöjt till x</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>Den andra kolumnen har knappar för algebraiska funktioner:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Knappar</entry>
+<entry
+>Funktion</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Mod</guibutton
+></entry>
+<entry
+>Beräkna resten i vanlig division</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Mod</guibutton
+> eller <guibutton
+>Intdiv</guibutton
+></entry>
+<entry
+>Heltalsdivision (heltalsdelen av kvoten)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>Beräkna ett tals invers</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>1/x</guibutton
+> eller <guibutton
+>nCm</guibutton
+></entry>
+<entry
+>Beräkna antal distinkta delmängder av andra operandens element som kan skapas för alla mängder som innehåller första operandens element (biomialkoefficienten)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x!</guibutton
+></entry>
+<entry
+>Beräkna produkten av alla positiva heltal mindre än eller lika med den nuvarande heltalsoperanden (fakulteten)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x²</guibutton
+></entry>
+<entry
+>Beräkna x i kvadrat</entry
+></row>
+
+ <row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>x²</guibutton
+> eller <guibutton
+>√x</guibutton
+></entry>
+<entry
+>Beräkna kvadratroten ur x</entry
+></row>
+
+<row
+><entry
+><guibutton
+>xʸ</guibutton
+></entry>
+<entry
+>x upphöjt till y</entry
+></row>
+
+<row
+><entry
+>&Shift; x<superscript
+>y</superscript
+> eller x<superscript
+>1/y</superscript
+></entry>
+<entry
+>x upphöjt till 1/y</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x³</guibutton
+></entry>
+<entry
+>Beräknar x upphöjt till 3</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>x³</guibutton
+> or <guibutton
+>∛x</guibutton
+></entry>
+<entry
+>Beräkna tredje roten ur x</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x·10ʸ</guibutton
+></entry>
+<entry
+>Beräknar produkten av den första operanden och den decimala exponenten av den andra operanden</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+
+
+<sect1 id="statistical-mode">
+<title
+>Statistikläge</title>
+
+<para
+>I det här läget är vänsterkolumnen med knappar tilldelade statistikfunktioner:</para>
+<para
+>Det mesta av funktionen i det här läget rör sig omkring knappen <guibutton
+>Dat</guibutton
+>. För att skapa en datalista med tal, skriv in ett tal i räknaren och tryck på <guibutton
+>Dat</guibutton
+>. En följd av ökande tal visas i nummerfönstret, som anger vilken position i <quote
+>datalistan</quote
+> som talet upptar. En traditionell räknare lagrar bara tre värden för statistikfunktioner: Antal diskreta värden i listan, summan av datavärdena som skrivits in och summan av kvadraten av alla datavärden i listan. Miniräknaren skiljer sig från det genom att verkligen lagra varje enskilt värde, vilket låter dig beräkna medianen för data. </para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Knappar</entry>
+<entry
+>Funktion</entry
+></row
+></thead>
+
+<tbody>
+<row
+><entry
+><guibutton
+>N</guibutton
+></entry>
+<entry
+>Hämtar antalet datavärden som matats in</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>N</guibutton
+> eller <guibutton
+>∑x</guibutton
+></entry>
+<entry
+>Visar summan av alla datavärden som matats in</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Mea</guibutton
+></entry>
+<entry
+>Visar medelvärdet av alla datavärden som matats in</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Medel</guibutton
+> eller <guibutton
+>∑x²</guibutton
+></entry>
+<entry
+>Visar summan av kvadraterna på alla datavärden som matats in</entry
+></row>
+
+<row
+><entry
+>σ<subscript
+>N</subscript
+></entry>
+<entry
+>Visar standardavvikelsen (n)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+>σ<subscript
+>N</subscript
+> eller σ<subscript
+>N-1</subscript
+> </entry>
+<entry
+>Visar populationens standardavvikelse (n-1)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Med</guibutton
+></entry>
+<entry
+>Visar medianen</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>Mata in ett datavärde</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Dat</guibutton
+> eller <guibutton
+>CDat</guibutton
+></entry>
+<entry
+>Rensa det senaste datavärdet som matats in</entry
+></row>
+
+<row
+><entry
+><guibutton
+>CSt</guibutton
+></entry>
+<entry
+>Rensa alla datavärden som matats in</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>Följande två kolumner innehåller knapparna med trigonometriska och algebraiska funktioner som beskrivs i avsnittet <link linkend="science-mode"
+>Vetenskapligt läge</link
+>.</para>
+
+</sect1>
+
+
+<sect1 id="numeral-system-mode">
+<title
+>Nummersystemläge</title>
+<para
+>Det här läget innehåller knappar och funktioner för att beräkna binärt, hexadecimalt, oktalt och decimalt.</para>
+
+<para
+>Nummersystemet väljes med alternativknapparna till höger. För att exempelvis infoga ett hexadecimalt tal, gör bara följande: Välj <guilabel
+>Hex</guilabel
+> med alternativknapparna. Skriv därefter in ett tal och observera att du kan använda bokstäverna <guibutton
+>A</guibutton
+> till <guibutton
+>F</guibutton
+> för siffror större än 9. Om du vill se talet binärt, välj bara <guilabel
+>Bin</guilabel
+> med alternativknapparna.</para>
+
+ <para
+>Binära, oktala och hexadecimala tal kan visas som siffergrupper åtskilda av blanktecken. En sådan gruppering kan förbättra talens läsbarhet. Exempelvis kan det hexadecimala talet <emphasis
+>AF1C42</emphasis
+> visas som <emphasis
+>AF 1C 42</emphasis
+> åtskilt vid varannan siffra. Gruppering kan stängas av eller finjusteras. Välj <menuchoice
+><guimenu
+>Inställningar</guimenu
+><guimenuitem
+>Anpassa &kcalc;...</guimenuitem
+></menuchoice
+> för att visa inställningsdialogrutan och ändra inställningen på sidan <guilabel
+>Allmänt</guilabel
+> på lämpligt sätt.</para>
+
+<para
+>Du kanske också vill välja <guimenu
+>Visa bitredigering</guimenu
+> i menyn <guimenu
+>Inställningar</guimenu
+> för att se valda bitar.</para>
+
+<para
+>Det finns logiska operatorer tillgängliga i det här läget. Operatorerna är: <informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Knappar</entry>
+<entry
+>Funktion</entry
+></row
+></thead>
+<tbody>
+<row
+><entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>Logiskt och utförs med två tal</entry
+></row>
+
+<row
+><entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>Logiskt eller utförs med två tal</entry
+></row>
+
+<row
+><entry
+><guibutton
+>XOR</guibutton
+></entry>
+<entry
+>Logiskt exklusivt eller utförs med två tal</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>Skifta värdet åt vänster</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>Skifta värdet åt höger</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cmp</guibutton
+></entry>
+<entry
+>Utför ettkomplement</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+</para>
+
+<para
+>Den andra kolumnen innehåller knapparna med algebraiska funktioner som beskrivs i avsnittet <link linkend="science-mode"
+>Vetenskapligt läge</link
+>.</para>
+
+<para
+>Den tredje kolumnen med knapparna <guibutton
+>A</guibutton
+> till <guibutton
+>F</guibutton
+> är bara aktiverade i <guilabel
+>Hexadecimalt läge</guilabel
+>. </para>
+</sect1>
+
+<!-- end of MODES -->
+
+
+<sect1 id="memory-operations">
+<title
+>Minnesoperationer</title>
+
+<para
+>Miniräknaren stöder minnesoperationer som tillhandahålls av vanliga miniräknare samt sex platser att lagra konstanter.</para>
+
+<sect2 id="standard_memory">
+<title
+>Vanliga minnesoperationer</title>
+
+<para
+>Miniräknaren kan komma ihåg resultat av operationer åt dig, och återanvända dem i senare beräkningar. Du kan komma åt funktionerna via flera knappar som heter <guibutton
+>MR</guibutton
+>, <guibutton
+>MS</guibutton
+>, <guibutton
+>M+</guibutton
+> och <guibutton
+>MC</guibutton
+>.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>MS</guibutton
+></term>
+<listitem
+><para
+>Knappen <guibutton
+>MS</guibutton
+> lagrar resultatet som för närvarande visas i minnet.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>M+</guibutton
+></term>
+<listitem
+><para
+>Knappen <guibutton
+>M+</guibutton
+> lägger till nuvarande resultat till det i minnet. Om du alltså hade lagrat 20, och det nuvarande resultatet är 5, skulle minnet innehålla 25 när du tryckt på knappen. Om minnet är tomt, fungerar den som <guibutton
+>MS</guibutton
+> och lagrar helt enkelt resultatet.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MR</guibutton
+></term>
+<listitem
+><para
+>Knappen <guibutton
+>MR</guibutton
+> hämtar värdet lagrat i minnet och placerar det i nummerfönstret.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MC</guibutton
+></term>
+<listitem
+><para
+>Knappen <guibutton
+>MC</guibutton
+> tömmer minnet.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Om ett värde är lagrat i minnet visas ett <guilabel
+>M</guilabel
+> i statusraden intill miniräknarens lägesindikator.</para>
+</sect2>
+
+<sect2 id="constant_buttons">
+<title
+>Konstanter</title>
+
+<para
+>De sex konstantknapparna <guibutton
+>C1</guibutton
+> till <guibutton
+>C6</guibutton
+> syns bara när alternativet <guilabel
+>Konstantknappar</guilabel
+> i menyn <guimenu
+>Inställningar</guimenu
+> i menyraden har valts. De är tillgängliga i <guilabel
+>Vetenskapligt läge</guilabel
+> och <guilabel
+>Statistikläge</guilabel
+>.</para>
+
+<para
+>Håll muspekaren över knappen för att se värdet lagrat i varje konstant.</para>
+
+<para
+>För att lagra talet som visas i miniräknarens nummerruta i en av de sex konstantknapparna, tryck först på <guibutton
+>&Shift;</guibutton
+> följt av önskad konstant från <guibutton
+>C1</guibutton
+> till <guibutton
+>C6</guibutton
+>.</para>
+
+<para
+>För att använda värdet lagrat i någon av konstantknapparna i en beräkning, klicka bara på önskad knapp <guibutton
+>C1</guibutton
+> till <guibutton
+>C6</guibutton
+>, så visas motsvarande tal i nummerrutan. </para>
+
+<para
+>Det är möjligt att byta etikett på konstantknapparna för att göra det enklare för en användare att komma ihåg vilken knapp som innehåller vilken konstant. Klicka med höger musknapp på en av knapparna <guibutton
+>C1</guibutton
+> till <guibutton
+>C6</guibutton
+>. En sammanhangsberoende meny visas, där du kan välja <guilabel
+>Ange namn</guilabel
+>. </para>
+
+<para
+>Det finns många (de flesta fysikaliska) fördefinierade konstanter, som kan användas för vilken av de sex knapparna <guibutton
+>C1</guibutton
+> till <guibutton
+>C6</guibutton
+> som helst genom att välja önskad konstant i den sammanhangsberoende menyn som visas efter att ha högerklickat på en av konstantknapparna och valt <guilabel
+>Välj i en lista</guilabel
+>, Även om de fördefinierade konstanterna också kan kommas åt via <guimenu
+>Konstanter</guimenu
+> i menyraden, är det mycket praktiskt att placera en på en konstantknapp om talet används ofta.</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="key-accels">
+<title
+>Enkla snabbtangenter</title>
+
+<para
+>För att förenkla inmatning av beräkningar från tangentbordet har Miniräknaren enkla snabbtangenter för de flesta funktionerna. Genom att till exempel skriva in <userinput
+>7R</userinput
+> eller <userinput
+>7r</userinput
+> beräknas inverterade värdet av 7 (1/7).</para>
+
+<para
+>Under en beräkning kan du alltid trycka på &Ctrl; för att låta varje knapp visa motsvarande snabbtangent.</para>
+<!-- Shift works like Caps Lock-->
+<informaltable
+><tgroup cols="3">
+<thead>
+<row
+><entry
+>Tangent</entry>
+<entry
+>Funktion</entry>
+<entry
+>Anmärkning</entry
+></row>
+</thead>
+<tbody>
+
+<row
+><entry
+><keycap
+>H</keycap
+></entry>
+<entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>Hyperbolisk, som för Hyp Sin, sinh-funktionen</entry
+></row>
+
+<row
+><entry
+><keycap
+>S</keycap
+></entry>
+<entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>C</keycap
+></entry>
+<entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>T</keycap
+></entry>
+<entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>N</keycap
+></entry>
+<entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>logaritm med basen e</entry
+></row>
+
+<row
+><entry
+><keycap
+>L</keycap
+></entry>
+<entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>logaritm med basen 10</entry
+></row>
+
+<row
+><entry
+><keycap
+>Ctrl-2</keycap
+></entry>
+<entry
+> <guibutton
+>&Shift;</guibutton
+></entry>
+<entry
+>Annan funktion för knappen, t.ex. om du vill få arcsin skriv in <userinput
+>Ctrl-2 s </userinput
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>\</keysym
+></entry>
+<entry
+><guibutton
+>+/-</guibutton
+></entry>
+<entry
+>Ändra tecken</entry
+></row>
+
+<row
+><entry
+><keysym
+>[</keysym
+></entry>
+<entry
+><guibutton
+>x^2</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>^</keysym
+></entry>
+<entry
+><guibutton
+>x^y</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>!</keysym
+></entry>
+<entry
+><guibutton
+>x!</guibutton
+></entry>
+<entry
+>Fakultet</entry
+></row>
+
+<row
+><entry
+><keysym
+>E</keysym
+></entry>
+<entry
+>x10<superscript
+>y</superscript
+></entry>
+<entry
+>Exponent</entry
+></row>
+
+<row
+><entry
+><keysym
+>&lt;</keysym
+></entry>
+<entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>Vänsterskift</entry
+></row>
+<!-- no "<" on Lsh key only "
+>" on Rsh key-->
+<row
+><entry
+><keysym
+>&gt;</keysym
+></entry>
+<entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>Högerskift.</entry
+></row>
+<row
+><entry
+><keysym
+>&amp;</keysym
+></entry>
+<entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>Logiskt och</entry
+></row>
+
+<row
+><entry
+><keysym
+>x</keysym
+> eller <keysym
+>*</keysym
+></entry>
+<entry
+><guibutton
+>X</guibutton
+></entry>
+<entry
+>Multiplicera</entry
+></row>
+
+<row
+><entry
+><keysym
+>/</keysym
+></entry>
+<entry
+><guibutton
+>/</guibutton
+></entry>
+<entry
+>Dividera</entry
+></row>
+
+<row
+><entry
+><keycap
+>D</keycap
+></entry>
+<entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>Skriv in datavärde i statistikläge</entry
+></row>
+
+<row
+><entry
+><keycap
+>|</keycap
+></entry>
+<entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>Logiskt eller. Observera: <guibutton
+>&Shift;</guibutton
+> <guibutton
+>OR</guibutton
+> är XOR</entry
+></row>
+
+<row
+><entry
+><keycap
+>R</keycap
+></entry>
+<entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>Inverterat värde</entry
+></row>
+
+<row
+><entry
+>Enter</entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>Returtangenten</keycap
+></entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+>&Backspace;</entry>
+<entry
+><guibutton
+>&lt;=</guibutton
+></entry>
+<entry
+>Ta bort sista siffran</entry
+></row>
+
+<row
+><entry
+><keycap
+>Page Up</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Rensa</entry
+></row>
+
+<row
+><entry
+>&Esc;</entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Rensa</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Prior</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Clear</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>Page Down</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Rensa allt</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Next</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Clear all</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>Del</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Rensa allt</entry
+></row>
+
+<row
+><entry
+><keycap
+>:</keycap
+></entry>
+<entry
+><guibutton
+>Mod</guibutton
+></entry>
+<entry
+>rest vid division</entry
+></row>
+
+<row
+><entry
+>&Alt;+<keycap
+>1</keycap
+> till &Alt;+<keycap
+>6</keycap
+></entry>
+<entry
+><guibutton
+>C1</guibutton
+></entry>
+<entry
+>använd värdet lagrat i C1 till C6</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+</chapter>
+
+<chapter id="comments-on-specific-functions">
+<title
+>Kommentarer om speciella funktioner</title>
+
+<sect1 id="mod">
+<title
+>Mod och Intdiv</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Mod</guibutton
+> ger resten av att dividera talet som visas med talet som matas in härnäst.</term>
+<listitem
+><para
+><userinput
+>22 Mod 8 = </userinput
+> ger resultatet <emphasis
+>6</emphasis
+></para>
+<para
+><userinput
+>22.345 Mod 8 = </userinput
+> ger resultatet <emphasis
+>6.345</emphasis
+></para>
+</listitem
+></varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Intdiv</guibutton
+> utför en heltalsdivision av talet som visas med talet som matas in härnäst.</term>
+<listitem
+><para
+><userinput
+>22 Skift Intdiv 8 = </userinput
+> ger resultatet <emphasis
+>2</emphasis
+></para>
+<para
+><userinput
+>22.345 Skift Intdiv 8 = </userinput
+> ger också <emphasis
+>2</emphasis
+> </para
+></listitem
+></varlistentry>
+</variablelist>
+
+</sect1>
+
+
+<sect1 id="percent">
+<title
+>&percnt;</title>
+
+<para
+>Om den används istället för tangenten <guibutton
+>=</guibutton
+>, tolkar <guibutton
+>%</guibutton
+> den slutliga operationen som utförs i den aktuella beräkningen enligt följande:</para>
+
+<para
+><itemizedlist>
+<listitem>
+<para
+>Om den slutliga operatorn är + eller -, tolkas det andra argumentet som ett procenttal av den första operanden. </para>
+</listitem>
+<listitem>
+<para
+>Om den slutliga operatorn är *, divideras resultatet av multiplikationen med 100. </para>
+</listitem>
+<listitem>
+<para
+>Om den slutliga operatorn är /, ges vänsteroperanden som ett procenttal av högeroperanden. </para>
+</listitem>
+<listitem>
+<para
+>I alla andra fall ger &percnt;-tangenten samma resultat som tangenten =. </para>
+</listitem>
+</itemizedlist
+></para>
+
+<variablelist>
+<varlistentry>
+<term
+>Exempel:</term>
+<listitem>
+<para
+><userinput
+>150 + 50 %</userinput
+> ger <emphasis
+>225</emphasis
+> (150 plus 50 procent av antalet)</para>
+<para
+><userinput
+>42 * 3 %</userinput
+> ger <emphasis
+>1.26</emphasis
+> (42 * 3 / 100)</para>
+<para
+><userinput
+>45 / 55 %</userinput
+> ger <emphasis
+>81.81...</emphasis
+> (45 är 81.81.. procent av 55)</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="lsh-rsh">
+<title
+>Lsh och Rsh</title>
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Lsh</guibutton
+> skiftar heltalsdelen av värdet som visas åt vänster (multiplicerar det med 2) n gånger, där n är det tal som matas in härnäst, och ger ett heltalsresultat (basen ställs in till <guibutton
+>Bin</guibutton
+>):</term>
+<listitem
+><para
+><userinput
+>10 Lsh 3 =</userinput
+> ger <emphasis
+>80</emphasis
+> (10 multiplicerat med 2 tre gånger).</para>
+<para
+><userinput
+>10.345 Lsh 3 =</userinput
+> ger också <emphasis
+>80</emphasis
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Rsh</guibutton
+> skiftar värdet åt höger (utför en heltalsdivision med 2) n gånger.</term>
+<listitem
+><para
+><userinput
+>16 Rsh 2 =</userinput
+> ger <emphasis
+>4</emphasis
+> (16 dividerat med 2 två gånger).</para>
+<para
+><userinput
+>16.999 Rsh 2 =</userinput
+> ger också <emphasis
+>4</emphasis
+>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="and-or-xor">
+<title
+>Cmp, And, Or och Xor</title>
+
+<para
+>Funktionerna <guibutton
+>Cmp</guibutton
+>, <guibutton
+>And</guibutton
+> och <guibutton
+>Or</guibutton
+> utför bitorienterade logiska operationer och verkar därför mer meningsfulla om <guilabel
+>Bas</guilabel
+> är inställd som <guilabel
+>Hex</guilabel
+>, <guilabel
+>Oct</guilabel
+> eller <guilabel
+>Bin</guilabel
+> istället för <guilabel
+>Dec</guilabel
+>. I följande exempel <guilabel
+>Bas</guilabel
+> är inställd som <guilabel
+>Bin</guilabel
+>.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Cmp</guibutton
+> utför ett-komplementet (inverterar bitarna).</term>
+<listitem
+><para
+><userinput
+>101 Cmp</userinput
+> ger <emphasis
+>111...111010</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>AND</guibutton
+> gör en logisk OCH.</term>
+<listitem
+><para
+><userinput
+>101 AND 110 =</userinput
+> ger <emphasis
+>100</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>OR</guibutton
+> gör en logisk ELLER.</term>
+<listitem
+><para
+><userinput
+>101 OR 110 =</userinput
+> ger <emphasis
+>111</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>XOR</guibutton
+> utför operationen logisk XOR (uteslutande ELLER).</term>
+<listitem
+><para
+><userinput
+>101 XOR 110 =</userinput
+> ger <emphasis
+>111</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+</chapter>
+
+
+<chapter id="questions-and-answers">
+<title
+>Frågor och svar</title>
+
+<qandaset>
+
+
+<qandaentry>
+<question
+><para
+>Hur får jag fram e, Eulers konstant?</para
+></question>
+<answer
+><para
+>Klicka på <userinput
+>1 Skift e<superscript
+>x</superscript
+></userinput
+> i &kcalc;-fönstret, tryck på <userinput
+>1 <keycombo action="simul"
+>&Ctrl; <keycap
+>2</keycap
+></keycombo
+> <keycap
+>N</keycap
+></userinput
+> på tangentbordet eller använd menyn <menuchoice
+><guimenu
+>Konstanter</guimenu
+><guimenuitem
+>Matematik</guimenuitem
+></menuchoice
+>.</para
+></answer>
+</qandaentry>
+
+<qandaentry>
+<question
+><para
+>Hur får jag två låsta siffror efter decimalkommat?</para
+></question>
+<answer
+><para
+>Välj <menuchoice
+><guimenu
+>Inställningar</guimenu
+><guimenuitem
+>Anpassa Miniräknare...</guimenuitem
+></menuchoice
+> i menyraden, som visar inställningsdialogrutan. Markera <guilabel
+>Ange decimal precision</guilabel
+> och justera nummerrutan så att den visar värdet 2.</para
+></answer
+> </qandaentry>
+
+<qandaentry>
+<question
+><para
+>Vad gäller för precisionen?</para
+></question>
+<answer
+><para
+>Den huvudsakliga faktorn som avgör precision hos Miniräknaren är om libc och libmath stöder datatypen <type
+>long double</type
+> i C. Om detta är fallet, upptäcks detta vid kompileringstillfället och typen används som den grundläggande datatypen för att ange tal. </para>
+
+<para
+>Justera <guilabel
+>Precision</guilabel
+> i Miniräknarens dialogruta <guibutton
+>Anpassning</guibutton
+> så att ovanstående beräkning fungerar på ett riktigt sätt. Jag rekommenderar en precision på 14 om den grundläggande datatypen för din kopia av Miniräknaren är <type
+>long double</type
+>, annars 8 eller 10.</para>
+
+<para
+>Högre precision leder inte nödvändigtvis till bättre resultat. Lek med precisionen så får du se vad jag menar.</para>
+</answer>
+</qandaentry>
+
+</qandaset>
+</chapter>
+
+&commands;
+
+<chapter id="copyright">
+<title
+>Tack till och licens</title>
+
+<para
+>&kcalc;-programmets copyright &copy;:</para>
+<para
+>&Bernd.Johannes.Wuebben; 1996-2000</para>
+<para
+>&kde;-gruppen 2000-2008</para>
+<para
+>&Evan.Teran; 2008-2013</para>
+
+<itemizedlist>
+<listitem
+><para
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+>&Evan.Teran; &Evan.Teran.mail;</para
+></listitem>
+<listitem
+><para
+>&Espen.Sand; &Espen.Sand.mail;</para
+></listitem>
+<listitem
+><para
+>&Chris.Howells; &Chris.Howells.mail;</para
+></listitem>
+<listitem
+><para
+>&Aaron.J.Seigo; &Aaron.J.Seigo.mail;</para
+></listitem>
+<listitem
+><para
+>&Charles.Samuels; &Charles.Samuels.mail;</para
+></listitem>
+<listitem
+><para
+>&David.Johnson; &David.Johnson.mail;</para
+></listitem>
+</itemizedlist>
+
+<para
+>Miniräknaren inspirerades av <personname
+><firstname
+>Martin</firstname
+> <surname
+>Bartlett</surname
+></personname
+>s <application
+>xfrmcalc</application
+>, vars stackmotor fortfarande ingår i Miniräknaren.</para>
+
+<para
+>Dokumentation copyright &copy; 2001, 2002, 2005, 2006, 2010:</para>
+<itemizedlist>
+<listitem
+><para
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+>&Pamela.Roberts; &Pamela.Roberts.mail;</para
+></listitem>
+<listitem
+><para
+>&J.Hall; &J.Hall.mail;</para
+></listitem>
+<listitem
+><para
+>&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Eike</firstname
+><surname
+>Krumbacher</surname
+></personname
+> <email
+>eike.krumbacher@x-eike.de</email
+></para
+></listitem>
+</itemizedlist>
+
+<para
+>Översättning Stefan Asserhäll <email
+>stefan.asserhall@bredband.net</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

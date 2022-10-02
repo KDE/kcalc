@@ -1,0 +1,238 @@
+<chapter id="commands">
+
+<title
+>Käskude seletused</title>
+
+<sect1 id="menus">
+<title
+>Menüükirjed</title>
+
+ <para
+>Lühike ülevaade &kcalc;i mõningatest spetsiaalsetest menüükirjetest:</para>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstandid</guimenu
+> <guimenuitem
+>Matemaatika</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Näitab piid, Euleri arvu või kuldlõiget.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstandid</guimenu
+> <guimenuitem
+>Elektromagnetism</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Näitab valguse kiirust. elementaarlaengut, vaakumi takistust, vaakumi läbitavust või vaakumi dielektrilist läbitavust.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstandid</guimenu
+> <guimenuitem
+>Aatomi- ja tuumafüüsika</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Näitab Plancki konstanti, elementaarlaengut või peenstruktuurikonstanti.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstandid</guimenu
+> <guimenuitem
+>Termodünaamika</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Näitab Boltzmanni konstanti, aatommassiühikut, gaasikonstanti, Stefan-Boltzmanni konstanti või Avogadro arvu.</action
+> 
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstandid</guimenu
+> <guimenuitem
+>Gravitatsioon</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Näitab gravitatsioonikonstanti või raskuskiirendust. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Seadistused</guimenu
+> <guimenuitem
+>Lihtne režiim</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Näitab lihtsate arvutuste nuppe.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Seadistused</guimenu
+> <guimenuitem
+>Teadusrežiim</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Näitab trigonomeetria- ja teadusarvutuste nuppe.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Seadistused</guimenu
+> <guimenuitem
+>Statistikarežiim</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Näitab <link linkend="statistical-mode"
+>statistikanuppe</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Seadistused</guimenu
+> <guimenuitem
+>Arvusüsteemi režiim</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Näitab <link linkend="and-or-xor"
+>loogikanuppe</link
+> ja võimaldab muuta arvusüsteemi.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Seadistused</guimenu
+> <guimenuitem
+>Konstandinupud</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Näitab konstandinuppe. Need on saadaval <link linkend="science-mode"
+>teadus</link
+>- ja <link linkend="statistical-mode"
+>statistikarežiimis</link
+>. </action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Seadistused</guimenu
+> <guimenuitem
+>Näita bitiredaktorit</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Näitab bitiredaktori välja. Klõpsa bitil selle lülitamiseks. Saadaval ainult <link linkend="numeral-system-mode"
+>arvusüsteemi režiimis</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Lisaks on &kcalc;il tavapärased &kde; menüüde <guimenu
+>Fail</guimenu
+>, <guimenu
+>Redigeerimine</guimenu
+>, <guimenu
+>Seadistused</guimenu
+> ja <guimenu
+>Abi</guimenu
+> kirjed, mille kohta leiab rohkem teavet &kde; põhialuste käsiraamatu osast <ulink url="help:/fundamentals/ui.html#menus"
+>Menüüd</ulink
+>. </para>
+
+</sect1>
+
+</chapter>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-parent-document: ("index.docbook" "book" "chapter")
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

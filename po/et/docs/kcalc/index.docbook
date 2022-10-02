@@ -1,0 +1,1859 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kappname "&kcalc;"
+> 
+  <!ENTITY package "kdeutils">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Estonian  "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY commands SYSTEM "commands.docbook">
+]>
+
+<book id="kcalc" lang="&language;">
+<bookinfo>
+<title
+>&kcalc;i käsiraamat</title>
+
+<authorgroup>
+<author
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail; </author>
+
+<author
+>&Pamela.Roberts;&Pamela.Roberts.mail; </author>
+<author
+>&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail; </author>
+<othercredit role="translator"
+><firstname
+>Marek</firstname
+><surname
+>Laane</surname
+><affiliation
+><address
+><email
+>bald@starman.ee</email
+></address
+></affiliation
+><contrib
+>Tõlge eesti keelde</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2001</year
+> <year
+>2002</year
+> <year
+>2005</year
+>	<year
+>2006</year>
+<holder
+>&Bernd.Johannes.Wuebben;, &Pamela.Roberts;, &Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2013-05-24</date>
+<releaseinfo
+>2.13 (&kde; 4.11)</releaseinfo>
+
+<abstract
+><para
+>&kcalc; on &kde; kalkulaator. Lihtsamas vormis saab seda kasutada tavaliste matemaatikatehete sooritamiseks, kuid sel on ka võimalused võtta ette teaduslikke, statistilisi ja eri arvusüsteemides arvutusi.</para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>KCalc</keyword>
+<keyword
+>kalkulaator</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Sissejuhatus</title>
+
+<para
+>&kcalc; pakub palju enam matemaatiliste tehete võimalusi, kui see esmapilgul võib tunduda. Uuri hoolikalt käsiraamatu kiirklahvidele ja režiimidele pühendatud osa, et saada selgust, mida kõike selle abil teha saab.</para>
+
+<para
+>Lisaks tavalistele asjadele, mida pakub enamik teaduslikke kalkulaatoreid, käib &kcalc; välja veel mitu võimalust, mida tasuks kohe ära märkida:</para>
+
+<itemizedlist>
+<listitem>
+<para
+>&kcalc; võimaldab kasutada trigonomeetrilisi funktsioone, loogikatehteid ja sooritada isegi statistilisi arvutusi.</para>
+</listitem>
+<listitem>
+<para
+>&kcalc; võimaldab numbreid oma aknasse asetada ja neid sealt lõigata.</para>
+</listitem>
+<listitem>
+<para
+>&kcalc; pakub <firstterm
+>tulemuste pinu</firstterm
+>, mis võimaldab mugavalt mälust varasemaid tulemusi välja kutsuda.</para>
+</listitem>
+<listitem>
+<para
+>&kcalc;i värve ja fonte on võimalik igati kohandada.</para>
+</listitem>
+<listitem>
+<para
+>&kcalc; pakub seadistustedialoogis võimalust seadistada täpsust, näidatavate tüvearvude hulka ning komakohtade arvu.</para>
+</listitem>
+<listitem>
+<para
+>&kcalc; pakub hulganisti <link linkend="key-accels"
+>kiirklahve</link
+>, mis muudavad &kcalc;i kasutamise hõlpsaks ka ilma osutusseadmeta.</para>
+<para
+>Vihje: klahvi &Ctrl; vajutamine (ja allhoidmine) näitab iga nupu kiirklahvi.</para>
+</listitem>
+</itemizedlist>
+
+<!--see https://bugs.kde.org/show_bug.cgi?id=326481-->
+<note
+><para
+>&kcalc; kasutab tehete <ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Infix_notation"
+>infiks-kuju</ulink
+>, mille puhul tehteid tehakse samas järjekorras, nagu seda õpetatakse ka koolis. See erineb <ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Immediate_execution"
+>vahetu täitmise</ulink
+> meetodist, mida kasutavad paljud lihtsamad kalkulaatorid. </para
+></note>
+
+<para
+>Me loodame, et &kcalc; pakub sulle tõelist naudingut!</para>
+
+<para
+>&Bernd.Johannes.Wuebben;</para>
+
+</chapter>
+
+
+<chapter id="usage">
+<title
+>Kasutamine</title>
+<sect1 id="general-usage">
+<title
+>Kasutamisest üldiselt</title>
+
+<para
+>Üldiselt on kasutamine lihtne ja hõlpus, nagu kalkulaatoritel ikka, aga kindlasti tasuks tähele panna &kcalc;i järgmisi erilisi omadusi:</para>
+
+<variablelist>
+<varlistentry>
+<term
+>Tulemuste pinu</term>
+<listitem
+><para
+>Iga kord, kui klõpsad &HVNga; nupul <guibutton
+>=</guibutton
+> või vajutad klahvi &Enter; või <keysym
+>=</keysym
+>, kirjutatakse ekraanil näha olev tulemus &kcalc;i tulemuste pinusse. Tulemuste pinus saab liikuda kiirklahvidega <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> ja <keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>Z</keycap
+></keycombo
+>.</para
+> 
+</listitem>
+</varlistentry
+> 
+
+<varlistentry>
+<term
+>Protsentarvutus</term>
+<listitem>
+<para
+>Protsentarvutus toimib veidi erinevalt muudest kalkulaatoritest. Kui oled selle aga selgeks saanud, leiad kindlasti selle äärmiselt tulusa olevat. Vaata lähemalt <link linkend="percent"
+>protsentidest</link
+> kõnelevat osa.</para>
+</listitem
+></varlistentry>
+      
+<varlistentry>
+<term
+>Lõikamine ja asetamine</term>
+<listitem>
+<para
+><itemizedlist>
+<listitem>
+<para
+>Kiirklahv <keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> asetab näidatava numbri lõikepuhvrisse.</para>
+</listitem>
+<listitem>
+<para
+>Kiirklahv <keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> asetab tulemuste ekraanile lõikepuhvri sisu, kui see ikka on korrektne number.</para>
+</listitem>
+<listitem>
+<para
+>Praegu on veel endiselt võimalik kopeerida/asetada &kcalc;il klõpsates, kuid tulevastes versioonides me sellest võimalusest loobume.</para>
+</listitem>
+</itemizedlist>
+</para
+></listitem
+></varlistentry>
+
+<varlistentry>
+<term
+>Muud funktsioonid</term>
+<listitem>
+<para
+>&kcalc;i esmakordselt käivitades näitab kalkulaator ainult nelja põhitehte nuppu.</para>
+<para
+>Menüüst <guimenu
+>Seadistused</guimenu
+> saab valida &kcalc;i režiimi, kusjuures valikuteks on <link linkend="simple-mode"
+>lihtne</link
+>, <link linkend="science-mode"
+>teaduslik</link
+>, <link linkend="statistical-mode"
+>statistika</link
+> või <link linkend="numeral-system-mode"
+>arvusüsteem</link
+>. Arvesta siiski, et need režiimid võivad &kcalc;i arenedes mõnevõrra muutuda.</para
+> 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Nuppude paigutus</term>
+<listitem>
+<para
+>Kõigi &kcalc;i funktsioonide lihtsaks kasutamiseks keerulisemate tehete sooritamisel on paljudel nuppudel teine paigutus. Klõpsa nupule <guibutton
+>&Shift;</guibutton
+> või vajuta <keycombo action="simul"
+>&Ctrl;<keycap
+>2</keycap
+></keycombo
+>, et näha nuppude teist paigutust.</para
+> 
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+
+
+<!-- describing MODES here -->
+
+<sect1 id="simple-mode">
+<title
+>Lihtne režiim</title>
+<para
+>See režiim sisaldab ainult neid nuppe ja funktsioone, mis on hädavajalikud lihtsamateks arvutusteheteks.</para>
+<para
+>Kui soovid lihtsalt arvel olevad arvud kokku lüüa, on see õige valik.</para>
+</sect1>
+
+
+<sect1 id="science-mode">
+<title
+>Teadusrežiim</title>
+
+<para
+>Selles režiimis on vasakpoolne nuputulp eraldatud trigonomeetrilistele funktsioonidele:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Nupud</entry>
+<entry
+>Funktsioon</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>Rakendab hüperboolse alamrežiimi. Hyp Sin on näiteks hüperbooli siinus sinh</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+>Siinuse arvutamine</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Sin</guibutton
+> või <guibutton
+>Asin</guibutton
+></entry>
+<entry
+>Arkussiinuse arvutamine</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+>Koosinuse arvutamine</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Cos</guibutton
+> või <guibutton
+>Acos</guibutton
+></entry>
+<entry
+>Arkuskoosinuse arvutamine</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+>Tangensi arvutamine</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Tan</guibutton
+> või <guibutton
+>Atan</guibutton
+></entry>
+<entry
+>Arkustangensi arvutamine</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>Kümnendlogaritmi arvutamine</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Log</guibutton
+> või 10<superscript
+>x</superscript
+></entry>
+<entry
+>Logaritmi arvutamine alusel x</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>Naturaallogaritmi arvutamine. See on logaritm alusel e</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Ln</guibutton
+> või e<superscript
+>x</superscript
+></entry>
+<entry
+>Naturaallogaritmi arvutamine. See on logaritm alusel e</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>Teises veerus on algebrafunktsioonide nupud:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Nupud</entry>
+<entry
+>Funktsioon</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Mod</guibutton
+></entry>
+<entry
+>Jagatise jäägi arvutamine</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Mod</guibutton
+> või <guibutton
+>IntDiv</guibutton
+></entry>
+<entry
+>Täisarvuline jagamine (jagatise täisosa)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>Arvu pöördväärtuse arvutamine</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>1/x</guibutton
+> või <guibutton
+>nCm</guibutton
+></entry>
+<entry
+>Teise teguri alamhulkade arvu arvutamine, mida saab luua mis tahes esimest tegurit sisaldavast hulgast (binoomkordaja)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x!</guibutton
+></entry>
+<entry
+>Kõigi aktiivsest täisarvulisest operandist väiksemate või sellega võrdsete positiivsete täisarvude korrutise (faktoriaali) arvutamine</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x²</guibutton
+></entry>
+<entry
+>x ruudu arvutamine</entry
+></row>
+
+ <row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>x²</guibutton
+> või <guibutton
+>√x</guibutton
+></entry>
+<entry
+>x ruutjuure arvutamine</entry
+></row>
+
+<row
+><entry
+><guibutton
+>xʸ</guibutton
+></entry>
+<entry
+>x astmel y</entry
+></row>
+
+<row
+><entry
+>&Shift; x<superscript
+>y</superscript
+> või x<superscript
+>1/y</superscript
+></entry>
+<entry
+>x astmel 1/y</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x³</guibutton
+></entry>
+<entry
+>x kuubi arvutamine</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>x³</guibutton
+> või <guibutton
+>∛x</guibutton
+></entry>
+<entry
+>x kuupjuure arvutamine</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x·10ʸ</guibutton
+></entry>
+<entry
+>Esimese operandi ja teise operandi ehk kümne kordaja korrutise arvutamine</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+
+
+<sect1 id="statistical-mode">
+<title
+>Statistiline režiim</title>
+
+<para
+>Selles režiimis on vasakpoolne nuputulp eraldatud statistilistele funktsioonidele:</para>
+<para
+>Selle režiimi funktsionaalsuse keskmeks on nupp <guibutton
+>Dat</guibutton
+>. Arvude andmenimekirja loomiseks sisesta kalkulaatorisse arv ja vajuta nupule <guibutton
+>Dat</guibutton
+>. Kuval näidatakse kasvavat arvu, mis osutab, millise positsiooni <quote
+>andmenimekirjas</quote
+> antud arv omandab. Traditsiooniline kalkulaator salvestab statistiliste funktsioode jaoks ainult kolm väärtust: nimekirja diskreetsete elementide arvu, sisestatud andmeelementide summa ja nimekirja kõigi andmeelementide ruutjuure summa. &kcalc; käitub teisiti, salvestades kõik diskreetsed väärtused, mis võimaldab arvutada andmete mediaani. </para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Nupud</entry>
+<entry
+>Funktsioon</entry
+></row
+></thead>
+
+<tbody>
+<row
+><entry
+><guibutton
+>N</guibutton
+></entry>
+<entry
+>Näitab sisestatud andmete arvu</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>N</guibutton
+> või <guibutton
+>&Sgr;x</guibutton
+></entry>
+<entry
+>Näitab kõigi sisestatud andmeelementide summat</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Mea</guibutton
+></entry>
+<entry
+>Näitab sisestatud andmeelementide keskmist</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Mea</guibutton
+> või <guibutton
+>&Sgr;x²</guibutton
+></entry>
+<entry
+>Näitab kõigi sisestatud andmeelementide ruutude summat</entry
+></row>
+
+<row
+><entry
+>&sgr;<subscript
+>N</subscript
+></entry>
+<entry
+>Näitab standardhälvet (n)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> &sgr;<subscript
+>N</subscript
+> või &sgr;<subscript
+>N-1</subscript
+> </entry>
+<entry
+>Näitab üldkogumi standardhälvet (n-1)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Med</guibutton
+></entry>
+<entry
+>Näitab mediaani</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>Andmete sisestamine</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Dat</guibutton
+> või <guibutton
+>CDat</guibutton
+></entry>
+<entry
+>Puhastab viimased sisestatud andmed</entry
+></row>
+
+<row
+><entry
+><guibutton
+>CSt</guibutton
+></entry>
+<entry
+>Puhastab kõik sisestatud andmeelemendid</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>Järgmises kahes veerus leiduvaid trigonomeetria- ja algebratehete nuppe kirjeldatakse <link linkend="science-mode"
+>teaduslikust</link
+> režiimist kõnelevas osas.</para>
+
+</sect1>
+
+
+<sect1 id="numeral-system-mode">
+<title
+>Arvusüsteemi režiim</title>
+<para
+>See režiim sisaldab nuppe ja funktsioone, mis võimaldavad arvutada 2nd-, 16nd-, 8nd- ja 10nd-süsteemis.</para>
+
+<para
+>Arvusüsteemi saab valida raadionuppudega paremal. Näiteks 16nd-süsteemis arvu sisestamiseks vali kõigepealt raadionupuga <guilabel
+>16nd</guilabel
+>. Seejärel sisesta arv, kusjuures tasub tähele panna, et suuremate arvude jaoks kui 9 saab kasutada tähti <guibutton
+>A</guibutton
+> kuni <guibutton
+>F</guibutton
+>. Kui aga soovid näha sama arvu kahendsüsteemis, vali lihtsalt raadionuppude alt <guilabel
+>2nd</guilabel
+>.</para>
+
+ <para
+>Kahend-, kaheksand- ja kuueteistkümnendarve saab esitada tühikuga eraldatud arvurühmadena, mis parandab omajagu nende lugemist ja mõistmist. Näiteks kuueteistkümnendarvu <emphasis
+>AF1C42</emphasis
+> saab esitada kujul <emphasis
+>AF 1C 42</emphasis
+>, milles tühik esineb iga kahe numbri järel. Rühmitamist saab välja lülitada või oma käe järgi seada. Ava seadistustedialoog menüükäsuga <menuchoice
+><guimenu
+>Seadistused</guimenu
+><guimenuitem
+>&kcalc;i seadistamine...</guimenuitem
+></menuchoice
+> ning muuda soovi korral seadistust kaardil <guilabel
+>Üldine</guilabel
+>.</para>
+
+<para
+>Valitud bittide nägemiseks võib valida menüüst <guimenu
+>Seadistused</guimenu
+> <guimenu
+>Bitiredaktori näitamine</guimenu
+>.</para>
+
+<para
+>Selles režiimis saab kasutada loogikatehteid. Need on järgmised: <informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Nupud</entry>
+<entry
+>Funktsioon</entry
+></row
+></thead>
+<tbody>
+<row
+><entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>Kaks arvu, mida seob loogiline JA</entry
+></row>
+
+<row
+><entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>Kaks arvu, mida seob loogiline VÕI</entry
+></row>
+
+<row
+><entry
+><guibutton
+>XOR</guibutton
+></entry>
+<entry
+>Kaks arvu, mida seob loogiline välistav VÕI</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>Väärtuse nihutamine vasakule</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>Väärtuse nihutamine paremale</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cmp</guibutton
+></entry>
+<entry
+>Ühenitäiend</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+</para>
+
+<para
+>Teises veerus on algebrafunktsioonide nupud, mida kirjeldatakse <link linkend="science-mode"
+>teaduslikust</link
+> režiimist kõnelevas osas.</para>
+
+<para
+>Kolmas veerg nuppudega <guibutton
+>A</guibutton
+> kuni <guibutton
+>F</guibutton
+> on näha ainult <guilabel
+>16</guilabel
+>-süsteemi korral. </para>
+</sect1>
+
+<!-- end of MODES -->
+
+
+<sect1 id="memory-operations">
+<title
+>Mälutehted</title>
+
+<para
+>&kcalc; toetab tavaliste kalkulaatorite mälutehteid ning pakub võimalust salvestada kuus konstanti.</para>
+
+<sect2 id="standard_memory">
+<title
+>Standardsed mälutehted</title>
+
+<para
+>&kcalc; võib sinu eest tehete tulemused meelde jätta ja neid hiljem arvutustes kasutada. Neid võimalusi saab kasutada nuppude <guibutton
+>MR</guibutton
+>, <guibutton
+>MS</guibutton
+>, <guibutton
+>M+</guibutton
+> ja <guibutton
+>MC</guibutton
+> vahendusel.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>MS</guibutton
+></term>
+<listitem
+><para
+><guibutton
+>M+</guibutton
+> salvestab parajasti nähtava tulemuse mällu.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>M+</guibutton
+></term>
+<listitem
+><para
+><guibutton
+>M+</guibutton
+> lisab aktiivse tulemuse mälus olevale tulemusele. Kui sul on salvestatud näiteks 20 ja parajasti on tulemus 5, siis sellele nupule vajutades jääb mällu 25. Kui mälus pole midagi, käitub see nupp samamoodi nagu <guibutton
+>MS</guibutton
+> ning lihtsalt salvestab tulemuse.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MR</guibutton
+></term>
+<listitem
+><para
+><guibutton
+>MR</guibutton
+> võtab mälust salvestatud väärtuse ja näitab seda.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MC</guibutton
+></term>
+<listitem
+><para
+><guibutton
+>MC</guibutton
+> puhastab mälu.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Kui mällu on salvestatud mingi väärtus, ilmub kalkulaatori režiimi indikaatori kõrvale olekuribale <guilabel
+>M</guilabel
+>.</para>
+</sect2>
+
+<sect2 id="constant_buttons">
+<title
+>Konstandid</title>
+
+<para
+>Kuus konstandinuppu <guibutton
+>C1</guibutton
+> kuni <guibutton
+>C6</guibutton
+> ilmuvad nähtavale ainult siis, kui oled valinud menüükäsu <guilabel
+>Konstandinupud</guilabel
+> menüüst <guimenu
+>Seadistused</guimenu
+>. Neid saab kasutada <guilabel
+>teadus</guilabel
+>- ja <guilabel
+>statistika</guilabel
+>režiimis.</para>
+
+<para
+>Iga konstandi salvestatud väärtuse nägemiseks vii hiirekursor nupu kohale.</para>
+
+<para
+>&kcalc;i näidatava arvu salvestamiseks mõne konstandinupu alla vajuta kõigepealt nuppu <guibutton
+>&Shift;</guibutton
+> ja seejärel mõnda konstandinuppu vahemikus <guibutton
+>C1</guibutton
+> kuni <guibutton
+>C6</guibutton
+>.</para>
+
+<para
+>Konstandinupu alla salvestatud väärtuse kasutamiseks arvutuses vajuta lihtsalt vajalikku nuppu vahemikus <guibutton
+>C1</guibutton
+> kuni <guibutton
+>C6</guibutton
+> ning arv ilmubki ekraanile. </para>
+
+<para
+>Konstandinuppude pealdist saab muuta, et oleks parem näha, milline nupp millist konstanti sisaldab. Klõpsa hiire parema nupuga mõnele nuppudest <guibutton
+>C1</guibutton
+> kuni <guibutton
+>C6</guibutton
+>. Ilmuvas hüpikmenüüs on üks kirjeid <guilabel
+>Määra nimi</guilabel
+>. </para>
+
+<para
+>Lisaks on terve rida juba eelnevalt määratud konstante, mida võid määrata kuuele nupule vahemikus <guibutton
+>C1</guibutton
+> - <guibutton
+>C6</guibutton
+>, kui valid vajaliku konstandi hüpikmenüüst, mis ilmub siis, kui klõpsad mõnele konstandimenüüle hiire parema nupuga ja valid kirje <guilabel
+>Vali nimekirjast</guilabel
+>. Eelnevalt määratud konstante saab kasutada küll ka menüü <guimenu
+>Konstandid</guimenu
+> vahendusel, kuid kui sul peaks mõnda sellist väärtust sageli vaja minema, on see mugavam konstandinupu alla seada.</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="key-accels">
+<title
+>Kiirklahvid</title>
+
+<para
+>Kõikvõimalike tehete sisestamise lihtsustamiseks pakub &kcalc; enamikule funktsioonidele kiirklahve. Kui näiteks sisestada <userinput
+>7R</userinput
+> või <userinput
+>7r</userinput
+>, arvutatakse 7 pöördarv (1/7).</para>
+
+<para
+>Arvutamise ajal võib alati vajutada klahvi &Ctrl;, et näha, milline kiirklahv on antud nupuga seotud.</para>
+<!-- Shift works like Caps Lock-->
+<informaltable
+><tgroup cols="3">
+<thead>
+<row
+><entry
+>Klahv</entry>
+<entry
+>Funktsioon</entry>
+<entry
+>Märkus</entry
+></row>
+</thead>
+<tbody>
+
+<row
+><entry
+><keycap
+>H</keycap
+></entry>
+<entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>Hüperboolne, näiteks Hyp Sin ehk sinh</entry
+></row>
+
+<row
+><entry
+><keycap
+>S</keycap
+></entry>
+<entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>C</keycap
+></entry>
+<entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>T</keycap
+></entry>
+<entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>N</keycap
+></entry>
+<entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>logaritm alusel e</entry
+></row>
+
+<row
+><entry
+><keycap
+>L</keycap
+></entry>
+<entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>logaritm alusel 10</entry
+></row>
+
+<row
+><entry
+><keycap
+>Ctrl-2</keycap
+></entry>
+<entry
+> <guibutton
+>&Shift;</guibutton
+></entry>
+<entry
+>Nupu teine funktsioon, &eg; kui soovid arvutada arcsin, vajuta <userinput
+>Ctrl-2 s </userinput
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>\</keysym
+></entry>
+<entry
+><guibutton
+>+/-</guibutton
+></entry>
+<entry
+>Märgi muutmine</entry
+></row>
+
+<row
+><entry
+><keysym
+>[</keysym
+></entry>
+<entry
+><guibutton
+>x^2</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>^</keysym
+></entry>
+<entry
+><guibutton
+>x^y</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>!</keysym
+></entry>
+<entry
+><guibutton
+>x!</guibutton
+></entry>
+<entry
+>Faktoriaal</entry
+></row>
+
+<row
+><entry
+><keysym
+>E</keysym
+></entry>
+<entry
+>x10<superscript
+>y</superscript
+></entry>
+<entry
+>Astendamine</entry
+></row>
+
+<row
+><entry
+><keysym
+>&lt;</keysym
+></entry>
+<entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>Bitinihutamine vasakule</entry
+></row>
+<!-- no "<" on Lsh key only "
+>" on Rsh key-->
+<row
+><entry
+><keysym
+>&gt;</keysym
+></entry>
+<entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>Bitinihutamine paremale.</entry
+></row>
+<row
+><entry
+><keysym
+>&amp;</keysym
+></entry>
+<entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>Loogikatehte JA</entry
+></row>
+
+<row
+><entry
+><keysym
+>x</keysym
+> või <keysym
+>*</keysym
+></entry>
+<entry
+><guibutton
+>X</guibutton
+></entry>
+<entry
+>Korrutamine</entry
+></row>
+
+<row
+><entry
+><keysym
+>/</keysym
+></entry>
+<entry
+><guibutton
+>/</guibutton
+></entry>
+<entry
+>Jagamine</entry
+></row>
+
+<row
+><entry
+><keycap
+>D</keycap
+></entry>
+<entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>Andmete sisestamine statistilises režiimis</entry
+></row>
+
+<row
+><entry
+><keycap
+>|</keycap
+></entry>
+<entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>Loogiline VÕI. Märkus: <guibutton
+>&Shift;</guibutton
+> <guibutton
+>OR</guibutton
+> on XOR</entry
+></row>
+
+<row
+><entry
+><keycap
+>R</keycap
+></entry>
+<entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>Pöördväärtus</entry
+></row>
+
+<row
+><entry
+>&Enter;</entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>Return</keycap
+></entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+>&Backspace;</entry>
+<entry
+><guibutton
+>&lt;=</guibutton
+></entry>
+<entry
+>Viimase numbri kustutamine</entry
+></row>
+
+<row
+><entry
+><keycap
+>PgUp</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Puhastamine</entry
+></row>
+
+<row
+><entry
+>&Esc;</entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Puhastamine</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Prior</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Clear</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>PgDown</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Kõigi puhastamine</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Next</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Clear all</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>Del</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Kõigi puhastamine</entry
+></row>
+
+<row
+><entry
+><keycap
+>:</keycap
+></entry>
+<entry
+><guibutton
+>Mod</guibutton
+></entry>
+<entry
+>jagamise jääk</entry
+></row>
+
+<row
+><entry
+>&Alt;+<keycap
+>1</keycap
+> kuni &Alt;+<keycap
+>6</keycap
+></entry>
+<entry
+><guibutton
+>C1</guibutton
+></entry>
+<entry
+>C1 kuni C6 salvestatud väärtuste kasutamine</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+</chapter>
+
+<chapter id="comments-on-specific-functions">
+<title
+>Kommentaare erifunktsioonide kohta</title>
+
+<sect1 id="mod">
+<title
+>Mod ja IntDiv</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Mod</guibutton
+> annab esimese ja teise arvu jagamise jäägi.</term>
+<listitem
+><para
+><userinput
+>22 Mod 8 = </userinput
+> annab tulemuse <emphasis
+>6</emphasis
+></para>
+<para
+><userinput
+>22,345 Mod 8 = </userinput
+> annab tulemuse <emphasis
+>6,345</emphasis
+></para>
+</listitem
+></varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>IntDiv</guibutton
+> annab vajaku, mis jääb puudu esimesest arvust, et see jaguks täisarvuliselt teisega.</term>
+<listitem
+><para
+><userinput
+>22 Shift IntDiv 8 = </userinput
+> annab tulemuse <emphasis
+>2</emphasis
+></para>
+<para
+><userinput
+>22,345 Shift IntDiv 8 = </userinput
+> annab samuti tulemuse <emphasis
+>2</emphasis
+> </para
+></listitem
+></varlistentry>
+</variablelist>
+
+</sect1>
+
+
+<sect1 id="percent">
+<title
+>&percnt;</title>
+
+<para
+>Kasutusel klahvi <guibutton
+>=</guibutton
+> asemel, tõlgendab <guibutton
+>%</guibutton
+> parajasti sooritatava tehte viimast operatsiooni järgmiselt:</para>
+
+<para
+><itemizedlist>
+<listitem>
+<para
+>Kui viimane tehtemärk oli + või -, tõlgendatakse teist argumenti esimese operandi protsendina. </para>
+</listitem>
+<listitem>
+<para
+>Kui viimane tehtemärk oli *, jagab korrutuse tulemuse 100-ga. </para>
+</listitem>
+<listitem>
+<para
+>Kui viimane tehtemärk oli /, annab vasaku operandi protsendina paremast operandist. </para>
+</listitem>
+<listitem>
+<para
+>Kõigil muudel juhtudel annab klahv &percnt; sama tulemuse, mis klahv =. </para>
+</listitem>
+</itemizedlist
+></para>
+
+<variablelist>
+<varlistentry>
+<term
+>Näited:</term>
+<listitem>
+<para
+><userinput
+>150 + 50 %</userinput
+> annab <emphasis
+>225</emphasis
+> (150 pluss 50 protsenti sellest)</para>
+<para
+><userinput
+>42 * 3 %</userinput
+> annab <emphasis
+>1,26</emphasis
+> (42 * 3 / 100)</para>
+<para
+><userinput
+>45 / 55 %</userinput
+> annab <emphasis
+>81,81...</emphasis
+> (45 on 81,81.. protsenti 55-st)</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="lsh-rsh">
+<title
+>Lsh ja Rsh</title>
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Lsh</guibutton
+> nihutab näidatava väärtuse täisarvulise osa vasakule, korrutades seda 2-ga n korda, kus n on järgmine sisestatud arv, ning annab tulemuse täisarvuna (aluseks on <guibutton
+>Bin</guibutton
+>):</term>
+<listitem
+><para
+><userinput
+>10 Lsh 3 =</userinput
+> annab tulemuseks <emphasis
+>80</emphasis
+> (10 korda 2 korda 3).</para>
+<para
+><userinput
+>10,345 Lsh 3 =</userinput
+> annab tulemuseks samuti <emphasis
+>80</emphasis
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Rsh</guibutton
+> nihutab väärtust paremale, jagades täisarvulise osa 2-ga n korda.</term>
+<listitem
+><para
+><userinput
+>16 Rsh 2 =</userinput
+> annab tulemuseks <emphasis
+>4</emphasis
+> (16 jagatud 2-ga kaks korda).</para>
+<para
+><userinput
+>16,999 Rsh 2 =</userinput
+> annab samuti tulemuseks <emphasis
+>4</emphasis
+>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="and-or-xor">
+<title
+>Cmp, And, Or ja Xor</title>
+
+<para
+><guibutton
+>Cmp</guibutton
+>, <guibutton
+>And</guibutton
+> ja <guibutton
+>Or</guibutton
+> sooritavad loogikatehteid, mistõttu nende kasutamisel on mõttekas <guilabel
+>baas</guilabel
+>iks määrata pigem <guilabel
+>Hex</guilabel
+>, <guilabel
+>Oct</guilabel
+> või <guilabel
+>Bin</guilabel
+> kui <guilabel
+>Dec</guilabel
+>. Järgnevates näidetes on <guilabel
+>baas</guilabel
+>iks määratud <guilabel
+>Bin</guilabel
+>.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Cmp</guibutton
+> sooritab ühenitäienduse (muudab bitid vastupidiseks).</term>
+<listitem
+><para
+><userinput
+>101 Cmp</userinput
+> annab tulemuseks <emphasis
+>111...111010</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>AND</guibutton
+> sooritab loogikatehte JA.</term>
+<listitem
+><para
+><userinput
+>101 AND 110 =</userinput
+> annab tulemuseks <emphasis
+>100</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>OR</guibutton
+> sooritab loogikatehte VÕI.</term>
+<listitem
+><para
+><userinput
+>101 OR 110 =</userinput
+> annab tulemuseks <emphasis
+>111</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>XOR</guibutton
+> sooritab loogikatehte XOR (välistav VÕI).</term>
+<listitem
+><para
+><userinput
+>101 XOR 110 =</userinput
+> annab tulemuseks <emphasis
+>11</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+</chapter>
+
+
+<chapter id="questions-and-answers">
+<title
+>Küsimused ja vastused</title>
+
+<qandaset>
+
+
+<qandaentry>
+<question
+><para
+>Kuidas leida e ehk Euleri arv?</para
+></question>
+<answer
+><para
+>Kirjuta <userinput
+>1 Shift Ln</userinput
+>.</para
+></answer>
+</qandaentry>
+
+<qandaentry>
+<question
+><para
+>Kuidas saada alati kaks komakohta?</para
+></question>
+<answer
+><para
+>Vali menüüst <menuchoice
+><guimenu
+>Seadistused</guimenu
+><guimenuitem
+> &kcalc;i seadistamine...</guimenuitem
+></menuchoice
+>, mis avab seadistuste dialoogi. Märgi ära võimalus <guilabel
+>Kümnendkohtade täpsus</guilabel
+> ning keri allolevat kasti, nii et väärtuseks saaks 2.</para
+></answer
+> </qandaentry>
+
+<qandaentry>
+<question
+><para
+>Aga täpsus üldse?</para
+></question>
+<answer
+><para
+>&kcalc;i täpsuse hindamisel on peamine tegur see, kas sinu arvutisse paigaldatud libc ja libmath toetavad C andmetüüpi <type
+>long double</type
+>. Kui jah, avastab &kcalc; selle paigaldusajal ning kasutab seda arvude esitamisel fundamentaalse andmetüübina. </para>
+
+<para
+>Kohanda <guilabel
+>täpsus</guilabel
+>t &kcalc;i <guibutton
+>seadistuste</guibutton
+> dialoogis, et ülaltoodud tehted korrektselt välja tuleks. Soovitame täpsusastmeks määrata 14, kui &kcalc;i fundamentaalne andmetüüp sinu arvutis on <type
+>long double</type
+>, vastasel juhul aga piirduda 8 või 10.</para>
+
+<para
+>Suurem täpsus ei tähenda tingimata paremaid tulemusi. Proovi erinevaid täpsuse väärtusi ja sa taipad, mis nende sõnade taga peitub.</para>
+</answer>
+</qandaentry>
+
+</qandaset>
+</chapter>
+
+&commands;
+
+<chapter id="copyright">
+<title
+>Autorid ja litsents</title>
+
+<para
+>&kcalc; rakenduse autoriõigus &copy;:</para>
+<para
+>&Bernd.Johannes.Wuebben; 1996-2000</para>
+<para
+>&kde; meeskond 2000-2008</para>
+
+<itemizedlist>
+<listitem
+><para
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+>&Evan.Teran; &Evan.Teran.mail;</para
+></listitem>
+<listitem
+><para
+>&Espen.Sand; &Espen.Sand.mail;</para
+></listitem>
+<listitem
+><para
+>&Chris.Howells; &Chris.Howells.mail;</para
+></listitem>
+<listitem
+><para
+>&Aaron.J.Seigo; &Aaron.J.Seigo.mail;</para
+></listitem>
+<listitem
+><para
+>&Charles.Samuels; &Charles.Samuels.mail;</para
+></listitem>
+<listitem
+><para
+>&David.Johnson; &David.Johnson.mail;</para
+></listitem>
+</itemizedlist>
+
+<para
+>&kcalc; sai innustust <personname
+><firstname
+>Martin</firstname
+> <surname
+>Bartlett</surname
+></personname
+>i rakendusest <application
+>xfrmcalc</application
+>, mille pinu mootor on seniajani &kcalc;i üheks aluseks.</para>
+
+<para
+>Dokumentatsiooni autoriõigus &copy; 2001, 2002, 2005, 2006, 2010:</para>
+<itemizedlist>
+<listitem
+><para
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+>&Pamela.Roberts; &Pamela.Roberts.mail;</para
+></listitem>
+<listitem
+><para
+>&J.Hall; &J.Hall.mail;</para
+></listitem>
+<listitem
+><para
+>&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Eike</firstname
+><surname
+>Krumbacher</surname
+></personname
+> <email
+>eike.krumbacher@x-eike.de</email
+></para
+></listitem>
+</itemizedlist>
+
+<para
+>Tõlge eesti keelde: Marek Laane <email
+>bald@starman.ee</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+
+<appendix id="installation">
+<title
+>Paigaldamine</title>
+
+<para
+>&kcalc; on osa &kde; projekti paketist kdeutils ning tavaliselt paigaldatakse koos ülejäänud &kde;ga. Täpsema info hankimiseks &kde; kohta külasta aadressi <ulink url="http://www.kde.org"
+>http://www.kde.org</ulink
+>.</para>
+
+<sect1 id="compilation-and-installation">
+<title
+>Kompileerimine ja paigaldamine</title>
+&install.intro.documentation; &install.compile.documentation; </sect1>
+
+</appendix>
+
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

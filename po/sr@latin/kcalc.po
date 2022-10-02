@@ -1,0 +1,2113 @@
+# Translation of kcalc.po into Serbian.
+# Slobodan Miskovic <yugoslavia@canada.com>, 1999.
+# Chusslove Illich <caslav.ilic@gmx.net>, 2003, 2004, 2005, 2006, 2009, 2010, 2012, 2013, 2014, 2015.
+# Toplica Tanaskovic <toptan@kde.org.yu>, 2003.
+# Slobodan Simic <slsimic@gmail.com>, 2005, 2007, 2008, 2009.
+# Dalibor Djuric <daliborddjuric@gmail.com>, 2010, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: kcalc\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-06-08 02:19+0200\n"
+"PO-Revision-Date: 2015-01-31 12:56+0100\n"
+"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
+"Language: sr@latin\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+"X-Environment: kde\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Slobodan Mišković,Časlav Ilić,Slobodan Simić"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "yugoslavia@canada.com,caslav.ilic@gmx.net,slsimic@gmail.com"
+
+#. i18n: ectx: property (title), widget (QGroupBox, displayColorsBox)
+#: colors.ui:17
+#, kde-format
+msgid "Display Colors"
+msgstr "Boje prikaza"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: colors.ui:25
+#, kde-format
+msgid "&Foreground:"
+msgstr "&Boja ispisa:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2)
+#: colors.ui:52
+#, kde-format
+msgid "&Background:"
+msgstr "&Pozadina:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, buttonColorsBox)
+#: colors.ui:97
+#, kde-format
+msgid "Button Colors"
+msgstr "Boje dugmadi"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel6)
+#: colors.ui:105
+#, fuzzy, kde-format
+#| msgid "&Background:"
+msgid "Background"
+msgstr "&Pozadina:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: colors.ui:115
+#, fuzzy, kde-format
+#| msgid "&Foreground:"
+msgid "Foreground"
+msgstr "&Boja ispisa:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel5)
+#: colors.ui:125
+#, kde-format
+msgid "&Functions:"
+msgstr "&Funkcije:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel4)
+#: colors.ui:152
+#, kde-format
+msgid "St&atistic functions:"
+msgstr "&Statističke funkcije:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel9)
+#: colors.ui:179
+#, kde-format
+msgid "He&xadecimals:"
+msgstr "He&ksadekadno:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel11)
+#: colors.ui:206
+#, kde-format
+msgid "&Numbers:"
+msgstr "&Brojevi:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel10)
+#: colors.ui:233
+#, kde-format
+msgid "&Memory:"
+msgstr "&Memorija:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel12)
+#: colors.ui:260
+#, kde-format
+msgid "O&perations:"
+msgstr "O&peracije:"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
+#. i18n: ectx: property (title), widget (QGroupBox, constantsBox)
+#: constants.ui:13 constants.ui:19 kcalc.cpp:1675
+#, kde-format
+msgid "Constants"
+msgstr "Konstante"
+
+#. i18n: ectx: property (text), widget (QPushButton, pushButton0)
+#. i18n: ectx: property (text), widget (QPushButton, pushButton1)
+#. i18n: ectx: property (text), widget (QPushButton, pushButton2)
+#. i18n: ectx: property (text), widget (QPushButton, pushButton3)
+#. i18n: ectx: property (text), widget (QPushButton, pushButton4)
+#. i18n: ectx: property (text), widget (QPushButton, pushButton5)
+#: constants.ui:39 constants.ui:60 constants.ui:81 constants.ui:102
+#: constants.ui:123 constants.ui:144
+#, kde-format
+msgid "Predefined"
+msgstr "Predefinisano"
+
+#. i18n: ectx: property (text), widget (QLabel, buttonlabel)
+#: fonts.ui:21
+#, kde-format
+msgid "&Button font:"
+msgstr "Font &dugmadi:"
+
+#. i18n: ectx: property (toolTip), widget (KFontRequester, kcfg_ButtonFont)
+#: fonts.ui:34
+#, kde-format
+msgid "The font to use for the buttons"
+msgstr "Font koji se koristi za dugmad."
+
+#. i18n: ectx: property (text), widget (QLabel, displaylabel)
+#: fonts.ui:41
+#, kde-format
+msgid "&Display font:"
+msgstr "Font &prikaza:"
+
+#. i18n: ectx: property (toolTip), widget (KFontRequester, kcfg_DisplayFont)
+#: fonts.ui:54
+#, kde-format
+msgid "The font to use in the display"
+msgstr "Font koji se koristi za prikaz."
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, General)
+#: general.ui:14 kcalc.cpp:1635
+#, kde-format
+msgid "General"
+msgstr "Opšte"
+
+#. i18n: ectx: property (title), widget (QGroupBox, precisionGroupBox)
+#: general.ui:20
+#, kde-format
+msgid "Precision"
+msgstr "Tačnost"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: general.ui:28
+#, kde-format
+msgid "&Maximum number of digits:"
+msgstr "&Najveći broj cifara:"
+
+#. i18n: ectx: property (toolTip), widget (QSpinBox, kcfg_Precision)
+#: general.ui:41
+#, kde-format
+msgid "Maximum number of digits displayed"
+msgstr "Najveći broj prikazanih cifara."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, kcfg_Precision)
+#: general.ui:44
+#, kde-format
+msgid ""
+"KCalc can compute with many more digits than the number that fits on the "
+"display. This setting gives the maximum number of digits displayed, before "
+"KCalc starts using scientific notation, i.e. notation of the type 2.34e12."
+msgstr ""
+"KCalc može da računa sa daleko većim brojem cifara nego što staje u prikaz. "
+"Ova postavka određuje najveći broj prikazanih cifara pre nego što KCalc "
+"pređe na naučni zapis, npr. 2.34e12."
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_Fixed)
+#: general.ui:51
+#, kde-format
+msgid "Whether to use fixed decimal places"
+msgstr "Da li fiksirati decimalna mesta."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_Fixed)
+#: general.ui:54
+#, kde-format
+msgid "Set &decimal precision"
+msgstr "Postavi &decimalnu tačnost"
+
+#. i18n: ectx: property (toolTip), widget (QSpinBox, kcfg_FixedPrecision)
+#: general.ui:64
+#, kde-format
+msgid "Number of fixed decimal digits"
+msgstr "Broj fiksnih decimalnih cifara."
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: general.ui:89
+#, kde-format
+msgid "Grouping"
+msgstr "Grupisanje"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GroupDigits)
+#: general.ui:97
+#, kde-format
+msgid "Whether to group digits"
+msgstr "Da li grupisati cifre."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_GroupDigits)
+#: general.ui:100
+#, kde-format
+msgid "Group digits"
+msgstr "Grupiši cifre"
+
+#. i18n: ectx: property (text), widget (QLabel, grouping_binary_lb)
+#: general.ui:115
+#, kde-format
+msgid "Binary"
+msgstr "binarno"
+
+#. i18n: ectx: property (text), widget (QLabel, grouping_octal_lb)
+#: general.ui:122
+#, kde-format
+msgid "Octal"
+msgstr "oktalno"
+
+#. i18n: ectx: property (text), widget (QLabel, grouping_hexadecimal_lb)
+#: general.ui:129
+#, kde-format
+msgid "Hexadecimal"
+msgstr "heksadekadno"
+
+#. i18n: ectx: property (title), widget (QGroupBox, miscGroupBox)
+#: general.ui:152
+#, kde-format
+msgid "Misc"
+msgstr "Razno"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_Beep)
+#: general.ui:160
+#, kde-format
+msgid "Whether to beep on error"
+msgstr "Da li bipnuti na grešku."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_Beep)
+#: general.ui:163
+#, kde-format
+msgid "&Beep on error"
+msgstr "&Bipni na grešku"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_CaptionResult)
+#: general.ui:173
+#, kde-format
+msgid "Whether to show the result in the window title"
+msgstr "Da li prikazivati rezultat u naslovu prozora."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CaptionResult)
+#: general.ui:176
+#, kde-format
+msgid "Show &result in window title"
+msgstr "&Rezultat u naslovu prozora"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_TwosComplement)
+#: general.ui:183
+#, kde-format
+msgid "Whether to use Two's Complement for non-decimal numbers"
+msgstr "Da li koristiti dvojni komplement za nedekadne brojeve."
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_TwosComplement)
+#: general.ui:186
+#, kde-format
+msgid ""
+"Select to use Two's Complement notation for Binary, Octal and Hexidecimal "
+"numbers. This is a common notation to represent negative numbers for non-"
+"decimal numbers in computers."
+msgstr ""
+"Izaberite zapis dvojnog komplementa za binarne, oktalne i heksadekadne "
+"brojeve. Ovaj zapis je uobičajen za predstavljanje negativnih nedekadnih "
+"brojeva na računaru."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_TwosComplement)
+#: general.ui:189
+#, kde-format
+msgid "Two's complement"
+msgstr "Dvojni komplement"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_RepeatLastOperation)
+#: general.ui:199
+#, kde-format
+msgid "Repeat operation for each result"
+msgstr ""
+
+#: kcalc.cpp:58
+#, kde-format
+msgid "KDE Calculator"
+msgstr "KDE‑ov kalkulator"
+
+#: kcalc.cpp:188
+#, kde-format
+msgid "Simple Mode"
+msgstr "Jednostavni režim"
+
+#: kcalc.cpp:193
+#, kde-format
+msgid "Science Mode"
+msgstr "Naučni režim"
+
+#: kcalc.cpp:198
+#, kde-format
+msgid "Statistic Mode"
+msgstr "Statistički režim"
+
+#. i18n: ectx: label, entry (CalculatorMode), group (General)
+#: kcalc.cpp:203 kcalc.kcfg:151
+#, kde-format
+msgid "Numeral System Mode"
+msgstr "Režim brojevnih sistema"
+
+#: kcalc.cpp:208
+#, kde-format
+msgid "Constants &Buttons"
+msgstr "&Dugmad konstanti"
+
+#: kcalc.cpp:213
+#, kde-format
+msgid "Show B&it Edit"
+msgstr "&Uređivanje bitova"
+
+#: kcalc.cpp:227
+#, kde-format
+msgid "&Constants"
+msgstr "&Konstante"
+
+#: kcalc.cpp:323
+#, kde-format
+msgctxt "Add display to memory"
+msgid "M+"
+msgstr "M+"
+
+#: kcalc.cpp:323
+#, kde-format
+msgid "Add display to memory"
+msgstr "Dodaj prikaz u memoriju"
+
+#: kcalc.cpp:324
+#, kde-format
+msgctxt "Subtract from memory"
+msgid "M−"
+msgstr "M−"
+
+#: kcalc.cpp:324
+#, kde-format
+msgid "Subtract from memory"
+msgstr "Oduzmi od memorije"
+
+#: kcalc.cpp:347
+#, kde-format
+msgctxt "Third power"
+msgid "x<sup>3</sup>"
+msgstr "x<sup>3</sup>"
+
+#: kcalc.cpp:347
+#, kde-format
+msgid "Third power"
+msgstr "Treći stepen"
+
+#: kcalc.cpp:348
+#, kde-format
+msgid "Cube root"
+msgstr "Kubni koren"
+
+#: kcalc.cpp:446
+#, kde-format
+msgctxt "Sine"
+msgid "Sin"
+msgstr "Sin"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbSin)
+#: kcalc.cpp:446 kcalc.ui:538
+#, kde-format
+msgid "Sine"
+msgstr "Sinus"
+
+#: kcalc.cpp:447
+#, kde-format
+msgctxt "Arc sine"
+msgid "Asin"
+msgstr "Asin"
+
+#: kcalc.cpp:447
+#, kde-format
+msgid "Arc sine"
+msgstr "Arkus sinus"
+
+#: kcalc.cpp:448
+#, kde-format
+msgctxt "Hyperbolic sine"
+msgid "Sinh"
+msgstr "Sinh"
+
+#: kcalc.cpp:448
+#, kde-format
+msgid "Hyperbolic sine"
+msgstr "Sinus hiperbolički"
+
+#: kcalc.cpp:449
+#, kde-format
+msgctxt "Inverse hyperbolic sine"
+msgid "Asinh"
+msgstr "Asinh"
+
+#: kcalc.cpp:449
+#, kde-format
+msgid "Inverse hyperbolic sine"
+msgstr "Inverzni sinus hiperbolički"
+
+#: kcalc.cpp:454
+#, kde-format
+msgctxt "Cosine"
+msgid "Cos"
+msgstr "Cos"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbCos)
+#: kcalc.cpp:454 kcalc.ui:373
+#, kde-format
+msgid "Cosine"
+msgstr "Kosinus"
+
+#: kcalc.cpp:455
+#, kde-format
+msgctxt "Arc cosine"
+msgid "Acos"
+msgstr "Acos"
+
+#: kcalc.cpp:455
+#, kde-format
+msgid "Arc cosine"
+msgstr "Arkus kosinus"
+
+#: kcalc.cpp:456
+#, kde-format
+msgctxt "Hyperbolic cosine"
+msgid "Cosh"
+msgstr "Cosh"
+
+#: kcalc.cpp:456
+#, kde-format
+msgid "Hyperbolic cosine"
+msgstr "Kosinus hiperbolički"
+
+#: kcalc.cpp:457
+#, kde-format
+msgctxt "Inverse hyperbolic cosine"
+msgid "Acosh"
+msgstr "Acosh"
+
+#: kcalc.cpp:457
+#, kde-format
+msgid "Inverse hyperbolic cosine"
+msgstr "Inverzni kosinus hiperbolički"
+
+#: kcalc.cpp:462
+#, kde-format
+msgctxt "Tangent"
+msgid "Tan"
+msgstr "Tan"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbTan)
+#: kcalc.cpp:462 kcalc.ui:419
+#, kde-format
+msgid "Tangent"
+msgstr "Tangens"
+
+#: kcalc.cpp:463
+#, kde-format
+msgctxt "Arc tangent"
+msgid "Atan"
+msgstr "Atan"
+
+#: kcalc.cpp:463
+#, kde-format
+msgid "Arc tangent"
+msgstr "Arkus tangens"
+
+#: kcalc.cpp:464
+#, kde-format
+msgctxt "Hyperbolic tangent"
+msgid "Tanh"
+msgstr "Tanh"
+
+#: kcalc.cpp:464
+#, kde-format
+msgid "Hyperbolic tangent"
+msgstr "Tangens hiperbolički"
+
+#: kcalc.cpp:465
+#, kde-format
+msgctxt "Inverse hyperbolic tangent"
+msgid "Atanh"
+msgstr "Atanh"
+
+#: kcalc.cpp:465
+#, kde-format
+msgid "Inverse hyperbolic tangent"
+msgstr "Inverzni tangens hiperbolički"
+
+# skip-rule: t-log, t-log_g
+#: kcalc.cpp:470
+#, kde-format
+msgctxt "Logarithm to base 10"
+msgid "Log"
+msgstr "Log"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbLog)
+#: kcalc.cpp:470 kcalc.ui:611
+#, kde-format
+msgid "Logarithm to base 10"
+msgstr "Logaritam za osnovu 10"
+
+#: kcalc.cpp:471
+#, kde-format
+msgctxt "10 to the power of x"
+msgid "10<sup>x</sup>"
+msgstr "10<sup>x</sup>"
+
+#: kcalc.cpp:471
+#, kde-format
+msgid "10 to the power of x"
+msgstr "10 na x"
+
+#: kcalc.cpp:475
+#, kde-format
+msgctxt "Natural log"
+msgid "Ln"
+msgstr "Ln"
+
+# skip-rule: t-log, t-log_g
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbLn)
+#: kcalc.cpp:475 kcalc.ui:344
+#, kde-format
+msgid "Natural log"
+msgstr "Prirodni logaritam"
+
+#: kcalc.cpp:476
+#, kde-format
+msgctxt "Exponential function"
+msgid "e<sup>x</sup>"
+msgstr "e<sup>x</sup>"
+
+#: kcalc.cpp:476
+#, kde-format
+msgid "Exponential function"
+msgstr "Eksponencijalna funkcija"
+
+#: kcalc.cpp:495
+#, kde-format
+msgctxt "Number of data entered"
+msgid "N"
+msgstr "N"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbNData)
+#: kcalc.cpp:495 kcalc.ui:482
+#, kde-format
+msgid "Number of data entered"
+msgstr "Broj unetih podataka"
+
+#: kcalc.cpp:496
+#, kde-format
+msgid "Sum of all data items"
+msgstr "Zbir svih podataka"
+
+#: kcalc.cpp:501
+#, kde-format
+msgctxt "Mean"
+msgid "Mea"
+msgstr "Mea"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbMean)
+#: kcalc.cpp:501 kcalc.ui:551
+#, kde-format
+msgid "Mean"
+msgstr "Srednja vrednost"
+
+#: kcalc.cpp:502
+#, kde-format
+msgid "Sum of all data items squared"
+msgstr "Zbir kvadrata svih podataka"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbSd)
+#: kcalc.cpp:507 kcalc.ui:298
+#, kde-format
+msgid "Standard deviation"
+msgstr "Standardna devijacija"
+
+#: kcalc.cpp:508
+#, kde-format
+msgid "Sample standard deviation"
+msgstr "Standardna devijacija uzorka"
+
+#: kcalc.cpp:516
+#, kde-format
+msgctxt "Enter data"
+msgid "Dat"
+msgstr "Dat"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbDat)
+#: kcalc.cpp:516 kcalc.ui:515
+#, kde-format
+msgid "Enter data"
+msgstr "Unesite podatke"
+
+#: kcalc.cpp:517
+#, kde-format
+msgctxt "Delete last data item"
+msgid "CDat"
+msgstr "CDat"
+
+#: kcalc.cpp:517
+#, kde-format
+msgid "Delete last data item"
+msgstr "Obriši poslednji podatak"
+
+#: kcalc.cpp:578
+#, kde-format
+msgctxt "Modulo"
+msgid "Mod"
+msgstr "Mod"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbMod)
+#: kcalc.cpp:578 kcalc.ui:399
+#, kde-format
+msgid "Modulo"
+msgstr "Modulo"
+
+#: kcalc.cpp:579
+#, kde-format
+msgctxt "Integer division"
+msgid "IntDiv"
+msgstr "IntDiv"
+
+#: kcalc.cpp:579
+#, kde-format
+msgid "Integer division"
+msgstr "Celobrojno deljenje"
+
+#: kcalc.cpp:585
+#, kde-format
+msgctxt "Reciprocal"
+msgid "1/x"
+msgstr "1/x"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbReci)
+#: kcalc.cpp:585 kcalc.ui:492
+#, kde-format
+msgid "Reciprocal"
+msgstr "Recipročno"
+
+#: kcalc.cpp:586
+#, kde-format
+msgctxt "n Choose m"
+msgid "nCm"
+msgstr "(n m)"
+
+#: kcalc.cpp:586
+#, kde-format
+msgid "n Choose m"
+msgstr "n nad m"
+
+#: kcalc.cpp:591
+#, kde-format
+msgctxt "Factorial"
+msgid "x!"
+msgstr "x!"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbFactorial)
+#: kcalc.cpp:591 kcalc.ui:654
+#, kde-format
+msgid "Factorial"
+msgstr "Faktorijel"
+
+#: kcalc.cpp:592
+#, kde-format
+msgid "Gamma"
+msgstr "Gama"
+
+#: kcalc.cpp:598
+#, kde-format
+msgctxt "Square"
+msgid "x<sup>2</sup>"
+msgstr "x<sup>2</sup>"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbSquare)
+#: kcalc.cpp:598 kcalc.ui:409
+#, kde-format
+msgid "Square"
+msgstr "Kvadrat"
+
+#: kcalc.cpp:599
+#, kde-format
+msgid "Square root"
+msgstr "Kvadratni koren"
+
+#: kcalc.cpp:606
+#, kde-format
+msgctxt "x to the power of y"
+msgid "x<sup>y</sup>"
+msgstr "x<sup>y</sup>"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbPower)
+#: kcalc.cpp:606 kcalc.ui:571
+#, kde-format
+msgid "x to the power of y"
+msgstr "x na y"
+
+#: kcalc.cpp:607
+#, kde-format
+msgctxt "x to the power of 1/y"
+msgid "x<sup>1/y</sup>"
+msgstr "x<sup>1/y</sup>"
+
+#: kcalc.cpp:607
+#, kde-format
+msgid "x to the power of 1/y"
+msgstr "x na 1/y"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbEE)
+#: kcalc.cpp:613 kcalc.ui:386
+#, kde-format
+msgid "Exponent"
+msgstr "Izložilac"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbShift)
+#: kcalc.cpp:911 kcalc.ui:1097
+#, kde-format
+msgid "Shift"
+msgstr "Shift"
+
+#: kcalc.cpp:1046
+#, kde-format
+msgid "M"
+msgstr "M"
+
+#: kcalc.cpp:1560
+#, kde-format
+msgid "Last stat item erased"
+msgstr "Poslednja statistička stavka je izbrisana"
+
+#: kcalc.cpp:1575
+#, kde-format
+msgid "Stat mem cleared"
+msgstr "Statička memorija je očišćena"
+
+#: kcalc.cpp:1635
+#, kde-format
+msgid "General Settings"
+msgstr "Opšte postavke"
+
+#: kcalc.cpp:1639
+#, kde-format
+msgid "Font"
+msgstr "Font"
+
+# >> @title:window
+#: kcalc.cpp:1639
+#, kde-format
+msgid "Select Display Font"
+msgstr "Izbor fonta prikaza"
+
+#: kcalc.cpp:1643
+#, kde-format
+msgid "Colors"
+msgstr "Boje"
+
+#: kcalc.cpp:1643
+#, kde-format
+msgid "Button & Display Colors"
+msgstr "Boje dugmadi i prikaza"
+
+# >> @title:window
+#: kcalc.cpp:1675
+#, kde-format
+msgid "Define Constants"
+msgstr "Definisanje konstanti"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
+#: kcalc.cpp:2400 kcalc.ui:20
+#, kde-format
+msgid "KCalc"
+msgstr "KCalc"
+
+#: kcalc.cpp:2404
+#, kde-format
+msgid ""
+"Copyright © 2008-2013, Evan Teran\n"
+"Copyright © 2000-2008, The KDE Team\n"
+"Copyright © 2003-2005, Klaus Niederkrüger\n"
+"Copyright © 1996-2000, Bernd Johannes Wuebben"
+msgstr ""
+"© 2008-2013, Ivan Teran\n"
+"© 2000-2008, tim KDE‑a\n"
+"© 2003-2005, Klaus Niderkriger\n"
+"© 1996-2000, Bernd Johanes Viben"
+
+#: kcalc.cpp:2412
+#, kde-format
+msgid "Klaus Niederkrüger"
+msgstr "Klaus Niderkriger"
+
+#: kcalc.cpp:2413
+#, kde-format
+msgid "Bernd Johannes Wuebben"
+msgstr "Bernd Johanes Viben"
+
+#: kcalc.cpp:2414
+#, kde-format
+msgid "Evan Teran"
+msgstr "Ivan Teran"
+
+#: kcalc.cpp:2414
+#, kde-format
+msgid "Maintainer"
+msgstr "Održavalac"
+
+#: kcalc.cpp:2415
+#, kde-format
+msgid "Espen Sand"
+msgstr "Espen Sand"
+
+#: kcalc.cpp:2416
+#, kde-format
+msgid "Chris Howells"
+msgstr "Kris Hauels"
+
+#: kcalc.cpp:2417
+#, kde-format
+msgid "Aaron J. Seigo"
+msgstr "Aron Dž. Sajgo"
+
+#: kcalc.cpp:2418
+#, kde-format
+msgid "Charles Samuels"
+msgstr "Čarls Semjuels"
+
+#: kcalc.cpp:2420
+#, kde-format
+msgid "René Mérou"
+msgstr "Rene Meru"
+
+#: kcalc.cpp:2421
+#, kde-format
+msgid "Michel Marti"
+msgstr "Mišel Marti"
+
+#: kcalc.cpp:2422
+#, kde-format
+msgid "David Johnson"
+msgstr "Dejvid Džonson"
+
+#. i18n: ectx: label, entry (ForeColor), group (Colors)
+#: kcalc.kcfg:12
+#, kde-format
+msgid "The foreground color of the display."
+msgstr "Boja iscrtavanja prikaza."
+
+#. i18n: ectx: label, entry (BackColor), group (Colors)
+#: kcalc.kcfg:18
+#, kde-format
+msgid "The background color of the display."
+msgstr "Boja pozadine prikaza."
+
+#. i18n: ectx: label, entry (NumberButtonsColor), group (Colors)
+#: kcalc.kcfg:23
+#, kde-format
+msgid "The color of number buttons."
+msgstr "Boja dugmadi s brojevima."
+
+#. i18n: ectx: label, entry (FunctionButtonsColor), group (Colors)
+#: kcalc.kcfg:29
+#, kde-format
+msgid "The color of function buttons."
+msgstr "Boja funkcijskih dugmadi."
+
+#. i18n: ectx: label, entry (StatButtonsColor), group (Colors)
+#: kcalc.kcfg:33
+#, kde-format
+msgid "The color of statistical buttons."
+msgstr "Boja statističkih dugmadi."
+
+#. i18n: ectx: label, entry (HexButtonsColor), group (Colors)
+#: kcalc.kcfg:37
+#, kde-format
+msgid "The color of hex buttons."
+msgstr "Boja heksadekadnih dugmadi."
+
+#. i18n: ectx: label, entry (MemoryButtonsColor), group (Colors)
+#: kcalc.kcfg:41
+#, kde-format
+msgid "The color of memory buttons."
+msgstr "Boja memorijskih dugmadi."
+
+#. i18n: ectx: label, entry (OperationButtonsColor), group (Colors)
+#: kcalc.kcfg:45
+#, kde-format
+msgid "The color of operation buttons."
+msgstr "Boja dugmadi s operacijama."
+
+#. i18n: ectx: label, entry (NumberFontsColor), group (Colors)
+#: kcalc.kcfg:49
+#, fuzzy, kde-format
+#| msgid "The color of number buttons."
+msgid "The color of number fonts."
+msgstr "Boja dugmadi s brojevima."
+
+#. i18n: ectx: label, entry (FunctionFontsColor), group (Colors)
+#: kcalc.kcfg:55
+#, fuzzy, kde-format
+#| msgid "The color of function buttons."
+msgid "The color of function fonts."
+msgstr "Boja funkcijskih dugmadi."
+
+#. i18n: ectx: label, entry (StatFontsColor), group (Colors)
+#: kcalc.kcfg:59
+#, fuzzy, kde-format
+#| msgid "The color of statistical buttons."
+msgid "The color of statistical fonts."
+msgstr "Boja statističkih dugmadi."
+
+#. i18n: ectx: label, entry (HexFontsColor), group (Colors)
+#: kcalc.kcfg:63
+#, fuzzy, kde-format
+#| msgid "The color of hex buttons."
+msgid "The color of hex fonts."
+msgstr "Boja heksadekadnih dugmadi."
+
+#. i18n: ectx: label, entry (MemoryFontsColor), group (Colors)
+#: kcalc.kcfg:67
+#, fuzzy, kde-format
+#| msgid "The color of memory buttons."
+msgid "The color of memory fonts."
+msgstr "Boja memorijskih dugmadi."
+
+#. i18n: ectx: label, entry (OperationFontsColor), group (Colors)
+#: kcalc.kcfg:71
+#, fuzzy, kde-format
+#| msgid "The color of operation buttons."
+msgid "The color of operation font."
+msgstr "Boja dugmadi s operacijama."
+
+#. i18n: ectx: label, entry (ButtonFont), group (Font)
+#: kcalc.kcfg:77
+#, kde-format
+msgid "The font to use for the buttons."
+msgstr "Font koji se koristi za dugmad."
+
+#. i18n: ectx: label, entry (DisplayFont), group (Font)
+#: kcalc.kcfg:81
+#, kde-format
+msgid "The font to use in the display."
+msgstr "Font koji se koristiti za prikaz."
+
+#. i18n: ectx: label, entry (Precision), group (Precision)
+#: kcalc.kcfg:90
+#, kde-format
+msgid "Maximum number of digits displayed."
+msgstr "Najveći broj prikazanih cifara."
+
+#. i18n: ectx: whatsthis, entry (Precision), group (Precision)
+#: kcalc.kcfg:96
+#, kde-format
+msgid ""
+"\n"
+"\tKCalc can compute with many more digits than the number that\n"
+"\tfits on the display. This setting gives the maximum number of\n"
+"\tdigits displayed, before KCalc starts using scientific notation,\n"
+"\ti.e. notation of the type 2.34e12.\n"
+"      "
+msgstr ""
+"\n"
+"KCalc može da računa sa daleko većim brojem cifara nego što staje u prikaz. "
+"Ova postavka određuje najveći broj prikazanih cifara pre nego što KCalc "
+"pređe na naučni zapis, npr. 2.34e12."
+
+#. i18n: ectx: label, entry (FixedPrecision), group (Precision)
+#: kcalc.kcfg:102
+#, kde-format
+msgid "Number of fixed decimal digits."
+msgstr "Broj fiksnih decimalnih cifara."
+
+#. i18n: ectx: label, entry (Fixed), group (Precision)
+#: kcalc.kcfg:106
+#, kde-format
+msgid "Whether to use fixed decimal places."
+msgstr "Da li su decimalna mesta fiksirana."
+
+#. i18n: ectx: label, entry (Beep), group (General)
+#: kcalc.kcfg:112
+#, kde-format
+msgid "Whether to beep on error."
+msgstr "Da li bipnuti na grešku."
+
+#. i18n: ectx: label, entry (CaptionResult), group (General)
+#: kcalc.kcfg:116
+#, kde-format
+msgid "Whether to show the result in the window title."
+msgstr "Da li prikazivati rezultat u naslovu prozora."
+
+#. i18n: ectx: label, entry (GroupDigits), group (General)
+#: kcalc.kcfg:120
+#, kde-format
+msgid "Whether to group digits."
+msgstr "Da li grupisati cifre."
+
+#. i18n: ectx: label, entry (TwosComplement), group (General)
+#: kcalc.kcfg:124
+#, kde-format
+msgid "Whether to use Two's Complement for non-decimal numbers."
+msgstr "Da li koristiti dvojni komplement za nedekadne brojeve."
+
+#. i18n: ectx: whatsthis, entry (TwosComplement), group (General)
+#: kcalc.kcfg:129
+#, kde-format
+msgid ""
+"\n"
+"        Select to use Two's Complement notation for Binary, Octal\n"
+"        and Hexidecimal numbers. This is a common notation to represent\n"
+"        negative numbers in computers.\n"
+"      "
+msgstr ""
+"\n"
+"Izaberite zapis dvojnog komplementa za binarne, oktalne i heksadekadne "
+"brojeve. Ovaj zapis je uobičajen za predstavljanje negativnih nedekadnih "
+"brojeva na računaru."
+
+#. i18n: ectx: label, entry (RepeatLastOperation), group (General)
+#: kcalc.kcfg:133
+#, kde-format
+msgid "Enables that the last operation is repeated when \"=\" is pressed"
+msgstr ""
+
+#. i18n: ectx: label, entry (CalculatorMode), group (General)
+#: kcalc.kcfg:139
+#, kde-format
+msgid "Easy Calculator Mode"
+msgstr "Režim prostog kalkulatora"
+
+#. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
+#: kcalc.kcfg:140
+#, kde-format
+msgid "A very simple mode where only the basic calculator buttons are shown"
+msgstr "Vrlo jednostavan režim, samo sa osnovnim kalkulatorskim dugmadima."
+
+#. i18n: ectx: label, entry (CalculatorMode), group (General)
+#: kcalc.kcfg:143
+#, kde-format
+msgid "Science Calculator Mode"
+msgstr "Režim naučnog kalkulatora"
+
+#. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
+#: kcalc.kcfg:144
+#, kde-format
+msgid "Mode with science buttons and optional constants buttons"
+msgstr "Režim sa naučnim dugmadima, opciono i dugmadima konstanti."
+
+#. i18n: ectx: label, entry (CalculatorMode), group (General)
+#: kcalc.kcfg:147
+#, kde-format
+msgid "Statistic Calculator Mode"
+msgstr "Režim statističkog kalkulatora"
+
+#. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
+#: kcalc.kcfg:148
+#, kde-format
+msgid "Mode with additional statistics buttons and optional constants buttons"
+msgstr ""
+"Režim sa dodatnim statističkim dugmadima, opciono i dugmadima konstanti."
+
+#. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
+#: kcalc.kcfg:152
+#, kde-format
+msgid ""
+"Mode with logic buttons and selectable base. Optional bit edit available."
+msgstr ""
+"Režim sa logičkim dugmadima i bazom po izboru. Opciono daje i uređivanje "
+"bitova."
+
+#. i18n: ectx: label, entry (ShowBitset), group (General)
+#: kcalc.kcfg:157
+#, kde-format
+msgid "Whether to show the bit edit widget."
+msgstr "Da li prikazivati vidžet za uređivanje bitova."
+
+#. i18n: ectx: label, entry (ShowConstants), group (General)
+#: kcalc.kcfg:161
+#, kde-format
+msgid "Whether to show constant buttons."
+msgstr "Da li prikazivati dugmad konstanti."
+
+#. i18n: ectx: label, entry (AngleMode), group (General)
+#: kcalc.kcfg:165
+#, kde-format
+msgid "Degrees, radians or grads"
+msgstr "Stepeni, radijani ili gradi"
+
+#. i18n: ectx: label, entry (BaseMode), group (General)
+#: kcalc.kcfg:169
+#, kde-format
+msgid "Numeric base"
+msgstr "Brojevna osnova"
+
+#. i18n: ectx: label, entry (BinaryGrouping), group (Grouping)
+#: kcalc.kcfg:175
+#, kde-format
+msgid "Binary figures will be separated by a whitespace after every Xth digit."
+msgstr "Binarni nizovi će biti razdvojeni prazninom posle svake n‑te cifre."
+
+#. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
+#: kcalc.kcfg:180
+#, kde-format
+msgid ""
+"\n"
+"            For easier readability it's possible to visible group the "
+"individual digits into pairs\n"
+"            for example instead of 10111001 you can display 1011 1001, by "
+"setting the setting to\n"
+"            4, thus inserting a whitespace after every 4th digit.\n"
+"        "
+msgstr ""
+"\n"
+"Radi bolje preglednosti, moguće je vizuelno grupisati pojedinačne cifre u "
+"celine. Na primer, da bi se mesto 10111001 videlo 1011 1001, postavite ovu "
+"vrednost na 4, što znači umetanje praznine posle svake četiri cifre."
+
+#. i18n: ectx: label, entry (OctalGrouping), group (Grouping)
+#: kcalc.kcfg:184
+#, kde-format
+msgid "Octal figures will be separated by a whitespace after every Xth digit."
+msgstr "Oktalni nizovi će biti razdvojeni prazninom posle svake n‑te cifre."
+
+#. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
+#: kcalc.kcfg:189
+#, kde-format
+msgid ""
+"\n"
+"            For easier readability it's possible to visible group the "
+"individual digits into pairs\n"
+"            for example instead of 42140213 you can display 4214 0213, by "
+"setting the setting to\n"
+"            4, thus inserting a whitespace after every 4th digit.\n"
+"        "
+msgstr ""
+"\n"
+"Radi bolje preglednosti, moguće je vizuelno grupisati pojedinačne cifre u "
+"celine. Na primer, da bi se mesto 42140213 videlo 4214 0213, postavite ovu "
+"vrednost na 4, što znači umetanje praznine posle svake četiri cifre."
+
+#. i18n: ectx: label, entry (HexadecimalGrouping), group (Grouping)
+#: kcalc.kcfg:193
+#, kde-format
+msgid ""
+"Hexadecimal figures will be separated by a whitespace after every Xth digit."
+msgstr ""
+"Heksadekadni nizovi će biti razdvojeni prazninom posle svake n‑te cifre."
+
+#. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
+#: kcalc.kcfg:198
+#, kde-format
+msgid ""
+"\n"
+"            For easier readability it's possible to visible group the "
+"individual digits into pairs\n"
+"            for example instead of AF1C42 you can display AF 1C 42, by "
+"setting the setting to\n"
+"            2, thus inserting a whitespace after every 2nd digit.\n"
+"        "
+msgstr ""
+"\n"
+"Radi bolje preglednosti, moguće je vizuelno grupisati pojedinačne cifre u "
+"celine. Na primer, da bi se mesto AF1C42 videlo AF 1C 42, postavite ovu "
+"vrednost na 2, što znači umetanje praznine posle svake dve cifre."
+
+#. i18n: ectx: label, entry (nameConstant$(ConstIndex)), group (UserConstants)
+#: kcalc.kcfg:204
+#, kde-format
+msgid "Name of the user programmable constants."
+msgstr "Imena korisnički programabilnih konstanti."
+
+#: kcalc.kcfg:214
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C1"
+msgstr "C1"
+
+#: kcalc.kcfg:215
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C2"
+msgstr "C2"
+
+#: kcalc.kcfg:216
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C3"
+msgstr "C3"
+
+#: kcalc.kcfg:217
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C4"
+msgstr "C4"
+
+#: kcalc.kcfg:218
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C5"
+msgstr "C5"
+
+#: kcalc.kcfg:219
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C6"
+msgstr "C6"
+
+#. i18n: ectx: label, entry (valueConstant$(ConstIndex)), group (UserConstants)
+#: kcalc.kcfg:223
+#, kde-format
+msgid "List of user programmable constants"
+msgstr "Spisak korisnički programabilnih konstanti"
+
+#. i18n: ectx: property (toolTip), widget (KCalcBitset, mBitset)
+#: kcalc.ui:56
+#, kde-format
+msgid "Click on a Bit to toggle it."
+msgstr "Kliknite na bit da biste ga izvrnuli."
+
+#. i18n: ectx: property (text), widget (QRadioButton, degRadio)
+#: kcalc.ui:65
+#, kde-format
+msgid "&Deg"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, radRadio)
+#: kcalc.ui:72
+#, kde-format
+msgid "&Rad"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, gradRadio)
+#: kcalc.ui:79
+#, fuzzy, kde-format
+#| msgid "Grad"
+msgid "&Grad"
+msgstr "Grad."
+
+#. i18n: ectx: property (toolTip), widget (QRadioButton, hexRadio)
+#: kcalc.ui:107
+#, kde-format
+msgid "Switch base to hexadecimal."
+msgstr "Prebaci osnovu na heksadekadnu."
+
+#. i18n: ectx: property (text), widget (QRadioButton, hexRadio)
+#: kcalc.ui:110
+#, kde-format
+msgid "He&x"
+msgstr "&Heks."
+
+#. i18n: ectx: property (text), widget (KSqueezedTextLabel, hexDisplay)
+#. i18n: ectx: property (text), widget (KSqueezedTextLabel, decDisplay)
+#. i18n: ectx: property (text), widget (KSqueezedTextLabel, octDisplay)
+#. i18n: ectx: property (text), widget (KSqueezedTextLabel, binDisplay)
+#. i18n: ectx: property (text), widget (KCalcButton, pb0)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb0)
+#: kcalc.ui:129 kcalc.ui:165 kcalc.ui:201 kcalc.ui:237 kcalc.ui:851
+#: kcalc.ui:854
+#, kde-format
+msgid "0"
+msgstr "0"
+
+#. i18n: ectx: property (toolTip), widget (QRadioButton, decRadio)
+#: kcalc.ui:143
+#, kde-format
+msgid "Switch base to decimal."
+msgstr "Prebaci osnovu na dekadnu."
+
+#. i18n: ectx: property (text), widget (QRadioButton, decRadio)
+#: kcalc.ui:146
+#, kde-format
+msgid "&Dec"
+msgstr "&Dek."
+
+#. i18n: ectx: property (toolTip), widget (QRadioButton, octRadio)
+#: kcalc.ui:179
+#, kde-format
+msgid "Switch base to octal."
+msgstr "Prebaci osnovu na oktalnu."
+
+#. i18n: ectx: property (text), widget (QRadioButton, octRadio)
+#: kcalc.ui:182
+#, kde-format
+msgid "Oc&t"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QRadioButton, binRadio)
+#: kcalc.ui:215
+#, kde-format
+msgid "Switch base to binary."
+msgstr "Prebaci osnovu na binarnu."
+
+#. i18n: ectx: property (text), widget (QRadioButton, binRadio)
+#: kcalc.ui:218
+#, kde-format
+msgid "&Bin"
+msgstr "&Bin."
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbCSt)
+#: kcalc.ui:268
+#, kde-format
+msgid "Clear data store"
+msgstr "Očisti skladište podataka"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbCSt)
+#: kcalc.ui:271
+#, kde-format
+msgid "CSt"
+msgstr "CSt"
+
+#. i18n: ectx: property (text), widget (KCalcConstButton, pbC6)
+#: kcalc.ui:278
+#, kde-format
+msgid "C6"
+msgstr "C6"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbOR)
+#: kcalc.ui:288
+#, kde-format
+msgid "Bitwise OR"
+msgstr "Logičko ILI"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbOR)
+#: kcalc.ui:291
+#, kde-format
+msgid "OR"
+msgstr "OR"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbSd)
+#: kcalc.ui:301
+#, kde-format
+msgid "SD"
+msgstr "SD"
+
+#. i18n: ectx: property (text), widget (KCalcConstButton, pbC1)
+#: kcalc.ui:308
+#, kde-format
+msgid "C1"
+msgstr "C1"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbHyp)
+#: kcalc.ui:318
+#, kde-format
+msgid "Hyperbolic mode"
+msgstr "Hiperbolički režim"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbHyp)
+#: kcalc.ui:321
+#, kde-format
+msgid "Hyp"
+msgstr "Hyp"
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbHyp)
+#: kcalc.ui:324
+#, kde-format
+msgid "H"
+msgstr "H"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbRsh)
+#: kcalc.ui:334
+#, kde-format
+msgid "Right bit shift"
+msgstr "Bitski pomak udesno"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbRsh)
+#: kcalc.ui:337
+#, kde-format
+msgid "Rsh"
+msgstr "Rsh"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbLn)
+#: kcalc.ui:347
+#, kde-format
+msgid "Ln"
+msgstr "Ln"
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbLn)
+#. i18n: ectx: property (text), widget (KCalcButton, pbNData)
+#: kcalc.ui:350 kcalc.ui:485
+#, kde-format
+msgid "N"
+msgstr "N"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbCube)
+#: kcalc.ui:363
+#, kde-format
+msgid "Cube"
+msgstr "Kub"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbCube)
+#: kcalc.ui:366
+#, kde-format
+msgid "x3"
+msgstr "×3"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbCos)
+#: kcalc.ui:376
+#, kde-format
+msgid "Cos"
+msgstr "Cos"
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbCos)
+#. i18n: ectx: property (text), widget (KCalcButton, pbC)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbC)
+#. i18n: ectx: property (text), widget (KCalcButton, pbClear)
+#: kcalc.ui:379 kcalc.ui:644 kcalc.ui:647 kcalc.ui:1047
+#, kde-format
+msgid "C"
+msgstr "C"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbEE)
+#: kcalc.ui:389
+#, kde-format
+msgid "EXP"
+msgstr "Exp"
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbEE)
+#. i18n: ectx: property (text), widget (KCalcButton, pbE)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbE)
+#: kcalc.ui:392 kcalc.ui:581 kcalc.ui:584
+#, kde-format
+msgid "E"
+msgstr "E"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbMod)
+#: kcalc.ui:402
+#, kde-format
+msgid "Mod"
+msgstr "Mod"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbSquare)
+#: kcalc.ui:412
+#, kde-format
+msgid "x2"
+msgstr "x2"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbTan)
+#: kcalc.ui:422
+#, kde-format
+msgid "Tan"
+msgstr "Tan"
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbTan)
+#: kcalc.ui:425
+#, kde-format
+msgid "T"
+msgstr "T"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbD)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbD)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbDat)
+#: kcalc.ui:432 kcalc.ui:435 kcalc.ui:521
+#, kde-format
+msgid "D"
+msgstr "D"
+
+#. i18n: ectx: property (text), widget (KCalcConstButton, pbC4)
+#: kcalc.ui:442
+#, kde-format
+msgid "C4"
+msgstr "C4"
+
+# well-spelled: КСИЛИ
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbXOR)
+#: kcalc.ui:452
+#, kde-format
+msgid "Bitwise XOR"
+msgstr "Bitsko KSILI"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbXOR)
+#: kcalc.ui:455
+#, kde-format
+msgid "XOR"
+msgstr "XOR"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbA)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbA)
+#: kcalc.ui:462 kcalc.ui:465
+#, kde-format
+msgid "A"
+msgstr "A"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbAND)
+#: kcalc.ui:472
+#, kde-format
+msgid "Bitwise AND"
+msgstr "Logičko I"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbAND)
+#: kcalc.ui:475
+#, kde-format
+msgid "AND"
+msgstr "AND"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbReci)
+#: kcalc.ui:495
+#, kde-format
+msgid "1/X"
+msgstr "1/X"
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbReci)
+#: kcalc.ui:498
+#, kde-format
+msgid "R"
+msgstr "R"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbLsh)
+#: kcalc.ui:505
+#, kde-format
+msgid "Left bit shift"
+msgstr "Bitski pomak ulevo"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbLsh)
+#: kcalc.ui:508
+#, kde-format
+msgid "Lsh"
+msgstr "Lsh"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbDat)
+#: kcalc.ui:518
+#, kde-format
+msgid "Dat"
+msgstr "Dat"
+
+#. i18n: ectx: property (text), widget (KCalcConstButton, pbC3)
+#: kcalc.ui:528
+#, kde-format
+msgid "C3"
+msgstr "C3"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbSin)
+#: kcalc.ui:541
+#, kde-format
+msgid "Sin"
+msgstr "Sin"
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbSin)
+#: kcalc.ui:544
+#, kde-format
+msgid "S"
+msgstr "S"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbMean)
+#: kcalc.ui:554
+#, kde-format
+msgid "Mea"
+msgstr "Mea"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbMed)
+#: kcalc.ui:561
+#, kde-format
+msgid "Median"
+msgstr "Medijan"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbMed)
+#: kcalc.ui:564
+#, kde-format
+msgid "Med"
+msgstr "Med"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbPower)
+#: kcalc.ui:574
+#, kde-format
+msgid "pow"
+msgstr "Pow"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbB)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbB)
+#: kcalc.ui:591 kcalc.ui:594
+#, kde-format
+msgid "B"
+msgstr "B"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbCmp)
+#: kcalc.ui:601
+#, kde-format
+msgid "One's complement"
+msgstr "Jedinični komplement"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbCmp)
+#: kcalc.ui:604
+#, kde-format
+msgid "Cmp"
+msgstr "Cmp"
+
+# skip-rule: t-log, t-log_g
+#. i18n: ectx: property (text), widget (KCalcButton, pbLog)
+#: kcalc.ui:614
+#, kde-format
+msgid "Log"
+msgstr "Log"
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbLog)
+#: kcalc.ui:617
+#, kde-format
+msgid "L"
+msgstr "L"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbF)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbF)
+#: kcalc.ui:624 kcalc.ui:627
+#, kde-format
+msgid "F"
+msgstr "F"
+
+#. i18n: ectx: property (text), widget (KCalcConstButton, pbC2)
+#: kcalc.ui:634
+#, kde-format
+msgid "C2"
+msgstr "C2"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbFactorial)
+#: kcalc.ui:657
+#, kde-format
+msgid "x!"
+msgstr "n!"
+
+#. i18n: ectx: property (text), widget (KCalcConstButton, pbC5)
+#: kcalc.ui:664
+#, kde-format
+msgid "C5"
+msgstr "C5"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pb7)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb7)
+#: kcalc.ui:707 kcalc.ui:710
+#, kde-format
+msgid "7"
+msgstr "7"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pb8)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb8)
+#: kcalc.ui:723 kcalc.ui:726
+#, kde-format
+msgid "8"
+msgstr "8"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pb9)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb9)
+#: kcalc.ui:739 kcalc.ui:742
+#, kde-format
+msgid "9"
+msgstr "9"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pb4)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb4)
+#: kcalc.ui:755 kcalc.ui:758
+#, kde-format
+msgid "4"
+msgstr "4"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pb5)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb5)
+#: kcalc.ui:771 kcalc.ui:774
+#, kde-format
+msgid "5"
+msgstr "5"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pb6)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb6)
+#: kcalc.ui:787 kcalc.ui:790
+#, kde-format
+msgid "6"
+msgstr "6"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pb1)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb1)
+#: kcalc.ui:803 kcalc.ui:806
+#, kde-format
+msgid "1"
+msgstr "1"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pb2)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb2)
+#: kcalc.ui:819 kcalc.ui:822
+#, kde-format
+msgid "2"
+msgstr "2"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pb3)
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pb3)
+#: kcalc.ui:835 kcalc.ui:838
+#, kde-format
+msgid "3"
+msgstr "3"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbPercent)
+#: kcalc.ui:867
+#, kde-format
+msgid "Percent"
+msgstr "Procenat"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbPercent)
+#: kcalc.ui:870
+#, no-c-format, kde-format
+msgid "%"
+msgstr "%"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbDivision)
+#: kcalc.ui:883
+#, kde-format
+msgid "Division"
+msgstr "Deljenje"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbDivision)
+#: kcalc.ui:886
+#, kde-format
+msgid "÷"
+msgstr "÷"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbMultiplication)
+#: kcalc.ui:899
+#, kde-format
+msgid "Multiplication"
+msgstr "Množenje"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbMultiplication)
+#: kcalc.ui:902
+#, kde-format
+msgid "×"
+msgstr "×"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbMinus)
+#: kcalc.ui:915
+#, kde-format
+msgid "Minus"
+msgstr "Oduzimanje"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbMinus)
+#: kcalc.ui:918
+#, kde-format
+msgctxt "- calculator button"
+msgid "−"
+msgstr "−"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbPlus)
+#: kcalc.ui:931
+#, kde-format
+msgid "Plus"
+msgstr "Sabiranje"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbPlus)
+#: kcalc.ui:934
+#, kde-format
+msgctxt "+ calculator button"
+msgid "+"
+msgstr "+"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbEqual)
+#: kcalc.ui:947
+#, kde-format
+msgid "Result"
+msgstr "Rezultat"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbEqual)
+#: kcalc.ui:950
+#, kde-format
+msgctxt "= calculator button"
+msgid "="
+msgstr "="
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbPeriod)
+#: kcalc.ui:963
+#, kde-format
+msgid "Decimal point"
+msgstr "Decimalna zapeta"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbPeriod)
+#: kcalc.ui:966
+#, kde-format
+msgctxt ". calculator button"
+msgid "."
+msgstr ","
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbAllClear)
+#: kcalc.ui:994
+#, kde-format
+msgid "Clear all"
+msgstr "Očisti sve"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbAllClear)
+#: kcalc.ui:997
+#, kde-format
+msgid "AC"
+msgstr "AC"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbMemClear)
+#: kcalc.ui:1004
+#, kde-format
+msgid "Memory clear"
+msgstr "Očisti memoriju"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbMemClear)
+#: kcalc.ui:1007
+#, kde-format
+msgid "MC"
+msgstr "MC"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbMemRecall)
+#: kcalc.ui:1014
+#, kde-format
+msgid "Memory recall"
+msgstr "Vrati iz memorije"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbMemRecall)
+#: kcalc.ui:1017
+#, kde-format
+msgid "MR"
+msgstr "MR"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbPlusMinus)
+#: kcalc.ui:1024
+#, kde-format
+msgid "Change sign"
+msgstr "Izvrni znak"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbPlusMinus)
+#: kcalc.ui:1027
+#, kde-format
+msgid "+/−"
+msgstr "+/−"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbParenOpen)
+#: kcalc.ui:1034
+#, kde-format
+msgid "Open parenthesis"
+msgstr "Otvorena zagrada"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbParenOpen)
+#: kcalc.ui:1037
+#, kde-format
+msgctxt "( calculator button"
+msgid "("
+msgstr "("
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbClear)
+#: kcalc.ui:1044
+#, kde-format
+msgid "Clear"
+msgstr "Očisti"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbMemPlusMinus)
+#: kcalc.ui:1054
+#, kde-format
+msgid "Add to memory"
+msgstr "Saberi u memoriju"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbMemPlusMinus)
+#: kcalc.ui:1057
+#, kde-format
+msgid "M+"
+msgstr "M+"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbMemStore)
+#: kcalc.ui:1064
+#, kde-format
+msgid "Memory store"
+msgstr "Skladišti u memoriju"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbMemStore)
+#: kcalc.ui:1067
+#, kde-format
+msgid "MS"
+msgstr "MS"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbParenClose)
+#: kcalc.ui:1074
+#, kde-format
+msgid "Close parenthesis"
+msgstr "Zatvorena zagrada"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbParenClose)
+#: kcalc.ui:1077
+#, kde-format
+msgctxt ") calculator button"
+msgid ")"
+msgstr ")"
+
+#. i18n: ectx: property (text), widget (KCalcButton, pbBackspace)
+#: kcalc.ui:1084
+#, kde-format
+msgid "←"
+msgstr "←"
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbBackspace)
+#: kcalc.ui:1087
+#, kde-format
+msgid "Backspace"
+msgstr "Backspace"
+
+#. i18n: ectx: property (toolTip), widget (KCalcButton, pbShift)
+#: kcalc.ui:1094
+#, kde-format
+msgid "Second button function"
+msgstr "Druga funkcija dugmeta"
+
+#. i18n: ectx: property (shortcut), widget (KCalcButton, pbShift)
+#: kcalc.ui:1100
+#, kde-format
+msgid "Ctrl+2"
+msgstr "Ctrl+2"
+
+#: kcalc_bitset.cpp:101
+#, kde-format
+msgid "Bit %1"
+msgstr ""
+
+#: kcalc_const_button.cpp:38 kcalc_const_button.cpp:49
+#, kde-format
+msgctxt "Write display data into memory"
+msgid "Store"
+msgstr "Uskladišti"
+
+#: kcalc_const_button.cpp:38 kcalc_const_button.cpp:49
+#, kde-format
+msgid "Write display data into memory"
+msgstr "Upiši podatke sa prikaza u memoriju"
+
+#: kcalc_const_button.cpp:94
+#, kde-format
+msgid "Set Name"
+msgstr "Postavi ime"
+
+#: kcalc_const_button.cpp:99
+#, kde-format
+msgid "Choose From List"
+msgstr "Izaberi sa spiska"
+
+#: kcalc_const_button.cpp:114
+#, kde-format
+msgid "New Name for Constant"
+msgstr "Novo ime za konstantu"
+
+#: kcalc_const_button.cpp:114
+#, kde-format
+msgid "New name:"
+msgstr "Novo ime:"
+
+#: kcalc_const_menu.cpp:106
+#, kde-format
+msgid "Mathematics"
+msgstr "Matematika"
+
+#: kcalc_const_menu.cpp:107
+#, kde-format
+msgid "Electromagnetism"
+msgstr "Elektromagnetizam"
+
+#: kcalc_const_menu.cpp:108
+#, kde-format
+msgid "Atomic && Nuclear"
+msgstr "Atomske i nuklearne"
+
+#: kcalc_const_menu.cpp:109
+#, kde-format
+msgid "Thermodynamics"
+msgstr "Termodinamika"
+
+#: kcalc_const_menu.cpp:110
+#, kde-format
+msgid "Gravitation"
+msgstr "Gravitacija"
+
+#: kcalc_statusbar.cpp:29 kcalc_statusbar.cpp:69
+#, kde-format
+msgctxt "Normal button functions are active"
+msgid "NORM"
+msgstr "NORM"
+
+#: kcalc_statusbar.cpp:29 kcalc_statusbar.cpp:69
+#, kde-format
+msgctxt "Second button functions are active"
+msgid "SHIFT"
+msgstr "SHIFT"
+
+#: kcalc_statusbar.cpp:32 kcalc_statusbar.cpp:114
+#, kde-format
+msgctxt "Memory indicator in status bar"
+msgid "M"
+msgstr "M"
+
+#. i18n: ectx: Menu (settings)
+#: kcalcui.rc:4
+#, kde-format
+msgid "&Settings"
+msgstr "&Podešavanje"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:3
+#, kde-format
+msgid "Pi"
+msgstr "π"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:7
+#, kde-format
+msgid "Euler Number"
+msgstr "Ojlerov broj"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:11
+#, kde-format
+msgid "Golden Ratio"
+msgstr "zlatni presek"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:15
+#, kde-format
+msgid "Light Speed"
+msgstr "brzina svetlosti"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:19
+#, kde-format
+msgid "Planck's Constant"
+msgstr "plankova konstanta"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:23
+#, kde-format
+msgid "Gravitational Constant"
+msgstr "gravitaciona konstanta"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:27
+#, kde-format
+msgid "Earth Acceleration"
+msgstr "ubrzanje Zemljine teže"
+
+#. i18n: tag constant attribute name
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:31 scienceconstants.xml:35
+#, kde-format
+msgid "Elementary Charge"
+msgstr "elementarno naelektrisanje"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:39
+#, kde-format
+msgid "Impedance of Vacuum"
+msgstr "impedansa vakuuma"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:43
+#, kde-format
+msgid "Fine-Structure Constant"
+msgstr "konstanta fine strukture"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:47
+#, kde-format
+msgid "Permeability of Vacuum"
+msgstr "permeabilnost vakuuma"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:51
+#, kde-format
+msgid "Permittivity of Vacuum"
+msgstr "dielektričnost vakuuma"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:55
+#, kde-format
+msgid "Boltzmann Constant"
+msgstr "Bolcmanova konstanta"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:60
+#, kde-format
+msgid "Atomic Mass Unit"
+msgstr "jedinica atomske mase"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:64
+#, kde-format
+msgid "Molar Gas Constant"
+msgstr "molarna gasna konstanta"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:68
+#, kde-format
+msgid "Stefan-Boltzmann Constant"
+msgstr "Štefan-Bolcmanova konstanta"
+
+#. i18n: tag constant attribute name
+#: scienceconstants.xml:72
+#, kde-format
+msgid "Avogadro's Number"
+msgstr "Avogadrov broj"

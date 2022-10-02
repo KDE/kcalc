@@ -1,0 +1,242 @@
+<chapter id="commands">
+
+<title
+>Naredbe</title>
+
+<sect1 id="menus">
+<title
+>Stavke menija</title>
+
+ <para
+>Kratak pregled nekih posebnih stavki menija u <application
+>KCalcu</application
+>:</para>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstante</guimenu
+> <guimenuitem
+>Matematika</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>π, Ojlerov broj, zlatni presek.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstante</guimenu
+> <guimenuitem
+>Elektromagnetizam</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Brzina svetlosti, elementarno naelektrisanje, impedansa vakuuma, permeabilnost vakuuma, dielektričnost vakuuma.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstante</guimenu
+> <guimenuitem
+>Atomske i nuklearne</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Plankova konstanta, elementarno naelektrisanje, konstanta fine strukture.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstante</guimenu
+> <guimenuitem
+>Termodinamika</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Bolcmanova konstanta, jedinica atomske mase, molarna gasna konstanta, Štefan-Bolcmanova konstanta, Avogadrov broj.</action
+> 
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Konstante</guimenu
+> <guimenuitem
+>Gravitacija</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Gravitaciona konstanta, ubrzanje Zemljine teže. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Podešavanje</guimenu
+> <guimenuitem
+>Jednostavni režim</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Prikazuje dugmad za jednostavna izračunavanja.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Podešavanje</guimenu
+> <guimenuitem
+>Naučni režim</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Prikazuje trigonometrijsku i naučnu dugmad.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Podešavanje</guimenu
+> <guimenuitem
+>Statistički režim</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Prikazuje <link linkend="statistical-mode"
+>statističku dugmad</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Podešavanje</guimenu
+> <guimenuitem
+>Režim brojevnih sistema</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Prikazuje <link linkend="and-or-xor"
+>logičku dugmad</link
+> i omogućava menjanje brojevnih sistema.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Podešavanje</guimenu
+> <guimenuitem
+>Dugmad konstanti</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Prikazuje dugmad konstanti. Dostupna su u <link linkend="science-mode"
+>naučnom</link
+> i <link linkend="statistical-mode"
+>statističkom režimu</link
+>. </action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Podešavanje</guimenu
+> <guimenuitem
+>Uređivanje bitova</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Prikazuje polje za uređivanje bitova. Kliknite na bit da ga izmenite. Dostupno samo u <link linkend="numeral-system-mode"
+>režimu brojevnih sistema</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+><application
+>KCalc</application
+> takođe ima uobičajene menije <guimenu
+>Fajl</guimenu
+>, <guimenu
+>Uređivanje</guimenu
+>, <guimenu
+>Podešavanje</guimenu
+> i <guimenu
+>Pomoć</guimenu
+>. Detalje o njima potražite u Osnovama KDE‑a, <ulink url="help:/fundamentals/ui.html#menus"
+>odeljak o menijima</ulink
+>. </para>
+
+</sect1>
+
+</chapter>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-parent-document: ("index.docbook" "book" "chapter")
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

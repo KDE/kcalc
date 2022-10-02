@@ -1,0 +1,2098 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Serbian "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY commands SYSTEM "commands.docbook">
+]>
+
+<book id="kcalc" lang="&language;">
+<bookinfo>
+<title
+>Приручник за <application
+>К‑калк</application
+></title>
+
+<authorgroup>
+<author
+><personname
+><firstname
+>Бернд</firstname
+> <othername
+>Јоханес</othername
+> <surname
+>Вибен</surname
+></personname
+> &Bernd.Johannes.Wuebben.mail; </author>
+
+<author
+><personname
+><firstname
+>Памела</firstname
+> <surname
+>Робертс</surname
+></personname
+> &Pamela.Roberts.mail; </author>
+<author
+><personname
+><firstname
+>Ан Мари</firstname
+> <surname
+>Мафу</surname
+></personname
+> &Anne-Marie.Mahfouf.mail; </author>
+<othercredit role="translator"
+><firstname
+>Драган</firstname
+><surname
+>Пантелић</surname
+><affiliation
+><address
+><email
+>falcon-10@gmx.de</email
+></address
+></affiliation
+><contrib
+>превод</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2001</year
+> <year
+>2002</year
+> <year
+>2005</year
+>	<year
+>2006</year>
+<holder
+>Бернд Јоханес Вибен, Памела Робертс, Ан Мари Мафу</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>25. 7. 2016.</date>
+<releaseinfo
+>Програми КДЕ‑а 16.08</releaseinfo>
+
+<abstract
+><para
+><application
+>К‑калк</application
+> је калкулатор за окружење радне површи. Може се користити у једноставном режиму, за основне аритметичке операције, али и у напреднијим режимима, за научна и статистичка израчунавања, као и за баратање бројевним системима.</para
+></abstract>
+
+<keywordset>
+<keyword
+>КДЕ</keyword>
+<keyword
+>К‑калк</keyword>
+<keyword
+>калкулатор</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Увод</title>
+
+<para
+><application
+>К‑калк</application
+> пружа много више математичких функција него што се види на први поглед. Проучите секцију о пречицама с тастатуре и режимима у овом приручнику да бисте сазнали више о расположивим функцијама.</para>
+
+<para
+>У додатак уобичајеној функционалности већине научних калкулатора, <application
+>К‑калк</application
+> пружа и следеће могућности вредне истицања:</para>
+
+<itemizedlist>
+<listitem>
+<para
+>Тригонометријске функције, логичке операције, и статистичка израчунавања.</para>
+</listitem>
+<listitem>
+<para
+>Исецање и налепљивање бројева са и на екран <application
+>К‑калка</application
+>.</para>
+</listitem>
+<listitem>
+<para
+><firstterm
+>Стек резултата</firstterm
+>, преко кога можете згодно позивати претходне резултате.</para>
+</listitem>
+<listitem>
+<para
+>Можете да подесите боје и фонт екрана.</para>
+</listitem>
+<listitem>
+<para
+>У дијалогу за подешавање можете да подесите тачност с којом <application
+>К‑калк</application
+> рачуна, број приказаних цифара и број децимала.</para>
+</listitem>
+<listitem>
+<para
+><application
+>К‑калк</application
+> пружа велики број корисних <link linkend="key-accels"
+>свеза тастера</link
+>, које олакшавају коришћење <application
+>К‑калка</application
+> без уређаја с показивачем.</para>
+<para
+>Савет: притискањем (и држањем) тастера <keycap
+>Ctrl</keycap
+>, видећете за свако дугме придружену свезу тастера.</para>
+</listitem>
+</itemizedlist>
+
+<!--see https://bugs.kde.org/show_bug.cgi?id=326481-->
+<note
+><para
+><application
+>К‑калк</application
+> користи <ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Infix_notation"
+>инфиксну нотацију</ulink
+>, која се учи у школама као правилан редослед операција; ово је насупрот <ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Immediate_execution"
+>тренутном извршавању</ulink
+>, које користе многи једноставни калкулатори. </para
+></note>
+
+<para
+>Забавите се са <application
+>К‑калком</application
+>!</para>
+
+<para
+><personname
+><firstname
+>Бернд</firstname
+> <othername
+>Јоханес</othername
+> <surname
+>Вибен</surname
+></personname
+></para>
+
+</chapter>
+
+
+<chapter id="usage">
+<title
+>Употреба</title>
+<sect1 id="general-usage">
+<title
+>Општа употреба</title>
+
+<para
+>Општа употреба је једноставна и слична начину функционисања већине обичних научних калкулатора, али запазите следеће специјалне могућности <application
+>К‑калка</application
+>:</para>
+
+<variablelist>
+<varlistentry>
+<term
+>Стек резултата</term>
+<listitem
+><para
+>Сваки пут кад кликнете левим на дугме <guibutton
+>=</guibutton
+> или притиснете тастер <keycap
+>Enter</keycap
+> или <keysym
+>=</keysym
+>, приказани резултат бива уписан у <application
+>К‑калков</application
+> стек резултата. Кроз стек резултата можете се кретати тастерима <keycombo action="simul"
+><keycap
+>Ctrl</keycap
+><keycap
+>Z</keycap
+></keycombo
+> и <keycombo action="simul"
+><keycap
+>Ctrl</keycap
+><keycap
+>Shift</keycap
+><keycap
+>Z</keycap
+></keycombo
+>.</para
+> 
+</listitem>
+</varlistentry
+> 
+
+<varlistentry>
+<term
+>Функција процента</term>
+<listitem>
+<para
+>Функција процента ради донекле другачије него на већини калкулатора. Међутим, кад се једном схвати, њена проширена функционалност показује врло корисном. За детаље погледајте секцију о <link linkend="percent"
+>функцији процента</link
+>.</para>
+</listitem
+></varlistentry>
+      
+<varlistentry>
+<term
+>Исецање и налепљивање</term>
+<listitem>
+<para
+><itemizedlist>
+<listitem>
+<para
+>Пречица <keycombo action="simul"
+><keycap
+>Ctrl</keycap
+><keycap
+>C</keycap
+></keycombo
+> копира приказани број у клипборд.</para>
+</listitem>
+<listitem>
+<para
+>Пречица <keycombo action="simul"
+><keycap
+>Ctrl</keycap
+><keycap
+>V</keycap
+></keycombo
+> налепљује садржај клипборда на екран, под условом да је правилан број у покретном зарезу.</para>
+</listitem>
+<listitem>
+<para
+>Још увек је могуће копирати и налепљивати кликтањем на <application
+>К‑калков</application
+> екран, али може бити избачено из будућих издања.</para>
+</listitem>
+</itemizedlist>
+</para
+></listitem
+></varlistentry>
+
+<varlistentry>
+<term
+>Напредне функције</term>
+<listitem>
+<para
+>Кад први пут покренете <application
+>К‑калк</application
+>, биће приказана само дугмад за основне аритметичке операције.</para>
+<para
+>Кроз мени <guimenu
+>Подешавање</guimenu
+> могуће је изабрати режим рада: <link linkend="simple-mode"
+>једноставан</link
+>, <link linkend="science-mode"
+>научни</link
+>, <link linkend="statistical-mode"
+>статистички</link
+> или <link linkend="numeral-system-mode"
+>бројевни системи</link
+>. Имајте у виду да ће се ови режими помало мењати са будућим издањима <application
+>К‑калка</application
+>.</para
+> 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Распоред дугмади</term>
+<listitem>
+<para
+>У напредним режимима многа дугмад имају секундарни распоред, како би се обезбедио лак приступ свим функцијама <application
+>К‑калка</application
+>. Кликните на дугме <guibutton
+>Shift</guibutton
+> или притисните пречицу <keycombo action="simul"
+><keycap
+>Ctrl</keycap
+><keycap
+>2</keycap
+></keycombo
+> да учините секундарни распоред видљивим.</para
+> 
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+
+
+<!-- describing MODES here -->
+
+<sect1 id="simple-mode">
+<title
+>Једноставни режим</title>
+<para
+>Овај режим садржи само ону дугмад и функције које су неопходне за основна израчунавања.</para>
+<para
+>Ако желите само да саберете све ставке са фактуре, овај режим вам може највише одговарати.</para>
+</sect1>
+
+
+<sect1 id="science-mode">
+<title
+>Научни режим</title>
+
+<para
+>У овом режиму, лева колона дугмади додељена је тригонометријским функцијама:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>дугмад</entry>
+<entry
+>функција</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>Улази у хиперболички подрежим. На пример, <guibutton
+>Hyp</guibutton
+> <guibutton
+>Sin</guibutton
+> даје синус хиперболички, sinh.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+>Рачуна синус.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>Sin</guibutton
+> или <guibutton
+>Asin</guibutton
+></entry>
+<entry
+>Рачуна инверзни синус.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+>Рачуна косинус.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>Cos</guibutton
+> или <guibutton
+>Acos</guibutton
+></entry>
+<entry
+>Рачуна инверзни косинус.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+>Рачуна тангенс.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>Tan</guibutton
+> или <guibutton
+>Atan</guibutton
+></entry>
+<entry
+>Рачуна инверзни тангенс.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>Рачуна логаритам за основу 10.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>Log</guibutton
+> или 10<superscript
+>x</superscript
+></entry>
+<entry
+>Рачуна 10 на x.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>Рачуна природни логаритам (логаритам за основу e).</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>Ln</guibutton
+> или e<superscript
+>x</superscript
+></entry>
+<entry
+>Рачуна e (основа природног логаритма) на x.</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>Друга колона има дугмад за алгебарске функције:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>дугмад</entry>
+<entry
+>функција</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Mod</guibutton
+></entry>
+<entry
+>Рачуна остатак у еуклидском дељењу.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>Mod</guibutton
+> или <guibutton
+>IntDiv</guibutton
+></entry>
+<entry
+>Целобројно дељење (цео део количника).</entry
+></row>
+
+<row
+><entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>Рачуна реципрочну вредност броја.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>1/x</guibutton
+> или <guibutton
+>(n m)</guibutton
+></entry>
+<entry
+>Рачуна број различитих подскупова величине другог операнда елемената из скупа величине првог операнда (биномни коефицијенти).</entry
+></row>
+
+<row
+><entry
+><guibutton
+>n!</guibutton
+></entry>
+<entry
+>Рачуна производ свих позитивних целих бројева мањих или једнаких датом целобројном операнду (факторијел).</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x²</guibutton
+></entry>
+<entry
+>Рачуна x на квадрат.</entry
+></row>
+
+ <row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>x²</guibutton
+> или <guibutton
+>√x</guibutton
+></entry>
+<entry
+>Рачуна квадратни корен из x.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>xʸ</guibutton
+></entry>
+<entry
+>x степеновано са y.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> x<superscript
+>y</superscript
+> или x<superscript
+>1/y</superscript
+></entry>
+<entry
+>x степеновано са 1/y.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x³</guibutton
+></entry>
+<entry
+>Рачуна x на трећи степен (куб).</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>x³</guibutton
+> или <guibutton
+>∛x</guibutton
+></entry>
+<entry
+>Рачуна трећи (кубни) корен из x.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x·10ʸ</guibutton
+></entry>
+<entry
+>Рачуна производ првог операнда и степена базе десет другог операнда.</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+
+
+<sect1 id="statistical-mode">
+<title
+>Статистички режим</title>
+
+<para
+>У овом режиму, лева колона дугмади додељена је статистичким функцијама:</para>
+<para
+>Највећи део функционалности у овом режиму врти се око дугмета <guibutton
+>Dat</guibutton
+>. Списак бројевних података стварате тако што уносите бројеве у калкулатор и притискате дугме <guibutton
+>Dat</guibutton
+>. На екрану је дат секвенцијално растући број, који указује на положај ставке на списку података. Традиционални калкулатор складишти само три вредности за статистичке функције: број дискретних ставки на списку, збир свих ставки и збир квадрата свих ставки. <application
+>К‑калк</application
+> се овде разликује по томе што заиста складишти све дискретне вредности, тако да можете израчунати и медијан података. </para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>дугмад</entry>
+<entry
+>функција</entry
+></row
+></thead>
+
+<tbody>
+<row
+><entry
+><guibutton
+>N</guibutton
+></entry>
+<entry
+>Враћа број унетих ставки.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>N</guibutton
+> или <guibutton
+>Σx</guibutton
+></entry>
+<entry
+>Приказује збир свих унетих ставки.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Mea</guibutton
+></entry>
+<entry
+>Приказује средњу вредност унетих ставки.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>Mea</guibutton
+> или <guibutton
+>Σx²</guibutton
+></entry>
+<entry
+>Приказује збир квадрата унетих ставки.</entry
+></row>
+
+<row
+><entry
+>σ<subscript
+>N</subscript
+></entry>
+<entry
+>Приказује стандардну девијацију (n).</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> σ<subscript
+>N</subscript
+> или σ<subscript
+>N-1</subscript
+> </entry>
+<entry
+>Приказује стандардну девијацију популације (n-1).</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Med</guibutton
+></entry>
+<entry
+>Приказује медијан.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>Уноси ставку.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Shift</guibutton
+> <guibutton
+>Dat</guibutton
+> или <guibutton
+>CDat</guibutton
+></entry>
+<entry
+>Брише последњу унесену ставку.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>CSt</guibutton
+></entry>
+<entry
+>Чисти складиште унесених ставки.</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>Наредне две колоне садрже дугмад са тригонометријским и алгебарским функцијама, описаним у <link linkend="science-mode"
+>одељку о научном режиму</link
+>.</para>
+
+</sect1>
+
+
+<sect1 id="numeral-system-mode">
+<title
+>Режим бројевних система</title>
+<para
+>Овај режим садржи дугмад и функције за бинарно, хексадекадно, октално и декадно рачунање.</para>
+
+<para
+>Бројевни систем бирате радио дугмадима на десној страни. На пример, хексадекадни број уносите тако што изаберете радио дугме <guilabel
+>Хекс.</guilabel
+>, па унесете цифре, укључујући и слова <guibutton
+>A</guibutton
+> до <guibutton
+>F</guibutton
+> за бројеве веће од 9. Ако потом желите да видите број бинарно, само изаберите <guilabel
+>Бин.</guilabel
+>.</para>
+
+ <para
+>Бинарни, октални и хексадекадни бројеви могу се приказати као групе цифара раздвојених празнинама. Ово груписање може да побољша читљивост бројева. На пример, хексадекадни број <emphasis
+>AF1C42</emphasis
+> може да се прикаже као <emphasis
+>AF 1C 42</emphasis
+>, са размаком између сваке две цифре. Груписање се може искључити или наштеловати. Идите на <menuchoice
+><guimenu
+>Подешавање</guimenu
+><guimenuitem
+>Подеси К‑калк...</guimenuitem
+></menuchoice
+> да позовете дијалог за подешавање и на страници <guilabel
+>Опште</guilabel
+> измените ову поставку.</para>
+
+<para
+>Може вам одговарати да видите појединачне битове, тако што изаберете <guimenu
+>Уређивање битова</guimenu
+> из менија <guimenu
+>Подешавање</guimenu
+>.</para>
+
+<para
+>Овај режим даје наредне логичке операторе: <informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>дугмад</entry>
+<entry
+>функција</entry
+></row
+></thead>
+<tbody>
+<row
+><entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>Два броја се уводе у логичку конјункцију.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>Два броја се уводе у логичку дисјункцију.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>XOR</guibutton
+></entry>
+<entry
+>Два броја се уводе у ексклузивну логичку дисјункцију.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>Леви помак вредности.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>Десни помак вредности.</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cmp</guibutton
+></entry>
+<entry
+>Јединични комплемент.</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+</para>
+
+<para
+>Друга колона садржи дугмад са алгебарским функцијама, описаним у <link linkend="science-mode"
+>одељку о научном режиму</link
+>.</para>
+
+<para
+>Трећа колона, са дугмадима <guibutton
+>A</guibutton
+> до <guibutton
+>F</guibutton
+>, активна је само у хексадекадном режиму. </para>
+</sect1>
+
+<!-- end of MODES -->
+
+
+<sect1 id="memory-operations">
+<title
+>Операције с меморијом</title>
+
+<para
+><application
+>К‑калк</application
+> подржава операције с меморијом какве дају стандардни калкулатори, као и шест места за држање константи.</para>
+
+<sect2 id="standard_memory">
+<title
+>Стандардне операције с меморијом</title>
+
+<para
+><application
+>К‑калк</application
+> може да памти резултате операција место вас, ради употребе у наредним рачунањима. Овим функцијама приступате преко дугмади <guibutton
+>MR</guibutton
+>, <guibutton
+>MS</guibutton
+>, <guibutton
+>M+</guibutton
+> и <guibutton
+>MC</guibutton
+>.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>MS</guibutton
+></term>
+<listitem
+><para
+>Дугме <guibutton
+>MS</guibutton
+> складишти у меморију тренутно приказани резултат. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>M+</guibutton
+></term>
+<listitem
+><para
+>Дугме <guibutton
+>M+</guibutton
+> додаје текући резултат вредности у меморији. На пример, ако сте ускладиштили 20, а текући резултат је 5, по притиску на ово дугме меморија ће садржати 25. Ако је меморија празна, понаша се као дугме <guibutton
+>MS</guibutton
+>, просто складиштећи резултат.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MR</guibutton
+></term>
+<listitem
+><para
+>Дугме <guibutton
+>MR</guibutton
+> добавља вредност ускладиштену у меморији и ставља је на екран.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MC</guibutton
+></term>
+<listitem
+><para
+>Дугме <guibutton
+>MC</guibutton
+> чисти меморију.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Ако је вредност ускладиштена у меморији, на траци стања се види једно <guilabel
+>M</guilabel
+>, поред показатеља режима калкулатора.</para>
+</sect2>
+
+<sect2 id="constant_buttons">
+<title
+>Константе</title>
+
+<para
+>Шест дугмади за константе, <guibutton
+>C1</guibutton
+> до <guibutton
+>C6</guibutton
+>, виде се само када је активирана ставка <guilabel
+>Дугмад константи</guilabel
+> у менију <guimenu
+>Подешавање</guimenu
+> на траци менија. Доступна су у научном и статистичком режиму.</para>
+
+<para
+>Вредност складиштену у константи можете видети тако што лебдите показивачем миша над дугметом.</para>
+
+<para
+>За складиштење броја приказаног на екрану <application
+>К‑калка</application
+> као једне од шест константи, прво притисните дугме <guibutton
+>Shift</guibutton
+>, па једно од дугмади <guibutton
+>C1</guibutton
+> до <guibutton
+>C6</guibutton
+>.</para>
+
+<para
+>За уношење вредности складиштене под константом у рачун, притисните жељено дугме (<guibutton
+>C1</guibutton
+> до <guibutton
+>C6</guibutton
+>) и одговарајући број ће се појавити на екрану. </para>
+
+<para
+>Можете мењати етикете дугмади константи, како бисте лакше запамтили које дугме даје коју константу. Кликните десним дугметом миша на једно од дугмади од <guibutton
+>C1</guibutton
+> до <guibutton
+>C6</guibutton
+>, и искочиће мени у којем можете изабрати <guilabel
+>Постави име</guilabel
+>. </para>
+
+<para
+>Постоје многе предефинисане константе (већином физичке) које се могу ставити на дугмад <guibutton
+>C1</guibutton
+> до <guibutton
+>C6</guibutton
+>, тако што из искачућег менија који се позива десним кликом на дугме константе изаберете <guilabel
+>Изабери са списка</guilabel
+>. Мада се предефинисаним константама може приступити и преко менија <guimenu
+>Константе</guimenu
+> у траци менија, складиштење на дугмад константе је врло практично ако се вредност често користи.</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="key-accels">
+<title
+>Једнотастерске пречице</title>
+
+<para
+>Ради једноставнијег уноса са тастатуре при рачунању, <application
+>К‑калк</application
+> има једнотастерске пречице за већину функција. На пример, уносом <userinput
+>7R</userinput
+> или <userinput
+>7r</userinput
+> рачунате реципрочну вредност од 7 (1/7).</para>
+
+<para
+>Током рачунања, увек можете притиснути <keycap
+>Ctrl</keycap
+> да би свако дугме показало своју свезу тастера.</para>
+<!-- Shift works like Caps Lock-->
+<informaltable
+><tgroup cols="3">
+<thead>
+<row
+><entry
+>тастер</entry>
+<entry
+>функција</entry>
+<entry
+>напомене</entry
+></row>
+</thead>
+<tbody>
+
+<row
+><entry
+><keycap
+>H</keycap
+></entry>
+<entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>Хиперболичко, нпр. <guibutton
+>Hyp</guibutton
+> <guibutton
+>Sin</guibutton
+> за sinh.</entry
+></row>
+
+<row
+><entry
+><keycap
+>S</keycap
+></entry>
+<entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>C</keycap
+></entry>
+<entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>T</keycap
+></entry>
+<entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>N</keycap
+></entry>
+<entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>Логаритам за основу e.</entry
+></row>
+
+<row
+><entry
+><keycap
+>L</keycap
+></entry>
+<entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>Логаритам за основу 10.</entry
+></row>
+
+<row
+><entry
+><keycap
+>Ctrl-2</keycap
+></entry>
+<entry
+> <guibutton
+>Shift</guibutton
+></entry>
+<entry
+>Друга функција за ово дугме. На пример, ако желите arcsin откуцајте <userinput
+>Ctrl-2 s </userinput
+>.</entry
+></row>
+
+<row
+><entry
+><keysym
+>\</keysym
+></entry>
+<entry
+><guibutton
+>+/−</guibutton
+></entry>
+<entry
+>Изврће знак.</entry
+></row>
+
+<row
+><entry
+><keysym
+>[</keysym
+></entry>
+<entry
+><guibutton
+>x^2</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>^</keysym
+></entry>
+<entry
+><guibutton
+>x^y</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>!</keysym
+></entry>
+<entry
+><guibutton
+>n!</guibutton
+></entry>
+<entry
+>Факторијел.</entry
+></row>
+
+<row
+><entry
+><keysym
+>E</keysym
+></entry>
+<entry
+>x 10<superscript
+>y</superscript
+></entry>
+<entry
+>Изложилац.</entry
+></row>
+
+<row
+><entry
+><keysym
+>&lt;</keysym
+></entry>
+<entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>Леви помак.</entry
+></row>
+<!-- no "<" on Lsh key only "
+>" on Rsh key-->
+<row
+><entry
+><keysym
+>&gt;</keysym
+></entry>
+<entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>Десни помак.</entry
+></row>
+<row
+><entry
+><keysym
+>&amp;</keysym
+></entry>
+<entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>Логичко И.</entry
+></row>
+
+<row
+><entry
+><keysym
+>x</keysym
+> или <keysym
+>*</keysym
+></entry>
+<entry
+><guibutton
+>×</guibutton
+></entry>
+<entry
+>Множење.</entry
+></row>
+
+<row
+><entry
+><keysym
+>/</keysym
+></entry>
+<entry
+><guibutton
+>÷</guibutton
+></entry>
+<entry
+>Дељење.</entry
+></row>
+
+<row
+><entry
+><keycap
+>D</keycap
+></entry>
+<entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>Унос ставке у статистичком режиму.</entry
+></row>
+
+<row
+><entry
+><keycap
+>|</keycap
+></entry>
+<entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>Логичко ИЛИ. <guibutton
+>Shift</guibutton
+> <guibutton
+>OR</guibutton
+> даје КСИЛИ.</entry
+></row>
+
+<row
+><entry
+><keycap
+>R</keycap
+></entry>
+<entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>Реципрочно.</entry
+></row>
+
+<row
+><entry
+><keycap
+>Enter</keycap
+></entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+><keycap
+>Return</keycap
+></keycap
+></entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>Backspace</keycap
+></entry>
+<entry
+><guibutton
+>←</guibutton
+></entry>
+<entry
+>Брише последњу цифру.</entry
+></row>
+
+<row
+><entry
+><keycap
+><keycap
+>PageUp</keycap
+></keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Чисти.</entry
+></row>
+
+<row
+><entry
+><keycap
+>Escape</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Чисти.</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Prior</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Clear</entry
+></row>
+-->
+<row
+><entry
+><keycap
+><keycap
+>PageDown</keycap
+></keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Чисти све.</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Next</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Clear all</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>Del</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Чисти све.</entry
+></row>
+
+<row
+><entry
+><keycap
+>:</keycap
+></entry>
+<entry
+><guibutton
+>Mod</guibutton
+></entry>
+<entry
+>Остатак при дељењу.</entry
+></row>
+
+<row
+><entry
+><keycap
+>Alt</keycap
+>+<keycap
+>1</keycap
+> до <keycap
+>Alt</keycap
+>+<keycap
+>6</keycap
+></entry>
+<entry
+><guibutton
+>C1</guibutton
+></entry>
+<entry
+>Позива вредност складиштену у <guibutton
+>C1</guibutton
+> до <guibutton
+>C6</guibutton
+>.</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+</chapter>
+
+<chapter id="comments-on-specific-functions">
+<title
+>Коментари о специфичним функцијама</title>
+
+<sect1 id="mod">
+<title
+><guibutton
+>Mod</guibutton
+> и <guibutton
+>IntDiv</guibutton
+></title>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Mod</guibutton
+> даје остатак при дељењу приказаног броја са следећим унесеним бројем.</term>
+<listitem
+><para
+><userinput
+>22 Mod 8 = </userinput
+> даје резултат <emphasis
+>6</emphasis
+>.</para>
+<para
+><userinput
+>22.345 Mod 8 = </userinput
+> даје резултат <emphasis
+>6.345</emphasis
+>.</para>
+</listitem
+></varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Shift</guibutton
+> <guibutton
+>IntDiv</guibutton
+> даје целобројни резултат дељења приказаног броја са следећим унесеним бројем.</term>
+<listitem
+><para
+><userinput
+>22 Shift IntDiv 8 = </userinput
+> даје резултат <emphasis
+>2</emphasis
+>.</para>
+<para
+><userinput
+>22.345 Shift IntDiv 8 = </userinput
+> такође даје <emphasis
+>2</emphasis
+>. </para
+></listitem
+></varlistentry>
+</variablelist>
+
+</sect1>
+
+
+<sect1 id="percent">
+<title
+>%</title>
+
+<para
+>Као замена за <guibutton
+>=</guibutton
+>, дугме <guibutton
+>%</guibutton
+> тумачи последњу изведену операцију овако:</para>
+
+<para
+><itemizedlist>
+<listitem>
+<para
+>Ако је крајњи оператор + или -, други аргумент се схвата као проценат првог операнда. </para>
+</listitem>
+<listitem>
+<para
+>Ако је крајњи оператор *, резултат множења се дели са 100. </para>
+</listitem>
+<listitem>
+<para
+>Ако је крајњи оператор /, даје леви операнд као проценат десног операнда. </para>
+</listitem>
+<listitem>
+<para
+>У свим осталим случајевима, <guibutton
+>%</guibutton
+> даје исти резултат као <guibutton
+>=</guibutton
+>. </para>
+</listitem>
+</itemizedlist
+></para>
+
+<variablelist>
+<varlistentry>
+<term
+>Примери:</term>
+<listitem>
+<para
+><userinput
+>150 + 50 %</userinput
+> даје <emphasis
+>225</emphasis
+> (150 плус 50 процената од 150)</para>
+<para
+><userinput
+>42 * 3 %</userinput
+> даје <emphasis
+>1.26</emphasis
+>  (42 * 3 / 100)</para>
+<para
+><userinput
+>45 / 55 %</userinput
+> даје <emphasis
+>81.81...</emphasis
+> (45 је 81.81... процената од 55)</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="lsh-rsh">
+<title
+><guibutton
+>Lsh</guibutton
+> и <guibutton
+>Rsh</guibutton
+></title>
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Lsh</guibutton
+> помиче улево (множи са 2) целобројни део приказане вредности n пута, где је n следећи унесени број, и даје целобројан резултат (основа се поставља на <guilabel
+>Бин.</guilabel
+>):</term>
+<listitem
+><para
+><userinput
+>10 Lsh 3 =</userinput
+> даје <emphasis
+>80</emphasis
+> (10 три пута помножено са 2).</para>
+<para
+><userinput
+>10.345 Lsh 3 =</userinput
+> такође даје <emphasis
+>80</emphasis
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Rsh</guibutton
+> помиче вредност удесно (целобројно дели са 2) n пута.</term>
+<listitem
+><para
+><userinput
+>16 Rsh 2 =</userinput
+> даје <emphasis
+>4</emphasis
+> (16 двапут подељено са 2).</para>
+<para
+><userinput
+>16.999 Rsh 2 =</userinput
+> такође даје <emphasis
+>4</emphasis
+>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="and-or-xor">
+<title
+><guibutton
+>Cmp</guibutton
+>, <guibutton
+>AND</guibutton
+>, <guibutton
+>OR</guibutton
+> и <guibutton
+>XOR</guibutton
+></title>
+
+<para
+>Функције <guibutton
+>Cmp</guibutton
+>, <guibutton
+>AND</guibutton
+> и <guibutton
+>OR</guibutton
+> изводе битске логичке операције, те су смисленије ако је основа постављена на <guilabel
+>Хекс.</guilabel
+>, <guilabel
+>Окт.</guilabel
+> или <guilabel
+>Бин.</guilabel
+> пре него на <guilabel
+>Дек.</guilabel
+>. У следећим примерима основа је постављена на <guilabel
+>Бин.</guilabel
+>.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Cmp</guibutton
+> изводи јединични комплемент (обрће битове).</term>
+<listitem
+><para
+><userinput
+>101 Cmp</userinput
+> даје <emphasis
+>111...111010</emphasis
+>.</para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>AND</guibutton
+> изводи логичко И.</term>
+<listitem
+><para
+><userinput
+>101 AND 110 =</userinput
+> даје <emphasis
+>100</emphasis
+>.</para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>OR</guibutton
+> изводи логичко ИЛИ.</term>
+<listitem
+><para
+><userinput
+>101 OR 110 =</userinput
+> даје <emphasis
+>111</emphasis
+>.</para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>XOR</guibutton
+> изводи логичко КСИЛИ (ексклузивно ИЛИ).</term>
+<listitem
+><para
+><userinput
+>101 XOR 110 =</userinput
+> даје <emphasis
+>11</emphasis
+>.</para
+> </listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+</chapter>
+
+
+<chapter id="questions-and-answers">
+<title
+>Питања и одговори</title>
+
+<qandaset>
+
+
+<qandaentry>
+<question
+><para
+>Како да добијем e, Ојлеров број?</para
+></question>
+<answer
+><para
+>Притисните <userinput
+>1 <keycap
+>Shift</keycap
+> e<superscript
+>x</superscript
+></userinput
+> у прозору <application
+>К‑калка</application
+>, притисните <userinput
+>1 <keycombo action="simul"
+><keycap
+>Ctrl</keycap
+><keycap
+>2</keycap
+></keycombo
+> <keycap
+>N</keycap
+></userinput
+> на тастатури или употребите мени <menuchoice
+><guimenu
+>Константе</guimenu
+><guimenuitem
+>Математика</guimenuitem
+> </menuchoice
+>.</para
+></answer>
+</qandaentry>
+
+<qandaentry>
+<question
+><para
+>Како да имам две фиксне цифре после тачке?</para
+></question>
+<answer
+><para
+>Позовите дијалог за подешавање преко траке менија, <menuchoice
+><guimenu
+>Подешавање</guimenu
+><guimenuitem
+>Подеси К‑калк...</guimenuitem
+></menuchoice
+>. Попуните <guilabel
+>Постави децималну тачност</guilabel
+> и наместите обртач тако да показује 2.</para
+></answer
+> </qandaentry>
+
+<qandaentry>
+<question
+><para
+>Шта је са тачношћу?</para
+></question>
+<answer
+><para
+>Главни фактор који одређује тачност <application
+>К‑калка</application
+> јесте да ли Ц библиотека подржава тип <type
+>long double</type
+>. Ако подржава, то ће се открити при компиловању <application
+>К‑калка</application
+> и употребити као основни тип података за представљање бројева. </para>
+
+<para
+>Поставите <guilabel
+>Тачност</guilabel
+> у <application
+>К‑калковом</application
+> дијалогу за подешавање тако да горња рачунања раде исправно. Препоручујемо тачност 14 ако је основни тип података у вашој копији <application
+>К‑калка</application
+> <type
+>long double</type
+>, иначе 8 до 10.</para>
+
+<para
+>Већа тачност не води нужно бољим резултатима. Поиграјте се мало с тачношћу да бисте видели на шта мислимо.</para>
+</answer>
+</qandaentry>
+
+</qandaset>
+</chapter>
+
+&commands;
+
+<chapter id="copyright">
+<title
+>Заслуге и лиценца</title>
+
+<para
+>© на <application
+>К‑калк</application
+>:</para>
+<para
+><personname
+><firstname
+>Бернд</firstname
+> <othername
+>Јоханес</othername
+> <surname
+>Вибен</surname
+></personname
+>, 1996–2000</para>
+<para
+>тим КДЕ‑а, 2000–2008</para>
+<para
+><personname
+><firstname
+>Иван</firstname
+> <surname
+>Теран</surname
+></personname
+> 2008–2013</para>
+
+<itemizedlist>
+<listitem
+><para
+><personname
+><firstname
+>Бернд</firstname
+> <othername
+>Јоханес</othername
+> <surname
+>Вибен</surname
+></personname
+> &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Иван</firstname
+> <surname
+>Теран</surname
+></personname
+> &Evan.Teran.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Еспен</firstname
+> <surname
+>Санд</surname
+></personname
+> &Espen.Sand.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Крис</firstname
+> <surname
+>Хауелс</surname
+></personname
+> &Chris.Howells.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Арон</firstname
+> <othername
+>Џ.</othername
+> <surname
+>Сајго</surname
+></personname
+> &Aaron.J.Seigo.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Чарлс</firstname
+> <surname
+>Семјуелс</surname
+></personname
+> &Charles.Samuels.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Дејвид</firstname
+> <surname
+>Џонсон</surname
+></personname
+> &David.Johnson.mail;</para
+></listitem>
+</itemizedlist>
+
+<para
+><application
+>К‑калк</application
+> је инспирисан програмом <command
+>xfrmcalc</command
+> <personname
+><firstname
+>Мартина</firstname
+> <surname
+>Бартлета</surname
+></personname
+>, чији је мотор стека још увек део <application
+>К‑калка</application
+>.</para>
+
+<para
+>© на документацију, 2001, 2002, 2005, 2006, 2010:</para>
+<itemizedlist>
+<listitem
+><para
+><personname
+><firstname
+>Бернд</firstname
+> <othername
+>Јоханес</othername
+> <surname
+>Вибен</surname
+></personname
+> &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Памела</firstname
+> <surname
+>Робертс</surname
+></personname
+> &Pamela.Roberts.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Џесика</firstname
+> <surname
+>Хол</surname
+></personname
+> &J.Hall.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Ан Мари</firstname
+> <surname
+>Мафу</surname
+></personname
+> &Anne-Marie.Mahfouf.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Ајке</firstname
+> <surname
+>Крумбахер</surname
+></personname
+> <email
+>eike.krumbacher@x-eike.de</email
+></para
+></listitem>
+</itemizedlist>
+
+<para
+>Превео Драган Пантелић <email
+>falcon-10@gmx.de</email
+>.</para
+> 
+&underFDL; &underGPL; </chapter>
+
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

@@ -1,0 +1,255 @@
+<chapter id="commands">
+
+<title
+>Довідка щодо команд</title>
+
+<sect1 id="menus">
+<title
+>Пункти меню</title>
+
+ <para
+>Короткий опис специфічних для &kcalc; пунктів меню:</para>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Сталі</guimenu
+> <guimenuitem
+>Математика</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Вводить число &pi;, число Ойлера або число «золотого» перерізу.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Сталі</guimenu
+> <guimenuitem
+>Електромагнетизм</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Вводить швидкість світла, елементарний заряд, повний опір вакууму, магнітну сталу або діелектричну сталу.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Сталі</guimenu
+> <guimenuitem
+>Атомні та ядерні</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Вводить сталу Планка, заряд електрона та сталу тонкої структури.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Сталі</guimenu
+> <guimenuitem
+>Термодинаміка</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Вводить сталу Больцмана, одиницю атомної ваги, газову сталу, сталу Стефана-Больцмана або число Авогадро.</action
+> 
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Сталі</guimenu
+> <guimenuitem
+>Тяжіння</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Вводить сталу тяжіння або прискорення вільного падіння. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Параметри</guimenu
+> <guimenuitem
+>Простий режим</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Показувати прості кнопки арифметичних дій.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Параметри</guimenu
+> <guimenuitem
+>Науковий режим</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Показувати кнопки тригонометричних та інженерних функцій.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Параметри</guimenu
+> <guimenuitem
+>Статистичний режим</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Показувати <link linkend="statistical-mode"
+>кнопки статистичних функцій</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Параметри</guimenu
+> <guimenuitem
+>Режим системи числення</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Показує <link linkend="and-or-xor"
+>кнопки логічних операцій</link
+>, а також надає змогу змінити систему числення.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Параметри</guimenu
+> <guimenuitem
+>Показувати журнал</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Показати журнал команд.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Налаштування</guimenu
+> <guimenuitem
+>Сталі</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Показати кнопки сталих. Скористатися цими кнопками можна у <link linkend="science-mode"
+>науковому</link
+> і <link linkend="statistical-mode"
+>статистичному режимі</link
+>. </action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Налаштування</guimenu
+> <guimenuitem
+>Показати редагування бітів</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Показує поле редагування бітів. Натисніть біт, щоб перемкнути його значення. Цим пунктом можна скористатися лише у <link linkend="numeral-system-mode"
+>режимі системи числення</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Крім того, у &kcalc; передбачено типові пункти меню <guimenu
+>Файл</guimenu
+>, <guimenu
+>Зміни</guimenu
+>, <guimenu
+>Параметри</guimenu
+> та <guimenu
+>Довідка</guimenu
+>. Докладний опис цих пунктів меню можна знайти у <ulink url="help:/fundamentals/menus.html"
+>розділі, присвяченому меню,</ulink
+> підручника з основ роботи у &kde;. </para>
+
+</sect1>
+
+</chapter>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-parent-document: ("index.docbook" "book" "chapter")
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

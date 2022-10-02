@@ -1,0 +1,255 @@
+<chapter id="commands">
+
+<title
+>Referència d'ordres</title>
+
+<sect1 id="menus">
+<title
+>Elements del menú</title>
+
+ <para
+>Una visió general breu d'alguns elements de menú especials del &kcalc;:</para>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constants</guimenu
+> <guimenuitem
+>Matemàtiques</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra pi, el nombre d'Euler o la raó àuria.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constants</guimenu
+> <guimenuitem
+>Electromagnetisme</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra la velocitat de la llum, càrrega elemental, impedància en el buit, permeabilitat del buit o permitivitat del buit.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constants</guimenu
+> <guimenuitem
+>Atòmic i nuclear</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra la constant de Planck, la càrrega elemental o la constant d'estructura fina.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constants</guimenu
+> <guimenuitem
+>Termodinàmica</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra la constant de Boltzmann, la unitat de massa atòmica, la constant universal dels gasos, la constant de Stefan-Boltzmann o el nombre d'Avogadro.</action
+> 
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Constants</guimenu
+> <guimenuitem
+>Gravitació</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Mostra la constant de gravitació o acceleració de la Terra. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Mode senzill</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra els botons matemàtics senzills.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Mode científic</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra botons trigonomètrics i científics.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Mode estadístic</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra els <link linkend="statistical-mode"
+>botons estadístics.</link
+></action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Mode de sistema numeral</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra els <link linkend="and-or-xor"
+>botons lògics</link
+> i permet canviar el sistema numeral.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Mostra l'historial</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra l'historial.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Botons de constants</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra els botons de les constants. Estan disponibles en el <link linkend="science-mode"
+>mode de ciència</link
+> i el <link linkend="statistical-mode"
+>mode estadístic</link
+>. </action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Mostra l'edició de bits</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra un camp d'edició de bits. Feu clic en un bit per commutar-lo. Només disponible en el <link linkend="numeral-system-mode"
+>mode de sistema numeral</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>A més, el &kcalc; té els elements habituals de menú <guimenu
+>Fitxer</guimenu
+>, <guimenu
+>Edita</guimenu
+>, <guimenu
+>Arranjament</guimenu
+> i <guimenu
+>Ajuda</guimenu
+>. Per a més informació llegiu les seccions sobre els <ulink url="help:/fundamentals/menus.html"
+>Menús</ulink
+> en els Fonaments del &kde;. </para>
+
+</sect1>
+
+</chapter>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-parent-document: ("index.docbook" "book" "chapter")
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

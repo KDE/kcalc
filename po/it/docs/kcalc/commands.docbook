@@ -1,0 +1,255 @@
+<chapter id="commands">
+
+<title
+>Guida ai comandi</title>
+
+<sect1 id="menus">
+<title
+>Voci dei menu</title>
+
+ <para
+>Una breve panoramica di alcune voci dei menu speciali di &kcalc;:</para>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Costanti</guimenu
+> <guimenuitem
+>Matematica</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra pi greco, il numero di nepero o la sezione aurea.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Costanti</guimenu
+> <guimenuitem
+>Elettromagnetismo</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra la velocità della luce, la carica elementare, l'impedenza del vuoto, la permeabilità oppure la permittività del vuoto.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Costanti</guimenu
+> <guimenuitem
+>Fisica atomica e nucleare</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra la costante di Planck, la carica elementare o la costante di struttura fine.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Costanti</guimenu
+> <guimenuitem
+>Termodinamica</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra la costante di Boltzmann, l'unità di massa atomica, la costante universale dei gas perfetti, la costante di Stefan-Boltzmann oppure il numero di Avogadro.</action
+> 
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Costanti</guimenu
+> <guimenuitem
+>Gravità</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Mostra la costante di gravità o l'accelerazione della terra. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Modalità semplice</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra i pulsanti matematici semplici.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Modalità scientifica</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra i pulsanti per la trigonometria e la scienza.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Modalità statistica</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra i <link linkend="statistical-mode"
+>pulsanti statistici</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Modalità base di numerazione</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra i <link linkend="and-or-xor"
+>pulsanti logici</link
+> e permette di cambiare la base di numerazione.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Mostra la cronologia</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra la cronologia.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Pulsanti delle costanti</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra i pulsanti delle costanti. Sono disponibili in <link linkend="science-mode"
+>modalità scientifica</link
+> e <link linkend="statistical-mode"
+>statistica</link
+>. </action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Mostra modificatori dei bit</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra un campo di modifica dei bit. Fai clic su un bit per commutarlo. Disponibile solo in <link linkend="numeral-system-mode"
+>modalità base di numerazione</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Inoltre, &kcalc; ha le normali voci del menu <guimenu
+>File</guimenu
+>, <guimenu
+>Modifica</guimenu
+>, <guimenu
+>Impostazioni</guimenu
+> e <guimenu
+>Aiuto</guimenu
+>; per maggiori informazioni leggi la sezione sui <ulink url="help:/fundamentals/menus.html"
+>menu</ulink
+> nei Fondamentali di &kde;. </para>
+
+</sect1>
+
+</chapter>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-parent-document: ("index.docbook" "book" "chapter")
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->
