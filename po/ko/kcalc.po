@@ -4,22 +4,22 @@
 # Choe Hwanjin <hkde@hancom.com>, 2003, 2004.
 # kyuhyong Yoo <root@localhost.localdomain>, 2004.
 # Youngbin Park <shrike@nate.com>, 2005.
-# Shinjo Park <kde@peremen.name>, 2007, 2008, 2009, 2010, 2013, 2014, 2015, 2019, 2020, 2021.
+# Shinjo Park <kde@peremen.name>, 2007, 2008, 2009, 2010, 2013, 2014, 2015, 2019, 2020, 2021, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-20 00:48+0000\n"
-"PO-Revision-Date: 2021-12-08 20:23+0100\n"
+"PO-Revision-Date: 2022-10-03 16:31+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
-"Language-Team: Korean <kde-kr@kde.org>\n"
+"Language-Team: Korean <kde-i18n-doc@kde.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 21.08.1\n"
+"X-Generator: Lokalize 21.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -2056,11 +2056,10 @@ msgid "M"
 msgstr "M"
 
 #: kcalcdisplay.cpp:42
-#, fuzzy, kde-format
-#| msgid "Select Display Font"
+#, kde-format
 msgctxt "@label accessibility description of the calculation result display"
 msgid "Result Display"
-msgstr "화면 글꼴 선택"
+msgstr "결과 표시"
 
 #. i18n: ectx: Menu (settings)
 #: kcalcui.rc:4
