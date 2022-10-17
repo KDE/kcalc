@@ -152,7 +152,7 @@ msgstr "Tipus de lletra de la &pantalla:"
 #: fonts.ui:54
 #, kde-format
 msgid "The font to use in the display"
-msgstr "El tipus de lletra que s'utilitzarà en la pantalla"
+msgstr "El tipus de lletra que s'ha d'utilitzar en la pantalla"
 
 #. i18n: ectx: property (text), widget (QLabel, historylabel)
 #: fonts.ui:61
@@ -164,7 +164,7 @@ msgstr "Tipus de lletra de l'&historial:"
 #: fonts.ui:74
 #, kde-format
 msgid "The font to use in the history"
-msgstr "El tipus de lletra que s'utilitzarà en l'historial"
+msgstr "El tipus de lletra que s'ha d'utilitzar en l'historial"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
 #: general.ui:14 kcalc.cpp:1758
@@ -1011,7 +1011,7 @@ msgstr "El tipus de lletra que s'utilitzarà en els botons."
 #: kcalc.kcfg:89
 #, kde-format
 msgid "The font to use in the display."
-msgstr "El tipus de lletra que s'utilitzarà en la pantalla."
+msgstr "El tipus de lletra que s'ha d'utilitzar en la pantalla."
 
 #. i18n: ectx: label, entry (HistoryFont), group (Font)
 #: kcalc.kcfg:96
