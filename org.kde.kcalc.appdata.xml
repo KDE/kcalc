@@ -25,6 +25,7 @@
   <name xml:lang="id">KCalc</name>
   <name xml:lang="it">KCalc</name>
   <name xml:lang="ja">KCalc</name>
+  <name xml:lang="ka">KCalc</name>
   <name xml:lang="ko">KCalc</name>
   <name xml:lang="nl">KCalc</name>
   <name xml:lang="nn">KCalc</name>
@@ -69,6 +70,7 @@
   <summary xml:lang="id">Kalkulator Ilmiah</summary>
   <summary xml:lang="it">Calcolatrice scientifica</summary>
   <summary xml:lang="ja">科学電卓</summary>
+  <summary xml:lang="ka">სამეცნიერო კალკულატორი</summary>
   <summary xml:lang="ko">공학용 계산기</summary>
   <summary xml:lang="nl">Wetenschappelijke rekenmachine</summary>
   <summary xml:lang="nn">Vitskapleg kalkulator</summary>
@@ -155,6 +157,7 @@
       <li xml:lang="id">Fungsi trigonometri, operasi logika dan perhitungan statistik</li>
       <li xml:lang="it">Funzioni trigonometriche, operazioni logiche e calcoli statistici</li>
       <li xml:lang="ja">三角関数、論理演算、統計計算</li>
+      <li xml:lang="ka">ტრიგონომეტრიული ფუნქციები, ლოგიკური ოპერაციები და სტატისტიკური გამოთვლები</li>
       <li xml:lang="ko">삼각함수, 논리 연산 및 통계 계산입니다</li>
       <li xml:lang="nl">Goniometrische functies, logische bewerkingen en statistische berekeningen</li>
       <li xml:lang="nn">Trigonometriske funksjonar, logiske operatorar og statistiske utrekningar</li>
@@ -228,6 +231,7 @@
       <li xml:lang="id">Presisi dapat ditentukan pengguna</li>
       <li xml:lang="it">La precisione è definibile dall'utente</li>
       <li xml:lang="ja">精度はユーザ定義可能</li>
+      <li xml:lang="ka">სიზუსტეს მომხმარებელი განსაზღვრავს</li>
       <li xml:lang="ko">정밀도는 사용자가 정의할 수 있습니다</li>
       <li xml:lang="nl">Precisie is door de gebruiker te definiëren</li>
       <li xml:lang="nn">Talpresisjon kan veljast av brukaren</li>
@@ -265,6 +269,7 @@
       <li xml:lang="id">Displai memungkinkan pemotongan dan penempelan angka</li>
       <li xml:lang="it">Il display permette di copiare e incollare i numeri</li>
       <li xml:lang="ja">ディスプレイで数字の切り取りと貼り付けが可能です</li>
+      <li xml:lang="ka">შესაძლებელია რიცხვების ამოჭრა და ჩასმა</li>
       <li xml:lang="ko">디스플레이는 숫자의 잘라내기 및 붙여넣기를 할 수 있습니다</li>
       <li xml:lang="nl">Het scherm biedt knippen en plakken van getallen</li>
       <li xml:lang="nn">Kan kopiera og lim inn tal</li>
@@ -382,6 +387,7 @@
       <caption xml:lang="id">Jendela utama KCalc</caption>
       <caption xml:lang="it">Finestra principale di KCalc</caption>
       <caption xml:lang="ja">KCalc のメインウィンドウ</caption>
+      <caption xml:lang="ka">KCalc-ის მთავარი ფანჯარა</caption>
       <caption xml:lang="ko">KCalc 주 창</caption>
       <caption xml:lang="nl">Hoofdvenster van KCalc</caption>
       <caption xml:lang="nn">Hovudvindaugeet i KCalc</caption>
@@ -421,6 +427,7 @@
       <caption xml:lang="id">Jendela KCalc dalam mode sistem numerik</caption>
       <caption xml:lang="it">Finestra di KCalc in modalità base di numerazione</caption>
       <caption xml:lang="ja">KCalc の数値システムモードウィンドウ</caption>
+      <caption xml:lang="ka">KCalc-ის ფანჯარა რიცხვითი სისტემის რეჟიმშია</caption>
       <caption xml:lang="ko">진수 모드 KCalc 창</caption>
       <caption xml:lang="nl">Venster van KCalc in systeemmodus numeriek</caption>
       <caption xml:lang="nn">KCalc-vindauge i numerisk modus</caption>
@@ -459,6 +466,7 @@
       <caption xml:lang="id">Jendela KCalc dalam mode ilmiah</caption>
       <caption xml:lang="it">Finestra di KCalc in modalità scientifica</caption>
       <caption xml:lang="ja">Kcalc の科学モードウィンドウ</caption>
+      <caption xml:lang="ka">KCalc-ის ფანჯარა სამეცნიერო რეჟიმშია</caption>
       <caption xml:lang="ko">과학 모드 KCalc 창</caption>
       <caption xml:lang="nl">Venster van Kcalc in wetenschappelijke modus</caption>
       <caption xml:lang="nn">KCalc-vindauge i vitskapleg modus</caption>
@@ -498,6 +506,7 @@
       <caption xml:lang="id">Jendela KCalc dalam mode statistik</caption>
       <caption xml:lang="it">Finestra di KCalc in modalità statistica</caption>
       <caption xml:lang="ja">Kcalc の統計モードウィンドウ</caption>
+      <caption xml:lang="ka">KCalc-ის ფანჯარა სტატისტიკის რეჟიმშია</caption>
       <caption xml:lang="ko">통계 모드 KCalc 창</caption>
       <caption xml:lang="nl">Venster van Kcalc in statistische modus</caption>
       <caption xml:lang="nn">KCalc-vindauge i statistikkmodus</caption>
