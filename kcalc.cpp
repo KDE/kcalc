@@ -1507,7 +1507,14 @@ void KCalculator::slotPeriodclicked()
 {
     // i know this isn't locale friendly, should be converted to appropriate
     // value at lower levels
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     calc_display->newCharacter(QLocale().decimalPoint());
+#else
+    const auto decimalPoint = QLocale().decimalPoint();
+    for (const auto c : decimalPoint) {
+        calc_display->newCharacter(c);
+    }
+#endif
 }
 
 //------------------------------------------------------------------------------

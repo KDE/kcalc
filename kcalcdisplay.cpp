@@ -673,7 +673,7 @@ QString KCalcDisplay::formatDecimalNumber(QString string)
             }
         }
 
-        const QChar groupSeparator = locale.groupSeparator();
+        const auto groupSeparator = locale.groupSeparator();
         const int groupSize = 3;
 
         string.reserve(string.length() + (pos - 1) / groupSize);
