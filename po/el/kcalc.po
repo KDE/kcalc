@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-08-20 00:48+0000\n"
+"POT-Creation-Date: 2022-11-09 00:51+0000\n"
 "PO-Revision-Date: 2021-09-19 08:43+0300\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -125,7 +125,7 @@ msgstr "&Σταθερές:"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
 #. i18n: ectx: property (title), widget (QGroupBox, constantsBox)
-#: constants.ui:13 constants.ui:19 kcalc.cpp:1798
+#: constants.ui:13 constants.ui:19 kcalc.cpp:1805
 #, kde-format
 msgid "Constants"
 msgstr "Σταθερές"
@@ -179,7 +179,7 @@ msgid "The font to use in the history"
 msgstr "Η γραμματοσειρά που θα χρησιμοποιηθεί στο ιστορικό"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
-#: general.ui:14 kcalc.cpp:1758
+#: general.ui:14 kcalc.cpp:1765
 #, kde-format
 msgid "General"
 msgstr "Γενικά"
@@ -599,7 +599,7 @@ msgid "N"
 msgstr "N"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbNData)
-#: kcalc.cpp:495 kcalc.cpp:1588 kcalc.ui:622
+#: kcalc.cpp:495 kcalc.cpp:1595 kcalc.ui:622
 #, kde-format
 msgid "Number of data entered"
 msgstr "Πλήθος δεδομένων που έχουν εισαχθεί"
@@ -616,7 +616,7 @@ msgid "Mea"
 msgstr "Mea"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMean)
-#: kcalc.cpp:501 kcalc.cpp:1609 kcalc.ui:727
+#: kcalc.cpp:501 kcalc.cpp:1616 kcalc.ui:727
 #, kde-format
 msgid "Mean"
 msgstr "Μέσος"
@@ -781,73 +781,73 @@ msgid "M"
 msgstr "M"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMed)
-#: kcalc.cpp:1658 kcalc.ui:743
+#: kcalc.cpp:1665 kcalc.ui:743
 #, kde-format
 msgid "Median"
 msgstr "Διάμεσος"
 
-#: kcalc.cpp:1675
+#: kcalc.cpp:1682
 #, kde-format
 msgid "DAT ["
 msgstr "DAT ["
 
-#: kcalc.cpp:1675
+#: kcalc.cpp:1682
 #, kde-format
 msgid "] = "
 msgstr "] = "
 
-#: kcalc.cpp:1681 kcalc.cpp:1682
+#: kcalc.cpp:1688 kcalc.cpp:1689
 #, kde-format
 msgid "Last stat item erased"
 msgstr "Το τελευταίο στατιστικό αντικείμενο διαγράφηκε"
 
-#: kcalc.cpp:1697 kcalc.cpp:1698
+#: kcalc.cpp:1704 kcalc.cpp:1705
 #, kde-format
 msgid "Stat mem cleared"
 msgstr "Καθαρίστηκε η στατιστική μνήμη"
 
-#: kcalc.cpp:1758
+#: kcalc.cpp:1765
 #, kde-format
 msgid "General Settings"
 msgstr "Γενικές ρυθμίσεις"
 
-#: kcalc.cpp:1762
+#: kcalc.cpp:1769
 #, kde-format
 msgid "Font"
 msgstr "Γραμματοσειρά"
 
-#: kcalc.cpp:1762
+#: kcalc.cpp:1769
 #, kde-format
 msgid "Select Display Font"
 msgstr "Επιλογή γραμματοσειράς οθόνης"
 
-#: kcalc.cpp:1766
+#: kcalc.cpp:1773
 #, kde-format
 msgid "Colors"
 msgstr "Χρώματα"
 
-#: kcalc.cpp:1766
+#: kcalc.cpp:1773
 #, kde-format
 msgid "Button & Display Colors"
 msgstr "Χρώματα Κουμπιών & Οθόνης"
 
-#: kcalc.cpp:1798
+#: kcalc.cpp:1805
 #, kde-format
 msgid "Define Constants"
 msgstr "Ορισμός σταθερών"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2832 kcalc.ui:20
+#: kcalc.cpp:2839 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "KCalc"
 
-#: kcalc.cpp:2834
+#: kcalc.cpp:2841
 #, kde-format
 msgid "KDE Calculator"
 msgstr "Αριθμομηχανή του KDE"
 
-#: kcalc.cpp:2836
+#: kcalc.cpp:2843
 #, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
@@ -860,62 +860,62 @@ msgstr ""
 "Πνευματικά δικαιώματα © 2003-2005, Klaus Niederkrüger\n"
 "Πνευματικά δικαιώματα © 1996-2000, Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2846
+#: kcalc.cpp:2853
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr "Klaus Niederkrüger"
 
-#: kcalc.cpp:2851
+#: kcalc.cpp:2858
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2852
+#: kcalc.cpp:2859
 #, kde-format
 msgid "Evan Teran"
 msgstr "Evan Teran"
 
-#: kcalc.cpp:2852
+#: kcalc.cpp:2859
 #, kde-format
 msgid "Maintainer"
 msgstr "Συντηρητής"
 
-#: kcalc.cpp:2853
+#: kcalc.cpp:2860
 #, kde-format
 msgid "Espen Sand"
 msgstr "Espen Sand"
 
-#: kcalc.cpp:2854
+#: kcalc.cpp:2861
 #, kde-format
 msgid "Chris Howells"
 msgstr "Chris Howells"
 
-#: kcalc.cpp:2855
+#: kcalc.cpp:2862
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr "Aaron J. Seigo"
 
-#: kcalc.cpp:2856
+#: kcalc.cpp:2863
 #, kde-format
 msgid "Charles Samuels"
 msgstr "Charles Samuels"
 
-#: kcalc.cpp:2858
+#: kcalc.cpp:2865
 #, kde-format
 msgid "René Mérou"
 msgstr "René Mérou"
 
-#: kcalc.cpp:2865
+#: kcalc.cpp:2872
 #, kde-format
 msgid "Michel Marti"
 msgstr "Michel Marti"
 
-#: kcalc.cpp:2866
+#: kcalc.cpp:2873
 #, kde-format
 msgid "David Johnson"
 msgstr "David Johnson"
 
-#: kcalc.cpp:2867
+#: kcalc.cpp:2874
 #, kde-format
 msgid "Niklas Freund"
 msgstr ""
