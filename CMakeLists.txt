@@ -83,7 +83,7 @@ check_type_size("signed long"    SIZEOF_SIGNED_LONG)
 check_type_size("unsigned long"  SIZEOF_UNSIGNED_LONG)
 
 configure_file(config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
-ecm_set_disabled_deprecation_versions(QT 5.15.2  KF 5.100.0)
+ecm_set_disabled_deprecation_versions(QT 5.15.2  KF 5.101.0)
 
 add_subdirectory(knumber)
 add_executable(kcalc)
