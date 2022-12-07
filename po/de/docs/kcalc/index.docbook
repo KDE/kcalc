@@ -246,6 +246,27 @@
 </listitem>
 </varlistentry>
 
+<varlistentry>
+<term
+>Verlauf</term>
+<listitem>
+<para
+>Der Verlauf zeigt alle in der aktiven &kcalc;-Sitzung getätigten Berechnungen an. Klicken Sie auf <guibutton
+>AC</guibutton
+> oder drücken Sie die <keycap
+>Entf</keycap
+>-Taste, um den Verlauf zu leeren. Um ihn zu aktivieren oder zu deaktivieren, Nutzen Sie den Eintrag <guilabel
+>Verlauf anzeigen</guilabel
+> im <guimenu
+>Einstellungen</guimenu
+>-Menü, oder drücken Sie <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+>.</para>
+</listitem>
+</varlistentry>
+
 </variablelist>
 </sect1>
 
