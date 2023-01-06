@@ -15,7 +15,7 @@
 # Spiros Georgaras <sngeorgaras@otenet.gr>, 2008.
 # Bouklis Panos <panos@echidna-band.com>, 2012.
 # Dimitrios Glentadakis <dglent@gmail.com>, 2012.
-# Stelios <sstavra@gmail.com>, 2012, 2014, 2019, 2020, 2021.
+# Stelios <sstavra@gmail.com>, 2012, 2014, 2019, 2020, 2021, 2023.
 # Dimitris Kardarakos <dimkard@gmail.com>, 2015.
 # Long Run <pvidalis@gmail.com>, 2018.
 msgid ""
@@ -23,14 +23,14 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-20 00:48+0000\n"
-"PO-Revision-Date: 2021-09-19 08:43+0300\n"
+"PO-Revision-Date: 2023-01-05 11:17+0200\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.04.2\n"
+"X-Generator: Lokalize 21.12.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -188,7 +188,7 @@ msgstr "Γενικά"
 #: general.ui:20
 #, kde-format
 msgid "Precision"
-msgstr "Ακρίβεια"
+msgstr "Ακρίβεια επανάληψης"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel1)
 #: general.ui:28
@@ -590,7 +590,7 @@ msgstr "e<sup>x</sup>"
 #: kcalc.cpp:476
 #, kde-format
 msgid "Exponential function"
-msgstr "Εκθετική (Exp) συνάρτηση"
+msgstr "Εκθετική (exp) συνάρτηση"
 
 #: kcalc.cpp:495
 #, kde-format
@@ -918,7 +918,7 @@ msgstr "David Johnson"
 #: kcalc.cpp:2867
 #, kde-format
 msgid "Niklas Freund"
-msgstr ""
+msgstr "Niklas Freund"
 
 #. i18n: ectx: label, entry (ForeColor), group (Colors)
 #: kcalc.kcfg:12
@@ -996,7 +996,7 @@ msgstr "Το χρώμα των γραμματοσειρών για στατισ�
 #: kcalc.kcfg:67
 #, kde-format
 msgid "The color of hex fonts."
-msgstr "Το χρώμα των γραμματοσειρών για δεκαεξσδικούς."
+msgstr "Το χρώμα των γραμματοσειρών για δεκαεξαδικούς."
 
 #. i18n: ectx: label, entry (MemoryFontsColor), group (Colors)
 #: kcalc.kcfg:71
@@ -1105,10 +1105,9 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"        Επιλέξτε τη χρήση την αναπαράστασης με συμπλήρωμα του δύο για "
-"δυαδικούς, οκταδικούς\n"
-"        και δεκαεξαδικούς αριθμούς. Αυτή είναι μία συνηθισμένη αναπαράσταση\n"
-"        αρνητικών αριθμών στους υπολογιστές.\n"
+"        Επιλέξτε τη χρήση την αναπαράστασης με συμπλήρωμα του δύο\n"
+"        για δυαδικούς, οκταδικούς και δεκαεξαδικούς αριθμούς. Αυτή είναι\n"
+"        μία συνηθισμένη αναπαράσταση αρνητικών αριθμών στους υπολογιστές.\n"
 "            "
 
 #. i18n: ectx: label, entry (RepeatLastOperation), group (General)
@@ -2086,11 +2085,10 @@ msgid "M"
 msgstr "M"
 
 #: kcalcdisplay.cpp:42
-#, fuzzy, kde-format
-#| msgid "Select Display Font"
+#, kde-format
 msgctxt "@label accessibility description of the calculation result display"
 msgid "Result Display"
-msgstr "Επιλογή γραμματοσειράς οθόνης"
+msgstr "Εμφάνιση αποτελέσματος"
 
 #. i18n: ectx: Menu (settings)
 #: kcalcui.rc:4
