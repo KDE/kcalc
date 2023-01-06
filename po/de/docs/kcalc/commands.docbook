@@ -1,242 +1,137 @@
 <chapter id="commands">
 
-<title
->Befehlsreferenz</title>
+<title>Command Reference</title>
 
 <sect1 id="menus">
-<title
->Menüeinträge</title>
+<title>Menu Items</title>
 
- <para
->Ein kurzer Überblick über die speziellen Menüeinträge für &kcalc;:</para>
+ <para>A brief overview of some special menu items in &kcalc;:</para>
 <variablelist>
 
 <varlistentry>
-<term
-><menuchoice
-><guimenu
->Konstanten</guimenu
-> <guimenuitem
->Mathematik</guimenuitem
-> </menuchoice
-></term>
-<listitem
-><para
-><action
->Enthält Pi, Eulersche Zahl und Goldener Schnitt.</action>
-</para
-></listitem>
+<term><menuchoice>
+<guimenu>Constants</guimenu>
+<guimenuitem>Mathematics</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Display Pi, Euler Number or Golden Ratio.</action>
+</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term
-><menuchoice
-><guimenu
->Konstanten</guimenu
-><guimenuitem
->Elektromagnetismus</guimenuitem
-> </menuchoice
-></term>
-<listitem
-><para
-><action
->Enthält Lichtgeschwindigkeit, Elementarladung, Wellenimpedanz des Vakuums, Magnetische Feldkonstante und Dielektrizitätskonstante des Vakuums.</action>
-</para
-></listitem>
+<term><menuchoice>
+<guimenu>Constants</guimenu>
+<guimenuitem>Electromagnetism</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Display Light Speed, Elementary Charge,
+Impedance of Vacuum, Permeability of Vacuum or Permittivity of Vacuum.</action>
+</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term
-><menuchoice
-><guimenu
->Konstanten</guimenu
-><guimenuitem
->Atomkerne und Elementarteilchen</guimenuitem
-> </menuchoice
-></term>
-<listitem
-><para
-><action
->Enthält Plancksche Konstante, Elementarladung und Feinstrukturkonstante.</action>
-</para
-></listitem>
+<term><menuchoice>
+<guimenu>Constants</guimenu>
+<guimenuitem>Atomic &amp; Nuclear</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Display Planck's Constant, Elementary Charge or
+Fine-Structure Constant.</action>
+</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term
-><menuchoice
-><guimenu
->Konstanten</guimenu
-><guimenuitem
->Thermodynamik</guimenuitem
-> </menuchoice
-></term>
-<listitem
-><para
-><action
->Enthält Boltzmann-Konstante, Atomare Masseneinheit, Molare Gaskonstante, Stefan-Boltzmann-Konstante und die Avogadrozahl.</action
-> 
-</para
-></listitem>
+<term><menuchoice>
+<guimenu>Constants</guimenu>
+<guimenuitem>Thermodynamics</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Display Boltzmann Constant, Atomic Mass Unit, Molar Gas
+Constant, Stefan-Boltzmann Constant or Avogadro's Number.</action> 
+</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term
-><menuchoice
-><guimenu
->Konstanten</guimenu
-><guimenuitem
->Gravitation</guimenuitem
-> </menuchoice
-></term>
-<listitem
-><para
->Enthält Gravitationskonstante und Erdbeschleunigung. </para
-></listitem>
+<term><menuchoice>
+<guimenu>Constants</guimenu>
+<guimenuitem>Gravitation</guimenuitem>
+</menuchoice></term>
+<listitem><para>Display Constant of Gravitation or Earth Acceleration.
+</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term
-><menuchoice
-><guimenu
->Einstellungen</guimenu
-> <guimenuitem
->Einfach</guimenuitem
-> </menuchoice
-></term>
-<listitem
-><para
-><action
->Zeigt die Tasten für einfache mathematische Operationen an.</action>
-</para
-></listitem>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Simple Mode</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Displays the simple math buttons.</action>
+</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term
-><menuchoice
-><guimenu
->Einstellungen</guimenu
-> <guimenuitem
->Wissenschaftlich</guimenuitem
-> </menuchoice
-></term>
-<listitem
-><para
-><action
->Zeigt die Tasten für trigonometrische und wissenschaftliche Operationen an.</action>
-</para
-></listitem>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Science Mode</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Displays trigonometric and science buttons.</action>
+</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term
-><menuchoice
-><guimenu
->Einstellungen</guimenu
-> <guimenuitem
->Statistisch</guimenuitem
-> </menuchoice
-></term>
-<listitem
-><para
-><action
->Zeigt die <link linkend="statistical-mode"
->Tasten für Statistik an.</link
-></action>
-</para
-></listitem>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Statistic Mode</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Displays <link linkend="statistical-mode">statistic
+buttons.</link></action>
+</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term
-><menuchoice
-><guimenu
->Einstellungen</guimenu
-> <guimenuitem
->Logik</guimenuitem
-> </menuchoice
-></term>
-<listitem
-><para
-><action
->Zeigt die <link linkend="and-or-xor"
->Tasten für logische Operationen</link
-> an und ermöglicht das Ändern des Zahlensystems.</action>
-</para
-></listitem>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Numeral System Mode</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Displays <link linkend="and-or-xor">logic
+buttons</link> and allows changing the numeral system.</action>
+</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term
-><menuchoice
-><guimenu
->Einstellungen</guimenu
-> <guimenuitem
->Verlauf anzeigen</guimenuitem
-> </menuchoice
-></term>
-<listitem
-><para
-><action
->Zeigt den Verlauf der Berechnungen an.</action>
-</para
-></listitem>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Show History</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Display the history.</action>
+</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term
-><menuchoice
-><guimenu
->Einstellungen</guimenu
-> <guimenuitem
->Konstantentasten</guimenuitem
-> </menuchoice
-></term>
-<listitem
-><para
-><action
->Zeigt im <link linkend="science-mode"
->wissenschaftlichen</link
-> und <link linkend="statistical-mode"
->statistischen</link
-> Modus die Konstantentasten K1 bis K6 an, </action>
-</para
-></listitem>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Constants Buttons</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Display constants buttons. They are available in <link linkend="science-mode">science mode</link> and
+<link linkend="statistical-mode">statistic mode</link>. </action>
+</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term
-><menuchoice
-><guimenu
->Einstellungen</guimenu
-> <guimenuitem
->Bitbearbeitung zeigen</guimenuitem
-> </menuchoice
-></term>
-<listitem
-><para
-><action
->Zeigt ein Bitbearbeitungsfeld an, klicken Sie auf ein Bit, um dessen Wert ein- oder ausschalten.
->. Dieses Bitbearbeitungsfeld kann nur im logischen Modus aktiviert werden.</action>
-</para
-></listitem>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Show Bit Edit</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Displays a bit edit field. Click on a bit to toggle it. Only available in
+<link linkend="numeral-system-mode">numeral system mode</link>.</action>
+</para></listitem>
 </varlistentry>
 
 </variablelist>
 
-<para
->Zusätzlich benutzt &kcalc; die bekannten Menüs <guimenu
->Datei</guimenu
->, <guimenu
->Bearbeiten</guimenu
->, <guimenu
->Einstellungen</guimenu
-> und <guimenu
->Hilfe</guimenu
-> , weitere Informationen dazu finden Sie im Abschnitt über die <ulink url="help:/fundamentals/menus.html"
->Menüs</ulink
-> in den &kde;-Grundlagen. </para>
+<para>
+Additionally &kcalc; has the common <guimenu>File</guimenu>, <guimenu>Edit</guimenu>,
+<guimenu>Settings</guimenu> and <guimenu>Help</guimenu> menu items, for more information
+read the sections about the <ulink url="help:/fundamentals/menus.html">Menus</ulink>
+in the &kde; Fundamentals.
+
+</para>
 
 </sect1>
 
