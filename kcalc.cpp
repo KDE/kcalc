@@ -2634,9 +2634,7 @@ void KCalculator::forceResizeEvent()
 //------------------------------------------------------------------------------
 void KCalculator::setLeftPadLayoutActive(bool active)
 {
-    QSizePolicy policy = leftPad->sizePolicy();
-    policy.setHorizontalStretch((int)active); // 0 or 1
-    leftPad->setSizePolicy(policy);
+    leftPad->setVisible(active);
 }
 
 //------------------------------------------------------------------------------
