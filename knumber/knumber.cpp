@@ -97,10 +97,11 @@ void round(QString &str, int precision)
     }
 
     // fill up with more than enough zeroes (in case fractional part too short)
-    str.append(QString().fill(QLatin1Char('0'), precision));
+    // In case the number was originally shorter than precision, +1 is needed
 
+    str.append(QString().fill(QLatin1Char('0'), precision + 1));
     // Now decide whether to round up or down
-    const char last_char = str[decimalSymbolPos + precision + 1].toLatin1();
+    const char last_char = str.at(decimalSymbolPos + precision + 1).toLatin1();
     switch (last_char) {
     case '0':
     case '1':
