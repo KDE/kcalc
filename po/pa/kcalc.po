@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-09 00:51+0000\n"
+"POT-Creation-Date: 2023-01-16 01:01+0000\n"
 "PO-Revision-Date: 2013-06-23 12:37-0500\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -836,17 +836,17 @@ msgid "Define Constants"
 msgstr "ਸਥਿਰ ਦਿਓ"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2839 kcalc.ui:20
+#: kcalc.cpp:2837 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "ਕੇ-ਕੈਲਕ"
 
-#: kcalc.cpp:2841
+#: kcalc.cpp:2839
 #, kde-format
 msgid "KDE Calculator"
 msgstr "KDE ਕੈਲਕੂਲੇਟਰ"
 
-#: kcalc.cpp:2843
+#: kcalc.cpp:2841
 #, fuzzy, kde-format
 #| msgid ""
 #| "&copy; 2008-2013, Evan Teran\n"
@@ -864,62 +864,62 @@ msgstr ""
 "&copy; 2003-2005, Klaus Niederkrüger\n"
 "&copy; 1996-2000, Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2853
+#: kcalc.cpp:2851
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr ""
 
-#: kcalc.cpp:2858
+#: kcalc.cpp:2856
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2859
+#: kcalc.cpp:2857
 #, kde-format
 msgid "Evan Teran"
 msgstr ""
 
-#: kcalc.cpp:2859
+#: kcalc.cpp:2857
 #, kde-format
 msgid "Maintainer"
 msgstr "ਪਰਬੰਧਕ"
 
-#: kcalc.cpp:2860
+#: kcalc.cpp:2858
 #, kde-format
 msgid "Espen Sand"
 msgstr ""
 
-#: kcalc.cpp:2861
+#: kcalc.cpp:2859
 #, kde-format
 msgid "Chris Howells"
 msgstr ""
 
-#: kcalc.cpp:2862
+#: kcalc.cpp:2860
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr "ਆਰੋਨ ਜੇ. ਸੀਆਗੋ"
 
-#: kcalc.cpp:2863
+#: kcalc.cpp:2861
 #, kde-format
 msgid "Charles Samuels"
 msgstr "ਚਾਰਲਿਸ ਸਾਮਉਲਸ"
 
-#: kcalc.cpp:2865
+#: kcalc.cpp:2863
 #, kde-format
 msgid "René Mérou"
 msgstr ""
 
-#: kcalc.cpp:2872
+#: kcalc.cpp:2870
 #, kde-format
 msgid "Michel Marti"
 msgstr ""
 
-#: kcalc.cpp:2873
+#: kcalc.cpp:2871
 #, kde-format
 msgid "David Johnson"
 msgstr "ਡੇਵਿਡ ਜਾਨਸਨ"
 
-#: kcalc.cpp:2874
+#: kcalc.cpp:2872
 #, kde-format
 msgid "Niklas Freund"
 msgstr ""
