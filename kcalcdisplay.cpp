@@ -685,11 +685,24 @@ QString KCalcDisplay::formatDecimalNumber(QString string)
     string.replace(QLatin1Char('-'), locale.negativeSign());
     string.replace(QLatin1Char('+'), locale.positiveSign());
 
-    unsigned short zero = locale.zeroDigit().unicode();
-    for (int i = 0; i < string.length(); ++i) {
-        const auto stringAtI = string.at(i);
-        if (stringAtI.isDigit()) {
-            string[i] = QChar(zero + stringAtI.digitValue());
+    // Digits in unicode is encoded in contiguous range and with the digit zero as the first.
+    // To convert digits to other locales,
+    // just add the digit value and the leading zero's code point.
+    // ref: Unicode15 chapter 4.6 Numeric Value https://www.unicode.org/versions/Unicode15.0.0/ch04.pdf
+
+    // QLocale switched return type of many functions from QChar to QString,
+    // because UTF-16 may need surrogate pairs to represent these fields.
+    // We only need digits, thus we only need the first QChar with Qt>=6.
+
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    auto zero = locale.zeroDigit().at(0).unicode();
+#else
+    auto zero = locale.zeroDigit().unicode();
+#endif
+
+    for (auto &i : string) {
+        if (i.isDigit()) {
+            i = QChar(zero + i.digitValue());
         }
     }
 
