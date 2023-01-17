@@ -83,51 +83,31 @@ void increment(QString &str, int position)
 //------------------------------------------------------------------------------
 void round(QString &str, int precision)
 {
-    // Cut off if more digits in fractional part than 'precision'
-
     int decimalSymbolPos = str.indexOf(QLatin1Char('.'));
-
     if (decimalSymbolPos == -1) {
         if (precision == 0) {
             return;
-        } else if (precision > 0) { // add dot if missing (and needed)
+        } else {
             str.append(QLatin1Char('.'));
-            decimalSymbolPos = str.length() - 1;
+            str.append(QString().fill(QLatin1Char('0'), precision));
+            return;
         }
-    }
+    } else {
+        int desiredLength = decimalSymbolPos + precision + 1;
+        int extraZeroNeeded = desiredLength - str.length();
 
-    // fill up with more than enough zeroes (in case fractional part too short)
-    // In case the number was originally shorter than precision, +1 is needed
-
-    str.append(QString().fill(QLatin1Char('0'), precision + 1));
-    // Now decide whether to round up or down
-    const char last_char = str.at(decimalSymbolPos + precision + 1).toLatin1();
-    switch (last_char) {
-    case '0':
-    case '1':
-    case '2':
-    case '3':
-    case '4':
-        // nothing to do, rounding down
-        break;
-    case '5':
-    case '6':
-    case '7':
-    case '8':
-    case '9':
-        // rounding up
-        increment(str, decimalSymbolPos + precision);
-        break;
-    default:
-        break;
-    }
-
-    decimalSymbolPos = str.indexOf(QLatin1Char('.'));
-    str.truncate(decimalSymbolPos + precision + 1);
-
-    // if precision == 0 delete also '.'
-    if (precision == 0) {
-        str = str.section(QLatin1Char('.'), 0, 0);
+        if (extraZeroNeeded == 0) {
+            return;
+        } else if (extraZeroNeeded > 0) {
+            str.append(QString().fill(QLatin1Char('0'), extraZeroNeeded));
+        } else {
+            // decide whether to round up or down based on the digit after desired length
+            if (str.at(desiredLength).toLatin1() >= '5') {
+                increment(str, desiredLength - 1);
+            }
+            decimalSymbolPos = str.indexOf(QLatin1Char('.'));
+            str.truncate(decimalSymbolPos + precision + 1);
+        }
     }
 }
 }
