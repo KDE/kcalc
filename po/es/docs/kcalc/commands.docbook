@@ -173,23 +173,6 @@
 ><guimenu
 >Preferencias</guimenu
 > <guimenuitem
->Mostrar historial</guimenuitem
-> </menuchoice
-></term>
-<listitem
-><para
-><action
->Muestra el historial.</action>
-</para
-></listitem>
-</varlistentry>
-
-<varlistentry>
-<term
-><menuchoice
-><guimenu
->Preferencias</guimenu
-> <guimenuitem
 >Botones de constantes</guimenuitem
 > </menuchoice
 ></term>

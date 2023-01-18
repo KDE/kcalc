@@ -5,13 +5,13 @@
 # Alonso Lara <jlaram@nexo.es>, 1999.
 # Pablo de Vicente <vicente@oan.es>, 2000-2002.
 # Eloy Cuadra <ecuadra@eloihr.net>, 2003, 2004.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2018, 2019, 2020, 2021, 2022.
+# Eloy Cuadra <ecuadra@eloihr.net>, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2018, 2019, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-20 00:48+0000\n"
-"PO-Revision-Date: 2022-08-23 19:01+0200\n"
+"PO-Revision-Date: 2023-01-18 01:34+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "First Translator: Alonso Lara <jlaram@nexo.es>\n"
-"X-Generator: Lokalize 22.07.90\n"
+"X-Generator: Lokalize 22.12.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -757,7 +757,7 @@ msgstr "Exponente"
 #: kcalc.cpp:922 kcalc.ui:1411
 #, kde-format
 msgid "Shift"
-msgstr "Mayúsculas"
+msgstr "Cambio"
 
 #: kcalc.cpp:1078
 #, kde-format
@@ -2071,7 +2071,7 @@ msgstr "Normal"
 #, kde-format
 msgctxt "Second button functions are active"
 msgid "SHIFT"
-msgstr "Mayúsculas"
+msgstr "Cambio"
 
 #: kcalc_statusbar.cpp:19 kcalc_statusbar.cpp:101
 #, kde-format

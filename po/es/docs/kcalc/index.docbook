@@ -9,7 +9,7 @@
 <book id="kcalc" lang="&language;">
 <bookinfo>
 <title
->El manual de &kcalc;</title>
+>Manual de &kcalc;</title>
 
 <authorgroup>
 <author
@@ -238,34 +238,13 @@
 <listitem>
 <para
 >Para proporcionar fácil acceso a todas las funciones en los modos avanzados de &kcalc;, muchas teclas tienen una segunda función. Pulse el botón <guibutton
->&Shift;</guibutton
+>Cambio</guibutton
 > o pulse el acceso rápido <keycombo action="simul"
 >&Ctrl;<keycap
 >2</keycap
 ></keycombo
 > para hacer visible la segunda función de los botones.</para
 > 
-</listitem>
-</varlistentry>
-
-<varlistentry>
-<term
->Historial</term>
-<listitem>
-<para
->El área del historial muestra todos los cálculos realizados en &kcalc; durante la sesión activa de &kcalc;. Haga clic en <guibutton
->AC</guibutton
-> o pulse el acceso rápido <keycap
->Supr</keycap
-> para borrar el contenido del historial. Para activarlo y desactivarlo, use la opción <guilabel
->Mostrar historial</guilabel
-> del menú <guimenu
->Preferencias</guimenu
-> o pulse <keycombo action="simul"
->&Ctrl;<keycap
->H</keycap
-></keycombo
->.</para>
 </listitem>
 </varlistentry>
 
@@ -323,7 +302,9 @@
 
 <row
 ><entry
->&Shift; <guibutton
+><guibutton
+>Cambio</guibutton
+> <guibutton
 >Sen</guibutton
 > o <guibutton
 >ArcSen</guibutton
@@ -343,7 +324,9 @@
 
 <row
 ><entry
->&Shift; <guibutton
+><guibutton
+>Cambio</guibutton
+> <guibutton
 >Cos</guibutton
 > o <guibutton
 >ArcCos</guibutton
@@ -363,7 +346,9 @@
 
 <row
 ><entry
->&Shift; <guibutton
+><guibutton
+>Cambio</guibutton
+> <guibutton
 >Tan</guibutton
 > o <guibutton
 >ArcTan</guibutton
@@ -383,7 +368,9 @@
 
 <row
 ><entry
->&Shift; <guibutton
+><guibutton
+>Cambio</guibutton
+> <guibutton
 >Log</guibutton
 > o 10<superscript
 >x</superscript
@@ -403,7 +390,9 @@
 
 <row
 ><entry
->&Shift; <guibutton
+><guibutton
+>Cambio</guibutton
+> <guibutton
 >Ln</guibutton
 > o e<superscript
 >x</superscript
@@ -442,7 +431,7 @@
 <row
 ><entry
 ><guibutton
->&Shift;</guibutton
+>Cambio</guibutton
 > <guibutton
 >Mod</guibutton
 > o <guibutton
@@ -464,7 +453,7 @@
 <row
 ><entry
 ><guibutton
->&Shift;</guibutton
+>Cambio</guibutton
 > <guibutton
 >1/x</guibutton
 > o <guibutton
@@ -495,7 +484,7 @@
  <row
 ><entry
 ><guibutton
->&Shift;</guibutton
+>Cambio</guibutton
 > <guibutton
 >x²</guibutton
 > o <guibutton
@@ -516,7 +505,9 @@
 
 <row
 ><entry
->&Shift; x<superscript
+><guibutton
+>Cambio</guibutton
+> x<superscript
 >y</superscript
 > o x<superscript
 >1/y</superscript
@@ -537,7 +528,7 @@
 <row
 ><entry
 ><guibutton
->&Shift;</guibutton
+>Cambio</guibutton
 > <guibutton
 >x³</guibutton
 > o <guibutton
@@ -602,7 +593,7 @@
 <row
 ><entry
 ><guibutton
->&Shift;</guibutton
+>Cambio</guibutton
 > <guibutton
 >N</guibutton
 > o <guibutton
@@ -624,7 +615,7 @@
 <row
 ><entry
 ><guibutton
->&Shift;</guibutton
+>Cambio</guibutton
 > <guibutton
 >Mea</guibutton
 > o <guibutton
@@ -646,7 +637,7 @@
 <row
 ><entry
 ><guibutton
->&Shift;</guibutton
+>Cambio</guibutton
 > &sgr;<subscript
 >N</subscript
 > o &sgr;<subscript
@@ -677,7 +668,7 @@
 <row
 ><entry
 ><guibutton
->&Shift;</guibutton
+>Cambio</guibutton
 > <guibutton
 >Dat</guibutton
 > o <guibutton
@@ -944,7 +935,7 @@
 
 <para
 >Para almacenar el número mostrado en la pantalla de &kcalc; en uno de los seis botones de constantes, pulse primero <guibutton
->&Shift;</guibutton
+>Cambio</guibutton
 > y a continuación el botón deseado, de <guibutton
 >C1</guibutton
 > a <guibutton
@@ -1095,7 +1086,7 @@
 ></entry>
 <entry
 > <guibutton
->&Shift;</guibutton
+>Cambio</guibutton
 ></entry>
 <entry
 >Segunda función para este botón. Por ejemplo, si quiere arcsen, escriba <userinput
@@ -1259,7 +1250,7 @@
 ></entry>
 <entry
 >O lógico. Nota: <guibutton
->&Shift;</guibutton
+>Cambio</guibutton
 > <guibutton
 >O</guibutton
 > es XOR (O exclusivo)</entry
@@ -1457,20 +1448,20 @@
 <varlistentry>
 <term
 ><guibutton
->&Shift;</guibutton
+>Cambio</guibutton
 > <guibutton
 >IntDiv</guibutton
 > hace la división entera del número mostrado por el siguiente número que se introduzca.</term>
 <listitem
 ><para
 ><userinput
->22 Mayúsculas IntDiv 8 = </userinput
+>22 Cambio IntDiv 8 = </userinput
 > obtendrá el resultado <emphasis
 >2</emphasis
 ></para>
 <para
 ><userinput
->22.345 Mayúsculas IntDiv 8 = </userinput
+>22.345 Cambio IntDiv 8 = </userinput
 > también obtiene <emphasis
 >2</emphasis
 > </para
@@ -1705,7 +1696,7 @@
 <answer
 ><para
 >Pulse <userinput
->1 Mayúsculas e<superscript
+>1 Cambio e<superscript
 >x</superscript
 ></userinput
 > en la ventana de &kcalc;, pulse <userinput
