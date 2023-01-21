@@ -754,6 +754,7 @@ msgstr "x a la potència d'1/y"
 msgid "Exponent"
 msgstr "Exponent"
 
+# skip-rule: k-Shift-1
 #. i18n: ectx: property (text), widget (KCalcButton, pbShift)
 #: kcalc.cpp:922 kcalc.ui:1411
 #, kde-format
