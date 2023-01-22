@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-20 00:48+0000\n"
-"PO-Revision-Date: 2022-09-29 08:27+0200\n"
+"PO-Revision-Date: 2023-01-21 19:35+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -183,7 +183,7 @@ msgstr "ციფრების &მაქსიმალური რაოდ
 #: general.ui:41
 #, kde-format
 msgid "Maximum number of digits displayed"
-msgstr ""
+msgstr "ნაჩვენები ციფრების რაოდენობა"
 
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, kcfg_Precision)
 #: general.ui:44
@@ -204,13 +204,13 @@ msgstr ""
 #: general.ui:54
 #, kde-format
 msgid "Set &decimal precision"
-msgstr ""
+msgstr "&ათობითის სიზუსტის დაყენება"
 
 #. i18n: ectx: property (toolTip), widget (QSpinBox, kcfg_FixedPrecision)
 #: general.ui:64
 #, kde-format
 msgid "Number of fixed decimal digits"
-msgstr ""
+msgstr "ფიქსირებული ათობითი ციფრების რაოდენობა"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: general.ui:89
@@ -222,7 +222,7 @@ msgstr "დაჯგუფება"
 #: general.ui:97
 #, kde-format
 msgid "Whether to group digits"
-msgstr ""
+msgstr "ციფრების დაჯგუფება"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_GroupDigits)
 #: general.ui:100
@@ -258,13 +258,13 @@ msgstr "სხვანი"
 #: general.ui:160
 #, kde-format
 msgid "Whether to beep on error"
-msgstr ""
+msgstr "დავაპიპინო შეცდომისას, თუ არა"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_Beep)
 #: general.ui:163
 #, kde-format
 msgid "&Beep on error"
-msgstr ""
+msgstr "პიპინი &შეცდომისას"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_CaptionResult)
 #: general.ui:173
@@ -276,7 +276,7 @@ msgstr ""
 #: general.ui:176
 #, kde-format
 msgid "Show &result in window title"
-msgstr ""
+msgstr "&შედეგის ფანჯრის სათაურში ჩვენება"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_TwosComplement)
 #: general.ui:183
@@ -297,13 +297,13 @@ msgstr ""
 #: general.ui:189
 #, kde-format
 msgid "Two's complement"
-msgstr ""
+msgstr "დამატებითი კოდი"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_RepeatLastOperation)
 #: general.ui:199
 #, kde-format
 msgid "Repeat operation for each result"
-msgstr ""
+msgstr "ოპერაციის გამეორება თითოეული შედეგისთვის"
 
 #: kcalc.cpp:179
 #, kde-format
@@ -649,7 +649,7 @@ msgstr "მოდულო"
 #, kde-format
 msgctxt "Integer division"
 msgid "IntDiv"
-msgstr ""
+msgstr "IntDiv"
 
 #: kcalc.cpp:579
 #, kde-format
@@ -666,7 +666,7 @@ msgstr "1/x"
 #: kcalc.cpp:585 kcalc.ui:638
 #, kde-format
 msgid "Reciprocal"
-msgstr ""
+msgstr "უკუღმა მნიშვნელობა"
 
 #: kcalc.cpp:586
 #, kde-format
@@ -677,7 +677,7 @@ msgstr "nCm"
 #: kcalc.cpp:586
 #, kde-format
 msgid "n Choose m"
-msgstr ""
+msgstr "n Choose m"
 
 #: kcalc.cpp:591
 #, kde-format
@@ -772,12 +772,12 @@ msgstr "] = "
 #: kcalc.cpp:1681 kcalc.cpp:1682
 #, kde-format
 msgid "Last stat item erased"
-msgstr ""
+msgstr "უკანასკნელი სტატისტიკური ჩანაწერი წაშლილია"
 
 #: kcalc.cpp:1697 kcalc.cpp:1698
 #, kde-format
 msgid "Stat mem cleared"
-msgstr ""
+msgstr "სტატისტიკური მეხსიერება გასუფთავებულია"
 
 #: kcalc.cpp:1758
 #, kde-format
@@ -828,6 +828,10 @@ msgid ""
 "Copyright © 2003-2005, Klaus Niederkrüger\n"
 "Copyright © 1996-2000, Bernd Johannes Wuebben"
 msgstr ""
+"Copyright © 2008-2013, Evan Teran\n"
+"Copyright © 2000-2008, KDE -ის გუნდი\n"
+"Copyright © 2003-2005, Klaus Niederkrüger\n"
+"Copyright © 1996-2000, Bernd Johannes Wuebben"
 
 #: kcalc.cpp:2846
 #, kde-format
@@ -1037,19 +1041,19 @@ msgstr ""
 #: kcalc.kcfg:124
 #, kde-format
 msgid "Whether to beep on error."
-msgstr ""
+msgstr "დავაპიპინო შეცდომისას, თუ არა."
 
 #. i18n: ectx: label, entry (CaptionResult), group (General)
 #: kcalc.kcfg:128
 #, kde-format
 msgid "Whether to show the result in the window title."
-msgstr ""
+msgstr "შედეგის ფანჯრის სათაურში ჩვენება."
 
 #. i18n: ectx: label, entry (GroupDigits), group (General)
 #: kcalc.kcfg:132
 #, kde-format
 msgid "Whether to group digits."
-msgstr ""
+msgstr "ციფრების დაჯგუფება."
 
 #. i18n: ectx: label, entry (TwosComplement), group (General)
 #: kcalc.kcfg:136
@@ -1127,19 +1131,19 @@ msgstr ""
 #: kcalc.kcfg:173
 #, kde-format
 msgid "Whether to show constant buttons."
-msgstr ""
+msgstr "მუდმივის ღილაკების ჩვენება."
 
 #. i18n: ectx: label, entry (ShowHistory), group (General)
 #: kcalc.kcfg:177
 #, kde-format
 msgid "Whether to show the history window."
-msgstr ""
+msgstr "ისტორიის ფანჯრის ჩვენება."
 
 #. i18n: ectx: label, entry (AngleMode), group (General)
 #: kcalc.kcfg:181
 #, kde-format
 msgid "Degrees, radians or grads"
-msgstr ""
+msgstr "გრადუსები, რადიანები თუ გრადები"
 
 #. i18n: ectx: label, entry (BaseMode), group (General)
 #: kcalc.kcfg:185
@@ -1251,7 +1255,7 @@ msgstr "C6"
 #: kcalc.kcfg:239
 #, kde-format
 msgid "List of user programmable constants"
-msgstr ""
+msgstr "მომხმარებლის მიერ პროგრამირებადი მუდმივების სია"
 
 #. i18n: ectx: property (toolTip), widget (KCalcBitset, mBitset)
 #: kcalc.ui:58
@@ -1263,31 +1267,31 @@ msgstr ""
 #: kcalc.ui:69
 #, kde-format
 msgid "&Deg"
-msgstr ""
+msgstr "&გრად"
 
 #. i18n: ectx: property (text), widget (QRadioButton, radRadio)
 #: kcalc.ui:76
 #, kde-format
 msgid "&Rad"
-msgstr ""
+msgstr "&რად"
 
 #. i18n: ectx: property (text), widget (QRadioButton, gradRadio)
 #: kcalc.ui:83
 #, kde-format
 msgid "&Grad"
-msgstr ""
+msgstr "&გრად"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, hexRadio)
 #: kcalc.ui:111
 #, kde-format
 msgid "Switch base to hexadecimal."
-msgstr ""
+msgstr "თექვსმეტობითზე გადართვა."
 
 #. i18n: ectx: property (text), widget (QRadioButton, hexRadio)
 #: kcalc.ui:114
 #, kde-format
 msgid "He&x"
-msgstr ""
+msgstr "&თექვს"
 
 #. i18n: ectx: property (text), widget (KSqueezedTextLabel, hexDisplay)
 #. i18n: ectx: property (text), widget (KSqueezedTextLabel, decDisplay)
@@ -1296,55 +1300,55 @@ msgstr ""
 #: kcalc.ui:133 kcalc.ui:169 kcalc.ui:205 kcalc.ui:241
 #, kde-format
 msgid "KSq…bel"
-msgstr ""
+msgstr "KSq…bel"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, decRadio)
 #: kcalc.ui:147
 #, kde-format
 msgid "Switch base to decimal."
-msgstr ""
+msgstr "ათობითზე გადართვა."
 
 #. i18n: ectx: property (text), widget (QRadioButton, decRadio)
 #: kcalc.ui:150
 #, kde-format
 msgid "&Dec"
-msgstr ""
+msgstr "&ათი"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, octRadio)
 #: kcalc.ui:183
 #, kde-format
 msgid "Switch base to octal."
-msgstr ""
+msgstr "რვაობითზე გადართვა."
 
 #. i18n: ectx: property (text), widget (QRadioButton, octRadio)
 #: kcalc.ui:186
 #, kde-format
 msgid "Oc&t"
-msgstr ""
+msgstr "&რვა"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, binRadio)
 #: kcalc.ui:219
 #, kde-format
 msgid "Switch base to binary."
-msgstr ""
+msgstr "ბინარულზე გადართვა."
 
 #. i18n: ectx: property (text), widget (QRadioButton, binRadio)
 #: kcalc.ui:222
 #, kde-format
 msgid "&Bin"
-msgstr ""
+msgstr "&ბინ"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbCSt)
 #: kcalc.ui:300
 #, kde-format
 msgid "Clear data store"
-msgstr ""
+msgstr "მონაცემების საცავის გასუფთავება"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbCSt)
 #: kcalc.ui:303
 #, kde-format
 msgid "CSt"
-msgstr ""
+msgstr "CSt"
 
 #. i18n: ectx: property (text), widget (KCalcConstButton, pbC6)
 #: kcalc.ui:316
@@ -1356,13 +1360,13 @@ msgstr "C6"
 #: kcalc.ui:332
 #, kde-format
 msgid "Bitwise OR"
-msgstr ""
+msgstr "ბიტური ან"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbOR)
 #: kcalc.ui:335
 #, kde-format
 msgid "OR"
-msgstr ""
+msgstr "ან"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbSd)
 #: kcalc.ui:351
@@ -1380,13 +1384,13 @@ msgstr "C1"
 #: kcalc.ui:380
 #, kde-format
 msgid "Hyperbolic mode"
-msgstr ""
+msgstr "ჰიპერბოლური რეჟიმი"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbHyp)
 #: kcalc.ui:383
 #, kde-format
 msgid "Hyp"
-msgstr ""
+msgstr "Hyp"
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbHyp)
 #: kcalc.ui:386
@@ -1398,13 +1402,13 @@ msgstr "H"
 #: kcalc.ui:402
 #, kde-format
 msgid "Right bit shift"
-msgstr ""
+msgstr "ბიტური წანაცვლება მარჯვნივ"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbRsh)
 #: kcalc.ui:405
 #, kde-format
 msgid "Rsh"
-msgstr ""
+msgstr "ბ⇒"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbLn)
 #: kcalc.ui:421
@@ -1429,13 +1433,13 @@ msgstr "კუბი"
 #: kcalc.ui:440
 #, kde-format
 msgid "x3"
-msgstr ""
+msgstr "x3"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbCos)
 #: kcalc.ui:456
 #, kde-format
 msgid "Cos"
-msgstr ""
+msgstr "Cos"
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbCos)
 #. i18n: ectx: property (text), widget (KCalcButton, pbC)
@@ -1444,13 +1448,13 @@ msgstr ""
 #: kcalc.ui:459 kcalc.ui:874 kcalc.ui:877 kcalc.ui:1331
 #, kde-format
 msgid "C"
-msgstr ""
+msgstr "C"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbEE)
 #: kcalc.ui:475
 #, kde-format
 msgid "EXP"
-msgstr ""
+msgstr "EXP"
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbEE)
 #. i18n: ectx: property (text), widget (KCalcButton, pbE)
@@ -1464,19 +1468,19 @@ msgstr "ეგზა"
 #: kcalc.ui:494
 #, kde-format
 msgid "Mod"
-msgstr ""
+msgstr "მოდი"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbSquare)
 #: kcalc.ui:510
 #, kde-format
 msgid "x2"
-msgstr ""
+msgstr "x2"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbTan)
 #: kcalc.ui:526
 #, kde-format
 msgid "Tan"
-msgstr ""
+msgstr "Tg"
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbTan)
 #: kcalc.ui:529
@@ -1490,7 +1494,7 @@ msgstr "ტერა"
 #: kcalc.ui:542 kcalc.ui:545 kcalc.ui:679
 #, kde-format
 msgid "D"
-msgstr ""
+msgstr "რე"
 
 #. i18n: ectx: property (text), widget (KCalcConstButton, pbC4)
 #: kcalc.ui:558
@@ -1502,7 +1506,7 @@ msgstr "C4"
 #: kcalc.ui:574
 #, kde-format
 msgid "Bitwise XOR"
-msgstr ""
+msgstr "ბიტური არა-ან"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbXOR)
 #: kcalc.ui:577
@@ -1515,25 +1519,25 @@ msgstr "XOR"
 #: kcalc.ui:590 kcalc.ui:593
 #, kde-format
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbAND)
 #: kcalc.ui:606
 #, kde-format
 msgid "Bitwise AND"
-msgstr ""
+msgstr "ბიტური და"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbAND)
 #: kcalc.ui:609
 #, kde-format
 msgid "AND"
-msgstr ""
+msgstr "და"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbReci)
 #: kcalc.ui:641
 #, kde-format
 msgid "1/X"
-msgstr ""
+msgstr "1/X"
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbReci)
 #: kcalc.ui:644
@@ -1545,19 +1549,19 @@ msgstr "მჯ"
 #: kcalc.ui:657
 #, kde-format
 msgid "Left bit shift"
-msgstr ""
+msgstr "ბიტური წანაცვლება მარცხნივ"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbLsh)
 #: kcalc.ui:660
 #, kde-format
 msgid "Lsh"
-msgstr ""
+msgstr "Lsh"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbDat)
 #: kcalc.ui:676
 #, kde-format
 msgid "Dat"
-msgstr ""
+msgstr "Dat"
 
 #. i18n: ectx: property (text), widget (KCalcConstButton, pbC3)
 #: kcalc.ui:692
@@ -1569,31 +1573,31 @@ msgstr "C3"
 #: kcalc.ui:711
 #, kde-format
 msgid "Sin"
-msgstr ""
+msgstr "Sin"
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbSin)
 #: kcalc.ui:714
 #, kde-format
 msgid "S"
-msgstr ""
+msgstr "სინ"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMean)
 #: kcalc.ui:730
 #, kde-format
 msgid "Mea"
-msgstr ""
+msgstr "Mea"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMed)
 #: kcalc.ui:746
 #, kde-format
 msgid "Med"
-msgstr ""
+msgstr "Med"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPower)
 #: kcalc.ui:762
 #, kde-format
 msgid "pow"
-msgstr ""
+msgstr "xⁿ"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbB)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbB)
@@ -1606,13 +1610,13 @@ msgstr "ბ"
 #: kcalc.ui:807
 #, kde-format
 msgid "One's complement"
-msgstr ""
+msgstr "დამატება"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbCmp)
 #: kcalc.ui:810
 #, kde-format
 msgid "Cmp"
-msgstr ""
+msgstr "Cmp"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbLog)
 #: kcalc.ui:826
@@ -1800,7 +1804,7 @@ msgstr "="
 #: kcalc.ui:1205
 #, kde-format
 msgid "Decimal point"
-msgstr ""
+msgstr "ათობითი წერტილი"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPeriod)
 #: kcalc.ui:1208
@@ -1825,19 +1829,19 @@ msgstr "AC"
 #: kcalc.ui:1264
 #, kde-format
 msgid "Memory clear"
-msgstr ""
+msgstr "მეხსიერების გასუფთავება"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMemClear)
 #: kcalc.ui:1267
 #, kde-format
 msgid "MC"
-msgstr ""
+msgstr "MC"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMemRecall)
 #: kcalc.ui:1280
 #, kde-format
 msgid "Memory recall"
-msgstr ""
+msgstr "მეხსერებიდან გახსენება"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMemRecall)
 #: kcalc.ui:1283
@@ -1861,14 +1865,14 @@ msgstr "+/−"
 #: kcalc.ui:1312
 #, kde-format
 msgid "Open parenthesis"
-msgstr ""
+msgstr "მშობლობის გახსნა"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbParenOpen)
 #: kcalc.ui:1315
 #, kde-format
 msgctxt "( calculator button"
 msgid "("
-msgstr ""
+msgstr "("
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbClear)
 #: kcalc.ui:1328
@@ -1892,7 +1896,7 @@ msgstr "M+"
 #: kcalc.ui:1360
 #, kde-format
 msgid "Memory store"
-msgstr ""
+msgstr "მეხსიერებაში დამახსოვრება"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMemStore)
 #: kcalc.ui:1363
@@ -1904,7 +1908,7 @@ msgstr "MS"
 #: kcalc.ui:1376
 #, kde-format
 msgid "Close parenthesis"
-msgstr ""
+msgstr "მშობლობის დახურვა"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbParenClose)
 #: kcalc.ui:1379
@@ -1929,7 +1933,7 @@ msgstr "Backspace"
 #: kcalc.ui:1408
 #, kde-format
 msgid "Second button function"
-msgstr ""
+msgstr "მეორე ღილაკის ფუნქცია"
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbShift)
 #: kcalc.ui:1414
@@ -1940,7 +1944,7 @@ msgstr "Ctrl+2"
 #: kcalc_bitset.cpp:57
 #, kde-format
 msgid "Bit %1 = %2"
-msgstr ""
+msgstr "ბიტი %1 = %2"
 
 #: kcalc_const_button.cpp:24 kcalc_const_button.cpp:37
 #, kde-format
@@ -1951,27 +1955,27 @@ msgstr "მაღაზია"
 #: kcalc_const_button.cpp:24 kcalc_const_button.cpp:37
 #, kde-format
 msgid "Write display data into memory"
-msgstr ""
+msgstr "ეკრანის მონაცემების მეხსიერებაში ჩაწერა"
 
 #: kcalc_const_button.cpp:82
 #, kde-format
 msgid "Set Name"
-msgstr ""
+msgstr "სახელის დაყენება"
 
 #: kcalc_const_button.cpp:87
 #, kde-format
 msgid "Choose From List"
-msgstr ""
+msgstr "სიიდან არჩევა"
 
 #: kcalc_const_button.cpp:102
 #, kde-format
 msgid "New Name for Constant"
-msgstr ""
+msgstr "კონსტანტის ახალი სახელი"
 
 #: kcalc_const_button.cpp:102
 #, kde-format
 msgid "New name:"
-msgstr ""
+msgstr "ახალი სახელი:"
 
 #: kcalc_const_menu.cpp:94
 #, kde-format
@@ -1981,34 +1985,34 @@ msgstr "მათემატიკა"
 #: kcalc_const_menu.cpp:95
 #, kde-format
 msgid "Electromagnetism"
-msgstr ""
+msgstr "ელექტრომაგნეტიზმი"
 
 #: kcalc_const_menu.cpp:96
 #, kde-format
 msgid "Atomic && Nuclear"
-msgstr ""
+msgstr "ატომური და ბირთვული"
 
 #: kcalc_const_menu.cpp:97
 #, kde-format
 msgid "Thermodynamics"
-msgstr ""
+msgstr "თერმოდინამიკა"
 
 #: kcalc_const_menu.cpp:98
 #, kde-format
 msgid "Gravitation"
-msgstr ""
+msgstr "გრავიტაცია"
 
 #: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:56
 #, kde-format
 msgctxt "Normal button functions are active"
 msgid "NORM"
-msgstr ""
+msgstr "ნორმ"
 
 #: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:56
 #, kde-format
 msgctxt "Second button functions are active"
 msgid "SHIFT"
-msgstr ""
+msgstr "SHIFT"
 
 #: kcalc_statusbar.cpp:19 kcalc_statusbar.cpp:101
 #, kde-format
@@ -2020,7 +2024,7 @@ msgstr "ო"
 #, kde-format
 msgctxt "@label accessibility description of the calculation result display"
 msgid "Result Display"
-msgstr ""
+msgstr "შედეგის ჩვენება"
 
 #. i18n: ectx: Menu (settings)
 #: kcalcui.rc:4
@@ -2038,95 +2042,95 @@ msgstr "პი"
 #: scienceconstants.xml:7
 #, kde-format
 msgid "Euler Number"
-msgstr ""
+msgstr "ეილერის რიცხვი"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:11
 #, kde-format
 msgid "Golden Ratio"
-msgstr ""
+msgstr "ოქროს ფარდობა"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:15
 #, kde-format
 msgid "Light Speed"
-msgstr ""
+msgstr "სინათლის სიჩქარე"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:19
 #, kde-format
 msgid "Planck's Constant"
-msgstr ""
+msgstr "პლანკის კონსტანტა"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:23
 #, kde-format
 msgid "Gravitational Constant"
-msgstr ""
+msgstr "გრავიტაციული მუდმივა"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:27
 #, kde-format
 msgid "Earth Acceleration"
-msgstr ""
+msgstr "დედამიწის აჩქარება"
 
 #. i18n: tag constant attribute name
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:31 scienceconstants.xml:35
 #, kde-format
 msgid "Elementary Charge"
-msgstr ""
+msgstr "ელექტრული მუხტი"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:39
 #, kde-format
 msgid "Impedance of Vacuum"
-msgstr ""
+msgstr "ვაკუუმის გამტარიანობა"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:43
 #, kde-format
 msgid "Fine-Structure Constant"
-msgstr ""
+msgstr "თხელი სტრუქტურის მუდმივა"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:47
 #, kde-format
 msgid "Permeability of Vacuum"
-msgstr ""
+msgstr "ვაკუუმის გამტარიანობა"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:51
 #, kde-format
 msgid "Permittivity of Vacuum"
-msgstr ""
+msgstr "ვაკუუმის დიელექტრული შეღწევადობა"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:55
 #, kde-format
 msgid "Boltzmann Constant"
-msgstr ""
+msgstr "ბოლცმანის მუდმივა"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:60
 #, kde-format
 msgid "Atomic Mass Unit"
-msgstr ""
+msgstr "ატომური მასის ერთეული"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:64
 #, kde-format
 msgid "Molar Gas Constant"
-msgstr ""
+msgstr "აირის უნივერსალური მუდმივა"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:68
 #, kde-format
 msgid "Stefan-Boltzmann Constant"
-msgstr ""
+msgstr "შტეფან-ბოლცმანის მუდმივა"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:72
 #, kde-format
 msgid "Avogadro's Number"
-msgstr ""
+msgstr "ავოგადროს მუდმივა"
