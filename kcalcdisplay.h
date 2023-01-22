@@ -96,7 +96,7 @@ protected:
 private:
     bool changeSign();
     void invertColors();
-    void initStyleOption(QStyleOptionFrame *option) const;
+    void initStyleOption(QStyleOptionFrame *option) const override;
     void updateFont();
 
 private Q_SLOTS:
