@@ -8,7 +8,7 @@ set (RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE
 project(kcalc VERSION ${RELEASE_SERVICE_VERSION})
 
 set(QT_MIN_VERSION "5.15.2")
-set(KF_MIN_VERSION "5.91.0")
+set(KF_MIN_VERSION "5.102.0")
 
 find_package (ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
 set (CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
@@ -32,6 +32,14 @@ ecm_setup_version(${RELEASE_SERVICE_VERSION} VARIABLE_PREFIX KCALC
                   VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kcalc_version.h"
 )
 
+if (QT_MAJOR_VERSION STREQUAL "6")
+    set(QT_MIN_VERSION "6.4.0")
+    set(KF_MIN_VERSION "5.240.0")
+    set(KF_MAJOR_VERSION "6")
+else()
+    set(KF_MAJOR_VERSION "5")
+endif()
+
 find_package (Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
     Core
     Widgets
@@ -40,7 +48,7 @@ if (QT_MAJOR_VERSION STREQUAL "6")
     find_package(Qt6Core5Compat)
 endif()
 
-find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+find_package(KF${KF_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS
     CoreAddons
     Crash
     Config
@@ -51,8 +59,8 @@ find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     XmlGui
 )
 
-find_package(KF5DocTools ${KF_MIN_VERSION})
-set_package_properties(KF5DocTools PROPERTIES DESCRIPTION
+find_package(KF${KF_MAJOR_VERSION}DocTools ${KF_MIN_VERSION})
+set_package_properties(KF${KF_MAJOR_VERSION}DocTools PROPERTIES DESCRIPTION
     "Tools to generate documentation"
     TYPE OPTIONAL
 )
@@ -83,7 +91,7 @@ check_type_size("signed long"    SIZEOF_SIGNED_LONG)
 check_type_size("unsigned long"  SIZEOF_UNSIGNED_LONG)
 
 configure_file(config-kcalc.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
-ecm_set_disabled_deprecation_versions(QT 5.15.2  KF 5.101.0)
+ecm_set_disabled_deprecation_versions(QT 6.4  KF 5.101.0)
 
 add_subdirectory(knumber)
 add_executable(kcalc)
@@ -140,13 +148,13 @@ endif()
 target_link_libraries(kcalc
     Qt${QT_MAJOR_VERSION}::Core
     Qt${QT_MAJOR_VERSION}::Widgets
-    KF5::CoreAddons
-    KF5::ConfigWidgets
-    KF5::GuiAddons
-    KF5::I18n
-    KF5::Notifications
-    KF5::XmlGui
-    KF5::Crash
+    KF${KF_MAJOR_VERSION}::CoreAddons
+    KF${KF_MAJOR_VERSION}::ConfigWidgets
+    KF${KF_MAJOR_VERSION}::GuiAddons
+    KF${KF_MAJOR_VERSION}::I18n
+    KF${KF_MAJOR_VERSION}::Notifications
+    KF${KF_MAJOR_VERSION}::XmlGui
+    KF${KF_MAJOR_VERSION}::Crash
     knumber
 )
 
@@ -166,7 +174,7 @@ install(
 )
 
 ki18n_install(po)
-if (KF5DocTools_FOUND)
+if (KF${KF_MAJOR_VERSION}DocTools_FOUND)
     kdoctools_install(po)
     add_subdirectory(doc)
 endif()
