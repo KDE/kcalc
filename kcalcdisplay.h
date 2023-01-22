@@ -96,7 +96,11 @@ protected:
 private:
     bool changeSign();
     void invertColors();
-    void initStyleOption(QStyleOptionFrame *option) const override;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    void initStyleOption(QStyleOptionFrame *option) const override; // virtual in Qt6
+#else
+    void initStyleOption(QStyleOptionFrame *option) const;
+#endif
     void updateFont();
 
 private Q_SLOTS:
