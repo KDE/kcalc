@@ -33,9 +33,20 @@ KCalcHistory::~KCalcHistory() = default;
 //------------------------------------------------------------------------------
 void KCalcHistory::addToHistory(const QString &str, bool set_new_line_)
 {
+    // QTextEdit's cursor location might be changed by mouse clicks.
+    // We have to move the cursor to correct position.
+
+    //  Ensures the cursor goes back to topmost line's end during a calculation.
+    //  1 + 1 + _
+    if (!add_new_line_ && !set_new_line_) {
+        moveCursor(QTextCursor::Start);
+        moveCursor(QTextCursor::EndOfLine);
+    }
+
     // add_new_line_ is false on launch and after clearHistory()
     // so the first line doesn't get an unnecessary new line
     if (add_new_line_) {
+        moveCursor(QTextCursor::Start);
         insertHtml(QStringLiteral("<br>"));
         moveCursor(QTextCursor::Start);
         add_new_line_ = false;
