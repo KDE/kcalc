@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: kdeutils-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-16 01:01+0000\n"
-"PO-Revision-Date: 2023-01-18 22:29+0300\n"
+"PO-Revision-Date: 2023-02-07 00:35+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.12.1\n"
+"X-Generator: Lokalize 22.12.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -204,9 +204,9 @@ msgid ""
 "display. This setting gives the maximum number of digits displayed, before "
 "KCalc starts using scientific notation, i.e. notation of the type 2.34e12."
 msgstr ""
-"KCalc, ekrana sığandan çok daha fazla rakamlı sayıları hesaplayabilir. Bu "
-"ayar, KCalc 2.34e12 gibi bilimsel kipte açılmadan önce gösterilecek en fazla "
-"rakam sayısını ayarlar."
+"K Hesap, ekrana sığan sayıdan çok daha fazla basamakla işlem yapabilir. Bu "
+"ayar, K Hesap bilimsel gösterimi, yani 2.34e12 tipi gösterimi kullanmaya "
+"başlamadan önce görüntülenen maksimum basamak sayısını verir."
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_Fixed)
 #: general.ui:51
@@ -831,7 +831,7 @@ msgstr "Sabitleri Tanımla"
 #: kcalc.cpp:2837 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
-msgstr "KCalc"
+msgstr "K Hesap"
 
 #: kcalc.cpp:2839
 #, kde-format
@@ -1043,10 +1043,10 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"\tKCalcekrana sığandan çok daha fazla rakamlı sayıları hesaplayabilir.\n"
-"\tBu ayar, KCalc 2.34e12 gibi bilimsel kipte açılmadan önce\n"
-"\tgösterilecek en fazla rakam sayısını ayarlar\n"
-"\t.\n"
+"\tK Hesap, ekrana sığan sayıdan çok daha fazla basamakla işlem yapabilir.\n"
+"\tBu ayar, K Hesap bilimsel gösterimi, yani 2.34e12 tipi gösterimi\n"
+"\tkullanmaya başlamadan önce görüntülenen maksimum basamak\n"
+"\tsayısını verir.\n"
 "      "
 
 #. i18n: ectx: label, entry (FixedPrecision), group (Precision)
