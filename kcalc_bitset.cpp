@@ -29,7 +29,7 @@ KCalcBitset::KCalcBitset(QWidget *parent)
 {
     setFrameStyle(QFrame::Panel | QFrame::Sunken);
 
-    connect(bit_button_group_, qOverload<QAbstractButton *>(&QButtonGroup::buttonClicked), this, &KCalcBitset::slotToggleBit);
+    connect(bit_button_group_, &QButtonGroup::buttonClicked, this, &KCalcBitset::slotToggleBit);
 
     // smaller label font
     QFont fnt = font();
