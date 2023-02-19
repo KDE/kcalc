@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the kcalc package.
 #
-# Kheyyam Gojayev <xxmn77@gmail.com>, 2021, 2022.
+# Kheyyam Gojayev <xxmn77@gmail.com>, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-16 01:01+0000\n"
-"PO-Revision-Date: 2022-07-06 09:32+0400\n"
+"PO-Revision-Date: 2023-02-18 19:13+0400\n"
 "Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
 "Language: az\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.04.2\n"
+"X-Generator: Lokalize 22.12.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -2059,11 +2059,10 @@ msgid "M"
 msgstr "M"
 
 #: kcalcdisplay.cpp:42
-#, fuzzy, kde-format
-#| msgid "Select Display Font"
+#, kde-format
 msgctxt "@label accessibility description of the calculation result display"
 msgid "Result Display"
-msgstr "Şrifti seçin"
+msgstr "Nəticələri göstər"
 
 #. i18n: ectx: Menu (settings)
 #: kcalcui.rc:4
