@@ -620,13 +620,13 @@ QString KNumber::toQString(int width, int precision) const
         } else {
             s = value_->toString(width);
         }
-    } else if (auto const p = dynamic_cast<detail::knumber_float *>(value_)) {
+    } else if (dynamic_cast<detail::knumber_float *>(value_)) {
         if (width > 0) {
             s = value_->toString(width);
         } else {
             s = value_->toString(3 * mpf_get_default_prec() / 10);
         }
-    } else if (auto const p = dynamic_cast<detail::knumber_fraction *>(value_)) {
+    } else if (dynamic_cast<detail::knumber_fraction *>(value_)) {
         s = value_->toString(width);
     } else {
         return value_->toString(width);
