@@ -135,3 +135,23 @@ void BitButton::leaveEvent(QEvent *event)
         update();
     }
 }
+
+//------------------------------------------------------------------------------
+// Name: focusInEvent
+// Desc: sets to true the "over" variable on Enter event
+//------------------------------------------------------------------------------
+void BitButton::focusInEvent(QFocusEvent *event)
+{
+    over_ = true;
+    update();
+}
+
+//------------------------------------------------------------------------------
+// Name: focusOutEvent
+// Desc: sets to false the "over" variable on Leave event
+//------------------------------------------------------------------------------
+void BitButton::focusOutEvent(QFocusEvent *event)
+{
+    over_ = false;
+    update();
+}

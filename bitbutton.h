@@ -29,6 +29,8 @@ private:
 #else
     void enterEvent(QEvent *event) override;
 #endif
+    void focusInEvent(QFocusEvent *event) override;   
+    void focusOutEvent(QFocusEvent *event) override;
     void leaveEvent(QEvent *event) override;
     bool on_ = false;
     bool over_ = false;
