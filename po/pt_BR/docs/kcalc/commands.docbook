@@ -173,6 +173,23 @@
 ><guimenu
 >Configurações</guimenu
 > <guimenuitem
+>Mostrar histórico</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra o histórico.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configurações</guimenu
+> <guimenuitem
 >Botões das Constantes</guimenuitem
 > </menuchoice
 ></term>
@@ -218,7 +235,7 @@
 >Configurações</guimenu
 > e <guimenu
 >Ajuda</guimenu
->. Para mais informações, consulte as seções sobre os <ulink url="help:/fundamentals/ui.html#menus"
+>. Para mais informações, consulte as seções sobre os <ulink url="help:/fundamentals/menus.html"
 >Menus</ulink
 > dos Fundamentos do &kde;. </para>
 
