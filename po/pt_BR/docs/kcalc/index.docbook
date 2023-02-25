@@ -1,7 +1,5 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
-  <!ENTITY kappname "&kcalc;"
-> 
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % Brazilian-Portuguese "INCLUDE"
 > <!-- change language only here -->
@@ -69,9 +67,9 @@
 >&FDLNotice;</legalnotice>
 
 <date
->04/08/2015</date>
+>25/07/2016</date>
 <releaseinfo
->2.13 (Applications 15.08)</releaseinfo>
+>Applications 16.08</releaseinfo>
 
 <abstract
 ><para
@@ -250,17 +248,38 @@
 
 <varlistentry>
 <term
->Disposição dos Botões</term>
+>Layout dos botões</term>
 <listitem>
 <para
->Para fornecer um acesso simplificado a todas as funções dos modos avançados do &kcalc;, algumas teclas têm um segundo leiaute. Pressione <guibutton
+>Para fornecer um acesso simplificado a todas as funções dos modos avançados do &kcalc;, algumas teclas têm um segundo layout. Pressione <guibutton
 >&Shift;</guibutton
 > ou no seu atalho <keycombo action="simul"
 >&Ctrl;<keycap
 >2</keycap
 ></keycombo
-> para tornar visível o segundo leiaute de botões.</para
+> para tornar visível o segundo layout de botões.</para
 > 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Histórico</term>
+<listitem>
+<para
+>A área do histórico mostra todos os cálculos feitos no &kcalc; para a sessão ativa do &kcalc;. Clique em <guibutton
+>AC</guibutton
+> ou pressione o atalho <keycap
+>Del</keycap
+> para limpar o conteúdo do histórico. Para ativar ou desativa-lo, use o item <guilabel
+>Mostrar histórico</guilabel
+> no menu <guimenu
+>Configurações</guimenu
+> da barra de menu ou pressione <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+>.</para>
 </listitem>
 </varlistentry>
 
@@ -1695,8 +1714,24 @@
 ></question>
 <answer
 ><para
->Digite <userinput
->1 Shift Ln</userinput
+>Pressione <userinput
+>1 Shift e<superscript
+>x</superscript
+></userinput
+> na janela do &kcalc;, pressione <userinput
+>1 <keycombo action="simul"
+>&Ctrl;<keycap
+>2</keycap
+></keycombo
+> <keycap
+>N</keycap
+></userinput
+> no teclado ou use o menu <menuchoice
+><guimenu
+>Constantes</guimenu
+><guimenuitem
+>Matemática</guimenuitem
+> </menuchoice
 >.</para
 ></answer>
 </qandaentry>
@@ -1844,8 +1879,7 @@
 > e André Marcelo Alvarenga <email
 >alvarenga@kde.org</email
 ></para
-> 
-&underFDL; &underGPL; </chapter>
+> &underFDL; &underGPL; </chapter>
 
 </book>
 
