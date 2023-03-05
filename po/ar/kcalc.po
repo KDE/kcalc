@@ -835,7 +835,7 @@ msgstr "KCalc"
 #: kcalc.cpp:2834
 #, kde-format
 msgid "KDE Calculator"
-msgstr "حاسبة كدي"
+msgstr "حاسبة كِيدِي"
 
 #: kcalc.cpp:2836
 #, kde-format
