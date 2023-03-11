@@ -44,7 +44,7 @@
   <name xml:lang="sr-ijekavianlatin">KCalc</name>
   <name xml:lang="sv">Kcalc</name>
   <name xml:lang="ta">கேக்கால்க்</name>
-  <name xml:lang="tr">K Hesap</name>
+  <name xml:lang="tr">KCalc</name>
   <name xml:lang="uk">KCalc</name>
   <name xml:lang="x-test">xxKCalcxx</name>
   <name xml:lang="zh-CN">KCalc 计算器</name>
@@ -133,7 +133,7 @@
     <p xml:lang="sr-ijekavian">К‑калк има све што бисте очекивали код једног научног калкулатора, плус:</p>
     <p xml:lang="sr-ijekavianlatin">KCalc ima sve što biste očekivali kod jednog naučnog kalkulatora, plus:</p>
     <p xml:lang="sv">Miniräknaren har allt som man kan förvänta sig av en vetenskaplig räknare, samt:</p>
-    <p xml:lang="tr">K Hesap, bilimsel bir hesap makinesinden bekleyebileceğiniz her şeye sahiptir. Ayrıca:</p>
+    <p xml:lang="tr">KCalc, bilimsel bir hesap makinesinden bekleyebileceğiniz her şeye sahiptir. Ayrıca:</p>
     <p xml:lang="uk">KCalc вміє усе, що ви могли б очікувати від інженерного калькулятора, а крім того, вміє таке:</p>
     <p xml:lang="x-test">xxKCalc has everything you would expect from a scientific calculator, plus:xx</p>
     <p xml:lang="zh-CN">KCalc 能提供一款科学计算器具备的全部功能，并且还有以下功能：</p>
@@ -404,7 +404,7 @@
       <caption xml:lang="sq">Dritarja Kryesore  e KCalc</caption>
       <caption xml:lang="sv">Huvudfönstret i miniräknaren</caption>
       <caption xml:lang="ta">கேக்கால்க்கின் பிரதான சாளரம்</caption>
-      <caption xml:lang="tr">K Hesap ana penceresi</caption>
+      <caption xml:lang="tr">KCalc ana penceresi</caption>
       <caption xml:lang="uk">Головне вікно KCalc</caption>
       <caption xml:lang="x-test">xxMain window of KCalcxx</caption>
       <caption xml:lang="zh-CN">KCalc 主窗口</caption>
@@ -444,7 +444,7 @@
       <caption xml:lang="sq">Dritarja e KCalc në gjendje të sistemit të numrave</caption>
       <caption xml:lang="sv">Kcalc-fönster i nummersystemläge</caption>
       <caption xml:lang="ta">எண்முறைமை பயன்முறையில் கேக்கால்க்</caption>
-      <caption xml:lang="tr">Sayısal sistem kipinde K Hesap penceresi</caption>
+      <caption xml:lang="tr">Sayısal sistem kipinde KCalc penceresi</caption>
       <caption xml:lang="uk">Вікно KCalc у режимі системи числення</caption>
       <caption xml:lang="x-test">xxKCalc window in numeral system modexx</caption>
       <caption xml:lang="zh-CN">数字系统模式下的 KCalc 窗口</caption>
@@ -485,7 +485,7 @@
       <caption xml:lang="sq">Dritarja e KCalc në gjendje shkencore </caption>
       <caption xml:lang="sv">Kcalc-fönster i vetenskapligt läge</caption>
       <caption xml:lang="ta">அறிவியல் பயன்முறையில் கேக்கால்க்</caption>
-      <caption xml:lang="tr">Bilimsel kipte K Hesap penceresi</caption>
+      <caption xml:lang="tr">Bilimsel kipte KCalc penceresi</caption>
       <caption xml:lang="uk">Вікно KCalc в інженерному режимі</caption>
       <caption xml:lang="x-test">xxKcalc window in scientific modexx</caption>
       <caption xml:lang="zh-CN">科学模式下的 Kcalc 窗口</caption>
@@ -526,7 +526,7 @@
       <caption xml:lang="sq">Dritarja e KCalc në gjendje statistikore </caption>
       <caption xml:lang="sv">Kcalc-fönster i statistikläge</caption>
       <caption xml:lang="ta">புள்ளியியல் பயன்முறையில் கேக்கால்க்</caption>
-      <caption xml:lang="tr">İstatistik kipinde K Hesap penceresi</caption>
+      <caption xml:lang="tr">İstatistik kipinde KCalc penceresi</caption>
       <caption xml:lang="uk">Вікно KCalc у статистичному режимі</caption>
       <caption xml:lang="x-test">xxKcalc window in statistics modexx</caption>
       <caption xml:lang="zh-CN">统计模式下的 Kcalc 窗口</caption>
