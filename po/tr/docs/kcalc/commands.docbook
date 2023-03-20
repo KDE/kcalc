@@ -1,0 +1,255 @@
+<chapter id="commands">
+
+<title
+>Komut Başvurusu</title>
+
+<sect1 id="menus">
+<title
+>Menü Ögeleri</title>
+
+ <para
+>&kcalc; içindeki bazı özel menü ögelerine kısa bir bakış:</para>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Sabitler</guimenu
+> <guimenuitem
+>Matematik</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Şunları göster: Pi, Euler Sayısı veya Altın Oran.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Sabitler</guimenu
+> <guimenuitem
+>Elektromanyetizma</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Şunları göster: Işık Hızı, Birim Yük, Boşluğun Empedansı, Boşluğun Geçirgenliği veya Boşluğun Yüklenilebilirliği.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Sabitler</guimenu
+> <guimenuitem
+>Atomik ve Nükleer</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Şunları göster: Planck Sabiti, Birim Yük veya Hassas Yapı Sabiti.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Sabitler</guimenu
+> <guimenuitem
+>Termodinamik</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Şunları göster: Boltzmann Sabiti, Atomik Kütle Birimi, Molar Gaz Sabiti, Stefan-Boltzmann Sabiti veya-Avogadro Sayısı.</action
+> 
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Sabitler</guimenu
+> <guimenuitem
+>Yerçekimi</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Şunları göster: Yerçekimi Sabiti veya Yeryüzü İvmesi. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Basit Kip</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Basit matematik düğmelerini görüntüler.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Bilim Kipi</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Trigonometrik ve bilim düğmelerini görüntüler.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>İstatistik Kipi</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+><link linkend="statistical-mode"
+>İstatistik düğmelerini</link
+> görüntüler.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Sayısal Sistem Kipi</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+><link linkend="and-or-xor"
+>Mantıksal düğmeleri</link
+> gösterir ve sayı sistemini değiştirmeye izin verir.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Geçmişi Göster</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Geçmişi görüntüler.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Sabit Düğmeleri</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Sabitlerin düğmelerini gösterir. Bunlar; <link linkend="science-mode"
+>bilim kipi</link
+> ve <link linkend="statistical-mode"
+>istatistik kipi</link
+> içinde kullanılabilir. </action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ayarlar</guimenu
+> <guimenuitem
+>Bit Düzenlemeyi Göster</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Bit düzenleme alanını gösterir. Geçiş yapmak için üzerine tıklayın. Yalnızca <link linkend="numeral-system-mode"
+>sayısal sistem kipi</link
+> içinde kullanılabilir.</action>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Ayrıca &kcalc;, yaygınca kullanılan <guimenu
+>Dosya</guimenu
+>, <guimenu
+>Düzen</guimenu
+>, <guimenu
+>Ayarlar</guimenu
+> ve <guimenu
+>Yardım</guimenu
+> menü ögelerine de sahiptir; daha fazla bilgi için &kde; Temelleri altındaki <ulink url="help:/fundamentals/ui.html#menus"
+>Menüler</ulink
+> bölümüne göz atın. </para>
+
+</sect1>
+
+</chapter>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-parent-document: ("index.docbook" "book" "chapter")
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->
