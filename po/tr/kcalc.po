@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: kdeutils-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-16 01:01+0000\n"
-"PO-Revision-Date: 2023-03-09 18:41+0300\n"
+"PO-Revision-Date: 2023-03-27 20:46+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -1825,7 +1825,7 @@ msgstr "×"
 #: kcalc.ui:1157
 #, kde-format
 msgid "Minus"
-msgstr "Minus"
+msgstr "Çıkarma"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMinus)
 #: kcalc.ui:1160
@@ -1838,7 +1838,7 @@ msgstr "−"
 #: kcalc.ui:1173
 #, kde-format
 msgid "Plus"
-msgstr "Plus"
+msgstr "Toplama"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPlus)
 #: kcalc.ui:1176
@@ -1987,7 +1987,7 @@ msgstr "←"
 #: kcalc.ui:1395
 #, kde-format
 msgid "Backspace"
-msgstr "Backspace"
+msgstr "Geri Sil"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbShift)
 #: kcalc.ui:1408
