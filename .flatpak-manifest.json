@@ -1,0 +1,50 @@
+{
+    "id": "org.kde.kcalc",
+    "runtime": "org.kde.Platform",
+    "runtime-version": "5.15-22.08",
+    "sdk": "org.kde.Sdk",
+    "command": "kcalc",
+    "rename-icon": "accessories-calculator",
+    "finish-args": [
+        "--device=dri",
+        "--share=ipc",
+        "--socket=wayland",
+        "--socket=fallback-x11"
+    ],
+    "modules": [
+        {
+            "name": "mpfr",
+            "cleanup": [
+                "/include",
+                "/lib/pkgconfig",
+                "/share/doc/mpfr"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://www.mpfr.org/mpfr-4.2.0/mpfr-4.2.0.tar.xz",
+                    "sha256": "06a378df13501248c1b2db5aa977a2c8126ae849a9d9b7be2546fb4a9c26d993",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 2019,
+                        "stable-only": true,
+                        "url-template": "https://www.mpfr.org/mpfr-$version/mpfr-$version.tar.xz"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "kcalc",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DINSTALL_ICONS=ON"
+            ],
+            "sources": [
+                {
+                    "type": "dir",
+                    "path": "."
+                }
+            ]
+        }
+    ]
+}
