@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-16 01:01+0000\n"
-"PO-Revision-Date: 2023-03-20 19:49+0100\n"
+"PO-Revision-Date: 2023-03-31 21:24+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
 "Language: nn\n"
@@ -1344,6 +1344,7 @@ msgstr "Byt til heksadesimalt talsystem."
 msgid "He&x"
 msgstr "He&ks"
 
+# Forkorting for «KSqueezedTextLabel», av ein eller annan grunn.
 #. i18n: ectx: property (text), widget (KSqueezedTextLabel, hexDisplay)
 #. i18n: ectx: property (text), widget (KSqueezedTextLabel, decDisplay)
 #. i18n: ectx: property (text), widget (KSqueezedTextLabel, octDisplay)
@@ -1351,7 +1352,7 @@ msgstr "He&ks"
 #: kcalc.ui:133 kcalc.ui:169 kcalc.ui:205 kcalc.ui:241
 #, kde-format
 msgid "KSq…bel"
-msgstr ""
+msgstr "KSkv…lapp"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, decRadio)
 #: kcalc.ui:147
