@@ -4,13 +4,13 @@
 # mvillarino <mvillarino@users.sourceforge.net>, 2008.
 # Marce Villarino <mvillarino@kde-espana.es>, 2009, 2013.
 # Adrian Chaves Fernandez <adriyetichaves@gmail.com>, 2013, 2015.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-16 01:01+0000\n"
-"PO-Revision-Date: 2019-11-13 22:30+0100\n"
+"PO-Revision-Date: 2023-05-03 07:33+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -18,12 +18,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 19.08.2\n"
+"X-Generator: Lokalize 23.04.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Adrián Chaves Fernández"
+msgstr "Adrian Chaves (Gallaecio)"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
@@ -104,10 +104,9 @@ msgstr "O&peracións:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel13)
 #: colors.ui:287
-#, fuzzy, kde-format
-#| msgid "&Constants"
+#, kde-format
 msgid "&Constants:"
-msgstr "&Constantes"
+msgstr "&Constantes:"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
 #. i18n: ectx: property (title), widget (QGroupBox, constantsBox)
@@ -154,17 +153,15 @@ msgstr "A fonte para usar na pantalla"
 
 #. i18n: ectx: property (text), widget (QLabel, historylabel)
 #: fonts.ui:61
-#, fuzzy, kde-format
-#| msgid "&Display font:"
+#, kde-format
 msgid "&History font:"
-msgstr "Fonte &da pantalla:"
+msgstr "Fonte do &historial:"
 
 #. i18n: ectx: property (toolTip), widget (KFontRequester, kcfg_HistoryFont)
 #: fonts.ui:74
-#, fuzzy, kde-format
-#| msgid "The font to use in the display"
+#, kde-format
 msgid "The font to use in the history"
-msgstr "A fonte para usar na pantalla"
+msgstr "A fonte para usar no historial."
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
 #: general.ui:14 kcalc.cpp:1765
@@ -341,7 +338,7 @@ msgstr "Modo de sistema numérico"
 #: kcalc.cpp:199
 #, kde-format
 msgid "Show &History"
-msgstr ""
+msgstr "Mostrar o &historial"
 
 #: kcalc.cpp:205
 #, kde-format
@@ -397,12 +394,10 @@ msgid "Cube root"
 msgstr "Raíz cadrada."
 
 #: kcalc.cpp:446
-#, fuzzy, kde-format
-#| msgctxt "Arc sine"
-#| msgid "Asin"
+#, kde-format
 msgctxt "Sine"
 msgid "sin"
-msgstr "Asin"
+msgstr "sen"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSin)
 #: kcalc.cpp:446 kcalc.ui:708
@@ -414,20 +409,18 @@ msgstr "Seno."
 #, kde-format
 msgctxt "Arc sine"
 msgid "asin"
-msgstr ""
+msgstr "asen"
 
 #: kcalc.cpp:447
 #, kde-format
 msgid "Arc sine"
-msgstr "Arcoseno."
+msgstr "Arco seno."
 
 #: kcalc.cpp:448
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic sine"
-#| msgid "Asinh"
+#, kde-format
 msgctxt "Hyperbolic sine"
 msgid "sinh"
-msgstr "Asinh"
+msgstr "sen h"
 
 #: kcalc.cpp:448
 #, kde-format
@@ -435,12 +428,10 @@ msgid "Hyperbolic sine"
 msgstr "Seno hiperbólico."
 
 #: kcalc.cpp:449
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic sine"
-#| msgid "Asinh"
+#, kde-format
 msgctxt "Inverse hyperbolic sine"
 msgid "asinh"
-msgstr "Asinh"
+msgstr "asen h"
 
 #: kcalc.cpp:449
 #, kde-format
@@ -448,12 +439,10 @@ msgid "Inverse hyperbolic sine"
 msgstr "Seno hiperbólico inverso."
 
 #: kcalc.cpp:454
-#, fuzzy, kde-format
-#| msgctxt "Arc cosine"
-#| msgid "Acos"
+#, kde-format
 msgctxt "Cosine"
 msgid "cos"
-msgstr "Acos"
+msgstr "cos"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbCos)
 #: kcalc.cpp:454 kcalc.ui:453
@@ -465,33 +454,30 @@ msgstr "Coseno."
 #, kde-format
 msgctxt "Arc cosine"
 msgid "acos"
-msgstr ""
+msgstr "acos"
 
 #: kcalc.cpp:455
 #, kde-format
 msgid "Arc cosine"
-msgstr "Arcocoseno."
+msgstr "Arco coseno."
 
 #: kcalc.cpp:456
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic cosine"
-#| msgid "Acosh"
+#, kde-format
 msgctxt "Hyperbolic cosine"
 msgid "cosh"
-msgstr "Acosh"
+msgstr "cos h"
 
 #: kcalc.cpp:456
 #, kde-format
 msgid "Hyperbolic cosine"
 msgstr "Coseno hiperbólico."
 
+# well-spelled: acos
 #: kcalc.cpp:457
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic cosine"
-#| msgid "Acosh"
+#, kde-format
 msgctxt "Inverse hyperbolic cosine"
 msgid "acosh"
-msgstr "Acosh"
+msgstr "acos h"
 
 #: kcalc.cpp:457
 #, kde-format
@@ -499,12 +485,10 @@ msgid "Inverse hyperbolic cosine"
 msgstr "Coseno hiperbólico inverso."
 
 #: kcalc.cpp:462
-#, fuzzy, kde-format
-#| msgctxt "Arc tangent"
-#| msgid "Atan"
+#, kde-format
 msgctxt "Tangent"
 msgid "tan"
-msgstr "Atan"
+msgstr "tan"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbTan)
 #: kcalc.cpp:462 kcalc.ui:523
@@ -516,20 +500,18 @@ msgstr "Tanxente."
 #, kde-format
 msgctxt "Arc tangent"
 msgid "atan"
-msgstr ""
+msgstr "atan"
 
 #: kcalc.cpp:463
 #, kde-format
 msgid "Arc tangent"
-msgstr "Arcotanxente."
+msgstr "Arco tanxente."
 
 #: kcalc.cpp:464
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic tangent"
-#| msgid "Atanh"
+#, kde-format
 msgctxt "Hyperbolic tangent"
 msgid "tanh"
-msgstr "Atanh"
+msgstr "tan h"
 
 #: kcalc.cpp:464
 #, kde-format
@@ -537,12 +519,10 @@ msgid "Hyperbolic tangent"
 msgstr "Tanxente hiperbólica."
 
 #: kcalc.cpp:465
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic tangent"
-#| msgid "Atanh"
+#, kde-format
 msgctxt "Inverse hyperbolic tangent"
 msgid "atanh"
-msgstr "Atanh"
+msgstr "atan h"
 
 #: kcalc.cpp:465
 #, kde-format
@@ -550,12 +530,10 @@ msgid "Inverse hyperbolic tangent"
 msgstr "Tanxente hiperbólica inversa."
 
 #: kcalc.cpp:470
-#, fuzzy, kde-format
-#| msgctxt "Logarithm to base 10"
-#| msgid "Log"
+#, kde-format
 msgctxt "Logarithm to base 10"
 msgid "log"
-msgstr "Log"
+msgstr "log"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLog)
 #: kcalc.cpp:470 kcalc.ui:823
@@ -578,7 +556,7 @@ msgstr "10 elevado a x."
 #, kde-format
 msgctxt "Natural log"
 msgid "ln"
-msgstr ""
+msgstr "ln"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLn)
 #: kcalc.cpp:475 kcalc.ui:418
@@ -654,11 +632,13 @@ msgstr "Dat"
 msgid "Enter data"
 msgstr "Inserir datos."
 
+# well-spelled: BDat
+# Borrar o dato
 #: kcalc.cpp:517
 #, kde-format
 msgctxt "Delete last data item"
 msgid "CDat"
-msgstr "LDat"
+msgstr "BDat"
 
 #: kcalc.cpp:517
 #, kde-format
@@ -666,12 +646,10 @@ msgid "Delete last data item"
 msgstr "Eliminar o último elemento dos datos."
 
 #: kcalc.cpp:578
-#, fuzzy, kde-format
-#| msgctxt "Modulo"
-#| msgid "Mod"
+#, kde-format
 msgctxt "Modulo"
 msgid "mod"
-msgstr "Mod"
+msgstr "mod"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMod)
 #: kcalc.cpp:578 kcalc.ui:491
@@ -702,11 +680,14 @@ msgstr "1/x"
 msgid "Reciprocal"
 msgstr "Recíproco."
 
+# well-spelled: nEm
+#
+# n escolle m
 #: kcalc.cpp:586
 #, kde-format
 msgctxt "n Choose m"
 msgid "nCm"
-msgstr "Cmb"
+msgstr "nEm"
 
 #: kcalc.cpp:586
 #, kde-format
@@ -796,12 +777,12 @@ msgstr "Mediana."
 #: kcalc.cpp:1682
 #, kde-format
 msgid "DAT ["
-msgstr ""
+msgstr "DAT ["
 
 #: kcalc.cpp:1682
 #, kde-format
 msgid "] = "
-msgstr ""
+msgstr "] = "
 
 #: kcalc.cpp:1688 kcalc.cpp:1689
 #, kde-format
@@ -925,7 +906,7 @@ msgstr "David Johnson"
 #: kcalc.cpp:2872
 #, kde-format
 msgid "Niklas Freund"
-msgstr ""
+msgstr "Niklas Freund"
 
 #. i18n: ectx: label, entry (ForeColor), group (Colors)
 #: kcalc.kcfg:12
@@ -977,10 +958,9 @@ msgstr "A cor dos botóns de operacións."
 
 #. i18n: ectx: label, entry (ConstantsButtonsColor), group (Colors)
 #: kcalc.kcfg:49
-#, fuzzy, kde-format
-#| msgid "The color of statistical buttons."
+#, kde-format
 msgid "The color of constants buttons."
-msgstr "A cor dos botóns estatísticos."
+msgstr "A cor dos botóns de constantes."
 
 #. i18n: ectx: label, entry (NumberFontsColor), group (Colors)
 #: kcalc.kcfg:53
@@ -1020,10 +1000,9 @@ msgstr "A cor da fonte das operacións."
 
 #. i18n: ectx: label, entry (ConstantsFontsColor), group (Colors)
 #: kcalc.kcfg:79
-#, fuzzy, kde-format
-#| msgid "The color of statistical fonts."
+#, kde-format
 msgid "The color of constants fonts."
-msgstr "A cor da fonte das estatísticas."
+msgstr "A cor da fonte das constantes."
 
 #. i18n: ectx: label, entry (ButtonFont), group (Font)
 #: kcalc.kcfg:85
@@ -1039,10 +1018,9 @@ msgstr "A fonte para usar na pantalla."
 
 #. i18n: ectx: label, entry (HistoryFont), group (Font)
 #: kcalc.kcfg:96
-#, fuzzy, kde-format
-#| msgid "The font to use in the display."
+#, kde-format
 msgid "The font to use in the history."
-msgstr "A fonte para usar na pantalla."
+msgstr "A fonte para usar no historial."
 
 #. i18n: ectx: label, entry (Precision), group (Precision)
 #: kcalc.kcfg:102
@@ -1189,10 +1167,9 @@ msgstr "Se mostrar os botóns das constantes."
 
 #. i18n: ectx: label, entry (ShowHistory), group (General)
 #: kcalc.kcfg:177
-#, fuzzy, kde-format
-#| msgid "Whether to show the bit edit widget."
+#, kde-format
 msgid "Whether to show the history window."
-msgstr "Se mostrar o trebello de edición de bits."
+msgstr "Se mostrar a xanela do historial."
 
 #. i18n: ectx: label, entry (AngleMode), group (General)
 #: kcalc.kcfg:181
@@ -1379,7 +1356,7 @@ msgstr "He&x"
 #: kcalc.ui:133 kcalc.ui:169 kcalc.ui:205 kcalc.ui:241
 #, kde-format
 msgid "KSq…bel"
-msgstr ""
+msgstr "KSq…bel"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, decRadio)
 #: kcalc.ui:147
@@ -1483,11 +1460,12 @@ msgstr "H"
 msgid "Right bit shift"
 msgstr "Desprazamento dos bits á dereita."
 
+# Mover á dereita
 #. i18n: ectx: property (text), widget (KCalcButton, pbRsh)
 #: kcalc.ui:405
 #, kde-format
 msgid "Rsh"
-msgstr "DsD"
+msgstr "Md"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbLn)
 #: kcalc.ui:421
@@ -1631,11 +1609,12 @@ msgstr "R"
 msgid "Left bit shift"
 msgstr "Desprazamento dos bits á esquerda."
 
+# Mover á esquerda
 #. i18n: ectx: property (text), widget (KCalcButton, pbLsh)
 #: kcalc.ui:660
 #, kde-format
 msgid "Lsh"
-msgstr "DsE"
+msgstr "Me"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbDat)
 #: kcalc.ui:676
@@ -1673,6 +1652,7 @@ msgstr "Mea"
 msgid "Med"
 msgstr "Med"
 
+# well-spelled: pot
 #. i18n: ectx: property (text), widget (KCalcButton, pbPower)
 #: kcalc.ui:762
 #, kde-format
@@ -1923,6 +1903,8 @@ msgstr "BM"
 msgid "Memory recall"
 msgstr "Restaurar a memoria."
 
+# well-spelled: RM
+# Recuperar da memoria
 #. i18n: ectx: property (text), widget (KCalcButton, pbMemRecall)
 #: kcalc.ui:1283
 #, kde-format
@@ -2022,10 +2004,9 @@ msgid "Ctrl+2"
 msgstr "Ctrl+2"
 
 #: kcalc_bitset.cpp:57
-#, fuzzy, kde-format
-#| msgid "Bit %1"
+#, kde-format
 msgid "Bit %1 = %2"
-msgstr "Bit %1"
+msgstr "Bit %1 = %2"
 
 #: kcalc_const_button.cpp:24 kcalc_const_button.cpp:37
 #, kde-format
@@ -2102,11 +2083,10 @@ msgid "M"
 msgstr "M"
 
 #: kcalcdisplay.cpp:42
-#, fuzzy, kde-format
-#| msgid "Select Display Font"
+#, kde-format
 msgctxt "@label accessibility description of the calculation result display"
 msgid "Result Display"
-msgstr "Seleccionar a fonte da pantalla"
+msgstr "Pantalla do resultado"
 
 #. i18n: ectx: Menu (settings)
 #: kcalcui.rc:4
