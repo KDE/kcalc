@@ -426,6 +426,7 @@
       <caption xml:lang="eu">Kcalc leihoa zenbaki-sistema moduan</caption>
       <caption xml:lang="fi">KCalc-ikkuna numerojärjestelmätilassa</caption>
       <caption xml:lang="fr">Fenêtre de KCalc en mode « Système numérique »</caption>
+      <caption xml:lang="gl">Xanela de KCalc en modo de sistema de numeración</caption>
       <caption xml:lang="hu">A KCalc számrendszer módjának ablaka</caption>
       <caption xml:lang="ia">Fenestra de KCalc in modo de systema numeral</caption>
       <caption xml:lang="id">Jendela KCalc dalam mode sistem numerik</caption>
@@ -466,6 +467,7 @@
       <caption xml:lang="eu">Kcalc leihoa zientzia moduan</caption>
       <caption xml:lang="fi">KCalc-ikkuna tiedelaskentatilassa</caption>
       <caption xml:lang="fr">Fenêtre de KCalc en mode « Scientifique »</caption>
+      <caption xml:lang="gl">Xanela de KCalc en modo científico</caption>
       <caption xml:lang="hu">A KCalc tudományos módjának ablaka</caption>
       <caption xml:lang="ia">Fenestra de KCalc in modo scientific</caption>
       <caption xml:lang="id">Jendela KCalc dalam mode ilmiah</caption>
@@ -507,6 +509,7 @@
       <caption xml:lang="eu">Kcalc leihoa estatistika moduan</caption>
       <caption xml:lang="fi">KCalc-ikkuna tilastolaskentatilassa</caption>
       <caption xml:lang="fr">Fenêtre de KCalc en mode « Statistiques »</caption>
+      <caption xml:lang="gl">Xanela de KCalc en modo estatístico</caption>
       <caption xml:lang="hu">A KCalc statisztikai módjának ablaka</caption>
       <caption xml:lang="ia">Fenestra de KCalc in modo statistic</caption>
       <caption xml:lang="id">Jendela KCalc dalam mode statistik</caption>
