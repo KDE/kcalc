@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-16 01:01+0000\n"
-"PO-Revision-Date: 2023-01-12 16:59+0100\n"
+"PO-Revision-Date: 2023-05-06 06:11+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -193,12 +193,15 @@ msgid ""
 "display. This setting gives the maximum number of digits displayed, before "
 "KCalc starts using scientific notation, i.e. notation of the type 2.34e12."
 msgstr ""
+"KCalc-ს იმაზე გაცილებით მეტი ციფრის გამოთვლა შეუძლია, ვიდრე ეკრანზე ეტევა. "
+"ეს პარამეტრი ნაჩვენები ციფრების რაოდენობას განსაზღვრავს. სანამ KCalc-ი "
+"სამეცნიერო ნოტაციის გამოყენებს დაიწყებს. მაგალითად ნოტაცის ტიპით 2.34e12."
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_Fixed)
 #: general.ui:51
 #, kde-format
 msgid "Whether to use fixed decimal places"
-msgstr ""
+msgstr "წილადი ნაწილის მაჩვენებლების ფიქსირებული რაოდენობის ჩვენება"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_Fixed)
 #: general.ui:54
@@ -270,7 +273,7 @@ msgstr "პიპინი &შეცდომისას"
 #: general.ui:173
 #, kde-format
 msgid "Whether to show the result in the window title"
-msgstr ""
+msgstr "შედეგის ფანჯრის სათაურში ჩვენება"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CaptionResult)
 #: general.ui:176
@@ -282,7 +285,7 @@ msgstr "&შედეგის ფანჯრის სათაურში �
 #: general.ui:183
 #, kde-format
 msgid "Whether to use Two's Complement for non-decimal numbers"
-msgstr ""
+msgstr "დამატებითი კოდი არაათობითი რიცხვებისთვის"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_TwosComplement)
 #: general.ui:186
@@ -1035,7 +1038,7 @@ msgstr "ფიქსირებული ათობითი ციფრე�
 #: kcalc.kcfg:118
 #, kde-format
 msgid "Whether to use fixed decimal places."
-msgstr ""
+msgstr "წილადი ნაწილის მაჩვენებლების ფიქსირებული რაოდენობის ჩვენება."
 
 #. i18n: ectx: label, entry (Beep), group (General)
 #: kcalc.kcfg:124
@@ -1059,7 +1062,7 @@ msgstr "ციფრების დაჯგუფება."
 #: kcalc.kcfg:136
 #, kde-format
 msgid "Whether to use Two's Complement for non-decimal numbers."
-msgstr ""
+msgstr "დამატებითი კოდი არაათობითი რიცხვებისთვის."
 
 #. i18n: ectx: whatsthis, entry (TwosComplement), group (General)
 #: kcalc.kcfg:141
@@ -1076,7 +1079,7 @@ msgstr ""
 #: kcalc.kcfg:145
 #, kde-format
 msgid "Enables that the last operation is repeated when \"=\" is pressed"
-msgstr ""
+msgstr "ბოლო ოპერაციის გამეორება '='-ის დაჭერისას"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
 #: kcalc.kcfg:151
@@ -1089,6 +1092,7 @@ msgstr "იოლი კალკულატორის რეჟიმი"
 #, kde-format
 msgid "A very simple mode where only the basic calculator buttons are shown"
 msgstr ""
+"ძალიან მარტივი რეჟიმი, როცა კალკულატორის მხოლოდ ძირითადი ღილაკებია ნაჩვენები"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
 #: kcalc.kcfg:155
@@ -1100,7 +1104,7 @@ msgstr "სამეცნიერო კალკულატორის რ�
 #: kcalc.kcfg:156
 #, kde-format
 msgid "Mode with science buttons and optional constants buttons"
-msgstr ""
+msgstr "რეჟიმი სამეცნიერო ღილაკებით და არასავალდებულო მუდმივების ღილაკებით"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
 #: kcalc.kcfg:159
@@ -1113,6 +1117,7 @@ msgstr "სტატისტიკური კალკულატორი�
 #, kde-format
 msgid "Mode with additional statistics buttons and optional constants buttons"
 msgstr ""
+"რეჟიმი დამატებითი სტატისტიკისა და არასავალდებულო მუდმივების ღილაკებისთვის"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
 #: kcalc.kcfg:164
@@ -1120,12 +1125,14 @@ msgstr ""
 msgid ""
 "Mode with logic buttons and selectable base. Optional bit edit available."
 msgstr ""
+"რეჟიმი ლოგიკური ღილაკებითა და არჩევადი ბაზით. ხელმისაწვდომია არასავალდებულო "
+"ბიტის ჩასწორება."
 
 #. i18n: ectx: label, entry (ShowBitset), group (General)
 #: kcalc.kcfg:169
 #, kde-format
 msgid "Whether to show the bit edit widget."
-msgstr ""
+msgstr "ბიტის ჩასწორების ვიჯეტის ჩვენება."
 
 #. i18n: ectx: label, entry (ShowConstants), group (General)
 #: kcalc.kcfg:173
@@ -1149,7 +1156,7 @@ msgstr "გრადუსები, რადიანები თუ გრ�
 #: kcalc.kcfg:185
 #, kde-format
 msgid "Numeric base"
-msgstr ""
+msgstr "რიცხვითი ბაზა"
 
 #. i18n: ectx: label, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:191
