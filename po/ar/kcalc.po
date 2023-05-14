@@ -7,14 +7,14 @@
 # Fahad Al-Saidi <fahad.alsaidi@gmail.com>, 2007.
 # Youness BOUTYOUR <niceboy@linuxac.org>, 2008.
 # Youness BOUTYOUR <niceboy120@gmail.com>, 2008.
-# Zayed Al-Saidi <zayed.alsaidi@gmail.com>, 2010, 2021, 2022.
+# Zayed Al-Saidi <zayed.alsaidi@gmail.com>, 2010, 2021, 2022, 2023.
 # Abdalrahim G. Fakhouri <abdilra7eem@yahoo.com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-16 01:01+0000\n"
-"PO-Revision-Date: 2022-09-11 22:38+0400\n"
+"PO-Revision-Date: 2023-05-13 18:25+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1200,7 +1200,7 @@ msgstr ""
 "\n"
 "            لتسهيل القراءة فإنه يمكن جمع الخانات الظاهرة في أزواج\n"
 "            فعوضا عن عرض 10111001 فإنه يمكن أن يعرض هكذا 1011 1001  بواسطة "
-"وضع الإعداد إلى ٤، \n"
+"وضع الإعداد إلى 4، \n"
 "            فسيوضع  فراغ بعد كل رابع خانة.\n"
 "        "
 
@@ -1225,7 +1225,7 @@ msgstr ""
 "\n"
 "            لتسهيل القراءة فإنه يمكن جمع الخانات الظاهرة في أزواج\n"
 "            فعوضا عن عرض 42140213 فإنه يمكن أن يعرض هكذا 4214 0213  بواسطة "
-"وضع الإعداد إلى ٤، \n"
+"وضع الإعداد إلى 4، \n"
 "            فسيوضع  فراغ بعد كل رابع خانة.\n"
 "        "
 
@@ -1251,7 +1251,7 @@ msgstr ""
 "\n"
 "            لتسهيل القراءة فإنه يمكن جمع الخانات الظاهرة في أزواج\n"
 "            فعوضا عن عرض  AF1C42 فإنه يمكن أن يعرض هكذا AF 1C 42   بواسطة "
-"وضع الإعداد إلى ٢، \n"
+"وضع الإعداد إلى 2، \n"
 "            فسيوضع  فراغ بعد كل ثاني خانة.\n"
 "        "
 
@@ -1706,70 +1706,70 @@ msgstr "C5"
 #: kcalc.ui:949 kcalc.ui:952
 #, kde-format
 msgid "7"
-msgstr "٧"
+msgstr "7"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb8)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb8)
 #: kcalc.ui:965 kcalc.ui:968
 #, kde-format
 msgid "8"
-msgstr "٨"
+msgstr "8"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb9)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb9)
 #: kcalc.ui:981 kcalc.ui:984
 #, kde-format
 msgid "9"
-msgstr "٩"
+msgstr "9"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb4)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb4)
 #: kcalc.ui:997 kcalc.ui:1000
 #, kde-format
 msgid "4"
-msgstr "٤"
+msgstr "4"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb5)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb5)
 #: kcalc.ui:1013 kcalc.ui:1016
 #, kde-format
 msgid "5"
-msgstr "٥"
+msgstr "5"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb6)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb6)
 #: kcalc.ui:1029 kcalc.ui:1032
 #, kde-format
 msgid "6"
-msgstr "٦"
+msgstr "6"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb1)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb1)
 #: kcalc.ui:1045 kcalc.ui:1048
 #, kde-format
 msgid "1"
-msgstr "١"
+msgstr "1"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb2)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb2)
 #: kcalc.ui:1061 kcalc.ui:1064
 #, kde-format
 msgid "2"
-msgstr "٢"
+msgstr "2"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb3)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb3)
 #: kcalc.ui:1077 kcalc.ui:1080
 #, kde-format
 msgid "3"
-msgstr "٣"
+msgstr "3"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb0)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb0)
 #: kcalc.ui:1093 kcalc.ui:1096
 #, kde-format
 msgid "0"
-msgstr "٠"
+msgstr "0"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbPercent)
 #: kcalc.ui:1109
