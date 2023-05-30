@@ -16,8 +16,8 @@
 # xavier <xavier.besnard@neuf.fr>, 2012, 2013, 2020, 2021, 2022.
 # Sebastien Renard <renard@kde.org>, 2012, 2013, 2014, 2015.
 # Simon Depiets <sdepiets@gmail.com>, 2018, 2019.
+# Xavier BESNARD <xavier.besnard@neuf.fr>, 2023.
 #
-# Xavier BESNARD <xavier.besnard]neuf.fr>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
