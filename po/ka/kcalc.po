@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-16 01:01+0000\n"
-"PO-Revision-Date: 2023-05-06 06:30+0200\n"
+"PO-Revision-Date: 2023-06-02 05:58+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1220,7 +1220,7 @@ msgstr ""
 #: kcalc.kcfg:220
 #, kde-format
 msgid "Name of the user programmable constants."
-msgstr ""
+msgstr "მომხმარებლის მიერ პროგრამირებადი მუდმივების სახელი."
 
 #: kcalc.kcfg:230
 #, kde-format
@@ -1268,7 +1268,7 @@ msgstr "მომხმარებლის მიერ პროგრამ�
 #: kcalc.ui:58
 #, kde-format
 msgid "Click on a Bit to toggle it."
-msgstr ""
+msgstr "ბიტის გადასართველად ზედ დააწკაპუნეთ."
 
 #. i18n: ectx: property (text), widget (QRadioButton, degRadio)
 #: kcalc.ui:69
