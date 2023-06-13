@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-16 01:01+0000\n"
-"PO-Revision-Date: 2023-06-02 05:58+0200\n"
+"PO-Revision-Date: 2023-06-12 05:55+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -1163,6 +1163,8 @@ msgstr "რიცხვითი ბაზა"
 #, kde-format
 msgid "Binary figures will be separated by a whitespace after every Xth digit."
 msgstr ""
+"ბინარული გამოსახულებები გამოყოფილი იქნება ცარიელი ადგილით ყოველი X ციფრის "
+"შემდეგ."
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:196
@@ -1182,6 +1184,8 @@ msgstr ""
 #, kde-format
 msgid "Octal figures will be separated by a whitespace after every Xth digit."
 msgstr ""
+"რვაობითი გამოსახულებები გამოყოფილი იქნება ცარიელი ადგილით ყოველი X ციფრის "
+"შემდეგ."
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:205
@@ -1202,6 +1206,8 @@ msgstr ""
 msgid ""
 "Hexadecimal figures will be separated by a whitespace after every Xth digit."
 msgstr ""
+"თექვსმეტობითი გამოსახულებები გამოყოფილი იქნება ცარიელი ადგილით ყოველი X "
+"ციფრის შემდეგ."
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:214
