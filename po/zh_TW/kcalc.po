@@ -3,19 +3,20 @@
 # Franklin Weng <franklin at goodhorse dot idv dot tw>, 2007.
 # Franklin Weng <franklin@goodhorse.idv.tw>, 2012, 2013, 2014, 2015.
 # pan93412 <pan93412@gmail.com>, 2018, 2019.
+# Kisaragi Hiu <mail@kisaragi-hiu.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-16 01:01+0000\n"
-"PO-Revision-Date: 2019-10-19 15:17+0800\n"
-"Last-Translator: pan93412 <pan93412@gmail.com>\n"
-"Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
+"PO-Revision-Date: 2023-06-15 04:35+0900\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
+"Language-Team: Chinese <zh-l10n@linux.org.tw>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 19.08.2\n"
+"X-Generator: Lokalize 23.04.2\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #, kde-format
@@ -102,10 +103,9 @@ msgstr "操作(&P)："
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel13)
 #: colors.ui:287
-#, fuzzy, kde-format
-#| msgid "&Constants"
+#, kde-format
 msgid "&Constants:"
-msgstr "常數(&C)"
+msgstr "常數(&C)："
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
 #. i18n: ectx: property (title), widget (QGroupBox, constantsBox)
@@ -152,17 +152,15 @@ msgstr "顯示所使用的字型"
 
 #. i18n: ectx: property (text), widget (QLabel, historylabel)
 #: fonts.ui:61
-#, fuzzy, kde-format
-#| msgid "&Display font:"
+#, kde-format
 msgid "&History font:"
-msgstr "顯示字型(&D)："
+msgstr "歷史紀錄字型(&H)："
 
 #. i18n: ectx: property (toolTip), widget (KFontRequester, kcfg_HistoryFont)
 #: fonts.ui:74
-#, fuzzy, kde-format
-#| msgid "The font to use in the display"
+#, kde-format
 msgid "The font to use in the history"
-msgstr "顯示所使用的字型"
+msgstr "歷史紀錄所使用的字型"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
 #: general.ui:14 kcalc.cpp:1765
@@ -336,7 +334,7 @@ msgstr "數值系統模式"
 #: kcalc.cpp:199
 #, kde-format
 msgid "Show &History"
-msgstr ""
+msgstr "顯示歷史紀錄(&H)"
 
 #: kcalc.cpp:205
 #, kde-format
@@ -920,7 +918,7 @@ msgstr "David Johnson"
 #: kcalc.cpp:2872
 #, kde-format
 msgid "Niklas Freund"
-msgstr ""
+msgstr "Niklas Freund"
 
 #. i18n: ectx: label, entry (ForeColor), group (Colors)
 #: kcalc.kcfg:12
@@ -1034,10 +1032,9 @@ msgstr "顯示字型"
 
 #. i18n: ectx: label, entry (HistoryFont), group (Font)
 #: kcalc.kcfg:96
-#, fuzzy, kde-format
-#| msgid "The font to use in the display."
+#, kde-format
 msgid "The font to use in the history."
-msgstr "顯示字型"
+msgstr "歷史紀錄所使用的字型。"
 
 #. i18n: ectx: label, entry (Precision), group (Precision)
 #: kcalc.kcfg:102
@@ -1175,10 +1172,9 @@ msgstr "要不要顯示常數按鍵"
 
 #. i18n: ectx: label, entry (ShowHistory), group (General)
 #: kcalc.kcfg:177
-#, fuzzy, kde-format
-#| msgid "Whether to show the bit edit widget."
+#, kde-format
 msgid "Whether to show the history window."
-msgstr "是否要顯示位元編輯視窗。"
+msgstr "是否要顯示歷史紀錄視窗。"
 
 #. i18n: ectx: label, entry (AngleMode), group (General)
 #: kcalc.kcfg:181
