@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-16 01:01+0000\n"
-"PO-Revision-Date: 2023-06-12 05:55+0200\n"
+"PO-Revision-Date: 2023-06-17 05:49+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -295,6 +295,9 @@ msgid ""
 "numbers. This is a common notation to represent negative numbers for non-"
 "decimal numbers in computers."
 msgstr ""
+"აირჩიეთ ორობითი, რვაობითი და თექვსმეტობითი რიცხვების საჩვენებლად დამატებითი "
+"კოდის გამოსაყენებლად. კომპიუტერში უარყოფითი რიცხვების საჩვენებლად ორობითი "
+"რიცხვის ინვერსია და მისთვის ერთის დამატებით ხდება."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_TwosComplement)
 #: general.ui:189
@@ -1027,6 +1030,13 @@ msgid ""
 "\ti.e. notation of the type 2.34e12.\n"
 "      "
 msgstr ""
+"\n"
+"\tKCalc-ს იმაზე გაცილებით მეტი ციფრის გამოთვლა შეუძლია, ვიდრე\n"
+"\tეკრანზე ეტევა. ეს პარამეტრი მიუთითებს, რამდენი ციფრი იქნება\n"
+"\tნაჩვნები ეკრანზე მანამდე, სანამ KCalc-ი სამეცნიერო ნოტციის გამოყენებას "
+"დაიწყებს.\n"
+"\tანუ, ტიპით 2.34e12.\n"
+"      "
 
 #. i18n: ectx: label, entry (FixedPrecision), group (Precision)
 #: kcalc.kcfg:114
@@ -1074,6 +1084,12 @@ msgid ""
 "        negative numbers in computers.\n"
 "      "
 msgstr ""
+"\n"
+"        აირჩიეთ ორობითი, რვაობითი და თექვსმეტობითი \n"
+"        რიცხვების საჩვენებლად დამატებითი კოდის გამოსაყენებლად. კომპიუტერში \n"
+"        უარყოფითი რიცხვების საჩვენებლად ორობითი რიცხვის ინვერსია და მისთვის "
+"ერთის დამატებით ხდება..\n"
+"      "
 
 #. i18n: ectx: label, entry (RepeatLastOperation), group (General)
 #: kcalc.kcfg:145
@@ -1178,6 +1194,12 @@ msgid ""
 "            4, thus inserting a whitespace after every 4th digit.\n"
 "        "
 msgstr ""
+"\n"
+"           ადვილად გასარჩევად შეიძლება ხილული რიცხვები წყვილებად დავალაგოთ.\n"
+"           ასე რომ, თუ პარამეტრის მნიშვნელობად მიუთითებთ 4, 10111001-ის "
+"მაგიერ დაინახავთ 1011 1001,\n"
+"           რადგან ყოველი ოთხი ციფრის შემდეგ ადგილის გამოტოვება მოხდება.\n"
+"      "
 
 #. i18n: ectx: label, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:200
@@ -1199,6 +1221,12 @@ msgid ""
 "            4, thus inserting a whitespace after every 4th digit.\n"
 "        "
 msgstr ""
+"\n"
+"           ადვილად გასარჩევად შეიძლება ხილული რიცხვები წყვილებად დავალაგოთ.\n"
+"           ასე რომ, თუ პარამეტრის მნიშვნელობად მიუთითებთ 4, 42140213 -ის "
+"მაგიერ დაინახავთ 4214 0213,\n"
+"           რადგან ყოველი ოთხი ციფრის შემდეგ ადგილის გამოტოვება მოხდება.\n"
+"      "
 
 #. i18n: ectx: label, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:209
@@ -1221,6 +1249,12 @@ msgid ""
 "            2, thus inserting a whitespace after every 2nd digit.\n"
 "        "
 msgstr ""
+"\n"
+"           ადვილად გასარჩევად შეიძლება ხილული რიცხვები წყვილებად დავალაგოთ.\n"
+"           ასე რომ, თუ პარამეტრის მნიშვნელობად მიუთითებთ 4, AF1C42 -ის "
+"მაგიერ დაინახავთ AF 1C 42,\n"
+"           რადგან ყოველი ორი ციფრის შემდეგ ადგილის გამოტოვება მოხდება.\n"
+"      "
 
 #. i18n: ectx: label, entry (nameConstant$(ConstIndex)), group (UserConstants)
 #: kcalc.kcfg:220
