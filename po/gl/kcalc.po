@@ -185,7 +185,7 @@ msgstr "Número &máximo de díxitos:"
 #: general.ui:41
 #, kde-format
 msgid "Maximum number of digits displayed"
-msgstr "Número máximo de díxitos mostrados."
+msgstr "Número máximo de díxitos amosados."
 
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, kcfg_Precision)
 #: general.ui:44
@@ -197,7 +197,7 @@ msgid ""
 msgstr ""
 "KCalc pode realizar cálculos con moitos máis números dos que caben na "
 "pantalla. Esta opción permite estabelecer o número máximo de díxitos que "
-"aparecerán na pantalla, antes de que KCalc empece a empregar a notación "
+"aparecerán na pantalla, antes de que KCalc empece a usar a notación "
 "científica, como por exemplo «2.34e12»."
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_Fixed)
@@ -276,13 +276,13 @@ msgstr "Emitir un ton de &aviso cando se produza un erro."
 #: general.ui:173
 #, kde-format
 msgid "Whether to show the result in the window title"
-msgstr "Se mostrar o resultado no título da xanela."
+msgstr "Se amosar o resultado no título da xanela."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CaptionResult)
 #: general.ui:176
 #, kde-format
 msgid "Show &result in window title"
-msgstr "Mostrar o &resultado no título da xanela."
+msgstr "Amosar o &resultado no título da xanela."
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_TwosComplement)
 #: general.ui:183
@@ -338,7 +338,7 @@ msgstr "Modo de sistema numérico"
 #: kcalc.cpp:199
 #, kde-format
 msgid "Show &History"
-msgstr "Mostrar o &historial"
+msgstr "Amosar o &historial"
 
 #: kcalc.cpp:205
 #, kde-format
@@ -348,7 +348,7 @@ msgstr "&Botóns de constantes"
 #: kcalc.cpp:210
 #, kde-format
 msgid "Show B&it Edit"
-msgstr "Mostrar a edición de b&its"
+msgstr "Amosar a edición de b&its"
 
 #: kcalc.cpp:225
 #, kde-format
@@ -1026,7 +1026,7 @@ msgstr "A fonte para usar no historial."
 #: kcalc.kcfg:102
 #, kde-format
 msgid "Maximum number of digits displayed."
-msgstr "Número máximo de díxitos mostrados."
+msgstr "Número máximo de díxitos amosados."
 
 #. i18n: ectx: whatsthis, entry (Precision), group (Precision)
 #: kcalc.kcfg:108
@@ -1043,7 +1043,7 @@ msgstr ""
 "\tKCalc pode realizar cálculos con moitos máis números dos que\n"
 "\tcaben na pantalla Esta opción permite estabelecer o número\n"
 "\tmáximo de díxitos que aparecerán na pantalla, antes de que\n"
-"\tKCalc empece a empregar a notación científica, como por\n"
+"\tKCalc empece a usar a notación científica, como por\n"
 "\texemplo «2.34e12».\n"
 "      "
 
@@ -1069,7 +1069,7 @@ msgstr "Se emitir un son de aviso cando se produza un erro."
 #: kcalc.kcfg:128
 #, kde-format
 msgid "Whether to show the result in the window title."
-msgstr "Se mostrar o resultado no título da xanela."
+msgstr "Se amosar o resultado no título da xanela."
 
 #. i18n: ectx: label, entry (GroupDigits), group (General)
 #: kcalc.kcfg:132
@@ -1116,7 +1116,7 @@ msgstr "Modo fácil"
 #, kde-format
 msgid "A very simple mode where only the basic calculator buttons are shown"
 msgstr ""
-"Un modo moi sinxelo no que só se mostran os botóns básicos dunha calculadora."
+"Un modo moi sinxelo no que só se amosan os botóns básicos dunha calculadora."
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
 #: kcalc.kcfg:155
@@ -1157,19 +1157,19 @@ msgstr ""
 #: kcalc.kcfg:169
 #, kde-format
 msgid "Whether to show the bit edit widget."
-msgstr "Se mostrar o trebello de edición de bits."
+msgstr "Se amosar o trebello de edición de bits."
 
 #. i18n: ectx: label, entry (ShowConstants), group (General)
 #: kcalc.kcfg:173
 #, kde-format
 msgid "Whether to show constant buttons."
-msgstr "Se mostrar os botóns das constantes."
+msgstr "Se amosar os botóns das constantes."
 
 #. i18n: ectx: label, entry (ShowHistory), group (General)
 #: kcalc.kcfg:177
 #, kde-format
 msgid "Whether to show the history window."
-msgstr "Se mostrar a xanela do historial."
+msgstr "Se amosar a xanela do historial."
 
 #. i18n: ectx: label, entry (AngleMode), group (General)
 #: kcalc.kcfg:181
@@ -1204,7 +1204,7 @@ msgstr ""
 "\n"
 "            Para facilitar a súa lectura, pódense agrupar visiblemente os "
 "díxitos individuais\n"
-"            en grupos; por exemplo, en vez de «10111001» pode mostrar «1011 "
+"            en grupos; por exemplo, en vez de «10111001» pode amosar «1011 "
 "1001», dándolle\n"
 "            o valor «4» á opción, para que se insira un espazo entre cada "
 "grupo de 4 cifras.\n"
@@ -1231,7 +1231,7 @@ msgstr ""
 "\n"
 "            Para facilitar a súa lectura, pódense agrupar visiblemente os "
 "díxitos individuais\n"
-"            en grupos; por exemplo, en vez de «42140213» pode mostrar «4214 "
+"            en grupos; por exemplo, en vez de «42140213» pode amosar «4214 "
 "0213», dándolle\n"
 "            o valor «4» á opción, para que se insira un espazo entre cada "
 "grupo de 4 cifras.\n"
@@ -1259,7 +1259,7 @@ msgstr ""
 "\n"
 "            Para facilitar a súa lectura, pódense agrupar visiblemente os "
 "díxitos individuais\n"
-"            en grupos; por exemplo, en vez de «AF1C42» pode mostrar «AF 1C "
+"            en grupos; por exemplo, en vez de «AF1C42» pode amosar «AF 1C "
 "42», dándolle\n"
 "            o valor «2» á opción, para que se insira un espazo entre cada "
 "grupo de 2 cifras.\n"
