@@ -1127,3 +1127,5 @@ QSize KCalcDisplay::sizeHint() const
 
     return (style()->sizeFromContents(QStyle::CT_LineEdit, &option, sz, this));
 }
+
+#include "moc_kcalcdisplay.cpp"

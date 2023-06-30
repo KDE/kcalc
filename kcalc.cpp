@@ -2891,3 +2891,5 @@ int main(int argc, char *argv[])
     calc->show();
     return app.exec();
 }
+
+#include "moc_kcalc.cpp"

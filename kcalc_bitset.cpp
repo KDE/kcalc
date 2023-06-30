@@ -190,3 +190,5 @@ void KCalcBitset::resizeEvent(QResizeEvent *event)
 
     updateGeometry();
 }
+
+#include "moc_kcalc_bitset.cpp"

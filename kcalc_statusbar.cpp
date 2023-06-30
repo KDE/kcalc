@@ -100,3 +100,5 @@ void KCalcStatusBar::setMemoryIndicator(bool memory)
 {
     memory_indicator_->setText(memory ? i18nc("Memory indicator in status bar", "M") : QString());
 }
+
+#include "moc_kcalc_statusbar.cpp"

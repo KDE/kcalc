@@ -245,3 +245,5 @@ void KCalcButton::setToolTip(const QString &tip)
         mode_[ModeNormal].tooltip = tip;
     }
 }
+
+#include "moc_kcalc_button.cpp"

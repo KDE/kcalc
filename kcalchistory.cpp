@@ -207,3 +207,5 @@ void KCalcHistory::resizeEvent(QResizeEvent* event)
 
     updateGeometry();
 }
+
+#include "moc_kcalchistory.cpp"

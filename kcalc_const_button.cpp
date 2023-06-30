@@ -125,3 +125,5 @@ void KCalcConstButton::slotClicked()
 {
     Q_EMIT constButtonClicked(button_num_);
 }
+
+#include "moc_kcalc_const_button.cpp"

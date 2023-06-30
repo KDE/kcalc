@@ -155,3 +155,5 @@ void BitButton::focusOutEvent(QFocusEvent *event)
     over_ = false;
     update();
 }
+
+#include "moc_bitbutton.cpp"
