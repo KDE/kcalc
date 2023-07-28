@@ -14,6 +14,7 @@
   <name xml:lang="de">KCalc</name>
   <name xml:lang="el">KCalc</name>
   <name xml:lang="en-GB">KCalc</name>
+  <name xml:lang="eo">KCalc</name>
   <name xml:lang="es">KCalc</name>
   <name xml:lang="et">KCalc</name>
   <name xml:lang="eu">KCalc</name>
@@ -60,6 +61,7 @@
   <summary xml:lang="de">Wissenschaftlicher Taschenrechner</summary>
   <summary xml:lang="el">Επιστημονική αριθμομηχανή</summary>
   <summary xml:lang="en-GB">Scientific Calculator</summary>
+  <summary xml:lang="eo">Scienca Kalkulilo</summary>
   <summary xml:lang="es">Calculadora científica</summary>
   <summary xml:lang="et">Teaduslik kalkulaator</summary>
   <summary xml:lang="eu">Kalkulagailu zientifikoa</summary>
@@ -106,6 +108,7 @@
     <p xml:lang="de">KCalc bietet alles, was Sie von einem wissenschaftlichen Taschenrechner erwarten, plus:</p>
     <p xml:lang="el">Το KCalc έχει όλα όσα αναμένετε να βρείτε σε μία επιστημονική αριθμομηχανή, και ακόμη:</p>
     <p xml:lang="en-GB">KCalc has everything you would expect from a scientific calculator, plus:</p>
+    <p xml:lang="eo">KCalc havas ĉion, kion vi atendus de scienca kalkulilo, krome:</p>
     <p xml:lang="es">KCalc tiene todo lo que cabría esperar de una calculadora científica, además de:</p>
     <p xml:lang="et">KCalc pakub kõike, mida oskad soovida ühelt teaduslikult kalkulaatorilt ja sellele lisaks veel:</p>
     <p xml:lang="eu">KCalc-ek kalkulagailu zientifiko batean aurkituko zenukeen guztia dauka, gehi:</p>
@@ -149,6 +152,7 @@
       <li xml:lang="de">Trigonometrische Funktionen, logische Operationen und statistische Berechnungen</li>
       <li xml:lang="el">Τριγωνομετρικές συναρτήσεις, λογικές πράξεις και στατιστικούς υπολογισμούς</li>
       <li xml:lang="en-GB">Trigonometric functions, logic operations and statistical calculations</li>
+      <li xml:lang="eo">Trigonometriaj funkcioj, logikaj operacioj kaj statistikaj kalkuloj</li>
       <li xml:lang="es">Funciones trigonométricas, operaciones lógicas y cálculos estadísticos</li>
       <li xml:lang="et">Trigonomeetrilised funktsioonid, loogikatehted ja statistilised arvutused</li>
       <li xml:lang="eu">Funtzio trigonometrikoak, eragiketa logikoak eta kalkulu estatistikoak</li>
@@ -186,6 +190,7 @@
       <li xml:lang="de">Ein Ergebnis-Stack, mit dem Sie bequem frühere Resultate abrufen können</li>
       <li xml:lang="el">Μια στοίβα αποτελεσμάτων η οποία επιτρέπει τη βολική επαναφορά προηγούμενων αποτελεσμάτων υπολογισμών</li>
       <li xml:lang="en-GB">A results stack which enables convenient recall of previous calculation results</li>
+      <li xml:lang="eo">Rezulta stako kiu ebligas oportunan revokon de antaŭaj kalkulrezultoj</li>
       <li xml:lang="es">Una pila de resultados que permite reutilizar los resultados de cálculos anteriores</li>
       <li xml:lang="et">Tulemuste pinu, mis lubab mugavalt kätte saada varasemaid arvutustulemusi</li>
       <li xml:lang="eu">Emaitza-meta bat, egoki denerako, aurreko kalkulu-emaitzen itzularaztea gaitzen duena</li>
@@ -224,6 +229,7 @@
       <li xml:lang="de">Benutzerdefinierbare Genauigkeit</li>
       <li xml:lang="el">Η ακρίβεια μπορεί να ορισθεί από το χρήστη</li>
       <li xml:lang="en-GB">Precision is user-definable</li>
+      <li xml:lang="eo">Precizeco estas uzant-difinebla</li>
       <li xml:lang="es">El usuario puede definir la precisión</li>
       <li xml:lang="et">Täpsuse saab määrata kasutaja</li>
       <li xml:lang="eu">Doitasuna erabiltzaileak zehaztu dezake</li>
@@ -262,6 +268,7 @@
       <li xml:lang="de">In der Anzeige können Zahlen kopiert und eingefügt werden</li>
       <li xml:lang="el">Η οθόνη επιτρέπει αποκοπή και επικόλληση αριθμών</li>
       <li xml:lang="en-GB">The display allows cut and paste of numbers</li>
+      <li xml:lang="eo">La ekrano permesas tranĉi kaj alglui nombrojn</li>
       <li xml:lang="es">La pantalla permite cortar y pegar números</li>
       <li xml:lang="et">Rakendus võimaldab arve lõigata ja asetada</li>
       <li xml:lang="eu">Bistaratzaileak zenbakiak ebakitzea eta itsastea onartzen du</li>
@@ -301,6 +308,7 @@
       <li xml:lang="de">Farbe und Zeichensatz der Anzeige können angepasst werden und verbessern damit die Lesbarkeit</li>
       <li xml:lang="el">Τα χρώματα και η γραμματοσειρά της οθόνης είναι διαμορφώσιμα, βοηθητικά της χρηστικότητας</li>
       <li xml:lang="en-GB">The display colours and font are configurable, aiding usability</li>
+      <li xml:lang="eo">La ekrankoloroj kaj tiparo estas agordeblaj, helpante uzeblon</li>
       <li xml:lang="es">Puede configurar el color de la pantalla y el tipo de letra, lo que ayuda a la usabilidad</li>
       <li xml:lang="et">Vaate värve ja fonte saab ise määrata</li>
       <li xml:lang="eu">Bistaratzailearen koloreak eta letra-tipoak konfiguragarriak dira, erabilerraztasuna hobetuz</li>
@@ -338,6 +346,7 @@
       <li xml:lang="de">Tastenbelegungen ermöglichen das Arbeiten ohne Zeigergerät</li>
       <li xml:lang="el">Η χρήση συνδυασμών πλήκτρων διευκολύνει τη χρήση αν δεν υπάρχει συσκευή δεικτοδότησης</li>
       <li xml:lang="en-GB">The use of key-bindings make it easy to use without a pointing device</li>
+      <li xml:lang="eo">La uzo de klavbindoj faciligas uzi sen indika aparato</li>
       <li xml:lang="es">El uso de asignaciones de teclas facilita su uso sin un dispositivo apuntador</li>
       <li xml:lang="et">Kiirklahvid võimaldavad rakendust kasutada isegi ilma osutusseadmeta</li>
       <li xml:lang="eu">Tekla-konbinazioen erabilerak errazten du erakusle-gailurik gabe erabiltzea</li>
@@ -383,6 +392,7 @@
       <caption xml:lang="de">Hauptfenster von KCalc</caption>
       <caption xml:lang="el">Κύριο παράθυρο του KCalc</caption>
       <caption xml:lang="en-GB">Main window of KCalc</caption>
+      <caption xml:lang="eo">Ĉefa fenestro de KCalc</caption>
       <caption xml:lang="es">Ventana principal de KCalc</caption>
       <caption xml:lang="et">KCalci peaaken</caption>
       <caption xml:lang="eu">KCalc leiho nagusia</caption>
@@ -425,6 +435,7 @@
       <caption xml:lang="de">KCalc-Fenster im Logik-Modus</caption>
       <caption xml:lang="el">Παράθυρο KCalc σε λειτουργία αριθμητικού συστήματος</caption>
       <caption xml:lang="en-GB">KCalc window in numeral system mode</caption>
+      <caption xml:lang="eo">KCalc-fenestro en numera sistemo-reĝimo</caption>
       <caption xml:lang="es">Ventana de KCalc en el modo de sistema de numeración</caption>
       <caption xml:lang="et">KCalci aken arvusüsteemi režiimis</caption>
       <caption xml:lang="eu">Kcalc leihoa zenbaki-sistema moduan</caption>
@@ -466,6 +477,7 @@
       <caption xml:lang="de">KCalc-Fenster im Wissenschafts-Modus</caption>
       <caption xml:lang="el">Παράθυρο KCalc σε επιστημονική λειτουργία</caption>
       <caption xml:lang="en-GB">Kcalc window in scientific mode</caption>
+      <caption xml:lang="eo">Kcalc-fenestro en scienca reĝimo</caption>
       <caption xml:lang="es">Ventana de KCalc en el modo científico</caption>
       <caption xml:lang="et">KCalci aken teadusrežiimis</caption>
       <caption xml:lang="eu">Kcalc leihoa zientzia moduan</caption>
@@ -508,6 +520,7 @@
       <caption xml:lang="de">KCalc-Fenster im Statistik-Modus</caption>
       <caption xml:lang="el">Παράθυρο KCalc σε στατιστική λειτουργία</caption>
       <caption xml:lang="en-GB">Kcalc window in statistics mode</caption>
+      <caption xml:lang="eo">Kcalc-fenestro en statistika reĝimo</caption>
       <caption xml:lang="es">Ventana de KCalc en el modo estadístico</caption>
       <caption xml:lang="et">KCalci aken statistikarežiimis</caption>
       <caption xml:lang="eu">Kcalc leihoa estatistika moduan</caption>
