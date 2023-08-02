@@ -107,7 +107,6 @@ target_sources(kcalc PRIVATE
    kcalcdisplay.cpp 
    kcalc_statusbar.cpp
    stats.cpp 
-   kcalc.qrc
    kcalchistory.cpp
    stats.cpp
    kcalc_const_menu.h
