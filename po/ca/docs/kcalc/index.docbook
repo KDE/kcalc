@@ -466,7 +466,7 @@
 >x!</guibutton
 ></entry>
 <entry
->Calcula el producte de tots els enters positius menor o igual que l'operand de l'enter actual (factorial)</entry
+>Calcula el producte de tots els enters positius menors o iguals que l'operand de l'enter actual (factorial)</entry
 ></row>
 
 <row
