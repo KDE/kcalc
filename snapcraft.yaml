@@ -92,7 +92,7 @@ parts:
         source-type: local
         plugin: dump
         stage:
-        - patches/dontusefullpathinsymlink.patch
+        - snap/local/dontusefullpathinsymlink.patch
     kcalc:
         after:
         - kde-neon
@@ -138,7 +138,7 @@ parts:
         - "-usr/share/lintain"
         override-pull: |
             craftctl default
-            patch -p1 < ../../patches/src/patches/dontusefullpathinsymlink.patch
+            patch -p1 < ../../patches/src/snap/local/dontusefullpathinsymlink.patch
         build-environment: &id005
         - *id001
         - *id002
