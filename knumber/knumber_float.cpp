@@ -26,7 +26,7 @@ double exp10(double x)
 }
 #endif
 
-// NOTE: these assume IEEE floats..
+// NOTE: these assume IEEE floats.
 #ifndef isinf
 #define isinf(x) ((x) != 0.0 && (x) + (x) == (x))
 #endif

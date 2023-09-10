@@ -25,7 +25,7 @@ QLabel *KCalcStatusBar::addIndicator(const QList<QString> &indicatorTexts)
 {
     auto l = new QLabel(indicatorTexts.at(0), this);
 
-    // find widest indicator text
+    // find the widest indicator text
     QFontMetrics fm(l->font());
     int maxWidth = 0;
     for (const QString &text : indicatorTexts) {

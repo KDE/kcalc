@@ -93,7 +93,7 @@ KCalcBitset::KCalcBitset(QWidget *parent)
 void KCalcBitset::setValue(quint64 value)
 {
     if (value_ == value) {
-        // don't waste time if there was no change..
+        // don't waste time if there was no change.
         return;
     }
 

@@ -466,7 +466,7 @@ void testingComplement()
     // at first glance, these look like they should work
     // but there is an annoyance. If we use the mpz_com function
     // ~-2 == 1, but the HEX/OCT/BIN views are broken :-(
-    // specifically, if the value is negative, it goes badly pretty quick..
+    // specifically, if the value is negative, it goes badly pretty quick.
 #if 0
     checkResult(QStringLiteral("~KNumber(0)"), ~KNumber(0), QLatin1String("-1"), KNumber::TYPE_INTEGER);
     checkResult(QStringLiteral("~KNumber(1)"), ~KNumber(1), QLatin1String("-2"), KNumber::TYPE_INTEGER);

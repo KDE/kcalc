@@ -1,4 +1,4 @@
-# Try to find the MPFR librairies
+# Try to find the MPFR libraries
 #  MPFR_FOUND - system has MPFR lib
 #  MPFR_INCLUDE_DIR - the MPFR include directory
 #  MPFR_LIBRARIES - Libraries needed to use MPFR

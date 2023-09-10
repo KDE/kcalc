@@ -992,7 +992,7 @@ void KCalculator::slotNumberclicked(QAbstractButton *button)
 void KCalculator::slotSinclicked()
 {
     if (hyp_mode_) {
-        // sinh or arsinh
+        // sinh or arcsinh
         if (!shift_mode_) {
             calc_history->addFuncToHistory(QStringLiteral("sinh"));
             core.SinHyp(calc_display->getAmount());
@@ -1001,7 +1001,7 @@ void KCalculator::slotSinclicked()
             core.AreaSinHyp(calc_display->getAmount());
         }
     } else {
-        // sine or arcsine
+        // sin or arcsin
         if (!shift_mode_) {
             calc_history->addFuncToHistory(QStringLiteral("sin"));
             switch (angle_mode_) {
@@ -1213,8 +1213,8 @@ void KCalculator::slotTanclicked()
 void KCalculator::slotFactorialclicked()
 {
     bool gamma_ = false;
-    // Set WaitCursor, as this operation may take looooong
-    // time and UI frezes with large numbers. User needs some
+    // Set WaitCursor, as this operation may take a long
+    // time and the UI freezes with large numbers. User needs some
     // visual feedback.
     QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
     if (!shift_mode_) {
@@ -1504,7 +1504,7 @@ void KCalculator::slotRightShiftclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotPeriodclicked()
 {
-    // i know this isn't locale friendly, should be converted to appropriate
+    // I know this isn't locale friendly, should be converted to appropriate
     // value at lower levels
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     calc_display->newCharacter(QLocale().decimalPoint());
