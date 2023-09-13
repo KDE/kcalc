@@ -17,9 +17,7 @@ add_library(knumber STATIC
 
 target_include_directories(knumber PUBLIC ${CMAKE_BINARY_DIR} ${GMP_INCLUDE_DIR})
 
-target_link_libraries(knumber PUBLIC Qt${QT_MAJOR_VERSION}::Core PRIVATE ${GMP_LIBRARIES} ${MPFR_LIBRARIES})
-if (QT_MAJOR_VERSION STREQUAL "6")
-    target_link_libraries(knumber PRIVATE Qt6::Core5Compat)
-endif()
+target_link_libraries(knumber PUBLIC Qt6::Core PRIVATE ${GMP_LIBRARIES} ${MPFR_LIBRARIES})
+target_link_libraries(knumber PRIVATE Qt6::Core5Compat)
 
 add_subdirectory( tests ) 

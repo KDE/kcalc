@@ -694,11 +694,7 @@ QString KCalcDisplay::formatDecimalNumber(QString string)
     // because UTF-16 may need surrogate pairs to represent these fields.
     // We only need digits, thus we only need the first QChar with Qt>=6.
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     auto zero = locale.zeroDigit().at(0).unicode();
-#else
-    auto zero = locale.zeroDigit().unicode();
-#endif
 
     for (auto &i : string) {
         if (i.isDigit()) {
