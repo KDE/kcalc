@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-14 01:55+0000\n"
+"POT-Creation-Date: 2023-09-16 01:56+0000\n"
 "PO-Revision-Date: 2022-10-28 22:32+0300\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@iki.fi>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -1193,10 +1193,18 @@ msgstr "Binaariluvut erotetaan tyhjällä välillä x:n numeron välein."
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:196
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "\n"
+#| "            For easier readability it's possible to visible group the "
+#| "individual digits into pairs\n"
+#| "            for example instead of 10111001 you can display 1011 1001, by "
+#| "setting the setting to\n"
+#| "            4, thus inserting a whitespace after every 4th digit.\n"
+#| "        "
 msgid ""
 "\n"
-"            For easier readability it's possible to visible group the "
+"            For easier reading it's possible to visually group the "
 "individual digits into pairs\n"
 "            for example instead of 10111001 you can display 1011 1001, by "
 "setting the setting to\n"
@@ -1219,10 +1227,18 @@ msgstr "Oktaaliluvut erotetaan tyhjällä välillä x:n numeron välein."
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:205
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "\n"
+#| "            For easier readability it's possible to visible group the "
+#| "individual digits into pairs\n"
+#| "            for example instead of 42140213 you can display 4214 0213, by "
+#| "setting the setting to\n"
+#| "            4, thus inserting a whitespace after every 4th digit.\n"
+#| "        "
 msgid ""
 "\n"
-"            For easier readability it's possible to visible group the "
+"            For easier reading it's possible to visually group the "
 "individual digits into pairs\n"
 "            for example instead of 42140213 you can display 4214 0213, by "
 "setting the setting to\n"
@@ -1246,10 +1262,18 @@ msgstr "Heksadesimaaliluvut erotetaan tyhjällä välillä x:n numeron välein."
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:214
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "\n"
+#| "            For easier readability it's possible to visible group the "
+#| "individual digits into pairs\n"
+#| "            for example instead of AF1C42 you can display AF 1C 42, by "
+#| "setting the setting to\n"
+#| "            2, thus inserting a whitespace after every 2nd digit.\n"
+#| "        "
 msgid ""
 "\n"
-"            For easier readability it's possible to visible group the "
+"            For easier reading it's possible to visually group the "
 "individual digits into pairs\n"
 "            for example instead of AF1C42 you can display AF 1C 42, by "
 "setting the setting to\n"

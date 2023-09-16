@@ -16,9 +16,9 @@
 # Emir SARI <emir_sari@icloud.com>, 2022, 2023.
 msgid ""
 msgstr ""
-"Project-Id-Version: kdeutils-kde4\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-14 01:55+0000\n"
+"POT-Creation-Date: 2023-09-16 01:56+0000\n"
 "PO-Revision-Date: 2023-06-04 02:02+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -43,19 +43,19 @@ msgstr "gorkem@kde.org, simsek@kde.org.tr, emir_sari@icloud.com"
 #: colors.ui:17
 #, kde-format
 msgid "Display Colors"
-msgstr "Görünüm Renkleri"
+msgstr "Görüntü Renkleri"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel1)
 #: colors.ui:25
 #, kde-format
 msgid "&Foreground:"
-msgstr "Ö&n Plan:"
+msgstr "Ö&n plan:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
 #: colors.ui:52
 #, kde-format
 msgid "&Background:"
-msgstr "A&rka Plan:"
+msgstr "A&rka plan:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, buttonColorsBox)
 #: colors.ui:97
@@ -152,13 +152,13 @@ msgstr "Düğmeler için kullanılacak yazıtipi"
 #: fonts.ui:41
 #, kde-format
 msgid "&Display font:"
-msgstr "G&örünüm yazıtipi:"
+msgstr "&Görüntü yazıtipi:"
 
 #. i18n: ectx: property (toolTip), widget (KFontRequester, kcfg_DisplayFont)
 #: fonts.ui:54
 #, kde-format
 msgid "The font to use in the display"
-msgstr "Ekranda kullanılacak yazıtipi"
+msgstr "Görüntüde kullanılacak yazıtipi"
 
 #. i18n: ectx: property (text), widget (QLabel, historylabel)
 #: fonts.ui:61
@@ -182,19 +182,19 @@ msgstr "Genel"
 #: general.ui:20
 #, kde-format
 msgid "Precision"
-msgstr "Hassasiyet"
+msgstr "Kesinlik"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel1)
 #: general.ui:28
 #, kde-format
 msgid "&Maximum number of digits:"
-msgstr "&Azami hane sayısı:"
+msgstr "&En çok basamak sayısı:"
 
 #. i18n: ectx: property (toolTip), widget (QSpinBox, kcfg_Precision)
 #: general.ui:41
 #, kde-format
 msgid "Maximum number of digits displayed"
-msgstr "Gösterilecek en fazla hane sayısı"
+msgstr "Gösterilecek en çok basamak sayısı"
 
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, kcfg_Precision)
 #: general.ui:44
@@ -204,8 +204,8 @@ msgid ""
 "display. This setting gives the maximum number of digits displayed, before "
 "KCalc starts using scientific notation, i.e. notation of the type 2.34e12."
 msgstr ""
-"K Hesap, ekrana sığan sayıdan çok daha fazla basamakla işlem yapabilir. Bu "
-"ayar, K Hesap bilimsel gösterimi, yani 2.34e12 tipi gösterimi kullanmaya "
+"K Hesap, görüntüye sığan sayıdan çok daha fazla basamakla işlem yapabilir. "
+"Bu ayar, K Hesap bilimsel gösterimi, yani 2.34e12 tipi gösterimi kullanmaya "
 "başlamadan önce görüntülenen maksimum basamak sayısını verir."
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_Fixed)
@@ -218,13 +218,13 @@ msgstr "Sabit ondalık yerlerin kullanılıp kullanılmayacağı"
 #: general.ui:54
 #, kde-format
 msgid "Set &decimal precision"
-msgstr "O&ndalık hassasiyetini ayarla"
+msgstr "O&ndalık kesinliğini ayarla"
 
 #. i18n: ectx: property (toolTip), widget (QSpinBox, kcfg_FixedPrecision)
 #: general.ui:64
 #, kde-format
 msgid "Number of fixed decimal digits"
-msgstr "Sabit ondalık hanelerin sayısı"
+msgstr "Sabit ondalık basamakların sayısı"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: general.ui:89
@@ -373,7 +373,7 @@ msgstr "M+"
 #: kcalc.cpp:319
 #, kde-format
 msgid "Add display to memory"
-msgstr "Görünümü belleğe ekle"
+msgstr "Görüntüyü belleğe ekle"
 
 #: kcalc.cpp:320
 #, kde-format
@@ -638,7 +638,7 @@ msgstr "Dat"
 #: kcalc.cpp:512 kcalc.ui:673
 #, kde-format
 msgid "Enter data"
-msgstr "Veri girin"
+msgstr "Veri gir"
 
 #: kcalc.cpp:513
 #, kde-format
@@ -810,7 +810,7 @@ msgstr "Yazıtipi"
 #: kcalc.cpp:1761
 #, kde-format
 msgid "Select Display Font"
-msgstr "Ekran Yazıtipini Seçin"
+msgstr "Görüntü Yazıtipini Seç"
 
 #: kcalc.cpp:1765
 #, kde-format
@@ -820,7 +820,7 @@ msgstr "Renkler"
 #: kcalc.cpp:1765
 #, kde-format
 msgid "Button & Display Colors"
-msgstr "Düğme & Görünüm Rengi"
+msgstr "Düğme ve Görüntü Renkleri"
 
 #: kcalc.cpp:1797
 #, kde-format
@@ -915,13 +915,13 @@ msgstr "Niklas Freund"
 #: kcalc.kcfg:12
 #, kde-format
 msgid "The foreground color of the display."
-msgstr "Görünümün metin rengi."
+msgstr "Görüntünün metin rengi."
 
 #. i18n: ectx: label, entry (BackColor), group (Colors)
 #: kcalc.kcfg:18
 #, kde-format
 msgid "The background color of the display."
-msgstr "Görünümün arka plan rengi."
+msgstr "Görüntünün arka plan rengi."
 
 #. i18n: ectx: label, entry (NumberButtonsColor), group (Colors)
 #: kcalc.kcfg:23
@@ -1017,7 +1017,7 @@ msgstr "Düğmeler için kullanılacak yazıtipi."
 #: kcalc.kcfg:89
 #, kde-format
 msgid "The font to use in the display."
-msgstr "Ekranda görüntülenecek yazıtipi."
+msgstr "Görüntüde kullanılacak yazıtipi."
 
 #. i18n: ectx: label, entry (HistoryFont), group (Font)
 #: kcalc.kcfg:96
@@ -1029,7 +1029,7 @@ msgstr "Geçmişte kullanılacak yazıtipi."
 #: kcalc.kcfg:102
 #, kde-format
 msgid "Maximum number of digits displayed."
-msgstr "Gösterilecek en fazla hane sayısı."
+msgstr "Görüntülenecek en çok basamak sayısı."
 
 #. i18n: ectx: whatsthis, entry (Precision), group (Precision)
 #: kcalc.kcfg:108
@@ -1043,7 +1043,8 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"\tK Hesap, ekrana sığan sayıdan çok daha fazla basamakla işlem yapabilir.\n"
+"\tK Hesap, görüntüye sığan sayıdan çok daha fazla basamakla işlem "
+"yapabilir.\n"
 "\tBu ayar, K Hesap bilimsel gösterimi, yani 2.34e12 tipi gösterimi\n"
 "\tkullanmaya başlamadan önce görüntülenen maksimum basamak\n"
 "\tsayısını verir.\n"
@@ -1053,7 +1054,7 @@ msgstr ""
 #: kcalc.kcfg:114
 #, kde-format
 msgid "Number of fixed decimal digits."
-msgstr "Sabit ondalık hanelerin sayısı."
+msgstr "Sabit ondalık basamakların sayısı."
 
 #. i18n: ectx: label, entry (Fixed), group (Precision)
 #: kcalc.kcfg:118
@@ -1179,7 +1180,7 @@ msgstr "Geçmiş penceresinin gösterilip gösterilmeyeceği."
 #: kcalc.kcfg:181
 #, kde-format
 msgid "Degrees, radians or grads"
-msgstr "Derece, radyan ya da grad"
+msgstr "Derece, radyan veya grad"
 
 #. i18n: ectx: label, entry (BaseMode), group (General)
 #: kcalc.kcfg:185
@@ -1195,10 +1196,18 @@ msgstr "İkili figürler her X'nci rakamdan sonra boşlukla ayrılacaktır."
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:196
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "\n"
+#| "            For easier readability it's possible to visible group the "
+#| "individual digits into pairs\n"
+#| "            for example instead of 10111001 you can display 1011 1001, by "
+#| "setting the setting to\n"
+#| "            4, thus inserting a whitespace after every 4th digit.\n"
+#| "        "
 msgid ""
 "\n"
-"            For easier readability it's possible to visible group the "
+"            For easier reading it's possible to visually group the "
 "individual digits into pairs\n"
 "            for example instead of 10111001 you can display 1011 1001, by "
 "setting the setting to\n"
@@ -1222,10 +1231,18 @@ msgstr "Sekizli rakamlar her X. rakamdan sonra bir boşluk ile ayrılır."
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:205
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "\n"
+#| "            For easier readability it's possible to visible group the "
+#| "individual digits into pairs\n"
+#| "            for example instead of 42140213 you can display 4214 0213, by "
+#| "setting the setting to\n"
+#| "            4, thus inserting a whitespace after every 4th digit.\n"
+#| "        "
 msgid ""
 "\n"
-"            For easier readability it's possible to visible group the "
+"            For easier reading it's possible to visually group the "
 "individual digits into pairs\n"
 "            for example instead of 42140213 you can display 4214 0213, by "
 "setting the setting to\n"
@@ -1250,10 +1267,18 @@ msgstr "Onaltılık rakamlar her X. rakamdan sonra bir boşluk ile ayrılır."
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:214
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "\n"
+#| "            For easier readability it's possible to visible group the "
+#| "individual digits into pairs\n"
+#| "            for example instead of AF1C42 you can display AF 1C 42, by "
+#| "setting the setting to\n"
+#| "            2, thus inserting a whitespace after every 2nd digit.\n"
+#| "        "
 msgid ""
 "\n"
-"            For easier readability it's possible to visible group the "
+"            For easier reading it's possible to visually group the "
 "individual digits into pairs\n"
 "            for example instead of AF1C42 you can display AF 1C 42, by "
 "setting the setting to\n"
@@ -2015,7 +2040,7 @@ msgstr "Sakla"
 #: kcalc_const_button.cpp:24 kcalc_const_button.cpp:37
 #, kde-format
 msgid "Write display data into memory"
-msgstr "Görünüm verisini belleğe yaz"
+msgstr "Görüntü verisini belleğe yaz"
 
 #: kcalc_const_button.cpp:82
 #, kde-format
