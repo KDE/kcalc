@@ -6,13 +6,13 @@
 # Andriy Rysin <rysin@kde.org>, 2002.
 # Eugene Onischenko <oneugene@ukr.net>, 2003, 2004, 2005.
 # Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>, 2004, 2005, 2006, 2008.
-# Yuri Chornoivan <yurchor@ukr.net>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2018, 2019, 2020, 2021, 2022.
+# Yuri Chornoivan <yurchor@ukr.net>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2018, 2019, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-16 01:56+0000\n"
-"PO-Revision-Date: 2022-08-20 08:38+0300\n"
+"PO-Revision-Date: 2023-09-16 08:54+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -1189,15 +1189,7 @@ msgstr "До показаних двійкових чисел буде дода�
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:196
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 10111001 you can display 1011 1001, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1224,15 +1216,7 @@ msgstr "До показаних вісімкових чисел буде дод�
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:205
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 42140213 you can display 4214 0213, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1261,15 +1245,7 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:214
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of AF1C42 you can display AF 1C 42, by "
-#| "setting the setting to\n"
-#| "            2, thus inserting a whitespace after every 2nd digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "

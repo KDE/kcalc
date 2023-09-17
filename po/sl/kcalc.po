@@ -12,17 +12,17 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-16 01:56+0000\n"
-"PO-Revision-Date: 2022-08-21 06:36+0200\n"
+"PO-Revision-Date: 2023-09-16 09:19+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
-"X-Generator: Lokalize 22.04.1\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
+"Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1188,15 +1188,7 @@ msgstr "Dvojiška števila bodo ločena s preslednim znakom po vsaki X-ti števk
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:196
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 10111001 you can display 1011 1001, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1207,7 +1199,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            Za lažjo berljivost je mogoče števke združevati v skupine\n"
+"            Za lažjo berljivost je mogoče števke združevati v pare\n"
 "            na primer: namesto 10111001 lahko prikažete 1011 1001, tako da "
 "možnost nastavite na\n"
 "            4, in presledni znak vstavite za vsako 4-to števko.\n"
@@ -1221,15 +1213,7 @@ msgstr "Osmiška števila bodo ločena s preslednim znakom po vsaki X-ti števki
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:205
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 42140213 you can display 4214 0213, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1240,7 +1224,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            Za lažjo berljivost je mogoče števke združevati v skupine\n"
+"            Za lažjo berljivost je mogoče števke združevati v pare\n"
 "            na primer: namesto 42140213 lahko prikažete 4214 0213, tako da "
 "možnost nastavite na\n"
 "            4, in presledni znak vstavite za vsako 4-to števko.\n"
@@ -1256,15 +1240,7 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:214
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of AF1C42 you can display AF 1C 42, by "
-#| "setting the setting to\n"
-#| "            2, thus inserting a whitespace after every 2nd digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1275,7 +1251,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            Za lažjo berljivost je mogoče števke združevati v skupine\n"
+"            Za lažjo berljivost je mogoče števke združevati v pare\n"
 "            na primer: namesto AF1C42 lahko prikažete AF 1C 42, tako da "
 "možnost nastavite na\n"
 "            2, in presledni znak vstavite za vsako 2-to števko.\n"

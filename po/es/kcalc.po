@@ -4,14 +4,14 @@
 #
 # Alonso Lara <jlaram@nexo.es>, 1999.
 # Pablo de Vicente <vicente@oan.es>, 2000-2002.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2003, 2004.
+# SPDX-FileCopyrightText: 2003, 2004, 2023 Eloy Cuadra <ecuadra@eloihr.net>
 # Eloy Cuadra <ecuadra@eloihr.net>, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2018, 2019, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-16 01:56+0000\n"
-"PO-Revision-Date: 2023-01-18 01:34+0100\n"
+"PO-Revision-Date: 2023-09-16 11:17+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "First Translator: Alonso Lara <jlaram@nexo.es>\n"
-"X-Generator: Lokalize 22.12.1\n"
+"X-Generator: Lokalize 23.08.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -1190,15 +1190,7 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:196
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 10111001 you can display 1011 1001, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1209,11 +1201,11 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            Para mejor legibilidad es posible agrupar los dígitos "
-"individuales en parejas\n"
-"            por ejemplo, en lugar de 10111001 se puede mostrar 1011 1001, "
+"            Para mejorar la legibilidad, puede agrupar dígitos los "
+"individuales en parejas.\n"
+"            Por ejemplo: en lugar de 10111001, puede mostrar 1011 1001 "
 "ajustando esta preferencia\n"
-"            a 4, por lo que se inserta un espacio en blanco tras cada 4 "
+"            a 4, con lo que se inserta un espacio en blanco tras cada 4 "
 "dígitos.\n"
 "        "
 
@@ -1227,15 +1219,7 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:205
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 42140213 you can display 4214 0213, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1246,11 +1230,11 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            Para mejor legibilidad es posible agrupar los dígitos "
-"individuales en parejas\n"
-"            por ejemplo, en lugar de 42140213 se puede mostrar 4214 0213, "
+"            Para mejorar la legibilidad, puede agrupar los dígitos "
+"individuales en parejas.\n"
+"            Por ejemplo: en lugar de 42140213, puede mostrar 4214 0213 "
 "ajustando esta preferencia\n"
-"            a 4, por lo que se inserta un espacio en blanco tras cada 4 "
+"            a 4, con lo que se inserta un espacio en blanco tras cada 4 "
 "dígitos.\n"
 "        "
 
@@ -1265,15 +1249,7 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:214
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of AF1C42 you can display AF 1C 42, by "
-#| "setting the setting to\n"
-#| "            2, thus inserting a whitespace after every 2nd digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1284,11 +1260,11 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            Para mejor legibilidad es posible agrupar los dígitos "
-"individuales en parejas\n"
-"            por ejemplo, en lugar de AF1C42 se puede mostrar  AF 1C 42, "
+"            Para mejorar la legibilidad, puede agrupar los dígitos "
+"individuales en parejas.\n"
+"            Por ejemplo: en lugar de AF1C42, puede mostrar AF 1C 42, "
 "ajustando esta preferencia\n"
-"            a 2, por lo que se inserta un espacio en blanco tras cada 2 "
+"            a 2, con lo que se inserta un espacio en blanco tras cada 2 "
 "dígitos.\n"
 "        "
 

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kcalc 1.0pre2\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-16 01:56+0000\n"
-"PO-Revision-Date: 2023-09-15 23:13+0100\n"
+"PO-Revision-Date: 2023-09-16 08:00+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <eo@li.org>\n"
 "Language: eo\n"
@@ -1181,15 +1181,7 @@ msgstr "Binaraj figuroj estos apartigitaj per blankspaco post ĉiu Xa cifero."
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:196
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 10111001 you can display 1011 1001, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1215,15 +1207,7 @@ msgstr "Oktalaj figuroj estos apartigitaj per blankspaco post ĉiu Xa cifero."
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:205
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 42140213 you can display 4214 0213, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1250,15 +1234,7 @@ msgstr "Deksesuma ciferoj estos apartigitaj per blankspaco post ĉiu Xa cifero."
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:214
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of AF1C42 you can display AF 1C 42, by "
-#| "setting the setting to\n"
-#| "            2, thus inserting a whitespace after every 2nd digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
