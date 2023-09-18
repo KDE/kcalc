@@ -1012,7 +1012,7 @@ msgstr "El tipus de lletra que s'utilitzarà en els botons."
 #: kcalc.kcfg:89
 #, kde-format
 msgid "The font to use in the display."
-msgstr "El tipus de lletra que s'ha d'utilitzar en la pantalla."
+msgstr "El tipus de lletra que s'utilitzarà en la pantalla."
 
 #. i18n: ectx: label, entry (HistoryFont), group (Font)
 #: kcalc.kcfg:96
