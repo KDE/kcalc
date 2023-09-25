@@ -217,7 +217,7 @@
 <listitem
 ><para
 ><action
->Mostra un camp d'edició de bits. Feu clic en un bit per commutar-lo. Només disponible en el <link linkend="numeral-system-mode"
+>Mostra un camp d'edició de bits. Feu clic en un bit per a commutar-lo. Només disponible en el <link linkend="numeral-system-mode"
 >mode de sistema numeral</link
 >.</action>
 </para

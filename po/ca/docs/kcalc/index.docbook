@@ -63,7 +63,7 @@
 >Introducció</title>
 
 <para
->El &kcalc; ofereix moltes més funcions matemàtiques que les que es troben a la vista en una primera mirada. Estudieu la secció sobre els acceleradors de teclat i els modes d'aquest manual per aprendre més sobre les moltes funcions disponibles.</para>
+>El &kcalc; ofereix moltes més funcions matemàtiques que les que es troben a la vista en una primera mirada. Estudieu la secció sobre els acceleradors de teclat i els modes d'aquest manual per a aprendre més sobre les moltes funcions disponibles.</para>
 
 <para
 >A més de la funcionalitat habitual oferta per la majoria de les calculadores científiques, el &kcalc; ofereix una sèrie de característiques, que crec que val la pena assenyalar:</para>
@@ -223,13 +223,13 @@
 >Disposició dels botons</term>
 <listitem>
 <para
->Per facilitar l'accés a totes les funcions en els modes avançats del &kcalc;, moltes tecles tenen una segona disposició. Feu clic a <guibutton
+>Per a facilitar l'accés a totes les funcions en els modes avançats del &kcalc;, moltes tecles tenen una segona disposició. Feu clic a <guibutton
 >&Maj;</guibutton
 > o premeu la drecera <keycombo action="simul"
 >&Ctrl;<keycap
 >2</keycap
 ></keycombo
-> per fer visible la segona disposició dels botons.</para
+> per a fer visible la segona disposició dels botons.</para
 > 
 </listitem>
 </varlistentry>
@@ -243,7 +243,7 @@
 >AC</guibutton
 > o premeu la drecera <keycap
 >Supr</keycap
-> per netejar el contingut de l'historial. Per activar-lo o desactivar-lo, utilitzeu l'element <guilabel
+> per a netejar el contingut de l'historial. Per a activar-lo o desactivar-lo, utilitzeu l'element <guilabel
 >Mostra l'historial</guilabel
 > al menú <guimenu
 >Arranjament</guimenu
@@ -508,7 +508,7 @@
 >1/y</superscript
 ></entry>
 <entry
->x a la potència de 1/y</entry
+>x a la potència d'1/y</entry
 ></row>
 
 <row
@@ -558,7 +558,7 @@
 <para
 >La major part de la funcionalitat en aquest mode està centrada al voltant del botó <guibutton
 >Dad</guibutton
->. Per crear una llista de dades de nombres, introduïu un nombre a la calculadora i premeu <guibutton
+>. Per a crear una llista de dades de nombres, introduïu un nombre a la calculadora i premeu <guibutton
 >Dad</guibutton
 >. Es mostra un número que augmenta seqüencialment en la pantalla indicant quina posició en la <quote
 >llista</quote
@@ -698,7 +698,7 @@
 <title
 >Mode de sistema numeral</title>
 <para
->Aquest mode conté botons i funcions per calcular en binari, hexadecimal, octal i decimal.</para>
+>Aquest mode conté botons i funcions per a calcular en binari, hexadecimal, octal i decimal.</para>
 
 <para
 >Seleccioneu el sistema numeral amb els botons d'opció de la dreta. Per a inserir un nombre hexadecimal per exemple, només cal fer el següent: Seleccioneu <guilabel
@@ -731,7 +731,7 @@
 >Mostra l'edició de bits</guimenu
 > des del menú <guimenu
 >Arranjament</guimenu
-> per veure els bits seleccionats.</para>
+> per a veure els bits seleccionats.</para>
 
 <para
 >Hi ha operadors lògics disponibles en aquest mode. Aquests operadors són: <informaltable
@@ -926,10 +926,10 @@
 ></para>
 
 <para
->Per veure el valor emmagatzemat en cada constant passeu el punter del ratolí per sobre del botó.</para>
+>Per a veure el valor emmagatzemat en cada constant passeu el punter del ratolí per sobre del botó.</para>
 
 <para
->Per emmagatzemar el nombre que es mostra a la visualització del &kcalc; en una de les sis constants, primer premeu <guibutton
+>Per a emmagatzemar el nombre que es mostra a la visualització del &kcalc; en una de les sis constants, primer premeu <guibutton
 >&Maj;</guibutton
 > seguit de la tecla de botó desitjada <guibutton
 >C1</guibutton
@@ -938,14 +938,14 @@
 >.</para>
 
 <para
->Per utilitzar el valor emmagatzemat en qualsevol de les constants en un càlcul, simplement premeu el botó desitjat (<guibutton
+>Per a utilitzar el valor emmagatzemat en qualsevol de les constants en un càlcul, simplement premeu el botó desitjat (<guibutton
 >C1</guibutton
 > a <guibutton
 >C6</guibutton
 >), i el nombre corresponent apareixerà a la pantalla. </para>
 
 <para
->És possible canviar l'etiqueta del botó de les constants per fer més fàcil recordar quin botó conté quina constant. Feu clic amb el botó dret del ratolí en un dels botons <guibutton
+>És possible canviar l'etiqueta del botó de les constants per a fer més fàcil recordar quin botó conté quina constant. Feu clic amb el botó dret del ratolí en un dels botons <guibutton
 >C1</guibutton
 > a <guibutton
 >C6</guibutton
@@ -973,14 +973,14 @@
 >Acceleradors de tecla única</title>
 
 <para
->Per simplificar els càlculs d'introducció des del teclat el &kcalc; té acceleradors de tecles individuals per a la majoria de funcions. Per exemple, introduir <userinput
+>Per a simplificar els càlculs d'introducció des del teclat el &kcalc; té acceleradors de tecles individuals per a la majoria de funcions. Per exemple, introduir <userinput
 >7R</userinput
 > o <userinput
 >7r</userinput
 > calcularà el recíproc de 7 (1/7).</para>
 
 <para
->Durant un càlcul, sempre es pot prémer &Ctrl; per fer que cada botó mostri la seva vinculació de tecles.</para>
+>Durant un càlcul, sempre es pot prémer &Ctrl; per a fer que cada botó mostri la seva vinculació de tecles.</para>
 <!-- Shift works like Caps Lock-->
 <informaltable
 ><tgroup cols="3">
