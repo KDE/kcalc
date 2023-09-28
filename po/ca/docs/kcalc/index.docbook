@@ -1732,7 +1732,7 @@
 ><para
 >El factor principal que determina la precisió del &kcalc; és si les biblioteques «libc» i «libmath» admeten el tipus de dades <type
 >«long double»</type
-> del C. Si aquest és el cas, el &kcalc; detectarà això en el moment de compilació i l'utilitzarà com a tipus de dades fonamental per representar els nombres. </para>
+> del C. Si aquest és el cas, el &kcalc; detectarà això en el moment de compilació i l'utilitzarà com a tipus de dades fonamental per a representar els nombres. </para>
 
 <para
 >Ajusteu la precisió <guilabel
