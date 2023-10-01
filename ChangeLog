@@ -26,7 +26,7 @@
 	  Bernd Brandstetter for reporting the bug.
 
 2004-12-21 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
-	* added some more contants and dropped Pi-button since not needed.
+	* added some more constants and dropped Pi-button since not needed.
 	  Instead new cube and cube root button.
 
 2004-12-17 Klaus Niederkrüger <kniederk@math.uni-koeln.de>
@@ -265,11 +265,11 @@
 	as it will have many new changes/features
 
 2002-03-11 Evan Teran <emt3734@rit.edu>
-	* started work on making calculator code _seperate_ from the
+	* started work on making calculator code _separate_ from the
 	gui code, the goal here is the make the calculating core
-	replacable with any library (hopfully with better precision) simply by
+	replaceable with any library (hopefully with better precision) simply by
 	wrapping it in a class
-	* made it some many buttons are disabled when unavailabled (A-F) not enabled
+	* made it some many buttons are disabled when unavailable (A-F) not enabled
 	unless we are in HEX mode, less confusion for users who arent familiar with
 	different bases
 	* removed some code that is never getting called
@@ -287,9 +287,9 @@
 
 
 2001-10-12 Evan Teran <emt3734@rit.edu>
-	* Reorganized code for all files, much more consistant now
+	* Reorganized code for all files, much more consistent now
 	* completely reworked the cvb (convert to binary) function
-	it now is sane, the last one did a rediculous amount of
+	it now is sane, the last one did a ridiculous amount of
 	unneeded work
 	* changed C/C++ headers to use new style as per ANSI/ISO 
 	standard
@@ -305,7 +305,7 @@
 	more clear
 	* made cvb a static member of QtCalculator instead of an ugly global
 	function
-	* changed history to use a simple vectory object instead of the storing
+	* changed history to use a simple vector object instead of the storing
 	the values in a dynamically allocated QList, it was clearly leaking memory
 	as it was almost never released, this could have been fixed by enabling the
 	autodelete feature of QList...but why dynamically allocate when we are
@@ -332,12 +332,12 @@
 
 Mon Nov 16 18:05:01 1998  Mario Weilguni <mweilguni@kde.org>
 
-	* There was an error in the stdev forumal. Fixed.
+	* There was an error in the stdev formula. Fixed.
 	* the population standard deviation had the same fault. Fixed.
 
 Mon Nov 16 18:05:01 1998  Mario Weilguni <mweilguni@kde.org>
 
-	* calculation the facturial of a too large number was delayed,
+	* calculation the factorial of a too large number was delayed,
 	even though infinity was already reached. Now kcalc stops
 	calculation if infinity is reached and displays an error
 
@@ -357,7 +357,7 @@ Sat Nov 22 14:30:37 1997  Bernd Johannes Wuebben  <wuebben@petit.cornell.edu>
 
 	* stats.cpp: fixed some bugs in the stats module
 	  mean should now be correct
-	  std  shoudl now be correct too.
+	  std  should now be correct too.
 
 Sat Sep 20 23:59:30 1997  Bernd Johannes Wuebben  <wuebben@petit.cornell.edu>
 

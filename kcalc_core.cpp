@@ -614,7 +614,6 @@ void CalcEngine::ParenClose(KNumber input)
         input = evalOperation(tmp_node.number, tmp_node.operation, input);
     }
     last_number_ = input;
-    return;
 }
 
 void CalcEngine::ParenOpen(const KNumber &input)

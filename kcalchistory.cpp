@@ -80,38 +80,38 @@ void KCalcHistory::addResultToHistory(const QString &display_content)
 //------------------------------------------------------------------------------
 void KCalcHistory::addFuncToHistory(const CalcEngine::Operation FUNC)
 {
-    QString textToHistroy = QStringLiteral("&nbsp;");
+    QString textToHistory = QStringLiteral("&nbsp;");
 
     if (FUNC == CalcEngine::FUNC_PERCENT) {
-        textToHistroy += QStringLiteral("%");
+        textToHistory += QStringLiteral("%");
     } else if (FUNC == CalcEngine::FUNC_OR) {
-        textToHistroy += QStringLiteral("OR");
+        textToHistory += QStringLiteral("OR");
     } else if (FUNC == CalcEngine::FUNC_XOR) {
-        textToHistroy += QStringLiteral("XOR");
+        textToHistory += QStringLiteral("XOR");
     } else if (FUNC == CalcEngine::FUNC_AND) {
-        textToHistroy += QStringLiteral("AND");
+        textToHistory += QStringLiteral("AND");
     } else if (FUNC == CalcEngine::FUNC_LSH) {
-        textToHistroy += QStringLiteral("Lsh");
+        textToHistory += QStringLiteral("Lsh");
     } else if (FUNC == CalcEngine::FUNC_RSH) {
-        textToHistroy += QStringLiteral("Rsh");
+        textToHistory += QStringLiteral("Rsh");
     } else if (FUNC == CalcEngine::FUNC_ADD) {
-        textToHistroy += QStringLiteral("+");
+        textToHistory += QStringLiteral("+");
     } else if (FUNC == CalcEngine::FUNC_SUBTRACT) {
-        textToHistroy += QStringLiteral("-");
+        textToHistory += QStringLiteral("-");
     } else if (FUNC == CalcEngine::FUNC_MULTIPLY) {
-        textToHistroy += QStringLiteral("×");
+        textToHistory += QStringLiteral("×");
     } else if (FUNC == CalcEngine::FUNC_DIVIDE) {
-        textToHistroy += QStringLiteral("÷");
+        textToHistory += QStringLiteral("÷");
     } else if (FUNC == CalcEngine::FUNC_MOD) {
-        textToHistroy += QStringLiteral("Mod");
+        textToHistory += QStringLiteral("Mod");
     } else if (FUNC == CalcEngine::FUNC_INTDIV) {
-        textToHistroy += QStringLiteral("IntDiv");
+        textToHistory += QStringLiteral("IntDiv");
     } else if (FUNC == CalcEngine::FUNC_BINOM) {
-        textToHistroy += QStringLiteral("Binom");
+        textToHistory += QStringLiteral("Binom");
     }
 
-    textToHistroy += QStringLiteral("&nbsp;");
-    addToHistory(textToHistroy, false);
+    textToHistory += QStringLiteral("&nbsp;");
+    addToHistory(textToHistory, false);
 }
 
 //------------------------------------------------------------------------------
@@ -120,8 +120,8 @@ void KCalcHistory::addFuncToHistory(const CalcEngine::Operation FUNC)
 //------------------------------------------------------------------------------
 void KCalcHistory::addFuncToHistory(const QString &func)
 {
-    QString textToHistroy = QStringLiteral("&nbsp;") + func + QStringLiteral("&nbsp;");
-    addToHistory(textToHistroy, false);
+    QString textToHistory = QStringLiteral("&nbsp;") + func + QStringLiteral("&nbsp;");
+    addToHistory(textToHistory, false);
 }
 
 //------------------------------------------------------------------------------

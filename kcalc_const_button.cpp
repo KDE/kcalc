@@ -108,7 +108,7 @@ void KCalcConstButton::slotConfigureButton()
 
 //------------------------------------------------------------------------------
 // Name: slotChooseScientificConst
-// Desc: set the buttons's scientific constant
+// Desc: set the button's scientific constant
 //------------------------------------------------------------------------------
 void KCalcConstButton::slotChooseScientificConst(const science_constant &const_chosen)
 {

@@ -102,7 +102,7 @@ KCalculator::KCalculator(QWidget *parent)
     setFonts();
 
     // Show the result in the app's caption in taskbar (wishlist - bug #52858)
-    if (KCalcSettings::captionResult() == true) {
+    if (KCalcSettings::captionResult()) {
         connect(calc_display, &KCalcDisplay::changedText, this, &KCalculator::setWindowTitle);
     }
 
