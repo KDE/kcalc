@@ -77,7 +77,7 @@
 >Introducción</title>
 
 <para
->&kcalc; ofrece muchas más funciones matemáticas de las visibles a primera vista. Por favor, estudie la sección sobre los aceleradores de teclado y los modos en este manual para aprender más sobre las muchas funciones disponibles.</para>
+>&kcalc; ofrece muchas más funciones matemáticas de las visibles a primera vista. Estudie la sección sobre los aceleradores de teclado y los modos en este manual para aprender más sobre las muchas funciones disponibles.</para>
 
 <para
 >Además de las funcionalidades usuales ofrecidas por casi todas las calculadoras científicas, &kcalc; ofrece un gran número de características, de las que creo que caben destacar:</para>
@@ -103,7 +103,7 @@
 </listitem>
 <listitem>
 <para
->Usted puede configurar la precisión y el número de dígitos decimales de &kcalc; y el número de dígitos después del punto en el diálogo de preferencias.</para>
+>Puede configurar la precisión y el número de dígitos decimales de &kcalc; y el número de dígitos después del punto en el diálogo de preferencias.</para>
 </listitem>
 <listitem>
 <para
@@ -111,7 +111,7 @@
 > atajos de teclado</link
 >, que facilitan el uso de &kcalc; sin utilizar un dispositivo apuntador.</para>
 <para
->Consejo: Pulsando (y manteniendo) la tecla &Ctrl; se muestra sobre cada botón su correspondiente tecla de acceso rápido.</para>
+>Consejo: Pulsando (y manteniendo) la tecla &Ctrl; se muestra sobre cada botón su correspondiente asignación de tecla.</para>
 </listitem>
 </itemizedlist>
 
@@ -239,7 +239,7 @@
 <para
 >Para proporcionar fácil acceso a todas las funciones en los modos avanzados de &kcalc;, muchas teclas tienen una segunda función. Pulse el botón <guibutton
 >Cambio</guibutton
-> o pulse el acceso rápido <keycombo action="simul"
+> o pulse el atajo de teclado <keycombo action="simul"
 >&Ctrl;<keycap
 >2</keycap
 ></keycombo
@@ -255,7 +255,7 @@
 <para
 >El área del historial muestra todos los cálculos realizados en &kcalc; durante la sesión activa de &kcalc;. Haga clic en <guibutton
 >AC</guibutton
-> o pulse el acceso rápido <keycap
+> o pulse el atajo de teclado <keycap
 >Supr</keycap
 > para borrar el contenido del historial. Para activarlo y desactivarlo, use la opción <guilabel
 >Mostrar historial</guilabel
