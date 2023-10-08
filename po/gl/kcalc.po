@@ -1,16 +1,16 @@
 # translation of kcalc.po to Galician
 #
+# SPDX-FileCopyrightText: 2023 Adrián Chaves (Gallaecio)
 # Xosé <xosecalvo@gmail.com>, 2008, 2012.
 # mvillarino <mvillarino@users.sourceforge.net>, 2008.
 # Marce Villarino <mvillarino@kde-espana.es>, 2009, 2013.
 # Adrian Chaves Fernandez <adriyetichaves@gmail.com>, 2013, 2015.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-16 01:56+0000\n"
-"PO-Revision-Date: 2023-05-03 07:33+0200\n"
+"PO-Revision-Date: 2023-10-07 20:19+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.04.0\n"
+"X-Generator: Lokalize 23.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -149,7 +149,7 @@ msgstr "Fonte &da pantalla:"
 #: fonts.ui:54
 #, kde-format
 msgid "The font to use in the display"
-msgstr "A fonte para usar na pantalla"
+msgstr "A fonte para usar na pantalla."
 
 #. i18n: ectx: property (text), widget (QLabel, historylabel)
 #: fonts.ui:61
@@ -755,7 +755,7 @@ msgstr "x elevado a 1/y."
 #: kcalc.cpp:613 kcalc.ui:472
 #, kde-format
 msgid "Exponent"
-msgstr "Expoñente"
+msgstr "Expoñente."
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbShift)
 #: kcalc.cpp:918 kcalc.ui:1411
@@ -866,7 +866,7 @@ msgstr "Evan Teran"
 #: kcalc.cpp:2827
 #, kde-format
 msgid "Maintainer"
-msgstr "Mantedor."
+msgstr "Mantemento."
 
 #: kcalc.cpp:2828
 #, kde-format
@@ -1191,15 +1191,7 @@ msgstr "As cifras binarias separaranse cun espazo cada X díxitos."
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:196
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 10111001 you can display 1011 1001, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1210,10 +1202,10 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            Para facilitar a súa lectura, pódense agrupar visiblemente os "
-"díxitos individuais\n"
-"            en grupos; por exemplo, en vez de «10111001» pode amosar «1011 "
-"1001», dándolle\n"
+"            Para facilitar a lectura, pódense agrupar visualmente os "
+"díxitos;\n"
+"            por exemplo, en vez de «10111001» pode amosar «1011 1001», "
+"dándolle\n"
 "            o valor «4» á opción, para que se insira un espazo entre cada "
 "grupo de 4 cifras.\n"
 "        "
@@ -1226,15 +1218,7 @@ msgstr "As cifras octais separaranse cun espazo cada X díxitos."
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:205
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 42140213 you can display 4214 0213, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1245,10 +1229,10 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            Para facilitar a súa lectura, pódense agrupar visiblemente os "
-"díxitos individuais\n"
-"            en grupos; por exemplo, en vez de «42140213» pode amosar «4214 "
-"0213», dándolle\n"
+"            Para facilitar a lectura, pódense agrupar visualmente os "
+"díxitos;\n"
+"            por exemplo, en vez de «42140213» pode amosar «4214 0213», "
+"dándolle\n"
 "            o valor «4» á opción, para que se insira un espazo entre cada "
 "grupo de 4 cifras.\n"
 "        "
@@ -1262,15 +1246,7 @@ msgstr "As cantidades hexadecimais separaranse cun espazo cada X díxitos."
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:214
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of AF1C42 you can display AF 1C 42, by "
-#| "setting the setting to\n"
-#| "            2, thus inserting a whitespace after every 2nd digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1281,10 +1257,10 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            Para facilitar a súa lectura, pódense agrupar visiblemente os "
-"díxitos individuais\n"
-"            en grupos; por exemplo, en vez de «AF1C42» pode amosar «AF 1C "
-"42», dándolle\n"
+"            Para facilitar a lectura, pódense agrupar visualmente os "
+"díxitos;\n"
+"            por exemplo, en vez de «AF1C42» pode amosar «AF 1C 42», "
+"dándolle\n"
 "            o valor «2» á opción, para que se insira un espazo entre cada "
 "grupo de 2 cifras.\n"
 "        "
@@ -1964,7 +1940,7 @@ msgstr "("
 #: kcalc.ui:1328
 #, kde-format
 msgid "Clear"
-msgstr "Borrar"
+msgstr "Borrar."
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMemPlusMinus)
 #: kcalc.ui:1344
@@ -2013,7 +1989,7 @@ msgstr "←"
 #: kcalc.ui:1395
 #, kde-format
 msgid "Backspace"
-msgstr "Borrar."
+msgstr "Retroceso"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbShift)
 #: kcalc.ui:1408
