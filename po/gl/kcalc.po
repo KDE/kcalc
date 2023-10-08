@@ -1,16 +1,16 @@
 # translation of kcalc.po to Galician
 #
+# SPDX-FileCopyrightText: 2023 Adrián Chaves (Gallaecio)
 # Xosé <xosecalvo@gmail.com>, 2008, 2012.
 # mvillarino <mvillarino@users.sourceforge.net>, 2008.
 # Marce Villarino <mvillarino@kde-espana.es>, 2009, 2013.
 # Adrian Chaves Fernandez <adriyetichaves@gmail.com>, 2013, 2015.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-16 01:01+0000\n"
-"PO-Revision-Date: 2023-05-03 07:33+0200\n"
+"PO-Revision-Date: 2023-10-07 20:19+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.04.0\n"
+"X-Generator: Lokalize 23.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -149,7 +149,7 @@ msgstr "Fonte &da pantalla:"
 #: fonts.ui:54
 #, kde-format
 msgid "The font to use in the display"
-msgstr "A fonte para usar na pantalla"
+msgstr "A fonte para usar na pantalla."
 
 #. i18n: ectx: property (text), widget (QLabel, historylabel)
 #: fonts.ui:61
@@ -755,7 +755,7 @@ msgstr "x elevado a 1/y."
 #: kcalc.cpp:617 kcalc.ui:472
 #, kde-format
 msgid "Exponent"
-msgstr "Expoñente"
+msgstr "Expoñente."
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbShift)
 #: kcalc.cpp:922 kcalc.ui:1411
@@ -866,7 +866,7 @@ msgstr "Evan Teran"
 #: kcalc.cpp:2857
 #, kde-format
 msgid "Maintainer"
-msgstr "Mantedor."
+msgstr "Mantemento."
 
 #: kcalc.cpp:2858
 #, kde-format
@@ -1940,7 +1940,7 @@ msgstr "("
 #: kcalc.ui:1328
 #, kde-format
 msgid "Clear"
-msgstr "Borrar"
+msgstr "Borrar."
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMemPlusMinus)
 #: kcalc.ui:1344
@@ -1989,7 +1989,7 @@ msgstr "←"
 #: kcalc.ui:1395
 #, kde-format
 msgid "Backspace"
-msgstr "Borrar."
+msgstr "Retroceso"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbShift)
 #: kcalc.ui:1408
