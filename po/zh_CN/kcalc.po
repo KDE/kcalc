@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-16 01:56+0000\n"
-"PO-Revision-Date: 2023-09-16 10:06\n"
+"PO-Revision-Date: 2023-10-10 14:25\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -1170,15 +1170,7 @@ msgstr "二进制数字每 X 个数字由空白分隔。"
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:196
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 10111001 you can display 1011 1001, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1190,8 +1182,8 @@ msgid ""
 msgstr ""
 "\n"
 "            可以通过对单独的数字分组从而提高可读性。\n"
-"            例如对于 10111001 可以通过设置为 4 来显示 1011 1001，\n"
-"            在每 4 个数字后插入一个空白。\n"
+"            例如：设置为 4 时将在每 4 个数字后插入一个空格符，\n"
+"            10111001 将被显示为 1011 1001。\n"
 "        "
 
 #. i18n: ectx: label, entry (OctalGrouping), group (Grouping)
@@ -1202,15 +1194,7 @@ msgstr "八进制数字每 X 个数字由空白分隔。"
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:205
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 42140213 you can display 4214 0213, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1222,8 +1206,8 @@ msgid ""
 msgstr ""
 "\n"
 "            可以通过对单独的数字分组从而提高可读性。\n"
-"            例如对于 42140213 可以通过设置为 4 来显示 4214 0213，\n"
-"            在每 4 个数字后插入一个空白。\n"
+"            例如：设置为 4 时将在每 4 个数字后插入一个空格符，\n"
+"            42140213 将被显示为 4214 0213。\n"
 "        "
 
 #. i18n: ectx: label, entry (HexadecimalGrouping), group (Grouping)
@@ -1235,15 +1219,7 @@ msgstr "十六进制数字每 X 个数字由空白分隔。"
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:214
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of AF1C42 you can display AF 1C 42, by "
-#| "setting the setting to\n"
-#| "            2, thus inserting a whitespace after every 2nd digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1255,8 +1231,8 @@ msgid ""
 msgstr ""
 "\n"
 "            可以通过对单独的数字分组从而提高可读性。\n"
-"            例如对于 AF1C42 可以通过设置为 2 来显示 AF 1C 42，\n"
-"            在每两个数字后插入一个空白。\n"
+"            例如：设置为 2 时将在每 2 个数字后插入一个空格符，\n"
+"            AF1C42 将被显示为 AF 1C 42。\n"
 "        "
 
 #. i18n: ectx: label, entry (nameConstant$(ConstIndex)), group (UserConstants)
