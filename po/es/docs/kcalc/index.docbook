@@ -996,10 +996,10 @@
 
 <sect1 id="key-accels">
 <title
->Teclas simples de acceso rápido</title>
+>Teclas aceleradoras simples</title>
 
 <para
->Para simplificar la introducción de cálculos con el teclado, &kcalc; posee teclas simples de acceso rápido para la mayoría de las funciones. Por ejemplo, al teclear <userinput
+>Para simplificar la introducción de cálculos con el teclado, &kcalc; posee teclas aceleradoras simples para la mayoría de las funciones. Por ejemplo, al teclear <userinput
 >7R</userinput
 > o <userinput
 >7r</userinput
