@@ -82,7 +82,7 @@ KNumber KStats::median()
         return data_.at(0);
 
     // need to copy data_-list, because sorting afterwards
-    QVector<KNumber> tmp_data(data_);
+    QList<KNumber> tmp_data(data_);
     std::sort(tmp_data.begin(), tmp_data.end());
 
     if (bound & 1) { // odd

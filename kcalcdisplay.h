@@ -9,7 +9,7 @@
 
 #include "knumber.h"
 #include <QFrame>
-#include <QVector>
+#include <QList>
 
 class CalcEngine;
 class QTimer;
@@ -124,7 +124,7 @@ private:
 
     QFont baseFont_;
 
-    QVector<KNumber> history_list_;
+    QList<KNumber> history_list_;
     int history_index_;
 
     // only used for input of new numbers

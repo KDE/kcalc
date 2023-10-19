@@ -8,7 +8,7 @@
 #pragma once
 
 #include "knumber.h"
-#include <QVector>
+#include <QList>
 
 class KStats
 {
@@ -31,7 +31,7 @@ public:
     bool error();
 
 private:
-    QVector<KNumber> data_;
+    QList<KNumber> data_;
     bool error_flag_ = false;
 };
 
