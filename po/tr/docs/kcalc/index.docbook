@@ -1,0 +1,1880 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Turkish "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY commands SYSTEM "commands.docbook">
+]>
+
+<book id="kcalc" lang="&language;">
+<bookinfo>
+<title
+>&kcalc; El Kitabı</title>
+
+<authorgroup>
+<author
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail; </author>
+
+<author
+>&Pamela.Roberts;&Pamela.Roberts.mail; </author>
+<author
+>&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail; </author>
+<othercredit role="translator"
+><firstname
+>Mesutcan</firstname
+><surname
+>Kurt</surname
+><affiliation
+><address
+><email
+>mesutcank@gmail.com</email
+></address
+></affiliation
+><contrib
+>-</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2001</year
+> <year
+>2002</year
+> <year
+>2005</year
+>	<year
+>2006</year>
+<holder
+>&Bernd.Johannes.Wuebben;, &Pamela.Roberts;, &Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2016-07-25</date>
+<releaseinfo
+>Uygulamalar 16.08</releaseinfo>
+
+<abstract
+><para
+>&kcalc; masaüstü ortamınız için bir hesap makinesidir. Basit kipte, temel aritmetik işlemler için kullanılabilir; ancak bilimsel, istatistiksel ve sayısal sistem hesaplamaları için gelişmiş kipler de sağlar.</para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>K Hesap</keyword>
+<keyword
+>hesap makinesi</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Giriş</title>
+
+<para
+>&kcalc; ilk bakışta göze çarpandan çok daha fazla matematiksel işlev sunar. Kullanılabilecek birçok işlev hakkında daha fazla bilgi edinmek için lütfen bu el kitabındaki klavye ivmelendiricileri ve kipleri bölümünü inceleyin.</para>
+
+<para
+>Birçok bilimsel hesap makinesinin olağan işlevselliğine ek olarak, &kcalc;'ın işaret etmeye değer şeyler sunduğunu düşünüyorum:</para>
+
+<itemizedlist>
+<listitem>
+<para
+>&kcalc; trigonometrik işlevler, mantık işlemleri sağlar ve istatistiksel hesaplamalar yapabilir.</para>
+</listitem>
+<listitem>
+<para
+>&kcalc; kendi görüntüsünden sayıları kesip yapıştırmanızı sağlar.</para>
+</listitem>
+<listitem>
+<para
+>&kcalc; önceki sonuçları rahatlıkla geri çağırmanızı sağlayan bir <firstterm
+>sonuç yığını</firstterm
+> içerir.</para>
+</listitem>
+<listitem>
+<para
+>&kcalc;'ın görüntü renklerini ve yazıtipini yapılandırabilirsiniz.</para>
+</listitem>
+<listitem>
+<para
+>Ayarlar iletişim kutusundaki &kcalc;'ın duyarlılığını, görüntülenen basamak sayısını ve virgülden sonraki basamak sayısını yapılandırabilirsiniz.</para>
+</listitem>
+<listitem>
+<para
+>&kcalc; bir işaretleme aygıtı kullanmadan &kcalc;'i kullanmayı sağlayan, çok sayıda yararlı <link linkend="key-accels"
+>düğme bağıntıları</link
+> sunar.</para>
+<para
+>İpucu: &Ctrl;- ikilisine basmak (ve basılı tutmak), her düğme üzerindeki ilgili düğme bağıntısını gösterir.</para>
+</listitem>
+</itemizedlist>
+
+<!--see https://bugs.kde.org/show_bug.cgi?id=326481-->
+<note
+><para
+>&kcalc;, pek çok yalın hesap makinesi tarafından kullanılan <ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Immediate_execution"
+>anında yürütme</ulink
+> yerine okullarda öğretildiği biçimiyle düzgün işlem sırası sağlayan <ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Infix_notation"
+>Infix simgelemi</ulink
+>'ni kullanır. </para
+></note>
+
+<para
+>&kcalc; ile iyi eğlenceler!</para>
+
+<para
+>&Bernd.Johannes.Wuebben;</para>
+
+</chapter>
+
+
+<chapter id="usage">
+<title
+>Kullanım</title>
+<sect1 id="general-usage">
+<title
+>Genel Kullanım</title>
+
+<para
+>Genel kullanım basittir ve en basit bilimsel hesap makinesinin çalışma şekline benzer; ancak aşağıdaki özel &kcalc; özelliklerini not edin:</para>
+
+<variablelist>
+<varlistentry>
+<term
+>Sonuç Yığını</term>
+<listitem
+><para
+>&LMB; ile <guibutton
+>=</guibutton
+> düğmesine, klavyenizin &Enter; düğmesine veya <keysym
+>=</keysym
+> düğmesine bastığınız her zaman, görüntüdeki sonuç, &kcalc; yazılımının sonuç yığınına yazılır. Sonuç yığını arasında klavyenizin <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> ve <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo
+> düğme ikililerini kullanarak gezinebilirsiniz.</para
+> 
+</listitem>
+</varlistentry
+> 
+
+<varlistentry>
+<term
+>Yüzde İşlevi</term>
+<listitem>
+<para
+>Yüzde işlevi, çoğu hesap makinesindeki işleve göre biraz farklı çalışır. Ancak, bir kere anlaşıldığında, geliştirilmiş işlevselliği oldukça yararlıdır. Daha fazla ayrıntı için <link linkend="percent"
+>yüzde</link
+> işlevi ile ilgili bölüme bakın.</para>
+</listitem
+></varlistentry>
+      
+<varlistentry>
+<term
+>Kes ve Yapıştır</term>
+<listitem>
+<para
+><itemizedlist>
+<listitem>
+<para
+><keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> basmak gösterilen sayıyı panoya yapıştıracaktır.</para>
+</listitem>
+<listitem>
+<para
+><keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> basarak panonun içeriği geçerli bir kayan noktalı değerse görüntüye yapıştıracaktır.</para>
+</listitem>
+<listitem>
+<para
+>&kcalc; görüntüsüne tıklayarak kopyalayıp yapıştırmak hâlâ olanaklıdır; ancak bu gelecekteki sürümlerde kaybolabilir.</para>
+</listitem>
+</itemizedlist>
+</para
+></listitem
+></varlistentry>
+
+<varlistentry>
+<term
+>Gelişmiş işlevler</term>
+<listitem>
+<para
+>&kcalc;'i ilk defa başlattığınızda, hesap makinesi yalnızca temel aritmetik hesaplamalar için düğmeler görüntüler.</para>
+<para
+><guimenu
+>Ayarlar</guimenu
+> menü girişinin altında &kcalc; için kip seçmek olanaklıdır: <link linkend="simple-mode"
+>Basit</link
+> veya <link linkend="science-mode"
+>Bilim</link
+> veya <link linkend="statistical-mode"
+>İstatistik</link
+> veya <link linkend="numeral-system-mode"
+>Sayısal Sistem</link
+> kipleri seçilebilirdir. Lütfen unutmayın ki, bu kipler &kcalc; geliştikçe yavaşça değişecektir.</para
+> 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Düğme Yerleşimi</term>
+<listitem>
+<para
+>&kcalc; içerisindeki gelişmiş kiplere kolay erişim sağlamak için, çoğu düğme ikinci bir yerleşime sahiptir. Düğmenin ikinci düzenini görünür kılmak için <guibutton
+>&Shift;</guibutton
+> veya <keycombo action="simul"
+>&Ctrl;<keycap
+><keycap
+>2</keycap
+></keycap
+></keycombo
+> kısayollarını kullanın.</para
+> 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Geçmiş</term>
+<listitem>
+<para
+>Geçmiş alanı, &kcalc;'ın etkin oturumu dahilinde &kcalc;'ta yapılan tüm hesaplamaları gösterir. Geçmiş içeriğini temizlemek için <guibutton
+>AC</guibutton
+>'ye tıklayın veya <keycap
+>Sil</keycap
+> düğmesine basın. Geçmişi etkinleştirmek veya devre dışı bırakmak için menü çubuğundan <guimenu
+>Ayarlar</guimenu
+> ve <guilabel
+>Geçmişi Göster</guilabel
+> yolunu izleyin veya <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+> kısayolunu kullanın.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+
+
+<!-- describing MODES here -->
+
+<sect1 id="simple-mode">
+<title
+>Basit Kip</title>
+<para
+>Bu kipte yalnızca temel hesaplamalar için gerekli olan düğmeler ve işlevler bulunur.</para>
+<para
+>Bir faturadaki tüm ögeleri toplamak istiyorsanız bu kipi seçmek isteyebilirsiniz.</para>
+</sect1>
+
+
+<sect1 id="science-mode">
+<title
+>Bilim Kipi</title>
+
+<para
+>Bu kip içerisinde düğmelerin sol sütunları trigonometrik işlevlere ayrılır:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Düğmeler</entry>
+<entry
+>İşlev</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>Hiperbolik alt kipine girin. Hyp Sin; örneğin hiperbolik sinüstür: sinh</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+>Sinüsü hesapla</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Sin</guibutton
+> veya <guibutton
+>Asin</guibutton
+></entry>
+<entry
+>Ters sinüsü hesapla</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+>Kosinüsü hesapla</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Cos</guibutton
+> veya <guibutton
+>Acos</guibutton
+></entry>
+<entry
+>Ters kosinüsü hesapla</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+>Tanjantı hesapla</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Tan</guibutton
+> veya <guibutton
+>Atan</guibutton
+></entry>
+<entry
+>Ters tanjantı hesapla</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>10 tabanında logaritma hesaplar</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Log</guibutton
+> veya 10<superscript
+>x</superscript
+></entry>
+<entry
+>10 üzeri x kuvvetini hesapla</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>Doğal logaritmayı hesaplayın. Bu log e tabanındadır</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>Ln</guibutton
+> veya e<superscript
+>x</superscript
+></entry>
+<entry
+>x üssünde e (doğal logaritma tabanı) hesapla</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>İkinci sütunda cebirsel işlevler için düğmeler bulunur:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Düğmeler</entry>
+<entry
+>İşlev</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Kip</guibutton
+></entry>
+<entry
+>Öklit bölmesinin kalanını hesapla</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Mod</guibutton
+> veya <guibutton
+>IntDiv</guibutton
+></entry>
+<entry
+>Tamsayı bölme (bölümün tamsayı kısmı)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>Bir numara için karşılıklı hesap yap</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>1/x</guibutton
+> veya <guibutton
+>nCm</guibutton
+></entry>
+<entry
+>İlk operand ögesini içeren herhangi bir küme için oluşturulabilen farklı ikinci operand ögesi alt kümelerinin sayısını hesapla (binom katsayısı)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>xl</guibutton
+></entry>
+<entry
+>Şu anki tamsayı işlenene (faktöryel) eşit veya küçük olan tüm pozitif tamsayıların çarpımını hesapla</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x²</guibutton
+></entry>
+<entry
+>X 'in karesini hesapla</entry
+></row>
+
+ <row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>x²</guibutton
+> veya <guibutton
+>√x</guibutton
+></entry>
+<entry
+>x 'in karekökünü hesapla</entry
+></row>
+
+<row
+><entry
+><guibutton
+>xʸ</guibutton
+></entry>
+<entry
+>x üzeri y</entry
+></row>
+
+<row
+><entry
+>&Shift; x<superscript
+>y</superscript
+> veya x<superscript
+>1/y</superscript
+></entry>
+<entry
+>x üzeri 1/y</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x³</guibutton
+></entry>
+<entry
+>x 'in üçüncü (kübik) kuvvetini hesaplar</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>x³</guibutton
+> veya <guibutton
+>∛x</guibutton
+></entry>
+<entry
+>x'in üçüncü (kübik) kökünü hesaplar</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x·10ʸ</guibutton
+></entry>
+<entry
+>İkinci işlenenin birinci işlenen ve ondalık basamağının çarpımını hesaplar</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+
+
+<sect1 id="statistical-mode">
+<title
+>İstatistiksel Kip</title>
+
+<para
+>Bu kipte düğmelerin sol sütunları istatistiksel işlevlere ayrılmıştır:</para>
+<para
+>Bu kipteki işlevselliğin çoğu, <guibutton
+>Dat</guibutton
+> düğmesinin çevresinde ortalanır. Bir sayı veri listesi oluşturmak için hesap makinesine bir sayı girin ve <guibutton
+>Dat</guibutton
+> 'a basın. Art arda artan sayı, görüntüdeki veri <quote
+>listesinin</quote
+> hangi konumda yer aldığını gösterir. Geleneksel bir hesap makinesi yalnızca istatistiksel işlevler için üç değer saklar: Bir listedeki ayrı öge sayısı, girilen veri ögelerinin toplamı ve listedeki tüm veri ögelerinin karesinin toplamı. &kcalc; aslında her ayrı değeri saklarken, verilerin medyan değerini hesaplamanıza izin vererek farklılık gösterir. </para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Düğmeler</entry>
+<entry
+>İşlev</entry
+></row
+></thead>
+
+<tbody>
+<row
+><entry
+><guibutton
+>N</guibutton
+></entry>
+<entry
+>Girilen veri ögelerinin sayısını anımsa</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>N</guibutton
+> veya <guibutton
+>&Sgr;x</guibutton
+></entry>
+<entry
+>Girilen tüm veri kalemlerinin toplamını göster</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Mea</guibutton
+></entry>
+<entry
+>Girilen veri öğelerinin ortalamasını görüntüle</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Mea</guibutton
+> veya <guibutton
+>&Sgr;x²</guibutton
+></entry>
+<entry
+>Girilen tüm veri kalemlerinin karesinin toplamını görüntüle</entry
+></row>
+
+<row
+><entry
+>&sgr;<subscript
+>N</subscript
+></entry>
+<entry
+>Standart sapmayı (n) göster</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> &sgr;<subscript
+>N</subscript
+> veya &sgr;<subscript
+>N-1</subscript
+> </entry>
+<entry
+>Popülasyonun standart sapmasını göster (n-1)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Med</guibutton
+></entry>
+<entry
+>Medyanı göster</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>Bir veri ögesi gir</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Dat</guibutton
+> veya <guibutton
+>CDat</guibutton
+></entry>
+<entry
+>Girilen son veri ögesini temizle</entry
+></row>
+
+<row
+><entry
+><guibutton
+>CSt</guibutton
+></entry>
+<entry
+>Girilen tüm veri ögesi deposunu temizle</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>Sonraki iki sütun, <link linkend="science-mode"
+>Bilim</link
+> kipi bölümünde açıklanan trigonometrik ve cebirsel işlevler düğmelerini barındırır.</para>
+
+</sect1>
+
+
+<sect1 id="numeral-system-mode">
+<title
+>Sayısal Sistem Kipi</title>
+<para
+>Bu kip, ikilik, onaltılık, sekizlik ve ondalık olarak hesaplamak için düğmeler ve işlevler içerir.</para>
+
+<para
+>Sağdaki radyo düğmeleri ile sayı sistemini seçersiniz. Örneğin onaltılık bir sayı eklemek için aşağıdakileri yapın: Radyo düğmelerinden <guilabel
+>Hex</guilabel
+> 'i seçin. Ardından bir numara girin ve 9'dan büyük sayılar için <guibutton
+>A</guibutton
+> ve <guibutton
+>F</guibutton
+> harflerini kullanabilirsiniz. Bu sayıyı ikili olarak görmek isterseniz <guilabel
+>Bin</guilabel
+> düğmesine basın.</para>
+
+ <para
+>İkilik, sekizlik ve onaltılık sayılar, boşluklarla ayrılmaş basamak grupları olarak görüntülenebilirler. Bu tür gruplandırmalar sayıların okunabilirliğini artırır. Örneğin, <emphasis
+>AF1C42</emphasis
+> onaltılık sayısı, <emphasis
+>AF 1C 42</emphasis
+> olarak, ikişer basamaklarla gösterilebilir. Gruplandırma kapatılabilir veya ayarlanabilir. Yapılandırma iletişim kutusunu getirmek ve <guilabel
+>Genel</guilabel
+> sayfasından bu ayarı değiştirmek için <menuchoice
+><guimenu
+>Ayarlar</guimenu
+><guimenuitem
+>&kcalc; Uygulamasını Yapılandır...</guimenuitem
+></menuchoice
+> yolunu izleyin.</para>
+
+<para
+>Seçili bitleri görmek için <guimenu
+>Ayarlar</guimenu
+> menüsünden <guimenu
+>Bit Düzenlemeyi Göster</guimenu
+> 'i seçmek isteyebilirsiniz.</para>
+
+<para
+>Bu kipte mantık işleçleri kullanılabilirdir. Bu işleçler şunlardır: <informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>Düğmeler</entry>
+<entry
+>İşlev</entry
+></row
+></thead>
+<tbody>
+<row
+><entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>İki sayı mantıksal AND'lenmiştir</entry
+></row>
+
+<row
+><entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>İki sayı mantıksal or'lanmıştır</entry
+></row>
+
+<row
+><entry
+><guibutton
+>XOR</guibutton
+></entry>
+<entry
+>İki sayı mantıksal XOR'lanmıştır</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>Değeri sola kaydır</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>Değeri sağa kaydır</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cmp</guibutton
+></entry>
+<entry
+>1'in tamamlayıcısını uygula</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+</para>
+
+<para
+>İkinci sütun, <link linkend="science-mode"
+>Bilim</link
+> kipi bölümünde açıklanan cebirsel işlevler düğmelerini barındırır.</para>
+
+<para
+><guibutton
+>A</guibutton
+> to <guibutton
+>F</guibutton
+> düğmelerini içeren üçüncü sütun yalnızca <guilabel
+>Hex</guilabel
+> kipinde kullanılabilirdir. </para>
+</sect1>
+
+<!-- end of MODES -->
+
+
+<sect1 id="memory-operations">
+<title
+>Bellek İşlemleri</title>
+
+<para
+>&kcalc; standart hesap makinelerinin verdiği bellek işlemlerine ek olarak sabitleri tutmak için altı yuvayı destekler.</para>
+
+<sect2 id="standard_memory">
+<title
+>Standart Bellek İşlemleri</title>
+
+<para
+>&kcalc; sizin için işlem sonuçlarını hatırlayabilir ve daha sonraki hesaplamalarda yeniden kullanabilirsiniz. Bu işlevlere, <guibutton
+>MR</guibutton
+>, <guibutton
+>MS</guibutton
+>, <guibutton
+>M+</guibutton
+> ve <guibutton
+> MC </guibutton
+> etiketli etiketlerle erişebilirsiniz.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>MS</guibutton
+></term>
+<listitem
+><para
+><guibutton
+>MS</guibutton
+> düğmesi, geçerli görüntüdeki sonucu belleğe kaydeder.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>M+</guibutton
+></term>
+<listitem
+><para
+><guibutton
+>M+</guibutton
+> düğmesi, geçerli sonucu bellektekine ekler. Yani 20 varsa ve geçerli sonuç 5 ise bastığınızda bellekte 25 olacaktır. Eğer bellek boş ise <guibutton
+>MS</guibutton
+> gibi davranır ve sonucu kaydeder.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MR</guibutton
+></term>
+<listitem
+><para
+><guibutton
+>MR</guibutton
+> düğmesi bellekte saklanmış değeri getirir ve görüntüde gösterir.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MC</guibutton
+></term>
+<listitem
+><para
+><guibutton
+>MC</guibutton
+> düğmesi belleği temizler.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Eğer bir değer bellekte saklandıysa hesap makinesi kipi belirtecinin yanındaki durum çubuğunda <guilabel
+>M</guilabel
+> belirir</para>
+</sect2>
+
+<sect2 id="constant_buttons">
+<title
+>Sabitler</title>
+
+<para
+><guibutton
+>C1</guibutton
+> ve <guibutton
+>C6</guibutton
+> aralığındaki altı sabit düğmesi, yalnızca menü çubuğundan erişilebilen <guimenu
+>Ayarlar</guimenu
+><guilabel
+>Sabit Düğmeleri</guilabel
+> etkinleştirilmişse görünür olur. <guilabel
+>Bilim Kipi</guilabel
+> ve <guilabel
+>İstatistik Kipi</guilabel
+>'nde kullanılabilirler</para>
+
+<para
+>Her bir sabitte saklanan değeri görmek için fareyi düğmenin üzerinde gezdirin.</para>
+
+<para
+>&kcalc; görüntüsündeki değeri bu altı sabitten birinde saklamak için önce <guibutton
+>&Shift;</guibutton
+> düğmesine ve sonrasında <guibutton
+>C1</guibutton
+>-<guibutton
+>C6</guibutton
+> arasındaki istediğiniz düğmeye basın.</para>
+
+<para
+>Bir hesaplamada sabitlerden herhangi birini kullanmak için yalnızca istenen düğmeye basın (<guibutton
+>C1</guibutton
+>-<guibutton
+>C6</guibutton
+>), ilişkili sayı görüntülenecektir. </para>
+
+<para
+>Sabitler düğmesinin etiketini hangi düğmenin hangi sabiti tuttuğunu hatırlamasını kolaylaştırmak için değiştirmek olanaklıdır. <guibutton
+>C1</guibutton
+>-<guibutton
+>C6</guibutton
+> düğmelerinin üzerine farenin sağ düğmesi ile tıklayın. <guilabel
+>Ad Ayarla</guilabel
+> yapabileceğiniz bir açılır menü görüntülenir. </para>
+
+<para
+><guibutton
+>C1</guibutton
+>-<guibutton
+>C6</guibutton
+> düğmelerinden birine tıklanıp açılan menüden <guilabel
+>Listeden Seç</guilabel
+> kullanılarak seçilebilecek birçok önceden tanımlı sabit vardır. Sabitlere menü çubuğundaki <guimenu
+>Constants</guimenu
+> ögesinden de ulaşılabildiği halde, onları özel bir düğmede saklamak eğer bu sayı çok sık kullanılıyorsa gerçekten yardımcı olacaktır.</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="key-accels">
+<title
+>Tek Düğmeli İvmelendiriciler</title>
+
+<para
+>Hesapların klavyeden girişini basitleştirmek için &kcalc; çoğu işlev için tek düğmeli ivmelendiricilere sahiptir. Örneğin, <userinput
+>7R</userinput
+> veya <userinput
+>7r</userinput
+> girildiğinde, karşılık gelen 7 (1/7) hesaplanır.</para>
+
+<para
+>Bir hesaplama sırasında, &Ctrl; düğmesini basılı tutarak her bir düğmenin anahtar bağıntısını göstermesini sağlayabilirsiniz.</para>
+<!-- Shift works like Caps Lock-->
+<informaltable
+><tgroup cols="3">
+<thead>
+<row
+><entry
+>Anahtar</entry>
+<entry
+>İşlev</entry>
+<entry
+>Notlar</entry
+></row>
+</thead>
+<tbody>
+
+<row
+><entry
+><keycap
+>H</keycap
+></entry>
+<entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>Hyp Sin'deki gibi Hiperbolik, sinh</entry
+></row>
+
+<row
+><entry
+><keycap
+>S</keycap
+></entry>
+<entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>C</keycap
+></entry>
+<entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>T</keycap
+></entry>
+<entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>N</keycap
+></entry>
+<entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>e tabanında logaritma</entry
+></row>
+
+<row
+><entry
+><keycap
+>L</keycap
+></entry>
+<entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>10 tabanında logaritma</entry
+></row>
+
+<row
+><entry
+><keycap
+>Kontrol-2</keycap
+></entry>
+<entry
+> <guibutton
+>&Shift;</guibutton
+></entry>
+<entry
+>Bu düğme için ikinci işlev. &eg; eğer arcsin istiyorsanız <userinput
+>Kontrol-2 s </userinput
+> yazın</entry
+></row>
+
+<row
+><entry
+><keysym
+>\</keysym
+></entry>
+<entry
+><guibutton
+>+/-</guibutton
+></entry>
+<entry
+>İşareti değiştir</entry
+></row>
+
+<row
+><entry
+><keysym
+>[</keysym
+></entry>
+<entry
+><guibutton
+>x^2</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>^</keysym
+></entry>
+<entry
+><guibutton
+>x^y</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>!</keysym
+></entry>
+<entry
+><guibutton
+>xl</guibutton
+></entry>
+<entry
+>Faktöriyel</entry
+></row>
+
+<row
+><entry
+><keysym
+>E</keysym
+></entry>
+<entry
+>x10<superscript
+>y</superscript
+></entry>
+<entry
+>Üs</entry
+></row>
+
+<row
+><entry
+><keysym
+>&lt;</keysym
+></entry>
+<entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>Sola kaydır</entry
+></row>
+<!-- no "<" on Lsh key only "
+>" on Rsh key-->
+<row
+><entry
+><keysym
+>&gt;</keysym
+></entry>
+<entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>Sağa kaydır.</entry
+></row>
+<row
+><entry
+><keysym
+>&amp;</keysym
+></entry>
+<entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>Mantıksal AND</entry
+></row>
+
+<row
+><entry
+><keysym
+>x</keysym
+> ya da <keysym
+>*</keysym
+></entry>
+<entry
+><guibutton
+>X</guibutton
+></entry>
+<entry
+>Çarp</entry
+></row>
+
+<row
+><entry
+><keysym
+>/</keysym
+></entry>
+<entry
+><guibutton
+>/</guibutton
+></entry>
+<entry
+>Böl</entry
+></row>
+
+<row
+><entry
+><keycap
+>D</keycap
+></entry>
+<entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>İstatistiksel kipde veri ögesi girin</entry
+></row>
+
+<row
+><entry
+><keycap
+>|</keycap
+></entry>
+<entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>Mantıksal OR. Unutmayın: <guibutton
+>&Shift;</guibutton
+> <guibutton
+>OR</guibutton
+> XOR'dur</entry
+></row>
+
+<row
+><entry
+><keycap
+>R</keycap
+></entry>
+<entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>Evrik değer</entry
+></row>
+
+<row
+><entry
+>&Enter;</entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>Dönüş</keycap
+></entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+>&Backspace;</entry>
+<entry
+><guibutton
+>&lt;=</guibutton
+></entry>
+<entry
+>Son sayıyı sil</entry
+></row>
+
+<row
+><entry
+><keycap
+>Sayfa Yukarı</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Temizle</entry
+></row>
+
+<row
+><entry
+>&Esc;</entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Temizle</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Prior</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Clear</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>Sayfa Aşağı</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Tümünü temizle</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Next</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Clear all</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>Sil</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Tümünü temizle</entry
+></row>
+
+<row
+><entry
+><keycap
+>:</keycap
+></entry>
+<entry
+><guibutton
+>Kip</guibutton
+></entry>
+<entry
+>bölme kalanı</entry
+></row>
+
+<row
+><entry
+>&Alt;+<keycap
+>6</keycap
+> -> &Alt;+<keycap
+>1</keycap
+></entry>
+<entry
+><guibutton
+>C1</guibutton
+></entry>
+<entry
+>C1'den C6'ya kadar depolanmış değeri kullan</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+</chapter>
+
+<chapter id="comments-on-specific-functions">
+<title
+>Belirli İşlevlerdeki Açıklamalar</title>
+
+<sect1 id="mod">
+<title
+>Mod ve IntDiv</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Mod</guibutton
+>, görüntüdeki sayıyı sonraki girilecek sayıya bölümünden kalanını gösterir.</term>
+<listitem
+><para
+><userinput
+>22 Mod 8 = </userinput
+> <emphasis
+>6</emphasis
+> sonucunu verecektir</para>
+<para
+><userinput
+>22.345 Mod 8 = </userinput
+> <emphasis
+>6.345</emphasis
+> sonucunu verecektir</para>
+</listitem
+></varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>IntDiv</guibutton
+>, görüntüdeki sayının sonra girilecek sayıya tam sayı bölümünü yapar.</term>
+<listitem
+><para
+><userinput
+>22 Shift IntDiv 8 = </userinput
+> sonucu <emphasis
+>2</emphasis
+></para>
+<para
+><userinput
+>22.345 Shift IntDiv 8 = </userinput
+> sonucu <emphasis
+>2</emphasis
+> </para
+></listitem
+></varlistentry>
+</variablelist>
+
+</sect1>
+
+
+<sect1 id="percent">
+<title
+>&percnt;</title>
+
+<para
+><guibutton
+>=</guibutton
+> düğmesi yerine kullanılır, <guibutton
+>%</guibutton
+> hesaplamada yapılan son işlemi aşağıdaki gibi yorumlar:</para>
+
+<para
+><itemizedlist>
+<listitem>
+<para
+>Eğer son işleç + ya da - ise ikinci değişken ilk işlenenin yüzdesi olarak yorumlanır. </para>
+</listitem>
+<listitem>
+<para
+>Eğer son işleç * ise bölüm sonucun 100 ile çarpımıdır. </para>
+</listitem>
+<listitem>
+<para
+>Eğer son işleç / ise sol işleninin, sağ işlenene göre yüzdesini ver. </para>
+</listitem>
+<listitem>
+<para
+>Diğer tüm durumlarda &percnt;, = düğmesi ile aynı sonuçları verir. </para>
+</listitem>
+</itemizedlist
+></para>
+
+<variablelist>
+<varlistentry>
+<term
+>Örnekler:</term>
+<listitem>
+<para
+><userinput
+>150 + 50 %</userinput
+> sonucu <emphasis
+>225</emphasis
+> (150 artı 50 sonucunun yüzdesi)</para>
+<para
+><userinput
+>42 * 3 %</userinput
+> sonucu <emphasis
+>1.26</emphasis
+> (42 * 3 / 100)</para>
+<para
+><userinput
+>45 / 55 %</userinput
+> sonucu <emphasis
+>81.81...</emphasis
+> (45, 81.81.. 55 yüzdesi)</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="lsh-rsh">
+<title
+>Lsh ve Rsh</title>
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Lsh</guibutton
+> sola görüntülenen değerin tamsayı bölümünü sola kaydırır (2 ile çarpar), n bir sonraki giriş numarasıdır ve bir tamsayı sonucu verir (taban <guibutton
+>Bin</guibutton
+> olarak ayarlanır):</term>
+<listitem
+><para
+><userinput
+>10 Lsh 3 =</userinput
+> <emphasis
+>80</emphasis
+> verir (10 üç kere 2 ile çoğaltılmıştır).</para>
+<para
+><userinput
+>10,345 Lsh 3 =</userinput
+> da <emphasis
+>80</emphasis
+> verir.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Rsh</guibutton
+> değeri n kere sağa kaydırır (2'ye tam sayı bölünmeyi gerçekleştirir).</term>
+<listitem
+><para
+><userinput
+>16 Rsh 2 =</userinput
+> <emphasis
+>4</emphasis
+> verir (16 iki kere 2'ye bölünmüştür).</para>
+<para
+><userinput
+>16,999 Rsh 2 =</userinput
+> da <emphasis
+>4</emphasis
+> verir.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="and-or-xor">
+<title
+>Cmp, And, Or ve Xor</title>
+
+<para
+><guibutton
+>Cmp</guibutton
+>, <guibutton
+>And</guibutton
+> ve <guibutton
+>Or</guibutton
+> işlevleri bitwise mantıksal işlemler gerçekleştirir ve bu nedenle taban <guilabel
+>Dec</guilabel
+> yerine <guilabel
+>Hex</guilabel
+>, <guilabel
+>Oct</guilabel
+> veya<guilabel
+>Bin</guilabel
+> olarak ayarlanırsa daha anlamlı görünür. Aşağıdaki örneklerde taban <guilabel
+>Bin</guilabel
+> olarak ayarlanmıştır.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Cmp</guibutton
+> 1'e göre tamamlayıcı (biti ters çevirir) gerçekleştirir.</term>
+<listitem
+><para
+><userinput
+>101 Cmp</userinput
+> <emphasis
+>111...111010</emphasis
+> verir</para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>AND</guibutton
+> mantıksal AND yapar.</term>
+<listitem
+><para
+><userinput
+>101 AND 110 =</userinput
+> sonucu <emphasis
+>100</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>OR</guibutton
+> mantıksal OR yapar.</term>
+<listitem
+><para
+><userinput
+>101 OR 110 =</userinput
+> sonucu <emphasis
+>111</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>XOR</guibutton
+> mantıksal XOR (özel OR) işlemini gerçekleştirir.</term>
+<listitem
+><para
+><userinput
+>101 XOR 110 =</userinput
+> <emphasis
+>11</emphasis
+> verir</para
+> </listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+</chapter>
+
+
+<chapter id="questions-and-answers">
+<title
+>Sorular ve Yanıtlar</title>
+
+<qandaset>
+
+
+<qandaentry>
+<question
+><para
+>Euler sayısı e'yi nasıl elde ederim?</para
+></question>
+<answer
+><para
+>&kcalc; penceresinde <userinput
+>1 Üst Karakter e<superscript
+>x</superscript
+></userinput
+> düğmelerine basın; klavyede <userinput
+>1 <keycombo action="simul"
+>&Ctrl;<keycap
+>2</keycap
+></keycombo
+> <keycap
+>N</keycap
+></userinput
+> düğmelerine basın veya <menuchoice
+><guimenu
+>Sabitler</guimenu
+><guimenuitem
+>Matematik</guimenuitem
+> </menuchoice
+> menüsünü kullanın.</para
+></answer>
+</qandaentry>
+
+<qandaentry>
+<question
+><para
+>Virgülden sonra sabit basamakları nasıl elde ederim?</para
+></question>
+<answer
+><para
+>Menü çubuğundan <menuchoice
+><guimenu
+>Ayarlar</guimenu
+><guimenuitem
+> &kcalc; Uygulamasına Yapılandır...</guimenuitem
+></menuchoice
+> ögesini seçin, bu size bir yapılandırma penceresi açacaktır. <guilabel
+>Ondalık kesinlik ayarlayıcısı</guilabel
+>'nı denetleyin ve denetleyiciyi 2 gösterecek biçimde ayarlayın.</para
+></answer
+> </qandaentry>
+
+<qandaentry>
+<question
+><para
+>Peki ya kesinlik?</para
+></question>
+<answer
+><para
+>&kcalc; kesinliğini belirleyen ana faktör libc ve libmath'inizin <type
+>long double</type
+> C veri türünü destekleyip desteklemediğidir. Eğer öyle ise &kcalc; bunu derleme zamanında algılar ve sayıları temsil etmek için temel veri türü olarak kullanır. </para>
+
+<para
+>Yukarıdaki hesaplamaların doğru şekilde çalışması için &kcalc;'ın <guibutton
+>Yapılandır</guibutton
+> penceresindeki <guilabel
+>Kesinlik</guilabel
+>'i ayarlayın. &kcalc; kopyanız için temel veri türü varsa <type
+>long double</type
+> için olan 14 kesinliğini öneriyorum, aksi halde 8 veya 10'dur.</para>
+
+<para
+>Daha yüksek kesinlik, mutlaka daha iyi sonuçlar doğurmaz. Duyarlılıkla oynayın ve ne demek istediğimi anlayacaksınız.</para>
+</answer>
+</qandaentry>
+
+</qandaset>
+</chapter>
+
+&commands;
+
+<chapter id="copyright">
+<title
+>Emeği Geçenler ve Lisans</title>
+
+<para
+>&kcalc; Program Telif Hakkı &copy;:</para>
+<para
+>&Bernd.Johannes.Wuebben; 1996-2000</para>
+<para
+>&kde; Takımı 2000-2008</para>
+<para
+>&Evan.Teran; 2008-2013</para>
+
+<itemizedlist>
+<listitem
+><para
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+>&Evan.Teran; &Evan.Teran.mail;</para
+></listitem>
+<listitem
+><para
+>&Espen.Sand; &Espen.Sand.mail;</para
+></listitem>
+<listitem
+><para
+>&Chris.Howells; &Chris.Howells.mail;</para
+></listitem>
+<listitem
+><para
+>&Aaron.J.Seigo; &Aaron.J.Seigo.mail;</para
+></listitem>
+<listitem
+><para
+>&Charles.Samuels; &Charles.Samuels.mail;</para
+></listitem>
+<listitem
+><para
+>&David.Johnson; &David.Johnson.mail;</para
+></listitem>
+</itemizedlist>
+
+<para
+>&kcalc; <personname
+><firstname
+>Martin</firstname
+> <surname
+>Bartlett</surname
+></personname
+>'in yığın motoru hala &kcalc;'in ibr parçası olan <application
+>xfrmcalc</application
+>'inden esinlenilmiştir.</para>
+
+<para
+>Belgelendirme Telif Hakkı &copy; 2001,2002,2005, 2006,2010:</para>
+<itemizedlist>
+<listitem
+><para
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+>&Pamela.Roberts; &Pamela.Roberts.mail;</para
+></listitem>
+<listitem
+><para
+>&J.Hall; &J.Hall.mail;</para
+></listitem>
+<listitem
+><para
+>&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Eike</firstname
+><surname
+>Krumbacher</surname
+></personname
+> <email
+>eike.krumbacher@x-eike.de</email
+></para
+></listitem>
+</itemizedlist>
+
+<para
+>Mesutcan Kurt<email
+>mesutcank@gmail.com</email
+></para
+><para
+>Emir SARI<email
+>emir_sari@icloud.com</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->
