@@ -2801,7 +2801,7 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    KLocalizedString::setApplicationDomain("kcalc");
+    KLocalizedString::setApplicationDomain(QByteArrayLiteral("kcalc"));
     KCrash::initialize();
     KAboutData aboutData(QStringLiteral("kcalc"),
                          i18n("KCalc"),
