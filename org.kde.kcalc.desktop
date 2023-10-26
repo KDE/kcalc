@@ -2,6 +2,7 @@
 Name=KCalc
 Name[af]=Kcalc
 Name[ar]=حاسبة ك
+Name[ast]=KCalc
 Name[az]=KCalc
 Name[bg]=KCalc
 Name[br]=KCalc
@@ -93,6 +94,7 @@ Comment[eu]=Funtzio matematiko ugari, hala nola funtzio trigonometrikoak, eragik
 Comment[fi]=Laskin, joka tarjoaa monia matemaattisia funktioita kuten trigonometriset funktiot, loogiset operaatiot ja tilastolaskennan
 Comment[fr]=Calculateur proposant de nombreuses fonctionnalités mathématiques : fonctions trigonométriques, opérations logiques et calculs statistiques par exemple
 Comment[gl]=Calculadora que ofrece moitas funcións matemáticas, como funcións trigonométricas, operacións lóxicas e cálculos estatísticos
+Comment[he]=מחשבון שמציע מגוון פונקציות מתמטיות, כגון פונקציות טריגונומטריות, פעולות לוגיות וחישובים סטטיסטיים
 Comment[hi]=केल्कुलेटर जिसमे विभिन्न गणित फलन है, जैसे त्रिकोणमितीय फलन, तर्क क्रिया, व सांख्यिकीय परिकलन
 Comment[hu]=Számos matematikai műveletet, mint például trigonometriai függvényeket, logikai műveleteket és statisztikai számításokat biztosító számológép.
 Comment[ia]=Calculator que offere multe functiones mathematic, tal como functiones trigonometric, operationes logic, e calculos statistic
