@@ -560,9 +560,7 @@
 >Dad</guibutton
 >. Per a crear una llista de dades de nombres, introduïu un nombre a la calculadora i premeu <guibutton
 >Dad</guibutton
->. Es mostra un número que augmenta seqüencialment en la pantalla indicant quina posició en la <quote
->llista</quote
-> de dades ocupa el nombre. Una calculadora tradicional només emmagatzema tres valors per a funcions estadístiques: El nombre d'elements discrets en una llista, la suma dels elements de dades introduïts i la suma del quadrat de tots els elements de dades de la llista. El &kcalc; es diferencia per l'emmagatzematge real de cada valor discret, permetent-vos calcular el valor mitjà de les dades. </para>
+>. Es mostra un número que augmenta seqüencialment en la pantalla indicant quina posició en la «llista» de dades ocupa el nombre. Una calculadora tradicional només emmagatzema tres valors per a funcions estadístiques: El nombre d'elements discrets en una llista, la suma dels elements de dades introduïts i la suma del quadrat de tots els elements de dades de la llista. El &kcalc; es diferencia per l'emmagatzematge real de cada valor discret, permetent-vos calcular el valor mitjà de les dades. </para>
 
 <informaltable
 ><tgroup cols="2">
