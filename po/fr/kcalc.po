@@ -23,8 +23,8 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-16 01:01+0000\n"
-"PO-Revision-Date: 2023-02-05 17:05+0100\n"
-"Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
+"PO-Revision-Date: 2023-10-25 16:04+0200\n"
+"Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -702,18 +702,18 @@ msgstr "Inverse"
 #, kde-format
 msgctxt "n Choose m"
 msgid "nCm"
-msgstr "Choix de m parmi n"
+msgstr "nCm"
 
 #: kcalc.cpp:586
 #, kde-format
 msgid "n Choose m"
-msgstr "n parmi m"
+msgstr "Combinaison de m parmi n"
 
 #: kcalc.cpp:591
 #, kde-format
 msgctxt "Factorial"
 msgid "x!"
-msgstr "x ! "
+msgstr "x !"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbFactorial)
 #: kcalc.cpp:591 kcalc.ui:890
@@ -776,7 +776,7 @@ msgstr "Exposant"
 #: kcalc.cpp:922 kcalc.ui:1411
 #, kde-format
 msgid "Shift"
-msgstr "Majuscule"
+msgstr "2nde"
 
 #: kcalc.cpp:1078
 #, kde-format
@@ -2010,7 +2010,7 @@ msgstr "Retour arrière"
 #: kcalc.ui:1408
 #, kde-format
 msgid "Second button function"
-msgstr "Second bouton de fonction"
+msgstr "Bouton de fonction secondaire"
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbShift)
 #: kcalc.ui:1414
@@ -2089,7 +2089,7 @@ msgstr "NORM"
 #, kde-format
 msgctxt "Second button functions are active"
 msgid "SHIFT"
-msgstr "MAJ"
+msgstr "2NDE"
 
 #: kcalc_statusbar.cpp:19 kcalc_statusbar.cpp:101
 #, kde-format
