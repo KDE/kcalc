@@ -702,18 +702,18 @@ msgstr "Inverse"
 #, kde-format
 msgctxt "n Choose m"
 msgid "nCm"
-msgstr "Choix de m parmi n"
+msgstr "nCm"
 
 #: kcalc.cpp:582
 #, kde-format
 msgid "n Choose m"
-msgstr "n parmi m"
+msgstr "Combinaison de m parmi n"
 
 #: kcalc.cpp:587
 #, kde-format
 msgctxt "Factorial"
 msgid "x!"
-msgstr "x ! "
+msgstr "x !"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbFactorial)
 #: kcalc.cpp:587 kcalc.ui:890
@@ -776,7 +776,7 @@ msgstr "Exposant"
 #: kcalc.cpp:918 kcalc.ui:1411
 #, kde-format
 msgid "Shift"
-msgstr "Majuscule"
+msgstr "2nde"
 
 #: kcalc.cpp:1074
 #, kde-format
@@ -2008,7 +2008,7 @@ msgstr "Retour arrière"
 #: kcalc.ui:1408
 #, kde-format
 msgid "Second button function"
-msgstr "Second bouton de fonction"
+msgstr "Bouton de fonction secondaire"
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbShift)
 #: kcalc.ui:1414
@@ -2087,7 +2087,7 @@ msgstr "NORM"
 #, kde-format
 msgctxt "Second button functions are active"
 msgid "SHIFT"
-msgstr "MAJ"
+msgstr "2NDE"
 
 #: kcalc_statusbar.cpp:19 kcalc_statusbar.cpp:101
 #, kde-format
