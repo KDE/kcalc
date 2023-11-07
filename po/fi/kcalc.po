@@ -5,7 +5,7 @@
 # Teemu Rytilahti <teemu.rytilahti@kde-fi.org>, 2003.
 # Tapio Kautto <eleknader@phnet.fi>, 2004.
 # Ilpo Kantonen <ilpo@iki.fi>, 2004, 2005, 2006.
-# Tommi Nieminen <translator@legisign.org>, 2010, 2018, 2019, 2020, 2021, 2022.
+# Tommi Nieminen <translator@legisign.org>, 2010, 2018, 2019, 2020, 2021, 2022, 2023.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2010, 2011, 2012, 2013, 2014, 2015, 2022.
 # Niklas Laxström <niklas.laxstrom+kdetrans@gmail.com>, 2012.
 # Tomi Mäkelä <soulweaver@hotmail.fi>, 2013.
@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-16 01:56+0000\n"
-"PO-Revision-Date: 2022-10-28 22:32+0300\n"
-"Last-Translator: Lasse Liehu <lasse.liehu@iki.fi>\n"
+"PO-Revision-Date: 2023-09-26 10:37+0300\n"
+"Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-POT-Import-Date: 2012-12-01 22:25:39+0000\n"
-"X-Generator: Lokalize 22.08.2\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1193,15 +1193,7 @@ msgstr "Binaariluvut erotetaan tyhjällä välillä x:n numeron välein."
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:196
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 10111001 you can display 1011 1001, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1212,11 +1204,11 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            Lukemisen helpottamiseksi numerot voi ryhmittää pareittain.\n"
-"            Esimerkiksi asettamalla asetuksen arvoon 4 luku 10111001 "
-"näytetään\n"
-"            muodossa 1011 1001 eli joka neljännen numeron väliin lisätään "
-"tyhjä väli.\n"
+"            Lukemisen helpottamiseksi numerot voi ryhmitellä pareittain.\n"
+"            Asettamalla asetuksen arvoksi esimerkiksi 4 luku 10111001 "
+"esitetään\n"
+"            muodossa 1011 1001 eli joka neljännen numeron väliin on lisätty "
+"tyhjää.\n"
 "        "
 
 #. i18n: ectx: label, entry (OctalGrouping), group (Grouping)
@@ -1227,15 +1219,7 @@ msgstr "Oktaaliluvut erotetaan tyhjällä välillä x:n numeron välein."
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:205
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 42140213 you can display 4214 0213, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1246,11 +1230,11 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            Lukemisen helpottamiseksi numerot voi ryhmittää pareittain.\n"
-"            Esimerkiksi asettamalla asetuksen arvoon 4 luku 42140213 "
-"näytetään\n"
-"            muodossa 4214 0213 eli joka neljännen numeron väliin lisätään "
-"tyhjä väli.\n"
+"            Lukemisen helpottamiseksi numerot voi ryhmitellä pareittain.\n"
+"            Asettamalla asetuksen arvoksi esimerkiksi 4 luku 42140213 "
+"esitetään\n"
+"            muodossa 4214 0213 eli joka neljännen numeron väliin on lisätty "
+"tyhjää.\n"
 "        "
 
 #. i18n: ectx: label, entry (HexadecimalGrouping), group (Grouping)
@@ -1262,15 +1246,7 @@ msgstr "Heksadesimaaliluvut erotetaan tyhjällä välillä x:n numeron välein."
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:214
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of AF1C42 you can display AF 1C 42, by "
-#| "setting the setting to\n"
-#| "            2, thus inserting a whitespace after every 2nd digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1281,11 +1257,11 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            Lukemisen helpottamiseksi numerot voi ryhmittää pareittain.\n"
-"            Esimerkiksi asettamalla asetuksen arvoon 2 luku AF1C42 "
-"näytetään\n"
-"            muodossa AF 1C 42 eli joka toisen numeron väliin lisätään tyhjä "
-"väli.\n"
+"            Lukemisen helpottamiseksi numerot voi ryhmitellä pareittain.\n"
+"            Asettamalla asetuksen arvoksi esimerkiksi 2 luku AF1C42 "
+"esitetään\n"
+"            muodossa AF 1C 42 eli joka toisen numeron väliin on lisätty "
+"tyhjää.\n"
 "        "
 
 #. i18n: ectx: label, entry (nameConstant$(ConstIndex)), group (UserConstants)
