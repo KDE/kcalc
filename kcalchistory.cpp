@@ -16,6 +16,7 @@ KCalcHistory::KCalcHistory(QWidget *parent)
 {
     setReadOnly(true);
     setWordWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
+    setProperty("_breeze_borders_sides", QVariant::fromValue(QFlags{Qt::LeftEdge}));
 
     // Initialize idealPointSizeF_
     idealPointSizeF_ = currentFont().pointSizeF();

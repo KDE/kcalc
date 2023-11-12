@@ -46,7 +46,8 @@ KCalcDisplay::KCalcDisplay(QWidget *parent)
 
     setBackgroundRole(QPalette::Base);
     setForegroundRole(QPalette::Text);
-    setFrameStyle(QFrame::StyledPanel | QFrame::Sunken); // set in kalc.ui
+    setFrameStyle(QFrame::NoFrame); // set in kalc.ui
+    setContentsMargins(6, 0, 6, 6);
 
     KNumber::setDefaultFloatOutput(true);
     KNumber::setDefaultFractionalInput(true);
