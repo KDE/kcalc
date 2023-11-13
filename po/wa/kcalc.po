@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-16 01:56+0000\n"
+"POT-Creation-Date: 2023-11-13 01:39+0000\n"
 "PO-Revision-Date: 2011-07-17 17:44+0200\n"
 "Last-Translator: Jean Cayron <jean.cayron@base.be>\n"
 "Language-Team: Walloon <linux@walon.org>\n"
@@ -115,8 +115,7 @@ msgid "&Constants:"
 msgstr "Botons di &statistike"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
-#. i18n: ectx: property (title), widget (QGroupBox, constantsBox)
-#: constants.ui:13 constants.ui:19 kcalc.cpp:1797
+#: constants.ui:13 kcalc.cpp:1797
 #, kde-format
 msgid "Constants"
 msgstr ""
@@ -127,8 +126,8 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QPushButton, pushButton3)
 #. i18n: ectx: property (text), widget (QPushButton, pushButton4)
 #. i18n: ectx: property (text), widget (QPushButton, pushButton5)
-#: constants.ui:39 constants.ui:60 constants.ui:81 constants.ui:102
-#: constants.ui:123 constants.ui:144
+#: constants.ui:33 constants.ui:54 constants.ui:75 constants.ui:96
+#: constants.ui:117 constants.ui:138
 #, kde-format
 msgid "Predefined"
 msgstr ""
@@ -405,7 +404,7 @@ msgid "sin"
 msgstr "Cosinus"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSin)
-#: kcalc.cpp:442 kcalc.ui:708
+#: kcalc.cpp:442 kcalc.ui:756
 #, kde-format
 msgid "Sine"
 msgstr "Sinus"
@@ -451,7 +450,7 @@ msgid "cos"
 msgstr "Cosinus"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbCos)
-#: kcalc.cpp:450 kcalc.ui:453
+#: kcalc.cpp:450 kcalc.ui:501
 #, kde-format
 msgid "Cosine"
 msgstr "Cosinus"
@@ -497,7 +496,7 @@ msgid "tan"
 msgstr "Tandjinte"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbTan)
-#: kcalc.cpp:458 kcalc.ui:523
+#: kcalc.cpp:458 kcalc.ui:571
 #, kde-format
 msgid "Tangent"
 msgstr "Tandjinte"
@@ -542,7 +541,7 @@ msgid "log"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLog)
-#: kcalc.cpp:466 kcalc.ui:823
+#: kcalc.cpp:466 kcalc.ui:871
 #, kde-format
 msgid "Logarithm to base 10"
 msgstr "Logarite di båze 10"
@@ -565,7 +564,7 @@ msgid "ln"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLn)
-#: kcalc.cpp:471 kcalc.ui:418
+#: kcalc.cpp:471 kcalc.ui:466
 #, kde-format
 msgid "Natural log"
 msgstr "Logarite naturel"
@@ -588,7 +587,7 @@ msgid "N"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbNData)
-#: kcalc.cpp:491 kcalc.cpp:1587 kcalc.ui:622
+#: kcalc.cpp:491 kcalc.cpp:1587 kcalc.ui:670
 #, kde-format
 msgid "Number of data entered"
 msgstr "Nombe di dnêyes di tapêyes"
@@ -606,7 +605,7 @@ msgid "Mea"
 msgstr "Moyene"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMean)
-#: kcalc.cpp:497 kcalc.cpp:1608 kcalc.ui:727
+#: kcalc.cpp:497 kcalc.cpp:1608 kcalc.ui:775
 #, kde-format
 msgid "Mean"
 msgstr "Moyene"
@@ -617,7 +616,7 @@ msgid "Sum of all data items squared"
 msgstr "Nombe di dnêyes di tapêyes"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSd)
-#: kcalc.cpp:503 kcalc.ui:348
+#: kcalc.cpp:503 kcalc.ui:396
 #, kde-format
 msgid "Standard deviation"
 msgstr ""
@@ -634,7 +633,7 @@ msgid "Dat"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbDat)
-#: kcalc.cpp:512 kcalc.ui:673
+#: kcalc.cpp:512 kcalc.ui:721
 #, kde-format
 msgid "Enter data"
 msgstr "Intrez les dnêyes"
@@ -658,7 +657,7 @@ msgid "mod"
 msgstr "Modulo"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMod)
-#: kcalc.cpp:574 kcalc.ui:491
+#: kcalc.cpp:574 kcalc.ui:539
 #, kde-format
 msgid "Modulo"
 msgstr "Modulo"
@@ -681,7 +680,7 @@ msgid "1/x"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbReci)
-#: kcalc.cpp:581 kcalc.ui:638
+#: kcalc.cpp:581 kcalc.ui:686
 #, kde-format
 msgid "Reciprocal"
 msgstr "Reciproke"
@@ -704,7 +703,7 @@ msgid "x!"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbFactorial)
-#: kcalc.cpp:587 kcalc.ui:890
+#: kcalc.cpp:587 kcalc.ui:938
 #, kde-format
 msgid "Factorial"
 msgstr "Factoriele"
@@ -721,7 +720,7 @@ msgid "x<sup>2</sup>"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSquare)
-#: kcalc.cpp:594 kcalc.ui:507
+#: kcalc.cpp:594 kcalc.ui:555
 #, kde-format
 msgid "Square"
 msgstr "Cwåré"
@@ -738,7 +737,7 @@ msgid "x<sup>y</sup>"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbPower)
-#: kcalc.cpp:602 kcalc.ui:759
+#: kcalc.cpp:602 kcalc.ui:807
 #, kde-format
 msgid "x to the power of y"
 msgstr "x al poujhance y"
@@ -755,13 +754,13 @@ msgid "x to the power of 1/y"
 msgstr "x al poujhance y"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbEE)
-#: kcalc.cpp:613 kcalc.ui:472
+#: kcalc.cpp:613 kcalc.ui:520
 #, kde-format
 msgid "Exponent"
 msgstr "Espozant"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbShift)
-#: kcalc.cpp:918 kcalc.ui:1411
+#: kcalc.cpp:918 kcalc.ui:1459
 #, kde-format
 msgid "Shift"
 msgstr ""
@@ -772,7 +771,7 @@ msgid "M"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMed)
-#: kcalc.cpp:1657 kcalc.ui:743
+#: kcalc.cpp:1657 kcalc.ui:791
 #, kde-format
 msgid "Median"
 msgstr "Mediane"
@@ -1274,38 +1273,38 @@ msgid "List of user programmable constants"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcBitset, mBitset)
-#: kcalc.ui:58
+#: kcalc.ui:88
 #, kde-format
 msgid "Click on a Bit to toggle it."
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, degRadio)
-#: kcalc.ui:69
+#: kcalc.ui:118
 #, kde-format
 msgid "&Deg"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, radRadio)
-#: kcalc.ui:76
+#: kcalc.ui:125
 #, kde-format
 msgid "&Rad"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, gradRadio)
-#: kcalc.ui:83
+#: kcalc.ui:132
 #, fuzzy, kde-format
 #| msgid "Grad"
 msgid "&Grad"
 msgstr "Grad"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, hexRadio)
-#: kcalc.ui:111
+#: kcalc.ui:147
 #, kde-format
 msgid "Switch base to hexadecimal."
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, hexRadio)
-#: kcalc.ui:114
+#: kcalc.ui:150
 #, kde-format
 msgid "He&x"
 msgstr "Heg&z"
@@ -1314,146 +1313,146 @@ msgstr "Heg&z"
 #. i18n: ectx: property (text), widget (KSqueezedTextLabel, decDisplay)
 #. i18n: ectx: property (text), widget (KSqueezedTextLabel, octDisplay)
 #. i18n: ectx: property (text), widget (KSqueezedTextLabel, binDisplay)
-#: kcalc.ui:133 kcalc.ui:169 kcalc.ui:205 kcalc.ui:241
+#: kcalc.ui:169 kcalc.ui:205 kcalc.ui:241 kcalc.ui:277
 #, kde-format
 msgid "KSq…bel"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, decRadio)
-#: kcalc.ui:147
+#: kcalc.ui:183
 #, kde-format
 msgid "Switch base to decimal."
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, decRadio)
-#: kcalc.ui:150
+#: kcalc.ui:186
 #, kde-format
 msgid "&Dec"
 msgstr "&Dec"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, octRadio)
-#: kcalc.ui:183
+#: kcalc.ui:219
 #, kde-format
 msgid "Switch base to octal."
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, octRadio)
-#: kcalc.ui:186
+#: kcalc.ui:222
 #, kde-format
 msgid "Oc&t"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, binRadio)
-#: kcalc.ui:219
+#: kcalc.ui:255
 #, kde-format
 msgid "Switch base to binary."
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, binRadio)
-#: kcalc.ui:222
+#: kcalc.ui:258
 #, kde-format
 msgid "&Bin"
 msgstr "&Bin"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbCSt)
-#: kcalc.ui:300
+#: kcalc.ui:348
 #, kde-format
 msgid "Clear data store"
 msgstr "Netyî li wårdoe des dnêyes"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbCSt)
-#: kcalc.ui:303
+#: kcalc.ui:351
 #, kde-format
 msgid "CSt"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcConstButton, pbC6)
-#: kcalc.ui:316
+#: kcalc.ui:364
 #, kde-format
 msgid "C6"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbOR)
-#: kcalc.ui:332
+#: kcalc.ui:380
 #, kde-format
 msgid "Bitwise OR"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbOR)
-#: kcalc.ui:335
+#: kcalc.ui:383
 #, kde-format
 msgid "OR"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbSd)
-#: kcalc.ui:351
+#: kcalc.ui:399
 #, kde-format
 msgid "SD"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcConstButton, pbC1)
-#: kcalc.ui:364
+#: kcalc.ui:412
 #, kde-format
 msgid "C1"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbHyp)
-#: kcalc.ui:380
+#: kcalc.ui:428
 #, kde-format
 msgid "Hyperbolic mode"
 msgstr "Môde iperbolike"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbHyp)
-#: kcalc.ui:383
+#: kcalc.ui:431
 #, kde-format
 msgid "Hyp"
 msgstr ""
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbHyp)
-#: kcalc.ui:386
+#: kcalc.ui:434
 #, kde-format
 msgid "H"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbRsh)
-#: kcalc.ui:402
+#: kcalc.ui:450
 #, kde-format
 msgid "Right bit shift"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbRsh)
-#: kcalc.ui:405
+#: kcalc.ui:453
 #, kde-format
 msgid "Rsh"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbLn)
-#: kcalc.ui:421
+#: kcalc.ui:469
 #, kde-format
 msgid "Ln"
 msgstr ""
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbLn)
 #. i18n: ectx: property (text), widget (KCalcButton, pbNData)
-#: kcalc.ui:424 kcalc.ui:625
+#: kcalc.ui:472 kcalc.ui:673
 #, kde-format
 msgid "N"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbCube)
-#: kcalc.ui:437
+#: kcalc.ui:485
 #, fuzzy, kde-format
 msgid "Cube"
 msgstr "Cwåré"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbCube)
-#: kcalc.ui:440
+#: kcalc.ui:488
 #, kde-format
 msgid "x3"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbCos)
-#: kcalc.ui:456
+#: kcalc.ui:504
 #, fuzzy, kde-format
 #| msgid "Cosine"
 msgid "Cos"
@@ -1463,13 +1462,13 @@ msgstr "Cosinus"
 #. i18n: ectx: property (text), widget (KCalcButton, pbC)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbC)
 #. i18n: ectx: property (text), widget (KCalcButton, pbClear)
-#: kcalc.ui:459 kcalc.ui:874 kcalc.ui:877 kcalc.ui:1331
+#: kcalc.ui:507 kcalc.ui:922 kcalc.ui:925 kcalc.ui:1379
 #, kde-format
 msgid "C"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbEE)
-#: kcalc.ui:475
+#: kcalc.ui:523
 #, kde-format
 msgid "EXP"
 msgstr ""
@@ -1477,33 +1476,33 @@ msgstr ""
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbEE)
 #. i18n: ectx: property (text), widget (KCalcButton, pbE)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbE)
-#: kcalc.ui:478 kcalc.ui:775 kcalc.ui:778
+#: kcalc.ui:526 kcalc.ui:823 kcalc.ui:826
 #, kde-format
 msgid "E"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMod)
-#: kcalc.ui:494
+#: kcalc.ui:542
 #, fuzzy, kde-format
 #| msgid "Modulo"
 msgid "Mod"
 msgstr "Modulo"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbSquare)
-#: kcalc.ui:510
+#: kcalc.ui:558
 #, kde-format
 msgid "x2"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbTan)
-#: kcalc.ui:526
+#: kcalc.ui:574
 #, fuzzy, kde-format
 #| msgid "Tangent"
 msgid "Tan"
 msgstr "Tandjinte"
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbTan)
-#: kcalc.ui:529
+#: kcalc.ui:577
 #, kde-format
 msgid "T"
 msgstr ""
@@ -1511,457 +1510,457 @@ msgstr ""
 #. i18n: ectx: property (text), widget (KCalcButton, pbD)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbD)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbDat)
-#: kcalc.ui:542 kcalc.ui:545 kcalc.ui:679
+#: kcalc.ui:590 kcalc.ui:593 kcalc.ui:727
 #, kde-format
 msgid "D"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcConstButton, pbC4)
-#: kcalc.ui:558
+#: kcalc.ui:606
 #, kde-format
 msgid "C4"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbXOR)
-#: kcalc.ui:574
+#: kcalc.ui:622
 #, kde-format
 msgid "Bitwise XOR"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbXOR)
-#: kcalc.ui:577
+#: kcalc.ui:625
 #, kde-format
 msgid "XOR"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbA)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbA)
-#: kcalc.ui:590 kcalc.ui:593
+#: kcalc.ui:638 kcalc.ui:641
 #, kde-format
 msgid "A"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbAND)
-#: kcalc.ui:606
+#: kcalc.ui:654
 #, kde-format
 msgid "Bitwise AND"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbAND)
-#: kcalc.ui:609
+#: kcalc.ui:657
 #, kde-format
 msgid "AND"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbReci)
-#: kcalc.ui:641
+#: kcalc.ui:689
 #, kde-format
 msgid "1/X"
 msgstr ""
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbReci)
-#: kcalc.ui:644
+#: kcalc.ui:692
 #, kde-format
 msgid "R"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLsh)
-#: kcalc.ui:657
+#: kcalc.ui:705
 #, kde-format
 msgid "Left bit shift"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbLsh)
-#: kcalc.ui:660
+#: kcalc.ui:708
 #, kde-format
 msgid "Lsh"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbDat)
-#: kcalc.ui:676
+#: kcalc.ui:724
 #, kde-format
 msgid "Dat"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcConstButton, pbC3)
-#: kcalc.ui:692
+#: kcalc.ui:740
 #, kde-format
 msgid "C3"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbSin)
-#: kcalc.ui:711
+#: kcalc.ui:759
 #, fuzzy, kde-format
 #| msgid "Sine"
 msgid "Sin"
 msgstr "Sinus"
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbSin)
-#: kcalc.ui:714
+#: kcalc.ui:762
 #, kde-format
 msgid "S"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMean)
-#: kcalc.ui:730
+#: kcalc.ui:778
 #, fuzzy, kde-format
 #| msgid "Mean"
 msgid "Mea"
 msgstr "Moyene"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMed)
-#: kcalc.ui:746
+#: kcalc.ui:794
 #, fuzzy, kde-format
 #| msgid "Median"
 msgid "Med"
 msgstr "Mediane"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPower)
-#: kcalc.ui:762
+#: kcalc.ui:810
 #, kde-format
 msgid "pow"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbB)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbB)
-#: kcalc.ui:791 kcalc.ui:794
+#: kcalc.ui:839 kcalc.ui:842
 #, kde-format
 msgid "B"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbCmp)
-#: kcalc.ui:807
+#: kcalc.ui:855
 #, kde-format
 msgid "One's complement"
 msgstr "Coplemint a onk"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbCmp)
-#: kcalc.ui:810
+#: kcalc.ui:858
 #, kde-format
 msgid "Cmp"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbLog)
-#: kcalc.ui:826
+#: kcalc.ui:874
 #, kde-format
 msgid "Log"
 msgstr ""
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbLog)
-#: kcalc.ui:829
+#: kcalc.ui:877
 #, kde-format
 msgid "L"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbF)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbF)
-#: kcalc.ui:842 kcalc.ui:845
+#: kcalc.ui:890 kcalc.ui:893
 #, kde-format
 msgid "F"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcConstButton, pbC2)
-#: kcalc.ui:858
+#: kcalc.ui:906
 #, kde-format
 msgid "C2"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbFactorial)
-#: kcalc.ui:893
+#: kcalc.ui:941
 #, kde-format
 msgid "x!"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcConstButton, pbC5)
-#: kcalc.ui:906
+#: kcalc.ui:954
 #, kde-format
 msgid "C5"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb7)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb7)
-#: kcalc.ui:949 kcalc.ui:952
+#: kcalc.ui:997 kcalc.ui:1000
 #, kde-format
 msgid "7"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb8)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb8)
-#: kcalc.ui:965 kcalc.ui:968
+#: kcalc.ui:1013 kcalc.ui:1016
 #, kde-format
 msgid "8"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb9)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb9)
-#: kcalc.ui:981 kcalc.ui:984
+#: kcalc.ui:1029 kcalc.ui:1032
 #, kde-format
 msgid "9"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb4)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb4)
-#: kcalc.ui:997 kcalc.ui:1000
+#: kcalc.ui:1045 kcalc.ui:1048
 #, kde-format
 msgid "4"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb5)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb5)
-#: kcalc.ui:1013 kcalc.ui:1016
+#: kcalc.ui:1061 kcalc.ui:1064
 #, kde-format
 msgid "5"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb6)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb6)
-#: kcalc.ui:1029 kcalc.ui:1032
+#: kcalc.ui:1077 kcalc.ui:1080
 #, kde-format
 msgid "6"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb1)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb1)
-#: kcalc.ui:1045 kcalc.ui:1048
+#: kcalc.ui:1093 kcalc.ui:1096
 #, kde-format
 msgid "1"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb2)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb2)
-#: kcalc.ui:1061 kcalc.ui:1064
+#: kcalc.ui:1109 kcalc.ui:1112
 #, kde-format
 msgid "2"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb3)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb3)
-#: kcalc.ui:1077 kcalc.ui:1080
+#: kcalc.ui:1125 kcalc.ui:1128
 #, kde-format
 msgid "3"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb0)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb0)
-#: kcalc.ui:1093 kcalc.ui:1096
+#: kcalc.ui:1141 kcalc.ui:1144
 #, kde-format
 msgid "0"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbPercent)
-#: kcalc.ui:1109
+#: kcalc.ui:1157
 #, kde-format
 msgid "Percent"
 msgstr "Åcintaedje"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPercent)
-#: kcalc.ui:1112
+#: kcalc.ui:1160
 #, no-c-format, kde-format
 msgid "%"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbDivision)
-#: kcalc.ui:1125
+#: kcalc.ui:1173
 #, kde-format
 msgid "Division"
 msgstr "Divizion"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbDivision)
-#: kcalc.ui:1128
+#: kcalc.ui:1176
 #, kde-format
 msgid "÷"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMultiplication)
-#: kcalc.ui:1141
+#: kcalc.ui:1189
 #, kde-format
 msgid "Multiplication"
 msgstr "Mopliyaedje"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMultiplication)
-#: kcalc.ui:1144
+#: kcalc.ui:1192
 #, kde-format
 msgid "×"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMinus)
-#: kcalc.ui:1157
+#: kcalc.ui:1205
 #, fuzzy, kde-format
 #| msgid "Misc"
 msgid "Minus"
 msgstr "Totes sôres"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMinus)
-#: kcalc.ui:1160
+#: kcalc.ui:1208
 #, kde-format
 msgctxt "- calculator button"
 msgid "−"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbPlus)
-#: kcalc.ui:1173
+#: kcalc.ui:1221
 #, kde-format
 msgid "Plus"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPlus)
-#: kcalc.ui:1176
+#: kcalc.ui:1224
 #, kde-format
 msgctxt "+ calculator button"
 msgid "+"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbEqual)
-#: kcalc.ui:1189
+#: kcalc.ui:1237
 #, kde-format
 msgid "Result"
 msgstr "Rizultat"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbEqual)
-#: kcalc.ui:1192
+#: kcalc.ui:1240
 #, kde-format
 msgctxt "= calculator button"
 msgid "="
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbPeriod)
-#: kcalc.ui:1205
+#: kcalc.ui:1253
 #, kde-format
 msgid "Decimal point"
 msgstr "Pont decimå"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPeriod)
-#: kcalc.ui:1208
+#: kcalc.ui:1256
 #, kde-format
 msgctxt ". calculator button"
 msgid "."
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbAllClear)
-#: kcalc.ui:1248
+#: kcalc.ui:1296
 #, kde-format
 msgid "Clear all"
 msgstr "Tot netyî"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbAllClear)
-#: kcalc.ui:1251
+#: kcalc.ui:1299
 #, kde-format
 msgid "AC"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMemClear)
-#: kcalc.ui:1264
+#: kcalc.ui:1312
 #, fuzzy, kde-format
 #| msgid "Memory recall"
 msgid "Memory clear"
 msgstr "Rihoukî l' memwere"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMemClear)
-#: kcalc.ui:1267
+#: kcalc.ui:1315
 #, kde-format
 msgid "MC"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMemRecall)
-#: kcalc.ui:1280
+#: kcalc.ui:1328
 #, kde-format
 msgid "Memory recall"
 msgstr "Rihoukî l' memwere"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMemRecall)
-#: kcalc.ui:1283
+#: kcalc.ui:1331
 #, kde-format
 msgid "MR"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbPlusMinus)
-#: kcalc.ui:1296
+#: kcalc.ui:1344
 #, kde-format
 msgid "Change sign"
 msgstr "Candjî l' sene"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPlusMinus)
-#: kcalc.ui:1299
+#: kcalc.ui:1347
 #, kde-format
 msgid "+/−"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbParenOpen)
-#: kcalc.ui:1312
+#: kcalc.ui:1360
 #, kde-format
 msgid "Open parenthesis"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbParenOpen)
-#: kcalc.ui:1315
+#: kcalc.ui:1363
 #, kde-format
 msgctxt "( calculator button"
 msgid "("
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbClear)
-#: kcalc.ui:1328
+#: kcalc.ui:1376
 #, fuzzy, kde-format
 msgid "Clear"
 msgstr "Tot netyî"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMemPlusMinus)
-#: kcalc.ui:1344
+#: kcalc.ui:1392
 #, kde-format
 msgid "Add to memory"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMemPlusMinus)
-#: kcalc.ui:1347
+#: kcalc.ui:1395
 #, kde-format
 msgid "M+"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMemStore)
-#: kcalc.ui:1360
+#: kcalc.ui:1408
 #, fuzzy, kde-format
 msgid "Memory store"
 msgstr "Rihoukî l' memwere"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMemStore)
-#: kcalc.ui:1363
+#: kcalc.ui:1411
 #, kde-format
 msgid "MS"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbParenClose)
-#: kcalc.ui:1376
+#: kcalc.ui:1424
 #, kde-format
 msgid "Close parenthesis"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbParenClose)
-#: kcalc.ui:1379
+#: kcalc.ui:1427
 #, kde-format
 msgctxt ") calculator button"
 msgid ")"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbBackspace)
-#: kcalc.ui:1392
+#: kcalc.ui:1440
 #, kde-format
 msgid "←"
 msgstr ""
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbBackspace)
-#: kcalc.ui:1395
+#: kcalc.ui:1443
 #, kde-format
 msgid "Backspace"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbShift)
-#: kcalc.ui:1408
+#: kcalc.ui:1456
 #, kde-format
 msgid "Second button function"
 msgstr ""
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbShift)
-#: kcalc.ui:1414
+#: kcalc.ui:1462
 #, kde-format
 msgid "Ctrl+2"
 msgstr ""
