@@ -111,6 +111,7 @@ QSize BitButton::renderSize() const
 //------------------------------------------------------------------------------
 void BitButton::enterEvent(QEnterEvent *event)
 {
+    Q_UNUSED(event)
     over_ = true;
     update();
 }
@@ -133,6 +134,7 @@ void BitButton::leaveEvent(QEvent *event)
 //------------------------------------------------------------------------------
 void BitButton::focusInEvent(QFocusEvent *event)
 {
+    Q_UNUSED(event)
     over_ = true;
     update();
 }
@@ -143,6 +145,7 @@ void BitButton::focusInEvent(QFocusEvent *event)
 //------------------------------------------------------------------------------
 void BitButton::focusOutEvent(QFocusEvent *event)
 {
+    Q_UNUSED(event)
     over_ = false;
     update();
 }
