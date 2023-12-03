@@ -12,6 +12,7 @@
 #include <cmath>
 
 #ifdef _MSC_VER
+#if _MSC_VER < 1930
 double log2(double x)
 {
     return log(x) / log(2);
@@ -20,6 +21,8 @@ double exp2(double x)
 {
     return exp(x * log(2));
 }
+#endif
+
 double exp10(double x)
 {
     return exp(x * log(10));
