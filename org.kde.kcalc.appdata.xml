@@ -309,7 +309,7 @@
       <li xml:lang="sq">Pamja lejon kapjen dhe ngjitjen e numrave</li>
       <li xml:lang="sv">Displayen tillåter att tal klipps ut och klistras in</li>
       <li xml:lang="ta">காட்டப்படும் எண்களை நகலெடுத்து ஒட்டலாம்</li>
-      <li xml:lang="tr">Ekran, sayıların kesimine ve yapıştırmasına izin verir</li>
+      <li xml:lang="tr">Görüntü, sayıların kesimine ve yapıştırmasına izin verir</li>
       <li xml:lang="uk">Передбачено можливість вирізання чисел з дисплея калькулятора та вставляння чисел з буфера обміну даними.</li>
       <li xml:lang="x-test">xxThe display allows cut and paste of numbersxx</li>
       <li xml:lang="zh-CN">显示屏允许剪切和粘贴数字</li>
@@ -349,7 +349,7 @@
       <li xml:lang="sl">Barve in pisava prikaza so nastavljivi, kar izboljšuje uporabnost</li>
       <li xml:lang="sq">Fontet the ngjyrat e pamjes mund të ndryshon, gjë që rritë përdorshmërinë</li>
       <li xml:lang="sv">Displayens färger och teckensnitt kan ställas in, för förbättrat handikappstöd</li>
-      <li xml:lang="tr">Ekran renkleri ve yazıtipleri yapılandırılabilir, böylelikle kullanılabilirliğe katkıda bulunur</li>
+      <li xml:lang="tr">Görüntü renkleri ve yazıtipleri yapılandırılabilir, böylelikle kullanılabilirliğe katkıda bulunur</li>
       <li xml:lang="uk">Можна налаштувати кольори та шрифт дисплея.</li>
       <li xml:lang="x-test">xxThe display colors and font are configurable, aiding usabilityxx</li>
       <li xml:lang="zh-CN">显示颜色和字体是可配置的，有助于可用性</li>
