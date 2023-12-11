@@ -39,7 +39,7 @@
 >&FDLNotice;</legalnotice>
 
 <date
->2016-07-25</date>
+>25-07-2016</date>
 <releaseinfo
 >Applications 16.08</releaseinfo>
 
@@ -928,7 +928,7 @@
 >.</para>
 
 <para
->Pour voir la valeur stockée dans chaque constante, survolez-en le bouton avec le curseur de la souris.</para>
+>Pour voir la valeur enregistrée dans chaque constante, survolez-en le bouton avec le pointeur de souris.</para>
 
 <para
 >Pour stocker le nombre affiché par &kcalc; dans une des six constantes, cliquez sur d'abord sur <guibutton
