@@ -4,7 +4,7 @@
 # Jozef Říha <jose1711@gmail.com>, 2006.
 # Richard Fric <Richard.Fric@kdemail.net>, 2006.
 # Michal Sulek <misurel@gmail.com>, 2009, 2010.
-# Roman Paholík <wizzardsk@gmail.com>, 2012, 2013, 2014, 2015, 2021.
+# SPDX-FileCopyrightText: 2012, 2013, 2014, 2015, 2021, 2023 Roman Paholík <wizzardsk@gmail.com>
 # Mthw <jari_45@hotmail.com>, 2019.
 # Matej Mrenica <matejm98mthw@gmail.com>, 2019, 2021, 2022.
 msgid ""
@@ -12,14 +12,14 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-13 01:39+0000\n"
-"PO-Revision-Date: 2022-01-27 09:55+0100\n"
-"Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
-"Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
+"PO-Revision-Date: 2023-12-10 15:07+0100\n"
+"Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
+"Language-Team: Slovak <kde-sk@linux.sk>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.12.1\n"
+"X-Generator: Lokalize 23.08.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #, kde-format
@@ -1190,15 +1190,7 @@ msgstr "Binárne čísla budú oddelené medzerou po každej X-tej číslici."
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:196
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 10111001 you can display 1011 1001, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1224,15 +1216,7 @@ msgstr "Osmičkové čísla budú oddelené medzerou po každej X-tej číslici.
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:205
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 42140213 you can display 4214 0213, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1259,15 +1243,7 @@ msgstr "Hexadecimálne čísla budú oddelené medzerou po každej X-tej čísli
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:214
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of AF1C42 you can display AF 1C 42, by "
-#| "setting the setting to\n"
-#| "            2, thus inserting a whitespace after every 2nd digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -2097,11 +2073,10 @@ msgid "M"
 msgstr "M"
 
 #: kcalcdisplay.cpp:42
-#, fuzzy, kde-format
-#| msgid "Select Display Font"
+#, kde-format
 msgctxt "@label accessibility description of the calculation result display"
 msgid "Result Display"
-msgstr "Výber písma displeja"
+msgstr "Zobrazenie výsledkov"
 
 #. i18n: ectx: Menu (settings)
 #: kcalcui.rc:4
