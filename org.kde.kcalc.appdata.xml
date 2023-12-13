@@ -396,7 +396,7 @@
       <li xml:lang="zh-TW">使用按鍵綁定來讓 KDE 計算機不必指標裝置就能簡單操作</li>
     </ul>
   </description>
-  <url type="homepage">https://utils.kde.org/projects/kcalc/</url>
+  <url type="homepage">https://apps.kde.org/kcalc</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?product=kcalc</url>
   <url type="help">https://docs.kde.org/?application=kcalc</url>
   <url type="donation">https://www.kde.org/community/donations/?app=kcalc&amp;source=appdata</url>
