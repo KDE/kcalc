@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-13 01:39+0000\n"
-"PO-Revision-Date: 2023-12-09 18:54+0900\n"
+"PO-Revision-Date: 2023-12-15 20:06+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -406,7 +406,7 @@ msgstr "正弦函數"
 #, kde-format
 msgctxt "Arc sine"
 msgid "asin"
-msgstr ""
+msgstr "asin"
 
 #: kcalc.cpp:443
 #, kde-format
@@ -457,7 +457,7 @@ msgstr "餘弦函數"
 #, kde-format
 msgctxt "Arc cosine"
 msgid "acos"
-msgstr ""
+msgstr "acos"
 
 #: kcalc.cpp:451
 #, kde-format
@@ -508,7 +508,7 @@ msgstr "正切函數"
 #, kde-format
 msgctxt "Arc tangent"
 msgid "atan"
-msgstr ""
+msgstr "atan"
 
 #: kcalc.cpp:459
 #, kde-format
@@ -570,7 +570,7 @@ msgstr "十的 x 次方"
 #, kde-format
 msgctxt "Natural log"
 msgid "ln"
-msgstr ""
+msgstr "ln"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLn)
 #: kcalc.cpp:471 kcalc.ui:466
@@ -788,12 +788,12 @@ msgstr "中間數"
 #: kcalc.cpp:1674
 #, kde-format
 msgid "DAT ["
-msgstr ""
+msgstr "DAT ["
 
 #: kcalc.cpp:1674
 #, kde-format
 msgid "] = "
-msgstr ""
+msgstr "] = "
 
 #: kcalc.cpp:1680 kcalc.cpp:1681
 #, kde-format
@@ -969,10 +969,9 @@ msgstr "操作鍵顏色"
 
 #. i18n: ectx: label, entry (ConstantsButtonsColor), group (Colors)
 #: kcalc.kcfg:49
-#, fuzzy, kde-format
-#| msgid "The color of statistical buttons."
+#, kde-format
 msgid "The color of constants buttons."
-msgstr "統計鍵顏色"
+msgstr "定數按鍵的顏色。"
 
 #. i18n: ectx: label, entry (NumberFontsColor), group (Colors)
 #: kcalc.kcfg:53
@@ -1012,10 +1011,9 @@ msgstr "操作字型的顏色。"
 
 #. i18n: ectx: label, entry (ConstantsFontsColor), group (Colors)
 #: kcalc.kcfg:79
-#, fuzzy, kde-format
-#| msgid "The color of statistical fonts."
+#, kde-format
 msgid "The color of constants fonts."
-msgstr "統計字型的顏色。"
+msgstr "定數字型的顏色。"
 
 #. i18n: ectx: label, entry (ButtonFont), group (Font)
 #: kcalc.kcfg:85
