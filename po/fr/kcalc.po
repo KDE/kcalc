@@ -13,10 +13,10 @@
 # Jean-Jacques FINAZZI <mrjay01@users.sourceforge.net>, 2008.
 # Mickael Sibelle <kimael@gmail.com>, 2008, 2009, 2010.
 # Mickaël Sibelle <kimael@gmail.com>, 2009.
-# SPDX-FileCopyrightText: 2012, 2013, 2020, 2021, 2022, 2023 xavier <xavier.besnard@neuf.fr>
+# SPDX-FileCopyrightText: 2012, 2013, 2020, 2021, 2022, 2023 xavier <xavier.besnard@kde.org>
 # Sebastien Renard <renard@kde.org>, 2012, 2013, 2014, 2015.
 # Simon Depiets <sdepiets@gmail.com>, 2018, 2019.
-# Xavier BESNARD <xavier.besnard@neuf.fr>, 2023.
+# Xavier Besnard <xavier.besnard@kde.org>, 2023.
 #
 msgid ""
 msgstr ""
@@ -24,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-16 01:01+0000\n"
 "PO-Revision-Date: 2023-10-25 16:04+0200\n"
-"Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
+"Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
 "cousin@kde.org, rjacolin@ifrance.com, gerard@delafond.org, kimael@gmail.com, "
-"renard@kde.org, sdepiets@gmail.com, xavier.besnard@neuf.fr"
+"renard@kde.org, sdepiets@gmail.com, xavier.besnard@kde.org"
 
 #. i18n: ectx: property (title), widget (QGroupBox, displayColorsBox)
 #: colors.ui:17
