@@ -3,20 +3,20 @@
 # Franklin Weng <franklin at goodhorse dot idv dot tw>, 2007.
 # Franklin Weng <franklin@goodhorse.idv.tw>, 2012, 2013, 2014, 2015.
 # pan93412 <pan93412@gmail.com>, 2018, 2019.
-# Kisaragi Hiu <mail@kisaragi-hiu.com>, 2023.
+# SPDX-FileCopyrightText: 2023 Kisaragi Hiu <mail@kisaragi-hiu.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-13 01:39+0000\n"
-"PO-Revision-Date: 2023-12-15 20:06+0900\n"
+"PO-Revision-Date: 2023-12-25 01:48+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.01.80\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #, kde-format
@@ -389,12 +389,10 @@ msgid "Cube root"
 msgstr "立方根"
 
 #: kcalc.cpp:442
-#, fuzzy, kde-format
-#| msgctxt "Arc sine"
-#| msgid "Asin"
+#, kde-format
 msgctxt "Sine"
 msgid "sin"
-msgstr "Asin"
+msgstr "sin"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSin)
 #: kcalc.cpp:442 kcalc.ui:756
@@ -414,12 +412,10 @@ msgid "Arc sine"
 msgstr "反正弦函數"
 
 #: kcalc.cpp:444
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic sine"
-#| msgid "Asinh"
+#, kde-format
 msgctxt "Hyperbolic sine"
 msgid "sinh"
-msgstr "Asinh"
+msgstr "sinh"
 
 #: kcalc.cpp:444
 #, kde-format
@@ -427,12 +423,10 @@ msgid "Hyperbolic sine"
 msgstr "雙曲正弦函數"
 
 #: kcalc.cpp:445
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic sine"
-#| msgid "Asinh"
+#, kde-format
 msgctxt "Inverse hyperbolic sine"
 msgid "asinh"
-msgstr "Asinh"
+msgstr "asinh"
 
 #: kcalc.cpp:445
 #, kde-format
@@ -440,12 +434,10 @@ msgid "Inverse hyperbolic sine"
 msgstr "反雙曲正弦函數"
 
 #: kcalc.cpp:450
-#, fuzzy, kde-format
-#| msgctxt "Arc cosine"
-#| msgid "Acos"
+#, kde-format
 msgctxt "Cosine"
 msgid "cos"
-msgstr "Acos"
+msgstr "cos"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbCos)
 #: kcalc.cpp:450 kcalc.ui:501
@@ -465,12 +457,10 @@ msgid "Arc cosine"
 msgstr "反餘弦函數"
 
 #: kcalc.cpp:452
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic cosine"
-#| msgid "Acosh"
+#, kde-format
 msgctxt "Hyperbolic cosine"
 msgid "cosh"
-msgstr "Acosh"
+msgstr "cosh"
 
 #: kcalc.cpp:452
 #, kde-format
@@ -478,12 +468,10 @@ msgid "Hyperbolic cosine"
 msgstr "雙曲餘弦函數"
 
 #: kcalc.cpp:453
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic cosine"
-#| msgid "Acosh"
+#, kde-format
 msgctxt "Inverse hyperbolic cosine"
 msgid "acosh"
-msgstr "Acosh"
+msgstr "acosh"
 
 #: kcalc.cpp:453
 #, kde-format
@@ -491,12 +479,10 @@ msgid "Inverse hyperbolic cosine"
 msgstr "反雙曲餘弦函數"
 
 #: kcalc.cpp:458
-#, fuzzy, kde-format
-#| msgctxt "Arc tangent"
-#| msgid "Atan"
+#, kde-format
 msgctxt "Tangent"
 msgid "tan"
-msgstr "Atan"
+msgstr "tan"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbTan)
 #: kcalc.cpp:458 kcalc.ui:571
@@ -516,12 +502,10 @@ msgid "Arc tangent"
 msgstr "反正切函數"
 
 #: kcalc.cpp:460
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic tangent"
-#| msgid "Atanh"
+#, kde-format
 msgctxt "Hyperbolic tangent"
 msgid "tanh"
-msgstr "Atanh"
+msgstr "tanh"
 
 #: kcalc.cpp:460
 #, kde-format
@@ -529,12 +513,10 @@ msgid "Hyperbolic tangent"
 msgstr "雙曲正切函數"
 
 #: kcalc.cpp:461
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic tangent"
-#| msgid "Atanh"
+#, kde-format
 msgctxt "Inverse hyperbolic tangent"
 msgid "atanh"
-msgstr "Atanh"
+msgstr "atanh"
 
 #: kcalc.cpp:461
 #, kde-format
@@ -542,12 +524,10 @@ msgid "Inverse hyperbolic tangent"
 msgstr "反雙曲正切函數"
 
 #: kcalc.cpp:466
-#, fuzzy, kde-format
-#| msgctxt "Logarithm to base 10"
-#| msgid "Log"
+#, kde-format
 msgctxt "Logarithm to base 10"
 msgid "log"
-msgstr "Log"
+msgstr "log"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLog)
 #: kcalc.cpp:466 kcalc.ui:871
@@ -658,12 +638,10 @@ msgid "Delete last data item"
 msgstr "刪除上一筆資料"
 
 #: kcalc.cpp:574
-#, fuzzy, kde-format
-#| msgctxt "Modulo"
-#| msgid "Mod"
+#, kde-format
 msgctxt "Modulo"
 msgid "mod"
-msgstr "Mod"
+msgstr "mod"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMod)
 #: kcalc.cpp:574 kcalc.ui:539
@@ -1193,15 +1171,7 @@ msgstr "二進位值會每 X 個數字插入一個空格。"
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:196
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 10111001 you can display 1011 1001, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1212,7 +1182,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            為了易讀性，可以將數字分組\n"
+"            可以將數字分組來讓它們比較好讀\n"
 "            例如將此設定設為 4，就會每四個數字插入一個空白，10111001 就會顯示"
 "成 1011 1001。\n"
 "        "
@@ -1225,15 +1195,7 @@ msgstr "八進位值會每 X 個數字插入一個空格。"
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:205
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 42140213 you can display 4214 0213, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1244,7 +1206,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            為了易讀性，可以將數字分組\n"
+"            可以將數字分組來讓它們比較好讀\n"
 "            例如將此設定設為 4，就會每四個數字插入一個空白，42140213 就會顯示"
 "成 4214 0213。\n"
 "        "
@@ -1258,15 +1220,7 @@ msgstr "十六進位值會每 X 個數字插入一個空格。"
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:214
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of AF1C42 you can display AF 1C 42, by "
-#| "setting the setting to\n"
-#| "            2, thus inserting a whitespace after every 2nd digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1277,7 +1231,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            為了易讀性，可以將數字分組\n"
+"            可以將數字分組來讓它們比較好讀\n"
 "            例如將此設定設為 2，就會每兩個數字插入一個空白，AF1C42 就會顯示"
 "成 AF 1C 42 。\n"
 "        "
@@ -2015,10 +1969,9 @@ msgid "Ctrl+2"
 msgstr "Ctrl+2"
 
 #: kcalc_bitset.cpp:57
-#, fuzzy, kde-format
-#| msgid "Bit %1"
+#, kde-format
 msgid "Bit %1 = %2"
-msgstr "%1 位"
+msgstr "位元 %1 = %2"
 
 #: kcalc_const_button.cpp:24 kcalc_const_button.cpp:37
 #, kde-format
