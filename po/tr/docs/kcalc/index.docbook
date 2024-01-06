@@ -237,7 +237,7 @@
 >Düğme Yerleşimi</term>
 <listitem>
 <para
->&kcalc; içerisindeki gelişmiş kiplere kolay erişim sağlamak için, çoğu düğme ikinci bir yerleşime sahiptir. Düğmenin ikinci düzenini görünür kılmak için <guibutton
+>&kcalc; içerisindeki gelişmiş kiplere kolay erişim sağlamak için, çoğu düğme ikinci bir yerleşime sahiptir. Düğmelerin ikinci yerleşimini görünür kılmak için <guibutton
 >&Shift;</guibutton
 > veya <keycombo action="simul"
 >&Ctrl;<keycap
