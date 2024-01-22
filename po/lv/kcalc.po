@@ -2,7 +2,7 @@
 # Copyright (C) 2007, 2008 Free Software Foundation, Inc.
 #
 # Rihards Prieditis <RPrieditis@inbox.lv>, 2007.
-# Maris Nartiss <maris.kde@gmail.com>, 2007.
+# Maris Nartiss <maris.kde@gmail.com>, 2007, 2024.
 # Viesturs Zarins <viesturs.zarins@mii.lu.lv>, 2007, 2008, 2009, 2010.
 # Viesturs Zariņš <viesturs.zarins@algorego.com>, 2008.
 # Viesturs Zariņš <viesturs.zarins@mii.lu.lv>, 2009.
@@ -12,26 +12,26 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-13 01:39+0000\n"
-"PO-Revision-Date: 2011-03-10 01:27+0200\n"
-"Last-Translator: Einars Sprugis <einars8@gmail.com>\n"
-"Language-Team: Latvian <locale@laka.lv>\n"
+"PO-Revision-Date: 2024-01-21 15:17+0200\n"
+"Last-Translator: Māris Nartišs <maris.kde@gmail.com>\n"
+"Language-Team: \n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: Lokalize 22.12.3\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Andris Maziks, Rihards Priedītis"
+msgstr "Andris Maziks, Rihards Priedītis, Māris Nartišs"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "andris.m@delfi.lv, RPrieditis@inbox.lv"
+msgstr "andris.m@delfi.lv, RPrieditis@inbox.lv, maris.kde@gmail.com"
 
 #. i18n: ectx: property (title), widget (QGroupBox, displayColorsBox)
 #: colors.ui:17
@@ -59,17 +59,15 @@ msgstr "Pogu krāsas"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
 #: colors.ui:105
-#, fuzzy, kde-format
-#| msgid "&Background:"
+#, kde-format
 msgid "Background"
-msgstr "&Fons:"
+msgstr "Fons"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: colors.ui:115
-#, fuzzy, kde-format
-#| msgid "&Foreground:"
+#, kde-format
 msgid "Foreground"
-msgstr "&Priekšplāns:"
+msgstr "Priekšplāns"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel5)
 #: colors.ui:125
@@ -109,10 +107,9 @@ msgstr "O&perācijas:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel13)
 #: colors.ui:287
-#, fuzzy, kde-format
-#| msgid "&Constants"
+#, kde-format
 msgid "&Constants:"
-msgstr "&Konstantes"
+msgstr "&Konstantes:"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
 #: constants.ui:13 kcalc.cpp:1797
@@ -130,7 +127,7 @@ msgstr "Konstantes"
 #: constants.ui:117 constants.ui:138
 #, kde-format
 msgid "Predefined"
-msgstr "Pirmsdefinēts"
+msgstr "Iepriekšdefinēts"
 
 #. i18n: ectx: property (text), widget (QLabel, buttonlabel)
 #: fonts.ui:21
@@ -142,7 +139,7 @@ msgstr "&Pogu fonts:"
 #: fonts.ui:34
 #, kde-format
 msgid "The font to use for the buttons"
-msgstr "Pogām izmantojamais fonts."
+msgstr "Pogām izmantojamais fonts"
 
 #. i18n: ectx: property (text), widget (QLabel, displaylabel)
 #: fonts.ui:41
@@ -158,17 +155,15 @@ msgstr "Displejā izmantojamais fonts"
 
 #. i18n: ectx: property (text), widget (QLabel, historylabel)
 #: fonts.ui:61
-#, fuzzy, kde-format
-#| msgid "&Display font:"
+#, kde-format
 msgid "&History font:"
-msgstr "&Attēlošanas fonts:"
+msgstr "&Vēstures fonts:"
 
 #. i18n: ectx: property (toolTip), widget (KFontRequester, kcfg_HistoryFont)
 #: fonts.ui:74
-#, fuzzy, kde-format
-#| msgid "The font to use in the display"
+#, kde-format
 msgid "The font to use in the history"
-msgstr "Displejā izmantojamais fonts"
+msgstr "Vēsturei izmantojamais fonts"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
 #: general.ui:14 kcalc.cpp:1757
@@ -226,10 +221,9 @@ msgstr "Fiksēto decimālo ciparu skaits"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: general.ui:89
-#, fuzzy, kde-format
-#| msgid "Group digits"
+#, kde-format
 msgid "Grouping"
-msgstr "Grupēt ciparus"
+msgstr "Grupēšana"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GroupDigits)
 #: general.ui:97
@@ -247,20 +241,19 @@ msgstr "Grupēt ciparus"
 #: general.ui:115
 #, kde-format
 msgid "Binary"
-msgstr ""
+msgstr "Binārajiem"
 
 #. i18n: ectx: property (text), widget (QLabel, grouping_octal_lb)
 #: general.ui:122
 #, kde-format
 msgid "Octal"
-msgstr ""
+msgstr "Oktālajiem"
 
 #. i18n: ectx: property (text), widget (QLabel, grouping_hexadecimal_lb)
 #: general.ui:129
-#, fuzzy, kde-format
-#| msgid "He&xadecimals:"
+#, kde-format
 msgid "Hexadecimal"
-msgstr "He&ksadecimāļi:"
+msgstr "Heksadecimālajiem"
 
 #. i18n: ectx: property (title), widget (QGroupBox, miscGroupBox)
 #: general.ui:152
@@ -307,7 +300,7 @@ msgid ""
 "decimal numbers in computers."
 msgstr ""
 "Izvēlieties, lai lietotu Divi papildinājuma notāciju Bināriem, Oktāliem un "
-"Heksadecimāliem skaitļiem. Tā ir pierasta negatīvu netecimālu skaitļu "
+"Heksadecimāliem skaitļiem. Tā ir pierasta negatīvu nedecimālu skaitļu "
 "notācija datorsistēmās."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_TwosComplement)
@@ -320,7 +313,7 @@ msgstr "Divi papildinājums"
 #: general.ui:199
 #, kde-format
 msgid "Repeat operation for each result"
-msgstr ""
+msgstr "Atkārtot darbību katram rezultātam"
 
 #: kcalc.cpp:175
 #, kde-format
@@ -346,11 +339,10 @@ msgstr "Skaitļu sistēmu režīms"
 #: kcalc.cpp:195
 #, kde-format
 msgid "Show &History"
-msgstr ""
+msgstr "Rādīt &vēsturi"
 
 #: kcalc.cpp:201
-#, fuzzy, kde-format
-#| msgid "&Constants Buttons"
+#, kde-format
 msgid "Constants &Buttons"
 msgstr "&Konstanšu pogas"
 
@@ -403,12 +395,10 @@ msgid "Cube root"
 msgstr "Kubsakne"
 
 #: kcalc.cpp:442
-#, fuzzy, kde-format
-#| msgctxt "Arc sine"
-#| msgid "Asin"
+#, kde-format
 msgctxt "Sine"
 msgid "sin"
-msgstr "Asin"
+msgstr "sin"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSin)
 #: kcalc.cpp:442 kcalc.ui:756
@@ -420,7 +410,7 @@ msgstr "Sinuss"
 #, kde-format
 msgctxt "Arc sine"
 msgid "asin"
-msgstr ""
+msgstr "asin"
 
 #: kcalc.cpp:443
 #, kde-format
@@ -428,12 +418,10 @@ msgid "Arc sine"
 msgstr "Arksinuss"
 
 #: kcalc.cpp:444
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic sine"
-#| msgid "Asinh"
+#, kde-format
 msgctxt "Hyperbolic sine"
 msgid "sinh"
-msgstr "Asinh"
+msgstr "sinh"
 
 #: kcalc.cpp:444
 #, kde-format
@@ -441,12 +429,10 @@ msgid "Hyperbolic sine"
 msgstr "Hiperboliskais sinuss"
 
 #: kcalc.cpp:445
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic sine"
-#| msgid "Asinh"
+#, kde-format
 msgctxt "Inverse hyperbolic sine"
 msgid "asinh"
-msgstr "Asinh"
+msgstr "asinh"
 
 #: kcalc.cpp:445
 #, kde-format
@@ -454,12 +440,10 @@ msgid "Inverse hyperbolic sine"
 msgstr "Apgrieztais hiperboliskais sinuss"
 
 #: kcalc.cpp:450
-#, fuzzy, kde-format
-#| msgctxt "Arc cosine"
-#| msgid "Acos"
+#, kde-format
 msgctxt "Cosine"
 msgid "cos"
-msgstr "Acos"
+msgstr "cos"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbCos)
 #: kcalc.cpp:450 kcalc.ui:501
@@ -471,7 +455,7 @@ msgstr "Kosinuss"
 #, kde-format
 msgctxt "Arc cosine"
 msgid "acos"
-msgstr ""
+msgstr "acos"
 
 #: kcalc.cpp:451
 #, kde-format
@@ -479,12 +463,10 @@ msgid "Arc cosine"
 msgstr "Arkkosinuss"
 
 #: kcalc.cpp:452
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic cosine"
-#| msgid "Acosh"
+#, kde-format
 msgctxt "Hyperbolic cosine"
 msgid "cosh"
-msgstr "Acosh"
+msgstr "cosh"
 
 #: kcalc.cpp:452
 #, kde-format
@@ -492,12 +474,10 @@ msgid "Hyperbolic cosine"
 msgstr "Hiperbolisks kosinuss"
 
 #: kcalc.cpp:453
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic cosine"
-#| msgid "Acosh"
+#, kde-format
 msgctxt "Inverse hyperbolic cosine"
 msgid "acosh"
-msgstr "Acosh"
+msgstr "acosh"
 
 #: kcalc.cpp:453
 #, kde-format
@@ -505,12 +485,10 @@ msgid "Inverse hyperbolic cosine"
 msgstr "Apgriezts hiperboliskais kosinuss"
 
 #: kcalc.cpp:458
-#, fuzzy, kde-format
-#| msgctxt "Arc tangent"
-#| msgid "Atan"
+#, kde-format
 msgctxt "Tangent"
 msgid "tan"
-msgstr "Atan"
+msgstr "tan"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbTan)
 #: kcalc.cpp:458 kcalc.ui:571
@@ -522,7 +500,7 @@ msgstr "Tangenss"
 #, kde-format
 msgctxt "Arc tangent"
 msgid "atan"
-msgstr ""
+msgstr "atan"
 
 #: kcalc.cpp:459
 #, kde-format
@@ -530,12 +508,10 @@ msgid "Arc tangent"
 msgstr "Arktangenss"
 
 #: kcalc.cpp:460
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic tangent"
-#| msgid "Atanh"
+#, kde-format
 msgctxt "Hyperbolic tangent"
 msgid "tanh"
-msgstr "Atanh"
+msgstr "tanh"
 
 #: kcalc.cpp:460
 #, kde-format
@@ -543,12 +519,10 @@ msgid "Hyperbolic tangent"
 msgstr "Hiperboliskais tangenss"
 
 #: kcalc.cpp:461
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic tangent"
-#| msgid "Atanh"
+#, kde-format
 msgctxt "Inverse hyperbolic tangent"
 msgid "atanh"
-msgstr "Atanh"
+msgstr "atanh"
 
 #: kcalc.cpp:461
 #, kde-format
@@ -556,12 +530,10 @@ msgid "Inverse hyperbolic tangent"
 msgstr "Apgriezts hiperboliskais tangenss"
 
 #: kcalc.cpp:466
-#, fuzzy, kde-format
-#| msgctxt "Logarithm to base 10"
-#| msgid "Log"
+#, kde-format
 msgctxt "Logarithm to base 10"
 msgid "log"
-msgstr "Log"
+msgstr "log"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLog)
 #: kcalc.cpp:466 kcalc.ui:871
@@ -584,7 +556,7 @@ msgstr "10 pakāpē x"
 #, kde-format
 msgctxt "Natural log"
 msgid "ln"
-msgstr ""
+msgstr "ln"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLn)
 #: kcalc.cpp:471 kcalc.ui:466
@@ -672,12 +644,10 @@ msgid "Delete last data item"
 msgstr "Dzēst pēdējo datu vienumu"
 
 #: kcalc.cpp:574
-#, fuzzy, kde-format
-#| msgctxt "Modulo"
-#| msgid "Mod"
+#, kde-format
 msgctxt "Modulo"
 msgid "mod"
-msgstr "Mod"
+msgstr "mod"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMod)
 #: kcalc.cpp:574 kcalc.ui:539
@@ -734,7 +704,7 @@ msgstr "Faktoriāls"
 #: kcalc.cpp:588
 #, kde-format
 msgid "Gamma"
-msgstr ""
+msgstr "Gamma"
 
 #: kcalc.cpp:594
 #, kde-format
@@ -802,12 +772,12 @@ msgstr "Mediāna"
 #: kcalc.cpp:1674
 #, kde-format
 msgid "DAT ["
-msgstr ""
+msgstr "DAT ["
 
 #: kcalc.cpp:1674
 #, kde-format
 msgid "] = "
-msgstr ""
+msgstr "] = "
 
 #: kcalc.cpp:1680 kcalc.cpp:1681
 #, kde-format
@@ -861,20 +831,17 @@ msgid "KDE Calculator"
 msgstr "KDE kalkulators"
 
 #: kcalc.cpp:2811
-#, fuzzy, kde-format
-#| msgid ""
-#| "(c) 2000-2008, The KDE Team\n"
-#| "(c) 2003-2005, Klaus Niederkrüger\n"
-#| "(c) 1996-2000, Bernd Johannes Wuebben"
+#, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
 "Copyright © 2000-2008, The KDE Team\n"
 "Copyright © 2003-2005, Klaus Niederkrüger\n"
 "Copyright © 1996-2000, Bernd Johannes Wuebben"
 msgstr ""
-"(c) 2000-2008, KDE komanda\n"
-"(c) 2003-2005, Klaus Niederkrüger\n"
-"(c) 1996-2000, Bernd Johannes Wuebben"
+"Autortiesības © 2008-2013, Evan Teran\n"
+"Autortiesības © 2000-2008, KDE komanda\n"
+"Autortiesības © 2003-2005, Klaus Niederkrüger\n"
+"Autortiesības © 1996-2000, Bernd Johannes Wuebben"
 
 #: kcalc.cpp:2821
 #, kde-format
@@ -934,13 +901,13 @@ msgstr "David Johnson"
 #: kcalc.cpp:2842
 #, kde-format
 msgid "Niklas Freund"
-msgstr ""
+msgstr "Niklas Freund"
 
 #. i18n: ectx: label, entry (ForeColor), group (Colors)
 #: kcalc.kcfg:12
 #, kde-format
 msgid "The foreground color of the display."
-msgstr "Priekšplāna krāsa."
+msgstr "Displeja priekšplāna krāsa."
 
 #. i18n: ectx: label, entry (BackColor), group (Colors)
 #: kcalc.kcfg:18
@@ -986,59 +953,51 @@ msgstr "Operāciju pogu krāsa."
 
 #. i18n: ectx: label, entry (ConstantsButtonsColor), group (Colors)
 #: kcalc.kcfg:49
-#, fuzzy, kde-format
-#| msgid "The color of statistical buttons."
+#, kde-format
 msgid "The color of constants buttons."
-msgstr "Statistikas pogu krāsa."
+msgstr "Konstanšu pogu krāsa."
 
 #. i18n: ectx: label, entry (NumberFontsColor), group (Colors)
 #: kcalc.kcfg:53
-#, fuzzy, kde-format
-#| msgid "The color of number buttons."
+#, kde-format
 msgid "The color of number fonts."
-msgstr "Ciparu pogu krāsa."
+msgstr "Ciparu fonta krāsa."
 
 #. i18n: ectx: label, entry (FunctionFontsColor), group (Colors)
 #: kcalc.kcfg:59
-#, fuzzy, kde-format
-#| msgid "The color of function buttons."
+#, kde-format
 msgid "The color of function fonts."
-msgstr "Funkciju pogas krāsa."
+msgstr "Funkciju fonta krāsa."
 
 #. i18n: ectx: label, entry (StatFontsColor), group (Colors)
 #: kcalc.kcfg:63
-#, fuzzy, kde-format
-#| msgid "The color of statistical buttons."
+#, kde-format
 msgid "The color of statistical fonts."
-msgstr "Statistikas pogu krāsa."
+msgstr "Statistikas fonta krāsa."
 
 #. i18n: ectx: label, entry (HexFontsColor), group (Colors)
 #: kcalc.kcfg:67
-#, fuzzy, kde-format
-#| msgid "The color of hex buttons."
+#, kde-format
 msgid "The color of hex fonts."
-msgstr "Heksadecimāļu pogu krāsa."
+msgstr "Heksadecimāļu fonta krāsa."
 
 #. i18n: ectx: label, entry (MemoryFontsColor), group (Colors)
 #: kcalc.kcfg:71
-#, fuzzy, kde-format
-#| msgid "The color of memory buttons."
+#, kde-format
 msgid "The color of memory fonts."
-msgstr "Atmiņas pogu krāsas."
+msgstr "Atmiņas fonta krāsa."
 
 #. i18n: ectx: label, entry (OperationFontsColor), group (Colors)
 #: kcalc.kcfg:75
-#, fuzzy, kde-format
-#| msgid "The color of operation buttons."
+#, kde-format
 msgid "The color of operation font."
-msgstr "Operāciju pogu krāsa."
+msgstr "Operāciju fonta krāsa."
 
 #. i18n: ectx: label, entry (ConstantsFontsColor), group (Colors)
 #: kcalc.kcfg:79
-#, fuzzy, kde-format
-#| msgid "The color of statistical buttons."
+#, kde-format
 msgid "The color of constants fonts."
-msgstr "Statistikas pogu krāsa."
+msgstr "Konstanšu fonta krāsa."
 
 #. i18n: ectx: label, entry (ButtonFont), group (Font)
 #: kcalc.kcfg:85
@@ -1054,16 +1013,15 @@ msgstr "Displejā izmantojamais fonts."
 
 #. i18n: ectx: label, entry (HistoryFont), group (Font)
 #: kcalc.kcfg:96
-#, fuzzy, kde-format
-#| msgid "The font to use in the display."
+#, kde-format
 msgid "The font to use in the history."
-msgstr "Displejā izmantojamais fonts."
+msgstr "Vēsturei izmantojamais fonts."
 
 #. i18n: ectx: label, entry (Precision), group (Precision)
 #: kcalc.kcfg:102
 #, kde-format
 msgid "Maximum number of digits displayed."
-msgstr "Maksimālais attēlojamais skaitļu skaits."
+msgstr "Maksimālais attēlojamais ciparu skaits."
 
 #. i18n: ectx: whatsthis, entry (Precision), group (Precision)
 #: kcalc.kcfg:108
@@ -1087,7 +1045,7 @@ msgstr ""
 #: kcalc.kcfg:114
 #, kde-format
 msgid "Number of fixed decimal digits."
-msgstr "Fiksēto decimālo skaitļu skaits."
+msgstr "Fiksēto decimālo ciparu skaits."
 
 #. i18n: ectx: label, entry (Fixed), group (Precision)
 #: kcalc.kcfg:118
@@ -1132,13 +1090,13 @@ msgstr ""
 "\n"
 "       Izvēlieties, lai lietotu Divi papildinājuma notāciju Bināriem, "
 "Oktāliem un        Heksadecimāliem skaitļiem. Tā ir pierasta negatīvu "
-"netecimālu skaitļu        notācija datorsistēmās."
+"nedecimālu skaitļu        notācija datorsistēmās."
 
 #. i18n: ectx: label, entry (RepeatLastOperation), group (General)
 #: kcalc.kcfg:145
 #, kde-format
 msgid "Enables that the last operation is repeated when \"=\" is pressed"
-msgstr ""
+msgstr "Ieslēdz, ka pēdējā darbība tiek atkārtota pie „=“ nospiešanas"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
 #: kcalc.kcfg:151
@@ -1198,10 +1156,9 @@ msgstr "Rādīt konstanšu pogas."
 
 #. i18n: ectx: label, entry (ShowHistory), group (General)
 #: kcalc.kcfg:177
-#, fuzzy, kde-format
-#| msgid "Whether to show the bit edit widget."
+#, kde-format
 msgid "Whether to show the history window."
-msgstr "Vai rādīt bitu rediģēšanas logdaļu."
+msgstr "Vai rādīt vēstures logdaļu."
 
 #. i18n: ectx: label, entry (AngleMode), group (General)
 #: kcalc.kcfg:181
@@ -1219,7 +1176,7 @@ msgstr "Skaitļa bāze"
 #: kcalc.kcfg:191
 #, kde-format
 msgid "Binary figures will be separated by a whitespace after every Xth digit."
-msgstr ""
+msgstr "Binārie skaitļi tiks grupēti ar atstarpi ik pēc N cipariem."
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:196
@@ -1233,12 +1190,19 @@ msgid ""
 "            4, thus inserting a whitespace after every 4th digit.\n"
 "        "
 msgstr ""
+"\n"
+"            Lai uzlabotu skaitļu lasāmību, ir iespējams vizuāli grupēt to "
+"ciparus.\n"
+"            Piemēram, „10111001“ vietā rādīt „1011 1001“, ja iestatījums ir "
+"uzlikts kā 4,\n"
+"            kas ieliek atstarpi ik pēc četriem cipariem.\n"
+"        "
 
 #. i18n: ectx: label, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:200
 #, kde-format
 msgid "Octal figures will be separated by a whitespace after every Xth digit."
-msgstr ""
+msgstr "Oktālie skaitļi tiks grupēti ar atstarpi ik pēc N cipariem."
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:205
@@ -1252,13 +1216,20 @@ msgid ""
 "            4, thus inserting a whitespace after every 4th digit.\n"
 "        "
 msgstr ""
+"\n"
+"            Lai uzlabotu skaitļu lasāmību, ir iespējams vizuāli grupēt to "
+"ciparus.\n"
+"            Piemēram, „42140213“ vietā rādīt „4214 0213“, ja iestatījums ir "
+"uzlikts kā 4,\n"
+"            kas ieliek atstarpi ik pēc četriem cipariem.\n"
+"        "
 
 #. i18n: ectx: label, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:209
 #, kde-format
 msgid ""
 "Hexadecimal figures will be separated by a whitespace after every Xth digit."
-msgstr ""
+msgstr "Heksadecimālie skaitļi tiks grupēti ar atstarpi ik pēc N cipariem."
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:214
@@ -1272,6 +1243,13 @@ msgid ""
 "            2, thus inserting a whitespace after every 2nd digit.\n"
 "        "
 msgstr ""
+"\n"
+"            Lai uzlabotu skaitļu lasāmību, ir iespējams vizuāli grupēt to "
+"ciparus.\n"
+"            Piemēram, „AF1C42“ vietā rādīt „AF 1C 42“, ja iestatījums ir "
+"uzlikts kā 2,\n"
+"            kas ieliek atstarpi ik pēc diviem cipariem.\n"
+"        "
 
 #. i18n: ectx: label, entry (nameConstant$(ConstIndex)), group (UserConstants)
 #: kcalc.kcfg:220
@@ -1331,20 +1309,19 @@ msgstr "Uzklikšķiniet uz bita, lai to pārslēgtu."
 #: kcalc.ui:118
 #, kde-format
 msgid "&Deg"
-msgstr ""
+msgstr "&Deg"
 
 #. i18n: ectx: property (text), widget (QRadioButton, radRadio)
 #: kcalc.ui:125
 #, kde-format
 msgid "&Rad"
-msgstr ""
+msgstr "&Rad"
 
 #. i18n: ectx: property (text), widget (QRadioButton, gradRadio)
 #: kcalc.ui:132
-#, fuzzy, kde-format
-#| msgid "Grad"
+#, kde-format
 msgid "&Grad"
-msgstr "Grad"
+msgstr "&Grad"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, hexRadio)
 #: kcalc.ui:147
@@ -1365,7 +1342,7 @@ msgstr "He&ks"
 #: kcalc.ui:169 kcalc.ui:205 kcalc.ui:241 kcalc.ui:277
 #, kde-format
 msgid "KSq…bel"
-msgstr ""
+msgstr "KSq…bel"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, decRadio)
 #: kcalc.ui:183
@@ -1383,13 +1360,13 @@ msgstr "&Dec"
 #: kcalc.ui:219
 #, kde-format
 msgid "Switch base to octal."
-msgstr "Nomainīt bāzi uz  astotnieka sistēmu."
+msgstr "Nomainīt bāzi uz astotnieka sistēmu."
 
 #. i18n: ectx: property (text), widget (QRadioButton, octRadio)
 #: kcalc.ui:222
 #, kde-format
 msgid "Oc&t"
-msgstr ""
+msgstr "Ok&t"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, binRadio)
 #: kcalc.ui:255
@@ -1662,7 +1639,7 @@ msgstr "Med"
 #: kcalc.ui:810
 #, kde-format
 msgid "pow"
-msgstr "pow"
+msgstr "pakāpe"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbB)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbB)
@@ -1894,7 +1871,7 @@ msgstr "AC"
 #: kcalc.ui:1312
 #, kde-format
 msgid "Memory clear"
-msgstr "Notīrīt "
+msgstr "Notīrīt atmiņu"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMemClear)
 #: kcalc.ui:1315
@@ -1986,7 +1963,7 @@ msgstr ")"
 #: kcalc.ui:1440
 #, kde-format
 msgid "←"
-msgstr ""
+msgstr "←"
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbBackspace)
 #: kcalc.ui:1443
@@ -1998,7 +1975,7 @@ msgstr ""
 #: kcalc.ui:1456
 #, kde-format
 msgid "Second button function"
-msgstr "Otrās pogas funkcija"
+msgstr "Otrās pogu funkcijas"
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbShift)
 #: kcalc.ui:1462
@@ -2009,7 +1986,7 @@ msgstr "Ctrl+2"
 #: kcalc_bitset.cpp:57
 #, kde-format
 msgid "Bit %1 = %2"
-msgstr ""
+msgstr "Bit %1 = %2"
 
 #: kcalc_const_button.cpp:24 kcalc_const_button.cpp:37
 #, kde-format
@@ -2080,18 +2057,16 @@ msgid "SHIFT"
 msgstr "SHIFT"
 
 #: kcalc_statusbar.cpp:19 kcalc_statusbar.cpp:101
-#, fuzzy, kde-format
-#| msgid "M"
+#, kde-format
 msgctxt "Memory indicator in status bar"
 msgid "M"
 msgstr "M"
 
 #: kcalcdisplay.cpp:42
-#, fuzzy, kde-format
-#| msgid "Select Display Font"
+#, kde-format
 msgctxt "@label accessibility description of the calculation result display"
 msgid "Result Display"
-msgstr "Norādiet displeja fontu"
+msgstr "Rezultātu attēlošana"
 
 #. i18n: ectx: Menu (settings)
 #: kcalcui.rc:4
@@ -2127,7 +2102,7 @@ msgstr "Gaismas ātrums"
 #: scienceconstants.xml:19
 #, kde-format
 msgid "Planck's Constant"
-msgstr "Planka konstatne"
+msgstr "Planka konstante"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:23
@@ -2194,7 +2169,7 @@ msgstr "Molārā gāzes konstante"
 #: scienceconstants.xml:68
 #, kde-format
 msgid "Stefan-Boltzmann Constant"
-msgstr "Stefana-Bolcmana konstante"
+msgstr "Stefana-Bolcmaņa konstante"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:72
