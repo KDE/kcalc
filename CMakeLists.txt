@@ -23,6 +23,7 @@ include(ECMSetupVersion)
 include(KDEGitCommitHooks)
 include(KDEClangFormat)
 include(ECMDeprecationSettings)
+include(ECMAddTests)
 
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h *.c)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
@@ -93,7 +94,12 @@ target_sources(kcalc PRIVATE
    kcalc_button.cpp 
    kcalc_const_button.cpp 
    kcalc_const_menu.cpp 
-   kcalc_core.cpp 
+   kcalc_core.cpp
+   kcalc_core_p.cpp
+   kcalc_input_display.cpp
+   kcalc_display_frame.cpp
+   kcalc_parser.cpp
+   kcalc_token.cpp
    kcalcdisplay.cpp 
    kcalc_statusbar.cpp
    stats.cpp 
@@ -101,6 +107,7 @@ target_sources(kcalc PRIVATE
    stats.cpp
    kcalc_const_menu.h
    kcalc_core.h
+   kcalc_core_p.h
    kcalc_bitset.h
    bitbutton.h
    kcalc.h
@@ -108,6 +115,11 @@ target_sources(kcalc PRIVATE
    stats.h
    kcalc_const_button.h
    kcalc_statusbar.h
+   kcalc_input_display.h
+   kcalc_display_frame.h
+   kcalc_parser.h
+   kcalc_token.h
+   kcalc_priority_levels_p.h
    kcalcdisplay.h
    kcalchistory.h
    kcalc.qrc )
@@ -161,6 +173,10 @@ install( DIRECTORY DESTINATION "${KDE_INSTALL_FULL_DATAROOTDIR}/kglobalaccel" )
 install(
     CODE "execute_process(COMMAND \"${CMAKE_COMMAND}\" -E create_symlink \"${KDE_INSTALL_FULL_APPDIR}/org.kde.kcalc.desktop\" \"\$ENV{DESTDIR}${KDE_INSTALL_FULL_DATAROOTDIR}/kglobalaccel/org.kde.kcalc.desktop\")"
 )
+
+if(BUILD_TESTING)
+   add_subdirectory( autotests )
+endif()
 
 ki18n_install(po)
 if (KF6DocTools_FOUND)

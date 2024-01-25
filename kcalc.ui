@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1346</width>
-    <height>352</height>
+    <height>768</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -20,6 +20,9 @@
    <string>KCalc</string>
   </property>
   <layout class="QHBoxLayout" stretch="2,1">
+   <property name="spacing">
+    <number>0</number>
+   </property>
    <property name="sizeConstraint">
     <enum>QLayout::SetMinimumSize</enum>
    </property>
@@ -35,24 +38,15 @@
    <property name="bottomMargin">
     <number>0</number>
    </property>
-   <property name="spacing">
-    <number>0</number>
-   </property>
    <item>
-    <layout class="QVBoxLayout" name="firstVerticalLayout" stretch="2,0,1,0,6">
+    <layout class="QVBoxLayout" name="firstVerticalLayout" stretch="2,1,0,6">
      <property name="spacing">
-      <number>0</number>
+      <number>6</number>
      </property>
      <item>
-      <widget class="KCalcDisplay" name="calc_display">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::StrongFocus</enum>
+      <widget class="KCalcDisplayFrame" name="calc_display_frame">
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
@@ -60,6 +54,315 @@
        <property name="frameShadow">
         <enum>QFrame::Sunken</enum>
        </property>
+       <layout class="QVBoxLayout" name="DisplayLayout" stretch="1,5,0,0,5">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <property name="leftMargin">
+         <number>10</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>10</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,0,1,0,1,0,1,28">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>10</width>
+              <height>0</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="shift_label">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>40</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::NoTextInteraction</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>5</width>
+              <height>0</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="base_label">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>35</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="text">
+             <string>Dec</string>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_5">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>5</width>
+              <height>0</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="angle_units_label">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>35</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_7">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>5</width>
+              <height>0</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="memory_label">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>20</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::NoTextInteraction</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_6">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Expanding</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="KCalcInputDisplay" name="input_display">
+          <property name="styleSheet">
+           <string notr="true">QLineEdit { border: none }</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>0</width>
+            <height>5</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="Line" name="line">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="KCalcDisplay" name="calc_display">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::StrongFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QFrame { border: none }</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Sunken</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_5"/>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </item>
      <item>
@@ -67,14 +370,8 @@
        <property name="leftMargin">
         <number>6</number>
        </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
        <property name="rightMargin">
         <number>6</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
        </property>
        <item>
         <widget class="KCalcBitset" name="mBitset" native="true">
@@ -90,13 +387,6 @@
         </widget>
        </item>
       </layout>
-     </item>
-     <item>
-      <widget class="QFrame">
-       <property name="frameShape">
-        <enum>QFrame::HLine</enum>
-       </property>
-      </widget>
      </item>
      <item>
       <layout class="QHBoxLayout">
@@ -166,7 +456,7 @@
             </size>
            </property>
            <property name="text">
-            <string>KSq…bel</string>
+            <string>KS…el</string>
            </property>
           </widget>
          </item>
@@ -202,7 +492,7 @@
             </size>
            </property>
            <property name="text">
-            <string>KSq…bel</string>
+            <string>KS…el</string>
            </property>
           </widget>
          </item>
@@ -238,7 +528,7 @@
             </size>
            </property>
            <property name="text">
-            <string>KSq…bel</string>
+            <string>KS…el</string>
            </property>
           </widget>
          </item>
@@ -274,7 +564,7 @@
             </size>
            </property>
            <property name="text">
-            <string>KSq…bel</string>
+            <string>KS…el</string>
            </property>
           </widget>
          </item>
@@ -297,6 +587,9 @@
      </item>
      <item>
       <layout class="QHBoxLayout">
+       <property name="spacing">
+        <number>6</number>
+       </property>
        <property name="leftMargin">
         <number>6</number>
        </property>
@@ -307,9 +600,6 @@
         <number>6</number>
        </property>
        <property name="bottomMargin">
-        <number>6</number>
-       </property>
-       <property name="spacing">
         <number>6</number>
        </property>
        <item>
@@ -336,8 +626,8 @@
           <property name="spacing">
            <number>4</number>
           </property>
-          <item row="7" column="0">
-           <widget class="KCalcButton" name="pbCSt">
+          <item row="3" column="3">
+           <widget class="KCalcButton" name="pbSquare">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -345,15 +635,31 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Clear data store</string>
+             <string>Square</string>
             </property>
             <property name="text">
-             <string>CSt</string>
+             <string>x2</string>
             </property>
            </widget>
           </item>
-          <item row="7" column="5">
-           <widget class="KCalcConstButton" name="pbC6">
+          <item row="4" column="3">
+           <widget class="KCalcButton" name="pbPower">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>x to the power of y</string>
+            </property>
+            <property name="text">
+             <string>pow</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <widget class="KCalcButton" name="pbB">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -361,10 +667,10 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>C6</string>
+             <string>B</string>
             </property>
             <property name="shortcut">
-             <string notr="true">Alt+6</string>
+             <string>B</string>
             </property>
            </widget>
           </item>
@@ -384,24 +690,8 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="KCalcButton" name="pbSd">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Standard deviation</string>
-            </property>
-            <property name="text">
-             <string>SD</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="5">
-           <widget class="KCalcConstButton" name="pbC1">
+          <item row="4" column="4">
+           <widget class="KCalcButton" name="pbE">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -409,15 +699,15 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>C1</string>
+             <string>E</string>
             </property>
             <property name="shortcut">
-             <string notr="true">Alt+1</string>
+             <string>E</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="KCalcButton" name="pbHyp">
+          <item row="1" column="1">
+           <widget class="KCalcButton" name="pbSin">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -425,83 +715,42 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Hyperbolic mode</string>
+             <string>Sine</string>
             </property>
             <property name="text">
-             <string>Hyp</string>
+             <string>Sin</string>
             </property>
             <property name="shortcut">
-             <string>H</string>
-            </property>
-            <property name="checkable">
-             <bool>true</bool>
+             <string>S</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="2">
-           <widget class="KCalcButton" name="pbRsh">
+          <item row="1" column="5">
+           <widget class="KCalcConstButton" name="pbC2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="toolTip">
-             <string>Right bit shift</string>
-            </property>
             <property name="text">
-             <string>Rsh</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1">
-           <widget class="KCalcButton" name="pbLn">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Natural log</string>
-            </property>
-            <property name="text">
-             <string>Ln</string>
+             <string>C2</string>
             </property>
             <property name="shortcut">
-             <string>N</string>
+             <string notr="true">Alt+2</string>
             </property>
            </widget>
           </item>
-          <item row="7" column="3">
-           <widget class="KCalcButton" name="pbCube">
+          <item row="2" column="4">
+           <widget class="KCalcButton" name="pbC">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="toolTip">
-             <string>Cube</string>
-            </property>
             <property name="text">
-             <string>x3</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="KCalcButton" name="pbCos">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Cosine</string>
-            </property>
-            <property name="text">
-             <string>Cos</string>
+             <string>C</string>
             </property>
             <property name="shortcut">
              <string>C</string>
@@ -543,8 +792,8 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="3">
-           <widget class="KCalcButton" name="pbSquare">
+          <item row="0" column="0">
+           <widget class="KCalcButton" name="pbNData">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -552,10 +801,29 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Square</string>
+             <string>Number of data entered</string>
             </property>
             <property name="text">
-             <string>x2</string>
+             <string>N</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="KCalcButton" name="pbLog">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Logarithm to base 10</string>
+            </property>
+            <property name="text">
+             <string>Log</string>
+            </property>
+            <property name="shortcut">
+             <string>L</string>
             </property>
            </widget>
           </item>
@@ -578,8 +846,8 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="4">
-           <widget class="KCalcButton" name="pbD">
+          <item row="7" column="4">
+           <widget class="KCalcButton" name="pbF">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -587,58 +855,10 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>D</string>
+             <string>F</string>
             </property>
             <property name="shortcut">
-             <string>D</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="5">
-           <widget class="KCalcConstButton" name="pbC4">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>C4</string>
-            </property>
-            <property name="shortcut">
-             <string notr="true">Alt+4</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="2">
-           <widget class="KCalcButton" name="pbXOR">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Bitwise XOR</string>
-            </property>
-            <property name="text">
-             <string>XOR</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="4">
-           <widget class="KCalcButton" name="pbA">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>A</string>
-            </property>
-            <property name="shortcut">
-             <string>A</string>
+             <string>F</string>
             </property>
            </widget>
           </item>
@@ -658,43 +878,72 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="KCalcButton" name="pbNData">
+          <item row="7" column="5">
+           <widget class="KCalcConstButton" name="pbC6">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="toolTip">
-             <string>Number of data entered</string>
-            </property>
             <property name="text">
-             <string>N</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="3">
-           <widget class="KCalcButton" name="pbReci">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Reciprocal</string>
-            </property>
-            <property name="text">
-             <string>1/X</string>
+             <string>C6</string>
             </property>
             <property name="shortcut">
-             <string>R</string>
+             <string notr="true">Alt+6</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="2">
-           <widget class="KCalcButton" name="pbLsh">
+          <item row="0" column="4">
+           <widget class="KCalcButton" name="pbA">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>A</string>
+            </property>
+            <property name="shortcut">
+             <string>A</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="4">
+           <widget class="KCalcButton" name="pbD">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>D</string>
+            </property>
+            <property name="shortcut">
+             <string>D</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="5">
+           <widget class="KCalcConstButton" name="pbC1">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>C1</string>
+            </property>
+            <property name="shortcut">
+             <string notr="true">Alt+1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="KCalcButton" name="pbHyp">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -702,10 +951,64 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Left bit shift</string>
+             <string>Hyperbolic mode</string>
             </property>
             <property name="text">
-             <string>Lsh</string>
+             <string>Hyp</string>
+            </property>
+            <property name="shortcut">
+             <string>H</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="KCalcButton" name="pbXOR">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Bitwise XOR</string>
+            </property>
+            <property name="text">
+             <string>XOR</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="KCalcButton" name="pbMean">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Mean</string>
+            </property>
+            <property name="text">
+             <string>Mea</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="KCalcButton" name="pbFactorial">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Factorial</string>
+            </property>
+            <property name="text">
+             <string>x!</string>
             </property>
            </widget>
           </item>
@@ -744,8 +1047,8 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="KCalcButton" name="pbSin">
+          <item row="7" column="2">
+           <widget class="KCalcButton" name="pbCmp">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -753,18 +1056,15 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Sine</string>
+             <string>One's complement</string>
             </property>
             <property name="text">
-             <string>Sin</string>
-            </property>
-            <property name="shortcut">
-             <string>S</string>
+             <string>Cmp</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="KCalcButton" name="pbMean">
+          <item row="7" column="0">
+           <widget class="KCalcButton" name="pbCSt">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -772,10 +1072,83 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Mean</string>
+             <string>Clear data store</string>
             </property>
             <property name="text">
-             <string>Mea</string>
+             <string>CSt</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="KCalcButton" name="pbRsh">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Right bit shift</string>
+            </property>
+            <property name="text">
+             <string>Rsh</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="KCalcButton" name="pbCos">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Cosine</string>
+            </property>
+            <property name="text">
+             <string>Cos</string>
+            </property>
+            <property name="shortcut">
+             <string>C</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="KCalcButton" name="pbReci">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Reciprocal</string>
+            </property>
+            <property name="text">
+             <string>1/X</string>
+            </property>
+            <property name="shortcut">
+             <string>R</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="KCalcButton" name="pbLn">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Natural log</string>
+            </property>
+            <property name="text">
+             <string>Ln</string>
+            </property>
+            <property name="shortcut">
+             <string>N</string>
             </property>
            </widget>
           </item>
@@ -795,153 +1168,6 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="3">
-           <widget class="KCalcButton" name="pbPower">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>x to the power of y</string>
-            </property>
-            <property name="text">
-             <string>pow</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="4">
-           <widget class="KCalcButton" name="pbE">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>E</string>
-            </property>
-            <property name="shortcut">
-             <string>E</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="4">
-           <widget class="KCalcButton" name="pbB">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>B</string>
-            </property>
-            <property name="shortcut">
-             <string>B</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="2">
-           <widget class="KCalcButton" name="pbCmp">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>One's complement</string>
-            </property>
-            <property name="text">
-             <string>Cmp</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="KCalcButton" name="pbLog">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Logarithm to base 10</string>
-            </property>
-            <property name="text">
-             <string>Log</string>
-            </property>
-            <property name="shortcut">
-             <string>L</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="4">
-           <widget class="KCalcButton" name="pbF">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>F</string>
-            </property>
-            <property name="shortcut">
-             <string>F</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="5">
-           <widget class="KCalcConstButton" name="pbC2">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>C2</string>
-            </property>
-            <property name="shortcut">
-             <string notr="true">Alt+2</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="4">
-           <widget class="KCalcButton" name="pbC">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>C</string>
-            </property>
-            <property name="shortcut">
-             <string>C</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="KCalcButton" name="pbFactorial">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Factorial</string>
-            </property>
-            <property name="text">
-             <string>x!</string>
-            </property>
-           </widget>
-          </item>
           <item row="4" column="5">
            <widget class="KCalcConstButton" name="pbC5">
             <property name="sizePolicy">
@@ -955,6 +1181,70 @@
             </property>
             <property name="shortcut">
              <string notr="true">Alt+5</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="5">
+           <widget class="KCalcConstButton" name="pbC4">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>C4</string>
+            </property>
+            <property name="shortcut">
+             <string notr="true">Alt+4</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="KCalcButton" name="pbSd">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Standard deviation</string>
+            </property>
+            <property name="text">
+             <string>SD</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="3">
+           <widget class="KCalcButton" name="pbCube">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Cube</string>
+            </property>
+            <property name="text">
+             <string>x3</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="KCalcButton" name="pbLsh">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Left bit shift</string>
+            </property>
+            <property name="text">
+             <string>Lsh</string>
             </property>
            </widget>
           </item>
@@ -985,8 +1275,8 @@
           <property name="spacing">
            <number>4</number>
           </property>
-          <item row="1" column="0">
-           <widget class="KCalcButton" name="pb7">
+          <item row="2" column="3">
+           <widget class="KCalcButton" name="pb6">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -994,15 +1284,15 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>7</string>
+             <string>6</string>
             </property>
             <property name="shortcut">
-             <string>7</string>
+             <string>6</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="KCalcButton" name="pb8">
+          <item row="3" column="1">
+           <widget class="KCalcButton" name="pb2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -1010,10 +1300,26 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>8</string>
+             <string>2</string>
             </property>
             <property name="shortcut">
-             <string>8</string>
+             <string>2</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="KCalcButton" name="pbPercent">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Percent</string>
+            </property>
+            <property name="text">
+             <string>%</string>
             </property>
            </widget>
           </item>
@@ -1065,19 +1371,35 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="3">
-           <widget class="KCalcButton" name="pb6">
+          <item row="0" column="4">
+           <widget class="KCalcButton" name="pbMinus">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text">
-             <string>6</string>
+            <property name="toolTip">
+             <string>Minus</string>
             </property>
-            <property name="shortcut">
-             <string>6</string>
+            <property name="text">
+             <string comment="- calculator button">−</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4" rowspan="2">
+           <widget class="KCalcButton" name="pbPlus">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Plus</string>
+            </property>
+            <property name="text">
+             <string comment="+ calculator button">+</string>
             </property>
            </widget>
           </item>
@@ -1094,70 +1416,6 @@
             </property>
             <property name="shortcut">
              <string>1</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="KCalcButton" name="pb2">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>2</string>
-            </property>
-            <property name="shortcut">
-             <string>2</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="3">
-           <widget class="KCalcButton" name="pb3">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>3</string>
-            </property>
-            <property name="shortcut">
-             <string>3</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0" colspan="2">
-           <widget class="KCalcButton" name="pb0">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>0</string>
-            </property>
-            <property name="shortcut">
-             <string>0</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="KCalcButton" name="pbPercent">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Percent</string>
-            </property>
-            <property name="text">
-             <string>%</string>
             </property>
            </widget>
           </item>
@@ -1193,24 +1451,24 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="4">
-           <widget class="KCalcButton" name="pbMinus">
+          <item row="4" column="0" colspan="2">
+           <widget class="KCalcButton" name="pb0">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="toolTip">
-             <string>Minus</string>
-            </property>
             <property name="text">
-             <string comment="- calculator button">−</string>
+             <string>0</string>
+            </property>
+            <property name="shortcut">
+             <string>0</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="4" rowspan="2">
-           <widget class="KCalcButton" name="pbPlus">
+          <item row="4" column="3">
+           <widget class="KCalcButton" name="pbPeriod">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -1218,10 +1476,26 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Plus</string>
+             <string>Decimal point</string>
             </property>
             <property name="text">
-             <string comment="+ calculator button">+</string>
+             <string comment=". calculator button">.</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3">
+           <widget class="KCalcButton" name="pb3">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>3</string>
+            </property>
+            <property name="shortcut">
+             <string>3</string>
             </property>
            </widget>
           </item>
@@ -1241,19 +1515,35 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="3">
-           <widget class="KCalcButton" name="pbPeriod">
+          <item row="1" column="0">
+           <widget class="KCalcButton" name="pb7">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="toolTip">
-             <string>Decimal point</string>
+            <property name="text">
+             <string>7</string>
+            </property>
+            <property name="shortcut">
+             <string>7</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="KCalcButton" name="pb8">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
             <property name="text">
-             <string comment=". calculator button">.</string>
+             <string>8</string>
+            </property>
+            <property name="shortcut">
+             <string>8</string>
             </property>
            </widget>
           </item>
@@ -1527,6 +1817,17 @@
    <extends>QWidget</extends>
    <header>kcalchistory.h</header>
   </customwidget>
+  <customwidget>
+   <class>KCalcInputDisplay</class>
+   <extends>QLineEdit</extends>
+   <header>kcalc_input_display.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KCalcDisplayFrame</class>
+   <extends>QFrame</extends>
+   <header>kcalc_display_frame.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>pb0</tabstop>
@@ -1595,7 +1896,6 @@
   <tabstop>degRadio</tabstop>
   <tabstop>radRadio</tabstop>
   <tabstop>gradRadio</tabstop>
-  <tabstop>calc_display</tabstop>
   <tabstop>calc_history</tabstop>
  </tabstops>
  <resources/>

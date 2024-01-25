@@ -9,8 +9,6 @@
 
 #include <QTextEdit>
 
-#include "kcalc_core.h"
-
 /*
   This class provides a history display.
 */
@@ -25,7 +23,6 @@ public:
 
     void addToHistory(const QString &, bool);
     void addResultToHistory(const QString &);
-    void addFuncToHistory(const CalcEngine::Operation);
     void addFuncToHistory(const QString &);
 
     void changeSettings();

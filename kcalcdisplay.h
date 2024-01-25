@@ -81,7 +81,6 @@ public:
 public Q_SLOTS:
     void slotCut();
     void slotCopy();
-    void slotPaste(bool bClipboard = true);
 
 Q_SIGNALS:
     void clicked();

@@ -295,75 +295,6 @@ void KCalcDisplay::slotCopy()
 }
 
 //------------------------------------------------------------------------------
-// Name: slotPaste
-// Desc:
-//------------------------------------------------------------------------------
-void KCalcDisplay::slotPaste(bool bClipboard)
-{
-    QString tmp_str = (QApplication::clipboard())->text(bClipboard ? QClipboard::Clipboard : QClipboard::Selection);
-
-    if (tmp_str.isNull()) {
-        if (beep_) {
-            KNotification::beep();
-        }
-        return;
-    }
-
-    NumBase tmp_num_base = num_base_;
-
-    // fix up string
-    tmp_str = tmp_str.trimmed();
-
-    if (groupdigits_) {
-        tmp_str.remove(QLocale().groupSeparator());
-    }
-
-    tmp_str = tmp_str.toLower();
-
-    // determine base
-    if (tmp_str.startsWith(QLatin1String("0x"))) {
-        tmp_num_base = NB_HEX;
-        tmp_str.remove(0, 2);
-    } else if (tmp_str.startsWith(QLatin1String("0b"))) {
-        tmp_num_base = NB_BINARY;
-        tmp_str.remove(0, 2);
-    } else if (tmp_str.startsWith(QLatin1Char('0'))) {
-        // we don't want this to trigger on "0.xxxxxx" cases
-        if (tmp_str.length() < 2 || QString(tmp_str[1]) != KNumber::decimalSeparator()) {
-            tmp_num_base = NB_OCTAL;
-            tmp_str.remove(0, 1);
-        }
-    }
-
-    // for locales where the groups separator is not a comma (,) but a non breaking space
-    // accept (and correct) both decimal separators (comma and dot) for convenience
-    if (KNumber::decimalSeparator() == QChar::fromLatin1(',')
-        && (QLocale().groupSeparator() != QChar::fromLatin1(',') && QLocale().groupSeparator() != QChar::fromLatin1('.'))
-        && tmp_str.count(QChar::fromLatin1('.')) == 1) {
-        tmp_str.replace(QChar::fromLatin1('.'), QChar::fromLatin1(','));
-    }
-
-    if (tmp_num_base != NB_DECIMAL) {
-        bool was_ok;
-        const qint64 tmp_result = tmp_str.toULongLong(&was_ok, tmp_num_base);
-
-        if (!was_ok) {
-            setAmount(KNumber::NaN);
-            if (beep_) {
-                KNotification::beep();
-            }
-            return;
-        }
-        setAmount(KNumber(tmp_result));
-    } else {
-        setAmount(KNumber(tmp_str));
-        if (beep_ && display_amount_ == KNumber::NaN) {
-            KNotification::beep();
-        }
-    }
-}
-
-//------------------------------------------------------------------------------
 // Name: slotDisplaySelected
 // Desc:
 //------------------------------------------------------------------------------
@@ -378,8 +309,6 @@ void KCalcDisplay::slotDisplaySelected()
         }
 
         invertColors();
-    } else {
-        slotPaste(false); // Selection
     }
 }
 
@@ -564,10 +493,12 @@ void KCalcDisplay::setText(const QString &string)
     // don't mess with special numbers
     const bool special = (string.contains(QLatin1String("nan")) || string.contains(QLatin1String("inf")));
 
+    const bool error = (string.contains(QLatin1String("error")) || string.contains(QLatin1String("malformed")));
+
     // The decimal mode needs special treatment for two reasons, because: a) it uses KGlobal::locale() to get a localized
     // format and b) it has possible numbers after the decimal place. Neither applies to Binary, Hexadecimal or Octal.
 
-    if ((groupdigits_ || num_base_ == NB_DECIMAL) && !special) {
+    if ((groupdigits_ || num_base_ == NB_DECIMAL) && !special && !error) {
         switch (num_base_) {
         case NB_DECIMAL:
             text_ = formatDecimalNumber(text_);

@@ -22,6 +22,8 @@ QString KNumber::DecimalSeparator = QStringLiteral(".");
 const KNumber KNumber::Zero(QStringLiteral("0"));
 const KNumber KNumber::One(QStringLiteral("1"));
 const KNumber KNumber::NegOne(QStringLiteral("-1"));
+const KNumber KNumber::OneHundred(QStringLiteral("100"));
+const KNumber KNumber::OneThousand(QStringLiteral("1000"));
 const KNumber KNumber::PosInfinity(QStringLiteral("inf"));
 const KNumber KNumber::NegInfinity(QStringLiteral("-inf"));
 const KNumber KNumber::NaN(QStringLiteral("nan"));
@@ -257,7 +259,11 @@ KNumber::KNumber(const QString &s)
     : value_(nullptr)
 {
     const QRegExp special_regex(QLatin1String("^(inf|-inf|nan)$"));
-    const QRegExp integer_regex(QLatin1String("^[+-]?\\d+$"));
+    // const QRegExp integer_regex(QLatin1String("^[+-]?\\d+$"));
+    const QRegExp integer_regex(QLatin1String("^[+-]?\\[1-9]d+$"));
+    const QRegExp binary_integer_regex(QLatin1String("^0b[0-1]{1,64}$"));
+    const QRegExp octal_integer_regex(QLatin1String("^0[0-7]{1,21}$"));
+    const QRegExp hex_integer_regex(QLatin1String("^0x[0-9A-F]{1,16}$"));
     const QRegExp fraction_regex(QLatin1String("^[+-]?\\d+/\\d+$"));
     const QRegExp float_regex(QString(QLatin1String(R"(^([+-]?\d*)(%1\d*)?(e([+-]?\d+))?$)")).arg(QRegExp::escape(DecimalSeparator)));
 
@@ -268,6 +274,8 @@ KNumber::KNumber(const QString &s)
     } else if (fraction_regex.exactMatch(s)) {
         value_ = new detail::knumber_fraction(s);
         simplify();
+    } else if (hex_integer_regex.exactMatch(s) || octal_integer_regex.exactMatch(s) || binary_integer_regex.exactMatch(s)) {
+        value_ = new detail::knumber_integer(s.toULongLong(nullptr, 0));
     } else if (float_regex.exactMatch(s)) {
         if (detail::knumber_fraction::default_fractional_input) {
             const QStringList list = float_regex.capturedTexts();

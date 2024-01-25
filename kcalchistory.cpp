@@ -71,48 +71,7 @@ void KCalcHistory::addToHistory(const QString &str, bool set_new_line_)
 //------------------------------------------------------------------------------
 void KCalcHistory::addResultToHistory(const QString &display_content)
 {
-    addToHistory(QStringLiteral("&nbsp;=&nbsp;") + display_content, true);
-}
-
-//------------------------------------------------------------------------------
-// Name: addFuncToHistory
-// Desc: Adds the current function symbol, taken via CalcEngine::Operation
-//       to the history window
-//------------------------------------------------------------------------------
-void KCalcHistory::addFuncToHistory(const CalcEngine::Operation FUNC)
-{
-    QString textToHistory = QStringLiteral("&nbsp;");
-
-    if (FUNC == CalcEngine::FUNC_PERCENT) {
-        textToHistory += QStringLiteral("%");
-    } else if (FUNC == CalcEngine::FUNC_OR) {
-        textToHistory += QStringLiteral("OR");
-    } else if (FUNC == CalcEngine::FUNC_XOR) {
-        textToHistory += QStringLiteral("XOR");
-    } else if (FUNC == CalcEngine::FUNC_AND) {
-        textToHistory += QStringLiteral("AND");
-    } else if (FUNC == CalcEngine::FUNC_LSH) {
-        textToHistory += QStringLiteral("Lsh");
-    } else if (FUNC == CalcEngine::FUNC_RSH) {
-        textToHistory += QStringLiteral("Rsh");
-    } else if (FUNC == CalcEngine::FUNC_ADD) {
-        textToHistory += QStringLiteral("+");
-    } else if (FUNC == CalcEngine::FUNC_SUBTRACT) {
-        textToHistory += QStringLiteral("-");
-    } else if (FUNC == CalcEngine::FUNC_MULTIPLY) {
-        textToHistory += QStringLiteral("×");
-    } else if (FUNC == CalcEngine::FUNC_DIVIDE) {
-        textToHistory += QStringLiteral("÷");
-    } else if (FUNC == CalcEngine::FUNC_MOD) {
-        textToHistory += QStringLiteral("Mod");
-    } else if (FUNC == CalcEngine::FUNC_INTDIV) {
-        textToHistory += QStringLiteral("IntDiv");
-    } else if (FUNC == CalcEngine::FUNC_BINOM) {
-        textToHistory += QStringLiteral("Binom");
-    }
-
-    textToHistory += QStringLiteral("&nbsp;");
-    addToHistory(textToHistory, false);
+    addToHistory(/*QStringLiteral("&nbsp;=&nbsp;") +*/ display_content, true);
 }
 
 //------------------------------------------------------------------------------

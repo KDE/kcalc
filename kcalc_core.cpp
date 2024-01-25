@@ -8,747 +8,52 @@
 */
 
 #include "kcalc_core.h"
-#include "kcalc_settings.h"
+#include "kcalc_token.h"
+#include "knumber.h"
+#include "stats.h"
+#include <QQueue>
 
 #include <QDebug>
 
-namespace
-{
-KNumber Deg2Rad(const KNumber &x)
-{
-    return x * (KNumber::Pi() / KNumber(180));
-}
-
-KNumber Gra2Rad(const KNumber &x)
-{
-    return x * (KNumber::Pi() / KNumber(200));
-}
-
-KNumber Rad2Deg(const KNumber &x)
-{
-    return x * (KNumber(180) / KNumber::Pi());
-}
-
-KNumber Rad2Gra(const KNumber &x)
-{
-    return x * (KNumber(200) / KNumber::Pi());
-}
-
-bool error_;
-
-KNumber ExecOr(const KNumber &left_op, const KNumber &right_op)
-{
-    return left_op | right_op;
-}
-
-KNumber ExecXor(const KNumber &left_op, const KNumber &right_op)
-{
-    return left_op ^ right_op;
-}
-
-KNumber ExecAnd(const KNumber &left_op, const KNumber &right_op)
-{
-    return left_op & right_op;
-}
-
-KNumber ExecLsh(const KNumber &left_op, const KNumber &right_op)
-{
-    return left_op << right_op;
-}
-
-KNumber ExecRsh(const KNumber &left_op, const KNumber &right_op)
-{
-    return left_op >> right_op;
-}
-
-KNumber ExecAdd(const KNumber &left_op, const KNumber &right_op)
-{
-    return left_op + right_op;
-}
-
-KNumber ExecSubtract(const KNumber &left_op, const KNumber &right_op)
-{
-    return left_op - right_op;
-}
-
-KNumber ExecMultiply(const KNumber &left_op, const KNumber &right_op)
-{
-    return left_op * right_op;
-}
-
-KNumber ExecDivide(const KNumber &left_op, const KNumber &right_op)
-{
-    return left_op / right_op;
-}
-
-KNumber ExecMod(const KNumber &left_op, const KNumber &right_op)
-{
-    return left_op % right_op;
-}
-
-KNumber ExecIntDiv(const KNumber &left_op, const KNumber &right_op)
-{
-    return (left_op / right_op).integerPart();
-}
-
-KNumber ExecBinom(const KNumber &left_op, const KNumber &right_op)
-{
-    return left_op.bin(right_op);
-}
-
-KNumber ExecPower(const KNumber &left_op, const KNumber &right_op)
-{
-    return left_op.pow(right_op);
-}
-
-KNumber ExecPwrRoot(const KNumber &left_op, const KNumber &right_op)
-{
-    return left_op.pow(KNumber::One / right_op);
-}
-
-KNumber ExecAddP(const KNumber &left_op, const KNumber &right_op)
-{
-    return left_op * (KNumber::One + right_op / KNumber(100));
-}
-
-KNumber ExecSubP(const KNumber &left_op, const KNumber &right_op)
-{
-    return left_op * (KNumber::One - right_op / KNumber(100));
-}
-
-KNumber ExecMultiplyP(const KNumber &left_op, const KNumber &right_op)
-{
-    return left_op * right_op / KNumber(100);
-}
-
-KNumber ExecDivideP(const KNumber &left_op, const KNumber &right_op)
-{
-    return left_op * KNumber(100) / right_op;
-}
-
-// move a number into the interval [0,360) by adding multiples of 360
-KNumber moveIntoDegInterval(const KNumber &num)
-{
-    KNumber tmp_num = num - (num / KNumber(360)).integerPart() * KNumber(360);
-    if (tmp_num < KNumber::Zero)
-        return tmp_num + KNumber(360);
-    return tmp_num;
-}
-
-// move a number into the interval [0,400) by adding multiples of 400
-KNumber moveIntoGradInterval(const KNumber &num)
-{
-    KNumber tmp_num = num - (num / KNumber(400)).integerPart() * KNumber(400);
-    if (tmp_num < KNumber::Zero)
-        return tmp_num + KNumber(400);
-    return tmp_num;
-}
-
-typedef KNumber (*Arith)(const KNumber &, const KNumber &);
-typedef KNumber (*Prcnt)(const KNumber &, const KNumber &);
-
-struct operator_data {
-    int precedence; // priority of operators in " enum Operation"
-    Arith arith_ptr;
-    Prcnt prcnt_ptr;
-};
-
-// build precedence list
-const struct operator_data Operator[] = {
-    {0, nullptr, nullptr}, // FUNC_EQUAL
-    {0, nullptr, nullptr}, // FUNC_PERCENT
-    {0, nullptr, nullptr}, // FUNC_BRACKET
-    {1, ExecOr, nullptr}, // FUNC_OR
-    {2, ExecXor, nullptr}, // FUNC_XOR
-    {3, ExecAnd, nullptr}, // FUNC_AND
-    {4, ExecLsh, nullptr}, // FUNC_LSH
-    {4, ExecRsh, nullptr}, // FUNC_RSH
-    {5, ExecAdd, ExecAddP}, // FUNC_ADD
-    {5, ExecSubtract, ExecSubP}, // FUNC_SUBTRACT
-    {6, ExecMultiply, ExecMultiplyP}, // FUNC_MULTIPLY
-    {6, ExecDivide, ExecDivideP}, // FUNC_DIVIDE
-    {6, ExecMod, nullptr}, // FUNC_MOD
-    {6, ExecIntDiv, nullptr}, // FUNC_INTDIV
-    {7, ExecBinom, nullptr}, // FUNC_BINOM
-    {7, ExecPower, nullptr}, // FUNC_POWER
-    {7, ExecPwrRoot, nullptr} // FUNC_PWR_ROOT
-};
-
-}
-
 CalcEngine::CalcEngine()
-    : last_number_(KNumber::Zero)
-    , only_update_operation_(false)
-    , percent_mode_(false)
-    , repeat_mode_(false)
+    : buffer_result_(KNumber::Zero)
 {
     error_ = false;
-    last_operation_ = FUNC_EQUAL;
 }
 
 KNumber CalcEngine::lastOutput(bool &error) const
 {
     error = error_;
-    return last_number_;
+    return buffer_result_;
 }
 
-void CalcEngine::ArcCosDeg(const KNumber &input)
+void CalcEngine::StatClearAll()
 {
-    if (input.type() == KNumber::TYPE_ERROR || input < -KNumber::One || input > KNumber::One) {
-        last_number_ = KNumber::NaN;
-        return;
-    }
-
-    if (input.type() == KNumber::TYPE_INTEGER) {
-        if (input == KNumber::One) {
-            last_number_ = KNumber::Zero;
-            return;
-        }
-        if (input == -KNumber::One) {
-            last_number_ = KNumber(180);
-            return;
-        }
-        if (input == KNumber::Zero) {
-            last_number_ = KNumber(90);
-            return;
-        }
-    }
-    last_number_ = Rad2Deg(input.acos());
-}
-
-void CalcEngine::ArcCosRad(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR || input < -KNumber::One || input > KNumber::One) {
-        last_number_ = KNumber::NaN;
-        return;
-    }
-    last_number_ = input.acos();
-}
-
-void CalcEngine::ArcCosGrad(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR || input < -KNumber::One || input > KNumber::One) {
-        last_number_ = KNumber::NaN;
-        return;
-    }
-    if (input.type() == KNumber::TYPE_INTEGER) {
-        if (input == KNumber::One) {
-            last_number_ = KNumber::Zero;
-            return;
-        }
-        if (input == -KNumber::One) {
-            last_number_ = KNumber(200);
-            return;
-        }
-        if (input == KNumber::Zero) {
-            last_number_ = KNumber(100);
-            return;
-        }
-    }
-    last_number_ = Rad2Gra(input.acos());
-}
-
-void CalcEngine::ArcSinDeg(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR || input < -KNumber::One || input > KNumber::One) {
-        last_number_ = KNumber::NaN;
-        return;
-    }
-    if (input.type() == KNumber::TYPE_INTEGER) {
-        if (input == KNumber::One) {
-            last_number_ = KNumber(90);
-            return;
-        }
-        if (input == -KNumber::One) {
-            last_number_ = KNumber(-90);
-            return;
-        }
-        if (input == KNumber::Zero) {
-            last_number_ = KNumber::Zero;
-            return;
-        }
-    }
-    last_number_ = Rad2Deg(input.asin());
-}
-
-void CalcEngine::ArcSinRad(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR || input < -KNumber::One || input > KNumber::One) {
-        last_number_ = KNumber::NaN;
-        return;
-    }
-    last_number_ = input.asin();
-}
-
-void CalcEngine::ArcSinGrad(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR || input < -KNumber::One || input > KNumber::One) {
-        last_number_ = KNumber::NaN;
-        return;
-    }
-    if (input.type() == KNumber::TYPE_INTEGER) {
-        if (input == KNumber::One) {
-            last_number_ = KNumber(100);
-            return;
-        }
-        if (input == -KNumber::One) {
-            last_number_ = KNumber(-100);
-            return;
-        }
-        if (input == KNumber::Zero) {
-            last_number_ = KNumber::Zero;
-            return;
-        }
-    }
-    last_number_ = Rad2Gra(input.asin());
-}
-
-void CalcEngine::ArcTangensDeg(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR) {
-        if (input == KNumber::NaN)
-            last_number_ = KNumber::NaN;
-        if (input == KNumber::PosInfinity)
-            last_number_ = KNumber(90);
-        if (input == KNumber::NegInfinity)
-            last_number_ = KNumber(-90);
-        return;
-    }
-
-    last_number_ = Rad2Deg(input.atan());
-}
-
-void CalcEngine::ArcTangensRad(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR) {
-        if (input == KNumber::NaN)
-            last_number_ = KNumber::NaN;
-        if (input == KNumber::PosInfinity)
-            last_number_ = KNumber::Pi() / KNumber(2);
-        if (input == KNumber::NegInfinity)
-            last_number_ = -KNumber::Pi() / KNumber(2);
-        return;
-    }
-
-    last_number_ = input.atan();
-}
-
-void CalcEngine::ArcTangensGrad(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR) {
-        if (input == KNumber::NaN)
-            last_number_ = KNumber::NaN;
-        if (input == KNumber::PosInfinity)
-            last_number_ = KNumber(100);
-        if (input == KNumber::NegInfinity)
-            last_number_ = KNumber(-100);
-        return;
-    }
-
-    last_number_ = Rad2Gra(input.atan());
-}
-
-void CalcEngine::AreaCosHyp(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR) {
-        if (input == KNumber::NaN)
-            last_number_ = KNumber::NaN;
-        if (input == KNumber::PosInfinity)
-            last_number_ = KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity)
-            last_number_ = KNumber::NaN;
-        return;
-    }
-
-    if (input < KNumber::One) {
-        last_number_ = KNumber::NaN;
-        return;
-    }
-    if (input == KNumber::One) {
-        last_number_ = KNumber::Zero;
-        return;
-    }
-    last_number_ = input.acosh();
-}
-
-void CalcEngine::AreaSinHyp(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR) {
-        if (input == KNumber::NaN)
-            last_number_ = KNumber::NaN;
-        if (input == KNumber::PosInfinity)
-            last_number_ = KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity)
-            last_number_ = KNumber::NegInfinity;
-        return;
-    }
-
-    if (input == KNumber::Zero) {
-        last_number_ = KNumber::Zero;
-        return;
-    }
-    last_number_ = input.asinh();
-}
-
-void CalcEngine::AreaTangensHyp(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR) {
-        last_number_ = KNumber::NaN;
-        return;
-    }
-
-    if (input < -KNumber::One || input > KNumber::One) {
-        last_number_ = KNumber::NaN;
-        return;
-    }
-    if (input == KNumber::One) {
-        last_number_ = KNumber::PosInfinity;
-        return;
-    }
-    if (input == -KNumber::One) {
-        last_number_ = KNumber::NegInfinity;
-        return;
-    }
-    last_number_ = input.atanh();
-}
-
-void CalcEngine::Complement(const KNumber &input)
-{
-    if (input.type() != KNumber::TYPE_INTEGER) {
-        last_number_ = KNumber::NaN;
-        return;
-    }
-
-    last_number_ = ~input;
-}
-
-void CalcEngine::CosDeg(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR) {
-        last_number_ = KNumber::NaN;
-        return;
-    }
-
-    KNumber trunc_input = moveIntoDegInterval(input);
-
-    if (trunc_input.type() == KNumber::TYPE_INTEGER) {
-        KNumber mult = trunc_input / KNumber(90);
-        if (mult.type() == KNumber::TYPE_INTEGER) {
-            if (mult == KNumber::Zero)
-                last_number_ = KNumber::One;
-            else if (mult == KNumber::One)
-                last_number_ = KNumber::Zero;
-            else if (mult == KNumber(2))
-                last_number_ = KNumber::NegOne;
-            else if (mult == KNumber(3))
-                last_number_ = KNumber::Zero;
-            else
-                qDebug() << "Something wrong in CalcEngine::CosDeg";
-            return;
-        }
-    }
-
-    trunc_input = Deg2Rad(trunc_input);
-    last_number_ = trunc_input.cos();
-}
-
-void CalcEngine::CosRad(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR) {
-        last_number_ = KNumber::NaN;
-        return;
-    }
-
-    last_number_ = input.cos();
-}
-
-void CalcEngine::CosGrad(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR) {
-        last_number_ = KNumber::NaN;
-        return;
-    }
-    KNumber trunc_input = moveIntoGradInterval(input);
-    if (trunc_input.type() == KNumber::TYPE_INTEGER) {
-        KNumber mult = trunc_input / KNumber(100);
-        if (mult.type() == KNumber::TYPE_INTEGER) {
-            if (mult == KNumber::Zero)
-                last_number_ = KNumber::One;
-            else if (mult == KNumber::One)
-                last_number_ = KNumber::Zero;
-            else if (mult == KNumber(2))
-                last_number_ = KNumber::NegOne;
-            else if (mult == KNumber(3))
-                last_number_ = KNumber::Zero;
-            else
-                qDebug() << "Something wrong in CalcEngine::CosGrad";
-            return;
-        }
-    }
-    trunc_input = Gra2Rad(trunc_input);
-
-    last_number_ = trunc_input.cos();
-}
-
-void CalcEngine::CosHyp(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR) {
-        if (input == KNumber::NaN)
-            last_number_ = KNumber::NaN;
-        if (input == KNumber::PosInfinity)
-            last_number_ = KNumber::PosInfinity;
-        // YES, this should be *positive* infinity. We mimic the behavior of
-        // libc which says the following for cosh
-        //
-        // "If x is positive infinity or negative infinity, positive infinity is returned."
-        if (input == KNumber::NegInfinity)
-            last_number_ = KNumber::PosInfinity;
-        return;
-    }
-
-    last_number_ = input.cosh();
-}
-
-void CalcEngine::Cube(const KNumber &input)
-{
-    last_number_ = input * input * input;
-}
-
-void CalcEngine::CubeRoot(const KNumber &input)
-{
-    last_number_ = input.cbrt();
-}
-
-void CalcEngine::Exp(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR) {
-        if (input == KNumber::NaN)
-            last_number_ = KNumber::NaN;
-        if (input == KNumber::PosInfinity)
-            last_number_ = KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity)
-            last_number_ = KNumber::Zero;
-        return;
-    }
-    last_number_ = KNumber::Euler().pow(input);
-}
-
-void CalcEngine::Exp10(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR) {
-        if (input == KNumber::NaN)
-            last_number_ = KNumber::NaN;
-        if (input == KNumber::PosInfinity)
-            last_number_ = KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity)
-            last_number_ = KNumber::Zero;
-        return;
-    }
-    last_number_ = KNumber(10).pow(input);
-}
-
-void CalcEngine::Factorial(const KNumber &input)
-{
-    if (input == KNumber::PosInfinity)
-        return;
-    if (input < KNumber::Zero || input.type() == KNumber::TYPE_ERROR) {
-        error_ = true;
-        last_number_ = KNumber::NaN;
-        return;
-    }
-
-    last_number_ = input.integerPart().factorial();
-}
-
-void CalcEngine::Gamma(const KNumber &input)
-{
-    if (input == KNumber::PosInfinity)
-        return;
-    if (input < KNumber::Zero || input.type() == KNumber::TYPE_ERROR) {
-        error_ = true;
-        last_number_ = KNumber::NaN;
-        return;
-    }
-
-    last_number_ = input.tgamma();
-}
-
-void CalcEngine::InvertSign(const KNumber &input)
-{
-    last_number_ = -input;
-}
-
-void CalcEngine::Ln(const KNumber &input)
-{
-    if (input < KNumber::Zero)
-        last_number_ = KNumber::NaN;
-    else if (input == KNumber::Zero)
-        last_number_ = KNumber::NegInfinity;
-    else if (input == KNumber::One)
-        last_number_ = KNumber::Zero;
-    else {
-        last_number_ = input.ln();
-    }
-}
-
-void CalcEngine::Log10(const KNumber &input)
-{
-    if (input < KNumber::Zero)
-        last_number_ = KNumber::NaN;
-    else if (input == KNumber::Zero)
-        last_number_ = KNumber::NegInfinity;
-    else if (input == KNumber::One)
-        last_number_ = KNumber::Zero;
-    else {
-        last_number_ = input.log10();
-    }
-}
-
-void CalcEngine::ParenClose(KNumber input)
-{
-    // evaluate stack until corresponding opening bracket
-    while (!stack_.isEmpty()) {
-        Node tmp_node = stack_.pop();
-        if (tmp_node.operation == FUNC_BRACKET)
-            break;
-        input = evalOperation(tmp_node.number, tmp_node.operation, input);
-    }
-    last_number_ = input;
-}
-
-void CalcEngine::ParenOpen(const KNumber &input)
-{
-    enterOperation(input, FUNC_BRACKET);
-}
-
-void CalcEngine::Reciprocal(const KNumber &input)
-{
-    last_number_ = KNumber::One / input;
-}
-
-void CalcEngine::SinDeg(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR) {
-        last_number_ = KNumber::NaN;
-        return;
-    }
-
-    KNumber trunc_input = moveIntoDegInterval(input);
-    if (trunc_input.type() == KNumber::TYPE_INTEGER) {
-        KNumber mult = trunc_input / KNumber(90);
-        if (mult.type() == KNumber::TYPE_INTEGER) {
-            if (mult == KNumber::Zero)
-                last_number_ = KNumber::Zero;
-            else if (mult == KNumber::One)
-                last_number_ = KNumber::One;
-            else if (mult == KNumber(2))
-                last_number_ = KNumber::Zero;
-            else if (mult == KNumber(3))
-                last_number_ = KNumber::NegOne;
-            else
-                qDebug() << "Something wrong in CalcEngine::SinDeg";
-            return;
-        }
-    }
-    trunc_input = Deg2Rad(trunc_input);
-
-    last_number_ = trunc_input.sin();
-}
-
-void CalcEngine::SinRad(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR) {
-        last_number_ = KNumber::NaN;
-        return;
-    }
-
-    last_number_ = input.sin();
-}
-
-void CalcEngine::SinGrad(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR) {
-        last_number_ = KNumber::NaN;
-        return;
-    }
-
-    KNumber trunc_input = moveIntoGradInterval(input);
-    if (trunc_input.type() == KNumber::TYPE_INTEGER) {
-        KNumber mult = trunc_input / KNumber(100);
-        if (mult.type() == KNumber::TYPE_INTEGER) {
-            if (mult == KNumber::Zero)
-                last_number_ = KNumber::Zero;
-            else if (mult == KNumber::One)
-                last_number_ = KNumber::One;
-            else if (mult == KNumber(2))
-                last_number_ = KNumber::Zero;
-            else if (mult == KNumber(3))
-                last_number_ = KNumber::NegOne;
-            else
-                qDebug() << "Something wrong in CalcEngine::SinGrad";
-            return;
-        }
-    }
-
-    trunc_input = Gra2Rad(trunc_input);
-
-    last_number_ = trunc_input.sin();
-}
-
-void CalcEngine::SinHyp(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR) {
-        if (input == KNumber::NaN)
-            last_number_ = KNumber::NaN;
-        if (input == KNumber::PosInfinity)
-            last_number_ = KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity)
-            last_number_ = KNumber::NegInfinity;
-        return;
-    }
-
-    last_number_ = input.sinh();
-}
-
-void CalcEngine::Square(const KNumber &input)
-{
-    last_number_ = input * input;
-}
-
-void CalcEngine::SquareRoot(const KNumber &input)
-{
-    last_number_ = input.sqrt();
-}
-
-void CalcEngine::StatClearAll(const KNumber &input)
-{
-    Q_UNUSED(input);
     stats.clearAll();
 }
 
 void CalcEngine::StatCount(const KNumber &input)
 {
     Q_UNUSED(input);
-    last_number_ = KNumber(stats.count());
+    buffer_result_ = KNumber(stats.count());
 }
 
 void CalcEngine::StatDataNew(const KNumber &input)
 {
     stats.enterData(input);
-    last_number_ = KNumber(stats.count());
+    buffer_result_ = KNumber(stats.count());
 }
 
-void CalcEngine::StatDataDel(const KNumber &input)
+void CalcEngine::StatDataDel()
 {
-    Q_UNUSED(input);
     stats.clearLast();
-    last_number_ = KNumber(stats.count());
+    buffer_result_ = KNumber(stats.count());
 }
 
 void CalcEngine::StatMean(const KNumber &input)
 {
     Q_UNUSED(input);
-    last_number_ = stats.mean();
+    buffer_result_ = stats.mean();
 
     error_ = stats.error();
 }
@@ -756,7 +61,7 @@ void CalcEngine::StatMean(const KNumber &input)
 void CalcEngine::StatMedian(const KNumber &input)
 {
     Q_UNUSED(input);
-    last_number_ = stats.median();
+    buffer_result_ = stats.median();
 
     error_ = stats.error();
 }
@@ -764,7 +69,7 @@ void CalcEngine::StatMedian(const KNumber &input)
 void CalcEngine::StatStdDeviation(const KNumber &input)
 {
     Q_UNUSED(input);
-    last_number_ = stats.std();
+    buffer_result_ = stats.std();
 
     error_ = stats.error();
 }
@@ -772,7 +77,7 @@ void CalcEngine::StatStdDeviation(const KNumber &input)
 void CalcEngine::StatStdSample(const KNumber &input)
 {
     Q_UNUSED(input);
-    last_number_ = stats.sample_std();
+    buffer_result_ = stats.sample_std();
 
     error_ = stats.error();
 }
@@ -780,184 +85,462 @@ void CalcEngine::StatStdSample(const KNumber &input)
 void CalcEngine::StatSum(const KNumber &input)
 {
     Q_UNUSED(input);
-    last_number_ = stats.sum();
+    buffer_result_ = stats.sum();
 }
 
 void CalcEngine::StatSumSquares(const KNumber &input)
 {
     Q_UNUSED(input);
-    last_number_ = stats.sum_of_squares();
+    buffer_result_ = stats.sum_of_squares();
 
     error_ = stats.error();
 }
 
-void CalcEngine::TangensDeg(const KNumber &input)
+void CalcEngine::Reset()
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
-        last_number_ = KNumber::NaN;
-        return;
-    }
-
-    SinDeg(input);
-    KNumber arg1 = last_number_;
-    CosDeg(input);
-    KNumber arg2 = last_number_;
-
-    last_number_ = arg1 / arg2;
+    error_ = false;
+    buffer_result_ = KNumber::Zero;
+    StatClearAll();
 }
 
-void CalcEngine::TangensRad(const KNumber &input)
+int CalcEngine::calculate(const QQueue<KCalcToken> tokenBuffer, int &errorIndex)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
-        last_number_ = KNumber::NaN;
-        return;
-    }
+    token_stack_.clear();
+    int token_index = 0;
+    int buffer_size = tokenBuffer.size();
+    qDebug() << "Token buffer size: " << buffer_size;
 
-    SinRad(input);
-    KNumber arg1 = last_number_;
-    CosRad(input);
-    KNumber arg2 = last_number_;
+    KCalcToken const *tokenFunction;
+    KCalcToken const *tokenFirstArg;
+    KNumber result;
+    KCalcToken::TokenType tokenType;
 
-    last_number_ = arg1 / arg2;
-}
+    while (token_index < buffer_size) {
+        qDebug() << "Processing token queue at: " << token_index;
+        KCalcToken::TokenCode tokenCode = tokenBuffer.at(token_index).getTokenCode();
 
-void CalcEngine::TangensGrad(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR) {
-        last_number_ = KNumber::NaN;
-        return;
-    }
-
-    SinGrad(input);
-    KNumber arg1 = last_number_;
-    CosGrad(input);
-    KNumber arg2 = last_number_;
-
-    last_number_ = arg1 / arg2;
-}
-
-void CalcEngine::TangensHyp(const KNumber &input)
-{
-    if (input.type() == KNumber::TYPE_ERROR) {
-        if (input == KNumber::NaN)
-            last_number_ = KNumber::NaN;
-        if (input == KNumber::PosInfinity)
-            last_number_ = KNumber::One;
-        if (input == KNumber::NegInfinity)
-            last_number_ = KNumber::NegOne;
-        return;
-    }
-
-    last_number_ = input.tanh();
-}
-
-KNumber CalcEngine::evalOperation(const KNumber &arg1, Operation operation, const KNumber &arg2)
-{
-    if (!percent_mode_ || Operator[operation].prcnt_ptr == nullptr) {
-        return (Operator[operation].arith_ptr)(arg1, arg2);
-    } else {
-        percent_mode_ = false;
-        return (Operator[operation].prcnt_ptr)(arg1, arg2);
-    }
-}
-
-void CalcEngine::enterOperation(const KNumber &number, Operation func, Repeat allow_repeat)
-{
-    Node tmp_node;
-
-    if (func == FUNC_BRACKET) {
-        tmp_node.number = KNumber::Zero;
-        tmp_node.operation = FUNC_BRACKET;
-
-        stack_.push(tmp_node);
-
-        return;
-    }
-
-    if (func == FUNC_PERCENT) {
-        percent_mode_ = true;
-    }
-
-    tmp_node.number = number;
-    tmp_node.operation = func;
-
-    if (KCalcSettings::repeatLastOperation()) {
-        if (func != FUNC_EQUAL && func != FUNC_PERCENT) {
-            last_operation_ = tmp_node.operation;
-            repeat_mode_ = false;
+        if (tokenCode == KCalcToken::TokenCode::EQUAL) {
+            token_index++;
+            continue;
         }
 
-        if (func == FUNC_EQUAL || func == FUNC_PERCENT) {
-            if (!repeat_mode_) {
-                repeat_mode_ = last_operation_ != FUNC_EQUAL;
-                last_repeat_number_ = number;
-            } else if (allow_repeat == REPEAT_ALLOW) {
-                Node repeat_node;
-                repeat_node.operation = last_operation_;
-                repeat_node.number = number;
-                tmp_node.number = last_repeat_number_;
-                stack_.push(repeat_node);
+        tokenType = tokenBuffer.at(token_index).getTokenType();
+        switch (tokenType) {
+        case KCalcToken::TokenType::KNUMBER_TYPE:
+            if (tokenCode == KCalcToken::TokenCode::ANS) {
+                insert_KNumber_Token_In_Stack_(KCalcToken(buffer_result_));
+            } else {
+                insert_KNumber_Token_In_Stack_(tokenBuffer.at(token_index));
             }
-        }
-    }
+            token_index++;
+            break;
+        case KCalcToken::TokenType::RIGHT_UNARY_FUNCTION_TYPE:
+            if (token_index + 1 >= buffer_size) {
+                errorIndex = token_index;
+                return -1;
+            }
+            if (!token_stack_.isEmpty()) {
+                if (token_stack_.last().isKNumber()) {
+                    insert_Binary_Function_Token_In_Stack_(multiplication_Token_);
+                }
+            }
 
-    if (getOnlyUpdateOperation() && !stack_.isEmpty() && !(func == FUNC_EQUAL || func == FUNC_PERCENT))
-        stack_.top().operation = func;
-    else
-        stack_.push(tmp_node);
+            token_stack_.push_back(tokenBuffer.at(token_index));
+            token_index++;
+            break;
+        case KCalcToken::TokenType::LEFT_UNARY_FUNCTION_TYPE:
+            if (token_stack_.isEmpty()) {
+                errorIndex = token_index;
+                return -1;
+            }
+            if (!token_stack_.last().isKNumber()) {
+                errorIndex = token_index;
+                return -1;
+            }
 
-    // The check for '=' or '%' is unnecessary; it is just a safety measure
-    if (!((func == FUNC_EQUAL) || (func == FUNC_PERCENT)))
-        setOnlyUpdateOperation(true);
+            if (token_stack_.size() > 1) {
+                while (token_stack_.at(token_stack_.size() - 2).isRightUnaryFunction()) {
+                    tokenFunction = &token_stack_.at(token_stack_.size() - 2);
+                    tokenFirstArg = &token_stack_.last();
+                    KNumber result = tokenFunction->evaluate(tokenFirstArg->getKNumber());
+                    token_stack_.pop_back();
+                    token_stack_.pop_back();
+                    insert_KNumber_Token_In_Stack_(KCalcToken(result));
+                    if (token_stack_.size() == 1) {
+                        break;
+                    }
+                }
+            }
 
-    evalStack();
-}
+            tokenFunction = &tokenBuffer.at(token_index);
+            tokenFirstArg = &token_stack_.last();
+            result = tokenFunction->evaluate(tokenFirstArg->getKNumber());
+            token_stack_.pop_back();
+            insert_KNumber_Token_In_Stack_(KCalcToken(result));
+            token_index++;
+            break;
+        case KCalcToken::TokenType::BINARY_FUNCTION_TYPE:
+            if (token_index + 1 >= buffer_size) {
+                errorIndex = token_index;
+                return -1;
+            }
 
-bool CalcEngine::evalStack()
-{
-    // this should never happen
-    Q_ASSERT(!stack_.isEmpty());
+            if (token_stack_.isEmpty()) {
+                switch (tokenCode) {
+                case KCalcToken::TokenCode::PLUS:
+                case KCalcToken::TokenCode::MINUS:
+                    token_stack_.push_back(KCalcToken(KNumber::Zero));
+                    break;
+                default:
+                    errorIndex = token_index;
+                    return -1;
+                    break;
+                }
+            }
 
-    Node tmp_node = stack_.pop();
+            switch (token_stack_.last().getTokenType()) {
+            case KCalcToken::TokenType::BINARY_FUNCTION_TYPE:
+                if (tokenCode == KCalcToken::TokenCode::PLUS) {
+                    token_index++;
+                    continue;
+                } else if (tokenCode == KCalcToken::TokenCode::MINUS) {
+                    token_stack_.last().invertSignSecondArg();
+                    token_index++;
+                    continue;
+                } else {
+                    errorIndex = token_index;
+                    return -1;
+                }
+                break;
+            case KCalcToken::TokenType::RIGHT_UNARY_FUNCTION_TYPE:
+                if (tokenCode == KCalcToken::TokenCode::MINUS) {
+                    token_stack_.last().invertSignFirstArg();
+                    token_index++;
+                    continue;
+                } else if (tokenCode == KCalcToken::TokenCode::PLUS) {
+                    token_index++;
+                    continue;
+                }
+                break;
+            case KCalcToken::TokenType::OPENING_PARENTHESES_TYPE:
+                if (tokenCode == KCalcToken::TokenCode::PLUS || tokenCode == KCalcToken::TokenCode::MINUS) {
+                    token_stack_.push_back(KCalcToken(KNumber::Zero));
+                } else {
+                    errorIndex = token_index;
+                    return -1;
+                }
+                break;
+            default:
+                break;
+            }
 
-    while (!stack_.isEmpty()) {
-        Node tmp_node2 = stack_.pop();
-        if (Operator[tmp_node.operation].precedence <= Operator[tmp_node2.operation].precedence) {
-            if (tmp_node2.operation == FUNC_BRACKET)
-                continue;
-            const KNumber tmp_result = evalOperation(tmp_node2.number, tmp_node2.operation, tmp_node.number);
-            tmp_node.number = tmp_result;
-        } else {
-            stack_.push(tmp_node2);
+            insert_Binary_Function_Token_In_Stack_(tokenBuffer.at(token_index));
+            token_index++;
+            break;
+        case KCalcToken::TokenType::OPENING_PARENTHESES_TYPE:
+            if (!token_stack_.isEmpty()) {
+                switch (token_stack_.last().getTokenType()) {
+                case KCalcToken::TokenType::KNUMBER_TYPE:
+                case KCalcToken::TokenType::LEFT_UNARY_FUNCTION_TYPE:
+                case KCalcToken::TokenType::CLOSING_PARENTHESES_TYPE:
+                    insert_Binary_Function_Token_In_Stack_(multiplication_Token_);
+                    break;
+                default:
+                    break;
+                }
+            }
+            token_stack_.push_back(tokenBuffer.at(token_index));
+            token_index++;
+            break;
+        case KCalcToken::TokenType::CLOSING_PARENTHESES_TYPE:
+            if (token_stack_.isEmpty()) {
+                errorIndex = token_index;
+                return -1;
+            }
+            switch (token_stack_.last().getTokenType()) {
+            case KCalcToken::TokenType::BINARY_FUNCTION_TYPE:
+            case KCalcToken::TokenType::RIGHT_UNARY_FUNCTION_TYPE:
+                errorIndex = token_index;
+                return -1;
+                break;
+            default:
+                reduce_Stack_();
+                break;
+            }
+            token_index++;
+            break;
+        default:
             break;
         }
     }
 
-    if (tmp_node.operation != FUNC_EQUAL && tmp_node.operation != FUNC_PERCENT)
-        stack_.push(tmp_node);
+    qDebug() << "Done processing token list";
+    // printStacks_();
 
-    last_number_ = tmp_node.number;
-    return true;
+    reduce_Stack_(/*toParentheses =*/false);
+
+    qDebug() << "Done reducing final token stack";
+
+    if (token_stack_.isEmpty()) {
+        buffer_result_ = KNumber::Zero;
+        return -2; // code for empthy calculation
+    } else if (token_stack_.last().getKNumber() == KNumber::NaN) {
+        error_ = true;
+        buffer_result_ = token_stack_.last().getKNumber();
+        token_stack_.clear();
+        return -1;
+    } else if (token_stack_.size() > 1) {
+        error_ = true;
+        buffer_result_ = KNumber::NaN;
+        token_stack_.clear();
+        return -1;
+    } else {
+        buffer_result_ = token_stack_.last().getKNumber();
+        token_stack_.clear();
+    }
+
+    qDebug() << "Result: " << buffer_result_.toQString(12, -1);
+
+    return 0;
 }
 
-void CalcEngine::Reset()
+int CalcEngine::insert_KNumber_Token_In_Stack_(const KCalcToken &token)
 {
-    percent_mode_ = false;
-    repeat_mode_ = false;
-    last_operation_ = FUNC_EQUAL;
-    error_ = false;
-    last_number_ = KNumber::Zero;
-    only_update_operation_ = false;
+    qDebug() << "Inserting KNumber Token in stack";
+    // printStacks_();
+    KCalcToken const *tokenFunction;
+    KCalcToken const *tokenFirstArg;
 
-    stack_.clear();
+    KCalcToken tokenToInsert = token;
+
+    while (!token_stack_.isEmpty()) {
+        if (token_stack_.last().isKNumber()) {
+            insert_Binary_Function_Token_In_Stack_(multiplication_Token_);
+            break;
+        }
+        if (token_stack_.last().isBinaryFunction() || token_stack_.last().isOpeningParentheses()) {
+            break;
+        }
+        if (token_stack_.last().isLeftUnaryFunction()) {
+            // never executed //
+            break;
+        }
+        while (token_stack_.last().isRightUnaryFunction()) {
+            tokenFunction = &token_stack_.last();
+            tokenFirstArg = &tokenToInsert;
+            KNumber result = tokenFunction->evaluate(tokenFirstArg->getKNumber());
+            token_stack_.pop_back();
+            tokenToInsert = KCalcToken(result);
+
+            if (token_stack_.isEmpty()) {
+                break;
+            }
+        }
+    }
+    token_stack_.push_back(tokenToInsert);
+    return 0;
 }
 
-void CalcEngine::setOnlyUpdateOperation(bool update)
+int CalcEngine::insert_Binary_Function_Token_In_Stack_(const KCalcToken &token)
 {
-    only_update_operation_ = update;
+    qDebug() << "Insert Binary Function Token in stack";
+    // printStacks_();
+    KCalcToken const *tokenFunction;
+    KCalcToken const *tokenFirstArg;
+    KCalcToken const *tokenSecondArg;
+
+    if (token_stack_.isEmpty()) {
+        return -1;
+    }
+
+    if (token_stack_.size() <= 2) {
+        token_stack_.push_back(token);
+        return 0;
+    }
+
+    if (token_stack_.at(token_stack_.size() - 2).isRightUnaryFunction() && token_stack_.last().isKNumber()) {
+        tokenFunction = &token_stack_.at(token_stack_.size() - 2);
+        tokenFirstArg = &token_stack_.last();
+        KNumber result = tokenFunction->evaluate(tokenFirstArg->getKNumber());
+        token_stack_.pop_back();
+        token_stack_.pop_back();
+        insert_KNumber_Token_In_Stack_(KCalcToken(result));
+        if (token_stack_.size() <= 2) {
+            token_stack_.push_back(token);
+            return 0;
+        } // else continue inserting
+    }
+
+    if (token_stack_.at(token_stack_.size() - 1).isKNumber() && token_stack_.at(token_stack_.size() - 2).isBinaryFunction()
+        && token_stack_.at(token_stack_.size() - 3).isKNumber()) {
+        if (token_stack_.size() > 3) {
+            if (token_stack_.at(token_stack_.size() - 4).isRightUnaryFunction()) {
+                token_stack_.push_back(token);
+                return 0;
+            }
+        }
+        if (token_stack_.at(token_stack_.size() - 2).getPriorityLevel() >= token.getPriorityLevel()) {
+            tokenFunction = &token_stack_.at(token_stack_.size() - 2);
+            tokenFirstArg = &token_stack_.at(token_stack_.size() - 3);
+            tokenSecondArg = &token_stack_.at(token_stack_.size() - 1);
+            KNumber result = tokenFunction->evaluate(tokenFirstArg->getKNumber(), tokenSecondArg->getKNumber());
+            token_stack_.pop_back();
+            token_stack_.pop_back();
+            token_stack_.last().updateToken(result);
+            token_stack_.push_back(token);
+            return 0;
+        } else {
+            token_stack_.push_back(token);
+            return 0;
+        }
+    }
+
+    token_stack_.push_back(token);
+
+    return 0;
 }
 
-bool CalcEngine::getOnlyUpdateOperation() const
+int CalcEngine::reduce_Stack_(bool toParentheses /*= true*/)
 {
-    return only_update_operation_;
+    KCalcToken const *tokenFunction;
+    KCalcToken const *tokenFirstArg;
+    KCalcToken const *tokenSecondArg;
+
+    while (token_stack_.size() > 1) {
+        qDebug() << "Reducing at stack size: " << token_stack_.size();
+        // printStacks_();
+        if (token_stack_.last().isOpeningParentheses()) {
+            token_stack_.pop_back();
+            if (toParentheses) {
+                return 0;
+            } else {
+                continue;
+            }
+        }
+
+        if (token_stack_.last().isKNumber() && token_stack_.at(token_stack_.size() - 2).isOpeningParentheses()) {
+            KNumber result = token_stack_.last().getKNumber();
+            token_stack_.pop_back();
+            token_stack_.pop_back();
+            insert_KNumber_Token_In_Stack_(KCalcToken(result));
+            if (toParentheses) {
+                return 0;
+            } else {
+                continue;
+            }
+        }
+
+        if (token_stack_.last().isKNumber() && token_stack_.at(token_stack_.size() - 2).isRightUnaryFunction()) {
+            tokenFunction = &token_stack_.at(token_stack_.size() - 2);
+            tokenFirstArg = &token_stack_.last();
+            KNumber result = tokenFunction->evaluate(tokenFirstArg->getKNumber());
+            token_stack_.pop_back();
+            token_stack_.pop_back();
+            insert_KNumber_Token_In_Stack_(KCalcToken(result));
+            continue;
+        }
+
+        if (token_stack_.last().isLeftUnaryFunction() && token_stack_.at(token_stack_.size() - 2).isKNumber()) {
+            // never executed
+            tokenFunction = &token_stack_.last();
+            tokenFirstArg = &token_stack_.at(token_stack_.size() - 2);
+            KNumber result = tokenFunction->evaluate(tokenFirstArg->getKNumber());
+            token_stack_.pop_back();
+            token_stack_.last().updateToken(result);
+            continue;
+        }
+
+        if (token_stack_.size() > 3) {
+            if (token_stack_.at(token_stack_.size() - 3).isKNumber() && token_stack_.at(token_stack_.size() - 4).isRightUnaryFunction()) {
+                tokenFunction = &token_stack_.at(token_stack_.size() - 4);
+                tokenFirstArg = &token_stack_.at(token_stack_.size() - 3);
+
+                KNumber result = tokenFunction->evaluate(tokenFirstArg->getKNumber());
+
+                token_stack_.removeAt(token_stack_.size() - 4);
+                token_stack_.replace(token_stack_.size() - 3, KCalcToken(result));
+                continue;
+            }
+
+            if (token_stack_.at(token_stack_.size() - 1).isKNumber() && token_stack_.at(token_stack_.size() - 2).isBinaryFunction()
+                && token_stack_.at(token_stack_.size() - 3).isBinaryFunction() && token_stack_.at(token_stack_.size() - 4).isKNumber()) {
+                if (token_stack_.at(token_stack_.size() - 2).getTokenCode() != KCalcToken::TokenCode::MINUS) {
+                    return -1;
+                }
+
+                tokenFunction = &token_stack_.at(token_stack_.size() - 3);
+                tokenFirstArg = &token_stack_.at(token_stack_.size() - 4);
+                tokenSecondArg = &token_stack_.at(token_stack_.size() - 1);
+                KNumber result = tokenFunction->evaluate(tokenFirstArg->getKNumber(), -tokenSecondArg->getKNumber());
+
+                token_stack_.pop_back();
+                token_stack_.pop_back();
+                token_stack_.pop_back();
+                token_stack_.last().updateToken(result);
+                continue;
+            }
+        }
+
+        if (token_stack_.size() > 2) {
+            if (token_stack_.last().isKNumber() && token_stack_.at(token_stack_.size() - 2).isBinaryFunction()
+                && token_stack_.at(token_stack_.size() - 3).isKNumber()) {
+                tokenSecondArg = &token_stack_.last();
+                tokenFunction = &token_stack_.at(token_stack_.size() - 2);
+                tokenFirstArg = &token_stack_.at(token_stack_.size() - 3);
+
+                KNumber result = tokenFunction->evaluate(tokenFirstArg->getKNumber(), tokenSecondArg->getKNumber());
+
+                token_stack_.pop_back();
+                token_stack_.pop_back();
+                token_stack_.last().updateToken(result);
+                continue;
+            }
+            if (token_stack_.at(token_stack_.size() - 1).isKNumber() && token_stack_.at(token_stack_.size() - 2).isBinaryFunction()
+                && token_stack_.at(token_stack_.size() - 3).isBinaryFunction()) {
+                if (token_stack_.at(token_stack_.size() - 2).getTokenCode() != KCalcToken::TokenCode::MINUS) {
+                    return -1;
+                }
+                KNumber result = -token_stack_.last().getKNumber();
+                token_stack_.pop_back();
+                token_stack_.last().updateToken(result);
+                continue;
+            }
+        }
+
+        if (token_stack_.at(token_stack_.size() - 1).isKNumber() && token_stack_.at(token_stack_.size() - 2).isBinaryFunction()) {
+            if (token_stack_.at(token_stack_.size() - 2).getTokenCode() != KCalcToken::TokenCode::MINUS) {
+                return -1;
+            }
+            KNumber result = -token_stack_.last().getKNumber();
+            token_stack_.pop_back();
+            token_stack_.last().updateToken(result);
+        }
+
+        qDebug() << "Error at stack size = " << token_stack_.size();
+        return -1;
+    }
+    return 0;
+}
+
+void CalcEngine::printStacks_()
+{
+    int tokenStaskSize = token_stack_.size();
+
+    qDebug() << "Printing current stack:";
+
+    for (int i = 0; i < tokenStaskSize; i++) {
+        if (token_stack_.at(i).isKNumber()) {
+            qDebug() << "TokenStack at:" << i << " is KNumber   = " << (token_stack_.at(i).getKNumber()).toQString();
+
+        } else {
+            qDebug() << "TokenStack at:" << i << " is TokenCode = " << (token_stack_.at(i).getTokenCode());
+        }
+    }
+
+    qDebug() << "Print current stack done";
+}
+
+KNumber CalcEngine::getResult()
+{
+    return buffer_result_;
 }

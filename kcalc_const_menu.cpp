@@ -9,8 +9,6 @@
 
 #include <QDebug>
 #include <QDomDocument>
-#include <QFile>
-#include <QStandardPaths>
 
 #include <KLocalizedString>
 
@@ -46,27 +44,12 @@ ConstantCategory stringToCategory(const QString &s)
 
 }
 
-void KCalcConstMenu::init_consts()
+void KCalcConstMenu::init_consts(QDomDocument &doc)
 {
-    QDomDocument doc(QStringLiteral("list_of_constants"));
-    QFile file(QStringLiteral(":/kcalc/scienceconstants.xml"));
-
-    if (!file.open(QIODevice::ReadOnly)) {
-        qDebug() << "Did not find file \"scienceconstants.xml\". No constants will be available.";
-        return;
-    }
-    if (!doc.setContent(&file)) {
-        file.close();
-        qDebug() << "The file \"scienceconstants.xml\" does not seem to be a valid description file. No constants will be available.";
-        return;
-    }
-    file.close();
-
     // print out the element names of all elements that are direct children
     // of the outermost element.
     QDomElement docElem = doc.documentElement();
 
-    int i = 0;
     QDomNode n = docElem.firstChild();
     while (!n.isNull()) {
         QDomElement e = n.toElement(); // try to convert the node to an element.
@@ -85,7 +68,6 @@ void KCalcConstMenu::init_consts()
             scienceConstantList.append(tmp_const);
         }
         n = n.nextSibling();
-        i++;
     }
 }
 

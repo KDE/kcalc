@@ -15,26 +15,31 @@ class KCalcConstMenu;
 class KCalcStatusBar;
 
 /*
-  Kcalc basically consist of a class for the GUI (here), a class for
-  the display (dlabel.h), and one for the mathematics core
-  (kcalc_core.h).
-
-  When for example '+' is pressed, one sends the contents of the
-  Display and the '+' to the core via "core.Plus(DISPLAY_AMOUNT)".
-  This only updates the core. To bring the changes to the display,
-  use afterwards "UpdateDisplay(true)".
-
-  "UpdateDisplay(true)" means that the amount to be displayed should
-  be taken from the core (get the result of some operation that was
-  performed), "UpdateDisplay(false)" has already the information, what
-  to be display (e.g. user is typing in a number).  Note that in the
-  last case the core does not know the number typed in until some
-  operation button is pressed, e.g. "core.Plus(display_number)".
+ * Kcalc consist of a class for the GUI (here), and a few
+ * implementation classes:
+ *
+ * - KNumber: holds a given number, integer or float, it implements
+ *   all operations for a given KNumber (cos, ln, +, & and such).
+ * - KCalcToken: class to hold "tokens" such as operations (+,-,×,..),
+ *   KNumbers, parentheses or functions (ln, cos, ...) to be processed
+ *   by the engine.
+ * - KCalcParser: once an input string (such as "5cos(4.6)+1") can be committed
+ *   for calculation, this class converts it to their respective KCalcToken
+ *   objects and puts them into a Queue.
+ * - CalcEngine: is able to process a given KCalToken Queue to produce a final
+ *   result, based on precedence levels of each operation.
+ *
+ * Once the user has finished entering the desired expression to calculate
+ * (signaling this by clicking "equal"), the string hold by KCalcInputDisplay is
+ * sent to KCalcParser, the resulting KCalToken Queue is then sent to CalcEngine
+ * and finally, the result is shown in KCalcDisplay.
  */
 
 #include "kcalc_button.h"
 #include "kcalc_const_button.h"
 #include "kcalc_core.h"
+#include "kcalc_parser.h"
+#include "kcalc_token.h"
 
 #include "ui_colors.h"
 #include "ui_constants.h"
@@ -42,6 +47,7 @@ class KCalcStatusBar;
 #include "ui_general.h"
 #include "ui_kcalc.h"
 
+#include <QQueue>
 #include <array>
 #include <kxmlguiwindow.h>
 
@@ -102,7 +108,7 @@ Q_SIGNALS:
     void switchShowAccels(bool);
 
 public:
-    enum UpdateFlag { UPDATE_FROM_CORE = 1, UPDATE_STORE_RESULT = 2 };
+    enum UpdateFlag { UPDATE_FROM_CORE = 1, UPDATE_STORE_RESULT = 2, UPDATE_MALFORMED_EXPRESSION = 4, UPDATE_CLEAR = 8 };
 
     Q_DECLARE_FLAGS(UpdateFlags, UpdateFlag)
 
@@ -137,7 +143,8 @@ private:
     void setBitsetLayoutActive(bool active);
 
     void updateDisplay(UpdateFlags flags);
-    void updateHistoryWithFunction(CalcEngine::Operation);
+    void insertToInputDisplay(KCalcToken::TokenCode token);
+    void insertToInputDisplay(const QString &token);
     KCalcStatusBar *statusBar();
 
     // button sets
@@ -153,7 +160,7 @@ protected Q_SLOTS:
     void updateSettings();
     void setColors();
     void setFonts();
-    void EnterEqual(CalcEngine::Repeat allow_repeat = CalcEngine::REPEAT_ALLOW);
+    void updateResultDisplay();
     void showSettings();
 
     // Mode
@@ -165,7 +172,7 @@ protected Q_SLOTS:
     void slotHistoryshow(bool toggled);
     void slotConstantsShow(bool toggled);
     void slotBitsetshow(bool toggled);
-    void slotAngleSelected(QAbstractButton *button);
+    void slotAngleSelected(QAbstractButton *button, bool checked);
     void slotBaseSelected(QAbstractButton *button);
     void slotNumberclicked(QAbstractButton *button);
     void slotEEclicked();
@@ -236,12 +243,24 @@ private:
     enum BaseMode { BinMode = 2, OctMode = 8, DecMode = 10, HexMode = 16 };
 
 private:
+    int commit_Input_();
+    void commit_Result_(bool toHistory = true);
+    int load_Constants_(const QString &filePath);
+
     bool shift_mode_ = false;
     bool hyp_mode_ = false;
     bool update_history_window_ = false;
+    QQueue<KCalcToken> token_Queue_;
     KNumber memory_num_;
 
     int angle_mode_; // angle modes for trigonometric values
+    int base_mode_;
+
+    bool parsing_failure_, calculation_failure_;
+    int input_error_index_;
+    int calculation_error_token_index_;
+    void inline handle_Parsing_Error_();
+    void inline handle_Calculation_Error_();
 
     KCalcConstMenu *constants_menu_ = nullptr;
 
@@ -277,6 +296,7 @@ private:
     bool is_still_in_launch_ = true; // necessary for startup at minimum size
 
     CalcEngine core;
+    KCalcParser parser;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(KCalculator::UpdateFlags)

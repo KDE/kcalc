@@ -32,6 +32,8 @@ public:
     static const KNumber Zero;
     static const KNumber One;
     static const KNumber NegOne;
+    static const KNumber OneHundred;
+    static const KNumber OneThousand;
     static const KNumber PosInfinity;
     static const KNumber NegInfinity;
     static const KNumber NaN;

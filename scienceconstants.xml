@@ -28,11 +28,11 @@
     <description>
     </description>
   </constant>
-  <constant name="Elementary Charge" symbol="e" category="nuclear" value="1.602176634e-19">
+  <constant name="Elementary Charge" symbol="ᵉ" category="nuclear" value="1.602176634e-19">
     <description>
     </description>
   </constant>
-  <constant name="Elementary Charge" symbol="e" category="electromagnetism" value="1.602176634e-19">
+  <constant name="Elementary Charge" symbol="ᵉ" category="electromagnetism" value="1.602176634e-19">
     <description>
     </description>
   </constant>
@@ -57,7 +57,7 @@
     </description>
   </constant>
 
-  <constant name="Atomic Mass Unit" symbol="1u" category="thermodynamics" value="1.66053906660e-27">
+  <constant name="Atomic Mass Unit" symbol="mₐ" category="thermodynamics" value="1.66053906660e-27">
     <description>
     </description>
   </constant>
@@ -69,7 +69,7 @@
     <description>
     </description>
   </constant>
-  <constant name="Avogadro's Number" symbol="N_A" category="thermodynamics" value="6.02214076e23">
+  <constant name="Avogadro's Number" symbol="Nₐ" category="thermodynamics" value="6.02214076e23">
     <description>
     </description>
   </constant>

@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <QDomDocument>
 #include <QMenu>
 #include <QString>
 
@@ -29,7 +30,7 @@ public:
     explicit KCalcConstMenu(const QString &title, QWidget *parent = nullptr);
 
 public:
-    static void init_consts();
+    static void init_consts(QDomDocument &doc);
 
 Q_SIGNALS:
     void triggeredConstant(const science_constant &);
