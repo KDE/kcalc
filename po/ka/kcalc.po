@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-26 00:39+0000\n"
-"PO-Revision-Date: 2023-09-17 06:37+0200\n"
+"PO-Revision-Date: 2024-01-26 05:38+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -748,16 +748,14 @@ msgid "Exponent"
 msgstr "ექსპონენტი"
 
 #: kcalc.cpp:1447
-#, fuzzy, kde-format
-#| msgid "Number of data entered"
+#, kde-format
 msgid "Number of data entered = "
-msgstr "შეყვანილი მონაცემების რიცხვი"
+msgstr "შეყვანილი მონაცემების რიცხვი = "
 
 #: kcalc.cpp:1472
-#, fuzzy, kde-format
-#| msgid "Mean"
+#, kde-format
 msgid "Mean = "
-msgstr "მნიშვნელობა"
+msgstr "მნიშვნელობა = "
 
 #: kcalc.cpp:1551 kcalc.cpp:1553
 #, kde-format
@@ -770,8 +768,7 @@ msgid "] = "
 msgstr "] = "
 
 #: kcalc.cpp:1563 kcalc.cpp:1564
-#, fuzzy, kde-format
-#| msgid "Last stat item erased"
+#, kde-format
 msgid "Last stat data erased"
 msgstr "უკანასკნელი სტატისტიკური ჩანაწერი წაშლილია"
 
@@ -1301,10 +1298,9 @@ msgstr "მომხმარებლის მიერ პროგრამ�
 
 #. i18n: ectx: property (text), widget (QLabel, base_label)
 #: kcalc.ui:176
-#, fuzzy, kde-format
-#| msgid "&Dec"
+#, kde-format
 msgid "Dec"
-msgstr "&ათი"
+msgstr "ათი"
 
 #. i18n: ectx: property (toolTip), widget (KCalcBitset, mBitset)
 #: kcalc.ui:385
@@ -1349,7 +1345,7 @@ msgstr "&თექვს"
 #: kcalc.ui:459 kcalc.ui:495 kcalc.ui:531 kcalc.ui:567
 #, kde-format
 msgid "KS…el"
-msgstr ""
+msgstr "KS…el"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, decRadio)
 #: kcalc.ui:473

@@ -1,25 +1,25 @@
 # Translation for kcalc.po to Euskara/Basque (eu).
-# Copyright (C) 2003-2023 This file is copyright:
+# Copyright (C) 2003-2024 This file is copyright:
 # This file is distributed under the same license as the kcalc package.
-# SPDX-FileCopyrightText: 2023 KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>
+# SPDX-FileCopyrightText: 2023, 2024 KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>
 #
 # Translators:
 # Marcos  <marcos@euskalgnu.org>, 2003, 2005, 2010.
-# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2004, 2005, 2009, 2010, 2011, 2014, 2017, 2018, 2019, 2021, 2022.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2004, 2005, 2009, 2010, 2011, 2014, 2017, 2018, 2019, 2021, 2022, 2023, 2024.
 # Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-26 00:39+0000\n"
-"PO-Revision-Date: 2023-09-18 00:15+0200\n"
+"PO-Revision-Date: 2024-01-26 19:49+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.0\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, kde-format
@@ -78,7 +78,7 @@ msgstr "&Funtzioak:"
 #: colors.ui:152
 #, kde-format
 msgid "St&atistic functions:"
-msgstr "Funtzio est&atistikoak:"
+msgstr "Est&atistika-funtzioak:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel9)
 #: colors.ui:179
@@ -753,16 +753,14 @@ msgid "Exponent"
 msgstr "Berretzailea"
 
 #: kcalc.cpp:1447
-#, fuzzy, kde-format
-#| msgid "Number of data entered"
+#, kde-format
 msgid "Number of data entered = "
-msgstr "Sartutako datu-kopurua"
+msgstr "Sartutako datu-kopurua ="
 
 #: kcalc.cpp:1472
-#, fuzzy, kde-format
-#| msgid "Mean"
+#, kde-format
 msgid "Mean = "
-msgstr "Batezbestekoa"
+msgstr "Batezbestekoa ="
 
 #: kcalc.cpp:1551 kcalc.cpp:1553
 #, kde-format
@@ -775,15 +773,14 @@ msgid "] = "
 msgstr "] = "
 
 #: kcalc.cpp:1563 kcalc.cpp:1564
-#, fuzzy, kde-format
-#| msgid "Last stat item erased"
+#, kde-format
 msgid "Last stat data erased"
-msgstr "Azken gai estatistikoa ezabatuta"
+msgstr "Estatistikako azken datuak ezabatu dira"
 
 #: kcalc.cpp:1579 kcalc.cpp:1580
 #, kde-format
 msgid "Stat mem cleared"
-msgstr "Estatistika-memoria ezabatuta"
+msgstr "Estatistika-memoria hustu da"
 
 #: kcalc.cpp:1634
 #, kde-format
@@ -1125,14 +1122,14 @@ msgstr "Zientzia-botoiak eta, aukeran, konstante-botoiak dituen modua"
 #: kcalc.kcfg:159
 #, kde-format
 msgid "Statistic Calculator Mode"
-msgstr "Kalkulagailu estatistikoko modua"
+msgstr "Kalkulagailu estatistikoaren modua"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
 #: kcalc.kcfg:160
 #, kde-format
 msgid "Mode with additional statistics buttons and optional constants buttons"
 msgstr ""
-"Botoi estatistiko osagarriak eta, aukeran, konstante-botoiak dituen modua"
+"Estatistika-botoi osagarriak eta, aukeran, konstante-botoiak dituen modua"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
 #: kcalc.kcfg:164
@@ -1306,10 +1303,9 @@ msgstr "Erabiltzaileak programatu ditzakeen konstanteen zerrenda"
 
 #. i18n: ectx: property (text), widget (QLabel, base_label)
 #: kcalc.ui:176
-#, fuzzy, kde-format
-#| msgid "&Dec"
+#, kde-format
 msgid "Dec"
-msgstr "&Hamar"
+msgstr "Hamar"
 
 #. i18n: ectx: property (toolTip), widget (KCalcBitset, mBitset)
 #: kcalc.ui:385
@@ -1354,7 +1350,7 @@ msgstr "Hama&s"
 #: kcalc.ui:459 kcalc.ui:495 kcalc.ui:531 kcalc.ui:567
 #, kde-format
 msgid "KS…el"
-msgstr ""
+msgstr "KS…el"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, decRadio)
 #: kcalc.ui:473

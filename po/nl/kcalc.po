@@ -14,7 +14,7 @@
 # Rinse de Vries <rinsedevries@kde.nl>, 2004, 2005, 2007.
 # Jaap Woldringh <jjhwoldringh@kde.nl>, 2008, 2009, 2010.
 # Kristof Bal <kristof.bal@gmail.com>, 2008, 2009.
-# SPDX-FileCopyrightText: 2009, 2023 Freek de Kruijf <f.de.kruijf@hetnet.nl>
+# SPDX-FileCopyrightText: 2009, 2023, 2024 Freek de Kruijf <f.de.kruijf@hetnet.nl>
 # Freek de Kruijf <freekdekruijf@kde.nl>, 2009, 2010, 2012, 2013, 2014, 2015, 2018, 2019, 2022.
 # Jaap Woldringh <jjhwoldringh@kde.nl>, 2012, 2019, 2020, 2021.
 msgid ""
@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-26 00:39+0000\n"
-"PO-Revision-Date: 2023-09-16 14:05+0200\n"
+"PO-Revision-Date: 2024-01-26 13:19+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Xgettext-Options: -C -ki18n -x../../kdelibs/po/kde.pot\n"
 "Files: configdlg.cpp dlabel.cpp fontdlg.cpp kcalc.cpp kcalc_core.cpp\n"
-"X-Generator: Lokalize 23.08.0\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -39,7 +39,7 @@ msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr ""
 "Rinse de Vries,Wilbert Berendsen,Tom Albers,Jaap Woldringh,Kristof Bal,Freek "
-"de Kruijf - 2023"
+"de Kruijf - 2023 t/m 2024"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
@@ -767,16 +767,14 @@ msgid "Exponent"
 msgstr "Exponent"
 
 #: kcalc.cpp:1447
-#, fuzzy, kde-format
-#| msgid "Number of data entered"
+#, kde-format
 msgid "Number of data entered = "
-msgstr "Aantal ingevoerde getallen"
+msgstr "Aantal ingevoerde gegevens = "
 
 #: kcalc.cpp:1472
-#, fuzzy, kde-format
-#| msgid "Mean"
+#, kde-format
 msgid "Mean = "
-msgstr "Gemiddelde"
+msgstr "Gemiddelde = "
 
 #: kcalc.cpp:1551 kcalc.cpp:1553
 #, kde-format
@@ -789,8 +787,7 @@ msgid "] = "
 msgstr "] = "
 
 #: kcalc.cpp:1563 kcalc.cpp:1564
-#, fuzzy, kde-format
-#| msgid "Last stat item erased"
+#, kde-format
 msgid "Last stat data erased"
 msgstr "Laatste statistische gegeven gewist"
 
@@ -1323,10 +1320,9 @@ msgstr "Lijst van de door gebruiker programmeerbare constanten"
 
 #. i18n: ectx: property (text), widget (QLabel, base_label)
 #: kcalc.ui:176
-#, fuzzy, kde-format
-#| msgid "&Dec"
+#, kde-format
 msgid "Dec"
-msgstr "&Dec"
+msgstr "Dec"
 
 #. i18n: ectx: property (toolTip), widget (KCalcBitset, mBitset)
 #: kcalc.ui:385
@@ -1371,7 +1367,7 @@ msgstr "He&x"
 #: kcalc.ui:459 kcalc.ui:495 kcalc.ui:531 kcalc.ui:567
 #, kde-format
 msgid "KS…el"
-msgstr ""
+msgstr "KS…el"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, decRadio)
 #: kcalc.ui:473

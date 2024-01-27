@@ -1,9 +1,9 @@
 # Translation of kcalc.po to Catalan
-# Copyright (C) 1998-2023 This_file_is_part_of_KDE
+# Copyright (C) 1998-2024 This_file_is_part_of_KDE
 #
 # Sebastià Pla i Sanz <sps@sastia.com>, 1998, 1999, 2000, 2001, 2005.
 # Albert Astals Cid <aacid@kde.org>, 2002, 2003, 2004, 2005, 2007.
-# Josep M. Ferrer <txemaq@gmail.com>, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2019, 2020, 2021, 2022, 2023.
+# Josep M. Ferrer <txemaq@gmail.com>, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2019, 2020, 2021, 2022, 2023, 2024.
 # Joan Maspons <joanmaspons@gmail.com>, 2009.
 # Manuel Tortosa Moreno <manutortosa@gmail.com>, 2009.
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2016, 2018, 2019, 2020, 2021.
@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-26 00:39+0000\n"
-"PO-Revision-Date: 2023-09-16 12:29+0200\n"
+"PO-Revision-Date: 2024-01-26 09:53+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -754,16 +754,14 @@ msgid "Exponent"
 msgstr "Exponent"
 
 #: kcalc.cpp:1447
-#, fuzzy, kde-format
-#| msgid "Number of data entered"
+#, kde-format
 msgid "Number of data entered = "
-msgstr "Nombre de dades introduïdes"
+msgstr "Nombre de dades introduïdes = "
 
 #: kcalc.cpp:1472
-#, fuzzy, kde-format
-#| msgid "Mean"
+#, kde-format
 msgid "Mean = "
-msgstr "Mitjana"
+msgstr "Mitjana = "
 
 #: kcalc.cpp:1551 kcalc.cpp:1553
 #, kde-format
@@ -776,10 +774,9 @@ msgid "] = "
 msgstr "] = "
 
 #: kcalc.cpp:1563 kcalc.cpp:1564
-#, fuzzy, kde-format
-#| msgid "Last stat item erased"
+#, kde-format
 msgid "Last stat data erased"
-msgstr "S'ha esborrat el darrer element d'estadístiques"
+msgstr "S'han esborrat les darreres dades d'estadístiques"
 
 #: kcalc.cpp:1579 kcalc.cpp:1580
 #, kde-format
@@ -1310,10 +1307,9 @@ msgstr "Llista de les constants programables per l'usuari"
 # skip-rule: abbreviations-dec
 #. i18n: ectx: property (text), widget (QLabel, base_label)
 #: kcalc.ui:176
-#, fuzzy, kde-format
-#| msgid "&Dec"
+#, kde-format
 msgid "Dec"
-msgstr "&Dec"
+msgstr "Dec"
 
 #. i18n: ectx: property (toolTip), widget (KCalcBitset, mBitset)
 #: kcalc.ui:385
@@ -1358,7 +1354,7 @@ msgstr "He&x"
 #: kcalc.ui:459 kcalc.ui:495 kcalc.ui:531 kcalc.ui:567
 #, kde-format
 msgid "KS…el"
-msgstr ""
+msgstr "KS…el"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, decRadio)
 #: kcalc.ui:473
