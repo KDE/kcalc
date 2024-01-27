@@ -32,26 +32,12 @@ KCalcDisplayFrame::~KCalcDisplayFrame() = default;
 //------------------------------------------------------------------------------
 void KCalcDisplayFrame::paintEvent(QPaintEvent *e)
 {
-    QWidget::paintEvent(e);
+    QFrame::paintEvent(e);
 
     QPainter painter(this);
-
-    QStyleOptionFrame option;
-    initStyleOption(&option);
-
-    style()->drawPrimitive(QStyle::PE_PanelLineEdit, &option, &painter, this);
-}
-
-//------------------------------------------------------------------------------
-// Name: resizeEvent
-// Desc: resize display and adjust font size
-//------------------------------------------------------------------------------
-void KCalcDisplayFrame::resizeEvent(QResizeEvent *e)
-{
-    QFrame::resizeEvent(e);
-
-    // Update font size
-    // updateFont();
+    painter.setPen(Qt::NoPen);
+    painter.setBrush(palette().color(QPalette::Base));
+    painter.drawRect(rect());
 }
 
 #include "moc_kcalc_display_frame.cpp"

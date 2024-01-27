@@ -39,9 +39,9 @@
     <number>0</number>
    </property>
    <item>
-    <layout class="QVBoxLayout" name="firstVerticalLayout" stretch="2,1,0,6">
+    <layout class="QVBoxLayout" name="firstVerticalLayout" stretch="2,0,0,0,6">
      <property name="spacing">
-      <number>6</number>
+      <number>0</number>
      </property>
      <item>
       <widget class="KCalcDisplayFrame" name="calc_display_frame">
@@ -363,6 +363,16 @@
          </widget>
         </item>
        </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QFrame">
+       <property name="frameStyle">
+        <enum>QFrame::HLine</enum>
+       </property>
+       <property name="maximumHeight">
+        <number>1</number>
+       </property>
       </widget>
      </item>
      <item>
