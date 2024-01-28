@@ -922,7 +922,7 @@ void KCalculator::slotShifttoggled(bool flag)
 
     statusBar()->setShiftIndicator(shift_mode_);
     if (shift_mode_) {
-        shift_label->setText(QStringLiteral("Shift"));
+        shift_label->setText(i18nc("Second function mode", "Shift"));
     } else {
         shift_label->setText(QStringLiteral(""));
     }
@@ -1230,8 +1230,8 @@ void KCalculator::slotMemClearclicked()
 
     this->input_display->clear();
     this->input_display->slotSetHardOverwrite();
-    this->input_display->insert(QStringLiteral("M cleared"));
-    calc_history->addToHistory(QStringLiteral("M cleared"), true);
+    this->input_display->insert(i18nc("Memory cleared", "M cleared"));
+    calc_history->addToHistory(i18nc("Memory cleared", "M cleared"), true);
     updateDisplay(UPDATE_CLEAR);
 }
 
@@ -1445,12 +1445,12 @@ void KCalculator::slotStatNumclicked()
     if (!shift_mode_) {
         core.StatCount(KNumber::Zero);
         this->calc_history->addToHistory(i18n("Number of data entered = "), false);
-        this->input_display->insert(QStringLiteral("Number of data entered ="));
+        this->input_display->insert(i18n("Number of data entered ="));
     } else {
         pbShift->setChecked(false);
         core.StatSum(KNumber::Zero);
         calc_history->addToHistory(QString::fromUtf8("\xce\xa3") + QLatin1Char('x') + QLatin1Char('='), false);
-        this->input_display->insert(QStringLiteral("Sum of all data items ="));
+        this->input_display->insert(i18n("Sum of all data items ="));
     }
 
     updateDisplay(UPDATE_FROM_CORE);
@@ -1473,7 +1473,7 @@ void KCalculator::slotStatMeanclicked()
     } else {
         pbShift->setChecked(false);
         core.StatSumSquares(KNumber::Zero);
-        this->input_display->insert(QStringLiteral("Sum of squares ="));
+        this->input_display->insert(i18n("Sum of squares ="));
         calc_history->addToHistory(QString::fromUtf8("\xce\xa3") + QStringLiteral("x<sub>i</sub><sup>2</sup> = "), false);
     }
 
@@ -1516,8 +1516,8 @@ void KCalculator::slotStatMedianclicked()
     this->input_display->slotSetHardOverwrite();
 
     core.StatMedian(KNumber::Zero);
-    input_display->insert(QStringLiteral("Median ="));
-    calc_history->addToHistory(QStringLiteral("Median = "), false);
+    input_display->insert(i18n("Median ="));
+    calc_history->addToHistory(i18n("Median = "), false);
 
     if (shift_mode_) {
         pbShift->setChecked(false);
@@ -1558,7 +1558,7 @@ void KCalculator::slotStatDataInputclicked()
         pbShift->setChecked(false);
         this->input_display->clear();
         this->input_display->slotSetHardOverwrite();
-        input_display->insert(QStringLiteral("Last stat data erased"));
+        input_display->insert(i18n("Last stat data erased"));
         core.StatDataDel();
         statusBar()->showMessage(i18n("Last stat data erased"), 3000);
         calc_history->addToHistory(i18n("Last stat data erased"), true);
@@ -1573,7 +1573,7 @@ void KCalculator::slotStatDataInputclicked()
 void KCalculator::slotStatClearDataclicked()
 {
     this->input_display->clear();
-    this->input_display->insert(QStringLiteral("Statistics memory cleared"));
+    this->input_display->insert(i18n("Stat mem cleared"));
     this->input_display->slotSetHardOverwrite();
     core.StatClearAll();
     statusBar()->showMessage(i18n("Stat mem cleared"), 3000);
@@ -2259,7 +2259,7 @@ void KCalculator::updateDisplay(UpdateFlags flags)
     if (flags & UPDATE_FROM_CORE) {
         calc_display->updateFromCore(core, (flags & UPDATE_STORE_RESULT) != 0);
     } else if (flags & UPDATE_MALFORMED_EXPRESSION) {
-        calc_display->setText(QLatin1String("input error"));
+        calc_display->setText(i18n("Input error"));
     } else if (flags & UPDATE_CLEAR) {
         calc_display->setText(QLatin1String(""));
     } else {

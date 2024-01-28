@@ -14,8 +14,10 @@ KCalcStatusBar::KCalcStatusBar(QWidget *parent)
     : QStatusBar(parent)
     , shift_indicator_(
           addIndicator(QList<QString>() << i18nc("Normal button functions are active", "NORM") << i18nc("Second button functions are active", "SHIFT")))
-    , base_indicator_(addIndicator(QList<QString>() << QStringLiteral("DEC") << QStringLiteral("BIN") << QStringLiteral("OCT") << QStringLiteral("HEX")))
-    , angle_mode_indicator_(addIndicator(QList<QString>() << QStringLiteral("DEG") << QStringLiteral("RAD") << QStringLiteral("GRA")))
+    , base_indicator_(addIndicator(QList<QString>() << i18nc("Decimal indicator in status bar", "DEC") << i18nc("Binary indicator in status bar", "BIN")
+                                                    << i18nc("Octal indicator in status bar", "OCT") << i18nc("Hexadecimal indicator in status bar", "HEX")))
+    , angle_mode_indicator_(addIndicator(QList<QString>() << i18nc("Degree indicator in status bar", "DEG") << i18nc("Radian indicator in status bar", "RAD")
+                                                          << i18nc("Grad indicator in status bar", "GRA")))
     , memory_indicator_(addIndicator(QList<QString>() << QString() << i18nc("Memory indicator in status bar", "M")))
 {
     setSizeGripEnabled(false);
@@ -62,17 +64,17 @@ void KCalcStatusBar::setBase(int base)
 
     switch (base) {
     case 2:
-        text = QStringLiteral("BIN");
+        text = i18n("BIN");
         break;
     case 8:
-        text = QStringLiteral("OCT");
+        text = i18n("OCT");
         break;
     case 10:
     default:
-        text = QStringLiteral("DEC");
+        text = i18n("DEC");
         break;
     case 16:
-        text = QStringLiteral("HEX");
+        text = i18n("HEX");
         break;
     }
     base_indicator_->setText(text);
@@ -84,13 +86,13 @@ void KCalcStatusBar::setAngleMode(AngleMode mode)
 
     switch (mode) {
     case DegMode:
-        text = QStringLiteral("DEG");
+        text = i18n("DEG");
         break;
     case RadMode:
-        text = QStringLiteral("RAD");
+        text = i18n("RAD");
         break;
     case GradMode:
-        text = QStringLiteral("GRA");
+        text = i18n("GRA");
         break;
     }
     angle_mode_indicator_->setText(text);
