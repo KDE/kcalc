@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-28 00:39+0000\n"
+"POT-Creation-Date: 2024-01-29 00:39+0000\n"
 "PO-Revision-Date: 2023-12-10 15:07+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -756,16 +756,59 @@ msgstr "x na 1/y"
 msgid "Exponent"
 msgstr "Exponent"
 
+#: kcalc.cpp:925
+#, fuzzy, kde-format
+#| msgid "Shift"
+msgctxt "Second function mode"
+msgid "Shift"
+msgstr "Shift"
+
+#: kcalc.cpp:1233 kcalc.cpp:1234
+#, fuzzy, kde-format
+#| msgid "Memory clear"
+msgctxt "Memory cleared"
+msgid "M cleared"
+msgstr "Vyčistiť pamäť"
+
 #: kcalc.cpp:1447
 #, fuzzy, kde-format
 #| msgid "Number of data entered"
 msgid "Number of data entered = "
 msgstr "Počet zadaných dát"
 
+#: kcalc.cpp:1448
+#, fuzzy, kde-format
+#| msgid "Number of data entered"
+msgid "Number of data entered ="
+msgstr "Počet zadaných dát"
+
+#: kcalc.cpp:1453
+#, fuzzy, kde-format
+#| msgid "Sum of all data items"
+msgid "Sum of all data items ="
+msgstr "Suma všetkých dátových položiek"
+
 #: kcalc.cpp:1472
 #, fuzzy, kde-format
 #| msgid "Mean"
 msgid "Mean = "
+msgstr "Priemer"
+
+#: kcalc.cpp:1476
+#, kde-format
+msgid "Sum of squares ="
+msgstr ""
+
+#: kcalc.cpp:1519
+#, fuzzy, kde-format
+#| msgid "Median"
+msgid "Median ="
+msgstr "Medián"
+
+#: kcalc.cpp:1520
+#, fuzzy, kde-format
+#| msgid "Mean"
+msgid "Median = "
 msgstr "Priemer"
 
 #: kcalc.cpp:1551 kcalc.cpp:1553
@@ -778,13 +821,13 @@ msgstr "DAT ["
 msgid "] = "
 msgstr "] = "
 
-#: kcalc.cpp:1563 kcalc.cpp:1564
+#: kcalc.cpp:1561 kcalc.cpp:1563 kcalc.cpp:1564
 #, fuzzy, kde-format
 #| msgid "Last stat item erased"
 msgid "Last stat data erased"
 msgstr "Posledná štatistická položka bola vymazaná"
 
-#: kcalc.cpp:1579 kcalc.cpp:1580
+#: kcalc.cpp:1576 kcalc.cpp:1579 kcalc.cpp:1580
 #, kde-format
 msgid "Stat mem cleared"
 msgstr "Štatistická pamäť bola vymazaná"
@@ -818,6 +861,11 @@ msgstr "Farby tlačidiel a displeja"
 #, kde-format
 msgid "Define Constants"
 msgstr "Definovanie konštánt"
+
+#: kcalc.cpp:2262
+#, kde-format
+msgid "Input error"
+msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
 #: kcalc.cpp:2796 kcalc.ui:20
@@ -2069,23 +2117,104 @@ msgstr "Termodynamika"
 msgid "Gravitation"
 msgstr "Gravitácia"
 
-#: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:56
+#: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:58
 #, kde-format
 msgctxt "Normal button functions are active"
 msgid "NORM"
 msgstr "NORM"
 
-#: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:56
+#: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:58
 #, kde-format
 msgctxt "Second button functions are active"
 msgid "SHIFT"
 msgstr "SHIFT"
 
-#: kcalc_statusbar.cpp:19 kcalc_statusbar.cpp:101
+#: kcalc_statusbar.cpp:17
+#, kde-format
+msgctxt "Decimal indicator in status bar"
+msgid "DEC"
+msgstr ""
+
+#: kcalc_statusbar.cpp:17
+#, kde-format
+msgctxt "Binary indicator in status bar"
+msgid "BIN"
+msgstr ""
+
+#: kcalc_statusbar.cpp:18
+#, kde-format
+msgctxt "Octal indicator in status bar"
+msgid "OCT"
+msgstr ""
+
+#: kcalc_statusbar.cpp:18
+#, fuzzy, kde-format
+#| msgid "EXP"
+msgctxt "Hexadecimal indicator in status bar"
+msgid "HEX"
+msgstr "EXP"
+
+#: kcalc_statusbar.cpp:19
+#, kde-format
+msgctxt "Degree indicator in status bar"
+msgid "DEG"
+msgstr ""
+
+#: kcalc_statusbar.cpp:19
+#, fuzzy, kde-format
+#| msgid "AND"
+msgctxt "Radian indicator in status bar"
+msgid "RAD"
+msgstr "AND"
+
+#: kcalc_statusbar.cpp:20
+#, kde-format
+msgctxt "Grad indicator in status bar"
+msgid "GRA"
+msgstr ""
+
+#: kcalc_statusbar.cpp:21 kcalc_statusbar.cpp:103
 #, kde-format
 msgctxt "Memory indicator in status bar"
 msgid "M"
 msgstr "M"
+
+#: kcalc_statusbar.cpp:67
+#, kde-format
+msgid "BIN"
+msgstr ""
+
+#: kcalc_statusbar.cpp:70
+#, kde-format
+msgid "OCT"
+msgstr ""
+
+#: kcalc_statusbar.cpp:74
+#, kde-format
+msgid "DEC"
+msgstr ""
+
+#: kcalc_statusbar.cpp:77
+#, fuzzy, kde-format
+#| msgid "EXP"
+msgid "HEX"
+msgstr "EXP"
+
+#: kcalc_statusbar.cpp:89
+#, kde-format
+msgid "DEG"
+msgstr ""
+
+#: kcalc_statusbar.cpp:92
+#, fuzzy, kde-format
+#| msgid "AND"
+msgid "RAD"
+msgstr "AND"
+
+#: kcalc_statusbar.cpp:95
+#, kde-format
+msgid "GRA"
+msgstr ""
 
 #: kcalcdisplay.cpp:42
 #, kde-format

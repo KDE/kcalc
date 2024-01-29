@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-28 00:39+0000\n"
+"POT-Creation-Date: 2024-01-29 00:39+0000\n"
 "PO-Revision-Date: 2006-03-06 00:42+0100\n"
 "Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
 "Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
@@ -757,16 +757,58 @@ msgstr ""
 msgid "Exponent"
 msgstr "Daraja"
 
+#: kcalc.cpp:925
+#, kde-format
+msgctxt "Second function mode"
+msgid "Shift"
+msgstr ""
+
+#: kcalc.cpp:1233 kcalc.cpp:1234
+#, fuzzy, kde-format
+#| msgid "Memory recall"
+msgctxt "Memory cleared"
+msgid "M cleared"
+msgstr "Xotiradan qoʻyish"
+
 #: kcalc.cpp:1447
 #, fuzzy, kde-format
 #| msgid "Number of data entered"
 msgid "Number of data entered = "
 msgstr "Kiritilgan maʼlumotlar soni"
 
+#: kcalc.cpp:1448
+#, fuzzy, kde-format
+#| msgid "Number of data entered"
+msgid "Number of data entered ="
+msgstr "Kiritilgan maʼlumotlar soni"
+
+#: kcalc.cpp:1453
+#, fuzzy, kde-format
+#| msgid "Sum of all data items"
+msgid "Sum of all data items ="
+msgstr "Hamma sonlarning yigʻindisi"
+
 #: kcalc.cpp:1472
 #, fuzzy, kde-format
 #| msgid "Mean"
 msgid "Mean = "
+msgstr "Oʻrtacha"
+
+#: kcalc.cpp:1476
+#, kde-format
+msgid "Sum of squares ="
+msgstr ""
+
+#: kcalc.cpp:1519
+#, fuzzy, kde-format
+#| msgid "Median"
+msgid "Median ="
+msgstr "Mediana"
+
+#: kcalc.cpp:1520
+#, fuzzy, kde-format
+#| msgid "Mean"
+msgid "Median = "
 msgstr "Oʻrtacha"
 
 #: kcalc.cpp:1551 kcalc.cpp:1553
@@ -779,12 +821,12 @@ msgstr ""
 msgid "] = "
 msgstr ""
 
-#: kcalc.cpp:1563 kcalc.cpp:1564
+#: kcalc.cpp:1561 kcalc.cpp:1563 kcalc.cpp:1564
 #, kde-format
 msgid "Last stat data erased"
 msgstr ""
 
-#: kcalc.cpp:1579 kcalc.cpp:1580
+#: kcalc.cpp:1576 kcalc.cpp:1579 kcalc.cpp:1580
 #, kde-format
 msgid "Stat mem cleared"
 msgstr ""
@@ -818,6 +860,11 @@ msgstr "Tugmalar va koʻrsatish ranglari"
 #, fuzzy, kde-format
 msgid "Define Constants"
 msgstr "Doimiylar moslamasi"
+
+#: kcalc.cpp:2262
+#, kde-format
+msgid "Input error"
+msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
 #: kcalc.cpp:2796 kcalc.ui:20
@@ -2062,22 +2109,99 @@ msgstr "Termodinamika"
 msgid "Gravitation"
 msgstr "Tortish kuchi"
 
-#: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:56
+#: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:58
 #, kde-format
 msgctxt "Normal button functions are active"
 msgid "NORM"
 msgstr ""
 
-#: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:56
+#: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:58
 #, kde-format
 msgctxt "Second button functions are active"
 msgid "SHIFT"
 msgstr ""
 
-#: kcalc_statusbar.cpp:19 kcalc_statusbar.cpp:101
+#: kcalc_statusbar.cpp:17
+#, kde-format
+msgctxt "Decimal indicator in status bar"
+msgid "DEC"
+msgstr ""
+
+#: kcalc_statusbar.cpp:17
+#, kde-format
+msgctxt "Binary indicator in status bar"
+msgid "BIN"
+msgstr ""
+
+#: kcalc_statusbar.cpp:18
+#, kde-format
+msgctxt "Octal indicator in status bar"
+msgid "OCT"
+msgstr ""
+
+#: kcalc_statusbar.cpp:18
+#, kde-format
+msgctxt "Hexadecimal indicator in status bar"
+msgid "HEX"
+msgstr ""
+
+#: kcalc_statusbar.cpp:19
+#, kde-format
+msgctxt "Degree indicator in status bar"
+msgid "DEG"
+msgstr ""
+
+#: kcalc_statusbar.cpp:19
+#, kde-format
+msgctxt "Radian indicator in status bar"
+msgid "RAD"
+msgstr ""
+
+#: kcalc_statusbar.cpp:20
+#, kde-format
+msgctxt "Grad indicator in status bar"
+msgid "GRA"
+msgstr ""
+
+#: kcalc_statusbar.cpp:21 kcalc_statusbar.cpp:103
 #, kde-format
 msgctxt "Memory indicator in status bar"
 msgid "M"
+msgstr ""
+
+#: kcalc_statusbar.cpp:67
+#, kde-format
+msgid "BIN"
+msgstr ""
+
+#: kcalc_statusbar.cpp:70
+#, kde-format
+msgid "OCT"
+msgstr ""
+
+#: kcalc_statusbar.cpp:74
+#, kde-format
+msgid "DEC"
+msgstr ""
+
+#: kcalc_statusbar.cpp:77
+#, kde-format
+msgid "HEX"
+msgstr ""
+
+#: kcalc_statusbar.cpp:89
+#, kde-format
+msgid "DEG"
+msgstr ""
+
+#: kcalc_statusbar.cpp:92
+#, kde-format
+msgid "RAD"
+msgstr ""
+
+#: kcalc_statusbar.cpp:95
+#, kde-format
+msgid "GRA"
 msgstr ""
 
 #: kcalcdisplay.cpp:42
