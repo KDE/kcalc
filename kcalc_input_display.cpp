@@ -3,7 +3,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include <kcalc_input_display.h>
+#include "kcalc_input_display.h"
 
 #include <QLineEdit>
 // #include <kcalc_parser.h>
