@@ -99,3 +99,5 @@ void KCalcInputDisplay::focusInEvent(QFocusEvent *e)
     QLineEdit::focusInEvent(e);
     slotClearOverwrite();
 }
+
+#include "moc_kcalc_input_display.cpp"
