@@ -2346,6 +2346,3 @@ msgstr "Stefan-Boltzmanns konstant"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Avogadros tall"
-
-#~ msgid "M"
-#~ msgstr "M"

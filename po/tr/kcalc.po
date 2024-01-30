@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-29 00:39+0000\n"
-"PO-Revision-Date: 2024-01-27 23:40+0300\n"
+"PO-Revision-Date: 2024-01-29 16:41+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -760,18 +760,16 @@ msgid "Exponent"
 msgstr "Üs"
 
 #: kcalc.cpp:925
-#, fuzzy, kde-format
-#| msgid "Shift"
+#, kde-format
 msgctxt "Second function mode"
 msgid "Shift"
 msgstr "Üst Karakter"
 
 #: kcalc.cpp:1233 kcalc.cpp:1234
-#, fuzzy, kde-format
-#| msgid "Memory clear"
+#, kde-format
 msgctxt "Memory cleared"
 msgid "M cleared"
-msgstr "Bellek temizliği"
+msgstr "Bellek temizlendi"
 
 #: kcalc.cpp:1447
 #, kde-format
@@ -779,16 +777,14 @@ msgid "Number of data entered = "
 msgstr "Girilen veri sayısı = "
 
 #: kcalc.cpp:1448
-#, fuzzy, kde-format
-#| msgid "Number of data entered = "
+#, kde-format
 msgid "Number of data entered ="
 msgstr "Girilen veri sayısı = "
 
 #: kcalc.cpp:1453
-#, fuzzy, kde-format
-#| msgid "Sum of all data items"
+#, kde-format
 msgid "Sum of all data items ="
-msgstr "Tüm veri ögelerinin toplamı"
+msgstr "Tüm verinin toplamı = "
 
 #: kcalc.cpp:1472
 #, kde-format
@@ -798,17 +794,15 @@ msgstr "Ortalama = "
 #: kcalc.cpp:1476
 #, kde-format
 msgid "Sum of squares ="
-msgstr ""
+msgstr "Karelerin toplama = "
 
 #: kcalc.cpp:1519
-#, fuzzy, kde-format
-#| msgid "Median"
+#, kde-format
 msgid "Median ="
-msgstr "Ortalama"
+msgstr "Ortalama = "
 
 #: kcalc.cpp:1520
-#, fuzzy, kde-format
-#| msgid "Mean = "
+#, kde-format
 msgid "Median = "
 msgstr "Ortalama = "
 
@@ -865,7 +859,7 @@ msgstr "Sabitleri Tanımla"
 #: kcalc.cpp:2262
 #, kde-format
 msgid "Input error"
-msgstr ""
+msgstr "Girdi hatası"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
 #: kcalc.cpp:2796 kcalc.ui:20
@@ -2131,51 +2125,49 @@ msgstr "NORMAL"
 #, kde-format
 msgctxt "Second button functions are active"
 msgid "SHIFT"
-msgstr "ÜST KAR."
+msgstr "ÜST KARAKTER"
 
 #: kcalc_statusbar.cpp:17
 #, kde-format
 msgctxt "Decimal indicator in status bar"
 msgid "DEC"
-msgstr ""
+msgstr "ONDALIK"
 
 #: kcalc_statusbar.cpp:17
 #, kde-format
 msgctxt "Binary indicator in status bar"
 msgid "BIN"
-msgstr ""
+msgstr "İKİLİK"
 
 #: kcalc_statusbar.cpp:18
 #, kde-format
 msgctxt "Octal indicator in status bar"
 msgid "OCT"
-msgstr ""
+msgstr "SEKİZLİK"
 
 #: kcalc_statusbar.cpp:18
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgctxt "Hexadecimal indicator in status bar"
 msgid "HEX"
-msgstr "EXP"
+msgstr "ONALTILIK"
 
 #: kcalc_statusbar.cpp:19
 #, kde-format
 msgctxt "Degree indicator in status bar"
 msgid "DEG"
-msgstr ""
+msgstr "AÇI"
 
 #: kcalc_statusbar.cpp:19
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgctxt "Radian indicator in status bar"
 msgid "RAD"
-msgstr "AND"
+msgstr "RADYAN"
 
 #: kcalc_statusbar.cpp:20
 #, kde-format
 msgctxt "Grad indicator in status bar"
 msgid "GRA"
-msgstr ""
+msgstr "GRAD"
 
 #: kcalc_statusbar.cpp:21 kcalc_statusbar.cpp:103
 #, kde-format
@@ -2186,39 +2178,37 @@ msgstr "BELLEK"
 #: kcalc_statusbar.cpp:67
 #, kde-format
 msgid "BIN"
-msgstr ""
+msgstr "İKİLİK"
 
 #: kcalc_statusbar.cpp:70
 #, kde-format
 msgid "OCT"
-msgstr ""
+msgstr "SEKİZLİK"
 
 #: kcalc_statusbar.cpp:74
 #, kde-format
 msgid "DEC"
-msgstr ""
+msgstr "ONDALIK"
 
 #: kcalc_statusbar.cpp:77
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgid "HEX"
-msgstr "EXP"
+msgstr "ONALTILIK"
 
 #: kcalc_statusbar.cpp:89
 #, kde-format
 msgid "DEG"
-msgstr ""
+msgstr "AÇI"
 
 #: kcalc_statusbar.cpp:92
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgid "RAD"
-msgstr "AND"
+msgstr "RADYAN"
 
 #: kcalc_statusbar.cpp:95
 #, kde-format
 msgid "GRA"
-msgstr ""
+msgstr "GRAD"
 
 #: kcalcdisplay.cpp:42
 #, kde-format

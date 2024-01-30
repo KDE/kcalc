@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-29 00:39+0000\n"
-"PO-Revision-Date: 2024-01-26 11:14+0100\n"
+"PO-Revision-Date: 2024-01-29 09:28+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -756,18 +756,16 @@ msgid "Exponent"
 msgstr "Eksponent"
 
 #: kcalc.cpp:925
-#, fuzzy, kde-format
-#| msgid "Shift"
+#, kde-format
 msgctxt "Second function mode"
 msgid "Shift"
-msgstr "Dvig"
+msgstr "Pomik"
 
 #: kcalc.cpp:1233 kcalc.cpp:1234
-#, fuzzy, kde-format
-#| msgid "Memory clear"
+#, kde-format
 msgctxt "Memory cleared"
 msgid "M cleared"
-msgstr "Izbriši pomnilnik"
+msgstr "M izbrisan"
 
 #: kcalc.cpp:1447
 #, kde-format
@@ -775,16 +773,14 @@ msgid "Number of data entered = "
 msgstr "Število vnesenih podatkov = "
 
 #: kcalc.cpp:1448
-#, fuzzy, kde-format
-#| msgid "Number of data entered = "
+#, kde-format
 msgid "Number of data entered ="
-msgstr "Število vnesenih podatkov = "
+msgstr "Število vnesenih podatkov ="
 
 #: kcalc.cpp:1453
-#, fuzzy, kde-format
-#| msgid "Sum of all data items"
+#, kde-format
 msgid "Sum of all data items ="
-msgstr "Vsota vseh vnesenih podatkov"
+msgstr "Vsota vseh vnesenih podatkov ="
 
 #: kcalc.cpp:1472
 #, kde-format
@@ -794,19 +790,17 @@ msgstr "Povprečna vrednost = "
 #: kcalc.cpp:1476
 #, kde-format
 msgid "Sum of squares ="
-msgstr ""
+msgstr "Vsota kvadratov"
 
 #: kcalc.cpp:1519
-#, fuzzy, kde-format
-#| msgid "Median"
+#, kde-format
 msgid "Median ="
-msgstr "Srednja vrednost"
+msgstr "Mediana ="
 
 #: kcalc.cpp:1520
-#, fuzzy, kde-format
-#| msgid "Mean = "
+#, kde-format
 msgid "Median = "
-msgstr "Povprečna vrednost = "
+msgstr "Mediana = "
 
 #: kcalc.cpp:1551 kcalc.cpp:1553
 #, kde-format
@@ -861,7 +855,7 @@ msgstr "Določi konstante"
 #: kcalc.cpp:2262
 #, kde-format
 msgid "Input error"
-msgstr ""
+msgstr "Napaka vnosa"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
 #: kcalc.cpp:2796 kcalc.ui:20
@@ -1455,7 +1449,7 @@ msgstr "B"
 #: kcalc.ui:696
 #, kde-format
 msgid "Bitwise OR"
-msgstr "Bitnost OR"
+msgstr "OR po bitih"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbOR)
 #: kcalc.ui:699
@@ -2112,57 +2106,55 @@ msgstr "Težnost"
 #, kde-format
 msgctxt "Normal button functions are active"
 msgid "NORM"
-msgstr "OBIČ"
+msgstr "NORM"
 
 #: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:58
 #, kde-format
 msgctxt "Second button functions are active"
 msgid "SHIFT"
-msgstr "DVIG"
+msgstr "POMIK"
 
 #: kcalc_statusbar.cpp:17
 #, kde-format
 msgctxt "Decimal indicator in status bar"
 msgid "DEC"
-msgstr ""
+msgstr "DEC"
 
 #: kcalc_statusbar.cpp:17
 #, kde-format
 msgctxt "Binary indicator in status bar"
 msgid "BIN"
-msgstr ""
+msgstr "BIN"
 
 #: kcalc_statusbar.cpp:18
 #, kde-format
 msgctxt "Octal indicator in status bar"
 msgid "OCT"
-msgstr ""
+msgstr "OKT"
 
 #: kcalc_statusbar.cpp:18
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgctxt "Hexadecimal indicator in status bar"
 msgid "HEX"
-msgstr "EXP"
+msgstr "HEX"
 
 #: kcalc_statusbar.cpp:19
 #, kde-format
 msgctxt "Degree indicator in status bar"
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: kcalc_statusbar.cpp:19
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgctxt "Radian indicator in status bar"
 msgid "RAD"
-msgstr "AND"
+msgstr "RAD"
 
 #: kcalc_statusbar.cpp:20
 #, kde-format
 msgctxt "Grad indicator in status bar"
 msgid "GRA"
-msgstr ""
+msgstr "GRA"
 
 #: kcalc_statusbar.cpp:21 kcalc_statusbar.cpp:103
 #, kde-format
@@ -2173,39 +2165,37 @@ msgstr "M"
 #: kcalc_statusbar.cpp:67
 #, kde-format
 msgid "BIN"
-msgstr ""
+msgstr "BIN"
 
 #: kcalc_statusbar.cpp:70
 #, kde-format
 msgid "OCT"
-msgstr ""
+msgstr "OKT"
 
 #: kcalc_statusbar.cpp:74
 #, kde-format
 msgid "DEC"
-msgstr ""
+msgstr "DEC"
 
 #: kcalc_statusbar.cpp:77
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgid "HEX"
-msgstr "EXP"
+msgstr "HEX"
 
 #: kcalc_statusbar.cpp:89
 #, kde-format
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: kcalc_statusbar.cpp:92
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgid "RAD"
-msgstr "AND"
+msgstr "RAD"
 
 #: kcalc_statusbar.cpp:95
 #, kde-format
 msgid "GRA"
-msgstr ""
+msgstr "GRA"
 
 #: kcalcdisplay.cpp:42
 #, kde-format
@@ -2253,7 +2243,7 @@ msgstr "Planckova konstanta"
 #: scienceconstants.xml:23
 #, kde-format
 msgid "Gravitational Constant"
-msgstr "Težnostna konstanta"
+msgstr "Gravitacijska konstanta"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:27
@@ -2284,7 +2274,7 @@ msgstr "Konstanta fine strukture"
 #: scienceconstants.xml:47
 #, kde-format
 msgid "Permeability of Vacuum"
-msgstr "Permeabilnost vakuuma"
+msgstr "Indukcijska konstanta"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:51
