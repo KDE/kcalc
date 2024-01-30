@@ -5,7 +5,7 @@
 # Andrea Di Menna <a.dimenna@libero.it>, 2006.
 # Leonardo Finetti <finex@finex.org>, 2008.
 # Federico Zenith <federico.zenith@member.fsf.org>, 2010, 2011, 2013.
-# Luigi Toscano <luigi.toscano@tiscali.it>, 2010, 2012, 2013, 2014, 2015, 2018, 2019, 2021, 2022, 2023.
+# Luigi Toscano <luigi.toscano@tiscali.it>, 2010, 2012, 2013, 2014, 2015, 2018, 2019, 2021, 2022, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
