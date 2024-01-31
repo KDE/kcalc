@@ -4,14 +4,14 @@
 #
 # Alonso Lara <jlaram@nexo.es>, 1999.
 # Pablo de Vicente <vicente@oan.es>, 2000-2002.
-# SPDX-FileCopyrightText: 2003, 2004, 2023 Eloy Cuadra <ecuadra@eloihr.net>
+# SPDX-FileCopyrightText: 2003, 2004, 2023, 2024 Eloy Cuadra <ecuadra@eloihr.net>
 # Eloy Cuadra <ecuadra@eloihr.net>, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2018, 2019, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-29 00:39+0000\n"
-"PO-Revision-Date: 2023-09-16 11:17+0200\n"
+"PO-Revision-Date: 2024-01-30 18:42+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "First Translator: Alonso Lara <jlaram@nexo.es>\n"
-"X-Generator: Lokalize 23.08.0\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -753,59 +753,51 @@ msgid "Exponent"
 msgstr "Exponente"
 
 #: kcalc.cpp:925
-#, fuzzy, kde-format
-#| msgid "Shift"
+#, kde-format
 msgctxt "Second function mode"
 msgid "Shift"
 msgstr "Cambio"
 
 #: kcalc.cpp:1233 kcalc.cpp:1234
-#, fuzzy, kde-format
-#| msgid "Memory clear"
+#, kde-format
 msgctxt "Memory cleared"
 msgid "M cleared"
-msgstr "Borrar memoria"
+msgstr "Memoria borrada"
 
 #: kcalc.cpp:1447
-#, fuzzy, kde-format
-#| msgid "Number of data entered"
+#, kde-format
 msgid "Number of data entered = "
-msgstr "Número de datos introducidos"
+msgstr "Número de datos introducidos = "
 
 #: kcalc.cpp:1448
-#, fuzzy, kde-format
-#| msgid "Number of data entered"
+#, kde-format
 msgid "Number of data entered ="
-msgstr "Número de datos introducidos"
+msgstr "Número de datos introducidos ="
 
 #: kcalc.cpp:1453
-#, fuzzy, kde-format
-#| msgid "Sum of all data items"
+#, kde-format
 msgid "Sum of all data items ="
-msgstr "Suma de todos los datos"
+msgstr "Suma de todos los datos ="
 
 #: kcalc.cpp:1472
-#, fuzzy, kde-format
-#| msgid "Mean"
+#, kde-format
 msgid "Mean = "
-msgstr "Media"
+msgstr "Media = "
 
 #: kcalc.cpp:1476
 #, kde-format
 msgid "Sum of squares ="
-msgstr ""
+msgstr "Suma de cuadrados ="
 
 #: kcalc.cpp:1519
-#, fuzzy, kde-format
-#| msgid "Median"
+#, kde-format
 msgid "Median ="
-msgstr "Mediana"
+msgstr "Mediana ="
 
 #: kcalc.cpp:1520
-#, fuzzy, kde-format
-#| msgid "Mean"
+#, kde-format
 msgid "Median = "
-msgstr "Media"
+msgstr "Mediana = "
 
 #: kcalc.cpp:1551 kcalc.cpp:1553
 #, kde-format
@@ -818,10 +810,9 @@ msgid "] = "
 msgstr "] = "
 
 #: kcalc.cpp:1561 kcalc.cpp:1563 kcalc.cpp:1564
-#, fuzzy, kde-format
-#| msgid "Last stat item erased"
+#, kde-format
 msgid "Last stat data erased"
-msgstr "Se eliminó el último elemento estadístico"
+msgstr "Último datos estadísticos borrados"
 
 #: kcalc.cpp:1576 kcalc.cpp:1579 kcalc.cpp:1580
 #, kde-format
@@ -861,7 +852,7 @@ msgstr "Definir constantes"
 #: kcalc.cpp:2262
 #, kde-format
 msgid "Input error"
-msgstr ""
+msgstr "Error de entrada"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
 #: kcalc.cpp:2796 kcalc.ui:20
@@ -1361,10 +1352,9 @@ msgstr "Lista de las constantes programables por el usuario"
 
 #. i18n: ectx: property (text), widget (QLabel, base_label)
 #: kcalc.ui:176
-#, fuzzy, kde-format
-#| msgid "&Dec"
+#, kde-format
 msgid "Dec"
-msgstr "&Dec"
+msgstr "Dec"
 
 #. i18n: ectx: property (toolTip), widget (KCalcBitset, mBitset)
 #: kcalc.ui:395
@@ -1382,13 +1372,13 @@ msgstr "Gra&dos"
 #: kcalc.ui:425
 #, kde-format
 msgid "&Rad"
-msgstr "&Rad"
+msgstr "&Radianes"
 
 #. i18n: ectx: property (text), widget (QRadioButton, gradRadio)
 #: kcalc.ui:432
 #, kde-format
 msgid "&Grad"
-msgstr "&Grad"
+msgstr "&Gradianes"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, hexRadio)
 #: kcalc.ui:447
@@ -1409,7 +1399,7 @@ msgstr "&Hex"
 #: kcalc.ui:469 kcalc.ui:505 kcalc.ui:541 kcalc.ui:577
 #, kde-format
 msgid "KS…el"
-msgstr ""
+msgstr "KS…el"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, decRadio)
 #: kcalc.ui:483
@@ -2139,45 +2129,43 @@ msgstr "Cambio"
 #, kde-format
 msgctxt "Decimal indicator in status bar"
 msgid "DEC"
-msgstr ""
+msgstr "DEC"
 
 #: kcalc_statusbar.cpp:17
 #, kde-format
 msgctxt "Binary indicator in status bar"
 msgid "BIN"
-msgstr ""
+msgstr "BIN"
 
 #: kcalc_statusbar.cpp:18
 #, kde-format
 msgctxt "Octal indicator in status bar"
 msgid "OCT"
-msgstr ""
+msgstr "OCT"
 
 #: kcalc_statusbar.cpp:18
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgctxt "Hexadecimal indicator in status bar"
 msgid "HEX"
-msgstr "EXP"
+msgstr "HEX"
 
 #: kcalc_statusbar.cpp:19
 #, kde-format
 msgctxt "Degree indicator in status bar"
 msgid "DEG"
-msgstr ""
+msgstr "GRA"
 
 #: kcalc_statusbar.cpp:19
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgctxt "Radian indicator in status bar"
 msgid "RAD"
-msgstr "AND"
+msgstr "RAD"
 
 #: kcalc_statusbar.cpp:20
 #, kde-format
 msgctxt "Grad indicator in status bar"
 msgid "GRA"
-msgstr ""
+msgstr "GDN"
 
 #: kcalc_statusbar.cpp:21 kcalc_statusbar.cpp:103
 #, kde-format
@@ -2188,39 +2176,37 @@ msgstr "M"
 #: kcalc_statusbar.cpp:67
 #, kde-format
 msgid "BIN"
-msgstr ""
+msgstr "BIN"
 
 #: kcalc_statusbar.cpp:70
 #, kde-format
 msgid "OCT"
-msgstr ""
+msgstr "OCT"
 
 #: kcalc_statusbar.cpp:74
 #, kde-format
 msgid "DEC"
-msgstr ""
+msgstr "DEC"
 
 #: kcalc_statusbar.cpp:77
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgid "HEX"
-msgstr "EXP"
+msgstr "HEX"
 
 #: kcalc_statusbar.cpp:89
 #, kde-format
 msgid "DEG"
-msgstr ""
+msgstr "GRA"
 
 #: kcalc_statusbar.cpp:92
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgid "RAD"
-msgstr "AND"
+msgstr "RAD"
 
 #: kcalc_statusbar.cpp:95
 #, kde-format
 msgid "GRA"
-msgstr ""
+msgstr "GDN"
 
 #: kcalcdisplay.cpp:42
 #, kde-format
