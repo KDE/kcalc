@@ -201,6 +201,5 @@ Type=Application
 StartupNotify=true
 Categories=Qt;KDE;Utility;Calculator;X-KDE-Utilities-Desktop;
 X-DBUS-ServiceName=org.kde.kcalc.desktop
-# Qt5 maps the Calculator key to Key_Launch1, that may change with Qt6 (QBUG-25261)
-X-KDE-Shortcuts=Launch (1)
+X-KDE-Shortcuts=Calculator
 
