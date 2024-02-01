@@ -482,7 +482,7 @@
 >xl</guibutton
 ></entry>
 <entry
->Şu anki tamsayı işlenene (faktöryel) eşit veya küçük olan tüm pozitif tamsayıların çarpımını hesapla</entry
+>Şu anki tamsayı işlenene (faktöriyel) eşit veya küçük olan tüm pozitif tamsayıların çarpımını hesapla</entry
 ></row>
 
 <row
@@ -746,7 +746,7 @@
 >Seçili bitleri görmek için <guimenu
 >Ayarlar</guimenu
 > menüsünden <guimenu
->Bit Düzenlemeyi Göster</guimenu
+>Bit Düzenini Göster</guimenu
 > 'i seçmek isteyebilirsiniz.</para>
 
 <para
@@ -1466,13 +1466,13 @@
 <listitem
 ><para
 ><userinput
->22 Shift IntDiv 8 = </userinput
+>22 Üst Karakter IntDiv 8 = </userinput
 > sonucu <emphasis
 >2</emphasis
 ></para>
 <para
 ><userinput
->22.345 Shift IntDiv 8 = </userinput
+>22.345 Üst Karakter IntDiv 8 = </userinput
 > sonucu <emphasis
 >2</emphasis
 > </para
@@ -1606,14 +1606,14 @@
 >And</guibutton
 > ve <guibutton
 >Or</guibutton
-> işlevleri bitwise mantıksal işlemler gerçekleştirir ve bu nedenle taban <guilabel
->Dec</guilabel
+> işlevleri bit tabanlı mantıksal işlemler gerçekleştirir ve bu nedenle taban <guilabel
+>Onluk</guilabel
 > yerine <guilabel
->Hex</guilabel
+>Onaltılık</guilabel
 >, <guilabel
->Oct</guilabel
+>Sekizlik</guilabel
 > veya<guilabel
->Bin</guilabel
+>İkilik</guilabel
 > olarak ayarlanırsa daha anlamlı görünür. Aşağıdaki örneklerde taban <guilabel
 >Bin</guilabel
 > olarak ayarlanmıştır.</para>

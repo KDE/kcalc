@@ -317,7 +317,7 @@
 >Asin</guibutton
 ></entry>
 <entry
->Calcule l'arcsinus</entry
+>Calcule l'Arcsinus</entry
 ></row>
 
 <row
@@ -1343,7 +1343,7 @@
 <row
 ><entry
 ><keycap
->PgDown</keycap
+>Page Préc.</keycap
 ></entry>
 <entry
 ><guibutton
@@ -1420,7 +1420,7 @@
 
 <sect1 id="mod">
 <title
->Mod and DivEnt</title>
+>Mod et DivEnt</title>
 
 <variablelist>
 <varlistentry>
@@ -1583,7 +1583,7 @@
 
 <sect1 id="and-or-xor">
 <title
->Cmp, And, Or et Xor</title>
+>Cmp, Et, Ou et Xor</title>
 
 <para
 >Les fonctions <guibutton
@@ -1736,7 +1736,7 @@
 ></question>
 <answer
 ><para
->Le facteur principal déterminant la précision de &kcalc; est le fait que les bibliothèques libc et libmath gèrent le type de données C <type
+>Le facteur principal déterminant la précision de &kcalc; est le fait que les bibliothèques « libc » et « libmath » gèrent le type de données C <type
 >long double</type
 >. Si c'est le cas, &kcalc; le détectera au moment de la compilation et l'utilisera comme type de base pour représenter les nombres. </para>
 
