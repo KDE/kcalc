@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-29 00:39+0000\n"
-"PO-Revision-Date: 2024-01-26 08:15+0200\n"
+"PO-Revision-Date: 2024-01-30 21:14+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -244,7 +244,7 @@ msgstr "האם לקבץ ספרות"
 #: general.ui:100
 #, kde-format
 msgid "Group digits"
-msgstr "קבץ ספרות"
+msgstr "קיבוץ ספרות"
 
 #. i18n: ectx: property (text), widget (QLabel, grouping_binary_lb)
 #: general.ui:115
@@ -280,7 +280,7 @@ msgstr "האם לצפצף בשגיאה"
 #: general.ui:163
 #, kde-format
 msgid "&Beep on error"
-msgstr "&צפצף במקרה של שגיאה"
+msgstr "&צפצוף במקרה של שגיאה"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_CaptionResult)
 #: general.ui:173
@@ -762,8 +762,7 @@ msgid "Exponent"
 msgstr "מעריך"
 
 #: kcalc.cpp:925
-#, fuzzy, kde-format
-#| msgid "Shift"
+#, kde-format
 msgctxt "Second function mode"
 msgid "Shift"
 msgstr "Shift"
@@ -781,16 +780,14 @@ msgid "Number of data entered = "
 msgstr "מספר הנתונים שהוכנסו ="
 
 #: kcalc.cpp:1448
-#, fuzzy, kde-format
-#| msgid "Number of data entered = "
+#, kde-format
 msgid "Number of data entered ="
-msgstr "מספר הנתונים שהוכנסו ="
+msgstr "מספר הנתונים שהוזנו ="
 
 #: kcalc.cpp:1453
-#, fuzzy, kde-format
-#| msgid "Sum of all data items"
+#, kde-format
 msgid "Sum of all data items ="
-msgstr "סכום כל המידע שהוכנס"
+msgstr "סכום כל פרטי הנתונים ="
 
 #: kcalc.cpp:1472
 #, kde-format
@@ -800,19 +797,17 @@ msgstr "ממוצע ="
 #: kcalc.cpp:1476
 #, kde-format
 msgid "Sum of squares ="
-msgstr ""
+msgstr "סכום הריבועים ="
 
 #: kcalc.cpp:1519
-#, fuzzy, kde-format
-#| msgid "Median"
+#, kde-format
 msgid "Median ="
-msgstr "חציון"
+msgstr "חציון ="
 
 #: kcalc.cpp:1520
-#, fuzzy, kde-format
-#| msgid "Mean = "
+#, kde-format
 msgid "Median = "
-msgstr "ממוצע ="
+msgstr "חציון ="
 
 #: kcalc.cpp:1551 kcalc.cpp:1553
 #, kde-format
@@ -867,7 +862,7 @@ msgstr "הגדרת קבועים"
 #: kcalc.cpp:2262
 #, kde-format
 msgid "Input error"
-msgstr ""
+msgstr "שגיאת קלט"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
 #: kcalc.cpp:2796 kcalc.ui:20
@@ -2120,45 +2115,43 @@ msgstr "SHIFT"
 #, kde-format
 msgctxt "Decimal indicator in status bar"
 msgid "DEC"
-msgstr ""
+msgstr "עשרוני"
 
 #: kcalc_statusbar.cpp:17
 #, kde-format
 msgctxt "Binary indicator in status bar"
 msgid "BIN"
-msgstr ""
+msgstr "בינרי"
 
 #: kcalc_statusbar.cpp:18
 #, kde-format
 msgctxt "Octal indicator in status bar"
 msgid "OCT"
-msgstr ""
+msgstr "אוקטלי"
 
 #: kcalc_statusbar.cpp:18
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgctxt "Hexadecimal indicator in status bar"
 msgid "HEX"
-msgstr "EXP"
+msgstr "הקסדצימלי"
 
 #: kcalc_statusbar.cpp:19
 #, kde-format
 msgctxt "Degree indicator in status bar"
 msgid "DEG"
-msgstr ""
+msgstr "מעלות"
 
 #: kcalc_statusbar.cpp:19
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgctxt "Radian indicator in status bar"
 msgid "RAD"
-msgstr "AND"
+msgstr "רדיאנים"
 
 #: kcalc_statusbar.cpp:20
 #, kde-format
 msgctxt "Grad indicator in status bar"
 msgid "GRA"
-msgstr ""
+msgstr "גראד"
 
 #: kcalc_statusbar.cpp:21 kcalc_statusbar.cpp:103
 #, kde-format
@@ -2169,39 +2162,37 @@ msgstr "M"
 #: kcalc_statusbar.cpp:67
 #, kde-format
 msgid "BIN"
-msgstr ""
+msgstr "בינרי"
 
 #: kcalc_statusbar.cpp:70
 #, kde-format
 msgid "OCT"
-msgstr ""
+msgstr "אוקטלי"
 
 #: kcalc_statusbar.cpp:74
 #, kde-format
 msgid "DEC"
-msgstr ""
+msgstr "עשרוני"
 
 #: kcalc_statusbar.cpp:77
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgid "HEX"
-msgstr "EXP"
+msgstr "הקסדצימלי"
 
 #: kcalc_statusbar.cpp:89
 #, kde-format
 msgid "DEG"
-msgstr ""
+msgstr "מעלות"
 
 #: kcalc_statusbar.cpp:92
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgid "RAD"
-msgstr "AND"
+msgstr "רדיאנים"
 
 #: kcalc_statusbar.cpp:95
 #, kde-format
 msgid "GRA"
-msgstr ""
+msgstr "גראד"
 
 #: kcalcdisplay.cpp:42
 #, kde-format
