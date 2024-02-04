@@ -2,20 +2,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Zlatko Popov <zlatkopopov@fsa-bg.org>, 2007.
-# Mincho Kondarev <mkondarev@yahoo.de>, 2022, 2023.
+# SPDX-FileCopyrightText: 2022, 2023, 2024 Mincho Kondarev <mkondarev@yahoo.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-29 00:39+0000\n"
-"PO-Revision-Date: 2023-09-24 22:25+0200\n"
+"PO-Revision-Date: 2024-02-03 16:11+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
-"Language-Team: \n"
+"Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.04.3\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -750,59 +750,51 @@ msgid "Exponent"
 msgstr "Експоненциално представяне"
 
 #: kcalc.cpp:925
-#, fuzzy, kde-format
-#| msgid "Shift"
+#, kde-format
 msgctxt "Second function mode"
 msgid "Shift"
 msgstr "Shift"
 
 #: kcalc.cpp:1233 kcalc.cpp:1234
-#, fuzzy, kde-format
-#| msgid "Memory clear"
+#, kde-format
 msgctxt "Memory cleared"
 msgid "M cleared"
-msgstr "Изчистване на паметта"
+msgstr "Паметта е изчистена"
 
 #: kcalc.cpp:1447
-#, fuzzy, kde-format
-#| msgid "Number of data entered"
+#, kde-format
 msgid "Number of data entered = "
-msgstr "Брой на въведените данни"
+msgstr "Брой на въведените данни = "
 
 #: kcalc.cpp:1448
-#, fuzzy, kde-format
-#| msgid "Number of data entered"
+#, kde-format
 msgid "Number of data entered ="
-msgstr "Брой на въведените данни"
+msgstr "Брой на въведените данни ="
 
 #: kcalc.cpp:1453
-#, fuzzy, kde-format
-#| msgid "Sum of all data items"
+#, kde-format
 msgid "Sum of all data items ="
-msgstr "Сума на всички въведени данни"
+msgstr "Сума на всички въведени данни ="
 
 #: kcalc.cpp:1472
-#, fuzzy, kde-format
-#| msgid "Mean"
+#, kde-format
 msgid "Mean = "
-msgstr "Средно аритметично"
+msgstr "Средно аритметично = "
 
 #: kcalc.cpp:1476
 #, kde-format
 msgid "Sum of squares ="
-msgstr ""
+msgstr "Сума на квадратите ="
 
 #: kcalc.cpp:1519
-#, fuzzy, kde-format
-#| msgid "Median"
+#, kde-format
 msgid "Median ="
-msgstr "Статистическа медиана"
+msgstr "Статистическа медиана ="
 
 #: kcalc.cpp:1520
-#, fuzzy, kde-format
-#| msgid "Mean"
+#, kde-format
 msgid "Median = "
-msgstr "Средно аритметично"
+msgstr "Статистическа медиана = "
 
 #: kcalc.cpp:1551 kcalc.cpp:1553
 #, kde-format
@@ -815,15 +807,14 @@ msgid "] = "
 msgstr "] = "
 
 #: kcalc.cpp:1561 kcalc.cpp:1563 kcalc.cpp:1564
-#, fuzzy, kde-format
-#| msgid "Last stat item erased"
+#, kde-format
 msgid "Last stat data erased"
-msgstr "Last stat item erased"
+msgstr "Изтриване на последния елемент от статистиката"
 
 #: kcalc.cpp:1576 kcalc.cpp:1579 kcalc.cpp:1580
 #, kde-format
 msgid "Stat mem cleared"
-msgstr "Stat mem cleared"
+msgstr "Паметта на статистиката е изчистена"
 
 #: kcalc.cpp:1634
 #, kde-format
@@ -833,7 +824,7 @@ msgstr "Общи настройки"
 #: kcalc.cpp:1638
 #, kde-format
 msgid "Font"
-msgstr "T,rbj"
+msgstr "Шрифт"
 
 #: kcalc.cpp:1638
 #, kde-format
@@ -858,7 +849,7 @@ msgstr "Настройки на константи"
 #: kcalc.cpp:2262
 #, kde-format
 msgid "Input error"
-msgstr ""
+msgstr "Грешка при въвеждане"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
 #: kcalc.cpp:2796 kcalc.ui:20
@@ -1357,16 +1348,15 @@ msgstr "Списък с потребителски константи"
 
 #. i18n: ectx: property (text), widget (QLabel, base_label)
 #: kcalc.ui:176
-#, fuzzy, kde-format
-#| msgid "&Dec"
+#, kde-format
 msgid "Dec"
-msgstr "&10"
+msgstr "Dec"
 
 #. i18n: ectx: property (toolTip), widget (KCalcBitset, mBitset)
 #: kcalc.ui:395
 #, kde-format
 msgid "Click on a Bit to toggle it."
-msgstr "Цъкнете на бит, за да го превключите."
+msgstr "Щракнете на бит, за да го превключите."
 
 #. i18n: ectx: property (text), widget (QRadioButton, degRadio)
 #: kcalc.ui:418
@@ -1405,7 +1395,7 @@ msgstr "He&x"
 #: kcalc.ui:469 kcalc.ui:505 kcalc.ui:541 kcalc.ui:577
 #, kde-format
 msgid "KS…el"
-msgstr ""
+msgstr "KS…el"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, decRadio)
 #: kcalc.ui:483
@@ -2135,45 +2125,43 @@ msgstr "SHIFT"
 #, kde-format
 msgctxt "Decimal indicator in status bar"
 msgid "DEC"
-msgstr ""
+msgstr "DEC"
 
 #: kcalc_statusbar.cpp:17
 #, kde-format
 msgctxt "Binary indicator in status bar"
 msgid "BIN"
-msgstr ""
+msgstr "BIN"
 
 #: kcalc_statusbar.cpp:18
 #, kde-format
 msgctxt "Octal indicator in status bar"
 msgid "OCT"
-msgstr ""
+msgstr "OCT"
 
 #: kcalc_statusbar.cpp:18
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgctxt "Hexadecimal indicator in status bar"
 msgid "HEX"
-msgstr "EXP"
+msgstr "HEX"
 
 #: kcalc_statusbar.cpp:19
 #, kde-format
 msgctxt "Degree indicator in status bar"
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: kcalc_statusbar.cpp:19
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgctxt "Radian indicator in status bar"
 msgid "RAD"
-msgstr "AND"
+msgstr "RAD"
 
 #: kcalc_statusbar.cpp:20
 #, kde-format
 msgctxt "Grad indicator in status bar"
 msgid "GRA"
-msgstr ""
+msgstr "GRA"
 
 #: kcalc_statusbar.cpp:21 kcalc_statusbar.cpp:103
 #, kde-format
@@ -2184,39 +2172,37 @@ msgstr "M"
 #: kcalc_statusbar.cpp:67
 #, kde-format
 msgid "BIN"
-msgstr ""
+msgstr "BIN"
 
 #: kcalc_statusbar.cpp:70
 #, kde-format
 msgid "OCT"
-msgstr ""
+msgstr "OCT"
 
 #: kcalc_statusbar.cpp:74
 #, kde-format
 msgid "DEC"
-msgstr ""
+msgstr "DEC"
 
 #: kcalc_statusbar.cpp:77
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgid "HEX"
-msgstr "EXP"
+msgstr "HEX"
 
 #: kcalc_statusbar.cpp:89
 #, kde-format
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: kcalc_statusbar.cpp:92
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgid "RAD"
-msgstr "AND"
+msgstr "RAD"
 
 #: kcalc_statusbar.cpp:95
 #, kde-format
 msgid "GRA"
-msgstr ""
+msgstr "GRA"
 
 #: kcalcdisplay.cpp:42
 #, kde-format
@@ -2332,9 +2318,3 @@ msgstr "Константа на Стефан-Болцман"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Число на Авогадро"
-
-#~ msgid "M"
-#~ msgstr "M"
-
-#~ msgid "KSq…bel"
-#~ msgstr "KSq…bel"
