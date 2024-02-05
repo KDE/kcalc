@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-29 00:39+0000\n"
-"PO-Revision-Date: 2024-01-27 10:33+0100\n"
+"PO-Revision-Date: 2024-02-04 12:58+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -757,18 +757,16 @@ msgid "Exponent"
 msgstr "Expoñente."
 
 #: kcalc.cpp:925
-#, fuzzy, kde-format
-#| msgid "Shift"
+#, kde-format
 msgctxt "Second function mode"
 msgid "Shift"
-msgstr "Maiúsculas"
+msgstr "Translación"
 
 #: kcalc.cpp:1233 kcalc.cpp:1234
-#, fuzzy, kde-format
-#| msgid "Memory clear"
+#, kde-format
 msgctxt "Memory cleared"
 msgid "M cleared"
-msgstr "Baleirar a memoria."
+msgstr "Baleirouse a memoria"
 
 #: kcalc.cpp:1447
 #, kde-format
@@ -776,16 +774,14 @@ msgid "Number of data entered = "
 msgstr "Número de datos inseridos = "
 
 #: kcalc.cpp:1448
-#, fuzzy, kde-format
-#| msgid "Number of data entered = "
+#, kde-format
 msgid "Number of data entered ="
-msgstr "Número de datos inseridos = "
+msgstr "Número de datos inseridos ="
 
 #: kcalc.cpp:1453
-#, fuzzy, kde-format
-#| msgid "Sum of all data items"
+#, kde-format
 msgid "Sum of all data items ="
-msgstr "Suma de todos os elementos de datos."
+msgstr "Suma de todos os elementos de datos ="
 
 #: kcalc.cpp:1472
 #, kde-format
@@ -795,19 +791,17 @@ msgstr "Media = "
 #: kcalc.cpp:1476
 #, kde-format
 msgid "Sum of squares ="
-msgstr ""
+msgstr "Suma de cadrados ="
 
 #: kcalc.cpp:1519
-#, fuzzy, kde-format
-#| msgid "Median"
+#, kde-format
 msgid "Median ="
-msgstr "Mediana."
+msgstr "Mediana ="
 
 #: kcalc.cpp:1520
-#, fuzzy, kde-format
-#| msgid "Mean = "
+#, kde-format
 msgid "Median = "
-msgstr "Media = "
+msgstr "Mediana = "
 
 #: kcalc.cpp:1551 kcalc.cpp:1553
 #, kde-format
@@ -862,7 +856,7 @@ msgstr "Definir constantes"
 #: kcalc.cpp:2262
 #, kde-format
 msgid "Input error"
-msgstr ""
+msgstr "Erro de entrada"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
 #: kcalc.cpp:2796 kcalc.ui:20
@@ -2138,45 +2132,43 @@ msgstr "Maiúsculas"
 #, kde-format
 msgctxt "Decimal indicator in status bar"
 msgid "DEC"
-msgstr ""
+msgstr "DEC"
 
 #: kcalc_statusbar.cpp:17
 #, kde-format
 msgctxt "Binary indicator in status bar"
 msgid "BIN"
-msgstr ""
+msgstr "BIN"
 
 #: kcalc_statusbar.cpp:18
 #, kde-format
 msgctxt "Octal indicator in status bar"
 msgid "OCT"
-msgstr ""
+msgstr "OCT"
 
 #: kcalc_statusbar.cpp:18
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgctxt "Hexadecimal indicator in status bar"
 msgid "HEX"
-msgstr "EXP"
+msgstr "HEX"
 
 #: kcalc_statusbar.cpp:19
 #, kde-format
 msgctxt "Degree indicator in status bar"
 msgid "DEG"
-msgstr ""
+msgstr "GRA"
 
 #: kcalc_statusbar.cpp:19
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgctxt "Radian indicator in status bar"
 msgid "RAD"
-msgstr "E"
+msgstr "RAD"
 
 #: kcalc_statusbar.cpp:20
 #, kde-format
 msgctxt "Grad indicator in status bar"
 msgid "GRA"
-msgstr ""
+msgstr "GRA"
 
 #: kcalc_statusbar.cpp:21 kcalc_statusbar.cpp:103
 #, kde-format
@@ -2187,39 +2179,37 @@ msgstr "M"
 #: kcalc_statusbar.cpp:67
 #, kde-format
 msgid "BIN"
-msgstr ""
+msgstr "BIN"
 
 #: kcalc_statusbar.cpp:70
 #, kde-format
 msgid "OCT"
-msgstr ""
+msgstr "OCT"
 
 #: kcalc_statusbar.cpp:74
 #, kde-format
 msgid "DEC"
-msgstr ""
+msgstr "DEC"
 
 #: kcalc_statusbar.cpp:77
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgid "HEX"
-msgstr "EXP"
+msgstr "HEX"
 
 #: kcalc_statusbar.cpp:89
 #, kde-format
 msgid "DEG"
-msgstr ""
+msgstr "GRA"
 
 #: kcalc_statusbar.cpp:92
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgid "RAD"
-msgstr "E"
+msgstr "RAD"
 
 #: kcalc_statusbar.cpp:95
 #, kde-format
 msgid "GRA"
-msgstr ""
+msgstr "GRA"
 
 #: kcalcdisplay.cpp:42
 #, kde-format

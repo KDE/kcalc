@@ -2354,9 +2354,3 @@ msgstr "ステファン-ボルツマン定数"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "アボガドロ定数"
-
-#~ msgid "M"
-#~ msgstr "M"
-
-#~ msgid "KSq…bel"
-#~ msgstr "KSq…bel"

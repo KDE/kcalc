@@ -1,20 +1,20 @@
 # translation of kcalc.po to Punjabi
 # Amanpreet Singh Alam <aalam@redhat.com>, 2004, 2005.
 # Amanpreet Singh Alam <amanpreetalam@yahoo.com>, 2005.
-# A S Alam <aalam@users.sf.net>, 2007, 2009, 2010, 2012, 2013.
+# SPDX-FileCopyrightText: 2007, 2009, 2010, 2012, 2013, 2024 A S Alam <aalam@users.sf.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-29 00:39+0000\n"
-"PO-Revision-Date: 2013-06-23 12:37-0500\n"
-"Last-Translator: A S Alam <aalam@users.sf.net>\n"
-"Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
+"PO-Revision-Date: 2024-02-04 10:20-0600\n"
+"Last-Translator: A S Alam <aalam@punlinux.org>\n"
+"Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
 "Language: pa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -25,7 +25,7 @@ msgstr "ਅਮਨਪਰੀਤ ਸਿੰਘ ਆਲਮ"
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "aalam@users.sf.net"
+msgstr "aalam@punlinux.org"
 
 #. i18n: ectx: property (title), widget (QGroupBox, displayColorsBox)
 #: colors.ui:17
@@ -37,33 +37,31 @@ msgstr "ਦਰਿਸ਼ ਰੰਗ"
 #: colors.ui:25
 #, kde-format
 msgid "&Foreground:"
-msgstr "ਮੁੱਖਭੂਮੀ(&F):"
+msgstr "ਫਾਰਗਰਾਊਂਡ(&F):"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
 #: colors.ui:52
 #, kde-format
 msgid "&Background:"
-msgstr "ਪਿੱਠਭੂਮੀ(&B):"
+msgstr "ਬੈਕਗਰਾਊਂਡ(&B):"
 
 #. i18n: ectx: property (title), widget (QGroupBox, buttonColorsBox)
 #: colors.ui:97
 #, kde-format
 msgid "Button Colors"
-msgstr "ਬਟਨ ਰੰਗ"
+msgstr "ਬਟਨ ਦੇ ਰੰਗ"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
 #: colors.ui:105
-#, fuzzy, kde-format
-#| msgid "&Background:"
+#, kde-format
 msgid "Background"
-msgstr "ਪਿੱਠਭੂਮੀ(&B):"
+msgstr "ਬੈਕਗਰਾਊਂਡ"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: colors.ui:115
-#, fuzzy, kde-format
-#| msgid "&Foreground:"
+#, kde-format
 msgid "Foreground"
-msgstr "ਮੁੱਖਭੂਮੀ(&F):"
+msgstr "ਫਾਰਗਰਾਊਂਡ"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel5)
 #: colors.ui:125
@@ -103,16 +101,15 @@ msgstr "ਕਾਰਵਾਈਆਂ(&p):"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel13)
 #: colors.ui:287
-#, fuzzy, kde-format
-#| msgid "&Constants"
+#, kde-format
 msgid "&Constants:"
-msgstr "ਸਥਿਰ(&C)"
+msgstr "ਸਥਿਰ ਅੰਕ(&C)"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
 #: constants.ui:13 kcalc.cpp:1674
 #, kde-format
 msgid "Constants"
-msgstr "ਸਥਿਰ"
+msgstr "ਸਥਿਰ ਅੰਕ"
 
 #. i18n: ectx: property (text), widget (QPushButton, pushButton0)
 #. i18n: ectx: property (text), widget (QPushButton, pushButton1)
@@ -124,7 +121,7 @@ msgstr "ਸਥਿਰ"
 #: constants.ui:117 constants.ui:138
 #, kde-format
 msgid "Predefined"
-msgstr "ਪਹਿਲਾਂ-ਦਿੱਤਾ"
+msgstr "ਪਹਿਲਾਂ-ਦਿੱਤੇ"
 
 #. i18n: ectx: property (text), widget (QLabel, buttonlabel)
 #: fonts.ui:21
@@ -152,17 +149,15 @@ msgstr "ਵੇਖਾਉਣ ਲਈ ਵਰਤਣ ਵਾਸਤੇ ਫੋਂਟ"
 
 #. i18n: ectx: property (text), widget (QLabel, historylabel)
 #: fonts.ui:61
-#, fuzzy, kde-format
-#| msgid "&Display font:"
+#, kde-format
 msgid "&History font:"
-msgstr "ਦਿੱਖ ਫੋਂਟ(&D):"
+msgstr "ਅਤੀਤ ਫ਼ੌਂਟ(&D):"
 
 #. i18n: ectx: property (toolTip), widget (KFontRequester, kcfg_HistoryFont)
 #: fonts.ui:74
-#, fuzzy, kde-format
-#| msgid "The font to use in the display"
+#, kde-format
 msgid "The font to use in the history"
-msgstr "ਵੇਖਾਉਣ ਲਈ ਵਰਤਣ ਵਾਸਤੇ ਫੋਂਟ"
+msgstr "ਅਤੀਤ ਵਿੱਚ ਵਰਤਣ ਲਈ ਫ਼ੌਂਟ"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
 #: general.ui:14 kcalc.cpp:1634
@@ -332,7 +327,7 @@ msgstr "ਅੰਕ ਸਿਸਟਮ ਮੋਡ"
 #: kcalc.cpp:200
 #, kde-format
 msgid "Show &History"
-msgstr ""
+msgstr "ਅਤੀਤ ਵੇਖਾਓ(&H)"
 
 #: kcalc.cpp:206
 #, kde-format
@@ -388,12 +383,10 @@ msgid "Cube root"
 msgstr "ਘਣਮੂਲ"
 
 #: kcalc.cpp:447
-#, fuzzy, kde-format
-#| msgctxt "Arc sine"
-#| msgid "Asin"
+#, kde-format
 msgctxt "Sine"
 msgid "sin"
-msgstr "Asin"
+msgstr "Sin"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSin)
 #: kcalc.cpp:447 kcalc.ui:728
@@ -405,7 +398,7 @@ msgstr "Sine"
 #, kde-format
 msgctxt "Arc sine"
 msgid "asin"
-msgstr ""
+msgstr "asin"
 
 #: kcalc.cpp:448
 #, kde-format
@@ -413,12 +406,10 @@ msgid "Arc sine"
 msgstr "Arc sine"
 
 #: kcalc.cpp:449
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic sine"
-#| msgid "Asinh"
+#, kde-format
 msgctxt "Hyperbolic sine"
 msgid "sinh"
-msgstr "Asinh"
+msgstr "sinh"
 
 #: kcalc.cpp:449
 #, kde-format
@@ -426,12 +417,10 @@ msgid "Hyperbolic sine"
 msgstr "ਹਾਈਪਰਬੋਲ ਸਾਈਨ"
 
 #: kcalc.cpp:450
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic sine"
-#| msgid "Asinh"
+#, kde-format
 msgctxt "Inverse hyperbolic sine"
 msgid "asinh"
-msgstr "Asinh"
+msgstr "asinh"
 
 #: kcalc.cpp:450
 #, kde-format
@@ -439,12 +428,10 @@ msgid "Inverse hyperbolic sine"
 msgstr "ਉਲਟ ਹਾਈਪਰਬੋਲਿਕ ਸਾਇਨ"
 
 #: kcalc.cpp:455
-#, fuzzy, kde-format
-#| msgctxt "Arc cosine"
-#| msgid "Acos"
+#, kde-format
 msgctxt "Cosine"
 msgid "cos"
-msgstr "Acos"
+msgstr "cos"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbCos)
 #: kcalc.cpp:455 kcalc.ui:1117
@@ -456,7 +443,7 @@ msgstr "Cosine"
 #, kde-format
 msgctxt "Arc cosine"
 msgid "acos"
-msgstr ""
+msgstr "acos"
 
 #: kcalc.cpp:456
 #, kde-format
@@ -464,12 +451,10 @@ msgid "Arc cosine"
 msgstr "Arc cosine"
 
 #: kcalc.cpp:457
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic cosine"
-#| msgid "Acosh"
+#, kde-format
 msgctxt "Hyperbolic cosine"
 msgid "cosh"
-msgstr "Acosh"
+msgstr "cosh"
 
 #: kcalc.cpp:457
 #, kde-format
@@ -477,12 +462,10 @@ msgid "Hyperbolic cosine"
 msgstr "Hyperbolic cosine"
 
 #: kcalc.cpp:458
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic cosine"
-#| msgid "Acosh"
+#, kde-format
 msgctxt "Inverse hyperbolic cosine"
 msgid "acosh"
-msgstr "Acosh"
+msgstr "acosh"
 
 #: kcalc.cpp:458
 #, kde-format
@@ -490,12 +473,10 @@ msgid "Inverse hyperbolic cosine"
 msgstr ""
 
 #: kcalc.cpp:463
-#, fuzzy, kde-format
-#| msgctxt "Arc tangent"
-#| msgid "Atan"
+#, kde-format
 msgctxt "Tangent"
 msgid "tan"
-msgstr "Atan"
+msgstr "tan"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbTan)
 #: kcalc.cpp:463 kcalc.ui:849
@@ -507,7 +488,7 @@ msgstr "Tangent"
 #, kde-format
 msgctxt "Arc tangent"
 msgid "atan"
-msgstr ""
+msgstr "atan"
 
 #: kcalc.cpp:464
 #, kde-format
@@ -515,12 +496,10 @@ msgid "Arc tangent"
 msgstr "Arc tangent"
 
 #: kcalc.cpp:465
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic tangent"
-#| msgid "Atanh"
+#, kde-format
 msgctxt "Hyperbolic tangent"
 msgid "tanh"
-msgstr "Atanh"
+msgstr "tanh"
 
 #: kcalc.cpp:465
 #, kde-format
@@ -528,12 +507,10 @@ msgid "Hyperbolic tangent"
 msgstr "ਹਾਈਪਰਬੋਲਿਕ ਟੇਜੈਂਟ"
 
 #: kcalc.cpp:466
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic tangent"
-#| msgid "Atanh"
+#, kde-format
 msgctxt "Inverse hyperbolic tangent"
 msgid "atanh"
-msgstr "Atanh"
+msgstr "atanh"
 
 #: kcalc.cpp:466
 #, kde-format
@@ -541,12 +518,10 @@ msgid "Inverse hyperbolic tangent"
 msgstr "ਉਲਟ ਹਾਈਪਰਬੋਲਾ ਟੇਨਜੈਂਟ"
 
 #: kcalc.cpp:471
-#, fuzzy, kde-format
-#| msgctxt "Logarithm to base 10"
-#| msgid "Log"
+#, kde-format
 msgctxt "Logarithm to base 10"
 msgid "log"
-msgstr "Log"
+msgstr "log"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLog)
 #: kcalc.cpp:471 kcalc.ui:830
@@ -569,7 +544,7 @@ msgstr "10 ਦੀ ਘਾਤ x"
 #, kde-format
 msgctxt "Natural log"
 msgid "ln"
-msgstr ""
+msgstr "ln"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLn)
 #: kcalc.cpp:476 kcalc.ui:1155
@@ -657,12 +632,10 @@ msgid "Delete last data item"
 msgstr "ਆਖਰੀ ਡਾਟਾ ਇਕਾਈ ਹਟਾਓ"
 
 #: kcalc.cpp:579
-#, fuzzy, kde-format
-#| msgctxt "Modulo"
-#| msgid "Mod"
+#, kde-format
 msgctxt "Modulo"
 msgid "mod"
-msgstr "ਮੋਡ"
+msgstr "mod"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMod)
 #: kcalc.cpp:579 kcalc.ui:798
@@ -719,7 +692,7 @@ msgstr "ਫੈਕਟੋਰੀਅਲ"
 #: kcalc.cpp:593
 #, kde-format
 msgid "Gamma"
-msgstr ""
+msgstr "ਗ਼ਾਮਾ"
 
 #: kcalc.cpp:599
 #, kde-format
@@ -768,69 +741,61 @@ msgid "Exponent"
 msgstr "ਐਕਪੋ"
 
 #: kcalc.cpp:925
-#, fuzzy, kde-format
-#| msgid "Shift"
+#, kde-format
 msgctxt "Second function mode"
 msgid "Shift"
 msgstr "ਸਿਫਟ"
 
 #: kcalc.cpp:1233 kcalc.cpp:1234
-#, fuzzy, kde-format
-#| msgid "Memory clear"
+#, kde-format
 msgctxt "Memory cleared"
 msgid "M cleared"
-msgstr "ਮੈਮੋਰੀ ਸਾਫ਼ ਕਰੋ"
+msgstr "M ਸਾਫ਼ ਕਰੋ"
 
 #: kcalc.cpp:1447
-#, fuzzy, kde-format
-#| msgid "Number of data entered"
+#, kde-format
 msgid "Number of data entered = "
-msgstr "ਡਾਟਾ ਦਿੱਤਾ ਅੰਕ"
+msgstr "ਦਿੱਤੇ ਗਏ ਡਾਟੇ ਲਈ ਅੰਕ = "
 
 #: kcalc.cpp:1448
-#, fuzzy, kde-format
-#| msgid "Number of data entered"
+#, kde-format
 msgid "Number of data entered ="
-msgstr "ਡਾਟਾ ਦਿੱਤਾ ਅੰਕ"
+msgstr "ਡਾਟਾ ਦਿੱਤਾ ਅੰਕ ="
 
 #: kcalc.cpp:1453
-#, fuzzy, kde-format
-#| msgid "Sum of all data items"
+#, kde-format
 msgid "Sum of all data items ="
-msgstr "ਸਭ ਡਾਟਾ ਇਕਾਈਆਂ ਦਾ ਜੋੜ"
+msgstr "ਸਭ ਡਾਟਾ ਇਕਾਈਆਂ ਦਾ ਜੋੜ ="
 
 #: kcalc.cpp:1472
-#, fuzzy, kde-format
-#| msgid "Mean"
+#, kde-format
 msgid "Mean = "
-msgstr "ਮੱਧ"
+msgstr "ਮੱਧ = "
 
 #: kcalc.cpp:1476
 #, kde-format
 msgid "Sum of squares ="
-msgstr ""
+msgstr "ਵਰਗਾਂ ਦਾ ਜੋੜ ="
 
 #: kcalc.cpp:1519
-#, fuzzy, kde-format
-#| msgid "Median"
+#, kde-format
 msgid "Median ="
-msgstr "ਮੱਧਮਾਨ"
+msgstr "ਮੱਧਮਾਨ ="
 
 #: kcalc.cpp:1520
-#, fuzzy, kde-format
-#| msgid "Mean"
+#, kde-format
 msgid "Median = "
-msgstr "ਮੱਧ"
+msgstr "ਮੱਧ = "
 
 #: kcalc.cpp:1551 kcalc.cpp:1553
 #, kde-format
 msgid "DAT ["
-msgstr ""
+msgstr "DAT ["
 
 #: kcalc.cpp:1551 kcalc.cpp:1553
 #, kde-format
 msgid "] = "
-msgstr ""
+msgstr "] = "
 
 #: kcalc.cpp:1561 kcalc.cpp:1563 kcalc.cpp:1564
 #, kde-format
@@ -845,17 +810,17 @@ msgstr ""
 #: kcalc.cpp:1634
 #, kde-format
 msgid "General Settings"
-msgstr "ਸਧਾਰਨ ਸਥਾਪਨ"
+msgstr "ਸਧਾਰਨ ਸੈਟਿੰਗਾਂ"
 
 #: kcalc.cpp:1638
 #, kde-format
 msgid "Font"
-msgstr "ਫੋਂਟ"
+msgstr "ਫ਼ੌਂਟ"
 
 #: kcalc.cpp:1638
 #, kde-format
 msgid "Select Display Font"
-msgstr "ਚੁਣੋ ਝਲਕ ਫੋਂਟ"
+msgstr "ਡਿਸਪਲੇਅ ਫ਼ੌਂਟ ਚੁਣੋ"
 
 #: kcalc.cpp:1642
 #, kde-format
@@ -875,7 +840,7 @@ msgstr "ਸਥਿਰ ਦਿਓ"
 #: kcalc.cpp:2262
 #, kde-format
 msgid "Input error"
-msgstr ""
+msgstr "ਇਨਪੁੱਟ ਗਲਤੀ"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
 #: kcalc.cpp:2796 kcalc.ui:20
@@ -889,22 +854,17 @@ msgid "KDE Calculator"
 msgstr "KDE ਕੈਲਕੂਲੇਟਰ"
 
 #: kcalc.cpp:2800
-#, fuzzy, kde-format
-#| msgid ""
-#| "&copy; 2008-2013, Evan Teran\n"
-#| "&copy; 2000-2008, The KDE Team\n"
-#| "&copy; 2003-2005, Klaus Niederkrüger\n"
-#| "&copy; 1996-2000, Bernd Johannes Wuebben"
+#, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
 "Copyright © 2000-2008, The KDE Team\n"
 "Copyright © 2003-2005, Klaus Niederkrüger\n"
 "Copyright © 1996-2000, Bernd Johannes Wuebben"
 msgstr ""
-"&copy; 2008-2013, Evan Teran\n"
-"&copy; 2000-2008, The KDE Team\n"
-"&copy; 2003-2005, Klaus Niederkrüger\n"
-"&copy; 1996-2000, Bernd Johannes Wuebben"
+"ਕਾਪੀਰਾਈਟ © 2008-2013, Evan Teran\n"
+"ਕਾਪੀਰਾਈਟ © 2000-2008, ਕੇਡੀਈ ਟੀਮ\n"
+"ਕਾਪੀਰਾਈਟ © 2003-2005, Klaus Niederkrüger\n"
+"ਕਾਪੀਰਾਈਟ © 1996-2000, Bernd Johannes Wuebben"
 
 #: kcalc.cpp:2810
 #, kde-format
@@ -1023,10 +983,9 @@ msgstr "ਅੰਕੜਾ ਬਟਨਾਂ ਦਾ ਰੰਗ ਹੈ।"
 
 #. i18n: ectx: label, entry (NumberFontsColor), group (Colors)
 #: kcalc.kcfg:53
-#, fuzzy, kde-format
-#| msgid "The color of number buttons."
+#, kde-format
 msgid "The color of number fonts."
-msgstr "ਨੰਬਰ ਬਟਨਾਂ ਲਈ ਰੰਗ।"
+msgstr "ਨੰਬਰ ਫ਼ੌਂਟ ਲਈ ਰੰਗ।"
 
 #. i18n: ectx: label, entry (FunctionFontsColor), group (Colors)
 #: kcalc.kcfg:59
@@ -1044,24 +1003,21 @@ msgstr "ਅੰਕੜਾ ਬਟਨਾਂ ਦਾ ਰੰਗ ਹੈ।"
 
 #. i18n: ectx: label, entry (HexFontsColor), group (Colors)
 #: kcalc.kcfg:67
-#, fuzzy, kde-format
-#| msgid "The color of hex buttons."
+#, kde-format
 msgid "The color of hex fonts."
-msgstr "ਹੈਕਸਾ ਬਟਨਾਂ ਦਾ ਰੰਗ ਹੈ।"
+msgstr "ਹੈਕਸ ਫ਼ੌਂਟ ਲਈ ਰੰਗ।"
 
 #. i18n: ectx: label, entry (MemoryFontsColor), group (Colors)
 #: kcalc.kcfg:71
-#, fuzzy, kde-format
-#| msgid "The color of memory buttons."
+#, kde-format
 msgid "The color of memory fonts."
-msgstr "ਮੈਮੋਰੀ ਬਟਨਾਂ ਦਾ ਰੰਗ ਹੈ।"
+msgstr "ਮੈਮੋਰੀ ਫ਼ੌਂਟ ਲਈ ਰੰਗ।"
 
 #. i18n: ectx: label, entry (OperationFontsColor), group (Colors)
 #: kcalc.kcfg:75
-#, fuzzy, kde-format
-#| msgid "The color of operation buttons."
+#, kde-format
 msgid "The color of operation font."
-msgstr "ਓਪਰੇਸ਼ਨ ਬਟਨਾਂ ਲਈ ਰੰਗ ਹੈ।"
+msgstr "ਓਪਰੇਸ਼ਨ ਫ਼ੌਂਟ ਲਈ ਰੰਗ ਹੈ।"
 
 #. i18n: ectx: label, entry (ConstantsFontsColor), group (Colors)
 #: kcalc.kcfg:79
@@ -1084,10 +1040,9 @@ msgstr "ਡਿਸਪਲੇਅ ਵਿੱਚ ਵਰਤਣ ਲਈ ਫੋਂਟ ਹ�
 
 #. i18n: ectx: label, entry (HistoryFont), group (Font)
 #: kcalc.kcfg:96
-#, fuzzy, kde-format
-#| msgid "The font to use in the display."
+#, kde-format
 msgid "The font to use in the history."
-msgstr "ਡਿਸਪਲੇਅ ਵਿੱਚ ਵਰਤਣ ਲਈ ਫੋਂਟ ਹਨ।"
+msgstr "ਅਤੀਤ ਵਿੱਚ ਵਰਤਣ ਲਈ ਫ਼ੌਂਟ ਹੈ।"
 
 #. i18n: ectx: label, entry (Precision), group (Precision)
 #: kcalc.kcfg:102
@@ -1342,10 +1297,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, base_label)
 #: kcalc.ui:176
-#, fuzzy, kde-format
-#| msgid "&Dec"
+#, kde-format
 msgid "Dec"
-msgstr "ਡੈਕਾ(&D)"
+msgstr "ਡੈਸੀ"
 
 #. i18n: ectx: property (toolTip), widget (KCalcBitset, mBitset)
 #: kcalc.ui:395
@@ -1357,20 +1311,19 @@ msgstr "ਬਦਲਣ ਲਈ ਬਿੱਟ ਉੱਤੇ ਕਲਿੱਕ ਕਰੋ�
 #: kcalc.ui:418
 #, kde-format
 msgid "&Deg"
-msgstr ""
+msgstr "&Deg"
 
 #. i18n: ectx: property (text), widget (QRadioButton, radRadio)
 #: kcalc.ui:425
 #, kde-format
 msgid "&Rad"
-msgstr ""
+msgstr "&Rad"
 
 #. i18n: ectx: property (text), widget (QRadioButton, gradRadio)
 #: kcalc.ui:432
-#, fuzzy, kde-format
-#| msgid "Grad"
+#, kde-format
 msgid "&Grad"
-msgstr "ਗਰੇਡ"
+msgstr "ਗਰੇਡ(&G)"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, hexRadio)
 #: kcalc.ui:447
@@ -1391,7 +1344,7 @@ msgstr "ਹੈਕਸਾ(&x)"
 #: kcalc.ui:469 kcalc.ui:505 kcalc.ui:541 kcalc.ui:577
 #, kde-format
 msgid "KS…el"
-msgstr ""
+msgstr "KS…el"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, decRadio)
 #: kcalc.ui:483
@@ -1415,7 +1368,7 @@ msgstr "ਬੇਸ ਤੋਂ ਓਕਟਾਲ ਲਈ ਬਦਲੋ।"
 #: kcalc.ui:522
 #, kde-format
 msgid "Oc&t"
-msgstr ""
+msgstr "Oc&t"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, binRadio)
 #: kcalc.ui:555
@@ -2047,7 +2000,7 @@ msgstr "Ctrl+2"
 #: kcalc_bitset.cpp:57
 #, kde-format
 msgid "Bit %1 = %2"
-msgstr ""
+msgstr "ਬਿੱਟ %1 = %2"
 
 #: kcalc_const_button.cpp:24 kcalc_const_button.cpp:37
 #, kde-format
@@ -2121,49 +2074,46 @@ msgstr "SHIFT"
 #, kde-format
 msgctxt "Decimal indicator in status bar"
 msgid "DEC"
-msgstr ""
+msgstr "DEC"
 
 #: kcalc_statusbar.cpp:17
 #, kde-format
 msgctxt "Binary indicator in status bar"
 msgid "BIN"
-msgstr ""
+msgstr "BIN"
 
 #: kcalc_statusbar.cpp:18
 #, kde-format
 msgctxt "Octal indicator in status bar"
 msgid "OCT"
-msgstr ""
+msgstr "OCT"
 
 #: kcalc_statusbar.cpp:18
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgctxt "Hexadecimal indicator in status bar"
 msgid "HEX"
-msgstr "EXP"
+msgstr "HEX"
 
 #: kcalc_statusbar.cpp:19
 #, kde-format
 msgctxt "Degree indicator in status bar"
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: kcalc_statusbar.cpp:19
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgctxt "Radian indicator in status bar"
 msgid "RAD"
-msgstr "AND"
+msgstr "RAD"
 
 #: kcalc_statusbar.cpp:20
 #, kde-format
 msgctxt "Grad indicator in status bar"
 msgid "GRA"
-msgstr ""
+msgstr "GRA"
 
 #: kcalc_statusbar.cpp:21 kcalc_statusbar.cpp:103
-#, fuzzy, kde-format
-#| msgid "M"
+#, kde-format
 msgctxt "Memory indicator in status bar"
 msgid "M"
 msgstr "M"
@@ -2171,52 +2121,49 @@ msgstr "M"
 #: kcalc_statusbar.cpp:67
 #, kde-format
 msgid "BIN"
-msgstr ""
+msgstr "BIN"
 
 #: kcalc_statusbar.cpp:70
 #, kde-format
 msgid "OCT"
-msgstr ""
+msgstr "OCT"
 
 #: kcalc_statusbar.cpp:74
 #, kde-format
 msgid "DEC"
-msgstr ""
+msgstr "DEC"
 
 #: kcalc_statusbar.cpp:77
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgid "HEX"
-msgstr "EXP"
+msgstr "HEX"
 
 #: kcalc_statusbar.cpp:89
 #, kde-format
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: kcalc_statusbar.cpp:92
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgid "RAD"
-msgstr "AND"
+msgstr "RAD"
 
 #: kcalc_statusbar.cpp:95
 #, kde-format
 msgid "GRA"
-msgstr ""
+msgstr "GRA"
 
 #: kcalcdisplay.cpp:42
-#, fuzzy, kde-format
-#| msgid "Select Display Font"
+#, kde-format
 msgctxt "@label accessibility description of the calculation result display"
 msgid "Result Display"
-msgstr "ਚੁਣੋ ਝਲਕ ਫੋਂਟ"
+msgstr "ਨਤੀਜਾ ਡਿਸਪਲੇਅ"
 
 #. i18n: ectx: Menu (settings)
 #: kcalcui.rc:4
 #, kde-format
 msgid "&Settings"
-msgstr "ਸੈਟਿੰਗ(&S)"
+msgstr "ਸੈਟਿੰਗਾਂ(&S)"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:3
@@ -2265,7 +2212,7 @@ msgstr "ਧਰਤੀ ਪਰਵੇਸ਼"
 #: scienceconstants.xml:31 scienceconstants.xml:35
 #, kde-format
 msgid "Elementary Charge"
-msgstr ""
+msgstr "ਐਲੀਮੈਂਟਰੀ ਚਾਰਜ"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:39
