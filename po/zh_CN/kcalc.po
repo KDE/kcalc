@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-29 00:39+0000\n"
-"PO-Revision-Date: 2024-01-21 14:11\n"
+"PO-Revision-Date: 2024-02-05 11:37\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -745,42 +745,36 @@ msgid "Exponent"
 msgstr "指数"
 
 #: kcalc.cpp:925
-#, fuzzy, kde-format
-#| msgid "Shift"
+#, kde-format
 msgctxt "Second function mode"
 msgid "Shift"
 msgstr "Shift"
 
 #: kcalc.cpp:1233 kcalc.cpp:1234
-#, fuzzy, kde-format
-#| msgid "Memory clear"
+#, kde-format
 msgctxt "Memory cleared"
 msgid "M cleared"
-msgstr "清除记忆"
+msgstr ""
 
 #: kcalc.cpp:1447
-#, fuzzy, kde-format
-#| msgid "Number of data entered"
+#, kde-format
 msgid "Number of data entered = "
-msgstr "输入数据的个数"
+msgstr ""
 
 #: kcalc.cpp:1448
-#, fuzzy, kde-format
-#| msgid "Number of data entered"
+#, kde-format
 msgid "Number of data entered ="
-msgstr "输入数据的个数"
+msgstr ""
 
 #: kcalc.cpp:1453
-#, fuzzy, kde-format
-#| msgid "Sum of all data items"
+#, kde-format
 msgid "Sum of all data items ="
-msgstr "全部数据的和"
+msgstr ""
 
 #: kcalc.cpp:1472
-#, fuzzy, kde-format
-#| msgid "Mean"
+#, kde-format
 msgid "Mean = "
-msgstr "均值"
+msgstr ""
 
 #: kcalc.cpp:1476
 #, kde-format
@@ -788,16 +782,14 @@ msgid "Sum of squares ="
 msgstr ""
 
 #: kcalc.cpp:1519
-#, fuzzy, kde-format
-#| msgid "Median"
+#, kde-format
 msgid "Median ="
-msgstr "中值"
+msgstr ""
 
 #: kcalc.cpp:1520
-#, fuzzy, kde-format
-#| msgid "Mean"
+#, kde-format
 msgid "Median = "
-msgstr "均值"
+msgstr ""
 
 #: kcalc.cpp:1551 kcalc.cpp:1553
 #, kde-format
@@ -810,10 +802,9 @@ msgid "] = "
 msgstr "] = "
 
 #: kcalc.cpp:1561 kcalc.cpp:1563 kcalc.cpp:1564
-#, fuzzy, kde-format
-#| msgid "Last stat item erased"
+#, kde-format
 msgid "Last stat data erased"
-msgstr "已清除上一次统计数据"
+msgstr ""
 
 #: kcalc.cpp:1576 kcalc.cpp:1579 kcalc.cpp:1580
 #, kde-format
@@ -1328,10 +1319,9 @@ msgstr "列出用户可编程的常数"
 
 #. i18n: ectx: property (text), widget (QLabel, base_label)
 #: kcalc.ui:176
-#, fuzzy, kde-format
-#| msgid "&Dec"
+#, kde-format
 msgid "Dec"
-msgstr "十进制(&D)"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcBitset, mBitset)
 #: kcalc.ui:395
@@ -2121,11 +2111,10 @@ msgid "OCT"
 msgstr ""
 
 #: kcalc_statusbar.cpp:18
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgctxt "Hexadecimal indicator in status bar"
 msgid "HEX"
-msgstr "EXP"
+msgstr ""
 
 #: kcalc_statusbar.cpp:19
 #, kde-format
@@ -2134,11 +2123,10 @@ msgid "DEG"
 msgstr ""
 
 #: kcalc_statusbar.cpp:19
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgctxt "Radian indicator in status bar"
 msgid "RAD"
-msgstr "AND"
+msgstr ""
 
 #: kcalc_statusbar.cpp:20
 #, kde-format
@@ -2168,10 +2156,9 @@ msgid "DEC"
 msgstr ""
 
 #: kcalc_statusbar.cpp:77
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgid "HEX"
-msgstr "EXP"
+msgstr ""
 
 #: kcalc_statusbar.cpp:89
 #, kde-format
@@ -2179,10 +2166,9 @@ msgid "DEG"
 msgstr ""
 
 #: kcalc_statusbar.cpp:92
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgid "RAD"
-msgstr "AND"
+msgstr ""
 
 #: kcalc_statusbar.cpp:95
 #, kde-format
@@ -2303,9 +2289,3 @@ msgstr "斯蒂芬·波尔兹曼常数"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "阿伏加德罗氏数"
-
-#~ msgid "M"
-#~ msgstr "M"
-
-#~ msgid "KSq…bel"
-#~ msgstr "KSq…bel"
