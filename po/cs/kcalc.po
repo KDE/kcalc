@@ -751,42 +751,36 @@ msgid "Exponent"
 msgstr "Exponent"
 
 #: kcalc.cpp:925
-#, fuzzy, kde-format
-#| msgid "Shift"
+#, kde-format
 msgctxt "Second function mode"
 msgid "Shift"
-msgstr "Shift"
+msgstr ""
 
 #: kcalc.cpp:1233 kcalc.cpp:1234
-#, fuzzy, kde-format
-#| msgid "Memory clear"
+#, kde-format
 msgctxt "Memory cleared"
 msgid "M cleared"
-msgstr "Vyčištění paměti"
+msgstr ""
 
 #: kcalc.cpp:1447
-#, fuzzy, kde-format
-#| msgid "Number of data entered"
+#, kde-format
 msgid "Number of data entered = "
-msgstr "Počet zadaných dat"
+msgstr ""
 
 #: kcalc.cpp:1448
-#, fuzzy, kde-format
-#| msgid "Number of data entered"
+#, kde-format
 msgid "Number of data entered ="
-msgstr "Počet zadaných dat"
+msgstr ""
 
 #: kcalc.cpp:1453
-#, fuzzy, kde-format
-#| msgid "Sum of all data items"
+#, kde-format
 msgid "Sum of all data items ="
-msgstr "Součet všech datových položek"
+msgstr ""
 
 #: kcalc.cpp:1472
-#, fuzzy, kde-format
-#| msgid "Mean"
+#, kde-format
 msgid "Mean = "
-msgstr "Střední hodnota"
+msgstr ""
 
 #: kcalc.cpp:1476
 #, kde-format
@@ -794,16 +788,14 @@ msgid "Sum of squares ="
 msgstr ""
 
 #: kcalc.cpp:1519
-#, fuzzy, kde-format
-#| msgid "Median"
+#, kde-format
 msgid "Median ="
-msgstr "Medián"
+msgstr ""
 
 #: kcalc.cpp:1520
-#, fuzzy, kde-format
-#| msgid "Mean"
+#, kde-format
 msgid "Median = "
-msgstr "Střední hodnota"
+msgstr ""
 
 #: kcalc.cpp:1551 kcalc.cpp:1553
 #, kde-format
@@ -816,10 +808,9 @@ msgid "] = "
 msgstr "] = "
 
 #: kcalc.cpp:1561 kcalc.cpp:1563 kcalc.cpp:1564
-#, fuzzy, kde-format
-#| msgid "Last stat item erased"
+#, kde-format
 msgid "Last stat data erased"
-msgstr "Poslední smazaná pozice statistik"
+msgstr ""
 
 #: kcalc.cpp:1576 kcalc.cpp:1579 kcalc.cpp:1580
 #, kde-format
@@ -1339,10 +1330,9 @@ msgstr "Seznam programovatelných konstant"
 
 #. i18n: ectx: property (text), widget (QLabel, base_label)
 #: kcalc.ui:176
-#, fuzzy, kde-format
-#| msgid "&Dec"
+#, kde-format
 msgid "Dec"
-msgstr "&Dec"
+msgstr "Dec"
 
 #. i18n: ectx: property (toolTip), widget (KCalcBitset, mBitset)
 #: kcalc.ui:395
@@ -2132,11 +2122,10 @@ msgid "OCT"
 msgstr ""
 
 #: kcalc_statusbar.cpp:18
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgctxt "Hexadecimal indicator in status bar"
 msgid "HEX"
-msgstr "EXP"
+msgstr ""
 
 #: kcalc_statusbar.cpp:19
 #, kde-format
@@ -2145,11 +2134,10 @@ msgid "DEG"
 msgstr ""
 
 #: kcalc_statusbar.cpp:19
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgctxt "Radian indicator in status bar"
 msgid "RAD"
-msgstr "AND"
+msgstr ""
 
 #: kcalc_statusbar.cpp:20
 #, kde-format
@@ -2176,13 +2164,12 @@ msgstr ""
 #: kcalc_statusbar.cpp:74
 #, kde-format
 msgid "DEC"
-msgstr ""
+msgstr "DEC"
 
 #: kcalc_statusbar.cpp:77
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgid "HEX"
-msgstr "EXP"
+msgstr ""
 
 #: kcalc_statusbar.cpp:89
 #, kde-format
@@ -2190,10 +2177,9 @@ msgid "DEG"
 msgstr ""
 
 #: kcalc_statusbar.cpp:92
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgid "RAD"
-msgstr "AND"
+msgstr ""
 
 #: kcalc_statusbar.cpp:95
 #, kde-format
@@ -2314,6 +2300,3 @@ msgstr "Stefan-Boltzmannova konstanta"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Avogadrova konstanta"
-
-#~ msgid "M"
-#~ msgstr "M"
