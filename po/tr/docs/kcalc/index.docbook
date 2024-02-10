@@ -546,7 +546,7 @@
 >∛x</guibutton
 ></entry>
 <entry
->x'in üçüncü (kübik) kökünü hesaplar</entry
+>x’in üçüncü (kübik) kökünü hesaplar</entry
 ></row>
 
 <row
@@ -578,7 +578,7 @@
 >Dat</guibutton
 > 'a basın. Art arda artan sayı, görüntüdeki veri <quote
 >listesinin</quote
-> hangi konumda yer aldığını gösterir. Geleneksel bir hesap makinesi yalnızca istatistiksel işlevler için üç değer saklar: Bir listedeki ayrı öge sayısı, girilen veri ögelerinin toplamı ve listedeki tüm veri ögelerinin karesinin toplamı. &kcalc; aslında her ayrı değeri saklarken, verilerin medyan değerini hesaplamanıza izin vererek farklılık gösterir. </para>
+> hangi konumda yer aldığını gösterir. Geleneksel bir hesap makinesi yalnızca istatistiksel işlevler için üç değer saklar: Bir listedeki ayrı öge sayısı, girilen veri ögelerinin toplamı ve listedeki tüm veri ögelerinin karesinin toplamı. &kcalc; aslında her ayrı değeri saklarken, verinin ortanca değerini hesaplamanıza izin vererek farklılık gösterir. </para>
 
 <informaltable
 ><tgroup cols="2">
@@ -664,7 +664,7 @@
 >Med</guibutton
 ></entry>
 <entry
->Medyanı göster</entry
+>Ortancayı görüntüle</entry
 ></row>
 
 <row
@@ -719,7 +719,7 @@
 <para
 >Sağdaki radyo düğmeleri ile sayı sistemini seçersiniz. Örneğin onaltılık bir sayı eklemek için aşağıdakileri yapın: Radyo düğmelerinden <guilabel
 >Hex</guilabel
-> 'i seçin. Ardından bir numara girin ve 9'dan büyük sayılar için <guibutton
+> ’i seçin. Ardından bir numara girin ve 9’dan büyük sayılar için <guibutton
 >A</guibutton
 > ve <guibutton
 >F</guibutton
@@ -767,7 +767,7 @@
 >AND</guibutton
 ></entry>
 <entry
->İki sayı mantıksal AND'lenmiştir</entry
+>İki sayı mantıksal AND’lenmiştir</entry
 ></row>
 
 <row
@@ -776,7 +776,7 @@
 >OR</guibutton
 ></entry>
 <entry
->İki sayı mantıksal or'lanmıştır</entry
+>İki sayı mantıksal or’lanmıştır</entry
 ></row>
 
 <row
@@ -785,7 +785,7 @@
 >XOR</guibutton
 ></entry>
 <entry
->İki sayı mantıksal XOR'lanmıştır</entry
+>İki sayı mantıksal XOR’lanmıştır</entry
 ></row>
 
 <row
@@ -812,7 +812,7 @@
 >Cmp</guibutton
 ></entry>
 <entry
->1'in tamamlayıcısını uygula</entry
+>1’in tamamlayıcısını uygula</entry
 ></row>
 
 </tbody
@@ -1022,7 +1022,7 @@
 >Hyp</guibutton
 ></entry>
 <entry
->Hyp Sin'deki gibi Hiperbolik, sinh</entry
+>Hyp Sin’deki gibi Hiperbolik, sinh</entry
 ></row>
 
 <row
@@ -1264,7 +1264,7 @@
 >&Shift;</guibutton
 > <guibutton
 >OR</guibutton
-> XOR'dur</entry
+> XOR’dur</entry
 ></row>
 
 <row
@@ -1416,7 +1416,7 @@
 >C1</guibutton
 ></entry>
 <entry
->C1'den C6'ya kadar depolanmış değeri kullan</entry
+>C1’den C6’ya kadar depolanmış değeri kullan</entry
 ></row>
 
 </tbody
@@ -1575,14 +1575,14 @@
 <term
 ><guibutton
 >Rsh</guibutton
-> değeri n kere sağa kaydırır (2'ye tam sayı bölünmeyi gerçekleştirir).</term>
+> değeri n kere sağa kaydırır (2’ye tam sayı bölünmeyi gerçekleştirir).</term>
 <listitem
 ><para
 ><userinput
 >16 Rsh 2 =</userinput
 > <emphasis
 >4</emphasis
-> verir (16 iki kere 2'ye bölünmüştür).</para>
+> verir (16 iki kere 2’ye bölünmüştür).</para>
 <para
 ><userinput
 >16,999 Rsh 2 =</userinput
@@ -1623,7 +1623,7 @@
 <term
 ><guibutton
 >Cmp</guibutton
-> 1'e göre tamamlayıcı (biti ters çevirir) gerçekleştirir.</term>
+> 1’e göre tamamlayıcı (biti ters çevirir) gerçekleştirir.</term>
 <listitem
 ><para
 ><userinput
@@ -1694,7 +1694,7 @@
 <qandaentry>
 <question
 ><para
->Euler sayısı e'yi nasıl elde ederim?</para
+>Euler sayısı e’yi nasıl elde ederim?</para
 ></question>
 <answer
 ><para
@@ -1746,18 +1746,18 @@
 ></question>
 <answer
 ><para
->&kcalc; kesinliğini belirleyen ana faktör libc ve libmath'inizin <type
+>&kcalc; kesinliğini belirleyen ana faktör libc ve libmath’inizin <type
 >long double</type
 > C veri türünü destekleyip desteklemediğidir. Eğer öyle ise &kcalc; bunu derleme zamanında algılar ve sayıları temsil etmek için temel veri türü olarak kullanır. </para>
 
 <para
->Yukarıdaki hesaplamaların doğru şekilde çalışması için &kcalc;'ın <guibutton
+>Yukarıdaki hesaplamaların doğru şekilde çalışması için &kcalc;’ın <guibutton
 >Yapılandır</guibutton
 > penceresindeki <guilabel
 >Kesinlik</guilabel
->'i ayarlayın. &kcalc; kopyanız için temel veri türü varsa <type
+>’i ayarlayın. &kcalc; kopyanız için temel veri türü varsa <type
 >long double</type
-> için olan 14 kesinliğini öneriyorum, aksi halde 8 veya 10'dur.</para>
+> için olan 14 kesinliğini öneriyorum, aksi halde 8 veya 10’dur.</para>
 
 <para
 >Daha yüksek kesinlik, mutlaka daha iyi sonuçlar doğurmaz. Duyarlılıkla oynayın ve ne demek istediğimi anlayacaksınız.</para>

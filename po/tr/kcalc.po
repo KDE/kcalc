@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-29 00:39+0000\n"
-"PO-Revision-Date: 2024-02-08 18:06+0300\n"
+"PO-Revision-Date: 2024-02-09 17:45+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -314,7 +314,7 @@ msgstr ""
 #: general.ui:189
 #, kde-format
 msgid "Two's complement"
-msgstr "İki'nin tümleyeni"
+msgstr "İki’nin tümleyeni"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_RepeatLastOperation)
 #: general.ui:199
@@ -557,7 +557,7 @@ msgstr "10<sup>x</sup>"
 #: kcalc.cpp:472
 #, kde-format
 msgid "10 to the power of x"
-msgstr "10'un x kuvveti"
+msgstr "10’un x kuvveti"
 
 #: kcalc.cpp:476
 #, kde-format
@@ -751,7 +751,7 @@ msgstr "x<sup>1/y</sup>"
 #: kcalc.cpp:608
 #, kde-format
 msgid "x to the power of 1/y"
-msgstr "x'in 1/y kuvveti"
+msgstr "x’in 1/y kuvveti"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbEE)
 #: kcalc.cpp:618 kcalc.ui:779
@@ -1119,7 +1119,7 @@ msgstr "Basamakların gruplandırılıp gruplandırılmayacağı."
 #, kde-format
 msgid "Whether to use Two's Complement for non-decimal numbers."
 msgstr ""
-"Ondalık olmayan sayılar için İki'nin Tümleyeninin kullanılıp "
+"Ondalık olmayan sayılar için İki’nin Tümleyeninin kullanılıp "
 "kullanılmayacağı."
 
 #. i18n: ectx: whatsthis, entry (TwosComplement), group (General)
@@ -1133,7 +1133,7 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"        İkili, Sekizli ve Onaltılı sayıların gösteriminde İki'nin "
+"        İkili, Sekizli ve Onaltılı sayıların gösteriminde İki’nin "
 "Tümleyenini\n"
 "        kullanmak için bunu seçin. Bu, bilgisayarlarda ondalık olmayan "
 "sayılar için negatif sayıları ifade etmede\n"
@@ -1226,7 +1226,7 @@ msgstr "Rakamsal taban"
 #: kcalc.kcfg:191
 #, kde-format
 msgid "Binary figures will be separated by a whitespace after every Xth digit."
-msgstr "İkili figürler her X'nci rakamdan sonra boşlukla ayrılacaktır."
+msgstr "İkili figürler her X’nci rakamdan sonra boşlukla ayrılacaktır."
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:196
@@ -1652,7 +1652,7 @@ msgstr "C3"
 #: kcalc.ui:1069
 #, kde-format
 msgid "One's complement"
-msgstr "Bir'in tümleyeni"
+msgstr "Bir’in tümleyeni"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbCmp)
 #: kcalc.ui:1072
