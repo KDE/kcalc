@@ -3,13 +3,13 @@
 # Copyright (C) 2004 Free Software Foundation, Inc.
 #
 # Ambalam <tamilpc@ambalam.com>, 2004.
-# Kishore G <kishore96@gmail.com>, 2022.
+# SPDX-FileCopyrightText: 2022, 2024 Kishore G <kishore96@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-13 01:39+0000\n"
-"PO-Revision-Date: 2022-07-21 21:43+0530\n"
+"PO-Revision-Date: 2024-02-18 17:04+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.04.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -279,10 +279,9 @@ msgstr "பிழை வந்தால் பீப் செய்யவும
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_CaptionResult)
 #: general.ui:173
-#, fuzzy, kde-format
-#| msgid "Whether to show the result in the window title."
+#, kde-format
 msgid "Whether to show the result in the window title"
-msgstr "சாளரத்திதலைப்பில் முடிவை காண்பிக்க வேன்டுமா"
+msgstr "முடிவை சாளரத் தலைப்பாக‍க் காட்ட வேண்டுமா"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CaptionResult)
 #: general.ui:176
@@ -321,35 +320,33 @@ msgstr ""
 #: kcalc.cpp:175
 #, kde-format
 msgid "Simple Mode"
-msgstr ""
+msgstr "எளிய பயன்முறை"
 
 #: kcalc.cpp:180
 #, kde-format
 msgid "Science Mode"
-msgstr ""
+msgstr "அறிவியல் பயன்முறை"
 
 #: kcalc.cpp:185
-#, fuzzy, kde-format
-#| msgid "&Statistic Buttons"
+#, kde-format
 msgid "Statistic Mode"
-msgstr "&புள்ளி விவர பொத்தான்கள்"
+msgstr "புள்ளியியல் பயன்முறை"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
 #: kcalc.cpp:190 kcalc.kcfg:163
 #, kde-format
 msgid "Numeral System Mode"
-msgstr ""
+msgstr "எண்முறை பயன்முறை"
 
 #: kcalc.cpp:195
 #, kde-format
 msgid "Show &History"
-msgstr ""
+msgstr "&வரலாற்றைக் காட்டு"
 
 #: kcalc.cpp:201
-#, fuzzy, kde-format
-#| msgid "&Constants Buttons"
+#, kde-format
 msgid "Constants &Buttons"
-msgstr "&மாறிலிகளின் பொத்தான்கள்"
+msgstr "மாறிலி &பட்டன்கள்"
 
 #: kcalc.cpp:206
 #, kde-format
@@ -368,9 +365,9 @@ msgid "M+"
 msgstr ""
 
 #: kcalc.cpp:319
-#, fuzzy, kde-format
+#, kde-format
 msgid "Add display to memory"
-msgstr "நினைவகத்துக்குள் காட்சி தரவை எழுது"
+msgstr "காட்டப்படுவதை நினைவிலுள்ளதுடன் கூட்டு"
 
 #: kcalc.cpp:320
 #, kde-format
@@ -381,30 +378,29 @@ msgstr ""
 #: kcalc.cpp:320
 #, kde-format
 msgid "Subtract from memory"
-msgstr ""
+msgstr "நினைவிலுள்ளதிலிருந்து கழி"
 
 #: kcalc.cpp:343
 #, kde-format
 msgctxt "Third power"
 msgid "x<sup>3</sup>"
-msgstr ""
+msgstr "x<sup>3</sup>"
 
 #: kcalc.cpp:343
 #, kde-format
 msgid "Third power"
-msgstr "மூன்றாம் சக்தி"
+msgstr "மும்மடிப் பெருக்கம்"
 
 #: kcalc.cpp:344
 #, kde-format
 msgid "Cube root"
-msgstr "க்யூப் ரூட்"
+msgstr "கன மூலம்"
 
 #: kcalc.cpp:442
-#, fuzzy, kde-format
-#| msgid "Arc sine"
+#, kde-format
 msgctxt "Sine"
 msgid "sin"
-msgstr "Arc சைன்"
+msgstr "sin"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSin)
 #: kcalc.cpp:442 kcalc.ui:756
@@ -416,19 +412,18 @@ msgstr "சைன்"
 #, kde-format
 msgctxt "Arc sine"
 msgid "asin"
-msgstr ""
+msgstr "asin"
 
 #: kcalc.cpp:443
 #, kde-format
 msgid "Arc sine"
-msgstr "Arc சைன்"
+msgstr ""
 
 #: kcalc.cpp:444
-#, fuzzy, kde-format
-#| msgid "Arc sine"
+#, kde-format
 msgctxt "Hyperbolic sine"
 msgid "sinh"
-msgstr "Arc சைன்"
+msgstr "sinh"
 
 #: kcalc.cpp:444
 #, kde-format
@@ -445,14 +440,13 @@ msgstr "Arc சைன்"
 #: kcalc.cpp:445
 #, kde-format
 msgid "Inverse hyperbolic sine"
-msgstr "திருப்பும் அதிபரவளைய சைன்"
+msgstr "நேர்மாறு அதிபரவளைய சைன்"
 
 #: kcalc.cpp:450
-#, fuzzy, kde-format
-#| msgid "Cosine"
+#, kde-format
 msgctxt "Cosine"
 msgid "cos"
-msgstr "கொசைன்"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbCos)
 #: kcalc.cpp:450 kcalc.ui:501
