@@ -103,9 +103,7 @@
   <summary xml:lang="zh-CN">科学计算器</summary>
   <summary xml:lang="zh-TW">科學計算機</summary>
   <developer id="kde.org">
-    <id>kde.org</id>
-    <name>The KDE Community</name>
-    <url>https://kde.org</url>
+    <name translate="no">KDE</name>
   </developer>
   <description>
     <p>KCalc has everything you would expect from a scientific calculator, plus:</p>
