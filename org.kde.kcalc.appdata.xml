@@ -102,6 +102,11 @@
   <summary xml:lang="x-test">xxScientific Calculatorxx</summary>
   <summary xml:lang="zh-CN">科学计算器</summary>
   <summary xml:lang="zh-TW">科學計算機</summary>
+  <developer id="kde.org">
+    <id>kde.org</id>
+    <name>The KDE Community</name>
+    <url>https://kde.org</url>
+  </developer>
   <description>
     <p>KCalc has everything you would expect from a scientific calculator, plus:</p>
     <p xml:lang="ar">تحوي حاسبة ك على ما تتوقعه من حاسبة عملية بالإضافة إلى:</p>
@@ -585,6 +590,7 @@
     <binary>kcalc</binary>
   </provides>
   <project_group>KDE</project_group>
+  <launchable type="desktop-id">org.kde.kcalc.desktop</launchable>
   <releases>
     <release version="24.02.0" date="2024-02-28"/>
     <release version="23.08.5" date="2024-02-15"/>
