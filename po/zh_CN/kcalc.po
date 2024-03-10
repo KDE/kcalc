@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-29 00:39+0000\n"
-"PO-Revision-Date: 2024-02-29 12:52\n"
+"PO-Revision-Date: 2024-03-09 04:46\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -103,7 +103,7 @@ msgstr "操作符(&P)："
 #: colors.ui:287
 #, kde-format
 msgid "&Constants:"
-msgstr "&常量:"
+msgstr "常量(&C)："
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
 #: constants.ui:13 kcalc.cpp:1674
@@ -754,42 +754,42 @@ msgstr "Shift"
 #, kde-format
 msgctxt "Memory cleared"
 msgid "M cleared"
-msgstr ""
+msgstr "M 已清除"
 
 #: kcalc.cpp:1447
 #, kde-format
 msgid "Number of data entered = "
-msgstr ""
+msgstr "输入数据的个数 = "
 
 #: kcalc.cpp:1448
 #, kde-format
 msgid "Number of data entered ="
-msgstr ""
+msgstr "输入数据的个数 ="
 
 #: kcalc.cpp:1453
 #, kde-format
 msgid "Sum of all data items ="
-msgstr ""
+msgstr "全部数据的和 ="
 
 #: kcalc.cpp:1472
 #, kde-format
 msgid "Mean = "
-msgstr ""
+msgstr "平均值 = "
 
 #: kcalc.cpp:1476
 #, kde-format
 msgid "Sum of squares ="
-msgstr ""
+msgstr "平方和 ="
 
 #: kcalc.cpp:1519
 #, kde-format
 msgid "Median ="
-msgstr ""
+msgstr "中位数 ="
 
 #: kcalc.cpp:1520
 #, kde-format
 msgid "Median = "
-msgstr ""
+msgstr "中位数 = "
 
 #: kcalc.cpp:1551 kcalc.cpp:1553
 #, kde-format
@@ -804,7 +804,7 @@ msgstr "] = "
 #: kcalc.cpp:1561 kcalc.cpp:1563 kcalc.cpp:1564
 #, kde-format
 msgid "Last stat data erased"
-msgstr ""
+msgstr "已清除上一次状态数据"
 
 #: kcalc.cpp:1576 kcalc.cpp:1579 kcalc.cpp:1580
 #, kde-format
@@ -844,7 +844,7 @@ msgstr "定义常数"
 #: kcalc.cpp:2262
 #, kde-format
 msgid "Input error"
-msgstr ""
+msgstr "输入错误"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
 #: kcalc.cpp:2796 kcalc.ui:20
@@ -1321,7 +1321,7 @@ msgstr "列出用户可编程的常数"
 #: kcalc.ui:176
 #, kde-format
 msgid "Dec"
-msgstr ""
+msgstr "十进制"
 
 #. i18n: ectx: property (toolTip), widget (KCalcBitset, mBitset)
 #: kcalc.ui:395
@@ -1366,7 +1366,7 @@ msgstr "十六进制(&X)"
 #: kcalc.ui:469 kcalc.ui:505 kcalc.ui:541 kcalc.ui:577
 #, kde-format
 msgid "KS…el"
-msgstr ""
+msgstr "KS…el"
 
 #. i18n: ectx: property (toolTip), widget (QRadioButton, decRadio)
 #: kcalc.ui:483
@@ -1677,13 +1677,13 @@ msgstr "Ln"
 #: kcalc.ui:1174
 #, kde-format
 msgid "Median"
-msgstr "中值"
+msgstr "Median"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMed)
 #: kcalc.ui:1177
 #, kde-format
 msgid "Med"
-msgstr "中值"
+msgstr "Med"
 
 #. i18n: ectx: property (text), widget (KCalcConstButton, pbC5)
 #: kcalc.ui:1190
@@ -2096,43 +2096,43 @@ msgstr "SHIFT"
 #, kde-format
 msgctxt "Decimal indicator in status bar"
 msgid "DEC"
-msgstr ""
+msgstr "DEC"
 
 #: kcalc_statusbar.cpp:17
 #, kde-format
 msgctxt "Binary indicator in status bar"
 msgid "BIN"
-msgstr ""
+msgstr "BIN"
 
 #: kcalc_statusbar.cpp:18
 #, kde-format
 msgctxt "Octal indicator in status bar"
 msgid "OCT"
-msgstr ""
+msgstr "OCT"
 
 #: kcalc_statusbar.cpp:18
 #, kde-format
 msgctxt "Hexadecimal indicator in status bar"
 msgid "HEX"
-msgstr ""
+msgstr "HEX"
 
 #: kcalc_statusbar.cpp:19
 #, kde-format
 msgctxt "Degree indicator in status bar"
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: kcalc_statusbar.cpp:19
 #, kde-format
 msgctxt "Radian indicator in status bar"
 msgid "RAD"
-msgstr ""
+msgstr "RAD"
 
 #: kcalc_statusbar.cpp:20
 #, kde-format
 msgctxt "Grad indicator in status bar"
 msgid "GRA"
-msgstr ""
+msgstr "GRA"
 
 #: kcalc_statusbar.cpp:21 kcalc_statusbar.cpp:103
 #, kde-format
@@ -2143,37 +2143,37 @@ msgstr "M"
 #: kcalc_statusbar.cpp:67
 #, kde-format
 msgid "BIN"
-msgstr ""
+msgstr "BIN"
 
 #: kcalc_statusbar.cpp:70
 #, kde-format
 msgid "OCT"
-msgstr ""
+msgstr "OCT"
 
 #: kcalc_statusbar.cpp:74
 #, kde-format
 msgid "DEC"
-msgstr ""
+msgstr "DEC"
 
 #: kcalc_statusbar.cpp:77
 #, kde-format
 msgid "HEX"
-msgstr ""
+msgstr "HEX"
 
 #: kcalc_statusbar.cpp:89
 #, kde-format
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: kcalc_statusbar.cpp:92
 #, kde-format
 msgid "RAD"
-msgstr ""
+msgstr "RAD"
 
 #: kcalc_statusbar.cpp:95
 #, kde-format
 msgid "GRA"
-msgstr ""
+msgstr "GRA"
 
 #: kcalcdisplay.cpp:42
 #, kde-format
