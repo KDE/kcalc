@@ -200,6 +200,5 @@ GenericName[zh_TW]=科學計算機
 Type=Application
 StartupNotify=true
 Categories=Qt;KDE;Utility;Calculator;X-KDE-Utilities-Desktop;
-X-DBUS-ServiceName=org.kde.kcalc.desktop
 X-KDE-Shortcuts=Calculator
 
