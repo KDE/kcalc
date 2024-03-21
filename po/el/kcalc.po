@@ -18,25 +18,28 @@
 # Stelios <sstavra@gmail.com>, 2012, 2014, 2019, 2020, 2021, 2023.
 # Dimitris Kardarakos <dimkard@gmail.com>, 2015.
 # Long Run <pvidalis@gmail.com>, 2018.
+# SPDX-FileCopyrightText: 2024 George Stefanakis <george.stefanakis@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-29 00:39+0000\n"
-"PO-Revision-Date: 2023-01-05 11:17+0200\n"
-"Last-Translator: Stelios <sstavra@gmail.com>\n"
-"Language-Team: Greek <kde-i18n-el@kde.org>\n"
+"PO-Revision-Date: 2024-02-05 22:16+0200\n"
+"Last-Translator: George Stefanakis <george.stefanakis@gmail.com>\n"
+"Language-Team: Greek <kde-i18n-doc@kde.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Πέτρος Βιδάλης, Σπύρος Γεωργαράς, Τούσης Μανώλης, Μπουκλής Παναγιώτης"
+msgstr ""
+"Πέτρος Βιδάλης, Σπύρος Γεωργαράς, Τούσης Μανώλης, Μπουκλής Παναγιώτης, "
+"Γιώργος Στεφανάκης "
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
@@ -819,9 +822,9 @@ msgstr "Διάμεσος"
 
 #: kcalc.cpp:1520
 #, fuzzy, kde-format
-#| msgid "Mean"
+#| msgid "Median"
 msgid "Median = "
-msgstr "Μέσος"
+msgstr "Διάμεσος"
 
 #: kcalc.cpp:1551 kcalc.cpp:1553
 #, kde-format
@@ -1245,15 +1248,7 @@ msgstr "Οι δυαδικές λέξεις θα διαχωρίζονται με 
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:196
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 10111001 you can display 1011 1001, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1279,15 +1274,7 @@ msgstr "Οι οκταδικές λέξεις θα διαχωρίζονται μ�
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:205
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 42140213 you can display 4214 0213, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1314,15 +1301,7 @@ msgstr "Οι δεκαεξαδικές λέξεις θα διαχωρίζοντα
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:214
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of AF1C42 you can display AF 1C 42, by "
-#| "setting the setting to\n"
-#| "            2, thus inserting a whitespace after every 2nd digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1335,7 +1314,7 @@ msgstr ""
 "\n"
 "            Για ευκολότερη αναγνωσιμότητα μπορεί να γίνει ομαδοποίηση των "
 "ξεχωριστών ψηφίων κατά ζεύγη\n"
-"            π.χ. αντί για AF1C42 γράφετε AF,1C 42, θέτοντας ρύθμιση για "
+"            π.χ. αντί για AF1C42 γράφετε AF 1C 42, θέτοντας ρύθμιση για "
 "δυάδες\n"
 "            άρα εισάγοντας κενό κάθε 2ο ψηφία.\n"
 "        "
