@@ -214,6 +214,10 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
         index++;
         return KCalcToken::TokenCode::XOR;
     }
+    if (s.startsWith(XOR_LETTER_STR, Qt::CaseSensitivity::CaseInsensitive)) {
+        index += 3;
+        return KCalcToken::TokenCode::XOR;
+    }
 
     if (s.startsWith(ASINH_STR)) {
         index += 5;

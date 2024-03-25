@@ -130,6 +130,7 @@ private:
     static const inline QString AND_STR = QStringLiteral("&");
     static const inline QString OR_STR = QStringLiteral("|");
     static const inline QString XOR_STR = QStringLiteral("⊕");
+    static const inline QString XOR_LETTER_STR = QStringLiteral("XOR");
     static const inline QString RSH_STR = QStringLiteral(">>");
     static const inline QString LSH_STR = QStringLiteral("<<");
     static const inline QString ONE_S_COMP_STR = QStringLiteral("~");
