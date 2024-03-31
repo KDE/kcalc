@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-13 01:39+0000\n"
-"PO-Revision-Date: 2024-01-06 03:32\n"
+"PO-Revision-Date: 2024-03-30 19:38\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -14,8 +14,8 @@ msgstr ""
 "X-Crowdin-Project: kdeorg\n"
 "X-Crowdin-Project-ID: 269464\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf6-trunk/messages/kcalc/kcalc.pot\n"
-"X-Crowdin-File-ID: 44929\n"
+"X-Crowdin-File: /kf6-stable/messages/kcalc/kcalc.pot\n"
+"X-Crowdin-File-ID: 52048\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -103,7 +103,7 @@ msgstr "操作符(&P)："
 #: colors.ui:287
 #, kde-format
 msgid "&Constants:"
-msgstr "&常量:"
+msgstr "常量(&C)："
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
 #: constants.ui:13 kcalc.cpp:1797
@@ -759,7 +759,7 @@ msgstr "M"
 #: kcalc.cpp:1657 kcalc.ui:791
 #, kde-format
 msgid "Median"
-msgstr "中值"
+msgstr "Median"
 
 #: kcalc.cpp:1674
 #, kde-format
@@ -1616,7 +1616,7 @@ msgstr "均值"
 #: kcalc.ui:794
 #, kde-format
 msgid "Med"
-msgstr "中值"
+msgstr "Med"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPower)
 #: kcalc.ui:810
