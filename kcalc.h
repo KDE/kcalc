@@ -188,7 +188,7 @@ protected Q_SLOTS:
     void slotFactorialclicked();
     void slotLogclicked();
     void slotSquareclicked();
-    void slotCubeclicked();
+    void slotSqrtclicked();
     void slotLnclicked();
     void slotPowerclicked();
     void slotMemClearclicked();

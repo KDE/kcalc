@@ -345,11 +345,11 @@ void KCalculator::setupRightKeypad()
 //------------------------------------------------------------------------------
 void KCalculator::setupNumericKeypad()
 {
-    pbCube->addMode(ModeNormal, i18nc("Third power", "x<sup>3</sup>"), i18n("Third power"));
-    pbCube->addMode(ModeShift, QStringLiteral("<sup>3</sup>&radic;x"), i18n("Cube root"));
-    connect(pbCube, &KCalcButton::clicked, this, &KCalculator::slotCubeclicked);
-    connect(this, &KCalculator::switchShowAccels, pbCube, &KCalcButton::slotSetAccelDisplayMode);
-    connect(this, &KCalculator::switchMode, pbCube, &KCalcButton::slotSetMode);
+    pbSqrt->addMode(ModeNormal, i18nc("Square root", "&radic;x"), i18n("Square root"));
+    pbSqrt->addMode(ModeShift, QStringLiteral("<sup>3</sup>&radic;x"), i18n("Cube root"));
+    connect(pbSqrt, &KCalcButton::clicked, this, &KCalculator::slotSqrtclicked);
+    connect(this, &KCalculator::switchShowAccels, pbSqrt, &KCalcButton::slotSetAccelDisplayMode);
+    connect(this, &KCalculator::switchMode, pbSqrt, &KCalcButton::slotSetMode);
 
     pbDivision->setShortcut(QKeySequence(Qt::Key_Slash));
     new QShortcut(Qt::Key_division, pbDivision, SLOT(animateClick()));
@@ -597,7 +597,7 @@ void KCalculator::setupMiscKeys()
     connect(pbFactorial, &KCalcButton::clicked, this, &KCalculator::slotFactorialclicked);
 
     pbSquare->addMode(ModeNormal, i18nc("Square", "x<sup>2</sup>"), i18n("Square"));
-    pbSquare->addMode(ModeShift, QStringLiteral("&radic;x"), i18n("Square root"));
+    pbSquare->addMode(ModeShift, QStringLiteral("x<sup>3</sup>"), i18n("Third power"));
     pbSquare->setShortcut(QKeySequence(Qt::Key_BracketLeft));
     new QShortcut(Qt::Key_twosuperior, pbSquare, SLOT(animateClick()));
     connect(this, &KCalculator::switchShowAccels, pbSquare, &KCalcButton::slotSetAccelDisplayMode);
@@ -651,7 +651,7 @@ void KCalculator::setupKeys()
     function_button_list_.append(pbSquare);
     function_button_list_.append(pbLn);
     function_button_list_.append(pbPower);
-    function_button_list_.append(pbCube);
+    function_button_list_.append(pbSqrt);
 
     mem_button_list_.append(pbMemRecall);
     mem_button_list_.append(pbMemPlusMinus);
@@ -1172,18 +1172,18 @@ void KCalculator::slotSquareclicked()
     if (!shift_mode_) {
         insertToInputDisplay(KCalcToken::TokenCode::SQUARE);
     } else {
-        insertToInputDisplay(KCalcToken::TokenCode::SQUARE_ROOT);
+        insertToInputDisplay(KCalcToken::TokenCode::CUBE);
     }
 }
 
 //------------------------------------------------------------------------------
-// Name: slotCubeclicked
-// Desc: executes the x^3 function
+// Name: slotSqrtclicked
+// Desc: executes the sqrt function
 //------------------------------------------------------------------------------
-void KCalculator::slotCubeclicked()
+void KCalculator::slotSqrtclicked()
 {
     if (!shift_mode_) {
-        this->insertToInputDisplay(KCalcToken::TokenCode::CUBE);
+        this->insertToInputDisplay(KCalcToken::TokenCode::SQUARE_ROOT);
     } else {
         this->insertToInputDisplay(KCalcToken::TokenCode::CUBIC_ROOT);
     }
@@ -1771,7 +1771,7 @@ void KCalculator::slotSetSimpleMode()
     pbFactorial->hide();
     pbSquare->hide();
     pbPower->hide();
-    pbCube->hide();
+    pbSqrt->hide();
     pbEE->hide();
 
     // delete the constant menu since it doesn't fit
@@ -1820,7 +1820,7 @@ void KCalculator::slotSetScienceMode()
     pbFactorial->show();
     pbSquare->show();
     pbPower->show();
-    pbCube->show();
+    pbSqrt->show();
     pbEE->show();
 
     // show or hide some groups of buttons
@@ -1876,7 +1876,7 @@ void KCalculator::slotSetStatisticMode()
     pbFactorial->show();
     pbSquare->show();
     pbPower->show();
-    pbCube->show();
+    pbSqrt->show();
     pbEE->show();
 
     // show or hide some groups of buttons
@@ -1933,7 +1933,7 @@ void KCalculator::slotSetNumeralMode()
     pbFactorial->show();
     pbSquare->show();
     pbPower->show();
-    pbCube->show();
+    pbSqrt->show();
     pbEE->show();
 
     // show or hide some groups of buttons

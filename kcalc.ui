@@ -366,14 +366,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QFrame">
-       <property name="frameStyle">
-        <enum>QFrame::HLine</enum>
-       </property>
-       <property name="maximumHeight">
-        <number>1</number>
-       </property>
-      </widget>
+      <widget class="QFrame" name="frame"/>
      </item>
      <item>
       <layout class="QHBoxLayout" name="bitsetHelper">
@@ -649,22 +642,6 @@
             </property>
             <property name="text">
              <string>x2</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="3">
-           <widget class="KCalcButton" name="pbPower">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>x to the power of y</string>
-            </property>
-            <property name="text">
-             <string>pow</string>
             </property>
            </widget>
           </item>
@@ -1226,22 +1203,6 @@
             </property>
            </widget>
           </item>
-          <item row="7" column="3">
-           <widget class="KCalcButton" name="pbCube">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Cube</string>
-            </property>
-            <property name="text">
-             <string>x3</string>
-            </property>
-           </widget>
-          </item>
           <item row="3" column="2">
            <widget class="KCalcButton" name="pbLsh">
             <property name="sizePolicy">
@@ -1255,6 +1216,38 @@
             </property>
             <property name="text">
              <string>Lsh</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="3">
+           <widget class="KCalcButton" name="pbSqrt">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Square root</string>
+            </property>
+            <property name="text">
+             <string>sqrt</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="3">
+           <widget class="KCalcButton" name="pbPower">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>x to the power of y</string>
+            </property>
+            <property name="text">
+             <string>pow</string>
             </property>
            </widget>
           </item>
@@ -1876,8 +1869,6 @@
   <tabstop>pbReci</tabstop>
   <tabstop>pbFactorial</tabstop>
   <tabstop>pbSquare</tabstop>
-  <tabstop>pbPower</tabstop>
-  <tabstop>pbCube</tabstop>
   <tabstop>pbEE</tabstop>
   <tabstop>pbAND</tabstop>
   <tabstop>pbOR</tabstop>
