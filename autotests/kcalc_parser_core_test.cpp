@@ -62,6 +62,7 @@ void KCalcParserCoreTest::testParserCore_data()
     QTest::newRow("inverse test 1") << QS("10⁻¹") << 10 << QS("1/10");
     QTest::newRow("inverse test 2") << QS("10⁻¹⁻¹") << 10 << QS("10");
     QTest::newRow("sqrt test 2") << QS("√5") << 10 << QS("2.2360679775");
+    QTest::newRow("sqrt test 2") << QS("∛5") << 10 << QS("1.70997594668");
     QTest::newRow("square test 1") << QS("2.2360679775²") << 10 << QS("5");
     QTest::newRow("square test 2") << QS("2.2360679775²²") << 10 << QS("25");
     QTest::newRow("power test 1") << QS("5^5") << 10 << QS("3125");

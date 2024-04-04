@@ -180,6 +180,10 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
         index++;
         return KCalcToken::TokenCode::SQUARE_ROOT;
     }
+    if (s.startsWith(CUBIC_ROOT_STR)) {
+        index++;
+        return KCalcToken::TokenCode::CUBIC_ROOT;
+    }
     if (s.startsWith(OPENING_PARENTHESIS_STR)) {
         index++;
         return KCalcToken::TokenCode::OPENING_PARENTHESIS;
