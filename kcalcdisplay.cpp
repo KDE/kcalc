@@ -549,17 +549,14 @@ void KCalcDisplay::setFont(const QFont &font)
 void KCalcDisplay::updateFont()
 {
     // Make a working copy of the font
-    QFont* newFont = new QFont(baseFont());
+    QFont newFont(baseFont());
 
     // Calculate ideal font size
     // constants arbitrarily chosen, adjust/increase if scaling issues arise
-    newFont->setPointSizeF(qMax(double(baseFont().pointSize()), qMin(contentsRect().height() / 4.5, contentsRect().width() / 24.6)));
+    newFont.setPointSizeF(qMax(double(baseFont().pointSize()), qMin(contentsRect().height() / 4.5, contentsRect().width() / 24.6)));
 
     // Apply font
-    QFrame::setFont(*newFont);
-    
-    // Free the memory
-    delete newFont;
+    QFrame::setFont(newFont);
 }
 
 //------------------------------------------------------------------------------
