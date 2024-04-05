@@ -33,7 +33,7 @@ public Q_SLOTS:
     void clearHistory();
 
 protected:
-    void resizeEvent(QResizeEvent* event) override;
+    void resizeEvent(QResizeEvent *event) override;
 
 private:
     bool add_new_line_ = false;

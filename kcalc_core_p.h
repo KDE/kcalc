@@ -5,8 +5,8 @@
 
 #pragma once
 
+#include "kcalc_stats.h"
 #include "knumber.h"
-#include "stats.h"
 
 class CalcEngine_p
 {

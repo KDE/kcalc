@@ -90,7 +90,7 @@ Q_SIGNALS:
 protected:
     void mousePressEvent(QMouseEvent *) override;
     void paintEvent(QPaintEvent *p) override;
-    void resizeEvent(QResizeEvent* event) override;
+    void resizeEvent(QResizeEvent *event) override;
 
 private:
     bool changeSign();
@@ -136,4 +136,3 @@ private:
 
     QTimer *const selection_timer_;
 };
-

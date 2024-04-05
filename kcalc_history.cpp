@@ -4,7 +4,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include "kcalchistory.h"
+#include "kcalc_history.h"
 #include "kcalc_settings.h"
 
 //------------------------------------------------------------------------------
@@ -143,7 +143,7 @@ void KCalcHistory::updateFont(double zoomFactor)
 // Name: baseFont
 // Desc: Returns current baseFont
 //------------------------------------------------------------------------------
-const QFont& KCalcHistory::baseFont() const
+const QFont &KCalcHistory::baseFont() const
 {
     return baseFont_;
 }
@@ -152,7 +152,7 @@ const QFont& KCalcHistory::baseFont() const
 // Name: resizeEvent
 // Desc: resize history and adjust font size
 //------------------------------------------------------------------------------
-void KCalcHistory::resizeEvent(QResizeEvent* event)
+void KCalcHistory::resizeEvent(QResizeEvent *event)
 {
     QTextEdit::resizeEvent(event);
 
@@ -165,4 +165,4 @@ void KCalcHistory::resizeEvent(QResizeEvent* event)
     updateGeometry();
 }
 
-#include "moc_kcalchistory.cpp"
+#include "moc_kcalc_history.cpp"

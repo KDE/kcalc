@@ -6,7 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include "kcalcdisplay.h"
+#include "kcalc_display.h"
 
 #include <QApplication>
 #include <QClipboard>
@@ -563,7 +563,7 @@ void KCalcDisplay::updateFont()
 // Name: baseFont
 // Desc:
 //------------------------------------------------------------------------------
-const QFont& KCalcDisplay::baseFont() const
+const QFont &KCalcDisplay::baseFont() const
 {
     return baseFont_;
 }
@@ -1020,7 +1020,7 @@ void KCalcDisplay::paintEvent(QPaintEvent *)
 // Name: resizeEvent
 // Desc: resize display and adjust font size
 //------------------------------------------------------------------------------
-void KCalcDisplay::resizeEvent(QResizeEvent* event)
+void KCalcDisplay::resizeEvent(QResizeEvent *event)
 {
     QFrame::resizeEvent(event);
 
@@ -1036,7 +1036,7 @@ QSize KCalcDisplay::sizeHint() const
 {
     // font metrics of base font
     const QFontMetrics fmBase(baseFont());
-    
+
     // basic size
     QSize sz = fmBase.size(0, QStringLiteral("M"));
 
@@ -1053,4 +1053,4 @@ QSize KCalcDisplay::sizeHint() const
     return (style()->sizeFromContents(QStyle::CT_LineEdit, &option, sz, this));
 }
 
-#include "moc_kcalcdisplay.cpp"
+#include "moc_kcalc_display.cpp"

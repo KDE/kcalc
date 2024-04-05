@@ -34,4 +34,3 @@ private:
     QList<KNumber> data_;
     bool error_flag_ = false;
 };
-

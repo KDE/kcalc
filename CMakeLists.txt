@@ -99,11 +99,10 @@ target_sources(kcalc PRIVATE
    kcalc_display_frame.cpp
    kcalc_parser.cpp
    kcalc_token.cpp
-   kcalcdisplay.cpp 
+   kcalc_display.cpp
    kcalc_statusbar.cpp
-   stats.cpp 
-   kcalchistory.cpp
-   stats.cpp
+   kcalc_stats.cpp
+   kcalc_history.cpp
    kcalc_const_menu.h
    kcalc_core.h
    kcalc_core_p.h
@@ -111,7 +110,7 @@ target_sources(kcalc PRIVATE
    bitbutton.h
    kcalc.h
    kcalc_button.h
-   stats.h
+   kcalc_stats.h
    kcalc_const_button.h
    kcalc_statusbar.h
    kcalc_input_display.h
@@ -119,8 +118,8 @@ target_sources(kcalc PRIVATE
    kcalc_parser.h
    kcalc_token.h
    kcalc_priority_levels_p.h
-   kcalcdisplay.h
-   kcalchistory.h
+   kcalc_display.h
+   kcalc_history.h
    kcalc.qrc )
 
 

@@ -5,7 +5,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include "stats.h"
+#include "kcalc_stats.h"
 
 //------------------------------------------------------------------------------
 // Name: KStats

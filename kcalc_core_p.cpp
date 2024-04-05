@@ -4,8 +4,8 @@
 */
 
 #include "kcalc_core_p.h"
+#include "kcalc_stats.h"
 #include "knumber.h"
-#include "stats.h"
 
 KNumber CalcEngine_p::Deg2Rad(const KNumber &x)
 {

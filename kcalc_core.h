@@ -7,9 +7,9 @@
 
 #pragma once
 
+#include "kcalc_stats.h"
 #include "kcalc_token.h"
 #include "knumber.h"
-#include "stats.h"
 
 #include <QQueue>
 

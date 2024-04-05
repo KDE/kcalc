@@ -1808,7 +1808,7 @@
   <customwidget>
    <class>KCalcDisplay</class>
    <extends>QFrame</extends>
-   <header>kcalcdisplay.h</header>
+   <header>kcalc_display.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
@@ -1825,7 +1825,7 @@
   <customwidget>
    <class>KCalcHistory</class>
    <extends>QWidget</extends>
-   <header>kcalchistory.h</header>
+   <header>kcalc_history.h</header>
   </customwidget>
   <customwidget>
    <class>KCalcInputDisplay</class>
