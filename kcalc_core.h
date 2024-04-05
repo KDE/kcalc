@@ -18,9 +18,18 @@ class CalcEngine
 public:
     CalcEngine();
 
-    enum CALCULATION_RESULT { SUCCESS, EMPTY_INPUT, MATH_ERROR, SYNTAX_ERROR };
+    enum ResultCode {
+        SUCCESS,
+        EMPTY_INPUT,
+        MATH_ERROR,
+        MISIING_LEFT_UNARY_ARG,
+        MISIING_RIGHT_UNARY_ARG,
+        MISIING_RIGHT_BINARY_ARG,
+        INCOMPLETE_INPUT,
+        SYNTAX_ERROR
+    };
 
-    int calculate(const QQueue<KCalcToken> tokenBuffer, int &errorIndex); // returs 0 on success
+    ResultCode calculate(const QQueue<KCalcToken> tokenBuffer, int &errorIndex); // returs 0 on success
     KNumber getResult();
 
     KNumber lastOutput(bool &error) const;

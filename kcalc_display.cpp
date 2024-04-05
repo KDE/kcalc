@@ -231,9 +231,8 @@ bool KCalcDisplay::sendEvent(Event event)
     case EventClear:
     case EventReset:
         display_amount_ = KNumber::Zero;
-        str_int_ = QStringLiteral("0");
+        str_int_.clear();
         str_int_exp_.clear();
-
         eestate_ = false;
         period_ = false;
         neg_sign_ = false;
@@ -477,6 +476,7 @@ bool KCalcDisplay::setAmount(const KNumber &new_amount)
     }
 
     setText(display_str);
+
     Q_EMIT changedAmount(display_amount_);
     return true;
 }
@@ -693,7 +693,10 @@ int KCalcDisplay::setBase(NumBase new_base)
     }
 
     // reset amount
-    setAmount(display_amount_);
+    if (!str_int_.isEmpty()) {
+        setAmount(display_amount_);
+    }
+
     return num_base_;
 }
 
@@ -716,6 +719,10 @@ void KCalcDisplay::setStatusText(int i, const QString &text)
 //------------------------------------------------------------------------------
 void KCalcDisplay::updateDisplay()
 {
+    if (str_int_.isEmpty()) {
+        setText(str_int_);
+        return;
+    }
     // Put sign in front.
     QString tmp_string;
     if (neg_sign_) {
