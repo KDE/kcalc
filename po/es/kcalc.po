@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-06 00:40+0000\n"
-"PO-Revision-Date: 2024-01-30 18:42+0100\n"
+"PO-Revision-Date: 2024-04-06 21:43+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "First Translator: Alonso Lara <jlaram@nexo.es>\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 24.02.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -382,7 +382,7 @@ msgstr "Restar de la memoria"
 #, kde-format
 msgctxt "Square root"
 msgid "&radic;x"
-msgstr ""
+msgstr "&radic;x"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSqrt)
 #: kcalc.cpp:348 kcalc.ui:1231
@@ -1747,7 +1747,7 @@ msgstr "Lsh"
 #: kcalc.ui:1234
 #, kde-format
 msgid "sqrt"
-msgstr ""
+msgstr "sqrt"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPower)
 #: kcalc.ui:1250

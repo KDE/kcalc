@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-06 00:40+0000\n"
-"PO-Revision-Date: 2024-01-29 23:31+0100\n"
+"PO-Revision-Date: 2024-04-06 17:40+0200\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -385,7 +385,7 @@ msgstr "Sottrai dalla memoria"
 #, kde-format
 msgctxt "Square root"
 msgid "&radic;x"
-msgstr ""
+msgstr "&radic;x"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSqrt)
 #: kcalc.cpp:348 kcalc.ui:1231
@@ -1745,7 +1745,7 @@ msgstr "Lsh"
 #: kcalc.ui:1234
 #, kde-format
 msgid "sqrt"
-msgstr ""
+msgstr "sqrt"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPower)
 #: kcalc.ui:1250

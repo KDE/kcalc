@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-06 00:40+0000\n"
-"PO-Revision-Date: 2024-01-29 09:28+0100\n"
+"PO-Revision-Date: 2024-04-06 09:05+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -385,7 +385,7 @@ msgstr "Odštej od pomnilnika"
 #, kde-format
 msgctxt "Square root"
 msgid "&radic;x"
-msgstr ""
+msgstr "&radic;x"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSqrt)
 #: kcalc.cpp:348 kcalc.ui:1231
@@ -1634,7 +1634,7 @@ msgstr "K3"
 #: kcalc.ui:1046
 #, kde-format
 msgid "One's complement"
-msgstr "Komplement"
+msgstr "Eniški komplement"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbCmp)
 #: kcalc.ui:1049
@@ -1694,13 +1694,13 @@ msgstr "Ln"
 #: kcalc.ui:1151
 #, kde-format
 msgid "Median"
-msgstr "Srednja vrednost"
+msgstr "Mediana"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMed)
 #: kcalc.ui:1154
 #, kde-format
 msgid "Med"
-msgstr "Sre"
+msgstr "Med"
 
 #. i18n: ectx: property (text), widget (KCalcConstButton, pbC5)
 #: kcalc.ui:1167
@@ -1736,7 +1736,7 @@ msgstr "PmL"
 #: kcalc.ui:1234
 #, kde-format
 msgid "sqrt"
-msgstr ""
+msgstr "kvkoren"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPower)
 #: kcalc.ui:1250
