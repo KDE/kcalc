@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-13 01:39+0000\n"
-"PO-Revision-Date: 2024-02-18 17:04+0530\n"
+"PO-Revision-Date: 2024-04-07 17:11+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 24.02.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -202,10 +202,9 @@ msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_Fixed)
 #: general.ui:51
-#, fuzzy, kde-format
-#| msgid "Whether to use fixed decimal places."
+#, kde-format
 msgid "Whether to use fixed decimal places"
-msgstr "மாறாபதின்மஇடங்களின் எண்ணிக்கையை பயன்படுத்தவேண்டுமா"
+msgstr "அனைத்து எண்களிலும் புள்ளிக்குப் பின்னான இலக்கங்களின் எண்ணிக்கை ஒன்றாக இருக்க வேண்டுமா"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_Fixed)
 #: general.ui:54
@@ -215,59 +214,55 @@ msgstr "புள்ளிதுல்லியத்தை அமை"
 
 #. i18n: ectx: property (toolTip), widget (QSpinBox, kcfg_FixedPrecision)
 #: general.ui:64
-#, fuzzy, kde-format
+#, kde-format
 msgid "Number of fixed decimal digits"
-msgstr "மாறாபதின்ம இடங்களின் எண்ணிக்கை"
+msgstr "புள்ளிக்கு பின்னான இலக்கங்களின் எண்ணிக்கை"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: general.ui:89
-#, fuzzy, kde-format
-#| msgid "Group digits"
+#, kde-format
 msgid "Grouping"
-msgstr "எண்மங்களை குழுவாக்கு"
+msgstr "குழுவாக்கம் "
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GroupDigits)
 #: general.ui:97
-#, fuzzy, kde-format
-#| msgid "Whether to group digits."
+#, kde-format
 msgid "Whether to group digits"
-msgstr "எண்மங்களை குழுவாக்க"
+msgstr "இலக்கங்களைக் குழுப்படுத்த வேண்டுமா"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_GroupDigits)
 #: general.ui:100
 #, kde-format
 msgid "Group digits"
-msgstr "எண்மங்களை குழுவாக்கு"
+msgstr "இலக்கங்களை குழுப்படுத்து"
 
 #. i18n: ectx: property (text), widget (QLabel, grouping_binary_lb)
 #: general.ui:115
 #, kde-format
 msgid "Binary"
-msgstr ""
+msgstr "இரும‍ம்"
 
 #. i18n: ectx: property (text), widget (QLabel, grouping_octal_lb)
 #: general.ui:122
 #, kde-format
 msgid "Octal"
-msgstr ""
+msgstr "எண்ம‍ம்"
 
 #. i18n: ectx: property (text), widget (QLabel, grouping_hexadecimal_lb)
 #: general.ui:129
-#, fuzzy, kde-format
-#| msgid "He&xadecimals:"
+#, kde-format
 msgid "Hexadecimal"
-msgstr "பதின்அறுமம்"
+msgstr "பதினறுமம்"
 
 #. i18n: ectx: property (title), widget (QGroupBox, miscGroupBox)
 #: general.ui:152
 #, kde-format
 msgid "Misc"
-msgstr "மிஸ்க்"
+msgstr "மற்றவை"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_Beep)
 #: general.ui:160
-#, fuzzy, kde-format
-#| msgid "Whether to beep on error."
+#, kde-format
 msgid "Whether to beep on error"
 msgstr "பிழை இருந்தால் பீப் செய்ய வேண்டுமா"
 
@@ -275,7 +270,7 @@ msgstr "பிழை இருந்தால் பீப் செய்ய �
 #: general.ui:163
 #, kde-format
 msgid "&Beep on error"
-msgstr "பிழை வந்தால் பீப் செய்யவும்"
+msgstr "&பிழை வந்தால் பீப் செய்யவும்"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_CaptionResult)
 #: general.ui:173
@@ -287,7 +282,7 @@ msgstr "முடிவை சாளரத் தலைப்பாக‍க் 
 #: general.ui:176
 #, kde-format
 msgid "Show &result in window title"
-msgstr "முடிவை சாளரத்தின் தலைப்பில் காட்டவும்"
+msgstr "&முடிவை சாளரத்தின் தலைப்பில் காட்டவும்"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_TwosComplement)
 #: general.ui:183
