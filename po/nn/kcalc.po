@@ -2347,13 +2347,3 @@ msgstr "Stefan–Boltzmann-konstanten"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Avogadros tal"
-
-#~ msgctxt "Third power"
-#~ msgid "x<sup>3</sup>"
-#~ msgstr "<i>x</i><sup>3</sup>"
-
-#~ msgid "Cube"
-#~ msgstr "Kube"
-
-#~ msgid "x3"
-#~ msgstr "x3"

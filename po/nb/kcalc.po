@@ -2341,13 +2341,3 @@ msgstr "Stefan-Boltzmanns konstant"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Avogadros tall"
-
-#~ msgctxt "Third power"
-#~ msgid "x<sup>3</sup>"
-#~ msgstr "x<sup>3</sup>"
-
-#~ msgid "Cube"
-#~ msgstr "Kubus"
-
-#~ msgid "x3"
-#~ msgstr "x3"

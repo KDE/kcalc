@@ -2295,13 +2295,3 @@ msgstr "Stefan-Boltzmannova konstanta"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Avogadrova konstanta"
-
-#~ msgctxt "Third power"
-#~ msgid "x<sup>3</sup>"
-#~ msgstr "x<sup>3</sup>"
-
-#~ msgid "Cube"
-#~ msgstr "Třetí mocnina"
-
-#~ msgid "x3"
-#~ msgstr "x3"
