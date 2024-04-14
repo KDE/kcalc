@@ -93,7 +93,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
     }
 
     if ((A_STR <= s.first(1) && s.first(1) <= F_STR) || (ZERO_STR <= s.first(1) && s.first(1) <= NINE_STR)) {
-        int numIndex;
+        int numIndex = -1;
         QRegularExpressionMatch match;
         switch (base) {
         case 2:
