@@ -1,5 +1,5 @@
 # translation of kcalc.po to Polish
-# Version: $Revision: 1677239 $
+# Version: $Revision: 1677961 $
 # translation of kcalc.po to
 # KTranslator Generated File
 # Major part translated by Piotr Roszatycki <dexter@fnet.pl>
@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-06 00:40+0000\n"
-"PO-Revision-Date: 2024-02-04 09:16+0100\n"
+"PO-Revision-Date: 2024-04-13 19:16+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 ">\n"
 ">\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 23.08.5\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
@@ -388,7 +388,7 @@ msgstr "Odejmij od pamięci"
 #, kde-format
 msgctxt "Square root"
 msgid "&radic;x"
-msgstr ""
+msgstr "&radic;x"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSqrt)
 #: kcalc.cpp:348 kcalc.ui:1231
@@ -1744,7 +1744,7 @@ msgstr "Lsh"
 #: kcalc.ui:1234
 #, kde-format
 msgid "sqrt"
-msgstr ""
+msgstr "sqrt"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPower)
 #: kcalc.ui:1250
