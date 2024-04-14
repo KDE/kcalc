@@ -99,6 +99,9 @@ public:
     quint64 toUint64() const;
     qint64 toInt64() const;
 
+private:
+    QString round(const QString &s, int precision) const;
+
 public:
     KNumber abs() const;
     KNumber cbrt() const;
@@ -140,7 +143,7 @@ public:
     static void setDecimalSeparator(const QString &ch);
 
     static QString groupSeparator();
-    static QString decimalSeparator();
+    static const QString decimalSeparator();
 
 public:
     void swap(KNumber &other);
