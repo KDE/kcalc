@@ -888,7 +888,7 @@ void testingConstructors()
 
     // test accepting of non-US number formatted strings
     KNumber::setDecimalSeparator(QStringLiteral(","));
-    checkResult(QStringLiteral("KNumber(\"5,2\")"), KNumber(QStringLiteral("5,2")), QStringLiteral("5.2"), KNumber::TYPE_FLOAT);
+    checkResult(QStringLiteral("KNumber(\"5,2\")"), KNumber(QStringLiteral("5,2")), QStringLiteral("5,2"), KNumber::TYPE_FLOAT);
     KNumber::setDecimalSeparator(QStringLiteral("."));
 }
 

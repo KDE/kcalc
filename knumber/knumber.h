@@ -152,7 +152,9 @@ private:
     detail::knumber_base *value_;
 
 private:
+    static void localizeDecimalSeparator(QString &knumber);
+
+private:
     static QString GroupSeparator;
     static QString DecimalSeparator;
 };
-

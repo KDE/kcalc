@@ -632,8 +632,10 @@ QString KNumber::toQString(int width, int precision) const
         } else {
             s = value_->toString(3 * mpf_get_default_prec() / 10);
         }
+        localizeDecimalSeparator(s);
     } else if (dynamic_cast<detail::knumber_fraction *>(value_)) {
         s = value_->toString(width);
+        localizeDecimalSeparator(s);
     } else {
         return value_->toString(width);
     }
@@ -644,6 +646,16 @@ QString KNumber::toQString(int width, int precision) const
     } else {
         return s;
     }
+}
+
+//------------------------------------------------------------------------------
+// Name: localizeDecimalSeparator
+// Desc: replaces the internal '.' as decimal separator
+//       with the local decimal separator of the user's machine
+//------------------------------------------------------------------------------
+void KNumber::localizeDecimalSeparator(QString &knumber)
+{
+    knumber.replace(QLatin1Char('.'), KNumber::DecimalSeparator);
 }
 
 //------------------------------------------------------------------------------
