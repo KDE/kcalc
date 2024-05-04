@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-06 00:40+0000\n"
-"PO-Revision-Date: 2024-04-07 10:02+0200\n"
+"PO-Revision-Date: 2024-04-29 22:45+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
 "Language: fr\n"
@@ -2055,7 +2055,7 @@ msgstr "Bouton de fonction secondaire"
 #: kcalc.ui:1752
 #, kde-format
 msgid "Shift"
-msgstr "2nde"
+msgstr "Maj"
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbShift)
 #: kcalc.ui:1755
