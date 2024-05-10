@@ -54,14 +54,21 @@
   <name xml:lang="zh-CN">KCalc 计算器</name>
   <name xml:lang="zh-TW">KDE 計算機</name>
   <summary>Scientific calculator</summary>
+  <summary xml:lang="ar">آلة حاسبة علمية</summary>
   <summary xml:lang="ca">Calculadora científica</summary>
+  <summary xml:lang="ca-valencia">Calculadora científica</summary>
+  <summary xml:lang="eo">Scienca kalkulilo</summary>
   <summary xml:lang="es">Calculadora científica</summary>
   <summary xml:lang="he">מחשבון מדעי</summary>
+  <summary xml:lang="ia">Calculator scientific</summary>
   <summary xml:lang="it">Calcolatrice scientifica</summary>
   <summary xml:lang="ka">სამეცნიერო კალკულატორი</summary>
+  <summary xml:lang="nl">Wetenschappelijke rekenmachine</summary>
   <summary xml:lang="sl">Znanstveno računalo</summary>
+  <summary xml:lang="tr">Bilimsel Hesap Makinesi</summary>
   <summary xml:lang="uk">Інженерний калькулятор</summary>
   <summary xml:lang="x-test">xxScientific calculatorxx</summary>
+  <summary xml:lang="zh-CN">科学计算器</summary>
   <developer id="kde.org">
     <name translate="no">KDE</name>
   </developer>
