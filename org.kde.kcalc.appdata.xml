@@ -60,6 +60,7 @@
   <summary xml:lang="ca-valencia">Calculadora científica</summary>
   <summary xml:lang="eo">Scienca kalkulilo</summary>
   <summary xml:lang="es">Calculadora científica</summary>
+  <summary xml:lang="eu">Kalkulagailu zientifikoa</summary>
   <summary xml:lang="fr">Calculatrice scientifique</summary>
   <summary xml:lang="he">מחשבון מדעי</summary>
   <summary xml:lang="ia">Calculator scientific</summary>
@@ -72,6 +73,7 @@
   <summary xml:lang="uk">Інженерний калькулятор</summary>
   <summary xml:lang="x-test">xxScientific calculatorxx</summary>
   <summary xml:lang="zh-CN">科学计算器</summary>
+  <summary xml:lang="zh-TW">科學計算機</summary>
   <developer id="kde.org">
     <name translate="no">KDE</name>
   </developer>
