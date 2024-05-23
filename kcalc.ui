@@ -458,9 +458,6 @@
              <height>16777215</height>
             </size>
            </property>
-           <property name="text">
-            <string>KS…el</string>
-           </property>
           </widget>
          </item>
         </layout>
@@ -493,9 +490,6 @@
              <width>65</width>
              <height>16777215</height>
             </size>
-           </property>
-           <property name="text">
-            <string>KS…el</string>
            </property>
           </widget>
          </item>
@@ -530,9 +524,6 @@
              <height>16777215</height>
             </size>
            </property>
-           <property name="text">
-            <string>KS…el</string>
-           </property>
           </widget>
          </item>
         </layout>
@@ -565,9 +556,6 @@
              <width>65</width>
              <height>16777215</height>
             </size>
-           </property>
-           <property name="text">
-            <string>KS…el</string>
            </property>
           </widget>
          </item>
