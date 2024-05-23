@@ -54,7 +54,7 @@ KCalcBitset::KCalcBitset(QWidget *parent)
 
             for (int bit = 0; bit < 8; bit++) {
                 auto const tmpBitButton = new BitButton(this);
-                tmpBitButton->setToolTip(i18n("Bit %1 = %2", bitCounter, 1ULL << bitCounter));
+                tmpBitButton->setToolTip(i18nc("@info:tooltip", "Bit %1 = %2", bitCounter, 1ULL << bitCounter));
                 wordlayout->addWidget(tmpBitButton);
                 wordlayout->setStretch(bit, 1);
                 bit_button_group_->addButton(tmpBitButton, bitCounter);
