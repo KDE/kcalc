@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-24 00:41+0000\n"
-"PO-Revision-Date: 2024-04-06 14:22+0300\n"
+"PO-Revision-Date: 2024-05-24 06:24+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.04.70\n"
+"X-Generator: Lokalize 24.07.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -881,10 +881,10 @@ msgid ""
 "Copyright © 2003-2005, Klaus Niederkrüger\n"
 "Copyright © 1996-2000, Bernd Johannes Wuebben"
 msgstr ""
-"Copyright © 2008-2013, Evan Teran\n"
-"Copyright © 2000-2008, KDE Takımı\n"
-"Copyright © 2003-2005, Klaus Niederkrüger\n"
-"Copyright © 1996-2000, Bernd Johannes Wuebben"
+"Copyright © 2008–2013, Evan Teran\n"
+"Copyright © 2000–2008, KDE Takımı\n"
+"Copyright © 2003–2005, Klaus Niederkrüger\n"
+"Copyright © 1996–2000, Bernd Johannes Wuebben"
 
 #: kcalc.cpp:2853
 #, kde-format
@@ -1145,7 +1145,7 @@ msgstr ""
 #: kcalc.kcfg:145
 #, kde-format
 msgid "Enables that the last operation is repeated when \"=\" is pressed"
-msgstr "\"=\" düğmesine basıldığında son işlemin yinelenmesini etkinleştirir"
+msgstr "‘=’ düğmesine basıldığında son işlemin yinelenmesini etkinleştirir"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
 #: kcalc.kcfg:151
@@ -2041,8 +2041,7 @@ msgid "Ctrl+2"
 msgstr "Kontrol+2"
 
 #: kcalc_bitset.cpp:57
-#, fuzzy, kde-format
-#| msgid "Bit %1 = %2"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Bit %1 = %2"
 msgstr "Bit %1 = %2"
@@ -2305,7 +2304,7 @@ msgstr "Molar Gaz Sabiti"
 #: scienceconstants.xml:68
 #, kde-format
 msgid "Stefan-Boltzmann Constant"
-msgstr "Stefan-Boltzmann Sabiti"
+msgstr "Stefan–Boltzmann Sabiti"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:72

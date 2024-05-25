@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-24 00:41+0000\n"
-"PO-Revision-Date: 2024-04-06 15:05+0200\n"
+"PO-Revision-Date: 2024-05-24 11:06+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Xgettext-Options: -C -ki18n -x../../kdelibs/po/kde.pot\n"
 "Files: configdlg.cpp dlabel.cpp fontdlg.cpp kcalc.cpp kcalc_core.cpp\n"
-"X-Generator: Lokalize 24.02.1\n"
+"X-Generator: Lokalize 24.02.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -2049,8 +2049,7 @@ msgid "Ctrl+2"
 msgstr "Ctrl+2"
 
 #: kcalc_bitset.cpp:57
-#, fuzzy, kde-format
-#| msgid "Bit %1 = %2"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Bit %1 = %2"
 msgstr "Bit %1 = %2"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-24 00:41+0000\n"
-"PO-Revision-Date: 2024-04-08 11:53+0200\n"
+"PO-Revision-Date: 2024-05-24 12:11+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -2025,8 +2025,7 @@ msgid "Ctrl+2"
 msgstr "Ctrl+2"
 
 #: kcalc_bitset.cpp:57
-#, fuzzy, kde-format
-#| msgid "Bit %1 = %2"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Bit %1 = %2"
 msgstr "Bit %1 = %2"
