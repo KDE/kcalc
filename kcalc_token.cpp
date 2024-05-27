@@ -405,6 +405,16 @@ void KCalcToken::invertSignSecondArg()
     invert_Sign_Second_Arg_ = !invert_Sign_Second_Arg_;
 }
 
+bool KCalcToken::isFirstArgInverted() const
+{
+    return invert_Sign_First_Arg_;
+}
+
+bool KCalcToken::isSecondArgInverted() const
+{
+    return invert_Sign_Second_Arg_;
+}
+
 //------------------------------------------------------------------------------
 // Name: ~KCalcToken
 // Desc: destructor

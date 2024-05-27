@@ -156,6 +156,26 @@ void KCalcParserCoreTest::testParserCore_data()
     QTest::newRow("parenthesis test 14") << QS("sin(sin(sin(sin(0))))") << 10 << QS("0");
     QTest::newRow("parenthesis test 15") << QS("ln(exp(1))") << 10 << QS("1");
     QTest::newRow("parenthesis test 16") << QS("ln(exp(100.45))") << 10 << QS("100.45");
+    // random input test (these are inputs that generated errors on production
+    // or variations of those )
+    QTest::newRow("production 1") << QS("8-3*2+1") << 10 << QS("3");
+    QTest::newRow("production 2") << QS("8-3*2-1") << 10 << QS("1");
+    QTest::newRow("production 3") << QS("8-(3*2)+1") << 10 << QS("3");
+    QTest::newRow("production 4") << QS("8-(3*2+1)+1") << 10 << QS("2");
+    QTest::newRow("production 5") << QS("8-3*2-1") << 10 << QS("1");
+    QTest::newRow("production 6") << QS("8-6-1") << 10 << QS("1");
+    QTest::newRow("production 7") << QS("10-1-1-1-1-1-1") << 10 << QS("4");
+    QTest::newRow("production 8") << QS("-10-1-1-1-1-1-1") << 10 << QS("-16");
+    QTest::newRow("production 9") << QS("--10-1+1-1+1-1+1") << 10 << QS("10");
+    QTest::newRow("production 10") << QS("--10-1+1-1+1-1+1/5") << 10 << QS("46/5");
+    QTest::newRow("production 11") << QS("8 - 7 mod 2 +1") << 10 << QS("8");
+    QTest::newRow("production 12") << QS("8-sin(90)-1") << 10 << QS("6");
+    QTest::newRow("production 13") << QS("8-sin(90)+1") << 10 << QS("8");
+    QTest::newRow("production 14") << QS("8-cos(0)sin(90)-1") << 10 << QS("6");
+    QTest::newRow("production 15") << QS("8-cos(0)sin(90)+1") << 10 << QS("8");
+    QTest::newRow("production 16") << QS("8-cos(90)sin(90)+1") << 10 << QS("9");
+    QTest::newRow("production 17") << QS("8-√4+1") << 10 << QS("7");
+    QTest::newRow("production 18") << QS("8-√4-1") << 10 << QS("5");
 }
 
 void KCalcParserCoreTest::testParserCore()
