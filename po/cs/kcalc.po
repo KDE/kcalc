@@ -2017,11 +2017,10 @@ msgid "Ctrl+2"
 msgstr "Ctrl+2"
 
 #: kcalc_bitset.cpp:57
-#, fuzzy, kde-format
-#| msgid "Bit %1 = %2"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Bit %1 = %2"
-msgstr "Bit %1 = %2"
+msgstr ""
 
 #: kcalc_const_button.cpp:24 kcalc_const_button.cpp:37
 #, kde-format
