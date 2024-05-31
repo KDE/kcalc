@@ -2305,16 +2305,3 @@ msgstr "Константа на Стефан-Болцман"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Число на Авогадро"
-
-#~ msgid "KS…el"
-#~ msgstr "KS…el"
-
-#~ msgctxt "Third power"
-#~ msgid "x<sup>3</sup>"
-#~ msgstr "x<sup>3</sup>"
-
-#~ msgid "Cube"
-#~ msgstr "Cube"
-
-#~ msgid "x3"
-#~ msgstr "x3"
