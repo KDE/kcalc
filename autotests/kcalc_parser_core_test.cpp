@@ -176,6 +176,12 @@ void KCalcParserCoreTest::testParserCore_data()
     QTest::newRow("Minus (-) second to last test 16") << QS("8-cos(90)sin(90)+1") << 10 << QS("9");
     QTest::newRow("Minus (-) second to last test 17") << QS("8-√4+1") << 10 << QS("7");
     QTest::newRow("Minus (-) second to last test 18") << QS("8-√4-1") << 10 << QS("5");
+
+    QTest::newRow("Decimal without leading zero test 1") << QS(".5+.5") << 10 << QS("1");
+    QTest::newRow("Decimal without leading zero test 2") << QS(".5+5") << 10 << QS("5.5");
+    QTest::newRow("Decimal without leading zero test 3") << QS("5.5+0.5") << 10 << QS("6");
+    QTest::newRow("Decimal without leading zero test 4") << QS(".1") << 10 << QS("0.1");
+    QTest::newRow("Decimal without leading zero test 5") << QS("cos(.1)") << 10 << QS("0.999998476913");
 }
 
 void KCalcParserCoreTest::testParserCore()

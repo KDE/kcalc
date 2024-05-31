@@ -93,7 +93,8 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
         // being a number in base 10 or 16
     }
 
-    if ((A_STR <= s.first(1) && s.first(1) <= F_STR) || (ZERO_STR <= s.first(1) && s.first(1) <= NINE_STR)) {
+    if ((A_STR <= s.first(1) && s.first(1) <= F_STR) || (ZERO_STR <= s.first(1) && s.first(1) <= NINE_STR)
+        || (s.first(1) == COMMA_STR || s.first(1) == POINT_STR)) {
         int numIndex = -1;
         QRegularExpressionMatch match;
         switch (base) {
@@ -106,7 +107,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
             token_KNumber_ = OCTAL_NUMBER_PREFIX_STR;
             break;
         case 10:
-            numIndex = buffer.indexOf(QRegularExpression(QLatin1String("(\\d+)([.,]\\d*)?(e([+-]?\\d+))?")), index, &match);
+            numIndex = buffer.indexOf(QRegularExpression(QLatin1String("(\\d*)[.,]?\\d+(e([+-]?\\d+))?")), index, &match);
             token_KNumber_.clear();
             break;
         case 16:
