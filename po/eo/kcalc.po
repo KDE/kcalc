@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kcalc 1.0pre2\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-24 00:41+0000\n"
-"PO-Revision-Date: 2024-05-25 06:34+0200\n"
+"PO-Revision-Date: 2024-06-02 21:57+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <eo@li.org>\n"
 "Language: eo\n"
@@ -28,7 +28,7 @@ msgstr "Wolfram Diestel,Steffen Pietsch,Oliver Kellogg"
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
-"wolfram@steloj.de,Steffen.Pietsch@BerlinOnline.de,okellogg@users.sf.net"
+"wolfram@steloj.de,Steffen.Pietsch@BerlinOnline.de,olivermkellogg@gmail.com"
 
 #. i18n: ectx: property (title), widget (QGroupBox, displayColorsBox)
 #: colors.ui:17
@@ -263,13 +263,13 @@ msgstr "Diverse"
 #: general.ui:160
 #, kde-format
 msgid "Whether to beep on error"
-msgstr "Ĉu bipi pro eraro"
+msgstr "Ĉu pepi pro eraro"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_Beep)
 #: general.ui:163
 #, kde-format
 msgid "&Beep on error"
-msgstr "&Pepu ĉe eraro"
+msgstr "&Pepi ĉe eraro"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_CaptionResult)
 #: general.ui:173
@@ -397,7 +397,7 @@ msgstr "Kuba radiko"
 #, kde-format
 msgctxt "Sine"
 msgid "sin"
-msgstr "peko"
+msgstr "sin"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSin)
 #: kcalc.cpp:448 kcalc.ui:693
@@ -409,12 +409,12 @@ msgstr "Sinuso"
 #, kde-format
 msgctxt "Arc sine"
 msgid "asin"
-msgstr "kiel en"
+msgstr "asin"
 
 #: kcalc.cpp:449
 #, kde-format
 msgid "Arc sine"
-msgstr "Arko sine"
+msgstr "Arkosinuso"
 
 #: kcalc.cpp:450
 #, kde-format
@@ -442,7 +442,7 @@ msgstr "Inversa hiperbola sinuso"
 #, kde-format
 msgctxt "Cosine"
 msgid "cos"
-msgstr "cos"
+msgstr "kos"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbCos)
 #: kcalc.cpp:456 kcalc.ui:1082
@@ -454,7 +454,7 @@ msgstr "Kosinuso"
 #, kde-format
 msgctxt "Arc cosine"
 msgid "acos"
-msgstr "acos"
+msgstr "akos"
 
 #: kcalc.cpp:457
 #, kde-format
@@ -465,7 +465,7 @@ msgstr "Arkokosinuso"
 #, kde-format
 msgctxt "Hyperbolic cosine"
 msgid "cosh"
-msgstr "cosh"
+msgstr "kosh"
 
 #: kcalc.cpp:458
 #, kde-format
@@ -476,7 +476,7 @@ msgstr "Hiperbola kosinuso"
 #, kde-format
 msgctxt "Inverse hyperbolic cosine"
 msgid "acosh"
-msgstr "acosh"
+msgstr "akosh"
 
 #: kcalc.cpp:459
 #, kde-format
@@ -487,7 +487,7 @@ msgstr "Inversa hiperbola kosinuso"
 #, kde-format
 msgctxt "Tangent"
 msgid "tan"
-msgstr "sunbruno"
+msgstr "tan"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbTan)
 #: kcalc.cpp:464 kcalc.ui:814
@@ -532,7 +532,7 @@ msgstr "Inversa hiperbola tangente"
 #, kde-format
 msgctxt "Logarithm to base 10"
 msgid "log"
-msgstr "ŝtipo"
+msgstr "log"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLog)
 #: kcalc.cpp:472 kcalc.ui:795
@@ -595,7 +595,7 @@ msgstr "Sumo de ĉiuj datenoj"
 #, kde-format
 msgctxt "Mean"
 msgid "Mea"
-msgstr "Mea"
+msgstr "Avg"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMean)
 #: kcalc.cpp:503 kcalc.ui:967
@@ -629,7 +629,7 @@ msgstr "Dat"
 #: kcalc.cpp:518 kcalc.ui:999
 #, kde-format
 msgid "Enter data"
-msgstr "Donu datojn"
+msgstr "Enmeti datenojn"
 
 #: kcalc.cpp:519
 #, kde-format
@@ -831,7 +831,7 @@ msgstr "Tiparo"
 #: kcalc.cpp:1679
 #, kde-format
 msgid "Select Display Font"
-msgstr "Elektu vidigilotiparon"
+msgstr "Elekti Vidigtiparon"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -1091,7 +1091,7 @@ msgstr "Ĉu uzi fiksajn decimalajn lokojn."
 #: kcalc.kcfg:124
 #, kde-format
 msgid "Whether to beep on error."
-msgstr "Ĉu bipi pro eraro."
+msgstr "Ĉu pepi pro eraro."
 
 #. i18n: ectx: label, entry (CaptionResult), group (General)
 #: kcalc.kcfg:128
@@ -1188,7 +1188,7 @@ msgstr "Ĉu montri la fenestraĵon de bita redakto."
 #: kcalc.kcfg:173
 #, kde-format
 msgid "Whether to show constant buttons."
-msgstr "Ĉu montri konstantajn butonojn."
+msgstr "Ĉu montri butonojn por konstantoj."
 
 #. i18n: ectx: label, entry (ShowHistory), group (General)
 #: kcalc.kcfg:177
@@ -1212,7 +1212,7 @@ msgstr "Nombra bazo"
 #: kcalc.kcfg:191
 #, kde-format
 msgid "Binary figures will be separated by a whitespace after every Xth digit."
-msgstr "Binaraj figuroj estos apartigitaj per blankspaco post ĉiu Xa cifero."
+msgstr "Binaraj figuroj estos apartigitaj per blankspaco post ĉiu X-a cifero."
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:196
@@ -1238,7 +1238,7 @@ msgstr ""
 #: kcalc.kcfg:200
 #, kde-format
 msgid "Octal figures will be separated by a whitespace after every Xth digit."
-msgstr "Oktalaj figuroj estos apartigitaj per blankspaco post ĉiu Xa cifero."
+msgstr "Oktalaj figuroj estos apartigitaj per blankspaco post ĉiu X-a cifero."
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:205
@@ -1265,7 +1265,8 @@ msgstr ""
 #, kde-format
 msgid ""
 "Hexadecimal figures will be separated by a whitespace after every Xth digit."
-msgstr "Deksesuma ciferoj estos apartigitaj per blankspaco post ĉiu Xa cifero."
+msgstr ""
+"Deksesuma ciferoj estos apartigitaj per blankspaco post ĉiu X-a cifero."
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:214
@@ -1632,7 +1633,7 @@ msgstr "Cmp"
 #: kcalc.ui:1050
 #, kde-format
 msgid "Clear data store"
-msgstr "Forviŝu datoj-memoron"
+msgstr "Forviŝi daten-memoron"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbCSt)
 #: kcalc.ui:1053
@@ -1892,7 +1893,7 @@ msgstr "8"
 #: kcalc.ui:1577
 #, kde-format
 msgid "Clear all"
-msgstr "Forviŝu ĉion"
+msgstr "Forviŝi ĉion"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbAllClear)
 #: kcalc.ui:1580
@@ -1916,7 +1917,7 @@ msgstr "MC"
 #: kcalc.ui:1609
 #, kde-format
 msgid "Memory recall"
-msgstr "Revoku memoron"
+msgstr "Revoki memoron"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMemRecall)
 #: kcalc.ui:1612
@@ -1928,7 +1929,7 @@ msgstr "MR"
 #: kcalc.ui:1625
 #, kde-format
 msgid "Change sign"
-msgstr "Ŝanĝu signon"
+msgstr "Ŝanĝi signon"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPlusMinus)
 #: kcalc.ui:1628
@@ -2293,6 +2294,3 @@ msgstr "Stefan-Boltzmann Constant"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Numero de Avogadro"
-
-#~ msgid "KS…el"
-#~ msgstr "KS…el"
