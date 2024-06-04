@@ -144,6 +144,7 @@ private:
     void setBitsetLayoutActive(bool active);
 
     void updateDisplay(UpdateFlags flags);
+    void insertFunctionToInputDisplay(KCalcToken::TokenCode token);
     void insertToInputDisplay(KCalcToken::TokenCode token);
     void insertToInputDisplay(const QString &token);
     KCalcStatusBar *statusBar();
@@ -245,7 +246,7 @@ private:
     enum BaseMode { BinMode = 2, OctMode = 8, DecMode = 10, HexMode = 16 };
 
 private:
-    int commit_Input_(bool editing = false);
+    int commit_Input_();
     void commit_Result_(bool toHistory = true);
     int load_Constants_(const QString &filePath);
 
@@ -258,7 +259,9 @@ private:
     int angle_mode_; // angle modes for trigonometric values
     int base_mode_;
 
-    bool parsing_failure_, calculation_failure_;
+    KCalcParser::ParsingResult m_parsingResult;
+    bool parsing_failure_;
+    bool calculation_failure_;
     CalcEngine::ResultCode calculation_result_code_;
     int input_error_index_;
     int calculation_error_token_index_;

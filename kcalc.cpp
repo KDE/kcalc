@@ -980,9 +980,13 @@ void KCalculator::slotMemStoreclicked()
         memory_label->setText(QStringLiteral("M"));
 
         calc_history->addToHistory(QStringLiteral("M ="), false);
-        memory_num_ = calc_display->getAmount();
-
         calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
+        memory_num_ = calc_display->getAmount();
+        QString result = calc_display->getAmountQString();
+
+        input_display->clear();
+        input_display->insert(QStringLiteral("M =") + result);
+        input_display->slotSetHardOverwrite();
     }
 }
 
@@ -1008,20 +1012,16 @@ void KCalculator::slotSinclicked()
     if (hyp_mode_) {
         // sinh or arcsinh
         if (!shift_mode_) {
-            insertToInputDisplay(KCalcToken::TokenCode::SINH);
-            insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::SINH);
         } else {
-            insertToInputDisplay(KCalcToken::TokenCode::ASINH);
-            insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::ASINH);
         }
     } else {
         // sin or arcsin
         if (!shift_mode_) {
-            insertToInputDisplay(KCalcToken::TokenCode::SIN);
-            insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::SIN);
         } else {
-            insertToInputDisplay(KCalcToken::TokenCode::ASIN);
-            insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::ASIN);
         }
     }
 }
@@ -1059,17 +1059,23 @@ void KCalculator::slotMemPlusMinusclicked()
         handle_Calculation_Error_();
     } else {
         updateDisplay(UPDATE_FROM_CORE);
+        KNumber result = calc_display->getAmount();
+        QString resultQString = calc_display->getAmountQString();
         pbMemRecall->setEnabled(true);
         statusBar()->setMemoryIndicator(true);
         memory_label->setText(QStringLiteral("M"));
+        input_display->clear();
         if (!tmp_shift_mode) {
+            input_display->insert(QStringLiteral("M+=") + resultQString);
             calc_history->addToHistory(QStringLiteral("M+="), false);
-            memory_num_ += calc_display->getAmount();
+            memory_num_ += result;
         } else {
+            input_display->insert(QStringLiteral("M-=") + resultQString);
             calc_history->addToHistory(QStringLiteral("M-="), false);
-            memory_num_ -= calc_display->getAmount();
+            memory_num_ -= result;
         }
-        calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
+        calc_history->addResultToHistory(resultQString);
+        input_display->slotSetHardOverwrite();
     }
 }
 
@@ -1082,20 +1088,16 @@ void KCalculator::slotCosclicked()
     if (hyp_mode_) {
         // cosh or arcosh
         if (!shift_mode_) {
-            this->insertToInputDisplay(KCalcToken::TokenCode::COSH);
-            this->insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::COSH);
         } else {
-            this->insertToInputDisplay(KCalcToken::TokenCode::ACOSH);
-            this->insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::ACOSH);
         }
     } else {
         // cosine or arccosine
         if (!shift_mode_) {
-            this->insertToInputDisplay(KCalcToken::TokenCode::COS);
-            this->insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::COS);
         } else {
-            this->insertToInputDisplay(KCalcToken::TokenCode::ACOS);
-            this->insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::ACOS);
         }
     }
 }
@@ -1122,21 +1124,16 @@ void KCalculator::slotTanclicked()
     if (hyp_mode_) {
         // tanh or artanh
         if (!shift_mode_) {
-            insertToInputDisplay(KCalcToken::TokenCode::TANH);
-            insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::TANH);
         } else {
-            insertToInputDisplay(KCalcToken::TokenCode::ATANH);
-            insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::ATANH);
         }
     } else {
         // tan or arctan
         if (!shift_mode_) {
-            insertToInputDisplay(KCalcToken::TokenCode::TAN);
-            insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
-
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::TAN);
         } else {
-            insertToInputDisplay(KCalcToken::TokenCode::ATAN);
-            insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::ATAN);
         }
     }
 }
@@ -1154,8 +1151,7 @@ void KCalculator::slotFactorialclicked()
     if (!shift_mode_) {
         this->insertToInputDisplay(KCalcToken::TokenCode::FACTORIAL);
     } else {
-        this->insertToInputDisplay(KCalcToken::TokenCode::GAMMA);
-        this->insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::GAMMA);
     }
     QApplication::restoreOverrideCursor();
 }
@@ -1167,8 +1163,7 @@ void KCalculator::slotFactorialclicked()
 void KCalculator::slotLogclicked()
 {
     if (!shift_mode_) {
-        this->insertToInputDisplay(KCalcToken::TokenCode::LOG_10);
-        this->insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::LOG_10);
     } else {
         update_history_window_ = false;
         this->insertToInputDisplay(KCalcToken::TokenCode::EXP_10);
@@ -1195,9 +1190,9 @@ void KCalculator::slotSquareclicked()
 void KCalculator::slotSqrtclicked()
 {
     if (!shift_mode_) {
-        this->insertToInputDisplay(KCalcToken::TokenCode::SQUARE_ROOT);
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::SQUARE_ROOT);
     } else {
-        this->insertToInputDisplay(KCalcToken::TokenCode::CUBIC_ROOT);
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::CUBIC_ROOT);
     }
 }
 
@@ -1208,11 +1203,9 @@ void KCalculator::slotSqrtclicked()
 void KCalculator::slotLnclicked()
 {
     if (!shift_mode_) {
-        this->insertToInputDisplay(KCalcToken::TokenCode::LN);
-        this->insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::LN);
     } else {
-        this->insertToInputDisplay(KCalcToken::TokenCode::EXP);
-        this->insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::EXP);
     }
 }
 
@@ -1264,7 +1257,7 @@ void KCalculator::slotBackspaceclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotClearclicked()
 {
-    input_display->clear();
+    this->input_display->reset();
     updateDisplay(UPDATE_CLEAR);
 }
 
@@ -1274,7 +1267,7 @@ void KCalculator::slotClearclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotAllClearclicked()
 {
-    this->input_display->clear();
+    this->input_display->reset();
     updateDisplay(UPDATE_CLEAR);
 }
 
@@ -1409,6 +1402,10 @@ void KCalculator::slotEqualclicked()
         handle_Calculation_Error_();
     } else {
         commit_Result_();
+        QString result = calc_display->getAmountQString(false);
+        this->input_display->clear();
+        this->input_display->insert(result);
+        this->input_display->slotSetFunctionWrap();
     }
 }
 
@@ -1418,7 +1415,7 @@ void KCalculator::slotEqualclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotInputChanged()
 {
-    this->commit_Input_(true);
+    this->commit_Input_();
 
     if (parsing_failure_) {
         updateDisplay(UPDATE_CLEAR);
@@ -1435,6 +1432,9 @@ void KCalculator::slotInputChanged()
             updateDisplay(UPDATE_CLEAR);
             break;
         }
+        return;
+    } else if (m_parsingResult == KCalcParser::ParsingResult::SUCCESS_SINGLE_KNUMBER) {
+        updateDisplay(UPDATE_CLEAR);
         return;
     } else {
         this->commit_Result_(false);
@@ -1583,17 +1583,18 @@ void KCalculator::slotStatDataInputclicked()
             handle_Calculation_Error_();
         } else {
             commit_Result_(false);
-            this->input_display->clear();
-            this->input_display->slotSetHardOverwrite();
 
             bool tmp_error;
-            core.StatDataNew(calc_display->getAmount());
 
-            input_display->insert(i18n("DAT [") + core.lastOutput(tmp_error).toQString() + i18n("] = ")
-                                  + calc_display->getAmount().toQString(KCalcSettings::precision()));
-            calc_history->addToHistory(i18n("DAT [") + core.lastOutput(tmp_error).toQString() + i18n("] = ")
-                                           + calc_display->getAmount().toQString(KCalcSettings::precision()),
-                                       true);
+            KNumber result = calc_display->getAmount();
+            QString resultQString = calc_display->getAmountQString();
+
+            core.StatDataNew(result);
+
+            this->input_display->clear();
+            input_display->insert(i18n("DAT [") + core.lastOutput(tmp_error).toQString() + i18n("] = ") + resultQString);
+            calc_history->addToHistory(i18n("DAT [") + core.lastOutput(tmp_error).toQString() + i18n("] = ") + resultQString, true);
+            this->input_display->slotSetHardOverwrite();
         }
     } else {
         pbShift->setChecked(false);
@@ -2311,6 +2312,16 @@ void KCalculator::updateDisplay(UpdateFlags flags)
 }
 
 //------------------------------------------------------------------------------
+// Name: insertFunctionToInputDisplay
+// Desc: inserts function into the input display
+//------------------------------------------------------------------------------
+
+void inline KCalculator::insertFunctionToInputDisplay(KCalcToken::TokenCode token)
+{
+    input_display->insertTokenFunction(parser.TokenToString(token));
+}
+
+//------------------------------------------------------------------------------
 // Name: insertToInputDisplay
 // Desc: inserts into the input display
 //------------------------------------------------------------------------------
@@ -2334,12 +2345,11 @@ void inline KCalculator::insertToInputDisplay(const QString &token)
 // Name: commit_Input_
 // Desc: takes string from display and queries parsing, if success, queries calculation
 //------------------------------------------------------------------------------
-int KCalculator::commit_Input_(bool editing /*= false*/)
+int KCalculator::commit_Input_()
 {
-    int parsing_result;
-    parsing_result = parser.stringToTokenQueue(input_display->text(), base_mode_, token_Queue_, input_error_index_);
+    m_parsingResult = parser.stringToTokenQueue(input_display->text(), base_mode_, token_Queue_, input_error_index_);
 
-    if (parsing_result != 0) {
+    if (m_parsingResult == KCalcParser::ParsingResult::EMPTY || m_parsingResult == KCalcParser::ParsingResult::INVALID_TOKEN) {
         parsing_failure_ = true;
         return -1;
     } else {
@@ -2351,13 +2361,6 @@ int KCalculator::commit_Input_(bool editing /*= false*/)
             return -1;
         } else {
             calculation_failure_ = false;
-            if (!editing) {
-                input_display->end(false);
-                if (!input_display->text().endsWith(QLatin1String("="))) {
-                    this->insertToInputDisplay(KCalcToken::TokenCode::EQUAL);
-                }
-                input_display->slotSetOverwrite();
-            }
         }
     }
     return 0;
@@ -2371,8 +2374,11 @@ void KCalculator::commit_Result_(bool toHistory /*=true*/)
 {
     updateResultDisplay();
     if (toHistory) {
-        calc_history->addToHistory(this->input_display->text().toHtmlEscaped(), false);
-        calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
+        QString input = this->input_display->text().toHtmlEscaped();
+        QString result = calc_display->getAmountQString();
+
+        calc_history->addToHistory(input + QStringLiteral("="), false);
+        calc_history->addResultToHistory(result);
     }
 }
 
