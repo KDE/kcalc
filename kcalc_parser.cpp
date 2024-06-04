@@ -445,9 +445,10 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
 // Name: stringToTokenQueue
 // Desc: parses string into the token Queue
 //------------------------------------------------------------------------------
-int KCalcParser::stringToTokenQueue(const QString &buffer, int base, QQueue<KCalcToken> &tokenQueue, int &errorIndex)
+KCalcParser::ParsingResult KCalcParser::stringToTokenQueue(const QString &buffer, int base, QQueue<KCalcToken> &tokenQueue, int &errorIndex)
 {
     tokenQueue.clear();
+    m_inputHasConstants = false;
     int buffer_index = 0;
     int buffer_size = buffer.size();
     qCDebug(KCALC_LOG) << "Parsing string to TokenQueue";
@@ -458,7 +459,7 @@ int KCalcParser::stringToTokenQueue(const QString &buffer, int base, QQueue<KCal
     if (buffer_size == 0) {
         errorIndex = -1;
         parsing_Result_ = EMPTY;
-        return -1;
+        return ParsingResult::EMPTY;
     }
 
     while (buffer_index < buffer_size) {
@@ -470,7 +471,7 @@ int KCalcParser::stringToTokenQueue(const QString &buffer, int base, QQueue<KCal
         if (tokenCode == KCalcToken::TokenCode::INVALID_TOKEN) {
             parsing_Result_ = INVALID_TOKEN;
             errorIndex = buffer_index; // this indicates where the error was found
-            return -1; // in the input string
+            return ParsingResult::INVALID_TOKEN; // in the input string
         }
 
         if (tokenCode == KCalcToken::TokenCode::STUB) {
@@ -493,8 +494,16 @@ int KCalcParser::stringToTokenQueue(const QString &buffer, int base, QQueue<KCal
     }
 
     qCDebug(KCALC_LOG) << "Parsing done, index after parsing: " << buffer_index;
-    parsing_Result_ = SUCCESS;
-    return 0;
+
+    if (tokenQueue.length() > 1) {
+        return ParsingResult::SUCCESS;
+    } else {
+        if (!m_inputHasConstants && tokenQueue.first().isKNumber()) {
+            return ParsingResult::SUCCESS_SINGLE_KNUMBER;
+        } else {
+            return ParsingResult::SUCCESS;
+        }
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -777,6 +786,7 @@ bool KCalcParser::constantSymbolToValue_(const QString &constantSymbol)
     for (i = constants_.constBegin(); i != constants_.constEnd(); ++i) {
         if (i->symbol == constantSymbol) {
             token_KNumber_ = i->value;
+            m_inputHasConstants = true;
             return true;
         }
     }

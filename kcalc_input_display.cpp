@@ -16,6 +16,7 @@ KCalcInputDisplay::KCalcInputDisplay(QWidget *parent)
 {
     overwrite_ = false;
     hard_overwrite_ = false;
+    function_wrap_ = false;
 }
 
 //------------------------------------------------------------------------------
@@ -23,6 +24,18 @@ KCalcInputDisplay::KCalcInputDisplay(QWidget *parent)
 // Desc:
 //------------------------------------------------------------------------------
 KCalcInputDisplay::~KCalcInputDisplay() = default;
+
+//------------------------------------------------------------------------------
+// Name: reset
+// Desc:
+//------------------------------------------------------------------------------
+void KCalcInputDisplay::reset()
+{
+    this->clear();
+    overwrite_ = false;
+    hard_overwrite_ = false;
+    function_wrap_ = false;
+}
 
 //------------------------------------------------------------------------------
 // Name: insertToken
@@ -37,6 +50,40 @@ void KCalcInputDisplay::insertToken(const QString &token)
     }
 
     this->insert(token);
+    function_wrap_ = false;
+}
+
+//------------------------------------------------------------------------------
+// Name: insertTokenFunction
+// Desc:
+//------------------------------------------------------------------------------
+void KCalcInputDisplay::insertTokenFunction(const QString &token)
+{
+    if (overwrite_ || hard_overwrite_) {
+        overwrite_ = false;
+        hard_overwrite_ = false;
+        this->clear();
+        this->insert(token);
+        this->insert(QStringLiteral("("));
+    } else if (function_wrap_) {
+        this->home(false);
+        this->insert(token);
+        this->insert(QStringLiteral("("));
+        this->end(false);
+        this->insert(QStringLiteral(")"));
+    } else {
+        this->insert(token);
+        this->insert(QStringLiteral("("));
+    }
+}
+
+//------------------------------------------------------------------------------
+// Name: slotSetFunctionWrap
+// Desc:
+//------------------------------------------------------------------------------
+void KCalcInputDisplay::slotSetFunctionWrap()
+{
+    function_wrap_ = true;
 }
 
 //------------------------------------------------------------------------------
@@ -65,6 +112,15 @@ void KCalcInputDisplay::slotSetHardOverwrite()
     this->focusNextChild(); /* workaround to defocus the QWidget,
                                although it works, it can lead to
                                issues if the GUI changes */
+}
+
+//------------------------------------------------------------------------------
+// Name: slotClearFunctionWrap
+// Desc:
+//------------------------------------------------------------------------------
+void KCalcInputDisplay::slotClearFunctionWrap()
+{
+    function_wrap_ = false;
 }
 
 //------------------------------------------------------------------------------
@@ -97,6 +153,7 @@ void KCalcInputDisplay::focusInEvent(QFocusEvent *e)
 {
     QLineEdit::focusInEvent(e);
     slotClearOverwrite();
+    slotClearFunctionWrap();
 }
 
 #include "moc_kcalc_input_display.cpp"

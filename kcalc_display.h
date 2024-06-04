@@ -53,6 +53,7 @@ public:
     bool sendEvent(Event event);
     void deleteLastDigit();
     const KNumber &getAmount() const;
+    QString getAmountQString(bool addPreffix = true) const;
     void newCharacter(const QChar new_char);
     bool setAmount(const KNumber &new_amount);
     int setBase(NumBase new_base);

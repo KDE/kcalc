@@ -22,7 +22,12 @@ public:
     KCalcParser();
     ~KCalcParser();
 
-    enum ParsingResult { SUCCESS, INVALID_TOKEN, EMPTY };
+    enum ParsingResult {
+        SUCCESS,
+        SUCCESS_SINGLE_KNUMBER,
+        EMPTY,
+        INVALID_TOKEN,
+    };
 
     enum TrigonometricMode { DEGREES, RADIANS, GRADIANS };
 
@@ -33,7 +38,7 @@ public:
 
     ParsingResult getParsingResult();
 
-    int stringToTokenQueue(const QString &buffer, int base, QQueue<KCalcToken> &tokenQueue, int &errorIndex);
+    ParsingResult stringToTokenQueue(const QString &buffer, int base, QQueue<KCalcToken> &tokenQueue, int &errorIndex);
     /*TODO: int stringToHTMLString(const QString& buffer, QString& htmlText);*/
 
     const QString TokenToString(KCalcToken::TokenCode tokenCode);
@@ -151,6 +156,7 @@ private:
     bool constantSymbolToValue_(const QString &constantSymbol);
 
     QString token_KNumber_;
+    bool m_inputHasConstants = false;
     int trigonometric_Mode_ = DEGREES;
     ParsingResult parsing_Result_ = EMPTY;
 };

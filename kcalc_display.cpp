@@ -436,6 +436,40 @@ const KNumber &KCalcDisplay::getAmount() const
 }
 
 //------------------------------------------------------------------------------
+// Name: getAmountQString
+// Desc:
+//------------------------------------------------------------------------------
+QString KCalcDisplay::getAmountQString(bool addPreffix /*= true*/) const
+{
+    QString amountQString = text_;
+
+    switch (num_base_) {
+    case NB_HEX:
+        if (addPreffix) {
+            amountQString.prepend(QLatin1String("0x"));
+        }
+        amountQString.remove(QLatin1Char(' '));
+        break;
+    case NB_BINARY:
+        if (addPreffix) {
+            amountQString.prepend(QLatin1String("0b"));
+        }
+        amountQString.remove(QLatin1Char(' '));
+        break;
+    case NB_OCTAL:
+        if (addPreffix) {
+            amountQString.prepend(QLatin1String("0"));
+        }
+        amountQString.remove(QLatin1Char(' '));
+        break;
+    case NB_DECIMAL:
+        amountQString.remove(QLocale().groupSeparator());
+        break;
+    }
+    return amountQString;
+}
+
+//------------------------------------------------------------------------------
 // Name: setAmount
 // Desc:
 //------------------------------------------------------------------------------
