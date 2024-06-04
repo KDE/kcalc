@@ -8,6 +8,7 @@
 */
 
 #include "kcalc_core.h"
+#include "kcalc_debug.h"
 #include "kcalc_stats.h"
 #include "kcalc_token.h"
 #include "knumber.h"
@@ -108,7 +109,7 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> tokenBuffe
     token_stack_.clear();
     int token_index = 0;
     int buffer_size = tokenBuffer.size();
-    qDebug() << "Token buffer size: " << buffer_size;
+    qCDebug(KCALC_LOG) << "Token buffer size: " << buffer_size;
 
     KCalcToken const *tokenFunction;
     KCalcToken const *tokenFirstArg;
@@ -116,7 +117,7 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> tokenBuffe
     KCalcToken::TokenType tokenType;
 
     while (token_index < buffer_size) {
-        qDebug() << "Processing token queue at: " << token_index;
+        qCDebug(KCALC_LOG) << "Processing token queue at: " << token_index;
         KCalcToken::TokenCode tokenCode = tokenBuffer.at(token_index).getTokenCode();
 
         if (tokenCode == KCalcToken::TokenCode::EQUAL) {
@@ -274,12 +275,12 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> tokenBuffe
         }
     }
 
-    qDebug() << "Done processing token list";
+    qCDebug(KCALC_LOG) << "Done processing token list";
     // printStacks_();
 
     reduce_Stack_(/*toParentheses =*/false);
 
-    qDebug() << "Done reducing final token stack";
+    qCDebug(KCALC_LOG) << "Done reducing final token stack";
 
     if (token_stack_.isEmpty()) {
         buffer_result_ = KNumber::Zero;
@@ -312,7 +313,7 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> tokenBuffe
         token_stack_.clear();
     }
 
-    qDebug() << "Result: " << buffer_result_.toQString(12, -1);
+    qCDebug(KCALC_LOG) << "Result: " << buffer_result_.toQString(12, -1);
 
     error_ = false;
     return SUCCESS;
@@ -320,7 +321,7 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> tokenBuffe
 
 int CalcEngine::insert_KNumber_Token_In_Stack_(const KCalcToken &token)
 {
-    qDebug() << "Inserting KNumber Token in stack";
+    qCDebug(KCALC_LOG) << "Inserting KNumber Token in stack";
     // printStacks_();
     KCalcToken const *tokenFunction;
     KCalcToken const *tokenFirstArg;
@@ -357,7 +358,7 @@ int CalcEngine::insert_KNumber_Token_In_Stack_(const KCalcToken &token)
 
 int CalcEngine::insert_Binary_Function_Token_In_Stack_(const KCalcToken &token)
 {
-    qDebug() << "Insert Binary Function Token in stack";
+    qCDebug(KCALC_LOG) << "Insert Binary Function Token in stack";
     // printStacks_();
     KCalcToken const *tokenFunction;
     KCalcToken const *tokenFirstArg;
@@ -421,7 +422,7 @@ int CalcEngine::reduce_Stack_(bool toParentheses /*= true*/)
     KCalcToken const *tokenSecondArg;
 
     while (token_stack_.size() > 1) {
-        qDebug() << "Reducing at stack size: " << token_stack_.size();
+        qCDebug(KCALC_LOG) << "Reducing at stack size: " << token_stack_.size();
         // printStacks_();
         if (token_stack_.last().isOpeningParentheses()) {
             token_stack_.pop_back();
@@ -554,7 +555,7 @@ int CalcEngine::reduce_Stack_(bool toParentheses /*= true*/)
             continue;
         }
 
-        qDebug() << "Error at stack size = " << token_stack_.size();
+        qCDebug(KCALC_LOG) << "Error at stack size = " << token_stack_.size();
         return -1;
     }
     return 0;
@@ -564,18 +565,18 @@ void CalcEngine::printStacks_()
 {
     int tokenStaskSize = token_stack_.size();
 
-    qDebug() << "Printing current stack:";
+    qCDebug(KCALC_LOG) << "Printing current stack:";
 
     for (int i = 0; i < tokenStaskSize; i++) {
         if (token_stack_.at(i).isKNumber()) {
-            qDebug() << "TokenStack at:" << i << " is KNumber   = " << (token_stack_.at(i).getKNumber()).toQString();
+            qCDebug(KCALC_LOG) << "TokenStack at:" << i << " is KNumber   = " << (token_stack_.at(i).getKNumber()).toQString();
 
         } else {
-            qDebug() << "TokenStack at:" << i << " is TokenCode = " << (token_stack_.at(i).getTokenCode());
+            qCDebug(KCALC_LOG) << "TokenStack at:" << i << " is TokenCode = " << (token_stack_.at(i).getTokenCode());
         }
     }
 
-    qDebug() << "Print current stack done";
+    qCDebug(KCALC_LOG) << "Print current stack done";
 }
 
 KNumber CalcEngine::getResult()

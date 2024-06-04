@@ -7,6 +7,7 @@
 */
 
 #include "kcalc.h"
+#include "kcalc_debug.h"
 #include "kcalc_version.h"
 
 #include <clocale>
@@ -2415,12 +2416,12 @@ int KCalculator::load_Constants_(const QString &filePath)
     QFile file(filePath);
 
     if (!file.open(QIODevice::ReadOnly)) {
-        qDebug() << "Did not find file \"scienceconstants.xml\". No constants will be available.";
+        qCDebug(KCALC_LOG) << "Did not find file \"scienceconstants.xml\". No constants will be available.";
         return -1;
     }
     if (!doc.setContent(&file)) {
         file.close();
-        qDebug() << "The file \"scienceconstants.xml\" does not seem to be a valid description file. No constants will be available.";
+        qCDebug(KCALC_LOG) << "The file \"scienceconstants.xml\" does not seem to be a valid description file. No constants will be available.";
         return -1;
     }
     file.close();

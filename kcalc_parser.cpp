@@ -4,6 +4,7 @@
 */
 
 #include "kcalc_parser.h"
+#include "kcalc_debug.h"
 #include "kcalc_token.h"
 #include "knumber/knumber.h"
 
@@ -35,7 +36,7 @@ KCalcParser::~KCalcParser() = default;
 //------------------------------------------------------------------------------
 KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &index, int base)
 {
-    qDebug() << "Converting string to Token ";
+    qCDebug(KCALC_LOG) << "Converting string to Token ";
 
     int maxTokenLength = (index + 5 > buffer.size()) ? buffer.size() - index : 5;
     QString s = buffer.sliced(index, maxTokenLength);
@@ -449,8 +450,8 @@ int KCalcParser::stringToTokenQueue(const QString &buffer, int base, QQueue<KCal
     tokenQueue.clear();
     int buffer_index = 0;
     int buffer_size = buffer.size();
-    qDebug() << "Parsing string to TokenQueue";
-    qDebug() << "Buffer string to parse: " << buffer;
+    qCDebug(KCALC_LOG) << "Parsing string to TokenQueue";
+    qCDebug(KCALC_LOG) << "Buffer string to parse: " << buffer;
 
     KCalcToken::TokenCode tokenCode = KCalcToken::TokenCode::INVALID_TOKEN;
 
@@ -477,7 +478,7 @@ int KCalcParser::stringToTokenQueue(const QString &buffer, int base, QQueue<KCal
         }
 
         if (tokenCode == KCalcToken::TokenCode::KNUMBER) {
-            qDebug() << "String KNumber converted: " << token_KNumber_;
+            qCDebug(KCALC_LOG) << "String KNumber converted: " << token_KNumber_;
             token_KNumber_.replace(COMMA_STR, KNumber::decimalSeparator());
             token_KNumber_.replace(POINT_STR, KNumber::decimalSeparator());
             operand = KNumber(token_KNumber_);
@@ -485,13 +486,13 @@ int KCalcParser::stringToTokenQueue(const QString &buffer, int base, QQueue<KCal
             tokenQueue.enqueue(KCalcToken(operand, buffer_index));
         } else {
             tokenQueue.enqueue(KCalcToken(tokenCode, buffer_index));
-            qDebug() << "KCalcToken converted with code: " << tokenCode;
+            qCDebug(KCALC_LOG) << "KCalcToken converted with code: " << tokenCode;
         }
 
-        qDebug() << "Parsing index after this previous step: " << buffer_index;
+        qCDebug(KCALC_LOG) << "Parsing index after this previous step: " << buffer_index;
     }
 
-    qDebug() << "Parsing done, index after parsing: " << buffer_index;
+    qCDebug(KCALC_LOG) << "Parsing done, index after parsing: " << buffer_index;
     parsing_Result_ = SUCCESS;
     return 0;
 }

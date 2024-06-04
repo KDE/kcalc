@@ -6,6 +6,7 @@
 */
 
 #include "kcalc_const_menu.h"
+#include "kcalc_debug.h"
 
 #include <QDebug>
 #include <QDomDocument>
@@ -38,7 +39,7 @@ ConstantCategory stringToCategory(const QString &s)
         return Gravitation;
     }
 
-    qDebug() << "Invalid Category For Constant: " << s;
+    qCDebug(KCALC_LOG) << "Invalid Category For Constant: " << s;
     return Mathematics;
 }
 

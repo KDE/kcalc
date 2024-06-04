@@ -19,6 +19,7 @@ include(KDECMakeSettings)
 include(ECMMarkAsTest)
 include(FeatureSummary)
 include(ECMAddAppIcon)
+include(ECMQtDeclareLoggingCategory)
 include(ECMSetupVersion)
 include(KDEGitCommitHooks)
 include(KDEClangFormat)
@@ -122,6 +123,7 @@ target_sources(kcalc PRIVATE
    kcalc_history.h
    kcalc.qrc )
 
+ecm_qt_declare_logging_category(kcalc HEADER kcalc_debug.h IDENTIFIER KCALC_LOG CATEGORY_NAME org.kde.kcalc)
 
 ki18n_wrap_ui(kcalc
    kcalc.ui

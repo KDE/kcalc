@@ -5,6 +5,7 @@
 
 #include "kcalc_token.h"
 #include "kcalc_core_p.h"
+#include "kcalc_debug.h"
 #include <QDebug>
 
 //------------------------------------------------------------------------------
@@ -257,7 +258,7 @@ void KCalcToken::setToken_(TokenCode tokenCode)
     case GRADIAN:
     case RADIAN:
     default:
-        qDebug() << "Not implemented token ";
+        qCDebug(KCALC_LOG) << "Not implemented token ";
         break;
     }
 }
