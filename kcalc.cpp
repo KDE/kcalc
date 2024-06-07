@@ -1676,7 +1676,7 @@ void KCalculator::showSettings()
 
     // font settings
     auto const fonts = new Fonts(nullptr);
-    dialog->addPage(fonts, i18n("Font"), QStringLiteral("preferences-desktop-font"), i18n("Select Display Font"));
+    dialog->addPage(fonts, i18n("Fonts"), QStringLiteral("preferences-desktop-font"), i18n("Fonts"));
 
     // color settings
     auto const color = new Colors(nullptr);
