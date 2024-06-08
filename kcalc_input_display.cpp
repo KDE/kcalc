@@ -6,7 +6,6 @@
 #include "kcalc_input_display.h"
 
 #include <QLineEdit>
-// #include <kcalc_parser.h>
 
 //------------------------------------------------------------------------------
 // Name: KCalcInputDisplay
