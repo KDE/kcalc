@@ -71,7 +71,7 @@ KCalcBitset::KCalcBitset(QWidget *parent)
         }
         layout->setRowStretch(rows, 1);
     }
-    
+
     // layout stretch for columns
     for (int cols = 0; cols < 4; cols++) {
         layout->setColumnStretch(cols, 1);
@@ -168,7 +168,7 @@ void KCalcBitset::resizeEvent(QResizeEvent *event)
             minHeight = qMin(minHeight, button->rect().height());
         }
     }
-    
+
     // If this worked, set the renderSize for all BitButtons
     if (minWidth != INT_MAX && minHeight != INT_MAX) {
         // Make sure the size is square
@@ -176,7 +176,7 @@ void KCalcBitset::resizeEvent(QResizeEvent *event)
             minWidth = minHeight;
         else if (minHeight > minWidth)
             minHeight = minWidth;
-        
+
         // Set it for all buttons
         for (QObject *obj : bit_button_group_->buttons()) {
             if (auto const button = qobject_cast<BitButton *>(obj)) {

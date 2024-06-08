@@ -70,4 +70,3 @@ private:
     QSize size_;
     QColor text_color_;
 };
-

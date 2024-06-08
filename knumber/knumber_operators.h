@@ -50,4 +50,3 @@ KNumber ln(const KNumber &x);
 KNumber exp2(const KNumber &x);
 KNumber exp10(const KNumber &x);
 KNumber exp(const KNumber &x);
-

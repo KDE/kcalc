@@ -495,10 +495,9 @@ int CalcEngine::reduce_Stack_(bool toParentheses /*= true*/)
             }
             if (token_stack_.at(token_stack_.size() - 1).isKNumber() && token_stack_.at(token_stack_.size() - 2).isBinaryFunction()
                 && token_stack_.at(token_stack_.size() - 3).isKNumber() && token_stack_.at(token_stack_.size() - 4).isBinaryFunction()) {
-
-                if (token_stack_.at(token_stack_.size() - 2).getTokenCode() == KCalcToken::TokenCode::MINUS || token_stack_.at(token_stack_.size() - 2).getTokenCode() == KCalcToken::TokenCode::PLUS) {
+                if (token_stack_.at(token_stack_.size() - 2).getTokenCode() == KCalcToken::TokenCode::MINUS
+                    || token_stack_.at(token_stack_.size() - 2).getTokenCode() == KCalcToken::TokenCode::PLUS) {
                     if (token_stack_.at(token_stack_.size() - 4).getTokenCode() == KCalcToken::TokenCode::MINUS) {
-
                         tokenSecondArg = &token_stack_.at(token_stack_.size() - 1);
                         tokenFunction = &token_stack_.at(token_stack_.size() - 2);
                         tokenFirstArg = &token_stack_.at(token_stack_.size() - 3);
@@ -507,7 +506,6 @@ int CalcEngine::reduce_Stack_(bool toParentheses /*= true*/)
                             result = tokenFunction->evaluate(tokenFirstArg->getKNumber(), tokenSecondArg->getKNumber());
                         } else {
                             result = tokenFunction->evaluate(-tokenFirstArg->getKNumber(), tokenSecondArg->getKNumber());
-
                         }
                         token_stack_.pop_back();
                         token_stack_.pop_back();
@@ -517,7 +515,6 @@ int CalcEngine::reduce_Stack_(bool toParentheses /*= true*/)
                         continue;
                     }
                 }
-
             }
         }
 

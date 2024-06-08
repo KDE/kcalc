@@ -143,7 +143,6 @@ public:
     bool isFirstArgInverted() const;
     bool isSecondArgInverted() const;
 
-
     void updateToken(const KNumber &kNumber);
     void updateToken(TokenCode tokenCode);
 

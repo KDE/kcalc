@@ -41,4 +41,3 @@ private:
 public Q_SLOTS:
     void slotPassSignalThrough(QAction *chosen_const);
 };
-

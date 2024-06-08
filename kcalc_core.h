@@ -65,4 +65,3 @@ private:
 
     KNumber buffer_result_;
 };
-

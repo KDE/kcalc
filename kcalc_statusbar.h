@@ -39,4 +39,3 @@ private:
     QLabel *const angle_mode_indicator_;
     QLabel *const memory_indicator_;
 };
-

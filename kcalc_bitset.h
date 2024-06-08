@@ -34,4 +34,3 @@ private:
     quint64 value_;
     float ratio_;
 };
-

@@ -90,8 +90,7 @@ KCalculator::KCalculator(QWidget *parent)
     base_conversion_labels_ = {binDisplay, hexDisplay, decDisplay, octDisplay};
 
     angle_choose_group_ = new QButtonGroup(this);
-    angle_choose_group_->
-    setExclusive(true);
+    angle_choose_group_->setExclusive(true);
     angle_choose_group_->addButton(degRadio, DegMode);
     angle_choose_group_->addButton(radRadio, RadMode);
     angle_choose_group_->addButton(gradRadio, GradMode);
@@ -697,7 +696,7 @@ void KCalculator::updateGeometry()
 {
     // Create font metrics using base font (at base size)
     const QFontMetrics fm(baseFont());
-    
+
     // Calculate some useful values
     const QSize em = fm.size(0, QStringLiteral("M"));
     int margin = QApplication::style()->pixelMetric(QStyle::PM_ButtonMargin, nullptr, nullptr);
@@ -1823,7 +1822,7 @@ void KCalculator::slotSetSimpleMode()
     // must be done after setting the calculator mode because the
     // slotBitsetshow slot should save the state only in numeral mode
     action_bitset_show_->setChecked(false);
-    
+
     // disable leftPad from affecting the layout
     setLeftPadLayoutActive(false);
 
@@ -1879,7 +1878,7 @@ void KCalculator::slotSetScienceMode()
     // must be done after setting the calculator mode because the
     // slotBitsetshow slot should save the state only in numeral mode
     action_bitset_show_->setChecked(false);
-    
+
     // enable leftPad to affect the layout
     setLeftPadLayoutActive(true);
 
@@ -1935,7 +1934,7 @@ void KCalculator::slotSetStatisticMode()
     // must be done after setting the calculator mode because the
     // slotBitsetshow slot should save the state only in numeral mode
     action_bitset_show_->setChecked(false);
-    
+
     // enable leftPad to affect the layout
     setLeftPadLayoutActive(true);
 
@@ -1989,7 +1988,7 @@ void KCalculator::slotSetNumeralMode()
     }
 
     KCalcSettings::setCalculatorMode(KCalcSettings::EnumCalculatorMode::numeral);
-    
+
     // enable leftPad to affect the layout
     setLeftPadLayoutActive(true);
 
@@ -2156,7 +2155,8 @@ void KCalculator::showLogicButtons(bool toggled)
 // Name: slotHistoryshow
 // Desc: hides or shows the history
 //------------------------------------------------------------------------------
-void KCalculator::slotHistoryshow(bool toggled) {
+void KCalculator::slotHistoryshow(bool toggled)
+{
     bool wasMinimumSize = isMinimumSize();
 
     calc_history->setVisible(toggled);
@@ -2577,12 +2577,10 @@ void KCalculator::setFonts()
     // Step 2: If step 1 worked, calculate new font size
 
     if (!(minButtonWidth == INT_MAX || minButtonHeight == INT_MAX)) {
-
         // Calculate new font size. Use the font size from the settings as minimum font size.
         // Please note these constants are arbitrarily chosen for lack of a better solution.
         // If issues with scaling arise (due to abnormally wide/tall fonts), increase them to compensate.
         buttonFont.setPointSizeF(qMax(KCalcSettings::buttonFont().pointSizeF(), qMin(minButtonWidth / 4.8, minButtonHeight / 3.6)));
-        
     }
 
     // Step 3: Apply the new font (and size) to all buttons.
@@ -2620,7 +2618,7 @@ void KCalculator::setBaseFont(const QFont &font)
 // Name: baseFont
 // Desc: get the base font
 //------------------------------------------------------------------------------
-const QFont& KCalculator::baseFont() const
+const QFont &KCalculator::baseFont() const
 {
     return baseFont_;
 }
@@ -2799,7 +2797,7 @@ void KCalculator::slotPaste()
 // Name: resizeEvent
 // Desc: resize window and make sure it's large enough for its content
 //------------------------------------------------------------------------------
-void KCalculator::resizeEvent(QResizeEvent* event)
+void KCalculator::resizeEvent(QResizeEvent *event)
 {
     // Call the overridden resize event
     KXmlGuiWindow::resizeEvent(event);
@@ -2819,7 +2817,6 @@ void KCalculator::resizeEvent(QResizeEvent* event)
     // Force mBitset to call its resizeEvent
     mBitset->resize(0, 0);
 }
-
 
 ////////////////////////////////////////////////////////////////
 // Include the meta-object code for classes in this file

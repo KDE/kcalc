@@ -114,14 +114,14 @@ void KCalcDisplay::updateFromCore(const CalcEngine &core, bool store_result_in_h
 #else
     if (tmp_error) {
 #endif
-    sendEvent(EventError);
-}
+        sendEvent(EventError);
+    }
 
-if (setAmount(output) && store_result_in_history && (output != KNumber::Zero)) {
-    // add this latest value to our history
-    history_list_.insert(history_list_.begin(), output);
-    history_index_ = 0;
-}
+    if (setAmount(output) && store_result_in_history && (output != KNumber::Zero)) {
+        // add this latest value to our history
+        history_list_.insert(history_list_.begin(), output);
+        history_index_ = 0;
+    }
 }
 
 //------------------------------------------------------------------------------

@@ -113,8 +113,8 @@ public:
     Q_DECLARE_FLAGS(UpdateFlags, UpdateFlag)
 
 protected:
-    void resizeEvent(QResizeEvent* event) override;
-    
+    void resizeEvent(QResizeEvent *event) override;
+
 private:
     bool eventFilter(QObject *o, QEvent *e) override;
     bool event(QEvent *e) override;
@@ -135,7 +135,7 @@ private:
     void setPrecision();
     void setAngle();
     void setBase();
-    
+
     void setBaseFont(const QFont &font);
     const QFont &baseFont() const;
     bool isMinimumSize();
@@ -303,4 +303,3 @@ private:
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(KCalculator::UpdateFlags)
-
