@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2002-11-01 14:15SAST\n"
 "Last-Translator: Lwandle Mgidlana <lwandle@translate.org.za>\n"
 "Language-Team: Xhosa <xhosa@translate.org.za>\n"
@@ -831,13 +831,8 @@ msgstr "Izicwangciso Ngokubanzi"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
+msgid "Fonts"
 msgstr ""
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Khetha Umgca Woboniso"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2272,6 +2267,9 @@ msgstr ""
 #, kde-format
 msgid "Avogadro's Number"
 msgstr ""
+
+#~ msgid "Select Display Font"
+#~ msgstr "Khetha Umgca Woboniso"
 
 #, fuzzy
 #~ msgid "Cube"

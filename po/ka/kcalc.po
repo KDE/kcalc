@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2024-05-24 16:26+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -821,14 +821,10 @@ msgid "General Settings"
 msgstr "ზოგადი პარამეტრები"
 
 #: kcalc.cpp:1679
-#, kde-format
-msgid "Font"
+#, fuzzy, kde-format
+#| msgid "Font"
+msgid "Fonts"
 msgstr "ფონტი"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "აირჩიეთ ეკრანის ფერი"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2297,6 +2293,9 @@ msgstr "შტეფან-ბოლცმანის მუდმივა"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "ავოგადროს მუდმივა"
+
+#~ msgid "Select Display Font"
+#~ msgstr "აირჩიეთ ეკრანის ფერი"
 
 #~ msgid "KS…el"
 #~ msgstr "KS…el"

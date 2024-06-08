@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2013-09-08 07:05+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -830,14 +830,10 @@ msgid "General Settings"
 msgstr "ئادەتتىكى تەڭشەك"
 
 #: kcalc.cpp:1679
-#, kde-format
-msgid "Font"
+#, fuzzy, kde-format
+#| msgid "Font"
+msgid "Fonts"
 msgstr "خەت نۇسخا"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr ""
 
 #: kcalc.cpp:1683
 #, kde-format

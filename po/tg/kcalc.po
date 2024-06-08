@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2004-10-16 13:15+0500\n"
 "Last-Translator: Victor Ibragimov <youth_opportunities@tajik.net>\n"
 "Language-Team: Tajik\n"
@@ -857,13 +857,8 @@ msgstr "Гузоришҳои Умумӣ"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
+msgid "Fonts"
 msgstr ""
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Интихоби Ҳуруфи Намоиш"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2328,6 +2323,9 @@ msgstr ""
 #, kde-format
 msgid "Avogadro's Number"
 msgstr ""
+
+#~ msgid "Select Display Font"
+#~ msgstr "Интихоби Ҳуруфи Намоиш"
 
 #, fuzzy
 #~ msgid "Cube"

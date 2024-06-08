@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2024-04-07 17:11+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -836,13 +836,8 @@ msgstr "பொதுவான அமைப்புகள்"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
+msgid "Fonts"
 msgstr ""
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "திரைஎழுத்துருவை தேர்வு செய்"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2309,6 +2304,9 @@ msgstr "ஸ்டெஃபன் - போல்ட்ஸ்மன் மாற�
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "அவோகட்ரோஸ்ன் எண்"
+
+#~ msgid "Select Display Font"
+#~ msgstr "திரைஎழுத்துருவை தேர்வு செய்"
 
 #~ msgctxt "Third power"
 #~ msgid "x<sup>3</sup>"

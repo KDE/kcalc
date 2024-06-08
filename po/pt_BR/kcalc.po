@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2023-09-16 02:17-0300\n"
 "Last-Translator: Geraldo Simiao <geraldosimiao@fedoraproject.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -842,14 +842,10 @@ msgid "General Settings"
 msgstr "Configurações gerais"
 
 #: kcalc.cpp:1679
-#, kde-format
-msgid "Font"
+#, fuzzy, kde-format
+#| msgid "Font"
+msgid "Fonts"
 msgstr "Fonte"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Selecionar fonte do visor"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2320,6 +2316,9 @@ msgstr "Constante de Stefan-Boltzmann"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Número de Avogadro"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Selecionar fonte do visor"
 
 #~ msgctxt "Third power"
 #~ msgid "x<sup>3</sup>"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2024-01-21 15:17+0200\n"
 "Last-Translator: Māris Nartišs <maris.kde@gmail.com>\n"
 "Language-Team: \n"
@@ -836,13 +836,8 @@ msgstr "Pamata iestatījumi"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
-msgstr "Fonts"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Norādiet displeja fontu"
+msgid "Fonts"
+msgstr "Fonti"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2309,6 +2304,12 @@ msgstr "Stefana-Bolcmaņa konstante"
 msgid "Avogadro's Number"
 msgstr "Avogadro skaitlis"
 
+#~ msgid "Font"
+#~ msgstr "Fonts"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Norādiet displeja fontu"
+
 #~ msgctxt "Third power"
 #~ msgid "x<sup>3</sup>"
 #~ msgstr "x<sup>3</sup>"
@@ -2418,9 +2419,6 @@ msgstr "Avogadro skaitlis"
 
 #~ msgid "+/-"
 #~ msgstr "+/-"
-
-#~ msgid "Fonts"
-#~ msgstr "Fonti"
 
 #~ msgid "Alt+1"
 #~ msgstr "Alt+1"

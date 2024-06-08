@@ -1,5 +1,5 @@
 # translation of kcalc.po to Polish
-# Version: $Revision: 1681191 $
+# Version: $Revision: 1681862 $
 # translation of kcalc.po to
 # KTranslator Generated File
 # SPDX-FileCopyrightText: 2012, 2013, 2014, 2015, 2017, 2018, 2019, 2021, 2022, 2023, 2024 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2024-04-13 19:16+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -830,13 +830,8 @@ msgstr "Ustawienia ogólne"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
-msgstr "Czcionka"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Wybierz czcionkę wyświetlacza"
+msgid "Fonts"
+msgstr "Czcionki"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2305,6 +2300,12 @@ msgstr "Stała Stefana-Boltzmanna"
 msgid "Avogadro's Number"
 msgstr "Liczba Avogadro"
 
+#~ msgid "Font"
+#~ msgstr "Czcionka"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Wybierz czcionkę wyświetlacza"
+
 #~ msgid "KS…el"
 #~ msgstr "KS…el"
 
@@ -2421,9 +2422,6 @@ msgstr "Liczba Avogadro"
 
 #~ msgid "+/-"
 #~ msgstr "+/-"
-
-#~ msgid "Fonts"
-#~ msgstr "Czcionki"
 
 #~ msgid "Alt+1"
 #~ msgstr "Alt+1"

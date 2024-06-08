@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2020-04-08 20:59+0200\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <kde-i18n-doc@kde.org>\n"
@@ -860,13 +860,8 @@ msgstr "Generelle indstillinger"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
-msgstr "Skrifttype"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Vælg displayskrifttype"
+msgid "Fonts"
+msgstr "Skrifttyper"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2366,6 +2361,12 @@ msgstr "Stefan-Boltzmanns konstant"
 msgid "Avogadro's Number"
 msgstr "Avogradros konstant"
 
+#~ msgid "Font"
+#~ msgstr "Skrifttype"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Vælg displayskrifttype"
+
 #~ msgctxt "Third power"
 #~ msgid "x<sup>3</sup>"
 #~ msgstr "x<sup>3</sup>"
@@ -2475,9 +2476,6 @@ msgstr "Avogradros konstant"
 
 #~ msgid "Constant of Gravitation"
 #~ msgstr "Den universelle gravitationskonstant"
-
-#~ msgid "Fonts"
-#~ msgstr "Skrifttyper"
 
 #~ msgid "Alt+1"
 #~ msgstr "Alt+1"

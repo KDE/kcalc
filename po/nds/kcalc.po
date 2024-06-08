@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2014-04-02 22:41+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -859,13 +859,8 @@ msgstr "Allgemeen Instellen"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
-msgstr "Schriftoort"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Schrift för den Wieser utsöken"
+msgid "Fonts"
+msgstr "Schriftoorden"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2380,6 +2375,12 @@ msgstr "Stefan-Boltzmann-Konstante"
 msgid "Avogadro's Number"
 msgstr "Avogadrotall"
 
+#~ msgid "Font"
+#~ msgstr "Schriftoort"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Schrift för den Wieser utsöken"
+
 #~ msgctxt "Third power"
 #~ msgid "x<sup>3</sup>"
 #~ msgstr "x<sup>3</sup>"
@@ -2489,9 +2490,6 @@ msgstr "Avogadrotall"
 
 #~ msgid "Constant of Gravitation"
 #~ msgstr "Gravitatschoonkonstante"
-
-#~ msgid "Fonts"
-#~ msgstr "Schriftoorden"
 
 #~ msgid "Alt+1"
 #~ msgstr "Alt+1"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ../cy/messages//kdeutils/kcalc.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandrakesoft.com>\n"
 "Language-Team: cy <LL@li.org>\n"
@@ -814,12 +814,7 @@ msgstr "Gosodiadau Cyffredinol"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
-msgstr ""
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
+msgid "Fonts"
 msgstr ""
 
 #: kcalc.cpp:1683

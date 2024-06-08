@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2024-02-04 10:20-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
@@ -815,13 +815,8 @@ msgstr "ਸਧਾਰਨ ਸੈਟਿੰਗਾਂ"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
-msgstr "ਫ਼ੌਂਟ"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "ਡਿਸਪਲੇਅ ਫ਼ੌਂਟ ਚੁਣੋ"
+msgid "Fonts"
+msgstr "ਫੋਂਟ"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2256,6 +2251,12 @@ msgstr ""
 msgid "Avogadro's Number"
 msgstr "ਐਵੋਗੈਡਰੋ ਨੰਬਰ"
 
+#~ msgid "Font"
+#~ msgstr "ਫ਼ੌਂਟ"
+
+#~ msgid "Select Display Font"
+#~ msgstr "ਡਿਸਪਲੇਅ ਫ਼ੌਂਟ ਚੁਣੋ"
+
 #~ msgid "KS…el"
 #~ msgstr "KS…el"
 
@@ -2361,9 +2362,6 @@ msgstr "ਐਵੋਗੈਡਰੋ ਨੰਬਰ"
 
 #~ msgid "Constant of Gravitation"
 #~ msgstr "ਗਰੂਤਾ ਸਥਿਰ ਅੰਕ"
-
-#~ msgid "Fonts"
-#~ msgstr "ਫੋਂਟ"
 
 #~ msgid "Alt+1"
 #~ msgstr "Alt+1"

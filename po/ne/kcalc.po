@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2007-08-26 17:21+0545\n"
 "Last-Translator: Narayan Kumar Magar <narayan@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -866,14 +866,10 @@ msgid "General Settings"
 msgstr "सामान्य सेटिङ"
 
 #: kcalc.cpp:1679
-#, kde-format
-msgid "Font"
+#, fuzzy, kde-format
+#| msgid "Font"
+msgid "Fonts"
 msgstr "फन्ट"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "प्रदर्शन फन्ट चयन गर्नुहोस्"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2356,6 +2352,12 @@ msgstr ""
 msgid "Avogadro's Number"
 msgstr ""
 
+#~ msgid "Font"
+#~ msgstr "फन्ट"
+
+#~ msgid "Select Display Font"
+#~ msgstr "प्रदर्शन फन्ट चयन गर्नुहोस्"
+
 #, fuzzy
 #~| msgid "Cube root"
 #~ msgid "Cube"
@@ -2444,11 +2446,6 @@ msgstr ""
 #~| msgid "Gravitation"
 #~ msgid "Constant of Gravitation"
 #~ msgstr "गुरुत्वकार्षण"
-
-#, fuzzy
-#~| msgid "Font"
-#~ msgid "Fonts"
-#~ msgstr "फन्ट"
 
 #~ msgid "Stack processing error - empty stack"
 #~ msgstr "स्ट्याक प्रोसेसिङ्ग त्रुटि - खाली स्ट्याक"

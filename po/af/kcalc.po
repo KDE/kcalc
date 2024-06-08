@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2008-03-11 11:01+0200\n"
 "Last-Translator: Petri Jooste <Petri.Jooste@nwu.ac.za>\n"
 "Language-Team: Afrikaans <translate-discuss-af@lists.sourceforge.net>\n"
@@ -874,14 +874,10 @@ msgid "General Settings"
 msgstr "Algemene Instellings"
 
 #: kcalc.cpp:1679
-#, kde-format
-msgid "Font"
+#, fuzzy, kde-format
+#| msgid "Font"
+msgid "Fonts"
 msgstr "Skriftipe"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Kies Vertoonskriftipe"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2358,6 +2354,12 @@ msgstr ""
 msgid "Avogadro's Number"
 msgstr ""
 
+#~ msgid "Font"
+#~ msgstr "Skriftipe"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Kies Vertoonskriftipe"
+
 #, fuzzy
 #~| msgid "Cube root"
 #~ msgid "Cube"
@@ -2483,11 +2485,6 @@ msgstr ""
 #~| msgid "Gravitation"
 #~ msgid "Constant of Gravitation"
 #~ msgstr "Gravitasie"
-
-#, fuzzy
-#~| msgid "Font"
-#~ msgid "Fonts"
-#~ msgstr "Skriftipe"
 
 #~ msgid "Alt+1"
 #~ msgstr "Alt+1"

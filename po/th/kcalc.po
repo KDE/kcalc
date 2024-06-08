@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2010-12-17 18:39+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -858,14 +858,10 @@ msgid "General Settings"
 msgstr "ตั้งค่าทั่วไป"
 
 #: kcalc.cpp:1679
-#, kde-format
-msgid "Font"
+#, fuzzy, kde-format
+#| msgid "Font"
+msgid "Fonts"
 msgstr "แบบอักษร"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "เลือกแบบอักษรการแสดงผล"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2321,6 +2317,12 @@ msgstr "ค่าคงที่ Stefan-Boltzmann"
 msgid "Avogadro's Number"
 msgstr "เลขอะโวกาโดร"
 
+#~ msgid "Font"
+#~ msgstr "แบบอักษร"
+
+#~ msgid "Select Display Font"
+#~ msgstr "เลือกแบบอักษรการแสดงผล"
+
 #~ msgctxt "Third power"
 #~ msgid "x<sup>3</sup>"
 #~ msgstr "x<sup>3</sup>"
@@ -2432,11 +2434,6 @@ msgstr "เลขอะโวกาโดร"
 
 #~ msgid "Constant of Gravitation"
 #~ msgstr "ค่าคงที่ของแรงดึงดูด"
-
-#, fuzzy
-#~| msgid "Font"
-#~ msgid "Fonts"
-#~ msgstr "แบบอักษร"
 
 #~ msgid "Alt+1"
 #~ msgstr "Alt+1"

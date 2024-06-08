@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2015-12-30 18:09+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: lt <kde-i18n-lt@kde.org>\n"
@@ -859,14 +859,10 @@ msgid "General Settings"
 msgstr "Bendrosios nuostatos"
 
 #: kcalc.cpp:1679
-#, kde-format
-msgid "Font"
+#, fuzzy, kde-format
+#| msgid "Font"
+msgid "Fonts"
 msgstr "Šriftas"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Pasirinkite ekrano šriftą"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2328,6 +2324,9 @@ msgstr "Stefano-Bolcmano konstanta"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Avogadro skaičius"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Pasirinkite ekrano šriftą"
 
 #~ msgctxt "Third power"
 #~ msgid "x<sup>3</sup>"

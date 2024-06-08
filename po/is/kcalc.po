@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2024-04-06 20:41+0000\n"
 "Last-Translator: Gummi <gudmundure@gmail.com>\n"
 "Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
@@ -831,14 +831,9 @@ msgid "General Settings"
 msgstr "Almennar stillingar"
 
 #: kcalc.cpp:1679
-#, kde-format
-msgid "Font"
+#, fuzzy, kde-format
+msgid "Fonts"
 msgstr "Letur"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Velja skjáletur"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2303,6 +2298,12 @@ msgstr "Stefan-Boltzmann fasti"
 msgid "Avogadro's Number"
 msgstr "Avogadrotala"
 
+#~ msgid "Font"
+#~ msgstr "Letur"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Velja skjáletur"
+
 #~ msgid "KS…el"
 #~ msgstr "KS…el"
 
@@ -2421,10 +2422,6 @@ msgstr "Avogadrotala"
 #, fuzzy
 #~ msgid "Constant of Gravitation"
 #~ msgstr "&Tölfræðihnappar"
-
-#, fuzzy
-#~ msgid "Fonts"
-#~ msgstr "Letur"
 
 #, fuzzy
 #~ msgid "Alt+1"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc 0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2009-06-21 10:11+0200\n"
 "Last-Translator: Andrej Dundović <adundovi@gmail.com>\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
@@ -834,13 +834,8 @@ msgstr "Opće postavke"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
+msgid "Fonts"
 msgstr ""
-
-#: kcalc.cpp:1679
-#, fuzzy, kde-format
-msgid "Select Display Font"
-msgstr "Odaberite pismo za prikaz"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2290,6 +2285,10 @@ msgstr ""
 #, kde-format
 msgid "Avogadro's Number"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Select Display Font"
+#~ msgstr "Odaberite pismo za prikaz"
 
 #, fuzzy
 #~ msgid "Cube"

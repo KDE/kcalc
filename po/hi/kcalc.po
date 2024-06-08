@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2008-02-03 12:40+0530\n"
 "Last-Translator: Ravishankar Shrivastava <aviratlami@aol.in>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
@@ -862,14 +862,10 @@ msgid "General Settings"
 msgstr "सामान्य विन्यास"
 
 #: kcalc.cpp:1679
-#, kde-format
-msgid "Font"
+#, fuzzy, kde-format
+#| msgid "Font"
+msgid "Fonts"
 msgstr "फ़ॉन्ट"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "प्रदर्शक फ़ॉन्ट चुनें"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2340,6 +2336,12 @@ msgstr ""
 msgid "Avogadro's Number"
 msgstr ""
 
+#~ msgid "Font"
+#~ msgstr "फ़ॉन्ट"
+
+#~ msgid "Select Display Font"
+#~ msgstr "प्रदर्शक फ़ॉन्ट चुनें"
+
 #, fuzzy
 #~| msgid "Cube root"
 #~ msgid "Cube"
@@ -2465,11 +2467,6 @@ msgstr ""
 #~| msgid "Gravitation"
 #~ msgid "Constant of Gravitation"
 #~ msgstr "गुरुत्व"
-
-#, fuzzy
-#~| msgid "Font"
-#~ msgid "Fonts"
-#~ msgstr "फ़ॉन्ट"
 
 #~ msgid "Alt+1"
 #~ msgstr "ऑल्ट+1"

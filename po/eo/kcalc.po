@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc 1.0pre2\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2024-06-02 21:57+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <eo@li.org>\n"
@@ -824,14 +824,10 @@ msgid "General Settings"
 msgstr "Ĝenerala Agordo"
 
 #: kcalc.cpp:1679
-#, kde-format
-msgid "Font"
+#, fuzzy, kde-format
+#| msgid "Font"
+msgid "Fonts"
 msgstr "Tiparo"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Elekti Vidigtiparon"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2294,3 +2290,6 @@ msgstr "Stefan-Boltzmann Constant"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Numero de Avogadro"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Elekti Vidigtiparon"

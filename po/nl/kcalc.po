@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2024-05-24 11:06+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -840,14 +840,10 @@ msgid "General Settings"
 msgstr "Algemene instellingen"
 
 #: kcalc.cpp:1679
-#, kde-format
-msgid "Font"
+#, fuzzy, kde-format
+#| msgid "Font"
+msgid "Fonts"
 msgstr "Lettertype"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Lettertype selecteren voor scherm"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2319,6 +2315,9 @@ msgstr "Constante van Stefan-Boltzmann"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Getal van Avogadro"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Lettertype selecteren voor scherm"
 
 #~ msgid "KS…el"
 #~ msgstr "KS…el"

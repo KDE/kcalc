@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2022-09-25 10:02+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -837,13 +837,8 @@ msgstr "Allmänna inställningar"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
+msgid "Fonts"
 msgstr "Teckensnitt"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Välj sifferteckensnitt"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2336,6 +2331,12 @@ msgstr "Stefan-Boltzmanns konstant"
 msgid "Avogadro's Number"
 msgstr "Avogadros tal"
 
+#~ msgid "Font"
+#~ msgstr "Teckensnitt"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Välj sifferteckensnitt"
+
 #~ msgctxt "Third power"
 #~ msgid "x<sup>3</sup>"
 #~ msgstr "x<sup>3</sup>"
@@ -2448,9 +2449,6 @@ msgstr "Avogadros tal"
 
 #~ msgid "Constant of Gravitation"
 #~ msgstr "Gravitationskonstanten"
-
-#~ msgid "Fonts"
-#~ msgstr "Teckensnitt"
 
 #~ msgid "Alt+1"
 #~ msgstr "Alt+1"

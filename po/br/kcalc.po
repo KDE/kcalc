@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc-1.1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2004-07-07 22:19+0200\n"
 "Last-Translator: Jañ-Mai Drapier <jdrapier@club-internet.fr>\n"
 "Language-Team: Brezhoneg <Suav.Icb@wanadoo.fr>\n"
@@ -831,14 +831,10 @@ msgid "General Settings"
 msgstr "Dibarzhoù hollek"
 
 #: kcalc.cpp:1679
-#, kde-format
-msgid "Font"
+#, fuzzy, kde-format
+#| msgid "Font"
+msgid "Fonts"
 msgstr "Nodrez"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Dibabit nodrezh an diskwel"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2300,6 +2296,12 @@ msgstr ""
 msgid "Avogadro's Number"
 msgstr "Niverenn Avogadro"
 
+#~ msgid "Font"
+#~ msgstr "Nodrez"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Dibabit nodrezh an diskwel"
+
 #, fuzzy
 #~| msgid "C3"
 #~ msgid "x3"
@@ -2329,11 +2331,6 @@ msgstr "Niverenn Avogadro"
 
 #~ msgid "&Hide All"
 #~ msgstr "&Kuzhat an holl re"
-
-#, fuzzy
-#~| msgid "Font"
-#~ msgid "Fonts"
-#~ msgstr "Nodrez"
 
 #~ msgid "Stack processing error - empty stack"
 #~ msgstr "Fazi treterez ar bern -  pillad goullo"

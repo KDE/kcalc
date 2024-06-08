@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2024-04-13 07:40+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -827,13 +827,8 @@ msgstr "Ezarpen orokorrak"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
-msgstr "Letra-tipoa"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Hautatu pantailaren letra-tipoa"
+msgid "Fonts"
+msgstr "Tipografiak"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2304,6 +2299,12 @@ msgstr "Stefan-Boltzmannen konstantea"
 msgid "Avogadro's Number"
 msgstr "Avogadroren zenbakia"
 
+#~ msgid "Font"
+#~ msgstr "Letra-tipoa"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Hautatu pantailaren letra-tipoa"
+
 #~ msgid "KS…el"
 #~ msgstr "KS…el"
 
@@ -2419,9 +2420,6 @@ msgstr "Avogadroren zenbakia"
 
 #~ msgid "Constant of Gravitation"
 #~ msgstr "Grabitazio Konstantea"
-
-#~ msgid "Fonts"
-#~ msgstr "Tipografiak"
 
 #~ msgid "Alt+1"
 #~ msgstr "Alt+1"

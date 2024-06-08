@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2013-03-05 14:19+0530\n"
 "Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
 "Language-Team: Marathi <kde-i18n-doc@kde.org>\n"
@@ -850,14 +850,10 @@ msgid "General Settings"
 msgstr "सामान्य संयोजना"
 
 #: kcalc.cpp:1679
-#, kde-format
-msgid "Font"
+#, fuzzy, kde-format
+#| msgid "Font"
+msgid "Fonts"
 msgstr "फॉन्ट"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "दृश्य फॉन्ट निवडा"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2308,6 +2304,9 @@ msgstr "स्टीफन-ब्लोट्झमान स्थिर"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "एव्होगार्डोची संख्या"
+
+#~ msgid "Select Display Font"
+#~ msgstr "दृश्य फॉन्ट निवडा"
 
 #~ msgctxt "Third power"
 #~ msgid "x<sup>3</sup>"

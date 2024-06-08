@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2024-05-25 21:26+0200\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -831,13 +831,8 @@ msgstr "Impostazioni generali"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
-msgstr "Carattere"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Carattere del display"
+msgid "Fonts"
+msgstr "Caratteri"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2308,6 +2303,12 @@ msgstr "Costante di Stefan-Boltzmann"
 msgid "Avogadro's Number"
 msgstr "Numero di Avogadro"
 
+#~ msgid "Font"
+#~ msgstr "Carattere"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Carattere del display"
+
 #~ msgid "KS…el"
 #~ msgstr "KS…el"
 
@@ -2423,9 +2424,6 @@ msgstr "Numero di Avogadro"
 
 #~ msgid "+/-"
 #~ msgstr "+/-"
-
-#~ msgid "Fonts"
-#~ msgstr "Caratteri"
 
 #~ msgid "Alt+1"
 #~ msgstr "Alt+1"

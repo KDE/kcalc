@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2024-05-29 09:40+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -824,14 +824,10 @@ msgid "General Settings"
 msgstr "Általános beállítások"
 
 #: kcalc.cpp:1679
-#, kde-format
-msgid "Font"
+#, fuzzy, kde-format
+#| msgid "Font"
+msgid "Fonts"
 msgstr "Betűtípus"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Válassza ki a képernyő-betűtípust"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2300,6 +2296,9 @@ msgstr "Stefan-Boltzmann-állandó"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Avogadro-szám"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Válassza ki a képernyő-betűtípust"
 
 #~ msgid "KS…el"
 #~ msgstr "KS…el"

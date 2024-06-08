@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2006-05-21 17:52+0200\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -866,13 +866,8 @@ msgstr "Општи поставувања"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
+msgid "Fonts"
 msgstr ""
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Изберете фонт за приказот"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2351,6 +2346,9 @@ msgstr "Стефан-Болцманова константа"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Авогадров број"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Изберете фонт за приказот"
 
 #, fuzzy
 #~| msgid "Cube root"

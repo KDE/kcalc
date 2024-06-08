@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2019-11-10 22:51+0200\n"
 "Last-Translator: Marek Laane <qiilaq69@gmail.com>\n"
 "Language-Team: Estonian <kde-et@lists.linux.ee>\n"
@@ -859,13 +859,8 @@ msgstr "Üldised seadistused"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
-msgstr "Font"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Fondi valimine"
+msgid "Fonts"
+msgstr "Fondid"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2363,6 +2358,12 @@ msgstr "Stefan-Boltzmanni konstant"
 msgid "Avogadro's Number"
 msgstr "Avogadro arv"
 
+#~ msgid "Font"
+#~ msgstr "Font"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Fondi valimine"
+
 #~ msgctxt "Third power"
 #~ msgid "x<sup>3</sup>"
 #~ msgstr "x<sup>3</sup>"
@@ -2472,9 +2473,6 @@ msgstr "Avogadro arv"
 
 #~ msgid "Constant of Gravitation"
 #~ msgstr "Gravitatsioonikonstant"
-
-#~ msgid "Fonts"
-#~ msgstr "Fondid"
 
 #~ msgid "Alt+1"
 #~ msgstr "Alt+1"

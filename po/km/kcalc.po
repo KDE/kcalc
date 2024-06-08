@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2012-06-11 15:56+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -857,14 +857,10 @@ msgid "General Settings"
 msgstr "ការ​កំណត់​ទូទៅ"
 
 #: kcalc.cpp:1679
-#, kde-format
-msgid "Font"
+#, fuzzy, kde-format
+#| msgid "Font"
+msgid "Fonts"
 msgstr "ពុម្ព​អក្សរ"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "ជ្រើស​ពុម្ពអក្សរ​បង្ហាញ"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2325,6 +2321,9 @@ msgstr "Stefan-Boltzmann Constant"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Avogadro's Number"
+
+#~ msgid "Select Display Font"
+#~ msgstr "ជ្រើស​ពុម្ពអក្សរ​បង្ហាញ"
 
 #~ msgctxt "Third power"
 #~ msgid "x<sup>3</sup>"

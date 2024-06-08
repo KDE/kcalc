@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2024-02-09 23:24+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -823,14 +823,10 @@ msgid "General Settings"
 msgstr "일반 설정"
 
 #: kcalc.cpp:1679
-#, kde-format
-msgid "Font"
+#, fuzzy, kde-format
+#| msgid "Font"
+msgid "Fonts"
 msgstr "글꼴"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "화면 글꼴 선택"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2286,6 +2282,9 @@ msgstr "슈테판-볼츠만 상수"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "아보가드로 수"
+
+#~ msgid "Select Display Font"
+#~ msgstr "화면 글꼴 선택"
 
 #~ msgid "KS…el"
 #~ msgstr "KS…el"

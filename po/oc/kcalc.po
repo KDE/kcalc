@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2008-08-05 22:28+0200\n"
 "Last-Translator: Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>\n"
 "Language-Team: Occitan (lengadocian) <ubuntu-l10n-oci@lists.ubuntu.com>\n"
@@ -824,14 +824,10 @@ msgid "General Settings"
 msgstr "Paramètres generals"
 
 #: kcalc.cpp:1679
-#, kde-format
-msgid "Font"
+#, fuzzy, kde-format
+#| msgid "Font"
+msgid "Fonts"
 msgstr "Poliça"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr ""
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2274,6 +2270,9 @@ msgstr ""
 msgid "Avogadro's Number"
 msgstr ""
 
+#~ msgid "Font"
+#~ msgstr "Poliça"
+
 #, fuzzy
 #~| msgid "3"
 #~ msgid "x3"
@@ -2332,8 +2331,3 @@ msgstr ""
 
 #~ msgid "+/-"
 #~ msgstr "+/-"
-
-#, fuzzy
-#~| msgid "Font"
-#~ msgid "Fonts"
-#~ msgstr "Poliça"

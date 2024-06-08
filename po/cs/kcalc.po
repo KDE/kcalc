@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2024-05-30 14:02+0200\n"
 "Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -824,14 +824,10 @@ msgid "General Settings"
 msgstr "Obecná nastavení"
 
 #: kcalc.cpp:1679
-#, kde-format
-msgid "Font"
+#, fuzzy, kde-format
+#| msgid "Font"
+msgid "Fonts"
 msgstr "Písmo"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Vyberte písmo pro displej"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2287,3 +2283,6 @@ msgstr "Stefan-Boltzmannova konstanta"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Avogadrova konstanta"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Vyberte písmo pro displej"

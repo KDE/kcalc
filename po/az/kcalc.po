@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2023-02-18 19:13+0400\n"
 "Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
@@ -831,14 +831,10 @@ msgid "General Settings"
 msgstr "Əsas ayarlar"
 
 #: kcalc.cpp:1679
-#, kde-format
-msgid "Font"
+#, fuzzy, kde-format
+#| msgid "Font"
+msgid "Fonts"
 msgstr "Şrift"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Şrifti seçin"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2327,6 +2323,9 @@ msgstr "Stefan-Boltzman sabiti"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Avaqadro sayı"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Şrifti seçin"
 
 #~ msgctxt "Third power"
 #~ msgid "x<sup>3</sup>"

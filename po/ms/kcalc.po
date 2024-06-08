@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mimos\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2005-11-17 12:07+0800\n"
 "Last-Translator: MIMOS Open Source <opensource@mimos.my>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -847,13 +847,8 @@ msgstr "Seting Umum"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
+msgid "Fonts"
 msgstr ""
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Pilih Fon Paparan"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2321,6 +2316,9 @@ msgstr "Pemalar Stefan-Boltzmann"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Nombor Avogadro"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Pilih Fon Paparan"
 
 #, fuzzy
 #~| msgid "Cube root"

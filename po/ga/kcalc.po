@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2004-12-03 14:52-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -865,13 +865,8 @@ msgstr "Socruithe Ginearálta"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
-msgstr "Cló"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Roghnaigh Cló Taispeána"
+msgid "Fonts"
+msgstr "Clónna"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2343,6 +2338,12 @@ msgstr "Tairiseach Stefan-Boltzmann"
 msgid "Avogadro's Number"
 msgstr "Uimhir Avogadro"
 
+#~ msgid "Font"
+#~ msgstr "Cló"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Roghnaigh Cló Taispeána"
+
 #~ msgctxt "Third power"
 #~ msgid "x<sup>3</sup>"
 #~ msgstr "x<sup>3</sup>"
@@ -2437,9 +2438,6 @@ msgstr "Uimhir Avogadro"
 
 #~ msgid "Constant of Gravitation"
 #~ msgstr "Tairiseach na hImtharraingthe"
-
-#~ msgid "Fonts"
-#~ msgstr "Clónna"
 
 #~ msgid "Alt+1"
 #~ msgstr "Alt+1"

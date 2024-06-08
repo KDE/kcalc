@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2024-02-05 22:16+0200\n"
 "Last-Translator: George Stefanakis <george.stefanakis@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-doc@kde.org>\n"
@@ -855,13 +855,8 @@ msgstr "Γενικές ρυθμίσεις"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
-msgstr "Γραμματοσειρά"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Επιλογή γραμματοσειράς οθόνης"
+msgid "Fonts"
+msgstr "Γραμματοσειρές"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2333,6 +2328,12 @@ msgstr "Σταθερά Stefan-Boltzmann"
 msgid "Avogadro's Number"
 msgstr "Αριθμός του Avogadro"
 
+#~ msgid "Font"
+#~ msgstr "Γραμματοσειρά"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Επιλογή γραμματοσειράς οθόνης"
+
 #~ msgctxt "Third power"
 #~ msgid "x<sup>3</sup>"
 #~ msgstr "x<sup>3</sup>"
@@ -2454,9 +2455,6 @@ msgstr "Αριθμός του Avogadro"
 
 #~ msgid "Constant of Gravitation"
 #~ msgstr "Σταθερά βαρύτητας"
-
-#~ msgid "Fonts"
-#~ msgstr "Γραμματοσειρές"
 
 #~ msgid "Alt+1"
 #~ msgstr "Alt+1"

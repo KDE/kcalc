@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2006-03-06 00:42+0100\n"
 "Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
 "Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
@@ -839,13 +839,8 @@ msgstr "Умумий мосламалар"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
+msgid "Fonts"
 msgstr ""
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Кўрсатиш шрифтини танлаш"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2309,6 +2304,9 @@ msgstr "Стефан-Болцман доимийси"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Авагадро сони"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Кўрсатиш шрифтини танлаш"
 
 #, fuzzy
 #~| msgid "C3"

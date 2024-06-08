@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:41+0000\n"
+"POT-Creation-Date: 2024-06-08 00:41+0000\n"
 "PO-Revision-Date: 2024-02-08 09:44+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -839,13 +839,8 @@ msgstr "Общие параметры"
 
 #: kcalc.cpp:1679
 #, kde-format
-msgid "Font"
-msgstr "Шрифт"
-
-#: kcalc.cpp:1679
-#, kde-format
-msgid "Select Display Font"
-msgstr "Выбор шрифта"
+msgid "Fonts"
+msgstr "Шрифты"
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2319,6 +2314,12 @@ msgstr "Постоянная Стефана-Больцмана"
 msgid "Avogadro's Number"
 msgstr "Число Авогадро"
 
+#~ msgid "Font"
+#~ msgstr "Шрифт"
+
+#~ msgid "Select Display Font"
+#~ msgstr "Выбор шрифта"
+
 #~ msgid "KS…el"
 #~ msgstr "KS…el"
 
@@ -2442,9 +2443,6 @@ msgstr "Число Авогадро"
 
 #~ msgid "Constant of Gravitation"
 #~ msgstr "Универсальная гравитационная постоянная"
-
-#~ msgid "Fonts"
-#~ msgstr "Шрифты"
 
 #~ msgid "Alt+1"
 #~ msgstr "Alt+1"
