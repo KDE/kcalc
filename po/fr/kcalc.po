@@ -845,7 +845,8 @@ msgid "General Settings"
 msgstr "Configuration générale"
 
 #: kcalc.cpp:1679
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Fonts"
 msgid "Fonts"
 msgstr "Polices"
 

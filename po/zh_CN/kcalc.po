@@ -818,10 +818,9 @@ msgid "General Settings"
 msgstr "常规设置"
 
 #: kcalc.cpp:1679
-#, fuzzy, kde-format
-#| msgid "Font"
+#, kde-format
 msgid "Fonts"
-msgstr "字体"
+msgstr ""
 
 #: kcalc.cpp:1683
 #, kde-format
@@ -2272,6 +2271,3 @@ msgstr "斯蒂芬·波尔兹曼常数"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "阿伏加德罗氏数"
-
-#~ msgid "Select Display Font"
-#~ msgstr "选择显示字体"

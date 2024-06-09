@@ -2336,6 +2336,3 @@ msgstr "Stefan–Boltzmann-konstanten"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Avogadros tal"
-
-#~ msgid "Select Display Font"
-#~ msgstr "Vel skrift for teiknruta"

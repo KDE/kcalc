@@ -2329,6 +2329,3 @@ msgstr "Stefan-Boltzmanns konstant"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Avogadros tall"
-
-#~ msgid "Select Display Font"
-#~ msgstr "Velg skrift for skjermen"
