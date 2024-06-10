@@ -820,7 +820,7 @@ msgstr "常规设置"
 #: kcalc.cpp:1679
 #, kde-format
 msgid "Fonts"
-msgstr ""
+msgstr "字体"
 
 #: kcalc.cpp:1683
 #, kde-format
