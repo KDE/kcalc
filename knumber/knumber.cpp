@@ -73,7 +73,7 @@ void increment(QString &str, int position)
                 str.prepend(QLatin1Char('1'));
             }
             continue;
-        case '.':
+        default:
             continue;
         }
         break;
@@ -83,14 +83,14 @@ void increment(QString &str, int position)
 //------------------------------------------------------------------------------
 // Name: round
 //------------------------------------------------------------------------------
-void round(QString &str, int precision)
+void round(QString &str, int precision, const QString &decimalSeparator)
 {
-    int decimalSymbolPos = str.indexOf(QLatin1Char('.'));
+    int decimalSymbolPos = str.indexOf(decimalSeparator);
     if (decimalSymbolPos == -1) {
         if (precision == 0) {
             return;
         } else {
-            str.append(QLatin1Char('.'));
+            str.append(decimalSeparator);
             str.append(QString().fill(QLatin1Char('0'), precision));
             return;
         }
@@ -107,20 +107,23 @@ void round(QString &str, int precision)
             if (str.at(desiredLength).toLatin1() >= '5') {
                 increment(str, desiredLength - 1);
             }
-            decimalSymbolPos = str.indexOf(QLatin1Char('.'));
+            decimalSymbolPos = str.indexOf(decimalSeparator);
             str.truncate(decimalSymbolPos + precision + 1);
         }
     }
+}
 }
 }
 
 //------------------------------------------------------------------------------
 // Name: round
 //------------------------------------------------------------------------------
-QString round(const QString &s, int precision)
+QString KNumber::round(const QString &s, int precision) const
 {
     QString tmp = s;
-    const QRegularExpression rx(QLatin1String(R"(^[+-]?\d+(\.\d+)*(e[+-]?\d+)?$)"));
+
+    const QRegularExpression rx(QString(QLatin1String(R"(^[+-]?\d+(%1\d+)*(e[+-]?\d+)?$)")).arg(QRegularExpression::escape(DecimalSeparator)));
+
     if (precision < 0 || !rx.match(tmp).hasMatch()) {
         return s;
     }
@@ -139,14 +142,13 @@ QString round(const QString &s, int precision)
         expString.clear();
     }
 
-    impl::round(mantString, precision);
+    impl::round(mantString, precision, KNumber::decimalSeparator());
 
     if (neg) {
         mantString.prepend(QLatin1Char('-'));
     }
 
     return mantString + expString;
-}
 }
 
 //------------------------------------------------------------------------------
@@ -176,7 +178,7 @@ QString KNumber::groupSeparator()
 //------------------------------------------------------------------------------
 // Name: decimalSeparator
 //------------------------------------------------------------------------------
-QString KNumber::decimalSeparator()
+const QString KNumber::decimalSeparator()
 {
     return DecimalSeparator;
 }
