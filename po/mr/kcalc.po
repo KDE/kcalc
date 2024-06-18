@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-12 00:41+0000\n"
+"POT-Creation-Date: 2024-06-18 00:42+0000\n"
 "PO-Revision-Date: 2013-03-05 14:19+0530\n"
 "Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
 "Language-Team: Marathi <kde-i18n-doc@kde.org>\n"
@@ -109,7 +109,7 @@ msgid "&Constants:"
 msgstr "स्थिरांक (&C)"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
-#: constants.ui:13 kcalc.cpp:1715
+#: constants.ui:13 kcalc.cpp:1716
 #, kde-format
 msgid "Constants"
 msgstr "स्थिरांक"
@@ -165,7 +165,7 @@ msgid "The font to use in the history"
 msgstr "दृश्याकरिता वापरायचा फॉन्ट"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
-#: general.ui:14 kcalc.cpp:1675
+#: general.ui:14 kcalc.cpp:1676
 #, kde-format
 msgid "General"
 msgstr "सामान्य"
@@ -775,7 +775,7 @@ msgctxt "Second function mode"
 msgid "Shift"
 msgstr "Shift"
 
-#: kcalc.cpp:1245 kcalc.cpp:1246
+#: kcalc.cpp:1238 kcalc.cpp:1239
 #, fuzzy, kde-format
 #| msgid "Memory clear"
 msgctxt "Memory cleared"
@@ -823,70 +823,70 @@ msgstr "मेडियन"
 msgid "Median = "
 msgstr "मीन"
 
-#: kcalc.cpp:1592 kcalc.cpp:1594
+#: kcalc.cpp:1595 kcalc.cpp:1596
 #, kde-format
 msgid "DAT ["
 msgstr ""
 
-#: kcalc.cpp:1592 kcalc.cpp:1594
+#: kcalc.cpp:1595 kcalc.cpp:1596
 #, kde-format
 msgid "] = "
 msgstr ""
 
-#: kcalc.cpp:1602 kcalc.cpp:1604 kcalc.cpp:1605
+#: kcalc.cpp:1603 kcalc.cpp:1605 kcalc.cpp:1606
 #, fuzzy, kde-format
 #| msgid "Last stat item erased"
 msgid "Last stat data erased"
 msgstr "शेवटचा सांख्यीकिय घटक खोडला"
 
-#: kcalc.cpp:1617 kcalc.cpp:1620 kcalc.cpp:1621
+#: kcalc.cpp:1618 kcalc.cpp:1621 kcalc.cpp:1622
 #, kde-format
 msgid "Stat mem cleared"
 msgstr "सांख्यीकिय स्मृती साफ केली"
 
-#: kcalc.cpp:1675
+#: kcalc.cpp:1676
 #, kde-format
 msgid "General Settings"
 msgstr "सामान्य संयोजना"
 
-#: kcalc.cpp:1679
+#: kcalc.cpp:1680
 #, fuzzy, kde-format
 #| msgid "Font"
 msgid "Fonts"
 msgstr "फॉन्ट"
 
-#: kcalc.cpp:1683
+#: kcalc.cpp:1684
 #, kde-format
 msgid "Colors"
 msgstr "रंग"
 
-#: kcalc.cpp:1683
+#: kcalc.cpp:1684
 #, kde-format
 msgid "Button & Display Colors"
 msgstr "बटन व दृश्य रंग"
 
-#: kcalc.cpp:1715
+#: kcalc.cpp:1716
 #, kde-format
 msgid "Define Constants"
 msgstr "स्थिरांक निश्चित करा"
 
-#: kcalc.cpp:2304
+#: kcalc.cpp:2305
 #, kde-format
 msgid "Input error"
 msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2837 kcalc.ui:20
+#: kcalc.cpp:2847 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "के-कॅल्क"
 
-#: kcalc.cpp:2839
+#: kcalc.cpp:2849
 #, kde-format
 msgid "KDE Calculator"
 msgstr "केडीई गणकयंत्र"
 
-#: kcalc.cpp:2841
+#: kcalc.cpp:2851
 #, fuzzy, kde-format
 #| msgid ""
 #| "&copy; 2008-2013, Evan Teran\n"
@@ -904,62 +904,62 @@ msgstr ""
 "&copy; 2003-2005, क्लाउस नीडेरक्रुगर\n"
 "&copy; 1996-2000, बर्न्ड जोहान्नेस व्युब्बेन"
 
-#: kcalc.cpp:2851
+#: kcalc.cpp:2861
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr "क्लाउस नीडेरक्रुगर"
 
-#: kcalc.cpp:2856
+#: kcalc.cpp:2866
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr "बर्न्ड जोहान्नेस व्युब्बेन"
 
-#: kcalc.cpp:2857
+#: kcalc.cpp:2867
 #, kde-format
 msgid "Evan Teran"
 msgstr "इव्हान टेरान"
 
-#: kcalc.cpp:2857
+#: kcalc.cpp:2867
 #, kde-format
 msgid "Maintainer"
 msgstr "पालक"
 
-#: kcalc.cpp:2858
+#: kcalc.cpp:2868
 #, kde-format
 msgid "Espen Sand"
 msgstr "एस्पेन सेन्ड"
 
-#: kcalc.cpp:2859
+#: kcalc.cpp:2869
 #, kde-format
 msgid "Chris Howells"
 msgstr "ख्रिस होवेल्स"
 
-#: kcalc.cpp:2860
+#: kcalc.cpp:2870
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr "एरॉन जे. सीगो"
 
-#: kcalc.cpp:2861
+#: kcalc.cpp:2871
 #, kde-format
 msgid "Charles Samuels"
 msgstr "चार्लस् सेम्युएल्स"
 
-#: kcalc.cpp:2863
+#: kcalc.cpp:2873
 #, kde-format
 msgid "René Mérou"
 msgstr "रेने मेरौ"
 
-#: kcalc.cpp:2870
+#: kcalc.cpp:2880
 #, kde-format
 msgid "Michel Marti"
 msgstr "मिशेल मार्टी"
 
-#: kcalc.cpp:2871
+#: kcalc.cpp:2881
 #, kde-format
 msgid "David Johnson"
 msgstr "डेव्हिड जॉनसन"
 
-#: kcalc.cpp:2872
+#: kcalc.cpp:2882
 #, kde-format
 msgid "Niklas Freund"
 msgstr ""

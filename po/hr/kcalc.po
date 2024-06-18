@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc 0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-12 00:41+0000\n"
+"POT-Creation-Date: 2024-06-18 00:42+0000\n"
 "PO-Revision-Date: 2009-06-21 10:11+0200\n"
 "Last-Translator: Andrej Dundović <adundovi@gmail.com>\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
@@ -113,7 +113,7 @@ msgid "&Constants:"
 msgstr "&Konstante"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
-#: constants.ui:13 kcalc.cpp:1715
+#: constants.ui:13 kcalc.cpp:1716
 #, kde-format
 msgid "Constants"
 msgstr "Konstante"
@@ -168,7 +168,7 @@ msgid "The font to use in the history"
 msgstr "Pismo koji treba koristiti za prikaz."
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
-#: general.ui:14 kcalc.cpp:1675
+#: general.ui:14 kcalc.cpp:1676
 #, kde-format
 msgid "General"
 msgstr "Općenito"
@@ -762,7 +762,7 @@ msgctxt "Second function mode"
 msgid "Shift"
 msgstr ""
 
-#: kcalc.cpp:1245 kcalc.cpp:1246
+#: kcalc.cpp:1238 kcalc.cpp:1239
 #, fuzzy, kde-format
 msgctxt "Memory cleared"
 msgid "M cleared"
@@ -806,69 +806,69 @@ msgstr "Min"
 msgid "Median = "
 msgstr "Sredina"
 
-#: kcalc.cpp:1592 kcalc.cpp:1594
+#: kcalc.cpp:1595 kcalc.cpp:1596
 #, kde-format
 msgid "DAT ["
 msgstr ""
 
-#: kcalc.cpp:1592 kcalc.cpp:1594
+#: kcalc.cpp:1595 kcalc.cpp:1596
 #, kde-format
 msgid "] = "
 msgstr ""
 
-#: kcalc.cpp:1602 kcalc.cpp:1604 kcalc.cpp:1605
+#: kcalc.cpp:1603 kcalc.cpp:1605 kcalc.cpp:1606
 #, fuzzy, kde-format
 #| msgid "Last stat item erased"
 msgid "Last stat data erased"
 msgstr "Zadnji stat unos je izbrisan"
 
-#: kcalc.cpp:1617 kcalc.cpp:1620 kcalc.cpp:1621
+#: kcalc.cpp:1618 kcalc.cpp:1621 kcalc.cpp:1622
 #, fuzzy, kde-format
 msgid "Stat mem cleared"
 msgstr "Statička memorija je očišćena"
 
-#: kcalc.cpp:1675
+#: kcalc.cpp:1676
 #, kde-format
 msgid "General Settings"
 msgstr "Opće postavke"
 
-#: kcalc.cpp:1679
+#: kcalc.cpp:1680
 #, kde-format
 msgid "Fonts"
 msgstr ""
 
-#: kcalc.cpp:1683
+#: kcalc.cpp:1684
 #, kde-format
 msgid "Colors"
 msgstr "Boje"
 
-#: kcalc.cpp:1683
+#: kcalc.cpp:1684
 #, kde-format
 msgid "Button & Display Colors"
 msgstr "Gumbi & Prikaži pismo"
 
-#: kcalc.cpp:1715
+#: kcalc.cpp:1716
 #, fuzzy, kde-format
 msgid "Define Constants"
 msgstr "Konstante"
 
-#: kcalc.cpp:2304
+#: kcalc.cpp:2305
 #, kde-format
 msgid "Input error"
 msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2837 kcalc.ui:20
+#: kcalc.cpp:2847 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "KCalc"
 
-#: kcalc.cpp:2839
+#: kcalc.cpp:2849
 #, kde-format
 msgid "KDE Calculator"
 msgstr "KDE kalkulator"
 
-#: kcalc.cpp:2841
+#: kcalc.cpp:2851
 #, fuzzy, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
@@ -879,62 +879,62 @@ msgstr ""
 "(c) 1996-2000, Bernd Johannes Wuebben\n"
 "(c) 2000-2003, KDE-ov tim"
 
-#: kcalc.cpp:2851
+#: kcalc.cpp:2861
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr ""
 
-#: kcalc.cpp:2856
+#: kcalc.cpp:2866
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr ""
 
-#: kcalc.cpp:2857
+#: kcalc.cpp:2867
 #, kde-format
 msgid "Evan Teran"
 msgstr ""
 
-#: kcalc.cpp:2857
+#: kcalc.cpp:2867
 #, kde-format
 msgid "Maintainer"
 msgstr ""
 
-#: kcalc.cpp:2858
+#: kcalc.cpp:2868
 #, kde-format
 msgid "Espen Sand"
 msgstr ""
 
-#: kcalc.cpp:2859
+#: kcalc.cpp:2869
 #, kde-format
 msgid "Chris Howells"
 msgstr ""
 
-#: kcalc.cpp:2860
+#: kcalc.cpp:2870
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr ""
 
-#: kcalc.cpp:2861
+#: kcalc.cpp:2871
 #, kde-format
 msgid "Charles Samuels"
 msgstr ""
 
-#: kcalc.cpp:2863
+#: kcalc.cpp:2873
 #, kde-format
 msgid "René Mérou"
 msgstr ""
 
-#: kcalc.cpp:2870
+#: kcalc.cpp:2880
 #, kde-format
 msgid "Michel Marti"
 msgstr ""
 
-#: kcalc.cpp:2871
+#: kcalc.cpp:2881
 #, kde-format
 msgid "David Johnson"
 msgstr ""
 
-#: kcalc.cpp:2872
+#: kcalc.cpp:2882
 #, kde-format
 msgid "Niklas Freund"
 msgstr ""

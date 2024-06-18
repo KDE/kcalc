@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-12 00:41+0000\n"
+"POT-Creation-Date: 2024-06-18 00:42+0000\n"
 "PO-Revision-Date: 2024-01-21 15:17+0200\n"
 "Last-Translator: Māris Nartišs <maris.kde@gmail.com>\n"
 "Language-Team: \n"
@@ -112,7 +112,7 @@ msgid "&Constants:"
 msgstr "&Konstantes:"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
-#: constants.ui:13 kcalc.cpp:1715
+#: constants.ui:13 kcalc.cpp:1716
 #, kde-format
 msgid "Constants"
 msgstr "Konstantes"
@@ -166,7 +166,7 @@ msgid "The font to use in the history"
 msgstr "Vēsturei izmantojamais fonts"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
-#: general.ui:14 kcalc.cpp:1675
+#: general.ui:14 kcalc.cpp:1676
 #, kde-format
 msgid "General"
 msgstr "Pamata"
@@ -760,7 +760,7 @@ msgctxt "Second function mode"
 msgid "Shift"
 msgstr "Shift"
 
-#: kcalc.cpp:1245 kcalc.cpp:1246
+#: kcalc.cpp:1238 kcalc.cpp:1239
 #, fuzzy, kde-format
 #| msgid "Memory clear"
 msgctxt "Memory cleared"
@@ -808,69 +808,69 @@ msgstr "Mediāna"
 msgid "Median = "
 msgstr "Vidējais"
 
-#: kcalc.cpp:1592 kcalc.cpp:1594
+#: kcalc.cpp:1595 kcalc.cpp:1596
 #, kde-format
 msgid "DAT ["
 msgstr "DAT ["
 
-#: kcalc.cpp:1592 kcalc.cpp:1594
+#: kcalc.cpp:1595 kcalc.cpp:1596
 #, kde-format
 msgid "] = "
 msgstr "] = "
 
-#: kcalc.cpp:1602 kcalc.cpp:1604 kcalc.cpp:1605
+#: kcalc.cpp:1603 kcalc.cpp:1605 kcalc.cpp:1606
 #, fuzzy, kde-format
 #| msgid "Last stat item erased"
 msgid "Last stat data erased"
 msgstr "Pēdējā stat vērtība ir nodzēsta"
 
-#: kcalc.cpp:1617 kcalc.cpp:1620 kcalc.cpp:1621
+#: kcalc.cpp:1618 kcalc.cpp:1621 kcalc.cpp:1622
 #, kde-format
 msgid "Stat mem cleared"
 msgstr "Stat Mem iztīrīts"
 
-#: kcalc.cpp:1675
+#: kcalc.cpp:1676
 #, kde-format
 msgid "General Settings"
 msgstr "Pamata iestatījumi"
 
-#: kcalc.cpp:1679
+#: kcalc.cpp:1680
 #, kde-format
 msgid "Fonts"
 msgstr "Fonti"
 
-#: kcalc.cpp:1683
+#: kcalc.cpp:1684
 #, kde-format
 msgid "Colors"
 msgstr "Krāsas"
 
-#: kcalc.cpp:1683
+#: kcalc.cpp:1684
 #, kde-format
 msgid "Button & Display Colors"
 msgstr "Pogu un displeja krāsas"
 
-#: kcalc.cpp:1715
+#: kcalc.cpp:1716
 #, kde-format
 msgid "Define Constants"
 msgstr "Definēt konstantes"
 
-#: kcalc.cpp:2304
+#: kcalc.cpp:2305
 #, kde-format
 msgid "Input error"
 msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2837 kcalc.ui:20
+#: kcalc.cpp:2847 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "KCalc"
 
-#: kcalc.cpp:2839
+#: kcalc.cpp:2849
 #, kde-format
 msgid "KDE Calculator"
 msgstr "KDE kalkulators"
 
-#: kcalc.cpp:2841
+#: kcalc.cpp:2851
 #, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
@@ -883,62 +883,62 @@ msgstr ""
 "Autortiesības © 2003-2005, Klaus Niederkrüger\n"
 "Autortiesības © 1996-2000, Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2851
+#: kcalc.cpp:2861
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr "Klaus Niederkrüger"
 
-#: kcalc.cpp:2856
+#: kcalc.cpp:2866
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2857
+#: kcalc.cpp:2867
 #, kde-format
 msgid "Evan Teran"
 msgstr "Evan Teran"
 
-#: kcalc.cpp:2857
+#: kcalc.cpp:2867
 #, kde-format
 msgid "Maintainer"
 msgstr "Uzturētājs"
 
-#: kcalc.cpp:2858
+#: kcalc.cpp:2868
 #, kde-format
 msgid "Espen Sand"
 msgstr "Espen Sand"
 
-#: kcalc.cpp:2859
+#: kcalc.cpp:2869
 #, kde-format
 msgid "Chris Howells"
 msgstr "Chris Howells"
 
-#: kcalc.cpp:2860
+#: kcalc.cpp:2870
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr "Aaron J. Seigo"
 
-#: kcalc.cpp:2861
+#: kcalc.cpp:2871
 #, kde-format
 msgid "Charles Samuels"
 msgstr "Charles Samuels"
 
-#: kcalc.cpp:2863
+#: kcalc.cpp:2873
 #, kde-format
 msgid "René Mérou"
 msgstr "René Mérou"
 
-#: kcalc.cpp:2870
+#: kcalc.cpp:2880
 #, kde-format
 msgid "Michel Marti"
 msgstr "Michel Marti"
 
-#: kcalc.cpp:2871
+#: kcalc.cpp:2881
 #, kde-format
 msgid "David Johnson"
 msgstr "David Johnson"
 
-#: kcalc.cpp:2872
+#: kcalc.cpp:2882
 #, kde-format
 msgid "Niklas Freund"
 msgstr "Niklas Freund"
