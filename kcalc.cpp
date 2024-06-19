@@ -73,6 +73,7 @@ KCalculator::KCalculator(QWidget *parent)
     setupMainActions();
     setStatusBar(new KCalcStatusBar(this));
     createGUI();
+    setupDisplay();
     setupKeys();
 
     toolBar()->hide(); // hide by default
@@ -117,7 +118,7 @@ KCalculator::KCalculator(QWidget *parent)
 
     updateGeometry();
 
-    updateDisplay(UPDATE_FROM_CORE);
+    updateDisplay(UPDATE_CLEAR);
     // clear history, otherwise we have a leading "0" in it
     calc_history->clearHistory();
 
@@ -621,6 +622,15 @@ void KCalculator::setupMiscKeys()
 }
 
 //------------------------------------------------------------------------------
+// Name: setupDisplay
+// Desc:
+//------------------------------------------------------------------------------
+void KCalculator::setupDisplay()
+{
+    connect(input_display, &KCalcInputDisplay::textChanged, this, &KCalculator::slotInputChanged);
+}
+
+//------------------------------------------------------------------------------
 // Name: createConstantsMenu
 // Desc: additional setup for button keys
 // NOTE: all alphanumeric shorts set in ui file
@@ -800,6 +810,7 @@ void KCalculator::slotBaseSelected(QAbstractButton *button)
         }
 
         KCalcSettings::setBaseMode(base);
+        Q_EMIT slotInputChanged();
     }
 }
 
@@ -898,6 +909,7 @@ void KCalculator::slotAngleSelected(QAbstractButton *button, bool checked)
         }
 
         KCalcSettings::setAngleMode(angle_mode_);
+        Q_EMIT slotInputChanged();
     }
 }
 
@@ -1242,6 +1254,7 @@ void KCalculator::slotMemClearclicked()
 void KCalculator::slotBackspaceclicked()
 {
     this->input_display->slotClearOverwrite();
+    updateDisplay(UPDATE_CLEAR);
     this->input_display->backspace();
 }
 
@@ -1251,8 +1264,8 @@ void KCalculator::slotBackspaceclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotClearclicked()
 {
-    calc_display->sendEvent(KCalcDisplay::EventClear);
     input_display->clear();
+    updateDisplay(UPDATE_CLEAR);
 }
 
 //------------------------------------------------------------------------------
@@ -1262,9 +1275,7 @@ void KCalculator::slotClearclicked()
 void KCalculator::slotAllClearclicked()
 {
     this->input_display->clear();
-    core.Reset();
-    calc_display->sendEvent(KCalcDisplay::EventReset);
-    updateDisplay(UPDATE_FROM_CORE);
+    updateDisplay(UPDATE_CLEAR);
 }
 
 //------------------------------------------------------------------------------
@@ -1398,6 +1409,36 @@ void KCalculator::slotEqualclicked()
         handle_Calculation_Error_();
     } else {
         commit_Result_();
+    }
+}
+
+//------------------------------------------------------------------------------
+// Name: slotInputChanged
+// Desc: updates result upon input change, does not commit to history
+//------------------------------------------------------------------------------
+void KCalculator::slotInputChanged()
+{
+    this->commit_Input_(true);
+
+    if (parsing_failure_) {
+        updateDisplay(UPDATE_CLEAR);
+        return;
+    } else if (calculation_failure_) {
+        switch (calculation_result_code_) {
+        case CalcEngine::ResultCode::MISIING_RIGHT_UNARY_ARG:
+        case CalcEngine::ResultCode::MISIING_RIGHT_BINARY_ARG:
+            break;
+        case CalcEngine::ResultCode::MATH_ERROR:
+            updateDisplay(UPDATE_CLEAR);
+            break;
+        default:
+            updateDisplay(UPDATE_CLEAR);
+            break;
+        }
+        return;
+    } else {
+        this->commit_Result_(false);
+        return;
     }
 }
 
@@ -2261,7 +2302,7 @@ void KCalculator::updateDisplay(UpdateFlags flags)
     } else if (flags & UPDATE_MALFORMED_EXPRESSION) {
         calc_display->setText(i18n("Input error"));
     } else if (flags & UPDATE_CLEAR) {
-        calc_display->setText(QLatin1String(""));
+        calc_display->sendEvent(KCalcDisplay::EventReset);
     } else {
         calc_display->update();
     }
@@ -2293,9 +2334,9 @@ void inline KCalculator::insertToInputDisplay(const QString &token)
 // Name: commit_Input_
 // Desc: takes string from display and queries parsing, if success, queries calculation
 //------------------------------------------------------------------------------
-int KCalculator::commit_Input_()
+int KCalculator::commit_Input_(bool editing /*= false*/)
 {
-    int parsing_result, calculation_result;
+    int parsing_result;
     parsing_result = parser.stringToTokenQueue(input_display->text(), base_mode_, token_Queue_, input_error_index_);
 
     if (parsing_result != 0) {
@@ -2303,18 +2344,20 @@ int KCalculator::commit_Input_()
         return -1;
     } else {
         parsing_failure_ = false;
-        calculation_result = core.calculate(token_Queue_, calculation_error_token_index_);
-        if (calculation_result != 0) {
+        calculation_result_code_ = core.calculate(token_Queue_, calculation_error_token_index_);
+        if (calculation_result_code_ != CalcEngine::ResultCode::SUCCESS) {
             input_error_index_ = token_Queue_.at(calculation_error_token_index_).getStringIndex();
             calculation_failure_ = true;
             return -1;
         } else {
             calculation_failure_ = false;
-            input_display->end(false);
-            if (!input_display->text().endsWith(QLatin1String("="))) {
-                this->insertToInputDisplay(KCalcToken::TokenCode::EQUAL);
+            if (!editing) {
+                input_display->end(false);
+                if (!input_display->text().endsWith(QLatin1String("="))) {
+                    this->insertToInputDisplay(KCalcToken::TokenCode::EQUAL);
+                }
+                input_display->slotSetOverwrite();
             }
-            input_display->slotSetOverwrite();
         }
     }
     return 0;

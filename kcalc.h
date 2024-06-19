@@ -120,6 +120,7 @@ private:
     bool event(QEvent *e) override;
     void updateGeometry();
     void setupMainActions();
+    void setupDisplay();
     void setupKeys();
     void setupNumberKeys();
     void setupRightKeypad();
@@ -219,6 +220,7 @@ protected Q_SLOTS:
     void slotHyptoggled(bool flag);
     void slotConstclicked(int);
     void slotBackspaceclicked();
+    void slotInputChanged();
 
     void slotConstantToDisplay(const science_constant &const_chosen);
     void slotChooseScientificConst0(const science_constant &);
@@ -243,7 +245,7 @@ private:
     enum BaseMode { BinMode = 2, OctMode = 8, DecMode = 10, HexMode = 16 };
 
 private:
-    int commit_Input_();
+    int commit_Input_(bool editing = false);
     void commit_Result_(bool toHistory = true);
     int load_Constants_(const QString &filePath);
 
@@ -257,6 +259,7 @@ private:
     int base_mode_;
 
     bool parsing_failure_, calculation_failure_;
+    CalcEngine::ResultCode calculation_result_code_;
     int input_error_index_;
     int calculation_error_token_index_;
     void inline handle_Parsing_Error_();
