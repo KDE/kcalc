@@ -497,6 +497,8 @@ KCalcParser::ParsingResult KCalcParser::stringToTokenQueue(const QString &buffer
 
     if (tokenQueue.length() > 1) {
         return ParsingResult::SUCCESS;
+    } else if (tokenQueue.length() == 0) {
+        return ParsingResult::EMPTY;
     } else {
         if (!m_inputHasConstants && tokenQueue.first().isKNumber()) {
             return ParsingResult::SUCCESS_SINGLE_KNUMBER;

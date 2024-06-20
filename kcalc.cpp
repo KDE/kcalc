@@ -2357,11 +2357,7 @@ int KCalculator::commit_Input_()
         parsing_failure_ = false;
         calculation_result_code_ = core.calculate(token_Queue_, calculation_error_token_index_);
         if (calculation_result_code_ != CalcEngine::ResultCode::SUCCESS) {
-            if (token_Queue_.empty()) {
-                input_error_index_ = 0;
-            } else {
-                input_error_index_ = token_Queue_.at(calculation_error_token_index_).getStringIndex();
-            }
+            input_error_index_ = token_Queue_.at(calculation_error_token_index_).getStringIndex();
             calculation_failure_ = true;
             return -1;
         } else {
