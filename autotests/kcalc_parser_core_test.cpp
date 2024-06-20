@@ -184,9 +184,10 @@ void KCalcParserCoreTest::testParserCore()
     QFETCH(int, base);
     QFETCH(QString, expectedResult);
 
-    int parsing_result, calculation_result, errorIndex;
+    KCalcParser::ParsingResult parsing_result;
+    int calculation_result, errorIndex;
     parsing_result = parser.stringToTokenQueue(input, base, token_Queue_, errorIndex);
-    QCOMPARE(parsing_result, 0); // successful parsing
+    QCOMPARE_NE(parsing_result, KCalcParser::ParsingResult::INVALID_TOKEN); // successful parsing
 
     calculation_result = core.calculate(token_Queue_, errorIndex);
 
@@ -214,10 +215,11 @@ void KCalcParserCoreTest::testParserError()
     QFETCH(QString, input);
     QFETCH(int, expectedErrorIndex);
 
-    int parsing_result, errorIndex;
+    KCalcParser::ParsingResult parsing_result;
+    int errorIndex;
     parsing_result = parser.stringToTokenQueue(input, 10, token_Queue_, errorIndex);
 
-    QCOMPARE_NE(parsing_result, 0); // fail on parsing
+    QCOMPARE_EQ(parsing_result, KCalcParser::ParsingResult::INVALID_TOKEN); // fail on parsing
     QCOMPARE(errorIndex, expectedErrorIndex); // index indicating error position
 }
 
