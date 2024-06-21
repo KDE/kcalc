@@ -833,7 +833,7 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
     if (((e->modifiers() & Qt::NoModifier) == 0) || (e->modifiers() & Qt::ShiftModifier)) {
         switch (e->key()) {
         case Qt::Key_Backspace:
-            calc_display->deleteLastDigit();
+            Q_EMIT(slotBackspaceclicked());
             break;
         }
     }
