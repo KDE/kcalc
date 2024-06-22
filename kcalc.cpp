@@ -810,7 +810,7 @@ void KCalculator::slotBaseSelected(QAbstractButton *button)
         }
 
         KCalcSettings::setBaseMode(base);
-        Q_EMIT slotInputChanged();
+        slotInputChanged();
     }
 }
 
@@ -833,7 +833,7 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
     if (((e->modifiers() & Qt::NoModifier) == 0) || (e->modifiers() & Qt::ShiftModifier)) {
         switch (e->key()) {
         case Qt::Key_Backspace:
-            Q_EMIT(slotBackspaceclicked());
+            slotBackspaceclicked();
             break;
         }
     }
@@ -909,7 +909,7 @@ void KCalculator::slotAngleSelected(QAbstractButton *button, bool checked)
         }
 
         KCalcSettings::setAngleMode(angle_mode_);
-        Q_EMIT slotInputChanged();
+        slotInputChanged();
     }
 }
 
@@ -1804,7 +1804,7 @@ void KCalculator::slotSetSimpleMode()
     showLogicButtons(false);
 
     if (shift_mode_) {
-        Q_EMIT(slotShifttoggled(false));
+        slotShifttoggled(false);
     }
     // hide some individual buttons, which are not in one of the above groups
     pbShift->hide();
@@ -2710,7 +2710,7 @@ void KCalculator::setAngle()
 {
     if (QAbstractButton *const btn = angle_choose_group_->button(KCalcSettings::angleMode())) {
         btn->click();
-        Q_EMIT(slotAngleSelected(btn, true));
+        slotAngleSelected(btn, true);
     }
 }
 
