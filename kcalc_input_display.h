@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include <QKeyEvent>
 #include <QLineEdit>
 #include <QString>
 
@@ -21,16 +22,19 @@ public:
     void insertTokenFunction(const QString &token);
 
 public Q_SLOTS:
-    void reset();
+    void reset(bool clearRedoUndo = false);
     void setHasResult();
     void slotSetOverwrite();
     void slotSetHardOverwrite();
     void slotClearOverwrite();
     void clearHasResult();
+    void undoCalculation();
+    void redoCalculation();
 
 Q_SIGNALS:
 
 protected:
+    void keyPressEvent(QKeyEvent *event) override;
     void focusInEvent(QFocusEvent *e) override;
 
 private Q_SLOTS:

@@ -5,6 +5,7 @@
 
 #include "kcalc_input_display.h"
 
+#include <QKeyEvent>
 #include <QLineEdit>
 
 //------------------------------------------------------------------------------
@@ -29,12 +30,15 @@ KCalcInputDisplay::~KCalcInputDisplay() = default;
 // Name: reset
 // Desc:
 //------------------------------------------------------------------------------
-void KCalcInputDisplay::reset()
+void KCalcInputDisplay::reset(bool clearRedoUndo /*=false*/)
 {
     this->clear();
     overwrite_ = false;
     hard_overwrite_ = false;
     has_result_ = false;
+    if (clearRedoUndo) {
+        this->setText(QStringLiteral(""));
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -158,6 +162,47 @@ void KCalcInputDisplay::slotClearOverwrite()
     if (hard_overwrite_) {
         hard_overwrite_ = false;
         this->clear();
+    }
+}
+
+//------------------------------------------------------------------------------
+// Name: keyPressEvent
+// Desc:
+//------------------------------------------------------------------------------
+void KCalcInputDisplay::keyPressEvent(QKeyEvent *event)
+{
+    if (event->matches(QKeySequence::Undo)) {
+        undoCalculation();
+    } else if (event->matches(QKeySequence::Redo)) {
+        redoCalculation();
+    } else {
+        QLineEdit::keyPressEvent(event);
+    }
+}
+
+//------------------------------------------------------------------------------
+// Name: undoCalculation
+// Desc:
+//------------------------------------------------------------------------------
+void KCalcInputDisplay::undoCalculation()
+{
+    QLineEdit::undo();
+    if (this->isUndoAvailable() && text().isEmpty()) {
+        QLineEdit::undo();
+        QLineEdit::deselect();
+    }
+}
+
+//------------------------------------------------------------------------------
+// Name: redoCalculation
+// Desc:
+//------------------------------------------------------------------------------
+void KCalcInputDisplay::redoCalculation()
+{
+    QLineEdit::redo();
+    if (this->isRedoAvailable() && text().isEmpty()) {
+        QLineEdit::redo();
+        QLineEdit::deselect();
     }
 }
 

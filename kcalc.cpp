@@ -166,8 +166,8 @@ void KCalculator::setupMainActions()
     KStandardAction::quit(this, &KCalculator::close, actionCollection());
 
     // edit menu
-    KStandardAction::undo(calc_display, SLOT(slotHistoryBack()), actionCollection());
-    KStandardAction::redo(calc_display, SLOT(slotHistoryForward()), actionCollection());
+    KStandardAction::undo(input_display, &KCalcInputDisplay::undoCalculation, actionCollection());
+    KStandardAction::redo(input_display, &KCalcInputDisplay::redoCalculation, actionCollection());
     KStandardAction::cut(calc_display, &KCalcDisplay::slotCut, actionCollection());
     KStandardAction::copy(calc_display, &KCalcDisplay::slotCopy, actionCollection());
     KStandardAction::paste(this, &KCalculator::slotPaste, actionCollection());
@@ -1263,7 +1263,7 @@ void KCalculator::slotClearclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotAllClearclicked()
 {
-    this->input_display->reset();
+    this->input_display->reset(true);
     updateDisplay(UPDATE_CLEAR);
 }
 
