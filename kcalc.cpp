@@ -164,14 +164,14 @@ KCalculator::~KCalculator()
 void KCalculator::setupMainActions()
 {
     // file menu
-    KStandardAction::quit(this, SLOT(close()), actionCollection());
+    KStandardAction::quit(this, &KCalculator::close, actionCollection());
 
     // edit menu
     KStandardAction::undo(calc_display, SLOT(slotHistoryBack()), actionCollection());
     KStandardAction::redo(calc_display, SLOT(slotHistoryForward()), actionCollection());
-    KStandardAction::cut(calc_display, SLOT(slotCut()), actionCollection());
-    KStandardAction::copy(calc_display, SLOT(slotCopy()), actionCollection());
-    KStandardAction::paste(this, SLOT(slotPaste()), actionCollection());
+    KStandardAction::cut(calc_display, &KCalcDisplay::slotCut, actionCollection());
+    KStandardAction::copy(calc_display, &KCalcDisplay::slotCopy, actionCollection());
+    KStandardAction::paste(this, &KCalculator::slotPaste, actionCollection());
 
     // mode menu
     auto modeGroup = new QActionGroup(this);
@@ -291,17 +291,17 @@ void KCalculator::setupRightKeypad()
     connect(this, &KCalculator::switchShowAccels, pbShift, &KCalcButton::slotSetAccelDisplayMode);
 
     pbBackspace->setShortcut(QKeySequence(Qt::Key_Backspace));
-    new QShortcut(Qt::Key_PageUp, pbBackspace, SLOT(animateClick()));
+    new QShortcut(Qt::Key_PageUp, pbBackspace, pbBackspace, &KCalcButton::animateClick);
     connect(pbBackspace, &KCalcButton::clicked, this, &KCalculator::slotBackspaceclicked);
     connect(this, &KCalculator::switchShowAccels, pbBackspace, &KCalcButton::slotSetAccelDisplayMode);
 
     pbClear->setShortcut(QKeySequence(Qt::Key_Escape));
-    new QShortcut(Qt::Key_PageUp, pbClear, SLOT(animateClick()));
+    new QShortcut(Qt::Key_Home, pbClear, pbClear, &KCalcButton::animateClick);
     connect(pbClear, &KCalcButton::clicked, this, &KCalculator::slotClearclicked);
     connect(this, &KCalculator::switchShowAccels, pbClear, &KCalcButton::slotSetAccelDisplayMode);
 
     pbAllClear->setShortcut(QKeySequence(Qt::Key_Delete));
-    new QShortcut(Qt::Key_PageDown, pbAllClear, SLOT(animateClick()));
+    new QShortcut(Qt::Key_PageDown, pbAllClear, pbAllClear, &KCalcButton::animateClick);
     connect(pbAllClear, &KCalcButton::clicked, this, &KCalculator::slotAllClearclicked);
     connect(this, &KCalculator::switchShowAccels, pbAllClear, &KCalcButton::slotSetAccelDisplayMode);
     // also clear the content of the history when clicked
@@ -353,13 +353,13 @@ void KCalculator::setupNumericKeypad()
     connect(this, &KCalculator::switchMode, pbSqrt, &KCalcButton::slotSetMode);
 
     pbDivision->setShortcut(QKeySequence(Qt::Key_Slash));
-    new QShortcut(Qt::Key_division, pbDivision, SLOT(animateClick()));
+    new QShortcut(Qt::Key_division, pbDivision, pbDivision, &KCalcButton::animateClick);
     connect(pbDivision, &KCalcButton::clicked, this, &KCalculator::slotDivisionclicked);
     connect(this, &KCalculator::switchShowAccels, pbDivision, &KCalcButton::slotSetAccelDisplayMode);
 
     pbMultiplication->setShortcut(QKeySequence(Qt::Key_Asterisk));
-    new QShortcut(Qt::Key_X, pbMultiplication, SLOT(animateClick()));
-    new QShortcut(Qt::Key_multiply, pbMultiplication, SLOT(animateClick()));
+    new QShortcut(Qt::Key_X, pbMultiplication, pbMultiplication, &KCalcButton::animateClick);
+    new QShortcut(Qt::Key_multiply, pbMultiplication, pbMultiplication, &KCalcButton::animateClick);
     connect(pbMultiplication, &KCalcButton::clicked, this, &KCalculator::slotMultiplicationclicked);
     connect(this, &KCalculator::switchShowAccels, pbMultiplication, &KCalcButton::slotSetAccelDisplayMode);
 
@@ -377,17 +377,17 @@ void KCalculator::setupNumericKeypad()
 
     // add shortcut for the other decimal separator (point or comma)
     if (QLocale().decimalPoint() == QLatin1Char('.')) {
-        new QShortcut(Qt::Key_Comma, pbPeriod, SLOT(animateClick()));
+        new QShortcut(Qt::Key_Comma, pbPeriod, pbPeriod, &KCalcButton::animateClick);
     } else if (QLocale().decimalPoint() == QLatin1Char(',')) {
-        new QShortcut(Qt::Key_Period, pbPeriod, SLOT(animateClick()));
+        new QShortcut(Qt::Key_Period, pbPeriod, pbPeriod, &KCalcButton::animateClick);
     }
 
     connect(pbPeriod, &KCalcButton::clicked, this, &KCalculator::slotPeriodclicked);
     connect(this, &KCalculator::switchShowAccels, pbPeriod, &KCalcButton::slotSetAccelDisplayMode);
 
     pbEqual->setShortcut(QKeySequence(Qt::Key_Enter));
-    new QShortcut(Qt::Key_Equal, pbEqual, SLOT(animateClick()));
-    new QShortcut(Qt::Key_Return, pbEqual, SLOT(animateClick()));
+    new QShortcut(Qt::Key_Equal, pbEqual, pbEqual, &KCalcButton::animateClick);
+    new QShortcut(Qt::Key_Return, pbEqual, pbEqual, &KCalcButton::animateClick);
     connect(pbEqual, &KCalcButton::clicked, this, &KCalculator::slotEqualclicked);
     connect(this, &KCalculator::switchShowAccels, pbEqual, &KCalcButton::slotSetAccelDisplayMode);
 }
@@ -600,7 +600,7 @@ void KCalculator::setupMiscKeys()
     pbSquare->addMode(ModeNormal, i18nc("Square", "x<sup>2</sup>"), i18n("Square"));
     pbSquare->addMode(ModeShift, QStringLiteral("x<sup>3</sup>"), i18n("Third power"));
     pbSquare->setShortcut(QKeySequence(Qt::Key_BracketLeft));
-    new QShortcut(Qt::Key_twosuperior, pbSquare, SLOT(animateClick()));
+    new QShortcut(Qt::Key_twosuperior, pbSquare, pbSquare, &KCalcButton::animateClick);
     connect(this, &KCalculator::switchShowAccels, pbSquare, &KCalcButton::slotSetAccelDisplayMode);
     connect(this, &KCalculator::switchMode, pbSquare, &KCalcButton::slotSetMode);
     connect(pbSquare, &KCalcButton::clicked, this, &KCalculator::slotSquareclicked);
