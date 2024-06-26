@@ -496,16 +496,22 @@ KCalcParser::ParsingResult KCalcParser::stringToTokenQueue(const QString &buffer
 
     qCDebug(KCALC_LOG) << "Parsing done, index after parsing: " << buffer_index;
 
-    if (tokenQueue.length() > 1) {
+    if (tokenQueue.length() > 2) {
         return ParsingResult::SUCCESS;
-    } else if (tokenQueue.length() == 0) {
-        return ParsingResult::EMPTY;
-    } else {
+    } else if (tokenQueue.length() == 2) {
+        if (!m_inputHasConstants && tokenQueue.first().getTokenCode() == KCalcToken::TokenCode::MINUS && tokenQueue.at(1).isKNumber()) {
+            return ParsingResult::SUCCESS_SINGLE_KNUMBER;
+        } else {
+            return ParsingResult::SUCCESS;
+        }
+    } else if (tokenQueue.length() == 1) {
         if (!m_inputHasConstants && tokenQueue.first().isKNumber()) {
             return ParsingResult::SUCCESS_SINGLE_KNUMBER;
         } else {
             return ParsingResult::SUCCESS;
         }
+    } else {
+        return ParsingResult::EMPTY;
     }
 }
 
