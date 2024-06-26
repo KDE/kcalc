@@ -17,15 +17,16 @@ public:
     ~KCalcInputDisplay() override;
 
     void insertToken(const QString &token);
+    void insertTokenNumeric(const QString &token);
     void insertTokenFunction(const QString &token);
 
 public Q_SLOTS:
     void reset();
-    void slotSetFunctionWrap();
+    void setHasResult();
     void slotSetOverwrite();
     void slotSetHardOverwrite();
     void slotClearOverwrite();
-    void slotClearFunctionWrap();
+    void clearHasResult();
 
 Q_SIGNALS:
 
@@ -37,5 +38,5 @@ private Q_SLOTS:
 private:
     bool overwrite_;
     bool hard_overwrite_;
-    bool function_wrap_;
+    bool has_result_;
 };

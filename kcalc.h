@@ -144,6 +144,7 @@ private:
     void setBitsetLayoutActive(bool active);
 
     void updateDisplay(UpdateFlags flags);
+    void insertNumericToInputDisplay(KCalcToken::TokenCode token);
     void insertFunctionToInputDisplay(KCalcToken::TokenCode token);
     void insertToInputDisplay(KCalcToken::TokenCode token);
     void insertToInputDisplay(const QString &token);

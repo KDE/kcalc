@@ -999,7 +999,7 @@ void KCalculator::slotNumberclicked(QAbstractButton *button)
     if (button) {
         const int number_clicked = num_button_group_->id(button);
         QString s = QString::number(number_clicked, base_mode_).toUpper();
-        this->insertToInputDisplay(s);
+        this->input_display->insertTokenNumeric(s);
     }
 }
 
@@ -1376,7 +1376,7 @@ void KCalculator::slotRightShiftclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotPeriodclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::DECIMAL_POINT);
+    this->insertNumericToInputDisplay(KCalcToken::TokenCode::DECIMAL_POINT);
 }
 
 //------------------------------------------------------------------------------
@@ -1405,7 +1405,7 @@ void KCalculator::slotEqualclicked()
         QString result = calc_display->getAmountQString(false);
         this->input_display->clear();
         this->input_display->insert(result);
-        this->input_display->slotSetFunctionWrap();
+        this->input_display->setHasResult();
     }
 }
 
@@ -2310,6 +2310,16 @@ void KCalculator::updateDisplay(UpdateFlags flags)
     }
 
     pbShift->setChecked(false);
+}
+
+//------------------------------------------------------------------------------
+// Name: insertNumericToInputDisplay
+// Desc: inserts function into the input display
+//------------------------------------------------------------------------------
+
+void inline KCalculator::insertNumericToInputDisplay(KCalcToken::TokenCode token)
+{
+    input_display->insertTokenNumeric(parser.TokenToString(token));
 }
 
 //------------------------------------------------------------------------------

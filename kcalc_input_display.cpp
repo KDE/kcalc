@@ -16,7 +16,7 @@ KCalcInputDisplay::KCalcInputDisplay(QWidget *parent)
 {
     overwrite_ = false;
     hard_overwrite_ = false;
-    function_wrap_ = false;
+    has_result_ = false;
 }
 
 //------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ void KCalcInputDisplay::reset()
     this->clear();
     overwrite_ = false;
     hard_overwrite_ = false;
-    function_wrap_ = false;
+    has_result_ = false;
 }
 
 //------------------------------------------------------------------------------
@@ -50,7 +50,23 @@ void KCalcInputDisplay::insertToken(const QString &token)
     }
 
     this->insert(token);
-    function_wrap_ = false;
+    has_result_ = false;
+}
+
+//------------------------------------------------------------------------------
+// Name: insertTokenNumeric
+// Desc:
+//------------------------------------------------------------------------------
+void KCalcInputDisplay::insertTokenNumeric(const QString &token)
+{
+    if (overwrite_ || hard_overwrite_ || has_result_) {
+        this->clear();
+        overwrite_ = false;
+        hard_overwrite_ = false;
+        has_result_ = false;
+    }
+
+    this->insert(token);
 }
 
 //------------------------------------------------------------------------------
@@ -65,7 +81,7 @@ void KCalcInputDisplay::insertTokenFunction(const QString &token)
         this->clear();
         this->insert(token);
         this->insert(QStringLiteral("("));
-    } else if (function_wrap_) {
+    } else if (has_result_) {
         this->home(false);
         this->insert(token);
         this->insert(QStringLiteral("("));
@@ -78,12 +94,13 @@ void KCalcInputDisplay::insertTokenFunction(const QString &token)
 }
 
 //------------------------------------------------------------------------------
-// Name: slotSetFunctionWrap
+// Name: setHasResult
 // Desc:
 //------------------------------------------------------------------------------
-void KCalcInputDisplay::slotSetFunctionWrap()
+void KCalcInputDisplay::setHasResult()
 {
-    function_wrap_ = true;
+    has_result_ = true;
+    this->clearFocus();
 }
 
 //------------------------------------------------------------------------------
@@ -115,12 +132,12 @@ void KCalcInputDisplay::slotSetHardOverwrite()
 }
 
 //------------------------------------------------------------------------------
-// Name: slotClearFunctionWrap
+// Name: clearHasResult
 // Desc:
 //------------------------------------------------------------------------------
-void KCalcInputDisplay::slotClearFunctionWrap()
+void KCalcInputDisplay::clearHasResult()
 {
-    function_wrap_ = false;
+    has_result_ = false;
 }
 
 //------------------------------------------------------------------------------
@@ -153,7 +170,7 @@ void KCalcInputDisplay::focusInEvent(QFocusEvent *e)
 {
     QLineEdit::focusInEvent(e);
     slotClearOverwrite();
-    slotClearFunctionWrap();
+    clearHasResult();
 }
 
 #include "moc_kcalc_input_display.cpp"
