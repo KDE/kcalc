@@ -176,6 +176,7 @@ install(
 
 if(BUILD_TESTING)
    add_subdirectory( autotests )
+   add_subdirectory( appiumtests )
 endif()
 
 ki18n_install(po)

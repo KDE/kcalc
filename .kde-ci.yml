@@ -13,5 +13,10 @@ Dependencies:
     'frameworks/knotifications': '@latest-kf6'
     'frameworks/kxmlgui': '@latest-kf6'
 
+RuntimeDependencies:
+- 'on': ['Linux']
+  'require':
+    'sdk/selenium-webdriver-at-spi': '@latest-kf6'
+
 Options:
   require-passing-tests-on: [ 'Linux', 'FreeBSD']

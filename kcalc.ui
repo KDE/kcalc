@@ -350,6 +350,9 @@
           <property name="focusPolicy">
            <enum>Qt::StrongFocus</enum>
           </property>
+          <property name="accessibleDescription">
+           <string>Result Display</string>
+          </property>
           <property name="styleSheet">
            <string notr="true">QFrame { border: none }</string>
           </property>
