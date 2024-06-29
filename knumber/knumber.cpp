@@ -266,7 +266,7 @@ KNumber::KNumber(const QString &s)
     static const QRegularExpression integer_regex(QLatin1String("^[+-]?\\[1-9]d+$"));
     static const QRegularExpression binary_integer_regex(QLatin1String("^0b[0-1]{1,64}$"));
     static const QRegularExpression octal_integer_regex(QLatin1String("^0[0-7]{1,21}$"));
-    static const QRegularExpression hex_integer_regex(QLatin1String("^0x[0-9A-F]{1,16}$"));
+    static const QRegularExpression hex_integer_regex(QLatin1String("^0x[0-9A-Fa-f]{1,16}$"));
     static const QRegularExpression fraction_regex(QLatin1String("^[+-]?\\d+/\\d+$"));
     const QRegularExpression float_regex(QString(QLatin1String(R"(^([+-]?\d*)(%1\d*)?(e([+-]?\d+))?$)")).arg(QRegularExpression::escape(DecimalSeparator)));
 

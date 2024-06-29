@@ -890,6 +890,22 @@ void testingConstructors()
     KNumber::setDecimalSeparator(QStringLiteral(","));
     checkResult(QStringLiteral("KNumber(\"5,2\")"), KNumber(QStringLiteral("5,2")), QStringLiteral("5,2"), KNumber::TYPE_FLOAT);
     KNumber::setDecimalSeparator(QStringLiteral("."));
+
+    checkResult(QStringLiteral("KNumber(\"0b1110001111\")"), KNumber(QStringLiteral("0b1110001111")), QStringLiteral("911"), KNumber::TYPE_INTEGER);
+    checkResult(QStringLiteral("KNumber(\"0b00010101010111\")"), KNumber(QStringLiteral("0b00010101010111")), QStringLiteral("1367"), KNumber::TYPE_INTEGER);
+    checkResult(QStringLiteral("KNumber(\"0b11\")"), KNumber(QStringLiteral("0b11")), QStringLiteral("3"), KNumber::TYPE_INTEGER);
+    checkResult(QStringLiteral("KNumber(\"0b00000000000000001\")"), KNumber(QStringLiteral("0b00000000000000001")), QStringLiteral("1"), KNumber::TYPE_INTEGER);
+
+    checkResult(QStringLiteral("KNumber(\"077\")"), KNumber(QStringLiteral("077")), QStringLiteral("63"), KNumber::TYPE_INTEGER);
+    checkResult(QStringLiteral("KNumber(\"0077\")"), KNumber(QStringLiteral("0077")), QStringLiteral("63"), KNumber::TYPE_INTEGER);
+
+    checkResult(QStringLiteral("KNumber(\"0xFF\")"), KNumber(QStringLiteral("0xFF")), QStringLiteral("255"), KNumber::TYPE_INTEGER);
+    checkResult(QStringLiteral("KNumber(\"0xFf\")"), KNumber(QStringLiteral("0xFf")), QStringLiteral("255"), KNumber::TYPE_INTEGER);
+    checkResult(QStringLiteral("KNumber(\"0x0A\")"), KNumber(QStringLiteral("0x0A")), QStringLiteral("10"), KNumber::TYPE_INTEGER);
+    checkResult(QStringLiteral("KNumber(\"0x0a\")"), KNumber(QStringLiteral("0x0a")), QStringLiteral("10"), KNumber::TYPE_INTEGER);
+    checkResult(QStringLiteral("KNumber(\"0x0000a\")"), KNumber(QStringLiteral("0x0000a")), QStringLiteral("10"), KNumber::TYPE_INTEGER);
+    checkResult(QStringLiteral("KNumber(\"0xabcdef\")"), KNumber(QStringLiteral("0xabcdef")), QStringLiteral("11259375"), KNumber::TYPE_INTEGER);
+    checkResult(QStringLiteral("KNumber(\"0xAbCdEf\")"), KNumber(QStringLiteral("0xAbCdEf")), QStringLiteral("11259375"), KNumber::TYPE_INTEGER);
 }
 
 void testingConstants()
