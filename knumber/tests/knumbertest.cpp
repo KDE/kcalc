@@ -123,6 +123,20 @@ void testingCompare()
     checkTruth(QStringLiteral("KNumber(3.2) < KNumber(3)"), KNumber(3.2) < KNumber(3), false);
 
     checkTruth(QStringLiteral("KNumber(3.2) < KNumber(\"3/5\")"), KNumber(3.2) < KNumber(QStringLiteral("3/5")), false);
+
+    checkTruth(QStringLiteral("KNumber(-inf) == KNumber::NegInfinity"), KNumber(QStringLiteral("-inf")) == KNumber::NegInfinity, true);
+    checkTruth(QStringLiteral("KNumber(inf) == KNumber::PosInfinity"), KNumber(QStringLiteral("inf")) == KNumber::PosInfinity, true);
+    checkTruth(QStringLiteral("KNumber(inf) == KNumber(inf)"), KNumber(QStringLiteral("inf")) == KNumber(QStringLiteral("inf")), true);
+    checkTruth(QStringLiteral("KNumber(-inf) == KNumber(-inf)"), KNumber(QStringLiteral("-inf")) == KNumber(QStringLiteral("-inf")), true);
+    checkTruth(QStringLiteral("KNumber(inf) > KNumber(5)"), KNumber(QStringLiteral("inf")) > KNumber(5), true);
+
+    checkTruth(QStringLiteral("KNumber(-inf) < KNumber(5)"), KNumber(QStringLiteral("-inf")) < KNumber(5), true);
+    checkTruth(QStringLiteral("KNumber(nan) != KNumber(inf)"), KNumber(QStringLiteral("nan")) != KNumber(QStringLiteral("inf")), true);
+    checkTruth(QStringLiteral("KNumber(-inf) < KNumber(inf)"), KNumber(QStringLiteral("-inf")) < KNumber(QStringLiteral("inf")), true);
+    checkTruth(QStringLiteral("KNumber(nan) != KNumber(-inf)"), KNumber(QStringLiteral("nan")) != KNumber(QStringLiteral("-inf")), true);
+    checkTruth(QStringLiteral("KNumber(inf) != KNumber(-inf)"), KNumber(QStringLiteral("inf")) != KNumber(QStringLiteral("-inf")), true);
+    checkTruth(QStringLiteral("KNumber(-inf) > KNumber(inf)"), KNumber(QStringLiteral("-inf")) > KNumber(QStringLiteral("inf")), false);
+    checkTruth(QStringLiteral("KNumber(inf) > KNumber(-inf)"), KNumber(QStringLiteral("inf")) > KNumber(QStringLiteral("-inf")), true);
 }
 
 void testingAdditions()

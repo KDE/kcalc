@@ -532,7 +532,16 @@ int knumber_error::compare(knumber_base *rhs)
             return -1;
         }
     } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
-        return sign() == p->sign();
+        // TODO: What to return when comparing to NaN?
+        if (error_ == p->error_) {
+            return 0;
+        } else if (error_ == ERROR_POS_INFINITY || p->error_ == ERROR_NEG_INFINITY) {
+            return 1;
+        } else if (error_ == ERROR_NEG_INFINITY || p->error_ == ERROR_POS_INFINITY) {
+            return -1;
+        } else {
+            return -1;
+        }
     }
 
     Q_ASSERT(0);
