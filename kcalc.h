@@ -223,6 +223,7 @@ protected Q_SLOTS:
     void slotConstclicked(int);
     void slotBackspaceclicked();
     void slotInputChanged();
+    void slotClearResult();
 
     void slotConstantToDisplay(const science_constant &const_chosen);
     void slotChooseScientificConst0(const science_constant &);
@@ -236,6 +237,7 @@ protected Q_SLOTS:
     void slotUpdateBitset(const KNumber &);
 
     void slotBaseModeAmountChanged(const KNumber &number);
+    void slotClearBaseModeAmount();
 
     void slotPaste();
 

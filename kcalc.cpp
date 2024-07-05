@@ -1435,11 +1435,24 @@ void KCalculator::slotInputChanged()
         return;
     } else if (m_parsingResult == KCalcParser::ParsingResult::SUCCESS_SINGLE_KNUMBER) {
         updateDisplay(UPDATE_CLEAR);
+        if (base_mode_) {
+            slotBaseModeAmountChanged(core.getResult());
+        }
         return;
     } else {
         this->commit_Result_(false);
         return;
     }
+}
+
+//------------------------------------------------------------------------------
+// Name: slotClearResult
+// Desc: clears result in all displays
+//------------------------------------------------------------------------------
+void KCalculator::slotClearResult()
+{
+    calc_display->sendEvent(KCalcDisplay::EventReset);
+    slotClearBaseModeAmount();
 }
 
 //------------------------------------------------------------------------------
@@ -2023,6 +2036,20 @@ void KCalculator::slotBaseModeAmountChanged(const KNumber &number)
 }
 
 //------------------------------------------------------------------------------
+// Name: slotClearBaseModeAmount
+// Desc: clears numerical base conversions
+//------------------------------------------------------------------------------
+void KCalculator::slotClearBaseModeAmount()
+{
+    if (m_parsingResult != KCalcParser::ParsingResult::SUCCESS_SINGLE_KNUMBER) {
+        decDisplay->clear();
+        binDisplay->clear();
+        octDisplay->clear();
+        hexDisplay->clear();
+    }
+}
+
+//------------------------------------------------------------------------------
 // Name: showMemButtons
 // Desc: hides or shows the memory buttons
 //------------------------------------------------------------------------------
@@ -2304,7 +2331,7 @@ void KCalculator::updateDisplay(UpdateFlags flags)
     } else if (flags & UPDATE_MALFORMED_EXPRESSION) {
         calc_display->setText(i18n("Input error"));
     } else if (flags & UPDATE_CLEAR) {
-        calc_display->sendEvent(KCalcDisplay::EventReset);
+        slotClearResult();
     } else {
         calc_display->update();
     }
