@@ -122,6 +122,15 @@ void KCalcParserCoreTest::testParserCore_data()
     QTest::newRow("+ test 5") << QS("+7-20+30") << 10 << QS("17");
     QTest::newRow("+ test 6") << QS("+7----1") << 10 << QS("8");
 
+    QTest::newRow("0b test 1") << QS("0b010") << 10 << QS("2");
+    QTest::newRow("0b test 2") << QS("0b111") << 10 << QS("7");
+    QTest::newRow("0 (octal) test 1") << QS("0777") << 10 << QS("511");
+    QTest::newRow("0 (octal) test 2") << QS("0011") << 10 << QS("9");
+    QTest::newRow("0x test 1") << QS("0x0aA") << 10 << QS("170");
+    QTest::newRow("0x test 2") << QS("0xff") << 10 << QS("255");
+    QTest::newRow("0x test 2") << QS("0xFF") << 10 << QS("255");
+    QTest::newRow("0x test 2") << QS("0x0000000F") << 10 << QS("15");
+
     QTest::newRow("& test 1") << QS("0b10 & 0b100") << 10 << QS("0");
     QTest::newRow("& test 2") << QS("0b10 & 0b11 & 0b110") << 10 << QS("2");
     QTest::newRow("| test 1") << QS("0b10 | 0b1") << 10 << QS("3");

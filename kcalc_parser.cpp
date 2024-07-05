@@ -16,6 +16,18 @@
 #include <QRegularExpressionMatch>
 #include <QString>
 
+const QString KCalcParser::BINARY_DIGITS_PATTERN = QStringLiteral("[0-1]{1,}");
+const QString KCalcParser::OCTAL_DIGITS_PATTERN = QStringLiteral("[0-7]{1,}");
+const QString KCalcParser::HEX_DIGITS_PATTERN = QStringLiteral("[0-9A-Fa-f]{1,}");
+
+const QString KCalcParser::DECIMAL_NUMBER_PATTERN = QLatin1String("(\\d*)[.,]?\\d+(e([+-]?\\d+))?");
+
+const QRegularExpression KCalcParser::BINARY_NUMBER_DIGITS_REGEX = QRegularExpression(KCalcParser::BINARY_DIGITS_PATTERN);
+const QRegularExpression KCalcParser::OCTAL_NUMBER_DIGITS_REGEX = QRegularExpression(KCalcParser::OCTAL_DIGITS_PATTERN);
+const QRegularExpression KCalcParser::HEX_NUMBER_DIGITS_REGEX = QRegularExpression(KCalcParser::HEX_DIGITS_PATTERN);
+
+const QRegularExpression KCalcParser::DECIMAL_NUMBER_REGEX = QRegularExpression(KCalcParser::DECIMAL_NUMBER_PATTERN);
+
 //------------------------------------------------------------------------------
 // Name: KCalcParser
 // Desc: constructor
@@ -49,12 +61,13 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
 
     if (s.startsWith(HEX_NUMBER_PREFIX_STR)) {
         QRegularExpressionMatch match;
-        int numIndex = buffer.indexOf(QRegularExpression(QLatin1String("0x[0-9A-F]{1,}")), index, &match);
-        if (numIndex == index) {
-            token_KNumber_ = match.captured();
+        int numIndex = buffer.indexOf(HEX_NUMBER_DIGITS_REGEX, index + HEX_NUMBER_PREFIX_STR.length(), &match);
+        if (numIndex == index + HEX_NUMBER_PREFIX_STR.length()) {
+            token_KNumber_ = HEX_NUMBER_PREFIX_STR + match.captured();
             if (match.captured().size() > 16) {
                 return KCalcToken::TokenCode::INVALID_TOKEN;
             }
+            index += HEX_NUMBER_PREFIX_STR.length();
             index += match.captured().size();
             return KCalcToken::TokenCode::KNUMBER;
         } else {
@@ -64,12 +77,13 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
 
     if (s.startsWith(BINARY_NUMBER_PREFIX_STR)) {
         QRegularExpressionMatch match;
-        int numIndex = buffer.indexOf(QRegularExpression(QLatin1String("0b[0-1]{1,}")), index, &match);
-        if (numIndex == index) {
-            token_KNumber_ = match.captured();
+        int numIndex = buffer.indexOf(BINARY_NUMBER_DIGITS_REGEX, index + BINARY_NUMBER_PREFIX_STR.length(), &match);
+        if (numIndex == index + BINARY_NUMBER_PREFIX_STR.length()) {
+            token_KNumber_ = BINARY_NUMBER_PREFIX_STR + match.captured();
             if (match.captured().size() > 64) {
                 return KCalcToken::TokenCode::INVALID_TOKEN;
             }
+            index += BINARY_NUMBER_PREFIX_STR.length();
             index += match.captured().size();
             return KCalcToken::TokenCode::KNUMBER;
         } else {
@@ -79,12 +93,13 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
 
     if (s.startsWith(OCTAL_NUMBER_PREFIX_STR)) {
         QRegularExpressionMatch match;
-        int numIndex = buffer.indexOf(QRegularExpression(QLatin1String("0[0-7]{1,}")), index, &match);
-        if (numIndex == index) {
-            token_KNumber_ = match.captured();
+        int numIndex = buffer.indexOf(OCTAL_NUMBER_DIGITS_REGEX, index + OCTAL_NUMBER_PREFIX_STR.length(), &match);
+        if (numIndex == index + OCTAL_NUMBER_PREFIX_STR.length()) {
+            token_KNumber_ = OCTAL_NUMBER_PREFIX_STR + match.captured();
             if (match.captured().size() > 21) {
                 return KCalcToken::TokenCode::INVALID_TOKEN;
             }
+            index += OCTAL_NUMBER_PREFIX_STR.length();
             index += match.captured().size();
             return KCalcToken::TokenCode::KNUMBER;
         }
@@ -99,20 +114,29 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
         QRegularExpressionMatch match;
         switch (base) {
         case 2:
-            numIndex = buffer.indexOf(QRegularExpression(QLatin1String("[0-1]{1,}")), index, &match);
+            numIndex = buffer.indexOf(BINARY_NUMBER_DIGITS_REGEX, index, &match);
             token_KNumber_ = BINARY_NUMBER_PREFIX_STR;
+            if (match.captured().size() > 64) {
+                return KCalcToken::TokenCode::INVALID_TOKEN;
+            }
             break;
         case 8:
-            numIndex = buffer.indexOf(QRegularExpression(QLatin1String("[0-7]{1,21}")), index, &match);
+            numIndex = buffer.indexOf(OCTAL_NUMBER_DIGITS_REGEX, index, &match);
             token_KNumber_ = OCTAL_NUMBER_PREFIX_STR;
+            if (match.captured().size() > 21) {
+                return KCalcToken::TokenCode::INVALID_TOKEN;
+            }
             break;
         case 10:
-            numIndex = buffer.indexOf(QRegularExpression(QLatin1String("(\\d*)[.,]?\\d+(e([+-]?\\d+))?")), index, &match);
+            numIndex = buffer.indexOf(DECIMAL_NUMBER_REGEX, index, &match);
             token_KNumber_.clear();
             break;
         case 16:
-            numIndex = buffer.indexOf(QRegularExpression(QLatin1String("[0-9A-F]{1,16}")), index, &match);
+            numIndex = buffer.indexOf(HEX_NUMBER_DIGITS_REGEX, index, &match);
             token_KNumber_ = HEX_NUMBER_PREFIX_STR;
+            if (match.captured().size() > 16) {
+                return KCalcToken::TokenCode::INVALID_TOKEN;
+            }
             break;
         default:
             break;

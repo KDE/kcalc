@@ -64,6 +64,17 @@ private:
     static const inline QString OCTAL_NUMBER_PREFIX_STR = QStringLiteral("0");
     static const inline QString HEX_NUMBER_PREFIX_STR = QStringLiteral("0x");
 
+    static const QString BINARY_DIGITS_PATTERN;
+    static const QString OCTAL_DIGITS_PATTERN;
+    static const QString HEX_DIGITS_PATTERN;
+
+    static const QRegularExpression BINARY_NUMBER_DIGITS_REGEX;
+    static const QRegularExpression OCTAL_NUMBER_DIGITS_REGEX;
+    static const QRegularExpression HEX_NUMBER_DIGITS_REGEX;
+
+    static const QString DECIMAL_NUMBER_PATTERN;
+    static const QRegularExpression DECIMAL_NUMBER_REGEX;
+
     static const inline QString E_STR = QStringLiteral("e");
     static const inline QString PI_STR = QStringLiteral("π");
     static const inline QString PHI_STR = QStringLiteral("ϕ");
