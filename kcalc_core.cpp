@@ -173,6 +173,10 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> tokenBuffe
                 }
             }
 
+            if (tokenCode == KCalcToken::TokenCode::PERCENTAGE) {
+                insert_percentage_Token_In_Stack_();
+            }
+
             tokenFunction = &tokenBuffer.at(token_index);
             tokenFirstArg = &token_stack_.last();
             result = tokenFunction->evaluate(tokenFirstArg->getKNumber());
@@ -353,6 +357,42 @@ int CalcEngine::insert_KNumber_Token_In_Stack_(const KCalcToken &token)
         }
     }
     token_stack_.push_back(tokenToInsert);
+    return 0;
+}
+
+//------------------------------------------------------------------------------
+// Name: insert_percentage_Token_In_Stack_
+// Desc: rearanges the stack acordingly to insert a percentage token
+//------------------------------------------------------------------------------
+int CalcEngine::insert_percentage_Token_In_Stack_()
+{
+    qCDebug(KCALC_LOG) << "Inserting Percentage Token in stack";
+    // printStacks_();
+
+    if (token_stack_.size() < 2) {
+        return 0;
+    } else if (token_stack_.last().isKNumber() && token_stack_.at(token_stack_.size() - 3).isKNumber()
+               && token_stack_.at(token_stack_.size() - 2).isBinaryFunction()) {
+        KCalcToken::TokenCode binaryToken = token_stack_.at(token_stack_.size() - 2).getTokenCode();
+        if (binaryToken == KCalcToken::TokenCode::PLUS || binaryToken == KCalcToken::TokenCode::MINUS) {
+            // recover tokens
+            KCalcToken percentage = token_stack_.last();
+            token_stack_.pop_back();
+            KCalcToken operation = token_stack_.last();
+            token_stack_.pop_back();
+            // reduce stack
+            reduce_Stack_();
+            // //insert tokens
+            token_stack_.push_back(operation);
+            token_stack_.push_back(percentage);
+            token_stack_.push_back(multiplication_Token_);
+            token_stack_.push_back(token_stack_.at(token_stack_.size() - 4));
+        } else {
+            return 0;
+        }
+    } else {
+        return 0;
+    }
     return 0;
 }
 

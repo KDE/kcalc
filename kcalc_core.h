@@ -59,6 +59,7 @@ private:
     int reduce_Stack_(bool toParentheses = true);
     int insert_Binary_Function_Token_In_Stack_(const KCalcToken &token);
     int insert_KNumber_Token_In_Stack_(const KCalcToken &token);
+    int insert_percentage_Token_In_Stack_();
 
     void printStacks_();
     bool error_;
