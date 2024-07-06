@@ -20,7 +20,7 @@ const QString KCalcParser::BINARY_DIGITS_PATTERN = QStringLiteral("[0-1]{1,}");
 const QString KCalcParser::OCTAL_DIGITS_PATTERN = QStringLiteral("[0-7]{1,}");
 const QString KCalcParser::HEX_DIGITS_PATTERN = QStringLiteral("[0-9A-Fa-f]{1,}");
 
-const QString KCalcParser::DECIMAL_NUMBER_PATTERN = QLatin1String("(\\d*)[.,]?\\d+([e|E]([+-]?\\d+))?");
+const QString KCalcParser::DECIMAL_NUMBER_PATTERN = QLatin1String("(0*)((\\d*)[.,]?\\d+([e|E]([+-]?\\d+))?)");
 
 const QRegularExpression KCalcParser::BINARY_NUMBER_DIGITS_REGEX = QRegularExpression(KCalcParser::BINARY_DIGITS_PATTERN);
 const QRegularExpression KCalcParser::OCTAL_NUMBER_DIGITS_REGEX = QRegularExpression(KCalcParser::OCTAL_DIGITS_PATTERN);
@@ -95,7 +95,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
         QRegularExpressionMatch match;
         int numIndex = buffer.indexOf(OCTAL_NUMBER_DIGITS_REGEX, index + OCTAL_NUMBER_PREFIX_STR.length(), &match);
         if (numIndex == index + OCTAL_NUMBER_PREFIX_STR.length()) {
-            token_KNumber_ = OCTAL_NUMBER_PREFIX_STR + match.captured();
+            token_KNumber_ = OCTAL_NUMBER_PREFIX_STR_C_STYLE + match.captured();
             if (match.captured().size() > 21) {
                 return KCalcToken::TokenCode::INVALID_TOKEN;
             }
@@ -122,7 +122,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
             break;
         case 8:
             numIndex = buffer.indexOf(OCTAL_NUMBER_DIGITS_REGEX, index, &match);
-            token_KNumber_ = OCTAL_NUMBER_PREFIX_STR;
+            token_KNumber_ = OCTAL_NUMBER_PREFIX_STR_C_STYLE;
             if (match.captured().size() > 21) {
                 return KCalcToken::TokenCode::INVALID_TOKEN;
             }
@@ -142,7 +142,11 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
             break;
         }
         if (numIndex == index) {
-            token_KNumber_ += match.captured();
+            if (base == 10) {
+                token_KNumber_ += match.captured(2);
+            } else {
+                token_KNumber_ += match.captured();
+            }
             index += match.captured().size();
             return KCalcToken::TokenCode::KNUMBER;
         } else {

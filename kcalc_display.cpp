@@ -459,7 +459,7 @@ QString KCalcDisplay::getAmountQString(bool addPreffix /*= true*/) const
         break;
     case NB_OCTAL:
         if (addPreffix) {
-            amountQString.prepend(QLatin1String("0"));
+            amountQString.prepend(QLatin1String("0o"));
         }
         amountQString.remove(QLatin1Char(' '));
         break;

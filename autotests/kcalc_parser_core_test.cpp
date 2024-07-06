@@ -143,8 +143,8 @@ void KCalcParserCoreTest::testParserCore_data()
 
     QTest::newRow("0b test 1") << QS("0b010") << 10 << QS("2");
     QTest::newRow("0b test 2") << QS("0b111") << 10 << QS("7");
-    QTest::newRow("0 (octal) test 1") << QS("0777") << 10 << QS("511");
-    QTest::newRow("0 (octal) test 2") << QS("0011") << 10 << QS("9");
+    QTest::newRow("0o (octal) test 1") << QS("0o777") << 10 << QS("511");
+    QTest::newRow("0o (octal) test 2") << QS("0o11") << 10 << QS("9");
     QTest::newRow("0x test 1") << QS("0x0aA") << 10 << QS("170");
     QTest::newRow("0x test 2") << QS("0xff") << 10 << QS("255");
     QTest::newRow("0x test 2") << QS("0xFF") << 10 << QS("255");
@@ -165,8 +165,16 @@ void KCalcParserCoreTest::testParserCore_data()
 
     QTest::newRow("0x test 1") << QS("0xA+10") << 10 << QS("20");
     QTest::newRow("0b test 1") << QS("0b100+1") << 10 << QS("5");
-    QTest::newRow("0 test 1") << QS("010+8") << 10 << QS("16");
-    QTest::newRow("base test 1") << QS("0xFF & 0b1111 & 07") << 10 << QS("7");
+    QTest::newRow("0o test 1") << QS("0o10+8") << 10 << QS("16");
+
+    QTest::newRow("base test 1") << QS("0xFF & 0b1111 & 0o7") << 10 << QS("7");
+    QTest::newRow("base test 2") << QS("0xFF & 0b1111 & 0o7") << 2 << QS("7");
+    QTest::newRow("base test 3") << QS("0xFF & 0b1111 & 0o7") << 8 << QS("7");
+    QTest::newRow("base test 4") << QS("0xFF & 0b1111 & 0o7") << 16 << QS("7");
+    QTest::newRow("base test 5") << QS("010+10") << 2 << QS("4");
+    QTest::newRow("base test 6") << QS("010+10") << 16 << QS("32");
+    QTest::newRow("base test 7") << QS("010+10") << 8 << QS("16");
+    QTest::newRow("base test 8") << QS("010+10") << 10 << QS("20");
     // parenthesis input
     QTest::newRow("parenthesis test 1") << QS("(√5)²") << 10 << QS("5");
     QTest::newRow("parenthesis test 2") << QS("(1+3)") << 10 << QS("4");
