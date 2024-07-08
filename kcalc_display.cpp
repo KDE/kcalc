@@ -231,6 +231,7 @@ bool KCalcDisplay::sendEvent(Event event)
     case EventClear:
     case EventReset:
         display_amount_ = KNumber::Zero;
+        text_.clear();
         str_int_.clear();
         str_int_exp_.clear();
         eestate_ = false;
@@ -476,12 +477,6 @@ QString KCalcDisplay::getAmountQString(bool addPreffix /*= true*/) const
 bool KCalcDisplay::setAmount(const KNumber &new_amount)
 {
     QString display_str;
-
-    str_int_ = QStringLiteral("0");
-    str_int_exp_.clear();
-    period_ = false;
-    neg_sign_ = false;
-    eestate_ = false;
 
     if ((num_base_ != NB_DECIMAL) && (new_amount.type() != KNumber::TYPE_ERROR)) {
         display_amount_ = new_amount.integerPart();
@@ -753,70 +748,13 @@ void KCalcDisplay::setStatusText(int i, const QString &text)
 //------------------------------------------------------------------------------
 void KCalcDisplay::updateDisplay()
 {
-    if (str_int_.isEmpty()) {
-        setText(str_int_);
-        return;
-    }
-    // Put sign in front.
-    QString tmp_string;
-    if (neg_sign_) {
-        tmp_string = QLatin1Char('-') + str_int_;
-    } else {
-        tmp_string = str_int_;
+    QString txt = text_;
+    txt.remove(QLatin1Char(' '));
+    if (num_base_ == NB_DECIMAL) {
+        txt.remove(QLocale().groupSeparator());
     }
 
-    bool ok;
-
-    switch (num_base_) {
-    case NB_BINARY:
-        Q_ASSERT(!period_ && !eestate_);
-        setText(tmp_string);
-        display_amount_ = KNumber(str_int_.toULongLong(&ok, 2));
-        if (neg_sign_) {
-            display_amount_ = -display_amount_;
-        }
-        break;
-
-    case NB_OCTAL:
-        Q_ASSERT(!period_ && !eestate_);
-        setText(tmp_string);
-        display_amount_ = KNumber(str_int_.toULongLong(&ok, 8));
-        if (neg_sign_) {
-            display_amount_ = -display_amount_;
-        }
-        break;
-
-    case NB_HEX:
-        Q_ASSERT(!period_ && !eestate_);
-        setText(tmp_string);
-        display_amount_ = KNumber(str_int_.toULongLong(&ok, 16));
-        if (neg_sign_) {
-            display_amount_ = -display_amount_;
-        }
-        break;
-
-    case NB_DECIMAL:
-        if (!eestate_) {
-            setText(tmp_string);
-            display_amount_ = KNumber(tmp_string);
-        } else {
-            if (str_int_exp_.isNull()) {
-                // add 'e0' to display but not to conversion
-                display_amount_ = KNumber(tmp_string);
-                setText(tmp_string + QLatin1String("e0"));
-            } else {
-                tmp_string += QLatin1Char('e') + str_int_exp_;
-                setText(tmp_string);
-                display_amount_ = KNumber(tmp_string);
-            }
-        }
-        break;
-
-    default:
-        Q_ASSERT(0);
-    }
-
-    Q_EMIT changedAmount(display_amount_);
+    setText(txt);
 }
 
 //------------------------------------------------------------------------------
