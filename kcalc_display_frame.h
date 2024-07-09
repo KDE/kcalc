@@ -8,7 +8,6 @@
 #pragma once
 
 #include <QFrame>
-#include <QStyle>
 
 class KCalcDisplayFrame : public QFrame
 {
@@ -16,8 +15,4 @@ class KCalcDisplayFrame : public QFrame
 
 public:
     explicit KCalcDisplayFrame(QWidget *parent = nullptr);
-    ~KCalcDisplayFrame() override;
-
-protected:
-    void paintEvent(QPaintEvent *p) override;
 };
