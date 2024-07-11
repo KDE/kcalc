@@ -33,7 +33,7 @@ class ChainResultTests(unittest.TestCase):
         self.driver.quit()
 
     def setUp(self):
-        self.driver.find_element(by=AppiumBy.NAME, value="AC").click()
+        self.driver.find_element(by=AppiumBy.NAME, value="All clear").click()
 
     def getresults(self):
         return self.driver.find_element(by="description", value='Result Display').text
@@ -47,26 +47,26 @@ class ChainResultTests(unittest.TestCase):
         self.assertEqual(self.getresults(), expected)
 
     def test_initialize(self):
-        self.driver.find_element(by=AppiumBy.NAME, value="AC").click()
+        self.driver.find_element(by=AppiumBy.NAME, value="All clear").click()
 
     def test_chain_binary_operator(self):
-        self.driver.find_element(by=AppiumBy.NAME, value="1").click()
-        self.driver.find_element(by=AppiumBy.NAME, value="+").click()
-        self.driver.find_element(by=AppiumBy.NAME, value="7").click()
+        self.driver.find_element(by=AppiumBy.NAME, value="One").click()
+        self.driver.find_element(by=AppiumBy.NAME, value="Add").click()
+        self.driver.find_element(by=AppiumBy.NAME, value="Seven").click()
         self.assertResult(self.getresults(), "8")
-        self.driver.find_element(by=AppiumBy.NAME, value="=").click()
-        self.driver.find_element(by=AppiumBy.NAME, value="×").click()
-        self.driver.find_element(by=AppiumBy.NAME, value="2").click()
+        self.driver.find_element(by=AppiumBy.NAME, value="Equals").click()
+        self.driver.find_element(by=AppiumBy.NAME, value="Multiply").click()
+        self.driver.find_element(by=AppiumBy.NAME, value="Two").click()
         self.assertResult(self.getresults(), "16")
 
     def test_chain_function(self):
-        self.driver.find_element(by=AppiumBy.NAME, value="8").click()
-        self.driver.find_element(by=AppiumBy.NAME, value="9").click()
-        self.driver.find_element(by=AppiumBy.NAME, value="+").click()
-        self.driver.find_element(by=AppiumBy.NAME, value="1").click()
+        self.driver.find_element(by=AppiumBy.NAME, value="Eight").click()
+        self.driver.find_element(by=AppiumBy.NAME, value="Nine").click()
+        self.driver.find_element(by=AppiumBy.NAME, value="Add").click()
+        self.driver.find_element(by=AppiumBy.NAME, value="One").click()
         self.assertResult(self.getresults(), "90")
-        self.driver.find_element(by=AppiumBy.NAME, value="=").click()
-        self.driver.find_element(by=AppiumBy.NAME, value="sin").click()
+        self.driver.find_element(by=AppiumBy.NAME, value="Equals").click()
+        self.driver.find_element(by=AppiumBy.NAME, value="Sine").click()
         self.assertResult(self.getresults(), "1")
 
 if __name__ == '__main__':

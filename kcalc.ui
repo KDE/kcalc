@@ -695,6 +695,9 @@
             <property name="toolTip">
              <string>Sine</string>
             </property>
+            <property name="accessibleName">
+             <string>Sine</string>
+            </property>
             <property name="text">
              <string>Sin</string>
             </property>
@@ -1084,6 +1087,9 @@
             <property name="toolTip">
              <string>Cosine</string>
             </property>
+            <property name="accessibleName">
+             <string>Cosine</string>
+            </property>
             <property name="text">
              <string>Cos</string>
             </property>
@@ -1277,6 +1283,9 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="accessibleName">
+             <string>Six</string>
+            </property>
             <property name="text">
              <string>6</string>
             </property>
@@ -1292,6 +1301,9 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="accessibleName">
+             <string>Two</string>
             </property>
             <property name="text">
              <string>2</string>
@@ -1312,6 +1324,9 @@
             <property name="toolTip">
              <string>Percent</string>
             </property>
+            <property name="accessibleName">
+             <string>Percentage</string>
+            </property>
             <property name="text">
              <string>%</string>
             </property>
@@ -1324,6 +1339,9 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="accessibleName">
+             <string>Nine</string>
             </property>
             <property name="text">
              <string>9</string>
@@ -1341,6 +1359,9 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="accessibleName">
+             <string>Four</string>
+            </property>
             <property name="text">
              <string>4</string>
             </property>
@@ -1356,6 +1377,9 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="accessibleName">
+             <string>Five</string>
             </property>
             <property name="text">
              <string>5</string>
@@ -1376,6 +1400,9 @@
             <property name="toolTip">
              <string>Minus</string>
             </property>
+            <property name="accessibleName">
+             <string>Subtract</string>
+            </property>
             <property name="text">
              <string comment="- calculator button">−</string>
             </property>
@@ -1392,6 +1419,9 @@
             <property name="toolTip">
              <string>Plus</string>
             </property>
+            <property name="accessibleName">
+             <string>Add</string>
+            </property>
             <property name="text">
              <string comment="+ calculator button">+</string>
             </property>
@@ -1404,6 +1434,9 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="accessibleName">
+             <string>One</string>
             </property>
             <property name="text">
              <string>1</string>
@@ -1424,6 +1457,9 @@
             <property name="toolTip">
              <string>Division</string>
             </property>
+            <property name="accessibleName">
+             <string>Divide</string>
+            </property>
             <property name="text">
              <string>÷</string>
             </property>
@@ -1440,6 +1476,9 @@
             <property name="toolTip">
              <string>Multiplication</string>
             </property>
+            <property name="accessibleName">
+             <string>Multiply</string>
+            </property>
             <property name="text">
              <string>×</string>
             </property>
@@ -1452,6 +1491,9 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="accessibleName">
+             <string>Zero</string>
             </property>
             <property name="text">
              <string>0</string>
@@ -1472,6 +1514,9 @@
             <property name="toolTip">
              <string>Decimal point</string>
             </property>
+            <property name="accessibleName">
+             <string>Decimal point</string>
+            </property>
             <property name="text">
              <string comment=". calculator button">.</string>
             </property>
@@ -1484,6 +1529,9 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="accessibleName">
+             <string>Three</string>
             </property>
             <property name="text">
              <string>3</string>
@@ -1504,6 +1552,9 @@
             <property name="toolTip">
              <string>Result</string>
             </property>
+            <property name="accessibleName">
+             <string>Equals</string>
+            </property>
             <property name="text">
              <string comment="= calculator button">=</string>
             </property>
@@ -1516,6 +1567,9 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="accessibleName">
+             <string>Seven</string>
             </property>
             <property name="text">
              <string>7</string>
@@ -1532,6 +1586,9 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="accessibleName">
+             <string>Eight</string>
             </property>
             <property name="text">
              <string>8</string>
@@ -1579,6 +1636,9 @@
             <property name="toolTip">
              <string>Clear all</string>
             </property>
+            <property name="accessibleName">
+             <string>All clear</string>
+            </property>
             <property name="text">
              <string>AC</string>
             </property>
@@ -1595,6 +1655,9 @@
             <property name="toolTip">
              <string>Memory clear</string>
             </property>
+            <property name="accessibleName">
+             <string>Memory clear</string>
+            </property>
             <property name="text">
              <string>MC</string>
             </property>
@@ -1609,6 +1672,9 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
+             <string>Memory recall</string>
+            </property>
+            <property name="accessibleName">
              <string>Memory recall</string>
             </property>
             <property name="text">
@@ -1659,6 +1725,9 @@
             <property name="toolTip">
              <string>Clear</string>
             </property>
+            <property name="accessibleName">
+             <string>Clear</string>
+            </property>
             <property name="text">
              <string>C</string>
             </property>
@@ -1691,6 +1760,9 @@
             <property name="toolTip">
              <string>Memory store</string>
             </property>
+            <property name="accessibleName">
+             <string>Memory store</string>
+            </property>
             <property name="text">
              <string>MS</string>
             </property>
@@ -1720,6 +1792,9 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="accessibleName">
+             <string>Return</string>
+            </property>
             <property name="text">
              <string>←</string>
             </property>
@@ -1738,6 +1813,9 @@
             </property>
             <property name="toolTip">
              <string>Second button function</string>
+            </property>
+            <property name="accessibleName">
+             <string>Shift</string>
             </property>
             <property name="text">
              <string>Shift</string>
