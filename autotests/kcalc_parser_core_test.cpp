@@ -58,7 +58,26 @@ void KCalcParserCoreTest::testParserCore_data()
     QTest::newRow("multiplication test 2") << QS("50×2") << 10 << QS("100");
     QTest::newRow("division test") << QS("50÷12") << 10 << QS("25/6");
     QTest::newRow("div test using slash") << QS("1/2") << 10 << QS("1/2");
-    QTest::newRow("percentage") << QS("10×50%") << 10 << QS("5");
+
+    QTest::newRow("percentage test 1") << QS("50%") << 10 << QS("1/2");
+    QTest::newRow("percentage test 2") << QS("50%+10") << 10 << QS("21/2");
+    QTest::newRow("percentage test 2") << QS("50%+10+10") << 10 << QS("41/2");
+    QTest::newRow("percentage test 3") << QS("10+50%") << 10 << QS("15");
+    QTest::newRow("percentage test 4") << QS("10-50%") << 10 << QS("5");
+    QTest::newRow("percentage test 5") << QS("10+20%") << 10 << QS("12");
+    QTest::newRow("percentage test 7") << QS("1600-20%") << 10 << QS("1280");
+    QTest::newRow("percentage test 8") << QS("10+10+5%") << 10 << QS("21");
+    QTest::newRow("percentage test 9") << QS("10+10+10+5%") << 10 << QS("63/2");
+    QTest::newRow("percentage test 10") << QS("1985-19.2%") << 10 << QS("1603.88");
+    QTest::newRow("percentage test 11") << QS("sin(90)√(4)+50%") << 10 << QS("3");
+    QTest::newRow("percentage test 12") << QS("1+sin(90)√(4)-50%") << 10 << QS("3/2");
+    QTest::newRow("percentage test 13") << QS("1+sin(90)√(4)+50%") << 10 << QS("9/2");
+    QTest::newRow("percentage test 14") << QS("10×50%") << 10 << QS("5");
+    QTest::newRow("percentage test 15") << QS("10÷50%") << 10 << QS("20");
+    QTest::newRow("percentage test 16") << QS("10+100%+10") << 10 << QS("30");
+    QTest::newRow("percentage test 17") << QS("10+100%-10") << 10 << QS("10");
+    QTest::newRow("percentage test 18") << QS("11+10+100%-10") << 10 << QS("32");
+
     QTest::newRow("inverse test 1") << QS("10⁻¹") << 10 << QS("1/10");
     QTest::newRow("inverse test 2") << QS("10⁻¹⁻¹") << 10 << QS("10");
     QTest::newRow("sqrt test 2") << QS("√5") << 10 << QS("2.2360679775");
