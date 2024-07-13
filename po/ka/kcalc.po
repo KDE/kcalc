@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-12 00:41+0000\n"
-"PO-Revision-Date: 2024-06-30 07:20+0200\n"
+"PO-Revision-Date: 2024-07-12 04:47+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -1739,10 +1739,9 @@ msgstr "xⁿ"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pb6)
 #: kcalc.ui:1287
-#, fuzzy, kde-format
-#| msgid "Sin"
+#, kde-format
 msgid "Six"
-msgstr "Sin"
+msgstr "ექვსი"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb6)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb6)
@@ -1755,7 +1754,7 @@ msgstr "6"
 #: kcalc.ui:1306
 #, kde-format
 msgid "Two"
-msgstr ""
+msgstr "ორი"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb2)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb2)
@@ -1772,8 +1771,7 @@ msgstr "პროცენტი"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbPercent)
 #: kcalc.ui:1328
-#, fuzzy, kde-format
-#| msgid "Percent"
+#, kde-format
 msgid "Percentage"
 msgstr "პროცენტი"
 
@@ -1787,7 +1785,7 @@ msgstr "%"
 #: kcalc.ui:1344
 #, kde-format
 msgid "Nine"
-msgstr ""
+msgstr "ცხრა"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb9)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb9)
@@ -1800,7 +1798,7 @@ msgstr "9"
 #: kcalc.ui:1363
 #, kde-format
 msgid "Four"
-msgstr ""
+msgstr "ოთხი"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb4)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb4)
@@ -1813,7 +1811,7 @@ msgstr "4"
 #: kcalc.ui:1382
 #, kde-format
 msgid "Five"
-msgstr ""
+msgstr "ხუთი"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb5)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb5)
@@ -1832,7 +1830,7 @@ msgstr "მინუსი"
 #: kcalc.ui:1404
 #, kde-format
 msgid "Subtract"
-msgstr ""
+msgstr "გამოკლება"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMinus)
 #: kcalc.ui:1407
@@ -1851,7 +1849,7 @@ msgstr "პლუსი"
 #: kcalc.ui:1423
 #, kde-format
 msgid "Add"
-msgstr ""
+msgstr "დამატება"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPlus)
 #: kcalc.ui:1426
@@ -1864,7 +1862,7 @@ msgstr "+"
 #: kcalc.ui:1439
 #, kde-format
 msgid "One"
-msgstr ""
+msgstr "ერთი"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb1)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb1)
@@ -1883,7 +1881,7 @@ msgstr "დანაყოფი"
 #: kcalc.ui:1461
 #, kde-format
 msgid "Divide"
-msgstr ""
+msgstr "გაყოფა"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbDivision)
 #: kcalc.ui:1464
@@ -1899,8 +1897,7 @@ msgstr "გამრავლება"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbMultiplication)
 #: kcalc.ui:1480
-#, fuzzy, kde-format
-#| msgid "Multiplication"
+#, kde-format
 msgid "Multiply"
 msgstr "გამრავლება"
 
@@ -1914,7 +1911,7 @@ msgstr "×"
 #: kcalc.ui:1496
 #, kde-format
 msgid "Zero"
-msgstr ""
+msgstr "ნული"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb0)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb0)
@@ -1941,7 +1938,7 @@ msgstr "."
 #: kcalc.ui:1534
 #, kde-format
 msgid "Three"
-msgstr ""
+msgstr "სამი"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb3)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb3)
@@ -1960,7 +1957,7 @@ msgstr "შედეგი"
 #: kcalc.ui:1556
 #, kde-format
 msgid "Equals"
-msgstr ""
+msgstr "უდრის"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbEqual)
 #: kcalc.ui:1559
@@ -1973,7 +1970,7 @@ msgstr "="
 #: kcalc.ui:1572
 #, kde-format
 msgid "Seven"
-msgstr ""
+msgstr "შვიდი"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb7)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb7)
@@ -1986,7 +1983,7 @@ msgstr "7"
 #: kcalc.ui:1591
 #, kde-format
 msgid "Eight"
-msgstr ""
+msgstr "რვა"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb8)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb8)
@@ -2003,11 +2000,9 @@ msgstr "ყველას გასუფთავება"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbAllClear)
 #: kcalc.ui:1640
-#, fuzzy, kde-format
-#| msgctxt "Memory cleared"
-#| msgid "M cleared"
+#, kde-format
 msgid "All clear"
-msgstr "მეხს. გასუფთავდა"
+msgstr "ყველას გასუფთავება"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbAllClear)
 #: kcalc.ui:1643
@@ -2115,7 +2110,7 @@ msgstr ")"
 #: kcalc.ui:1796
 #, kde-format
 msgid "Return"
-msgstr ""
+msgstr "Enter"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbBackspace)
 #: kcalc.ui:1799

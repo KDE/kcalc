@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-12 00:41+0000\n"
-"PO-Revision-Date: 2024-07-03 16:12+0200\n"
+"PO-Revision-Date: 2024-07-12 11:50+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 24.05.1\n"
+"X-Generator: Lokalize 24.05.2\n"
 "X-Language: cs_CZ\n"
 "X-Source-Language: en_US\n"
 
@@ -1729,10 +1729,9 @@ msgstr "pow"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pb6)
 #: kcalc.ui:1287
-#, fuzzy, kde-format
-#| msgid "Sin"
+#, kde-format
 msgid "Six"
-msgstr "Sin"
+msgstr "Šest"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb6)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb6)
@@ -1745,7 +1744,7 @@ msgstr "6"
 #: kcalc.ui:1306
 #, kde-format
 msgid "Two"
-msgstr ""
+msgstr "Dva"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb2)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb2)
@@ -1762,10 +1761,9 @@ msgstr "Procento"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbPercent)
 #: kcalc.ui:1328
-#, fuzzy, kde-format
-#| msgid "Percent"
+#, kde-format
 msgid "Percentage"
-msgstr "Procento"
+msgstr "Procentní podíl"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPercent)
 #: kcalc.ui:1331
@@ -1777,7 +1775,7 @@ msgstr "%"
 #: kcalc.ui:1344
 #, kde-format
 msgid "Nine"
-msgstr ""
+msgstr "Devět"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb9)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb9)
@@ -1790,7 +1788,7 @@ msgstr "9"
 #: kcalc.ui:1363
 #, kde-format
 msgid "Four"
-msgstr ""
+msgstr "Čtyři"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb4)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb4)
@@ -1803,7 +1801,7 @@ msgstr "4"
 #: kcalc.ui:1382
 #, kde-format
 msgid "Five"
-msgstr ""
+msgstr "Pět"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb5)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb5)
@@ -1822,7 +1820,7 @@ msgstr "Minus"
 #: kcalc.ui:1404
 #, kde-format
 msgid "Subtract"
-msgstr ""
+msgstr "Odečíst"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMinus)
 #: kcalc.ui:1407
@@ -1841,7 +1839,7 @@ msgstr "Plus"
 #: kcalc.ui:1423
 #, kde-format
 msgid "Add"
-msgstr ""
+msgstr "Přidat"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPlus)
 #: kcalc.ui:1426
@@ -1854,7 +1852,7 @@ msgstr "+"
 #: kcalc.ui:1439
 #, kde-format
 msgid "One"
-msgstr ""
+msgstr "Jedna"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb1)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb1)
@@ -1873,7 +1871,7 @@ msgstr "Dělení"
 #: kcalc.ui:1461
 #, kde-format
 msgid "Divide"
-msgstr ""
+msgstr "Dělit"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbDivision)
 #: kcalc.ui:1464
@@ -1889,10 +1887,9 @@ msgstr "Násobení"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbMultiplication)
 #: kcalc.ui:1480
-#, fuzzy, kde-format
-#| msgid "Multiplication"
+#, kde-format
 msgid "Multiply"
-msgstr "Násobení"
+msgstr "Násobit"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMultiplication)
 #: kcalc.ui:1483
@@ -1904,7 +1901,7 @@ msgstr "×"
 #: kcalc.ui:1496
 #, kde-format
 msgid "Zero"
-msgstr ""
+msgstr "Nula"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb0)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb0)
@@ -1931,7 +1928,7 @@ msgstr "."
 #: kcalc.ui:1534
 #, kde-format
 msgid "Three"
-msgstr ""
+msgstr "Tři"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb3)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb3)
@@ -1950,7 +1947,7 @@ msgstr "Výsledek"
 #: kcalc.ui:1556
 #, kde-format
 msgid "Equals"
-msgstr ""
+msgstr "Stejné"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbEqual)
 #: kcalc.ui:1559
@@ -1963,7 +1960,7 @@ msgstr "="
 #: kcalc.ui:1572
 #, kde-format
 msgid "Seven"
-msgstr ""
+msgstr "Sedm"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb7)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb7)
@@ -1976,7 +1973,7 @@ msgstr "7"
 #: kcalc.ui:1591
 #, kde-format
 msgid "Eight"
-msgstr ""
+msgstr "Osm"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb8)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb8)
@@ -2103,7 +2100,7 @@ msgstr ")"
 #: kcalc.ui:1796
 #, kde-format
 msgid "Return"
-msgstr ""
+msgstr "Enter"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbBackspace)
 #: kcalc.ui:1799
