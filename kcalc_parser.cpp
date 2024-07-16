@@ -20,7 +20,7 @@ const QString KCalcParser::BINARY_DIGITS_PATTERN = QStringLiteral("[0-1]{1,}");
 const QString KCalcParser::OCTAL_DIGITS_PATTERN = QStringLiteral("[0-7]{1,}");
 const QString KCalcParser::HEX_DIGITS_PATTERN = QStringLiteral("[0-9A-Fa-f]{1,}");
 
-const QString KCalcParser::DECIMAL_NUMBER_PATTERN = QLatin1String("(\\d*)[.,]?\\d+(e([+-]?\\d+))?");
+const QString KCalcParser::DECIMAL_NUMBER_PATTERN = QLatin1String("(\\d*)[.,]?\\d+([e|E]([+-]?\\d+))?");
 
 const QRegularExpression KCalcParser::BINARY_NUMBER_DIGITS_REGEX = QRegularExpression(KCalcParser::BINARY_DIGITS_PATTERN);
 const QRegularExpression KCalcParser::OCTAL_NUMBER_DIGITS_REGEX = QRegularExpression(KCalcParser::OCTAL_DIGITS_PATTERN);

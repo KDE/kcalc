@@ -268,7 +268,7 @@ KNumber::KNumber(const QString &s)
     static const QRegularExpression octal_integer_regex(QLatin1String("^0[0-7]{1,21}$"));
     static const QRegularExpression hex_integer_regex(QLatin1String("^0x[0-9A-Fa-f]{1,16}$"));
     static const QRegularExpression fraction_regex(QLatin1String("^[+-]?\\d+/\\d+$"));
-    const QRegularExpression float_regex(QString(QLatin1String(R"(^([+-]?\d*)(%1\d*)?(e([+-]?\d+))?$)")).arg(QRegularExpression::escape(DecimalSeparator)));
+    const QRegularExpression float_regex(QString(QLatin1String(R"(^([+-]?\d*)(%1\d*)?([e|E]([+-]?\d+))?$)")).arg(QRegularExpression::escape(DecimalSeparator)));
 
     if (special_regex.match(s).hasMatch()) {
         value_ = new detail::knumber_error(s);

@@ -210,6 +210,14 @@ void KCalcParserCoreTest::testParserCore_data()
     QTest::newRow("Decimal without leading zero test 3") << QS("5.5+0.5") << 10 << QS("6");
     QTest::newRow("Decimal without leading zero test 4") << QS(".1") << 10 << QS("0.1");
     QTest::newRow("Decimal without leading zero test 5") << QS("cos(.1)") << 10 << QS("0.999998476913");
+
+    QTest::newRow("Scientific notation 1") << QS("1e30+1e30") << 10 << QS("2e+30");
+    QTest::newRow("Scientific notation 2") << QS("1E30+1E30") << 10 << QS("2e+30");
+    QTest::newRow("Scientific notation 3") << QS("1e30+1E30") << 10 << QS("2e+30");
+    QTest::newRow("Scientific notation 4") << QS("1E-30+1E-30") << 10 << QS("2e-30");
+    QTest::newRow("Scientific notation 5") << QS("1E+30+1E+30") << 10 << QS("2e+30");
+    QTest::newRow("Scientific notation 6") << QS("1E2+201") << 10 << QS("301");
+    QTest::newRow("Scientific notation 6") << QS("log(1E20)") << 10 << QS("20");
 }
 
 void KCalcParserCoreTest::testParserCore()
