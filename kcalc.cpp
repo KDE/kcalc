@@ -79,16 +79,15 @@ KCalculator::KCalculator(QWidget *parent)
 
     toolBar()->hide(); // hide by default
 
-    // create button groups
-    base_choose_group_ = new QButtonGroup(this);
-    base_choose_group_->setExclusive(true);
-    base_choose_group_->addButton(hexRadio, HexMode);
-    base_choose_group_->addButton(decRadio, DecMode);
-    base_choose_group_->addButton(octRadio, OctMode);
-    base_choose_group_->addButton(binRadio, BinMode);
-    connect(base_choose_group_, &QButtonGroup::buttonClicked, this, &KCalculator::slotBaseSelected);
-
-    base_conversion_labels_ = {binDisplay, hexDisplay, decDisplay, octDisplay};
+    numeralSystemComboBox->addItem(i18nc("Hexadecimal numeral system", "Hex"), HexMode);
+    numeralSystemComboBox->addItem(i18nc("Decimal numeral system", "Dec"), DecMode);
+    numeralSystemComboBox->addItem(i18nc("Octal numeral system", "Oct"), OctMode);
+    numeralSystemComboBox->addItem(i18nc("Binary numeral system", "Bin"), BinMode);
+    numeralSystemComboBox->setCurrentIndex(-1);
+    connect(numeralSystemComboBox, &QComboBox::currentIndexChanged, this, &KCalculator::slotBaseSelected);
+    connect(numeralSystemComboBox, &QComboBox::activated, this, [this]() {
+        KCalcSettings::setBaseMode(numeralSystemComboBox->currentData().toInt());
+    });
 
     angle_choose_group_ = new QButtonGroup(this);
     angle_choose_group_->setExclusive(true);
@@ -131,17 +130,17 @@ KCalculator::KCalculator(QWidget *parent)
 
     switch (calculatorMode) {
     case KCalcSettings::EnumCalculatorMode::science:
-        action_mode_science_->setChecked(true);
+        action_mode_science_->trigger();
         break;
     case KCalcSettings::EnumCalculatorMode::statistics:
-        action_mode_statistic_->setChecked(true);
+        action_mode_statistic_->trigger();
         break;
     case KCalcSettings::EnumCalculatorMode::numeral:
-        action_mode_numeral_->setChecked(true);
+        action_mode_numeral_->trigger();
         break;
     case KCalcSettings::EnumCalculatorMode::simple:
     default:
-        action_mode_simple_->setChecked(true);
+        action_mode_simple_->trigger();
     }
     is_still_in_launch_ = false;
 
@@ -179,22 +178,22 @@ void KCalculator::setupMainActions()
     action_mode_simple_ = actionCollection()->add<KToggleAction>(QStringLiteral("mode_simple"));
     action_mode_simple_->setActionGroup(modeGroup);
     action_mode_simple_->setText(i18n("Simple Mode"));
-    connect(action_mode_simple_, &KToggleAction::toggled, this, &KCalculator::slotSetSimpleMode);
+    connect(action_mode_simple_, &KToggleAction::triggered, this, &KCalculator::slotSetSimpleMode);
 
     action_mode_science_ = actionCollection()->add<KToggleAction>(QStringLiteral("mode_science"));
     action_mode_science_->setActionGroup(modeGroup);
     action_mode_science_->setText(i18n("Science Mode"));
-    connect(action_mode_science_, &KToggleAction::toggled, this, &KCalculator::slotSetScienceMode);
+    connect(action_mode_science_, &KToggleAction::triggered, this, &KCalculator::slotSetScienceMode);
 
     action_mode_statistic_ = actionCollection()->add<KToggleAction>(QStringLiteral("mode_statistics"));
     action_mode_statistic_->setActionGroup(modeGroup);
     action_mode_statistic_->setText(i18n("Statistic Mode"));
-    connect(action_mode_statistic_, &KToggleAction::toggled, this, &KCalculator::slotSetStatisticMode);
+    connect(action_mode_statistic_, &KToggleAction::triggered, this, &KCalculator::slotSetStatisticMode);
 
     action_mode_numeral_ = actionCollection()->add<KToggleAction>(QStringLiteral("mode_numeral"));
     action_mode_numeral_->setActionGroup(modeGroup);
     action_mode_numeral_->setText(i18n("Numeral System Mode"));
-    connect(action_mode_numeral_, &KToggleAction::toggled, this, &KCalculator::slotSetNumeralMode);
+    connect(action_mode_numeral_, &KToggleAction::triggered, this, &KCalculator::slotSetNumeralMode);
 
     // settings menu
     action_history_show_ = actionCollection()->add<KToggleAction>(QStringLiteral("show_history"));
@@ -748,70 +747,67 @@ void KCalculator::slotConstantToDisplay(const science_constant &const_chosen)
 // Name: slotBaseSelected
 // Desc: changes the selected numeric base
 //------------------------------------------------------------------------------
-void KCalculator::slotBaseSelected(QAbstractButton *button)
+void KCalculator::slotBaseSelected()
 {
-    if (button) {
-        const int base = base_choose_group_->id(button);
-        int current_base;
+    const int base = numeralSystemComboBox->currentData().toInt();
+    int current_base;
 
-        // set display & statusbar (if item exist in statusbar)
-        statusBar()->setBase(base);
-        switch (base) {
-        case BinMode:
-            current_base = calc_display->setBase(NumBase(2));
-            base_label->setText(QStringLiteral("Bin"));
-            base_mode_ = 2;
-            break;
-        case OctMode:
-            current_base = calc_display->setBase(NumBase(8));
-            base_label->setText(QStringLiteral("Oct"));
-            base_mode_ = 8;
-            break;
-        case DecMode:
-            current_base = calc_display->setBase(NumBase(10));
-            base_label->setText(QStringLiteral("Dec"));
-            base_mode_ = 10;
-            break;
-        case HexMode:
-            current_base = calc_display->setBase(NumBase(16));
-            base_label->setText(QStringLiteral("Hex"));
-            base_mode_ = 16;
-            break;
-        default:
-            base_label->setText(QStringLiteral("Error"));
-            return;
-        }
-
-        // Enable the buttons available in this base
-        for (int i = 0; i < current_base; ++i) {
-            (num_button_group_->buttons().at(i))->setEnabled(true);
-        }
-
-        // Disable the buttons not available in this base
-        for (int i = current_base; i < 16; ++i) {
-            (num_button_group_->buttons().at(i))->setEnabled(false);
-        }
-
-        // Only enable the decimal point in decimal
-        pbPeriod->setEnabled(current_base == NB_DECIMAL);
-
-        // Only enable the x*10^y button in decimal
-        pbEE->setEnabled(current_base == NB_DECIMAL);
-
-        // Disable buttons that make only sense with floating point numbers
-        if (current_base != NB_DECIMAL) {
-            for (QAbstractButton *btn : std::as_const(scientific_buttons_)) {
-                btn->setEnabled(false);
-            }
-        } else {
-            for (QAbstractButton *btn : std::as_const(scientific_buttons_)) {
-                btn->setEnabled(true);
-            }
-        }
-
-        KCalcSettings::setBaseMode(base);
-        slotInputChanged();
+    // set display & statusbar (if item exist in statusbar)
+    statusBar()->setBase(base);
+    switch (base) {
+    case BinMode:
+        current_base = calc_display->setBase(NumBase(2));
+        base_label->setText(QStringLiteral("Bin"));
+        base_mode_ = 2;
+        break;
+    case OctMode:
+        current_base = calc_display->setBase(NumBase(8));
+        base_label->setText(QStringLiteral("Oct"));
+        base_mode_ = 8;
+        break;
+    case DecMode:
+        current_base = calc_display->setBase(NumBase(10));
+        base_label->setText(QStringLiteral("Dec"));
+        base_mode_ = 10;
+        break;
+    case HexMode:
+        current_base = calc_display->setBase(NumBase(16));
+        base_label->setText(QStringLiteral("Hex"));
+        base_mode_ = 16;
+        break;
+    default:
+        base_label->setText(QStringLiteral("Error"));
+        return;
     }
+
+    // Enable the buttons available in this base
+    for (int i = 0; i < current_base; ++i) {
+        (num_button_group_->buttons().at(i))->setEnabled(true);
+    }
+
+    // Disable the buttons not available in this base
+    for (int i = current_base; i < 16; ++i) {
+        (num_button_group_->buttons().at(i))->setEnabled(false);
+    }
+
+    // Only enable the decimal point in decimal
+    pbPeriod->setEnabled(current_base == NB_DECIMAL);
+
+    // Only enable the x*10^y button in decimal
+    pbEE->setEnabled(current_base == NB_DECIMAL);
+
+    // Disable buttons that make only sense with floating point numbers
+    if (current_base != NB_DECIMAL) {
+        for (QAbstractButton *btn : std::as_const(scientific_buttons_)) {
+            btn->setEnabled(false);
+        }
+    } else {
+        for (QAbstractButton *btn : std::as_const(scientific_buttons_)) {
+            btn->setEnabled(true);
+        }
+    }
+
+    slotInputChanged();
 }
 
 //------------------------------------------------------------------------------
@@ -845,7 +841,7 @@ void KCalculator::keyPressEvent(QKeyEvent *e)
     // Workaround for bug #283521
     // Unfortunately adding multiple shortcuts (A, Shift+A) to pushbuttons
     // does not work properly, so we handle the A-F keypresses with shift in Hex mode here
-    if (hexRadio->isChecked() && e->modifiers() & Qt::ShiftModifier) {
+    if (numeralSystemComboBox->currentData() == HexMode && e->modifiers() & Qt::ShiftModifier) {
         switch (e->key()) {
         case Qt::Key_A:
             pbA->animateClick();
@@ -1424,6 +1420,9 @@ void KCalculator::slotInputChanged()
         switch (calculation_result_code_) {
         case CalcEngine::ResultCode::MISIING_RIGHT_UNARY_ARG:
         case CalcEngine::ResultCode::MISIING_RIGHT_BINARY_ARG:
+            if (calc_display->text().isEmpty()) {
+                numeralSystemView->clearNumber();
+            }
             break;
         case CalcEngine::ResultCode::MATH_ERROR:
             updateDisplay(UPDATE_CLEAR);
@@ -2027,12 +2026,7 @@ void KCalculator::slotSetNumeralMode()
 //------------------------------------------------------------------------------
 void KCalculator::slotBaseModeAmountChanged(const KNumber &number)
 {
-    quint64 n = number.toUint64();
-
-    decDisplay->setText(QString::number(n, 10));
-    binDisplay->setText(QString::number(n, 2));
-    octDisplay->setText(QString::number(n, 8));
-    hexDisplay->setText(QString::number(n, 16).toUpper());
+    numeralSystemView->setNumber(number.toUint64(), base_mode_);
 }
 
 //------------------------------------------------------------------------------
@@ -2042,10 +2036,7 @@ void KCalculator::slotBaseModeAmountChanged(const KNumber &number)
 void KCalculator::slotClearBaseModeAmount()
 {
     if (m_parsingResult != KCalcParser::ParsingResult::SUCCESS_SINGLE_KNUMBER) {
-        decDisplay->clear();
-        binDisplay->clear();
-        octDisplay->clear();
-        hexDisplay->clear();
+        numeralSystemView->clearNumber();
     }
 }
 
@@ -2137,14 +2128,9 @@ void KCalculator::showLogicButtons(bool toggled)
         setBase();
         statusBar()->setBaseIndicatorVisible(true);
 
-        const auto buttons = base_choose_group_->buttons();
-        for (QAbstractButton *btn : buttons) {
-            btn->show();
-        }
+        numeralSystemComboBox->show();
+        numeralSystemView->show();
 
-        for (QLabel *lbl : base_conversion_labels_) {
-            lbl->show();
-        }
         connect(calc_display, &KCalcDisplay::changedAmount, this, &KCalculator::slotBaseModeAmountChanged);
 
         for (int i = 10; i < 16; ++i) {
@@ -2159,17 +2145,11 @@ void KCalculator::showLogicButtons(bool toggled)
             btn->hide();
         }
 
-        // Hide Hex-Buttons, but first switch back to decimal
-        decRadio->animateClick();
+        numeralSystemComboBox->hide();
+        numeralSystemView->hide();
 
-        const auto buttons = base_choose_group_->buttons();
-        for (QAbstractButton *btn : buttons) {
-            btn->hide();
-        }
+        numeralSystemComboBox->setCurrentIndex(numeralSystemComboBox->findData(DecMode));
 
-        for (QLabel *lbl : base_conversion_labels_) {
-            lbl->hide();
-        }
         connect(calc_display, &KCalcDisplay::changedAmount, this, &KCalculator::slotBaseModeAmountChanged);
 
         statusBar()->setBaseIndicatorVisible(false);
@@ -2757,9 +2737,7 @@ void KCalculator::setAngle()
 //------------------------------------------------------------------------------
 void KCalculator::setBase()
 {
-    if (QAbstractButton *const btn = base_choose_group_->button(KCalcSettings::baseMode())) {
-        btn->animateClick();
-    }
+    numeralSystemComboBox->setCurrentIndex(numeralSystemComboBox->findData(KCalcSettings::baseMode()));
 }
 
 //------------------------------------------------------------------------------

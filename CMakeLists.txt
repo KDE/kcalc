@@ -104,6 +104,7 @@ target_sources(kcalc PRIVATE
    kcalc_statusbar.cpp
    kcalc_stats.cpp
    kcalc_history.cpp
+   kcalc_numeralsystem_view.cpp
    kcalc_const_menu.h
    kcalc_core.h
    kcalc_core_p.h
@@ -121,6 +122,7 @@ target_sources(kcalc PRIVATE
    kcalc_priority_levels_p.h
    kcalc_display.h
    kcalc_history.h
+   kcalc_numeralsystem_view.h
    kcalc.qrc )
 
 ecm_qt_declare_logging_category(kcalc HEADER kcalc_debug.h IDENTIFIER KCALC_LOG CATEGORY_NAME org.kde.kcalc)

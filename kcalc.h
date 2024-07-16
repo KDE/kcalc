@@ -176,7 +176,7 @@ protected Q_SLOTS:
     void slotConstantsShow(bool toggled);
     void slotBitsetshow(bool toggled);
     void slotAngleSelected(QAbstractButton *button, bool checked);
-    void slotBaseSelected(QAbstractButton *button);
+    void slotBaseSelected();
     void slotNumberclicked(QAbstractButton *button);
     void slotEEclicked();
     void slotShifttoggled(bool myboolean);
@@ -276,7 +276,6 @@ private:
     Constants *constants_ = nullptr; // this is the dialog for configuring const buttons
 
     QButtonGroup *angle_choose_group_ = nullptr;
-    QButtonGroup *base_choose_group_ = nullptr;
     // num_button_group_: 0-9 = digits, 0xA-0xF = hex-keys
     QButtonGroup *num_button_group_ = nullptr;
 
@@ -284,8 +283,6 @@ private:
     QList<QAbstractButton *> scientific_buttons_;
     QList<QAbstractButton *> stat_buttons_;
     QList<QAbstractButton *> const_buttons_;
-
-    std::array<QLabel *, 4> base_conversion_labels_;
 
     KToggleAction *action_history_show_ = nullptr;
     KToggleAction *action_bitset_show_ = nullptr;
