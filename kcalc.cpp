@@ -1436,10 +1436,14 @@ void KCalculator::slotInputChanged()
         updateDisplay(UPDATE_CLEAR);
         if (base_mode_) {
             slotBaseModeAmountChanged(core.getResult());
+            slotUpdateBitset(core.getResult());
+            mBitset->setReadOnly(false);
         }
         return;
     } else {
         this->commit_Result_(false);
+        slotUpdateBitset(core.getResult());
+        mBitset->setReadOnly(true);
         return;
     }
 }
@@ -1452,6 +1456,7 @@ void KCalculator::slotClearResult()
 {
     calc_display->sendEvent(KCalcDisplay::EventReset);
     slotClearBaseModeAmount();
+    mBitset->clear();
 }
 
 //------------------------------------------------------------------------------
@@ -2260,8 +2265,8 @@ void KCalculator::changeButtonNames()
 //------------------------------------------------------------------------------
 void KCalculator::slotBitsetChanged(quint64 value)
 {
-    calc_display->setAmount(KNumber(value));
-    updateDisplay({});
+    input_display->clear();
+    input_display->insert(QString::number(value, base_mode_).toUpper());
 }
 
 //------------------------------------------------------------------------------

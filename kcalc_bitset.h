@@ -25,6 +25,8 @@ protected:
 public Q_SLOTS:
     void setValue(quint64 value);
     void slotToggleBit(QAbstractButton *button);
+    void setReadOnly(bool readOnly);
+    void clear();
 
 Q_SIGNALS:
     void valueChanged(quint64 value);
@@ -33,4 +35,5 @@ private:
     QButtonGroup *const bit_button_group_;
     quint64 value_;
     float ratio_;
+    bool m_readOnly;
 };

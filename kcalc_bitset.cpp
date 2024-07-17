@@ -87,6 +87,15 @@ KCalcBitset::KCalcBitset(QWidget *parent)
 }
 
 //------------------------------------------------------------------------------
+// Name: setReadOnly
+// Desc:
+//------------------------------------------------------------------------------
+void KCalcBitset::setReadOnly(bool readOnly)
+{
+    m_readOnly = readOnly;
+}
+
+//------------------------------------------------------------------------------
 // Name: setValue
 // Desc: set the value of the bitset based on an unsigned 64-bit number
 //------------------------------------------------------------------------------
@@ -109,6 +118,16 @@ void KCalcBitset::setValue(quint64 value)
 }
 
 //------------------------------------------------------------------------------
+// Name: clear
+// Desc:
+//------------------------------------------------------------------------------
+void KCalcBitset::clear()
+{
+    // TODO implement a better looking cleared state
+    setValue(0);
+}
+
+//------------------------------------------------------------------------------
 // Name: getValue
 // Desc: returns the bitset value as an unsigned 64-bit number
 //------------------------------------------------------------------------------
@@ -123,7 +142,7 @@ quint64 KCalcBitset::getValue() const
 //------------------------------------------------------------------------------
 void KCalcBitset::slotToggleBit(QAbstractButton *button)
 {
-    if (button) {
+    if (button && !m_readOnly) {
         const int bit = bit_button_group_->id(button);
         const quint64 nv = getValue() ^ (1LL << bit);
         setValue(nv);

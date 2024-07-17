@@ -253,6 +253,7 @@ private:
     void commit_Result_(bool toHistory = true);
     int load_Constants_(const QString &filePath);
 
+    bool numeral_system_mode_ = false;
     bool shift_mode_ = false;
     bool hyp_mode_ = false;
     bool update_history_window_ = false;
