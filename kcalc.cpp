@@ -2090,6 +2090,7 @@ void KCalculator::showStatButtons(bool toggled)
 void KCalculator::showScienceButtons(bool toggled)
 {
     if (toggled) {
+        angle_units_label->show();
         for (QAbstractButton *btn : std::as_const(scientific_buttons_)) {
             btn->show();
         }
@@ -2101,7 +2102,7 @@ void KCalculator::showScienceButtons(bool toggled)
         setAngle();
         statusBar()->setAngleModeIndicatorVisible(true);
     } else {
-        angle_units_label->setText(QStringLiteral(""));
+        angle_units_label->hide();
         for (QAbstractButton *btn : std::as_const(scientific_buttons_)) {
             btn->hide();
         }
@@ -2122,6 +2123,7 @@ void KCalculator::showScienceButtons(bool toggled)
 void KCalculator::showLogicButtons(bool toggled)
 {
     if (toggled) {
+        base_label->show();
         mBitset->setEnabled(true);
         connect(mBitset, &KCalcBitset::valueChanged, this, &KCalculator::slotBitsetChanged);
         connect(calc_display, &KCalcDisplay::changedAmount, this, &KCalculator::slotUpdateBitset);
@@ -2142,6 +2144,7 @@ void KCalculator::showLogicButtons(bool toggled)
             (num_button_group_->button(i))->show();
         }
     } else {
+        base_label->hide();
         mBitset->setEnabled(false);
         disconnect(mBitset, &KCalcBitset::valueChanged, this, &KCalculator::slotBitsetChanged);
         disconnect(calc_display, &KCalcDisplay::changedAmount, this, &KCalculator::slotUpdateBitset);
