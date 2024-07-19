@@ -308,32 +308,28 @@ msgid "Repeat operation for each result"
 msgstr "对每个结果重复操作"
 
 #: kcalc.cpp:82
-#, fuzzy, kde-format
-#| msgid "He&x"
+#, kde-format
 msgctxt "Hexadecimal numeral system"
 msgid "Hex"
-msgstr "十六进制(&X)"
+msgstr ""
 
 #: kcalc.cpp:83
-#, fuzzy, kde-format
-#| msgid "Dec"
+#, kde-format
 msgctxt "Decimal numeral system"
 msgid "Dec"
-msgstr "十进制"
+msgstr ""
 
 #: kcalc.cpp:84
-#, fuzzy, kde-format
-#| msgid "Oc&t"
+#, kde-format
 msgctxt "Octal numeral system"
 msgid "Oct"
-msgstr "八进制(&t)"
+msgstr ""
 
 #: kcalc.cpp:85
-#, fuzzy, kde-format
-#| msgid "&Bin"
+#, kde-format
 msgctxt "Binary numeral system"
 msgid "Bin"
-msgstr "二进制(&B)"
+msgstr ""
 
 #: kcalc.cpp:180
 #, kde-format
@@ -1381,10 +1377,9 @@ msgstr "百分度(&G)"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, numeralSystemComboBox)
 #: kcalc.ui:435
-#, fuzzy, kde-format
-#| msgid "Switch base to octal."
+#, kde-format
 msgid "Switch base"
-msgstr "将数制切换到八进制。"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbSquare)
 #: kcalc.ui:504
@@ -2386,15 +2381,3 @@ msgstr "斯蒂芬·波尔兹曼常数"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "阿伏加德罗氏数"
-
-#~ msgid "Switch base to hexadecimal."
-#~ msgstr "将数制切换到十六进制。"
-
-#~ msgid "Switch base to decimal."
-#~ msgstr "将数制切换到十进制。"
-
-#~ msgid "&Dec"
-#~ msgstr "十进制(&D)"
-
-#~ msgid "Switch base to binary."
-#~ msgstr "将数制切换到二进制。"
