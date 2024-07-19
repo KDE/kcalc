@@ -141,10 +141,6 @@
       </whatsthis>
       <default>true</default>
     </entry>
-    <entry name="RepeatLastOperation" type="Bool" key="repeatlastoperation">
-      <label>Enables that the last operation is repeated when "=" is pressed</label>
-      <default>false</default>
-    </entry>
     <entry name="CalculatorMode" type="Enum">
       <choices>
         <choice name="simple">
