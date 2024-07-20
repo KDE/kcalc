@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-17 00:41+0000\n"
+"POT-Creation-Date: 2024-07-20 00:42+0000\n"
 "PO-Revision-Date: 2020-09-16 01:55+0100\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian\n"
@@ -110,7 +110,7 @@ msgid "&Constants:"
 msgstr "&Constante"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
-#: constants.ui:13 kcalc.cpp:1728
+#: constants.ui:13 kcalc.cpp:1733
 #, kde-format
 msgid "Constants"
 msgstr "Constante"
@@ -166,7 +166,7 @@ msgid "The font to use in the history"
 msgstr "Fontul de utilizat în afișaj"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
-#: general.ui:14 kcalc.cpp:1688
+#: general.ui:14 kcalc.cpp:1693
 #, kde-format
 msgid "General"
 msgstr "Generale"
@@ -311,12 +311,6 @@ msgstr ""
 msgid "Two's complement"
 msgstr "Complement față de 2"
 
-#. i18n: ectx: property (text), widget (QCheckBox, kcfg_RepeatLastOperation)
-#: general.ui:199
-#, kde-format
-msgid "Repeat operation for each result"
-msgstr "Repetă operația pentru fiecare rezultat"
-
 #: kcalc.cpp:82
 #, fuzzy, kde-format
 #| msgid "He&x"
@@ -361,7 +355,7 @@ msgid "Statistic Mode"
 msgstr "Regim statistic"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
-#: kcalc.cpp:195 kcalc.kcfg:163
+#: kcalc.cpp:195 kcalc.kcfg:159
 #, kde-format
 msgid "Numeral System Mode"
 msgstr "Regim de sistem numeric"
@@ -821,111 +815,111 @@ msgctxt "Memory cleared"
 msgid "M cleared"
 msgstr "Curățare memorie"
 
-#: kcalc.cpp:1500
+#: kcalc.cpp:1505
 #, fuzzy, kde-format
 #| msgid "Number of data entered"
 msgid "Number of data entered = "
 msgstr "Numărul de date introduse"
 
-#: kcalc.cpp:1501
+#: kcalc.cpp:1506
 #, fuzzy, kde-format
 #| msgid "Number of data entered"
 msgid "Number of data entered ="
 msgstr "Numărul de date introduse"
 
-#: kcalc.cpp:1506
+#: kcalc.cpp:1511
 #, fuzzy, kde-format
 #| msgid "Sum of all data items"
 msgid "Sum of all data items ="
 msgstr "Suma tuturor elementelor de date"
 
-#: kcalc.cpp:1525
+#: kcalc.cpp:1530
 #, fuzzy, kde-format
 #| msgid "Mean"
 msgid "Mean = "
 msgstr "Media"
 
-#: kcalc.cpp:1529
+#: kcalc.cpp:1534
 #, kde-format
 msgid "Sum of squares ="
 msgstr ""
 
-#: kcalc.cpp:1572
+#: kcalc.cpp:1577
 #, fuzzy, kde-format
 #| msgid "Median"
 msgid "Median ="
 msgstr "Mediana"
 
-#: kcalc.cpp:1573
+#: kcalc.cpp:1578
 #, fuzzy, kde-format
 #| msgid "Mean"
 msgid "Median = "
 msgstr "Media"
 
-#: kcalc.cpp:1607 kcalc.cpp:1608
+#: kcalc.cpp:1612 kcalc.cpp:1613
 #, kde-format
 msgid "DAT ["
 msgstr ""
 
-#: kcalc.cpp:1607 kcalc.cpp:1608
+#: kcalc.cpp:1612 kcalc.cpp:1613
 #, kde-format
 msgid "] = "
 msgstr ""
 
-#: kcalc.cpp:1615 kcalc.cpp:1617 kcalc.cpp:1618
+#: kcalc.cpp:1620 kcalc.cpp:1622 kcalc.cpp:1623
 #, fuzzy, kde-format
 #| msgid "Last stat item erased"
 msgid "Last stat data erased"
 msgstr "Ultimul item statistic a fost șters"
 
-#: kcalc.cpp:1630 kcalc.cpp:1633 kcalc.cpp:1634
+#: kcalc.cpp:1635 kcalc.cpp:1638 kcalc.cpp:1639
 #, kde-format
 msgid "Stat mem cleared"
 msgstr "Memoria statistică a fost ștearsă"
 
-#: kcalc.cpp:1688
+#: kcalc.cpp:1693
 #, kde-format
 msgid "General Settings"
 msgstr "Configurări generale"
 
-#: kcalc.cpp:1692
+#: kcalc.cpp:1697
 #, fuzzy, kde-format
 #| msgid "Fonts"
 msgid "Fonts"
 msgstr "Fonturi"
 
-#: kcalc.cpp:1696
+#: kcalc.cpp:1701
 #, kde-format
 msgid "Colors"
 msgstr "Culori"
 
-#: kcalc.cpp:1696
+#: kcalc.cpp:1701
 #, kde-format
 msgid "Button & Display Colors"
 msgstr "Culori butoane și afișaj"
 
-#: kcalc.cpp:1728
+#: kcalc.cpp:1733
 #, kde-format
 msgid "Define Constants"
 msgstr "Definește constante"
 
-#: kcalc.cpp:2312
+#: kcalc.cpp:2320
 #, kde-format
 msgid "Input error"
 msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2858 kcalc.ui:20
+#: kcalc.cpp:2866 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "KCalc"
 
-#: kcalc.cpp:2860
+#: kcalc.cpp:2868
 #, kde-format
 msgid "KDE Calculator"
 msgstr "Calculator KDE"
 
-#: kcalc.cpp:2862
+#: kcalc.cpp:2870
 #, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
@@ -938,62 +932,62 @@ msgstr ""
 "Copyright © 2003-2005, Klaus Niederkrüger\n"
 "Copyright © 1996-2000, Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2872
+#: kcalc.cpp:2880
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr "Klaus Niederkrüger"
 
-#: kcalc.cpp:2877
+#: kcalc.cpp:2885
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2878
+#: kcalc.cpp:2886
 #, kde-format
 msgid "Evan Teran"
 msgstr "Evan Teran"
 
-#: kcalc.cpp:2878
+#: kcalc.cpp:2886
 #, kde-format
 msgid "Maintainer"
 msgstr "Responsabil"
 
-#: kcalc.cpp:2879
+#: kcalc.cpp:2887
 #, kde-format
 msgid "Espen Sand"
 msgstr "Espen Sand"
 
-#: kcalc.cpp:2880
+#: kcalc.cpp:2888
 #, kde-format
 msgid "Chris Howells"
 msgstr "Chris Howells"
 
-#: kcalc.cpp:2881
+#: kcalc.cpp:2889
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr "Aaron J. Seigo"
 
-#: kcalc.cpp:2882
+#: kcalc.cpp:2890
 #, kde-format
 msgid "Charles Samuels"
 msgstr "Charles Samuels"
 
-#: kcalc.cpp:2884
+#: kcalc.cpp:2892
 #, kde-format
 msgid "René Mérou"
 msgstr "René Mérou"
 
-#: kcalc.cpp:2891
+#: kcalc.cpp:2899
 #, kde-format
 msgid "Michel Marti"
 msgstr "Michel Marti"
 
-#: kcalc.cpp:2892
+#: kcalc.cpp:2900
 #, kde-format
 msgid "David Johnson"
 msgstr "David Johnson"
 
-#: kcalc.cpp:2893
+#: kcalc.cpp:2901
 #, kde-format
 msgid "Niklas Freund"
 msgstr ""
@@ -1182,44 +1176,38 @@ msgid ""
 "      "
 msgstr ""
 
-#. i18n: ectx: label, entry (RepeatLastOperation), group (General)
-#: kcalc.kcfg:145
-#, kde-format
-msgid "Enables that the last operation is repeated when \"=\" is pressed"
-msgstr "Activează repetarea ultimei operații la apăsarea „=”"
-
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:151
+#: kcalc.kcfg:147
 #, kde-format
 msgid "Easy Calculator Mode"
 msgstr "Regim de calculator simplu"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:152
+#: kcalc.kcfg:148
 #, kde-format
 msgid "A very simple mode where only the basic calculator buttons are shown"
 msgstr "Un regim foarte simplu, în care sunt afișate numai butoanele de bază."
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:155
+#: kcalc.kcfg:151
 #, kde-format
 msgid "Science Calculator Mode"
 msgstr "Regim de calculator științific"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:156
+#: kcalc.kcfg:152
 #, kde-format
 msgid "Mode with science buttons and optional constants buttons"
 msgstr "Un regim cu butoane științifice și butoane opționale pentru constante"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:159
+#: kcalc.kcfg:155
 #, kde-format
 msgid "Statistic Calculator Mode"
 msgstr "Regim de calculator statistic"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:160
+#: kcalc.kcfg:156
 #, kde-format
 msgid "Mode with additional statistics buttons and optional constants buttons"
 msgstr ""
@@ -1227,51 +1215,51 @@ msgstr ""
 "constante"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:164
+#: kcalc.kcfg:160
 #, kde-format
 msgid ""
 "Mode with logic buttons and selectable base. Optional bit edit available."
 msgstr ""
 
 #. i18n: ectx: label, entry (ShowBitset), group (General)
-#: kcalc.kcfg:169
+#: kcalc.kcfg:165
 #, kde-format
 msgid "Whether to show the bit edit widget."
 msgstr "Dacă să fie afișat editorul de biți."
 
 #. i18n: ectx: label, entry (ShowConstants), group (General)
-#: kcalc.kcfg:173
+#: kcalc.kcfg:169
 #, kde-format
 msgid "Whether to show constant buttons."
 msgstr "Controlează dacă să fie afișate sau nu butoanele pentru constante."
 
 #. i18n: ectx: label, entry (ShowHistory), group (General)
-#: kcalc.kcfg:177
+#: kcalc.kcfg:173
 #, fuzzy, kde-format
 #| msgid "Whether to show the bit edit widget."
 msgid "Whether to show the history window."
 msgstr "Dacă să fie afișat editorul de biți."
 
 #. i18n: ectx: label, entry (AngleMode), group (General)
-#: kcalc.kcfg:181
+#: kcalc.kcfg:177
 #, kde-format
 msgid "Degrees, radians or grads"
 msgstr "Grade, radiani sau gradiani"
 
 #. i18n: ectx: label, entry (BaseMode), group (General)
-#: kcalc.kcfg:185
+#: kcalc.kcfg:181
 #, kde-format
 msgid "Numeric base"
 msgstr "Baza de numerație"
 
 #. i18n: ectx: label, entry (BinaryGrouping), group (Grouping)
-#: kcalc.kcfg:191
+#: kcalc.kcfg:187
 #, kde-format
 msgid "Binary figures will be separated by a whitespace after every Xth digit."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
-#: kcalc.kcfg:196
+#: kcalc.kcfg:192
 #, kde-format
 msgid ""
 "\n"
@@ -1284,13 +1272,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (OctalGrouping), group (Grouping)
-#: kcalc.kcfg:200
+#: kcalc.kcfg:196
 #, kde-format
 msgid "Octal figures will be separated by a whitespace after every Xth digit."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
-#: kcalc.kcfg:205
+#: kcalc.kcfg:201
 #, kde-format
 msgid ""
 "\n"
@@ -1303,14 +1291,14 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (HexadecimalGrouping), group (Grouping)
-#: kcalc.kcfg:209
+#: kcalc.kcfg:205
 #, kde-format
 msgid ""
 "Hexadecimal figures will be separated by a whitespace after every Xth digit."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
-#: kcalc.kcfg:214
+#: kcalc.kcfg:210
 #, kde-format
 msgid ""
 "\n"
@@ -1323,49 +1311,49 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (nameConstant$(ConstIndex)), group (UserConstants)
-#: kcalc.kcfg:220
+#: kcalc.kcfg:216
 #, kde-format
 msgid "Name of the user programmable constants."
 msgstr "Denumirea constantelor programabile de către utilizator."
 
-#: kcalc.kcfg:230
+#: kcalc.kcfg:226
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C1"
 msgstr "C1"
 
-#: kcalc.kcfg:231
+#: kcalc.kcfg:227
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C2"
 msgstr "C2"
 
-#: kcalc.kcfg:232
+#: kcalc.kcfg:228
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C3"
 msgstr "C3"
 
-#: kcalc.kcfg:233
+#: kcalc.kcfg:229
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C4"
 msgstr "C4"
 
-#: kcalc.kcfg:234
+#: kcalc.kcfg:230
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C5"
 msgstr "C5"
 
-#: kcalc.kcfg:235
+#: kcalc.kcfg:231
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C6"
 msgstr "C6"
 
 #. i18n: ectx: label, entry (valueConstant$(ConstIndex)), group (UserConstants)
-#: kcalc.kcfg:239
+#: kcalc.kcfg:235
 #, kde-format
 msgid "List of user programmable constants"
 msgstr "Lista constantelor programabile de către utilizator"
@@ -2426,6 +2414,12 @@ msgstr "Constanta Stefan-Boltzmann"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Numărul lui Avogadro"
+
+#~ msgid "Repeat operation for each result"
+#~ msgstr "Repetă operația pentru fiecare rezultat"
+
+#~ msgid "Enables that the last operation is repeated when \"=\" is pressed"
+#~ msgstr "Activează repetarea ultimei operații la apăsarea „=”"
 
 #~ msgid "Switch base to hexadecimal."
 #~ msgstr "Comută baza la hexazecimal."

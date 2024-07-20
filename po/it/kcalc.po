@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-17 00:41+0000\n"
+"POT-Creation-Date: 2024-07-20 00:42+0000\n"
 "PO-Revision-Date: 2024-05-25 21:26+0200\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -112,7 +112,7 @@ msgid "&Constants:"
 msgstr "&Costanti:"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
-#: constants.ui:13 kcalc.cpp:1728
+#: constants.ui:13 kcalc.cpp:1733
 #, kde-format
 msgid "Constants"
 msgstr "Costanti"
@@ -166,7 +166,7 @@ msgid "The font to use in the history"
 msgstr "Il carattere da usare per la cronologia"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
-#: general.ui:14 kcalc.cpp:1688
+#: general.ui:14 kcalc.cpp:1693
 #, kde-format
 msgid "General"
 msgstr "Generale"
@@ -312,12 +312,6 @@ msgstr ""
 msgid "Two's complement"
 msgstr "Complemento a due"
 
-#. i18n: ectx: property (text), widget (QCheckBox, kcfg_RepeatLastOperation)
-#: general.ui:199
-#, kde-format
-msgid "Repeat operation for each result"
-msgstr "Ripeti l'operazione per ogni risultato"
-
 #: kcalc.cpp:82
 #, fuzzy, kde-format
 #| msgid "He&x"
@@ -362,7 +356,7 @@ msgid "Statistic Mode"
 msgstr "Modalità statistica"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
-#: kcalc.cpp:195 kcalc.kcfg:163
+#: kcalc.cpp:195 kcalc.kcfg:159
 #, kde-format
 msgid "Numeral System Mode"
 msgstr "Modalità base di numerazione"
@@ -799,103 +793,103 @@ msgctxt "Memory cleared"
 msgid "M cleared"
 msgstr "M pulita"
 
-#: kcalc.cpp:1500
+#: kcalc.cpp:1505
 #, kde-format
 msgid "Number of data entered = "
 msgstr "Numero di dati inseriti = "
 
-#: kcalc.cpp:1501
+#: kcalc.cpp:1506
 #, kde-format
 msgid "Number of data entered ="
 msgstr "Numero di dati inseriti ="
 
-#: kcalc.cpp:1506
+#: kcalc.cpp:1511
 #, kde-format
 msgid "Sum of all data items ="
 msgstr "Somma di tutti i dati inseriti ="
 
-#: kcalc.cpp:1525
+#: kcalc.cpp:1530
 #, kde-format
 msgid "Mean = "
 msgstr "Media = "
 
-#: kcalc.cpp:1529
+#: kcalc.cpp:1534
 #, kde-format
 msgid "Sum of squares ="
 msgstr "Summa dei quadrati ="
 
-#: kcalc.cpp:1572
+#: kcalc.cpp:1577
 #, kde-format
 msgid "Median ="
 msgstr "Mediana ="
 
-#: kcalc.cpp:1573
+#: kcalc.cpp:1578
 #, kde-format
 msgid "Median = "
 msgstr "Mediana = "
 
-#: kcalc.cpp:1607 kcalc.cpp:1608
+#: kcalc.cpp:1612 kcalc.cpp:1613
 #, kde-format
 msgid "DAT ["
 msgstr "DAT ["
 
-#: kcalc.cpp:1607 kcalc.cpp:1608
+#: kcalc.cpp:1612 kcalc.cpp:1613
 #, kde-format
 msgid "] = "
 msgstr "] = "
 
-#: kcalc.cpp:1615 kcalc.cpp:1617 kcalc.cpp:1618
+#: kcalc.cpp:1620 kcalc.cpp:1622 kcalc.cpp:1623
 #, kde-format
 msgid "Last stat data erased"
 msgstr "Ultimi dati statistici eliminati"
 
-#: kcalc.cpp:1630 kcalc.cpp:1633 kcalc.cpp:1634
+#: kcalc.cpp:1635 kcalc.cpp:1638 kcalc.cpp:1639
 #, kde-format
 msgid "Stat mem cleared"
 msgstr "Memoria statistica svuotata"
 
-#: kcalc.cpp:1688
+#: kcalc.cpp:1693
 #, kde-format
 msgid "General Settings"
 msgstr "Impostazioni generali"
 
-#: kcalc.cpp:1692
+#: kcalc.cpp:1697
 #, kde-format
 msgid "Fonts"
 msgstr "Caratteri"
 
-#: kcalc.cpp:1696
+#: kcalc.cpp:1701
 #, kde-format
 msgid "Colors"
 msgstr "Colori"
 
-#: kcalc.cpp:1696
+#: kcalc.cpp:1701
 #, kde-format
 msgid "Button & Display Colors"
 msgstr "Colori dei pulsanti e del display"
 
-#: kcalc.cpp:1728
+#: kcalc.cpp:1733
 #, kde-format
 msgid "Define Constants"
 msgstr "Definisci costanti"
 
-#: kcalc.cpp:2312
+#: kcalc.cpp:2320
 #, kde-format
 msgid "Input error"
 msgstr "Errore in ingresso"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2858 kcalc.ui:20
+#: kcalc.cpp:2866 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "KCalc"
 
-#: kcalc.cpp:2860
+#: kcalc.cpp:2868
 #, kde-format
 msgid "KDE Calculator"
 msgstr "Calcolatrice di KDE"
 
-#: kcalc.cpp:2862
+#: kcalc.cpp:2870
 #, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
@@ -908,62 +902,62 @@ msgstr ""
 "Copyright © 2003-2005, Klaus Niederkrüger\n"
 "Copyright © 1996-2000, Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2872
+#: kcalc.cpp:2880
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr "Klaus Niederkrüger"
 
-#: kcalc.cpp:2877
+#: kcalc.cpp:2885
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2878
+#: kcalc.cpp:2886
 #, kde-format
 msgid "Evan Teran"
 msgstr "Evan Teran"
 
-#: kcalc.cpp:2878
+#: kcalc.cpp:2886
 #, kde-format
 msgid "Maintainer"
 msgstr "Responsabile"
 
-#: kcalc.cpp:2879
+#: kcalc.cpp:2887
 #, kde-format
 msgid "Espen Sand"
 msgstr "Espen Sand"
 
-#: kcalc.cpp:2880
+#: kcalc.cpp:2888
 #, kde-format
 msgid "Chris Howells"
 msgstr "Chris Howells"
 
-#: kcalc.cpp:2881
+#: kcalc.cpp:2889
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr "Aaron J. Seigo"
 
-#: kcalc.cpp:2882
+#: kcalc.cpp:2890
 #, kde-format
 msgid "Charles Samuels"
 msgstr "Charles Samuels"
 
-#: kcalc.cpp:2884
+#: kcalc.cpp:2892
 #, kde-format
 msgid "René Mérou"
 msgstr "René Mérou"
 
-#: kcalc.cpp:2891
+#: kcalc.cpp:2899
 #, kde-format
 msgid "Michel Marti"
 msgstr "Michel Marti"
 
-#: kcalc.cpp:2892
+#: kcalc.cpp:2900
 #, kde-format
 msgid "David Johnson"
 msgstr "David Johnson"
 
-#: kcalc.cpp:2893
+#: kcalc.cpp:2901
 #, kde-format
 msgid "Niklas Freund"
 msgstr "Niklas Freund"
@@ -1162,46 +1156,40 @@ msgstr ""
 "decimali.\n"
 "      "
 
-#. i18n: ectx: label, entry (RepeatLastOperation), group (General)
-#: kcalc.kcfg:145
-#, kde-format
-msgid "Enables that the last operation is repeated when \"=\" is pressed"
-msgstr "Abilita la ripetizione dell'ultima operazione quando viene premuto «=»"
-
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:151
+#: kcalc.kcfg:147
 #, kde-format
 msgid "Easy Calculator Mode"
 msgstr "Modalità calcolatrice semplice"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:152
+#: kcalc.kcfg:148
 #, kde-format
 msgid "A very simple mode where only the basic calculator buttons are shown"
 msgstr ""
 "Una modalità molto semplice in cui sono mostrati solo i pulsanti di base"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:155
+#: kcalc.kcfg:151
 #, kde-format
 msgid "Science Calculator Mode"
 msgstr "Modalità calcolatrice scientifica"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:156
+#: kcalc.kcfg:152
 #, kde-format
 msgid "Mode with science buttons and optional constants buttons"
 msgstr ""
 "Modalità con i pulsanti scientifici e quelli facoltativi delle costanti"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:159
+#: kcalc.kcfg:155
 #, kde-format
 msgid "Statistic Calculator Mode"
 msgstr "Modalità calcolatrice statistica"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:160
+#: kcalc.kcfg:156
 #, kde-format
 msgid "Mode with additional statistics buttons and optional constants buttons"
 msgstr ""
@@ -1209,7 +1197,7 @@ msgstr ""
 "costanti"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:164
+#: kcalc.kcfg:160
 #, kde-format
 msgid ""
 "Mode with logic buttons and selectable base. Optional bit edit available."
@@ -1218,43 +1206,43 @@ msgstr ""
 "opzione, modificare i bit."
 
 #. i18n: ectx: label, entry (ShowBitset), group (General)
-#: kcalc.kcfg:169
+#: kcalc.kcfg:165
 #, kde-format
 msgid "Whether to show the bit edit widget."
 msgstr "Mostrare o no i pulsanti di modifica dei bit."
 
 #. i18n: ectx: label, entry (ShowConstants), group (General)
-#: kcalc.kcfg:173
+#: kcalc.kcfg:169
 #, kde-format
 msgid "Whether to show constant buttons."
 msgstr "Mostrare o no i pulsanti delle costanti."
 
 #. i18n: ectx: label, entry (ShowHistory), group (General)
-#: kcalc.kcfg:177
+#: kcalc.kcfg:173
 #, kde-format
 msgid "Whether to show the history window."
 msgstr "Mostrare o no la finestra della cronologia."
 
 #. i18n: ectx: label, entry (AngleMode), group (General)
-#: kcalc.kcfg:181
+#: kcalc.kcfg:177
 #, kde-format
 msgid "Degrees, radians or grads"
 msgstr "Gradi, radianti o gradi centesimali"
 
 #. i18n: ectx: label, entry (BaseMode), group (General)
-#: kcalc.kcfg:185
+#: kcalc.kcfg:181
 #, kde-format
 msgid "Numeric base"
 msgstr "Base numerica"
 
 #. i18n: ectx: label, entry (BinaryGrouping), group (Grouping)
-#: kcalc.kcfg:191
+#: kcalc.kcfg:187
 #, kde-format
 msgid "Binary figures will be separated by a whitespace after every Xth digit."
 msgstr "Le cifre binarie saranno separate da uno spazio ogni X cifre."
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
-#: kcalc.kcfg:196
+#: kcalc.kcfg:192
 #, kde-format
 msgid ""
 "\n"
@@ -1274,13 +1262,13 @@ msgstr ""
 "        "
 
 #. i18n: ectx: label, entry (OctalGrouping), group (Grouping)
-#: kcalc.kcfg:200
+#: kcalc.kcfg:196
 #, kde-format
 msgid "Octal figures will be separated by a whitespace after every Xth digit."
 msgstr "Le cifre ottali saranno separate da uno spazio ogni X cifre."
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
-#: kcalc.kcfg:205
+#: kcalc.kcfg:201
 #, kde-format
 msgid ""
 "\n"
@@ -1300,14 +1288,14 @@ msgstr ""
 "        "
 
 #. i18n: ectx: label, entry (HexadecimalGrouping), group (Grouping)
-#: kcalc.kcfg:209
+#: kcalc.kcfg:205
 #, kde-format
 msgid ""
 "Hexadecimal figures will be separated by a whitespace after every Xth digit."
 msgstr "Le cifre esadecimali saranno separate da uno spazio ogni X cifre."
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
-#: kcalc.kcfg:214
+#: kcalc.kcfg:210
 #, kde-format
 msgid ""
 "\n"
@@ -1327,49 +1315,49 @@ msgstr ""
 "        "
 
 #. i18n: ectx: label, entry (nameConstant$(ConstIndex)), group (UserConstants)
-#: kcalc.kcfg:220
+#: kcalc.kcfg:216
 #, kde-format
 msgid "Name of the user programmable constants."
 msgstr "Nome delle costanti programmabili dall'utente"
 
-#: kcalc.kcfg:230
+#: kcalc.kcfg:226
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C1"
 msgstr "C1"
 
-#: kcalc.kcfg:231
+#: kcalc.kcfg:227
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C2"
 msgstr "C2"
 
-#: kcalc.kcfg:232
+#: kcalc.kcfg:228
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C3"
 msgstr "C3"
 
-#: kcalc.kcfg:233
+#: kcalc.kcfg:229
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C4"
 msgstr "C4"
 
-#: kcalc.kcfg:234
+#: kcalc.kcfg:230
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C5"
 msgstr "C5"
 
-#: kcalc.kcfg:235
+#: kcalc.kcfg:231
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C6"
 msgstr "C6"
 
 #. i18n: ectx: label, entry (valueConstant$(ConstIndex)), group (UserConstants)
-#: kcalc.kcfg:239
+#: kcalc.kcfg:235
 #, kde-format
 msgid "List of user programmable constants"
 msgstr "Elenco di costanti programmabili dall'utente"
@@ -2424,6 +2412,13 @@ msgstr "Costante di Stefan-Boltzmann"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Numero di Avogadro"
+
+#~ msgid "Repeat operation for each result"
+#~ msgstr "Ripeti l'operazione per ogni risultato"
+
+#~ msgid "Enables that the last operation is repeated when \"=\" is pressed"
+#~ msgstr ""
+#~ "Abilita la ripetizione dell'ultima operazione quando viene premuto «=»"
 
 #~ msgid "Switch base to hexadecimal."
 #~ msgstr "Passa in base esadecimale."

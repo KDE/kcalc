@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-17 00:41+0000\n"
+"POT-Creation-Date: 2024-07-20 00:42+0000\n"
 "PO-Revision-Date: 2024-01-28 00:32+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -108,7 +108,7 @@ msgid "&Constants:"
 msgstr "常數(&C)："
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
-#: constants.ui:13 kcalc.cpp:1728
+#: constants.ui:13 kcalc.cpp:1733
 #, kde-format
 msgid "Constants"
 msgstr "常數"
@@ -162,7 +162,7 @@ msgid "The font to use in the history"
 msgstr "歷史紀錄所使用的字型"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
-#: general.ui:14 kcalc.cpp:1688
+#: general.ui:14 kcalc.cpp:1693
 #, kde-format
 msgid "General"
 msgstr "一般"
@@ -303,12 +303,6 @@ msgstr ""
 msgid "Two's complement"
 msgstr "2 的補數"
 
-#. i18n: ectx: property (text), widget (QCheckBox, kcfg_RepeatLastOperation)
-#: general.ui:199
-#, kde-format
-msgid "Repeat operation for each result"
-msgstr "對每個結果重複操作"
-
 #: kcalc.cpp:82
 #, fuzzy, kde-format
 #| msgid "He&x"
@@ -353,7 +347,7 @@ msgid "Statistic Mode"
 msgstr "統計模式"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
-#: kcalc.cpp:195 kcalc.kcfg:163
+#: kcalc.cpp:195 kcalc.kcfg:159
 #, kde-format
 msgid "Numeral System Mode"
 msgstr "數值系統模式"
@@ -791,108 +785,108 @@ msgctxt "Memory cleared"
 msgid "M cleared"
 msgstr "清除記憶內容"
 
-#: kcalc.cpp:1500
+#: kcalc.cpp:1505
 #, kde-format
 msgid "Number of data entered = "
 msgstr "輸入的資料數 = "
 
-#: kcalc.cpp:1501
+#: kcalc.cpp:1506
 #, fuzzy, kde-format
 #| msgid "Number of data entered = "
 msgid "Number of data entered ="
 msgstr "輸入的資料數 = "
 
-#: kcalc.cpp:1506
+#: kcalc.cpp:1511
 #, fuzzy, kde-format
 #| msgid "Sum of all data items"
 msgid "Sum of all data items ="
 msgstr "所有資料總和"
 
-#: kcalc.cpp:1525
+#: kcalc.cpp:1530
 #, kde-format
 msgid "Mean = "
 msgstr "平均數 = "
 
-#: kcalc.cpp:1529
+#: kcalc.cpp:1534
 #, kde-format
 msgid "Sum of squares ="
 msgstr ""
 
-#: kcalc.cpp:1572
+#: kcalc.cpp:1577
 #, fuzzy, kde-format
 #| msgid "Median"
 msgid "Median ="
 msgstr "中間數"
 
-#: kcalc.cpp:1573
+#: kcalc.cpp:1578
 #, fuzzy, kde-format
 #| msgid "Mean = "
 msgid "Median = "
 msgstr "平均數 = "
 
-#: kcalc.cpp:1607 kcalc.cpp:1608
+#: kcalc.cpp:1612 kcalc.cpp:1613
 #, kde-format
 msgid "DAT ["
 msgstr "DAT ["
 
-#: kcalc.cpp:1607 kcalc.cpp:1608
+#: kcalc.cpp:1612 kcalc.cpp:1613
 #, kde-format
 msgid "] = "
 msgstr "] = "
 
-#: kcalc.cpp:1615 kcalc.cpp:1617 kcalc.cpp:1618
+#: kcalc.cpp:1620 kcalc.cpp:1622 kcalc.cpp:1623
 #, kde-format
 msgid "Last stat data erased"
 msgstr "已清除最後統計資料"
 
-#: kcalc.cpp:1630 kcalc.cpp:1633 kcalc.cpp:1634
+#: kcalc.cpp:1635 kcalc.cpp:1638 kcalc.cpp:1639
 #, kde-format
 msgid "Stat mem cleared"
 msgstr "已清除統計記憶體"
 
-#: kcalc.cpp:1688
+#: kcalc.cpp:1693
 #, kde-format
 msgid "General Settings"
 msgstr "一般設定"
 
-#: kcalc.cpp:1692
+#: kcalc.cpp:1697
 #, fuzzy, kde-format
 #| msgid "Font"
 msgid "Fonts"
 msgstr "字型"
 
-#: kcalc.cpp:1696
+#: kcalc.cpp:1701
 #, kde-format
 msgid "Colors"
 msgstr "顏色"
 
-#: kcalc.cpp:1696
+#: kcalc.cpp:1701
 #, kde-format
 msgid "Button & Display Colors"
 msgstr "按鈕與顯示顏色"
 
-#: kcalc.cpp:1728
+#: kcalc.cpp:1733
 #, kde-format
 msgid "Define Constants"
 msgstr "定義常數"
 
-#: kcalc.cpp:2312
+#: kcalc.cpp:2320
 #, kde-format
 msgid "Input error"
 msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2858 kcalc.ui:20
+#: kcalc.cpp:2866 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "KCalc"
 
-#: kcalc.cpp:2860
+#: kcalc.cpp:2868
 #, kde-format
 msgid "KDE Calculator"
 msgstr "KDE 計算機"
 
-#: kcalc.cpp:2862
+#: kcalc.cpp:2870
 #, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
@@ -905,62 +899,62 @@ msgstr ""
 "Copyright © 2003-2005, Klaus Niederkrüger\n"
 "Copyright © 1996-2000, Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2872
+#: kcalc.cpp:2880
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr "Klaus Niederkrüger"
 
-#: kcalc.cpp:2877
+#: kcalc.cpp:2885
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2878
+#: kcalc.cpp:2886
 #, kde-format
 msgid "Evan Teran"
 msgstr "Evan Teran"
 
-#: kcalc.cpp:2878
+#: kcalc.cpp:2886
 #, kde-format
 msgid "Maintainer"
 msgstr "維護者"
 
-#: kcalc.cpp:2879
+#: kcalc.cpp:2887
 #, kde-format
 msgid "Espen Sand"
 msgstr "Espen Sand"
 
-#: kcalc.cpp:2880
+#: kcalc.cpp:2888
 #, kde-format
 msgid "Chris Howells"
 msgstr "Chris Howells"
 
-#: kcalc.cpp:2881
+#: kcalc.cpp:2889
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr "Aaron J. Seigo"
 
-#: kcalc.cpp:2882
+#: kcalc.cpp:2890
 #, kde-format
 msgid "Charles Samuels"
 msgstr "Charles Samuels"
 
-#: kcalc.cpp:2884
+#: kcalc.cpp:2892
 #, kde-format
 msgid "René Mérou"
 msgstr "René Mérou"
 
-#: kcalc.cpp:2891
+#: kcalc.cpp:2899
 #, kde-format
 msgid "Michel Marti"
 msgstr "Michel Marti"
 
-#: kcalc.cpp:2892
+#: kcalc.cpp:2900
 #, kde-format
 msgid "David Johnson"
 msgstr "David Johnson"
 
-#: kcalc.cpp:2893
+#: kcalc.cpp:2901
 #, kde-format
 msgid "Niklas Freund"
 msgstr "Niklas Freund"
@@ -1152,93 +1146,87 @@ msgstr ""
 "        表示負數。\n"
 "      "
 
-#. i18n: ectx: label, entry (RepeatLastOperation), group (General)
-#: kcalc.kcfg:145
-#, kde-format
-msgid "Enables that the last operation is repeated when \"=\" is pressed"
-msgstr "啟用「當 \"=\" 按下時，重複上次操作」的功能"
-
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:151
+#: kcalc.kcfg:147
 #, kde-format
 msgid "Easy Calculator Mode"
 msgstr "簡單計算機模式"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:152
+#: kcalc.kcfg:148
 #, kde-format
 msgid "A very simple mode where only the basic calculator buttons are shown"
 msgstr "非常簡單的模式，只有基本計算機的按鍵"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:155
+#: kcalc.kcfg:151
 #, kde-format
 msgid "Science Calculator Mode"
 msgstr "科學計算機模式"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:156
+#: kcalc.kcfg:152
 #, kde-format
 msgid "Mode with science buttons and optional constants buttons"
 msgstr "包含科學運算使用的按鍵，還有一些常數可使用的模式"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:159
+#: kcalc.kcfg:155
 #, kde-format
 msgid "Statistic Calculator Mode"
 msgstr "統計計算機模式"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:160
+#: kcalc.kcfg:156
 #, kde-format
 msgid "Mode with additional statistics buttons and optional constants buttons"
 msgstr "包含統計運算使用的按鍵，還有一些常數可使用的模式"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:164
+#: kcalc.kcfg:160
 #, kde-format
 msgid ""
 "Mode with logic buttons and selectable base. Optional bit edit available."
 msgstr "包含邏輯運算使用的按鍵，並可選擇基底。另外可以有位元編輯的模式。"
 
 #. i18n: ectx: label, entry (ShowBitset), group (General)
-#: kcalc.kcfg:169
+#: kcalc.kcfg:165
 #, kde-format
 msgid "Whether to show the bit edit widget."
 msgstr "是否要顯示位元編輯視窗。"
 
 #. i18n: ectx: label, entry (ShowConstants), group (General)
-#: kcalc.kcfg:173
+#: kcalc.kcfg:169
 #, kde-format
 msgid "Whether to show constant buttons."
 msgstr "要不要顯示常數按鍵"
 
 #. i18n: ectx: label, entry (ShowHistory), group (General)
-#: kcalc.kcfg:177
+#: kcalc.kcfg:173
 #, kde-format
 msgid "Whether to show the history window."
 msgstr "是否要顯示歷史紀錄視窗。"
 
 #. i18n: ectx: label, entry (AngleMode), group (General)
-#: kcalc.kcfg:181
+#: kcalc.kcfg:177
 #, kde-format
 msgid "Degrees, radians or grads"
 msgstr "度、弧度或梯度"
 
 #. i18n: ectx: label, entry (BaseMode), group (General)
-#: kcalc.kcfg:185
+#: kcalc.kcfg:181
 #, kde-format
 msgid "Numeric base"
 msgstr "數字基底"
 
 #. i18n: ectx: label, entry (BinaryGrouping), group (Grouping)
-#: kcalc.kcfg:191
+#: kcalc.kcfg:187
 #, kde-format
 msgid "Binary figures will be separated by a whitespace after every Xth digit."
 msgstr "二進位值會每 X 個數字插入一個空格。"
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
-#: kcalc.kcfg:196
+#: kcalc.kcfg:192
 #, kde-format
 msgid ""
 "\n"
@@ -1256,13 +1244,13 @@ msgstr ""
 "        "
 
 #. i18n: ectx: label, entry (OctalGrouping), group (Grouping)
-#: kcalc.kcfg:200
+#: kcalc.kcfg:196
 #, kde-format
 msgid "Octal figures will be separated by a whitespace after every Xth digit."
 msgstr "八進位值會每 X 個數字插入一個空格。"
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
-#: kcalc.kcfg:205
+#: kcalc.kcfg:201
 #, kde-format
 msgid ""
 "\n"
@@ -1280,14 +1268,14 @@ msgstr ""
 "        "
 
 #. i18n: ectx: label, entry (HexadecimalGrouping), group (Grouping)
-#: kcalc.kcfg:209
+#: kcalc.kcfg:205
 #, kde-format
 msgid ""
 "Hexadecimal figures will be separated by a whitespace after every Xth digit."
 msgstr "十六進位值會每 X 個數字插入一個空格。"
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
-#: kcalc.kcfg:214
+#: kcalc.kcfg:210
 #, kde-format
 msgid ""
 "\n"
@@ -1305,49 +1293,49 @@ msgstr ""
 "        "
 
 #. i18n: ectx: label, entry (nameConstant$(ConstIndex)), group (UserConstants)
-#: kcalc.kcfg:220
+#: kcalc.kcfg:216
 #, kde-format
 msgid "Name of the user programmable constants."
 msgstr "使用者定義的常數名稱"
 
-#: kcalc.kcfg:230
+#: kcalc.kcfg:226
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C1"
 msgstr "C1"
 
-#: kcalc.kcfg:231
+#: kcalc.kcfg:227
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C2"
 msgstr "C2"
 
-#: kcalc.kcfg:232
+#: kcalc.kcfg:228
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C3"
 msgstr "C3"
 
-#: kcalc.kcfg:233
+#: kcalc.kcfg:229
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C4"
 msgstr "C4"
 
-#: kcalc.kcfg:234
+#: kcalc.kcfg:230
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C5"
 msgstr "C5"
 
-#: kcalc.kcfg:235
+#: kcalc.kcfg:231
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C6"
 msgstr "C6"
 
 #. i18n: ectx: label, entry (valueConstant$(ConstIndex)), group (UserConstants)
-#: kcalc.kcfg:239
+#: kcalc.kcfg:235
 #, kde-format
 msgid "List of user programmable constants"
 msgstr "使用者定義的常數清單"
@@ -2406,6 +2394,12 @@ msgstr "史特凡-波茲曼常數"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "亞佛加厥常數"
+
+#~ msgid "Repeat operation for each result"
+#~ msgstr "對每個結果重複操作"
+
+#~ msgid "Enables that the last operation is repeated when \"=\" is pressed"
+#~ msgstr "啟用「當 \"=\" 按下時，重複上次操作」的功能"
 
 #~ msgid "Switch base to hexadecimal."
 #~ msgstr "切換到十六進位制。"
