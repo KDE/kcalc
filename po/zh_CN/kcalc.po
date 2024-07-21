@@ -2369,9 +2369,3 @@ msgstr "斯蒂芬·波尔兹曼常数"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "阿伏加德罗氏数"
-
-#~ msgid "Repeat operation for each result"
-#~ msgstr "对每个结果重复操作"
-
-#~ msgid "Enables that the last operation is repeated when \"=\" is pressed"
-#~ msgstr "启用按“=”键重复最后一个运算"

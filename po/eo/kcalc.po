@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kcalc 1.0pre2\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-20 00:42+0000\n"
-"PO-Revision-Date: 2024-07-13 10:51+0200\n"
+"PO-Revision-Date: 2024-07-20 17:03+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <eo@li.org>\n"
 "Language: eo\n"
@@ -308,32 +308,28 @@ msgid "Two's complement"
 msgstr "Dua komplemento"
 
 #: kcalc.cpp:82
-#, fuzzy, kde-format
-#| msgid "He&x"
+#, kde-format
 msgctxt "Hexadecimal numeral system"
 msgid "Hex"
-msgstr "He&x"
+msgstr "Hex"
 
 #: kcalc.cpp:83
-#, fuzzy, kde-format
-#| msgid "Dec"
+#, kde-format
 msgctxt "Decimal numeral system"
 msgid "Dec"
 msgstr "Dec"
 
 #: kcalc.cpp:84
-#, fuzzy, kde-format
-#| msgid "Oc&t"
+#, kde-format
 msgctxt "Octal numeral system"
 msgid "Oct"
-msgstr "Ok&t"
+msgstr "Okt"
 
 #: kcalc.cpp:85
-#, fuzzy, kde-format
-#| msgid "&Bin"
+#, kde-format
 msgctxt "Binary numeral system"
 msgid "Bin"
-msgstr "&Bin"
+msgstr "Bin"
 
 #: kcalc.cpp:180
 #, kde-format
@@ -1387,10 +1383,9 @@ msgstr "&Grad"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, numeralSystemComboBox)
 #: kcalc.ui:435
-#, fuzzy, kde-format
-#| msgid "Switch base to octal."
+#, kde-format
 msgid "Switch base"
-msgstr "Ŝanĝi bazon al okuma."
+msgstr "Ŝanĝi bazon"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbSquare)
 #: kcalc.ui:504
@@ -2187,7 +2182,7 @@ msgstr "Rezulta Display"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Copy"
-msgstr ""
+msgstr "&Kopii"
 
 #: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:58
 #, kde-format
@@ -2392,22 +2387,3 @@ msgstr "Stefan-Boltzmann Constant"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Numero de Avogadro"
-
-#~ msgid "Repeat operation for each result"
-#~ msgstr "Ripeti operacion por ĉiu rezulto"
-
-#~ msgid "Enables that the last operation is repeated when \"=\" is pressed"
-#~ msgstr ""
-#~ "Ebligas ke la lasta operacio estas ripetita kiam \"=\" estas premata"
-
-#~ msgid "Switch base to hexadecimal."
-#~ msgstr "Ŝanĝi bazon al deksesuma."
-
-#~ msgid "Switch base to decimal."
-#~ msgstr "Ŝanĝi bazon al dekuma."
-
-#~ msgid "&Dec"
-#~ msgstr "&Dec"
-
-#~ msgid "Switch base to binary."
-#~ msgstr "Ŝanĝi bazon al duuma."

@@ -1,5 +1,5 @@
 # translation of kcalc.po to Polish
-# Version: $Revision: 1685138 $
+# Version: $Revision: 1685165 $
 # translation of kcalc.po to
 # KTranslator Generated File
 # SPDX-FileCopyrightText: 2012, 2013, 2014, 2015, 2017, 2018, 2019, 2021, 2022, 2023, 2024 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-20 00:42+0000\n"
-"PO-Revision-Date: 2024-07-14 13:32+0200\n"
+"PO-Revision-Date: 2024-07-20 09:12+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -314,32 +314,28 @@ msgid "Two's complement"
 msgstr "Uzupełnianie do dwóch"
 
 #: kcalc.cpp:82
-#, fuzzy, kde-format
-#| msgid "He&x"
+#, kde-format
 msgctxt "Hexadecimal numeral system"
 msgid "Hex"
-msgstr "&Hex"
+msgstr "Szesnastkowe"
 
 #: kcalc.cpp:83
-#, fuzzy, kde-format
-#| msgid "Dec"
+#, kde-format
 msgctxt "Decimal numeral system"
 msgid "Dec"
 msgstr "Dziesiętne"
 
 #: kcalc.cpp:84
-#, fuzzy, kde-format
-#| msgid "Oc&t"
+#, kde-format
 msgctxt "Octal numeral system"
 msgid "Oct"
-msgstr "Oc&t"
+msgstr "Ósemkowe"
 
 #: kcalc.cpp:85
-#, fuzzy, kde-format
-#| msgid "&Bin"
+#, kde-format
 msgctxt "Binary numeral system"
 msgid "Bin"
-msgstr "&Bin"
+msgstr "Dwójkowe"
 
 #: kcalc.cpp:180
 #, kde-format
@@ -1397,10 +1393,9 @@ msgstr "&Stopień"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, numeralSystemComboBox)
 #: kcalc.ui:435
-#, fuzzy, kde-format
-#| msgid "Switch base to octal."
+#, kde-format
 msgid "Switch base"
-msgstr "Przełącz na podstawę ósemkową."
+msgstr "Przełącz podstawę"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbSquare)
 #: kcalc.ui:504
@@ -1516,7 +1511,7 @@ msgstr "F"
 #: kcalc.ui:724
 #, kde-format
 msgid "Bitwise AND"
-msgstr "Bitowe I"
+msgstr "Bitowe ORAZ"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbAND)
 #: kcalc.ui:727
@@ -2197,7 +2192,7 @@ msgstr "Wyświetlacz wyniku"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Copy"
-msgstr ""
+msgstr "S&kopiuj"
 
 #: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:58
 #, kde-format
