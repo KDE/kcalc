@@ -2445,9 +2445,3 @@ msgstr "Stefan–Boltzmann-konstanten"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Avogadros tal"
-
-#~ msgid "Repeat operation for each result"
-#~ msgstr "Gjenta operasjonen for kvart resultat"
-
-#~ msgid "Enables that the last operation is repeated when \"=\" is pressed"
-#~ msgstr "Slår på gjentaking av siste operasjon når ein trykkjer på «=»"
