@@ -125,6 +125,9 @@ target_sources(kcalc PRIVATE
    kcalc_numeralsystem_view.h
    kcalc.qrc )
 
+if(CMAKE_BUILD_TYPE MATCHES "Release")
+   add_definitions(-DQT_NO_DEBUG_OUTPUT)
+endif()
 ecm_qt_declare_logging_category(kcalc HEADER kcalc_debug.h IDENTIFIER KCALC_LOG CATEGORY_NAME org.kde.kcalc)
 
 ki18n_wrap_ui(kcalc
