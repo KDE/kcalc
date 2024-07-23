@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-20 00:42+0000\n"
-"PO-Revision-Date: 2024-07-14 22:04+0200\n"
+"PO-Revision-Date: 2024-07-22 23:55+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -307,32 +307,28 @@ msgid "Two's complement"
 msgstr "Допълнителен код"
 
 #: kcalc.cpp:82
-#, fuzzy, kde-format
-#| msgid "He&x"
+#, kde-format
 msgctxt "Hexadecimal numeral system"
 msgid "Hex"
-msgstr "He&x"
+msgstr "Hex"
 
 #: kcalc.cpp:83
-#, fuzzy, kde-format
-#| msgid "Dec"
+#, kde-format
 msgctxt "Decimal numeral system"
 msgid "Dec"
 msgstr "Dec"
 
 #: kcalc.cpp:84
-#, fuzzy, kde-format
-#| msgid "Oc&t"
+#, kde-format
 msgctxt "Octal numeral system"
 msgid "Oct"
-msgstr "Oc&t"
+msgstr "Oct"
 
 #: kcalc.cpp:85
-#, fuzzy, kde-format
-#| msgid "&Bin"
+#, kde-format
 msgctxt "Binary numeral system"
 msgid "Bin"
-msgstr "&2"
+msgstr "Bin"
 
 #: kcalc.cpp:180
 #, kde-format
@@ -1397,10 +1393,9 @@ msgstr "&Grad"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, numeralSystemComboBox)
 #: kcalc.ui:435
-#, fuzzy, kde-format
-#| msgid "Switch base to octal."
+#, kde-format
 msgid "Switch base"
-msgstr "Превключване към осмична бройна система."
+msgstr "Превключване на основата"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbSquare)
 #: kcalc.ui:504
@@ -2197,7 +2192,7 @@ msgstr "Резултат"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Copy"
-msgstr ""
+msgstr "&Копиране"
 
 #: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:58
 #, kde-format

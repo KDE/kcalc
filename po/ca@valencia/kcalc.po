@@ -2409,9 +2409,3 @@ msgstr "Constant de Stefan-Boltzmann"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Nombre d'Avogadro"
-
-#~ msgid "Repeat operation for each result"
-#~ msgstr "Repetix l'operació per a cada resultat"
-
-#~ msgid "Enables that the last operation is repeated when \"=\" is pressed"
-#~ msgstr "Permet que es repetisca l'última operació quan es prem «=»"
