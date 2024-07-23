@@ -2380,6 +2380,3 @@ msgstr "Stefan-Boltzmannova konstanta"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Avogadrova konstanta"
-
-#~ msgid "Repeat operation for each result"
-#~ msgstr "Opakovat operaci pro každý výsledek"
