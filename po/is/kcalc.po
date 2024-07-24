@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-20 00:42+0000\n"
-"PO-Revision-Date: 2024-06-30 16:26+0000\n"
+"PO-Revision-Date: 2024-07-22 21:38+0000\n"
 "Last-Translator: Gummi <gudmundure@gmail.com>\n"
 "Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
 "Language: is\n"
@@ -315,32 +315,28 @@ msgid "Two's complement"
 msgstr "Tvíundafylling"
 
 #: kcalc.cpp:82
-#, fuzzy, kde-format
-#| msgid "He&x"
+#, kde-format
 msgctxt "Hexadecimal numeral system"
 msgid "Hex"
-msgstr "He&x"
+msgstr "Hex"
 
 #: kcalc.cpp:83
-#, fuzzy, kde-format
-#| msgid "Dec"
+#, kde-format
 msgctxt "Decimal numeral system"
 msgid "Dec"
 msgstr "Dec"
 
 #: kcalc.cpp:84
-#, fuzzy, kde-format
-#| msgid "Oc&t"
+#, kde-format
 msgctxt "Octal numeral system"
 msgid "Oct"
-msgstr "Oc&t"
+msgstr "Oct"
 
 #: kcalc.cpp:85
-#, fuzzy, kde-format
-#| msgid "&Bin"
+#, kde-format
 msgctxt "Binary numeral system"
 msgid "Bin"
-msgstr "&Bin"
+msgstr "Bin"
 
 #: kcalc.cpp:180
 #, kde-format
@@ -1394,10 +1390,9 @@ msgstr "&Grad"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, numeralSystemComboBox)
 #: kcalc.ui:435
-#, fuzzy, kde-format
-#| msgid "Switch base to octal."
+#, kde-format
 msgid "Switch base"
-msgstr "Breyta grunni í áttundakerfi"
+msgstr "Breyta grunni"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbSquare)
 #: kcalc.ui:504
@@ -1718,10 +1713,9 @@ msgstr "pow"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pb6)
 #: kcalc.ui:1156
-#, fuzzy, kde-format
-#| msgid "Sin"
+#, kde-format
 msgid "Six"
-msgstr "Sin"
+msgstr "Sex"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb6)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb6)
@@ -1734,7 +1728,7 @@ msgstr "6"
 #: kcalc.ui:1175
 #, kde-format
 msgid "Two"
-msgstr ""
+msgstr "Tveir"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb2)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb2)
@@ -1751,10 +1745,9 @@ msgstr "Prósent"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbPercent)
 #: kcalc.ui:1197
-#, fuzzy, kde-format
-#| msgid "Percent"
+#, kde-format
 msgid "Percentage"
-msgstr "Prósent"
+msgstr "Prósenta"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPercent)
 #: kcalc.ui:1200
@@ -1766,7 +1759,7 @@ msgstr "%"
 #: kcalc.ui:1213
 #, kde-format
 msgid "Nine"
-msgstr ""
+msgstr "Níu"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb9)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb9)
@@ -1779,7 +1772,7 @@ msgstr "9"
 #: kcalc.ui:1232
 #, kde-format
 msgid "Four"
-msgstr ""
+msgstr "Fjórir"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb4)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb4)
@@ -1792,7 +1785,7 @@ msgstr "4"
 #: kcalc.ui:1251
 #, kde-format
 msgid "Five"
-msgstr ""
+msgstr "Fimm"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb5)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb5)
@@ -1811,7 +1804,7 @@ msgstr "Mínus"
 #: kcalc.ui:1273
 #, kde-format
 msgid "Subtract"
-msgstr ""
+msgstr "Draga frá"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMinus)
 #: kcalc.ui:1276
@@ -1830,7 +1823,7 @@ msgstr "Plús"
 #: kcalc.ui:1292
 #, kde-format
 msgid "Add"
-msgstr ""
+msgstr "Bæta við"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPlus)
 #: kcalc.ui:1295
@@ -1843,7 +1836,7 @@ msgstr "+"
 #: kcalc.ui:1308
 #, kde-format
 msgid "One"
-msgstr ""
+msgstr "Einn"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb1)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb1)
@@ -1862,7 +1855,7 @@ msgstr "Deiling"
 #: kcalc.ui:1330
 #, kde-format
 msgid "Divide"
-msgstr ""
+msgstr "Deila"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbDivision)
 #: kcalc.ui:1333
@@ -1878,10 +1871,9 @@ msgstr "Margföldun"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbMultiplication)
 #: kcalc.ui:1349
-#, fuzzy, kde-format
-#| msgid "Multiplication"
+#, kde-format
 msgid "Multiply"
-msgstr "Margföldun"
+msgstr "Margfalda"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMultiplication)
 #: kcalc.ui:1352
@@ -1893,7 +1885,7 @@ msgstr "×"
 #: kcalc.ui:1365
 #, kde-format
 msgid "Zero"
-msgstr ""
+msgstr "Núll"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb0)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb0)
@@ -1920,7 +1912,7 @@ msgstr "."
 #: kcalc.ui:1403
 #, kde-format
 msgid "Three"
-msgstr ""
+msgstr "Þrír"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb3)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb3)
@@ -1939,7 +1931,7 @@ msgstr "Útkoma"
 #: kcalc.ui:1425
 #, kde-format
 msgid "Equals"
-msgstr ""
+msgstr "Er jafnt og"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbEqual)
 #: kcalc.ui:1428
@@ -1952,7 +1944,7 @@ msgstr "="
 #: kcalc.ui:1441
 #, kde-format
 msgid "Seven"
-msgstr ""
+msgstr "Sjö"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb7)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb7)
@@ -1965,7 +1957,7 @@ msgstr "7"
 #: kcalc.ui:1460
 #, kde-format
 msgid "Eight"
-msgstr ""
+msgstr "Átta"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb8)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb8)
@@ -1982,11 +1974,9 @@ msgstr "Hreinsa allt"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbAllClear)
 #: kcalc.ui:1509
-#, fuzzy, kde-format
-#| msgctxt "Memory cleared"
-#| msgid "M cleared"
+#, kde-format
 msgid "All clear"
-msgstr "M hreinsað"
+msgstr "Allt hreinsað"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbAllClear)
 #: kcalc.ui:1512
@@ -2094,7 +2084,7 @@ msgstr ")"
 #: kcalc.ui:1665
 #, kde-format
 msgid "Return"
-msgstr ""
+msgstr "Færsla"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbBackspace)
 #: kcalc.ui:1668
@@ -2199,7 +2189,7 @@ msgstr "Birting útkomu"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Copy"
-msgstr ""
+msgstr "&Afrita"
 
 #: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:58
 #, kde-format
