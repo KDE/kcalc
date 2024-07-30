@@ -756,22 +756,22 @@ void KCalculator::slotBaseSelected()
     statusBar()->setBase(base);
     switch (base) {
     case BinMode:
-        current_base = calc_display->setBase(NumBase(2));
+        current_base = calc_display->setBase(KCalcDisplay::NumBase(2));
         base_label->setText(QStringLiteral("Bin"));
         base_mode_ = 2;
         break;
     case OctMode:
-        current_base = calc_display->setBase(NumBase(8));
+        current_base = calc_display->setBase(KCalcDisplay::NumBase(8));
         base_label->setText(QStringLiteral("Oct"));
         base_mode_ = 8;
         break;
     case DecMode:
-        current_base = calc_display->setBase(NumBase(10));
+        current_base = calc_display->setBase(KCalcDisplay::NumBase(10));
         base_label->setText(QStringLiteral("Dec"));
         base_mode_ = 10;
         break;
     case HexMode:
-        current_base = calc_display->setBase(NumBase(16));
+        current_base = calc_display->setBase(KCalcDisplay::NumBase(16));
         base_label->setText(QStringLiteral("Hex"));
         base_mode_ = 16;
         break;
@@ -791,13 +791,13 @@ void KCalculator::slotBaseSelected()
     }
 
     // Only enable the decimal point in decimal
-    pbPeriod->setEnabled(current_base == NB_DECIMAL);
+    pbPeriod->setEnabled(current_base == KCalcDisplay::NumBase::NB_DECIMAL);
 
     // Only enable the x*10^y button in decimal
-    pbEE->setEnabled(current_base == NB_DECIMAL);
+    pbEE->setEnabled(current_base == KCalcDisplay::NumBase::NB_DECIMAL);
 
     // Disable buttons that make only sense with floating point numbers
-    if (current_base != NB_DECIMAL) {
+    if (current_base != KCalcDisplay::NumBase::NB_DECIMAL) {
         for (QAbstractButton *btn : std::as_const(scientific_buttons_)) {
             btn->setEnabled(false);
         }
@@ -1381,7 +1381,7 @@ void KCalculator::slotPeriodclicked()
 //------------------------------------------------------------------------------
 void KCalculator::updateResultDisplay()
 {
-    updateDisplay(UPDATE_FROM_CORE /*| UPDATE_STORE_RESULT*/);
+    updateDisplay(UPDATE_FROM_CORE);
 }
 
 //------------------------------------------------------------------------------
@@ -2315,9 +2315,13 @@ void KCalculator::updateSettings()
 void KCalculator::updateDisplay(UpdateFlags flags)
 {
     if (flags & UPDATE_FROM_CORE) {
-        calc_display->updateFromCore(core, (flags & UPDATE_STORE_RESULT) != 0);
+        calc_display->updateFromCore(core);
+    } else if (flags & UPDATE_MATH_ERROR) {
+        calc_display->showErrorMessage(KCalcDisplay::ErrorMessage::MathError);
+    } else if (flags & UPDATE_SYNTAX_ERROR) {
+        calc_display->showErrorMessage(KCalcDisplay::ErrorMessage::SyntaxError);
     } else if (flags & UPDATE_MALFORMED_EXPRESSION) {
-        calc_display->setText(i18n("Input error"));
+        calc_display->showErrorMessage(KCalcDisplay::ErrorMessage::MalformedExpression);
     } else if (flags & UPDATE_CLEAR) {
         slotClearResult();
     } else {
@@ -2418,7 +2422,7 @@ void inline KCalculator::handle_Parsing_Error_()
     case KCalcParser::INVALID_TOKEN:
         input_display->setCursorPosition(input_error_index_);
         input_display->setFocus();
-        updateDisplay(UPDATE_MALFORMED_EXPRESSION);
+        updateDisplay(UPDATE_SYNTAX_ERROR);
         break;
     case KCalcParser::EMPTY:
     default:
@@ -2434,7 +2438,23 @@ void inline KCalculator::handle_Calculation_Error_()
 {
     input_display->setCursorPosition(input_error_index_);
     input_display->setFocus();
-    updateDisplay(UPDATE_MALFORMED_EXPRESSION);
+    switch (calculation_result_code_) {
+    case CalcEngine::ResultCode::MISIING_LEFT_UNARY_ARG:
+    case CalcEngine::ResultCode::MISIING_RIGHT_UNARY_ARG:
+    case CalcEngine::ResultCode::MISIING_RIGHT_BINARY_ARG:
+    case CalcEngine::ResultCode::INCOMPLETE_INPUT:
+        updateDisplay(UPDATE_MALFORMED_EXPRESSION);
+        break;
+    case CalcEngine::ResultCode::MATH_ERROR:
+        updateDisplay(UPDATE_MATH_ERROR);
+        break;
+    case CalcEngine::ResultCode::SYNTAX_ERROR:
+        updateDisplay(UPDATE_MALFORMED_EXPRESSION);
+        break;
+    default:
+        updateDisplay(UPDATE_MALFORMED_EXPRESSION);
+        break;
+    }
 }
 
 //------------------------------------------------------------------------------

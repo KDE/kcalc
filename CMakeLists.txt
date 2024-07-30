@@ -42,6 +42,7 @@ find_package (Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
 find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     CoreAddons
     Crash
+    ColorScheme
     Config
     ConfigWidgets
     GuiAddons
@@ -154,6 +155,7 @@ endif()
 target_link_libraries(kcalc
     Qt6::Core
     Qt6::Widgets
+    KF6::ColorScheme
     KF6::CoreAddons
     KF6::ConfigWidgets
     KF6::GuiAddons

@@ -108,7 +108,14 @@ Q_SIGNALS:
     void switchShowAccels(bool);
 
 public:
-    enum UpdateFlag { UPDATE_FROM_CORE = 1, UPDATE_STORE_RESULT = 2, UPDATE_MALFORMED_EXPRESSION = 4, UPDATE_CLEAR = 8 };
+    enum UpdateFlag {
+        UPDATE_FROM_CORE = 1,
+        UPDATE_STORE_RESULT = 2,
+        UPDATE_MATH_ERROR = 4,
+        UPDATE_SYNTAX_ERROR = 8,
+        UPDATE_MALFORMED_EXPRESSION = 16,
+        UPDATE_CLEAR = 32,
+    };
 
     Q_DECLARE_FLAGS(UpdateFlags, UpdateFlag)
 

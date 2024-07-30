@@ -18,22 +18,14 @@ class QStyleOptionFrame;
 #define NUM_STATUS_TEXT 4
 
 /*
-  This class provides a pocket calculator display.  The display has
-  implicitely two major modes: One is for editing and one is purely
-  for displaying.
+  This class provides a pocket calculator display.
 
   When one uses "setAmount", the given amount is displayed, and the
   amount which was possibly typed in before is lost. At the same time
   this new value can not be modified.
 
-  On the other hand, "addNewChar" adds a new digit to the amount that
-  is being typed in. If "setAmount" was used before, the display is
-  cleared and a new input starts.
-
   TODO: Check overflows, number of digits and such...
 */
-
-enum NumBase { NB_BINARY = 2, NB_OCTAL = 8, NB_DECIMAL = 10, NB_HEX = 16 };
 
 class KCalcDisplay : public QFrame
 {
@@ -47,16 +39,26 @@ public:
         EventReset, // resets display
         EventClear, // if no error reset display
         EventError,
-        EventChangeSign
+    };
+
+    enum ErrorMessage {
+        MathError,
+        SyntaxError,
+        MalformedExpression,
+    };
+
+    enum NumBase {
+        NB_BINARY = 2,
+        NB_OCTAL = 8,
+        NB_DECIMAL = 10,
+        NB_HEX = 16,
     };
 
     bool sendEvent(Event event);
-    void deleteLastDigit();
     const KNumber &getAmount() const;
     QString getAmountQString(bool addPreffix = true) const;
-    void newCharacter(const QChar new_char);
     bool setAmount(const KNumber &new_amount);
-    int setBase(NumBase new_base);
+    int setBase(NumBase base);
     void setBeep(bool flag);
     void setGroupDigits(bool flag);
     void setTwosComplement(bool flag);
@@ -68,18 +70,16 @@ public:
     void setText(const QString &string);
     void setFont(const QFont &font);
     const QFont &baseFont() const;
-    QString formatDecimalNumber(QString string);
-    QString groupDigits(const QString &displayString, int numDigits);
     QString text() const;
     void updateDisplay();
     void setStatusText(int i, const QString &text);
     QSize sizeHint() const override;
 
     void changeSettings();
-    void enterDigit(int data);
-    void updateFromCore(const CalcEngine &core, bool store_result_in_history = false);
+    void updateFromCore(const CalcEngine &core);
 
 public Q_SLOTS:
+    void showErrorMessage(ErrorMessage errorMessage);
     void slotCut();
     void slotCopy();
 
@@ -94,19 +94,23 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
-    bool changeSign();
+    QString formatDecimalNumber(QString string);
+    QString groupDigits(const QString &displayString, int numDigits);
+
     void invertColors();
     void initStyleOption(QStyleOptionFrame *option) const override;
+    void setUnformattedText(const QString &string);
     void updateFont();
 
 private Q_SLOTS:
+    void restoreSettings();
+    void setTempSettings();
     void slotSelectionTimedOut();
     void slotDisplaySelected();
-    void slotHistoryBack();
-    void slotHistoryForward();
 
 private:
     QString text_;
+    bool m_usingTempSettings;
     bool beep_;
     bool groupdigits_;
     bool twoscomplement_;
@@ -123,17 +127,13 @@ private:
     KNumber display_amount_;
 
     QFont baseFont_;
-
-    QList<KNumber> history_list_;
-    int history_index_;
+    QPalette basePalette_;
 
     // only used for input of new numbers
-    bool eestate_;
-    bool period_;
-    bool neg_sign_;
-    QString str_int_;
-    QString str_int_exp_;
     QString str_status_[NUM_STATUS_TEXT];
 
     QTimer *const selection_timer_;
+    static const QString m_MathErrorText;
+    static const QString m_SyntaxErrorText;
+    static const QString m_MalformedExpressionText;
 };
