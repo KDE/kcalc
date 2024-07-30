@@ -19,4 +19,4 @@ RuntimeDependencies:
     'sdk/selenium-webdriver-at-spi': '@latest-kf6'
 
 Options:
-  require-passing-tests-on: [ 'Linux', 'FreeBSD']
+  require-passing-tests-on: [ 'Linux', 'FreeBSD', 'Windows' ]
