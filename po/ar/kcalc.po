@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-20 00:42+0000\n"
+"POT-Creation-Date: 2024-07-31 00:43+0000\n"
 "PO-Revision-Date: 2024-06-13 09:05+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -876,23 +876,18 @@ msgstr "زر عرض الألوان"
 msgid "Define Constants"
 msgstr "عرف الثوابت"
 
-#: kcalc.cpp:2320
-#, kde-format
-msgid "Input error"
-msgstr "خطأ في إدخال البيانات"
-
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2866 kcalc.ui:20
+#: kcalc.cpp:2886 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "KCalc"
 
-#: kcalc.cpp:2868
+#: kcalc.cpp:2888
 #, kde-format
 msgid "KDE Calculator"
 msgstr "حاسبة كِيدِي"
 
-#: kcalc.cpp:2870
+#: kcalc.cpp:2890
 #, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
@@ -905,62 +900,62 @@ msgstr ""
 "Copyright © 2003-2005, Klaus Niederkrüger\n"
 "Copyright © 1996-2000, Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2880
+#: kcalc.cpp:2900
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr "Klaus Niederkrüger"
 
-#: kcalc.cpp:2885
+#: kcalc.cpp:2905
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2886
+#: kcalc.cpp:2906
 #, kde-format
 msgid "Evan Teran"
 msgstr "Evan Teran"
 
-#: kcalc.cpp:2886
+#: kcalc.cpp:2906
 #, kde-format
 msgid "Maintainer"
 msgstr "المشرف"
 
-#: kcalc.cpp:2887
+#: kcalc.cpp:2907
 #, kde-format
 msgid "Espen Sand"
 msgstr "Espen Sand"
 
-#: kcalc.cpp:2888
+#: kcalc.cpp:2908
 #, kde-format
 msgid "Chris Howells"
 msgstr "Chris Howells"
 
-#: kcalc.cpp:2889
+#: kcalc.cpp:2909
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr "Aaron J. Seigo"
 
-#: kcalc.cpp:2890
+#: kcalc.cpp:2910
 #, kde-format
 msgid "Charles Samuels"
 msgstr "Charles Samuels"
 
-#: kcalc.cpp:2892
+#: kcalc.cpp:2912
 #, kde-format
 msgid "René Mérou"
 msgstr "René Mérou"
 
-#: kcalc.cpp:2899
+#: kcalc.cpp:2919
 #, kde-format
 msgid "Michel Marti"
 msgstr "Michel Marti"
 
-#: kcalc.cpp:2900
+#: kcalc.cpp:2920
 #, kde-format
 msgid "David Johnson"
 msgstr "David Johnson"
 
-#: kcalc.cpp:2901
+#: kcalc.cpp:2921
 #, kde-format
 msgid "Niklas Freund"
 msgstr "Niklas Freund"
@@ -2188,7 +2183,7 @@ msgstr "الحركية الحرارية"
 msgid "Gravitation"
 msgstr "الثقالة"
 
-#: kcalc_display.cpp:42
+#: kcalc_display.cpp:45
 #, kde-format
 msgctxt "@label accessibility description of the calculation result display"
 msgid "Result Display"
@@ -2403,6 +2398,9 @@ msgstr "ثابثة Stefan-Boltzmann"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "عدد أفوكادرو"
+
+#~ msgid "Input error"
+#~ msgstr "خطأ في إدخال البيانات"
 
 #~ msgid "Repeat operation for each result"
 #~ msgstr "كرر العملية لكل نتيجة"

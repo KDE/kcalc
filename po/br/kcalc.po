@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc-1.1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-20 00:42+0000\n"
+"POT-Creation-Date: 2024-07-31 00:43+0000\n"
 "PO-Revision-Date: 2004-07-07 22:19+0200\n"
 "Last-Translator: Jañ-Mai Drapier <jdrapier@club-internet.fr>\n"
 "Language-Team: Brezhoneg <Suav.Icb@wanadoo.fr>\n"
@@ -875,23 +875,18 @@ msgstr "Livioù an diskwel hag an nozel"
 msgid "Define Constants"
 msgstr ""
 
-#: kcalc.cpp:2320
-#, kde-format
-msgid "Input error"
-msgstr ""
-
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2866 kcalc.ui:20
+#: kcalc.cpp:2886 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "KCalc"
 
-#: kcalc.cpp:2868
+#: kcalc.cpp:2888
 #, kde-format
 msgid "KDE Calculator"
 msgstr "Jederez KDE"
 
-#: kcalc.cpp:2870
+#: kcalc.cpp:2890
 #, fuzzy, kde-format
 #| msgid ""
 #| "(c) 2003-2005, Klaus Niederkrüger\n"
@@ -907,62 +902,62 @@ msgstr ""
 "(c) 1996-2000, Bernd Johannes Wuebben\n"
 "(c) 2000-2003, Skipailh KDE"
 
-#: kcalc.cpp:2880
+#: kcalc.cpp:2900
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr ""
 
-#: kcalc.cpp:2885
+#: kcalc.cpp:2905
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr ""
 
-#: kcalc.cpp:2886
+#: kcalc.cpp:2906
 #, kde-format
 msgid "Evan Teran"
 msgstr ""
 
-#: kcalc.cpp:2886
+#: kcalc.cpp:2906
 #, kde-format
 msgid "Maintainer"
 msgstr ""
 
-#: kcalc.cpp:2887
+#: kcalc.cpp:2907
 #, kde-format
 msgid "Espen Sand"
 msgstr ""
 
-#: kcalc.cpp:2888
+#: kcalc.cpp:2908
 #, kde-format
 msgid "Chris Howells"
 msgstr ""
 
-#: kcalc.cpp:2889
+#: kcalc.cpp:2909
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr ""
 
-#: kcalc.cpp:2890
+#: kcalc.cpp:2910
 #, kde-format
 msgid "Charles Samuels"
 msgstr ""
 
-#: kcalc.cpp:2892
+#: kcalc.cpp:2912
 #, kde-format
 msgid "René Mérou"
 msgstr ""
 
-#: kcalc.cpp:2899
+#: kcalc.cpp:2919
 #, kde-format
 msgid "Michel Marti"
 msgstr ""
 
-#: kcalc.cpp:2900
+#: kcalc.cpp:2920
 #, kde-format
 msgid "David Johnson"
 msgstr ""
 
-#: kcalc.cpp:2901
+#: kcalc.cpp:2921
 #, kde-format
 msgid "Niklas Freund"
 msgstr ""
@@ -2185,7 +2180,7 @@ msgstr ""
 msgid "Gravitation"
 msgstr ""
 
-#: kcalc_display.cpp:42
+#: kcalc_display.cpp:45
 #, fuzzy, kde-format
 #| msgid "Select Display Font"
 msgctxt "@label accessibility description of the calculation result display"
