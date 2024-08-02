@@ -2437,15 +2437,3 @@ msgstr "Stefan-Boltzmanns konstant"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Avogadros tall"
-
-#~ msgid "Switch base to hexadecimal."
-#~ msgstr "Bytt til grunntall 16."
-
-#~ msgid "Switch base to decimal."
-#~ msgstr "Bytt til grunntall 10."
-
-#~ msgid "&Dec"
-#~ msgstr "&Des"
-
-#~ msgid "Switch base to binary."
-#~ msgstr "Bytt til grunntall 2."
