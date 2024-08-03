@@ -2364,6 +2364,3 @@ msgstr "斯蒂芬·波尔兹曼常数"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "阿伏加德罗氏数"
-
-#~ msgid "Input error"
-#~ msgstr "输入错误"
