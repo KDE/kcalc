@@ -10,8 +10,6 @@
 #include "kcalc_debug.h"
 #include "kcalc_version.h"
 
-#include <clocale>
-
 #include <QActionGroup>
 #include <QApplication>
 #include <QButtonGroup>
@@ -2937,10 +2935,6 @@ int main(int argc, char *argv[])
     aboutData.setupCommandLine(&parser);
     parser.process(app);
     aboutData.processCommandLine(&parser);
-
-    // Force system locale to "C" internally. Fix for bug #159168, showing multiple commas
-    // in floating point operations because of different thousands separator and comma separator.
-    setlocale(LC_NUMERIC, "C");
 
     KNumber::setGroupSeparator(QLocale().groupSeparator());
     KNumber::setDecimalSeparator(QLocale().decimalPoint());
