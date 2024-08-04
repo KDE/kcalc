@@ -31,7 +31,7 @@ kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
 
 ## Generate header with version number
 ecm_setup_version(${RELEASE_SERVICE_VERSION} VARIABLE_PREFIX KCALC
-                  VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kcalc_version.h"
+                  VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/src/kcalc_version.h"
 )
 
 find_package (Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
@@ -59,86 +59,15 @@ set_package_properties(KF6DocTools PROPERTIES DESCRIPTION
 
 set (CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" ${CMAKE_SOURCE_DIR}/cmake/modules)
 
-find_package(GMP)
-set_package_properties(GMP PROPERTIES
-    DESCRIPTION "The GNU Multiple Precision Arithmetic Library"
-    URL "https://gmplib.org/"
-    TYPE REQUIRED
-    PURPOSE "Required for building KCalc."
-)
-
-find_package(MPFR)
-set_package_properties(MPFR PROPERTIES
-    DESCRIPTION "The GNU Multiple Precision Floating-Point Reliable Library"
-    URL "https://www.mpfr.org/"
-    TYPE REQUIRED
-    PURPOSE "Required for building KCalc."
-)
-
-include(CheckTypeSize)
-include(CheckIncludeFiles)
-
-check_include_files(ieeefp.h     HAVE_IEEEFP_H)
-check_type_size("signed long"    SIZEOF_SIGNED_LONG)
-check_type_size("unsigned long"  SIZEOF_UNSIGNED_LONG)
-
-configure_file(config-kcalc.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-kcalc.h )
 ecm_set_disabled_deprecation_versions(QT 6.7  KF 6.5.0)
-add_definitions(-DQT_NO_CONTEXTLESS_CONNECT)
-add_subdirectory(knumber)
-add_executable(kcalc)
-
-target_sources(kcalc PRIVATE
-   kcalc.cpp 
-   kcalc_bitbutton.cpp
-   kcalc_bitset.cpp
-   kcalc_button.cpp 
-   kcalc_const_button.cpp 
-   kcalc_const_menu.cpp 
-   kcalc_core.cpp
-   kcalc_core_p.cpp
-   kcalc_input_display.cpp
-   kcalc_display_frame.cpp
-   kcalc_parser.cpp
-   kcalc_token.cpp
-   kcalc_display.cpp
-   kcalc_statusbar.cpp
-   kcalc_stats.cpp
-   kcalc_history.cpp
-   kcalc_numeralsystem_view.cpp
-   kcalc_const_menu.h
-   kcalc_core.h
-   kcalc_core_p.h
-   kcalc_bitset.h
-   kcalc_bitbutton.h
-   kcalc.h
-   kcalc_button.h
-   kcalc_stats.h
-   kcalc_const_button.h
-   kcalc_statusbar.h
-   kcalc_input_display.h
-   kcalc_display_frame.h
-   kcalc_parser.h
-   kcalc_token.h
-   kcalc_priority_levels_p.h
-   kcalc_display.h
-   kcalc_history.h
-   kcalc_numeralsystem_view.h
-   kcalc.qrc )
 
 if(CMAKE_BUILD_TYPE MATCHES "Release")
    add_definitions(-DQT_NO_DEBUG_OUTPUT)
 endif()
-ecm_qt_declare_logging_category(kcalc HEADER kcalc_debug.h IDENTIFIER KCALC_LOG CATEGORY_NAME org.kde.kcalc)
 
-ki18n_wrap_ui(kcalc
-   kcalc.ui
-   constants.ui
-   colors.ui
-   fonts.ui
-   general.ui)
-
-kconfig_add_kcfg_files(kcalc kcalc_settings.kcfgc )
+add_definitions(-DQT_NO_CONTEXTLESS_CONNECT)
+add_subdirectory(knumber)
+add_subdirectory(src)
 
 # Sets the icon on Windows and OSX
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*.png")
@@ -151,30 +80,9 @@ if (INSTALL_ICONS)
     ecm_install_icons( ICONS ${ICONS_SRCS} DESTINATION ${KDE_INSTALL_ICONDIR} )
 endif()
 
-
-target_link_libraries(kcalc
-    Qt6::Core
-    Qt6::Widgets
-    KF6::ColorScheme
-    KF6::CoreAddons
-    KF6::ConfigWidgets
-    KF6::GuiAddons
-    KF6::I18n
-    KF6::Notifications
-    KF6::XmlGui
-    KF6::Crash
-    knumber
-)
-
-set_target_properties(kcalc PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/MacOSXBundleInfo.plist.in)
-
 install(TARGETS kcalc  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
 ########### install files ###############
-
-install( PROGRAMS org.kde.kcalc.desktop  DESTINATION ${KDE_INSTALL_APPDIR})
-install( FILES org.kde.kcalc.appdata.xml   DESTINATION ${KDE_INSTALL_METAINFODIR})
-install( FILES kcalc.kcfg  DESTINATION ${KDE_INSTALL_KCFGDIR})
 install( FILES kcalcrc.upd  DESTINATION ${KDE_INSTALL_DATADIR}/kconf_update)
 install( DIRECTORY DESTINATION "${KDE_INSTALL_FULL_DATAROOTDIR}/kglobalaccel" )
 install(
@@ -182,8 +90,8 @@ install(
 )
 
 if(BUILD_TESTING)
-   add_subdirectory( autotests )
-   add_subdirectory( appiumtests )
+   add_subdirectory(autotests)
+   add_subdirectory(appiumtests)
 endif()
 
 ki18n_install(po)

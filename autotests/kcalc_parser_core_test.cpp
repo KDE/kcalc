@@ -3,8 +3,8 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include "../kcalc_core.h"
-#include "../kcalc_parser.h"
+#include "../src/kcalc_core.h"
+#include "../src/kcalc_parser.h"
 
 #include <QQueue>
 #include <QTest>

@@ -1,3 +1,7 @@
+if(NOT BUILD_TESTING)
+    return()
+endif()
+
 include(ECMAddTests)
 
 ecm_add_test(knumbertest.cpp

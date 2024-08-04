@@ -5,8 +5,8 @@
 
 #pragma once
 
+#include "../knumber/knumber.h"
 #include "kcalc_token.h"
-#include "knumber/knumber.h"
 
 #include <QChar>
 #include <QDebug>

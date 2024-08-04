@@ -9,7 +9,7 @@
 #include "knumber_fraction.h"
 #include "knumber_integer.h"
 #include <cmath> // for M_PI
-#include <config-kcalc.h>
+#include <config-knumber.h>
 
 namespace detail
 {

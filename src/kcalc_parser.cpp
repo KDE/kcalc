@@ -4,9 +4,9 @@
 */
 
 #include "kcalc_parser.h"
+#include "../knumber/knumber.h"
 #include "kcalc_debug.h"
 #include "kcalc_token.h"
-#include "knumber/knumber.h"
 
 #include <QDebug>
 #include <QDomDocument>

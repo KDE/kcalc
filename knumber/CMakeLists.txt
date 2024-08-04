@@ -1,3 +1,28 @@
+include(CheckTypeSize)
+include(CheckIncludeFiles)
+
+check_include_files(ieeefp.h     HAVE_IEEEFP_H)
+check_type_size("signed long"    SIZEOF_SIGNED_LONG)
+check_type_size("unsigned long"  SIZEOF_UNSIGNED_LONG)
+
+configure_file(config-knumber.h.in ${CMAKE_CURRENT_BINARY_DIR}//config-knumber.h )
+
+find_package(GMP)
+set_package_properties(GMP PROPERTIES
+    DESCRIPTION "The GNU Multiple Precision Arithmetic Library"
+    URL "https://gmplib.org/"
+    TYPE REQUIRED
+    PURPOSE "Required for building KCalc."
+)
+
+find_package(MPFR)
+set_package_properties(MPFR PROPERTIES
+    DESCRIPTION "The GNU Multiple Precision Floating-Point Reliable Library"
+    URL "https://www.mpfr.org/"
+    TYPE REQUIRED
+    PURPOSE "Required for building KCalc."
+)
+
 add_library(knumber STATIC
     knumber.cpp
     knumber_error.cpp
