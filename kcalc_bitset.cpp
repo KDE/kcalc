@@ -6,7 +6,7 @@
 */
 
 #include "kcalc_bitset.h"
-#include "bitbutton.h"
+#include "kcalc_bitbutton.h"
 
 #include <KLocalizedString>
 #include <QButtonGroup>

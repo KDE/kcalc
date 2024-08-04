@@ -5,7 +5,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include "bitbutton.h"
+#include "kcalc_bitbutton.h"
 #include <QEvent>
 #include <QPainter>
 
@@ -150,4 +150,4 @@ void BitButton::focusOutEvent(QFocusEvent *event)
     update();
 }
 
-#include "moc_bitbutton.cpp"
+#include "moc_kcalc_bitbutton.cpp"

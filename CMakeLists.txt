@@ -90,7 +90,7 @@ add_executable(kcalc)
 
 target_sources(kcalc PRIVATE
    kcalc.cpp 
-   bitbutton.cpp
+   kcalc_bitbutton.cpp
    kcalc_bitset.cpp
    kcalc_button.cpp 
    kcalc_const_button.cpp 
@@ -110,7 +110,7 @@ target_sources(kcalc PRIVATE
    kcalc_core.h
    kcalc_core_p.h
    kcalc_bitset.h
-   bitbutton.h
+   kcalc_bitbutton.h
    kcalc.h
    kcalc_button.h
    kcalc_stats.h
