@@ -124,6 +124,9 @@ bool KCalcDisplay::sendEvent(Event event)
 
 void KCalcDisplay::setTempSettings()
 {
+    if (m_usingTempSettings) {
+        return;
+    }
     QFont newFont = font();
     newFont.setWeight(QFont::Weight::ExtraLight);
     newFont.setPointSize(newFont.pointSize() - ERROR_TEXT_FONTPOINT_REDUCTION);
