@@ -288,19 +288,23 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> tokenBuffe
 
     if (token_stack_.isEmpty()) {
         buffer_result_ = KNumber::Zero;
+        errorIndex = buffer_size - 1;
         return EMPTY_INPUT;
     } else if (token_stack_.last().isKNumber() && token_stack_.last().getKNumber().type() == KNumber::Type::TYPE_ERROR) {
         error_ = true;
+        errorIndex = buffer_size - 1;
         buffer_result_ = token_stack_.last().getKNumber();
         token_stack_.clear();
         return MATH_ERROR;
     } else if (token_stack_.size() > 2) {
         error_ = true;
+        errorIndex = buffer_size - 1;
         buffer_result_ = KNumber::NaN;
         token_stack_.clear();
         return SYNTAX_ERROR;
     } else if (token_stack_.size() == 2 && token_stack_.last().isBinaryFunction() && token_stack_.at(0).isKNumber()) {
         error_ = true;
+        errorIndex = buffer_size - 1;
         if (token_stack_.at(0).getKNumber().type() == KNumber::Type::TYPE_ERROR) {
             token_stack_.clear();
             return MATH_ERROR;
@@ -310,6 +314,7 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> tokenBuffe
         }
     } else if (!token_stack_.last().isKNumber()) {
         error_ = true;
+        errorIndex = buffer_size - 1;
         token_stack_.clear();
         return SYNTAX_ERROR;
     } else {
