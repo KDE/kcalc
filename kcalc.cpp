@@ -2881,7 +2881,6 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     KLocalizedString::setApplicationDomain(QByteArrayLiteral("kcalc"));
-    KCrash::initialize();
     KAboutData aboutData(QStringLiteral("kcalc"),
                          i18n("KCalc"),
                          QStringLiteral(KCALC_VERSION_STRING),
@@ -2922,6 +2921,7 @@ int main(int argc, char *argv[])
 
     KAboutData::setApplicationData(aboutData);
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("accessories-calculator"), app.windowIcon()));
+    KCrash::initialize();
 
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);
