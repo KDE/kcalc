@@ -2881,7 +2881,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     KLocalizedString::setApplicationDomain(QByteArrayLiteral("kcalc"));
-    KCrash::initialize();
+
     KAboutData aboutData(QStringLiteral("kcalc"),
                          i18n("KCalc"),
                          QStringLiteral(KCALC_VERSION_STRING),
@@ -2921,6 +2921,8 @@ int main(int argc, char *argv[])
     aboutData.addAuthor(i18n("Niklas Freund"), QString(), QStringLiteral("nalquas.dev@gmail.com"));
 
     KAboutData::setApplicationData(aboutData);
+    KCrash::initialize();
+
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("accessories-calculator"), app.windowIcon()));
 
     QCommandLineParser parser;
