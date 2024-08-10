@@ -62,6 +62,8 @@ void KNumberAritmeticTest::testKNumberAddition_data()
     QTest::newRow("KNumber(5.3) + KNumber(\"2/4\")") << KNumber(5.3) << KNumber(QStringLiteral("2/4")) << QStringLiteral("5.8") << KNumber::TypeFloat;
     QTest::newRow("KNumber(5.3) + KNumber(2.3)") << KNumber(5.3) << KNumber(2.3) << QStringLiteral("7.6") << KNumber::TypeFloat;
 
+    QTest::newRow("KNumber(1) + KNumber(1.5,1.5)") << KNumber(1) << KNumber(1.5, 1.5) << QStringLiteral("2.5+1.5i") << KNumber::TypeComplex;
+
     QTest::newRow("inf + KNumber(2)") << KNumber::PosInfinity << KNumber(2) << QStringLiteral("inf") << KNumber::TypeError;
     QTest::newRow("KNumber(-5) + inf") << KNumber(-5) << KNumber::PosInfinity << QStringLiteral("inf") << KNumber::TypeError;
     QTest::newRow("inf + KNumber(\"1/2\")") << KNumber::PosInfinity << KNumber(QStringLiteral("1/2")) << QStringLiteral("inf") << KNumber::TypeError;
@@ -194,6 +196,9 @@ void KNumberAritmeticTest::testKNumberMultiplication_data()
     QTest::newRow("KNumber(5.3) * KNumber(0)") << KNumber(5.3) << KNumber(0) << QStringLiteral("0") << KNumber::TypeInteger;
     QTest::newRow("KNumber(5.3) * KNumber(\"1/2\")") << KNumber(5.3) << KNumber(QStringLiteral("1/2")) << QStringLiteral("2.65") << KNumber::TypeFloat;
     QTest::newRow("KNumber(5.3) * KNumber(2.3)") << KNumber(5.3) << KNumber(2.3) << QStringLiteral("12.19") << KNumber::TypeFloat;
+
+    QTest::newRow("KNumber(\"i\") * KNumber(\"i\")") << KNumber(QStringLiteral("i")) << KNumber(QStringLiteral("i")) << QStringLiteral("-1")
+                                                     << KNumber::TypeInteger;
 
     QTest::newRow("inf * KNumber(2)") << KNumber::PosInfinity << KNumber(2) << QStringLiteral("inf") << KNumber::TypeError;
     QTest::newRow("KNumber(-5) * inf") << KNumber(-5) << KNumber::PosInfinity << QStringLiteral("-inf") << KNumber::TypeError;

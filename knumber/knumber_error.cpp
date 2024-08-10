@@ -5,6 +5,7 @@
 */
 
 #include "knumber_error.h"
+#include "knumber_complex.h"
 #include "knumber_float.h"
 #include "knumber_fraction.h"
 #include "knumber_integer.h"
@@ -27,6 +28,8 @@ KNumberError::KNumberError(const QString &s)
         m_error = PositiveInfinity;
     else if (s == QLatin1String("-inf"))
         m_error = NegativeInfinity;
+    else if (s == QLatin1String("complexInf"))
+        m_error = ComplexInfinity;
     else
         m_error = Undefined;
 }
@@ -53,6 +56,11 @@ KNumberError::KNumberError(const KNumberFloat *)
 {
 }
 
+KNumberError::KNumberError(const KNumberComplex *)
+    : m_error(Undefined)
+{
+}
+
 KNumberError::KNumberError(const KNumberError *value)
     : m_error(value->m_error)
 {
@@ -67,9 +75,12 @@ QString KNumberError::toString(int precision) const
         return QStringLiteral("inf");
     case NegativeInfinity:
         return QStringLiteral("-inf");
+    case ComplexInfinity:
+        return QStringLiteral("complexInf");
     case Undefined:
-    default:
         return QStringLiteral("nan");
+    default:
+        Q_UNREACHABLE();
     }
 }
 
@@ -82,6 +93,9 @@ KNumberBase *KNumberError::add(KNumberBase *rhs)
         Q_UNUSED(p);
         return this;
     } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
+        Q_UNUSED(p);
+        return this;
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
         Q_UNUSED(p);
         return this;
     } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
@@ -105,6 +119,9 @@ KNumberBase *KNumberError::sub(KNumberBase *rhs)
         Q_UNUSED(p);
         return this;
     } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
+        Q_UNUSED(p);
+        return this;
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
         Q_UNUSED(p);
         return this;
     } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
@@ -133,6 +150,11 @@ KNumberBase *KNumberError::mul(KNumberBase *rhs)
         }
         return this;
     } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
+        if (p->isZero()) {
+            m_error = Undefined;
+        }
+        return this;
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
         if (p->isZero()) {
             m_error = Undefined;
         }
@@ -170,6 +192,9 @@ KNumberBase *KNumberError::div(KNumberBase *rhs)
     } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
         Q_UNUSED(p);
         return this;
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        Q_UNUSED(p);
+        return this;
     } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
         Q_UNUSED(p);
         m_error = Undefined;
@@ -191,6 +216,9 @@ KNumberBase *KNumberError::mod(KNumberBase *rhs)
     } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
         Q_UNUSED(p);
         return this;
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        Q_UNUSED(p);
+        return this;
     } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
         Q_UNUSED(p);
         m_error = Undefined;
@@ -210,6 +238,51 @@ KNumberBase *KNumberError::pow(KNumberBase *rhs)
         Q_UNUSED(p);
         return this;
     } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
+        Q_UNUSED(p);
+        return this;
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        KNumberFloat f(p);
+        switch (m_error) {
+        case PositiveInfinity:
+            if (f.sign() > 0) {
+                m_error = ComplexInfinity;
+                return this;
+            } else if (f.sign() < 0) {
+                auto z = new KNumberInteger(0);
+                delete this;
+                return z;
+            } else {
+                m_error = Undefined;
+                return this;
+            }
+            break;
+        case NegativeInfinity:
+            if (f.sign() > 0) {
+                m_error = ComplexInfinity;
+                return this;
+            } else if (f.sign() < 0) {
+                auto z = new KNumberInteger(0);
+                delete this;
+                return z;
+            } else {
+                m_error = Undefined;
+                return this;
+            }
+            break;
+        case ComplexInfinity:
+            if (f.sign() > 0) {
+                return this;
+            } else if (f.sign() < 0) {
+                delete this;
+                return new KNumberInteger(0);
+            } else {
+                m_error = Undefined;
+                return this;
+            }
+        case Undefined:
+            return this;
+        }
+
         Q_UNUSED(p);
         return this;
     } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
@@ -239,6 +312,20 @@ KNumberBase *KNumberError::pow(KNumberBase *rhs)
                 return this;
             }
             break;
+        case ComplexInfinity:
+            if (p->m_error == PositiveInfinity) {
+                m_error = ComplexInfinity;
+                return this;
+            } else if (p->m_error == NegativeInfinity) {
+                delete this;
+                return new KNumberInteger(0);
+            } else if (p->m_error == ComplexInfinity) {
+                m_error = Undefined;
+                return this;
+            } else {
+                m_error = Undefined;
+                return this;
+            }
         case Undefined:
             return this;
         }
@@ -427,6 +514,8 @@ int KNumberError::compare(KNumberBase *rhs)
         } else {
             return -1;
         }
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        return -1; // TODO: what to return when comparing to complex?
     } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
         // TODO: What to return when comparing to NaN?
         if (m_error == p->m_error) {
@@ -475,6 +564,11 @@ KNumberBase *KNumberError::bitwiseShift(KNumberBase *rhs)
     Q_UNUSED(rhs);
     m_error = Undefined;
     return this;
+}
+
+bool KNumberError::isReal() const
+{
+    return false;
 }
 
 bool KNumberError::isInteger() const
@@ -551,6 +645,39 @@ KNumberBase *KNumberError::exp10()
 KNumberBase *KNumberError::exp()
 {
     m_error = Undefined;
+    return this;
+}
+
+KNumberBase *KNumberError::realPart()
+{
+    return this;
+}
+
+KNumberBase *KNumberError::imaginaryPart()
+{
+    return this;
+}
+
+KNumberBase *KNumberError::arg()
+{
+    switch (m_error) {
+    case Undefined:
+        return this;
+    case PositiveInfinity:
+        delete this;
+        return new KNumberInteger(0);
+    case NegativeInfinity:
+        delete this;
+        return new KNumberFloat(M_PI);
+    case ComplexInfinity:
+        return this;
+    default:
+        return this;
+    }
+}
+
+KNumberBase *KNumberError::conj()
+{
     return this;
 }
 

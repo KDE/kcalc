@@ -14,6 +14,7 @@ class KNumberError;
 class KNumberInteger;
 class KNumberFraction;
 class KNumberFloat;
+class KNumberComplex;
 
 class KNumberBase
 {
@@ -29,6 +30,7 @@ public:
     virtual qint64 toInt64() const = 0;
 
 public:
+    virtual bool isReal() const = 0;
     virtual bool isInteger() const = 0;
     virtual bool isZero() const = 0;
     virtual int sign() const = 0;
@@ -69,6 +71,10 @@ public:
     virtual KNumberBase *floor() = 0;
     virtual KNumberBase *ceil() = 0;
     virtual KNumberBase *exp() = 0;
+    virtual KNumberBase *realPart() = 0;
+    virtual KNumberBase *imaginaryPart() = 0;
+    virtual KNumberBase *arg() = 0;
+    virtual KNumberBase *conj() = 0;
     virtual KNumberBase *bin(KNumberBase *rhs) = 0;
 
 public:

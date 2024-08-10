@@ -1,46 +1,51 @@
 /*
-    SPDX-FileCopyrightText: 2001-2013 Evan Teran <evan.teran@gmail.com>
-
+    SPDX-FileCopyrightText: 2023 Gabriel Barrantes <gabriel.barrantes.dev@outlook.com>
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
 #pragma once
 
 #include "knumber_base.h"
+#include <config-knumber.h>
 
-#include <gmp.h>
+#include <mpc.h>
 
 class KNumber;
 
 namespace detail
 {
-class KNumberFraction : public KNumberBase
+class KNumberComplex : public KNumberBase
 {
     friend class ::KNumber;
     friend class KNumberError;
     friend class KNumberInteger;
+    friend class KNumberFraction;
     friend class KNumberFloat;
-    friend class KNumberComplex;
+
+private:
+    static const mpc_rnd_t rounding_mode;
+    static const mpfr_prec_t precision;
 
 public:
-    static bool defaultFractionalInput;
-    static bool defaultFractionalOutput;
-    static bool splitOffIntegerForFractionOutput;
+    explicit KNumberComplex(const QString &s);
+    explicit KNumberComplex(const QString &mod, const QString &arg);
+    explicit KNumberComplex(double re);
+    explicit KNumberComplex(double re, double img);
+#ifdef HAVE_LONG_DOUBLE
+    explicit KNumberComplex(long double re);
+    explicit KNumberComplex(long double re, long double img);
+#endif
 
-public:
-    static void setDefaultFractionalInput(bool value);
-    static void setDefaultFractionalOutput(bool value);
-    static void setSplitOffIntegerForFractionOutput(bool value);
+    explicit KNumberComplex(mpc_t mpc);
+    ~KNumberComplex() override;
 
-public:
-    explicit KNumberFraction(const QString &s);
-    KNumberFraction(qint64 num, quint64 den);
-    KNumberFraction(quint64 num, quint64 den);
-    explicit KNumberFraction(mpq_t mpq);
-    ~KNumberFraction() override;
-
-public:
-    KNumberBase *clone() override;
+private:
+    // conversion constructors
+    explicit KNumberComplex(const KNumberInteger *value);
+    explicit KNumberComplex(const KNumberFraction *value);
+    explicit KNumberComplex(const KNumberFloat *value);
+    explicit KNumberComplex(const KNumberComplex *value);
+    explicit KNumberComplex(const KNumberError *value);
 
 public:
     QString toString(int precision) const override;
@@ -61,12 +66,6 @@ public:
     KNumberBase *mod(KNumberBase *rhs) override;
 
 public:
-    KNumberBase *bitwiseAnd(KNumberBase *rhs) override;
-    KNumberBase *bitwiseXor(KNumberBase *rhs) override;
-    KNumberBase *bitwiseOr(KNumberBase *rhs) override;
-    KNumberBase *bitwiseShift(KNumberBase *rhs) override;
-
-public:
     KNumberBase *pow(KNumberBase *rhs) override;
     KNumberBase *neg() override;
     KNumberBase *cmp() override;
@@ -81,9 +80,9 @@ public:
     KNumberBase *log2() override;
     KNumberBase *log10() override;
     KNumberBase *ln() override;
-    KNumberBase *exp2() override;
     KNumberBase *floor() override;
     KNumberBase *ceil() override;
+    KNumberBase *exp2() override;
     KNumberBase *exp10() override;
     KNumberBase *exp() override;
     KNumberBase *realPart() override;
@@ -109,25 +108,31 @@ public:
 public:
     int compare(KNumberBase *rhs) override;
 
-private:
-    KNumberInteger *numerator() const;
-    KNumberInteger *denominator() const;
+public:
+    KNumberBase *bitwiseAnd(KNumberBase *rhs) override;
+    KNumberBase *bitwiseXor(KNumberBase *rhs) override;
+    KNumberBase *bitwiseOr(KNumberBase *rhs) override;
+    KNumberBase *bitwiseShift(KNumberBase *rhs) override;
+
+public:
+    KNumberBase *clone() override;
 
 private:
-    // conversion constructors
-    explicit KNumberFraction(const KNumberInteger *value);
-    explicit KNumberFraction(const KNumberFraction *value);
-#if 0
-	// TODO: this is omitted because there is no good way to
-	// implement it
-    // truncate?
-	KNumberFraction(const KNumberFloat *value);
-    KNumberFraction(const KNumberComplex *value);
-#endif
-    explicit KNumberFraction(const KNumberError *value);
+    KNumberBase *ensureIsValid();
+
+    template<int F(mpc_ptr rop, mpc_srcptr op)>
+    KNumberBase *execute_mpc_func();
+
+    template<int F(mpc_ptr rop, mpc_srcptr op, mpc_rnd_t rnd)>
+    KNumberBase *execute_mpc_func();
+
+    template<int F(mpc_ptr rop, mpc_srcptr op1, mpc_srcptr op2, mpc_rnd_t rnd)>
+    KNumberBase *execute_mpc_func(mpc_srcptr op);
+
+    mpc_ptr new_mpc();
 
 private:
-    mpq_t m_mpq;
+    mpc_t m_mpc;
 };
 
 }

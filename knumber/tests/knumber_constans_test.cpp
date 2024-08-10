@@ -39,6 +39,7 @@ void KNumberConstansTest::testKNumberConstans_data()
     QTest::newRow("KNumber::NegOne") << KNumber::NegOne << KNumber::TypeInteger;
     QTest::newRow("KNumber::Pi") << KNumber::Pi() << KNumber::TypeFloat;
     QTest::newRow("KNumber::Euler") << KNumber::Euler() << KNumber::TypeFloat;
+    QTest::newRow("KNumber::I") << KNumber::I << KNumber::TypeComplex;
 }
 
 void KNumberConstansTest::testKNumberConstans()

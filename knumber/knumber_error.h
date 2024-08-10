@@ -18,12 +18,14 @@ class KNumberError : public KNumberBase
     friend class KNumberInteger;
     friend class KNumberFraction;
     friend class KNumberFloat;
+    friend class KNumberComplex;
 
 public:
     enum Error {
         Undefined,
         PositiveInfinity,
         NegativeInfinity,
+        ComplexInfinity,
     };
 
 public:
@@ -38,6 +40,7 @@ public:
     qint64 toInt64() const override;
 
 public:
+    bool isReal() const override;
     bool isInteger() const override;
     bool isZero() const override;
     int sign() const override;
@@ -75,6 +78,10 @@ public:
     KNumberBase *floor() override;
     KNumberBase *ceil() override;
     KNumberBase *exp() override;
+    KNumberBase *realPart() override;
+    KNumberBase *imaginaryPart() override;
+    KNumberBase *arg() override;
+    KNumberBase *conj() override;
     KNumberBase *bin(KNumberBase *rhs) override;
 
 public:
@@ -99,6 +106,7 @@ private:
     explicit KNumberError(const KNumberInteger *value);
     explicit KNumberError(const KNumberFraction *value);
     explicit KNumberError(const KNumberFloat *value);
+    explicit KNumberError(const KNumberComplex *value);
     explicit KNumberError(const KNumberError *value);
 
 public:

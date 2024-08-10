@@ -20,6 +20,7 @@ class KNumberInteger : public KNumberBase
     friend class KNumberError;
     friend class KNumberFraction;
     friend class KNumberFloat;
+    friend class KNumberComplex;
 
 public:
     explicit KNumberInteger(const QString &s);
@@ -41,6 +42,7 @@ public:
 public:
     virtual bool isEven() const;
     virtual bool isOdd() const;
+    bool isReal() const override;
     bool isInteger() const override;
     bool isZero() const override;
     int sign() const override;
@@ -77,6 +79,10 @@ public:
     KNumberBase *ceil() override;
     KNumberBase *exp10() override;
     KNumberBase *exp() override;
+    KNumberBase *realPart() override;
+    KNumberBase *imaginaryPart() override;
+    KNumberBase *arg() override;
+    KNumberBase *conj() override;
     KNumberBase *bin(KNumberBase *rhs) override;
 
 public:
@@ -102,6 +108,7 @@ private:
     explicit KNumberInteger(const KNumberInteger *value);
     explicit KNumberInteger(const KNumberFraction *value);
     explicit KNumberInteger(const KNumberFloat *value);
+    explicit KNumberInteger(const KNumberComplex *value);
     explicit KNumberInteger(const KNumberError *value);
 
 private:

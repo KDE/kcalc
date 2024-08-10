@@ -21,6 +21,7 @@ class KNumberFloat : public KNumberBase
     friend class KNumberError;
     friend class KNumberInteger;
     friend class KNumberFraction;
+    friend class KNumberComplex;
 
 private:
     static const mpfr_rnd_t rounding_mode;
@@ -41,6 +42,7 @@ private:
     explicit KNumberFloat(const KNumberInteger *value);
     explicit KNumberFloat(const KNumberFraction *value);
     explicit KNumberFloat(const KNumberFloat *value);
+    explicit KNumberFloat(const KNumberComplex *value);
     explicit KNumberFloat(const KNumberError *value);
 
 public:
@@ -49,6 +51,7 @@ public:
     qint64 toInt64() const override;
 
 public:
+    bool isReal() const override;
     bool isInteger() const override;
     bool isZero() const override;
     int sign() const override;
@@ -80,6 +83,11 @@ public:
     KNumberBase *exp2() override;
     KNumberBase *exp10() override;
     KNumberBase *exp() override;
+    KNumberBase *realPart() override;
+    KNumberBase *imaginaryPart() override;
+    KNumberBase *arg() override;
+    KNumberBase *conj() override;
+
     KNumberBase *bin(KNumberBase *rhs) override;
 
 public:

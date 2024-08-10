@@ -8,6 +8,7 @@
 // clang-format on
 #include "knumber.h"
 #include "knumber_base.h"
+#include "knumber_complex.h"
 #include "knumber_error.h"
 #include "knumber_float.h"
 #include "knumber_fraction.h"
@@ -23,6 +24,7 @@ const KNumber KNumber::Zero(QStringLiteral("0"));
 const KNumber KNumber::One(QStringLiteral("1"));
 const KNumber KNumber::NegOne(QStringLiteral("-1"));
 const KNumber KNumber::OneHundred(QStringLiteral("100"));
+const KNumber KNumber::I(QStringLiteral("i"));
 const KNumber KNumber::OneThousand(QStringLiteral("1000"));
 const KNumber KNumber::PosInfinity(QStringLiteral("inf"));
 const KNumber KNumber::NegInfinity(QStringLiteral("-inf"));
@@ -216,14 +218,20 @@ KNumber::KNumber()
 KNumber::KNumber(const QString &s)
     : m_value(nullptr)
 {
-    static const QRegularExpression specialRegex(QLatin1String("^(inf|-inf|nan)$"));
+    static const QRegularExpression specialRegex(QLatin1String("^(inf|-inf|complexInf|nan)$"));
     // const QRegularExpression integerRegex(QLatin1String("^[+-]?\\d+$"));
     static const QRegularExpression integerRegex(QLatin1String("^[+-]?\\[1-9]d+$"));
     static const QRegularExpression binaryIntegerRegex(QLatin1String("^0b[0-1]{1,64}$"));
     static const QRegularExpression octalIntegerRegex(QLatin1String("^0[0-7]{1,21}$"));
     static const QRegularExpression hexIntegerRegex(QLatin1String("^0x[0-9A-Fa-f]{1,16}$"));
     static const QRegularExpression fractionRegex(QLatin1String("^[+-]?\\d+/\\d+$"));
-    const QRegularExpression floatRegex(QString(QLatin1String(R"(^([+-]?\d*)(%1\d*)?([e|E]([+-]?\d+))?$)")).arg(QRegularExpression::escape(DecimalSeparator)));
+
+    const QString floatPattern = QString(QLatin1String("(([+-]?\\d*)(%1\\d*)?([e|E]([+-]?\\d+))?)")).arg(QRegularExpression::escape(DecimalSeparator));
+    const QRegularExpression floatRegex(QStringLiteral("^") + floatPattern + QStringLiteral("$"));
+
+    static const QRegularExpression imaginaryUnitRegex(QLatin1String("^i$"));
+    const QRegularExpression complexRegex(QStringLiteral("^") + floatPattern + floatPattern + QStringLiteral("i$"));
+    const QRegularExpression complexPolarRegex(QStringLiteral("^") + floatPattern + QStringLiteral("∠") + floatPattern + QStringLiteral("$"));
 
     if (specialRegex.match(s).hasMatch()) {
         m_value = new detail::KNumberError(s);
@@ -234,11 +242,14 @@ KNumber::KNumber(const QString &s)
         simplify();
     } else if (hexIntegerRegex.match(s).hasMatch() || octalIntegerRegex.match(s).hasMatch() || binaryIntegerRegex.match(s).hasMatch()) {
         m_value = new detail::KNumberInteger(s.toULongLong(nullptr, 0));
+    } else if (imaginaryUnitRegex.match(s).hasMatch()) {
+        QString imaginaryUnit(QStringLiteral("(0 1)"));
+        m_value = new detail::KNumberComplex(imaginaryUnit);
     } else if (const auto match = floatRegex.match(s); match.hasMatch()) {
         if (detail::KNumberFraction::defaultFractionalInput) {
-            const QString ipart = match.captured(1);
-            const QString fpart = match.captured(2);
-            const int e_val = match.captured(4).toInt();
+            const QString ipart = match.captured(2);
+            const QString fpart = match.captured(3);
+            const int e_val = match.captured(5).toInt();
 
             QString num = ipart + fpart.mid(1);
             QString den = QLatin1String("1") + QString(fpart.size() - 1, QLatin1Char('0'));
@@ -261,6 +272,38 @@ KNumber::KNumber(const QString &s)
 
         m_value = new detail::KNumberFloat(new_s);
         simplify();
+    } else if (const auto match = complexRegex.match(s); match.hasMatch()) {
+        // s is assumed as a+bi with and b valid floating point
+        // strings according to the mpfr specification
+        // mpc needs the numbers as "(a b)"
+        QString realPart = match.captured(1);
+        if (realPart.isEmpty()) {
+            realPart = QStringLiteral("0");
+        }
+        QString imaginaryPart = match.captured(6);
+        if (imaginaryPart.isEmpty()) {
+            imaginaryPart = realPart;
+            realPart = QStringLiteral("0");
+        }
+        if (imaginaryPart == QStringLiteral("+") || imaginaryPart == QStringLiteral("-")) {
+            imaginaryPart += QStringLiteral("1");
+        }
+        QString sFormatted = QStringLiteral("(") + realPart + QStringLiteral(" ") + imaginaryPart + QStringLiteral(")");
+        sFormatted = sFormatted.replace(DecimalSeparator, QLatin1String("."));
+
+        m_value = new detail::KNumberComplex(sFormatted);
+    } else if (const auto match = complexPolarRegex.match(s); match.hasMatch()) {
+        QString modulo = match.captured(1);
+        if (modulo.isEmpty()) {
+            modulo = QStringLiteral("1");
+        }
+        QString arg = match.captured(6);
+        if (arg.isEmpty()) {
+            arg = QStringLiteral("0");
+        }
+        modulo = modulo.replace(DecimalSeparator, QLatin1String("."));
+        arg = arg.replace(DecimalSeparator, QLatin1String("."));
+        m_value = new detail::KNumberComplex(modulo, arg);
     } else {
         m_value = new detail::KNumberError(detail::KNumberError::Undefined);
     }
@@ -302,10 +345,22 @@ KNumber::KNumber(long double value)
 {
     simplify();
 }
+
+KNumber::KNumber(long double re, long double img)
+    : m_value(new detail::KNumberComplex(re, img))
+{
+    simplify();
+}
 #endif
 
 KNumber::KNumber(double value)
     : m_value(new detail::KNumberFloat(value))
+{
+    simplify();
+}
+
+KNumber::KNumber(double re, double img)
+    : m_value(new detail::KNumberComplex(re, img))
 {
     simplify();
 }
@@ -331,6 +386,8 @@ KNumber::Type KNumber::type() const
         return TypeFloat;
     } else if (dynamic_cast<detail::KNumberFraction *>(m_value)) {
         return TypeFraction;
+    } else if (dynamic_cast<detail::KNumberComplex *>(m_value)) {
+        return TypeComplex;
     } else if (dynamic_cast<detail::KNumberError *>(m_value)) {
         return TypeError;
     } else {
@@ -365,6 +422,10 @@ KNumber KNumber::integerPart() const
         detail::KNumberBase *v = new detail::KNumberInteger(p);
         qSwap(v, x.m_value);
         delete v;
+    } else if (auto const p = dynamic_cast<detail::KNumberComplex *>(m_value)) {
+        detail::KNumberBase *v = new detail::KNumberInteger(p);
+        qSwap(v, x.m_value);
+        delete v;
     } else if (auto const p = dynamic_cast<detail::KNumberError *>(m_value)) {
         // NO-OP
         Q_UNUSED(p);
@@ -375,12 +436,32 @@ KNumber KNumber::integerPart() const
     return x;
 }
 
+KNumber KNumber::realPart() const
+{
+    KNumber r(*this);
+    r.m_value = r.m_value->realPart();
+    r.simplify();
+    return r;
+}
+
+KNumber KNumber::imaginaryPart() const
+{
+    KNumber i(*this);
+    i.m_value = i.m_value->imaginaryPart();
+    i.simplify();
+    return i;
+}
+
 void KNumber::simplify()
 {
     if (m_value->isInteger()) {
         if (auto const p = dynamic_cast<detail::KNumberInteger *>(m_value)) {
             // NO-OP
             Q_UNUSED(p);
+        } else if (auto const p = dynamic_cast<detail::KNumberComplex *>(m_value)) {
+            detail::KNumberBase *v = new detail::KNumberInteger(p);
+            qSwap(v, m_value);
+            delete v;
         } else if (auto const p = dynamic_cast<detail::KNumberFloat *>(m_value)) {
             detail::KNumberBase *v = new detail::KNumberInteger(p);
             qSwap(v, m_value);
@@ -394,6 +475,12 @@ void KNumber::simplify()
             Q_UNUSED(p);
         } else {
             Q_ASSERT(0);
+        }
+    } else if (m_value->isReal()) {
+        if (auto const p = dynamic_cast<detail::KNumberComplex *>(m_value)) {
+            detail::KNumberBase *v = new detail::KNumberFloat(p);
+            qSwap(v, m_value);
+            delete v;
         }
     }
 }
@@ -509,6 +596,32 @@ QString KNumber::toQString(int width, int precision) const
     } else if (dynamic_cast<detail::KNumberFraction *>(m_value)) {
         s = m_value->toString(width);
         localizeDecimalSeparator(s);
+    } else if (dynamic_cast<detail::KNumberComplex *>(m_value)) {
+        QString sRe = this->realPart().toQString(width, precision);
+        QString sIm = this->imaginaryPart().toQString(width, precision);
+
+        if (sRe == QStringLiteral("0")) {
+            sRe.clear();
+            if (sIm == QStringLiteral("1")) {
+                sIm.clear();
+            } else if (sIm == QStringLiteral("-1")) {
+                sIm = QStringLiteral("-");
+            }
+        } else {
+            if (sIm.at(0) != QStringLiteral("-")) {
+                sIm = QStringLiteral("+") + sIm;
+            }
+
+            if (sIm == QStringLiteral("+1")) {
+                sIm = QStringLiteral("+");
+            }
+
+            if (sIm == QStringLiteral("-1")) {
+                sIm = QStringLiteral("-");
+            }
+        }
+
+        return sRe + sIm + QStringLiteral("i");
     } else {
         return m_value->toString(width);
     }
@@ -571,7 +684,7 @@ KNumber KNumber::pow(const KNumber &x) const
     if (!dynamic_cast<detail::KNumberError *>(m_value)) {
         // number much bigger than this tend to crash GMP with
         // an abort
-        if (x > KNumber(QStringLiteral("1000000000"))) {
+        if (x.abs() > KNumber(QStringLiteral("1000000000")) && x.type() != TypeError) {
             return PosInfinity;
         }
     }
@@ -764,6 +877,22 @@ KNumber KNumber::exp() const
 {
     KNumber z(*this);
     z.m_value = z.m_value->exp();
+    z.simplify();
+    return z;
+}
+
+KNumber KNumber::arg() const
+{
+    KNumber a(*this);
+    a.m_value = a.m_value->arg();
+    a.simplify();
+    return a;
+}
+
+KNumber KNumber::conj() const
+{
+    KNumber z(*this);
+    z.m_value = z.m_value->conj();
     z.simplify();
     return z;
 }
