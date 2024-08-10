@@ -27,6 +27,7 @@ private:
 public:
     enum Type {
         TypeError,
+        TypeComplex,
         TypeInteger,
         TypeFloat,
         TypeFraction,
@@ -38,6 +39,7 @@ public:
     static const KNumber One;
     static const KNumber NegOne;
     static const KNumber OneHundred;
+    static const KNumber I;
     static const KNumber OneThousand;
     static const KNumber PosInfinity;
     static const KNumber NegInfinity;
@@ -62,8 +64,10 @@ public:
 
 #ifdef HAVE_LONG_DOUBLE
     explicit KNumber(long double value);
+    explicit KNumber(long double re, long double img);
 #endif
     explicit KNumber(double value);
+    explicit KNumber(double re, double img);
 
     KNumber(const KNumber &other);
     ~KNumber();

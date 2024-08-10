@@ -5,6 +5,7 @@
 */
 
 #include "knumber_error.h"
+#include "knumber_complex.h"
 #include "knumber_float.h"
 #include "knumber_fraction.h"
 #include "knumber_integer.h"
@@ -53,6 +54,11 @@ KNumberError::KNumberError(const KNumberFloat *)
 {
 }
 
+KNumberError::KNumberError(const KNumberComplex *)
+    : m_error(Undefined)
+{
+}
+
 KNumberError::KNumberError(const KNumberError *value)
     : m_error(value->m_error)
 {
@@ -84,6 +90,9 @@ KNumberBase *KNumberError::add(KNumberBase *rhs)
     } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
         Q_UNUSED(p);
         return this;
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        Q_UNUSED(p);
+        return this;
     } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
         if (m_error == PositiveInfinity && p->m_error == NegativeInfinity) {
             m_error = Undefined;
@@ -105,6 +114,9 @@ KNumberBase *KNumberError::sub(KNumberBase *rhs)
         Q_UNUSED(p);
         return this;
     } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
+        Q_UNUSED(p);
+        return this;
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
         Q_UNUSED(p);
         return this;
     } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
@@ -133,6 +145,11 @@ KNumberBase *KNumberError::mul(KNumberBase *rhs)
         }
         return this;
     } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
+        if (p->isZero()) {
+            m_error = Undefined;
+        }
+        return this;
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
         if (p->isZero()) {
             m_error = Undefined;
         }
@@ -170,6 +187,9 @@ KNumberBase *KNumberError::div(KNumberBase *rhs)
     } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
         Q_UNUSED(p);
         return this;
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        Q_UNUSED(p);
+        return this;
     } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
         Q_UNUSED(p);
         m_error = Undefined;
@@ -191,6 +211,9 @@ KNumberBase *KNumberError::mod(KNumberBase *rhs)
     } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
         Q_UNUSED(p);
         return this;
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        Q_UNUSED(p);
+        return this;
     } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
         Q_UNUSED(p);
         m_error = Undefined;
@@ -210,6 +233,9 @@ KNumberBase *KNumberError::pow(KNumberBase *rhs)
         Q_UNUSED(p);
         return this;
     } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
+        Q_UNUSED(p);
+        return this;
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
         Q_UNUSED(p);
         return this;
     } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
@@ -427,6 +453,8 @@ int KNumberError::compare(KNumberBase *rhs)
         } else {
             return -1;
         }
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        return -1; // TODO: what to return when comparing to complex?
     } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
         // TODO: What to return when comparing to NaN?
         if (m_error == p->m_error) {

@@ -23,14 +23,24 @@ set_package_properties(MPFR PROPERTIES
     PURPOSE "Required for building KCalc."
 )
 
+find_package(MPC)
+set_package_properties(MPC PROPERTIES
+    DESCRIPTION "GNU MPC is a C library for the arithmetic of complex numbers with arbitrarily high precision and correct rounding of the result"
+    URL "https://www.multiprecision.org/mpc/"
+    TYPE REQUIRED
+    PURPOSE "Required for building KCalc."
+)
+
 add_library(knumber STATIC
     knumber.cpp
     knumber_error.cpp
+    knumber_complex.cpp
     knumber_float.cpp
     knumber_fraction.cpp
     knumber_integer.cpp
     knumber_operators.cpp
     knumber.h
+    knumber_complex.h
     knumber_fraction.h
     knumber_operators.h
     knumber_base.h
@@ -42,6 +52,6 @@ add_library(knumber STATIC
 
 target_include_directories(knumber PUBLIC ${CMAKE_BINARY_DIR} ${GMP_INCLUDE_DIR})
 
-target_link_libraries(knumber PUBLIC Qt6::Core PRIVATE ${GMP_LIBRARIES} ${MPFR_LIBRARIES})
+target_link_libraries(knumber PUBLIC Qt6::Core PRIVATE ${GMP_LIBRARIES} ${MPFR_LIBRARIES} ${MPC_LIBRARIES})
 
 add_subdirectory( tests ) 
