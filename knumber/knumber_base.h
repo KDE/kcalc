@@ -14,6 +14,7 @@ class KNumberError;
 class KNumberInteger;
 class KNumberFraction;
 class KNumberFloat;
+class KNumberComplex;
 
 class KNumberBase
 {

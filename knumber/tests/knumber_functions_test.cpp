@@ -69,13 +69,14 @@ void KNumberFunctionsTest::testKNumberSqrt_data()
     QTest::addColumn<KNumber::Type>("expectedResultType");
 
     QTest::newRow("KNumber(16).sqrt()") << KNumber(16) << QStringLiteral("4") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(-16).sqrt()") << KNumber(-16) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(-16).sqrt()") << KNumber(-16) << QStringLiteral("4.00000000000i") << KNumber::TypeComplex;
     QTest::newRow("KNumber(\"16/9\").sqrt()") << KNumber(QStringLiteral("16/9")) << QStringLiteral("4/3") << KNumber::TypeFraction;
-    QTest::newRow("KNumber(\"-16/9\").sqrt()") << KNumber(QStringLiteral("-16/9")) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(\"-16/9\").sqrt()") << KNumber(QStringLiteral("-16/9")) << QStringLiteral("1.33333333333i") << KNumber::TypeComplex;
     QTest::newRow("KNumber(2).sqrt()") << KNumber(2) << QStringLiteral("1.41421356237") << KNumber::TypeFloat;
     QTest::newRow("KNumber(\"2/3\").sqrt()") << KNumber(QStringLiteral("2/3")) << QStringLiteral("0.816496580928") << KNumber::TypeFloat;
     QTest::newRow("KNumber(\"0.25\").sqrt()") << KNumber(QStringLiteral("0.25")) << QStringLiteral("0.5") << KNumber::TypeFloat;
-    QTest::newRow("KNumber(\"-0.25\").sqrt()") << KNumber(QStringLiteral("-0.25")) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(\"-0.25\").sqrt()") << KNumber(QStringLiteral("-0.25")) << QStringLiteral("5.00000000000e-1i") << KNumber::TypeComplex;
+    QTest::newRow("KNumber(\"-1\").sqrt()") << KNumber(QStringLiteral("-1")) << QStringLiteral("1.00000000000i") << KNumber::TypeComplex;
 }
 
 void KNumberFunctionsTest::testKNumberSqrt()
@@ -132,6 +133,8 @@ void KNumberFunctionsTest::testKNumberAbs_data()
     QTest::newRow("KNumber(-5).abs()") << KNumber(-5) << QStringLiteral("5") << KNumber::TypeInteger;
     QTest::newRow("KNumber(\"-2/3\").abs()") << KNumber(QStringLiteral("-2/3")) << QStringLiteral("2/3") << KNumber::TypeFraction;
     QTest::newRow("KNumber(\"-2.3\").abs()") << KNumber(QStringLiteral("-2.3")) << QStringLiteral("2.3") << KNumber::TypeFloat;
+
+    QTest::newRow("KNumber(\"-2+2i\").abs()") << KNumber(QStringLiteral("-2+2i")) << QStringLiteral("2.82842712475") << KNumber::TypeFloat;
 }
 
 void KNumberFunctionsTest::testKNumberAbs()
@@ -158,6 +161,7 @@ void KNumberFunctionsTest::testKNumberSin_data()
     QTest::newRow("sin(KNumber(\"-5/2\"))") << KNumber(QStringLiteral("-5/2")) << QStringLiteral("-0.598472144104") << KNumber::TypeFloat;
     QTest::newRow("sin(KNumber(5.3))") << KNumber(5.3) << QStringLiteral("-0.832267442224") << KNumber::TypeFloat;
     QTest::newRow("sin(KNumber(-5.3))") << KNumber(-5.3) << QStringLiteral("0.832267442224") << KNumber::TypeFloat;
+    QTest::newRow("sin(KNumber(1+i))") << KNumber(QStringLiteral("1+i")) << QStringLiteral("1.29845758142+6.34963914785e-1i") << KNumber::TypeComplex;
 }
 
 void KNumberFunctionsTest::testKNumberSin()
@@ -301,6 +305,7 @@ void KNumberFunctionsTest::testKNumberAtan_data()
     QTest::newRow("atan(KNumber(\"-2/5\"))") << KNumber(QStringLiteral("-2/5")) << QStringLiteral("-0.380506377112") << KNumber::TypeFloat;
     QTest::newRow("atan(KNumber(0.3))") << KNumber(0.3) << QStringLiteral("0.291456794478") << KNumber::TypeFloat;
     QTest::newRow("atan(KNumber(-0.3))") << KNumber(-0.3) << QStringLiteral("-0.291456794478") << KNumber::TypeFloat;
+    QTest::newRow("atan(KNumber(1+i))") << KNumber(QStringLiteral("1+i")) << QStringLiteral("1.01722196790+4.02359478109e-1i") << KNumber::TypeComplex;
 }
 
 void KNumberFunctionsTest::testKNumberAtan()

@@ -5,6 +5,7 @@
 */
 
 #include "knumber_fraction.h"
+#include "knumber_complex.h"
 #include "knumber_error.h"
 #include "knumber_float.h"
 #include "knumber_integer.h"
@@ -76,9 +77,17 @@ KNumberFraction::KNumberFraction(const KNumberInteger *value)
 
 #if 0
 
-knumber_fraction::knumber_fraction(const knumber_float *value) {
-	mpq_init(mpq_);
-	mpq_set_f(mpq_, value->mpf_);
+KNumberFraction::KNumberFraction(const KNumberFloat *value) {
+	mpq_init(m_mpq);
+	mpq_set_f(m_mpq, value->mpf_);
+}
+
+//------------------------------------------------------------------------------
+// Name:
+//------------------------------------------------------------------------------
+KNumberFraction::KNumberFraction(const KNumberComplex *value) {
+	mpq_init(m_mpq);
+	mpq_set_c(m_mpq, value->mpf_);
 }
 #endif
 
@@ -103,6 +112,10 @@ KNumberBase *KNumberFraction::add(KNumberBase *rhs)
         KNumberFraction q(p);
         mpq_add(m_mpq, m_mpq, q.m_mpq);
         return this;
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        auto f = new KNumberComplex(this);
+        delete this;
+        return f->add(p);
     } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
         auto f = new KNumberFloat(this);
         delete this;
@@ -126,6 +139,10 @@ KNumberBase *KNumberFraction::sub(KNumberBase *rhs)
         KNumberFraction q(p);
         mpq_sub(m_mpq, m_mpq, q.m_mpq);
         return this;
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        auto f = new KNumberComplex(this);
+        delete this;
+        return f->sub(p);
     } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
         auto f = new KNumberFloat(this);
         delete this;
@@ -149,6 +166,10 @@ KNumberBase *KNumberFraction::mul(KNumberBase *rhs)
         KNumberFraction q(p);
         mpq_mul(m_mpq, m_mpq, q.m_mpq);
         return this;
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        auto q = new KNumberComplex(this);
+        delete this;
+        return q->mul(p);
     } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
         auto q = new KNumberFloat(this);
         delete this;
@@ -193,6 +214,10 @@ KNumberBase *KNumberFraction::div(KNumberBase *rhs)
     if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
         KNumberFraction f(p);
         return div(&f);
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        auto f = new KNumberComplex(this);
+        delete this;
+        return f->div(p);
     } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
         auto f = new KNumberFloat(this);
         delete this;
@@ -283,8 +308,9 @@ KNumberBase *KNumberFraction::cmp()
 KNumberBase *KNumberFraction::sqrt()
 {
     if (sign() < 0) {
+        auto f = new KNumberComplex(this);
         delete this;
-        return new KNumberError(KNumberError::Undefined);
+        return f->sqrt();
     }
 
     if (mpz_perfect_square_p(mpq_numref(m_mpq)) && mpz_perfect_square_p(mpq_denref(m_mpq))) {
@@ -375,6 +401,11 @@ KNumberBase *KNumberFraction::pow(KNumberBase *rhs)
         } else {
             return this;
         }
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        Q_UNUSED(p);
+        auto f = new KNumberComplex(this);
+        delete this;
+        return f->pow(rhs);
     } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
         Q_UNUSED(p);
         auto f = new KNumberFloat(this);
@@ -587,6 +618,9 @@ int KNumberFraction::compare(KNumberBase *rhs)
     if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
         KNumberFraction f(p);
         return mpq_cmp(m_mpq, f.m_mpq);
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        KNumberComplex f(this);
+        return f.compare(p);
     } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
         KNumberFloat f(this);
         return f.compare(p);
@@ -741,5 +775,4 @@ KNumberBase *KNumberFraction::bin(KNumberBase *rhs)
     delete this;
     return new KNumberError(KNumberError::Undefined);
 }
-
 }

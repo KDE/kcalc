@@ -20,6 +20,7 @@ class KNumberInteger : public KNumberBase
     friend class KNumberError;
     friend class KNumberFraction;
     friend class KNumberFloat;
+    friend class KNumberComplex;
 
 public:
     explicit KNumberInteger(const QString &s);
@@ -102,6 +103,7 @@ private:
     explicit KNumberInteger(const KNumberInteger *value);
     explicit KNumberInteger(const KNumberFraction *value);
     explicit KNumberInteger(const KNumberFloat *value);
+    explicit KNumberInteger(const KNumberComplex *value);
     explicit KNumberInteger(const KNumberError *value);
 
 private:
