@@ -26,6 +26,8 @@ QString numtypeToString(KNumber::Type type)
         return QStringLiteral("Fraction");
     case KNumber::Type::TypeFloat:
         return QStringLiteral("Float");
+    case KNumber::Type::TypeComplex:
+        return QStringLiteral("Complex");
     default:
         Q_UNREACHABLE();
         return QLatin1String("Unknown:") + QString::number(type);
@@ -125,6 +127,10 @@ void testingCompare()
 
     checkTruth(QStringLiteral("KNumber(3.2) < KNumber(\"3/5\")"), KNumber(3.2) < KNumber(QStringLiteral("3/5")), false);
 
+    checkTruth(QStringLiteral("KNumber(\"i\") == KNumber(\"0+i\")"), KNumber(QStringLiteral("i")) == KNumber(QStringLiteral("0+i")), true);
+    checkTruth(QStringLiteral("KNumber(\"i\") != KNumber(\"1+i\")"), KNumber(QStringLiteral("i")) != KNumber(QStringLiteral("1+i")), true);
+    checkTruth(QStringLiteral("KNumber(\"1\") != KNumber(\"i\")"), KNumber(QStringLiteral("1")) == KNumber(QStringLiteral("i")), false);
+
     checkTruth(QStringLiteral("KNumber(-inf) == KNumber::NegInfinity"), KNumber(QStringLiteral("-inf")) == KNumber::NegInfinity, true);
     checkTruth(QStringLiteral("KNumber(inf) == KNumber::PosInfinity"), KNumber(QStringLiteral("inf")) == KNumber::PosInfinity, true);
     checkTruth(QStringLiteral("KNumber(inf) == KNumber(inf)"), KNumber(QStringLiteral("inf")) == KNumber(QStringLiteral("inf")), true);
@@ -168,6 +174,10 @@ void testingAdditions()
     checkResult(QStringLiteral("KNumber(5.3) + KNumber(2)"), KNumber(5.3) + KNumber(2), QStringLiteral("7.3"), KNumber::TypeFloat);
     checkResult(QStringLiteral("KNumber(5.3) + KNumber(\"2/4\")"), KNumber(5.3) + KNumber(QStringLiteral("2/4")), QStringLiteral("5.8"), KNumber::TypeFloat);
     checkResult(QStringLiteral("KNumber(5.3) + KNumber(2.3)"), KNumber(5.3) + KNumber(2.3), QStringLiteral("7.6"), KNumber::TypeFloat);
+    checkResult(QStringLiteral("KNumber(1) + KNumber(1.5,1.5)"),
+                KNumber(1) + KNumber(1.5, 1.5),
+                QStringLiteral("2.50000000000+1.50000000000i"),
+                KNumber::TypeComplex);
 }
 
 void testingSubtractions()
@@ -242,6 +252,11 @@ void testingTrig()
     checkResult(QStringLiteral("cos(KNumber(-5.3))"), cos(KNumber(-5.3)), QStringLiteral("0.554374336179"), KNumber::TypeFloat);
     checkResult(QStringLiteral("tan(KNumber(-5.3))"), tan(KNumber(-5.3)), QStringLiteral("1.50127339581"), KNumber::TypeFloat);
 
+    checkResult(QStringLiteral("sin(KNumber(1+i))"),
+                sin(KNumber(QStringLiteral("1+i"))),
+                QStringLiteral("1.29845758142+6.34963914785e-1i"),
+                KNumber::TypeComplex);
+
     checkResult(QStringLiteral("asin(KNumber(5))"), asin(KNumber(5)), QStringLiteral("nan"), KNumber::TypeError);
     checkResult(QStringLiteral("acos(KNumber(5))"), acos(KNumber(5)), QStringLiteral("nan"), KNumber::TypeError);
     checkResult(QStringLiteral("atan(KNumber(5))"), atan(KNumber(5)), QStringLiteral("1.37340076695"), KNumber::TypeFloat);
@@ -276,6 +291,10 @@ void testingTrig()
     checkResult(QStringLiteral("asin(KNumber(-0.3))"), asin(KNumber(-0.3)), QStringLiteral("-0.304692654015"), KNumber::TypeFloat);
     checkResult(QStringLiteral("acos(KNumber(-0.3))"), acos(KNumber(-0.3)), QStringLiteral("1.87548898081"), KNumber::TypeFloat);
     checkResult(QStringLiteral("atan(KNumber(-0.3))"), atan(KNumber(-0.3)), QStringLiteral("-0.291456794478"), KNumber::TypeFloat);
+    checkResult(QStringLiteral("atan(KNumber(1+i))"),
+                atan(KNumber(QStringLiteral("1+i"))),
+                QStringLiteral("1.01722196790+4.02359478109e-1i"),
+                KNumber::TypeComplex);
 }
 
 void testingMultiplications()
@@ -307,6 +326,10 @@ void testingMultiplications()
     checkResult(QStringLiteral("KNumber(5.3) * KNumber(0)"), KNumber(5.3) * KNumber(0), QStringLiteral("0"), KNumber::TypeInteger);
     checkResult(QStringLiteral("KNumber(5.3) * KNumber(\"1/2\")"), KNumber(5.3) * KNumber(QStringLiteral("1/2")), QStringLiteral("2.65"), KNumber::TypeFloat);
     checkResult(QStringLiteral("KNumber(5.3) * KNumber(2.3)"), KNumber(5.3) * KNumber(2.3), QStringLiteral("12.19"), KNumber::TypeFloat);
+    checkResult(QStringLiteral("KNumber(\"i\") * KNumber(\"i\")"),
+                KNumber(QStringLiteral("i")) * KNumber(QStringLiteral("i")),
+                QStringLiteral("-1.00000000000+0i"),
+                KNumber::TypeComplex);
 }
 
 void testingDivisions()
@@ -391,6 +414,7 @@ void testingAbs()
     checkResult(QStringLiteral("KNumber(-5).abs()"), KNumber(-5).abs(), QStringLiteral("5"), KNumber::TypeInteger);
     checkResult(QStringLiteral("KNumber(\"-2/3\").abs()"), KNumber(QStringLiteral("-2/3")).abs(), QStringLiteral("2/3"), KNumber::TypeFraction);
     checkResult(QStringLiteral("KNumber(\"-2.3\").abs()"), KNumber(QStringLiteral("-2.3")).abs(), QStringLiteral("2.3"), KNumber::TypeFloat);
+    checkResult(QStringLiteral("KNumber(\"-2+2i\").abs()"), KNumber(QStringLiteral("-2+2i")).abs(), QStringLiteral("2.82842712475"), KNumber::TypeFloat);
 }
 
 void testingTruncateToInteger()
@@ -413,13 +437,18 @@ void testingSqrt()
     std::cout << "--------------------------------\n";
 
     checkResult(QStringLiteral("KNumber(16).sqrt()"), KNumber(16).sqrt(), QStringLiteral("4"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(-16).sqrt()"), KNumber(-16).sqrt(), QStringLiteral("nan"), KNumber::TypeError);
+    checkResult(QStringLiteral("KNumber(-16).sqrt()"), KNumber(-16).sqrt(), QStringLiteral("4.00000000000i"), KNumber::TypeComplex);
     checkResult(QStringLiteral("KNumber(\"16/9\").sqrt()"), KNumber(QStringLiteral("16/9")).sqrt(), QStringLiteral("4/3"), KNumber::TypeFraction);
-    checkResult(QStringLiteral("KNumber(\"-16/9\").sqrt()"), KNumber(QStringLiteral("-16/9")).sqrt(), QStringLiteral("nan"), KNumber::TypeError);
+    checkResult(QStringLiteral("KNumber(\"-16/9\").sqrt()"), KNumber(QStringLiteral("-16/9")).sqrt(), QStringLiteral("1.33333333333i"), KNumber::TypeComplex);
     checkResult(QStringLiteral("KNumber(2).sqrt()"), KNumber(2).sqrt(), QStringLiteral("1.41421356237"), KNumber::TypeFloat);
     checkResult(QStringLiteral("KNumber(\"2/3\").sqrt()"), KNumber(QStringLiteral("2/3")).sqrt(), QStringLiteral("0.816496580928"), KNumber::TypeFloat);
     checkResult(QStringLiteral("KNumber(\"0.25\").sqrt()"), KNumber(QStringLiteral("0.25")).sqrt(), QStringLiteral("0.5"), KNumber::TypeFloat);
-    checkResult(QStringLiteral("KNumber(\"-0.25\").sqrt()"), KNumber(QStringLiteral("-0.25")).sqrt(), QStringLiteral("nan"), KNumber::TypeError);
+    checkResult(QStringLiteral("KNumber(\"-0.25\").sqrt()"),
+                KNumber(QStringLiteral("-0.25")).sqrt(),
+                QStringLiteral("5.00000000000e-1i"),
+                KNumber::TypeComplex);
+
+    checkResult(QStringLiteral("KNumber(\"-1\").sqrt()"), KNumber(QStringLiteral("-1")).sqrt(), QStringLiteral("1.00000000000i"), KNumber::TypeComplex);
 
     checkResult(QStringLiteral("KNumber(27).cbrt()"), KNumber(27).cbrt(), QStringLiteral("3"), KNumber::TypeInteger);
     checkResult(QStringLiteral("KNumber(-27).cbrt()"), KNumber(-27).cbrt(), QStringLiteral("-3"), KNumber::TypeInteger);
@@ -861,6 +890,8 @@ void testingConstructors()
     checkResult(QStringLiteral("KNumber(5)"), KNumber(5), QStringLiteral("5"), KNumber::TypeInteger);
     checkType(QStringLiteral("KNumber(5.3)"), KNumber(5.3).type(), KNumber::TypeFloat);
     checkType(QStringLiteral("KNumber(0.0)"), KNumber(0.0).type(), KNumber::TypeInteger);
+    checkType(QStringLiteral("KNumber(\"i\")"), KNumber(QStringLiteral("i")).type(), KNumber::TypeComplex);
+    checkType(QStringLiteral("KNumber(\"2+i\")"), KNumber(QStringLiteral("2+i")).type(), KNumber::TypeComplex);
 
     checkResult(QStringLiteral("KNumber(\"5\")"), KNumber(QStringLiteral("5")), QStringLiteral("5"), KNumber::TypeInteger);
     checkResult(QStringLiteral("KNumber(\"5/3\")"), KNumber(QStringLiteral("5/3")), QStringLiteral("5/3"), KNumber::TypeFraction);
@@ -914,6 +945,7 @@ void testingConstants()
     checkType(QStringLiteral("KNumber::Zero"), KNumber::Zero.type(), KNumber::TypeInteger);
     checkType(QStringLiteral("KNumber::One"), KNumber::One.type(), KNumber::TypeInteger);
     checkType(QStringLiteral("KNumber::NegOne"), KNumber::NegOne.type(), KNumber::TypeInteger);
+    checkType(QStringLiteral("KNumber::I"), KNumber::I.type(), KNumber::TypeComplex);
     checkType(QStringLiteral("KNumber::Pi"), KNumber::Pi().type(), KNumber::TypeFloat);
     checkType(QStringLiteral("KNumber::Euler"), KNumber::Euler().type(), KNumber::TypeFloat);
 }

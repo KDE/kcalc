@@ -18,6 +18,7 @@ class KNumberError : public KNumberBase
     friend class KNumberInteger;
     friend class KNumberFraction;
     friend class KNumberFloat;
+    friend class KNumberComplex;
 
 public:
     enum Error {
@@ -99,6 +100,7 @@ private:
     explicit KNumberError(const KNumberInteger *value);
     explicit KNumberError(const KNumberFraction *value);
     explicit KNumberError(const KNumberFloat *value);
+    explicit KNumberError(const KNumberComplex *value);
     explicit KNumberError(const KNumberError *value);
 
 public:

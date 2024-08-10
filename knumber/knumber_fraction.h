@@ -18,6 +18,7 @@ class KNumberFraction : public KNumberBase
     friend class KNumberError;
     friend class KNumberInteger;
     friend class KNumberFloat;
+    friend class KNumberComplex;
 
 public:
     static bool defaultFractionalInput;
@@ -112,7 +113,9 @@ private:
 #if 0
 	// TODO: this is omitted because there is no good way to
 	// implement it
-	KNumberFraction(const knumber_float *value);
+    // truncate?
+	KNumberFraction(const KNumberFloat *value);
+    KNumberFraction(const KNumberComplex *value);
 #endif
     explicit KNumberFraction(const KNumberError *value);
 

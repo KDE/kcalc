@@ -5,6 +5,7 @@
 */
 
 #include "knumber_float.h"
+#include "knumber_complex.h"
 #include "knumber_error.h"
 #include "knumber_fraction.h"
 #include "knumber_integer.h"
@@ -97,6 +98,11 @@ KNumberFloat::KNumberFloat(const KNumberFraction *value)
     mpfr_set_q(new_mpfr(), value->m_mpq, rounding_mode);
 }
 
+KNumberFloat::KNumberFloat(const KNumberComplex *value)
+{
+    mpc_real(new_mpfr(), value->m_mpc, rounding_mode);
+}
+
 KNumberBase *KNumberFloat::clone()
 {
     return new KNumberFloat(this);
@@ -118,6 +124,10 @@ KNumberBase *KNumberFloat::add(KNumberBase *rhs)
     if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
         KNumberFloat f(p);
         return add(&f);
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        auto f = new KNumberComplex(this);
+        delete this;
+        return f->add(p);
     } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
         mpfr_add(m_mpfr, m_mpfr, p->m_mpfr, rounding_mode);
         return this;
@@ -139,6 +149,10 @@ KNumberBase *KNumberFloat::sub(KNumberBase *rhs)
     if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
         KNumberFloat f(p);
         return sub(&f);
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        auto f = new KNumberComplex(this);
+        delete this;
+        return f->sub(p);
     } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
         mpfr_sub(m_mpfr, m_mpfr, p->m_mpfr, rounding_mode);
         return this;
@@ -160,6 +174,10 @@ KNumberBase *KNumberFloat::mul(KNumberBase *rhs)
     if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
         KNumberFloat f(p);
         return mul(&f);
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        auto f = new KNumberComplex(this);
+        delete this;
+        return f->mul(p);
     } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
         mpfr_mul(m_mpfr, m_mpfr, p->m_mpfr, rounding_mode);
         return this;
@@ -201,6 +219,10 @@ KNumberBase *KNumberFloat::div(KNumberBase *rhs)
     if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
         KNumberFloat f(p);
         return div(&f);
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        auto f = new KNumberComplex(this);
+        delete this;
+        return f->div(p);
     } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
         mpfr_div(m_mpfr, m_mpfr, p->m_mpfr, rounding_mode);
         return this;
@@ -284,8 +306,9 @@ KNumberBase *KNumberFloat::abs()
 KNumberBase *KNumberFloat::sqrt()
 {
     if (sign() < 0) {
+        auto f = new KNumberComplex(this);
         delete this;
-        return new KNumberError(KNumberError::Undefined);
+        return f->sqrt();
     }
 
     mpfr_sqrt(m_mpfr, m_mpfr, rounding_mode);
@@ -404,6 +427,10 @@ KNumberBase *KNumberFloat::pow(KNumberBase *rhs)
         } else {
             return this;
         }
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        auto f = new KNumberComplex(this);
+        delete this;
+        return f->pow(p);
     } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
         return execute_mpfr_func<::mpfr_pow>(p->m_mpfr);
     } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
@@ -434,6 +461,9 @@ int KNumberFloat::compare(KNumberBase *rhs)
     if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
         KNumberFloat f(p);
         return compare(&f);
+    } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
+        KNumberComplex f(this);
+        return f.compare(p);
     } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
         return mpfr_cmp(m_mpfr, p->m_mpfr);
     } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {

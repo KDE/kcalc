@@ -1,6 +1,5 @@
 /*
-    SPDX-FileCopyrightText: 2001-2013 Evan Teran <evan.teran@gmail.com>
-
+    SPDX-FileCopyrightText: 2023 Gabriel Barrantes <gabriel.barrantes.dev@outlook.com>
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
@@ -13,35 +12,37 @@ class KNumber;
 
 namespace detail
 {
-class KNumberFloat : public KNumberBase
+class KNumberComplex : public KNumberBase
 {
     friend class ::KNumber;
     friend class KNumberError;
     friend class KNumberInteger;
     friend class KNumberFraction;
-    friend class KNumberComplex;
+    friend class KNumberFloat;
 
 private:
-    static const mpfr_rnd_t rounding_mode;
+    static const mpc_rnd_t rounding_mode;
     static const mpfr_prec_t precision;
 
 public:
-    explicit KNumberFloat(const QString &s);
-    explicit KNumberFloat(double value);
+    explicit KNumberComplex(const QString &s);
+    explicit KNumberComplex(double re);
+    explicit KNumberComplex(double re, double img);
 #ifdef HAVE_LONG_DOUBLE
-    explicit KNumberFloat(long double value);
+    explicit KNumberComplex(long double re);
+    explicit KNumberComplex(long double re, long double img);
 #endif
 
-    explicit KNumberFloat(mpfr_t mpfr);
-    ~KNumberFloat() override;
+    explicit KNumberComplex(mpc_t mpc);
+    ~KNumberComplex() override;
 
 private:
     // conversion constructors
-    explicit KNumberFloat(const KNumberInteger *value);
-    explicit KNumberFloat(const KNumberFraction *value);
-    explicit KNumberFloat(const KNumberFloat *value);
-    explicit KNumberFloat(const KNumberComplex *value);
-    explicit KNumberFloat(const KNumberError *value);
+    explicit KNumberComplex(const KNumberInteger *value);
+    explicit KNumberComplex(const KNumberFraction *value);
+    explicit KNumberComplex(const KNumberFloat *value);
+    explicit KNumberComplex(const KNumberComplex *value);
+    explicit KNumberComplex(const KNumberError *value);
 
 public:
     QString toString(int precision) const override;
@@ -109,21 +110,21 @@ public:
     KNumberBase *clone() override;
 
 private:
-    KNumberBase *ensureIsValid(mpfr_ptr mpfr);
+    KNumberBase *ensureIsValid(mpc_ptr mpc);
 
-    template<int F(mpfr_ptr rop, mpfr_srcptr op)>
-    KNumberBase *execute_mpfr_func();
+    template<int F(mpc_ptr rop, mpc_srcptr op)>
+    KNumberBase *execute_mpc_func();
 
-    template<int F(mpfr_ptr rop, mpfr_srcptr op, mpfr_rnd_t rnd)>
-    KNumberBase *execute_mpfr_func();
+    template<int F(mpc_ptr rop, mpc_srcptr op, mpc_rnd_t rnd)>
+    KNumberBase *execute_mpc_func();
 
-    template<int F(mpfr_ptr rop, mpfr_srcptr op1, mpfr_srcptr op2, mpfr_rnd_t rnd)>
-    KNumberBase *execute_mpfr_func(mpfr_srcptr op);
+    template<int F(mpc_ptr rop, mpc_srcptr op1, mpc_srcptr op2, mpc_rnd_t rnd)>
+    KNumberBase *execute_mpc_func(mpc_srcptr op);
 
-    mpfr_ptr new_mpfr();
+    mpc_ptr new_mpc();
 
 private:
-    mpfr_t m_mpfr;
+    mpc_t m_mpc;
 };
 
 }
