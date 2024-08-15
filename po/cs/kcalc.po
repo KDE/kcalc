@@ -2375,6 +2375,3 @@ msgstr "Stefan-Boltzmannova konstanta"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Avogadrova konstanta"
-
-#~ msgid "Input error"
-#~ msgstr "Chyba vstupu"
