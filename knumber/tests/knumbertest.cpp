@@ -15,23 +15,24 @@ namespace
 {
 const int precision = 12;
 
-QString numtypeToString(int arg)
+QString numtypeToString(KNumber::Type type)
 {
-    switch (arg) {
-    case 0:
+    switch (type) {
+    case KNumber::Type::TYPE_ERROR:
         return QStringLiteral("Special");
-    case 1:
+    case KNumber::Type::TYPE_INTEGER:
         return QStringLiteral("Integer");
-    case 3:
+    case KNumber::Type::TYPE_FRACTION:
         return QStringLiteral("Fraction");
-    case 2:
+    case KNumber::Type::TYPE_FLOAT:
         return QStringLiteral("Float");
     default:
-        return QLatin1String("Unknown:") + QString::number(arg);
+        Q_UNREACHABLE();
+        return QLatin1String("Unknown:") + QString::number(type);
     }
 }
 
-void checkResult(const QString &string, const KNumber &result, const QString &desired_string, int desired)
+void checkResult(const QString &string, const KNumber &result, const QString &desired_string, KNumber::Type desired)
 {
     std::cout << "Testing result of: " << qPrintable(string) << " should give " << qPrintable(desired_string) << " and gives "
               << qPrintable(result.toQString(precision)) << " ...\n";
@@ -61,7 +62,7 @@ void checkTruth(const QString &string, bool computation, bool desired_result)
     exit(1);
 }
 
-void checkType(const QString &string, int test_arg, int desired)
+void checkType(const QString &string, KNumber::Type test_arg, KNumber::Type desired)
 {
     std::cout << "Testing type of: " << qPrintable(string) << " should give " << qPrintable(numtypeToString(desired)) << " and gives "
               << qPrintable(numtypeToString(test_arg)) << " ...";
