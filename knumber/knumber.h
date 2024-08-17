@@ -11,7 +11,7 @@
 
 namespace detail
 {
-class knumber_base;
+class KNumberBase;
 }
 
 class KNumber
@@ -25,7 +25,12 @@ private:
     friend bool operator<(const KNumber &lhs, const KNumber &rhs);
 
 public:
-    enum Type { TYPE_ERROR, TYPE_INTEGER, TYPE_FLOAT, TYPE_FRACTION };
+    enum Type {
+        TypeError,
+        TypeInteger,
+        TypeFloat,
+        TypeFraction,
+    };
 
 public:
     // useful constants
@@ -152,7 +157,7 @@ private:
     void simplify();
 
 private:
-    detail::knumber_base *value_;
+    detail::KNumberBase *m_value;
 
 private:
     static void localizeDecimalSeparator(QString &knumber);

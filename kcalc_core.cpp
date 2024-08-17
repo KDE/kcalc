@@ -290,7 +290,7 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> tokenBuffe
         buffer_result_ = KNumber::Zero;
         errorIndex = buffer_size - 1;
         return EMPTY_INPUT;
-    } else if (token_stack_.last().isKNumber() && token_stack_.last().getKNumber().type() == KNumber::Type::TYPE_ERROR) {
+    } else if (token_stack_.last().isKNumber() && token_stack_.last().getKNumber().type() == KNumber::Type::TypeError) {
         error_ = true;
         errorIndex = buffer_size - 1;
         buffer_result_ = token_stack_.last().getKNumber();
@@ -305,7 +305,7 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> tokenBuffe
     } else if (token_stack_.size() == 2 && token_stack_.last().isBinaryFunction() && token_stack_.at(0).isKNumber()) {
         error_ = true;
         errorIndex = buffer_size - 1;
-        if (token_stack_.at(0).getKNumber().type() == KNumber::Type::TYPE_ERROR) {
+        if (token_stack_.at(0).getKNumber().type() == KNumber::Type::TypeError) {
             token_stack_.clear();
             return MATH_ERROR;
         } else {

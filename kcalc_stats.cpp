@@ -105,7 +105,7 @@ KNumber KStats::std_kernel()
     KNumber result = KNumber::Zero;
     const KNumber mean_value = mean();
 
-    if (mean_value.type() != KNumber::TYPE_ERROR) {
+    if (mean_value.type() != KNumber::TypeError) {
         for (const KNumber &x : std::as_const(data_)) {
             result += (x - mean_value) * (x - mean_value);
         }

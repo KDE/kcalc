@@ -13,143 +13,102 @@
 
 namespace detail
 {
-bool knumber_fraction::default_fractional_input = false;
-bool knumber_fraction::default_fractional_output = true;
-bool knumber_fraction::split_off_integer_for_fraction_output = false;
+bool KNumberFraction::defaultFractionalInput = false;
+bool KNumberFraction::defaultFractionalOutput = true;
+bool KNumberFraction::splitOffIntegerForFractionOutput = false;
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-void knumber_fraction::set_default_fractional_input(bool value)
+void KNumberFraction::setDefaultFractionalInput(bool value)
 {
-    default_fractional_input = value;
+    defaultFractionalInput = value;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-void knumber_fraction::set_default_fractional_output(bool value)
+void KNumberFraction::setDefaultFractionalOutput(bool value)
 {
-    default_fractional_output = value;
+    defaultFractionalOutput = value;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-void knumber_fraction::set_split_off_integer_for_fraction_output(bool value)
+void KNumberFraction::setSplitOffIntegerForFractionOutput(bool value)
 {
-    split_off_integer_for_fraction_output = value;
+    splitOffIntegerForFractionOutput = value;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_fraction::knumber_fraction(const QString &s)
+KNumberFraction::KNumberFraction(const QString &s)
 {
-    mpq_init(mpq_);
-    mpq_set_str(mpq_, s.toLatin1().constData(), 10);
-    mpq_canonicalize(mpq_);
+    mpq_init(m_mpq);
+    mpq_set_str(m_mpq, s.toLatin1().constData(), 10);
+    mpq_canonicalize(m_mpq);
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_fraction::knumber_fraction(qint64 num, quint64 den)
+KNumberFraction::KNumberFraction(qint64 num, quint64 den)
 {
-    mpq_init(mpq_);
-    mpq_set_si(mpq_, num, den);
-    mpq_canonicalize(mpq_);
+    mpq_init(m_mpq);
+    mpq_set_si(m_mpq, num, den);
+    mpq_canonicalize(m_mpq);
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_fraction::knumber_fraction(quint64 num, quint64 den)
+KNumberFraction::KNumberFraction(quint64 num, quint64 den)
 {
-    mpq_init(mpq_);
-    mpq_set_ui(mpq_, num, den);
-    mpq_canonicalize(mpq_);
+    mpq_init(m_mpq);
+    mpq_set_ui(m_mpq, num, den);
+    mpq_canonicalize(m_mpq);
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_fraction::knumber_fraction(mpq_t mpq)
+KNumberFraction::KNumberFraction(mpq_t mpq)
 {
-    mpq_init(mpq_);
-    mpq_set(mpq_, mpq);
+    mpq_init(m_mpq);
+    mpq_set(m_mpq, mpq);
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_fraction::knumber_fraction(const knumber_fraction *value)
+KNumberFraction::KNumberFraction(const KNumberFraction *value)
 {
-    mpq_init(mpq_);
-    mpq_set(mpq_, value->mpq_);
+    mpq_init(m_mpq);
+    mpq_set(m_mpq, value->m_mpq);
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_fraction::knumber_fraction(const knumber_integer *value)
+KNumberFraction::KNumberFraction(const KNumberInteger *value)
 {
-    mpq_init(mpq_);
-    mpq_set_z(mpq_, value->mpz_);
+    mpq_init(m_mpq);
+    mpq_set_z(m_mpq, value->m_mpz);
 }
 
 #if 0
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
+
 knumber_fraction::knumber_fraction(const knumber_float *value) {
 	mpq_init(mpq_);
 	mpq_set_f(mpq_, value->mpf_);
 }
 #endif
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::clone()
+KNumberBase *KNumberFraction::clone()
 {
-    return new knumber_fraction(this);
+    return new KNumberFraction(this);
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_fraction::~knumber_fraction()
+KNumberFraction::~KNumberFraction()
 {
-    mpq_clear(mpq_);
+    mpq_clear(m_mpq);
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-bool knumber_fraction::is_integer() const
+bool KNumberFraction::isInteger() const
 {
-    return (mpz_cmp_ui(mpq_denref(mpq_), 1) == 0);
+    return (mpz_cmp_ui(mpq_denref(m_mpq), 1) == 0);
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::add(knumber_base *rhs)
+KNumberBase *KNumberFraction::add(KNumberBase *rhs)
 {
-    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
-        knumber_fraction q(p);
-        mpq_add(mpq_, mpq_, q.mpq_);
+    if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
+        KNumberFraction q(p);
+        mpq_add(m_mpq, m_mpq, q.m_mpq);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
-        auto f = new knumber_float(this);
+    } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
+        auto f = new KNumberFloat(this);
         delete this;
         return f->add(p);
-    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
-        mpq_add(mpq_, mpq_, p->mpq_);
+    } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
+        mpq_add(m_mpq, m_mpq, p->m_mpq);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
-        auto e = new knumber_error(p);
+    } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
+        auto e = new KNumberError(p);
         delete this;
         return e;
     }
@@ -158,24 +117,21 @@ knumber_base *knumber_fraction::add(knumber_base *rhs)
     return nullptr;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::sub(knumber_base *rhs)
+KNumberBase *KNumberFraction::sub(KNumberBase *rhs)
 {
-    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
-        knumber_fraction q(p);
-        mpq_sub(mpq_, mpq_, q.mpq_);
+    if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
+        KNumberFraction q(p);
+        mpq_sub(m_mpq, m_mpq, q.m_mpq);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
-        auto f = new knumber_float(this);
+    } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
+        auto f = new KNumberFloat(this);
         delete this;
         return f->sub(p);
-    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
-        mpq_sub(mpq_, mpq_, p->mpq_);
+    } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
+        mpq_sub(m_mpq, m_mpq, p->m_mpq);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
-        auto e = new knumber_error(p);
+    } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
+        auto e = new KNumberError(p);
         delete this;
         return e->neg();
     }
@@ -184,36 +140,33 @@ knumber_base *knumber_fraction::sub(knumber_base *rhs)
     return nullptr;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::mul(knumber_base *rhs)
+KNumberBase *KNumberFraction::mul(KNumberBase *rhs)
 {
-    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
-        knumber_fraction q(p);
-        mpq_mul(mpq_, mpq_, q.mpq_);
+    if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
+        KNumberFraction q(p);
+        mpq_mul(m_mpq, m_mpq, q.m_mpq);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
-        auto q = new knumber_float(this);
+    } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
+        auto q = new KNumberFloat(this);
         delete this;
         return q->mul(p);
-    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
-        mpq_mul(mpq_, mpq_, p->mpq_);
+    } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
+        mpq_mul(m_mpq, m_mpq, p->m_mpq);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
-        if (is_zero()) {
+    } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
+        if (isZero()) {
             delete this;
-            auto e = new knumber_error(knumber_error::ERROR_UNDEFINED);
+            auto e = new KNumberError(KNumberError::Undefined);
             return e;
         }
 
         if (sign() < 0) {
             delete this;
-            auto e = new knumber_error(p);
+            auto e = new KNumberError(p);
             return e->neg();
         } else {
             delete this;
-            auto e = new knumber_error(p);
+            auto e = new KNumberError(p);
             return e;
         }
     }
@@ -222,41 +175,38 @@ knumber_base *knumber_fraction::mul(knumber_base *rhs)
     return nullptr;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::div(knumber_base *rhs)
+KNumberBase *KNumberFraction::div(KNumberBase *rhs)
 {
-    if (rhs->is_zero()) {
+    if (rhs->isZero()) {
         if (sign() < 0) {
             delete this;
-            return new knumber_error(knumber_error::ERROR_NEG_INFINITY);
+            return new KNumberError(KNumberError::NegativeInfinity);
         } else {
             delete this;
-            return new knumber_error(knumber_error::ERROR_POS_INFINITY);
+            return new KNumberError(KNumberError::PositiveInfinity);
         }
     }
 
-    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
-        knumber_fraction f(p);
+    if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
+        KNumberFraction f(p);
         return div(&f);
-    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
-        auto f = new knumber_float(this);
+    } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
+        auto f = new KNumberFloat(this);
         delete this;
         return f->div(p);
-    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
-        mpq_div(mpq_, mpq_, p->mpq_);
+    } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
+        mpq_div(m_mpq, m_mpq, p->m_mpq);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
         if (p->sign() > 0) {
             delete this;
-            return new knumber_integer(0);
+            return new KNumberInteger(0);
         } else if (p->sign() < 0) {
             delete this;
-            return new knumber_integer(0);
+            return new KNumberInteger(0);
         }
 
-        auto e = new knumber_error(p);
+        auto e = new KNumberError(p);
         delete this;
         return e;
     }
@@ -265,128 +215,98 @@ knumber_base *knumber_fraction::div(knumber_base *rhs)
     return nullptr;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::mod(knumber_base *rhs)
+KNumberBase *KNumberFraction::mod(KNumberBase *rhs)
 {
-    if (rhs->is_zero()) {
+    if (rhs->isZero()) {
         delete this;
-        return new knumber_error(knumber_error::ERROR_UNDEFINED);
+        return new KNumberError(KNumberError::Undefined);
     }
 
     // NOTE: we don't support modulus operations with non-integer operands
-    mpq_set_d(mpq_, 0);
+    mpq_set_d(m_mpq, 0);
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::bitwise_and(knumber_base *rhs)
+KNumberBase *KNumberFraction::bitwiseAnd(KNumberBase *rhs)
 {
     Q_UNUSED(rhs);
     delete this;
     // NOTE: we don't support bitwise operations with non-integer operands
-    return new knumber_integer(0);
+    return new KNumberInteger(0);
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::bitwise_xor(knumber_base *rhs)
+KNumberBase *KNumberFraction::bitwiseXor(KNumberBase *rhs)
 {
     Q_UNUSED(rhs);
     delete this;
     // NOTE: we don't support bitwise operations with non-integer operands
-    return new knumber_integer(0);
+    return new KNumberInteger(0);
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::bitwise_or(knumber_base *rhs)
+KNumberBase *KNumberFraction::bitwiseOr(KNumberBase *rhs)
 {
     Q_UNUSED(rhs);
     delete this;
     // NOTE: we don't support bitwise operations with non-integer operands
-    return new knumber_integer(0);
+    return new KNumberInteger(0);
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::bitwise_shift(knumber_base *rhs)
+KNumberBase *KNumberFraction::bitwiseShift(KNumberBase *rhs)
 {
     Q_UNUSED(rhs);
     delete this;
     // NOTE: we don't support bitwise operations with non-integer operands
-    return new knumber_error(knumber_error::ERROR_UNDEFINED);
+    return new KNumberError(KNumberError::Undefined);
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::neg()
+KNumberBase *KNumberFraction::neg()
 {
-    mpq_neg(mpq_, mpq_);
+    mpq_neg(m_mpq, m_mpq);
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::abs()
+KNumberBase *KNumberFraction::abs()
 {
-    mpq_abs(mpq_, mpq_);
+    mpq_abs(m_mpq, m_mpq);
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::cmp()
+KNumberBase *KNumberFraction::cmp()
 {
     delete this;
-    return new knumber_error(knumber_error::ERROR_UNDEFINED);
+    return new KNumberError(KNumberError::Undefined);
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::sqrt()
+KNumberBase *KNumberFraction::sqrt()
 {
     if (sign() < 0) {
         delete this;
-        return new knumber_error(knumber_error::ERROR_UNDEFINED);
+        return new KNumberError(KNumberError::Undefined);
     }
 
-    if (mpz_perfect_square_p(mpq_numref(mpq_)) && mpz_perfect_square_p(mpq_denref(mpq_))) {
+    if (mpz_perfect_square_p(mpq_numref(m_mpq)) && mpz_perfect_square_p(mpq_denref(m_mpq))) {
         mpz_t num;
         mpz_t den;
         mpz_init(num);
         mpz_init(den);
-        mpq_get_num(num, mpq_);
-        mpq_get_den(den, mpq_);
+        mpq_get_num(num, m_mpq);
+        mpq_get_den(den, m_mpq);
         mpz_sqrt(num, num);
         mpz_sqrt(den, den);
-        mpq_set_num(mpq_, num);
-        mpq_set_den(mpq_, den);
-        mpq_canonicalize(mpq_);
+        mpq_set_num(m_mpq, num);
+        mpq_set_den(m_mpq, den);
+        mpq_canonicalize(m_mpq);
         mpz_clear(num);
         mpz_clear(den);
         return this;
     } else {
-        auto f = new knumber_float(this);
+        auto f = new KNumberFloat(this);
         delete this;
         return f->sqrt();
     }
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::cbrt()
+KNumberBase *KNumberFraction::cbrt()
 {
     // TODO: figure out how to properly use mpq_numref/mpq_denref here
     mpz_t num;
@@ -395,61 +315,55 @@ knumber_base *knumber_fraction::cbrt()
     mpz_init(num);
     mpz_init(den);
 
-    mpq_get_num(num, mpq_);
-    mpq_get_den(den, mpq_);
+    mpq_get_num(num, m_mpq);
+    mpq_get_den(den, m_mpq);
 
     if (mpz_root(num, num, 3) && mpz_root(den, den, 3)) {
-        mpq_set_num(mpq_, num);
-        mpq_set_den(mpq_, den);
-        mpq_canonicalize(mpq_);
+        mpq_set_num(m_mpq, num);
+        mpq_set_den(m_mpq, den);
+        mpq_canonicalize(m_mpq);
         mpz_clear(num);
         mpz_clear(den);
         return this;
     } else {
         mpz_clear(num);
         mpz_clear(den);
-        auto f = new knumber_float(this);
+        auto f = new KNumberFloat(this);
         delete this;
         return f->cbrt();
     }
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::factorial()
+KNumberBase *KNumberFraction::factorial()
 {
     if (sign() < 0) {
         delete this;
-        return new knumber_error(knumber_error::ERROR_UNDEFINED);
+        return new KNumberError(KNumberError::Undefined);
     }
 
-    auto i = new knumber_integer(this);
+    auto i = new KNumberInteger(this);
     delete this;
     return i->factorial();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::pow(knumber_base *rhs)
+KNumberBase *KNumberFraction::pow(KNumberBase *rhs)
 {
     // TODO: figure out how to properly use mpq_numref/mpq_denref here
-    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+    if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
         mpz_t num;
         mpz_t den;
 
         mpz_init(num);
         mpz_init(den);
 
-        mpq_get_num(num, mpq_);
-        mpq_get_den(den, mpq_);
+        mpq_get_num(num, m_mpq);
+        mpq_get_den(den, m_mpq);
 
-        mpz_pow_ui(num, num, mpz_get_ui(p->mpz_));
-        mpz_pow_ui(den, den, mpz_get_ui(p->mpz_));
-        mpq_set_num(mpq_, num);
-        mpq_set_den(mpq_, den);
-        mpq_canonicalize(mpq_);
+        mpz_pow_ui(num, num, mpz_get_ui(p->m_mpz));
+        mpz_pow_ui(den, den, mpz_get_ui(p->m_mpz));
+        mpq_set_num(m_mpq, num);
+        mpq_set_den(m_mpq, den);
+        mpq_canonicalize(m_mpq);
         mpz_clear(num);
         mpz_clear(den);
 
@@ -458,20 +372,20 @@ knumber_base *knumber_fraction::pow(knumber_base *rhs)
         } else {
             return this;
         }
-    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
         Q_UNUSED(p);
-        auto f = new knumber_float(this);
+        auto f = new KNumberFloat(this);
         delete this;
         return f->pow(rhs);
-    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
         // ok, so if any part of the number is > 1,000,000, then we risk
         // the pow function overflowing... so we'll just convert to float to be safe
         // TODO: at some point, we should figure out exactly what the threshold is
         //       and if there is a better way to determine if the pow function will
         //       overflow.
-        if (mpz_cmpabs_ui(mpq_numref(mpq_), 1000000) > 0 || mpz_cmpabs_ui(mpq_denref(mpq_), 1000000) > 0 || mpz_cmpabs_ui(mpq_numref(p->mpq_), 1000000) > 0
-            || mpz_cmpabs_ui(mpq_denref(p->mpq_), 1000000) > 0) {
-            auto f = new knumber_float(this);
+        if (mpz_cmpabs_ui(mpq_numref(m_mpq), 1000000) > 0 || mpz_cmpabs_ui(mpq_denref(m_mpq), 1000000) > 0 || mpz_cmpabs_ui(mpq_numref(p->m_mpq), 1000000) > 0
+            || mpz_cmpabs_ui(mpq_denref(p->m_mpq), 1000000) > 0) {
+            auto f = new KNumberFloat(this);
             delete this;
             return f->pow(rhs);
         }
@@ -486,10 +400,10 @@ knumber_base *knumber_fraction::pow(knumber_base *rhs)
         mpz_init(rhs_num);
         mpz_init(rhs_den);
 
-        mpq_get_num(lhs_num, mpq_);
-        mpq_get_den(lhs_den, mpq_);
-        mpq_get_num(rhs_num, p->mpq_);
-        mpq_get_den(rhs_den, p->mpq_);
+        mpq_get_num(lhs_num, m_mpq);
+        mpq_get_den(lhs_den, m_mpq);
+        mpq_get_num(rhs_num, p->m_mpq);
+        mpq_get_den(rhs_den, p->m_mpq);
 
         mpz_pow_ui(lhs_num, lhs_num, mpz_get_ui(rhs_num));
         mpz_pow_ui(lhs_den, lhs_den, mpz_get_ui(rhs_num));
@@ -500,7 +414,7 @@ knumber_base *knumber_fraction::pow(knumber_base *rhs)
             mpz_clear(rhs_num);
             mpz_clear(rhs_den);
             delete this;
-            return new knumber_error(knumber_error::ERROR_UNDEFINED);
+            return new KNumberError(KNumberError::Undefined);
         }
 
         if (mpz_sgn(lhs_den) < 0 && mpz_even_p(rhs_den)) {
@@ -509,16 +423,16 @@ knumber_base *knumber_fraction::pow(knumber_base *rhs)
             mpz_clear(rhs_num);
             mpz_clear(rhs_den);
             delete this;
-            return new knumber_error(knumber_error::ERROR_UNDEFINED);
+            return new KNumberError(KNumberError::Undefined);
         }
 
         const int n1 = mpz_root(lhs_num, lhs_num, mpz_get_ui(rhs_den));
         const int n2 = mpz_root(lhs_den, lhs_den, mpz_get_ui(rhs_den));
 
         if (n1 && n2) {
-            mpq_set_num(mpq_, lhs_num);
-            mpq_set_den(mpq_, lhs_den);
-            mpq_canonicalize(mpq_);
+            mpq_set_num(m_mpq, lhs_num);
+            mpq_set_den(m_mpq, lhs_den);
+            mpq_canonicalize(m_mpq);
             mpz_clear(lhs_num);
             mpz_clear(lhs_den);
             mpz_clear(rhs_num);
@@ -534,23 +448,23 @@ knumber_base *knumber_fraction::pow(knumber_base *rhs)
             mpz_clear(lhs_den);
             mpz_clear(rhs_num);
             mpz_clear(rhs_den);
-            auto f = new knumber_float(this);
+            auto f = new KNumberFloat(this);
             delete this;
 
             return f->pow(rhs);
         }
 
-    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
         if (p->sign() > 0) {
-            auto e = new knumber_error(knumber_error::ERROR_POS_INFINITY);
+            auto e = new KNumberError(KNumberError::PositiveInfinity);
             delete this;
             return e;
         } else if (p->sign() < 0) {
-            auto n = new knumber_integer(0);
+            auto n = new KNumberInteger(0);
             delete this;
             return n;
         } else {
-            auto e = new knumber_error(knumber_error::ERROR_UNDEFINED);
+            auto e = new KNumberError(KNumberError::Undefined);
             delete this;
             return e;
         }
@@ -560,170 +474,122 @@ knumber_base *knumber_fraction::pow(knumber_base *rhs)
     return nullptr;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::sin()
+KNumberBase *KNumberFraction::sin()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->sin();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::floor()
+KNumberBase *KNumberFraction::floor()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->floor();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::ceil()
+KNumberBase *KNumberFraction::ceil()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->ceil();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::cos()
+KNumberBase *KNumberFraction::cos()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->cos();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::tgamma()
+KNumberBase *KNumberFraction::tgamma()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->tgamma();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::tan()
+KNumberBase *KNumberFraction::tan()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->tan();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::asin()
+KNumberBase *KNumberFraction::asin()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->asin();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::acos()
+KNumberBase *KNumberFraction::acos()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->acos();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::atan()
+KNumberBase *KNumberFraction::atan()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->atan();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::sinh()
+KNumberBase *KNumberFraction::sinh()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->sinh();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::cosh()
+KNumberBase *KNumberFraction::cosh()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->cosh();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::tanh()
+KNumberBase *KNumberFraction::tanh()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->tanh();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::asinh()
+KNumberBase *KNumberFraction::asinh()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->asinh();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::acosh()
+KNumberBase *KNumberFraction::acosh()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->acosh();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::atanh()
+KNumberBase *KNumberFraction::atanh()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->atanh();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-int knumber_fraction::compare(knumber_base *rhs)
+int KNumberFraction::compare(KNumberBase *rhs)
 {
-    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
-        knumber_fraction f(p);
-        return mpq_cmp(mpq_, f.mpq_);
-    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
-        knumber_float f(this);
+    if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
+        KNumberFraction f(p);
+        return mpq_cmp(m_mpq, f.m_mpq);
+    } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
+        KNumberFloat f(this);
         return f.compare(p);
-    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
-        return mpq_cmp(mpq_, p->mpq_);
-    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
+        return mpq_cmp(m_mpq, p->m_mpq);
+    } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
         // NOTE: any number compared to NaN/Inf/-Inf always compares less
         //       at the moment
         return -1;
@@ -733,32 +599,29 @@ int knumber_fraction::compare(knumber_base *rhs)
     return 0;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-QString knumber_fraction::toString(int precision) const
+QString KNumberFraction::toString(int precision) const
 {
-    if (knumber_fraction::default_fractional_output) {
+    if (KNumberFraction::defaultFractionalOutput) {
         // TODO: figure out how to properly use mpq_numref/mpq_denref here
 
-        knumber_integer integer_part(this);
-        if (split_off_integer_for_fraction_output && !integer_part.is_zero()) {
+        KNumberInteger integer_part(this);
+        if (splitOffIntegerForFractionOutput && !integer_part.isZero()) {
             mpz_t num;
             mpz_init(num);
-            mpq_get_num(num, mpq_);
+            mpq_get_num(num, m_mpq);
 
-            knumber_integer integer_part_1(this);
+            KNumberInteger integer_part_1(this);
 
-            mpz_mul(integer_part.mpz_, integer_part.mpz_, mpq_denref(mpq_));
-            mpz_sub(num, num, integer_part.mpz_);
+            mpz_mul(integer_part.m_mpz, integer_part.m_mpz, mpq_denref(m_mpq));
+            mpz_sub(num, num, integer_part.m_mpz);
 
             if (mpz_sgn(num) < 0) {
                 mpz_neg(num, num);
             }
 
-            const size_t size = gmp_snprintf(nullptr, 0, "%Zd %Zd/%Zd", integer_part_1.mpz_, num, mpq_denref(mpq_)) + 1;
+            const size_t size = gmp_snprintf(nullptr, 0, "%Zd %Zd/%Zd", integer_part_1.m_mpz, num, mpq_denref(m_mpq)) + 1;
             QScopedArrayPointer<char> buf(new char[size]);
-            gmp_snprintf(&buf[0], size, "%Zd %Zd/%Zd", integer_part_1.mpz_, num, mpq_denref(mpq_));
+            gmp_snprintf(&buf[0], size, "%Zd %Zd/%Zd", integer_part_1.m_mpz, num, mpq_denref(m_mpq));
 
             mpz_clear(num);
 
@@ -766,156 +629,114 @@ QString knumber_fraction::toString(int precision) const
         } else {
             mpz_t num;
             mpz_init(num);
-            mpq_get_num(num, mpq_);
+            mpq_get_num(num, m_mpq);
 
-            const size_t size = gmp_snprintf(nullptr, 0, "%Zd/%Zd", num, mpq_denref(mpq_)) + 1;
+            const size_t size = gmp_snprintf(nullptr, 0, "%Zd/%Zd", num, mpq_denref(m_mpq)) + 1;
             QScopedArrayPointer<char> buf(new char[size]);
-            gmp_snprintf(&buf[0], size, "%Zd/%Zd", num, mpq_denref(mpq_));
+            gmp_snprintf(&buf[0], size, "%Zd/%Zd", num, mpq_denref(m_mpq));
 
             mpz_clear(num);
 
             return QLatin1String(&buf[0]);
         }
     } else {
-        return knumber_float(this).toString(precision);
+        return KNumberFloat(this).toString(precision);
     }
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-bool knumber_fraction::is_zero() const
+bool KNumberFraction::isZero() const
 {
-    return mpq_sgn(mpq_) == 0;
+    return mpq_sgn(m_mpq) == 0;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-int knumber_fraction::sign() const
+int KNumberFraction::sign() const
 {
-    return mpq_sgn(mpq_);
+    return mpq_sgn(m_mpq);
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::reciprocal()
+KNumberBase *KNumberFraction::reciprocal()
 {
-    mpq_inv(mpq_, mpq_);
+    mpq_inv(m_mpq, m_mpq);
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_integer *knumber_fraction::numerator() const
+KNumberInteger *KNumberFraction::numerator() const
 {
     mpz_t num;
     mpz_init(num);
-    mpq_get_num(num, mpq_);
-    auto n = new knumber_integer(num);
+    mpq_get_num(num, m_mpq);
+    auto n = new KNumberInteger(num);
     mpz_clear(num);
     return n;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_integer *knumber_fraction::denominator() const
+KNumberInteger *KNumberFraction::denominator() const
 {
     mpz_t den;
     mpz_init(den);
-    mpq_get_den(den, mpq_);
-    auto n = new knumber_integer(den);
+    mpq_get_den(den, m_mpq);
+    auto n = new KNumberInteger(den);
     mpz_clear(den);
     return n;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::log2()
+KNumberBase *KNumberFraction::log2()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->log2();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::log10()
+KNumberBase *KNumberFraction::log10()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->log10();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::ln()
+KNumberBase *KNumberFraction::ln()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->ln();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::exp2()
+KNumberBase *KNumberFraction::exp2()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->exp2();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::exp10()
+KNumberBase *KNumberFraction::exp10()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->exp10();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::exp()
+KNumberBase *KNumberFraction::exp()
 {
-    auto f = new knumber_float(this);
+    auto f = new KNumberFloat(this);
     delete this;
     return f->exp();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-quint64 knumber_fraction::toUint64() const
+quint64 KNumberFraction::toUint64() const
 {
-    return knumber_integer(this).toUint64();
+    return KNumberInteger(this).toUint64();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-qint64 knumber_fraction::toInt64() const
+qint64 KNumberFraction::toInt64() const
 {
-    return knumber_integer(this).toInt64();
+    return KNumberInteger(this).toInt64();
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_fraction::bin(knumber_base *rhs)
+KNumberBase *KNumberFraction::bin(KNumberBase *rhs)
 {
     Q_UNUSED(rhs);
     delete this;
-    return new knumber_error(knumber_error::ERROR_UNDEFINED);
+    return new KNumberError(KNumberError::Undefined);
 }
 
 }

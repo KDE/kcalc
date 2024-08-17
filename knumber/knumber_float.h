@@ -13,33 +13,33 @@ class KNumber;
 
 namespace detail
 {
-class knumber_float : public knumber_base
+class KNumberFloat : public KNumberBase
 {
     friend class ::KNumber;
-    friend class knumber_error;
-    friend class knumber_integer;
-    friend class knumber_fraction;
+    friend class KNumberError;
+    friend class KNumberInteger;
+    friend class KNumberFraction;
 
 private:
     static const mpfr_rnd_t rounding_mode;
     static const mpfr_prec_t precision;
 
 public:
-    explicit knumber_float(const QString &s);
-    explicit knumber_float(double value);
+    explicit KNumberFloat(const QString &s);
+    explicit KNumberFloat(double value);
 #ifdef HAVE_LONG_DOUBLE
-    explicit knumber_float(long double value);
+    explicit KNumberFloat(long double value);
 #endif
 
-    explicit knumber_float(mpfr_t mpfr);
-    ~knumber_float() override;
+    explicit KNumberFloat(mpfr_t mpfr);
+    ~KNumberFloat() override;
 
 private:
     // conversion constructors
-    explicit knumber_float(const knumber_integer *value);
-    explicit knumber_float(const knumber_fraction *value);
-    explicit knumber_float(const knumber_float *value);
-    explicit knumber_float(const knumber_error *value);
+    explicit KNumberFloat(const KNumberInteger *value);
+    explicit KNumberFloat(const KNumberFraction *value);
+    explicit KNumberFloat(const KNumberFloat *value);
+    explicit KNumberFloat(const KNumberError *value);
 
 public:
     QString toString(int precision) const override;
@@ -47,81 +47,81 @@ public:
     qint64 toInt64() const override;
 
 public:
-    bool is_integer() const override;
-    bool is_zero() const override;
+    bool isInteger() const override;
+    bool isZero() const override;
     int sign() const override;
 
 public:
-    knumber_base *add(knumber_base *rhs) override;
-    knumber_base *sub(knumber_base *rhs) override;
-    knumber_base *mul(knumber_base *rhs) override;
-    knumber_base *div(knumber_base *rhs) override;
-    knumber_base *mod(knumber_base *rhs) override;
+    KNumberBase *add(KNumberBase *rhs) override;
+    KNumberBase *sub(KNumberBase *rhs) override;
+    KNumberBase *mul(KNumberBase *rhs) override;
+    KNumberBase *div(KNumberBase *rhs) override;
+    KNumberBase *mod(KNumberBase *rhs) override;
 
 public:
-    knumber_base *pow(knumber_base *rhs) override;
-    knumber_base *neg() override;
-    knumber_base *cmp() override;
-    knumber_base *abs() override;
-    knumber_base *sqrt() override;
-    knumber_base *cbrt() override;
-    knumber_base *factorial() override;
-    knumber_base *reciprocal() override;
-    knumber_base *tgamma() override;
+    KNumberBase *pow(KNumberBase *rhs) override;
+    KNumberBase *neg() override;
+    KNumberBase *cmp() override;
+    KNumberBase *abs() override;
+    KNumberBase *sqrt() override;
+    KNumberBase *cbrt() override;
+    KNumberBase *factorial() override;
+    KNumberBase *reciprocal() override;
+    KNumberBase *tgamma() override;
 
 public:
-    knumber_base *log2() override;
-    knumber_base *log10() override;
-    knumber_base *ln() override;
-    knumber_base *floor() override;
-    knumber_base *ceil() override;
-    knumber_base *exp2() override;
-    knumber_base *exp10() override;
-    knumber_base *exp() override;
-    knumber_base *bin(knumber_base *rhs) override;
+    KNumberBase *log2() override;
+    KNumberBase *log10() override;
+    KNumberBase *ln() override;
+    KNumberBase *floor() override;
+    KNumberBase *ceil() override;
+    KNumberBase *exp2() override;
+    KNumberBase *exp10() override;
+    KNumberBase *exp() override;
+    KNumberBase *bin(KNumberBase *rhs) override;
 
 public:
-    knumber_base *sin() override;
-    knumber_base *cos() override;
-    knumber_base *tan() override;
-    knumber_base *asin() override;
-    knumber_base *acos() override;
-    knumber_base *atan() override;
-    knumber_base *sinh() override;
-    knumber_base *cosh() override;
-    knumber_base *tanh() override;
-    knumber_base *asinh() override;
-    knumber_base *acosh() override;
-    knumber_base *atanh() override;
+    KNumberBase *sin() override;
+    KNumberBase *cos() override;
+    KNumberBase *tan() override;
+    KNumberBase *asin() override;
+    KNumberBase *acos() override;
+    KNumberBase *atan() override;
+    KNumberBase *sinh() override;
+    KNumberBase *cosh() override;
+    KNumberBase *tanh() override;
+    KNumberBase *asinh() override;
+    KNumberBase *acosh() override;
+    KNumberBase *atanh() override;
 
 public:
-    int compare(knumber_base *rhs) override;
+    int compare(KNumberBase *rhs) override;
 
 public:
-    knumber_base *bitwise_and(knumber_base *rhs) override;
-    knumber_base *bitwise_xor(knumber_base *rhs) override;
-    knumber_base *bitwise_or(knumber_base *rhs) override;
-    knumber_base *bitwise_shift(knumber_base *rhs) override;
+    KNumberBase *bitwiseAnd(KNumberBase *rhs) override;
+    KNumberBase *bitwiseXor(KNumberBase *rhs) override;
+    KNumberBase *bitwiseOr(KNumberBase *rhs) override;
+    KNumberBase *bitwiseShift(KNumberBase *rhs) override;
 
 public:
-    knumber_base *clone() override;
+    KNumberBase *clone() override;
 
 private:
-    knumber_base *ensureIsValid(mpfr_ptr mpfr);
+    KNumberBase *ensureIsValid(mpfr_ptr mpfr);
 
     template<int F(mpfr_ptr rop, mpfr_srcptr op)>
-    knumber_base *execute_mpfr_func();
+    KNumberBase *execute_mpfr_func();
 
     template<int F(mpfr_ptr rop, mpfr_srcptr op, mpfr_rnd_t rnd)>
-    knumber_base *execute_mpfr_func();
+    KNumberBase *execute_mpfr_func();
 
     template<int F(mpfr_ptr rop, mpfr_srcptr op1, mpfr_srcptr op2, mpfr_rnd_t rnd)>
-    knumber_base *execute_mpfr_func(mpfr_srcptr op);
+    KNumberBase *execute_mpfr_func(mpfr_srcptr op);
 
     mpfr_ptr new_mpfr();
 
 private:
-    mpfr_t mpfr_;
+    mpfr_t m_mpfr;
 };
 
 }

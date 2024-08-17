@@ -137,11 +137,11 @@ KNumber CalcEngine_p::moveIntoGradInterval(const KNumber &num)
 
 KNumber CalcEngine_p::ArcCosDeg(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR || input < -KNumber::One || input > KNumber::One) {
+    if (input.type() == KNumber::TypeError || input < -KNumber::One || input > KNumber::One) {
         return KNumber::NaN;
     }
 
-    if (input.type() == KNumber::TYPE_INTEGER) {
+    if (input.type() == KNumber::TypeInteger) {
         if (input == KNumber::One) {
             return KNumber::Zero;
         }
@@ -157,7 +157,7 @@ KNumber CalcEngine_p::ArcCosDeg(const KNumber &input)
 
 KNumber CalcEngine_p::ArcCosRad(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR || input < -KNumber::One || input > KNumber::One) {
+    if (input.type() == KNumber::TypeError || input < -KNumber::One || input > KNumber::One) {
         return KNumber::NaN;
     }
     return input.acos();
@@ -165,10 +165,10 @@ KNumber CalcEngine_p::ArcCosRad(const KNumber &input)
 
 KNumber CalcEngine_p::ArcCosGrad(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR || input < -KNumber::One || input > KNumber::One) {
+    if (input.type() == KNumber::TypeError || input < -KNumber::One || input > KNumber::One) {
         return KNumber::NaN;
     }
-    if (input.type() == KNumber::TYPE_INTEGER) {
+    if (input.type() == KNumber::TypeInteger) {
         if (input == KNumber::One) {
             return KNumber::Zero;
         }
@@ -184,10 +184,10 @@ KNumber CalcEngine_p::ArcCosGrad(const KNumber &input)
 
 KNumber CalcEngine_p::ArcSinDeg(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR || input < -KNumber::One || input > KNumber::One) {
+    if (input.type() == KNumber::TypeError || input < -KNumber::One || input > KNumber::One) {
         return KNumber::NaN;
     }
-    if (input.type() == KNumber::TYPE_INTEGER) {
+    if (input.type() == KNumber::TypeInteger) {
         if (input == KNumber::One) {
             return KNumber(90);
         }
@@ -203,7 +203,7 @@ KNumber CalcEngine_p::ArcSinDeg(const KNumber &input)
 
 KNumber CalcEngine_p::ArcSinRad(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR || input < -KNumber::One || input > KNumber::One) {
+    if (input.type() == KNumber::TypeError || input < -KNumber::One || input > KNumber::One) {
         return KNumber::NaN;
     }
     return input.asin();
@@ -211,10 +211,10 @@ KNumber CalcEngine_p::ArcSinRad(const KNumber &input)
 
 KNumber CalcEngine_p::ArcSinGrad(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR || input < -KNumber::One || input > KNumber::One) {
+    if (input.type() == KNumber::TypeError || input < -KNumber::One || input > KNumber::One) {
         return KNumber::NaN;
     }
-    if (input.type() == KNumber::TYPE_INTEGER) {
+    if (input.type() == KNumber::TypeInteger) {
         if (input == KNumber::One) {
             return KNumber(100);
         }
@@ -230,7 +230,7 @@ KNumber CalcEngine_p::ArcSinGrad(const KNumber &input)
 
 KNumber CalcEngine_p::ArcTangensDeg(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         if (input == KNumber::NaN)
             return KNumber::NaN;
         if (input == KNumber::PosInfinity)
@@ -244,7 +244,7 @@ KNumber CalcEngine_p::ArcTangensDeg(const KNumber &input)
 
 KNumber CalcEngine_p::ArcTangensRad(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         if (input == KNumber::NaN)
             return KNumber::NaN;
         if (input == KNumber::PosInfinity)
@@ -258,7 +258,7 @@ KNumber CalcEngine_p::ArcTangensRad(const KNumber &input)
 
 KNumber CalcEngine_p::ArcTangensGrad(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         if (input == KNumber::NaN)
             return KNumber::NaN;
         if (input == KNumber::PosInfinity)
@@ -272,7 +272,7 @@ KNumber CalcEngine_p::ArcTangensGrad(const KNumber &input)
 
 KNumber CalcEngine_p::AreaCosHyp(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         if (input == KNumber::NaN)
             return KNumber::NaN;
         if (input == KNumber::PosInfinity)
@@ -292,7 +292,7 @@ KNumber CalcEngine_p::AreaCosHyp(const KNumber &input)
 
 KNumber CalcEngine_p::AreaSinHyp(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         if (input == KNumber::NaN)
             return KNumber::NaN;
         if (input == KNumber::PosInfinity)
@@ -309,7 +309,7 @@ KNumber CalcEngine_p::AreaSinHyp(const KNumber &input)
 
 KNumber CalcEngine_p::AreaTangensHyp(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
@@ -327,7 +327,7 @@ KNumber CalcEngine_p::AreaTangensHyp(const KNumber &input)
 
 KNumber CalcEngine_p::Complement(const KNumber &input)
 {
-    if (input.type() != KNumber::TYPE_INTEGER) {
+    if (input.type() != KNumber::TypeInteger) {
         return KNumber::NaN;
     }
 
@@ -336,15 +336,15 @@ KNumber CalcEngine_p::Complement(const KNumber &input)
 
 KNumber CalcEngine_p::CosDeg(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
     KNumber trunc_input = moveIntoDegInterval(input);
 
-    if (trunc_input.type() == KNumber::TYPE_INTEGER) {
+    if (trunc_input.type() == KNumber::TypeInteger) {
         KNumber mult = trunc_input / KNumber(90);
-        if (mult.type() == KNumber::TYPE_INTEGER) {
+        if (mult.type() == KNumber::TypeInteger) {
             if (mult == KNumber::Zero)
                 return KNumber::One;
             else if (mult == KNumber::One)
@@ -364,7 +364,7 @@ KNumber CalcEngine_p::CosDeg(const KNumber &input)
 
 KNumber CalcEngine_p::CosRad(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
@@ -373,13 +373,13 @@ KNumber CalcEngine_p::CosRad(const KNumber &input)
 
 KNumber CalcEngine_p::CosGrad(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
     KNumber trunc_input = moveIntoGradInterval(input);
-    if (trunc_input.type() == KNumber::TYPE_INTEGER) {
+    if (trunc_input.type() == KNumber::TypeInteger) {
         KNumber mult = trunc_input / KNumber(100);
-        if (mult.type() == KNumber::TYPE_INTEGER) {
+        if (mult.type() == KNumber::TypeInteger) {
             if (mult == KNumber::Zero)
                 return KNumber::One;
             else if (mult == KNumber::One)
@@ -399,7 +399,7 @@ KNumber CalcEngine_p::CosGrad(const KNumber &input)
 
 KNumber CalcEngine_p::CosHyp(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         if (input == KNumber::NaN)
             return KNumber::NaN;
         if (input == KNumber::PosInfinity)
@@ -424,7 +424,7 @@ KNumber CalcEngine_p::CubeRoot(const KNumber &input)
 
 KNumber CalcEngine_p::Exp(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         if (input == KNumber::NaN)
             return KNumber::NaN;
         if (input == KNumber::PosInfinity)
@@ -438,7 +438,7 @@ KNumber CalcEngine_p::Exp(const KNumber &input)
 
 KNumber CalcEngine_p::Exp10(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         if (input == KNumber::NaN)
             return KNumber::NaN;
         if (input == KNumber::PosInfinity)
@@ -454,7 +454,7 @@ KNumber CalcEngine_p::Factorial(const KNumber &input)
 {
     if (input == KNumber::PosInfinity)
         return KNumber::PosInfinity;
-    if (input < KNumber::Zero || input.type() == KNumber::TYPE_ERROR) {
+    if (input < KNumber::Zero || input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
@@ -465,7 +465,7 @@ KNumber CalcEngine_p::Gamma(const KNumber &input)
 {
     if (input == KNumber::PosInfinity)
         return KNumber::PosInfinity;
-    if (input < KNumber::Zero || input.type() == KNumber::TYPE_ERROR) {
+    if (input < KNumber::Zero || input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
@@ -510,14 +510,14 @@ KNumber CalcEngine_p::Reciprocal(const KNumber &input)
 
 KNumber CalcEngine_p::SinDeg(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
     KNumber trunc_input = moveIntoDegInterval(input);
-    if (trunc_input.type() == KNumber::TYPE_INTEGER) {
+    if (trunc_input.type() == KNumber::TypeInteger) {
         KNumber mult = trunc_input / KNumber(90);
-        if (mult.type() == KNumber::TYPE_INTEGER) {
+        if (mult.type() == KNumber::TypeInteger) {
             if (mult == KNumber::Zero)
                 return KNumber::Zero;
             else if (mult == KNumber::One)
@@ -537,7 +537,7 @@ KNumber CalcEngine_p::SinDeg(const KNumber &input)
 
 KNumber CalcEngine_p::SinRad(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
@@ -546,14 +546,14 @@ KNumber CalcEngine_p::SinRad(const KNumber &input)
 
 KNumber CalcEngine_p::SinGrad(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
     KNumber trunc_input = moveIntoGradInterval(input);
-    if (trunc_input.type() == KNumber::TYPE_INTEGER) {
+    if (trunc_input.type() == KNumber::TypeInteger) {
         KNumber mult = trunc_input / KNumber(100);
-        if (mult.type() == KNumber::TYPE_INTEGER) {
+        if (mult.type() == KNumber::TypeInteger) {
             if (mult == KNumber::Zero)
                 return KNumber::Zero;
             else if (mult == KNumber::One)
@@ -574,7 +574,7 @@ KNumber CalcEngine_p::SinGrad(const KNumber &input)
 
 KNumber CalcEngine_p::SinHyp(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         if (input == KNumber::NaN)
             return KNumber::NaN;
         if (input == KNumber::PosInfinity)
@@ -663,7 +663,7 @@ KNumber CalcEngine_p::StatSumSquares(const KNumber &input)
 
 KNumber CalcEngine_p::TangensDeg(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
@@ -675,7 +675,7 @@ KNumber CalcEngine_p::TangensDeg(const KNumber &input)
 
 KNumber CalcEngine_p::TangensRad(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
@@ -687,7 +687,7 @@ KNumber CalcEngine_p::TangensRad(const KNumber &input)
 
 KNumber CalcEngine_p::TangensGrad(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
@@ -699,7 +699,7 @@ KNumber CalcEngine_p::TangensGrad(const KNumber &input)
 
 KNumber CalcEngine_p::TangensHyp(const KNumber &input)
 {
-    if (input.type() == KNumber::TYPE_ERROR) {
+    if (input.type() == KNumber::TypeError) {
         if (input == KNumber::NaN)
             return KNumber::NaN;
         if (input == KNumber::PosInfinity)

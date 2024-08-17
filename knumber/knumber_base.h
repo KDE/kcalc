@@ -15,18 +15,18 @@
 
 namespace detail
 {
-class knumber_error;
-class knumber_integer;
-class knumber_fraction;
-class knumber_float;
+class KNumberError;
+class KNumberInteger;
+class KNumberFraction;
+class KNumberFloat;
 
-class knumber_base
+class KNumberBase
 {
 public:
-    virtual ~knumber_base() = default;
+    virtual ~KNumberBase() = default;
 
 public:
-    virtual knumber_base *clone() = 0;
+    virtual KNumberBase *clone() = 0;
 
 public:
     virtual QString toString(int precision) const = 0;
@@ -34,67 +34,67 @@ public:
     virtual qint64 toInt64() const = 0;
 
 public:
-    virtual bool is_integer() const = 0;
-    virtual bool is_zero() const = 0;
+    virtual bool isInteger() const = 0;
+    virtual bool isZero() const = 0;
     virtual int sign() const = 0;
 
 public:
     // basic math
-    virtual knumber_base *add(knumber_base *rhs) = 0;
-    virtual knumber_base *sub(knumber_base *rhs) = 0;
-    virtual knumber_base *mul(knumber_base *rhs) = 0;
-    virtual knumber_base *div(knumber_base *rhs) = 0;
-    virtual knumber_base *mod(knumber_base *rhs) = 0;
+    virtual KNumberBase *add(KNumberBase *rhs) = 0;
+    virtual KNumberBase *sub(KNumberBase *rhs) = 0;
+    virtual KNumberBase *mul(KNumberBase *rhs) = 0;
+    virtual KNumberBase *div(KNumberBase *rhs) = 0;
+    virtual KNumberBase *mod(KNumberBase *rhs) = 0;
 
 public:
     // logical operators
-    virtual knumber_base *bitwise_and(knumber_base *rhs) = 0;
-    virtual knumber_base *bitwise_xor(knumber_base *rhs) = 0;
-    virtual knumber_base *bitwise_or(knumber_base *rhs) = 0;
-    virtual knumber_base *bitwise_shift(knumber_base *rhs) = 0;
+    virtual KNumberBase *bitwiseAnd(KNumberBase *rhs) = 0;
+    virtual KNumberBase *bitwiseXor(KNumberBase *rhs) = 0;
+    virtual KNumberBase *bitwiseOr(KNumberBase *rhs) = 0;
+    virtual KNumberBase *bitwiseShift(KNumberBase *rhs) = 0;
 
 public:
     // algebraic functions
-    virtual knumber_base *pow(knumber_base *rhs) = 0;
-    virtual knumber_base *neg() = 0;
-    virtual knumber_base *cmp() = 0;
-    virtual knumber_base *abs() = 0;
-    virtual knumber_base *sqrt() = 0;
-    virtual knumber_base *cbrt() = 0;
-    virtual knumber_base *factorial() = 0;
-    virtual knumber_base *reciprocal() = 0;
+    virtual KNumberBase *pow(KNumberBase *rhs) = 0;
+    virtual KNumberBase *neg() = 0;
+    virtual KNumberBase *cmp() = 0;
+    virtual KNumberBase *abs() = 0;
+    virtual KNumberBase *sqrt() = 0;
+    virtual KNumberBase *cbrt() = 0;
+    virtual KNumberBase *factorial() = 0;
+    virtual KNumberBase *reciprocal() = 0;
 
 public:
     // special functions
-    virtual knumber_base *log2() = 0;
-    virtual knumber_base *log10() = 0;
-    virtual knumber_base *ln() = 0;
-    virtual knumber_base *exp2() = 0;
-    virtual knumber_base *exp10() = 0;
-    virtual knumber_base *floor() = 0;
-    virtual knumber_base *ceil() = 0;
-    virtual knumber_base *exp() = 0;
-    virtual knumber_base *bin(knumber_base *rhs) = 0;
+    virtual KNumberBase *log2() = 0;
+    virtual KNumberBase *log10() = 0;
+    virtual KNumberBase *ln() = 0;
+    virtual KNumberBase *exp2() = 0;
+    virtual KNumberBase *exp10() = 0;
+    virtual KNumberBase *floor() = 0;
+    virtual KNumberBase *ceil() = 0;
+    virtual KNumberBase *exp() = 0;
+    virtual KNumberBase *bin(KNumberBase *rhs) = 0;
 
 public:
     // trig functions
-    virtual knumber_base *sin() = 0;
-    virtual knumber_base *cos() = 0;
-    virtual knumber_base *tan() = 0;
-    virtual knumber_base *asin() = 0;
-    virtual knumber_base *acos() = 0;
-    virtual knumber_base *atan() = 0;
-    virtual knumber_base *sinh() = 0;
-    virtual knumber_base *cosh() = 0;
-    virtual knumber_base *tanh() = 0;
-    virtual knumber_base *asinh() = 0;
-    virtual knumber_base *acosh() = 0;
-    virtual knumber_base *atanh() = 0;
-    virtual knumber_base *tgamma() = 0;
+    virtual KNumberBase *sin() = 0;
+    virtual KNumberBase *cos() = 0;
+    virtual KNumberBase *tan() = 0;
+    virtual KNumberBase *asin() = 0;
+    virtual KNumberBase *acos() = 0;
+    virtual KNumberBase *atan() = 0;
+    virtual KNumberBase *sinh() = 0;
+    virtual KNumberBase *cosh() = 0;
+    virtual KNumberBase *tanh() = 0;
+    virtual KNumberBase *asinh() = 0;
+    virtual KNumberBase *acosh() = 0;
+    virtual KNumberBase *atanh() = 0;
+    virtual KNumberBase *tgamma() = 0;
 
 public:
     // comparison
-    virtual int compare(knumber_base *rhs) = 0;
+    virtual int compare(KNumberBase *rhs) = 0;
 };
 
 }

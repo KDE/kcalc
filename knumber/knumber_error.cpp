@@ -13,113 +13,84 @@
 
 namespace detail
 {
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_error::knumber_error(Error e)
-    : error_(e)
+
+KNumberError::KNumberError(Error e)
+    : m_error(e)
 {
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_error::knumber_error(const QString &s)
+KNumberError::KNumberError(const QString &s)
 {
     if (s == QLatin1String("nan"))
-        error_ = ERROR_UNDEFINED;
+        m_error = Undefined;
     else if (s == QLatin1String("inf"))
-        error_ = ERROR_POS_INFINITY;
+        m_error = PositiveInfinity;
     else if (s == QLatin1String("-inf"))
-        error_ = ERROR_NEG_INFINITY;
+        m_error = NegativeInfinity;
     else
-        error_ = ERROR_UNDEFINED;
+        m_error = Undefined;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_error::knumber_error()
-    : error_(ERROR_UNDEFINED)
+KNumberError::KNumberError()
+    : m_error(Undefined)
 {
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_error::~knumber_error() = default;
+KNumberError::~KNumberError() = default;
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_error::knumber_error(const knumber_integer *)
-    : error_(ERROR_UNDEFINED)
+KNumberError::KNumberError(const KNumberInteger *)
+    : m_error(Undefined)
 {
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_error::knumber_error(const knumber_fraction *)
-    : error_(ERROR_UNDEFINED)
+KNumberError::KNumberError(const KNumberFraction *)
+    : m_error(Undefined)
 {
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_error::knumber_error(const knumber_float *)
-    : error_(ERROR_UNDEFINED)
+KNumberError::KNumberError(const KNumberFloat *)
+    : m_error(Undefined)
 {
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_error::knumber_error(const knumber_error *value)
-    : error_(value->error_)
+KNumberError::KNumberError(const KNumberError *value)
+    : m_error(value->m_error)
 {
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-QString knumber_error::toString(int precision) const
+QString KNumberError::toString(int precision) const
 {
     Q_UNUSED(precision);
 
-    switch (error_) {
-    case ERROR_POS_INFINITY:
+    switch (m_error) {
+    case PositiveInfinity:
         return QStringLiteral("inf");
-    case ERROR_NEG_INFINITY:
+    case NegativeInfinity:
         return QStringLiteral("-inf");
-    case ERROR_UNDEFINED:
+    case Undefined:
     default:
         return QStringLiteral("nan");
     }
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::add(knumber_base *rhs)
+KNumberBase *KNumberError::add(KNumberBase *rhs)
 {
-    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+    if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
         Q_UNUSED(p);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
         Q_UNUSED(p);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
         Q_UNUSED(p);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
-        if (error_ == ERROR_POS_INFINITY && p->error_ == ERROR_NEG_INFINITY) {
-            error_ = ERROR_UNDEFINED;
-        } else if (error_ == ERROR_NEG_INFINITY && p->error_ == ERROR_POS_INFINITY) {
-            error_ = ERROR_UNDEFINED;
-        } else if (p->error_ == ERROR_UNDEFINED) {
-            error_ = ERROR_UNDEFINED;
+    } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
+        if (m_error == PositiveInfinity && p->m_error == NegativeInfinity) {
+            m_error = Undefined;
+        } else if (m_error == NegativeInfinity && p->m_error == PositiveInfinity) {
+            m_error = Undefined;
+        } else if (p->m_error == Undefined) {
+            m_error = Undefined;
         }
         return this;
     }
@@ -128,27 +99,24 @@ knumber_base *knumber_error::add(knumber_base *rhs)
     return nullptr;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::sub(knumber_base *rhs)
+KNumberBase *KNumberError::sub(KNumberBase *rhs)
 {
-    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+    if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
         Q_UNUSED(p);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
         Q_UNUSED(p);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
         Q_UNUSED(p);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
-        if (error_ == ERROR_POS_INFINITY && p->error_ == ERROR_POS_INFINITY) {
-            error_ = ERROR_UNDEFINED;
-        } else if (error_ == ERROR_NEG_INFINITY && p->error_ == ERROR_NEG_INFINITY) {
-            error_ = ERROR_UNDEFINED;
-        } else if (p->error_ == ERROR_UNDEFINED) {
-            error_ = ERROR_UNDEFINED;
+    } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
+        if (m_error == PositiveInfinity && p->m_error == PositiveInfinity) {
+            m_error = Undefined;
+        } else if (m_error == NegativeInfinity && p->m_error == NegativeInfinity) {
+            m_error = Undefined;
+        } else if (p->m_error == Undefined) {
+            m_error = Undefined;
         }
         return this;
     }
@@ -157,35 +125,32 @@ knumber_base *knumber_error::sub(knumber_base *rhs)
     return nullptr;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::mul(knumber_base *rhs)
+KNumberBase *KNumberError::mul(KNumberBase *rhs)
 {
-    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
-        if (p->is_zero()) {
-            error_ = ERROR_UNDEFINED;
+    if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
+        if (p->isZero()) {
+            m_error = Undefined;
         }
         return this;
-    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
-        if (p->is_zero()) {
-            error_ = ERROR_UNDEFINED;
+    } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
+        if (p->isZero()) {
+            m_error = Undefined;
         }
         return this;
-    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
-        if (p->is_zero()) {
-            error_ = ERROR_UNDEFINED;
+    } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
+        if (p->isZero()) {
+            m_error = Undefined;
         }
         return this;
-    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
-        if (error_ == ERROR_POS_INFINITY && p->error_ == ERROR_NEG_INFINITY) {
-            error_ = ERROR_NEG_INFINITY;
-        } else if (error_ == ERROR_NEG_INFINITY && p->error_ == ERROR_POS_INFINITY) {
-            error_ = ERROR_NEG_INFINITY;
-        } else if (error_ == ERROR_NEG_INFINITY && p->error_ == ERROR_NEG_INFINITY) {
-            error_ = ERROR_POS_INFINITY;
-        } else if (p->error_ == ERROR_UNDEFINED) {
-            error_ = ERROR_UNDEFINED;
+    } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
+        if (m_error == PositiveInfinity && p->m_error == NegativeInfinity) {
+            m_error = NegativeInfinity;
+        } else if (m_error == NegativeInfinity && p->m_error == PositiveInfinity) {
+            m_error = NegativeInfinity;
+        } else if (m_error == NegativeInfinity && p->m_error == NegativeInfinity) {
+            m_error = PositiveInfinity;
+        } else if (p->m_error == Undefined) {
+            m_error = Undefined;
         }
         return this;
     }
@@ -194,23 +159,20 @@ knumber_base *knumber_error::mul(knumber_base *rhs)
     return nullptr;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::div(knumber_base *rhs)
+KNumberBase *KNumberError::div(KNumberBase *rhs)
 {
-    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+    if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
         Q_UNUSED(p);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
         Q_UNUSED(p);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
         Q_UNUSED(p);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
         Q_UNUSED(p);
-        error_ = ERROR_UNDEFINED;
+        m_error = Undefined;
         return this;
     }
 
@@ -218,23 +180,20 @@ knumber_base *knumber_error::div(knumber_base *rhs)
     return nullptr;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::mod(knumber_base *rhs)
+KNumberBase *KNumberError::mod(KNumberBase *rhs)
 {
-    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+    if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
         Q_UNUSED(p);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
         Q_UNUSED(p);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
         Q_UNUSED(p);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
         Q_UNUSED(p);
-        error_ = ERROR_UNDEFINED;
+        m_error = Undefined;
         return this;
     }
 
@@ -242,48 +201,45 @@ knumber_base *knumber_error::mod(knumber_base *rhs)
     return nullptr;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::pow(knumber_base *rhs)
+KNumberBase *KNumberError::pow(KNumberBase *rhs)
 {
-    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+    if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
         Q_UNUSED(p);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
         Q_UNUSED(p);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
         Q_UNUSED(p);
         return this;
-    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
-        switch (error_) {
-        case ERROR_POS_INFINITY:
+    } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
+        switch (m_error) {
+        case PositiveInfinity:
             if (p->sign() > 0) {
                 return this;
             } else if (p->sign() < 0) {
-                auto n = new knumber_integer(0);
+                auto n = new KNumberInteger(0);
                 delete this;
                 return n;
             } else {
-                error_ = ERROR_UNDEFINED;
+                m_error = Undefined;
                 return this;
             }
             break;
-        case ERROR_NEG_INFINITY:
+        case NegativeInfinity:
             if (p->sign() > 0) {
-                error_ = ERROR_POS_INFINITY;
+                m_error = PositiveInfinity;
                 return this;
             } else if (p->sign() < 0) {
-                auto n = new knumber_integer(0);
+                auto n = new KNumberInteger(0);
                 delete this;
                 return n;
             } else {
-                error_ = ERROR_UNDEFINED;
+                m_error = Undefined;
                 return this;
             }
             break;
-        case ERROR_UNDEFINED:
+        case Undefined:
             return this;
         }
     }
@@ -292,19 +248,16 @@ knumber_base *knumber_error::pow(knumber_base *rhs)
     return nullptr;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::neg()
+KNumberBase *KNumberError::neg()
 {
-    switch (error_) {
-    case ERROR_POS_INFINITY:
-        error_ = ERROR_NEG_INFINITY;
+    switch (m_error) {
+    case PositiveInfinity:
+        m_error = NegativeInfinity;
         break;
-    case ERROR_NEG_INFINITY:
-        error_ = ERROR_POS_INFINITY;
+    case NegativeInfinity:
+        m_error = PositiveInfinity;
         break;
-    case ERROR_UNDEFINED:
+    case Undefined:
     default:
         break;
     }
@@ -312,26 +265,20 @@ knumber_base *knumber_error::neg()
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::cmp()
+KNumberBase *KNumberError::cmp()
 {
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::abs()
+KNumberBase *KNumberError::abs()
 {
-    switch (error_) {
-    case ERROR_NEG_INFINITY:
-        error_ = ERROR_POS_INFINITY;
+    switch (m_error) {
+    case NegativeInfinity:
+        m_error = PositiveInfinity;
         break;
-    case ERROR_POS_INFINITY:
-    case ERROR_UNDEFINED:
+    case PositiveInfinity:
+    case Undefined:
     default:
         break;
     }
@@ -339,17 +286,14 @@ knumber_base *knumber_error::abs()
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::sqrt()
+KNumberBase *KNumberError::sqrt()
 {
-    switch (error_) {
-    case ERROR_NEG_INFINITY:
-        error_ = ERROR_UNDEFINED;
+    switch (m_error) {
+    case NegativeInfinity:
+        m_error = Undefined;
         break;
-    case ERROR_POS_INFINITY:
-    case ERROR_UNDEFINED:
+    case PositiveInfinity:
+    case Undefined:
     default:
         break;
     }
@@ -357,187 +301,139 @@ knumber_base *knumber_error::sqrt()
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::cbrt()
+KNumberBase *KNumberError::cbrt()
 {
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::factorial()
+KNumberBase *KNumberError::factorial()
 {
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::sin()
+KNumberBase *KNumberError::sin()
 {
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::cos()
+KNumberBase *KNumberError::cos()
 {
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::tgamma()
+KNumberBase *KNumberError::tgamma()
 {
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::tan()
+KNumberBase *KNumberError::tan()
 {
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::asin()
+KNumberBase *KNumberError::asin()
 {
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::acos()
+KNumberBase *KNumberError::acos()
 {
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::atan()
+KNumberBase *KNumberError::atan()
 {
-    switch (error_) {
-    case ERROR_POS_INFINITY:
+    switch (m_error) {
+    case PositiveInfinity:
         delete this;
-        return new knumber_float(M_PI / 2.0);
-    case ERROR_NEG_INFINITY:
+        return new KNumberFloat(M_PI / 2.0);
+    case NegativeInfinity:
         delete this;
-        return new knumber_float(-M_PI / 2.0);
-    case ERROR_UNDEFINED:
+        return new KNumberFloat(-M_PI / 2.0);
+    case Undefined:
     default:
         return this;
     }
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::sinh()
+KNumberBase *KNumberError::sinh()
 {
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::cosh()
+KNumberBase *KNumberError::cosh()
 {
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::tanh()
+KNumberBase *KNumberError::tanh()
 {
     if (sign() > 0) {
         delete this;
-        return new knumber_integer(1);
+        return new KNumberInteger(1);
     } else if (sign() < 0) {
         delete this;
-        return new knumber_integer(-1);
+        return new KNumberInteger(-1);
     } else {
         return this;
     }
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::asinh()
+KNumberBase *KNumberError::asinh()
 {
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::acosh()
+KNumberBase *KNumberError::acosh()
 {
     if (sign() < 0) {
-        error_ = ERROR_UNDEFINED;
+        m_error = Undefined;
     }
 
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::atanh()
+KNumberBase *KNumberError::atanh()
 {
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-int knumber_error::compare(knumber_base *rhs)
+int KNumberError::compare(KNumberBase *rhs)
 {
-    if (auto const p = dynamic_cast<knumber_integer *>(rhs)) {
+    if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {
         if (sign() > 0) {
             return 1;
         } else {
             return -1;
         }
-    } else if (auto const p = dynamic_cast<knumber_float *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
         if (sign() > 0) {
             return 1;
         } else {
             return -1;
         }
-    } else if (auto const p = dynamic_cast<knumber_fraction *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
         if (sign() > 0) {
             return 1;
         } else {
             return -1;
         }
-    } else if (auto const p = dynamic_cast<knumber_error *>(rhs)) {
+    } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
         // TODO: What to return when comparing to NaN?
-        if (error_ == p->error_) {
+        if (m_error == p->m_error) {
             return 0;
-        } else if (error_ == ERROR_POS_INFINITY || p->error_ == ERROR_NEG_INFINITY) {
+        } else if (m_error == PositiveInfinity || p->m_error == NegativeInfinity) {
             return 1;
-        } else if (error_ == ERROR_NEG_INFINITY || p->error_ == ERROR_POS_INFINITY) {
+        } else if (m_error == NegativeInfinity || p->m_error == PositiveInfinity) {
             return -1;
         } else {
             return -1;
@@ -548,190 +444,130 @@ int knumber_error::compare(knumber_base *rhs)
     return 0;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::clone()
+KNumberBase *KNumberError::clone()
 {
-    return new knumber_error(this);
+    return new KNumberError(this);
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::bitwise_and(knumber_base *rhs)
+KNumberBase *KNumberError::bitwiseAnd(KNumberBase *rhs)
 {
     Q_UNUSED(rhs);
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::bitwise_xor(knumber_base *rhs)
+KNumberBase *KNumberError::bitwiseXor(KNumberBase *rhs)
 {
     Q_UNUSED(rhs);
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::bitwise_or(knumber_base *rhs)
+KNumberBase *KNumberError::bitwiseOr(KNumberBase *rhs)
 {
     Q_UNUSED(rhs);
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::bitwise_shift(knumber_base *rhs)
+KNumberBase *KNumberError::bitwiseShift(KNumberBase *rhs)
 {
     Q_UNUSED(rhs);
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-bool knumber_error::is_integer() const
+bool KNumberError::isInteger() const
 {
     return false;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-bool knumber_error::is_zero() const
+bool KNumberError::isZero() const
 {
     return false;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-int knumber_error::sign() const
+int KNumberError::sign() const
 {
-    switch (error_) {
-    case ERROR_POS_INFINITY:
+    switch (m_error) {
+    case PositiveInfinity:
         return +1;
-    case ERROR_NEG_INFINITY:
+    case NegativeInfinity:
         return -1;
-    case ERROR_UNDEFINED:
+    case Undefined:
     default:
         return 0;
     }
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::reciprocal()
+KNumberBase *KNumberError::reciprocal()
 {
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::log2()
+KNumberBase *KNumberError::log2()
 {
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::log10()
+KNumberBase *KNumberError::log10()
 {
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::ln()
+KNumberBase *KNumberError::ln()
 {
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::ceil()
+KNumberBase *KNumberError::ceil()
 {
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::floor()
+KNumberBase *KNumberError::floor()
 {
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::exp2()
+KNumberBase *KNumberError::exp2()
 {
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::exp10()
+KNumberBase *KNumberError::exp10()
 {
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::exp()
+KNumberBase *KNumberError::exp()
 {
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-quint64 knumber_error::toUint64() const
+quint64 KNumberError::toUint64() const
 {
     return 0;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-qint64 knumber_error::toInt64() const
+qint64 KNumberError::toInt64() const
 {
     return 0;
 }
 
-//------------------------------------------------------------------------------
-// Name:
-//------------------------------------------------------------------------------
-knumber_base *knumber_error::bin(knumber_base *rhs)
+KNumberBase *KNumberError::bin(KNumberBase *rhs)
 {
     Q_UNUSED(rhs);
-    error_ = ERROR_UNDEFINED;
+    m_error = Undefined;
     return this;
 }
 

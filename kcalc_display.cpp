@@ -319,7 +319,7 @@ bool KCalcDisplay::setAmount(const KNumber &new_amount)
 {
     QString display_str;
 
-    if ((num_base_ != NB_DECIMAL) && (new_amount.type() != KNumber::TYPE_ERROR)) {
+    if ((num_base_ != NB_DECIMAL) && (new_amount.type() != KNumber::TypeError)) {
         display_amount_ = new_amount.integerPart();
 
         if (twoscomplement_) {
@@ -340,7 +340,7 @@ bool KCalcDisplay::setAmount(const KNumber &new_amount)
             }
         }
     } else {
-        // num_base_ == NB_DECIMAL || new_amount.type() == KNumber::TYPE_ERROR
+        // num_base_ == NB_DECIMAL || new_amount.type() == KNumber::TypeError
         display_amount_ = new_amount;
         display_str = display_amount_.toQString(KCalcSettings::precision(), fixed_precision_);
     }
