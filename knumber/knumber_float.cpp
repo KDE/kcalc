@@ -11,33 +11,6 @@
 #include <QScopedArrayPointer>
 #include <cmath>
 
-#ifdef _MSC_VER
-#if _MSC_VER < 1930
-double log2(double x)
-{
-    return log(x) / log(2);
-}
-double exp2(double x)
-{
-    return exp(x * log(2));
-}
-#endif
-
-double exp10(double x)
-{
-    return exp(x * log(10));
-}
-#endif
-
-// NOTE: these assume IEEE floats.
-#ifndef isinf
-#define isinf(x) ((x) != 0.0 && (x) + (x) == (x))
-#endif
-
-#ifndef isnan
-#define isnan(x) ((x) != (x))
-#endif
-
 namespace detail
 {
 const mpfr_rnd_t knumber_float::rounding_mode = MPFR_RNDN;
@@ -92,8 +65,8 @@ knumber_float::knumber_float(const QString &s)
 //------------------------------------------------------------------------------
 knumber_float::knumber_float(double value)
 {
-    Q_ASSERT(!isinf(value));
-    Q_ASSERT(!isnan(value));
+    Q_ASSERT(!std::isinf(value));
+    Q_ASSERT(!std::isnan(value));
 
     mpfr_set_d(new_mpfr(), value, rounding_mode);
 }
@@ -104,8 +77,8 @@ knumber_float::knumber_float(double value)
 //------------------------------------------------------------------------------
 knumber_float::knumber_float(long double value)
 {
-    Q_ASSERT(!isinf(value));
-    Q_ASSERT(!isnan(value));
+    Q_ASSERT(!std::isinf(value));
+    Q_ASSERT(!std::isnan(value));
 
     mpfr_set_ld(new_mpfr(), value, rounding_mode);
 }
