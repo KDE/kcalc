@@ -522,13 +522,7 @@ bool KNumberComplex::isInteger() const
 
 bool KNumberComplex::isZero() const
 {
-    mpfr_t norm;
-    mpfr_init(norm);
-    mpc_norm(norm, m_mpc, KNumberFloat::rounding_mode);
-    bool isZero = mpfr_zero_p(norm);
-    mpfr_clear(norm);
-
-    return isZero;
+    return mpfr_zero_p(mpc_realref(m_mpc)) && mpfr_zero_p(mpc_imagref(m_mpc));
 }
 
 int KNumberComplex::sign() const
