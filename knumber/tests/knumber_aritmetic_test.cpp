@@ -197,8 +197,8 @@ void KNumberAritmeticTest::testKNumberMultiplication_data()
     QTest::newRow("KNumber(5.3) * KNumber(\"1/2\")") << KNumber(5.3) << KNumber(QStringLiteral("1/2")) << QStringLiteral("2.65") << KNumber::TypeFloat;
     QTest::newRow("KNumber(5.3) * KNumber(2.3)") << KNumber(5.3) << KNumber(2.3) << QStringLiteral("12.19") << KNumber::TypeFloat;
 
-    QTest::newRow("KNumber(\"i\") * KNumber(\"i\")") << KNumber(QStringLiteral("i")) << KNumber(QStringLiteral("i")) << QStringLiteral("-1.00000000000+0i")
-                                                     << KNumber::TypeComplex;
+    QTest::newRow("KNumber(\"i\") * KNumber(\"i\")") << KNumber(QStringLiteral("i")) << KNumber(QStringLiteral("i")) << QStringLiteral("-1")
+                                                     << KNumber::TypeInteger;
 
     QTest::newRow("inf * KNumber(2)") << KNumber::PosInfinity << KNumber(2) << QStringLiteral("inf") << KNumber::TypeError;
     QTest::newRow("KNumber(-5) * inf") << KNumber(-5) << KNumber::PosInfinity << QStringLiteral("-inf") << KNumber::TypeError;
