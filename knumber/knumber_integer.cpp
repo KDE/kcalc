@@ -95,18 +95,13 @@ KNumberInteger::KNumberInteger(const KNumberFraction *value)
 
 KNumberInteger::KNumberInteger(const KNumberComplex *value)
 {
-    mpfr_t real;
-    mpfr_init(real);
-    mpc_real(real, value->m_mpc, KNumberFloat::rounding_mode);
-
     mpf_t mpf;
     mpf_init(mpf);
-    mpfr_get_f(mpf, real, KNumberFloat::rounding_mode);
+    mpfr_get_f(mpf, mpc_realref(value->m_mpc), KNumberFloat::rounding_mode);
 
     mpz_init(m_mpz);
     mpz_set_f(m_mpz, mpf);
 
-    mpfr_clear(real);
     mpf_clear(mpf);
 }
 
