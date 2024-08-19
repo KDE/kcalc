@@ -420,6 +420,10 @@ void KNumber::simplify()
         if (auto const p = dynamic_cast<detail::KNumberInteger *>(m_value)) {
             // NO-OP
             Q_UNUSED(p);
+        } else if (auto const p = dynamic_cast<detail::KNumberComplex *>(m_value)) {
+            detail::KNumberBase *v = new detail::KNumberInteger(p);
+            qSwap(v, m_value);
+            delete v;
         } else if (auto const p = dynamic_cast<detail::KNumberFloat *>(m_value)) {
             detail::KNumberBase *v = new detail::KNumberInteger(p);
             qSwap(v, m_value);

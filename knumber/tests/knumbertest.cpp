@@ -328,8 +328,8 @@ void testingMultiplications()
     checkResult(QStringLiteral("KNumber(5.3) * KNumber(2.3)"), KNumber(5.3) * KNumber(2.3), QStringLiteral("12.19"), KNumber::TypeFloat);
     checkResult(QStringLiteral("KNumber(\"i\") * KNumber(\"i\")"),
                 KNumber(QStringLiteral("i")) * KNumber(QStringLiteral("i")),
-                QStringLiteral("-1.00000000000+0i"),
-                KNumber::TypeComplex);
+                QStringLiteral("-1"),
+                KNumber::TypeInteger);
 }
 
 void testingDivisions()
