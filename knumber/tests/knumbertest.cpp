@@ -297,6 +297,21 @@ void testingTrig()
                 KNumber::TypeComplex);
 }
 
+void testingLogs()
+{
+    std::cout << "\n\n";
+    std::cout << "Testing log functions:\n";
+    std::cout << "-----------------------\n";
+
+    checkResult(QStringLiteral("ln(KNumber(1))"), ln(KNumber(1)), QStringLiteral("0"), KNumber::TypeInteger);
+    checkResult(QStringLiteral("ln(KNumber(-1))"), ln(KNumber(-1)), QStringLiteral("3.14159265359i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("log10(KNumber(10))"), log10(KNumber(10)), QStringLiteral("1"), KNumber::TypeInteger);
+    checkResult(QStringLiteral("log10(KNumber(-10))"), log10(KNumber(-10)), QStringLiteral("1.00000000000+1.36437635384i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("ln(KNumber(0))"), ln(KNumber(0)), QStringLiteral("-inf"), KNumber::TypeError);
+    checkResult(QStringLiteral("log2(KNumber(0))"), log2(KNumber(0)), QStringLiteral("-inf"), KNumber::TypeError);
+    checkResult(QStringLiteral("log10(KNumber(0))"), log10(KNumber(0)), QStringLiteral("-inf"), KNumber::TypeError);
+}
+
 void testingMultiplications()
 {
     std::cout << "\n\n";
@@ -1012,6 +1027,7 @@ int main()
     testingInfArithmetic();
     testingFloatPrecision();
     testingTrig();
+    testingLogs();
     testingSpecial();
     testingOutput();
     testingRound();
