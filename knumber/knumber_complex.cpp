@@ -521,8 +521,9 @@ bool KNumberComplex::isInteger() const
     mpfr_t img;
     mpfr_init(re);
     mpfr_init(img);
+
     mpc_real(re, m_mpc, KNumberFloat::rounding_mode);
-    mpc_real(img, m_mpc, KNumberFloat::rounding_mode);
+    mpc_imag(img, m_mpc, KNumberFloat::rounding_mode);
 
     bool isInteger = mpfr_integer_p(re) && mpfr_zero_p(img);
 
