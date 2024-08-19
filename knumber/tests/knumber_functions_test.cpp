@@ -49,6 +49,9 @@ private Q_SLOTS:
     void testKNumberLog_data();
     void testKNumberLog();
 
+    void testKNumberLn_data();
+    void testKNumberLn();
+
     void testKNumberExp_data();
     void testKNumberExp();
 
@@ -455,6 +458,10 @@ void KNumberFunctionsTest::testKNumberLog_data()
 
     // TODO: enable this check once MPFR is commonly enabled
     // QTest::newRow("log10(pow(KNumber(10) << KNumber(309)))") << log10(pow(KNumber(10) << KNumber(309))) << QLatin1String("309") << KNumber::TypeInteger;
+
+    QTest::newRow("log10(KNumber(10))") << KNumber(10) << QStringLiteral("1") << KNumber::TypeInteger;
+    QTest::newRow("log10(KNumber(-10))") << KNumber(-10) << QStringLiteral("1.00000000000+1.36437635384i") << KNumber::TypeComplex;
+    QTest::newRow("log10(KNumber(0))") << KNumber(0) << QStringLiteral("-inf") << KNumber::TypeError;
 }
 
 void KNumberFunctionsTest::testKNumberLog()
@@ -464,6 +471,29 @@ void KNumberFunctionsTest::testKNumberLog()
     QFETCH(QString, expectedResultToQString);
 
     KNumber result = log10(op);
+
+    QCOMPARE(result.type(), expectedResultType);
+    QCOMPARE(result.toQString(precision), expectedResultToQString);
+}
+
+void KNumberFunctionsTest::testKNumberLn_data()
+{
+    QTest::addColumn<KNumber>("op");
+    QTest::addColumn<QString>("expectedResultToQString");
+    QTest::addColumn<KNumber::Type>("expectedResultType");
+
+    QTest::newRow("ln(KNumber(1))") << KNumber(1) << QStringLiteral("0") << KNumber::TypeInteger;
+    QTest::newRow("ln(KNumber(-1))") << KNumber(-1) << QStringLiteral("3.14159265359i") << KNumber::TypeComplex;
+    QTest::newRow("ln(KNumber(0))") << KNumber(0) << QStringLiteral("-inf") << KNumber::TypeError;
+}
+
+void KNumberFunctionsTest::testKNumberLn()
+{
+    QFETCH(KNumber, op);
+    QFETCH(KNumber::Type, expectedResultType);
+    QFETCH(QString, expectedResultToQString);
+
+    KNumber result = ln(op);
 
     QCOMPARE(result.type(), expectedResultType);
     QCOMPARE(result.toQString(precision), expectedResultToQString);

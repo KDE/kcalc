@@ -534,17 +534,35 @@ KNumberBase *KNumberFloat::reciprocal()
 
 KNumberBase *KNumberFloat::log2()
 {
-    return execute_mpfr_func<::mpfr_log2>();
+    if (sign() <= 0) {
+        auto f = new KNumberComplex(this);
+        delete this;
+        return f->log2();
+    } else {
+        return execute_mpfr_func<::mpfr_log2>();
+    }
 }
 
 KNumberBase *KNumberFloat::log10()
 {
-    return execute_mpfr_func<::mpfr_log10>();
+    if (sign() <= 0) {
+        auto f = new KNumberComplex(this);
+        delete this;
+        return f->log10();
+    } else {
+        return execute_mpfr_func<::mpfr_log10>();
+    }
 }
 
 KNumberBase *KNumberFloat::ln()
 {
-    return execute_mpfr_func<::mpfr_log>();
+    if (sign() <= 0) {
+        auto f = new KNumberComplex(this);
+        delete this;
+        return f->ln(); // TODO: Now there is no need to check validity (in the template)
+    } else {
+        return execute_mpfr_func<::mpfr_log>();
+    }
 }
 
 KNumberBase *KNumberFloat::exp2()
