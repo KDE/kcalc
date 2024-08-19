@@ -546,18 +546,33 @@ KNumberBase *KNumberComplex::log2()
     // TODO: MPC does not provide log2, it can be implemented
     //  by doing a division using the loge
     // return execute_mpc_func<::mpc_log2>();
-    delete this;
-    return new KNumberError(KNumberError::Undefined);
+    if (isZero()) {
+        delete this;
+        return new KNumberError(KNumberError::NegativeInfinity);
+    } else {
+        delete this;
+        return new KNumberError(KNumberError::Undefined);
+    }
 }
 
 KNumberBase *KNumberComplex::log10()
 {
-    return execute_mpc_func<::mpc_log10>();
+    if (isZero()) {
+        delete this;
+        return new KNumberError(KNumberError::NegativeInfinity);
+    } else {
+        return execute_mpc_func<::mpc_log10>();
+    }
 }
 
 KNumberBase *KNumberComplex::ln()
 {
-    return execute_mpc_func<::mpc_log>();
+    if (isZero()) {
+        delete this;
+        return new KNumberError(KNumberError::NegativeInfinity);
+    } else {
+        return execute_mpc_func<::mpc_log>();
+    }
 }
 
 KNumberBase *KNumberComplex::exp2()
