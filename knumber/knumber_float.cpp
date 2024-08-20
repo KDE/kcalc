@@ -362,12 +362,13 @@ KNumberBase *KNumberFloat::tan()
 
 KNumberBase *KNumberFloat::asin()
 {
-    if (mpfr_cmp_d(m_mpfr, 1.0) > 0 || mpfr_cmp_d(m_mpfr, -1.0) < 0) {
+    if (mpfr_cmpabs_ui(m_mpfr, 1) > 0) {
+        auto c = new KNumberComplex(this);
         delete this;
-        return new KNumberError(KNumberError::Undefined);
+        return c->asin();
+    } else {
+        return execute_mpfr_func<::mpfr_asin>();
     }
-
-    return execute_mpfr_func<::mpfr_asin>();
 }
 
 KNumberBase *KNumberFloat::acos()

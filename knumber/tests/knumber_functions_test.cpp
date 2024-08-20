@@ -237,16 +237,18 @@ void KNumberFunctionsTest::testKNumberAsin_data()
     QTest::addColumn<QString>("expectedResultToQString");
     QTest::addColumn<KNumber::Type>("expectedResultType");
 
-    QTest::newRow("asin(KNumber(5))") << KNumber(5) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("asin(KNumber(-5))") << KNumber(-5) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("asin(KNumber(\"5/2\"))") << KNumber(QStringLiteral("5/2")) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("asin(KNumber(\"-5/2\"))") << KNumber(QStringLiteral("-5/2")) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("asin(KNumber(5.3))") << KNumber(5.3) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("asin(KNumber(-5.3))") << KNumber(-5.3) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("asin(KNumber(5))") << KNumber(5) << QStringLiteral("1.57079632679+2.29243166956i") << KNumber::TypeComplex;
+    QTest::newRow("asin(KNumber(-5))") << KNumber(-5) << QStringLiteral("-1.57079632679+2.29243166956i") << KNumber::TypeComplex;
+    QTest::newRow("asin(KNumber(\"5/2\"))") << KNumber(QStringLiteral("5/2")) << QStringLiteral("1.57079632679+1.56679923697i") << KNumber::TypeComplex;
+    QTest::newRow("asin(KNumber(\"-5/2\"))") << KNumber(QStringLiteral("-5/2")) << QStringLiteral("-1.57079632679+1.56679923697i") << KNumber::TypeComplex;
+    QTest::newRow("asin(KNumber(5.3))") << KNumber(5.3) << QStringLiteral("1.57079632679+2.35183281645i") << KNumber::TypeComplex;
+    QTest::newRow("asin(KNumber(-5.3))") << KNumber(-5.3) << QStringLiteral("-1.57079632679+2.35183281645i") << KNumber::TypeComplex;
     QTest::newRow("asin(KNumber(\"2/5\"))") << KNumber(QStringLiteral("2/5")) << QStringLiteral("0.411516846067") << KNumber::TypeFloat;
     QTest::newRow("asin(KNumber(\"-2/5\"))") << KNumber(QStringLiteral("-2/5")) << QStringLiteral("-0.411516846067") << KNumber::TypeFloat;
     QTest::newRow("asin(KNumber(0.3))") << KNumber(0.3) << QStringLiteral("0.304692654015") << KNumber::TypeFloat;
     QTest::newRow("asin(KNumber(-0.3))") << KNumber(-0.3) << QStringLiteral("-0.304692654015") << KNumber::TypeFloat;
+
+    QTest::newRow("asin(KNumber(1+i))") << KNumber(QStringLiteral("1+i")) << QStringLiteral("0.666239432493+1.06127506191i") << KNumber::TypeComplex;
 }
 
 void KNumberFunctionsTest::testKNumberAsin()
