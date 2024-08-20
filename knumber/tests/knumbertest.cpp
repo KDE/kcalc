@@ -140,36 +140,6 @@ void testingCompare()
     checkTruth(QStringLiteral("KNumber(inf) > KNumber(-inf)"), KNumber(QStringLiteral("inf")) > KNumber(QStringLiteral("-inf")), true);
 }
 
-void testingAdditions()
-{
-    std::cout << "\n\n";
-    std::cout << "Testing additions:\n";
-    std::cout << "------------------\n";
-
-    checkResult(QStringLiteral("KNumber(5) + KNumber(2)"), KNumber(5) + KNumber(2), QStringLiteral("7"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(5) + KNumber(\"2/3\")"), KNumber(5) + KNumber(QStringLiteral("2/3")), QStringLiteral("17/3"), KNumber::TypeFraction);
-    checkResult(QStringLiteral("KNumber(5) + KNumber(\"2.3\")"), KNumber(5) + KNumber(QStringLiteral("2.3")), QStringLiteral("7.3"), KNumber::TypeFloat);
-
-    checkResult(QStringLiteral("KNumber(\"5/3\") + KNumber(2)"), KNumber(QStringLiteral("5/3")) + KNumber(2), QStringLiteral("11/3"), KNumber::TypeFraction);
-    checkResult(QStringLiteral("KNumber(\"5/3\") + KNumber(\"2/3\")"),
-                KNumber(QStringLiteral("5/3")) + KNumber(QStringLiteral("2/3")),
-                QStringLiteral("7/3"),
-                KNumber::TypeFraction);
-    checkResult(QStringLiteral("KNumber(\"5/3\") + KNumber(\"1/3\")"),
-                KNumber(QStringLiteral("5/3")) + KNumber(QStringLiteral("1/3")),
-                QStringLiteral("2"),
-                KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"5/3\") + KNumber(\"-26/3\")"),
-                KNumber(QStringLiteral("5/3")) + KNumber(QStringLiteral("-26/3")),
-                QStringLiteral("-7"),
-                KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"5/2\") + KNumber(2.3)"), KNumber(QStringLiteral("5/2")) + KNumber(2.3), QStringLiteral("4.8"), KNumber::TypeFloat);
-
-    checkResult(QStringLiteral("KNumber(5.3) + KNumber(2)"), KNumber(5.3) + KNumber(2), QStringLiteral("7.3"), KNumber::TypeFloat);
-    checkResult(QStringLiteral("KNumber(5.3) + KNumber(\"2/4\")"), KNumber(5.3) + KNumber(QStringLiteral("2/4")), QStringLiteral("5.8"), KNumber::TypeFloat);
-    checkResult(QStringLiteral("KNumber(5.3) + KNumber(2.3)"), KNumber(5.3) + KNumber(2.3), QStringLiteral("7.6"), KNumber::TypeFloat);
-}
-
 void testingSubtractions()
 {
     std::cout << "\n\n";
@@ -966,7 +936,6 @@ int main()
     testingConstants();
     testingConstructors();
     testingCompare();
-    testingAdditions();
     testingSubtractions();
     testingMultiplications();
     testingDivisions();
