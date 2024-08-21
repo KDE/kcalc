@@ -8,8 +8,6 @@
 #include "knumber_float.h"
 #include "knumber_fraction.h"
 #include "knumber_integer.h"
-#include <QScopedArrayPointer>
-#include <cmath>
 
 namespace detail
 {
