@@ -434,6 +434,12 @@ void KNumber::simplify()
         } else {
             Q_ASSERT(0);
         }
+    } else if (m_value->isReal()) {
+        if (auto const p = dynamic_cast<detail::KNumberComplex *>(m_value)) {
+            detail::KNumberBase *v = new detail::KNumberFloat(p);
+            qSwap(v, m_value);
+            delete v;
+        }
     }
 }
 
