@@ -414,7 +414,13 @@ KNumberBase *KNumberFloat::asinh()
 
 KNumberBase *KNumberFloat::acosh()
 {
-    return execute_mpfr_func<::mpfr_acosh>();
+    if (mpfr_cmp_ui(m_mpfr, 1) < 0) {
+        auto c = new KNumberComplex(this);
+        delete this;
+        return c->acosh();
+    } else {
+        return execute_mpfr_func<::mpfr_acosh>();
+    }
 }
 
 KNumberBase *KNumberFloat::atanh()
