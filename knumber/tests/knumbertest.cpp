@@ -310,6 +310,21 @@ void testingTrig()
                 KNumber::TypeComplex);
 }
 
+void testingHyperbolicTrig()
+{
+    std::cout << "\n\n";
+    std::cout << "Testing hyp trig functions:\n";
+    std::cout << "-----------------------\n";
+
+    checkResult(QStringLiteral("acosh(KNumber(0))"), KNumber(0).acosh(), QStringLiteral("1.57079632679i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("acosh(KNumber(1))"), KNumber(1).acosh(), QStringLiteral("0"), KNumber::TypeInteger);
+    checkResult(QStringLiteral("acosh(KNumber(2))"), KNumber(2).acosh(), QStringLiteral("1.31695789692"), KNumber::TypeFloat);
+    checkResult(QStringLiteral("acosh(KNumber(i))"),
+                KNumber(QStringLiteral("i")).acosh(),
+                QStringLiteral("8.81373587020e-1+1.57079632679i"),
+                KNumber::TypeComplex);
+}
+
 void testingLogs()
 {
     std::cout << "\n\n";
@@ -1040,6 +1055,7 @@ int main()
     testingInfArithmetic();
     testingFloatPrecision();
     testingTrig();
+    testingHyperbolicTrig();
     testingLogs();
     testingSpecial();
     testingOutput();
