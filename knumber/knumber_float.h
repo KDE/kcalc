@@ -49,6 +49,7 @@ public:
     qint64 toInt64() const override;
 
 public:
+    bool isReal() const override;
     bool isInteger() const override;
     bool isZero() const override;
     int sign() const override;

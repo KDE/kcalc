@@ -40,6 +40,7 @@ public:
 public:
     virtual bool isEven() const;
     virtual bool isOdd() const;
+    bool isReal() const override;
     bool isInteger() const override;
     bool isZero() const override;
     int sign() const override;

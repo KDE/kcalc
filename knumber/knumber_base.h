@@ -36,6 +36,7 @@ public:
     virtual qint64 toInt64() const = 0;
 
 public:
+    virtual bool isReal() const = 0;
     virtual bool isInteger() const = 0;
     virtual bool isZero() const = 0;
     virtual int sign() const = 0;

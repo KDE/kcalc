@@ -500,6 +500,11 @@ QString KNumberFloat::toString(int precision) const
     return QLatin1String(&buf[0]);
 }
 
+bool KNumberFloat::isReal() const
+{
+    return true;
+}
+
 bool KNumberFloat::isInteger() const
 {
     return mpfr_integer_p(m_mpfr) != 0;

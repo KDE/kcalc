@@ -505,6 +505,11 @@ KNumberBase *KNumberError::bitwiseShift(KNumberBase *rhs)
     return this;
 }
 
+bool KNumberError::isReal() const
+{
+    return false;
+}
+
 bool KNumberError::isInteger() const
 {
     return false;

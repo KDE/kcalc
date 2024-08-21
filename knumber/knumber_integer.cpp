@@ -688,6 +688,11 @@ qint64 KNumberInteger::toInt64() const
     return value;
 }
 
+bool KNumberInteger::isReal() const
+{
+    return true;
+}
+
 bool KNumberInteger::isInteger() const
 {
     return true;
