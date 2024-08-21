@@ -43,6 +43,9 @@ private Q_SLOTS:
     void testKNumberAtan_data();
     void testKNumberAtan();
 
+    void testKNumberAcosh_data();
+    void testKNumberAcosh();
+
     void testKNumberPower_data();
     void testKNumberPower();
 
@@ -320,6 +323,30 @@ void KNumberFunctionsTest::testKNumberAtan()
     QFETCH(QString, expectedResultToQString);
 
     KNumber result = atan(op);
+
+    QCOMPARE(result.type(), expectedResultType);
+    QCOMPARE(result.toQString(precision), expectedResultToQString);
+}
+
+void KNumberFunctionsTest::testKNumberAcosh_data()
+{
+    QTest::addColumn<KNumber>("op");
+    QTest::addColumn<QString>("expectedResultToQString");
+    QTest::addColumn<KNumber::Type>("expectedResultType");
+
+    QTest::newRow("acosh(KNumber(0))") << KNumber(0) << QStringLiteral("1.57079632679i") << KNumber::TypeComplex;
+    QTest::newRow("acosh(KNumber(1))") << KNumber(1) << QStringLiteral("0") << KNumber::TypeInteger;
+    QTest::newRow("acosh(KNumber(2))") << KNumber(2) << QStringLiteral("1.31695789692") << KNumber::TypeFloat;
+    QTest::newRow("acosh(KNumber(i))") << KNumber(QStringLiteral("i")) << QStringLiteral("8.81373587020e-1+1.57079632679i") << KNumber::TypeComplex;
+}
+
+void KNumberFunctionsTest::testKNumberAcosh()
+{
+    QFETCH(KNumber, op);
+    QFETCH(KNumber::Type, expectedResultType);
+    QFETCH(QString, expectedResultToQString);
+
+    KNumber result = op.acosh();
 
     QCOMPARE(result.type(), expectedResultType);
     QCOMPARE(result.toQString(precision), expectedResultToQString);
