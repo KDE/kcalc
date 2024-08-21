@@ -510,6 +510,11 @@ QString KNumberComplex::toString(int precision) const
     return s;
 }
 
+bool KNumberComplex::isReal() const
+{
+    return mpfr_zero_p(mpc_imagref(m_mpc));
+}
+
 bool KNumberComplex::isInteger() const
 {
     mpfr_t re;

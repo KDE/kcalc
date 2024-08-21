@@ -101,6 +101,11 @@ KNumberFraction::~KNumberFraction()
     mpq_clear(m_mpq);
 }
 
+bool KNumberFraction::isReal() const
+{
+    return true;
+}
+
 bool KNumberFraction::isInteger() const
 {
     return (mpz_cmp_ui(mpq_denref(m_mpq), 1) == 0);
