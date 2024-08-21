@@ -269,12 +269,12 @@ void KNumberFunctionsTest::testKNumberAcos_data()
     QTest::addColumn<QString>("expectedResultToQString");
     QTest::addColumn<KNumber::Type>("expectedResultType");
 
-    QTest::newRow("acos(KNumber(5))") << KNumber(5) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("acos(KNumber(-5))") << KNumber(-5) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("acos(KNumber(\"5/2\"))") << KNumber(QStringLiteral("5/2")) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("acos(KNumber(\"-5/2\"))") << KNumber(QStringLiteral("-5/2")) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("acos(KNumber(5.3))") << KNumber(5.3) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("acos(KNumber(-5.3))") << KNumber(-5.3) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("acos(KNumber(5))") << KNumber(5) << QStringLiteral("-2.29243166956i") << KNumber::TypeComplex;
+    QTest::newRow("acos(KNumber(-5))") << KNumber(-5) << QStringLiteral("3.14159265359-2.29243166956i") << KNumber::TypeComplex;
+    QTest::newRow("acos(KNumber(\"5/2\"))") << KNumber(QStringLiteral("5/2")) << QStringLiteral("-1.56679923697i") << KNumber::TypeComplex;
+    QTest::newRow("acos(KNumber(\"-5/2\"))") << KNumber(QStringLiteral("-5/2")) << QStringLiteral("3.14159265359-1.56679923697i") << KNumber::TypeComplex;
+    QTest::newRow("acos(KNumber(5.3))") << KNumber(5.3) << QStringLiteral("-2.35183281645i") << KNumber::TypeComplex;
+    QTest::newRow("acos(KNumber(-5.3))") << KNumber(-5.3) << QStringLiteral("3.14159265359-2.35183281645i") << KNumber::TypeComplex;
     QTest::newRow("acos(KNumber(\"2/5\"))") << KNumber(QStringLiteral("2/5")) << QStringLiteral("1.15927948073") << KNumber::TypeFloat;
     QTest::newRow("acos(KNumber(\"-2/5\"))") << KNumber(QStringLiteral("-2/5")) << QStringLiteral("1.98231317286") << KNumber::TypeFloat;
 
