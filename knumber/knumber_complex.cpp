@@ -4,6 +4,7 @@
 */
 
 #include "knumber_complex.h"
+#include "knumber_cleanup_string.h"
 #include "knumber_error.h"
 #include "knumber_float.h"
 #include "knumber_fraction.h"
@@ -11,6 +12,8 @@
 
 #include <mpc.h>
 #include <mpfr.h>
+#include <QDebug>
+#include <QScopedArrayPointer>
 
 namespace detail
 {
@@ -488,24 +491,10 @@ QString KNumberComplex::toString(int precision) const
 {
     size_t n = static_cast<size_t>(precision);
 
-    // Allocated in heap
     char *buf = mpc_get_str(10, n, m_mpc, rounding_mode);
+    QScopedPointer<char, KNumberCleanupString<mpc_free_str>> array(buf);
 
-    // Copy string to stack memory
-    QString s = QLatin1String(&buf[0]);
-    // Deallocate string in heap
-    mpc_free_str(buf);
-    // format the string
-    // TODO: better code for this? is too confusing
-    // maybe a simple regex
-    /*s.remove(s.length() - 1, 1);
-    s.remove(0, 1);
-    s.replace(QLatin1StringView(" +"), QLatin1StringView("+"));
-    s.replace(QLatin1StringView(" -"), QLatin1StringView("-"));
-    s.replace(QLatin1StringView(" "), QLatin1StringView("+"));
-    s += QStringLiteral("i");*/
-
-    return s;
+    return QLatin1String(&buf[0]);
 }
 
 bool KNumberComplex::isReal() const
