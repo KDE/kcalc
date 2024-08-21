@@ -258,30 +258,33 @@ void testingTrig()
                 KNumber::TypeComplex);
 
     checkResult(QStringLiteral("asin(KNumber(5))"), asin(KNumber(5)), QStringLiteral("1.57079632679+2.29243166956i"), KNumber::TypeComplex);
-    checkResult(QStringLiteral("acos(KNumber(5))"), acos(KNumber(5)), QStringLiteral("nan"), KNumber::TypeError);
+    checkResult(QStringLiteral("acos(KNumber(5))"), acos(KNumber(5)), QStringLiteral("-2.29243166956i"), KNumber::TypeComplex);
     checkResult(QStringLiteral("atan(KNumber(5))"), atan(KNumber(5)), QStringLiteral("1.37340076695"), KNumber::TypeFloat);
     checkResult(QStringLiteral("asin(KNumber(-5))"), asin(KNumber(-5)), QStringLiteral("-1.57079632679+2.29243166956i"), KNumber::TypeComplex);
-    checkResult(QStringLiteral("acos(KNumber(-5))"), acos(KNumber(-5)), QStringLiteral("nan"), KNumber::TypeError);
+    checkResult(QStringLiteral("acos(KNumber(-5))"), acos(KNumber(-5)), QStringLiteral("3.14159265359-2.29243166956i"), KNumber::TypeComplex);
     checkResult(QStringLiteral("atan(KNumber(-5))"), atan(KNumber(-5)), QStringLiteral("-1.37340076695"), KNumber::TypeFloat);
 
     checkResult(QStringLiteral("asin(KNumber(\"5/2\"))"),
                 asin(KNumber(QStringLiteral("5/2"))),
                 QStringLiteral("1.57079632679+1.56679923697i"),
                 KNumber::TypeComplex);
-    checkResult(QStringLiteral("acos(KNumber(\"5/2\"))"), acos(KNumber(QStringLiteral("5/2"))), QStringLiteral("nan"), KNumber::TypeError);
+    checkResult(QStringLiteral("acos(KNumber(\"5/2\"))"), acos(KNumber(QStringLiteral("5/2"))), QStringLiteral("-1.56679923697i"), KNumber::TypeComplex);
     checkResult(QStringLiteral("atan(KNumber(\"5/2\"))"), atan(KNumber(QStringLiteral("5/2"))), QStringLiteral("1.19028994968"), KNumber::TypeFloat);
     checkResult(QStringLiteral("asin(KNumber(\"-5/2\"))"),
                 asin(KNumber(QStringLiteral("-5/2"))),
                 QStringLiteral("-1.57079632679+1.56679923697i"),
                 KNumber::TypeComplex);
-    checkResult(QStringLiteral("acos(KNumber(\"-5/2\"))"), acos(KNumber(QStringLiteral("-5/2"))), QStringLiteral("nan"), KNumber::TypeError);
+    checkResult(QStringLiteral("acos(KNumber(\"-5/2\"))"),
+                acos(KNumber(QStringLiteral("-5/2"))),
+                QStringLiteral("3.14159265359-1.56679923697i"),
+                KNumber::TypeComplex);
     checkResult(QStringLiteral("atan(KNumber(\"-5/2\"))"), atan(KNumber(QStringLiteral("-5/2"))), QStringLiteral("-1.19028994968"), KNumber::TypeFloat);
 
     checkResult(QStringLiteral("asin(KNumber(5.3))"), asin(KNumber(5.3)), QStringLiteral("1.57079632679+2.35183281645i"), KNumber::TypeComplex);
-    checkResult(QStringLiteral("acos(KNumber(5.3))"), acos(KNumber(5.3)), QStringLiteral("nan"), KNumber::TypeError);
+    checkResult(QStringLiteral("acos(KNumber(5.3))"), acos(KNumber(5.3)), QStringLiteral("-2.35183281645i"), KNumber::TypeComplex);
     checkResult(QStringLiteral("atan(KNumber(5.3))"), atan(KNumber(5.3)), QStringLiteral("1.38430942513"), KNumber::TypeFloat);
     checkResult(QStringLiteral("asin(KNumber(-5.3))"), asin(KNumber(-5.3)), QStringLiteral("-1.57079632679+2.35183281645i"), KNumber::TypeComplex);
-    checkResult(QStringLiteral("acos(KNumber(-5.3))"), acos(KNumber(-5.3)), QStringLiteral("nan"), KNumber::TypeError);
+    checkResult(QStringLiteral("acos(KNumber(-5.3))"), acos(KNumber(-5.3)), QStringLiteral("3.14159265359-2.35183281645i"), KNumber::TypeComplex);
     checkResult(QStringLiteral("atan(KNumber(-5.3))"), atan(KNumber(-5.3)), QStringLiteral("-1.38430942513"), KNumber::TypeFloat);
 
     checkResult(QStringLiteral("asin(KNumber(\"2/5\"))"), asin(KNumber(QStringLiteral("2/5"))), QStringLiteral("0.411516846067"), KNumber::TypeFloat);
