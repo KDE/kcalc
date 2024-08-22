@@ -86,6 +86,42 @@ void KNumberMiscTest::testKNumberConstructors_data()
 
     QTest::newRow("KNumber(\"i\")") << KNumber(QStringLiteral("i")) << QStringLiteral("i") << KNumber::TypeComplex;
     QTest::newRow("KNumber(\"2+i\")") << KNumber(QStringLiteral("2+i")) << QStringLiteral("2+i") << KNumber::TypeComplex;
+    QTest::newRow("KNumber(\"1+2i\")") << KNumber(QStringLiteral("1+2i")) << QStringLiteral("1.00000000000+2.00000000000i") << KNumber::TypeComplex;
+    QTest::newRow("KNumber(\"1-2i\")") << KNumber(QStringLiteral("1-2i")) << QStringLiteral("1.00000000000-2.00000000000i") << KNumber::TypeComplex;
+    QTest::newRow("KNumber(\"1.4e20+1.6e-30i\")") << KNumber(QStringLiteral("1.4e20+1.6e-30i")) << QStringLiteral("1.40000000000e+20+1.60000000000e-30i")
+                                                  << KNumber::TypeComplex;
+    QTest::newRow("KNumber(\"1.88e-3+i\")") << KNumber(QStringLiteral("1.88e-3+i")) << QStringLiteral("1.88000000000e-3+1.00000000000i")
+                                            << KNumber::TypeComplex;
+    QTest::newRow("KNumber(\"-1.88e-3-i\")") << KNumber(QStringLiteral("-1.88e-3-i")) << QStringLiteral("-1.88000000000e-3-1.00000000000i")
+                                             << KNumber::TypeComplex;
+    QTest::newRow("KNumber(\"1+1.88e-3i\")") << KNumber(QStringLiteral("1+1.88e-3i")) << QStringLiteral("1.00000000000+1.88000000000e-3i")
+                                             << KNumber::TypeComplex;
+    QTest::newRow("KNumber(\"1-1.88e-3i\")") << KNumber(QStringLiteral("1-1.88e-3i")) << QStringLiteral("1.00000000000-1.88000000000e-3i")
+                                             << KNumber::TypeComplex;
+    QTest::newRow("KNumber(\"-i\")") << KNumber(QStringLiteral("-i")) << QStringLiteral("-1.00000000000i") << KNumber::TypeComplex;
+    QTest::newRow("KNumber(\".5i\")") << KNumber(QStringLiteral(".5i")) << QStringLiteral("5.00000000000e-1i") << KNumber::TypeComplex;
+    QTest::newRow("KNumber(\".5e20i\")") << KNumber(QStringLiteral(".5e20i")) << QStringLiteral("5.00000000000e+19i") << KNumber::TypeComplex;
+    QTest::newRow("KNumber(\".7e20+.5e10i\")") << KNumber(QStringLiteral(".7e20+.5e10i")) << QStringLiteral("7.00000000000e+19+5.00000000000e+9i")
+                                               << KNumber::TypeComplex;
+    QTest::newRow("KNumber(\"7.7e20+.5e10i\")") << KNumber(QStringLiteral("7.7e20+.5e10i")) << QStringLiteral("7.70000000000e+20+5.00000000000e+9i")
+                                                << KNumber::TypeComplex;
+    QTest::newRow("KNumber(\"+1+i\")") << KNumber(QStringLiteral("+1+i")) << QStringLiteral("1.00000000000+1.00000000000i") << KNumber::TypeComplex;
+    QTest::newRow("KNumber(\"-3.55+i\")") << KNumber(QStringLiteral("-3.55+i")) << QStringLiteral("-3.55000000000+1.00000000000i") << KNumber::TypeComplex;
+    QTest::newRow("KNumber(\"+3.55+4.66e20i\")") << KNumber(QStringLiteral("+3.55+4.66e20i")) << QStringLiteral("3.55000000000+4.66000000000e+20i")
+                                                 << KNumber::TypeComplex;
+
+    QTest::newRow("KNumber(\"+1.2\")") << KNumber(QStringLiteral("+1.2")) << QStringLiteral("1.2") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(\"-1.2\")") << KNumber(QStringLiteral("-1.2")) << QStringLiteral("-1.2") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(\"-1.3e5\")") << KNumber(QStringLiteral("-1.3e5")) << QStringLiteral("-130000") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(\"-1.3e-5\")") << KNumber(QStringLiteral("-1.3e-5")) << QStringLiteral("-1.3e-05") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(\"1.3e555\")") << KNumber(QStringLiteral("1.3e555")) << QStringLiteral("1.3e+555") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(\"+1.3e5\")") << KNumber(QStringLiteral("+1.3e5")) << QStringLiteral("130000") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(\"1.3e5423\")") << KNumber(QStringLiteral("1.3e5423")) << QStringLiteral("1.3e+5423") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(\"+1.3e65\")") << KNumber(QStringLiteral("+1.3e65")) << QStringLiteral("1.3e+65") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(\"+1.3e+55\")") << KNumber(QStringLiteral("+1.3e+55")) << QStringLiteral("1.3e+55") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(\".5e-100\")") << KNumber(QStringLiteral(".5e-100")) << QStringLiteral("5e-101") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(\"+.5e-100\")") << KNumber(QStringLiteral("+.5e-100")) << QStringLiteral("5e-101") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(\"-.5e-100\")") << KNumber(QStringLiteral("-.5e-100")) << QStringLiteral("-5e-101") << KNumber::TypeFloat;
 
     QTest::newRow("KNumber(\"nan\")") << KNumber(QStringLiteral("nan")) << QStringLiteral("nan") << KNumber::TypeError;
     QTest::newRow("KNumber(\"inf\")") << KNumber(QStringLiteral("inf")) << QStringLiteral("inf") << KNumber::TypeError;

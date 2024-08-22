@@ -225,8 +225,12 @@ KNumber::KNumber(const QString &s)
     static const QRegularExpression octalIntegerRegex(QLatin1String("^0[0-7]{1,21}$"));
     static const QRegularExpression hexIntegerRegex(QLatin1String("^0x[0-9A-Fa-f]{1,16}$"));
     static const QRegularExpression fractionRegex(QLatin1String("^[+-]?\\d+/\\d+$"));
-    const QRegularExpression floatRegex(QString(QLatin1String(R"(^([+-]?\d*)(%1\d*)?([e|E]([+-]?\d+))?$)")).arg(QRegularExpression::escape(DecimalSeparator)));
-    static const QRegularExpression complex_regex(QString(QLatin1String(R"((\d*)([+-]?\d*)i)"))); // TODO: this regex should catch float+/-floati
+
+    const QString floatPattern = QString(QLatin1String("(([+-]?\\d*)(%1\\d*)?([e|E]([+-]?\\d+))?)")).arg(QRegularExpression::escape(DecimalSeparator));
+    const QRegularExpression floatRegex(QStringLiteral("^") + floatPattern + QStringLiteral("$"));
+
+    static const QRegularExpression imaginaryUnitRegex(QLatin1String("^i$"));
+    const QRegularExpression complexRegex(QStringLiteral("^") + floatPattern + floatPattern + QStringLiteral("i$"));
 
     if (specialRegex.match(s).hasMatch()) {
         m_value = new detail::KNumberError(s);
@@ -237,29 +241,14 @@ KNumber::KNumber(const QString &s)
         simplify();
     } else if (hexIntegerRegex.match(s).hasMatch() || octalIntegerRegex.match(s).hasMatch() || binaryIntegerRegex.match(s).hasMatch()) {
         m_value = new detail::KNumberInteger(s.toULongLong(nullptr, 0));
-    } else if (const auto match = complex_regex.match(s); match.hasMatch()) {
-        // s is assumed as a+bi with and b valid floating point
-        // strings according to the mpfr specification
-        // mpc needs the numbers as "(a b)"
-        QString realPart = match.captured(1);
-        if (realPart.isEmpty()) {
-            realPart = QStringLiteral("0");
-        }
-        QString imaginaryPart = match.captured(2);
-        if (imaginaryPart.isEmpty() || imaginaryPart == QStringLiteral("+") || imaginaryPart == QStringLiteral("-")) {
-            imaginaryPart += QStringLiteral("1");
-        }
-        QString sFormatted = QStringLiteral("(") + realPart + QStringLiteral(" ") + imaginaryPart + QStringLiteral(")");
-        sFormatted = sFormatted.replace(DecimalSeparator, QLatin1String("."));
-
-        // qDebug() << "sFormatted" << sFormatted;
-
-        m_value = new detail::KNumberComplex(sFormatted);
+    } else if (imaginaryUnitRegex.match(s).hasMatch()) {
+        QString imaginaryUnit(QStringLiteral("(0 1)"));
+        m_value = new detail::KNumberComplex(imaginaryUnit);
     } else if (const auto match = floatRegex.match(s); match.hasMatch()) {
         if (detail::KNumberFraction::defaultFractionalInput) {
-            const QString ipart = match.captured(1);
-            const QString fpart = match.captured(2);
-            const int e_val = match.captured(4).toInt();
+            const QString ipart = match.captured(2);
+            const QString fpart = match.captured(3);
+            const int e_val = match.captured(5).toInt();
 
             QString num = ipart + fpart.mid(1);
             QString den = QLatin1String("1") + QString(fpart.size() - 1, QLatin1Char('0'));
@@ -282,6 +271,26 @@ KNumber::KNumber(const QString &s)
 
         m_value = new detail::KNumberFloat(new_s);
         simplify();
+    } else if (const auto match = complexRegex.match(s); match.hasMatch()) {
+        // s is assumed as a+bi with and b valid floating point
+        // strings according to the mpfr specification
+        // mpc needs the numbers as "(a b)"
+        QString realPart = match.captured(1);
+        if (realPart.isEmpty()) {
+            realPart = QStringLiteral("0");
+        }
+        QString imaginaryPart = match.captured(6);
+        if (imaginaryPart.isEmpty()) {
+            imaginaryPart = realPart;
+            realPart = QStringLiteral("0");
+        }
+        if (imaginaryPart == QStringLiteral("+") || imaginaryPart == QStringLiteral("-")) {
+            imaginaryPart += QStringLiteral("1");
+        }
+        QString sFormatted = QStringLiteral("(") + realPart + QStringLiteral(" ") + imaginaryPart + QStringLiteral(")");
+        sFormatted = sFormatted.replace(DecimalSeparator, QLatin1String("."));
+
+        m_value = new detail::KNumberComplex(sFormatted);
     } else {
         m_value = new detail::KNumberError(detail::KNumberError::Undefined);
     }
