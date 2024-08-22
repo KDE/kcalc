@@ -449,8 +449,9 @@ KNumberBase *KNumberFraction::pow(KNumberBase *rhs)
             mpz_clear(lhs_den);
             mpz_clear(rhs_num);
             mpz_clear(rhs_den);
+            auto c = new KNumberComplex(this);
             delete this;
-            return new KNumberError(KNumberError::Undefined);
+            return c->pow(p);
         }
 
         if (mpz_sgn(lhs_den) < 0 && mpz_even_p(rhs_den)) {
@@ -458,8 +459,9 @@ KNumberBase *KNumberFraction::pow(KNumberBase *rhs)
             mpz_clear(lhs_den);
             mpz_clear(rhs_num);
             mpz_clear(rhs_den);
+            auto c = new KNumberComplex(this);
             delete this;
-            return new KNumberError(KNumberError::Undefined);
+            return c->pow(p);
         }
 
         const int n1 = mpz_root(lhs_num, lhs_num, mpz_get_ui(rhs_den));

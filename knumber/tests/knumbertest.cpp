@@ -597,7 +597,10 @@ void testingPower()
                 QStringLiteral("1/4"),
                 KNumber::TypeFraction);
 
-    checkResult(QStringLiteral("KNumber(-16) ^ KNumber(\"1/4\")"), KNumber(-16).pow(KNumber(QStringLiteral("1/4"))), QStringLiteral("nan"), KNumber::TypeError);
+    checkResult(QStringLiteral("KNumber(-16) ^ KNumber(\"1/4\")"),
+                KNumber(-16).pow(KNumber(QStringLiteral("1/4"))),
+                QStringLiteral("1.41421356237+1.41421356237i"),
+                KNumber::TypeComplex);
     checkResult(QStringLiteral("KNumber(-8) ^ KNumber(\"1/3\")"), KNumber(-8).pow(KNumber(QStringLiteral("1/3"))), QStringLiteral("-2"), KNumber::TypeInteger);
     checkResult(QStringLiteral("KNumber(5) ^ KNumber(0.0)"), KNumber(5).pow(KNumber(0.0)), QStringLiteral("1"), KNumber::TypeInteger);
     checkResult(QStringLiteral("KNumber(-5) ^ KNumber(0.0)"), KNumber(-5).pow(KNumber(0.0)), QStringLiteral("1"), KNumber::TypeInteger);
@@ -664,6 +667,35 @@ void testingPower()
                 QStringLiteral("36.4621554164"),
                 KNumber::TypeFloat);
     KNumber::setDefaultFractionalInput(false);
+
+    checkResult(QStringLiteral("KNumber(1.0,1.0) ^ KNumber(0)"), KNumber(1.0, 1.0).pow(KNumber(0)), QStringLiteral("1"), KNumber::TypeInteger);
+    checkResult(QStringLiteral("KNumber(1.0,1.0) ^ KNumber(0)"), KNumber(1.0, 1.0).pow(KNumber(20)), QStringLiteral("-1024"), KNumber::TypeInteger);
+    checkResult(QStringLiteral("KNumber(-1) ^ KNumber(1.5)"), KNumber(-1).pow(KNumber(1.5)), QStringLiteral("-1.00000000000i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(-1.5) ^ KNumber(2/7)"),
+                KNumber(-1.5).pow(KNumber(QStringLiteral("2/7"))),
+                QStringLiteral("7.00069476633e-1+8.77859357305e-1i"),
+                KNumber::TypeComplex);
+
+    checkResult(QStringLiteral("KNumber(2.0,2.0) ^ KNumber(\"inf\")"),
+                KNumber(2.0, 2.0).pow(KNumber(QStringLiteral("inf"))),
+                QStringLiteral("complexInf"),
+                KNumber::TypeError);
+    checkResult(QStringLiteral("KNumber(2.0,2.0) ^ KNumber(\"-inf\")"),
+                KNumber(2.0, 2.0).pow(KNumber(QStringLiteral("-inf"))),
+                QStringLiteral("0"),
+                KNumber::TypeInteger);
+    checkResult(QStringLiteral("KNumber(0.5,0.5) ^ KNumber(\"inf\")"),
+                KNumber(0.5, 0.5).pow(KNumber(QStringLiteral("inf"))),
+                QStringLiteral("0"),
+                KNumber::TypeInteger);
+    checkResult(QStringLiteral("KNumber(0.5,0.5) ^ KNumber(\"-inf\")"),
+                KNumber(0.5, 0.5).pow(KNumber(QStringLiteral("-inf"))),
+                QStringLiteral("complexInf"),
+                KNumber::TypeError);
+    checkResult(QStringLiteral("KNumber(0.0,1.0) ^ KNumber(\"inf\")"),
+                KNumber(0.0, 1.0).pow(KNumber(QStringLiteral("inf"))),
+                QStringLiteral("nan"),
+                KNumber::TypeError);
 }
 
 void testingInfArithmetic()
@@ -956,6 +988,7 @@ void testingConstructors()
     checkResult(QStringLiteral("KNumber(\"nan\")"), KNumber(QStringLiteral("nan")), QStringLiteral("nan"), KNumber::TypeError);
     checkResult(QStringLiteral("KNumber(\"inf\")"), KNumber(QStringLiteral("inf")), QStringLiteral("inf"), KNumber::TypeError);
     checkResult(QStringLiteral("KNumber(\"-inf\")"), KNumber(QStringLiteral("-inf")), QStringLiteral("-inf"), KNumber::TypeError);
+    checkResult(QStringLiteral("KNumber(\"complexInf\")"), KNumber(QStringLiteral("complexInf")), QStringLiteral("complexInf"), KNumber::TypeError);
 
     // test accepting of non-US number formatted strings
     KNumber::setDecimalSeparator(QStringLiteral(","));
