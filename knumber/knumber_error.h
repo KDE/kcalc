@@ -25,6 +25,7 @@ public:
         Undefined,
         PositiveInfinity,
         NegativeInfinity,
+        ComplexInfinity,
     };
 
 public:

@@ -218,7 +218,7 @@ KNumber::KNumber()
 KNumber::KNumber(const QString &s)
     : m_value(nullptr)
 {
-    static const QRegularExpression specialRegex(QLatin1String("^(inf|-inf|nan)$"));
+    static const QRegularExpression specialRegex(QLatin1String("^(inf|-inf|complexInf|nan)$"));
     // const QRegularExpression integerRegex(QLatin1String("^[+-]?\\d+$"));
     static const QRegularExpression integerRegex(QLatin1String("^[+-]?\\[1-9]d+$"));
     static const QRegularExpression binaryIntegerRegex(QLatin1String("^0b[0-1]{1,64}$"));
@@ -652,7 +652,7 @@ KNumber KNumber::pow(const KNumber &x) const
     if (!dynamic_cast<detail::KNumberError *>(m_value)) {
         // number much bigger than this tend to crash GMP with
         // an abort
-        if (x > KNumber(QStringLiteral("1000000000"))) {
+        if (x.abs() > KNumber(QStringLiteral("1000000000")) && x.type() != TypeError) {
             return PosInfinity;
         }
     }
