@@ -370,7 +370,8 @@ void KNumberFunctionsTest::testKNumberPower_data()
     QTest::newRow("KNumber(8) ^ KNumber(\"2/3\")") << KNumber(8) << KNumber(QStringLiteral("2/3")) << QStringLiteral("4") << KNumber::TypeInteger;
     QTest::newRow("KNumber(8) ^ KNumber(\"-2/3\")") << KNumber(8) << KNumber(QStringLiteral("-2/3")) << QStringLiteral("1/4") << KNumber::TypeFraction;
 
-    QTest::newRow("KNumber(-16) ^ KNumber(\"1/4\")") << KNumber(-16) << KNumber(QStringLiteral("1/4")) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(-16) ^ KNumber(\"1/4\")") << KNumber(-16) << KNumber(QStringLiteral("1/4")) << QStringLiteral("1.41421356237+1.41421356237i")
+                                                     << KNumber::TypeComplex;
     QTest::newRow("KNumber(-8) ^ KNumber(\"1/3\")") << KNumber(-8) << KNumber(QStringLiteral("1/3")) << QStringLiteral("-2") << KNumber::TypeInteger;
     QTest::newRow("KNumber(5) ^ KNumber(0.0)") << KNumber(5) << KNumber(0.0) << QStringLiteral("1") << KNumber::TypeInteger;
     QTest::newRow("KNumber(-5) ^ KNumber(0.0)") << KNumber(-5) << KNumber(0.0) << QStringLiteral("1") << KNumber::TypeInteger;
@@ -417,6 +418,21 @@ void KNumberFunctionsTest::testKNumberPower_data()
 #if 0
     QTest::newRow("KNumber(1000).exp()") << KNumber(1000).exp() << QLatin1String("23.1406926328") << KNumber::TypeFloat;
 #endif
+
+    QTest::newRow("KNumber(1.0,1.0) ^ KNumber(0)") << KNumber(1.0, 1.0) << KNumber(0) << QStringLiteral("1") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(1.0,1.0) ^ KNumber(0)") << KNumber(1.0, 1.0) << KNumber(20) << QStringLiteral("-1024") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(-1) ^ KNumber(1.5)") << KNumber(-1) << KNumber(1.5) << QStringLiteral("-1.00000000000i") << KNumber::TypeComplex;
+    QTest::newRow("KNumber(-1.5) ^ KNumber(2/7)") << KNumber(-1.5) << KNumber(QStringLiteral("2/7")) << QStringLiteral("7.00069476633e-1+8.77859357305e-1i")
+                                                  << KNumber::TypeComplex;
+
+    QTest::newRow("KNumber(2.0,2.0) ^ KNumber(\"inf\")")
+        << KNumber(2.0, 2.0) << KNumber(QStringLiteral("inf")) << QStringLiteral("complexInf") << KNumber::TypeError;
+    QTest::newRow("KNumber(2.0,2.0) ^ KNumber(\"-inf\")")
+        << KNumber(2.0, 2.0) << KNumber(QStringLiteral("-inf")) << QStringLiteral("0") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(0.5,0.5) ^ KNumber(\"inf\")") << KNumber(0.5, 0.5) << KNumber(QStringLiteral("inf")) << QStringLiteral("0") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(0.5,0.5) ^ KNumber(\"-inf\")")
+        << KNumber(0.5, 0.5) << KNumber(QStringLiteral("-inf")) << QStringLiteral("complexInf") << KNumber::TypeError;
+    QTest::newRow("KNumber(0.0,1.0) ^ KNumber(\"inf\")") << KNumber(0.0, 1.0) << KNumber(QStringLiteral("inf")) << QStringLiteral("nan") << KNumber::TypeError;
 
     QTest::newRow("KNumber(\"3.1415926\") ^ KNumber(\"3.1415926\")")
         << KNumber(QStringLiteral("3.1415926")) << KNumber(QStringLiteral("3.1415926")) << QStringLiteral("36.4621554164") << KNumber::TypeFloat;

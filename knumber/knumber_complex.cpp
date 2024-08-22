@@ -12,6 +12,7 @@
 
 #include <mpc.h>
 #include <mpfr.h>
+
 #include <QDebug>
 #include <QScopedArrayPointer>
 
@@ -452,15 +453,49 @@ KNumberBase *KNumberComplex::pow(KNumberBase *rhs)
         mpc_pow_fr(m_mpc, m_mpc, f.m_mpfr, rounding_mode);
         return this;
     } else if (auto const p = dynamic_cast<KNumberComplex *>(rhs)) {
-        KNumberComplex c(p);
-        return execute_mpc_func<::mpc_pow>(c.m_mpc);
+        return execute_mpc_func<::mpc_pow>(p->m_mpc);
     } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
-        auto e = new KNumberError(KNumberError::Undefined);
-        delete this;
-        return e;
+        mpfr_t norm;
+        mpfr_init(norm);
+        mpc_norm(norm, m_mpc, KNumberFloat::rounding_mode);
+        int inUnitCircle = mpfr_cmpabs_ui(norm, 1);
+        mpfr_clear(norm);
+
+        if (inUnitCircle < 0) {
+            if (p->m_error == KNumberError::PositiveInfinity) {
+                delete this;
+                return new KNumberInteger(0);
+            } else if (p->m_error == KNumberError::NegativeInfinity) {
+                auto e = new KNumberError(KNumberError::ComplexInfinity);
+                delete this;
+                return e;
+            } else {
+                auto e = new KNumberError(KNumberError::Undefined);
+                delete this;
+                return e;
+            }
+        } else if (inUnitCircle > 0) {
+            if (p->m_error == KNumberError::PositiveInfinity) {
+                auto e = new KNumberError(KNumberError::ComplexInfinity);
+                delete this;
+                return e;
+            } else if (p->m_error == KNumberError::NegativeInfinity) {
+                delete this;
+                return new KNumberInteger(0);
+            } else {
+                auto e = new KNumberError(KNumberError::Undefined);
+                delete this;
+                return e;
+            }
+        } else {
+            auto e = new KNumberError(KNumberError::Undefined);
+            delete this;
+            return e;
+        }
     }
 
     Q_ASSERT(0);
+    delete this;
     return nullptr;
 }
 

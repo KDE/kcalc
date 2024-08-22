@@ -449,10 +449,22 @@ KNumberBase *KNumberFloat::pow(KNumberBase *rhs)
         delete this;
         return f->pow(p);
     } else if (auto const p = dynamic_cast<KNumberFloat *>(rhs)) {
-        return execute_mpfr_func<::mpfr_pow>(p->m_mpfr);
+        if (sign() < 0) {
+            auto c = new KNumberComplex(this);
+            delete this;
+            return c->pow(p);
+        } else {
+            return execute_mpfr_func<::mpfr_pow>(p->m_mpfr);
+        }
     } else if (auto const p = dynamic_cast<KNumberFraction *>(rhs)) {
-        KNumberFloat f(p);
-        return execute_mpfr_func<::mpfr_pow>(f.m_mpfr);
+        if (sign() < 0) {
+            auto c = new KNumberComplex(this);
+            delete this;
+            return c->pow(p);
+        } else {
+            KNumberFloat f(p);
+            return execute_mpfr_func<::mpfr_pow>(f.m_mpfr);
+        }
     } else if (auto const p = dynamic_cast<KNumberError *>(rhs)) {
         if (p->sign() > 0) {
             auto e = new KNumberError(KNumberError::PositiveInfinity);
