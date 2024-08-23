@@ -603,6 +603,18 @@ KNumberBase *KNumberFloat::exp()
     return execute_mpfr_func<::mpfr_exp>();
 }
 
+KNumberBase *KNumberFloat::realPart()
+{
+    return this;
+}
+
+KNumberBase *KNumberFloat::imaginaryPart()
+{
+    auto z = new KNumberInteger(0);
+    delete this;
+    return z;
+}
+
 quint64 KNumberFloat::toUint64() const
 {
     return KNumberInteger(this).toUint64();

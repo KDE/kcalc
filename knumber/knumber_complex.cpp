@@ -142,6 +142,20 @@ KNumberComplex::~KNumberComplex()
     mpc_clear(m_mpc);
 }
 
+KNumberBase *KNumberComplex::realPart()
+{
+    auto real = new KNumberFloat(mpc_realref(m_mpc));
+    delete this;
+    return real;
+}
+
+KNumberBase *KNumberComplex::imaginaryPart()
+{
+    auto img = new KNumberFloat(mpc_imagref(m_mpc));
+    delete this;
+    return img;
+}
+
 KNumberBase *KNumberComplex::add(KNumberBase *rhs)
 {
     if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {

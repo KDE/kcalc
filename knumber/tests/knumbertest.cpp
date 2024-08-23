@@ -146,6 +146,17 @@ void testingCompare()
     checkTruth(QStringLiteral("KNumber(inf) > KNumber(-inf)"), KNumber(QStringLiteral("inf")) > KNumber(QStringLiteral("-inf")), true);
 }
 
+void testingRealImg()
+{
+    std::cout << "\n\n";
+    std::cout << "Testing real & img:\n";
+    std::cout << "------------------\n";
+
+    checkResult(QStringLiteral("KNumber(1.0,-1.0).realpart()"), KNumber(1.0, 1.0).realPart(), QStringLiteral("1"), KNumber::TypeInteger);
+    checkResult(QStringLiteral("KNumber(1.0,-1.0).realpart()"), KNumber(1.0, -1.0).imaginaryPart(), QStringLiteral("-1"), KNumber::TypeInteger);
+    checkResult(QStringLiteral("KNumber(1.05,1.0).realpart()"), KNumber(1.05, 1.0).realPart(), QStringLiteral("1.05"), KNumber::TypeFloat);
+}
+
 void testingAdditions()
 {
     std::cout << "\n\n";
@@ -174,10 +185,7 @@ void testingAdditions()
     checkResult(QStringLiteral("KNumber(5.3) + KNumber(2)"), KNumber(5.3) + KNumber(2), QStringLiteral("7.3"), KNumber::TypeFloat);
     checkResult(QStringLiteral("KNumber(5.3) + KNumber(\"2/4\")"), KNumber(5.3) + KNumber(QStringLiteral("2/4")), QStringLiteral("5.8"), KNumber::TypeFloat);
     checkResult(QStringLiteral("KNumber(5.3) + KNumber(2.3)"), KNumber(5.3) + KNumber(2.3), QStringLiteral("7.6"), KNumber::TypeFloat);
-    checkResult(QStringLiteral("KNumber(1) + KNumber(1.5,1.5)"),
-                KNumber(1) + KNumber(1.5, 1.5),
-                QStringLiteral("2.50000000000+1.50000000000i"),
-                KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(1) + KNumber(1.5,1.5)"), KNumber(1) + KNumber(1.5, 1.5), QStringLiteral("2.5+1.5i"), KNumber::TypeComplex);
 }
 
 void testingSubtractions()
@@ -254,7 +262,7 @@ void testingTrig()
 
     checkResult(QStringLiteral("sin(KNumber(1+i))"),
                 sin(KNumber(QStringLiteral("1+i"))),
-                QStringLiteral("1.29845758142+6.34963914785e-1i"),
+                QStringLiteral("1.29845758142+0.634963914785i"),
                 KNumber::TypeComplex);
 
     checkResult(QStringLiteral("asin(KNumber(5))"), asin(KNumber(5)), QStringLiteral("1.57079632679+2.29243166956i"), KNumber::TypeComplex);
@@ -302,11 +310,11 @@ void testingTrig()
     checkResult(QStringLiteral("atan(KNumber(-0.3))"), atan(KNumber(-0.3)), QStringLiteral("-0.291456794478"), KNumber::TypeFloat);
     checkResult(QStringLiteral("atan(KNumber(1+i))"),
                 atan(KNumber(QStringLiteral("1+i"))),
-                QStringLiteral("1.01722196790+4.02359478109e-1i"),
+                QStringLiteral("1.0172219679+0.402359478109i"),
                 KNumber::TypeComplex);
     checkResult(QStringLiteral("asin(KNumber(1+i))"),
                 atan(KNumber(QStringLiteral("1+i"))),
-                QStringLiteral("1.01722196790+4.02359478109e-1i"),
+                QStringLiteral("1.0172219679+0.402359478109i"),
                 KNumber::TypeComplex);
 }
 
@@ -321,7 +329,7 @@ void testingHyperbolicTrig()
     checkResult(QStringLiteral("acosh(KNumber(2))"), KNumber(2).acosh(), QStringLiteral("1.31695789692"), KNumber::TypeFloat);
     checkResult(QStringLiteral("acosh(KNumber(i))"),
                 KNumber(QStringLiteral("i")).acosh(),
-                QStringLiteral("8.81373587020e-1+1.57079632679i"),
+                QStringLiteral("0.88137358702+1.57079632679i"),
                 KNumber::TypeComplex);
 }
 
@@ -334,7 +342,7 @@ void testingLogs()
     checkResult(QStringLiteral("ln(KNumber(1))"), ln(KNumber(1)), QStringLiteral("0"), KNumber::TypeInteger);
     checkResult(QStringLiteral("ln(KNumber(-1))"), ln(KNumber(-1)), QStringLiteral("3.14159265359i"), KNumber::TypeComplex);
     checkResult(QStringLiteral("log10(KNumber(10))"), log10(KNumber(10)), QStringLiteral("1"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("log10(KNumber(-10))"), log10(KNumber(-10)), QStringLiteral("1.00000000000+1.36437635384i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("log10(KNumber(-10))"), log10(KNumber(-10)), QStringLiteral("1+1.36437635384i"), KNumber::TypeComplex);
     checkResult(QStringLiteral("ln(KNumber(0))"), ln(KNumber(0)), QStringLiteral("-inf"), KNumber::TypeError);
     checkResult(QStringLiteral("log2(KNumber(0))"), log2(KNumber(0)), QStringLiteral("-inf"), KNumber::TypeError);
     checkResult(QStringLiteral("log10(KNumber(0))"), log10(KNumber(0)), QStringLiteral("-inf"), KNumber::TypeError);
@@ -480,18 +488,15 @@ void testingSqrt()
     std::cout << "--------------------------------\n";
 
     checkResult(QStringLiteral("KNumber(16).sqrt()"), KNumber(16).sqrt(), QStringLiteral("4"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(-16).sqrt()"), KNumber(-16).sqrt(), QStringLiteral("4.00000000000i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(-16).sqrt()"), KNumber(-16).sqrt(), QStringLiteral("4i"), KNumber::TypeComplex);
     checkResult(QStringLiteral("KNumber(\"16/9\").sqrt()"), KNumber(QStringLiteral("16/9")).sqrt(), QStringLiteral("4/3"), KNumber::TypeFraction);
     checkResult(QStringLiteral("KNumber(\"-16/9\").sqrt()"), KNumber(QStringLiteral("-16/9")).sqrt(), QStringLiteral("1.33333333333i"), KNumber::TypeComplex);
     checkResult(QStringLiteral("KNumber(2).sqrt()"), KNumber(2).sqrt(), QStringLiteral("1.41421356237"), KNumber::TypeFloat);
     checkResult(QStringLiteral("KNumber(\"2/3\").sqrt()"), KNumber(QStringLiteral("2/3")).sqrt(), QStringLiteral("0.816496580928"), KNumber::TypeFloat);
     checkResult(QStringLiteral("KNumber(\"0.25\").sqrt()"), KNumber(QStringLiteral("0.25")).sqrt(), QStringLiteral("0.5"), KNumber::TypeFloat);
-    checkResult(QStringLiteral("KNumber(\"-0.25\").sqrt()"),
-                KNumber(QStringLiteral("-0.25")).sqrt(),
-                QStringLiteral("5.00000000000e-1i"),
-                KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(\"-0.25\").sqrt()"), KNumber(QStringLiteral("-0.25")).sqrt(), QStringLiteral("0.5i"), KNumber::TypeComplex);
 
-    checkResult(QStringLiteral("KNumber(\"-1\").sqrt()"), KNumber(QStringLiteral("-1")).sqrt(), QStringLiteral("1.00000000000i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(\"-1\").sqrt()"), KNumber(QStringLiteral("-1")).sqrt(), QStringLiteral("i"), KNumber::TypeComplex);
 
     checkResult(QStringLiteral("KNumber(27).cbrt()"), KNumber(27).cbrt(), QStringLiteral("3"), KNumber::TypeInteger);
     checkResult(QStringLiteral("KNumber(-27).cbrt()"), KNumber(-27).cbrt(), QStringLiteral("-3"), KNumber::TypeInteger);
@@ -670,10 +675,10 @@ void testingPower()
 
     checkResult(QStringLiteral("KNumber(1.0,1.0) ^ KNumber(0)"), KNumber(1.0, 1.0).pow(KNumber(0)), QStringLiteral("1"), KNumber::TypeInteger);
     checkResult(QStringLiteral("KNumber(1.0,1.0) ^ KNumber(0)"), KNumber(1.0, 1.0).pow(KNumber(20)), QStringLiteral("-1024"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(-1) ^ KNumber(1.5)"), KNumber(-1).pow(KNumber(1.5)), QStringLiteral("-1.00000000000i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(-1) ^ KNumber(1.5)"), KNumber(-1).pow(KNumber(1.5)), QStringLiteral("-i"), KNumber::TypeComplex);
     checkResult(QStringLiteral("KNumber(-1.5) ^ KNumber(2/7)"),
                 KNumber(-1.5).pow(KNumber(QStringLiteral("2/7"))),
-                QStringLiteral("7.00069476633e-1+8.77859357305e-1i"),
+                QStringLiteral("0.700069476633+0.877859357305i"),
                 KNumber::TypeComplex);
 
     checkResult(QStringLiteral("KNumber(2.0,2.0) ^ KNumber(\"inf\")"),
@@ -973,47 +978,32 @@ void testingConstructors()
     checkResult(QStringLiteral("KNumber(\"5/1\")"), KNumber(QStringLiteral("5/1")), QStringLiteral("5"), KNumber::TypeInteger);
     checkResult(QStringLiteral("KNumber(\"0/12\")"), KNumber(QStringLiteral("0/12")), QStringLiteral("0"), KNumber::TypeInteger);
 
-    checkResult(QStringLiteral("KNumber(\"1+2i\")"), KNumber(QStringLiteral("1+2i")), QStringLiteral("1.00000000000+2.00000000000i"), KNumber::TypeComplex);
-    checkResult(QStringLiteral("KNumber(\"1-2i\")"), KNumber(QStringLiteral("1-2i")), QStringLiteral("1.00000000000-2.00000000000i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(\"1+2i\")"), KNumber(QStringLiteral("1+2i")), QStringLiteral("1+2i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(\"1-2i\")"), KNumber(QStringLiteral("1-2i")), QStringLiteral("1-2i"), KNumber::TypeComplex);
     checkResult(QStringLiteral("KNumber(\"1.4e20+1.6e-30i\")"),
                 KNumber(QStringLiteral("1.4e20+1.6e-30i")),
-                QStringLiteral("1.40000000000e+20+1.60000000000e-30i"),
+                QStringLiteral("1.4e+20+1.6e-30i"),
                 KNumber::TypeComplex);
-    checkResult(QStringLiteral("KNumber(\"1.88e-3+i\")"),
-                KNumber(QStringLiteral("1.88e-3+i")),
-                QStringLiteral("1.88000000000e-3+1.00000000000i"),
-                KNumber::TypeComplex);
-    checkResult(QStringLiteral("KNumber(\"-1.88e-3-i\")"),
-                KNumber(QStringLiteral("-1.88e-3-i")),
-                QStringLiteral("-1.88000000000e-3-1.00000000000i"),
-                KNumber::TypeComplex);
-    checkResult(QStringLiteral("KNumber(\"1+1.88e-3i\")"),
-                KNumber(QStringLiteral("1+1.88e-3i")),
-                QStringLiteral("1.00000000000+1.88000000000e-3i"),
-                KNumber::TypeComplex);
-    checkResult(QStringLiteral("KNumber(\"1-1.88e-3i\")"),
-                KNumber(QStringLiteral("1-1.88e-3i")),
-                QStringLiteral("1.00000000000-1.88000000000e-3i"),
-                KNumber::TypeComplex);
-    checkResult(QStringLiteral("KNumber(\"-i\")"), KNumber(QStringLiteral("-i")), QStringLiteral("-1.00000000000i"), KNumber::TypeComplex);
-    checkResult(QStringLiteral("KNumber(\".5i\")"), KNumber(QStringLiteral(".5i")), QStringLiteral("5.00000000000e-1i"), KNumber::TypeComplex);
-    checkResult(QStringLiteral("KNumber(\".5e20i\")"), KNumber(QStringLiteral(".5e20i")), QStringLiteral("5.00000000000e+19i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(\"1.88e-3+i\")"), KNumber(QStringLiteral("1.88e-3+i")), QStringLiteral("0.00188+i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(\"-1.88e-3-i\")"), KNumber(QStringLiteral("-1.88e-3-i")), QStringLiteral("-0.00188-i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(\"1+1.88e-3i\")"), KNumber(QStringLiteral("1+1.88e-3i")), QStringLiteral("1+0.00188i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(\"1-1.88e-3i\")"), KNumber(QStringLiteral("1-1.88e-3i")), QStringLiteral("1-0.00188i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(\"-i\")"), KNumber(QStringLiteral("-i")), QStringLiteral("-i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(\".5i\")"), KNumber(QStringLiteral(".5i")), QStringLiteral("0.5i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(\".5e20i\")"), KNumber(QStringLiteral(".5e20i")), QStringLiteral("5e+19i"), KNumber::TypeComplex);
     checkResult(QStringLiteral("KNumber(\".7e20+.5e10i\")"),
                 KNumber(QStringLiteral(".7e20+.5e10i")),
-                QStringLiteral("7.00000000000e+19+5.00000000000e+9i"),
+                QStringLiteral("7e+19+5000000000i"),
                 KNumber::TypeComplex);
     checkResult(QStringLiteral("KNumber(\"7.7e20+.5e10i\")"),
                 KNumber(QStringLiteral("7.7e20+.5e10i")),
-                QStringLiteral("7.70000000000e+20+5.00000000000e+9i"),
+                QStringLiteral("7.7e+20+5000000000i"),
                 KNumber::TypeComplex);
-    checkResult(QStringLiteral("KNumber(\"+1+i\")"), KNumber(QStringLiteral("+1+i")), QStringLiteral("1.00000000000+1.00000000000i"), KNumber::TypeComplex);
-    checkResult(QStringLiteral("KNumber(\"-3.55+i\")"),
-                KNumber(QStringLiteral("-3.55+i")),
-                QStringLiteral("-3.55000000000+1.00000000000i"),
-                KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(\"+1+i\")"), KNumber(QStringLiteral("+1+i")), QStringLiteral("1+i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(\"-3.55+i\")"), KNumber(QStringLiteral("-3.55+i")), QStringLiteral("-3.55+i"), KNumber::TypeComplex);
     checkResult(QStringLiteral("KNumber(\"+3.55+4.66e20i\")"),
                 KNumber(QStringLiteral("+3.55+4.66e20i")),
-                QStringLiteral("3.55000000000+4.66000000000e+20i"),
+                QStringLiteral("3.55+4.66e+20i"),
                 KNumber::TypeComplex);
 
     KNumber::setDefaultFractionalInput(true);
@@ -1127,6 +1117,7 @@ int main()
 {
     testingConstants();
     testingConstructors();
+    testingRealImg();
     testingCompare();
     testingAdditions();
     testingSubtractions();

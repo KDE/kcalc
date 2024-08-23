@@ -648,6 +648,16 @@ KNumberBase *KNumberError::exp()
     return this;
 }
 
+KNumberBase *KNumberError::realPart()
+{
+    return this;
+}
+
+KNumberBase *KNumberError::imaginaryPart()
+{
+    return this;
+}
+
 quint64 KNumberError::toUint64() const
 {
     return 0;
