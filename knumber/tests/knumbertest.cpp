@@ -656,6 +656,8 @@ void testingPower()
     checkResult(QStringLiteral("KNumber(2.0).exp()"), KNumber(2.0).exp(), QStringLiteral("7.38905609893"), KNumber::TypeFloat);
     checkResult(QStringLiteral("KNumber::Euler() ^ KNumber(2.0)"), KNumber::Euler().pow(KNumber(2.0)), QStringLiteral("7.38905609893"), KNumber::TypeFloat);
 
+    checkResult(QStringLiteral("KNumber(0.0,1.0).exp10()"), KNumber(0.0, 1.0).exp10(), QStringLiteral("-0.66820151019+0.743980336957i"), KNumber::TypeComplex);
+
     // TODO: kinda odd that this ends up being an integer
     // i guess since my euler constant is only 100 digits, we've exceeded the fractional part
     checkResult(QStringLiteral("KNumber::Euler() ^ 1000"), KNumber::Euler().pow(KNumber(1000)), QStringLiteral("1.97007111402e+434"), KNumber::TypeInteger);
