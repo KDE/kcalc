@@ -607,7 +607,7 @@
             </property>
            </widget>
           </item>
-          <item row="9" column="3">
+          <item row="8" column="3">
            <widget class="KCalcButton" name="pbEE">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -1002,6 +1002,25 @@
             </property>
             <property name="shortcut">
              <string>N</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1">
+           <widget class="KCalcButton" name="pbI">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Imaginary Unit</string>
+            </property>
+            <property name="text">
+             <string>i</string>
+            </property>
+            <property name="shortcut">
+             <string>i</string>
             </property>
            </widget>
           </item>
