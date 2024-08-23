@@ -45,6 +45,9 @@ public:
     static KNumber TangensDeg(const KNumber &input);
     static KNumber TangensRad(const KNumber &input);
     static KNumber TangensGrad(const KNumber &input);
+    static KNumber PolarDeg(const KNumber &input);
+    static KNumber PolarRad(const KNumber &input);
+    static KNumber PolarGrad(const KNumber &input);
     static KNumber TangensHyp(const KNumber &input);
     static KNumber Square(const KNumber &input);
     static KNumber SquareRoot(const KNumber &input);
