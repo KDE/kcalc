@@ -62,7 +62,7 @@ void KNumberAritmeticTest::testKNumberAddition_data()
     QTest::newRow("KNumber(5.3) + KNumber(\"2/4\")") << KNumber(5.3) << KNumber(QStringLiteral("2/4")) << QStringLiteral("5.8") << KNumber::TypeFloat;
     QTest::newRow("KNumber(5.3) + KNumber(2.3)") << KNumber(5.3) << KNumber(2.3) << QStringLiteral("7.6") << KNumber::TypeFloat;
 
-    QTest::newRow("KNumber(1) + KNumber(1.5,1.5)") << KNumber(1) << KNumber(1.5, 1.5) << QStringLiteral("2.50000000000+1.50000000000i") << KNumber::TypeComplex;
+    QTest::newRow("KNumber(1) + KNumber(1.5,1.5)") << KNumber(1) << KNumber(1.5, 1.5) << QStringLiteral("2.5+1.5i") << KNumber::TypeComplex;
 
     QTest::newRow("inf + KNumber(2)") << KNumber::PosInfinity << KNumber(2) << QStringLiteral("inf") << KNumber::TypeError;
     QTest::newRow("KNumber(-5) + inf") << KNumber(-5) << KNumber::PosInfinity << QStringLiteral("inf") << KNumber::TypeError;

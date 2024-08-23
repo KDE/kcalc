@@ -71,6 +71,8 @@ public:
     virtual KNumberBase *floor() = 0;
     virtual KNumberBase *ceil() = 0;
     virtual KNumberBase *exp() = 0;
+    virtual KNumberBase *realPart() = 0;
+    virtual KNumberBase *imaginaryPart() = 0;
     virtual KNumberBase *bin(KNumberBase *rhs) = 0;
 
 public:

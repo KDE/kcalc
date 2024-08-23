@@ -78,6 +78,8 @@ public:
     KNumberBase *floor() override;
     KNumberBase *ceil() override;
     KNumberBase *exp() override;
+    KNumberBase *realPart() override;
+    KNumberBase *imaginaryPart() override;
     KNumberBase *bin(KNumberBase *rhs) override;
 
 public:

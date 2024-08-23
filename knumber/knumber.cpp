@@ -423,6 +423,22 @@ KNumber KNumber::integerPart() const
     return x;
 }
 
+KNumber KNumber::realPart() const
+{
+    KNumber r(*this);
+    r.m_value = r.m_value->realPart();
+    r.simplify();
+    return r;
+}
+
+KNumber KNumber::imaginaryPart() const
+{
+    KNumber i(*this);
+    i.m_value = i.m_value->imaginaryPart();
+    i.simplify();
+    return i;
+}
+
 void KNumber::simplify()
 {
     if (m_value->isInteger()) {
@@ -568,37 +584,31 @@ QString KNumber::toQString(int width, int precision) const
         s = m_value->toString(width);
         localizeDecimalSeparator(s);
     } else if (dynamic_cast<detail::KNumberComplex *>(m_value)) {
-        QString sRe;
-        QString sIm;
-        QString sSing;
+        QString sRe = this->realPart().toQString(width, precision);
+        QString sIm = this->imaginaryPart().toQString(width, precision);
 
-        static const QRegularExpression complex_regex(QString(QLatin1String(R"(\((.+?)( )([+-]?)(.+?)\))")));
-        if (width > 0) {
-            s = m_value->toString(width);
-        } else {
-            s = m_value->toString(3 * mpf_get_default_prec() / 10);
-        }
-        localizeDecimalSeparator(s);
-        const auto match = complex_regex.match(s);
-
-        sRe = match.captured(1);
-        sIm = match.captured(4);
-        sSing = match.captured(3).isEmpty() ? QStringLiteral("+") : match.captured(3);
-
-        if (precision >= 0) {
-            sRe = round(sRe, precision);
-            sIm = round(sIm, precision);
-        }
-
-        if (sRe == QStringLiteral("+0") || sRe == QStringLiteral("-0")) {
+        if (sRe == QStringLiteral("0")) {
             sRe.clear();
-            if (sSing == QStringLiteral("+")) {
-                sSing.clear();
+            if (sIm == QStringLiteral("1")) {
+                sIm.clear();
+            } else if (sIm == QStringLiteral("-1")) {
+                sIm = QStringLiteral("-");
+            }
+        } else {
+            if (sIm.at(0) != QStringLiteral("-")) {
+                sIm = QStringLiteral("+") + sIm;
+            }
+
+            if (sIm == QStringLiteral("+1")) {
+                sIm = QStringLiteral("+");
+            }
+
+            if (sIm == QStringLiteral("-1")) {
+                sIm = QStringLiteral("-");
             }
         }
 
-        s = sRe + sSing + sIm + QStringLiteral("i");
-        return s; // TODO: implement better this
+        return sRe + sIm + QStringLiteral("i");
     } else {
         return m_value->toString(width);
     }

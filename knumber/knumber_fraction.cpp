@@ -766,6 +766,18 @@ KNumberBase *KNumberFraction::exp()
     return f->exp();
 }
 
+KNumberBase *KNumberFraction::realPart()
+{
+    return this;
+}
+
+KNumberBase *KNumberFraction::imaginaryPart()
+{
+    auto z = new KNumberInteger(0);
+    delete this;
+    return z;
+}
+
 quint64 KNumberFraction::toUint64() const
 {
     return KNumberInteger(this).toUint64();
