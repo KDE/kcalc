@@ -348,13 +348,19 @@ KNumberBase *KNumberComplex::sqrt()
 
 KNumberBase *KNumberComplex::cbrt()
 {
-    // TODO: MPC does not provide cbrt ???
-    // A work around would be to calculate it using
-    // the real and imaginary parts.
-    // Other choice would be to implement cbrt for mpc.
-    // return execute_mpc_func<::mpc_cbrt>();
-    delete this;
-    return new KNumberError(KNumberError::Undefined);
+    mpq_t oneThird;
+    mpq_init(oneThird);
+    mpq_set_ui(oneThird, 1, 3);
+
+    mpfr_t oneThirdF;
+    mpfr_init_set_q(oneThirdF, oneThird, KNumberFloat::rounding_mode);
+
+    mpc_pow_fr(m_mpc, m_mpc, oneThirdF, rounding_mode);
+
+    mpq_clear(oneThird);
+    mpfr_clear(oneThirdF);
+
+    return this;
 }
 
 KNumberBase *KNumberComplex::factorial()

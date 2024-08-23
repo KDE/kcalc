@@ -507,6 +507,8 @@ void testingSqrt()
     checkResult(QStringLiteral("KNumber(\"2/3\").cbrt()"), KNumber(QStringLiteral("2/3")).cbrt(), QStringLiteral("0.873580464736"), KNumber::TypeFloat);
     checkResult(QStringLiteral("KNumber(\"0.25\").cbrt()"), KNumber(QStringLiteral("0.25")).cbrt(), QStringLiteral("0.629960524947"), KNumber::TypeFloat);
     checkResult(QStringLiteral("KNumber(\"-0.25\").cbrt()"), KNumber(QStringLiteral("-0.25")).cbrt(), QStringLiteral("-0.629960524947"), KNumber::TypeFloat);
+    checkResult(QStringLiteral("KNumber(\"i\").cbrt()"), KNumber(QStringLiteral("i")).cbrt(), QStringLiteral("0.866025403784+0.5i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(\"-i\").cbrt()"), KNumber(QStringLiteral("-i")).cbrt(), QStringLiteral("0.866025403784-0.5i"), KNumber::TypeComplex);
 }
 
 void testingFactorial()
