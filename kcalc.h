@@ -200,6 +200,7 @@ protected Q_SLOTS:
     void slotSquareclicked();
     void slotSqrtclicked();
     void slotLnclicked();
+    void slotIclicked();
     void slotPowerclicked();
     void slotMemClearclicked();
     void slotClearclicked();

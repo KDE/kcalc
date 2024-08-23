@@ -697,6 +697,42 @@ KNumber CalcEngine_p::TangensGrad(const KNumber &input)
     return arg1 / arg2;
 }
 
+KNumber CalcEngine_p::PolarDeg(const KNumber &input)
+{
+    if (input.type() == KNumber::TypeError) {
+        return KNumber::NaN;
+    }
+
+    KNumber arg1 = CosDeg(input);
+    KNumber arg2 = SinDeg(input);
+
+    return arg1 + arg2 * KNumber(QStringLiteral("i"));
+}
+
+KNumber CalcEngine_p::PolarRad(const KNumber &input)
+{
+    if (input.type() == KNumber::TypeError) {
+        return KNumber::NaN;
+    }
+
+    KNumber arg1 = CosRad(input);
+    KNumber arg2 = SinRad(input);
+
+    return arg1 + arg2 * KNumber(QStringLiteral("i"));
+}
+
+KNumber CalcEngine_p::PolarGrad(const KNumber &input)
+{
+    if (input.type() == KNumber::TypeError) {
+        return KNumber::NaN;
+    }
+
+    KNumber arg1 = CosGrad(input);
+    KNumber arg2 = SinGrad(input);
+
+    return arg1 + arg2 * KNumber(QStringLiteral("i"));
+}
+
 KNumber CalcEngine_p::TangensHyp(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {

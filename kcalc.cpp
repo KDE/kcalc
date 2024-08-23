@@ -438,6 +438,7 @@ void KCalculator::setupScientificKeys()
     scientific_buttons_.append(pbTan);
     scientific_buttons_.append(pbLog);
     scientific_buttons_.append(pbLn);
+    scientific_buttons_.append(pbI);
 
     connect(this, &KCalculator::switchShowAccels, pbHyp, &KCalcButton::slotSetAccelDisplayMode);
     connect(pbHyp, &KCalcButton::toggled, this, &KCalculator::slotHyptoggled);
@@ -476,6 +477,10 @@ void KCalculator::setupScientificKeys()
     connect(this, &KCalculator::switchShowAccels, pbLn, &KCalcButton::slotSetAccelDisplayMode);
     connect(this, &KCalculator::switchMode, pbLn, &KCalcButton::slotSetMode);
     connect(pbLn, &KCalcButton::clicked, this, &KCalculator::slotLnclicked);
+    pbI->addMode(ModeNormal, i18nc("Imaginary unit", "i"), i18n("Imaginary unit"));
+    pbI->addMode(ModeShift, i18nc("Polar complex", "∠"), i18n("Polar complex"));
+    connect(this, &KCalculator::switchMode, pbI, &KCalcButton::slotSetMode);
+    connect(pbI, &KCalcButton::clicked, this, &KCalculator::slotIclicked);
 }
 
 //------------------------------------------------------------------------------
@@ -657,6 +662,7 @@ void KCalculator::setupKeys()
     function_button_list_.append(pbLog);
     function_button_list_.append(pbSquare);
     function_button_list_.append(pbLn);
+    function_button_list_.append(pbI);
     function_button_list_.append(pbPower);
     function_button_list_.append(pbSqrt);
 
@@ -1200,6 +1206,15 @@ void KCalculator::slotLnclicked()
         insertFunctionToInputDisplay(KCalcToken::TokenCode::LN);
     } else {
         insertFunctionToInputDisplay(KCalcToken::TokenCode::EXP);
+    }
+}
+
+void KCalculator::slotIclicked()
+{
+    if (!shift_mode_) {
+        this->insertToInputDisplay(KCalcToken::TokenCode::I);
+    } else {
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::POLAR);
     }
 }
 

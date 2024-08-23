@@ -69,6 +69,8 @@ private:
     static const inline QString B_STR = QStringLiteral("b");
     static const inline QString X_STR = QStringLiteral("x");
 
+    static const inline QString ANGLE_STR = QStringLiteral("∠");
+
     static const inline QString BINARY_NUMBER_PREFIX_STR = QStringLiteral("0b");
     static const inline QString OCTAL_NUMBER_PREFIX_STR = QStringLiteral("0o");
     static const inline QString OCTAL_NUMBER_PREFIX_STR_C_STYLE = QStringLiteral("0");
