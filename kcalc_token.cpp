@@ -138,6 +138,15 @@ void KCalcToken::setToken_(TokenCode tokenCode)
     case TAN_GRAD:
         set_Right_UnaryToken_(CalcEngine_p::TangensGrad, TAN_PRIORITY_LEVEL);
         break;
+    case POLAR_RAD:
+        set_Right_UnaryToken_(CalcEngine_p::PolarRad, POLAR_PRIORITY_LEVEL);
+        break;
+    case POLAR_DEG:
+        set_Right_UnaryToken_(CalcEngine_p::PolarDeg, POLAR_PRIORITY_LEVEL);
+        break;
+    case POLAR_GRAD:
+        set_Right_UnaryToken_(CalcEngine_p::PolarGrad, POLAR_PRIORITY_LEVEL);
+        break;
     case ASIN:
     case ASIN_RAD:
         set_Right_UnaryToken_(CalcEngine_p::ArcSinRad, ASIN_PRIORITY_LEVEL);

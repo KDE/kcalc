@@ -154,6 +154,21 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
         }
     }
 
+    if (ANGLE_STR == s.first(1)) {
+        index++;
+        switch (trigonometric_Mode_) {
+        case RADIANS:
+            return KCalcToken::TokenCode::POLAR_RAD;
+        case GRADIANS:
+            return KCalcToken::TokenCode::POLAR_GRAD;
+        case DEGREES:
+            return KCalcToken::TokenCode::POLAR_DEG;
+        default:
+            Q_UNREACHABLE();
+            return KCalcToken::TokenCode::INVALID_TOKEN;
+        }
+    }
+
     if (s.startsWith(PLUS_STR)) {
         index++;
         return KCalcToken::TokenCode::PLUS;
@@ -193,6 +208,11 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
     if (s.startsWith(PERMILLE_STR)) {
         index++;
         return KCalcToken::TokenCode::PERMILLE;
+    }
+    if (s.startsWith(I_STR)) {
+        index++;
+        token_KNumber_ = I_STR;
+        return KCalcToken::TokenCode::KNUMBER;
     }
     if (s.startsWith(DIVISION_STR) || s.startsWith(SLASH_STR) || s.startsWith(DIVISION_SLASH_STR)) {
         index++;
@@ -715,6 +735,9 @@ const QString KCalcParser::TokenToString(KCalcToken::TokenCode tokenCode)
         break;
     case KCalcToken::TokenCode::I:
         return I_STR;
+        break;
+    case KCalcToken::TokenCode::POLAR:
+        return ANGLE_STR;
         break;
     case KCalcToken::TokenCode::POS_INFINITY:
         return POS_INFINITY_STR;
