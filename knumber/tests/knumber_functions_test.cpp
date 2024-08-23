@@ -118,6 +118,9 @@ void KNumberFunctionsTest::testKNumberCbrt_data()
     QTest::newRow("KNumber(\"2/3\").cbrt()") << KNumber(QStringLiteral("2/3")) << QStringLiteral("0.873580464736") << KNumber::TypeFloat;
     QTest::newRow("KNumber(\"0.25\").cbrt()") << KNumber(QStringLiteral("0.25")) << QStringLiteral("0.629960524947") << KNumber::TypeFloat;
     QTest::newRow("KNumber(\"-0.25\").cbrt()") << KNumber(QStringLiteral("-0.25")) << QStringLiteral("-0.629960524947") << KNumber::TypeFloat;
+
+    QTest::newRow("KNumber(\"i\").cbrt()") << KNumber(QStringLiteral("i")) << QStringLiteral("0.866025403784+0.5i") << KNumber::TypeComplex;
+    QTest::newRow("KNumber(\"-i\").cbrt()") << KNumber(QStringLiteral("-i")) << QStringLiteral("0.866025403784-0.5i") << KNumber::TypeComplex;
 }
 
 void KNumberFunctionsTest::testKNumberCbrt()
