@@ -627,10 +627,14 @@ KNumberBase *KNumberComplex::exp2()
 
 KNumberBase *KNumberComplex::exp10()
 {
-    // TODO: MPC does not provide mpc_exp2, it can be implemented
-    //  as exp(x*ln10)
-    delete this;
-    return new KNumberError(KNumberError::Undefined);
+    mpfr_t ln10;
+    mpfr_init(ln10);
+    mpfr_log_ui(ln10, 10, KNumberFloat::rounding_mode);
+    mpc_mul_fr(m_mpc, m_mpc, ln10, rounding_mode);
+    mpc_exp(m_mpc, m_mpc, rounding_mode);
+    mpfr_clear(ln10);
+
+    return this;
 }
 
 KNumberBase *KNumberComplex::exp()
