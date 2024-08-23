@@ -777,6 +777,18 @@ KNumberBase *KNumberInteger::exp()
     return f->exp();
 }
 
+KNumberBase *KNumberInteger::realPart()
+{
+    return this;
+}
+
+KNumberBase *KNumberInteger::imaginaryPart()
+{
+    auto z = new KNumberInteger(0);
+    delete this;
+    return z;
+}
+
 KNumberBase *KNumberInteger::bin(KNumberBase *rhs)
 {
     if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {

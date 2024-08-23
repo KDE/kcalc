@@ -102,6 +102,8 @@ public:
 
 public:
     KNumber integerPart() const;
+    KNumber realPart() const;
+    KNumber imaginaryPart() const;
 
 public:
     QString toQString(int width = -1, int precision = -1) const;
