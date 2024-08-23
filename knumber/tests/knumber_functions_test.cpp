@@ -58,6 +58,9 @@ private Q_SLOTS:
     void testKNumberExp_data();
     void testKNumberExp();
 
+    void testKNumberExp10_data();
+    void testKNumberExp10();
+
     void testKNumberReal_data();
     void testKNumberReal();
 
@@ -568,6 +571,27 @@ void KNumberFunctionsTest::testKNumberExp()
     QFETCH(QString, expectedResultToQString);
 
     KNumber result = exp(op);
+
+    QCOMPARE(result.type(), expectedResultType);
+    QCOMPARE(result.toQString(precision), expectedResultToQString);
+}
+
+void KNumberFunctionsTest::testKNumberExp10_data()
+{
+    QTest::addColumn<KNumber>("op");
+    QTest::addColumn<QString>("expectedResultToQString");
+    QTest::addColumn<KNumber::Type>("expectedResultType");
+
+    QTest::newRow("KNumber(0.0,1.0).exp10()") << KNumber(0.0, 1.0) << QStringLiteral("-0.66820151019+0.743980336957i") << KNumber::TypeComplex;
+}
+
+void KNumberFunctionsTest::testKNumberExp10()
+{
+    QFETCH(KNumber, op);
+    QFETCH(KNumber::Type, expectedResultType);
+    QFETCH(QString, expectedResultToQString);
+
+    KNumber result = op.exp10();
 
     QCOMPARE(result.type(), expectedResultType);
     QCOMPARE(result.toQString(precision), expectedResultToQString);
