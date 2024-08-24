@@ -7,7 +7,7 @@
 #pragma once
 
 #include "knumber_base.h"
-#include <config-knumber.h>
+#include <config-kcalc.h>
 
 class KNumber;
 

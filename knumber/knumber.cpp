@@ -4,7 +4,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 // clang-format off
-#include "config-knumber.h"
+#include "config-kcalc.h"
 // clang-format on
 #include "knumber.h"
 #include "knumber_base.h"

@@ -9,7 +9,7 @@
 #include "knumber_float.h"
 #include "knumber_fraction.h"
 #include <QScopedArrayPointer>
-#include <config-knumber.h>
+#include <config-kcalc.h>
 
 namespace detail
 {
