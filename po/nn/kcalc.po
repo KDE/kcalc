@@ -309,28 +309,24 @@ msgstr "Toar-komplement"
 
 #: kcalc.cpp:82
 #, fuzzy, kde-format
-#| msgid "He&x"
 msgctxt "Hexadecimal numeral system"
 msgid "Hex"
 msgstr "He&ks"
 
 #: kcalc.cpp:83
 #, fuzzy, kde-format
-#| msgid "&Dec"
 msgctxt "Decimal numeral system"
 msgid "Dec"
 msgstr "&Des"
 
 #: kcalc.cpp:84
 #, fuzzy, kde-format
-#| msgid "Oc&t"
 msgctxt "Octal numeral system"
 msgid "Oct"
 msgstr "&Okt"
 
 #: kcalc.cpp:85
 #, fuzzy, kde-format
-#| msgid "&Bin"
 msgctxt "Binary numeral system"
 msgid "Bin"
 msgstr "&Bin"
@@ -777,39 +773,33 @@ msgstr "Eksponent"
 
 #: kcalc.cpp:933
 #, fuzzy, kde-format
-#| msgid "Shift"
 msgctxt "Second function mode"
 msgid "Shift"
 msgstr "Skift"
 
 #: kcalc.cpp:1234 kcalc.cpp:1235
 #, fuzzy, kde-format
-#| msgid "Memory clear"
 msgctxt "Memory cleared"
 msgid "M cleared"
 msgstr "Tøm minnet"
 
 #: kcalc.cpp:1505
 #, fuzzy, kde-format
-#| msgid "Number of data entered"
 msgid "Number of data entered = "
 msgstr "Tal på data som er sette inn"
 
 #: kcalc.cpp:1506
 #, fuzzy, kde-format
-#| msgid "Number of data entered"
 msgid "Number of data entered ="
 msgstr "Tal på data som er sette inn"
 
 #: kcalc.cpp:1511
 #, fuzzy, kde-format
-#| msgid "Sum of all data items"
 msgid "Sum of all data items ="
 msgstr "Summen av alle dataelementa"
 
 #: kcalc.cpp:1530
 #, fuzzy, kde-format
-#| msgid "Mean"
 msgid "Mean = "
 msgstr "Gjennomsnitt"
 
@@ -820,13 +810,11 @@ msgstr ""
 
 #: kcalc.cpp:1577
 #, fuzzy, kde-format
-#| msgid "Median"
 msgid "Median ="
 msgstr "Median"
 
 #: kcalc.cpp:1578
 #, fuzzy, kde-format
-#| msgid "Mean"
 msgid "Median = "
 msgstr "Gjennomsnitt"
 
@@ -842,7 +830,6 @@ msgstr "] = "
 
 #: kcalc.cpp:1620 kcalc.cpp:1622 kcalc.cpp:1623
 #, fuzzy, kde-format
-#| msgid "Last stat item erased"
 msgid "Last stat data erased"
 msgstr "Siste statistikkverdi sletta"
 
@@ -858,7 +845,6 @@ msgstr "Generelt oppsett"
 
 #: kcalc.cpp:1697
 #, fuzzy, kde-format
-#| msgid "Font"
 msgid "Fonts"
 msgstr "Skrift"
 
@@ -1239,14 +1225,6 @@ msgstr "Binærtal vert skilde med mellomrom etter kvart x-te siffer."
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:192
 #, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 10111001 you can display 1011 1001, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1274,14 +1252,6 @@ msgstr "Oktaltal vert skilde med mellomrom etter kvart x-te siffer."
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:201
 #, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 42140213 you can display 4214 0213, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1310,14 +1280,6 @@ msgstr "Heksadesimaltal vert skilde med mellomrom etter kvart x-te siffer."
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:210
 #, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of AF1C42 you can display AF 1C 42, by "
-#| "setting the setting to\n"
-#| "            2, thus inserting a whitespace after every 2nd digit.\n"
-#| "        "
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1387,15 +1349,12 @@ msgstr "Liste over brukarvalde konstantar."
 #. i18n: ectx: property (text), widget (QLabel, base_label)
 #: kcalc.ui:176
 #, fuzzy, kde-format
-#| msgid "&Dec"
 msgid "Dec"
 msgstr "&Des"
 
 #. i18n: ectx: property (accessibleDescription), widget (KCalcDisplay, calc_display)
 #: kcalc.ui:354
 #, fuzzy, kde-format
-#| msgctxt "@label accessibility description of the calculation result display"
-#| msgid "Result Display"
 msgid "Result Display"
 msgstr "Resultatfelt"
 
@@ -1427,7 +1386,6 @@ msgstr "&Gon"
 #. i18n: ectx: property (toolTip), widget (QComboBox, numeralSystemComboBox)
 #: kcalc.ui:435
 #, fuzzy, kde-format
-#| msgid "Switch base to octal."
 msgid "Switch base"
 msgstr "Byt til oktalt talsystem."
 
@@ -1751,7 +1709,6 @@ msgstr "pot"
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pb6)
 #: kcalc.ui:1156
 #, fuzzy, kde-format
-#| msgid "Sin"
 msgid "Six"
 msgstr "Sin"
 
@@ -1784,7 +1741,6 @@ msgstr "Prosent"
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbPercent)
 #: kcalc.ui:1197
 #, fuzzy, kde-format
-#| msgid "Percent"
 msgid "Percentage"
 msgstr "Prosent"
 
@@ -1911,7 +1867,6 @@ msgstr "Multiplikasjon"
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbMultiplication)
 #: kcalc.ui:1349
 #, fuzzy, kde-format
-#| msgid "Multiplication"
 msgid "Multiply"
 msgstr "Multiplikasjon"
 
@@ -2015,7 +1970,6 @@ msgstr "Tøm alt"
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbAllClear)
 #: kcalc.ui:1509
 #, fuzzy, kde-format
-#| msgid "Memory clear"
 msgid "All clear"
 msgstr "Tøm minnet"
 
@@ -2160,7 +2114,6 @@ msgstr "Ctrl+2"
 
 #: kcalc_bitset.cpp:57
 #, fuzzy, kde-format
-#| msgid "Bit %1 = %2"
 msgctxt "@info:tooltip"
 msgid "Bit %1 = %2"
 msgstr "Bit %1 = %2"
@@ -2265,7 +2218,6 @@ msgstr ""
 
 #: kcalc_statusbar.cpp:18
 #, fuzzy, kde-format
-#| msgid "EXP"
 msgctxt "Hexadecimal indicator in status bar"
 msgid "HEX"
 msgstr "EKSP"
@@ -2278,7 +2230,6 @@ msgstr ""
 
 #: kcalc_statusbar.cpp:19
 #, fuzzy, kde-format
-#| msgid "AND"
 msgctxt "Radian indicator in status bar"
 msgid "RAD"
 msgstr "OG"
@@ -2312,7 +2263,6 @@ msgstr ""
 
 #: kcalc_statusbar.cpp:77
 #, fuzzy, kde-format
-#| msgid "EXP"
 msgid "HEX"
 msgstr "EKSP"
 
@@ -2323,7 +2273,6 @@ msgstr ""
 
 #: kcalc_statusbar.cpp:92
 #, fuzzy, kde-format
-#| msgid "AND"
 msgid "RAD"
 msgstr "OG"
 
