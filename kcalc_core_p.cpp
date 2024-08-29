@@ -733,3 +733,51 @@ KNumber CalcEngine_p::TangensHyp(const KNumber &input)
 
     return input.tanh();
 }
+
+KNumber CalcEngine_p::Conjugate(const KNumber &input)
+{
+    return input.conj();
+}
+
+KNumber CalcEngine_p::ArgumentDeg(const KNumber &input)
+{
+    if (input.realPart() == KNumber::Zero) {
+        return (input.imaginaryPart() > KNumber::Zero) ? KNumber(90) : KNumber(-90);
+    } else if (input.imaginaryPart() == KNumber::Zero) {
+        return (input.realPart() >= KNumber::Zero) ? KNumber::Zero : KNumber(180);
+    } else {
+        return Rad2Deg(input.arg());
+    }
+}
+
+KNumber CalcEngine_p::ArgumentGrad(const KNumber &input)
+{
+    if (input.realPart() == KNumber::Zero) {
+        return (input.imaginaryPart() > KNumber::Zero) ? KNumber(100) : KNumber(-100);
+    } else if (input.imaginaryPart() == KNumber::Zero) {
+        return (input.realPart() >= KNumber::Zero) ? KNumber::Zero : KNumber(200);
+    } else {
+        return Rad2Gra(input.arg());
+    }
+}
+
+KNumber CalcEngine_p::ArgumentRad(const KNumber &input)
+{
+    if (input.realPart() == KNumber::Zero) {
+        return (input.imaginaryPart() > KNumber::Zero) ? KNumber::Pi() / KNumber(2) : -KNumber::Pi() / KNumber(2);
+    } else if (input.imaginaryPart() == KNumber::Zero) {
+        return (input.realPart() >= KNumber::Zero) ? KNumber::Zero : KNumber::Pi();
+    } else {
+        return input.arg();
+    }
+}
+
+KNumber CalcEngine_p::Real(const KNumber &input)
+{
+    return input.realPart();
+}
+
+KNumber CalcEngine_p::Imaginary(const KNumber &input)
+{
+    return input.imaginaryPart();
+}

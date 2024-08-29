@@ -209,7 +209,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
         index++;
         return KCalcToken::TokenCode::PERMILLE;
     }
-    if (s.startsWith(I_STR)) {
+    if (s.startsWith(I_STR) && !s.startsWith(IM_STR)) {
         index++;
         token_KNumber_ = I_STR;
         return KCalcToken::TokenCode::KNUMBER;
@@ -343,6 +343,10 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
         index += 4;
         return KCalcToken::TokenCode::TANH;
     }
+    if (s.startsWith(CONJ_STR)) {
+        index += 4;
+        return KCalcToken::TokenCode::CONJ;
+    }
 
     if (s.startsWith(SIN_STR)) {
         index += 3;
@@ -387,6 +391,23 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
             break;
         case DEGREES:
             return KCalcToken::TokenCode::TAN_DEG;
+            break;
+        default:
+            break;
+        }
+    }
+
+    if (s.startsWith(ARG_STR)) {
+        index += 3;
+        switch (trigonometric_Mode_) {
+        case RADIANS:
+            return KCalcToken::TokenCode::ARG_RAD;
+            break;
+        case GRADIANS:
+            return KCalcToken::TokenCode::ARG_GRAD;
+            break;
+        case DEGREES:
+            return KCalcToken::TokenCode::ARG_DEG;
             break;
         default:
             break;
@@ -453,6 +474,14 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
     if (s.startsWith(LN_STR)) {
         index += 2;
         return KCalcToken::TokenCode::LN;
+    }
+    if (s.startsWith(RE_STR)) {
+        index += 2;
+        return KCalcToken::TokenCode::RE;
+    }
+    if (s.startsWith(IM_STR)) {
+        index += 2;
+        return KCalcToken::TokenCode::IM;
     }
 
     if (index + 2 <= buffer.size()) {

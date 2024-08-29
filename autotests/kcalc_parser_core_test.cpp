@@ -195,6 +195,27 @@ void KCalcParserCoreTest::testParserCore_data()
     QTest::newRow("parenthesis test 14") << QS("sin(sin(sin(sin(0))))") << 10 << QS("0");
     QTest::newRow("parenthesis test 15") << QS("ln(exp(1))") << 10 << QS("1");
     QTest::newRow("parenthesis test 16") << QS("ln(exp(100.45))") << 10 << QS("100.45");
+    // complex numbers related tests
+    QTest::newRow("1+i") << QS("1+i") << 10 << QS("1+i");
+    QTest::newRow("1+i+1") << QS("1+i+1") << 10 << QS("2+i");
+    QTest::newRow("5*i") << QS("5*i") << 10 << QS("5i");
+    QTest::newRow("i*i") << QS("i*i") << 10 << QS("-1");
+    QTest::newRow("(1+i)(2+3i)") << QS("(1+i)(2+3i)") << 10 << QS("-1+5i");
+    QTest::newRow("√(-1)") << QS("√(-1)") << 10 << QS("i");
+    QTest::newRow("1+i+1+i") << QS("1+i+1+i") << 10 << QS("2+2i");
+    QTest::newRow("arg(i)") << QS("arg(i)") << 10 << QS("90");
+    QTest::newRow("arg(-i)") << QS("arg(-i)") << 10 << QS("-90");
+    QTest::newRow("re(1+5i)") << QS("re(1+5i)") << 10 << QS("1");
+    QTest::newRow("img(1+5i)") << QS("im(1+5i)") << 10 << QS("5");
+    QTest::newRow("conj(1+5i)") << QS("conj(1+5i)") << 10 << QS("1-5i");
+    QTest::newRow("5.555i+i") << QS("5.555i+i") << 10 << QS("6.555i");
+    // complex polar
+    QTest::newRow("1∠(90)") << QS("1∠(90)") << 10 << QS("i");
+    QTest::newRow("1∠(180)") << QS("1∠(180)") << 10 << QS("-1");
+    QTest::newRow("1∠(45)") << QS("1∠(45)") << 10 << QS("0.707106781187+0.707106781187i");
+    QTest::newRow("1∠(90)*1∠(-90)") << QS("1∠(90)*1∠(-90)") << 10 << QS("1");
+    QTest::newRow("arg(1∠(45))") << QS("arg(1∠(45))") << 10 << QS("45");
+    QTest::newRow("-5∠(180)") << QS("-5∠(180)") << 10 << QS("5");
     // random input test (these are inputs that generated errors on production
     // or variations of those )
     QTest::newRow("Minus (-) second to last test 1") << QS("8-3*2+1") << 10 << QS("3");

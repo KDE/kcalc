@@ -155,6 +155,11 @@ private:
     static const inline QString ACOSH_STR = QStringLiteral("acosh");
     static const inline QString ATANH_STR = QStringLiteral("atanh");
 
+    static const inline QString CONJ_STR = QStringLiteral("conj");
+    static const inline QString ARG_STR = QStringLiteral("arg");
+    static const inline QString RE_STR = QStringLiteral("re");
+    static const inline QString IM_STR = QStringLiteral("im");
+
     static const inline QString AND_STR = QStringLiteral("&");
     static const inline QString OR_STR = QStringLiteral("|");
     static const inline QString XOR_STR = QStringLiteral("⊕");
