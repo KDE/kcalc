@@ -48,6 +48,12 @@ public:
     static KNumber PolarDeg(const KNumber &input);
     static KNumber PolarRad(const KNumber &input);
     static KNumber PolarGrad(const KNumber &input);
+    static KNumber Conjugate(const KNumber &input);
+    static KNumber ArgumentDeg(const KNumber &input);
+    static KNumber ArgumentGrad(const KNumber &input);
+    static KNumber ArgumentRad(const KNumber &input);
+    static KNumber Real(const KNumber &input);
+    static KNumber Imaginary(const KNumber &input);
     static KNumber TangensHyp(const KNumber &input);
     static KNumber Square(const KNumber &input);
     static KNumber SquareRoot(const KNumber &input);
