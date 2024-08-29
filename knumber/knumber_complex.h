@@ -26,6 +26,7 @@ private:
 
 public:
     explicit KNumberComplex(const QString &s);
+    explicit KNumberComplex(const QString &mod, const QString &arg);
     explicit KNumberComplex(double re);
     explicit KNumberComplex(double re, double img);
 #ifdef HAVE_LONG_DOUBLE

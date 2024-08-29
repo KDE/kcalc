@@ -53,6 +53,24 @@ KNumberComplex::KNumberComplex(const QString &s)
     mpc_set_str(new_mpc(), s.toLatin1().constData(), 10, rounding_mode);
 }
 
+KNumberComplex::KNumberComplex(const QString &mod, const QString &arg)
+{
+    new_mpc();
+    mpfr_t argFr;
+    mpfr_init(argFr);
+    mpfr_set_str(argFr, arg.toLatin1().constData(), 10, KNumberFloat::rounding_mode);
+
+    mpfr_t modFr;
+    mpfr_init(modFr);
+    mpfr_set_str(modFr, mod.toLatin1().constData(), 10, KNumberFloat::rounding_mode);
+
+    mpfr_sin_cos(mpc_imagref(m_mpc), mpc_realref(m_mpc), argFr, KNumberFloat::rounding_mode);
+    mpc_mul_fr(m_mpc, m_mpc, modFr, rounding_mode);
+
+    mpfr_clear(argFr);
+    mpfr_clear(modFr);
+}
+
 KNumberComplex::KNumberComplex(double re)
 {
     Q_ASSERT(!std::isinf(re));

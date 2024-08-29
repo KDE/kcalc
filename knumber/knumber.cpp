@@ -231,6 +231,7 @@ KNumber::KNumber(const QString &s)
 
     static const QRegularExpression imaginaryUnitRegex(QLatin1String("^i$"));
     const QRegularExpression complexRegex(QStringLiteral("^") + floatPattern + floatPattern + QStringLiteral("i$"));
+    const QRegularExpression complexPolarRegex(QStringLiteral("^") + floatPattern + QStringLiteral("∠") + floatPattern + QStringLiteral("$"));
 
     if (specialRegex.match(s).hasMatch()) {
         m_value = new detail::KNumberError(s);
@@ -291,6 +292,18 @@ KNumber::KNumber(const QString &s)
         sFormatted = sFormatted.replace(DecimalSeparator, QLatin1String("."));
 
         m_value = new detail::KNumberComplex(sFormatted);
+    } else if (const auto match = complexPolarRegex.match(s); match.hasMatch()) {
+        QString modulo = match.captured(1);
+        if (modulo.isEmpty()) {
+            modulo = QStringLiteral("1");
+        }
+        QString arg = match.captured(6);
+        if (arg.isEmpty()) {
+            arg = QStringLiteral("0");
+        }
+        modulo = modulo.replace(DecimalSeparator, QLatin1String("."));
+        arg = arg.replace(DecimalSeparator, QLatin1String("."));
+        m_value = new detail::KNumberComplex(modulo, arg);
     } else {
         m_value = new detail::KNumberError(detail::KNumberError::Undefined);
     }
