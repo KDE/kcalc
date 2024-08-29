@@ -143,6 +143,8 @@ public:
     KNumber exp2() const;
     KNumber exp10() const;
     KNumber exp() const;
+    KNumber arg() const;
+    KNumber conj() const;
     KNumber bin(const KNumber &x) const;
 
 public:

@@ -642,6 +642,23 @@ KNumberBase *KNumberComplex::exp()
     return execute_mpc_func<::mpc_exp>();
 }
 
+KNumberBase *KNumberComplex::arg()
+{
+    mpfr_t arg;
+    mpfr_init(arg);
+    mpc_arg(arg, m_mpc, KNumberFloat::rounding_mode);
+    auto a = new KNumberFloat(arg);
+    mpfr_clear(arg);
+    delete this;
+    return a;
+}
+
+KNumberBase *KNumberComplex::conj()
+{
+    mpc_conj(m_mpc, m_mpc, rounding_mode);
+    return this;
+}
+
 quint64 KNumberComplex::toUint64() const
 {
     return KNumberInteger(this).toUint64();

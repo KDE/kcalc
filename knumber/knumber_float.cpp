@@ -618,6 +618,23 @@ KNumberBase *KNumberFloat::imaginaryPart()
     return z;
 }
 
+KNumberBase *KNumberFloat::arg()
+{
+    if (sign() >= 0) {
+        auto z = new KNumberInteger(0);
+        delete this;
+        return z;
+    } else {
+        delete this;
+        return new KNumberFloat(M_PI);
+    }
+}
+
+KNumberBase *KNumberFloat::conj()
+{
+    return this;
+}
+
 quint64 KNumberFloat::toUint64() const
 {
     return KNumberInteger(this).toUint64();
