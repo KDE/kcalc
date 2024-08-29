@@ -117,7 +117,7 @@ public:
     KNumberBase *clone() override;
 
 private:
-    KNumberBase *ensureIsValid(mpc_ptr mpc);
+    KNumberBase *ensureIsValid();
 
     template<int F(mpc_ptr rop, mpc_srcptr op)>
     KNumberBase *execute_mpc_func();

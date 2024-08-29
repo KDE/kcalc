@@ -21,44 +21,35 @@ namespace detail
 const mpc_rnd_t KNumberComplex::rounding_mode = MPC_RNDNN;
 const mpfr_prec_t KNumberComplex::precision = 1024;
 
-KNumberBase *KNumberComplex::ensureIsValid(mpc_ptr mpc)
+KNumberBase *KNumberComplex::ensureIsValid()
 {
-    // TODO check validity of comple number?
-
-    /*if (mpfr_nan_p(mpc)) {
-        auto e = new KNumberError(KNumberError::Undefined);
-        delete this;
-        return e;
-    } else if (mpfr_inf_p(mpc)) {
-        auto e = new KNumberError(KNumberError::PositiveInfinity);
-        delete this;
-        return e;
-    } else {
+    if (mpfr_number_p(mpc_realref(m_mpc)) && mpfr_number_p(mpc_imagref(m_mpc))) {
         return this;
-    }*/
-
-    return this;
+    } else {
+        delete this;
+        return new KNumberError(KNumberError::Undefined);
+    }
 }
 
 template<int F(mpc_ptr rop, mpc_srcptr op)>
 KNumberBase *KNumberComplex::execute_mpc_func()
 {
     F(m_mpc, m_mpc);
-    return ensureIsValid(m_mpc);
+    return ensureIsValid();
 }
 
 template<int F(mpc_ptr rop, mpc_srcptr op, mpc_rnd_t rnd)>
 KNumberBase *KNumberComplex::execute_mpc_func()
 {
     F(m_mpc, m_mpc, rounding_mode);
-    return ensureIsValid(m_mpc);
+    return ensureIsValid();
 }
 
 template<int F(mpc_ptr rop, mpc_srcptr op1, mpc_srcptr op2, mpc_rnd_t rnd)>
 KNumberBase *KNumberComplex::execute_mpc_func(mpc_srcptr op)
 {
     F(m_mpc, m_mpc, op, rounding_mode);
-    return ensureIsValid(m_mpc);
+    return ensureIsValid();
 }
 
 KNumberComplex::KNumberComplex(const QString &s)
