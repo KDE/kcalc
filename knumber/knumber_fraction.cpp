@@ -775,6 +775,23 @@ KNumberBase *KNumberFraction::imaginaryPart()
     return z;
 }
 
+KNumberBase *KNumberFraction::arg()
+{
+    if (sign() >= 0) {
+        auto z = new KNumberInteger(0);
+        delete this;
+        return z;
+    } else {
+        delete this;
+        return new KNumberFloat(M_PI);
+    }
+}
+
+KNumberBase *KNumberFraction::conj()
+{
+    return this;
+}
+
 quint64 KNumberFraction::toUint64() const
 {
     return KNumberInteger(this).toUint64();

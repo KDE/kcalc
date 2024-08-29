@@ -868,6 +868,22 @@ KNumber KNumber::exp() const
     return z;
 }
 
+KNumber KNumber::arg() const
+{
+    KNumber a(*this);
+    a.m_value = a.m_value->arg();
+    a.simplify();
+    return a;
+}
+
+KNumber KNumber::conj() const
+{
+    KNumber z(*this);
+    z.m_value = z.m_value->conj();
+    z.simplify();
+    return z;
+}
+
 KNumber KNumber::bin(const KNumber &x) const
 {
     KNumber z(*this);

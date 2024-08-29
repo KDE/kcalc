@@ -84,6 +84,8 @@ public:
     KNumberBase *exp() override;
     KNumberBase *realPart() override;
     KNumberBase *imaginaryPart() override;
+    KNumberBase *arg() override;
+    KNumberBase *conj() override;
     KNumberBase *bin(KNumberBase *rhs) override;
 
 public:

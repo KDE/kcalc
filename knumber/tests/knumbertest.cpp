@@ -152,9 +152,26 @@ void testingRealImg()
     std::cout << "Testing real & img:\n";
     std::cout << "------------------\n";
 
-    checkResult(QStringLiteral("KNumber(1.0,-1.0).realpart()"), KNumber(1.0, 1.0).realPart(), QStringLiteral("1"), KNumber::TypeInteger);
+    checkResult(QStringLiteral("KNumber(1.0,-1.0).realpart()"), KNumber(1.0, -1.0).realPart(), QStringLiteral("1"), KNumber::TypeInteger);
     checkResult(QStringLiteral("KNumber(1.0,-1.0).realpart()"), KNumber(1.0, -1.0).imaginaryPart(), QStringLiteral("-1"), KNumber::TypeInteger);
     checkResult(QStringLiteral("KNumber(1.05,1.0).realpart()"), KNumber(1.05, 1.0).realPart(), QStringLiteral("1.05"), KNumber::TypeFloat);
+}
+
+void testingArgConj()
+{
+    std::cout << "\n\n";
+    std::cout << "Testing arg & conj:\n";
+    std::cout << "------------------\n";
+
+    checkResult(QStringLiteral("KNumber(1).arg()"), KNumber(1).arg(), QStringLiteral("0"), KNumber::TypeInteger);
+    checkResult(QStringLiteral("KNumber(1.0).arg()"), KNumber(1.0).arg(), QStringLiteral("0"), KNumber::TypeInteger);
+    checkResult(QStringLiteral("KNumber(-1).arg()"), KNumber(-1).arg(), QStringLiteral("3.14159265359"), KNumber::TypeFloat);
+    checkResult(QStringLiteral("KNumber(-1.0).arg()"), KNumber(-1.0).arg(), QStringLiteral("3.14159265359"), KNumber::TypeFloat);
+    checkResult(QStringLiteral("KNumber(1.0,1.0).arg()"), KNumber(1.0, 1.0).arg(), QStringLiteral("0.785398163397"), KNumber::TypeFloat);
+    checkResult(QStringLiteral("KNumber(1.0,-1.0).arg()"), KNumber(1.0, -1.0).arg(), QStringLiteral("-0.785398163397"), KNumber::TypeFloat);
+    checkResult(QStringLiteral("KNumber(1.0,1.0).conj()"), KNumber(1.0, 1.0).conj(), QStringLiteral("1-i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(1.0,1.0).conj()"), KNumber(1.0, -1.0).conj(), QStringLiteral("1+i"), KNumber::TypeComplex);
+    checkResult(QStringLiteral("KNumber(1.05).conj()"), KNumber(1.05).conj(), QStringLiteral("1.05"), KNumber::TypeFloat);
 }
 
 void testingAdditions()
@@ -1122,6 +1139,7 @@ int main()
     testingConstants();
     testingConstructors();
     testingRealImg();
+    testingArgConj();
     testingCompare();
     testingAdditions();
     testingSubtractions();
