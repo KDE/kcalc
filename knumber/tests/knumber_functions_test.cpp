@@ -67,6 +67,12 @@ private Q_SLOTS:
     void testKNumberImaginary_data();
     void testKNumberImaginary();
 
+    void testKNumberArg_data();
+    void testKNumberArg();
+
+    void testKNumberConj_data();
+    void testKNumberConj();
+
     void cleanupTestCase();
 
 private:
@@ -635,6 +641,55 @@ void KNumberFunctionsTest::testKNumberImaginary()
     QFETCH(QString, expectedResultToQString);
 
     KNumber result = op.imaginaryPart();
+
+    QCOMPARE(result.type(), expectedResultType);
+    QCOMPARE(result.toQString(precision), expectedResultToQString);
+}
+
+void KNumberFunctionsTest::testKNumberArg_data()
+{
+    QTest::addColumn<KNumber>("op");
+    QTest::addColumn<QString>("expectedResultToQString");
+    QTest::addColumn<KNumber::Type>("expectedResultType");
+
+    QTest::newRow("KNumber(1).arg()") << KNumber(1) << QStringLiteral("0") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(1.0).arg()") << KNumber(1.0) << QStringLiteral("0") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(-1).arg()") << KNumber(-1) << QStringLiteral("3.14159265359") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(-1.0).arg()") << KNumber(-1.0) << QStringLiteral("3.14159265359") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(1.0,1.0).arg()") << KNumber(1.0, 1.0) << QStringLiteral("0.785398163397") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(1.0,-1.0).arg()") << KNumber(1.0, -1.0) << QStringLiteral("-0.785398163397") << KNumber::TypeFloat;
+}
+
+void KNumberFunctionsTest::testKNumberArg()
+{
+    QFETCH(KNumber, op);
+    QFETCH(KNumber::Type, expectedResultType);
+    QFETCH(QString, expectedResultToQString);
+
+    KNumber result = op.arg();
+
+    QCOMPARE(result.type(), expectedResultType);
+    QCOMPARE(result.toQString(precision), expectedResultToQString);
+}
+
+void KNumberFunctionsTest::testKNumberConj_data()
+{
+    QTest::addColumn<KNumber>("op");
+    QTest::addColumn<QString>("expectedResultToQString");
+    QTest::addColumn<KNumber::Type>("expectedResultType");
+
+    QTest::newRow("KNumber(1.0,1.0).conj()") << KNumber(1.0, 1.0) << QStringLiteral("1-i") << KNumber::TypeComplex;
+    QTest::newRow("KNumber(1.0,1.0).conj()") << KNumber(1.0, -1.0) << QStringLiteral("1+i") << KNumber::TypeComplex;
+    QTest::newRow("KNumber(1.05).conj()") << KNumber(1.05) << QStringLiteral("1.05") << KNumber::TypeFloat;
+}
+
+void KNumberFunctionsTest::testKNumberConj()
+{
+    QFETCH(KNumber, op);
+    QFETCH(KNumber::Type, expectedResultType);
+    QFETCH(QString, expectedResultToQString);
+
+    KNumber result = op.conj();
 
     QCOMPARE(result.type(), expectedResultType);
     QCOMPARE(result.toQString(precision), expectedResultToQString);

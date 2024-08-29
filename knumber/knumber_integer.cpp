@@ -789,6 +789,23 @@ KNumberBase *KNumberInteger::imaginaryPart()
     return z;
 }
 
+KNumberBase *KNumberInteger::arg()
+{
+    if (sign() >= 0) {
+        auto z = new KNumberInteger(0);
+        delete this;
+        return z;
+    } else {
+        delete this;
+        return new KNumberFloat(M_PI);
+    }
+}
+
+KNumberBase *KNumberInteger::conj()
+{
+    return this;
+}
+
 KNumberBase *KNumberInteger::bin(KNumberBase *rhs)
 {
     if (auto const p = dynamic_cast<KNumberInteger *>(rhs)) {

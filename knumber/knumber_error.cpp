@@ -658,6 +658,29 @@ KNumberBase *KNumberError::imaginaryPart()
     return this;
 }
 
+KNumberBase *KNumberError::arg()
+{
+    switch (m_error) {
+    case Undefined:
+        return this;
+    case PositiveInfinity:
+        delete this;
+        return new KNumberInteger(0);
+    case NegativeInfinity:
+        delete this;
+        return new KNumberFloat(M_PI);
+    case ComplexInfinity:
+        return this;
+    default:
+        return this;
+    }
+}
+
+KNumberBase *KNumberError::conj()
+{
+    return this;
+}
+
 quint64 KNumberError::toUint64() const
 {
     return 0;
