@@ -32,9 +32,6 @@ namespace
 {
 namespace impl
 {
-//------------------------------------------------------------------------------
-// Name: increment
-//------------------------------------------------------------------------------
 void increment(QString &str, int position)
 {
     for (int i = position; i >= 0; i--) {
@@ -80,9 +77,6 @@ void increment(QString &str, int position)
     }
 }
 
-//------------------------------------------------------------------------------
-// Name: round
-//------------------------------------------------------------------------------
 void round(QString &str, int precision, const QString &decimalSeparator)
 {
     int decimalSymbolPos = str.indexOf(decimalSeparator);
@@ -115,9 +109,6 @@ void round(QString &str, int precision, const QString &decimalSeparator)
 }
 }
 
-//------------------------------------------------------------------------------
-// Name: round
-//------------------------------------------------------------------------------
 QString KNumber::round(const QString &s, int precision) const
 {
     QString tmp = s;
@@ -151,41 +142,26 @@ QString KNumber::round(const QString &s, int precision) const
     return mantString + expString;
 }
 
-//------------------------------------------------------------------------------
-// Name: setGroupSeparator
-//------------------------------------------------------------------------------
 void KNumber::setGroupSeparator(const QString &ch)
 {
     GroupSeparator = ch;
 }
 
-//------------------------------------------------------------------------------
-// Name: setDecimalSeparator
-//------------------------------------------------------------------------------
 void KNumber::setDecimalSeparator(const QString &ch)
 {
     DecimalSeparator = ch;
 }
 
-//------------------------------------------------------------------------------
-// Name: groupSeparator
-//------------------------------------------------------------------------------
 QString KNumber::groupSeparator()
 {
     return GroupSeparator;
 }
 
-//------------------------------------------------------------------------------
-// Name: decimalSeparator
-//------------------------------------------------------------------------------
 const QString KNumber::decimalSeparator()
 {
     return DecimalSeparator;
 }
 
-//------------------------------------------------------------------------------
-// Name: setDefaultFloatPrecision
-//------------------------------------------------------------------------------
 void KNumber::setDefaultFloatPrecision(int precision)
 {
     // Need to transform decimal digits into binary digits
@@ -193,33 +169,21 @@ void KNumber::setDefaultFloatPrecision(int precision)
     mpfr_set_default_prec(static_cast<mpfr_prec_t>(bin_prec));
 }
 
-//------------------------------------------------------------------------------
-// Name: setSplitoffIntegerForFractionOutput
-//------------------------------------------------------------------------------
 void KNumber::setSplitoffIntegerForFractionOutput(bool x)
 {
     detail::KNumberFraction::setSplitOffIntegerForFractionOutput(x);
 }
 
-//------------------------------------------------------------------------------
-// Name: setDefaultFractionalInput
-//------------------------------------------------------------------------------
 void KNumber::setDefaultFractionalInput(bool x)
 {
     detail::KNumberFraction::setDefaultFractionalInput(x);
 }
 
-//------------------------------------------------------------------------------
-// Name: setDefaultFloatOutput
-//------------------------------------------------------------------------------
 void KNumber::setDefaultFloatOutput(bool x)
 {
     detail::KNumberFraction::setDefaultFractionalOutput(!x);
 }
 
-//------------------------------------------------------------------------------
-// Name: Pi
-//------------------------------------------------------------------------------
 KNumber KNumber::Pi()
 {
     // TODO: after 4.10 release:
@@ -232,9 +196,6 @@ KNumber KNumber::Pi()
     return KNumber(s);
 }
 
-//------------------------------------------------------------------------------
-// Name: Euler
-//------------------------------------------------------------------------------
 KNumber KNumber::Euler()
 {
     // TODO: after 4.10 release:
@@ -247,17 +208,11 @@ KNumber KNumber::Euler()
     return KNumber(s);
 }
 
-//------------------------------------------------------------------------------
-// Name: KNumber
-//------------------------------------------------------------------------------
 KNumber::KNumber()
     : m_value(new detail::KNumberInteger(0))
 {
 }
 
-//------------------------------------------------------------------------------
-// Name: KNumber
-//------------------------------------------------------------------------------
 KNumber::KNumber(const QString &s)
     : m_value(nullptr)
 {
@@ -311,58 +266,37 @@ KNumber::KNumber(const QString &s)
     }
 }
 
-//------------------------------------------------------------------------------
-// Name: KNumber
-//------------------------------------------------------------------------------
 KNumber::KNumber(qint32 value)
     : m_value(new detail::KNumberInteger(value))
 {
 }
 
-//------------------------------------------------------------------------------
-// Name: KNumber
-//------------------------------------------------------------------------------
 KNumber::KNumber(qint64 value)
     : m_value(new detail::KNumberInteger(value))
 {
 }
 
-//------------------------------------------------------------------------------
-// Name: KNumber
-//------------------------------------------------------------------------------
 KNumber::KNumber(quint32 value)
     : m_value(new detail::KNumberInteger(value))
 {
 }
 
-//------------------------------------------------------------------------------
-// Name: KNumber
-//------------------------------------------------------------------------------
 KNumber::KNumber(quint64 value)
     : m_value(new detail::KNumberInteger(value))
 {
 }
 
-//------------------------------------------------------------------------------
-// Name: KNumber
-//------------------------------------------------------------------------------
 KNumber::KNumber(qint64 num, quint64 den)
     : m_value(new detail::KNumberFraction(num, den))
 {
 }
 
-//------------------------------------------------------------------------------
-// Name: KNumber
-//------------------------------------------------------------------------------
 KNumber::KNumber(quint64 num, quint64 den)
     : m_value(new detail::KNumberFraction(num, den))
 {
 }
 
 #ifdef HAVE_LONG_DOUBLE
-//------------------------------------------------------------------------------
-// Name: KNumber
-//------------------------------------------------------------------------------
 KNumber::KNumber(long double value)
     : m_value(new detail::KNumberFloat(value))
 {
@@ -370,18 +304,12 @@ KNumber::KNumber(long double value)
 }
 #endif
 
-//------------------------------------------------------------------------------
-// Name: KNumber
-//------------------------------------------------------------------------------
 KNumber::KNumber(double value)
     : m_value(new detail::KNumberFloat(value))
 {
     simplify();
 }
 
-//------------------------------------------------------------------------------
-// Name: KNumber
-//------------------------------------------------------------------------------
 KNumber::KNumber(const KNumber &other)
     : m_value(nullptr)
 {
@@ -390,17 +318,11 @@ KNumber::KNumber(const KNumber &other)
     }
 }
 
-//------------------------------------------------------------------------------
-// Name: ~KNumber
-//------------------------------------------------------------------------------
 KNumber::~KNumber()
 {
     delete m_value;
 }
 
-//------------------------------------------------------------------------------
-// Name: type
-//------------------------------------------------------------------------------
 KNumber::Type KNumber::type() const
 {
     if (dynamic_cast<detail::KNumberInteger *>(m_value)) {
@@ -417,26 +339,17 @@ KNumber::Type KNumber::type() const
     }
 }
 
-//------------------------------------------------------------------------------
-// Name: operator=
-//------------------------------------------------------------------------------
 KNumber &KNumber::operator=(const KNumber &rhs)
 {
     KNumber(rhs).swap(*this);
     return *this;
 }
 
-//------------------------------------------------------------------------------
-// Name: swap
-//------------------------------------------------------------------------------
 void KNumber::swap(KNumber &other)
 {
     qSwap(m_value, other.m_value);
 }
 
-//------------------------------------------------------------------------------
-// Name: integerPart
-//------------------------------------------------------------------------------
 KNumber KNumber::integerPart() const
 {
     KNumber x(*this);
@@ -462,9 +375,6 @@ KNumber KNumber::integerPart() const
     return x;
 }
 
-//------------------------------------------------------------------------------
-// Name: simplify
-//------------------------------------------------------------------------------
 void KNumber::simplify()
 {
     if (m_value->isInteger()) {
@@ -488,9 +398,6 @@ void KNumber::simplify()
     }
 }
 
-//------------------------------------------------------------------------------
-// Name: operator+=
-//------------------------------------------------------------------------------
 KNumber &KNumber::operator+=(const KNumber &rhs)
 {
     m_value = m_value->add(rhs.m_value);
@@ -498,9 +405,6 @@ KNumber &KNumber::operator+=(const KNumber &rhs)
     return *this;
 }
 
-//------------------------------------------------------------------------------
-// Name: operator-=
-//------------------------------------------------------------------------------
 KNumber &KNumber::operator-=(const KNumber &rhs)
 {
     m_value = m_value->sub(rhs.m_value);
@@ -508,9 +412,6 @@ KNumber &KNumber::operator-=(const KNumber &rhs)
     return *this;
 }
 
-//------------------------------------------------------------------------------
-// Name: operator*=
-//------------------------------------------------------------------------------
 KNumber &KNumber::operator*=(const KNumber &rhs)
 {
     m_value = m_value->mul(rhs.m_value);
@@ -518,9 +419,6 @@ KNumber &KNumber::operator*=(const KNumber &rhs)
     return *this;
 }
 
-//------------------------------------------------------------------------------
-// Name: operator/=
-//------------------------------------------------------------------------------
 KNumber &KNumber::operator/=(const KNumber &rhs)
 {
     // Fix for bug #330577, x/0  is undefined, not infinity
@@ -535,9 +433,6 @@ KNumber &KNumber::operator/=(const KNumber &rhs)
     return *this;
 }
 
-//------------------------------------------------------------------------------
-// Name: operator%=
-//------------------------------------------------------------------------------
 KNumber &KNumber::operator%=(const KNumber &rhs)
 {
     m_value = m_value->mod(rhs.m_value);
@@ -545,45 +440,30 @@ KNumber &KNumber::operator%=(const KNumber &rhs)
     return *this;
 }
 
-//------------------------------------------------------------------------------
-// Name: operator&=
-//------------------------------------------------------------------------------
 KNumber &KNumber::operator&=(const KNumber &rhs)
 {
     m_value = m_value->bitwiseAnd(rhs.m_value);
     return *this;
 }
 
-//------------------------------------------------------------------------------
-// Name: operator|=
-//------------------------------------------------------------------------------
 KNumber &KNumber::operator|=(const KNumber &rhs)
 {
     m_value = m_value->bitwiseOr(rhs.m_value);
     return *this;
 }
 
-//------------------------------------------------------------------------------
-// Name: operator^=
-//------------------------------------------------------------------------------
 KNumber &KNumber::operator^=(const KNumber &rhs)
 {
     m_value = m_value->bitwiseXor(rhs.m_value);
     return *this;
 }
 
-//------------------------------------------------------------------------------
-// Name: operator<<
-//------------------------------------------------------------------------------
 KNumber &KNumber::operator<<=(const KNumber &rhs)
 {
     m_value = m_value->bitwiseShift(rhs.m_value);
     return *this;
 }
 
-//------------------------------------------------------------------------------
-// Name: operator>>=
-//------------------------------------------------------------------------------
 KNumber &KNumber::operator>>=(const KNumber &rhs)
 {
     const KNumber rhs_neg(-rhs);
@@ -591,9 +471,6 @@ KNumber &KNumber::operator>>=(const KNumber &rhs)
     return *this;
 }
 
-//------------------------------------------------------------------------------
-// Name: operator-
-//------------------------------------------------------------------------------
 KNumber KNumber::operator-() const
 {
     KNumber x(*this);
@@ -601,9 +478,6 @@ KNumber KNumber::operator-() const
     return x;
 }
 
-//------------------------------------------------------------------------------
-// Name: operator~
-//------------------------------------------------------------------------------
 KNumber KNumber::operator~() const
 {
     KNumber x(*this);
@@ -611,9 +485,6 @@ KNumber KNumber::operator~() const
     return x;
 }
 
-//------------------------------------------------------------------------------
-// Name: toQString
-//------------------------------------------------------------------------------
 QString KNumber::toQString(int width, int precision) const
 {
     if (m_value->isZero()) {
@@ -650,35 +521,21 @@ QString KNumber::toQString(int width, int precision) const
     }
 }
 
-//------------------------------------------------------------------------------
-// Name: localizeDecimalSeparator
-// Desc: replaces the internal '.' as decimal separator
-//       with the local decimal separator of the user's machine
-//------------------------------------------------------------------------------
 void KNumber::localizeDecimalSeparator(QString &knumber)
 {
     knumber.replace(QLatin1Char('.'), KNumber::DecimalSeparator);
 }
 
-//------------------------------------------------------------------------------
-// Name: toUint64
-//------------------------------------------------------------------------------
 quint64 KNumber::toUint64() const
 {
     return m_value->toUint64();
 }
 
-//------------------------------------------------------------------------------
-// Name: toInt64
-//------------------------------------------------------------------------------
 qint64 KNumber::toInt64() const
 {
     return m_value->toInt64();
 }
 
-//------------------------------------------------------------------------------
-// Name: abs
-//------------------------------------------------------------------------------
 KNumber KNumber::abs() const
 {
     KNumber z(*this);
@@ -687,9 +544,6 @@ KNumber KNumber::abs() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: cbrt
-//------------------------------------------------------------------------------
 KNumber KNumber::cbrt() const
 {
     KNumber z(*this);
@@ -698,9 +552,6 @@ KNumber KNumber::cbrt() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: sqrt
-//------------------------------------------------------------------------------
 KNumber KNumber::sqrt() const
 {
     KNumber z(*this);
@@ -709,15 +560,8 @@ KNumber KNumber::sqrt() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: pow
-//------------------------------------------------------------------------------
 KNumber KNumber::pow(const KNumber &x) const
 {
-    // Fix for bug #330711, pow(0, -x) was causing crashes
-    // Fix for bug #330597, pow(0,0) was 1 now it is NaN
-    // Thanks to Raushan Kumar for identifying the issue and submitting
-    // patches
     if (*this == Zero && x <= Zero) {
         return NaN;
     }
@@ -738,9 +582,6 @@ KNumber KNumber::pow(const KNumber &x) const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: sin
-//------------------------------------------------------------------------------
 KNumber KNumber::sin() const
 {
     KNumber z(*this);
@@ -749,9 +590,6 @@ KNumber KNumber::sin() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: cos
-//------------------------------------------------------------------------------
 KNumber KNumber::cos() const
 {
     KNumber z(*this);
@@ -760,9 +598,6 @@ KNumber KNumber::cos() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: tan
-//------------------------------------------------------------------------------
 KNumber KNumber::tan() const
 {
     KNumber z(*this);
@@ -771,9 +606,6 @@ KNumber KNumber::tan() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: tgamma
-//------------------------------------------------------------------------------
 KNumber KNumber::tgamma() const
 {
     KNumber z(*this);
@@ -785,9 +617,6 @@ KNumber KNumber::tgamma() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: asin
-//------------------------------------------------------------------------------
 KNumber KNumber::asin() const
 {
     KNumber z(*this);
@@ -796,9 +625,6 @@ KNumber KNumber::asin() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: acos
-//------------------------------------------------------------------------------
 KNumber KNumber::acos() const
 {
     KNumber z(*this);
@@ -807,9 +633,6 @@ KNumber KNumber::acos() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: atan
-//------------------------------------------------------------------------------
 KNumber KNumber::atan() const
 {
     KNumber z(*this);
@@ -818,9 +641,6 @@ KNumber KNumber::atan() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: sinh
-//------------------------------------------------------------------------------
 KNumber KNumber::sinh() const
 {
     KNumber z(*this);
@@ -829,9 +649,6 @@ KNumber KNumber::sinh() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: cosh
-//------------------------------------------------------------------------------
 KNumber KNumber::cosh() const
 {
     KNumber z(*this);
@@ -840,9 +657,6 @@ KNumber KNumber::cosh() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: tanh
-//------------------------------------------------------------------------------
 KNumber KNumber::tanh() const
 {
     KNumber z(*this);
@@ -851,9 +665,6 @@ KNumber KNumber::tanh() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: asinh
-//------------------------------------------------------------------------------
 KNumber KNumber::asinh() const
 {
     KNumber z(*this);
@@ -862,9 +673,6 @@ KNumber KNumber::asinh() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: acosh
-//------------------------------------------------------------------------------
 KNumber KNumber::acosh() const
 {
     KNumber z(*this);
@@ -873,9 +681,6 @@ KNumber KNumber::acosh() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: atanh
-//------------------------------------------------------------------------------
 KNumber KNumber::atanh() const
 {
     KNumber z(*this);
@@ -884,9 +689,6 @@ KNumber KNumber::atanh() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: factorial
-//------------------------------------------------------------------------------
 KNumber KNumber::factorial() const
 {
     KNumber z(*this);
@@ -902,9 +704,6 @@ KNumber KNumber::factorial() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: log2
-//------------------------------------------------------------------------------
 KNumber KNumber::log2() const
 {
     KNumber z(*this);
@@ -913,9 +712,6 @@ KNumber KNumber::log2() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: log10
-//------------------------------------------------------------------------------
 KNumber KNumber::log10() const
 {
     KNumber z(*this);
@@ -924,9 +720,6 @@ KNumber KNumber::log10() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: ln
-//------------------------------------------------------------------------------
 KNumber KNumber::ln() const
 {
     KNumber z(*this);
@@ -935,9 +728,6 @@ KNumber KNumber::ln() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: floor
-//------------------------------------------------------------------------------
 KNumber KNumber::floor() const
 {
     KNumber z(*this);
@@ -946,9 +736,6 @@ KNumber KNumber::floor() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: ceil
-//------------------------------------------------------------------------------
 KNumber KNumber::ceil() const
 {
     KNumber z(*this);
@@ -957,9 +744,6 @@ KNumber KNumber::ceil() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: exp2
-//------------------------------------------------------------------------------
 KNumber KNumber::exp2() const
 {
     KNumber z(*this);
@@ -968,9 +752,6 @@ KNumber KNumber::exp2() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: exp10
-//------------------------------------------------------------------------------
 KNumber KNumber::exp10() const
 {
     KNumber z(*this);
@@ -979,9 +760,6 @@ KNumber KNumber::exp10() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: exp
-//------------------------------------------------------------------------------
 KNumber KNumber::exp() const
 {
     KNumber z(*this);
@@ -990,9 +768,6 @@ KNumber KNumber::exp() const
     return z;
 }
 
-//------------------------------------------------------------------------------
-// Name: bin
-//------------------------------------------------------------------------------
 KNumber KNumber::bin(const KNumber &x) const
 {
     KNumber z(*this);
