@@ -94,6 +94,7 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
+    QString formatNumber(QString string);
     QString formatDecimalNumber(QString string);
     QString groupDigits(const QString &displayString, int numDigits);
 

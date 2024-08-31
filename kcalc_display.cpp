@@ -345,6 +345,12 @@ bool KCalcDisplay::setAmount(const KNumber &new_amount)
         display_str = display_amount_.toQString(KCalcSettings::precision(), fixed_precision_);
     }
 
+    // TODO: to avoid code duplication, don't format complex number for now,
+    //       we need to mode this functionality to the KNumber library
+    if (display_amount_.type() != KNumber::TypeComplex) {
+        display_str = formatNumber(display_str);
+    }
+
     setText(display_str);
 
     Q_EMIT changedAmount(display_amount_);
@@ -362,32 +368,7 @@ void KCalcDisplay::setText(const QString &string)
 {
     // note that "C" locale is being used internally
     text_ = string;
-
-    // don't mess with special numbers
-    const bool special = (string.contains(QLatin1String("nan")) || string.contains(QLatin1String("inf")));
-
-    // The decimal mode needs special treatment for two reasons, because: a) it uses KGlobal::locale() to get a localized
-    // format and b) it has possible numbers after the decimal place. Neither applies to Binary, Hexadecimal or Octal.
-
-    if ((groupdigits_ || num_base_ == NB_DECIMAL) && !special) {
-        switch (num_base_) {
-        case NB_DECIMAL:
-            text_ = formatDecimalNumber(text_);
-            break;
-
-        case NB_BINARY:
-            text_ = groupDigits(text_, binaryGrouping_);
-            break;
-
-        case NB_OCTAL:
-            text_ = groupDigits(text_, octalGrouping_);
-            break;
-
-        case NB_HEX:
-            text_ = groupDigits(text_, hexadecimalGrouping_);
-            break;
-        }
-    }
+    // text_ = formatNumber(text_);
 
     update();
     setAccessibleName(text_); // "Labels should be represented by only QAccessibleInterface and return their text as name"
@@ -428,6 +409,34 @@ void KCalcDisplay::restoreSettings()
 const QFont &KCalcDisplay::baseFont() const
 {
     return baseFont_;
+}
+
+QString KCalcDisplay::formatNumber(QString string)
+{
+    QString formattedNumber = string;
+    const bool special = (string.contains(QLatin1String("nan")) || string.contains(QLatin1String("inf")));
+
+    // The decimal mode needs special treatment for two reasons, because: a) it uses KGlobal::locale() to get a localized
+    // format and b) it has possible numbers after the decimal place. Neither applies to Binary, Hexadecimal or Octal.
+
+    if ((groupdigits_ || num_base_ == NB_DECIMAL) && !special) {
+        switch (num_base_) {
+        case NB_DECIMAL:
+            formattedNumber = formatDecimalNumber(string);
+            break;
+        case NB_BINARY:
+            formattedNumber = groupDigits(string, binaryGrouping_);
+            break;
+        case NB_OCTAL:
+            formattedNumber = groupDigits(string, octalGrouping_);
+            break;
+        case NB_HEX:
+            formattedNumber = groupDigits(string, hexadecimalGrouping_);
+            break;
+        }
+    }
+
+    return formattedNumber;
 }
 
 QString KCalcDisplay::formatDecimalNumber(QString string)
@@ -552,7 +561,7 @@ void KCalcDisplay::updateDisplay()
         txt.remove(QLocale().groupSeparator());
     }
 
-    setText(txt);
+    setText(formatNumber(txt));
 }
 
 void KCalcDisplay::initStyleOption(QStyleOptionFrame *option) const
