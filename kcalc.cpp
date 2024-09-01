@@ -2935,7 +2935,7 @@ int main(int argc, char *argv[])
     setlocale(LC_NUMERIC, "C");
 
     KNumber::setGroupSeparator(QLocale().groupSeparator());
-    KNumber::setDecimalSeparator(QString(QLocale().decimalPoint()));
+    KNumber::setDecimalSeparator(QLocale().decimalPoint());
 
     auto calc = new KCalculator(nullptr);
 
