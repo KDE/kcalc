@@ -23,7 +23,8 @@ KNumberBase *KNumberFloat::ensureIsValid(mpfr_ptr mpfr)
         delete this;
         return e;
     } else if (mpfr_inf_p(mpfr)) {
-        auto e = new KNumberError(KNumberError::PositiveInfinity);
+        auto inifnityType = mpfr_signbit(mpfr) ? KNumberError::NegativeInfinity : KNumberError::PositiveInfinity;
+        auto e = new KNumberError(inifnityType);
         delete this;
         return e;
     } else {
