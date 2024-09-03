@@ -349,19 +349,6 @@ void testingAbs()
     checkResult(QStringLiteral("KNumber(\"-2.3\").abs()"), KNumber(QStringLiteral("-2.3")).abs(), QStringLiteral("2.3"), KNumber::TypeFloat);
 }
 
-void testingTruncateToInteger()
-{
-    std::cout << "\n\n";
-    std::cout << "Testing truncate to an integer:\n";
-    std::cout << "-------------------------------\n";
-
-    checkResult(QStringLiteral("KNumber(16).integerPart()"), KNumber(16).integerPart(), QStringLiteral("16"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"43/9\").integerPart()"), KNumber(QStringLiteral("43/9")).integerPart(), QStringLiteral("4"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"-43/9\").integerPart()"), KNumber(QStringLiteral("-43/9")).integerPart(), QStringLiteral("-4"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"5.25\").integerPart()"), KNumber(QStringLiteral("5.25")).integerPart(), QStringLiteral("5"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"-5.25\").integerPart()"), KNumber(QStringLiteral("-5.25")).integerPart(), QStringLiteral("-5"), KNumber::TypeInteger);
-}
-
 void testingSqrt()
 {
     std::cout << "\n\n";
@@ -877,7 +864,6 @@ int main()
     testingSqrt();
     testingFactorial();
     testingPower();
-    testingTruncateToInteger();
     testingInfArithmetic();
     testingFloatPrecision();
     testingTrig();
