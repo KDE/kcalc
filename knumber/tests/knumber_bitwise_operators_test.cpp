@@ -25,6 +25,9 @@ private Q_SLOTS:
     void testKNumberOr_data();
     void testKNumberOr();
 
+    void testKNumberComplement_data();
+    void testKNumberComplement();
+
     void cleanupTestCase();
 
 private:
@@ -86,6 +89,45 @@ void KNumberBitWiseOperatorsTest::testKNumberOr_data()
 }
 
 void KNumberBitWiseOperatorsTest::testKNumberOr()
+{
+    QFETCH(KNumber, result);
+    QFETCH(KNumber::Type, expectedResultType);
+    QFETCH(QString, expectedResultToQString);
+
+    QCOMPARE(result.type(), expectedResultType);
+    QCOMPARE(result.toQString(precision), expectedResultToQString);
+}
+
+void KNumberBitWiseOperatorsTest::testKNumberComplement_data()
+{
+    QTest::addColumn<KNumber>("result");
+    QTest::addColumn<QString>("expectedResultToQString");
+    QTest::addColumn<KNumber::Type>("expectedResultType");
+
+    // at first glance, these look like they should work
+    // but there is an annoyance. If we use the mpz_com function
+    // ~-2 == 1, but the HEX/OCT/BIN views are broken :-(
+    // specifically, if the value is negative, it goes badly pretty quick.
+#if 0
+     QTest::newRow("~KNumber(0)") << ~KNumber(0) << QLatin1String("-1") << KNumber::TypeInteger;
+     QTest::newRow("~KNumber(1)") << ~KNumber(1) << QLatin1String("-2") << KNumber::TypeInteger;
+     QTest::newRow("~KNumber(2)") << ~KNumber(2) << QLatin1String("-3") << KNumber::TypeInteger;
+     QTest::newRow("~KNumber(8)") << ~KNumber(8) << QLatin1String("-9") << KNumber::TypeInteger;
+     QTest::newRow("~KNumber(15)") << ~KNumber(15) << QLatin1String("-16") << KNumber::TypeInteger;
+     QTest::newRow("~KNumber(-1)") << ~KNumber(-1) << QLatin1String("0") << KNumber::TypeInteger;
+     QTest::newRow("~KNumber(-2)") << ~KNumber(-2) << QLatin1String("1") << KNumber::TypeInteger;
+     QTest::newRow("~KNumber(-3)") << ~KNumber(-3) << QLatin1String("2") << KNumber::TypeInteger;
+     QTest::newRow("~KNumber(-9)") << ~KNumber(-9) << QLatin1String("8") << KNumber::TypeInteger;
+     QTest::newRow("~KNumber(-16)") << ~KNumber(-16) << QLatin1String("15") << KNumber::TypeInteger;
+#endif
+
+    QTest::newRow("~KNumber(0.12345)") << ~KNumber(0.12345) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("~KNumber(-0.12345)") << ~KNumber(-0.12345) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("~KNumber(\"1/2\")") << ~KNumber(QStringLiteral("1/2")) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("~KNumber(\"-1/2\")") << ~KNumber(QStringLiteral("-1/2")) << QStringLiteral("nan") << KNumber::TypeError;
+}
+
+void KNumberBitWiseOperatorsTest::testKNumberComplement()
 {
     QFETCH(KNumber, result);
     QFETCH(KNumber::Type, expectedResultType);

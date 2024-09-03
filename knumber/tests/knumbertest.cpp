@@ -422,35 +422,6 @@ void testingFactorial()
     checkResult(QStringLiteral("KNumber(3.5).factorial()"), KNumber(3.5).factorial(), QStringLiteral("6"), KNumber::TypeInteger);
 }
 
-void testingComplement()
-{
-    std::cout << "\n\n";
-    std::cout << "Testing complement:\n";
-    std::cout << "-------------------\n";
-
-    // at first glance, these look like they should work
-    // but there is an annoyance. If we use the mpz_com function
-    // ~-2 == 1, but the HEX/OCT/BIN views are broken :-(
-    // specifically, if the value is negative, it goes badly pretty quick.
-#if 0
-    checkResult(QStringLiteral("~KNumber(0)"), ~KNumber(0), QLatin1String("-1"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("~KNumber(1)"), ~KNumber(1), QLatin1String("-2"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("~KNumber(2)"), ~KNumber(2), QLatin1String("-3"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("~KNumber(8)"), ~KNumber(8), QLatin1String("-9"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("~KNumber(15)"), ~KNumber(15), QLatin1String("-16"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("~KNumber(-1)"), ~KNumber(-1), QLatin1String("0"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("~KNumber(-2)"), ~KNumber(-2), QLatin1String("1"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("~KNumber(-3)"), ~KNumber(-3), QLatin1String("2"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("~KNumber(-9)"), ~KNumber(-9), QLatin1String("8"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("~KNumber(-16)"), ~KNumber(-16), QLatin1String("15"), KNumber::TypeInteger);
-#endif
-
-    checkResult(QStringLiteral("~KNumber(0.12345)"), ~KNumber(0.12345), QStringLiteral("nan"), KNumber::TypeError);
-    checkResult(QStringLiteral("~KNumber(-0.12345)"), ~KNumber(-0.12345), QStringLiteral("nan"), KNumber::TypeError);
-    checkResult(QStringLiteral("~KNumber(\"1/2\")"), ~KNumber(QStringLiteral("1/2")), QStringLiteral("nan"), KNumber::TypeError);
-    checkResult(QStringLiteral("~KNumber(\"-1/2\")"), ~KNumber(QStringLiteral("-1/2")), QStringLiteral("nan"), KNumber::TypeError);
-}
-
 void testingPower()
 {
     std::cout << "\n\n";
@@ -919,7 +890,6 @@ int main()
     testingAbs();
     testingSqrt();
     testingFactorial();
-    testingComplement();
     testingPower();
     testingTruncateToInteger();
     testingInfArithmetic();
