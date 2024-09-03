@@ -28,3 +28,10 @@ ecm_add_test(knumber_bitwise_operators_test.cpp
     Qt${QT_MAJOR_VERSION}::Test
     TEST_NAME knumber_bitwise_operators_test
 )
+
+ecm_add_test(knumber_constans_test.cpp
+    LINK_LIBRARIES knumber
+    Qt${QT_MAJOR_VERSION}::Core
+    Qt${QT_MAJOR_VERSION}::Test
+    TEST_NAME knumber_constans_test
+)

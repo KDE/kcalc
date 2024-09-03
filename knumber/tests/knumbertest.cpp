@@ -822,19 +822,6 @@ void testingConstructors()
     checkResult(QStringLiteral("KNumber(\"0xAbCdEf\")"), KNumber(QStringLiteral("0xAbCdEf")), QStringLiteral("11259375"), KNumber::TypeInteger);
 }
 
-void testingConstants()
-{
-    std::cout << "\n\n";
-    std::cout << "Constants:\n";
-    std::cout << "----------\n";
-
-    checkType(QStringLiteral("KNumber::Zero"), KNumber::Zero.type(), KNumber::TypeInteger);
-    checkType(QStringLiteral("KNumber::One"), KNumber::One.type(), KNumber::TypeInteger);
-    checkType(QStringLiteral("KNumber::NegOne"), KNumber::NegOne.type(), KNumber::TypeInteger);
-    checkType(QStringLiteral("KNumber::Pi"), KNumber::Pi().type(), KNumber::TypeFloat);
-    checkType(QStringLiteral("KNumber::Euler"), KNumber::Euler().type(), KNumber::TypeFloat);
-}
-
 void testingRound()
 {
     std::cout << "\n\n";
@@ -880,7 +867,6 @@ void testingRound()
 
 int main()
 {
-    testingConstants();
     testingConstructors();
     testingCompare();
     testingSubtractions();
