@@ -21,3 +21,10 @@ ecm_add_test(knumber_aritmetic_test.cpp
     Qt${QT_MAJOR_VERSION}::Test
     TEST_NAME knumber_aritmetic_test
 )
+
+ecm_add_test(knumber_bitwise_operators_test.cpp
+    LINK_LIBRARIES knumber
+    Qt${QT_MAJOR_VERSION}::Core
+    Qt${QT_MAJOR_VERSION}::Test
+    TEST_NAME knumber_bitwise_operators_test
+)

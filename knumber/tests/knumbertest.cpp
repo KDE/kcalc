@@ -334,20 +334,6 @@ void testingModulus()
     // TODO: test for other types
 }
 
-void testingAndOr()
-{
-    std::cout << "\n\n";
-    std::cout << "Testing And/Or:\n";
-    std::cout << "---------------\n";
-
-    checkResult(QStringLiteral("KNumber(17) & KNumber(9)"), KNumber(17) & KNumber(9), QStringLiteral("1"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(17) | KNumber(9)"), KNumber(17) | KNumber(9), QStringLiteral("25"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(1023) & KNumber(255)"), KNumber(1023) & KNumber(255), QStringLiteral("255"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(1023) | KNumber(255)"), KNumber(1023) | KNumber(255), QStringLiteral("1023"), KNumber::TypeInteger);
-
-    // TODO: test for other types
-}
-
 void testingAbs()
 {
     std::cout << "\n\n";
@@ -463,16 +449,6 @@ void testingComplement()
     checkResult(QStringLiteral("~KNumber(-0.12345)"), ~KNumber(-0.12345), QStringLiteral("nan"), KNumber::TypeError);
     checkResult(QStringLiteral("~KNumber(\"1/2\")"), ~KNumber(QStringLiteral("1/2")), QStringLiteral("nan"), KNumber::TypeError);
     checkResult(QStringLiteral("~KNumber(\"-1/2\")"), ~KNumber(QStringLiteral("-1/2")), QStringLiteral("nan"), KNumber::TypeError);
-}
-
-void testingShifts()
-{
-    std::cout << "\n\n";
-    std::cout << "Testing left/right shift:\n";
-    std::cout << "-------------------------\n";
-
-    checkResult(QStringLiteral("KNumber(16) << KNumber(2)"), KNumber(16) << KNumber(2), QStringLiteral("64"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(16) >> KNumber(2)"), KNumber(16) >> KNumber(2), QStringLiteral("4"), KNumber::TypeInteger);
 }
 
 void testingPower()
@@ -939,7 +915,6 @@ int main()
     testingSubtractions();
     testingMultiplications();
     testingDivisions();
-    testingAndOr();
     testingModulus();
     testingAbs();
     testingSqrt();
@@ -947,7 +922,6 @@ int main()
     testingComplement();
     testingPower();
     testingTruncateToInteger();
-    testingShifts();
     testingInfArithmetic();
     testingFloatPrecision();
     testingTrig();
