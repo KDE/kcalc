@@ -19,6 +19,9 @@ private Q_SLOTS:
     void testKNumberTruncate_data();
     void testKNumberTruncate();
 
+    void testKNumberModulus_data();
+    void testKNumberModulus();
+
     void cleanupTestCase();
 
 private:
@@ -43,6 +46,29 @@ void KNumberIntegerOperatorsTest::testKNumberTruncate_data()
 }
 
 void KNumberIntegerOperatorsTest::testKNumberTruncate()
+{
+    QFETCH(KNumber, result);
+    QFETCH(KNumber::Type, expectedResultType);
+    QFETCH(QString, expectedResultToQString);
+
+    QCOMPARE(result.type(), expectedResultType);
+    QCOMPARE(result.toQString(precision), expectedResultToQString);
+}
+
+void KNumberIntegerOperatorsTest::testKNumberModulus_data()
+{
+    QTest::addColumn<KNumber>("result");
+    QTest::addColumn<QString>("expectedResultToQString");
+    QTest::addColumn<KNumber::Type>("expectedResultType");
+
+    QTest::newRow("KNumber(23) % KNumber(4)") << (KNumber(23) % KNumber(4)) << QStringLiteral("3") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(12) % KNumber(-5)") << (KNumber(12) % KNumber(-5)) << QStringLiteral("2") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(-12) % KNumber(5)") << (KNumber(-12) % KNumber(5)) << QStringLiteral("3") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(12) % KNumber(0)") << (KNumber(-12) % KNumber(0)) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(-12) % KNumber(0)") << (KNumber(-12) % KNumber(0)) << QStringLiteral("nan") << KNumber::TypeError;
+}
+
+void KNumberIntegerOperatorsTest::testKNumberModulus()
 {
     QFETCH(KNumber, result);
     QFETCH(KNumber::Type, expectedResultType);

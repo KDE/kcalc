@@ -319,21 +319,6 @@ void testingDivisions()
     checkResult(QStringLiteral("KNumber(-5.5) / KNumber(0.0)"), KNumber(-5.5) / KNumber(0.0), QStringLiteral("nan"), KNumber::TypeError);
 }
 
-void testingModulus()
-{
-    std::cout << "\n\n";
-    std::cout << "Testing modulus:\n";
-    std::cout << "----------------\n";
-
-    checkResult(QStringLiteral("KNumber(23) % KNumber(4)"), KNumber(23) % KNumber(4), QStringLiteral("3"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(12) % KNumber(-5)"), KNumber(12) % KNumber(-5), QStringLiteral("2"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(-12) % KNumber(5)"), KNumber(-12) % KNumber(5), QStringLiteral("3"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(12) % KNumber(0)"), KNumber(-12) % KNumber(0), QStringLiteral("nan"), KNumber::TypeError);
-    checkResult(QStringLiteral("KNumber(-12) % KNumber(0)"), KNumber(-12) % KNumber(0), QStringLiteral("nan"), KNumber::TypeError);
-
-    // TODO: test for other types
-}
-
 void testingAbs()
 {
     std::cout << "\n\n";
@@ -859,7 +844,6 @@ int main()
     testingSubtractions();
     testingMultiplications();
     testingDivisions();
-    testingModulus();
     testingAbs();
     testingSqrt();
     testingFactorial();
