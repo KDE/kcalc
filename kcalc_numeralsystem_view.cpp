@@ -137,7 +137,7 @@ void KCalcNumeralSystemView::updateLabels()
         }
     }
 
-    for (KCalcNumeralSystemLabel *label : { m_label1, m_label2, m_label3 }) {
+    for (KCalcNumeralSystemLabel *label : {m_label1, m_label2, m_label3}) {
         label->setVisible(isValidNumber);
     }
 }
