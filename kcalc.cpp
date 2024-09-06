@@ -1811,6 +1811,8 @@ void KCalculator::slotSetSimpleMode()
 {
     bool wasMinimumSize = isMinimumSize();
 
+    this->parser.setNumeralMode(false);
+
     action_constants_show_->setChecked(false);
     action_constants_show_->setEnabled(false);
     action_bitset_show_->setEnabled(false);
@@ -1866,6 +1868,8 @@ void KCalculator::slotSetSimpleMode()
 void KCalculator::slotSetScienceMode()
 {
     bool wasMinimumSize = isMinimumSize();
+
+    this->parser.setNumeralMode(false);
 
     action_constants_show_->setEnabled(true);
     action_constants_show_->setChecked(KCalcSettings::showConstants());
@@ -1923,6 +1927,8 @@ void KCalculator::slotSetStatisticMode()
 {
     bool wasMinimumSize = isMinimumSize();
 
+    this->parser.setNumeralMode(false);
+
     action_constants_show_->setEnabled(true);
     action_constants_show_->setChecked(KCalcSettings::showConstants());
     action_bitset_show_->setEnabled(false);
@@ -1978,6 +1984,8 @@ void KCalculator::slotSetStatisticMode()
 void KCalculator::slotSetNumeralMode()
 {
     bool wasMinimumSize = isMinimumSize();
+
+    this->parser.setNumeralMode(true);
 
     action_constants_show_->setChecked(false);
     action_constants_show_->setEnabled(false);

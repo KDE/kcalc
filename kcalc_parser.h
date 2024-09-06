@@ -36,6 +36,9 @@ public:
     void setTrigonometricMode(int mode);
     int getTrigonometricMode();
 
+    void setNumeralMode(bool numeralMode);
+    bool getNumeralMode() const;
+
     ParsingResult getParsingResult();
 
     ParsingResult stringToTokenQueue(const QString &buffer, int base, QQueue<KCalcToken> &tokenQueue, int &errorIndex);
@@ -57,6 +60,8 @@ private:
 
     static const inline QString A_STR = QStringLiteral("A");
     static const inline QString F_STR = QStringLiteral("F");
+    static const inline QString A_LOWER_CASE_STR = QStringLiteral("a");
+    static const inline QString F_LOWER_CASE_STR = QStringLiteral("f");
     static const inline QString B_STR = QStringLiteral("b");
     static const inline QString X_STR = QStringLiteral("x");
 
@@ -170,5 +175,6 @@ private:
     QString token_KNumber_;
     bool m_inputHasConstants = false;
     int trigonometric_Mode_ = DEGREES;
+    bool m_numeralMode = false;
     ParsingResult parsing_Result_ = EMPTY;
 };
