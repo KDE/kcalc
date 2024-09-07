@@ -8,6 +8,8 @@
 
 #include "knumber_base.h"
 
+#include <gmp.h>
+
 class KNumber;
 
 namespace detail

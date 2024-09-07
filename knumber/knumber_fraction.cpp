@@ -11,6 +11,9 @@
 #include <QScopedArrayPointer>
 #include <config-knumber.h>
 
+#include <gmp.h>
+#include <mpfr.h>
+
 namespace detail
 {
 bool KNumberFraction::defaultFractionalInput = false;

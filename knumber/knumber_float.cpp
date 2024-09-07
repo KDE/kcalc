@@ -11,6 +11,9 @@
 #include <QScopedArrayPointer>
 #include <cmath>
 
+#include <gmp.h>
+#include <mpfr.h>
+
 namespace detail
 {
 const mpfr_rnd_t KNumberFloat::rounding_mode = MPFR_RNDN;

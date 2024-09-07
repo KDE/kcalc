@@ -6,11 +6,6 @@
 
 #pragma once
 
-// Workaround: include before gmp.h to fix build with gcc-4.9
-#include <cstddef>
-#include <gmp.h>
-#include <mpfr.h>
-
 #include <QString>
 
 namespace detail

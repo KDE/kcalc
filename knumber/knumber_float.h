@@ -9,6 +9,8 @@
 #include "knumber_base.h"
 #include <config-knumber.h>
 
+#include <mpfr.h>
+
 class KNumber;
 
 namespace detail
