@@ -303,7 +303,7 @@
 <row
 ><entry
 ><guibutton
->Sin</guibutton
+>sin</guibutton
 ></entry>
 <entry
 >Calcule le sinus</entry
@@ -312,9 +312,9 @@
 <row
 ><entry
 >&Maj; <guibutton
->Sin</guibutton
+>sin</guibutton
 > ou <guibutton
->Asin</guibutton
+>asin</guibutton
 ></entry>
 <entry
 >Calcule l'Arcsinus</entry
@@ -323,7 +323,7 @@
 <row
 ><entry
 ><guibutton
->Cos</guibutton
+>cos</guibutton
 ></entry>
 <entry
 >Calcule le cosinus</entry
@@ -332,9 +332,9 @@
 <row
 ><entry
 >&Maj; <guibutton
->Cos</guibutton
+>cos</guibutton
 > ou <guibutton
->Acos</guibutton
+>acos</guibutton
 ></entry>
 <entry
 >Calcule l'arccosinus</entry
@@ -343,7 +343,7 @@
 <row
 ><entry
 ><guibutton
->Tan</guibutton
+>tan</guibutton
 ></entry>
 <entry
 >Calcule la tangente</entry
@@ -352,9 +352,9 @@
 <row
 ><entry
 >&Maj; <guibutton
->Tan</guibutton
+>tan</guibutton
 > ou <guibutton
->Atan</guibutton
+>atan</guibutton
 ></entry>
 <entry
 >Calcule l'arctangente</entry
@@ -372,7 +372,7 @@
 <row
 ><entry
 >&Maj; <guibutton
->Log</guibutton
+>log</guibutton
 > ou 10<superscript
 >x</superscript
 ></entry>
@@ -383,7 +383,7 @@
 <row
 ><entry
 ><guibutton
->Ln</guibutton
+>ln</guibutton
 ></entry>
 <entry
 >Calcule le logarithme naturel, celui de base e</entry
@@ -392,7 +392,7 @@
 <row
 ><entry
 >&Maj; <guibutton
->Ln</guibutton
+>ln</guibutton
 > ou e<superscript
 >x</superscript
 ></entry>
@@ -1010,7 +1010,7 @@
 >Hyp</guibutton
 ></entry>
 <entry
->Fonctions hyperboliques comme Hyp Sin, c'est-à-dire Sinh.</entry
+>Fonctions hyperboliques comme Hyp Sin, c'est-à-dire sinh.</entry
 ></row>
 
 <row
@@ -1020,7 +1020,7 @@
 ></entry>
 <entry
 ><guibutton
->Sin</guibutton
+>sin</guibutton
 ></entry>
 <entry
 ></entry
@@ -1033,7 +1033,7 @@
 ></entry>
 <entry
 ><guibutton
->Cos</guibutton
+>cos</guibutton
 ></entry>
 <entry
 ></entry
@@ -1046,7 +1046,7 @@
 ></entry>
 <entry
 ><guibutton
->Tan</guibutton
+>tan</guibutton
 ></entry>
 <entry
 ></entry
@@ -1059,7 +1059,7 @@
 ></entry>
 <entry
 ><guibutton
->Ln</guibutton
+>ln</guibutton
 ></entry>
 <entry
 >logarithme de base e</entry
@@ -1460,7 +1460,7 @@
 ></para>
 <para
 ><userinput
->22.345 Maj DivEnt 8 = </userinput
+>22.345 Maj div ent 8 = </userinput
 > donnera également comme résultat <emphasis
 >2</emphasis
 > </para
