@@ -7,7 +7,7 @@
 #include "knumber_operators.h"
 #include "knumber.h"
 #include "knumber_base.h"
-#include <config-kcalc.h>
+#include <config-knumber.h>
 
 KNumber operator+(const KNumber &lhs, const KNumber &rhs)
 {
