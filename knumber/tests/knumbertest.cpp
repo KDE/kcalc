@@ -931,7 +931,9 @@ void testingRound()
     checkTruth(QStringLiteral("KNumber(3.02)  -> 3.02"), KNumber(QStringLiteral("3.02")).toQString(-1, 2) == QStringLiteral("3.02"), true);
     checkTruth(QStringLiteral("KNumber(3.09)  -> 3.09"), KNumber(QStringLiteral("3.09")).toQString(-1, 2) == QStringLiteral("3.09"), true);
     checkTruth(QStringLiteral("KNumber(3.001) -> 3.00"), KNumber(QStringLiteral("3.001")).toQString(-1, 2) == QStringLiteral("3.00"), true);
+    checkTruth(QStringLiteral("KNumber(3.004) -> 3.00"), KNumber(QStringLiteral("3.004")).toQString(-1, 2) == QStringLiteral("3.00"), true);
     checkTruth(QStringLiteral("KNumber(3.005) -> 3.01"), KNumber(QStringLiteral("3.005")).toQString(-1, 2) == QStringLiteral("3.01"), true);
+    checkTruth(QStringLiteral("KNumber(3.006) -> 3.01"), KNumber(QStringLiteral("3.006")).toQString(-1, 2) == QStringLiteral("3.01"), true);
     checkTruth(QStringLiteral("KNumber(3.091) -> 3.09"), KNumber(QStringLiteral("3.091")).toQString(-1, 2) == QStringLiteral("3.09"), true);
     checkTruth(QStringLiteral("KNumber(3.099) -> 3.10"), KNumber(QStringLiteral("3.099")).toQString(-1, 2) == QStringLiteral("3.10"), true);
     checkTruth(QStringLiteral("KNumber(3.999) -> 4.00"), KNumber(QStringLiteral("3.999")).toQString(-1, 2) == QStringLiteral("4.00"), true);
