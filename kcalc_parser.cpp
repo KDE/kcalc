@@ -461,6 +461,19 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
 
     s = buffer.sliced(index, 1);
 
+    if ((A_LOWER_CASE_STR <= s.first(1) && s.first(1) <= F_LOWER_CASE_STR)) {
+        if (m_numeralMode && base == 16) {
+            QRegularExpressionMatch match;
+            int numIndex = buffer.indexOf(HEX_NUMBER_DIGITS_REGEX, index, &match);
+            if (match.captured().size() > 16 || numIndex != index) {
+                return KCalcToken::TokenCode::INVALID_TOKEN;
+            }
+            token_KNumber_ = HEX_NUMBER_PREFIX_STR + match.captured();
+            index += match.captured().size();
+            return KCalcToken::TokenCode::KNUMBER;
+        }
+    }
+
     if (constantSymbolToValue_(s)) {
         index++;
         return KCalcToken::TokenCode::KNUMBER;
@@ -559,6 +572,16 @@ void KCalcParser::setTrigonometricMode(int mode)
 int KCalcParser::getTrigonometricMode()
 {
     return trigonometric_Mode_;
+}
+
+void KCalcParser::setNumeralMode(bool numeralMode)
+{
+    m_numeralMode = numeralMode;
+}
+
+bool KCalcParser::getNumeralMode() const
+{
+    return m_numeralMode;
 }
 
 //------------------------------------------------------------------------------

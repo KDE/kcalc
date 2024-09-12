@@ -24,6 +24,9 @@ private Q_SLOTS:
     void testParserCore_data();
     void testParserCore();
 
+    void testParserCoreNumeralSystem_data();
+    void testParserCoreNumeralSystem();
+
     void testParserError_data();
     void testParserError();
 
@@ -247,6 +250,41 @@ void KCalcParserCoreTest::testParserCore()
     coreResult.replace(KNumber::decimalSeparator().at(0), QLatin1Char('.'));
     coreResult.replace(QLatin1Char(','), QLatin1Char('.'));
     QCOMPARE(coreResult, expectedResult);
+}
+
+void KCalcParserCoreTest::testParserCoreNumeralSystem_data()
+{
+    QTest::addColumn<QString>("input");
+    QTest::addColumn<int>("base");
+    QTest::addColumn<QString>("expectedResult");
+
+    QTest::newRow("Parse on Numeral mode test 1") << QS("ffff") << 16 << QS("65535");
+    QTest::newRow("Parse on Numeral mode test 2") << QS("af+FF") << 16 << QS("430");
+    QTest::newRow("Parse on Numeral mode test 3") << QS("ab+dDd") << 16 << QS("3720");
+}
+
+void KCalcParserCoreTest::testParserCoreNumeralSystem()
+{
+    QFETCH(QString, input);
+    QFETCH(int, base);
+    QFETCH(QString, expectedResult);
+
+    parser.setNumeralMode(true);
+    KCalcParser::ParsingResult parsing_result;
+    int calculation_result, errorIndex;
+    parsing_result = parser.stringToTokenQueue(input, base, token_Queue_, errorIndex);
+    QCOMPARE_NE(parsing_result, KCalcParser::ParsingResult::INVALID_TOKEN); // successful parsing
+
+    calculation_result = core.calculate(token_Queue_, errorIndex);
+
+    QCOMPARE(calculation_result, 0); // successful calculation
+
+    QString coreResult = core.getResult().toQString(12, -1);
+    coreResult.replace(KNumber::decimalSeparator().at(0), QLatin1Char('.'));
+    coreResult.replace(QLatin1Char(','), QLatin1Char('.'));
+    QCOMPARE(coreResult, expectedResult);
+
+    parser.setNumeralMode(false);
 }
 
 void KCalcParserCoreTest::testParserError_data()
