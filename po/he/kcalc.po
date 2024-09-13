@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-31 00:43+0000\n"
+"POT-Creation-Date: 2024-09-13 00:42+0000\n"
 "PO-Revision-Date: 2024-07-17 09:16+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -875,17 +875,17 @@ msgid "Define Constants"
 msgstr "הגדרת קבועים"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2886 kcalc.ui:20
+#: kcalc.cpp:2894 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "KCalc"
 
-#: kcalc.cpp:2888
+#: kcalc.cpp:2896
 #, kde-format
 msgid "KDE Calculator"
 msgstr "המחשבון של KDE"
 
-#: kcalc.cpp:2890
+#: kcalc.cpp:2898
 #, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
@@ -898,62 +898,62 @@ msgstr ""
 "כל הזכויות שמורות © 2003‏-2005, קלאוס ניידרקרוגר\n"
 "כל הזכויות שמורות © 1996‏-2000, ברנד יוהנס וובן"
 
-#: kcalc.cpp:2900
+#: kcalc.cpp:2908
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr "קלאוס ניידקרוגר"
 
-#: kcalc.cpp:2905
+#: kcalc.cpp:2913
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr "ברנד יוהנס וובן"
 
-#: kcalc.cpp:2906
+#: kcalc.cpp:2914
 #, kde-format
 msgid "Evan Teran"
 msgstr "איוון טרן"
 
-#: kcalc.cpp:2906
+#: kcalc.cpp:2914
 #, kde-format
 msgid "Maintainer"
 msgstr "מתחזק"
 
-#: kcalc.cpp:2907
+#: kcalc.cpp:2915
 #, kde-format
 msgid "Espen Sand"
 msgstr "אספן זנד"
 
-#: kcalc.cpp:2908
+#: kcalc.cpp:2916
 #, kde-format
 msgid "Chris Howells"
 msgstr "כריס האוולס"
 
-#: kcalc.cpp:2909
+#: kcalc.cpp:2917
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr "אהרון ג׳. סייגו"
 
-#: kcalc.cpp:2910
+#: kcalc.cpp:2918
 #, kde-format
 msgid "Charles Samuels"
 msgstr "צ׳ארלס סמואלס"
 
-#: kcalc.cpp:2912
+#: kcalc.cpp:2920
 #, kde-format
 msgid "René Mérou"
 msgstr "רנה מרו"
 
-#: kcalc.cpp:2919
+#: kcalc.cpp:2927
 #, kde-format
 msgid "Michel Marti"
 msgstr "מישל מרטי"
 
-#: kcalc.cpp:2920
+#: kcalc.cpp:2928
 #, kde-format
 msgid "David Johnson"
 msgstr "דיויד ג׳ונסון"
 
-#: kcalc.cpp:2921
+#: kcalc.cpp:2929
 #, kde-format
 msgid "Niklas Freund"
 msgstr "ניקלס פרוינד"
