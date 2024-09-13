@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-20 00:42+0000\n"
+"POT-Creation-Date: 2024-09-13 02:35+0000\n"
 "PO-Revision-Date: 2023-10-25 10:07+0200\n"
 "Last-Translator: Enol P. <enolp@softastur.org>\n"
 "Language-Team: \n"
@@ -853,23 +853,23 @@ msgstr ""
 msgid "Define Constants"
 msgstr ""
 
-#: kcalc.cpp:2320
+#: kcalc.cpp:2328
 #, kde-format
 msgid "Input error"
 msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2866 kcalc.ui:20
+#: kcalc.cpp:2874 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr ""
 
-#: kcalc.cpp:2868
+#: kcalc.cpp:2876
 #, kde-format
 msgid "KDE Calculator"
 msgstr ""
 
-#: kcalc.cpp:2870
+#: kcalc.cpp:2878
 #, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
@@ -878,62 +878,62 @@ msgid ""
 "Copyright © 1996-2000, Bernd Johannes Wuebben"
 msgstr ""
 
-#: kcalc.cpp:2880
+#: kcalc.cpp:2888
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr ""
 
-#: kcalc.cpp:2885
+#: kcalc.cpp:2893
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr ""
 
-#: kcalc.cpp:2886
+#: kcalc.cpp:2894
 #, kde-format
 msgid "Evan Teran"
 msgstr ""
 
-#: kcalc.cpp:2886
+#: kcalc.cpp:2894
 #, kde-format
 msgid "Maintainer"
 msgstr ""
 
-#: kcalc.cpp:2887
+#: kcalc.cpp:2895
 #, kde-format
 msgid "Espen Sand"
 msgstr ""
 
-#: kcalc.cpp:2888
+#: kcalc.cpp:2896
 #, kde-format
 msgid "Chris Howells"
 msgstr ""
 
-#: kcalc.cpp:2889
+#: kcalc.cpp:2897
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr ""
 
-#: kcalc.cpp:2890
+#: kcalc.cpp:2898
 #, kde-format
 msgid "Charles Samuels"
 msgstr ""
 
-#: kcalc.cpp:2892
+#: kcalc.cpp:2900
 #, kde-format
 msgid "René Mérou"
 msgstr ""
 
-#: kcalc.cpp:2899
+#: kcalc.cpp:2907
 #, kde-format
 msgid "Michel Marti"
 msgstr ""
 
-#: kcalc.cpp:2900
+#: kcalc.cpp:2908
 #, kde-format
 msgid "David Johnson"
 msgstr ""
 
-#: kcalc.cpp:2901
+#: kcalc.cpp:2909
 #, kde-format
 msgid "Niklas Freund"
 msgstr ""
