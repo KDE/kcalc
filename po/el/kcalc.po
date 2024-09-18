@@ -807,25 +807,22 @@ msgstr "Καθαρισμός μνήμης"
 #: kcalc.cpp:1505
 #, kde-format
 msgid "Number of data entered = "
-msgstr "Πλήθος εισαχθέντων δεδομένων ="
+msgstr "Πλήθος εισαχθέντων δεδομένων = "
 
 #: kcalc.cpp:1506
-#, fuzzy, kde-format
-#| msgid "Number of data entered"
+#, kde-format
 msgid "Number of data entered ="
-msgstr "Πλήθος δεδομένων που έχουν εισαχθεί"
+msgstr "Πλήθος δεδομένων που έχουν εισαχθεί ="
 
 #: kcalc.cpp:1511
-#, fuzzy, kde-format
-#| msgid "Sum of all data items"
+#, kde-format
 msgid "Sum of all data items ="
-msgstr "Άθροισμα όλων των στοιχείων"
+msgstr "Άθροισμα όλων των στοιχείων ="
 
 #: kcalc.cpp:1530
-#, fuzzy, kde-format
-#| msgid "Mean"
+#, kde-format
 msgid "Mean = "
-msgstr "Μέσος"
+msgstr "Μέσος = "
 
 #: kcalc.cpp:1534
 #, kde-format
@@ -833,16 +830,14 @@ msgid "Sum of squares ="
 msgstr "Άθροισμα τετραγώνων ="
 
 #: kcalc.cpp:1577
-#, fuzzy, kde-format
-#| msgid "Median"
+#, kde-format
 msgid "Median ="
-msgstr "Διάμεσος"
+msgstr "Διάμεσος ="
 
 #: kcalc.cpp:1578
-#, fuzzy, kde-format
-#| msgid "Median"
+#, kde-format
 msgid "Median = "
-msgstr "Διάμεσος"
+msgstr "Διάμεσος = "
 
 #: kcalc.cpp:1612 kcalc.cpp:1613
 #, kde-format
@@ -1731,10 +1726,9 @@ msgstr "pow"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pb6)
 #: kcalc.ui:1156
-#, fuzzy, kde-format
-#| msgid "Sin"
+#, kde-format
 msgid "Six"
-msgstr "Sin"
+msgstr "Έξι"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb6)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb6)
@@ -1764,10 +1758,9 @@ msgstr "Επί τοις εκατό"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbPercent)
 #: kcalc.ui:1197
-#, fuzzy, kde-format
-#| msgid "Percent"
+#, kde-format
 msgid "Percentage"
-msgstr "Επί τοις εκατό"
+msgstr "Ποσοστό"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPercent)
 #: kcalc.ui:1200
@@ -2244,11 +2237,10 @@ msgid "OCT"
 msgstr "OCT"
 
 #: kcalc_statusbar.cpp:18
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgctxt "Hexadecimal indicator in status bar"
 msgid "HEX"
-msgstr "EXP"
+msgstr "HEX"
 
 #: kcalc_statusbar.cpp:19
 #, kde-format
@@ -2257,11 +2249,10 @@ msgid "DEG"
 msgstr "DEG"
 
 #: kcalc_statusbar.cpp:19
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgctxt "Radian indicator in status bar"
 msgid "RAD"
-msgstr "AND"
+msgstr "RAD"
 
 #: kcalc_statusbar.cpp:20
 #, kde-format
@@ -2291,10 +2282,9 @@ msgid "DEC"
 msgstr "DEC"
 
 #: kcalc_statusbar.cpp:77
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgid "HEX"
-msgstr "EXP"
+msgstr "HEX"
 
 #: kcalc_statusbar.cpp:89
 #, kde-format
@@ -2302,10 +2292,9 @@ msgid "DEG"
 msgstr "DEG"
 
 #: kcalc_statusbar.cpp:92
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgid "RAD"
-msgstr "AND"
+msgstr "RAD"
 
 #: kcalc_statusbar.cpp:95
 #, kde-format
