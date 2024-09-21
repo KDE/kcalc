@@ -141,3 +141,5 @@ void KCalcNumeralSystemView::updateLabels()
         label->setVisible(isValidNumber);
     }
 }
+
+#include "moc_kcalc_numeralsystem_view.cpp"
