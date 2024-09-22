@@ -116,17 +116,7 @@ ki18n_wrap_ui(kcalc
 
 kconfig_add_kcfg_files(kcalc kcalc_settings.kcfgc )
 
-# Sets the icon on Windows and OSX
-file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*.png")
-ecm_add_app_icon(kcalc ICONS ${ICONS_SRCS})
-
-# Conditionally install icons for Linux as they may not be provided by the user theme
-option(INSTALL_ICONS "Install icons" OFF)
-if (INSTALL_ICONS)
-    include(ECMInstallIcons)
-    ecm_install_icons( ICONS ${ICONS_SRCS} DESTINATION ${KDE_INSTALL_ICONDIR} )
-endif()
-
+add_subdirectory(icons)
 
 target_link_libraries(kcalc
     Qt6::Core
