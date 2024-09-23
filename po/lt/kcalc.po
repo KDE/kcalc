@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-13 00:42+0000\n"
+"POT-Creation-Date: 2024-09-23 00:41+0000\n"
 "PO-Revision-Date: 2015-12-30 18:09+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: lt <kde-i18n-lt@kde.org>\n"
@@ -114,7 +114,7 @@ msgid "&Constants:"
 msgstr "&Konstantos"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
-#: constants.ui:13 kcalc.cpp:1733
+#: constants.ui:13 kcalc.cpp:1731
 #, kde-format
 msgid "Constants"
 msgstr "Konstantos"
@@ -170,7 +170,7 @@ msgid "The font to use in the history"
 msgstr "Vaizduoklyje naudojamas šriftas"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
-#: general.ui:14 kcalc.cpp:1693
+#: general.ui:14 kcalc.cpp:1691
 #, kde-format
 msgid "General"
 msgstr "Bendri"
@@ -311,115 +311,115 @@ msgstr ""
 msgid "Two's complement"
 msgstr ""
 
-#: kcalc.cpp:82
+#: kcalc.cpp:80
 #, fuzzy, kde-format
 #| msgid "He&x"
 msgctxt "Hexadecimal numeral system"
 msgid "Hex"
 msgstr "Š&eš"
 
-#: kcalc.cpp:83
+#: kcalc.cpp:81
 #, fuzzy, kde-format
 #| msgid "&Dec"
 msgctxt "Decimal numeral system"
 msgid "Dec"
 msgstr "&Deš"
 
-#: kcalc.cpp:84
+#: kcalc.cpp:82
 #, fuzzy, kde-format
 #| msgid "&Oct"
 msgctxt "Octal numeral system"
 msgid "Oct"
 msgstr "&Ašt"
 
-#: kcalc.cpp:85
+#: kcalc.cpp:83
 #, fuzzy, kde-format
 #| msgid "&Bin"
 msgctxt "Binary numeral system"
 msgid "Bin"
 msgstr "&Dvej"
 
-#: kcalc.cpp:180
+#: kcalc.cpp:178
 #, kde-format
 msgid "Simple Mode"
 msgstr "Paprastas režimas"
 
-#: kcalc.cpp:185
+#: kcalc.cpp:183
 #, kde-format
 msgid "Science Mode"
 msgstr "Mokslinis režimas"
 
-#: kcalc.cpp:190
+#: kcalc.cpp:188
 #, kde-format
 msgid "Statistic Mode"
 msgstr "Statistikos režimas"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
-#: kcalc.cpp:195 kcalc.kcfg:159
+#: kcalc.cpp:193 kcalc.kcfg:159
 #, kde-format
 msgid "Numeral System Mode"
 msgstr "Skaičių sistemų režimas"
 
-#: kcalc.cpp:200
+#: kcalc.cpp:198
 #, kde-format
 msgid "Show &History"
 msgstr ""
 
-#: kcalc.cpp:206
+#: kcalc.cpp:204
 #, kde-format
 msgid "Constants &Buttons"
 msgstr "&Konstantų mygtukai"
 
-#: kcalc.cpp:211
+#: kcalc.cpp:209
 #, kde-format
 msgid "Show B&it Edit"
 msgstr "Rodyti &bitų redaktorių"
 
-#: kcalc.cpp:226
+#: kcalc.cpp:224
 #, kde-format
 msgid "&Constants"
 msgstr "&Konstantos"
 
-#: kcalc.cpp:324
+#: kcalc.cpp:322
 #, kde-format
 msgctxt "Add display to memory"
 msgid "M+"
 msgstr "M+"
 
-#: kcalc.cpp:324
+#: kcalc.cpp:322
 #, kde-format
 msgid "Add display to memory"
 msgstr "Pridėti rodomą skaičių prie atminties"
 
-#: kcalc.cpp:325
+#: kcalc.cpp:323
 #, kde-format
 msgctxt "Subtract from memory"
 msgid "M−"
 msgstr "M−"
 
-#: kcalc.cpp:325
+#: kcalc.cpp:323
 #, kde-format
 msgid "Subtract from memory"
 msgstr "Atimti rodomą skaičių iš atminties"
 
-#: kcalc.cpp:348
+#: kcalc.cpp:346
 #, kde-format
 msgctxt "Square root"
 msgid "&radic;x"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSqrt)
-#: kcalc.cpp:348 kcalc.ui:1097
+#: kcalc.cpp:346 kcalc.ui:1097
 #, kde-format
 msgid "Square root"
 msgstr "Kvadratinės šaknies"
 
-#: kcalc.cpp:349
+#: kcalc.cpp:347
 #, kde-format
 msgid "Cube root"
 msgstr "Kubinė šaknis"
 
-#: kcalc.cpp:447
+#: kcalc.cpp:445
 #, fuzzy, kde-format
 #| msgctxt "Arc sine"
 #| msgid "Asin"
@@ -429,23 +429,23 @@ msgstr "Asin"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSin)
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbSin)
-#: kcalc.cpp:447 kcalc.ui:565 kcalc.ui:568
+#: kcalc.cpp:445 kcalc.ui:565 kcalc.ui:568
 #, kde-format
 msgid "Sine"
 msgstr "Sinusas"
 
-#: kcalc.cpp:448
+#: kcalc.cpp:446
 #, kde-format
 msgctxt "Arc sine"
 msgid "asin"
 msgstr ""
 
-#: kcalc.cpp:448
+#: kcalc.cpp:446
 #, kde-format
 msgid "Arc sine"
 msgstr "Arksinusas"
 
-#: kcalc.cpp:449
+#: kcalc.cpp:447
 #, fuzzy, kde-format
 #| msgctxt "Inverse hyperbolic sine"
 #| msgid "Asinh"
@@ -453,12 +453,12 @@ msgctxt "Hyperbolic sine"
 msgid "sinh"
 msgstr "Asinh"
 
-#: kcalc.cpp:449
+#: kcalc.cpp:447
 #, kde-format
 msgid "Hyperbolic sine"
 msgstr "Hiperbolinis sinusas"
 
-#: kcalc.cpp:450
+#: kcalc.cpp:448
 #, fuzzy, kde-format
 #| msgctxt "Inverse hyperbolic sine"
 #| msgid "Asinh"
@@ -466,12 +466,12 @@ msgctxt "Inverse hyperbolic sine"
 msgid "asinh"
 msgstr "Asinh"
 
-#: kcalc.cpp:450
+#: kcalc.cpp:448
 #, kde-format
 msgid "Inverse hyperbolic sine"
 msgstr "Atvirkštinis hiperbolinis sinusas"
 
-#: kcalc.cpp:455
+#: kcalc.cpp:453
 #, fuzzy, kde-format
 #| msgctxt "Arc cosine"
 #| msgid "Acos"
@@ -481,23 +481,23 @@ msgstr "Acos"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbCos)
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbCos)
-#: kcalc.cpp:455 kcalc.ui:957 kcalc.ui:960
+#: kcalc.cpp:453 kcalc.ui:957 kcalc.ui:960
 #, kde-format
 msgid "Cosine"
 msgstr "Kosinusas"
 
-#: kcalc.cpp:456
+#: kcalc.cpp:454
 #, kde-format
 msgctxt "Arc cosine"
 msgid "acos"
 msgstr ""
 
-#: kcalc.cpp:456
+#: kcalc.cpp:454
 #, kde-format
 msgid "Arc cosine"
 msgstr "Arkkosinusas"
 
-#: kcalc.cpp:457
+#: kcalc.cpp:455
 #, fuzzy, kde-format
 #| msgctxt "Inverse hyperbolic cosine"
 #| msgid "Acosh"
@@ -505,12 +505,12 @@ msgctxt "Hyperbolic cosine"
 msgid "cosh"
 msgstr "Acosh"
 
-#: kcalc.cpp:457
+#: kcalc.cpp:455
 #, kde-format
 msgid "Hyperbolic cosine"
 msgstr "Hiperbolinis kosinusas"
 
-#: kcalc.cpp:458
+#: kcalc.cpp:456
 #, fuzzy, kde-format
 #| msgctxt "Inverse hyperbolic cosine"
 #| msgid "Acosh"
@@ -518,12 +518,12 @@ msgctxt "Inverse hyperbolic cosine"
 msgid "acosh"
 msgstr "Acosh"
 
-#: kcalc.cpp:458
+#: kcalc.cpp:456
 #, kde-format
 msgid "Inverse hyperbolic cosine"
 msgstr "Atvirkštinis hiperbolinis kosinusas"
 
-#: kcalc.cpp:463
+#: kcalc.cpp:461
 #, fuzzy, kde-format
 #| msgctxt "Arc tangent"
 #| msgid "Atan"
@@ -532,23 +532,23 @@ msgid "tan"
 msgstr "Atan"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbTan)
-#: kcalc.cpp:463 kcalc.ui:689
+#: kcalc.cpp:461 kcalc.ui:689
 #, kde-format
 msgid "Tangent"
 msgstr "Tangentas"
 
-#: kcalc.cpp:464
+#: kcalc.cpp:462
 #, kde-format
 msgctxt "Arc tangent"
 msgid "atan"
 msgstr ""
 
-#: kcalc.cpp:464
+#: kcalc.cpp:462
 #, kde-format
 msgid "Arc tangent"
 msgstr "Arktangentas"
 
-#: kcalc.cpp:465
+#: kcalc.cpp:463
 #, fuzzy, kde-format
 #| msgctxt "Inverse hyperbolic tangent"
 #| msgid "Atanh"
@@ -556,12 +556,12 @@ msgctxt "Hyperbolic tangent"
 msgid "tanh"
 msgstr "Atanh"
 
-#: kcalc.cpp:465
+#: kcalc.cpp:463
 #, kde-format
 msgid "Hyperbolic tangent"
 msgstr "Hiperbolinis tangentas"
 
-#: kcalc.cpp:466
+#: kcalc.cpp:464
 #, fuzzy, kde-format
 #| msgctxt "Inverse hyperbolic tangent"
 #| msgid "Atanh"
@@ -569,12 +569,12 @@ msgctxt "Inverse hyperbolic tangent"
 msgid "atanh"
 msgstr "Atanh"
 
-#: kcalc.cpp:466
+#: kcalc.cpp:464
 #, kde-format
 msgid "Inverse hyperbolic tangent"
 msgstr "Atvirkštinis hiperbolinis tangentas"
 
-#: kcalc.cpp:471
+#: kcalc.cpp:469
 #, fuzzy, kde-format
 #| msgctxt "Logarithm to base 10"
 #| msgid "Log"
@@ -583,114 +583,114 @@ msgid "log"
 msgstr "Log"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLog)
-#: kcalc.cpp:471 kcalc.ui:670
+#: kcalc.cpp:469 kcalc.ui:670
 #, kde-format
 msgid "Logarithm to base 10"
 msgstr "Logaritmas su pagrindu 10"
 
-#: kcalc.cpp:472
+#: kcalc.cpp:470
 #, kde-format
 msgctxt "10 to the power of x"
 msgid "10<sup>x</sup>"
 msgstr "10<sup>x</sup>"
 
-#: kcalc.cpp:472
+#: kcalc.cpp:470
 #, kde-format
 msgid "10 to the power of x"
 msgstr "10 pakelta x laipsniu"
 
-#: kcalc.cpp:476
+#: kcalc.cpp:474
 #, kde-format
 msgctxt "Natural log"
 msgid "ln"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLn)
-#: kcalc.cpp:476 kcalc.ui:998
+#: kcalc.cpp:474 kcalc.ui:998
 #, kde-format
 msgid "Natural log"
 msgstr "Natūrinis logaritmas"
 
-#: kcalc.cpp:477
+#: kcalc.cpp:475
 #, kde-format
 msgctxt "Exponential function"
 msgid "e<sup>x</sup>"
 msgstr "e<sup>x</sup>"
 
-#: kcalc.cpp:477
+#: kcalc.cpp:475
 #, kde-format
 msgid "Exponential function"
 msgstr "Eksponentinė funkcija"
 
-#: kcalc.cpp:496
+#: kcalc.cpp:494
 #, kde-format
 msgctxt "Number of data entered"
 msgid "N"
 msgstr "N"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbNData)
-#: kcalc.cpp:496 kcalc.ui:654
+#: kcalc.cpp:494 kcalc.ui:654
 #, kde-format
 msgid "Number of data entered"
 msgstr "Įvestų duomenų skaičius"
 
-#: kcalc.cpp:497
+#: kcalc.cpp:495
 #, kde-format
 msgid "Sum of all data items"
 msgstr "Visų įvestų duomenų suma"
 
-#: kcalc.cpp:502
+#: kcalc.cpp:500
 #, kde-format
 msgctxt "Mean"
 msgid "Mea"
 msgstr "Vid"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMean)
-#: kcalc.cpp:502 kcalc.ui:842
+#: kcalc.cpp:500 kcalc.ui:842
 #, kde-format
 msgid "Mean"
 msgstr "Vidurkis"
 
-#: kcalc.cpp:503
+#: kcalc.cpp:501
 #, kde-format
 msgid "Sum of all data items squared"
 msgstr "Visų duomenų kvadratų suma"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSd)
-#: kcalc.cpp:508 kcalc.ui:1065
+#: kcalc.cpp:506 kcalc.ui:1065
 #, kde-format
 msgid "Standard deviation"
 msgstr "Standartinis nuokrypis"
 
-#: kcalc.cpp:509
+#: kcalc.cpp:507
 #, kde-format
 msgid "Sample standard deviation"
 msgstr "Pavyzdinis standartinis nuokrypis"
 
-#: kcalc.cpp:517
+#: kcalc.cpp:515
 #, kde-format
 msgctxt "Enter data"
 msgid "Dat"
 msgstr "Dat"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbDat)
-#: kcalc.cpp:517 kcalc.ui:874
+#: kcalc.cpp:515 kcalc.ui:874
 #, kde-format
 msgid "Enter data"
 msgstr "Įvesti duomenis"
 
-#: kcalc.cpp:518
+#: kcalc.cpp:516
 #, kde-format
 msgctxt "Delete last data item"
 msgid "CDat"
 msgstr "CDat"
 
-#: kcalc.cpp:518
+#: kcalc.cpp:516
 #, kde-format
 msgid "Delete last data item"
 msgstr "Pašalinti paskutinį duomenį"
 
-#: kcalc.cpp:579
+#: kcalc.cpp:577
 #, fuzzy, kde-format
 #| msgctxt "Modulo"
 #| msgid "Mod"
@@ -699,222 +699,222 @@ msgid "mod"
 msgstr "Mod"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMod)
-#: kcalc.cpp:579 kcalc.ui:638
+#: kcalc.cpp:577 kcalc.ui:638
 #, kde-format
 msgid "Modulo"
 msgstr "Modulo"
 
-#: kcalc.cpp:580
+#: kcalc.cpp:578
 #, kde-format
 msgctxt "Integer division"
 msgid "IntDiv"
 msgstr "IntDiv"
 
-#: kcalc.cpp:580
+#: kcalc.cpp:578
 #, kde-format
 msgid "Integer division"
 msgstr "Dalyba sveikais skaičiais"
 
-#: kcalc.cpp:586
+#: kcalc.cpp:584
 #, kde-format
 msgctxt "Reciprocal"
 msgid "1/x"
 msgstr "1/x"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbReci)
-#: kcalc.cpp:586 kcalc.ui:979
+#: kcalc.cpp:584 kcalc.ui:979
 #, kde-format
 msgid "Reciprocal"
 msgstr "Atvirkštinis"
 
-#: kcalc.cpp:587
+#: kcalc.cpp:585
 #, kde-format
 msgctxt "n Choose m"
 msgid "nCm"
 msgstr "nCm"
 
-#: kcalc.cpp:587
+#: kcalc.cpp:585
 #, kde-format
 msgid "n Choose m"
 msgstr ""
 
-#: kcalc.cpp:592
+#: kcalc.cpp:590
 #, kde-format
 msgctxt "Factorial"
 msgid "x!"
 msgstr "x!"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbFactorial)
-#: kcalc.cpp:592 kcalc.ui:858
+#: kcalc.cpp:590 kcalc.ui:858
 #, kde-format
 msgid "Factorial"
 msgstr "Faktorialas"
 
-#: kcalc.cpp:593
+#: kcalc.cpp:591
 #, kde-format
 msgid "Gamma"
 msgstr ""
 
-#: kcalc.cpp:599
+#: kcalc.cpp:597
 #, kde-format
 msgctxt "Square"
 msgid "x<sup>2</sup>"
 msgstr "x<sup>2</sup>"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSquare)
-#: kcalc.cpp:599 kcalc.ui:501
+#: kcalc.cpp:597 kcalc.ui:501
 #, kde-format
 msgid "Square"
 msgstr "Kvadratu"
 
-#: kcalc.cpp:600
+#: kcalc.cpp:598
 #, kde-format
 msgid "Third power"
 msgstr "Trečiuoju"
 
-#: kcalc.cpp:607
+#: kcalc.cpp:605
 #, kde-format
 msgctxt "x to the power of y"
 msgid "x<sup>y</sup>"
 msgstr "x<sup>y</sup>"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbPower)
-#: kcalc.cpp:607 kcalc.ui:1113
+#: kcalc.cpp:605 kcalc.ui:1113
 #, kde-format
 msgid "x to the power of y"
 msgstr "x pakelta y laipsniu"
 
-#: kcalc.cpp:608
+#: kcalc.cpp:606
 #, kde-format
 msgctxt "x to the power of 1/y"
 msgid "x<sup>1/y</sup>"
 msgstr "x<sup>1/y</sup>"
 
-#: kcalc.cpp:608
+#: kcalc.cpp:606
 #, kde-format
 msgid "x to the power of 1/y"
 msgstr "x pakelta 1/y laipsniu"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbEE)
-#: kcalc.cpp:618 kcalc.ui:619
+#: kcalc.cpp:616 kcalc.ui:619
 #, kde-format
 msgid "Exponent"
 msgstr "Eksponentė"
 
-#: kcalc.cpp:933
+#: kcalc.cpp:931
 #, fuzzy, kde-format
 #| msgid "Shift"
 msgctxt "Second function mode"
 msgid "Shift"
 msgstr "Lyg2"
 
-#: kcalc.cpp:1234 kcalc.cpp:1235
+#: kcalc.cpp:1232 kcalc.cpp:1233
 #, fuzzy, kde-format
 #| msgid "Memory clear"
 msgctxt "Memory cleared"
 msgid "M cleared"
 msgstr "Atminties išvalymas"
 
-#: kcalc.cpp:1505
+#: kcalc.cpp:1503
 #, fuzzy, kde-format
 #| msgid "Number of data entered"
 msgid "Number of data entered = "
 msgstr "Įvestų duomenų skaičius"
 
-#: kcalc.cpp:1506
+#: kcalc.cpp:1504
 #, fuzzy, kde-format
 #| msgid "Number of data entered"
 msgid "Number of data entered ="
 msgstr "Įvestų duomenų skaičius"
 
-#: kcalc.cpp:1511
+#: kcalc.cpp:1509
 #, fuzzy, kde-format
 #| msgid "Sum of all data items"
 msgid "Sum of all data items ="
 msgstr "Visų įvestų duomenų suma"
 
-#: kcalc.cpp:1530
+#: kcalc.cpp:1528
 #, fuzzy, kde-format
 #| msgid "Mean"
 msgid "Mean = "
 msgstr "Vidurkis"
 
-#: kcalc.cpp:1534
+#: kcalc.cpp:1532
 #, kde-format
 msgid "Sum of squares ="
 msgstr ""
 
-#: kcalc.cpp:1577
+#: kcalc.cpp:1575
 #, fuzzy, kde-format
 #| msgid "Median"
 msgid "Median ="
 msgstr "Medianas"
 
-#: kcalc.cpp:1578
+#: kcalc.cpp:1576
 #, fuzzy, kde-format
 #| msgid "Mean"
 msgid "Median = "
 msgstr "Vidurkis"
 
-#: kcalc.cpp:1612 kcalc.cpp:1613
+#: kcalc.cpp:1610 kcalc.cpp:1611
 #, kde-format
 msgid "DAT ["
 msgstr ""
 
-#: kcalc.cpp:1612 kcalc.cpp:1613
+#: kcalc.cpp:1610 kcalc.cpp:1611
 #, kde-format
 msgid "] = "
 msgstr ""
 
-#: kcalc.cpp:1620 kcalc.cpp:1622 kcalc.cpp:1623
+#: kcalc.cpp:1618 kcalc.cpp:1620 kcalc.cpp:1621
 #, fuzzy, kde-format
 #| msgid "Last stat item erased"
 msgid "Last stat data erased"
 msgstr "Paskutinis stat punktas ištrintas"
 
-#: kcalc.cpp:1635 kcalc.cpp:1638 kcalc.cpp:1639
+#: kcalc.cpp:1633 kcalc.cpp:1636 kcalc.cpp:1637
 #, kde-format
 msgid "Stat mem cleared"
 msgstr "Stat atmintis išvalyta"
 
-#: kcalc.cpp:1693
+#: kcalc.cpp:1691
 #, kde-format
 msgid "General Settings"
 msgstr "Bendrosios nuostatos"
 
-#: kcalc.cpp:1697
+#: kcalc.cpp:1695
 #, fuzzy, kde-format
 #| msgid "Font"
 msgid "Fonts"
 msgstr "Šriftas"
 
-#: kcalc.cpp:1701
+#: kcalc.cpp:1699
 #, kde-format
 msgid "Colors"
 msgstr "Spalvos"
 
-#: kcalc.cpp:1701
+#: kcalc.cpp:1699
 #, kde-format
 msgid "Button & Display Colors"
 msgstr "Mygtukų ir ekrano spalvos"
 
-#: kcalc.cpp:1733
+#: kcalc.cpp:1731
 #, kde-format
 msgid "Define Constants"
 msgstr "Nustatyti konstantas"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2894 kcalc.ui:20
+#: kcalc.cpp:2892 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "KCalc"
 
-#: kcalc.cpp:2896
+#: kcalc.cpp:2894
 #, kde-format
 msgid "KDE Calculator"
 msgstr "KDE skaičiuotuvas"
 
-#: kcalc.cpp:2898
+#: kcalc.cpp:2896
 #, fuzzy, kde-format
 #| msgid ""
 #| "&copy; 2008-2013, Evan Teran\n"
@@ -932,62 +932,62 @@ msgstr ""
 "&copy; 2003-2005, Klaus Niederkrüger\n"
 "&copy; 1996-2000, Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2908
+#: kcalc.cpp:2906
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr "Klaus Niederkrüger"
 
-#: kcalc.cpp:2913
+#: kcalc.cpp:2911
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2914
+#: kcalc.cpp:2912
 #, kde-format
 msgid "Evan Teran"
 msgstr "Evan Teran"
 
-#: kcalc.cpp:2914
+#: kcalc.cpp:2912
 #, kde-format
 msgid "Maintainer"
 msgstr "Prižiūrėtojas"
 
-#: kcalc.cpp:2915
+#: kcalc.cpp:2913
 #, kde-format
 msgid "Espen Sand"
 msgstr "Espen Sand"
 
-#: kcalc.cpp:2916
+#: kcalc.cpp:2914
 #, kde-format
 msgid "Chris Howells"
 msgstr "Chris Howells"
 
-#: kcalc.cpp:2917
+#: kcalc.cpp:2915
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr "Aaron J. Seigo"
 
-#: kcalc.cpp:2918
+#: kcalc.cpp:2916
 #, kde-format
 msgid "Charles Samuels"
 msgstr "Charles Samuels"
 
-#: kcalc.cpp:2920
+#: kcalc.cpp:2918
 #, kde-format
 msgid "René Mérou"
 msgstr "René Mérou"
 
-#: kcalc.cpp:2927
+#: kcalc.cpp:2925
 #, kde-format
 msgid "Michel Marti"
 msgstr "Michel Marti"
 
-#: kcalc.cpp:2928
+#: kcalc.cpp:2926
 #, kde-format
 msgid "David Johnson"
 msgstr "David Johnson"
 
-#: kcalc.cpp:2929
+#: kcalc.cpp:2927
 #, kde-format
 msgid "Niklas Freund"
 msgstr ""

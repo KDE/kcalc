@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-13 00:42+0000\n"
+"POT-Creation-Date: 2024-09-23 00:41+0000\n"
 "PO-Revision-Date: 2024-04-07 17:11+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -111,7 +111,7 @@ msgid "&Constants:"
 msgstr "&மாறிலிகள்:"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
-#: constants.ui:13 kcalc.cpp:1733
+#: constants.ui:13 kcalc.cpp:1731
 #, kde-format
 msgid "Constants"
 msgstr "மாறிலிகள்"
@@ -165,7 +165,7 @@ msgid "The font to use in the history"
 msgstr "வரலாற்றில் பயன்படுத்த வேண்டிய எழுத்துரு"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
-#: general.ui:14 kcalc.cpp:1693
+#: general.ui:14 kcalc.cpp:1691
 #, kde-format
 msgid "General"
 msgstr "பொதுவானவை"
@@ -306,114 +306,114 @@ msgstr ""
 msgid "Two's complement"
 msgstr "ஒரு தடவை சேர்"
 
-#: kcalc.cpp:82
+#: kcalc.cpp:80
 #, fuzzy, kde-format
 msgctxt "Hexadecimal numeral system"
 msgid "Hex"
 msgstr "&எண்ம"
 
-#: kcalc.cpp:83
+#: kcalc.cpp:81
 #, fuzzy, kde-format
 #| msgid "&Dec"
 msgctxt "Decimal numeral system"
 msgid "Dec"
 msgstr "&தசம"
 
-#: kcalc.cpp:84
+#: kcalc.cpp:82
 #, fuzzy, kde-format
 #| msgid "&Oct"
 msgctxt "Octal numeral system"
 msgid "Oct"
 msgstr "&எண்ம"
 
-#: kcalc.cpp:85
+#: kcalc.cpp:83
 #, fuzzy, kde-format
 #| msgid "&Bin"
 msgctxt "Binary numeral system"
 msgid "Bin"
 msgstr "&இரும"
 
-#: kcalc.cpp:180
+#: kcalc.cpp:178
 #, kde-format
 msgid "Simple Mode"
 msgstr "எளிய பயன்முறை"
 
-#: kcalc.cpp:185
+#: kcalc.cpp:183
 #, kde-format
 msgid "Science Mode"
 msgstr "அறிவியல் பயன்முறை"
 
-#: kcalc.cpp:190
+#: kcalc.cpp:188
 #, kde-format
 msgid "Statistic Mode"
 msgstr "புள்ளியியல் பயன்முறை"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
-#: kcalc.cpp:195 kcalc.kcfg:159
+#: kcalc.cpp:193 kcalc.kcfg:159
 #, kde-format
 msgid "Numeral System Mode"
 msgstr "எண்முறை பயன்முறை"
 
-#: kcalc.cpp:200
+#: kcalc.cpp:198
 #, kde-format
 msgid "Show &History"
 msgstr "&வரலாற்றைக் காட்டு"
 
-#: kcalc.cpp:206
+#: kcalc.cpp:204
 #, kde-format
 msgid "Constants &Buttons"
 msgstr "மாறிலி &பட்டன்கள்"
 
-#: kcalc.cpp:211
+#: kcalc.cpp:209
 #, kde-format
 msgid "Show B&it Edit"
 msgstr ""
 
-#: kcalc.cpp:226
+#: kcalc.cpp:224
 #, kde-format
 msgid "&Constants"
 msgstr "&மாறிலிகள்"
 
-#: kcalc.cpp:324
+#: kcalc.cpp:322
 #, kde-format
 msgctxt "Add display to memory"
 msgid "M+"
 msgstr ""
 
-#: kcalc.cpp:324
+#: kcalc.cpp:322
 #, kde-format
 msgid "Add display to memory"
 msgstr "காட்டப்படுவதை நினைவிலுள்ளதுடன் கூட்டு"
 
-#: kcalc.cpp:325
+#: kcalc.cpp:323
 #, kde-format
 msgctxt "Subtract from memory"
 msgid "M−"
 msgstr ""
 
-#: kcalc.cpp:325
+#: kcalc.cpp:323
 #, kde-format
 msgid "Subtract from memory"
 msgstr "நினைவிலுள்ளதிலிருந்து கழி"
 
-#: kcalc.cpp:348
+#: kcalc.cpp:346
 #, kde-format
 msgctxt "Square root"
 msgid "&radic;x"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSqrt)
-#: kcalc.cpp:348 kcalc.ui:1097
+#: kcalc.cpp:346 kcalc.ui:1097
 #, kde-format
 msgid "Square root"
 msgstr "சதுர மூலம்"
 
-#: kcalc.cpp:349
+#: kcalc.cpp:347
 #, kde-format
 msgid "Cube root"
 msgstr "கன மூலம்"
 
-#: kcalc.cpp:447
+#: kcalc.cpp:445
 #, kde-format
 msgctxt "Sine"
 msgid "sin"
@@ -421,46 +421,46 @@ msgstr "sin"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSin)
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbSin)
-#: kcalc.cpp:447 kcalc.ui:565 kcalc.ui:568
+#: kcalc.cpp:445 kcalc.ui:565 kcalc.ui:568
 #, kde-format
 msgid "Sine"
 msgstr "சைன்"
 
-#: kcalc.cpp:448
+#: kcalc.cpp:446
 #, kde-format
 msgctxt "Arc sine"
 msgid "asin"
 msgstr "asin"
 
-#: kcalc.cpp:448
+#: kcalc.cpp:446
 #, kde-format
 msgid "Arc sine"
 msgstr ""
 
-#: kcalc.cpp:449
+#: kcalc.cpp:447
 #, kde-format
 msgctxt "Hyperbolic sine"
 msgid "sinh"
 msgstr "sinh"
 
-#: kcalc.cpp:449
+#: kcalc.cpp:447
 #, kde-format
 msgid "Hyperbolic sine"
 msgstr "அதிபரவளைய சைன்"
 
-#: kcalc.cpp:450
+#: kcalc.cpp:448
 #, fuzzy, kde-format
 #| msgid "Arc sine"
 msgctxt "Inverse hyperbolic sine"
 msgid "asinh"
 msgstr "Arc சைன்"
 
-#: kcalc.cpp:450
+#: kcalc.cpp:448
 #, kde-format
 msgid "Inverse hyperbolic sine"
 msgstr "நேர்மாறு அதிபரவளைய சைன்"
 
-#: kcalc.cpp:455
+#: kcalc.cpp:453
 #, kde-format
 msgctxt "Cosine"
 msgid "cos"
@@ -468,45 +468,45 @@ msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbCos)
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbCos)
-#: kcalc.cpp:455 kcalc.ui:957 kcalc.ui:960
+#: kcalc.cpp:453 kcalc.ui:957 kcalc.ui:960
 #, kde-format
 msgid "Cosine"
 msgstr "கொசைன்"
 
-#: kcalc.cpp:456
+#: kcalc.cpp:454
 #, kde-format
 msgctxt "Arc cosine"
 msgid "acos"
 msgstr ""
 
-#: kcalc.cpp:456
+#: kcalc.cpp:454
 #, kde-format
 msgid "Arc cosine"
 msgstr "Arc கோசைன்"
 
-#: kcalc.cpp:457
+#: kcalc.cpp:455
 #, kde-format
 msgctxt "Hyperbolic cosine"
 msgid "cosh"
 msgstr ""
 
-#: kcalc.cpp:457
+#: kcalc.cpp:455
 #, kde-format
 msgid "Hyperbolic cosine"
 msgstr "அதிபரவளைய கோசைன்."
 
-#: kcalc.cpp:458
+#: kcalc.cpp:456
 #, kde-format
 msgctxt "Inverse hyperbolic cosine"
 msgid "acosh"
 msgstr ""
 
-#: kcalc.cpp:458
+#: kcalc.cpp:456
 #, kde-format
 msgid "Inverse hyperbolic cosine"
 msgstr "திருப்பும்் அதிபரவளைய கோசைன்."
 
-#: kcalc.cpp:463
+#: kcalc.cpp:461
 #, fuzzy, kde-format
 #| msgid "Tangent"
 msgctxt "Tangent"
@@ -514,108 +514,108 @@ msgid "tan"
 msgstr "டான்ஜன்ட்"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbTan)
-#: kcalc.cpp:463 kcalc.ui:689
+#: kcalc.cpp:461 kcalc.ui:689
 #, kde-format
 msgid "Tangent"
 msgstr "டான்ஜன்ட்"
 
-#: kcalc.cpp:464
+#: kcalc.cpp:462
 #, kde-format
 msgctxt "Arc tangent"
 msgid "atan"
 msgstr ""
 
-#: kcalc.cpp:464
+#: kcalc.cpp:462
 #, kde-format
 msgid "Arc tangent"
 msgstr "Arc டான்ஜன்ட்."
 
-#: kcalc.cpp:465
+#: kcalc.cpp:463
 #, kde-format
 msgctxt "Hyperbolic tangent"
 msgid "tanh"
 msgstr ""
 
-#: kcalc.cpp:465
+#: kcalc.cpp:463
 #, kde-format
 msgid "Hyperbolic tangent"
 msgstr "அதிபரவளைய தொடுகோடு."
 
-#: kcalc.cpp:466
+#: kcalc.cpp:464
 #, kde-format
 msgctxt "Inverse hyperbolic tangent"
 msgid "atanh"
 msgstr ""
 
-#: kcalc.cpp:466
+#: kcalc.cpp:464
 #, kde-format
 msgid "Inverse hyperbolic tangent"
 msgstr "திருப்பும் அதிபரவளைய தொடுகோடு."
 
-#: kcalc.cpp:471
+#: kcalc.cpp:469
 #, kde-format
 msgctxt "Logarithm to base 10"
 msgid "log"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLog)
-#: kcalc.cpp:471 kcalc.ui:670
+#: kcalc.cpp:469 kcalc.ui:670
 #, kde-format
 msgid "Logarithm to base 10"
 msgstr "லாகரிதமிலிருந்து அடித்தளம் 10"
 
-#: kcalc.cpp:472
+#: kcalc.cpp:470
 #, kde-format
 msgctxt "10 to the power of x"
 msgid "10<sup>x</sup>"
 msgstr ""
 
-#: kcalc.cpp:472
+#: kcalc.cpp:470
 #, kde-format
 msgid "10 to the power of x"
 msgstr "10அடுக்கு x"
 
-#: kcalc.cpp:476
+#: kcalc.cpp:474
 #, kde-format
 msgctxt "Natural log"
 msgid "ln"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLn)
-#: kcalc.cpp:476 kcalc.ui:998
+#: kcalc.cpp:474 kcalc.ui:998
 #, kde-format
 msgid "Natural log"
 msgstr "இயல்பான லாகரிதம் "
 
-#: kcalc.cpp:477
+#: kcalc.cpp:475
 #, kde-format
 msgctxt "Exponential function"
 msgid "e<sup>x</sup>"
 msgstr ""
 
-#: kcalc.cpp:477
+#: kcalc.cpp:475
 #, kde-format
 msgid "Exponential function"
 msgstr "அடுக்குப்பணி"
 
-#: kcalc.cpp:496
+#: kcalc.cpp:494
 #, kde-format
 msgctxt "Number of data entered"
 msgid "N"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbNData)
-#: kcalc.cpp:496 kcalc.ui:654
+#: kcalc.cpp:494 kcalc.ui:654
 #, kde-format
 msgid "Number of data entered"
 msgstr "உள்ளிடப்பட்ட தரவுகளின் எண்ணிக்கை "
 
-#: kcalc.cpp:497
+#: kcalc.cpp:495
 #, kde-format
 msgid "Sum of all data items"
 msgstr "அனைத்து தரவு உருப்படிகளின் எண்ணிக்கை"
 
-#: kcalc.cpp:502
+#: kcalc.cpp:500
 #, fuzzy, kde-format
 #| msgid "Mean"
 msgctxt "Mean"
@@ -623,51 +623,51 @@ msgid "Mea"
 msgstr "சராசரி"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMean)
-#: kcalc.cpp:502 kcalc.ui:842
+#: kcalc.cpp:500 kcalc.ui:842
 #, kde-format
 msgid "Mean"
 msgstr "சராசரி"
 
-#: kcalc.cpp:503
+#: kcalc.cpp:501
 #, kde-format
 msgid "Sum of all data items squared"
 msgstr "தற்பெருக்கமாக்கப்பட்ட அனைத்து தரவு உருப்படிகளின் எண்ணிக்கை"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSd)
-#: kcalc.cpp:508 kcalc.ui:1065
+#: kcalc.cpp:506 kcalc.ui:1065
 #, kde-format
 msgid "Standard deviation"
 msgstr "திட்ட விலக்கம்"
 
-#: kcalc.cpp:509
+#: kcalc.cpp:507
 #, fuzzy, kde-format
 msgid "Sample standard deviation"
 msgstr "திட்ட விலக்கம்"
 
-#: kcalc.cpp:517
+#: kcalc.cpp:515
 #, kde-format
 msgctxt "Enter data"
 msgid "Dat"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbDat)
-#: kcalc.cpp:517 kcalc.ui:874
+#: kcalc.cpp:515 kcalc.ui:874
 #, kde-format
 msgid "Enter data"
 msgstr "தரவை உள்ளிடு"
 
-#: kcalc.cpp:518
+#: kcalc.cpp:516
 #, kde-format
 msgctxt "Delete last data item"
 msgid "CDat"
 msgstr ""
 
-#: kcalc.cpp:518
+#: kcalc.cpp:516
 #, kde-format
 msgid "Delete last data item"
 msgstr "கடைசி தரவு உருப்படியையை நீக்கு"
 
-#: kcalc.cpp:579
+#: kcalc.cpp:577
 #, fuzzy, kde-format
 #| msgid "Modulo"
 msgctxt "Modulo"
@@ -675,220 +675,220 @@ msgid "mod"
 msgstr "மீதி "
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMod)
-#: kcalc.cpp:579 kcalc.ui:638
+#: kcalc.cpp:577 kcalc.ui:638
 #, kde-format
 msgid "Modulo"
 msgstr "மீதி "
 
-#: kcalc.cpp:580
+#: kcalc.cpp:578
 #, kde-format
 msgctxt "Integer division"
 msgid "IntDiv"
 msgstr ""
 
-#: kcalc.cpp:580
+#: kcalc.cpp:578
 #, kde-format
 msgid "Integer division"
 msgstr "முழுமையான பிரிவு"
 
-#: kcalc.cpp:586
+#: kcalc.cpp:584
 #, kde-format
 msgctxt "Reciprocal"
 msgid "1/x"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbReci)
-#: kcalc.cpp:586 kcalc.ui:979
+#: kcalc.cpp:584 kcalc.ui:979
 #, kde-format
 msgid "Reciprocal"
 msgstr "தலைகீழி"
 
-#: kcalc.cpp:587
+#: kcalc.cpp:585
 #, kde-format
 msgctxt "n Choose m"
 msgid "nCm"
 msgstr ""
 
-#: kcalc.cpp:587
+#: kcalc.cpp:585
 #, fuzzy, kde-format
 msgid "n Choose m"
 msgstr "பட்டியலில் இருந்து தேர்ந்தெடுக்கவும்"
 
-#: kcalc.cpp:592
+#: kcalc.cpp:590
 #, kde-format
 msgctxt "Factorial"
 msgid "x!"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbFactorial)
-#: kcalc.cpp:592 kcalc.ui:858
+#: kcalc.cpp:590 kcalc.ui:858
 #, kde-format
 msgid "Factorial"
 msgstr "பின்னம்"
 
-#: kcalc.cpp:593
+#: kcalc.cpp:591
 #, kde-format
 msgid "Gamma"
 msgstr ""
 
-#: kcalc.cpp:599
+#: kcalc.cpp:597
 #, kde-format
 msgctxt "Square"
 msgid "x<sup>2</sup>"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSquare)
-#: kcalc.cpp:599 kcalc.ui:501
+#: kcalc.cpp:597 kcalc.ui:501
 #, kde-format
 msgid "Square"
 msgstr "வர்க்கம்"
 
-#: kcalc.cpp:600
+#: kcalc.cpp:598
 #, kde-format
 msgid "Third power"
 msgstr "மும்மடிப் பெருக்கம்"
 
-#: kcalc.cpp:607
+#: kcalc.cpp:605
 #, kde-format
 msgctxt "x to the power of y"
 msgid "x<sup>y</sup>"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbPower)
-#: kcalc.cpp:607 kcalc.ui:1113
+#: kcalc.cpp:605 kcalc.ui:1113
 #, kde-format
 msgid "x to the power of y"
 msgstr "y அடுக்கு x"
 
-#: kcalc.cpp:608
+#: kcalc.cpp:606
 #, kde-format
 msgctxt "x to the power of 1/y"
 msgid "x<sup>1/y</sup>"
 msgstr ""
 
-#: kcalc.cpp:608
+#: kcalc.cpp:606
 #, kde-format
 msgid "x to the power of 1/y"
 msgstr "  xஅடுக்கு1/y"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbEE)
-#: kcalc.cpp:618 kcalc.ui:619
+#: kcalc.cpp:616 kcalc.ui:619
 #, kde-format
 msgid "Exponent"
 msgstr "அடுக்கு"
 
-#: kcalc.cpp:933
+#: kcalc.cpp:931
 #, kde-format
 msgctxt "Second function mode"
 msgid "Shift"
 msgstr ""
 
-#: kcalc.cpp:1234 kcalc.cpp:1235
+#: kcalc.cpp:1232 kcalc.cpp:1233
 #, fuzzy, kde-format
 #| msgid "Memory recall"
 msgctxt "Memory cleared"
 msgid "M cleared"
 msgstr "நினைவகத்தை பெறு"
 
-#: kcalc.cpp:1505
+#: kcalc.cpp:1503
 #, fuzzy, kde-format
 #| msgid "Number of data entered"
 msgid "Number of data entered = "
 msgstr "உள்ளிடப்பட்ட தரவுகளின் எண்ணிக்கை "
 
-#: kcalc.cpp:1506
+#: kcalc.cpp:1504
 #, fuzzy, kde-format
 #| msgid "Number of data entered"
 msgid "Number of data entered ="
 msgstr "உள்ளிடப்பட்ட தரவுகளின் எண்ணிக்கை "
 
-#: kcalc.cpp:1511
+#: kcalc.cpp:1509
 #, fuzzy, kde-format
 #| msgid "Sum of all data items"
 msgid "Sum of all data items ="
 msgstr "அனைத்து தரவு உருப்படிகளின் எண்ணிக்கை"
 
-#: kcalc.cpp:1530
+#: kcalc.cpp:1528
 #, fuzzy, kde-format
 #| msgid "Mean"
 msgid "Mean = "
 msgstr "சராசரி"
 
-#: kcalc.cpp:1534
+#: kcalc.cpp:1532
 #, kde-format
 msgid "Sum of squares ="
 msgstr ""
 
-#: kcalc.cpp:1577
+#: kcalc.cpp:1575
 #, fuzzy, kde-format
 #| msgid "Median"
 msgid "Median ="
 msgstr "இடைநிலை"
 
-#: kcalc.cpp:1578
+#: kcalc.cpp:1576
 #, fuzzy, kde-format
 #| msgid "Mean"
 msgid "Median = "
 msgstr "சராசரி"
 
-#: kcalc.cpp:1612 kcalc.cpp:1613
+#: kcalc.cpp:1610 kcalc.cpp:1611
 #, kde-format
 msgid "DAT ["
 msgstr ""
 
-#: kcalc.cpp:1612 kcalc.cpp:1613
+#: kcalc.cpp:1610 kcalc.cpp:1611
 #, kde-format
 msgid "] = "
 msgstr ""
 
-#: kcalc.cpp:1620 kcalc.cpp:1622 kcalc.cpp:1623
+#: kcalc.cpp:1618 kcalc.cpp:1620 kcalc.cpp:1621
 #, fuzzy, kde-format
 #| msgid "Last stat item erased"
 msgid "Last stat data erased"
 msgstr "கடைசி நிகழ்நிலை பொருள் அழிக்கபட்டது"
 
-#: kcalc.cpp:1635 kcalc.cpp:1638 kcalc.cpp:1639
+#: kcalc.cpp:1633 kcalc.cpp:1636 kcalc.cpp:1637
 #, kde-format
 msgid "Stat mem cleared"
 msgstr "புள்ளிவிவர நினைவகம் துடைக்கபட்டது"
 
-#: kcalc.cpp:1693
+#: kcalc.cpp:1691
 #, kde-format
 msgid "General Settings"
 msgstr "பொதுவான அமைப்புகள்"
 
-#: kcalc.cpp:1697
+#: kcalc.cpp:1695
 #, kde-format
 msgid "Fonts"
 msgstr ""
 
-#: kcalc.cpp:1701
+#: kcalc.cpp:1699
 #, kde-format
 msgid "Colors"
 msgstr "நிறங்கள்"
 
-#: kcalc.cpp:1701
+#: kcalc.cpp:1699
 #, kde-format
 msgid "Button & Display Colors"
 msgstr "பொத்தன்&திரைவண்ணம்"
 
-#: kcalc.cpp:1733
+#: kcalc.cpp:1731
 #, fuzzy, kde-format
 msgid "Define Constants"
 msgstr "மாறிலிகளை வடிவமமை"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2894 kcalc.ui:20
+#: kcalc.cpp:2892 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "கேகணிப்பான்"
 
-#: kcalc.cpp:2896
+#: kcalc.cpp:2894
 #, kde-format
 msgid "KDE Calculator"
 msgstr "KDE கணிப்பான்"
 
-#: kcalc.cpp:2898
+#: kcalc.cpp:2896
 #, fuzzy, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
@@ -899,62 +899,62 @@ msgstr ""
 "(c) 1996-2000,பெர்ன்ட் ஜொஹானஸ் வியுப்பர்\n"
 "்(c) 2000-2003, KDE அணி"
 
-#: kcalc.cpp:2908
+#: kcalc.cpp:2906
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr ""
 
-#: kcalc.cpp:2913
+#: kcalc.cpp:2911
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr ""
 
-#: kcalc.cpp:2914
+#: kcalc.cpp:2912
 #, kde-format
 msgid "Evan Teran"
 msgstr ""
 
-#: kcalc.cpp:2914
+#: kcalc.cpp:2912
 #, kde-format
 msgid "Maintainer"
 msgstr ""
 
-#: kcalc.cpp:2915
+#: kcalc.cpp:2913
 #, kde-format
 msgid "Espen Sand"
 msgstr ""
 
-#: kcalc.cpp:2916
+#: kcalc.cpp:2914
 #, kde-format
 msgid "Chris Howells"
 msgstr ""
 
-#: kcalc.cpp:2917
+#: kcalc.cpp:2915
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr ""
 
-#: kcalc.cpp:2918
+#: kcalc.cpp:2916
 #, kde-format
 msgid "Charles Samuels"
 msgstr ""
 
-#: kcalc.cpp:2920
+#: kcalc.cpp:2918
 #, kde-format
 msgid "René Mérou"
 msgstr ""
 
-#: kcalc.cpp:2927
+#: kcalc.cpp:2925
 #, kde-format
 msgid "Michel Marti"
 msgstr ""
 
-#: kcalc.cpp:2928
+#: kcalc.cpp:2926
 #, kde-format
 msgid "David Johnson"
 msgstr ""
 
-#: kcalc.cpp:2929
+#: kcalc.cpp:2927
 #, kde-format
 msgid "Niklas Freund"
 msgstr ""
