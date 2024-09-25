@@ -1416,8 +1416,8 @@ void KCalculator::slotInputChanged()
         return;
     } else if (calculation_failure_) {
         switch (calculation_result_code_) {
-        case CalcEngine::ResultCode::MISIING_RIGHT_UNARY_ARG:
-        case CalcEngine::ResultCode::MISIING_RIGHT_BINARY_ARG:
+        case CalcEngine::ResultCode::MISSING_RIGHT_UNARY_ARG:
+        case CalcEngine::ResultCode::MISSING_RIGHT_BINARY_ARG:
             if (calc_display->text().isEmpty()) {
                 numeralSystemView->clearNumber();
             }
@@ -2445,9 +2445,9 @@ void inline KCalculator::handle_Calculation_Error_()
     input_display->setCursorPosition(input_error_index_);
     input_display->setFocus();
     switch (calculation_result_code_) {
-    case CalcEngine::ResultCode::MISIING_LEFT_UNARY_ARG:
-    case CalcEngine::ResultCode::MISIING_RIGHT_UNARY_ARG:
-    case CalcEngine::ResultCode::MISIING_RIGHT_BINARY_ARG:
+    case CalcEngine::ResultCode::MISSING_LEFT_UNARY_ARG:
+    case CalcEngine::ResultCode::MISSING_RIGHT_UNARY_ARG:
+    case CalcEngine::ResultCode::MISSING_RIGHT_BINARY_ARG:
     case CalcEngine::ResultCode::INCOMPLETE_INPUT:
         updateDisplay(UPDATE_MALFORMED_EXPRESSION);
         break;

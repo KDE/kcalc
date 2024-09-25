@@ -138,7 +138,7 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> tokenBuffe
         case KCalcToken::TokenType::RIGHT_UNARY_FUNCTION_TYPE:
             if (token_index + 1 >= buffer_size) {
                 errorIndex = token_index;
-                return MISIING_RIGHT_UNARY_ARG;
+                return MISSING_RIGHT_UNARY_ARG;
             }
             if (!token_stack_.isEmpty()) {
                 if (token_stack_.last().isKNumber()) {
@@ -152,11 +152,11 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> tokenBuffe
         case KCalcToken::TokenType::LEFT_UNARY_FUNCTION_TYPE:
             if (token_stack_.isEmpty()) {
                 errorIndex = token_index;
-                return MISIING_LEFT_UNARY_ARG;
+                return MISSING_LEFT_UNARY_ARG;
             }
             if (!token_stack_.last().isKNumber()) {
                 errorIndex = token_index;
-                return MISIING_LEFT_UNARY_ARG;
+                return MISSING_LEFT_UNARY_ARG;
             }
 
             if (token_stack_.size() > 1) {
@@ -187,7 +187,7 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> tokenBuffe
         case KCalcToken::TokenType::BINARY_FUNCTION_TYPE:
             if (token_index + 1 >= buffer_size) {
                 errorIndex = token_index;
-                return MISIING_RIGHT_BINARY_ARG;
+                return MISSING_RIGHT_BINARY_ARG;
             }
 
             if (token_stack_.isEmpty()) {
@@ -310,7 +310,7 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> tokenBuffe
             return MATH_ERROR;
         } else {
             token_stack_.clear();
-            return MISIING_RIGHT_BINARY_ARG;
+            return MISSING_RIGHT_BINARY_ARG;
         }
     } else if (!token_stack_.last().isKNumber()) {
         error_ = true;
