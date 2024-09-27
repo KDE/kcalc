@@ -2397,25 +2397,3 @@ msgstr "Константа на Стефан-Болцман"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Число на Авогадро"
-
-#~ msgid "Repeat operation for each result"
-#~ msgstr "Повтаряне на операцията за всеки резултат"
-
-#~ msgid "Enables that the last operation is repeated when \"=\" is pressed"
-#~ msgstr ""
-#~ "Позволява последната операция да бъде повторена, когато \"=\" е натиснат"
-
-#~ msgid "Switch base to hexadecimal."
-#~ msgstr "Превключване към шестнадесетична бройна система."
-
-#~ msgid "Switch base to decimal."
-#~ msgstr "Превключване към десетична бройна система."
-
-#~ msgid "&Dec"
-#~ msgstr "&10"
-
-#~ msgid "Switch base to binary."
-#~ msgstr "Превключване към двоична бройна система."
-
-#~ msgid "Select Display Font"
-#~ msgstr "Избор на шрифт"
