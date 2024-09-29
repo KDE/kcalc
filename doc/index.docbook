@@ -52,8 +52,8 @@ statistical and numeral system calculations.</para></abstract>
 <chapter id="introduction">
 <title>Introduction</title>
 
-<para>&kcalc; offers many more mathematical functions than meet the eye
-on a first glance. Please study the section on keyboard accelerators and
+<para>&kcalc; offers many more mathematical functions than meets the eye
+at a first glance. Please study the section on keyboard accelerators and
 modes in this handbook to learn more about the many functions
 available.</para>
 
@@ -107,7 +107,7 @@ used by many simple calculators.
 <sect1 id="general-usage">
 <title>General Usage</title>
 
-<para>General usage is straight forward and similar to the way most
+<para>General usage is straightforward and similar to the way most
 simple scientific calculators operate, but take note of the following
 special &kcalc; features:</para>
 
@@ -140,7 +140,7 @@ linkend="percent">percent</link> function for further details.</para>
 <para><itemizedlist>
 <listitem>
 <para>Pressing <keycombo action="simul">&Ctrl;<keycap>C</keycap></keycombo>
-will place the displayed number on to the clipboard.</para>
+will place the displayed number onto the clipboard.</para>
 </listitem>
 <listitem>
 <para>Pressing <keycombo action="simul">&Ctrl;<keycap>V</keycap></keycombo>
@@ -360,12 +360,12 @@ functions:</para>
 <title>Numeral System Mode</title>
 <para>This mode contains buttons and functions to calculate in binary, hexadecimal, octal and decimal.</para>
 
-<para>You select the numeral system with the radio buttons on the right. To insert a hexadecimal number for example,
-just do the following: Select <guilabel>Hex</guilabel> from the radio buttons. Then enter a number and note, that you can
+<para>You select the base from the dropdown menu on the left. To insert a hexadecimal number for example,
+just do the following: Select <guilabel>Hex</guilabel> from the dropdown menu. Then enter a number and note that you can
 use the letters <guibutton>A</guibutton> to <guibutton>F</guibutton>
-for numbers larger than 9. If you would like to see this number in binary, just select <guilabel>Bin</guilabel> from the radio buttons.</para>
+for digits larger than 9. In the numeral system view, you can see the number converted to  decimal, octal and binary.</para>
 
- <para>Binary, octal and hexadecimal numbers can be displayed as groups of digits separated by whitespaces. Such grouping can improve readability of numbers. For example, hexadecimal number <emphasis>AF1C42</emphasis> can be displayed as <emphasis>AF 1C 42</emphasis> with separation every second digit. Grouping can be turned off or tweaked. Select <menuchoice><guimenu>Settings</guimenu><guimenuitem>Configure &kcalc;...</guimenuitem></menuchoice> to bring up the configuration dialog and change the setting on <guilabel>General</guilabel> page as appropriate.</para>
+ <para>Binary, octal and hexadecimal numbers can be displayed as groups of digits separated by whitespaces. Such grouping can improve readability of numbers. For example, hexadecimal number <emphasis>AF1C42</emphasis> can be displayed as <emphasis>AF 1C 42</emphasis> with separation every second digit. Grouping can be turned off or tweaked. Select <menuchoice><guimenu>Settings</guimenu><guimenuitem>Configure &kcalc;...</guimenuitem></menuchoice> to bring up the configuration dialog and change the setting on the <guilabel>General</guilabel> page as appropriate.</para>
 
 <para>You may want to select <guimenu>Show Bit Edit</guimenu> from the <guimenu>Settings</guimenu> menu to see selected bits.</para>
 
@@ -798,7 +798,7 @@ or use the <menuchoice><guimenu>Constants</guimenu><guimenuitem>Mathematics</gui
 <qandaentry>
 <question><para>How do I get two fixed digits after the period?</para></question>
 <answer><para>Select <menuchoice><guimenu>Settings</guimenu><guimenuitem>
-Configure &kcalc;...</guimenuitem></menuchoice> on the menubar, this will
+Configure &kcalc;...</guimenuitem></menuchoice> on the menu bar, this will
 bring up the configuration dialog. Check <guilabel>Set decimal
 precision</guilabel> and adjust the spin control so that it shows a
 2.</para></answer> </qandaentry>
