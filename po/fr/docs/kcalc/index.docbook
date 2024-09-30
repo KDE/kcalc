@@ -63,7 +63,7 @@
 >Introduction</title>
 
 <para
->&kcalc; offre bien plus de fonctions mathématiques que l'on ne soupçonne au premier abord. Veuillez vous reporter à la section de ce manuel sur les raccourcis clavier et les modes pour obtenir plus d'informations sur les nombreuses fonctions disponibles.</para>
+>&kcalc; offers many more mathematical functions than meets the eye at a first glance. Please study the section on keyboard accelerators and modes in this handbook to learn more about the many functions available.</para>
 
 <para
 >En plus des nombreuses fonctionnalités offertes par la plupart des calculatrices scientifiques, &kcalc; présente un certain nombre de caractéristiques qui valent sans doute la peine d'être mentionnées :</para>
@@ -130,7 +130,7 @@
 >Utilisation générale</title>
 
 <para
->L'utilisation de base est très simple et semblable au mode de fonctionnement de la plupart des calculatrices scientifiques, mais il convient de remarquer les caractéristiques suivantes propres à &kcalc; :</para>
+>General usage is straightforward and similar to the way most simple scientific calculators operate, but take note of the following special &kcalc; features:</para>
 
 <variablelist>
 <varlistentry>
@@ -175,11 +175,11 @@
 ><itemizedlist>
 <listitem>
 <para
->Le fait d'appuyer sur <keycombo action="simul"
+>Pressing <keycombo action="simul"
 >&Ctrl;<keycap
 >C</keycap
 ></keycombo
-> placera le nombre affiché dans le presse-papiers.</para>
+> will place the displayed number onto the clipboard.</para>
 </listitem>
 <listitem>
 <para
@@ -703,30 +703,28 @@
 >Ce mode comporte les boutons et les fonctions requises pour calculer en base binaire, hexadécimale, octale et décimale.</para>
 
 <para
->Vous sélectionnez la base désirée grâce aux boutons radio sur la droite. Pour insérer un nombre hexadécimal par exemple, procédez comme suit : sélectionnez <guilabel
+>You select the base from the dropdown menu on the left. To insert a hexadecimal number for example, just do the following: Select <guilabel
 >Hex</guilabel
-> dans les boutons radio. Saisissez ensuite un nombre et notez que vous pouvez saisir les lettres de <guibutton
+> from the dropdown menu. Then enter a number and note that you can use the letters <guibutton
 >A</guibutton
-> à <guibutton
+> to <guibutton
 >F</guibutton
-> pour les nombres supérieurs à 9. Si vous souhaitez afficher ce nombre en binaire, sélectionnez simplement <guilabel
->Bin</guilabel
-> dans les boutons radio.</para>
+> for digits larger than 9. In the numeral system view, you can see the number converted to decimal, octal and binary.</para>
 
  <para
->Les notations binaire, octale et hexadécimale peuvent être affichées par groupes de chiffres séparés par des espaces. Ceci peut améliorer leur lisibilité. Par exemple, le nombre hexadécimal <emphasis
+>Binary, octal and hexadecimal numbers can be displayed as groups of digits separated by whitespaces. Such grouping can improve readability of numbers. For example, hexadecimal number <emphasis
 >AF1C42</emphasis
-> peut être affiché <emphasis
+> can be displayed as <emphasis
 >AF 1C 42</emphasis
-> avec des séparations tous les deux chiffres. Ces groupes peuvent être désactivés ou personnalisés. Utilisez <menuchoice
+> with separation every second digit. Grouping can be turned off or tweaked. Select <menuchoice
 ><guimenu
->Configuration</guimenu
+>Settings</guimenu
 ><guimenuitem
->Configurer &kcalc;...</guimenuitem
+>Configure &kcalc;...</guimenuitem
 ></menuchoice
-> pour afficher la fenêtre de configuration et choisir les paramètres que vous souhaitez sur la page <guilabel
->Général</guilabel
->.</para>
+> to bring up the configuration dialog and change the setting on the <guilabel
+>General</guilabel
+> page as appropriate.</para>
 
 <para
 >Vous pourriez avoir besoin de sélectionner <guimenu
@@ -1717,15 +1715,15 @@
 ></question>
 <answer
 ><para
->Sélectionnez dans la barre de menu <menuchoice
+>Select <menuchoice
 ><guimenu
->Configuration</guimenu
+>Settings</guimenu
 ><guimenuitem
-> Configurer &kcalc;...</guimenuitem
+> Configure &kcalc;...</guimenuitem
 ></menuchoice
->, ceci affichera la boîte de dialogue de configuration. Cochez <guilabel
->Définir la précision décimale</guilabel
-> et réglez le compteur de manière à ce qu'il affiche 2.</para
+> on the menu bar, this will bring up the configuration dialog. Check <guilabel
+>Set decimal precision</guilabel
+> and adjust the spin control so that it shows a 2.</para
 ></answer
 > </qandaentry>
 
