@@ -701,15 +701,13 @@
 >In deze modus zijn knoppen en functies beschikbaar voor het rekenen met binaire, hexadecimale, octale en decimale getallen.</para>
 
 <para
->U kunt met de keuzerondjes rechts een getalsysteem selecteren. U kunt bijvoorbeeld op de volgende manier een hexadecimaal getal invoeren:Selecteer het keuzerondje <guilabel
+>U kunt met het afrolmenu links een getalsysteem selecteren. U kunt bijvoorbeeld op de volgende manier een hexadecimaal getal invoeren: Selecteer uit het afrolmenu <guilabel
 >Hex</guilabel
 >. Voer daarna een getal in, u kunt hierbij de letters <guibutton
 >A</guibutton
 > tot en met <guibutton
 >F</guibutton
-> gebruiken als cijfers hoger dan 9. U kunt hierna dit getal in het binaire getalsysteem zien als u nu op het keuzerondje <guilabel
->Bin</guilabel
-> klikt.</para>
+> gebruiken als getallen hoger dan 9. In de numerieke systeemweergave kunt u het getal geconverteerd zien naar decimaal, octaal en binair.</para>
 
  <para
 >Binaire, octale en hexadecimale getallen kunnen weergegeven worden als groepen tekens gescheiden door witruimte. Deze groepering kan de leesbaarheid van getallen verbeteren. Bijvoorbeeld, hexadecimaal getal <emphasis
@@ -1717,11 +1715,11 @@
 ><guimenu
 >Instellingen</guimenu
 ><guimenuitem
-> &kcalc; instellen...</guimenuitem
+> &kcalc; configureren...</guimenuitem
 ></menuchoice
 > in de menubalk, u krijgt dan het dialoogscherm voor de instellingen. Kruis aan <guilabel
 >Nauwkeurigheid instellen</guilabel
-> en draai het spinveld naar 2.</para
+> en draai de draaischakelaar naar 2.</para
 ></answer
 > </qandaentry>
 

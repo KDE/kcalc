@@ -699,15 +699,13 @@
 >Aquest mode conté botons i funcions per a calcular en binari, hexadecimal, octal i decimal.</para>
 
 <para
->Seleccioneu el sistema numeral amb els botons d'opció de la dreta. Per a inserir un nombre hexadecimal per exemple, només cal fer el següent: Seleccioneu <guilabel
+>Seleccioneu la base en el menú desplegable de l'esquerra. Per a inserir un nombre hexadecimal per exemple, només cal fer el següent: Seleccioneu <guilabel
 >Hex</guilabel
-> als botons d'opció. Després introduïu un nombre, tenint en compte que podeu utilitzar les lletres <guibutton
+> al menú desplegable. Després introduïu un nombre, tenint en compte que podeu utilitzar les lletres <guibutton
 >A</guibutton
 > a <guibutton
 >F</guibutton
-> per a nombres més grans que 9. Si voleu veure aquest nombre en binari, seleccioneu <guilabel
->Bin</guilabel
-> als botons d'opció.</para>
+> per als dígits més grans que 9. A la vista del sistema numeral, podeu veure aquest nombre convertit a decimal, octal i binari.</para>
 
  <para
 >Els nombres binaris, octals i hexadecimals es poden mostrar com a grups de dígits separats per espais en blanc. Aquest agrupament pot millorar la llegibilitat dels nombres. Per exemple, el nombre hexadecimal <emphasis
