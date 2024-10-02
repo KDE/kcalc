@@ -727,15 +727,13 @@
 >Este modo contiene botones y funciones para realizar cálculos en los sistemas binario, hexadecimal octal y decimal.</para>
 
 <para
->Puede seleccionar el sistema de numeración con los botones de opciones que hay a la derecha. Por ejemplo, para insertar un número hexadecimal, haga lo siguiente: seleccione <guilabel
+>Puede seleccionar la base con el menú desplegable que hay a la izquierda. Por ejemplo, para insertar un número hexadecimal, haga lo siguiente: seleccione <guilabel
 >Hex</guilabel
-> en los botones de opciones e introduzca a continuación un número, teniendo en cuenta que puede usar las letras desde la <guibutton
+> en el menú desplegable e introduzca a continuación un número, teniendo en cuenta que puede usar las letras de la <guibutton
 >A</guibutton
-> hasta la <guibutton
+> a la <guibutton
 >F</guibutton
-> para las cifras mayores que 9. Si desea ver ese mismo número en binario, seleccione <guilabel
->Bin</guilabel
-> en los botones de opciones.</para>
+> para los dígitos mayores que 9. En el visor de sistemas de numeración puede ver el número convertido a decimal, octal y binario.</para>
 
  <para
 >Los números binarios, octales y hexadecimales se pueden mostrar como grupos de dígitos separados por espacios en blanco. Este agrupamiento puede mejorar la legibilidad de los números. Por ejemplo, el número hexadecimal <emphasis
