@@ -49,3 +49,10 @@ ecm_add_test(knumber_functions_test.cpp
     Qt${QT_MAJOR_VERSION}::Test
     TEST_NAME knumber_functions_test
 )
+
+ecm_add_test(knumber_misc_test.cpp
+    LINK_LIBRARIES knumber
+    Qt${QT_MAJOR_VERSION}::Core
+    Qt${QT_MAJOR_VERSION}::Test
+    TEST_NAME knumber_misc_test
+)

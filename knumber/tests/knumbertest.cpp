@@ -62,84 +62,6 @@ void checkTruth(const QString &string, bool computation, bool desired_result)
     exit(1);
 }
 
-void checkType(const QString &string, KNumber::Type test_arg, KNumber::Type desired)
-{
-    std::cout << "Testing type of: " << qPrintable(string) << " should give " << qPrintable(numtypeToString(desired)) << " and gives "
-              << qPrintable(numtypeToString(test_arg)) << " ...";
-
-    if (test_arg == desired) {
-        std::cout << "OK\n";
-        return;
-    }
-
-    std::cout << "Failed\n";
-    exit(1);
-}
-
-void testingCompare()
-{
-    std::cout << "\n\n";
-    std::cout << "Testing Compare:\n";
-    std::cout << "----------------\n";
-
-    checkTruth(QStringLiteral("KNumber(5) == KNumber(2)"), KNumber(5) == KNumber(2), false);
-    checkTruth(QStringLiteral("KNumber(5) > KNumber(2)"), KNumber(5) > KNumber(2), true);
-    checkTruth(QStringLiteral("KNumber(5) < KNumber(2)"), KNumber(5) < KNumber(2), false);
-    checkTruth(QStringLiteral("KNumber(5) < KNumber(0)"), KNumber(5) < KNumber(0), false);
-    checkTruth(QStringLiteral("KNumber(-5) < KNumber(0)"), KNumber(-5) < KNumber(0), true);
-    checkTruth(QStringLiteral("KNumber(5) >= KNumber(2)"), KNumber(5) >= KNumber(2), true);
-    checkTruth(QStringLiteral("KNumber(5) <= KNumber(2)"), KNumber(5) <= KNumber(2), false);
-    checkTruth(QStringLiteral("KNumber(5) != KNumber(2)"), KNumber(5) != KNumber(2), true);
-
-    checkTruth(QStringLiteral("KNumber(2) == KNumber(2)"), KNumber(2) == KNumber(2), true);
-    checkTruth(QStringLiteral("KNumber(2) > KNumber(2)"), KNumber(2) > KNumber(2), false);
-    checkTruth(QStringLiteral("KNumber(2) < KNumber(2)"), KNumber(2) < KNumber(2), false);
-    checkTruth(QStringLiteral("KNumber(2) >= KNumber(2)"), KNumber(2) >= KNumber(2), true);
-    checkTruth(QStringLiteral("KNumber(2) <= KNumber(2)"), KNumber(2) <= KNumber(2), true);
-    checkTruth(QStringLiteral("KNumber(2) != KNumber(2)"), KNumber(2) != KNumber(2), false);
-
-    checkTruth(QStringLiteral("KNumber(5) == KNumber(\"1/2\")"), KNumber(5) == KNumber(QStringLiteral("1/2")), false);
-    checkTruth(QStringLiteral("KNumber(5) > KNumber(\"1/2\")"), KNumber(5) > KNumber(QStringLiteral("1/2")), true);
-    checkTruth(QStringLiteral("KNumber(5) < KNumber(\"1/2\")"), KNumber(5) < KNumber(QStringLiteral("1/2")), false);
-    checkTruth(QStringLiteral("KNumber(5) >= KNumber(\"1/2\")"), KNumber(5) >= KNumber(QStringLiteral("1/2")), true);
-    checkTruth(QStringLiteral("KNumber(5) <= KNumber(\"1/2\")"), KNumber(5) <= KNumber(QStringLiteral("1/2")), false);
-    checkTruth(QStringLiteral("KNumber(5) != KNumber(\"1/2\")"), KNumber(5) != KNumber(QStringLiteral("1/2")), true);
-
-    checkTruth(QStringLiteral("KNumber(\"1/2\") == KNumber(\"1/2\")"), KNumber(QStringLiteral("1/2")) == KNumber(QStringLiteral("1/2")), true);
-    checkTruth(QStringLiteral("KNumber(\"1/2\") > KNumber(\"1/2\")"), KNumber(QStringLiteral("1/2")) > KNumber(QStringLiteral("1/2")), false);
-    checkTruth(QStringLiteral("KNumber(\"1/2\") < KNumber(\"1/2\")"), KNumber(QStringLiteral("1/2")) < KNumber(QStringLiteral("1/2")), false);
-    checkTruth(QStringLiteral("KNumber(\"1/2\") >= KNumber(\"1/2\")"), KNumber(QStringLiteral("1/2")) >= KNumber(QStringLiteral("1/2")), true);
-    checkTruth(QStringLiteral("KNumber(\"1/2\") <= KNumber(\"1/2\")"), KNumber(QStringLiteral("1/2")) <= KNumber(QStringLiteral("1/2")), true);
-    checkTruth(QStringLiteral("KNumber(\"1/2\") != KNumber(\"1/2\")"), KNumber(QStringLiteral("1/2")) != KNumber(QStringLiteral("1/2")), false);
-
-    checkTruth(QStringLiteral("KNumber(\"3/2\") == KNumber(\"1/2\")"), KNumber(QStringLiteral("3/2")) == KNumber(QStringLiteral("1/2")), false);
-    checkTruth(QStringLiteral("KNumber(\"3/2\") > KNumber(\"1/2\")"), KNumber(QStringLiteral("3/2")) > KNumber(QStringLiteral("1/2")), true);
-    checkTruth(QStringLiteral("KNumber(\"3/2\") < KNumber(\"1/2\")"), KNumber(QStringLiteral("3/2")) < KNumber(QStringLiteral("1/2")), false);
-    checkTruth(QStringLiteral("KNumber(\"3/2\") >= KNumber(\"1/2\")"), KNumber(QStringLiteral("3/2")) >= KNumber(QStringLiteral("1/2")), true);
-    checkTruth(QStringLiteral("KNumber(\"3/2\") <= KNumber(\"1/2\")"), KNumber(QStringLiteral("3/2")) <= KNumber(QStringLiteral("1/2")), false);
-    checkTruth(QStringLiteral("KNumber(\"3/2\") != KNumber(\"1/2\")"), KNumber(QStringLiteral("3/2")) != KNumber(QStringLiteral("1/2")), true);
-
-    checkTruth(QStringLiteral("KNumber(3.2) != KNumber(3)"), KNumber(3.2) != KNumber(3), true);
-    checkTruth(QStringLiteral("KNumber(3.2) > KNumber(3)"), KNumber(3.2) > KNumber(3), true);
-    checkTruth(QStringLiteral("KNumber(3.2) < KNumber(3)"), KNumber(3.2) < KNumber(3), false);
-
-    checkTruth(QStringLiteral("KNumber(3.2) < KNumber(\"3/5\")"), KNumber(3.2) < KNumber(QStringLiteral("3/5")), false);
-
-    checkTruth(QStringLiteral("KNumber(-inf) == KNumber::NegInfinity"), KNumber(QStringLiteral("-inf")) == KNumber::NegInfinity, true);
-    checkTruth(QStringLiteral("KNumber(inf) == KNumber::PosInfinity"), KNumber(QStringLiteral("inf")) == KNumber::PosInfinity, true);
-    checkTruth(QStringLiteral("KNumber(inf) == KNumber(inf)"), KNumber(QStringLiteral("inf")) == KNumber(QStringLiteral("inf")), true);
-    checkTruth(QStringLiteral("KNumber(-inf) == KNumber(-inf)"), KNumber(QStringLiteral("-inf")) == KNumber(QStringLiteral("-inf")), true);
-    checkTruth(QStringLiteral("KNumber(inf) > KNumber(5)"), KNumber(QStringLiteral("inf")) > KNumber(5), true);
-
-    checkTruth(QStringLiteral("KNumber(-inf) < KNumber(5)"), KNumber(QStringLiteral("-inf")) < KNumber(5), true);
-    checkTruth(QStringLiteral("KNumber(nan) != KNumber(inf)"), KNumber(QStringLiteral("nan")) != KNumber(QStringLiteral("inf")), true);
-    checkTruth(QStringLiteral("KNumber(-inf) < KNumber(inf)"), KNumber(QStringLiteral("-inf")) < KNumber(QStringLiteral("inf")), true);
-    checkTruth(QStringLiteral("KNumber(nan) != KNumber(-inf)"), KNumber(QStringLiteral("nan")) != KNumber(QStringLiteral("-inf")), true);
-    checkTruth(QStringLiteral("KNumber(inf) != KNumber(-inf)"), KNumber(QStringLiteral("inf")) != KNumber(QStringLiteral("-inf")), true);
-    checkTruth(QStringLiteral("KNumber(-inf) > KNumber(inf)"), KNumber(QStringLiteral("-inf")) > KNumber(QStringLiteral("inf")), false);
-    checkTruth(QStringLiteral("KNumber(inf) > KNumber(-inf)"), KNumber(QStringLiteral("inf")) > KNumber(QStringLiteral("-inf")), true);
-}
-
 void testingFloatPrecision()
 {
     KNumber::setDefaultFloatPrecision(100);
@@ -187,58 +109,6 @@ void testingOutput()
     checkResult(QStringLiteral("Fractional output: KNumber(\"-21/4\")"), KNumber(QStringLiteral("-21/4")), QStringLiteral("-21/4"), KNumber::TypeFraction);
 }
 
-void testingConstructors()
-{
-    std::cout << "Testing Constructors:\n";
-    std::cout << "---------------------\n";
-
-    checkResult(QStringLiteral("KNumber(5)"), KNumber(5), QStringLiteral("5"), KNumber::TypeInteger);
-    checkType(QStringLiteral("KNumber(5.3)"), KNumber(5.3).type(), KNumber::TypeFloat);
-    checkType(QStringLiteral("KNumber(0.0)"), KNumber(0.0).type(), KNumber::TypeInteger);
-
-    checkResult(QStringLiteral("KNumber(\"5\")"), KNumber(QStringLiteral("5")), QStringLiteral("5"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"5/3\")"), KNumber(QStringLiteral("5/3")), QStringLiteral("5/3"), KNumber::TypeFraction);
-    checkResult(QStringLiteral("KNumber(\"5/1\")"), KNumber(QStringLiteral("5/1")), QStringLiteral("5"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"0/12\")"), KNumber(QStringLiteral("0/12")), QStringLiteral("0"), KNumber::TypeInteger);
-    KNumber::setDefaultFractionalInput(true);
-    std::cout << "Read decimals as fractions:\n";
-    checkResult(QStringLiteral("KNumber(\"5\")"), KNumber(QStringLiteral("5")), QStringLiteral("5"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"1.2\")"), KNumber(QStringLiteral("1.2")), QStringLiteral("6/5"), KNumber::TypeFraction);
-    checkResult(QStringLiteral("KNumber(\"-0.02\")"), KNumber(QStringLiteral("-0.02")), QStringLiteral("-1/50"), KNumber::TypeFraction);
-    checkResult(QStringLiteral("KNumber(\"5e-2\")"), KNumber(QStringLiteral("5e-2")), QStringLiteral("1/20"), KNumber::TypeFraction);
-    checkResult(QStringLiteral("KNumber(\"1.2e3\")"), KNumber(QStringLiteral("1.2e3")), QStringLiteral("1200"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"0.02e+1\")"), KNumber(QStringLiteral("0.02e+1")), QStringLiteral("1/5"), KNumber::TypeFraction);
-
-    KNumber::setDefaultFractionalInput(false);
-    std::cout << "Read decimals as floats:\n";
-    checkResult(QStringLiteral("KNumber(\"5.3\")"), KNumber(QStringLiteral("5.3")), QStringLiteral("5.3"), KNumber::TypeFloat);
-
-    checkResult(QStringLiteral("KNumber(\"nan\")"), KNumber(QStringLiteral("nan")), QStringLiteral("nan"), KNumber::TypeError);
-    checkResult(QStringLiteral("KNumber(\"inf\")"), KNumber(QStringLiteral("inf")), QStringLiteral("inf"), KNumber::TypeError);
-    checkResult(QStringLiteral("KNumber(\"-inf\")"), KNumber(QStringLiteral("-inf")), QStringLiteral("-inf"), KNumber::TypeError);
-
-    // test accepting of non-US number formatted strings
-    KNumber::setDecimalSeparator(QStringLiteral(","));
-    checkResult(QStringLiteral("KNumber(\"5,2\")"), KNumber(QStringLiteral("5,2")), QStringLiteral("5,2"), KNumber::TypeFloat);
-    KNumber::setDecimalSeparator(QStringLiteral("."));
-
-    checkResult(QStringLiteral("KNumber(\"0b1110001111\")"), KNumber(QStringLiteral("0b1110001111")), QStringLiteral("911"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"0b00010101010111\")"), KNumber(QStringLiteral("0b00010101010111")), QStringLiteral("1367"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"0b11\")"), KNumber(QStringLiteral("0b11")), QStringLiteral("3"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"0b00000000000000001\")"), KNumber(QStringLiteral("0b00000000000000001")), QStringLiteral("1"), KNumber::TypeInteger);
-
-    checkResult(QStringLiteral("KNumber(\"077\")"), KNumber(QStringLiteral("077")), QStringLiteral("63"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"0077\")"), KNumber(QStringLiteral("0077")), QStringLiteral("63"), KNumber::TypeInteger);
-
-    checkResult(QStringLiteral("KNumber(\"0xFF\")"), KNumber(QStringLiteral("0xFF")), QStringLiteral("255"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"0xFf\")"), KNumber(QStringLiteral("0xFf")), QStringLiteral("255"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"0x0A\")"), KNumber(QStringLiteral("0x0A")), QStringLiteral("10"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"0x0a\")"), KNumber(QStringLiteral("0x0a")), QStringLiteral("10"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"0x0000a\")"), KNumber(QStringLiteral("0x0000a")), QStringLiteral("10"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"0xabcdef\")"), KNumber(QStringLiteral("0xabcdef")), QStringLiteral("11259375"), KNumber::TypeInteger);
-    checkResult(QStringLiteral("KNumber(\"0xAbCdEf\")"), KNumber(QStringLiteral("0xAbCdEf")), QStringLiteral("11259375"), KNumber::TypeInteger);
-}
-
 void testingRound()
 {
     std::cout << "\n\n";
@@ -284,8 +154,6 @@ void testingRound()
 
 int main()
 {
-    testingConstructors();
-    testingCompare();
     testingFloatPrecision();
     testingOutput();
     testingRound();
