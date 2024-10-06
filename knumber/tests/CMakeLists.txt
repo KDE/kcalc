@@ -42,3 +42,10 @@ ecm_add_test(knumber_integer_operators_test.cpp
     Qt${QT_MAJOR_VERSION}::Test
     TEST_NAME knumber_integer_operators_test
 )
+
+ecm_add_test(knumber_functions_test.cpp
+    LINK_LIBRARIES knumber
+    Qt${QT_MAJOR_VERSION}::Core
+    Qt${QT_MAJOR_VERSION}::Test
+    TEST_NAME knumber_functions_test
+)
