@@ -140,21 +140,6 @@ void testingCompare()
     checkTruth(QStringLiteral("KNumber(inf) > KNumber(-inf)"), KNumber(QStringLiteral("inf")) > KNumber(QStringLiteral("-inf")), true);
 }
 
-void testingSpecial()
-{
-    std::cout << "\n\n";
-    std::cout << "Testing special functions:\n";
-    std::cout << "--------------------------\n";
-
-    checkResult(QStringLiteral("log10(KNumber(5))"), log10(KNumber(5)), QStringLiteral("0.698970004336"), KNumber::TypeFloat);
-    checkResult(QStringLiteral("log10(pow(KNumber(10), KNumber(308)))"), log10(pow(KNumber(10), KNumber(308))), QStringLiteral("308"), KNumber::TypeInteger);
-
-    // TODO: enable this check once MPFR is commonly enabled
-    // checkResult(QStringLiteral("log10(pow(KNumber(10), KNumber(309)))"), log10(pow(KNumber(10), KNumber(309))), QLatin1String("309"), KNumber::TypeInteger);
-
-    checkResult(QStringLiteral("exp(KNumber(4.34))"), exp(KNumber(4.34)), QStringLiteral("76.7075393383"), KNumber::TypeFloat);
-}
-
 void testingFloatPrecision()
 {
     KNumber::setDefaultFloatPrecision(100);
@@ -302,7 +287,6 @@ int main()
     testingConstructors();
     testingCompare();
     testingFloatPrecision();
-    testingSpecial();
     testingOutput();
     testingRound();
     std::cout << "SUCCESS" << std::endl;

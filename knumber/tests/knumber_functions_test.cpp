@@ -28,6 +28,9 @@ private Q_SLOTS:
     void testKNumberPower_data();
     void testKNumberPower();
 
+    void testKNumberLogExp_data();
+    void testKNumberLogExp();
+
     void cleanupTestCase();
 
 private:
@@ -245,6 +248,31 @@ void KNumberFunctionsTest::testKNumberPower_data()
 }
 
 void KNumberFunctionsTest::testKNumberPower()
+{
+    QFETCH(KNumber, result);
+    QFETCH(KNumber::Type, expectedResultType);
+    QFETCH(QString, expectedResultToQString);
+
+    QCOMPARE(result.type(), expectedResultType);
+    QCOMPARE(result.toQString(precision), expectedResultToQString);
+}
+
+void KNumberFunctionsTest::testKNumberLogExp_data()
+{
+    QTest::addColumn<KNumber>("result");
+    QTest::addColumn<QString>("expectedResultToQString");
+    QTest::addColumn<KNumber::Type>("expectedResultType");
+
+    QTest::newRow("log10(KNumber(5))") << log10(KNumber(5)) << QStringLiteral("0.698970004336") << KNumber::TypeFloat;
+    QTest::newRow("log10(pow(KNumber(10), KNumber(308)))") << log10(pow(KNumber(10), KNumber(308))) << QStringLiteral("308") << KNumber::TypeInteger;
+
+    // TODO: enable this check once MPFR is commonly enabled
+    // QTest::newRow("log10(pow(KNumber(10) << KNumber(309)))") << log10(pow(KNumber(10) << KNumber(309))) << QLatin1String("309") << KNumber::TypeInteger;
+
+    QTest::newRow("exp(KNumber(4.34))") << exp(KNumber(4.34)) << QStringLiteral("76.7075393383") << KNumber::TypeFloat;
+}
+
+void KNumberFunctionsTest::testKNumberLogExp()
 {
     QFETCH(KNumber, result);
     QFETCH(KNumber::Type, expectedResultType);
