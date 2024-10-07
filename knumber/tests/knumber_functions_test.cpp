@@ -79,24 +79,26 @@ void KNumberFunctionsTest::testKNumberSqrt()
 
 void KNumberFunctionsTest::testKNumberAbs_data()
 {
-    QTest::addColumn<KNumber>("result");
+    QTest::addColumn<KNumber>("operand");
     QTest::addColumn<QString>("expectedResultToQString");
     QTest::addColumn<KNumber::Type>("expectedResultType");
 
-    QTest::newRow("KNumber(5).abs()") << KNumber(5).abs() << QStringLiteral("5") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(\"2/3\").abs()") << KNumber(QStringLiteral("2/3")).abs() << QStringLiteral("2/3") << KNumber::TypeFraction;
-    QTest::newRow("KNumber(\"2.3\").abs()") << KNumber(QStringLiteral("2.3")).abs() << QStringLiteral("2.3") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(5).abs()") << KNumber(5) << QStringLiteral("5") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(\"2/3\").abs()") << KNumber(QStringLiteral("2/3")) << QStringLiteral("2/3") << KNumber::TypeFraction;
+    QTest::newRow("KNumber(\"2.3\").abs()") << KNumber(QStringLiteral("2.3")) << QStringLiteral("2.3") << KNumber::TypeFloat;
 
-    QTest::newRow("KNumber(-5).abs()") << KNumber(-5).abs() << QStringLiteral("5") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(\"-2/3\").abs()") << KNumber(QStringLiteral("-2/3")).abs() << QStringLiteral("2/3") << KNumber::TypeFraction;
-    QTest::newRow("KNumber(\"-2.3\").abs()") << KNumber(QStringLiteral("-2.3")).abs() << QStringLiteral("2.3") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(-5).abs()") << KNumber(-5) << QStringLiteral("5") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(\"-2/3\").abs()") << KNumber(QStringLiteral("-2/3")) << QStringLiteral("2/3") << KNumber::TypeFraction;
+    QTest::newRow("KNumber(\"-2.3\").abs()") << KNumber(QStringLiteral("-2.3")) << QStringLiteral("2.3") << KNumber::TypeFloat;
 }
 
 void KNumberFunctionsTest::testKNumberAbs()
 {
-    QFETCH(KNumber, result);
+    QFETCH(KNumber, operand);
     QFETCH(KNumber::Type, expectedResultType);
     QFETCH(QString, expectedResultToQString);
+
+    KNumber result = operand.abs();
 
     QCOMPARE(result.type(), expectedResultType);
     QCOMPARE(result.toQString(precision), expectedResultToQString);
