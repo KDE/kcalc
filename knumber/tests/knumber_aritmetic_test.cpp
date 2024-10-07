@@ -81,33 +81,37 @@ void KNumberAritmeticTest::testKNumberAddition()
 
 void KNumberAritmeticTest::testKNumberSubtraction_data()
 {
-    QTest::addColumn<KNumber>("result");
+    QTest::addColumn<KNumber>("op1");
+    QTest::addColumn<KNumber>("op2");
     QTest::addColumn<QString>("expectedResultToQString");
     QTest::addColumn<KNumber::Type>("expectedResultType");
 
-    QTest::newRow("KNumber(5) - KNumber(2)") << KNumber(5) - KNumber(2) << QStringLiteral("3") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(5) - KNumber(\"2/3\")") << KNumber(5) - KNumber(QStringLiteral("2/3")) << QStringLiteral("13/3") << KNumber::TypeFraction;
-    QTest::newRow("KNumber(5) - KNumber(2.3)") << KNumber(5) - KNumber(2.3) << QStringLiteral("2.7") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(5) - KNumber(2)") << KNumber(5) << KNumber(2) << QStringLiteral("3") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(5) - KNumber(\"2/3\")") << KNumber(5) << KNumber(QStringLiteral("2/3")) << QStringLiteral("13/3") << KNumber::TypeFraction;
+    QTest::newRow("KNumber(5) - KNumber(2.3)") << KNumber(5) << KNumber(2.3) << QStringLiteral("2.7") << KNumber::TypeFloat;
 
-    QTest::newRow("KNumber(\"5/3\") - KNumber(2)") << KNumber(QStringLiteral("5/3")) - KNumber(2) << QStringLiteral("-1/3") << KNumber::TypeFraction;
+    QTest::newRow("KNumber(\"5/3\") - KNumber(2)") << KNumber(QStringLiteral("5/3")) << KNumber(2) << QStringLiteral("-1/3") << KNumber::TypeFraction;
     QTest::newRow("KNumber(\"5/3\") - KNumber(\"1/3\")")
-        << KNumber(QStringLiteral("5/3")) - KNumber(QStringLiteral("1/3")) << QStringLiteral("4/3") << KNumber::TypeFraction;
+        << KNumber(QStringLiteral("5/3")) << KNumber(QStringLiteral("1/3")) << QStringLiteral("4/3") << KNumber::TypeFraction;
     QTest::newRow("KNumber(\"5/3\") - KNumber(\"2/3\")")
-        << KNumber(QStringLiteral("5/3")) - KNumber(QStringLiteral("2/3")) << QStringLiteral("1") << KNumber::TypeInteger;
+        << KNumber(QStringLiteral("5/3")) << KNumber(QStringLiteral("2/3")) << QStringLiteral("1") << KNumber::TypeInteger;
     QTest::newRow("KNumber(\"-5/3\") - KNumber(\"4/3\")")
-        << KNumber(QStringLiteral("-5/3")) - KNumber(QStringLiteral("4/3")) << QStringLiteral("-3") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(\"5/4\") - KNumber(2.2)") << KNumber(QStringLiteral("5/4")) - KNumber(2.2) << QStringLiteral("-0.95") << KNumber::TypeFloat;
+        << KNumber(QStringLiteral("-5/3")) << KNumber(QStringLiteral("4/3")) << QStringLiteral("-3") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(\"5/4\") - KNumber(2.2)") << KNumber(QStringLiteral("5/4")) << KNumber(2.2) << QStringLiteral("-0.95") << KNumber::TypeFloat;
 
-    QTest::newRow("KNumber(5.3) - KNumber(2)") << KNumber(5.3) - KNumber(2) << QStringLiteral("3.3") << KNumber::TypeFloat;
-    QTest::newRow("KNumber(5.3) - KNumber(\"3/4\")") << KNumber(5.3) - KNumber(QStringLiteral("3/4")) << QStringLiteral("4.55") << KNumber::TypeFloat;
-    QTest::newRow("KNumber(5.3) - KNumber(2.3)") << KNumber(5.3) - KNumber(2.3) << QStringLiteral("3") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(5.3) - KNumber(2)") << KNumber(5.3) << KNumber(2) << QStringLiteral("3.3") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(5.3) - KNumber(\"3/4\")") << KNumber(5.3) << KNumber(QStringLiteral("3/4")) << QStringLiteral("4.55") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(5.3) - KNumber(2.3)") << KNumber(5.3) << KNumber(2.3) << QStringLiteral("3") << KNumber::TypeInteger;
 }
 
 void KNumberAritmeticTest::testKNumberSubtraction()
 {
-    QFETCH(KNumber, result);
+    QFETCH(KNumber, op1);
+    QFETCH(KNumber, op2);
     QFETCH(KNumber::Type, expectedResultType);
     QFETCH(QString, expectedResultToQString);
+
+    KNumber result = op1 - op2;
 
     QCOMPARE(result.type(), expectedResultType);
     QCOMPARE(result.toQString(precision), expectedResultToQString);
