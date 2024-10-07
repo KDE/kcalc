@@ -25,14 +25,32 @@ private Q_SLOTS:
     void testKNumberAbs_data();
     void testKNumberAbs();
 
-    void testKNumberTrig_data();
-    void testKNumberTrig();
+    void testKNumberSin_data();
+    void testKNumberSin();
+
+    void testKNumberCos_data();
+    void testKNumberCos();
+
+    void testKNumberTan_data();
+    void testKNumberTan();
+
+    void testKNumberAsin_data();
+    void testKNumberAsin();
+
+    void testKNumberAcos_data();
+    void testKNumberAcos();
+
+    void testKNumberAtan_data();
+    void testKNumberAtan();
 
     void testKNumberPower_data();
     void testKNumberPower();
 
-    void testKNumberLogExp_data();
-    void testKNumberLogExp();
+    void testKNumberLog_data();
+    void testKNumberLog();
+
+    void testKNumberExp_data();
+    void testKNumberExp();
 
     void cleanupTestCase();
 
@@ -128,74 +146,170 @@ void KNumberFunctionsTest::testKNumberAbs()
     QCOMPARE(result.toQString(precision), expectedResultToQString);
 }
 
-void KNumberFunctionsTest::testKNumberTrig_data()
+void KNumberFunctionsTest::testKNumberSin_data()
 {
-    QTest::addColumn<KNumber>("result");
+    QTest::addColumn<KNumber>("op");
     QTest::addColumn<QString>("expectedResultToQString");
     QTest::addColumn<KNumber::Type>("expectedResultType");
 
-    QTest::newRow("sin(KNumber(5))") << sin(KNumber(5)) << QStringLiteral("-0.958924274663") << KNumber::TypeFloat;
-    QTest::newRow("cos(KNumber(5))") << cos(KNumber(5)) << QStringLiteral("0.283662185463") << KNumber::TypeFloat;
-    QTest::newRow("tan(KNumber(5))") << tan(KNumber(5)) << QStringLiteral("-3.38051500625") << KNumber::TypeFloat;
-    QTest::newRow("sin(KNumber(-5))") << sin(KNumber(-5)) << QStringLiteral("0.958924274663") << KNumber::TypeFloat;
-    QTest::newRow("cos(KNumber(-5))") << cos(KNumber(-5)) << QStringLiteral("0.283662185463") << KNumber::TypeFloat;
-    QTest::newRow("tan(KNumber(-5))") << tan(KNumber(-5)) << QStringLiteral("3.38051500625") << KNumber::TypeFloat;
-
-    QTest::newRow("sin(KNumber(\"5/2\"))") << sin(KNumber(QStringLiteral("5/2"))) << QStringLiteral("0.598472144104") << KNumber::TypeFloat;
-    QTest::newRow("cos(KNumber(\"5/2\"))") << cos(KNumber(QStringLiteral("5/2"))) << QStringLiteral("-0.801143615547") << KNumber::TypeFloat;
-    QTest::newRow("tan(KNumber(\"5/2\"))") << tan(KNumber(QStringLiteral("5/2"))) << QStringLiteral("-0.747022297239") << KNumber::TypeFloat;
-    QTest::newRow("sin(KNumber(\"-5/2\"))") << sin(KNumber(QStringLiteral("-5/2"))) << QStringLiteral("-0.598472144104") << KNumber::TypeFloat;
-    QTest::newRow("cos(KNumber(\"-5/2\"))") << cos(KNumber(QStringLiteral("-5/2"))) << QStringLiteral("-0.801143615547") << KNumber::TypeFloat;
-    QTest::newRow("tan(KNumber(\"-5/2\"))") << tan(KNumber(QStringLiteral("-5/2"))) << QStringLiteral("0.747022297239") << KNumber::TypeFloat;
-
-    QTest::newRow("sin(KNumber(5.3))") << sin(KNumber(5.3)) << QStringLiteral("-0.832267442224") << KNumber::TypeFloat;
-    QTest::newRow("cos(KNumber(5.3))") << cos(KNumber(5.3)) << QStringLiteral("0.554374336179") << KNumber::TypeFloat;
-    QTest::newRow("tan(KNumber(5.3))") << tan(KNumber(5.3)) << QStringLiteral("-1.50127339581") << KNumber::TypeFloat;
-    QTest::newRow("sin(KNumber(-5.3))") << sin(KNumber(-5.3)) << QStringLiteral("0.832267442224") << KNumber::TypeFloat;
-    QTest::newRow("cos(KNumber(-5.3))") << cos(KNumber(-5.3)) << QStringLiteral("0.554374336179") << KNumber::TypeFloat;
-    QTest::newRow("tan(KNumber(-5.3))") << tan(KNumber(-5.3)) << QStringLiteral("1.50127339581") << KNumber::TypeFloat;
-
-    QTest::newRow("asin(KNumber(5))") << asin(KNumber(5)) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("acos(KNumber(5))") << acos(KNumber(5)) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("atan(KNumber(5))") << atan(KNumber(5)) << QStringLiteral("1.37340076695") << KNumber::TypeFloat;
-    QTest::newRow("asin(KNumber(-5))") << asin(KNumber(-5)) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("acos(KNumber(-5))") << acos(KNumber(-5)) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("atan(KNumber(-5))") << atan(KNumber(-5)) << QStringLiteral("-1.37340076695") << KNumber::TypeFloat;
-
-    QTest::newRow("asin(KNumber(\"5/2\"))") << asin(KNumber(QStringLiteral("5/2"))) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("acos(KNumber(\"5/2\"))") << acos(KNumber(QStringLiteral("5/2"))) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("atan(KNumber(\"5/2\"))") << atan(KNumber(QStringLiteral("5/2"))) << QStringLiteral("1.19028994968") << KNumber::TypeFloat;
-    QTest::newRow("asin(KNumber(\"-5/2\"))") << asin(KNumber(QStringLiteral("-5/2"))) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("acos(KNumber(\"-5/2\"))") << acos(KNumber(QStringLiteral("-5/2"))) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("atan(KNumber(\"-5/2\"))") << atan(KNumber(QStringLiteral("-5/2"))) << QStringLiteral("-1.19028994968") << KNumber::TypeFloat;
-
-    QTest::newRow("asin(KNumber(5.3))") << asin(KNumber(5.3)) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("acos(KNumber(5.3))") << acos(KNumber(5.3)) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("atan(KNumber(5.3))") << atan(KNumber(5.3)) << QStringLiteral("1.38430942513") << KNumber::TypeFloat;
-    QTest::newRow("asin(KNumber(-5.3))") << asin(KNumber(-5.3)) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("acos(KNumber(-5.3))") << acos(KNumber(-5.3)) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("atan(KNumber(-5.3))") << atan(KNumber(-5.3)) << QStringLiteral("-1.38430942513") << KNumber::TypeFloat;
-
-    QTest::newRow("asin(KNumber(\"2/5\"))") << asin(KNumber(QStringLiteral("2/5"))) << QStringLiteral("0.411516846067") << KNumber::TypeFloat;
-    QTest::newRow("acos(KNumber(\"2/5\"))") << acos(KNumber(QStringLiteral("2/5"))) << QStringLiteral("1.15927948073") << KNumber::TypeFloat;
-    QTest::newRow("atan(KNumber(\"2/5\"))") << atan(KNumber(QStringLiteral("2/5"))) << QStringLiteral("0.380506377112") << KNumber::TypeFloat;
-    QTest::newRow("asin(KNumber(\"-2/5\"))") << asin(KNumber(QStringLiteral("-2/5"))) << QStringLiteral("-0.411516846067") << KNumber::TypeFloat;
-    QTest::newRow("acos(KNumber(\"-2/5\"))") << acos(KNumber(QStringLiteral("-2/5"))) << QStringLiteral("1.98231317286") << KNumber::TypeFloat;
-    QTest::newRow("atan(KNumber(\"-2/5\"))") << atan(KNumber(QStringLiteral("-2/5"))) << QStringLiteral("-0.380506377112") << KNumber::TypeFloat;
-
-    QTest::newRow("asin(KNumber(0.3))") << asin(KNumber(0.3)) << QStringLiteral("0.304692654015") << KNumber::TypeFloat;
-    QTest::newRow("acos(KNumber(0.3))") << acos(KNumber(0.3)) << QStringLiteral("1.26610367278") << KNumber::TypeFloat;
-    QTest::newRow("atan(KNumber(0.3))") << atan(KNumber(0.3)) << QStringLiteral("0.291456794478") << KNumber::TypeFloat;
-    QTest::newRow("asin(KNumber(-0.3))") << asin(KNumber(-0.3)) << QStringLiteral("-0.304692654015") << KNumber::TypeFloat;
-    QTest::newRow("acos(KNumber(-0.3))") << acos(KNumber(-0.3)) << QStringLiteral("1.87548898081") << KNumber::TypeFloat;
-    QTest::newRow("atan(KNumber(-0.3))") << atan(KNumber(-0.3)) << QStringLiteral("-0.291456794478") << KNumber::TypeFloat;
+    QTest::newRow("sin(KNumber(5))") << KNumber(5) << QStringLiteral("-0.958924274663") << KNumber::TypeFloat;
+    QTest::newRow("sin(KNumber(-5))") << KNumber(-5) << QStringLiteral("0.958924274663") << KNumber::TypeFloat;
+    QTest::newRow("sin(KNumber(\"5/2\"))") << KNumber(QStringLiteral("5/2")) << QStringLiteral("0.598472144104") << KNumber::TypeFloat;
+    QTest::newRow("sin(KNumber(\"-5/2\"))") << KNumber(QStringLiteral("-5/2")) << QStringLiteral("-0.598472144104") << KNumber::TypeFloat;
+    QTest::newRow("sin(KNumber(5.3))") << KNumber(5.3) << QStringLiteral("-0.832267442224") << KNumber::TypeFloat;
+    QTest::newRow("sin(KNumber(-5.3))") << KNumber(-5.3) << QStringLiteral("0.832267442224") << KNumber::TypeFloat;
 }
 
-void KNumberFunctionsTest::testKNumberTrig()
+void KNumberFunctionsTest::testKNumberSin()
 {
-    QFETCH(KNumber, result);
+    QFETCH(KNumber, op);
     QFETCH(KNumber::Type, expectedResultType);
     QFETCH(QString, expectedResultToQString);
+
+    KNumber result = sin(op);
+
+    QCOMPARE(result.type(), expectedResultType);
+    QCOMPARE(result.toQString(precision), expectedResultToQString);
+}
+
+void KNumberFunctionsTest::testKNumberCos_data()
+{
+    QTest::addColumn<KNumber>("op");
+    QTest::addColumn<QString>("expectedResultToQString");
+    QTest::addColumn<KNumber::Type>("expectedResultType");
+
+    QTest::newRow("cos(KNumber(5))") << KNumber(5) << QStringLiteral("0.283662185463") << KNumber::TypeFloat;
+    QTest::newRow("cos(KNumber(-5))") << KNumber(-5) << QStringLiteral("0.283662185463") << KNumber::TypeFloat;
+    QTest::newRow("cos(KNumber(\"5/2\"))") << KNumber(QStringLiteral("5/2")) << QStringLiteral("-0.801143615547") << KNumber::TypeFloat;
+    QTest::newRow("cos(KNumber(\"-5/2\"))") << KNumber(QStringLiteral("-5/2")) << QStringLiteral("-0.801143615547") << KNumber::TypeFloat;
+    QTest::newRow("cos(KNumber(5.3))") << KNumber(5.3) << QStringLiteral("0.554374336179") << KNumber::TypeFloat;
+    QTest::newRow("cos(KNumber(-5.3))") << KNumber(-5.3) << QStringLiteral("0.554374336179") << KNumber::TypeFloat;
+}
+
+void KNumberFunctionsTest::testKNumberCos()
+{
+    QFETCH(KNumber, op);
+    QFETCH(KNumber::Type, expectedResultType);
+    QFETCH(QString, expectedResultToQString);
+
+    KNumber result = cos(op);
+
+    QCOMPARE(result.type(), expectedResultType);
+    QCOMPARE(result.toQString(precision), expectedResultToQString);
+}
+
+void KNumberFunctionsTest::testKNumberTan_data()
+{
+    QTest::addColumn<KNumber>("op");
+    QTest::addColumn<QString>("expectedResultToQString");
+    QTest::addColumn<KNumber::Type>("expectedResultType");
+
+    QTest::newRow("tan(KNumber(5))") << KNumber(5) << QStringLiteral("-3.38051500625") << KNumber::TypeFloat;
+    QTest::newRow("tan(KNumber(-5))") << KNumber(-5) << QStringLiteral("3.38051500625") << KNumber::TypeFloat;
+    QTest::newRow("tan(KNumber(\"5/2\"))") << KNumber(QStringLiteral("5/2")) << QStringLiteral("-0.747022297239") << KNumber::TypeFloat;
+    QTest::newRow("tan(KNumber(\"-5/2\"))") << KNumber(QStringLiteral("-5/2")) << QStringLiteral("0.747022297239") << KNumber::TypeFloat;
+    QTest::newRow("tan(KNumber(5.3))") << KNumber(5.3) << QStringLiteral("-1.50127339581") << KNumber::TypeFloat;
+    QTest::newRow("tan(KNumber(-5.3))") << KNumber(-5.3) << QStringLiteral("1.50127339581") << KNumber::TypeFloat;
+}
+
+void KNumberFunctionsTest::testKNumberTan()
+{
+    QFETCH(KNumber, op);
+    QFETCH(KNumber::Type, expectedResultType);
+    QFETCH(QString, expectedResultToQString);
+
+    KNumber result = tan(op);
+
+    QCOMPARE(result.type(), expectedResultType);
+    QCOMPARE(result.toQString(precision), expectedResultToQString);
+}
+
+void KNumberFunctionsTest::testKNumberAsin_data()
+{
+    QTest::addColumn<KNumber>("op");
+    QTest::addColumn<QString>("expectedResultToQString");
+    QTest::addColumn<KNumber::Type>("expectedResultType");
+
+    QTest::newRow("asin(KNumber(5))") << KNumber(5) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("asin(KNumber(-5))") << KNumber(-5) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("asin(KNumber(\"5/2\"))") << KNumber(QStringLiteral("5/2")) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("asin(KNumber(\"-5/2\"))") << KNumber(QStringLiteral("-5/2")) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("asin(KNumber(5.3))") << KNumber(5.3) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("asin(KNumber(-5.3))") << KNumber(-5.3) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("asin(KNumber(\"2/5\"))") << KNumber(QStringLiteral("2/5")) << QStringLiteral("0.411516846067") << KNumber::TypeFloat;
+    QTest::newRow("asin(KNumber(\"-2/5\"))") << KNumber(QStringLiteral("-2/5")) << QStringLiteral("-0.411516846067") << KNumber::TypeFloat;
+    QTest::newRow("asin(KNumber(0.3))") << KNumber(0.3) << QStringLiteral("0.304692654015") << KNumber::TypeFloat;
+    QTest::newRow("asin(KNumber(-0.3))") << KNumber(-0.3) << QStringLiteral("-0.304692654015") << KNumber::TypeFloat;
+}
+
+void KNumberFunctionsTest::testKNumberAsin()
+{
+    QFETCH(KNumber, op);
+    QFETCH(KNumber::Type, expectedResultType);
+    QFETCH(QString, expectedResultToQString);
+
+    KNumber result = asin(op);
+
+    QCOMPARE(result.type(), expectedResultType);
+    QCOMPARE(result.toQString(precision), expectedResultToQString);
+}
+
+void KNumberFunctionsTest::testKNumberAcos_data()
+{
+    QTest::addColumn<KNumber>("op");
+    QTest::addColumn<QString>("expectedResultToQString");
+    QTest::addColumn<KNumber::Type>("expectedResultType");
+
+    QTest::newRow("acos(KNumber(5))") << KNumber(5) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("acos(KNumber(-5))") << KNumber(-5) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("acos(KNumber(\"5/2\"))") << KNumber(QStringLiteral("5/2")) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("acos(KNumber(\"-5/2\"))") << KNumber(QStringLiteral("-5/2")) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("acos(KNumber(5.3))") << KNumber(5.3) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("acos(KNumber(-5.3))") << KNumber(-5.3) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("acos(KNumber(\"2/5\"))") << KNumber(QStringLiteral("2/5")) << QStringLiteral("1.15927948073") << KNumber::TypeFloat;
+    QTest::newRow("acos(KNumber(\"-2/5\"))") << KNumber(QStringLiteral("-2/5")) << QStringLiteral("1.98231317286") << KNumber::TypeFloat;
+
+    QTest::newRow("acos(KNumber(0.3))") << KNumber(0.3) << QStringLiteral("1.26610367278") << KNumber::TypeFloat;
+    QTest::newRow("acos(KNumber(-0.3))") << KNumber(-0.3) << QStringLiteral("1.87548898081") << KNumber::TypeFloat;
+}
+
+void KNumberFunctionsTest::testKNumberAcos()
+{
+    QFETCH(KNumber, op);
+    QFETCH(KNumber::Type, expectedResultType);
+    QFETCH(QString, expectedResultToQString);
+
+    KNumber result = acos(op);
+
+    QCOMPARE(result.type(), expectedResultType);
+    QCOMPARE(result.toQString(precision), expectedResultToQString);
+}
+
+void KNumberFunctionsTest::testKNumberAtan_data()
+{
+    QTest::addColumn<KNumber>("op");
+    QTest::addColumn<QString>("expectedResultToQString");
+    QTest::addColumn<KNumber::Type>("expectedResultType");
+
+    QTest::newRow("atan(KNumber(5))") << KNumber(5) << QStringLiteral("1.37340076695") << KNumber::TypeFloat;
+    QTest::newRow("atan(KNumber(-5))") << KNumber(-5) << QStringLiteral("-1.37340076695") << KNumber::TypeFloat;
+    QTest::newRow("atan(KNumber(\"5/2\"))") << KNumber(QStringLiteral("5/2")) << QStringLiteral("1.19028994968") << KNumber::TypeFloat;
+    QTest::newRow("atan(KNumber(\"-5/2\"))") << KNumber(QStringLiteral("-5/2")) << QStringLiteral("-1.19028994968") << KNumber::TypeFloat;
+    QTest::newRow("atan(KNumber(5.3))") << KNumber(5.3) << QStringLiteral("1.38430942513") << KNumber::TypeFloat;
+    QTest::newRow("atan(KNumber(-5.3))") << KNumber(-5.3) << QStringLiteral("-1.38430942513") << KNumber::TypeFloat;
+    QTest::newRow("atan(KNumber(\"2/5\"))") << KNumber(QStringLiteral("2/5")) << QStringLiteral("0.380506377112") << KNumber::TypeFloat;
+    QTest::newRow("atan(KNumber(\"-2/5\"))") << KNumber(QStringLiteral("-2/5")) << QStringLiteral("-0.380506377112") << KNumber::TypeFloat;
+    QTest::newRow("atan(KNumber(0.3))") << KNumber(0.3) << QStringLiteral("0.291456794478") << KNumber::TypeFloat;
+    QTest::newRow("atan(KNumber(-0.3))") << KNumber(-0.3) << QStringLiteral("-0.291456794478") << KNumber::TypeFloat;
+}
+
+void KNumberFunctionsTest::testKNumberAtan()
+{
+    QFETCH(KNumber, op);
+    QFETCH(KNumber::Type, expectedResultType);
+    QFETCH(QString, expectedResultToQString);
+
+    KNumber result = atan(op);
 
     QCOMPARE(result.type(), expectedResultType);
     QCOMPARE(result.toQString(precision), expectedResultToQString);
@@ -325,26 +439,47 @@ void KNumberFunctionsTest::testKNumberPower()
     QCOMPARE(result.toQString(precision), expectedResultToQString);
 }
 
-void KNumberFunctionsTest::testKNumberLogExp_data()
+void KNumberFunctionsTest::testKNumberLog_data()
 {
-    QTest::addColumn<KNumber>("result");
+    QTest::addColumn<KNumber>("op");
     QTest::addColumn<QString>("expectedResultToQString");
     QTest::addColumn<KNumber::Type>("expectedResultType");
 
-    QTest::newRow("log10(KNumber(5))") << log10(KNumber(5)) << QStringLiteral("0.698970004336") << KNumber::TypeFloat;
-    QTest::newRow("log10(pow(KNumber(10), KNumber(308)))") << log10(pow(KNumber(10), KNumber(308))) << QStringLiteral("308") << KNumber::TypeInteger;
+    QTest::newRow("log10(KNumber(5))") << KNumber(5) << QStringLiteral("0.698970004336") << KNumber::TypeFloat;
+    QTest::newRow("log10(pow(KNumber(10), KNumber(308)))") << pow(KNumber(10), KNumber(308)) << QStringLiteral("308") << KNumber::TypeInteger;
 
     // TODO: enable this check once MPFR is commonly enabled
     // QTest::newRow("log10(pow(KNumber(10) << KNumber(309)))") << log10(pow(KNumber(10) << KNumber(309))) << QLatin1String("309") << KNumber::TypeInteger;
-
-    QTest::newRow("exp(KNumber(4.34))") << exp(KNumber(4.34)) << QStringLiteral("76.7075393383") << KNumber::TypeFloat;
 }
 
-void KNumberFunctionsTest::testKNumberLogExp()
+void KNumberFunctionsTest::testKNumberLog()
 {
-    QFETCH(KNumber, result);
+    QFETCH(KNumber, op);
     QFETCH(KNumber::Type, expectedResultType);
     QFETCH(QString, expectedResultToQString);
+
+    KNumber result = log10(op);
+
+    QCOMPARE(result.type(), expectedResultType);
+    QCOMPARE(result.toQString(precision), expectedResultToQString);
+}
+
+void KNumberFunctionsTest::testKNumberExp_data()
+{
+    QTest::addColumn<KNumber>("op");
+    QTest::addColumn<QString>("expectedResultToQString");
+    QTest::addColumn<KNumber::Type>("expectedResultType");
+
+    QTest::newRow("exp(KNumber(4.34))") << KNumber(4.34) << QStringLiteral("76.7075393383") << KNumber::TypeFloat;
+}
+
+void KNumberFunctionsTest::testKNumberExp()
+{
+    QFETCH(KNumber, op);
+    QFETCH(KNumber::Type, expectedResultType);
+    QFETCH(QString, expectedResultToQString);
+
+    KNumber result = exp(op);
 
     QCOMPARE(result.type(), expectedResultType);
     QCOMPARE(result.toQString(precision), expectedResultToQString);
