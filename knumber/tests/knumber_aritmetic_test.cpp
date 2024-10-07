@@ -28,9 +28,6 @@ private Q_SLOTS:
     void testKNumberDivision_data();
     void testKNumberDivision();
 
-    void testKNumberInfArithmetic_data();
-    void testKNumberInfArithmetic();
-
     void cleanupTestCase();
 
 private:
@@ -64,6 +61,33 @@ void KNumberAritmeticTest::testKNumberAddition_data()
     QTest::newRow("KNumber(5.3) + KNumber(2)") << KNumber(5.3) << KNumber(2) << QStringLiteral("7.3") << KNumber::TypeFloat;
     QTest::newRow("KNumber(5.3) + KNumber(\"2/4\")") << KNumber(5.3) << KNumber(QStringLiteral("2/4")) << QStringLiteral("5.8") << KNumber::TypeFloat;
     QTest::newRow("KNumber(5.3) + KNumber(2.3)") << KNumber(5.3) << KNumber(2.3) << QStringLiteral("7.6") << KNumber::TypeFloat;
+
+    QTest::newRow("inf + KNumber(2)") << KNumber::PosInfinity << KNumber(2) << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5) + inf") << KNumber(-5) << KNumber::PosInfinity << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("inf + KNumber(\"1/2\")") << KNumber::PosInfinity << KNumber(QStringLiteral("1/2")) << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(\"-5/3\") + inf") << KNumber(QStringLiteral("-5/3")) << KNumber::PosInfinity << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("inf + KNumber(2.01)") << KNumber::PosInfinity << KNumber(2.01) << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5.4) + inf") << KNumber(-5.4) << KNumber::PosInfinity << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("-inf + KNumber(2)") << KNumber::NegInfinity << KNumber(2) << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5) + -inf") << KNumber(-5) << KNumber::NegInfinity << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("-inf + KNumber(\"1/2\")") << KNumber::NegInfinity << KNumber(QStringLiteral("1/2")) << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(\"-5/3\") + -inf") << KNumber(QStringLiteral("-5/3")) << KNumber::NegInfinity << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("-inf + KNumber(2.01)") << KNumber::NegInfinity << KNumber(2.01) << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5.4) + -inf") << KNumber(-5.4) << KNumber::NegInfinity << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("nan + KNumber(2)") << KNumber::NaN << KNumber(2) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5) + nan") << KNumber(-5) << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("nan + KNumber(\"1/2\")") << KNumber::NaN << KNumber(QStringLiteral("1/2")) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(\"-5/3\") + nan") << KNumber(QStringLiteral("-5/3")) << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("nan + KNumber(2.01)") << KNumber::NaN << KNumber(2.01) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5.4) + nan") << KNumber(-5.4) << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("inf + inf") << KNumber::PosInfinity << KNumber::PosInfinity << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("inf + -inf") << KNumber::PosInfinity << KNumber::NegInfinity << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("-inf + inf") << KNumber::NegInfinity << KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("-inf + -inf") << KNumber::NegInfinity << KNumber::NegInfinity << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("inf + nan") << KNumber::PosInfinity << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("-inf + nan") << KNumber::NegInfinity << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("nan + inf") << KNumber::NaN << KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("-inf + nan") << KNumber::NegInfinity << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
 }
 
 void KNumberAritmeticTest::testKNumberAddition()
@@ -102,6 +126,33 @@ void KNumberAritmeticTest::testKNumberSubtraction_data()
     QTest::newRow("KNumber(5.3) - KNumber(2)") << KNumber(5.3) << KNumber(2) << QStringLiteral("3.3") << KNumber::TypeFloat;
     QTest::newRow("KNumber(5.3) - KNumber(\"3/4\")") << KNumber(5.3) << KNumber(QStringLiteral("3/4")) << QStringLiteral("4.55") << KNumber::TypeFloat;
     QTest::newRow("KNumber(5.3) - KNumber(2.3)") << KNumber(5.3) << KNumber(2.3) << QStringLiteral("3") << KNumber::TypeInteger;
+
+    QTest::newRow("inf - KNumber(2)") << KNumber::PosInfinity << KNumber(2) << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5) - inf") << KNumber(-5) << KNumber::PosInfinity << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("inf - KNumber(\"1/2\")") << KNumber::PosInfinity << KNumber(QStringLiteral("1/2")) << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(\"-5/3\") - inf") << KNumber(QStringLiteral("-5/3")) << KNumber::PosInfinity << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("inf - KNumber(2.01)") << KNumber::PosInfinity << KNumber(2.01) << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5.4) - inf") << KNumber(-5.4) << KNumber::PosInfinity << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("-inf - KNumber(2)") << KNumber::NegInfinity << KNumber(2) << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5) - -inf") << KNumber(-5) << KNumber::NegInfinity << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("-inf - KNumber(\"1/2\")") << KNumber::NegInfinity << KNumber(QStringLiteral("1/2")) << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(\"-5/3\") - -inf") << KNumber(QStringLiteral("-5/3")) << KNumber::NegInfinity << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("-inf - KNumber(2.01)") << KNumber::NegInfinity << KNumber(2.01) << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5.4) - -inf") << KNumber(-5.4) << KNumber::NegInfinity << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("nan - KNumber(2)") << KNumber::NaN << KNumber(2) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5) - nan") << KNumber(-5) << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("nan - KNumber(\"1/2\")") << KNumber::NaN << KNumber(QStringLiteral("1/2")) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(\"-5/3\") - nan") << KNumber(QStringLiteral("-5/3")) << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("nan - KNumber(2.01)") << KNumber::NaN << KNumber(2.01) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5.4) - nan") << KNumber(-5.4) << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("inf - inf") << KNumber::PosInfinity << KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("inf - -inf") << KNumber::PosInfinity << KNumber::NegInfinity << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("-inf - inf") << KNumber::NegInfinity << KNumber::PosInfinity << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("-inf - -inf") << KNumber::NegInfinity << KNumber::NegInfinity << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("inf - nan") << KNumber::PosInfinity << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("-inf - nan") << KNumber::NegInfinity << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("nan - inf") << KNumber::NaN << KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("-inf - nan") << KNumber::NegInfinity << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
 }
 
 void KNumberAritmeticTest::testKNumberSubtraction()
@@ -143,6 +194,41 @@ void KNumberAritmeticTest::testKNumberMultiplication_data()
     QTest::newRow("KNumber(5.3) * KNumber(0)") << KNumber(5.3) << KNumber(0) << QStringLiteral("0") << KNumber::TypeInteger;
     QTest::newRow("KNumber(5.3) * KNumber(\"1/2\")") << KNumber(5.3) << KNumber(QStringLiteral("1/2")) << QStringLiteral("2.65") << KNumber::TypeFloat;
     QTest::newRow("KNumber(5.3) * KNumber(2.3)") << KNumber(5.3) << KNumber(2.3) << QStringLiteral("12.19") << KNumber::TypeFloat;
+
+    QTest::newRow("inf * KNumber(2)") << KNumber::PosInfinity << KNumber(2) << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5) * inf") << KNumber(-5) << KNumber::PosInfinity << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("inf * KNumber(\"1/2\")") << KNumber::PosInfinity << KNumber(QStringLiteral("1/2")) << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(\"-5/3\") * inf") << KNumber(QStringLiteral("-5/3")) << KNumber::PosInfinity << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("inf * KNumber(2.01)") << KNumber::PosInfinity << KNumber(2.01) << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5.4) * inf") << KNumber(-5.4) << KNumber::PosInfinity << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("-inf * KNumber(2)") << KNumber::NegInfinity << KNumber(2) << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5) * -inf") << KNumber(-5) << KNumber::NegInfinity << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("-inf * KNumber(\"1/2\")") << KNumber::NegInfinity << KNumber(QStringLiteral("1/2")) << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(\"-5/3\") * -inf") << KNumber(QStringLiteral("-5/3")) << KNumber::NegInfinity << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("-inf * KNumber(2.01)") << KNumber::NegInfinity << KNumber(2.01) << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5.4) * -inf") << KNumber(-5.4) << KNumber::NegInfinity << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("nan * KNumber(2)") << KNumber::NaN << KNumber(2) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5) * nan") << KNumber(-5) << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("nan * KNumber(\"1/2\")") << KNumber::NaN << KNumber(QStringLiteral("1/2")) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(\"-5/3\") * nan") << KNumber(QStringLiteral("-5/3")) << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("nan * KNumber(2.01)") << KNumber::NaN << KNumber(2.01) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5.4) * nan") << KNumber(-5.4) << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("inf * inf") << KNumber::PosInfinity << KNumber::PosInfinity << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("inf * -inf") << KNumber::PosInfinity << KNumber::NegInfinity << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("-inf * inf") << KNumber::NegInfinity << KNumber::PosInfinity << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("-inf * -inf") << KNumber::NegInfinity << KNumber::NegInfinity << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("inf * nan") << KNumber::PosInfinity << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("-inf * nan") << KNumber::NegInfinity << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("nan * inf") << KNumber::NaN << KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("-inf * nan") << KNumber::NegInfinity << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(0) * inf") << KNumber(0) << KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(0) * -inf") << KNumber(0) << KNumber::NegInfinity << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("inf * KNumber(0)") << KNumber::PosInfinity << KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("-inf * KNumber(0)") << KNumber::NegInfinity << KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(0.0) * inf") << KNumber(0.0) << KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(0.0) * -inf") << KNumber(0.0) << KNumber::NegInfinity << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("inf * KNumber(0.0)") << KNumber::PosInfinity << KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("-inf * KNumber(0.0)") << KNumber::NegInfinity << KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
 }
 
 void KNumberAritmeticTest::testKNumberMultiplication()
@@ -193,6 +279,41 @@ void KNumberAritmeticTest::testKNumberDivision_data()
     QTest::newRow("KNumber(5.5) / KNumber(2.5)") << KNumber(5.5) << KNumber(2.5) << QStringLiteral("2.2") << KNumber::TypeFloat;
     QTest::newRow("KNumber(5.5) / KNumber(0.0)") << KNumber(5.5) << KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
     QTest::newRow("KNumber(-5.5) / KNumber(0.0)") << KNumber(-5.5) << KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
+
+    QTest::newRow("inf / KNumber(2)") << KNumber::PosInfinity << KNumber(2) << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5) / inf") << KNumber(-5) << KNumber::PosInfinity << QStringLiteral("0") << KNumber::TypeInteger;
+    QTest::newRow("inf / KNumber(\"1/2\")") << KNumber::PosInfinity << KNumber(QStringLiteral("1/2")) << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(\"-5/3\") / inf") << KNumber(QStringLiteral("-5/3")) << KNumber::PosInfinity << QStringLiteral("0") << KNumber::TypeInteger;
+    QTest::newRow("inf / KNumber(2.01)") << KNumber::PosInfinity << KNumber(2.01) << QStringLiteral("inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5.4) / inf") << KNumber(-5.4) << KNumber::PosInfinity << QStringLiteral("0") << KNumber::TypeInteger;
+    QTest::newRow("-inf / KNumber(2)") << KNumber::NegInfinity << KNumber(2) << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5) / -inf") << KNumber(-5) << KNumber::NegInfinity << QStringLiteral("0") << KNumber::TypeInteger;
+    QTest::newRow("-inf / KNumber(\"1/2\")") << KNumber::NegInfinity << KNumber(QStringLiteral("1/2")) << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(\"-5/3\") / -inf") << KNumber(QStringLiteral("-5/3")) << KNumber::NegInfinity << QStringLiteral("0") << KNumber::TypeInteger;
+    QTest::newRow("-inf / KNumber(2.01)") << KNumber::NegInfinity << KNumber(2.01) << QStringLiteral("-inf") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5.4) / -inf") << KNumber(-5.4) << KNumber::NegInfinity << QStringLiteral("0") << KNumber::TypeInteger;
+    QTest::newRow("nan / KNumber(2)") << KNumber::NaN << KNumber(2) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5) / nan") << KNumber(-5) << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("nan / KNumber(\"1/2\")") << KNumber::NaN << KNumber(QStringLiteral("1/2")) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(\"-5/3\") / nan") << KNumber(QStringLiteral("-5/3")) << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("nan / KNumber(2.01)") << KNumber::NaN << KNumber(2.01) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5.4) / nan") << KNumber(-5.4) << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("inf / inf") << KNumber::PosInfinity << KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("inf / -inf") << KNumber::PosInfinity << KNumber::NegInfinity << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("-inf / inf") << KNumber::NegInfinity << KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("-inf / -inf") << KNumber::NegInfinity << KNumber::NegInfinity << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("inf / nan") << KNumber::PosInfinity << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("-inf / nan") << KNumber::NegInfinity << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("nan / inf") << KNumber::NaN << KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("-inf / nan") << KNumber::NegInfinity << KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(0) / inf") << KNumber(0) << KNumber::PosInfinity << QStringLiteral("0") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(0) / -inf") << KNumber(0) << KNumber::NegInfinity << QStringLiteral("0") << KNumber::TypeInteger;
+    QTest::newRow("inf / KNumber(0)") << KNumber::PosInfinity << KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("-inf / KNumber(0)") << KNumber::NegInfinity << KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(0.0) / inf") << KNumber(0.0) << KNumber::PosInfinity << QStringLiteral("0") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(0.0) / -inf") << KNumber(0.0) << KNumber::NegInfinity << QStringLiteral("0") << KNumber::TypeInteger;
+    QTest::newRow("inf / KNumber(0.0)") << KNumber::PosInfinity << KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("-inf / KNumber(0.0)") << KNumber::NegInfinity << KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
 }
 
 void KNumberAritmeticTest::testKNumberDivision()
@@ -203,188 +324,6 @@ void KNumberAritmeticTest::testKNumberDivision()
     QFETCH(QString, expectedResultToQString);
 
     KNumber result = op1 / op2;
-
-    QCOMPARE(result.type(), expectedResultType);
-    QCOMPARE(result.toQString(precision), expectedResultToQString);
-}
-
-void KNumberAritmeticTest::testKNumberInfArithmetic_data()
-{
-    QTest::addColumn<KNumber>("result");
-    QTest::addColumn<QString>("expectedResultToQString");
-    QTest::addColumn<KNumber::Type>("expectedResultType");
-
-    QTest::newRow("inf + KNumber(2)") << KNumber::PosInfinity + KNumber(2) << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5) + inf") << KNumber(-5) + KNumber::PosInfinity << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("inf + KNumber(\"1/2\")") << KNumber::PosInfinity + KNumber(QStringLiteral("1/2")) << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-5/3\") + inf") << KNumber(QStringLiteral("-5/3")) + KNumber::PosInfinity << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("inf + KNumber(2.01)") << KNumber::PosInfinity + KNumber(2.01) << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5.4) + inf") << KNumber(-5.4) + KNumber::PosInfinity << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("-inf + KNumber(2)") << KNumber::NegInfinity + KNumber(2) << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5) + -inf") << KNumber(-5) + KNumber::NegInfinity << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("-inf + KNumber(\"1/2\")") << KNumber::NegInfinity + KNumber(QStringLiteral("1/2")) << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-5/3\") + -inf") << KNumber(QStringLiteral("-5/3")) + KNumber::NegInfinity << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("-inf + KNumber(2.01)") << KNumber::NegInfinity + KNumber(2.01) << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5.4) + -inf") << KNumber(-5.4) + KNumber::NegInfinity << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("nan + KNumber(2)") << KNumber::NaN + KNumber(2) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5) + nan") << KNumber(-5) + KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("nan + KNumber(\"1/2\")") << KNumber::NaN + KNumber(QStringLiteral("1/2")) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-5/3\") + nan") << KNumber(QStringLiteral("-5/3")) + KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("nan + KNumber(2.01)") << KNumber::NaN + KNumber(2.01) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5.4) + nan") << KNumber(-5.4) + KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("inf + inf") << KNumber::PosInfinity + KNumber::PosInfinity << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("inf + -inf") << KNumber::PosInfinity + KNumber::NegInfinity << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("-inf + inf") << KNumber::NegInfinity + KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("-inf + -inf") << KNumber::NegInfinity + KNumber::NegInfinity << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("inf + nan") << KNumber::PosInfinity + KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("-inf + nan") << KNumber::NegInfinity + KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("nan + inf") << KNumber::NaN + KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("-inf + nan") << KNumber::NegInfinity + KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-
-    QTest::newRow("inf - KNumber(2)") << KNumber::PosInfinity - KNumber(2) << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5) - inf") << KNumber(-5) - KNumber::PosInfinity << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("inf - KNumber(\"1/2\")") << KNumber::PosInfinity - KNumber(QStringLiteral("1/2")) << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-5/3\") - inf") << KNumber(QStringLiteral("-5/3")) - KNumber::PosInfinity << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("inf - KNumber(2.01)") << KNumber::PosInfinity - KNumber(2.01) << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5.4) - inf") << KNumber(-5.4) - KNumber::PosInfinity << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("-inf - KNumber(2)") << KNumber::NegInfinity - KNumber(2) << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5) - -inf") << KNumber(-5) - KNumber::NegInfinity << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("-inf - KNumber(\"1/2\")") << KNumber::NegInfinity - KNumber(QStringLiteral("1/2")) << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-5/3\") - -inf") << KNumber(QStringLiteral("-5/3")) - KNumber::NegInfinity << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("-inf - KNumber(2.01)") << KNumber::NegInfinity - KNumber(2.01) << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5.4) - -inf") << KNumber(-5.4) - KNumber::NegInfinity << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("nan - KNumber(2)") << KNumber::NaN - KNumber(2) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5) - nan") << KNumber(-5) - KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("nan - KNumber(\"1/2\")") << KNumber::NaN - KNumber(QStringLiteral("1/2")) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-5/3\") - nan") << KNumber(QStringLiteral("-5/3")) - KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("nan - KNumber(2.01)") << KNumber::NaN - KNumber(2.01) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5.4) - nan") << KNumber(-5.4) - KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("inf - inf") << KNumber::PosInfinity - KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("inf - -inf") << KNumber::PosInfinity - KNumber::NegInfinity << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("-inf - inf") << KNumber::NegInfinity - KNumber::PosInfinity << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("-inf - -inf") << KNumber::NegInfinity - KNumber::NegInfinity << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("inf - nan") << KNumber::PosInfinity - KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("-inf - nan") << KNumber::NegInfinity - KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("nan - inf") << KNumber::NaN - KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("-inf - nan") << KNumber::NegInfinity - KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-
-    QTest::newRow("inf * KNumber(2)") << KNumber::PosInfinity * KNumber(2) << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5) * inf") << KNumber(-5) * KNumber::PosInfinity << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("inf * KNumber(\"1/2\")") << KNumber::PosInfinity * KNumber(QStringLiteral("1/2")) << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-5/3\") * inf") << KNumber(QStringLiteral("-5/3")) * KNumber::PosInfinity << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("inf * KNumber(2.01)") << KNumber::PosInfinity * KNumber(2.01) << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5.4) * inf") << KNumber(-5.4) * KNumber::PosInfinity << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("-inf * KNumber(2)") << KNumber::NegInfinity * KNumber(2) << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5) * -inf") << KNumber(-5) * KNumber::NegInfinity << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("-inf * KNumber(\"1/2\")") << KNumber::NegInfinity * KNumber(QStringLiteral("1/2")) << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-5/3\") * -inf") << KNumber(QStringLiteral("-5/3")) * KNumber::NegInfinity << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("-inf * KNumber(2.01)") << KNumber::NegInfinity * KNumber(2.01) << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5.4) * -inf") << KNumber(-5.4) * KNumber::NegInfinity << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("nan * KNumber(2)") << KNumber::NaN * KNumber(2) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5) * nan") << KNumber(-5) * KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("nan * KNumber(\"1/2\")") << KNumber::NaN * KNumber(QStringLiteral("1/2")) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-5/3\") * nan") << KNumber(QStringLiteral("-5/3")) * KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("nan * KNumber(2.01)") << KNumber::NaN * KNumber(2.01) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5.4) * nan") << KNumber(-5.4) * KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("inf * inf") << KNumber::PosInfinity * KNumber::PosInfinity << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("inf * -inf") << KNumber::PosInfinity * KNumber::NegInfinity << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("-inf * inf") << KNumber::NegInfinity * KNumber::PosInfinity << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("-inf * -inf") << KNumber::NegInfinity * KNumber::NegInfinity << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("inf * nan") << KNumber::PosInfinity * KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("-inf * nan") << KNumber::NegInfinity * KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("nan * inf") << KNumber::NaN * KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("-inf * nan") << KNumber::NegInfinity * KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(0) * inf") << KNumber(0) * KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(0) * -inf") << KNumber(0) * KNumber::NegInfinity << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("inf * KNumber(0)") << KNumber::PosInfinity * KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("-inf * KNumber(0)") << KNumber::NegInfinity * KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(0.0) * inf") << KNumber(0.0) * KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(0.0) * -inf") << KNumber(0.0) * KNumber::NegInfinity << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("inf * KNumber(0.0)") << KNumber::PosInfinity * KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("-inf * KNumber(0.0)") << KNumber::NegInfinity * KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
-
-    QTest::newRow("inf / KNumber(2)") << KNumber::PosInfinity / KNumber(2) << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5) / inf") << KNumber(-5) / KNumber::PosInfinity << QStringLiteral("0") << KNumber::TypeInteger;
-    QTest::newRow("inf / KNumber(\"1/2\")") << KNumber::PosInfinity / KNumber(QStringLiteral("1/2")) << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-5/3\") / inf") << KNumber(QStringLiteral("-5/3")) / KNumber::PosInfinity << QStringLiteral("0") << KNumber::TypeInteger;
-    QTest::newRow("inf / KNumber(2.01)") << KNumber::PosInfinity / KNumber(2.01) << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5.4) / inf") << KNumber(-5.4) / KNumber::PosInfinity << QStringLiteral("0") << KNumber::TypeInteger;
-    QTest::newRow("-inf / KNumber(2)") << KNumber::NegInfinity / KNumber(2) << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5) / -inf") << KNumber(-5) / KNumber::NegInfinity << QStringLiteral("0") << KNumber::TypeInteger;
-    QTest::newRow("-inf / KNumber(\"1/2\")") << KNumber::NegInfinity / KNumber(QStringLiteral("1/2")) << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-5/3\") / -inf") << KNumber(QStringLiteral("-5/3")) / KNumber::NegInfinity << QStringLiteral("0") << KNumber::TypeInteger;
-    QTest::newRow("-inf / KNumber(2.01)") << KNumber::NegInfinity / KNumber(2.01) << QStringLiteral("-inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5.4) / -inf") << KNumber(-5.4) / KNumber::NegInfinity << QStringLiteral("0") << KNumber::TypeInteger;
-    QTest::newRow("nan / KNumber(2)") << KNumber::NaN / KNumber(2) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5) / nan") << KNumber(-5) / KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("nan / KNumber(\"1/2\")") << KNumber::NaN / KNumber(QStringLiteral("1/2")) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-5/3\") / nan") << KNumber(QStringLiteral("-5/3")) / KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("nan / KNumber(2.01)") << KNumber::NaN / KNumber(2.01) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5.4) / nan") << KNumber(-5.4) / KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("inf / inf") << KNumber::PosInfinity / KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("inf / -inf") << KNumber::PosInfinity / KNumber::NegInfinity << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("-inf / inf") << KNumber::NegInfinity / KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("-inf / -inf") << KNumber::NegInfinity / KNumber::NegInfinity << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("inf / nan") << KNumber::PosInfinity / KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("-inf / nan") << KNumber::NegInfinity / KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("nan / inf") << KNumber::NaN / KNumber::PosInfinity << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("-inf / nan") << KNumber::NegInfinity / KNumber::NaN << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(0) / inf") << KNumber(0) / KNumber::PosInfinity << QStringLiteral("0") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(0) / -inf") << KNumber(0) / KNumber::NegInfinity << QStringLiteral("0") << KNumber::TypeInteger;
-    QTest::newRow("inf / KNumber(0)") << KNumber::PosInfinity / KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("-inf / KNumber(0)") << KNumber::NegInfinity / KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(0.0) / inf") << KNumber(0.0) / KNumber::PosInfinity << QStringLiteral("0") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(0.0) / -inf") << KNumber(0.0) / KNumber::NegInfinity << QStringLiteral("0") << KNumber::TypeInteger;
-    QTest::newRow("inf / KNumber(0.0)") << KNumber::PosInfinity / KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("-inf / KNumber(0.0)") << KNumber::NegInfinity / KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
-
-    QTest::newRow("KNumber(5) ^ KNumber(\"inf\")") << KNumber(5).pow(KNumber::PosInfinity) << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5) ^ KNumber(\"inf\")") << KNumber(-5).pow(KNumber::PosInfinity) << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"5/2\") ^ KNumber(\"inf\")")
-        << KNumber(QStringLiteral("5/2")).pow(KNumber::PosInfinity) << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-5/2\") ^ KNumber(\"inf\")")
-        << KNumber(QStringLiteral("-5/2")).pow(KNumber::PosInfinity) << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"5.2\") ^ KNumber(\"inf\")")
-        << KNumber(QStringLiteral("5.2")).pow(KNumber::PosInfinity) << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-5.2\") ^ KNumber(\"inf\")")
-        << KNumber(QStringLiteral("-5.2")).pow(KNumber::PosInfinity) << QStringLiteral("inf") << KNumber::TypeError;
-
-    QTest::newRow("KNumber(5) ^ KNumber(\"-inf\")") << KNumber(5).pow(KNumber::NegInfinity) << QStringLiteral("0") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(-5) ^ KNumber(\"-inf\")") << KNumber(-5).pow(KNumber::NegInfinity) << QStringLiteral("0") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(\"5/2\") ^ KNumber(\"-inf\")")
-        << KNumber(QStringLiteral("5/2")).pow(KNumber::NegInfinity) << QStringLiteral("0") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(\"-5/2\") ^ KNumber(\"-inf\")")
-        << KNumber(QStringLiteral("-5/2")).pow(KNumber::NegInfinity) << QStringLiteral("0") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(\"5.2\") ^ KNumber(\"-inf\")")
-        << KNumber(QStringLiteral("5.2")).pow(KNumber::NegInfinity) << QStringLiteral("0") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(\"-5.2\") ^ KNumber(\"-inf\")")
-        << KNumber(QStringLiteral("-5.2")).pow(KNumber::NegInfinity) << QStringLiteral("0") << KNumber::TypeInteger;
-
-    QTest::newRow("KNumber(5) ^ KNumber(\"nan\")") << KNumber(5).pow(KNumber::NaN) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5) ^ KNumber(\"nan\")") << KNumber(-5).pow(KNumber::NaN) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"5/2\") ^ KNumber(\"nan\")") << KNumber(QStringLiteral("5/2")).pow(KNumber::NaN) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-5/2\") ^ KNumber(\"nan\")") << KNumber(QStringLiteral("-5/2")).pow(KNumber::NaN) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"5.2\") ^ KNumber(\"nan\")") << KNumber(QStringLiteral("5.2")).pow(KNumber::NaN) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-5.2\") ^ KNumber(\"nan\")") << KNumber(QStringLiteral("-5.2")).pow(KNumber::NaN) << QStringLiteral("nan") << KNumber::TypeError;
-
-    QTest::newRow("KNumber(\"nan\") ^ KNumber(\"nan\")") << KNumber::NaN.pow(KNumber::NaN) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"nan\") ^ KNumber(\"inf\")") << KNumber::NaN.pow(KNumber::PosInfinity) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"nan\") ^ KNumber(\"-inf\")") << KNumber::NaN.pow(KNumber::NegInfinity) << QStringLiteral("nan") << KNumber::TypeError;
-
-    QTest::newRow("KNumber(\"inf\") ^ KNumber(\"nan\")") << KNumber::PosInfinity.pow(KNumber::NaN) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"inf\") ^ KNumber(\"inf\")") << KNumber::PosInfinity.pow(KNumber::PosInfinity) << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"inf\") ^ KNumber(\"-inf\")") << KNumber::PosInfinity.pow(KNumber::NegInfinity) << QStringLiteral("0") << KNumber::TypeInteger;
-
-    QTest::newRow("KNumber(\"-inf\") ^ KNumber(\"nan\")") << KNumber::NegInfinity.pow(KNumber::NaN) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-inf\") ^ KNumber(\"inf\")") << KNumber::NegInfinity.pow(KNumber::PosInfinity) << QStringLiteral("inf") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-inf\") ^ KNumber(\"-inf\")") << KNumber::NegInfinity.pow(KNumber::NegInfinity) << QStringLiteral("0") << KNumber::TypeInteger;
-}
-
-void KNumberAritmeticTest::testKNumberInfArithmetic()
-{
-    QFETCH(KNumber, result);
-    QFETCH(KNumber::Type, expectedResultType);
-    QFETCH(QString, expectedResultToQString);
 
     QCOMPARE(result.type(), expectedResultType);
     QCOMPARE(result.toQString(precision), expectedResultToQString);
