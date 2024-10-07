@@ -37,22 +37,24 @@ void KNumberIntegerOperatorsTest::initTestCase()
 
 void KNumberIntegerOperatorsTest::testKNumberTruncate_data()
 {
-    QTest::addColumn<KNumber>("result");
+    QTest::addColumn<KNumber>("operand");
     QTest::addColumn<QString>("expectedResultToQString");
     QTest::addColumn<KNumber::Type>("expectedResultType");
 
-    QTest::newRow("KNumber(16).integerPart()") << KNumber(16).integerPart() << QStringLiteral("16") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(\"43/9\").integerPart()") << KNumber(QStringLiteral("43/9")).integerPart() << QStringLiteral("4") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(\"-43/9\").integerPart()") << KNumber(QStringLiteral("-43/9")).integerPart() << QStringLiteral("-4") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(\"5.25\").integerPart()") << KNumber(QStringLiteral("5.25")).integerPart() << QStringLiteral("5") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(\"-5.25\").integerPart()") << KNumber(QStringLiteral("-5.25")).integerPart() << QStringLiteral("-5") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(16).integerPart()") << KNumber(16) << QStringLiteral("16") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(\"43/9\").integerPart()") << KNumber(QStringLiteral("43/9")) << QStringLiteral("4") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(\"-43/9\").integerPart()") << KNumber(QStringLiteral("-43/9")) << QStringLiteral("-4") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(\"5.25\").integerPart()") << KNumber(QStringLiteral("5.25")) << QStringLiteral("5") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(\"-5.25\").integerPart()") << KNumber(QStringLiteral("-5.25")) << QStringLiteral("-5") << KNumber::TypeInteger;
 }
 
 void KNumberIntegerOperatorsTest::testKNumberTruncate()
 {
-    QFETCH(KNumber, result);
+    QFETCH(KNumber, operand);
     QFETCH(KNumber::Type, expectedResultType);
     QFETCH(QString, expectedResultToQString);
+
+    KNumber result = operand.integerPart();
 
     QCOMPARE(result.type(), expectedResultType);
     QCOMPARE(result.toQString(precision), expectedResultToQString);
@@ -60,22 +62,26 @@ void KNumberIntegerOperatorsTest::testKNumberTruncate()
 
 void KNumberIntegerOperatorsTest::testKNumberModulus_data()
 {
-    QTest::addColumn<KNumber>("result");
+    QTest::addColumn<KNumber>("operand1");
+    QTest::addColumn<KNumber>("operand2");
     QTest::addColumn<QString>("expectedResultToQString");
     QTest::addColumn<KNumber::Type>("expectedResultType");
 
-    QTest::newRow("KNumber(23) % KNumber(4)") << (KNumber(23) % KNumber(4)) << QStringLiteral("3") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(12) % KNumber(-5)") << (KNumber(12) % KNumber(-5)) << QStringLiteral("2") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(-12) % KNumber(5)") << (KNumber(-12) % KNumber(5)) << QStringLiteral("3") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(12) % KNumber(0)") << (KNumber(-12) % KNumber(0)) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(-12) % KNumber(0)") << (KNumber(-12) % KNumber(0)) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(23) % KNumber(4)") << KNumber(23) << KNumber(4) << QStringLiteral("3") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(12) % KNumber(-5)") << KNumber(12) << KNumber(-5) << QStringLiteral("2") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(-12) % KNumber(5)") << KNumber(-12) << KNumber(5) << QStringLiteral("3") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(12) % KNumber(0)") << KNumber(-12) << KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(-12) % KNumber(0)") << KNumber(-12) << KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
 }
 
 void KNumberIntegerOperatorsTest::testKNumberModulus()
 {
-    QFETCH(KNumber, result);
+    QFETCH(KNumber, operand1);
+    QFETCH(KNumber, operand2);
     QFETCH(KNumber::Type, expectedResultType);
     QFETCH(QString, expectedResultToQString);
+
+    KNumber result = operand1 % operand2;
 
     QCOMPARE(result.type(), expectedResultType);
     QCOMPARE(result.toQString(precision), expectedResultToQString);
