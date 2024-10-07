@@ -8,13 +8,6 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR}/..)
 find_package(Qt${QT_MAJOR_VERSION}Test CONFIG REQUIRED)
 include(ECMAddTests)
 
-ecm_add_test(knumbertest.cpp
-    LINK_LIBRARIES knumber
-    Qt${QT_MAJOR_VERSION}::Core
-    Qt${QT_MAJOR_VERSION}::Test
-    TEST_NAME knumbertest
-)
-
 ecm_add_test(knumber_aritmetic_test.cpp
     LINK_LIBRARIES knumber
     Qt${QT_MAJOR_VERSION}::Core

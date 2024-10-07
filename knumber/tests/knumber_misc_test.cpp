@@ -16,38 +16,56 @@ class KNumberMiscTest : public QObject
 private Q_SLOTS:
     void initTestCase();
 
+    void init();
+    void cleanup();
+
     void testKNumberConstructors_data();
     void testKNumberConstructors();
 
     void testKNumberConstructorsAsFraction_data();
     void testKNumberConstructorsAsFraction();
-    /*
-         void testKNumberConstructorsDecimalSeparator_data();
-         void testKNumberConstructorsDecimalSeparator();
-    */
+
+    void testKNumberConstructorsDecimalSeparator_data();
+    void testKNumberConstructorsDecimalSeparator();
+
     void testKNumberCompare_data();
     void testKNumberCompare();
-    /*
-         void testKNumberFloatPrecision_data();
-         void testKNumberFloatPrecision();
 
-         void testKNumberOutput_data();
-         void testKNumberOutput();
+    void testKNumberFloatPrecision_data();
+    void testKNumberFloatPrecision();
 
-         void testKNumberRound_data();
-         void testKNumberRound();*/
+    void testKNumberFloatPrecisionFuctions();
+
+    void testKNumberFloatOutput_data();
+    void testKNumberFloatOutput();
+
+    void testKNumberSplitoffIntegerForFractionOutput_data();
+    void testKNumberSplitoffIntegerForFractionOutput();
+
+    void testKNumberRound_data();
+    void testKNumberRound();
 
     void cleanupTestCase();
 
 private:
     static const int precision = 12;
-    bool fractionalInput = false;
-    QString decimalSeparator = QStringLiteral(".");
 };
 
 void KNumberMiscTest::initTestCase()
 {
-    KNumber::setDefaultFractionalInput(fractionalInput);
+}
+
+void KNumberMiscTest::init()
+{
+}
+
+void KNumberMiscTest::cleanup()
+{
+    KNumber::setDefaultFractionalInput(false);
+    KNumber::setDecimalSeparator(QStringLiteral("."));
+    KNumber::setDefaultFloatOutput(false);
+    KNumber::setSplitoffIntegerForFractionOutput(false);
+    KNumber::setDefaultFloatPrecision(20);
 }
 
 void KNumberMiscTest::testKNumberConstructors_data()
@@ -99,8 +117,7 @@ void KNumberMiscTest::testKNumberConstructors()
 
 void KNumberMiscTest::testKNumberConstructorsAsFraction_data()
 {
-    // KNumber::setDefaultFractionalInput(true);
-    fractionalInput = true;
+    KNumber::setDefaultFractionalInput(true);
 
     QTest::addColumn<KNumber>("result");
     QTest::addColumn<QString>("expectedResultToQString");
@@ -123,9 +140,11 @@ void KNumberMiscTest::testKNumberConstructorsAsFraction()
     QCOMPARE(result.type(), expectedResultType);
     QCOMPARE(result.toQString(precision), expectedResultToQString);
 }
-/*
+
 void KNumberMiscTest::testKNumberConstructorsDecimalSeparator_data()
 {
+    KNumber::setDecimalSeparator(QStringLiteral(","));
+
     QTest::addColumn<KNumber>("result");
     QTest::addColumn<QString>("expectedResultToQString");
     QTest::addColumn<KNumber::Type>("expectedResultType");
@@ -135,18 +154,14 @@ void KNumberMiscTest::testKNumberConstructorsDecimalSeparator_data()
 
 void KNumberMiscTest::testKNumberConstructorsDecimalSeparator()
 {
-    KNumber::setDecimalSeparator(QStringLiteral(","));
-
     QFETCH(KNumber, result);
     QFETCH(KNumber::Type, expectedResultType);
     QFETCH(QString, expectedResultToQString);
 
     QCOMPARE(result.type(), expectedResultType);
     QCOMPARE(result.toQString(precision), expectedResultToQString);
-
-    KNumber::setDecimalSeparator(QStringLiteral("."));
 }
-*/
+
 void KNumberMiscTest::testKNumberCompare_data()
 {
     QTest::addColumn<bool>("result");
@@ -217,36 +232,98 @@ void KNumberMiscTest::testKNumberCompare()
 
     QCOMPARE(result, expectedResult);
 }
-/*
+
 void KNumberMiscTest::testKNumberFloatPrecision_data()
 {
-    QTest::addColumn<KNumber>("result");
+    QTest::addColumn<QString>("input");
+    QTest::addColumn<int>("floatPrecision");
     QTest::addColumn<QString>("expectedResultToQString");
     QTest::addColumn<KNumber::Type>("expectedResultType");
+
+    QTest::newRow("Precision >= 100: (KNumber(1) + KNumber(\"1e-80\")) - KNumber(1)")
+        << QStringLiteral("1e-80") << 100 << QStringLiteral("1e-80") << KNumber::TypeFloat;
+    QTest::newRow("Precision >= 100: (KNumber(1) + KNumber(\"1e-980\")) - KNumber(1)")
+        << QStringLiteral("1e-980") << 100 << QStringLiteral("0") << KNumber::TypeInteger;
+    QTest::newRow("Precision >= 1000: (KNumber(1) + KNumber(\"1e-980\")) - KNumber(1)")
+        << QStringLiteral("1e-980") << 1000 << QStringLiteral("1e-980") << KNumber::TypeFloat;
 }
 
 void KNumberMiscTest::testKNumberFloatPrecision()
 {
-    QFETCH(KNumber, result);
-    QFETCH(KNumber::Type, expectedResultType);
+    QFETCH(QString, input);
+    QFETCH(int, floatPrecision);
     QFETCH(QString, expectedResultToQString);
+    QFETCH(KNumber::Type, expectedResultType);
+
+    KNumber::setDefaultFloatPrecision(floatPrecision);
+
+    KNumber result = KNumber(1) + KNumber(input) - KNumber(1);
 
     QCOMPARE(result.type(), expectedResultType);
     QCOMPARE(result.toQString(precision), expectedResultToQString);
 }
 
-void KNumberMiscTest::testKNumberOutput_data()
+void KNumberMiscTest::testKNumberFloatPrecisionFuctions()
 {
-    QTest::addColumn<KNumber>("result");
-    QTest::addColumn<QString>("expectedResultToQString");
-    QTest::addColumn<KNumber::Type>("expectedResultType");
+    KNumber::setDefaultFloatPrecision(20);
+    KNumber result = sin(KNumber(30) * (KNumber::Pi() / KNumber(180)));
+    QCOMPARE(result.type(), KNumber::TypeFloat);
+    QCOMPARE(result.toQString(precision), QStringLiteral("0.5"));
 }
 
-void KNumberMiscTest::testKNumberOutput()
+void KNumberMiscTest::testKNumberFloatOutput_data()
 {
-    QFETCH(KNumber, result);
+    QTest::addColumn<bool>("setDefaultFloatOutput");
+    QTest::addColumn<QString>("input");
+    QTest::addColumn<QString>("expectedResultToQString");
+    QTest::addColumn<KNumber::Type>("expectedResultType");
+
+    QTest::newRow("Fractional output: KNumber(\"1/4\")") << false << QStringLiteral("1/4") << QStringLiteral("1/4") << KNumber::TypeFraction;
+    QTest::newRow("Float: KNumber(\"1/4\")") << true << QStringLiteral("1/4") << QStringLiteral("0.25") << KNumber::TypeFraction;
+}
+
+void KNumberMiscTest::testKNumberFloatOutput()
+{
+    QFETCH(bool, setDefaultFloatOutput);
+    QFETCH(QString, input);
     QFETCH(KNumber::Type, expectedResultType);
     QFETCH(QString, expectedResultToQString);
+
+    KNumber::setDefaultFloatOutput(setDefaultFloatOutput);
+    KNumber result = KNumber(input);
+
+    QCOMPARE(result.type(), expectedResultType);
+    QCOMPARE(result.toQString(precision), expectedResultToQString);
+}
+
+void KNumberMiscTest::testKNumberSplitoffIntegerForFractionOutput_data()
+{
+    QTest::addColumn<QString>("input");
+    QTest::addColumn<bool>("splitInt");
+    QTest::addColumn<QString>("expectedResultToQString");
+    QTest::addColumn<KNumber::Type>("expectedResultType");
+
+    QTest::newRow("Fractional output: KNumber(\"1/4\")") << QStringLiteral("1/4") << false << QStringLiteral("1/4") << KNumber::TypeFraction;
+    QTest::newRow("Fractional output: KNumber(\"-1/4\")") << QStringLiteral("-1/4") << false << QStringLiteral("-1/4") << KNumber::TypeFraction;
+    QTest::newRow("Fractional output: KNumber(\"21/4\")") << QStringLiteral("21/4") << false << QStringLiteral("21/4") << KNumber::TypeFraction;
+    QTest::newRow("Fractional output: KNumber(\"-21/4\")") << QStringLiteral("-21/4") << false << QStringLiteral("-21/4") << KNumber::TypeFraction;
+
+    QTest::newRow("Fractional output: KNumber(\"1/4\")") << QStringLiteral("1/4") << true << QStringLiteral("1/4") << KNumber::TypeFraction;
+    QTest::newRow("Fractional output: KNumber(\"-1/4\")") << QStringLiteral("-1/4") << true << QStringLiteral("-1/4") << KNumber::TypeFraction;
+    QTest::newRow("Fractional output: KNumber(\"21/4\")") << QStringLiteral("21/4") << true << QStringLiteral("5 1/4") << KNumber::TypeFraction;
+    QTest::newRow("Fractional output: KNumber(\"-21/4\")") << QStringLiteral("-21/4") << true << QStringLiteral("-5 1/4") << KNumber::TypeFraction;
+}
+
+void KNumberMiscTest::testKNumberSplitoffIntegerForFractionOutput()
+{
+    QFETCH(QString, input);
+    QFETCH(bool, splitInt);
+    QFETCH(KNumber::Type, expectedResultType);
+    QFETCH(QString, expectedResultToQString);
+
+    KNumber::setSplitoffIntegerForFractionOutput(splitInt);
+
+    KNumber result = KNumber(input);
 
     QCOMPARE(result.type(), expectedResultType);
     QCOMPARE(result.toQString(precision), expectedResultToQString);
@@ -254,24 +331,57 @@ void KNumberMiscTest::testKNumberOutput()
 
 void KNumberMiscTest::testKNumberRound_data()
 {
-    QTest::addColumn<KNumber>("result");
+    QTest::addColumn<QString>("input");
+    QTest::addColumn<QString>("decimalSeparator");
+    QTest::addColumn<int>("numberOfDecimals");
     QTest::addColumn<QString>("expectedResultToQString");
-    QTest::addColumn<KNumber::Type>("expectedResultType");
+
+    QTest::newRow("KNumber(3)     -> 3.00") << QStringLiteral("3") << QStringLiteral(".") << 2 << QStringLiteral("3.00");
+    QTest::newRow("KNumber(3.)    -> 3.00") << QStringLiteral("3.") << QStringLiteral(".") << 2 << QStringLiteral("3.00");
+    QTest::newRow("KNumber(3.0)   -> 3.00") << QStringLiteral("3.0") << QStringLiteral(".") << 2 << QStringLiteral("3.00");
+    QTest::newRow("KNumber(3.00)  -> 3.00") << QStringLiteral("3.00") << QStringLiteral(".") << 2 << QStringLiteral("3.00");
+    QTest::newRow("KNumber(3.02)  -> 3.02") << QStringLiteral("3.02") << QStringLiteral(".") << 2 << QStringLiteral("3.02");
+    QTest::newRow("KNumber(3.09)  -> 3.09") << QStringLiteral("3.09") << QStringLiteral(".") << 2 << QStringLiteral("3.09");
+    QTest::newRow("KNumber(3.001) -> 3.00") << QStringLiteral("3.001") << QStringLiteral(".") << 2 << QStringLiteral("3.00");
+    QTest::newRow("KNumber(3.004) -> 3.00") << QStringLiteral("3.004") << QStringLiteral(".") << 2 << QStringLiteral("3.00");
+    QTest::newRow("KNumber(3.005) -> 3.01") << QStringLiteral("3.005") << QStringLiteral(".") << 2 << QStringLiteral("3.01");
+    QTest::newRow("KNumber(3.006) -> 3.01") << QStringLiteral("3.006") << QStringLiteral(".") << 2 << QStringLiteral("3.01");
+    QTest::newRow("KNumber(3.091) -> 3.09") << QStringLiteral("3.091") << QStringLiteral(".") << 2 << QStringLiteral("3.09");
+    QTest::newRow("KNumber(3.099) -> 3.10") << QStringLiteral("3.099") << QStringLiteral(".") << 2 << QStringLiteral("3.10");
+    QTest::newRow("KNumber(3.999) -> 4.00") << QStringLiteral("3.999") << QStringLiteral(".") << 2 << QStringLiteral("4.00");
+    QTest::newRow("KNumber(3.9099)-> 3.91") << QStringLiteral("3.9099") << QStringLiteral(".") << 2 << QStringLiteral("3.91");
+    QTest::newRow("KNumber(9.999) -> 10.00") << QStringLiteral("9.999") << QStringLiteral(".") << 2 << QStringLiteral("10.00");
+
+    QTest::newRow("KNumber(3)     -> 3,00") << QStringLiteral("3") << QStringLiteral(",") << 2 << QStringLiteral("3,00");
+    QTest::newRow("KNumber(3,)    -> 3,00") << QStringLiteral("3,") << QStringLiteral(",") << 2 << QStringLiteral("3,00");
+    QTest::newRow("KNumber(3,0)   -> 3,00") << QStringLiteral("3,0") << QStringLiteral(",") << 2 << QStringLiteral("3,00");
+    QTest::newRow("KNumber(3,00)  -> 3,00") << QStringLiteral("3,00") << QStringLiteral(",") << 2 << QStringLiteral("3,00");
+    QTest::newRow("KNumber(3,02)  -> 3,02") << QStringLiteral("3,02") << QStringLiteral(",") << 2 << QStringLiteral("3,02");
+    QTest::newRow("KNumber(3,09)  -> 3,09") << QStringLiteral("3,09") << QStringLiteral(",") << 2 << QStringLiteral("3,09");
+    QTest::newRow("KNumber(3,001) -> 3,00") << QStringLiteral("3,001") << QStringLiteral(",") << 2 << QStringLiteral("3,00");
+    QTest::newRow("KNumber(3,005) -> 3,01") << QStringLiteral("3,005") << QStringLiteral(",") << 2 << QStringLiteral("3,01");
+    QTest::newRow("KNumber(3,091) -> 3,09") << QStringLiteral("3,091") << QStringLiteral(",") << 2 << QStringLiteral("3,09");
+    QTest::newRow("KNumber(3,099) -> 3,10") << QStringLiteral("3,099") << QStringLiteral(",") << 2 << QStringLiteral("3,10");
+    QTest::newRow("KNumber(3,999) -> 4,00") << QStringLiteral("3,999") << QStringLiteral(",") << 2 << QStringLiteral("4,00");
+    QTest::newRow("KNumber(3,9099)-> 3,91") << QStringLiteral("3,9099") << QStringLiteral(",") << 2 << QStringLiteral("3,91");
+    QTest::newRow("KNumber(9,999) -> 10,00") << QStringLiteral("9,999") << QStringLiteral(",") << 2 << QStringLiteral("10,00");
 }
 
 void KNumberMiscTest::testKNumberRound()
 {
-    QFETCH(KNumber, result);
-    QFETCH(KNumber::Type, expectedResultType);
+    QFETCH(QString, input);
+    QFETCH(QString, decimalSeparator);
+    QFETCH(int, numberOfDecimals);
     QFETCH(QString, expectedResultToQString);
 
-    QCOMPARE(result.type(), expectedResultType);
-    QCOMPARE(result.toQString(precision), expectedResultToQString);
+    KNumber::setDecimalSeparator(decimalSeparator);
+    KNumber result = KNumber(input);
+
+    QCOMPARE(result.toQString(-1, numberOfDecimals), expectedResultToQString);
 }
-*/
+
 void KNumberMiscTest::cleanupTestCase()
 {
-    fractionalInput = false;
     KNumber::setDefaultFractionalInput(false);
 }
 

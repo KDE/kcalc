@@ -242,9 +242,8 @@ void KNumberFunctionsTest::testKNumberPower_data()
     QTest::newRow("KNumber(1000).exp()") << KNumber(1000).exp() << QLatin1String("23.1406926328") << KNumber::TypeFloat;
 #endif
 
-    // KNumber::setDefaultFractionalInput(true);
-    // QTest::newRow("KNumber(\"3.1415926\") ^ KNumber(\"3.1415926\")") << KNumber(QStringLiteral("3.1415926")).pow(KNumber(QStringLiteral("3.1415926"))) <<
-    // QStringLiteral("36.4621554164") << KNumber::TypeFloat; KNumber::setDefaultFractionalInput(false);
+    QTest::newRow("KNumber(\"3.1415926\") ^ KNumber(\"3.1415926\")")
+        << KNumber(QStringLiteral("3.1415926")).pow(KNumber(QStringLiteral("3.1415926"))) << QStringLiteral("36.4621554164") << KNumber::TypeFloat;
 }
 
 void KNumberFunctionsTest::testKNumberPower()
