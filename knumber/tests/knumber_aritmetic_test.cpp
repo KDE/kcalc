@@ -160,45 +160,49 @@ void KNumberAritmeticTest::testKNumberMultiplication()
 
 void KNumberAritmeticTest::testKNumberDivision_data()
 {
-    QTest::addColumn<KNumber>("result");
+    QTest::addColumn<KNumber>("op1");
+    QTest::addColumn<KNumber>("op2");
     QTest::addColumn<QString>("expectedResultToQString");
     QTest::addColumn<KNumber::Type>("expectedResultType");
 
-    QTest::newRow("KNumber(5) / KNumber(2)") << KNumber(5) / KNumber(2) << QStringLiteral("5/2") << KNumber::TypeFraction;
-    QTest::newRow("KNumber(122) / KNumber(2)") << KNumber(122) / KNumber(2) << QStringLiteral("61") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(12) / KNumber(0)") << KNumber(12) / KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(-12) / KNumber(0)") << KNumber(-12) / KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(5) / KNumber(\"2/3\")") << KNumber(5) / KNumber(QStringLiteral("2/3")) << QStringLiteral("15/2") << KNumber::TypeFraction;
-    QTest::newRow("KNumber(6) / KNumber(\"2/3\")") << KNumber(6) / KNumber(QStringLiteral("2/3")) << QStringLiteral("9") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(5) / KNumber(2.5)") << KNumber(5) / KNumber(2.5) << QStringLiteral("2") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(5) / KNumber(0.0)") << KNumber(5) / KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5) / KNumber(0.0)") << KNumber(-5) / KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(5) / KNumber(2)") << KNumber(5) << KNumber(2) << QStringLiteral("5/2") << KNumber::TypeFraction;
+    QTest::newRow("KNumber(122) / KNumber(2)") << KNumber(122) << KNumber(2) << QStringLiteral("61") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(12) / KNumber(0)") << KNumber(12) << KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(-12) / KNumber(0)") << KNumber(-12) << KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(5) / KNumber(\"2/3\")") << KNumber(5) << KNumber(QStringLiteral("2/3")) << QStringLiteral("15/2") << KNumber::TypeFraction;
+    QTest::newRow("KNumber(6) / KNumber(\"2/3\")") << KNumber(6) << KNumber(QStringLiteral("2/3")) << QStringLiteral("9") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(5) / KNumber(2.5)") << KNumber(5) << KNumber(2.5) << QStringLiteral("2") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(5) / KNumber(0.0)") << KNumber(5) << KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5) / KNumber(0.0)") << KNumber(-5) << KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
 
-    QTest::newRow("KNumber(\"5/3\") / KNumber(2)") << KNumber(QStringLiteral("5/3")) / KNumber(2) << QStringLiteral("5/6") << KNumber::TypeFraction;
-    QTest::newRow("KNumber(\"5/3\") / KNumber(0)") << KNumber(QStringLiteral("5/3")) / KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-5/3\") / KNumber(0)") << KNumber(QStringLiteral("-5/3")) / KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(\"5/3\") / KNumber(2)") << KNumber(QStringLiteral("5/3")) << KNumber(2) << QStringLiteral("5/6") << KNumber::TypeFraction;
+    QTest::newRow("KNumber(\"5/3\") / KNumber(0)") << KNumber(QStringLiteral("5/3")) << KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(\"-5/3\") / KNumber(0)") << KNumber(QStringLiteral("-5/3")) << KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
     QTest::newRow("KNumber(\"5/3\") / KNumber(\"2/3\")")
-        << KNumber(QStringLiteral("5/3")) / KNumber(QStringLiteral("2/3")) << QStringLiteral("5/2") << KNumber::TypeFraction;
+        << KNumber(QStringLiteral("5/3")) << KNumber(QStringLiteral("2/3")) << QStringLiteral("5/2") << KNumber::TypeFraction;
     QTest::newRow("KNumber(\"49/3\") / KNumber(\"7/9\")")
-        << KNumber(QStringLiteral("49/3")) / KNumber(QStringLiteral("7/9")) << QStringLiteral("21") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(\"5/2\") / KNumber(2.5)") << KNumber(QStringLiteral("5/2")) / KNumber(2.5) << QStringLiteral("1") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(\"5/2\") / KNumber(0.0)") << KNumber(QStringLiteral("5/2")) / KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"-5/2\") / KNumber(0.0)") << KNumber(QStringLiteral("-5/2")) / KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
+        << KNumber(QStringLiteral("49/3")) << KNumber(QStringLiteral("7/9")) << QStringLiteral("21") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(\"5/2\") / KNumber(2.5)") << KNumber(QStringLiteral("5/2")) << KNumber(2.5) << QStringLiteral("1") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(\"5/2\") / KNumber(0.0)") << KNumber(QStringLiteral("5/2")) << KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(\"-5/2\") / KNumber(0.0)") << KNumber(QStringLiteral("-5/2")) << KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
 
-    QTest::newRow("KNumber(5.3) / KNumber(2)") << KNumber(5.3) / KNumber(2) << QStringLiteral("2.65") << KNumber::TypeFloat;
-    QTest::newRow("KNumber(5.3) / KNumber(0)") << KNumber(5.3) / KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5.3) / KNumber(0)") << KNumber(-5.3) / KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(5.3) / KNumber(\"2/3\")") << KNumber(5.3) / KNumber(QStringLiteral("2/3")) << QStringLiteral("7.95") << KNumber::TypeFloat;
-    QTest::newRow("KNumber(5.5) / KNumber(2.5)") << KNumber(5.5) / KNumber(2.5) << QStringLiteral("2.2") << KNumber::TypeFloat;
-    QTest::newRow("KNumber(5.5) / KNumber(0.0)") << KNumber(5.5) / KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(-5.5) / KNumber(0.0)") << KNumber(-5.5) / KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(5.3) / KNumber(2)") << KNumber(5.3) << KNumber(2) << QStringLiteral("2.65") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(5.3) / KNumber(0)") << KNumber(5.3) << KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5.3) / KNumber(0)") << KNumber(-5.3) << KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(5.3) / KNumber(\"2/3\")") << KNumber(5.3) << KNumber(QStringLiteral("2/3")) << QStringLiteral("7.95") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(5.5) / KNumber(2.5)") << KNumber(5.5) << KNumber(2.5) << QStringLiteral("2.2") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(5.5) / KNumber(0.0)") << KNumber(5.5) << KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(-5.5) / KNumber(0.0)") << KNumber(-5.5) << KNumber(0.0) << QStringLiteral("nan") << KNumber::TypeError;
 }
 
 void KNumberAritmeticTest::testKNumberDivision()
 {
-    QFETCH(KNumber, result);
+    QFETCH(KNumber, op1);
+    QFETCH(KNumber, op2);
     QFETCH(KNumber::Type, expectedResultType);
     QFETCH(QString, expectedResultToQString);
+
+    KNumber result = op1 / op2;
 
     QCOMPARE(result.type(), expectedResultType);
     QCOMPARE(result.toQString(precision), expectedResultToQString);

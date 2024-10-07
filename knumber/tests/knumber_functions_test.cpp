@@ -19,6 +19,9 @@ private Q_SLOTS:
     void testKNumberSqrt_data();
     void testKNumberSqrt();
 
+    void testKNumberCbrt_data();
+    void testKNumberCbrt();
+
     void testKNumberAbs_data();
     void testKNumberAbs();
 
@@ -43,35 +46,56 @@ void KNumberFunctionsTest::initTestCase()
 
 void KNumberFunctionsTest::testKNumberSqrt_data()
 {
-    QTest::addColumn<KNumber>("result");
+    QTest::addColumn<KNumber>("op");
     QTest::addColumn<QString>("expectedResultToQString");
     QTest::addColumn<KNumber::Type>("expectedResultType");
 
-    QTest::newRow("KNumber(16).sqrt()") << KNumber(16).sqrt() << QStringLiteral("4") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(-16).sqrt()") << KNumber(-16).sqrt() << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(\"16/9\").sqrt()") << KNumber(QStringLiteral("16/9")).sqrt() << QStringLiteral("4/3") << KNumber::TypeFraction;
-    QTest::newRow("KNumber(\"-16/9\").sqrt()") << KNumber(QStringLiteral("-16/9")).sqrt() << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(2).sqrt()") << KNumber(2).sqrt() << QStringLiteral("1.41421356237") << KNumber::TypeFloat;
-    QTest::newRow("KNumber(\"2/3\").sqrt()") << KNumber(QStringLiteral("2/3")).sqrt() << QStringLiteral("0.816496580928") << KNumber::TypeFloat;
-    QTest::newRow("KNumber(\"0.25\").sqrt()") << KNumber(QStringLiteral("0.25")).sqrt() << QStringLiteral("0.5") << KNumber::TypeFloat;
-    QTest::newRow("KNumber(\"-0.25\").sqrt()") << KNumber(QStringLiteral("-0.25")).sqrt() << QStringLiteral("nan") << KNumber::TypeError;
-
-    QTest::newRow("KNumber(27).cbrt()") << KNumber(27).cbrt() << QStringLiteral("3") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(-27).cbrt()") << KNumber(-27).cbrt() << QStringLiteral("-3") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(\"27/8\").cbrt()") << KNumber(QStringLiteral("27/8")).cbrt() << QStringLiteral("3/2") << KNumber::TypeFraction;
-    QTest::newRow("KNumber(\"-8/27\").cbrt()") << KNumber(QStringLiteral("-8/27")).cbrt() << QStringLiteral("-2/3") << KNumber::TypeFraction;
-    // TODO: need to check non-perfect cube roots
-    QTest::newRow("KNumber(2).cbrt()") << KNumber(2).cbrt() << QStringLiteral("1.25992104989") << KNumber::TypeFloat;
-    QTest::newRow("KNumber(\"2/3\").cbrt()") << KNumber(QStringLiteral("2/3")).cbrt() << QStringLiteral("0.873580464736") << KNumber::TypeFloat;
-    QTest::newRow("KNumber(\"0.25\").cbrt()") << KNumber(QStringLiteral("0.25")).cbrt() << QStringLiteral("0.629960524947") << KNumber::TypeFloat;
-    QTest::newRow("KNumber(\"-0.25\").cbrt()") << KNumber(QStringLiteral("-0.25")).cbrt() << QStringLiteral("-0.629960524947") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(16).sqrt()") << KNumber(16) << QStringLiteral("4") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(-16).sqrt()") << KNumber(-16) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(\"16/9\").sqrt()") << KNumber(QStringLiteral("16/9")) << QStringLiteral("4/3") << KNumber::TypeFraction;
+    QTest::newRow("KNumber(\"-16/9\").sqrt()") << KNumber(QStringLiteral("-16/9")) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(2).sqrt()") << KNumber(2) << QStringLiteral("1.41421356237") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(\"2/3\").sqrt()") << KNumber(QStringLiteral("2/3")) << QStringLiteral("0.816496580928") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(\"0.25\").sqrt()") << KNumber(QStringLiteral("0.25")) << QStringLiteral("0.5") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(\"-0.25\").sqrt()") << KNumber(QStringLiteral("-0.25")) << QStringLiteral("nan") << KNumber::TypeError;
 }
 
 void KNumberFunctionsTest::testKNumberSqrt()
 {
-    QFETCH(KNumber, result);
+    QFETCH(KNumber, op);
     QFETCH(KNumber::Type, expectedResultType);
     QFETCH(QString, expectedResultToQString);
+
+    KNumber result = op.sqrt();
+
+    QCOMPARE(result.type(), expectedResultType);
+    QCOMPARE(result.toQString(precision), expectedResultToQString);
+}
+
+void KNumberFunctionsTest::testKNumberCbrt_data()
+{
+    QTest::addColumn<KNumber>("op");
+    QTest::addColumn<QString>("expectedResultToQString");
+    QTest::addColumn<KNumber::Type>("expectedResultType");
+
+    QTest::newRow("KNumber(27).cbrt()") << KNumber(27) << QStringLiteral("3") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(-27).cbrt()") << KNumber(-27) << QStringLiteral("-3") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(\"27/8\").cbrt()") << KNumber(QStringLiteral("27/8")) << QStringLiteral("3/2") << KNumber::TypeFraction;
+    QTest::newRow("KNumber(\"-8/27\").cbrt()") << KNumber(QStringLiteral("-8/27")) << QStringLiteral("-2/3") << KNumber::TypeFraction;
+    // TODO: need to check non-perfect cube roots
+    QTest::newRow("KNumber(2).cbrt()") << KNumber(2) << QStringLiteral("1.25992104989") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(\"2/3\").cbrt()") << KNumber(QStringLiteral("2/3")) << QStringLiteral("0.873580464736") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(\"0.25\").cbrt()") << KNumber(QStringLiteral("0.25")) << QStringLiteral("0.629960524947") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(\"-0.25\").cbrt()") << KNumber(QStringLiteral("-0.25")) << QStringLiteral("-0.629960524947") << KNumber::TypeFloat;
+}
+
+void KNumberFunctionsTest::testKNumberCbrt()
+{
+    QFETCH(KNumber, op);
+    QFETCH(KNumber::Type, expectedResultType);
+    QFETCH(QString, expectedResultToQString);
+
+    KNumber result = op.cbrt();
 
     QCOMPARE(result.type(), expectedResultType);
     QCOMPARE(result.toQString(precision), expectedResultToQString);
@@ -79,7 +103,7 @@ void KNumberFunctionsTest::testKNumberSqrt()
 
 void KNumberFunctionsTest::testKNumberAbs_data()
 {
-    QTest::addColumn<KNumber>("operand");
+    QTest::addColumn<KNumber>("op");
     QTest::addColumn<QString>("expectedResultToQString");
     QTest::addColumn<KNumber::Type>("expectedResultType");
 
@@ -94,11 +118,11 @@ void KNumberFunctionsTest::testKNumberAbs_data()
 
 void KNumberFunctionsTest::testKNumberAbs()
 {
-    QFETCH(KNumber, operand);
+    QFETCH(KNumber, op);
     QFETCH(KNumber::Type, expectedResultType);
     QFETCH(QString, expectedResultToQString);
 
-    KNumber result = operand.abs();
+    KNumber result = op.abs();
 
     QCOMPARE(result.type(), expectedResultType);
     QCOMPARE(result.toQString(precision), expectedResultToQString);
@@ -179,80 +203,82 @@ void KNumberFunctionsTest::testKNumberTrig()
 
 void KNumberFunctionsTest::testKNumberPower_data()
 {
-    QTest::addColumn<KNumber>("result");
+    QTest::addColumn<KNumber>("op1");
+    QTest::addColumn<KNumber>("op2");
     QTest::addColumn<QString>("expectedResultToQString");
     QTest::addColumn<KNumber::Type>("expectedResultType");
 
-    QTest::newRow("KNumber(0) ^ KNumber(0)") << KNumber(0).pow(KNumber(0)) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(0) ^ KNumber(-4)") << KNumber(0).pow(KNumber(-4)) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(5) ^ KNumber(4)") << KNumber(5).pow(KNumber(4)) << QStringLiteral("625") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(122) ^ KNumber(0)") << KNumber(122).pow(KNumber(0)) << QStringLiteral("1") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(-5) ^ KNumber(0)") << KNumber(-5).pow(KNumber(0)) << QStringLiteral("1") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(-2) ^ KNumber(3)") << KNumber(-2).pow(KNumber(3)) << QStringLiteral("-8") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(-2) ^ KNumber(4)") << KNumber(-2).pow(KNumber(4)) << QStringLiteral("16") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(5) ^ KNumber(-2)") << KNumber(5).pow(KNumber(-2)) << QStringLiteral("1/25") << KNumber::TypeFraction;
-    QTest::newRow("KNumber(8) ^ KNumber(\"2/3\")") << KNumber(8).pow(KNumber(QStringLiteral("2/3"))) << QStringLiteral("4") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(8) ^ KNumber(\"-2/3\")") << KNumber(8).pow(KNumber(QStringLiteral("-2/3"))) << QStringLiteral("1/4") << KNumber::TypeFraction;
+    QTest::newRow("KNumber(0) ^ KNumber(0)") << KNumber(0) << KNumber(0) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(0) ^ KNumber(-4)") << KNumber(0) << KNumber(-4) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(5) ^ KNumber(4)") << KNumber(5) << KNumber(4) << QStringLiteral("625") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(122) ^ KNumber(0)") << KNumber(122) << KNumber(0) << QStringLiteral("1") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(-5) ^ KNumber(0)") << KNumber(-5) << KNumber(0) << QStringLiteral("1") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(-2) ^ KNumber(3)") << KNumber(-2) << KNumber(3) << QStringLiteral("-8") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(-2) ^ KNumber(4)") << KNumber(-2) << KNumber(4) << QStringLiteral("16") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(5) ^ KNumber(-2)") << KNumber(5) << KNumber(-2) << QStringLiteral("1/25") << KNumber::TypeFraction;
+    QTest::newRow("KNumber(8) ^ KNumber(\"2/3\")") << KNumber(8) << KNumber(QStringLiteral("2/3")) << QStringLiteral("4") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(8) ^ KNumber(\"-2/3\")") << KNumber(8) << KNumber(QStringLiteral("-2/3")) << QStringLiteral("1/4") << KNumber::TypeFraction;
 
-    QTest::newRow("KNumber(-16) ^ KNumber(\"1/4\")") << KNumber(-16).pow(KNumber(QStringLiteral("1/4"))) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(-8) ^ KNumber(\"1/3\")") << KNumber(-8).pow(KNumber(QStringLiteral("1/3"))) << QStringLiteral("-2") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(5) ^ KNumber(0.0)") << KNumber(5).pow(KNumber(0.0)) << QStringLiteral("1") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(-5) ^ KNumber(0.0)") << KNumber(-5).pow(KNumber(0.0)) << QStringLiteral("1") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(-16) ^ KNumber(\"1/4\")") << KNumber(-16) << KNumber(QStringLiteral("1/4")) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(-8) ^ KNumber(\"1/3\")") << KNumber(-8) << KNumber(QStringLiteral("1/3")) << QStringLiteral("-2") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(5) ^ KNumber(0.0)") << KNumber(5) << KNumber(0.0) << QStringLiteral("1") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(-5) ^ KNumber(0.0)") << KNumber(-5) << KNumber(0.0) << QStringLiteral("1") << KNumber::TypeInteger;
 
-    QTest::newRow("KNumber(\"5/3\") ^ KNumber(2)") << KNumber(QStringLiteral("5/3")).pow(KNumber(2)) << QStringLiteral("25/9") << KNumber::TypeFraction;
-    QTest::newRow("KNumber(\"5/3\") ^ KNumber(0)") << KNumber(QStringLiteral("5/3")).pow(KNumber(0)) << QStringLiteral("1") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(\"-5/3\") ^ KNumber(0)") << KNumber(QStringLiteral("-5/3")).pow(KNumber(0)) << QStringLiteral("1") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(\"5/3\") ^ KNumber(2)") << KNumber(QStringLiteral("5/3")) << KNumber(2) << QStringLiteral("25/9") << KNumber::TypeFraction;
+    QTest::newRow("KNumber(\"5/3\") ^ KNumber(0)") << KNumber(QStringLiteral("5/3")) << KNumber(0) << QStringLiteral("1") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(\"-5/3\") ^ KNumber(0)") << KNumber(QStringLiteral("-5/3")) << KNumber(0) << QStringLiteral("1") << KNumber::TypeInteger;
     QTest::newRow("KNumber(\"8/27\") ^ KNumber(\"2/3\")")
-        << KNumber(QStringLiteral("8/27")).pow(KNumber(QStringLiteral("2/3"))) << QStringLiteral("4/9") << KNumber::TypeFraction;
+        << KNumber(QStringLiteral("8/27")) << KNumber(QStringLiteral("2/3")) << QStringLiteral("4/9") << KNumber::TypeFraction;
     QTest::newRow("KNumber(\"49/3\") ^ KNumber(\"7/9\")")
-        << KNumber(QStringLiteral("49/3")).pow(KNumber(QStringLiteral("7/9"))) << QStringLiteral("8.78016428243") << KNumber::TypeFloat;
-    QTest::newRow("KNumber(\"5/2\") ^ KNumber(2.5)") << KNumber(QStringLiteral("5/2")).pow(KNumber(2.5)) << QStringLiteral("9.88211768803")
-                                                     << KNumber::TypeFloat;
-    QTest::newRow("KNumber(\"5/2\") ^ KNumber(0.0)") << KNumber(QStringLiteral("5/2")).pow(KNumber(0.0)) << QStringLiteral("1") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(\"-5/2\") ^ KNumber(0.0)") << KNumber(QStringLiteral("-5/2")).pow(KNumber(0.0)) << QStringLiteral("1") << KNumber::TypeInteger;
+        << KNumber(QStringLiteral("49/3")) << KNumber(QStringLiteral("7/9")) << QStringLiteral("8.78016428243") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(\"5/2\") ^ KNumber(2.5)") << KNumber(QStringLiteral("5/2")) << KNumber(2.5) << QStringLiteral("9.88211768803") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(\"5/2\") ^ KNumber(0.0)") << KNumber(QStringLiteral("5/2")) << KNumber(0.0) << QStringLiteral("1") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(\"-5/2\") ^ KNumber(0.0)") << KNumber(QStringLiteral("-5/2")) << KNumber(0.0) << QStringLiteral("1") << KNumber::TypeInteger;
 
-    QTest::newRow("KNumber(5.3) ^ KNumber(2)") << KNumber(5.3).pow(KNumber(2)) << QStringLiteral("28.09") << KNumber::TypeFloat;
-    QTest::newRow("KNumber(5.3) ^ KNumber(0)") << KNumber(5.3).pow(KNumber(0)) << QStringLiteral("1") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(-5.3) ^ KNumber(0)") << KNumber(-5.3).pow(KNumber(0)) << QStringLiteral("1") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(5.3) ^ KNumber(\"2/3\")") << KNumber(5.3).pow(KNumber(QStringLiteral("2/3"))) << QStringLiteral("3.03983898039")
-                                                     << KNumber::TypeFloat;
-    QTest::newRow("KNumber(5.5) ^ KNumber(2.5)") << KNumber(5.5).pow(KNumber(2.5)) << QStringLiteral("70.9425383673") << KNumber::TypeFloat;
-    QTest::newRow("KNumber(5.5) ^ KNumber(0.0)") << KNumber(5.5).pow(KNumber(0.0)) << QStringLiteral("1") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(-5.5) ^ KNumber(0.0)") << KNumber(-5.5).pow(KNumber(0.0)) << QStringLiteral("1") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(5.3) ^ KNumber(2)") << KNumber(5.3) << KNumber(2) << QStringLiteral("28.09") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(5.3) ^ KNumber(0)") << KNumber(5.3) << KNumber(0) << QStringLiteral("1") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(-5.3) ^ KNumber(0)") << KNumber(-5.3) << KNumber(0) << QStringLiteral("1") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(5.3) ^ KNumber(\"2/3\")") << KNumber(5.3) << KNumber(QStringLiteral("2/3")) << QStringLiteral("3.03983898039") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(5.5) ^ KNumber(2.5)") << KNumber(5.5) << KNumber(2.5) << QStringLiteral("70.9425383673") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(5.5) ^ KNumber(0.0)") << KNumber(5.5) << KNumber(0.0) << QStringLiteral("1") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(-5.5) ^ KNumber(0.0)") << KNumber(-5.5) << KNumber(0.0) << QStringLiteral("1") << KNumber::TypeInteger;
 
-    QTest::newRow("KNumber::Pi() ^ KNumber::Pi()") << KNumber::Pi().pow(KNumber::Pi()) << QStringLiteral("36.4621596072") << KNumber::TypeFloat;
-    QTest::newRow("KNumber::Euler() ^ KNumber::Pi()") << KNumber::Euler().pow(KNumber::Pi()) << QStringLiteral("23.1406926328") << KNumber::TypeFloat;
+    QTest::newRow("KNumber::Pi() ^ KNumber::Pi()") << KNumber::Pi() << KNumber::Pi() << QStringLiteral("36.4621596072") << KNumber::TypeFloat;
+    QTest::newRow("KNumber::Euler() ^ KNumber::Pi()") << KNumber::Euler() << KNumber::Pi() << QStringLiteral("23.1406926328") << KNumber::TypeFloat;
 
-    QTest::newRow("KNumber(2.0) ^ KNumber(0.5)") << KNumber(2.0).pow(KNumber(0.5)) << QStringLiteral("1.41421356237") << KNumber::TypeFloat;
-    QTest::newRow("KNumber(2.0) ^ KNumber(-0.5)") << KNumber(2.0).pow(KNumber(-0.5)) << QStringLiteral("0.707106781187") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(2.0) ^ KNumber(0.5)") << KNumber(2.0) << KNumber(0.5) << QStringLiteral("1.41421356237") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(2.0) ^ KNumber(-0.5)") << KNumber(2.0) << KNumber(-0.5) << QStringLiteral("0.707106781187") << KNumber::TypeFloat;
 
-    QTest::newRow("KNumber(-2.0).exp()") << KNumber(-2.0).exp() << QStringLiteral("0.135335283237") << KNumber::TypeFloat;
-    QTest::newRow("KNumber::Euler() ^ KNumber(-2.0)") << KNumber::Euler().pow(KNumber(-2.0)) << QStringLiteral("0.135335283237") << KNumber::TypeFloat;
+    // QTest::newRow("KNumber(-2.0).exp()") << KNumber(-2.0).exp() << QStringLiteral("0.135335283237") << KNumber::TypeFloat;
+    QTest::newRow("KNumber::Euler() ^ KNumber(-2.0)") << KNumber::Euler() << KNumber(-2.0) << QStringLiteral("0.135335283237") << KNumber::TypeFloat;
 
-    QTest::newRow("KNumber(2.0).exp()") << KNumber(2.0).exp() << QStringLiteral("7.38905609893") << KNumber::TypeFloat;
-    QTest::newRow("KNumber::Euler() ^ KNumber(2.0)") << KNumber::Euler().pow(KNumber(2.0)) << QStringLiteral("7.38905609893") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(2.0).exp()") << KNumber::Euler() << KNumber(2.0) << QStringLiteral("7.38905609893") << KNumber::TypeFloat;
+    QTest::newRow("KNumber::Euler() ^ KNumber(2.0)") << KNumber::Euler() << KNumber(2.0) << QStringLiteral("7.38905609893") << KNumber::TypeFloat;
 
     // TODO: kinda odd that this ends up being an integer
     // i guess since my euler constant is only 100 digits << we've exceeded the fractional part
-    QTest::newRow("KNumber::Euler() ^ 1000") << KNumber::Euler().pow(KNumber(1000)) << QStringLiteral("1.97007111402e+434") << KNumber::TypeInteger;
+    QTest::newRow("KNumber::Euler() ^ 1000") << KNumber::Euler() << KNumber(1000) << QStringLiteral("1.97007111402e+434") << KNumber::TypeInteger;
 
     // TODO: make this test pass
     // the problem is that it is using the libc exp function which has limits that GMP does not
-    // we should basically make this equivalent to KNumber::Euler().pow(KNumber(1000))
+    // we should basically make this equivalent to KNumber::Euler() << KNumber(1000))
     // which does work
 #if 0
     QTest::newRow("KNumber(1000).exp()") << KNumber(1000).exp() << QLatin1String("23.1406926328") << KNumber::TypeFloat;
 #endif
 
     QTest::newRow("KNumber(\"3.1415926\") ^ KNumber(\"3.1415926\")")
-        << KNumber(QStringLiteral("3.1415926")).pow(KNumber(QStringLiteral("3.1415926"))) << QStringLiteral("36.4621554164") << KNumber::TypeFloat;
+        << KNumber(QStringLiteral("3.1415926")) << KNumber(QStringLiteral("3.1415926")) << QStringLiteral("36.4621554164") << KNumber::TypeFloat;
 }
 
 void KNumberFunctionsTest::testKNumberPower()
 {
-    QFETCH(KNumber, result);
+    QFETCH(KNumber, op1);
+    QFETCH(KNumber, op2);
     QFETCH(KNumber::Type, expectedResultType);
     QFETCH(QString, expectedResultToQString);
+
+    KNumber result = op1.pow(op2);
 
     QCOMPARE(result.type(), expectedResultType);
     QCOMPARE(result.toQString(precision), expectedResultToQString);
