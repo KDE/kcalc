@@ -31,6 +31,7 @@
   <name xml:lang="ja">KCalc</name>
   <name xml:lang="ka">KCalc</name>
   <name xml:lang="ko">KCalc</name>
+  <name xml:lang="lv">KCalc</name>
   <name xml:lang="nl">KCalc</name>
   <name xml:lang="nn">KCalc</name>
   <name xml:lang="pa">ਕੇ-ਕੈਲਕ</name>
@@ -74,6 +75,7 @@
   <summary xml:lang="it">Calcolatrice scientifica</summary>
   <summary xml:lang="ka">სამეცნიერო კალკულატორი</summary>
   <summary xml:lang="ko">공학용 계산기</summary>
+  <summary xml:lang="lv">Zinātniskais kalkulators</summary>
   <summary xml:lang="nl">Wetenschappelijke rekenmachine</summary>
   <summary xml:lang="pl">Kalkulator naukowy</summary>
   <summary xml:lang="sl">Znanstveno računalo</summary>
@@ -114,6 +116,7 @@
     <p xml:lang="ja">KCalc には、科学電卓に含まれているすべての機能以外にも、</p>
     <p xml:lang="ka">KCalc-ს ყველაფერი აქვს, რაც სამეცნიერო კალკულატორისგან შეიძლება, გჭირდებოდეთ, და კიდევ:</p>
     <p xml:lang="ko">KCalc는 공학용 계산기에서 찾을 수 있는 기능 외에도 다음을 더 지원합니다:</p>
+    <p xml:lang="lv">„KCalc“ ir viss, kas nepieciešams zinātniskam kalkulatoram, kā arī:</p>
     <p xml:lang="nl">KCalc heeft alles wat u verwacht van een wetenschappelijke rekenmachine, plus:</p>
     <p xml:lang="nn">KCalc har alt du forventar av ein vitskapleg kalkulator, pluss:</p>
     <p xml:lang="pa">ਕੇ-ਕੈਲਸ ਹਰ ਚੀਜ਼ ਕਰਦਾ ਹੈ, ਜੋ ਕਿ ਤੁਸੀਂ ਵਿਗਿਆਨਕ ਕੈਲਕੂਲੇਟਰ ਤੋਂ ਉਮੀਦ ਕਰਦੇ ਹੋ, ਇਸ ਤੋਂ ਇਲਾਵਾ:</p>
@@ -160,6 +163,7 @@
       <li xml:lang="ja">三角関数、論理演算、統計計算</li>
       <li xml:lang="ka">ტრიგონომეტრიული ფუნქციები, ლოგიკური ოპერაციები და სტატისტიკური გამოთვლები</li>
       <li xml:lang="ko">삼각함수, 논리 연산 및 통계 계산입니다</li>
+      <li xml:lang="lv">Trigonometrijas funkcijas, loģiskie operatori un statistikas aprēķināšana</li>
       <li xml:lang="nl">Goniometrische functies, logische bewerkingen en statistische berekeningen</li>
       <li xml:lang="nn">Trigonometriske funksjonar, logiske operatorar og statistiske utrekningar</li>
       <li xml:lang="pl">Funkcje trygonometryczne, działania logiczne i obliczenia statystyczne</li>
@@ -200,6 +204,7 @@
       <li xml:lang="ja">以前の計算結果の便利な呼び出しを可能にする結果一覧</li>
       <li xml:lang="ka">შექმნის ნაკრებს, რომელიც წინა გამოთვლების შედეგების შესახებ წარმოდგენას შეგიქმნით</li>
       <li xml:lang="ko">이전 계산 결과를 편리하게 호출할 수 있는 결과 스택입니다</li>
+      <li xml:lang="lv">Rezultātu tabula, kas ļauj ērti atcerēties iepriekšējos aprēķinu rezultātus</li>
       <li xml:lang="nl">Een stapelgeheugen voor uitkomsten dat u de mogelijkheid geeft om vorige uitkomsten van berekeningen terug te halen</li>
       <li xml:lang="nn">Resultata av alle utrekningar vert teken vare på, for seinare uthenting</li>
       <li xml:lang="pl">Stos wyników, który umożliwia wygodne przywoływanie wyników poprzednich obliczeń</li>
@@ -241,6 +246,7 @@
       <li xml:lang="ja">精度はユーザ定義可能</li>
       <li xml:lang="ka">სიზუსტეს მომხმარებელი განსაზღვრავს</li>
       <li xml:lang="ko">정밀도는 사용자가 정의할 수 있습니다</li>
+      <li xml:lang="lv">Lietotāja nosakāmā vēlamā precizitāte</li>
       <li xml:lang="nl">Precisie is door de gebruiker te definiëren</li>
       <li xml:lang="nn">Talpresisjon kan veljast av brukaren</li>
       <li xml:lang="pl">Precyzja jest określana przez użytkownika</li>
@@ -283,6 +289,7 @@
       <li xml:lang="ja">ディスプレイで数字の切り取りと貼り付けが可能です</li>
       <li xml:lang="ka">შესაძლებელია რიცხვების ამოჭრა და ჩასმა</li>
       <li xml:lang="ko">디스플레이는 숫자의 잘라내기 및 붙여넣기를 할 수 있습니다</li>
+      <li xml:lang="lv">Displejs ļauj skaitļus griezt un ielīmēt</li>
       <li xml:lang="nl">Het scherm biedt knippen en plakken van getallen</li>
       <li xml:lang="nn">Kan kopiera og lim inn tal</li>
       <li xml:lang="pl">Wyświetlacz umożliwia wycinanie i wklejanie liczb</li>
@@ -325,6 +332,7 @@
       <li xml:lang="ja">表示色とフォントは変更可能で、使いやすさが向上します</li>
       <li xml:lang="ka">საჩვენებელი ფერები და ფონტები მორგებადია, რაც გამოყენებადობაში დაგეხმარებათ</li>
       <li xml:lang="ko">디스플레이 색상과 글꼴을 구성할 수 있어 사용 편의성을 지원합니다</li>
+      <li xml:lang="lv">Displeja krāsas un fonts ir pielāgojums, veicinot programmas lietojamību</li>
       <li xml:lang="nl">De kleuren en het lettertype in het scherm is aan te passen, helpt bruikbaarheid</li>
       <li xml:lang="nn">Skrifter og fargar kan tilpassast brukarens ønskjer</li>
       <li xml:lang="pl">Kolory i czcionka wyświetlacza jest do ustawienia, co polepsza użyteczność</li>
@@ -365,6 +373,7 @@
       <li xml:lang="ja">キーバインディングを使用すると、ポインティングデバイスがなくても簡単に使用できます</li>
       <li xml:lang="ka">კლავიატურის მალსახმობები საშუალებას გაძლევთ, პროგრამა თაგუნას გარეშე გამოიყენოთ</li>
       <li xml:lang="ko">키 바인딩을 사용하면 포인팅 장치 없이도 쉽게 사용할 수 있습니다</li>
+      <li xml:lang="lv">Taustiņu saīšņu lietojums atvieglo kalkulatora lietojumu bez peles</li>
       <li xml:lang="nl">Het gebruik van sneltoetsen maakt het gemakkelijk om het te gebruiken zonder muis</li>
       <li xml:lang="nn">Snøggtastar gjer kalkulatoren lett å bruka frå tastaturet</li>
       <li xml:lang="pl">Wykorzystanie skrótów klawiszowych czyni aplikację użyteczną bez urządzenia wskazującego</li>
@@ -413,6 +422,7 @@
       <caption xml:lang="ja">KCalc のメインウィンドウ</caption>
       <caption xml:lang="ka">KCalc-ის მთავარი ფანჯარა</caption>
       <caption xml:lang="ko">KCalc 주 창</caption>
+      <caption xml:lang="lv">„KCalc“ pamata logs</caption>
       <caption xml:lang="nl">Hoofdvenster van KCalc</caption>
       <caption xml:lang="nn">Hovudvindaugeet i KCalc</caption>
       <caption xml:lang="pl">Główne okno KCalc</caption>
@@ -458,6 +468,7 @@
       <caption xml:lang="ja">KCalc の数値システムモードウィンドウ</caption>
       <caption xml:lang="ka">KCalc-ის ფანჯარა რიცხვითი სისტემის რეჟიმშია</caption>
       <caption xml:lang="ko">진수 모드 KCalc 창</caption>
+      <caption xml:lang="lv">„KCalc“ logs skaitļu sistēmas režīmā</caption>
       <caption xml:lang="nl">Venster van KCalc in systeemmodus numeriek</caption>
       <caption xml:lang="nn">KCalc-vindauge i numerisk modus</caption>
       <caption xml:lang="pl">Okno KCalc w trybie systemu numerycznego</caption>
@@ -502,6 +513,7 @@
       <caption xml:lang="ja">Kcalc の科学モードウィンドウ</caption>
       <caption xml:lang="ka">KCalc-ის ფანჯარა სამეცნიერო რეჟიმშია</caption>
       <caption xml:lang="ko">과학 모드 KCalc 창</caption>
+      <caption xml:lang="lv">„KCalc“ logs zinātniskā režīmā</caption>
       <caption xml:lang="nl">Venster van Kcalc in wetenschappelijke modus</caption>
       <caption xml:lang="nn">KCalc-vindauge i vitskapleg modus</caption>
       <caption xml:lang="pl">Okno KCalc w trybie naukowym</caption>
@@ -547,6 +559,7 @@
       <caption xml:lang="ja">Kcalc の統計モードウィンドウ</caption>
       <caption xml:lang="ka">KCalc-ის ფანჯარა სტატისტიკის რეჟიმშია</caption>
       <caption xml:lang="ko">통계 모드 KCalc 창</caption>
+      <caption xml:lang="lv">„KCalc“ logs statistikas režīmā</caption>
       <caption xml:lang="nl">Venster van Kcalc in statistische modus</caption>
       <caption xml:lang="nn">KCalc-vindauge i statistikkmodus</caption>
       <caption xml:lang="pl">Okno KCalc w trybie statystycznym</caption>
