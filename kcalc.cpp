@@ -2870,8 +2870,10 @@ void KCalculator::resizeEvent(QResizeEvent *event)
     // Adjust button fonts
     setFonts();
 
-    // Force mBitset to call its resizeEvent
-    mBitset->resize(0, 0);
+    // Update mBitset max size
+    if (mBitset->isVisible()) {
+        mBitset->calculateMaxSize();
+    }
 }
 
 ////////////////////////////////////////////////////////////////

@@ -19,6 +19,8 @@ public:
     explicit KCalcBitset(QWidget *parent = nullptr);
     Q_REQUIRED_RESULT quint64 getValue() const;
 
+    void calculateMaxSize();
+
 protected:
     void resizeEvent(QResizeEvent *event) override;
 
@@ -34,6 +36,5 @@ Q_SIGNALS:
 private:
     QButtonGroup *const bit_button_group_;
     quint64 value_;
-    float ratio_;
     bool m_readOnly;
 };

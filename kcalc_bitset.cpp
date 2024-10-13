@@ -14,6 +14,9 @@
 #include <QHBoxLayout>
 #include <QLabel>
 
+#define BITSET_HEIGHT_RATIO (0.2) // 20% of available main window height
+#define BITSET_MAX_WIDTH_RATIO (8.0) // Bits frame width cannot be wider than height multiped by it
+
 // TODO: I think it would actually be appropriate to use a std::bitset<64>
 //       for the internal representation of this class perhaps
 //       the only real caveat is the conversion to/from quint64
@@ -26,6 +29,7 @@ KCalcBitset::KCalcBitset(QWidget *parent)
     : QFrame(parent)
     , bit_button_group_(new QButtonGroup(this))
     , value_(0)
+    , m_readOnly(false)
 {
     setFrameStyle(QFrame::Panel | QFrame::Sunken);
 
@@ -75,14 +79,6 @@ KCalcBitset::KCalcBitset(QWidget *parent)
     // layout stretch for columns
     for (int cols = 0; cols < 4; cols++) {
         layout->setColumnStretch(cols, 1);
-    }
-
-    // store current aspect ratio (using width:height)
-    QSize initialSize(size());
-    if (initialSize.height() != 0.0 && float(initialSize.width()) / float(initialSize.height()) < 2.5) {
-        ratio_ = float(initialSize.width()) / float(initialSize.height());
-    } else {
-        ratio_ = 1.355163727959698; // 538/397
     }
 }
 
@@ -137,6 +133,23 @@ quint64 KCalcBitset::getValue() const
 }
 
 //------------------------------------------------------------------------------
+// Name: calculateMaxSize
+// Desc: finds maximum bits frame size according to parent
+//------------------------------------------------------------------------------
+void KCalcBitset::calculateMaxSize()
+{
+    QWidget *parent = parentWidget();
+    if (parent) {
+        qreal optHeight = parent->contentsRect().height() * BITSET_HEIGHT_RATIO;
+        int optWidth = qCeil(optHeight * BITSET_MAX_WIDTH_RATIO);
+        if (optWidth > parent->contentsRect().width()) {
+            optHeight *= static_cast<qreal>(parent->contentsRect().width()) / optWidth;
+        }
+        setMaximumSize(qCeil(optHeight * BITSET_MAX_WIDTH_RATIO), qCeil(optHeight));
+    }
+}
+
+//------------------------------------------------------------------------------
 // Name: slotToggleBit
 // Desc: inverts the value of a single bit
 //------------------------------------------------------------------------------
@@ -158,25 +171,6 @@ void KCalcBitset::resizeEvent(QResizeEvent *event)
 {
     // Call the overridden resize event
     QFrame::resizeEvent(event);
-
-    // Set our maximum size based on the space available in the parent (to keep aspect ratio)
-    QWidget *parent = parentWidget();
-    if (parent) {
-        QSize maxSize(parent->contentsRect().width(), parent->contentsRect().height());
-        if (maxSize.width() != 0 && maxSize.height() != 0) {
-            float actualRatio = float(maxSize.width()) / float(maxSize.height());
-
-            if (actualRatio > ratio_) {
-                // available space is too wide, limit width
-                maxSize.setWidth(ratio_ * maxSize.height());
-            } else if (actualRatio < ratio_) {
-                // available space is too tall, limit height
-                maxSize.setHeight(maxSize.width() / ratio_);
-            }
-
-            setMaximumSize(maxSize.width(), maxSize.height());
-        }
-    }
 
     // Get the minimum size of all buttons
     int minWidth = INT_MAX;
