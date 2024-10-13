@@ -150,7 +150,7 @@
 >Uso generale</title>
 
 <para
->L'uso normale è chiaro e simile a come funzionano le più semplici calcolatrici scientifiche, ma presta attenzione alle seguenti funzioni speciali di &kcalc;:</para>
+>L'uso normale è chiaro e simile al funzionamento delle più semplici calcolatrici scientifiche, ma presta attenzione alle seguenti funzioni speciali di &kcalc;:</para>
 
 <variablelist>
 <varlistentry>
@@ -703,15 +703,13 @@
 >Questa modalità contiene pulsanti e funzioni per calcolare in binario, esadecimale, ottale e decimale.</para>
 
 <para
->Seleziona la base di numerazione con i pulsanti sulla destra. Per inserire un numero esadecimale, seleziona <guilabel
+>Seleziona la base di numerazione con il menu a discesa sulla sinistra. Per inserire un numero esadecimale, seleziona <guilabel
 >Esa</guilabel
->. Inserisci quindi un numero (puoi usare le lettere da <guibutton
+>. Inserisci quindi un numero: puoi usare le lettere da <guibutton
 >A</guibutton
 > a <guibutton
 >F</guibutton
-> per le cifre maggiori di 9). Se vuoi vedere questo numero in formato binario, seleziona <guilabel
->Bin</guilabel
->.</para>
+> per le cifre maggiori di 9. Nella vista base di numerazione puoi vedere questo numero convertito nei formati decimale, ottale e binario.</para>
 
  <para
 >I numeri binari, ottali ed esadecimali possono essere visualizzati come gruppi di cifre separati da spazi. Questo raggruppamento può migliorarne la leggibilità. Per esempio, il numero esadecimale <emphasis
@@ -724,7 +722,7 @@
 ><guimenuitem
 >Configura &kcalc;</guimenuitem
 ></menuchoice
-> per far apparire la finestra di configurazione e cambiare l'impostazione sulla pagina <guilabel
+> per far apparire la finestra di configurazione e cambiare l'impostazione nella pagina <guilabel
 >Generale</guilabel
 > come desideri.</para>
 
