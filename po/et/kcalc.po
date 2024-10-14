@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-23 00:41+0000\n"
+"POT-Creation-Date: 2024-10-14 00:41+0000\n"
 "PO-Revision-Date: 2019-11-10 22:51+0200\n"
 "Last-Translator: Marek Laane <qiilaq69@gmail.com>\n"
 "Language-Team: Estonian <kde-et@lists.linux.ee>\n"
@@ -902,17 +902,17 @@ msgid "Define Constants"
 msgstr "Konstantide määramine"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2892 kcalc.ui:20
+#: kcalc.cpp:2894 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "KCalc"
 
-#: kcalc.cpp:2894
+#: kcalc.cpp:2896
 #, kde-format
 msgid "KDE Calculator"
 msgstr "KDE kalkulaator"
 
-#: kcalc.cpp:2896
+#: kcalc.cpp:2898
 #, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
@@ -925,62 +925,62 @@ msgstr ""
 "Autoriõigus © 2003-2005: Klaus Niederkrüger\n"
 "Autoriõigus © 1996-2000: Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2906
+#: kcalc.cpp:2908
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr "Klaus Niederkrüger"
 
-#: kcalc.cpp:2911
+#: kcalc.cpp:2913
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2912
+#: kcalc.cpp:2914
 #, kde-format
 msgid "Evan Teran"
 msgstr "Evan Teran"
 
-#: kcalc.cpp:2912
+#: kcalc.cpp:2914
 #, kde-format
 msgid "Maintainer"
 msgstr "Hooldaja"
 
-#: kcalc.cpp:2913
+#: kcalc.cpp:2915
 #, kde-format
 msgid "Espen Sand"
 msgstr "Espen Sand"
 
-#: kcalc.cpp:2914
+#: kcalc.cpp:2916
 #, kde-format
 msgid "Chris Howells"
 msgstr "Chris Howells"
 
-#: kcalc.cpp:2915
+#: kcalc.cpp:2917
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr "Aaron J. Seigo"
 
-#: kcalc.cpp:2916
+#: kcalc.cpp:2918
 #, kde-format
 msgid "Charles Samuels"
 msgstr "Charles Samuels"
 
-#: kcalc.cpp:2918
+#: kcalc.cpp:2920
 #, kde-format
 msgid "René Mérou"
 msgstr "René Mérou"
 
-#: kcalc.cpp:2925
+#: kcalc.cpp:2927
 #, kde-format
 msgid "Michel Marti"
 msgstr "Michel Marti"
 
-#: kcalc.cpp:2926
+#: kcalc.cpp:2928
 #, kde-format
 msgid "David Johnson"
 msgstr "David Johnson"
 
-#: kcalc.cpp:2927
+#: kcalc.cpp:2929
 #, kde-format
 msgid "Niklas Freund"
 msgstr ""
@@ -2178,7 +2178,7 @@ msgstr "Shift"
 msgid "Ctrl+2"
 msgstr "Ctrl+2"
 
-#: kcalc_bitset.cpp:57
+#: kcalc_bitset.cpp:61
 #, fuzzy, kde-format
 #| msgid "Bit %1"
 msgctxt "@info:tooltip"

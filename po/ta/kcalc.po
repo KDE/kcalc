@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-23 00:41+0000\n"
+"POT-Creation-Date: 2024-10-14 00:41+0000\n"
 "PO-Revision-Date: 2024-04-07 17:11+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -878,17 +878,17 @@ msgid "Define Constants"
 msgstr "மாறிலிகளை வடிவமமை"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2892 kcalc.ui:20
+#: kcalc.cpp:2894 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "கேகணிப்பான்"
 
-#: kcalc.cpp:2894
+#: kcalc.cpp:2896
 #, kde-format
 msgid "KDE Calculator"
 msgstr "KDE கணிப்பான்"
 
-#: kcalc.cpp:2896
+#: kcalc.cpp:2898
 #, fuzzy, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
@@ -899,62 +899,62 @@ msgstr ""
 "(c) 1996-2000,பெர்ன்ட் ஜொஹானஸ் வியுப்பர்\n"
 "்(c) 2000-2003, KDE அணி"
 
-#: kcalc.cpp:2906
+#: kcalc.cpp:2908
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr ""
 
-#: kcalc.cpp:2911
+#: kcalc.cpp:2913
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr ""
 
-#: kcalc.cpp:2912
+#: kcalc.cpp:2914
 #, kde-format
 msgid "Evan Teran"
 msgstr ""
 
-#: kcalc.cpp:2912
+#: kcalc.cpp:2914
 #, kde-format
 msgid "Maintainer"
 msgstr ""
 
-#: kcalc.cpp:2913
+#: kcalc.cpp:2915
 #, kde-format
 msgid "Espen Sand"
 msgstr ""
 
-#: kcalc.cpp:2914
+#: kcalc.cpp:2916
 #, kde-format
 msgid "Chris Howells"
 msgstr ""
 
-#: kcalc.cpp:2915
+#: kcalc.cpp:2917
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr ""
 
-#: kcalc.cpp:2916
+#: kcalc.cpp:2918
 #, kde-format
 msgid "Charles Samuels"
 msgstr ""
 
-#: kcalc.cpp:2918
+#: kcalc.cpp:2920
 #, kde-format
 msgid "René Mérou"
 msgstr ""
 
-#: kcalc.cpp:2925
+#: kcalc.cpp:2927
 #, kde-format
 msgid "Michel Marti"
 msgstr ""
 
-#: kcalc.cpp:2926
+#: kcalc.cpp:2928
 #, kde-format
 msgid "David Johnson"
 msgstr ""
 
-#: kcalc.cpp:2927
+#: kcalc.cpp:2929
 #, kde-format
 msgid "Niklas Freund"
 msgstr ""
@@ -2127,7 +2127,7 @@ msgstr ""
 msgid "Ctrl+2"
 msgstr ""
 
-#: kcalc_bitset.cpp:57
+#: kcalc_bitset.cpp:61
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Bit %1 = %2"
