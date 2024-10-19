@@ -194,10 +194,6 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
         index++;
         return KCalcToken::TokenCode::PERMILLE;
     }
-    if (s.startsWith(I_STR)) {
-        index++;
-        return KCalcToken::TokenCode::I;
-    }
     if (s.startsWith(DIVISION_STR) || s.startsWith(SLASH_STR) || s.startsWith(DIVISION_SLASH_STR)) {
         index++;
         return KCalcToken::TokenCode::DIVISION;
