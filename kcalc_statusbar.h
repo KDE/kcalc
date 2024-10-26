@@ -19,7 +19,11 @@ public:
     ~KCalcStatusBar() override = default;
 
 public:
-    enum AngleMode { DegMode, RadMode, GradMode };
+    enum AngleMode {
+        DegMode,
+        RadMode,
+        GradMode
+    };
 
 public:
     void setBaseIndicatorVisible(bool visible);

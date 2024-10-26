@@ -249,11 +249,25 @@ protected Q_SLOTS:
     void slotPaste();
 
 private:
-    enum StatusField { ShiftField = 0, BaseField, AngleField, MemField };
+    enum StatusField {
+        ShiftField = 0,
+        BaseField,
+        AngleField,
+        MemField
+    };
 
-    enum AngleMode { DegMode = 0, RadMode, GradMode };
+    enum AngleMode {
+        DegMode = 0,
+        RadMode,
+        GradMode
+    };
 
-    enum BaseMode { BinMode = 2, OctMode = 8, DecMode = 10, HexMode = 16 };
+    enum BaseMode {
+        BinMode = 2,
+        OctMode = 8,
+        DecMode = 10,
+        HexMode = 16
+    };
 
 private:
     int commit_Input_();

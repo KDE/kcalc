@@ -29,7 +29,11 @@ public:
         INVALID_TOKEN,
     };
 
-    enum TrigonometricMode { DEGREES, RADIANS, GRADIANS };
+    enum TrigonometricMode {
+        DEGREES,
+        RADIANS,
+        GRADIANS
+    };
 
     int loadConstants(const QDomDocument &doc);
 
