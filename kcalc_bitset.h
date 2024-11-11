@@ -7,11 +7,11 @@
 
 #pragma once
 
-#include <QFrame>
+#include <QWidget>
 
 class QButtonGroup;
 class QAbstractButton;
-class KCalcBitset : public QFrame
+class KCalcBitset : public QWidget
 {
     Q_OBJECT
 

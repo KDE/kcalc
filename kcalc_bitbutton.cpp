@@ -18,6 +18,7 @@ BitButton::BitButton(QWidget *parent)
 {
     // too many bits for tab focus
     setFocusPolicy(Qt::ClickFocus);
+    setCheckable(true);
 
     // size button by font
     QSize size = fontMetrics().size(0, QStringLiteral("M"));
@@ -30,7 +31,7 @@ BitButton::BitButton(QWidget *parent)
 
     setMinimumSize(size);
     setRenderSize(size);
-    setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     this->setAttribute(Qt::WA_Hover, true);
 }
@@ -41,31 +42,27 @@ BitButton::BitButton(QWidget *parent)
 //------------------------------------------------------------------------------
 void BitButton::paintEvent(QPaintEvent *)
 {
-    uint8_t alpha = 0x60;
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
-    QPen pen(palette().text(), 1);
+    QPen pen(palette().highlight(), 2);
     pen.setJoinStyle(Qt::MiterJoin);
-    painter.setPen(pen);
+    painter.setPen(over_ ? pen : Qt::NoPen);
 
-    if (on_) {
-        painter.setBrush(palette().text());
-        alpha = 0xB0;
+    if (isDown()) {
+        painter.setBrush(palette().highlight());
     } else {
-        painter.setBrush(palette().base());
-    }
-
-    if (over_) {
-        painter.setBrush(QColor(palette().text().color().red(), palette().text().color().green(), palette().text().color().blue(), alpha));
+        painter.setBrush(on_ ? palette().text() : palette().base());
     }
 
     // Prepare button size (should be square)
     QRect square = rect();
     square.setSize(renderSize());
 
-    // Draw button
     painter.translate(QPoint(0, (rect().height() - square.height()) / 2)); // center button
-    painter.drawRect(square.adjusted(1, 1, -1, -1));
+    painter.drawRoundedRect(square, 3.0, 3.0);
+    pen.setColor(palette().color(isDown() ? QPalette::HighlightedText : (on_ ? QPalette::Window : QPalette::Text)));
+    painter.setPen(pen);
+    painter.drawText(square, Qt::AlignCenter, QString::number(on_ ? 1 : 0));
 }
 
 //------------------------------------------------------------------------------
@@ -93,7 +90,14 @@ void BitButton::setOn(bool value)
 //------------------------------------------------------------------------------
 void BitButton::setRenderSize(const QSize &size)
 {
+    if (size == renderSize_)
+        return;
+
     renderSize_ = size;
+    // resize font for painting 0/1
+    auto actualFont = font();
+    actualFont.setPixelSize(qFloor(renderSize_.height() * 0.9));
+    setFont(actualFont);
 }
 
 //------------------------------------------------------------------------------

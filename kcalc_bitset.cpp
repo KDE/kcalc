@@ -14,24 +14,26 @@
 #include <QHBoxLayout>
 #include <QLabel>
 
-#define BITSET_HEIGHT_RATIO (0.2) // 20% of available main window height
-#define BITSET_MAX_WIDTH_RATIO (8.0) // Bits frame width cannot be wider than height multiped by it
+#define BITSET_HEIGHT_RATIO (0.25) // 20% of available main window height
+#define BITSET_MAX_WIDTH_RATIO (6.0) // Bits frame width cannot be wider than height multiped by it
 
 // TODO: I think it would actually be appropriate to use a std::bitset<64>
 //       for the internal representation of this class perhaps
 //       the only real caveat is the conversion to/from quint64
+
+using namespace Qt::Literals::StringLiterals;
 
 //------------------------------------------------------------------------------
 // Name: KCalcBitset
 // Desc: constructor
 //------------------------------------------------------------------------------
 KCalcBitset::KCalcBitset(QWidget *parent)
-    : QFrame(parent)
+    : QWidget(parent)
     , bit_button_group_(new QButtonGroup(this))
     , value_(0)
     , m_readOnly(false)
 {
-    setFrameStyle(QFrame::Panel | QFrame::Sunken);
+    bit_button_group_->setExclusive(false);
 
     connect(bit_button_group_, &QButtonGroup::buttonClicked, this, &KCalcBitset::slotToggleBit);
 
@@ -47,6 +49,10 @@ KCalcBitset::KCalcBitset(QWidget *parent)
     layout->setSpacing(0);
 
     // create bits
+    auto labelPalette = palette();
+    auto textColor = palette().color(QPalette::Text);
+    textColor.setAlpha(150);
+    labelPalette.setColor(QPalette::WindowText, textColor);
     int bitCounter = 63;
     for (int rows = 0; rows < 2; rows++) {
         for (int cols = 0; cols < 4; cols++) {
@@ -59,26 +65,22 @@ KCalcBitset::KCalcBitset(QWidget *parent)
             for (int bit = 0; bit < 8; bit++) {
                 auto const tmpBitButton = new BitButton(this);
                 tmpBitButton->setToolTip(i18nc("@info:tooltip", "Bit %1 = %2", bitCounter, 1ULL << bitCounter));
-                wordlayout->addWidget(tmpBitButton);
-                wordlayout->setStretch(bit, 1);
+                wordlayout->addWidget(tmpBitButton, 1);
                 bit_button_group_->addButton(tmpBitButton, bitCounter);
                 bitCounter--;
             }
 
             // label word
             auto label = new QLabel(this);
-            label->setText(QString::number(bitCounter + 1));
             label->setFont(fnt);
-            label->setMinimumSize(label->fontMetrics().size(Qt::TextSingleLine, QStringLiteral("56"))); // Make all labels have same size
-            wordlayout->addWidget(label);
-            wordlayout->setStretch(8, 1);
+            // Make all labels have same size and space between words
+            label->setMinimumSize(label->fontMetrics().size(Qt::TextSingleLine, u"56"_s));
+            label->setText(QString::number(bitCounter + 1));
+            label->setAlignment(Qt::AlignCenter);
+            label->setPalette(labelPalette);
+            wordlayout->addWidget(label, 1, Qt::AlignVCenter);
+            wordlayout->addStretch(1);
         }
-        layout->setRowStretch(rows, 1);
-    }
-
-    // layout stretch for columns
-    for (int cols = 0; cols < 4; cols++) {
-        layout->setColumnStretch(cols, 1);
     }
 }
 
@@ -170,7 +172,7 @@ void KCalcBitset::slotToggleBit(QAbstractButton *button)
 void KCalcBitset::resizeEvent(QResizeEvent *event)
 {
     // Call the overridden resize event
-    QFrame::resizeEvent(event);
+    QWidget::resizeEvent(event);
 
     // Get the minimum size of all buttons
     int minWidth = INT_MAX;
