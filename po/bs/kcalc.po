@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-14 00:41+0000\n"
+"POT-Creation-Date: 2024-11-12 00:43+0000\n"
 "PO-Revision-Date: 2014-11-04 09:08+0000\n"
 "Last-Translator: Samir Ribić <Unknown>\n"
 "Language-Team: Bosanski <lokal@lugbih.org>\n"
@@ -2194,7 +2194,7 @@ msgstr "Shift"
 msgid "Ctrl+2"
 msgstr "Ctrl+2"
 
-#: kcalc_bitset.cpp:61
+#: kcalc_bitset.cpp:67
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Bit %1 = %2"

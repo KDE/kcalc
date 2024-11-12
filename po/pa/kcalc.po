@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-14 00:41+0000\n"
+"POT-Creation-Date: 2024-11-12 00:43+0000\n"
 "PO-Revision-Date: 2024-02-04 10:20-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
@@ -2077,7 +2077,7 @@ msgstr "ਸਿਫਟ"
 msgid "Ctrl+2"
 msgstr "Ctrl+2"
 
-#: kcalc_bitset.cpp:61
+#: kcalc_bitset.cpp:67
 #, fuzzy, kde-format
 #| msgid "Bit %1 = %2"
 msgctxt "@info:tooltip"
