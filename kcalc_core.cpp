@@ -431,8 +431,8 @@ int CalcEngine::insert_Binary_Function_Token_In_Stack_(const KCalcToken &token)
         } // else continue inserting
     }
 
-    if (token_stack_.at(token_stack_.size() - 1).isKNumber() && token_stack_.at(token_stack_.size() - 2).isBinaryFunction()
-        && token_stack_.at(token_stack_.size() - 3).isKNumber()) {
+    while (token_stack_.at(token_stack_.size() - 1).isKNumber() && token_stack_.at(token_stack_.size() - 2).isBinaryFunction()
+           && token_stack_.at(token_stack_.size() - 3).isKNumber()) {
         if (token_stack_.size() > 3) {
             if (token_stack_.at(token_stack_.size() - 4).isRightUnaryFunction()) {
                 token_stack_.push_back(token);
@@ -447,8 +447,11 @@ int CalcEngine::insert_Binary_Function_Token_In_Stack_(const KCalcToken &token)
             token_stack_.pop_back();
             token_stack_.pop_back();
             token_stack_.last().updateToken(result);
-            token_stack_.push_back(token);
-            return 0;
+            if (token_stack_.size() < 3) {
+                token_stack_.push_back(token);
+                return 0;
+            }
+            continue;
         } else {
             token_stack_.push_back(token);
             return 0;
