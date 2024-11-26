@@ -216,6 +216,10 @@ void KCalcParserCoreTest::testParserCore_data()
     QTest::newRow("Minus (-) second to last test 17") << QS("8-√4+1") << 10 << QS("7");
     QTest::newRow("Minus (-) second to last test 18") << QS("8-√4-1") << 10 << QS("5");
 
+    QTest::newRow("Combined binary opearators test 1") << QS("5×3^3+2") << 10 << QS("137");
+    QTest::newRow("Combined binary opearators test 2") << QS("5×3^3+2×3^2") << 10 << QS("153");
+    QTest::newRow("Combined binary opearators test 3") << QS("7×4^5+5×3^4") << 10 << QS("7573");
+
     QTest::newRow("Decimal without leading zero test 1") << QS(".5+.5") << 10 << QS("1");
     QTest::newRow("Decimal without leading zero test 2") << QS(".5+5") << 10 << QS("5.5");
     QTest::newRow("Decimal without leading zero test 3") << QS("5.5+0.5") << 10 << QS("6");
