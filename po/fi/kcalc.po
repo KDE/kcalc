@@ -1,11 +1,11 @@
 # Translation of kcalc.po into finnish
+# SPDX-FileCopyrightText: 2010, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Tommi Nieminen <translator@legisign.org>
 # Teemu Rytilahti <teemu.rytilahti@d5k.net>, 2003.
 # Kim Enkovaara <kim.enkovaara@iki.fi>, 2003.
 # Mikko Ikola <ikola@iki.fi>, 2003.
 # Teemu Rytilahti <teemu.rytilahti@kde-fi.org>, 2003.
 # Tapio Kautto <eleknader@phnet.fi>, 2004.
 # Ilpo Kantonen <ilpo@iki.fi>, 2004, 2005, 2006.
-# Tommi Nieminen <translator@legisign.org>, 2010, 2018, 2019, 2020, 2021, 2022, 2023, 2024.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2010, 2011, 2012, 2013, 2014, 2015, 2022.
 # Niklas Laxström <niklas.laxstrom+kdetrans@gmail.com>, 2012.
 # Tomi Mäkelä <soulweaver@hotmail.fi>, 2013.
@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-10-14 00:41+0000\n"
-"PO-Revision-Date: 2024-01-31 17:40+0200\n"
+"PO-Revision-Date: 2024-10-22 18:38+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -22,8 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2012-12-01 22:25:39+0000\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -314,32 +313,28 @@ msgid "Two's complement"
 msgstr "Kahden komplementti"
 
 #: kcalc.cpp:80
-#, fuzzy, kde-format
-#| msgid "He&x"
+#, kde-format
 msgctxt "Hexadecimal numeral system"
 msgid "Hex"
-msgstr "He&ksa"
+msgstr "Heksa"
 
 #: kcalc.cpp:81
-#, fuzzy, kde-format
-#| msgid "Dec"
+#, kde-format
 msgctxt "Decimal numeral system"
 msgid "Dec"
 msgstr "Des"
 
 #: kcalc.cpp:82
-#, fuzzy, kde-format
-#| msgid "Oc&t"
+#, kde-format
 msgctxt "Octal numeral system"
 msgid "Oct"
-msgstr "&Okt"
+msgstr "Okt"
 
 #: kcalc.cpp:83
-#, fuzzy, kde-format
-#| msgid "&Bin"
+#, kde-format
 msgctxt "Binary numeral system"
 msgid "Bin"
-msgstr "&Bin"
+msgstr "Bin"
 
 #: kcalc.cpp:178
 #, kde-format
@@ -854,10 +849,9 @@ msgid "General Settings"
 msgstr "Perusasetukset"
 
 #: kcalc.cpp:1695
-#, fuzzy, kde-format
-#| msgid "Font"
+#, kde-format
 msgid "Fonts"
-msgstr "Fontti"
+msgstr "Fontit"
 
 #: kcalc.cpp:1699
 #, kde-format
@@ -1364,9 +1358,7 @@ msgstr "Des"
 
 #. i18n: ectx: property (accessibleDescription), widget (KCalcDisplay, calc_display)
 #: kcalc.ui:354
-#, fuzzy, kde-format
-#| msgctxt "@label accessibility description of the calculation result display"
-#| msgid "Result Display"
+#, kde-format
 msgid "Result Display"
 msgstr "Tulosnäyttö"
 
@@ -1397,10 +1389,9 @@ msgstr "&Gooni"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, numeralSystemComboBox)
 #: kcalc.ui:435
-#, fuzzy, kde-format
-#| msgid "Switch base to octal."
+#, kde-format
 msgid "Switch base"
-msgstr "Vaihda oktaalikantaan"
+msgstr "Vaihda kantaa"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbSquare)
 #: kcalc.ui:504
@@ -1711,7 +1702,7 @@ msgstr "Lsh"
 #: kcalc.ui:1100
 #, kde-format
 msgid "sqrt"
-msgstr ""
+msgstr "sqrt"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPower)
 #: kcalc.ui:1116
@@ -1721,10 +1712,9 @@ msgstr "pow"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pb6)
 #: kcalc.ui:1156
-#, fuzzy, kde-format
-#| msgid "Sin"
+#, kde-format
 msgid "Six"
-msgstr "Sin"
+msgstr "Kuusi"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb6)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb6)
@@ -1737,7 +1727,7 @@ msgstr "6"
 #: kcalc.ui:1175
 #, kde-format
 msgid "Two"
-msgstr ""
+msgstr "Kaksi"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb2)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb2)
@@ -1754,8 +1744,7 @@ msgstr "Prosentti"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbPercent)
 #: kcalc.ui:1197
-#, fuzzy, kde-format
-#| msgid "Percent"
+#, kde-format
 msgid "Percentage"
 msgstr "Prosentti"
 
@@ -1769,7 +1758,7 @@ msgstr " %"
 #: kcalc.ui:1213
 #, kde-format
 msgid "Nine"
-msgstr ""
+msgstr "Yhdeksän"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb9)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb9)
@@ -1782,7 +1771,7 @@ msgstr "9"
 #: kcalc.ui:1232
 #, kde-format
 msgid "Four"
-msgstr ""
+msgstr "Neljä"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb4)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb4)
@@ -1795,7 +1784,7 @@ msgstr "4"
 #: kcalc.ui:1251
 #, kde-format
 msgid "Five"
-msgstr ""
+msgstr "Viisi"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb5)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb5)
@@ -1812,10 +1801,9 @@ msgstr "Miinus"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbMinus)
 #: kcalc.ui:1273
-#, fuzzy, kde-format
-#| msgid "Subtraction"
+#, kde-format
 msgid "Subtract"
-msgstr "Vähentäminen"
+msgstr "Vähennä"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMinus)
 #: kcalc.ui:1276
@@ -1834,7 +1822,7 @@ msgstr "Plus"
 #: kcalc.ui:1292
 #, kde-format
 msgid "Add"
-msgstr ""
+msgstr "Plus"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPlus)
 #: kcalc.ui:1295
@@ -1847,7 +1835,7 @@ msgstr "+"
 #: kcalc.ui:1308
 #, kde-format
 msgid "One"
-msgstr ""
+msgstr "Yksi"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb1)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb1)
@@ -1866,7 +1854,7 @@ msgstr "Jaettuna"
 #: kcalc.ui:1330
 #, kde-format
 msgid "Divide"
-msgstr ""
+msgstr "Jaa"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbDivision)
 #: kcalc.ui:1333
@@ -1882,10 +1870,9 @@ msgstr "Kertaa"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbMultiplication)
 #: kcalc.ui:1349
-#, fuzzy, kde-format
-#| msgid "Multiplication"
+#, kde-format
 msgid "Multiply"
-msgstr "Kertaa"
+msgstr "Kerro"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMultiplication)
 #: kcalc.ui:1352
@@ -1897,7 +1884,7 @@ msgstr "×"
 #: kcalc.ui:1365
 #, kde-format
 msgid "Zero"
-msgstr ""
+msgstr "Nolla"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb0)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb0)
@@ -1924,7 +1911,7 @@ msgstr ","
 #: kcalc.ui:1403
 #, kde-format
 msgid "Three"
-msgstr ""
+msgstr "Kolme"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb3)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb3)
@@ -1943,7 +1930,7 @@ msgstr "Tulos"
 #: kcalc.ui:1425
 #, kde-format
 msgid "Equals"
-msgstr ""
+msgstr "On yhtä kuin"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbEqual)
 #: kcalc.ui:1428
@@ -1956,7 +1943,7 @@ msgstr "="
 #: kcalc.ui:1441
 #, kde-format
 msgid "Seven"
-msgstr ""
+msgstr "Seitsemän"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb7)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb7)
@@ -1969,7 +1956,7 @@ msgstr "7"
 #: kcalc.ui:1460
 #, kde-format
 msgid "Eight"
-msgstr ""
+msgstr "Kahdeksan"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb8)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb8)
@@ -1986,11 +1973,9 @@ msgstr "Tyhjennä kaikki"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbAllClear)
 #: kcalc.ui:1509
-#, fuzzy, kde-format
-#| msgctxt "Memory cleared"
-#| msgid "M cleared"
+#, kde-format
 msgid "All clear"
-msgstr "M tyhjennetty"
+msgstr "Kaikki tyhjennetty"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbAllClear)
 #: kcalc.ui:1512
@@ -2098,7 +2083,7 @@ msgstr ")"
 #: kcalc.ui:1665
 #, kde-format
 msgid "Return"
-msgstr ""
+msgstr "Palaa"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbBackspace)
 #: kcalc.ui:1668
@@ -2132,8 +2117,7 @@ msgid "Ctrl+2"
 msgstr "Ctrl+2"
 
 #: kcalc_bitset.cpp:61
-#, fuzzy, kde-format
-#| msgid "Bit %1 = %2"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Bit %1 = %2"
 msgstr "Bitti %1 = %2"
@@ -2204,7 +2188,7 @@ msgstr "Tulosnäyttö"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Copy"
-msgstr ""
+msgstr "&Kopioi"
 
 #: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:58
 #, kde-format
