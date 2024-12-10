@@ -796,7 +796,7 @@ msgstr "Exposant"
 #, kde-format
 msgctxt "Second function mode"
 msgid "Shift"
-msgstr "Maj"
+msgstr "2nde"
 
 #: kcalc.cpp:1232 kcalc.cpp:1233
 #, kde-format
@@ -2129,7 +2129,7 @@ msgstr "Bouton de fonction secondaire"
 #: kcalc.ui:1687 kcalc.ui:1690
 #, kde-format
 msgid "Shift"
-msgstr "Maj"
+msgstr "2nde"
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbShift)
 #: kcalc.ui:1693
