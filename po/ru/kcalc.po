@@ -12,19 +12,20 @@
 # Alexander Lakhin <exclusion@gmail.com>, 2013.
 # SPDX-FileCopyrightText: 2018, 2020, 2021, 2023, 2024 Alexander Yavorsky <kekcuha@gmail.com>
 # Мария Шикунова <translation-team@basealt.ru>, 2022.
+# SPDX-FileCopyrightText: 2024 Olesya Gerasimenko <translation-team@basealt.ru>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-12 00:43+0000\n"
-"PO-Revision-Date: 2024-02-08 09:44+0300\n"
-"Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
-"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
+"PO-Revision-Date: 2024-12-10 09:37+0300\n"
+"Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
+"Language-Team: Basealt Translation Team\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 23.08.5\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Environment: kde\n"
@@ -34,7 +35,7 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Григорий Мохин,Андрей Черепанов,Мария Шикунова"
+msgstr "Григорий Мохин,Андрей Черепанов,Мария Шикунова,Олеся Герасименко"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
@@ -321,32 +322,28 @@ msgid "Two's complement"
 msgstr "Дополнительный код"
 
 #: kcalc.cpp:80
-#, fuzzy, kde-format
-#| msgid "He&x"
+#, kde-format
 msgctxt "Hexadecimal numeral system"
 msgid "Hex"
-msgstr "&Hex"
+msgstr "Hex"
 
 #: kcalc.cpp:81
-#, fuzzy, kde-format
-#| msgid "Dec"
+#, kde-format
 msgctxt "Decimal numeral system"
 msgid "Dec"
 msgstr "Dec"
 
 #: kcalc.cpp:82
-#, fuzzy, kde-format
-#| msgid "Oc&t"
+#, kde-format
 msgctxt "Octal numeral system"
 msgid "Oct"
-msgstr "Oc&t"
+msgstr "Oct"
 
 #: kcalc.cpp:83
-#, fuzzy, kde-format
-#| msgid "&Bin"
+#, kde-format
 msgctxt "Binary numeral system"
 msgid "Bin"
-msgstr "&Bin"
+msgstr "Bin"
 
 #: kcalc.cpp:178
 #, kde-format
@@ -415,7 +412,7 @@ msgstr "Вычесть из числа в памяти"
 #, kde-format
 msgctxt "Square root"
 msgid "&radic;x"
-msgstr ""
+msgstr "&radic;x"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSqrt)
 #: kcalc.cpp:346 kcalc.ui:1097
@@ -795,11 +792,10 @@ msgid "Shift"
 msgstr "Shift"
 
 #: kcalc.cpp:1232 kcalc.cpp:1233
-#, fuzzy, kde-format
-#| msgid "Memory clear"
+#, kde-format
 msgctxt "Memory cleared"
 msgid "M cleared"
-msgstr "Очистить память"
+msgstr "Память очищена"
 
 #: kcalc.cpp:1503
 #, kde-format
@@ -1373,9 +1369,7 @@ msgstr "Dec"
 
 #. i18n: ectx: property (accessibleDescription), widget (KCalcDisplay, calc_display)
 #: kcalc.ui:354
-#, fuzzy, kde-format
-#| msgctxt "@label accessibility description of the calculation result display"
-#| msgid "Result Display"
+#, kde-format
 msgid "Result Display"
 msgstr "Вывод результата"
 
@@ -1401,14 +1395,13 @@ msgstr "&Радианы"
 #: kcalc.ui:428
 #, kde-format
 msgid "&Grad"
-msgstr "Г&рады"
+msgstr "Гр&ады"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, numeralSystemComboBox)
 #: kcalc.ui:435
-#, fuzzy, kde-format
-#| msgid "Switch base to octal."
+#, kde-format
 msgid "Switch base"
-msgstr "Использовать восьмеричные числа."
+msgstr "Сменить систему счисления"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbSquare)
 #: kcalc.ui:504
@@ -1427,7 +1420,7 @@ msgstr "B"
 #: kcalc.ui:533
 #, kde-format
 msgid "Bitwise OR"
-msgstr "Побитный ИЛИ"
+msgstr "Побитовое ИЛИ"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbOR)
 #: kcalc.ui:536
@@ -1524,7 +1517,7 @@ msgstr "F"
 #: kcalc.ui:724
 #, kde-format
 msgid "Bitwise AND"
-msgstr "Побитный И"
+msgstr "Побитовое И"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbAND)
 #: kcalc.ui:727
@@ -1581,7 +1574,7 @@ msgstr "H"
 #: kcalc.ui:826
 #, kde-format
 msgid "Bitwise XOR"
-msgstr "Побитный XOR"
+msgstr "Побитовое ИСКЛЮЧАЮЩЕЕ ИЛИ "
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbXOR)
 #: kcalc.ui:829
@@ -1641,7 +1634,7 @@ msgstr "CSt"
 #: kcalc.ui:941
 #, kde-format
 msgid "Right bit shift"
-msgstr "Побитный сдвиг вправо"
+msgstr "Сдвиг битов вправо"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbRsh)
 #: kcalc.ui:944
@@ -1707,7 +1700,7 @@ msgstr "SD"
 #: kcalc.ui:1081
 #, kde-format
 msgid "Left bit shift"
-msgstr "Побитный сдвиг влево"
+msgstr "Сдвиг битов влево"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbLsh)
 #: kcalc.ui:1084
@@ -1719,7 +1712,7 @@ msgstr "Б⇐"
 #: kcalc.ui:1100
 #, kde-format
 msgid "sqrt"
-msgstr ""
+msgstr "√"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPower)
 #: kcalc.ui:1116
@@ -1729,10 +1722,9 @@ msgstr "xⁿ"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pb6)
 #: kcalc.ui:1156
-#, fuzzy, kde-format
-#| msgid "Sin"
+#, kde-format
 msgid "Six"
-msgstr "sin"
+msgstr "Шесть"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb6)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb6)
@@ -1745,7 +1737,7 @@ msgstr "6"
 #: kcalc.ui:1175
 #, kde-format
 msgid "Two"
-msgstr ""
+msgstr "Два"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb2)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb2)
@@ -1762,8 +1754,7 @@ msgstr "Процент"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbPercent)
 #: kcalc.ui:1197
-#, fuzzy, kde-format
-#| msgid "Percent"
+#, kde-format
 msgid "Percentage"
 msgstr "Процент"
 
@@ -1777,7 +1768,7 @@ msgstr "%"
 #: kcalc.ui:1213
 #, kde-format
 msgid "Nine"
-msgstr ""
+msgstr "Девять"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb9)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb9)
@@ -1790,7 +1781,7 @@ msgstr "9"
 #: kcalc.ui:1232
 #, kde-format
 msgid "Four"
-msgstr ""
+msgstr "Четыре"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb4)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb4)
@@ -1803,7 +1794,7 @@ msgstr "4"
 #: kcalc.ui:1251
 #, kde-format
 msgid "Five"
-msgstr ""
+msgstr "Пять"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb5)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb5)
@@ -1820,10 +1811,9 @@ msgstr "Минус"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbMinus)
 #: kcalc.ui:1273
-#, fuzzy, kde-format
-#| msgid "Subtraction"
+#, kde-format
 msgid "Subtract"
-msgstr "Вычитание"
+msgstr "Вычесть"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMinus)
 #: kcalc.ui:1276
@@ -1842,7 +1832,7 @@ msgstr "Плюс"
 #: kcalc.ui:1292
 #, kde-format
 msgid "Add"
-msgstr ""
+msgstr "Прибавить"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPlus)
 #: kcalc.ui:1295
@@ -1855,7 +1845,7 @@ msgstr "+"
 #: kcalc.ui:1308
 #, kde-format
 msgid "One"
-msgstr ""
+msgstr "Один"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb1)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb1)
@@ -1874,7 +1864,7 @@ msgstr "Деление"
 #: kcalc.ui:1330
 #, kde-format
 msgid "Divide"
-msgstr ""
+msgstr "Разделить"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbDivision)
 #: kcalc.ui:1333
@@ -1890,10 +1880,9 @@ msgstr "Умножение"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbMultiplication)
 #: kcalc.ui:1349
-#, fuzzy, kde-format
-#| msgid "Multiplication"
+#, kde-format
 msgid "Multiply"
-msgstr "Умножение"
+msgstr "Умножить"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMultiplication)
 #: kcalc.ui:1352
@@ -1905,7 +1894,7 @@ msgstr "×"
 #: kcalc.ui:1365
 #, kde-format
 msgid "Zero"
-msgstr ""
+msgstr "Ноль"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb0)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb0)
@@ -1932,7 +1921,7 @@ msgstr "."
 #: kcalc.ui:1403
 #, kde-format
 msgid "Three"
-msgstr ""
+msgstr "Три"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb3)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb3)
@@ -1951,7 +1940,7 @@ msgstr "Результат"
 #: kcalc.ui:1425
 #, kde-format
 msgid "Equals"
-msgstr ""
+msgstr "Равно"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbEqual)
 #: kcalc.ui:1428
@@ -1964,7 +1953,7 @@ msgstr "="
 #: kcalc.ui:1441
 #, kde-format
 msgid "Seven"
-msgstr ""
+msgstr "Семь"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb7)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb7)
@@ -1977,7 +1966,7 @@ msgstr "7"
 #: kcalc.ui:1460
 #, kde-format
 msgid "Eight"
-msgstr ""
+msgstr "Восемь"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb8)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb8)
@@ -1994,10 +1983,9 @@ msgstr "Очистить всё"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbAllClear)
 #: kcalc.ui:1509
-#, fuzzy, kde-format
-#| msgid "Memory clear"
+#, kde-format
 msgid "All clear"
-msgstr "Очистить память"
+msgstr "Очистить всё"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbAllClear)
 #: kcalc.ui:1512
@@ -2105,7 +2093,7 @@ msgstr ")"
 #: kcalc.ui:1665
 #, kde-format
 msgid "Return"
-msgstr ""
+msgstr "Возврат"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbBackspace)
 #: kcalc.ui:1668
@@ -2139,8 +2127,7 @@ msgid "Ctrl+2"
 msgstr "Ctrl+2"
 
 #: kcalc_bitset.cpp:67
-#, fuzzy, kde-format
-#| msgid "Bit %1 = %2"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Bit %1 = %2"
 msgstr "Бит %1 = %2"
@@ -2211,7 +2198,7 @@ msgstr "Вывод результата"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Copy"
-msgstr ""
+msgstr "&Копировать"
 
 #: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:58
 #, kde-format
@@ -2533,9 +2520,6 @@ msgstr "Число Авогадро"
 #~ msgstr "Показывать кнопки статистических функций."
 
 #, fuzzy
-#~| msgid ""
-#~| "Whether to show buttons with functions used in science/engineering,\n"
-#~| "\t     like exp, log, sin etc."
 #~ msgid ""
 #~ "Whether to show buttons with functions used in science/engineering,\n"
 #~ "\t     like exp, log, sin, etc."
@@ -2547,7 +2531,6 @@ msgstr "Число Авогадро"
 #~ msgstr "Показывать кнопки логических операций и выбора систем счисления."
 
 #, fuzzy
-#~| msgid "M"
 #~ msgctxt "Subtract from memory"
 #~ msgid "M-"
 #~ msgstr "M"
@@ -2559,7 +2542,6 @@ msgstr "Число Авогадро"
 #~ msgstr "X"
 
 #, fuzzy
-#~| msgid "-"
 #~ msgctxt "- calculator button"
 #~ msgid "-"
 #~ msgstr "-"
