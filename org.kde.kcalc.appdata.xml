@@ -40,6 +40,7 @@
   <name xml:lang="pt-BR">KCalc</name>
   <name xml:lang="ro">KCalc</name>
   <name xml:lang="ru">KCalc</name>
+  <name xml:lang="sa">KCalc</name>
   <name xml:lang="sk">KCalc</name>
   <name xml:lang="sl">KCalc</name>
   <name xml:lang="sq">KCalc</name>
@@ -82,6 +83,7 @@
   <summary xml:lang="pl">Kalkulator naukowy</summary>
   <summary xml:lang="pt-BR">Calculadora científica</summary>
   <summary xml:lang="ru">Калькулятор</summary>
+  <summary xml:lang="sa">वैज्ञानिक गणकयंत्र</summary>
   <summary xml:lang="sl">Znanstveno računalo</summary>
   <summary xml:lang="sv">Vetenskaplig miniräknare</summary>
   <summary xml:lang="ta">அறிவியலுக்கான கணிப்பான்</summary>
@@ -128,6 +130,7 @@
     <p xml:lang="pt">O KCalc tem tudo o que poderá esperar de uma calculadora científica, e ainda mais:</p>
     <p xml:lang="pt-BR">O KCalc tem tudo o necessário para uma calculadora científica e adicionalmente:</p>
     <p xml:lang="ru">В калькуляторе KCalc есть всё, что только можно ожидать от научного калькулятора, а также:</p>
+    <p xml:lang="sa">KCalc इत्यत्र सर्वं अस्ति यत् भवान् वैज्ञानिकगणकयन्त्रात् अपेक्षते, अपि च:</p>
     <p xml:lang="sk">KCalc má všetko, čo by ste očakávali od vedeckej kalkulačky, plus:</p>
     <p xml:lang="sl">KCalc poleg zmožnosti znanstvenega računala ponuja še naslednje zmožnosti:</p>
     <p xml:lang="sq">Makinë llogaritëse që ofron shumë funksione matematikore si  dhe</p>
@@ -174,6 +177,7 @@
       <li xml:lang="pt">Funções trigonométricas, operações lógicas e cálculos estatísticos</li>
       <li xml:lang="pt-BR">Funções trigonométricas, operações de lógica e cálculos estatísticos</li>
       <li xml:lang="ru">Тригонометрические функции, логические операции и статистические расчёты;</li>
+      <li xml:lang="sa">त्रिकोणमितीय फलनानि, तर्कक्रियाः तथा सांख्यिकीयगणनाः</li>
       <li xml:lang="sk">Trigonometrické funkcie, logické operácie a štatistické výpočty</li>
       <li xml:lang="sl">Trigonometrične funkcije, logične operacije in statistične izračune</li>
       <li xml:lang="sq">funksione trigonometrike, operacione logjike dhe lloritje statistikore</li>
@@ -215,6 +219,7 @@
       <li xml:lang="pt">Uma pilha de resultados que permite a reposição adequada dos resultados de cálculos anteriores</li>
       <li xml:lang="pt-BR">Uma pilha de resultados que permite a recuperação conveniente de resultados de cálculos anteriores</li>
       <li xml:lang="ru">Стек результатов, который позволяет легко получать доступ к предыдущим результатам;</li>
+      <li xml:lang="sa">एकः परिणामस्य ढेरः यः पूर्वगणनापरिणामानां सुविधाजनकं स्मरणं सक्षमं करोति</li>
       <li xml:lang="sk">Zásobník výsledkov, ktorý umožní ľahké zavolanie predošlých výsledkov výpočtov</li>
       <li xml:lang="sl">Sklad rezultatov, ki omogoča priročen priklic prejšnjega rezultata izračuna</li>
       <li xml:lang="sq">Një shirit i rezultateve që mundëson kthimin e vlerave llogaritjeve të mëparshme</li>
@@ -258,6 +263,7 @@
       <li xml:lang="pt-BR">A precisão é definida pelo usuário</li>
       <li xml:lang="ro">Precizia e definită de utilizator</li>
       <li xml:lang="ru">Задаваемая пользователем точность вычислений;</li>
+      <li xml:lang="sa">सटीकता उपयोक्तृनिर्धारणीयम् अस्ति</li>
       <li xml:lang="sk">Presnosť je definovaná používateľom</li>
       <li xml:lang="sl">Natančnost lahko določi uporabnik</li>
       <li xml:lang="sq">Saktësi është e definuar nga përdoruesi</li>
@@ -301,6 +307,7 @@
       <li xml:lang="pt-BR">O visor permite copiar e colar números</li>
       <li xml:lang="ro">Afișajul permite tăierea și lipirea numerelor</li>
       <li xml:lang="ru">Копирование и вставка чисел;</li>
+      <li xml:lang="sa">प्रदर्शनेन संख्यानां कटनं, पेस्ट् च भवति</li>
       <li xml:lang="sk">Displej umožní vystrihnúť a vložiť čísla</li>
       <li xml:lang="sl">Prikaz omogoča rezanje in lepljenje števil</li>
       <li xml:lang="sq">Pamja lejon kapjen dhe ngjitjen e numrave</li>
@@ -343,6 +350,7 @@
       <li xml:lang="pt">As cores e tipo de letra do ecrã são configuráveis, o que ajuda à usabilidade</li>
       <li xml:lang="pt-BR">As cores e fonte do visor são configuráveis, ajudando na usabilidade</li>
       <li xml:lang="ru">Настраиваемые цвета и шрифты;</li>
+      <li xml:lang="sa">प्रदर्शनवर्णाः, फ़ॉन्ट् च विन्यासयोग्याः सन्ति, येन उपयोगितायां सहायता भवति</li>
       <li xml:lang="sk">Farby a písma displeja sú nastaviteľné, čo napomáha použiteľnosti</li>
       <li xml:lang="sl">Barve in pisava prikaza so nastavljivi, kar izboljšuje uporabnost</li>
       <li xml:lang="sq">Fontet the ngjyrat e pamjes mund të ndryshon, gjë që rritë përdorshmërinë</li>
@@ -384,6 +392,7 @@
       <li xml:lang="pt">O uso de combinações de teclas permite não usar um rato</li>
       <li xml:lang="pt-BR">O uso de combinação de teclas facilita o uso sem um dispositivo apontador</li>
       <li xml:lang="ru">Поддержка сочетаний клавиш для облечения работы без использования мыши.</li>
+      <li xml:lang="sa">कील-बन्धनस्य उपयोगेन सूचकयन्त्रं विना उपयोगः सुलभः भवति</li>
       <li xml:lang="sk">Použitie klávesových väzieb uľahčuje použitie bez ukazovacieho zariadenia</li>
       <li xml:lang="sl">Uporaba bližnjic s tipkami olajša uporabo kalkulatorja brez kazalne naprave</li>
       <li xml:lang="sq">Shkurtoret ju lehtësojnë përdorimin pa maus</li>
@@ -434,6 +443,7 @@
       <caption xml:lang="pt-BR">Janela principal do KCalc</caption>
       <caption xml:lang="ro">Fereastra principală KCalc</caption>
       <caption xml:lang="ru">Основное окно приложения KCalc</caption>
+      <caption xml:lang="sa">KCalc इत्यस्य मुख्यविण्डो</caption>
       <caption xml:lang="sk">Hlavné okno KCalc</caption>
       <caption xml:lang="sl">Glavno okno KCalc</caption>
       <caption xml:lang="sq">Dritarja Kryesore  e KCalc</caption>
@@ -479,6 +489,7 @@
       <caption xml:lang="pt">A janela do KCalc no modo do sistema numeral</caption>
       <caption xml:lang="pt-BR">Janela do KCalc no modo de sistema numérico</caption>
       <caption xml:lang="ru">Окно KCalc в режиме систем счисления</caption>
+      <caption xml:lang="sa">संख्याप्रणालीविधाने KCalc विण्डो</caption>
       <caption xml:lang="sk">Okno KCalc v číselnom režime</caption>
       <caption xml:lang="sl">Okno KCalc v številskem načinu</caption>
       <caption xml:lang="sq">Dritarja e KCalc në gjendje të sistemit të numrave</caption>
@@ -525,6 +536,7 @@
       <caption xml:lang="pt-BR">Janela do KCalc no modo científico</caption>
       <caption xml:lang="ro">Fereastra KCalc în regim științific</caption>
       <caption xml:lang="ru">Окно KCalc в инженерном режиме</caption>
+      <caption xml:lang="sa">वैज्ञानिकविधाने Kcalc विण्डो</caption>
       <caption xml:lang="sk">Okno KCalc vo vedeckom režime</caption>
       <caption xml:lang="sl">Okno KCalc v znanstvenem načinu</caption>
       <caption xml:lang="sq">Dritarja e KCalc në gjendje shkencore </caption>
@@ -571,6 +583,7 @@
       <caption xml:lang="pt-BR">Janela do KCalc no modo estatístico</caption>
       <caption xml:lang="ro">Fereastra KCalc în regim statistic</caption>
       <caption xml:lang="ru">Окно KCalc в статистическом режиме</caption>
+      <caption xml:lang="sa">सांख्यिकीविधाने Kcalc विण्डो</caption>
       <caption xml:lang="sk">Okno KCalc v štatistickom režime</caption>
       <caption xml:lang="sl">Okno KCalc v statističnem načinu</caption>
       <caption xml:lang="sq">Dritarja e KCalc në gjendje statistikore </caption>
