@@ -19,12 +19,12 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "भवतः नामानि"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "भवतः ईमेलपत्राणि"
 
 #. i18n: ectx: property (title), widget (QGroupBox, displayColorsBox)
 #: colors.ui:17
@@ -306,7 +306,7 @@ msgstr "द्वयोः पूरकः"
 #, kde-format
 msgctxt "Hexadecimal numeral system"
 msgid "Hex"
-msgstr ""
+msgstr "हेक्सः"
 
 #: kcalc.cpp:81
 #, kde-format
@@ -318,13 +318,13 @@ msgstr "दिसम्बर 10"
 #, kde-format
 msgctxt "Octal numeral system"
 msgid "Oct"
-msgstr ""
+msgstr "अक्टूबर 10"
 
 #: kcalc.cpp:83
 #, kde-format
 msgctxt "Binary numeral system"
 msgid "Bin"
-msgstr ""
+msgstr "बिन्"
 
 #: kcalc.cpp:178
 #, kde-format
@@ -382,7 +382,7 @@ msgstr "स्मृतौ प्रदर्शनं योजयन्तु"
 #, kde-format
 msgctxt "Subtract from memory"
 msgid "M−"
-msgstr ""
+msgstr "M−"
 
 #: kcalc.cpp:323
 #, kde-format
@@ -393,7 +393,7 @@ msgstr "स्मृत्याः घटयतु"
 #, kde-format
 msgctxt "Square root"
 msgid "&radic;x"
-msgstr ""
+msgstr "&radic;x"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSqrt)
 #: kcalc.cpp:346 kcalc.ui:1097
@@ -410,7 +410,7 @@ msgstr "घनमूलम्"
 #, kde-format
 msgctxt "Sine"
 msgid "sin"
-msgstr ""
+msgstr "पापम्"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSin)
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbSin)
@@ -423,7 +423,7 @@ msgstr "तस्य"
 #, kde-format
 msgctxt "Arc sine"
 msgid "asin"
-msgstr ""
+msgstr "लवणं"
 
 #: kcalc.cpp:446
 #, kde-format
@@ -434,7 +434,7 @@ msgstr "चाप सिने"
 #, kde-format
 msgctxt "Hyperbolic sine"
 msgid "sinh"
-msgstr ""
+msgstr "जाताः"
 
 #: kcalc.cpp:447
 #, kde-format
@@ -445,7 +445,7 @@ msgstr "अतिपरवलयिक साइन"
 #, kde-format
 msgctxt "Inverse hyperbolic sine"
 msgid "asinh"
-msgstr ""
+msgstr "असिन्ः"
 
 #: kcalc.cpp:448
 #, kde-format
@@ -456,7 +456,7 @@ msgstr "विलोम अतिपरवलयिक साइन"
 #, kde-format
 msgctxt "Cosine"
 msgid "cos"
-msgstr ""
+msgstr "कोस्"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbCos)
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbCos)
@@ -469,7 +469,7 @@ msgstr "कोसाइन"
 #, kde-format
 msgctxt "Arc cosine"
 msgid "acos"
-msgstr ""
+msgstr "अकोस"
 
 #: kcalc.cpp:454
 #, kde-format
@@ -480,7 +480,7 @@ msgstr "चाप कोसाइन"
 #, kde-format
 msgctxt "Hyperbolic cosine"
 msgid "cosh"
-msgstr ""
+msgstr "कोषः"
 
 #: kcalc.cpp:455
 #, kde-format
@@ -491,7 +491,7 @@ msgstr "अतिपरवलयिक कोसाइन"
 #, kde-format
 msgctxt "Inverse hyperbolic cosine"
 msgid "acosh"
-msgstr ""
+msgstr "अकोषः"
 
 #: kcalc.cpp:456
 #, kde-format
@@ -502,7 +502,7 @@ msgstr "विलोम अतिपरवलयिक कोसाइन"
 #, kde-format
 msgctxt "Tangent"
 msgid "tan"
-msgstr ""
+msgstr "तन्"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbTan)
 #: kcalc.cpp:461 kcalc.ui:689
@@ -514,7 +514,7 @@ msgstr "स्पर्शरेखा"
 #, kde-format
 msgctxt "Arc tangent"
 msgid "atan"
-msgstr ""
+msgstr "प्रयोजनार्थम्"
 
 #: kcalc.cpp:462
 #, kde-format
@@ -525,7 +525,7 @@ msgstr "चाप स्पर्शरेखा"
 #, kde-format
 msgctxt "Hyperbolic tangent"
 msgid "tanh"
-msgstr ""
+msgstr "मत्स्यीयः"
 
 #: kcalc.cpp:463
 #, kde-format
@@ -536,7 +536,7 @@ msgstr "अतिपरवलयिक स्पर्शरेखा"
 #, kde-format
 msgctxt "Inverse hyperbolic tangent"
 msgid "atanh"
-msgstr ""
+msgstr "अतनः"
 
 #: kcalc.cpp:464
 #, kde-format
@@ -547,7 +547,7 @@ msgstr "विलोम अतिशयोक्ति स्पर्शरे�
 #, kde-format
 msgctxt "Logarithm to base 10"
 msgid "log"
-msgstr ""
+msgstr "वृत्त"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLog)
 #: kcalc.cpp:469 kcalc.ui:670
@@ -559,7 +559,7 @@ msgstr "आधार 10 तक लघुगणक"
 #, kde-format
 msgctxt "10 to the power of x"
 msgid "10<sup>x</sup>"
-msgstr ""
+msgstr "१० <sup>x</sup>"
 
 #: kcalc.cpp:470
 #, kde-format
@@ -570,7 +570,7 @@ msgstr "१० क्षस्य शक्तिं प्रति"
 #, kde-format
 msgctxt "Natural log"
 msgid "ln"
-msgstr ""
+msgstr "लञ्"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLn)
 #: kcalc.cpp:474 kcalc.ui:998
@@ -582,7 +582,7 @@ msgstr "प्राकृतिक लॉग"
 #, kde-format
 msgctxt "Exponential function"
 msgid "e<sup>x</sup>"
-msgstr ""
+msgstr "<sup>ex</sup>"
 
 #: kcalc.cpp:475
 #, kde-format
@@ -650,7 +650,7 @@ msgstr "दत्तांशं प्रविशतु"
 #, kde-format
 msgctxt "Delete last data item"
 msgid "CDat"
-msgstr ""
+msgstr "CDat"
 
 #: kcalc.cpp:516
 #, kde-format
@@ -661,7 +661,7 @@ msgstr "अन्तिमदत्तांशवस्तु विलोप�
 #, kde-format
 msgctxt "Modulo"
 msgid "mod"
-msgstr ""
+msgstr "विरुद्धम्‌"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMod)
 #: kcalc.cpp:577 kcalc.ui:638
@@ -673,7 +673,7 @@ msgstr "मॉड्यूल"
 #, kde-format
 msgctxt "Integer division"
 msgid "IntDiv"
-msgstr ""
+msgstr "IntDiv"
 
 #: kcalc.cpp:578
 #, kde-format
@@ -684,7 +684,7 @@ msgstr "पूर्णाङ्कविभागः"
 #, kde-format
 msgctxt "Reciprocal"
 msgid "1/x"
-msgstr ""
+msgstr "१/x"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbReci)
 #: kcalc.cpp:584 kcalc.ui:979
@@ -696,7 +696,7 @@ msgstr "परस्परम्"
 #, kde-format
 msgctxt "n Choose m"
 msgid "nCm"
-msgstr ""
+msgstr "nCm"
 
 #: kcalc.cpp:585
 #, kde-format
@@ -724,7 +724,7 @@ msgstr "गाम्मा"
 #, kde-format
 msgctxt "Square"
 msgid "x<sup>2</sup>"
-msgstr ""
+msgstr "x <sup>2</sup>"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSquare)
 #: kcalc.cpp:597 kcalc.ui:501
@@ -741,7 +741,7 @@ msgstr "तृतीया शक्तिः"
 #, kde-format
 msgctxt "x to the power of y"
 msgid "x<sup>y</sup>"
-msgstr ""
+msgstr "x <sup>y</sup>"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbPower)
 #: kcalc.cpp:605 kcalc.ui:1113
@@ -753,7 +753,7 @@ msgstr "x यस्य शक्तिं प्रति"
 #, kde-format
 msgctxt "x to the power of 1/y"
 msgid "x<sup>1/y</sup>"
-msgstr ""
+msgstr "x <sup>1/y</sup>"
 
 #: kcalc.cpp:606
 #, kde-format
@@ -776,7 +776,7 @@ msgstr "विहरति"
 #, kde-format
 msgctxt "Memory cleared"
 msgid "M cleared"
-msgstr ""
+msgstr "म स्वच्छः अभवत्"
 
 #: kcalc.cpp:1503
 #, kde-format
@@ -1788,7 +1788,7 @@ msgstr "घटाये"
 #, kde-format
 msgctxt "- calculator button"
 msgid "−"
-msgstr ""
+msgstr "−"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbPlus)
 #: kcalc.ui:1289
@@ -1807,7 +1807,7 @@ msgstr "संयोजयति"
 #, kde-format
 msgctxt "+ calculator button"
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pb1)
 #: kcalc.ui:1308
@@ -1883,7 +1883,7 @@ msgstr "दशमलव बिन्दु"
 #, kde-format
 msgctxt ". calculator button"
 msgid "."
-msgstr ""
+msgstr "."
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pb3)
 #: kcalc.ui:1403
@@ -1915,7 +1915,7 @@ msgstr "समाः"
 #, kde-format
 msgctxt "= calculator button"
 msgid "="
-msgstr ""
+msgstr "="
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pb7)
 #: kcalc.ui:1441
@@ -2010,7 +2010,7 @@ msgstr "मुक्त कोष्ठक"
 #, kde-format
 msgctxt "( calculator button"
 msgid "("
-msgstr ""
+msgstr "("
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbClear)
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbClear)
@@ -2055,7 +2055,7 @@ msgstr "कोष्ठकं निमील्यताम्"
 #, kde-format
 msgctxt ") calculator button"
 msgid ")"
-msgstr ""
+msgstr ") ९."
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbBackspace)
 #: kcalc.ui:1665
@@ -2098,13 +2098,13 @@ msgstr "Ctrl+2 इति"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Bit %1 = %2"
-msgstr ""
+msgstr "बिट् %1 = %2"
 
 #: kcalc_const_button.cpp:24 kcalc_const_button.cpp:37
 #, kde-format
 msgctxt "Write display data into memory"
 msgid "Store"
-msgstr ""
+msgstr "संग्रहः"
 
 #: kcalc_const_button.cpp:24 kcalc_const_button.cpp:37
 #, kde-format
@@ -2166,19 +2166,19 @@ msgstr "परिणामप्रदर्शनम्"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Copy"
-msgstr ""
+msgstr "&प्रतिलिपि"
 
 #: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:58
 #, kde-format
 msgctxt "Normal button functions are active"
 msgid "NORM"
-msgstr ""
+msgstr "NORM"
 
 #: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:58
 #, kde-format
 msgctxt "Second button functions are active"
 msgid "SHIFT"
-msgstr ""
+msgstr "विहरति"
 
 #: kcalc_statusbar.cpp:17
 #, kde-format
@@ -2226,7 +2226,7 @@ msgstr "क्रीडा"
 #, kde-format
 msgctxt "Memory indicator in status bar"
 msgid "M"
-msgstr ""
+msgstr "म"
 
 #: kcalc_statusbar.cpp:67
 #, kde-format
