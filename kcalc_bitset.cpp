@@ -123,6 +123,7 @@ void KCalcBitset::clear()
 {
     // TODO implement a better looking cleared state
     setValue(0);
+    m_readOnly = false;
 }
 
 //------------------------------------------------------------------------------
