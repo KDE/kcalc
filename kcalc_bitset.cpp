@@ -82,6 +82,8 @@ KCalcBitset::KCalcBitset(QWidget *parent)
             wordlayout->addStretch(1);
         }
     }
+
+    calculateMaxSize();
 }
 
 //------------------------------------------------------------------------------
