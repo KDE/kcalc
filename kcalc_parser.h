@@ -6,6 +6,7 @@
 #pragma once
 
 #include "kcalc_token.h"
+#include "kcalc_trie_node.h"
 #include "knumber/knumber.h"
 
 #include <QChar>
@@ -29,11 +30,7 @@ public:
         INVALID_TOKEN,
     };
 
-    enum TrigonometricMode {
-        DEGREES,
-        RADIANS,
-        GRADIANS
-    };
+    enum TrigonometricMode { DEGREES, RADIANS, GRADIANS };
 
     int loadConstants(const QDomDocument &doc);
 
@@ -176,11 +173,23 @@ private:
 
 private:
     QHash<QString, QString> constants_;
+
+    typedef struct {
+        int consumedChars;
+        KCalcToken::TokenCode code;
+    } TokenResult;
+
     bool constantSymbolToValue_(const QString &constantSymbol);
+    bool isNumeric(const QChar ch, int base);
 
     QString token_KNumber_;
     bool m_inputHasConstants = false;
     int trigonometric_Mode_ = DEGREES;
     bool m_numeralMode = false;
     ParsingResult parsing_Result_ = EMPTY;
+
+    KCalcTrieNode *m_prefixTree;
+    void insertTokens();
+    void insertToken(const QString &token, KCalcToken::TokenCode code);
+    TokenResult stringToTokenTrie(const QString &token);
 };

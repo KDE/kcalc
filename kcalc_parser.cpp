@@ -6,8 +6,10 @@
 #include "kcalc_parser.h"
 #include "kcalc_debug.h"
 #include "kcalc_token.h"
+#include "kcalc_trie_node.h"
 #include "knumber/knumber.h"
 
+#include <QChar>
 #include <QDebug>
 #include <QDomDocument>
 #include <QHash>
@@ -35,13 +37,52 @@ const QRegularExpression KCalcParser::DECIMAL_NUMBER_REGEX = QRegularExpression(
 //------------------------------------------------------------------------------
 KCalcParser::KCalcParser()
 {
+    m_prefixTree = new KCalcTrieNode();
+    insertTokens();
 }
 
 //------------------------------------------------------------------------------
 // Name: ~KCalcParser
 // Desc: destructor
 //------------------------------------------------------------------------------
-KCalcParser::~KCalcParser() = default;
+KCalcParser::~KCalcParser()
+{
+    delete m_prefixTree;
+}
+
+void KCalcParser::insertToken(const QString &token, KCalcToken::TokenCode code)
+{
+    KCalcTrieNode *node = m_prefixTree;
+    for (auto it = token.begin(); it != token.end(); ++it) {
+        if (!node->children.contains(*it)) {
+            node->children.insert(*it, new KCalcTrieNode());
+        }
+        node = node->children.value(*it);
+    }
+    node->m_isToken = true;
+    node->m_code = code;
+}
+
+KCalcParser::TokenResult KCalcParser::stringToTokenTrie(const QString &token)
+{
+    KCalcTrieNode *node = m_prefixTree;
+    auto it = token.cbegin();
+    auto returnCode = KCalcToken::TokenCode::INVALID_TOKEN;
+    int consumedChars = 0;
+
+    while (it != token.cend() && node->children.contains(*it)) {
+        node = node->children.value(*it);
+        consumedChars++;
+
+        if (node->m_isToken) {
+            // search greedy
+            returnCode = node->m_code;
+        }
+        ++it;
+    }
+
+    return {consumedChars, returnCode};
+}
 
 //------------------------------------------------------------------------------
 // Name: stringToToken
@@ -554,7 +595,14 @@ KCalcParser::ParsingResult KCalcParser::stringToTokenQueue(const QString &buffer
         tokenCode = KCalcToken::TokenCode::INVALID_TOKEN;
         KNumber operand;
 
-        tokenCode = stringToToken(buffer, buffer_index, base);
+        if (isNumeric(buffer.at(buffer_index), base)) {
+            tokenCode = stringToToken(buffer, buffer_index, base);
+        } else {
+            const QString subStr = buffer.sliced(buffer_index);
+            TokenResult result = stringToTokenTrie(subStr);
+            buffer_index += result.consumedChars;
+            tokenCode = result.code;
+        }
 
         if (tokenCode == KCalcToken::TokenCode::INVALID_TOKEN) {
             parsing_Result_ = INVALID_TOKEN;
@@ -897,4 +945,21 @@ bool KCalcParser::constantSymbolToValue_(const QString &constantSymbol)
     }
 
     return false;
+}
+
+bool KCalcParser::isNumeric(const QChar ch, int base)
+{
+    if ((A_STR <= ch && ch <= F_STR) || (ZERO_STR <= ch && ch <= NINE_STR) || (ch == COMMA_STR || ch == POINT_STR)) {
+        return true;
+    }
+
+    if ((A_LOWER_CASE_STR <= ch && ch <= F_LOWER_CASE_STR && m_numeralMode && base == 16)) {
+        return true;
+    }
+
+    return false;
+}
+
+void KCalcParser::insertTokens()
+{
 }
