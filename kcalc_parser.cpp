@@ -962,4 +962,65 @@ bool KCalcParser::isNumeric(const QChar ch, int base)
 
 void KCalcParser::insertTokens()
 {
+    insertToken(SIN_STR, KCalcToken::TokenCode::SIN_DEG);
+    insertToken(COS_STR, KCalcToken::TokenCode::COS_DEG);
+    insertToken(TAN_STR, KCalcToken::TokenCode::TAN_DEG);
+    insertToken(COSH_STR, KCalcToken::TokenCode::COSH);
+
+    insertToken(SPACE_STR, KCalcToken::TokenCode::STUB);
+    insertToken(THIN_SPACE_STR, KCalcToken::TokenCode::STUB);
+    insertToken(ONE_S_COMP_STR, KCalcToken::TokenCode::ONE_S_COMPLEMENT);
+    insertToken(FACTORIAL_STR, KCalcToken::TokenCode::FACTORIAL);
+    insertToken(RECIPROCAL_STR, KCalcToken::TokenCode::RECIPROCAL);
+    insertToken(TWO_S_COMP_STR, KCalcToken::TokenCode::TWO_S_COMPLEMENT);
+    insertToken(LSH_STR, KCalcToken::TokenCode::LSH);
+    insertToken(RSH_STR, KCalcToken::TokenCode::RSH);
+    insertToken(INTEGER_DIVISION_STR, KCalcToken::TokenCode::INTEGER_DIVISION);
+    insertToken(MODULO_STR, KCalcToken::TokenCode::MODULO);
+    insertToken(BINOMIAL_STR, KCalcToken::TokenCode::BINOMIAL);
+    insertToken(ANS_STR, KCalcToken::TokenCode::ANS);
+    insertToken(LOG_10_STR, KCalcToken::TokenCode::LOG_10);
+    insertToken(EXP_STR, KCalcToken::TokenCode::EXP);
+    insertToken(TANH_STR, KCalcToken::TokenCode::TANH);
+    insertToken(COSH_STR, KCalcToken::TokenCode::COSH);
+    insertToken(SINH_STR, KCalcToken::TokenCode::SINH);
+    insertToken(ATANH_STR, KCalcToken::TokenCode::ATANH);
+    insertToken(ACOSH_STR, KCalcToken::TokenCode::ACOSH);
+    insertToken(ASINH_STR, KCalcToken::TokenCode::ASINH);
+    insertToken(XOR_STR, KCalcToken::TokenCode::XOR);
+    insertToken(OR_STR, KCalcToken::TokenCode::OR);
+    insertToken(AND_STR, KCalcToken::TokenCode::AND);
+    insertToken(MULTIPLICATION_STR, KCalcToken::TokenCode::MULTIPLICATION);
+    insertToken(DOT_STR, KCalcToken::TokenCode::MULTIPLICATION);
+    insertToken(ASTERISK_STR, KCalcToken::TokenCode::MULTIPLICATION);
+    insertToken(INVERT_SIGN_STR, KCalcToken::TokenCode::INVERT_SIGN);
+    insertToken(CLOSING_PARENTHESIS_STR, KCalcToken::TokenCode::CLOSING_PARENTHESIS);
+    insertToken(OPENING_PARENTHESIS_STR, KCalcToken::TokenCode::OPENING_PARENTHESIS);
+    insertToken(CUBIC_ROOT_STR, KCalcToken::TokenCode::CUBIC_ROOT);
+    insertToken(SQUARE_ROOT_STR, KCalcToken::TokenCode::SQUARE_ROOT);
+    insertToken(GAMMA_STR, KCalcToken::TokenCode::GAMMA);
+    insertToken(DIVISION_STR, KCalcToken::TokenCode::DIVISION);
+    insertToken(SLASH_STR, KCalcToken::TokenCode::DIVISION);
+    insertToken(DIVISION_SLASH_STR, KCalcToken::TokenCode::DIVISION);
+    insertToken(I_STR, KCalcToken::TokenCode::I);
+    insertToken(PERCENTAGE_STR, KCalcToken::TokenCode::PERCENTAGE);
+    insertToken(EXP_10_STR, KCalcToken::TokenCode::EXP_10);
+    insertToken(POWER_ROOT_STR, KCalcToken::TokenCode::POWER_ROOT);
+    insertToken(POWER_STR, KCalcToken::TokenCode::POWER);
+    insertToken(CUBE_STR, KCalcToken::TokenCode::CUBE);
+    insertToken(SQUARE_STR, KCalcToken::TokenCode::SQUARE);
+    insertToken(EQUAL_STR, KCalcToken::TokenCode::EQUAL);
+    insertToken(HYPHEN_MINUS_STR, KCalcToken::TokenCode::MINUS);
+    insertToken(MINUS_SIGN_STR, KCalcToken::TokenCode::MINUS);
+    insertToken(PLUS_STR, KCalcToken::TokenCode::PLUS);
+    insertToken(LN_STR, KCalcToken::TokenCode::LN);
+
+    /*
+    insertToken(ASIN_STR, KCalcToken::TokenCode::ASIN_RAD, KCalcToken::TokenCode::ASIN_GRAD, KCalcToken::TokenCode::ASIN_DEG);
+    insertToken(ACOS_STR, KCalcToken::TokenCode::ACOS_RAD, KCalcToken::TokenCode::ACOS_GRAD, KCalcToken::TokenCode::ACOS_DEG);
+    insertToken(ATAN_STR, KCalcToken::TokenCode::ATAN_RAD, KCalcToken::TokenCode::ATAN_GRAD, KCalcToken::TokenCode::ATAN_DEG);
+    insertToken(SIN_STR, KCalcToken::TokenCode::SIN_RAD, KCalcToken::TokenCode::SIN_GRAD, KCalcToken::TokenCode::SIN_DEG);
+    insertToken(COS_STR, KCalcToken::TokenCode::COS_RAD, KCalcToken::TokenCode::COS_GRAD, KCalcToken::TokenCode::COS_DEG);
+    insertToken(TAN_STR, KCalcToken::TokenCode::TAN_RAD, KCalcToken::TokenCode::TAN_GRAD, KCalcToken::TokenCode::TAN_DEG);
+    */
 }
