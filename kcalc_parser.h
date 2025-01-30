@@ -11,7 +11,7 @@
 #include <QChar>
 #include <QDebug>
 #include <QDomDocument>
-#include <QList>
+#include <QHash>
 #include <QLocale>
 #include <QQueue>
 #include <QString>
@@ -175,12 +175,7 @@ private:
     static const inline QString ERROR_STR = QStringLiteral("error");
 
 private:
-    typedef struct {
-        QString symbol;
-        QString value;
-    } constant_;
-
-    QList<constant_> constants_;
+    QHash<QString, QString> constants_;
     bool constantSymbolToValue_(const QString &constantSymbol);
 
     QString token_KNumber_;

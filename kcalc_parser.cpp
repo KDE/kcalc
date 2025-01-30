@@ -10,6 +10,7 @@
 
 #include <QDebug>
 #include <QDomDocument>
+#include <QHash>
 #include <QLocale>
 #include <QQueue>
 #include <QRegularExpression>
@@ -867,15 +868,14 @@ const QString KCalcParser::TokenToString(KCalcToken::TokenCode tokenCode)
 int KCalcParser::loadConstants(const QDomDocument &doc)
 {
     QDomNode n = doc.documentElement().firstChild();
-    constant_ constant;
 
     while (!n.isNull()) {
         QDomElement e = n.toElement();
         if (!e.isNull() && e.tagName() == QLatin1String("constant")) {
-            constant.value = e.attributeNode(QStringLiteral("value")).value();
-            constant.symbol = e.attributeNode(QStringLiteral("symbol")).value();
+            const QString value = e.attributeNode(QStringLiteral("value")).value();
+            const QString symbol = e.attributeNode(QStringLiteral("symbol")).value();
 
-            constants_.append(constant);
+            constants_.insert(symbol, value);
         }
         n = n.nextSibling();
     }
@@ -890,13 +890,10 @@ int KCalcParser::loadConstants(const QDomDocument &doc)
 //------------------------------------------------------------------------------
 bool KCalcParser::constantSymbolToValue_(const QString &constantSymbol)
 {
-    QList<constant_>::const_iterator i;
-    for (i = constants_.constBegin(); i != constants_.constEnd(); ++i) {
-        if (i->symbol == constantSymbol) {
-            token_KNumber_ = i->value;
-            m_inputHasConstants = true;
-            return true;
-        }
+    if (constants_.contains(constantSymbol)) {
+        token_KNumber_ = constants_.value(constantSymbol);
+        m_inputHasConstants = true;
+        return true;
     }
 
     return false;
