@@ -2920,13 +2920,14 @@ int main(int argc, char *argv[])
                          QStringLiteral("https://apps.kde.org/kcalc/"));
 
     // Klaus Niederkrueger
+    aboutData.addAuthor(i18n("Gabriel Barrantes"), i18n("Maintainer"), QStringLiteral("gabriel.barrantes.dev@outlook.com"));
     aboutData.addAuthor(i18n("Klaus Niederkr"
                              "\xc3\xbc"
                              "ger"),
                         QString(),
                         QStringLiteral("kniederk@math.uni-koeln.de"));
     aboutData.addAuthor(i18n("Bernd Johannes Wuebben"), QString(), QStringLiteral("wuebben@kde.org"));
-    aboutData.addAuthor(i18n("Evan Teran"), i18n("Maintainer"), QStringLiteral("eteran@alum.rit.edu"));
+    aboutData.addAuthor(i18n("Evan Teran"), QString(), QStringLiteral("eteran@alum.rit.edu"));
     aboutData.addAuthor(i18n("Espen Sand"), QString(), QStringLiteral("espen@kde.org"));
     aboutData.addAuthor(i18n("Chris Howells"), QString(), QStringLiteral("howells@kde.org"));
     aboutData.addAuthor(i18n("Aaron J. Seigo"), QString(), QStringLiteral("aseigo@olympusproject.org"));
