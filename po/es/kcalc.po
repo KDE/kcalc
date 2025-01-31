@@ -1,17 +1,16 @@
-# translation of kcalc.po to Spanish
-# Translation to spanish
+# Translation of kcalc.po to Spanish
 # Copyright (C) 1999-2002
 #
-# Alonso Lara <jlaram@nexo.es>, 1999.
-# Pablo de Vicente <vicente@oan.es>, 2000-2002.
-# SPDX-FileCopyrightText: 2003, 2004, 2023, 2024 Eloy Cuadra <ecuadra@eloihr.net>
-# Eloy Cuadra <ecuadra@eloihr.net>, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2018, 2019, 2020, 2021, 2022, 2023.
+# SPDX-FileCopyrightText: 1999 Alonso Lara <jlaram@nexo.es>
+# SPDX-FileCopyrightText: 2000-2002 Pablo de Vicente <vicente@oan.es>
+# SPDX-FileCopyrightText: 2003, 2004, 2023, 2024, 2025 Eloy Cuadra <ecuadra@eloihr.net>
+# SPDX-FileCopyrightText: 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2018, 2019, 2020, 2021, 2022, 2023 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-30 00:44+0000\n"
-"PO-Revision-Date: 2024-07-18 01:16+0200\n"
+"PO-Revision-Date: 2025-01-30 16:18+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -19,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "First Translator: Alonso Lara <jlaram@nexo.es>\n"
-"X-Generator: Lokalize 24.05.2\n"
+"X-Generator: Lokalize 24.12.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -597,29 +596,26 @@ msgid "Exponential function"
 msgstr "Función exponencial"
 
 #: kcalc.cpp:480
-#, fuzzy, kde-format
-#| msgid "Pi"
+#, kde-format
 msgctxt "Imaginary unit"
 msgid "i"
-msgstr "Pi"
+msgstr "i"
 
 #: kcalc.cpp:480
 #, kde-format
 msgid "Imaginary unit"
-msgstr ""
+msgstr "Unidad imaginaria"
 
 #: kcalc.cpp:481
-#, fuzzy, kde-format
-#| msgctxt "- calculator button"
-#| msgid "−"
+#, kde-format
 msgctxt "Polar complex"
 msgid "∠"
-msgstr "−"
+msgstr "∠"
 
 #: kcalc.cpp:481
 #, kde-format
 msgid "Polar complex"
-msgstr ""
+msgstr "Complejo polar"
 
 #: kcalc.cpp:499
 #, kde-format
@@ -1689,15 +1685,14 @@ msgstr "Ln"
 #: kcalc.ui:1017
 #, kde-format
 msgid "Imaginary Unit"
-msgstr ""
+msgstr "Unidad imaginaria"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbI)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbI)
 #: kcalc.ui:1020 kcalc.ui:1023
-#, fuzzy, kde-format
-#| msgid "Pi"
+#, kde-format
 msgid "i"
-msgstr "Pi"
+msgstr "i"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMed)
 #: kcalc.ui:1036
