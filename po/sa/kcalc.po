@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-30 00:44+0000\n"
+"POT-Creation-Date: 2025-02-01 00:44+0000\n"
 "PO-Revision-Date: 2024-12-24 20:39+0530\n"
 "Last-Translator: kali <shreekantkalwar@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -912,60 +912,65 @@ msgstr ""
 
 #: kcalc.cpp:2923
 #, kde-format
-msgid "Klaus Niederkrüger"
-msgstr "क्लाउस नीडरक्रुगर"
+msgid "Gabriel Barrantes"
+msgstr ""
 
-#: kcalc.cpp:2928
-#, kde-format
-msgid "Bernd Johannes Wuebben"
-msgstr "बर्न्ड जोहानस वुएबेन्"
-
-#: kcalc.cpp:2929
-#, kde-format
-msgid "Evan Teran"
-msgstr "इवान टेरन्"
-
-#: kcalc.cpp:2929
+#: kcalc.cpp:2923
 #, kde-format
 msgid "Maintainer"
 msgstr "परिपालकः"
 
+#: kcalc.cpp:2924
+#, kde-format
+msgid "Klaus Niederkrüger"
+msgstr "क्लाउस नीडरक्रुगर"
+
+#: kcalc.cpp:2929
+#, kde-format
+msgid "Bernd Johannes Wuebben"
+msgstr "बर्न्ड जोहानस वुएबेन्"
+
 #: kcalc.cpp:2930
+#, kde-format
+msgid "Evan Teran"
+msgstr "इवान टेरन्"
+
+#: kcalc.cpp:2931
 #, kde-format
 msgid "Espen Sand"
 msgstr "एस्पेन रेत"
 
-#: kcalc.cpp:2931
+#: kcalc.cpp:2932
 #, kde-format
 msgid "Chris Howells"
 msgstr "क्रिस हावेल्स"
 
-#: kcalc.cpp:2932
+#: kcalc.cpp:2933
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr "एरोन जे सेइगो"
 
-#: kcalc.cpp:2933
+#: kcalc.cpp:2934
 #, kde-format
 msgid "Charles Samuels"
 msgstr "चार्ल्स सैमुअल्स"
 
-#: kcalc.cpp:2935
+#: kcalc.cpp:2936
 #, kde-format
 msgid "René Mérou"
 msgstr "रेने मेरोउ"
 
-#: kcalc.cpp:2942
+#: kcalc.cpp:2943
 #, kde-format
 msgid "Michel Marti"
 msgstr "मिशेल मार्टी"
 
-#: kcalc.cpp:2943
+#: kcalc.cpp:2944
 #, kde-format
 msgid "David Johnson"
 msgstr "डेविड् जॉन्सन्"
 
-#: kcalc.cpp:2944
+#: kcalc.cpp:2945
 #, kde-format
 msgid "Niklas Freund"
 msgstr "निक्लास मित्र"
