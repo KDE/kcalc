@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-02-01 00:44+0000\n"
-"PO-Revision-Date: 2025-01-30 16:18+0100\n"
+"PO-Revision-Date: 2025-02-01 12:08+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -913,7 +913,7 @@ msgstr ""
 #: kcalc.cpp:2923
 #, kde-format
 msgid "Gabriel Barrantes"
-msgstr ""
+msgstr "Gabriel Barrantes"
 
 #: kcalc.cpp:2923
 #, kde-format
@@ -2436,83 +2436,3 @@ msgstr "Constante de Stefan-Boltzmann"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Número de Avogadro"
-
-#~ msgid "Input error"
-#~ msgstr "Error de entrada"
-
-#~ msgid "Repeat operation for each result"
-#~ msgstr "Repetir la operación para cada resultado"
-
-#~ msgid "Enables that the last operation is repeated when \"=\" is pressed"
-#~ msgstr "Permite que se repita la última operación al pulsar «=»"
-
-#~ msgid "Switch base to hexadecimal."
-#~ msgstr "Cambiar a base hexadecimal."
-
-#~ msgid "Switch base to decimal."
-#~ msgstr "Cambiar a base decimal."
-
-#~ msgid "&Dec"
-#~ msgstr "&Dec"
-
-#~ msgid "Switch base to binary."
-#~ msgstr "Cambiar a base binaria."
-
-#~ msgid "Select Display Font"
-#~ msgstr "Tipo de letra para la pantalla"
-
-#~ msgid "KS…el"
-#~ msgstr "KS…el"
-
-#~ msgctxt "Third power"
-#~ msgid "x<sup>3</sup>"
-#~ msgstr "x<sup>3</sup>"
-
-#~ msgid "Cube"
-#~ msgstr "Cubo"
-
-#~ msgid "x3"
-#~ msgstr "x3"
-
-#~ msgid "M"
-#~ msgstr "M"
-
-#~ msgid "KSq…bel"
-#~ msgstr "KSq…bel"
-
-#~ msgctxt "Sine"
-#~ msgid "Sin"
-#~ msgstr "Sen"
-
-#~ msgctxt "Hyperbolic sine"
-#~ msgid "Sinh"
-#~ msgstr "Senh"
-
-#~ msgctxt "Cosine"
-#~ msgid "Cos"
-#~ msgstr "Cos"
-
-#~ msgctxt "Hyperbolic cosine"
-#~ msgid "Cosh"
-#~ msgstr "Cosh"
-
-#~ msgctxt "Tangent"
-#~ msgid "Tan"
-#~ msgstr "Tan"
-
-#~ msgctxt "Hyperbolic tangent"
-#~ msgid "Tanh"
-#~ msgstr "Tanh"
-
-#~ msgctxt "Natural log"
-#~ msgid "Ln"
-#~ msgstr "Ln"
-
-#~ msgid "Deg"
-#~ msgstr "Grados"
-
-#~ msgid "Rad"
-#~ msgstr "Rad"
-
-#~ msgid "&Oct"
-#~ msgstr "&Oct"

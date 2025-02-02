@@ -1,8 +1,8 @@
 # translation of kcalc.po to Polish
-# Version: $Revision: 1701664 $
+# Version: $Revision: 1701699 $
 # translation of kcalc.po to
 # KTranslator Generated File
-# SPDX-FileCopyrightText: 2012, 2013, 2014, 2015, 2017, 2018, 2019, 2021, 2022, 2023, 2024 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+# SPDX-FileCopyrightText: 2012, 2013, 2014, 2015, 2017, 2018, 2019, 2021, 2022, 2023, 2024, 2025 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
 # Major part translated by Piotr Roszatycki <dexter@fnet.pl>
 # Minor latest updates by Jacek Stolarczyk <jacek@mer.chemia.polsl.gliwice.pl>
 # Michał Rudolf <mrudolf@kdewebdev.org>, 2002.
@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-02-01 00:44+0000\n"
-"PO-Revision-Date: 2024-07-20 09:12+0200\n"
+"PO-Revision-Date: 2025-02-01 12:51+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 24.12.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -601,29 +601,26 @@ msgid "Exponential function"
 msgstr "Funkcja wykładnicza"
 
 #: kcalc.cpp:480
-#, fuzzy, kde-format
-#| msgid "Pi"
+#, kde-format
 msgctxt "Imaginary unit"
 msgid "i"
-msgstr "Pi"
+msgstr "i"
 
 #: kcalc.cpp:480
 #, kde-format
 msgid "Imaginary unit"
-msgstr ""
+msgstr "Jednostka urojona"
 
 #: kcalc.cpp:481
-#, fuzzy, kde-format
-#| msgctxt "- calculator button"
-#| msgid "−"
+#, kde-format
 msgctxt "Polar complex"
 msgid "∠"
-msgstr "−"
+msgstr "∠"
 
 #: kcalc.cpp:481
 #, kde-format
 msgid "Polar complex"
-msgstr ""
+msgstr "Biegunowa złożona"
 
 #: kcalc.cpp:499
 #, kde-format
@@ -921,7 +918,7 @@ msgstr ""
 #: kcalc.cpp:2923
 #, kde-format
 msgid "Gabriel Barrantes"
-msgstr ""
+msgstr "Gabriel Barrantes"
 
 #: kcalc.cpp:2923
 #, kde-format
@@ -1689,15 +1686,14 @@ msgstr "Ln"
 #: kcalc.ui:1017
 #, kde-format
 msgid "Imaginary Unit"
-msgstr ""
+msgstr "Jednostka urojona"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbI)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbI)
 #: kcalc.ui:1020 kcalc.ui:1023
-#, fuzzy, kde-format
-#| msgid "Pi"
+#, kde-format
 msgid "i"
-msgstr "Pi"
+msgstr "i"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMed)
 #: kcalc.ui:1036
