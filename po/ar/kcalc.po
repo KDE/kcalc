@@ -1,6 +1,6 @@
 # translation of kcalc.po to
 # Copyright (C) 2004, 2006, 2007 Free Software Foundation, Inc.
-# SPDX-FileCopyrightText: 2010, 2021, 2022, 2023, 2024 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
+# SPDX-FileCopyrightText: 2010, 2021, 2022, 2023, 2024, 2025 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
 # Waseem Bakr <bakr@mit.edu>, 2001.
 # Ahmad M. Zawawi <azawawi@emirates.net.ae>, 2004.
 # Youssef Chahibi <chahibi@gmail.com>, 2006, 2007.
@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-02-01 00:44+0000\n"
-"PO-Revision-Date: 2024-08-15 12:02+0400\n"
+"PO-Revision-Date: 2025-02-03 16:52+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -604,29 +604,26 @@ msgid "Exponential function"
 msgstr "الدالة الأسية"
 
 #: kcalc.cpp:480
-#, fuzzy, kde-format
-#| msgid "Pi"
+#, kde-format
 msgctxt "Imaginary unit"
 msgid "i"
-msgstr "Pi"
+msgstr "i"
 
 #: kcalc.cpp:480
 #, kde-format
 msgid "Imaginary unit"
-msgstr ""
+msgstr "وحدة تخيلية"
 
 #: kcalc.cpp:481
-#, fuzzy, kde-format
-#| msgctxt "- calculator button"
-#| msgid "−"
+#, kde-format
 msgctxt "Polar complex"
 msgid "∠"
-msgstr "−"
+msgstr "∠"
 
 #: kcalc.cpp:481
 #, kde-format
 msgid "Polar complex"
-msgstr ""
+msgstr "قطبي عُقدي"
 
 #: kcalc.cpp:499
 #, kde-format
@@ -916,15 +913,15 @@ msgid ""
 "Copyright © 2003-2005, Klaus Niederkrüger\n"
 "Copyright © 1996-2000, Bernd Johannes Wuebben"
 msgstr ""
-"Copyright © 2008-2013, Evan Teran\n"
-"Copyright © 2000-2008, The KDE Team\n"
-"Copyright © 2003-2005, Klaus Niederkrüger\n"
-"Copyright © 1996-2000, Bernd Johannes Wuebben"
+"حقوق الطبع والنشر © 2008-2013، إيفان تيران\n"
+"حقوق النشر © 2000-2008، فريق كيدي\n"
+"حقوق الطبع والنشر © 2003-2005، كلاوس نيدركروغر\n"
+"حقوق الطبع والنشر © 1996-2000، بيرند يوهانس ووبين"
 
 #: kcalc.cpp:2923
 #, kde-format
 msgid "Gabriel Barrantes"
-msgstr ""
+msgstr "غابرييل بارانتيس"
 
 #: kcalc.cpp:2923
 #, kde-format
@@ -934,57 +931,57 @@ msgstr "المشرف"
 #: kcalc.cpp:2924
 #, kde-format
 msgid "Klaus Niederkrüger"
-msgstr "Klaus Niederkrüger"
+msgstr "كلاوس نيديركروجر"
 
 #: kcalc.cpp:2929
 #, kde-format
 msgid "Bernd Johannes Wuebben"
-msgstr "Bernd Johannes Wuebben"
+msgstr "بيرند يوهانس ووبين"
 
 #: kcalc.cpp:2930
 #, kde-format
 msgid "Evan Teran"
-msgstr "Evan Teran"
+msgstr "إيفان تيران"
 
 #: kcalc.cpp:2931
 #, kde-format
 msgid "Espen Sand"
-msgstr "Espen Sand"
+msgstr "أسبن ساند"
 
 #: kcalc.cpp:2932
 #, kde-format
 msgid "Chris Howells"
-msgstr "Chris Howells"
+msgstr "كريس هاولز"
 
 #: kcalc.cpp:2933
 #, kde-format
 msgid "Aaron J. Seigo"
-msgstr "Aaron J. Seigo"
+msgstr "آرون ج. سيجو"
 
 #: kcalc.cpp:2934
 #, kde-format
 msgid "Charles Samuels"
-msgstr "Charles Samuels"
+msgstr "تشارلز صامويلز"
 
 #: kcalc.cpp:2936
 #, kde-format
 msgid "René Mérou"
-msgstr "René Mérou"
+msgstr "رينيه ميرو"
 
 #: kcalc.cpp:2943
 #, kde-format
 msgid "Michel Marti"
-msgstr "Michel Marti"
+msgstr "ميتشيل مارتي"
 
 #: kcalc.cpp:2944
 #, kde-format
 msgid "David Johnson"
-msgstr "David Johnson"
+msgstr "ديفيد جونسون"
 
 #: kcalc.cpp:2945
 #, kde-format
 msgid "Niklas Freund"
-msgstr "Niklas Freund"
+msgstr "نيكلاس فرويند"
 
 #. i18n: ectx: label, entry (ForeColor), group (Colors)
 #: kcalc.kcfg:12
@@ -1682,15 +1679,14 @@ msgstr "Ln"
 #: kcalc.ui:1017
 #, kde-format
 msgid "Imaginary Unit"
-msgstr ""
+msgstr "وحدة تخيلية"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbI)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbI)
 #: kcalc.ui:1020 kcalc.ui:1023
-#, fuzzy, kde-format
-#| msgid "Pi"
+#, kde-format
 msgid "i"
-msgstr "Pi"
+msgstr "i"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMed)
 #: kcalc.ui:1036
