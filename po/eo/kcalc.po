@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kcalc 1.0pre2\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-10-14 00:41+0000\n"
-"PO-Revision-Date: 2024-07-20 17:03+0200\n"
+"PO-Revision-Date: 2025-02-12 22:59+0100\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <eo@li.org>\n"
 "Language: eo\n"
@@ -615,7 +615,7 @@ msgstr "Sumo de ĉiuj datenoj"
 #, kde-format
 msgctxt "Mean"
 msgid "Mea"
-msgstr "Avg"
+msgstr "Mea"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMean)
 #: kcalc.cpp:500 kcalc.ui:842
@@ -775,7 +775,7 @@ msgstr "Eksponento"
 #, kde-format
 msgctxt "Second function mode"
 msgid "Shift"
-msgstr "Ŝovo"
+msgstr "Majuskl"
 
 #: kcalc.cpp:1232 kcalc.cpp:1233
 #, kde-format
@@ -1350,7 +1350,7 @@ msgstr "Dec"
 #: kcalc.ui:354
 #, kde-format
 msgid "Result Display"
-msgstr "Rezulta Bildigo"
+msgstr "Rezulta Display"
 
 #. i18n: ectx: property (toolTip), widget (KCalcBitset, mBitset)
 #: kcalc.ui:391
@@ -2382,6 +2382,3 @@ msgstr "Stefan-Boltzmann Constant"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Numero de Avogadro"
-
-#~ msgid "Input error"
-#~ msgstr "Eniga eraro"
