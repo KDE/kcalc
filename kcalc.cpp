@@ -2510,90 +2510,109 @@ int KCalculator::load_Constants_(const QString &filePath)
 //------------------------------------------------------------------------------
 void KCalculator::setColors()
 {
+    KColorScheme schemeFonts(QPalette::Active, KColorScheme::Button);
+
     calc_display->changeSettings();
     calc_history->changeSettings();
 
-    const QColor numFontColor(KCalcSettings::numberFontsColor());
+    const QColor numFontColor(KCalcSettings::followSystemTheme() ? schemeFonts.foreground().color() : KCalcSettings::numberFontsColor());
     for (int i = 0; i < 10; ++i) {
         qobject_cast<KCalcButton *>((num_button_group_->button(i)))->setTextColor(numFontColor);
     }
 
-    const QColor funcFontColor(KCalcSettings::functionFontsColor());
+    const QColor funcFontColor(KCalcSettings::followSystemTheme() ? schemeFonts.foreground().color() : KCalcSettings::functionFontsColor());
     for (QAbstractButton *btn : std::as_const(function_button_list_)) {
         qobject_cast<KCalcButton *>(btn)->setTextColor(funcFontColor);
     }
 
-    const QColor statFontColor(KCalcSettings::statFontsColor());
+    const QColor statFontColor(KCalcSettings::followSystemTheme() ? schemeFonts.foreground().color() : KCalcSettings::statFontsColor());
     for (QAbstractButton *btn : std::as_const(stat_buttons_)) {
         qobject_cast<KCalcButton *>(btn)->setTextColor(statFontColor);
     }
 
-    const QColor hexFontColor(KCalcSettings::hexFontsColor());
+    const QColor hexFontColor(KCalcSettings::followSystemTheme() ? schemeFonts.foreground().color() : KCalcSettings::hexFontsColor());
     for (int i = 10; i < 16; ++i) {
         qobject_cast<KCalcButton *>((num_button_group_->button(i)))->setTextColor(hexFontColor);
     }
 
-    const QColor memFontColor(KCalcSettings::memoryFontsColor());
+    const QColor memFontColor(KCalcSettings::followSystemTheme() ? schemeFonts.foreground().color() : KCalcSettings::memoryFontsColor());
     for (QAbstractButton *btn : std::as_const(mem_button_list_)) {
         qobject_cast<KCalcButton *>(btn)->setTextColor(memFontColor);
     }
 
-    const QColor opFontColor(KCalcSettings::operationFontsColor());
+    const QColor opFontColor(KCalcSettings::followSystemTheme() ? schemeFonts.foreground().color() : KCalcSettings::operationFontsColor());
     for (QAbstractButton *btn : std::as_const(operation_button_list_)) {
         qobject_cast<KCalcButton *>(btn)->setTextColor(opFontColor);
     }
 
-    const QColor coFontColor(KCalcSettings::constantsFontsColor());
+    const QColor coFontColor(KCalcSettings::followSystemTheme() ? schemeFonts.foreground().color() : KCalcSettings::constantsFontsColor());
     for (QAbstractButton *btn : std::as_const(const_buttons_)) {
         qobject_cast<KCalcButton *>(btn)->setTextColor(coFontColor);
-    }
-
-    KColorScheme schemeButtons(QPalette::Active, KColorScheme::Button);
-    const QColor defaultColor = schemeButtons.background().color();
-
-    // Do not apply style sheets when using default background colors, see bug #237513
-    if (KCalcSettings::numberButtonsColor() == defaultColor && KCalcSettings::functionButtonsColor() == defaultColor
-        && KCalcSettings::statButtonsColor() == defaultColor && KCalcSettings::hexButtonsColor() == defaultColor
-        && KCalcSettings::memoryButtonsColor() == defaultColor && KCalcSettings::operationButtonsColor() == defaultColor
-        && KCalcSettings::constantsButtonsColor() == defaultColor) {
-        return;
     }
 
     const QString sheet = QStringLiteral("QPushButton { background-color: %1 }");
 
     const QColor numPal(KCalcSettings::numberButtonsColor());
     for (int i = 0; i < 10; ++i) {
-        (num_button_group_->button(i))->setStyleSheet(sheet.arg(numPal.name()));
+        if (KCalcSettings::followSystemTheme()) {
+            (num_button_group_->button(i))->setStyleSheet(QStringLiteral(""));
+        } else {
+            (num_button_group_->button(i))->setStyleSheet(sheet.arg(numPal.name()));
+        }
     }
 
     const QColor funcPal(KCalcSettings::functionButtonsColor());
     for (QAbstractButton *btn : std::as_const(function_button_list_)) {
-        btn->setStyleSheet(sheet.arg(funcPal.name()));
+        if (KCalcSettings::followSystemTheme()) {
+            btn->setStyleSheet(QStringLiteral(""));
+        } else {
+            btn->setStyleSheet(sheet.arg(funcPal.name()));
+        }
     }
 
     const QColor statPal(KCalcSettings::statButtonsColor());
     for (QAbstractButton *btn : std::as_const(stat_buttons_)) {
-        btn->setStyleSheet(sheet.arg(statPal.name()));
+        if (KCalcSettings::followSystemTheme()) {
+            btn->setStyleSheet(QStringLiteral(""));
+        } else {
+            btn->setStyleSheet(sheet.arg(statPal.name()));
+        }
     }
 
     const QColor hexPal(KCalcSettings::hexButtonsColor());
     for (int i = 10; i < 16; ++i) {
-        (num_button_group_->button(i))->setStyleSheet(sheet.arg(hexPal.name()));
+        if (KCalcSettings::followSystemTheme()) {
+            (num_button_group_->button(i))->setStyleSheet(QStringLiteral(""));
+        } else {
+            (num_button_group_->button(i))->setStyleSheet(sheet.arg(hexPal.name()));
+        }
     }
 
     const QColor memPal(KCalcSettings::memoryButtonsColor());
     for (QAbstractButton *btn : std::as_const(mem_button_list_)) {
-        btn->setStyleSheet(sheet.arg(memPal.name()));
+        if (KCalcSettings::followSystemTheme()) {
+            btn->setStyleSheet(QStringLiteral(""));
+        } else {
+            btn->setStyleSheet(sheet.arg(memPal.name()));
+        }
     }
 
     const QColor opPal(KCalcSettings::operationButtonsColor());
     for (QAbstractButton *btn : std::as_const(operation_button_list_)) {
-        btn->setStyleSheet(sheet.arg(opPal.name()));
+        if (KCalcSettings::followSystemTheme()) {
+            btn->setStyleSheet(QStringLiteral(""));
+        } else {
+            btn->setStyleSheet(sheet.arg(opPal.name()));
+        }
     }
 
     const QColor coPal(KCalcSettings::constantsButtonsColor());
     for (QAbstractButton *btn : std::as_const(const_buttons_)) {
-        btn->setStyleSheet(sheet.arg(coPal.name()));
+        if (KCalcSettings::followSystemTheme()) {
+            btn->setStyleSheet(QStringLiteral(""));
+        } else {
+            btn->setStyleSheet(sheet.arg(coPal.name()));
+        }
     }
 }
 

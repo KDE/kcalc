@@ -100,10 +100,11 @@ void KCalcHistory::clearHistory()
 //------------------------------------------------------------------------------
 void KCalcHistory::changeSettings()
 {
+    KColorScheme schemeView(QPalette::Active, KColorScheme::View);
     QPalette pal = palette();
 
-    pal.setColor(QPalette::Text, KCalcSettings::foreColor());
-    pal.setColor(QPalette::Base, KCalcSettings::backColor());
+    pal.setColor(QPalette::Text, KCalcSettings::followSystemTheme() ? schemeView.foreground().color() : KCalcSettings::foreColor());
+    pal.setColor(QPalette::Base, KCalcSettings::followSystemTheme() ? schemeView.background().color() : KCalcSettings::backColor());
 
     setPalette(pal);
 

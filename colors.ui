@@ -12,7 +12,20 @@
   </property>
   <layout class="QVBoxLayout">
    <item>
+    <widget class="QCheckBox" name="kcfg_FollowSystemTheme">
+     <property name="text">
+      <string>Follow system color scheme</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QGroupBox" name="displayColorsBox">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="title">
       <string>Display Colors</string>
      </property>
@@ -93,6 +106,9 @@
    </item>
    <item>
     <widget class="QGroupBox" name="buttonColorsBox">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="title">
       <string>Button Colors</string>
      </property>
@@ -352,6 +368,7 @@
   </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>kcfg_FollowSystemTheme</tabstop>
   <tabstop>kcfg_ForeColor</tabstop>
   <tabstop>kcfg_BackColor</tabstop>
   <tabstop>kcfg_FunctionButtonsColor</tabstop>
@@ -368,5 +385,18 @@
   <tabstop>kcfg_OperationFontsColor</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>kcfg_FollowSystemTheme</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>displayColorsBox</receiver>
+   <slot>setDisabled(bool)</slot>
+  </connection>
+  <connection>
+   <sender>kcfg_FollowSystemTheme</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>buttonColorsBox</receiver>
+   <slot>setDisabled(bool)</slot>
+  </connection>
+ </connections>
 </ui>

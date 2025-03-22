@@ -8,6 +8,9 @@
   <include>KLocalizedString</include>
   <kcfgfile name="kcalcrc"/>
   <group name="Colors">
+    <entry name="FollowSystemTheme" type="Bool">
+      <default>true</default>
+    </entry>
     <entry name="ForeColor" type="Color">
       <label>The foreground color of the display.</label>
       <code>KColorScheme schemeView(QPalette::Active, KColorScheme::View);

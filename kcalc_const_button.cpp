@@ -20,7 +20,8 @@
 KCalcConstButton::KCalcConstButton(QWidget *parent)
     : KCalcButton(parent)
 {
-    setTextColor(KCalcSettings::constantsFontsColor());
+    KColorScheme schemeFonts(QPalette::Active, KColorScheme::Button);
+    setTextColor(KCalcSettings::followSystemTheme() ? schemeFonts.foreground().color() : KCalcSettings::constantsFontsColor());
     addMode(ModeShift, i18nc("Write display data into memory", "Store"), i18n("Write display data into memory"));
     initPopupMenu();
     connect(this, &QAbstractButton::clicked, this, &KCalcConstButton::slotClicked);
@@ -33,7 +34,8 @@ KCalcConstButton::KCalcConstButton(QWidget *parent)
 KCalcConstButton::KCalcConstButton(const QString &label, QWidget *parent, const QString &tooltip)
     : KCalcButton(label, parent, tooltip)
 {
-    setTextColor(KCalcSettings::constantsFontsColor());
+    KColorScheme schemeFonts(QPalette::Active, KColorScheme::Button);
+    setTextColor(KCalcSettings::followSystemTheme() ? schemeFonts.foreground().color() : KCalcSettings::constantsFontsColor());
     addMode(ModeShift, i18nc("Write display data into memory", "Store"), i18n("Write display data into memory"));
     initPopupMenu();
 }

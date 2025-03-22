@@ -67,11 +67,12 @@ KCalcDisplay::~KCalcDisplay() = default;
 
 void KCalcDisplay::changeSettings()
 {
+    KColorScheme schemeView(QPalette::Active, KColorScheme::View);
     basePalette_ = palette();
     baseFont_ = KCalcSettings::displayFont();
 
-    basePalette_.setColor(QPalette::Text, KCalcSettings::foreColor());
-    basePalette_.setColor(QPalette::Base, KCalcSettings::backColor());
+    basePalette_.setColor(QPalette::Text, KCalcSettings::followSystemTheme() ? schemeView.foreground().color() : KCalcSettings::foreColor());
+    basePalette_.setColor(QPalette::Base, KCalcSettings::followSystemTheme() ? schemeView.background().color() : KCalcSettings::backColor());
 
     setPrecision(KCalcSettings::precision());
 
