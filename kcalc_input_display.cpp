@@ -18,6 +18,7 @@ KCalcInputDisplay::KCalcInputDisplay(QWidget *parent)
     overwrite_ = false;
     hard_overwrite_ = false;
     has_result_ = false;
+    setFrame(false);
 }
 
 //------------------------------------------------------------------------------
