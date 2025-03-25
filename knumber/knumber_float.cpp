@@ -325,14 +325,8 @@ KNumberBase *KNumberFloat::cbrt()
 
 KNumberBase *KNumberFloat::factorial()
 {
-    if (sign() < 0) {
-        delete this;
-        return new KNumberError(KNumberError::Undefined);
-    }
-
-    auto i = new KNumberInteger(this);
-    delete this;
-    return i->factorial();
+    mpfr_add_ui(m_mpfr, m_mpfr, 1, rounding_mode);
+    return this->tgamma();
 }
 
 KNumberBase *KNumberFloat::sin()
