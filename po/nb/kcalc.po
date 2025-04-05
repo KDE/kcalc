@@ -604,7 +604,6 @@ msgstr "Eksponensialfunksjon"
 
 #: kcalc.cpp:480
 #, fuzzy, kde-format
-#| msgid "Pi"
 msgctxt "Imaginary unit"
 msgid "i"
 msgstr "Pi"
@@ -616,8 +615,6 @@ msgstr ""
 
 #: kcalc.cpp:481
 #, fuzzy, kde-format
-#| msgctxt "- calculator button"
-#| msgid "−"
 msgctxt "Polar complex"
 msgid "∠"
 msgstr "−"
@@ -1686,7 +1683,6 @@ msgstr ""
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbI)
 #: kcalc.ui:1020 kcalc.ui:1023
 #, fuzzy, kde-format
-#| msgid "Pi"
 msgid "i"
 msgstr "Pi"
 
