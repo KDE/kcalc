@@ -9,7 +9,6 @@
 
 class Constants;
 class QButtonGroup;
-class QLabel;
 class KToggleAction;
 class KCalcConstMenu;
 class KCalcStatusBar;
@@ -48,7 +47,6 @@ class KCalcStatusBar;
 #include "ui_kcalc.h"
 
 #include <QQueue>
-#include <array>
 #include <kxmlguiwindow.h>
 
 class General : public QWidget, public Ui::General
