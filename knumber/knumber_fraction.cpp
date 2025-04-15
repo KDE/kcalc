@@ -370,14 +370,9 @@ KNumberBase *KNumberFraction::cbrt()
 
 KNumberBase *KNumberFraction::factorial()
 {
-    if (sign() < 0) {
-        delete this;
-        return new KNumberError(KNumberError::Undefined);
-    }
-
-    auto i = new KNumberInteger(this);
+    auto f = new KNumberFloat(this);
     delete this;
-    return i->factorial();
+    return f->factorial();
 }
 
 KNumberBase *KNumberFraction::pow(KNumberBase *rhs)

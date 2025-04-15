@@ -96,8 +96,8 @@ void KNumberIntegerOperatorsTest::testKNumberFactorial_data()
     QTest::newRow("KNumber(-1).factorial()") << KNumber(-1) << QStringLiteral("nan") << KNumber::TypeError;
     QTest::newRow("KNumber(-2).factorial()") << KNumber(-2) << QStringLiteral("nan") << KNumber::TypeError;
     QTest::newRow("KNumber(-20).factorial()") << KNumber(-20) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(-1/2).factorial()") << KNumber(QStringLiteral("-1/2")) << QStringLiteral("nan") << KNumber::TypeError;
-    QTest::newRow("KNumber(-0.5).factorial()") << KNumber(QStringLiteral("-0.5")) << QStringLiteral("nan") << KNumber::TypeError;
+    QTest::newRow("KNumber(-1/2).factorial()") << KNumber(QStringLiteral("-1/2")) << QStringLiteral("1.77245385091") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(-0.5).factorial()") << KNumber(QStringLiteral("-0.5")) << QStringLiteral("1.77245385091") << KNumber::TypeFloat;
 
     QTest::newRow("KNumber(0).factorial()") << KNumber(0) << QStringLiteral("1") << KNumber::TypeInteger;
     QTest::newRow("KNumber(1).factorial()") << KNumber(1) << QStringLiteral("1") << KNumber::TypeInteger;
@@ -110,15 +110,15 @@ void KNumberIntegerOperatorsTest::testKNumberFactorial_data()
     QTest::newRow("KNumber(12).factorial()") << KNumber(12) << QStringLiteral("479001600") << KNumber::TypeInteger;
     QTest::newRow("KNumber(13).factorial()") << KNumber(13) << QStringLiteral("6227020800") << KNumber::TypeInteger;
 
-    QTest::newRow("KNumber(1/2).factorial()") << KNumber(QStringLiteral("1/2")) << QStringLiteral("1") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(1/2).factorial()") << KNumber(QStringLiteral("1/2")) << QStringLiteral("0.886226925453") << KNumber::TypeFloat;
     QTest::newRow("KNumber(2/1).factorial()") << KNumber(QStringLiteral("2/1")) << QStringLiteral("2") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(3/2).factorial()") << KNumber(QStringLiteral("3/2")) << QStringLiteral("1") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(3/2).factorial()") << KNumber(QStringLiteral("3/2")) << QStringLiteral("1.32934038818") << KNumber::TypeFloat;
 
-    QTest::newRow("KNumber(0.1).factorial()") << KNumber(0.1) << QStringLiteral("1") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(0.5).factorial()") << KNumber(0.5) << QStringLiteral("1") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(1.5).factorial()") << KNumber(1.5) << QStringLiteral("1") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(2.5).factorial()") << KNumber(2.5) << QStringLiteral("2") << KNumber::TypeInteger;
-    QTest::newRow("KNumber(3.5).factorial()") << KNumber(3.5) << QStringLiteral("6") << KNumber::TypeInteger;
+    QTest::newRow("KNumber(0.1).factorial()") << KNumber(0.1) << QStringLiteral("0.951350769867") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(0.5).factorial()") << KNumber(0.5) << QStringLiteral("0.886226925453") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(1.5).factorial()") << KNumber(1.5) << QStringLiteral("1.32934038818") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(2.5).factorial()") << KNumber(2.5) << QStringLiteral("3.32335097045") << KNumber::TypeFloat;
+    QTest::newRow("KNumber(3.5).factorial()") << KNumber(3.5) << QStringLiteral("11.6317283966") << KNumber::TypeFloat;
 }
 
 void KNumberIntegerOperatorsTest::testKNumberFactorial()

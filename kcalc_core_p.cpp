@@ -448,18 +448,18 @@ KNumber CalcEngine_p::Factorial(const KNumber &input)
 {
     if (input == KNumber::PosInfinity)
         return KNumber::PosInfinity;
-    if (input < KNumber::Zero || input.type() == KNumber::TypeError) {
+    if ((input.type() == KNumber::TypeInteger && input < KNumber::Zero) || input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
-    return input.integerPart().factorial();
+    return input.factorial();
 }
 
 KNumber CalcEngine_p::Gamma(const KNumber &input)
 {
     if (input == KNumber::PosInfinity)
         return KNumber::PosInfinity;
-    if (input < KNumber::Zero || input.type() == KNumber::TypeError) {
+    if ((input.type() == KNumber::TypeInteger && input <= KNumber::Zero) || input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
