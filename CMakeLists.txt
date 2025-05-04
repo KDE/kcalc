@@ -59,7 +59,7 @@ set_package_properties(KF6DocTools PROPERTIES DESCRIPTION
 
 set (CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" ${CMAKE_SOURCE_DIR}/cmake/modules)
 
-ecm_set_disabled_deprecation_versions(QT 6.8.0  KF 6.12.0)
+ecm_set_disabled_deprecation_versions(QT 6.8.0  KF 6.13.0)
 add_definitions(-DQT_NO_CONTEXTLESS_CONNECT)
 add_subdirectory(knumber)
 add_executable(kcalc)
