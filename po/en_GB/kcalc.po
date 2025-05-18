@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-25 00:44+0000\n"
+"POT-Creation-Date: 2025-05-18 00:45+0000\n"
 "PO-Revision-Date: 2024-08-03 12:43+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
@@ -29,80 +29,86 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "anarchist_tomato@herzeleid.net, steve.allewell@gmail.com"
 
-#. i18n: ectx: property (title), widget (QGroupBox, displayColorsBox)
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_FollowSystemTheme)
 #: colors.ui:17
+#, kde-format
+msgid "Follow system color scheme"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, displayColorsBox)
+#: colors.ui:30
 #, kde-format
 msgid "Display Colors"
 msgstr "Display Colours"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel1)
-#: colors.ui:25
+#: colors.ui:38
 #, kde-format
 msgid "&Foreground:"
 msgstr "&Foreground:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
-#: colors.ui:52
+#: colors.ui:65
 #, kde-format
 msgid "&Background:"
 msgstr "&Background:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, buttonColorsBox)
-#: colors.ui:97
+#: colors.ui:113
 #, kde-format
 msgid "Button Colors"
 msgstr "Button Colours"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
-#: colors.ui:105
+#: colors.ui:121
 #, kde-format
 msgid "Background"
 msgstr "Background"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
-#: colors.ui:115
+#: colors.ui:131
 #, kde-format
 msgid "Foreground"
 msgstr "Foreground"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel5)
-#: colors.ui:125
+#: colors.ui:141
 #, kde-format
 msgid "&Functions:"
 msgstr "&Functions:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel4)
-#: colors.ui:152
+#: colors.ui:168
 #, kde-format
 msgid "St&atistic functions:"
 msgstr "St&atistic functions:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel9)
-#: colors.ui:179
+#: colors.ui:195
 #, kde-format
 msgid "He&xadecimals:"
 msgstr "He&xadecimals:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel11)
-#: colors.ui:206
+#: colors.ui:222
 #, kde-format
 msgid "&Numbers:"
 msgstr "&Numbers:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel10)
-#: colors.ui:233
+#: colors.ui:249
 #, kde-format
 msgid "&Memory:"
 msgstr "&Memory:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel12)
-#: colors.ui:260
+#: colors.ui:276
 #, kde-format
 msgid "O&perations:"
 msgstr "O&perations:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel13)
-#: colors.ui:287
+#: colors.ui:303
 #, kde-format
 msgid "&Constants:"
 msgstr "&Constants:"
@@ -345,7 +351,7 @@ msgid "Statistic Mode"
 msgstr "Statistic Mode"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
-#: kcalc.cpp:193 kcalc.kcfg:159
+#: kcalc.cpp:193 kcalc.kcfg:162
 #, kde-format
 msgid "Numeral System Mode"
 msgstr "Numeral System Mode"
@@ -887,17 +893,17 @@ msgid "Define Constants"
 msgstr "Define Constants"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2909 kcalc.ui:20
+#: kcalc.cpp:2928 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "KCalc"
 
-#: kcalc.cpp:2911
+#: kcalc.cpp:2930
 #, kde-format
 msgid "KDE Calculator"
 msgstr "KDE Calculator"
 
-#: kcalc.cpp:2913
+#: kcalc.cpp:2932
 #, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
@@ -910,193 +916,193 @@ msgstr ""
 "Copyright © 2003-2005, Klaus Niederkrüger\n"
 "Copyright © 1996-2000, Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2923
+#: kcalc.cpp:2942
 #, kde-format
 msgid "Gabriel Barrantes"
 msgstr ""
 
-#: kcalc.cpp:2923
+#: kcalc.cpp:2942
 #, kde-format
 msgid "Maintainer"
 msgstr "Maintainer"
 
-#: kcalc.cpp:2924
+#: kcalc.cpp:2943
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr "Klaus Niederkrüger"
 
-#: kcalc.cpp:2929
+#: kcalc.cpp:2948
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2930
+#: kcalc.cpp:2949
 #, kde-format
 msgid "Evan Teran"
 msgstr "Evan Teran"
 
-#: kcalc.cpp:2931
+#: kcalc.cpp:2950
 #, kde-format
 msgid "Espen Sand"
 msgstr "Espen Sand"
 
-#: kcalc.cpp:2932
+#: kcalc.cpp:2951
 #, kde-format
 msgid "Chris Howells"
 msgstr "Chris Howells"
 
-#: kcalc.cpp:2933
+#: kcalc.cpp:2952
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr "Aaron J. Seigo"
 
-#: kcalc.cpp:2934
+#: kcalc.cpp:2953
 #, kde-format
 msgid "Charles Samuels"
 msgstr "Charles Samuels"
 
-#: kcalc.cpp:2936
+#: kcalc.cpp:2955
 #, kde-format
 msgid "René Mérou"
 msgstr "René Mérou"
 
-#: kcalc.cpp:2943
+#: kcalc.cpp:2962
 #, kde-format
 msgid "Michel Marti"
 msgstr "Michel Marti"
 
-#: kcalc.cpp:2944
+#: kcalc.cpp:2963
 #, kde-format
 msgid "David Johnson"
 msgstr "David Johnson"
 
-#: kcalc.cpp:2945
+#: kcalc.cpp:2964
 #, kde-format
 msgid "Niklas Freund"
 msgstr "Niklas Freund"
 
 #. i18n: ectx: label, entry (ForeColor), group (Colors)
-#: kcalc.kcfg:12
+#: kcalc.kcfg:15
 #, kde-format
 msgid "The foreground color of the display."
 msgstr "The foreground colour of the display."
 
 #. i18n: ectx: label, entry (BackColor), group (Colors)
-#: kcalc.kcfg:18
+#: kcalc.kcfg:21
 #, kde-format
 msgid "The background color of the display."
 msgstr "The background colour of the display."
 
 #. i18n: ectx: label, entry (NumberButtonsColor), group (Colors)
-#: kcalc.kcfg:23
+#: kcalc.kcfg:26
 #, kde-format
 msgid "The color of number buttons."
 msgstr "The colour of number buttons."
 
 #. i18n: ectx: label, entry (FunctionButtonsColor), group (Colors)
-#: kcalc.kcfg:29
+#: kcalc.kcfg:32
 #, kde-format
 msgid "The color of function buttons."
 msgstr "The colour of function buttons."
 
 #. i18n: ectx: label, entry (StatButtonsColor), group (Colors)
-#: kcalc.kcfg:33
+#: kcalc.kcfg:36
 #, kde-format
 msgid "The color of statistical buttons."
 msgstr "The colour of statistical buttons."
 
 #. i18n: ectx: label, entry (HexButtonsColor), group (Colors)
-#: kcalc.kcfg:37
+#: kcalc.kcfg:40
 #, kde-format
 msgid "The color of hex buttons."
 msgstr "The colour of hex buttons."
 
 #. i18n: ectx: label, entry (MemoryButtonsColor), group (Colors)
-#: kcalc.kcfg:41
+#: kcalc.kcfg:44
 #, kde-format
 msgid "The color of memory buttons."
 msgstr "The colour of memory buttons."
 
 #. i18n: ectx: label, entry (OperationButtonsColor), group (Colors)
-#: kcalc.kcfg:45
+#: kcalc.kcfg:48
 #, kde-format
 msgid "The color of operation buttons."
 msgstr "The colour of operation buttons."
 
 #. i18n: ectx: label, entry (ConstantsButtonsColor), group (Colors)
-#: kcalc.kcfg:49
+#: kcalc.kcfg:52
 #, kde-format
 msgid "The color of constants buttons."
 msgstr "The colour of constants buttons."
 
 #. i18n: ectx: label, entry (NumberFontsColor), group (Colors)
-#: kcalc.kcfg:53
+#: kcalc.kcfg:56
 #, kde-format
 msgid "The color of number fonts."
 msgstr "The colour of number fonts."
 
 #. i18n: ectx: label, entry (FunctionFontsColor), group (Colors)
-#: kcalc.kcfg:59
+#: kcalc.kcfg:62
 #, kde-format
 msgid "The color of function fonts."
 msgstr "The colour of function fonts."
 
 #. i18n: ectx: label, entry (StatFontsColor), group (Colors)
-#: kcalc.kcfg:63
+#: kcalc.kcfg:66
 #, kde-format
 msgid "The color of statistical fonts."
 msgstr "The colour of statistical fonts."
 
 #. i18n: ectx: label, entry (HexFontsColor), group (Colors)
-#: kcalc.kcfg:67
+#: kcalc.kcfg:70
 #, kde-format
 msgid "The color of hex fonts."
 msgstr "The colour of hex fonts."
 
 #. i18n: ectx: label, entry (MemoryFontsColor), group (Colors)
-#: kcalc.kcfg:71
+#: kcalc.kcfg:74
 #, kde-format
 msgid "The color of memory fonts."
 msgstr "The colour of memory fonts."
 
 #. i18n: ectx: label, entry (OperationFontsColor), group (Colors)
-#: kcalc.kcfg:75
+#: kcalc.kcfg:78
 #, kde-format
 msgid "The color of operation font."
 msgstr "The colour of operation font."
 
 #. i18n: ectx: label, entry (ConstantsFontsColor), group (Colors)
-#: kcalc.kcfg:79
+#: kcalc.kcfg:82
 #, kde-format
 msgid "The color of constants fonts."
 msgstr "The colour of constants fonts."
 
 #. i18n: ectx: label, entry (ButtonFont), group (Font)
-#: kcalc.kcfg:85
+#: kcalc.kcfg:88
 #, kde-format
 msgid "The font to use for the buttons."
 msgstr "The font to use for the buttons."
 
 #. i18n: ectx: label, entry (DisplayFont), group (Font)
-#: kcalc.kcfg:89
+#: kcalc.kcfg:92
 #, kde-format
 msgid "The font to use in the display."
 msgstr "The font to use in the display."
 
 #. i18n: ectx: label, entry (HistoryFont), group (Font)
-#: kcalc.kcfg:96
+#: kcalc.kcfg:99
 #, kde-format
 msgid "The font to use in the history."
 msgstr "The font to use in the history."
 
 #. i18n: ectx: label, entry (Precision), group (Precision)
-#: kcalc.kcfg:102
+#: kcalc.kcfg:105
 #, kde-format
 msgid "Maximum number of digits displayed."
 msgstr "Maximum number of digits displayed."
 
 #. i18n: ectx: whatsthis, entry (Precision), group (Precision)
-#: kcalc.kcfg:108
+#: kcalc.kcfg:111
 #, kde-format
 msgid ""
 "\n"
@@ -1114,43 +1120,43 @@ msgstr ""
 "      "
 
 #. i18n: ectx: label, entry (FixedPrecision), group (Precision)
-#: kcalc.kcfg:114
+#: kcalc.kcfg:117
 #, kde-format
 msgid "Number of fixed decimal digits."
 msgstr "Number of fixed decimal digits."
 
 #. i18n: ectx: label, entry (Fixed), group (Precision)
-#: kcalc.kcfg:118
+#: kcalc.kcfg:121
 #, kde-format
 msgid "Whether to use fixed decimal places."
 msgstr "Whether to use fixed decimal places."
 
 #. i18n: ectx: label, entry (Beep), group (General)
-#: kcalc.kcfg:124
+#: kcalc.kcfg:127
 #, kde-format
 msgid "Whether to beep on error."
 msgstr "Whether to beep on error."
 
 #. i18n: ectx: label, entry (CaptionResult), group (General)
-#: kcalc.kcfg:128
+#: kcalc.kcfg:131
 #, kde-format
 msgid "Whether to show the result in the window title."
 msgstr "Whether to show the result in the window title."
 
 #. i18n: ectx: label, entry (GroupDigits), group (General)
-#: kcalc.kcfg:132
+#: kcalc.kcfg:135
 #, kde-format
 msgid "Whether to group digits."
 msgstr "Whether to group digits."
 
 #. i18n: ectx: label, entry (TwosComplement), group (General)
-#: kcalc.kcfg:136
+#: kcalc.kcfg:139
 #, kde-format
 msgid "Whether to use Two's Complement for non-decimal numbers."
 msgstr "Whether to use Two's Complement for non-decimal numbers."
 
 #. i18n: ectx: whatsthis, entry (TwosComplement), group (General)
-#: kcalc.kcfg:141
+#: kcalc.kcfg:144
 #, kde-format
 msgid ""
 "\n"
@@ -1166,43 +1172,43 @@ msgstr ""
 "      "
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:147
+#: kcalc.kcfg:150
 #, kde-format
 msgid "Easy Calculator Mode"
 msgstr "Easy Calculator Mode"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:148
+#: kcalc.kcfg:151
 #, kde-format
 msgid "A very simple mode where only the basic calculator buttons are shown"
 msgstr "A very simple mode where only the basic calculator buttons are shown"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:151
+#: kcalc.kcfg:154
 #, kde-format
 msgid "Science Calculator Mode"
 msgstr "Science Calculator Mode"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:152
+#: kcalc.kcfg:155
 #, kde-format
 msgid "Mode with science buttons and optional constants buttons"
 msgstr "Mode with science buttons and optional constants buttons"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:155
+#: kcalc.kcfg:158
 #, kde-format
 msgid "Statistic Calculator Mode"
 msgstr "Statistic Calculator Mode"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:156
+#: kcalc.kcfg:159
 #, kde-format
 msgid "Mode with additional statistics buttons and optional constants buttons"
 msgstr "Mode with additional statistics buttons and optional constants buttons"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
-#: kcalc.kcfg:160
+#: kcalc.kcfg:163
 #, kde-format
 msgid ""
 "Mode with logic buttons and selectable base. Optional bit edit available."
@@ -1210,44 +1216,44 @@ msgstr ""
 "Mode with logic buttons and selectable base. Optional bit edit available."
 
 #. i18n: ectx: label, entry (ShowBitset), group (General)
-#: kcalc.kcfg:165
+#: kcalc.kcfg:168
 #, kde-format
 msgid "Whether to show the bit edit widget."
 msgstr "Whether to show the bit edit widget."
 
 #. i18n: ectx: label, entry (ShowConstants), group (General)
-#: kcalc.kcfg:169
+#: kcalc.kcfg:172
 #, kde-format
 msgid "Whether to show constant buttons."
 msgstr "Whether to show constant buttons."
 
 #. i18n: ectx: label, entry (ShowHistory), group (General)
-#: kcalc.kcfg:173
+#: kcalc.kcfg:176
 #, kde-format
 msgid "Whether to show the history window."
 msgstr "Whether to show the history window."
 
 #. i18n: ectx: label, entry (AngleMode), group (General)
-#: kcalc.kcfg:177
+#: kcalc.kcfg:180
 #, kde-format
 msgid "Degrees, radians or grads"
 msgstr "Degrees, radians or grads"
 
 #. i18n: ectx: label, entry (BaseMode), group (General)
-#: kcalc.kcfg:181
+#: kcalc.kcfg:184
 #, kde-format
 msgid "Numeric base"
 msgstr "Numeric base"
 
 #. i18n: ectx: label, entry (BinaryGrouping), group (Grouping)
-#: kcalc.kcfg:187
+#: kcalc.kcfg:190
 #, kde-format
 msgid "Binary figures will be separated by a whitespace after every Xth digit."
 msgstr ""
 "Binary figures will be separated by a whitespace after every Xth digit."
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
-#: kcalc.kcfg:192
+#: kcalc.kcfg:195
 #, kde-format
 msgid ""
 "\n"
@@ -1267,13 +1273,13 @@ msgstr ""
 "        "
 
 #. i18n: ectx: label, entry (OctalGrouping), group (Grouping)
-#: kcalc.kcfg:196
+#: kcalc.kcfg:199
 #, kde-format
 msgid "Octal figures will be separated by a whitespace after every Xth digit."
 msgstr "Octal figures will be separated by a whitespace after every Xth digit."
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
-#: kcalc.kcfg:201
+#: kcalc.kcfg:204
 #, kde-format
 msgid ""
 "\n"
@@ -1293,7 +1299,7 @@ msgstr ""
 "        "
 
 #. i18n: ectx: label, entry (HexadecimalGrouping), group (Grouping)
-#: kcalc.kcfg:205
+#: kcalc.kcfg:208
 #, kde-format
 msgid ""
 "Hexadecimal figures will be separated by a whitespace after every Xth digit."
@@ -1301,7 +1307,7 @@ msgstr ""
 "Hexadecimal figures will be separated by a whitespace after every Xth digit."
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
-#: kcalc.kcfg:210
+#: kcalc.kcfg:213
 #, kde-format
 msgid ""
 "\n"
@@ -1321,49 +1327,49 @@ msgstr ""
 "        "
 
 #. i18n: ectx: label, entry (nameConstant$(ConstIndex)), group (UserConstants)
-#: kcalc.kcfg:216
+#: kcalc.kcfg:219
 #, kde-format
 msgid "Name of the user programmable constants."
 msgstr "Name of the user programmable constants."
 
-#: kcalc.kcfg:226
+#: kcalc.kcfg:229
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C1"
 msgstr "C1"
 
-#: kcalc.kcfg:227
+#: kcalc.kcfg:230
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C2"
 msgstr "C2"
 
-#: kcalc.kcfg:228
+#: kcalc.kcfg:231
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C3"
 msgstr "C3"
 
-#: kcalc.kcfg:229
+#: kcalc.kcfg:232
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C4"
 msgstr "C4"
 
-#: kcalc.kcfg:230
+#: kcalc.kcfg:233
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C5"
 msgstr "C5"
 
-#: kcalc.kcfg:231
+#: kcalc.kcfg:234
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C6"
 msgstr "C6"
 
 #. i18n: ectx: label, entry (valueConstant$(ConstIndex)), group (UserConstants)
-#: kcalc.kcfg:235
+#: kcalc.kcfg:238
 #, kde-format
 msgid "List of user programmable constants"
 msgstr "List of user programmable constants"
@@ -2153,33 +2159,33 @@ msgctxt "@info:tooltip"
 msgid "Bit %1 = %2"
 msgstr "Bit %1 = %2"
 
-#: kcalc_const_button.cpp:24 kcalc_const_button.cpp:37
+#: kcalc_const_button.cpp:25 kcalc_const_button.cpp:39
 #, kde-format
 msgctxt "Write display data into memory"
 msgid "Store"
 msgstr "Store"
 
-#: kcalc_const_button.cpp:24 kcalc_const_button.cpp:37
+#: kcalc_const_button.cpp:25 kcalc_const_button.cpp:39
 #, kde-format
 msgid "Write display data into memory"
 msgstr "Write display data into memory"
 
-#: kcalc_const_button.cpp:82
+#: kcalc_const_button.cpp:84
 #, kde-format
 msgid "Set Name"
 msgstr "Set Name"
 
-#: kcalc_const_button.cpp:87
+#: kcalc_const_button.cpp:89
 #, kde-format
 msgid "Choose From List"
 msgstr "Choose From List"
 
-#: kcalc_const_button.cpp:102
+#: kcalc_const_button.cpp:104
 #, kde-format
 msgid "New Name for Constant"
 msgstr "New Name for Constant"
 
-#: kcalc_const_button.cpp:102
+#: kcalc_const_button.cpp:104
 #, kde-format
 msgid "New name:"
 msgstr "New name:"
