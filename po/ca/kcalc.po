@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-05-18 00:45+0000\n"
-"PO-Revision-Date: 2025-02-01 10:24+0100\n"
+"PO-Revision-Date: 2025-05-18 09:11+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -37,7 +37,7 @@ msgstr "sps@sastia.com,aacid@kde.org,joanmaspons@gmail.com"
 #: colors.ui:17
 #, kde-format
 msgid "Follow system color scheme"
-msgstr ""
+msgstr "Segueix l'esquema de color del sistema"
 
 #. i18n: ectx: property (title), widget (QGroupBox, displayColorsBox)
 #: colors.ui:30
@@ -2449,41 +2449,3 @@ msgstr "Constant de Stefan-Boltzmann"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Nombre d'Avogadro"
-
-#~ msgid "Input error"
-#~ msgstr "Error d'entrada"
-
-#~ msgid "Repeat operation for each result"
-#~ msgstr "Repeteix l'operació per a cada resultat"
-
-#~ msgid "Enables that the last operation is repeated when \"=\" is pressed"
-#~ msgstr "Permet que es repeteixi la darrera operació quan es prem «=»"
-
-#~ msgid "Switch base to hexadecimal."
-#~ msgstr "Canvia a base hexadecimal."
-
-#~ msgid "Switch base to decimal."
-#~ msgstr "Canvia a base decimal."
-
-# skip-rule: abbreviations-dec
-#~ msgid "&Dec"
-#~ msgstr "&Dec"
-
-#~ msgid "Switch base to binary."
-#~ msgstr "Canvia a base binària."
-
-#~ msgid "Select Display Font"
-#~ msgstr "Selecció de la lletra de la pantalla"
-
-#~ msgid "KS…el"
-#~ msgstr "KS…el"
-
-#~ msgctxt "Third power"
-#~ msgid "x<sup>3</sup>"
-#~ msgstr "x<sup>3</sup>"
-
-#~ msgid "Cube"
-#~ msgstr "Cub"
-
-#~ msgid "x3"
-#~ msgstr "x3"
