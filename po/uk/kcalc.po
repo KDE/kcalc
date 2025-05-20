@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-05-18 00:45+0000\n"
-"PO-Revision-Date: 2025-02-01 09:47+0200\n"
+"PO-Revision-Date: 2025-05-19 09:09+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -37,7 +37,7 @@ msgstr "rysin@kde.org,ivanpetrouchtchak@yahoo.com"
 #: colors.ui:17
 #, kde-format
 msgid "Follow system color scheme"
-msgstr ""
+msgstr "Використати схему кольорів системи"
 
 #. i18n: ectx: property (title), widget (QGroupBox, displayColorsBox)
 #: colors.ui:30
