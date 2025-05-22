@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-05-18 00:45+0000\n"
-"PO-Revision-Date: 2025-02-01 10:24+0100\n"
+"PO-Revision-Date: 2025-05-18 09:11+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -37,7 +37,7 @@ msgstr "sps@sastia.com,aacid@kde.org,joanmaspons@gmail.com"
 #: colors.ui:17
 #, kde-format
 msgid "Follow system color scheme"
-msgstr ""
+msgstr "Seguix l'esquema de color del sistema"
 
 #. i18n: ectx: property (title), widget (QGroupBox, displayColorsBox)
 #: colors.ui:30
@@ -1404,7 +1404,7 @@ msgstr "Mostra el resultat"
 #: kcalc.ui:382
 #, kde-format
 msgid "Click on a Bit to toggle it."
-msgstr "Cliqueu un bit per a canviar-lo."
+msgstr "Cliqueu en un bit per a canviar-lo."
 
 #. i18n: ectx: property (text), widget (QRadioButton, degRadio)
 #: kcalc.ui:405
@@ -2192,7 +2192,7 @@ msgstr "Establix un nom"
 #: kcalc_const_button.cpp:89
 #, kde-format
 msgid "Choose From List"
-msgstr "Trieu de la llista"
+msgstr "Tria de la llista"
 
 #: kcalc_const_button.cpp:104
 #, kde-format
