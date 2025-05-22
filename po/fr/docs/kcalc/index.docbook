@@ -317,7 +317,7 @@
 >asin</guibutton
 ></entry>
 <entry
->Calcule l'Arcsinus</entry
+>Calcule la fonction arcsinus</entry
 ></row>
 
 <row
@@ -337,7 +337,7 @@
 >acos</guibutton
 ></entry>
 <entry
->Calcule l'arccosinus</entry
+>Calcule la fonction arccosinus</entry
 ></row>
 
 <row
@@ -357,7 +357,7 @@
 >atan</guibutton
 ></entry>
 <entry
->Calcule l'arctangente</entry
+>Calcule la fonction arctangente</entry
 ></row>
 
 <row
@@ -713,9 +713,9 @@
 
  <para
 >Les notations binaire, octale et hexadécimale peuvent être affichées par groupes de chiffres séparés par des espaces. Ceci peut améliorer leur lisibilité. Par exemple, le nombre hexadécimal <emphasis
->AF1C42</emphasis
+>DD1C42</emphasis
 > peut être affiché <emphasis
->AF 1C 42</emphasis
+>DD1C 42</emphasis
 > avec des séparations tous les deux chiffres. Ces regroupements peuvent être désactivés ou personnalisés. Veuillez sélectionner <menuchoice
 ><guimenu
 >Configuration</guimenu
@@ -1592,7 +1592,7 @@
 >OU</guibutton
 > effectuent des opérations logiques binaires et par conséquence ont un sens plus évident si la <guilabel
 >Base</guilabel
-> est réglée sur <guilabel
+> est définie à <guilabel
 >Hex</guilabel
 >, <guilabel
 >Oct</guilabel
@@ -1602,7 +1602,7 @@
 >Dec</guilabel
 >. Dans les exemples suivants, la <guilabel
 >Base</guilabel
-> est réglée sur <guilabel
+> est définie à <guilabel
 >Bin</guilabel
 >.</para>
 
