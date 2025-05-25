@@ -1398,7 +1398,7 @@ msgstr "Mostra el resultat"
 #: kcalc.ui:391
 #, kde-format
 msgid "Click on a Bit to toggle it."
-msgstr "Cliqueu un bit per a canviar-lo."
+msgstr "Cliqueu en un bit per a canviar-lo."
 
 #. i18n: ectx: property (text), widget (QRadioButton, degRadio)
 #: kcalc.ui:414
@@ -2186,7 +2186,7 @@ msgstr "Establix un nom"
 #: kcalc_const_button.cpp:87
 #, kde-format
 msgid "Choose From List"
-msgstr "Trieu de la llista"
+msgstr "Tria de la llista"
 
 #: kcalc_const_button.cpp:102
 #, kde-format
