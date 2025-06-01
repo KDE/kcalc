@@ -5,135 +5,137 @@
 
 #include "kcalc_core_p.h"
 
-KNumber CalcEngine_p::Deg2Rad(const KNumber &x)
+KNumber CalcEngineP::deg2Rad(const KNumber &x)
 {
     return x * (KNumber::Pi() / KNumber(180));
 }
 
-KNumber CalcEngine_p::Gra2Rad(const KNumber &x)
+KNumber CalcEngineP::gra2Rad(const KNumber &x)
 {
     return x * (KNumber::Pi() / KNumber(200));
 }
 
-KNumber CalcEngine_p::Rad2Deg(const KNumber &x)
+KNumber CalcEngineP::rad2Deg(const KNumber &x)
 {
     return x * (KNumber(180) / KNumber::Pi());
 }
 
-KNumber CalcEngine_p::Rad2Gra(const KNumber &x)
+KNumber CalcEngineP::rad2Gra(const KNumber &x)
 {
     return x * (KNumber(200) / KNumber::Pi());
 }
 
-KNumber CalcEngine_p::ExecOr(const KNumber &left_op, const KNumber &right_op)
+KNumber CalcEngineP::execOr(const KNumber &leftOp, const KNumber &rightOp)
 {
-    return left_op | right_op;
+    return leftOp | rightOp;
 }
 
-KNumber CalcEngine_p::ExecXor(const KNumber &left_op, const KNumber &right_op)
+KNumber CalcEngineP::execXor(const KNumber &leftOp, const KNumber &rightOp)
 {
-    return left_op ^ right_op;
+    return leftOp ^ rightOp;
 }
 
-KNumber CalcEngine_p::ExecAnd(const KNumber &left_op, const KNumber &right_op)
+KNumber CalcEngineP::execAnd(const KNumber &leftOp, const KNumber &rightOp)
 {
-    return left_op & right_op;
+    return leftOp & rightOp;
 }
 
-KNumber CalcEngine_p::ExecLsh(const KNumber &left_op, const KNumber &right_op)
+KNumber CalcEngineP::execLsh(const KNumber &leftOp, const KNumber &rightOp)
 {
-    return left_op << right_op;
+    return leftOp << rightOp;
 }
 
-KNumber CalcEngine_p::ExecRsh(const KNumber &left_op, const KNumber &right_op)
+KNumber CalcEngineP::execRsh(const KNumber &leftOp, const KNumber &rightOp)
 {
-    return left_op >> right_op;
+    return leftOp >> rightOp;
 }
 
-KNumber CalcEngine_p::ExecAdd(const KNumber &left_op, const KNumber &right_op)
+KNumber CalcEngineP::execAdd(const KNumber &leftOp, const KNumber &rightOp)
 {
-    return left_op + right_op;
+    return leftOp + rightOp;
 }
 
-KNumber CalcEngine_p::ExecSubtract(const KNumber &left_op, const KNumber &right_op)
+KNumber CalcEngineP::execSubtract(const KNumber &leftOp, const KNumber &rightOp)
 {
-    return left_op - right_op;
+    return leftOp - rightOp;
 }
 
-KNumber CalcEngine_p::ExecMultiply(const KNumber &left_op, const KNumber &right_op)
+KNumber CalcEngineP::execMultiply(const KNumber &leftOp, const KNumber &rightOp)
 {
-    return left_op * right_op;
+    return leftOp * rightOp;
 }
 
-KNumber CalcEngine_p::ExecDivide(const KNumber &left_op, const KNumber &right_op)
+KNumber CalcEngineP::execDivide(const KNumber &leftOp, const KNumber &rightOp)
 {
-    return left_op / right_op;
+    return leftOp / rightOp;
 }
 
-KNumber CalcEngine_p::ExecMod(const KNumber &left_op, const KNumber &right_op)
+KNumber CalcEngineP::execMod(const KNumber &leftOp, const KNumber &rightOp)
 {
-    return left_op % right_op;
+    return leftOp % rightOp;
 }
 
-KNumber CalcEngine_p::ExecIntDiv(const KNumber &left_op, const KNumber &right_op)
+KNumber CalcEngineP::execIntDiv(const KNumber &leftOp, const KNumber &rightOp)
 {
-    return (left_op / right_op).integerPart();
+    return (leftOp / rightOp).integerPart();
 }
 
-KNumber CalcEngine_p::ExecBinom(const KNumber &left_op, const KNumber &right_op)
+KNumber CalcEngineP::execBinom(const KNumber &leftOp, const KNumber &rightOp)
 {
-    return left_op.bin(right_op);
+    return leftOp.bin(rightOp);
 }
 
-KNumber CalcEngine_p::ExecPower(const KNumber &left_op, const KNumber &right_op)
+KNumber CalcEngineP::execPower(const KNumber &leftOp, const KNumber &rightOp)
 {
-    return left_op.pow(right_op);
+    return leftOp.pow(rightOp);
 }
 
-KNumber CalcEngine_p::ExecPwrRoot(const KNumber &left_op, const KNumber &right_op)
+KNumber CalcEngineP::execPwrRoot(const KNumber &leftOp, const KNumber &rightOp)
 {
-    return left_op.pow(KNumber::One / right_op);
+    return leftOp.pow(KNumber::One / rightOp);
 }
 
-KNumber CalcEngine_p::ExecAddP(const KNumber &left_op, const KNumber &right_op)
+KNumber CalcEngineP::execAddP(const KNumber &leftOp, const KNumber &rightOp)
 {
-    return left_op * (KNumber::One + right_op / KNumber(100));
+    return leftOp * (KNumber::One + rightOp / KNumber(100));
 }
 
-KNumber CalcEngine_p::ExecSubP(const KNumber &left_op, const KNumber &right_op)
+KNumber CalcEngineP::execSubP(const KNumber &leftOp, const KNumber &rightOp)
 {
-    return left_op * (KNumber::One - right_op / KNumber(100));
+    return leftOp * (KNumber::One - rightOp / KNumber(100));
 }
 
-KNumber CalcEngine_p::ExecMultiplyP(const KNumber &left_op, const KNumber &right_op)
+KNumber CalcEngineP::execMultiplyP(const KNumber &leftOp, const KNumber &rightOp)
 {
-    return left_op * right_op / KNumber(100);
+    return leftOp * rightOp / KNumber(100);
 }
 
-KNumber CalcEngine_p::ExecDivideP(const KNumber &left_op, const KNumber &right_op)
+KNumber CalcEngineP::execDivideP(const KNumber &leftOp, const KNumber &rightOp)
 {
-    return left_op * KNumber(100) / right_op;
+    return leftOp * KNumber(100) / rightOp;
 }
 
 // move a number into the interval [0,360) by adding multiples of 360
-KNumber CalcEngine_p::moveIntoDegInterval(const KNumber &num)
+KNumber CalcEngineP::moveIntoDegInterval(const KNumber &num)
 {
-    KNumber tmp_num = num - (num / KNumber(360)).integerPart() * KNumber(360);
-    if (tmp_num < KNumber::Zero)
-        return tmp_num + KNumber(360);
-    return tmp_num;
+    KNumber tmpNum = num - (num / KNumber(360)).integerPart() * KNumber(360);
+    if (tmpNum < KNumber::Zero) {
+        return tmpNum + KNumber(360);
+    }
+    return tmpNum;
 }
 
 // move a number into the interval [0,400) by adding multiples of 400
-KNumber CalcEngine_p::moveIntoGradInterval(const KNumber &num)
+KNumber CalcEngineP::moveIntoGradInterval(const KNumber &num)
 {
-    KNumber tmp_num = num - (num / KNumber(400)).integerPart() * KNumber(400);
-    if (tmp_num < KNumber::Zero)
-        return tmp_num + KNumber(400);
-    return tmp_num;
+    KNumber tmpNum = num - (num / KNumber(400)).integerPart() * KNumber(400);
+    if (tmpNum < KNumber::Zero) {
+        return tmpNum + KNumber(400);
+    }
+    return tmpNum;
 }
 
-KNumber CalcEngine_p::ArcCosDeg(const KNumber &input)
+KNumber CalcEngineP::arcCosDeg(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
@@ -150,10 +152,10 @@ KNumber CalcEngine_p::ArcCosDeg(const KNumber &input)
             return KNumber(90);
         }
     }
-    return Rad2Deg(input.acos());
+    return rad2Deg(input.acos());
 }
 
-KNumber CalcEngine_p::ArcCosRad(const KNumber &input)
+KNumber CalcEngineP::arcCosRad(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
@@ -161,7 +163,7 @@ KNumber CalcEngine_p::ArcCosRad(const KNumber &input)
     return input.acos();
 }
 
-KNumber CalcEngine_p::ArcCosGrad(const KNumber &input)
+KNumber CalcEngineP::arcCosGrad(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
@@ -177,10 +179,10 @@ KNumber CalcEngine_p::ArcCosGrad(const KNumber &input)
             return KNumber(100);
         }
     }
-    return Rad2Gra(input.acos());
+    return rad2Gra(input.acos());
 }
 
-KNumber CalcEngine_p::ArcSinDeg(const KNumber &input)
+KNumber CalcEngineP::arcSinDeg(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
@@ -196,10 +198,10 @@ KNumber CalcEngine_p::ArcSinDeg(const KNumber &input)
             return KNumber::Zero;
         }
     }
-    return Rad2Deg(input.asin());
+    return rad2Deg(input.asin());
 }
 
-KNumber CalcEngine_p::ArcSinRad(const KNumber &input)
+KNumber CalcEngineP::arcSinRad(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
@@ -207,7 +209,7 @@ KNumber CalcEngine_p::ArcSinRad(const KNumber &input)
     return input.asin();
 }
 
-KNumber CalcEngine_p::ArcSinGrad(const KNumber &input)
+KNumber CalcEngineP::arcSinGrad(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
@@ -223,60 +225,72 @@ KNumber CalcEngine_p::ArcSinGrad(const KNumber &input)
             return KNumber::Zero;
         }
     }
-    return Rad2Gra(input.asin());
+    return rad2Gra(input.asin());
 }
 
-KNumber CalcEngine_p::ArcTangensDeg(const KNumber &input)
+KNumber CalcEngineP::arcTangensDeg(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
-        if (input == KNumber::NaN)
+        if (input == KNumber::NaN) {
             return KNumber::NaN;
-        if (input == KNumber::PosInfinity)
+        }
+        if (input == KNumber::PosInfinity) {
             return KNumber(90);
-        if (input == KNumber::NegInfinity)
+        }
+        if (input == KNumber::NegInfinity) {
             return KNumber(-90);
+        }
     }
 
-    return Rad2Deg(input.atan());
+    return rad2Deg(input.atan());
 }
 
-KNumber CalcEngine_p::ArcTangensRad(const KNumber &input)
+KNumber CalcEngineP::arcTangensRad(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
-        if (input == KNumber::NaN)
+        if (input == KNumber::NaN) {
             return KNumber::NaN;
-        if (input == KNumber::PosInfinity)
+        }
+        if (input == KNumber::PosInfinity) {
             return KNumber::Pi() / KNumber(2);
-        if (input == KNumber::NegInfinity)
+        }
+        if (input == KNumber::NegInfinity) {
             return -KNumber::Pi() / KNumber(2);
+        }
     }
 
     return input.atan();
 }
 
-KNumber CalcEngine_p::ArcTangensGrad(const KNumber &input)
+KNumber CalcEngineP::arcTangensGrad(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
-        if (input == KNumber::NaN)
+        if (input == KNumber::NaN) {
             return KNumber::NaN;
-        if (input == KNumber::PosInfinity)
+        }
+        if (input == KNumber::PosInfinity) {
             return KNumber(100);
-        if (input == KNumber::NegInfinity)
+        }
+        if (input == KNumber::NegInfinity) {
             return KNumber(-100);
+        }
     }
 
-    return Rad2Gra(input.atan());
+    return rad2Gra(input.atan());
 }
 
-KNumber CalcEngine_p::AreaCosHyp(const KNumber &input)
+KNumber CalcEngineP::areaCosHyp(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
-        if (input == KNumber::NaN)
+        if (input == KNumber::NaN) {
             return KNumber::NaN;
-        if (input == KNumber::PosInfinity)
+        }
+        if (input == KNumber::PosInfinity) {
             return KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity)
+        }
+        if (input == KNumber::NegInfinity) {
             return KNumber::NaN;
+        }
     }
 
     if (input == KNumber::One) {
@@ -285,15 +299,18 @@ KNumber CalcEngine_p::AreaCosHyp(const KNumber &input)
     return input.acosh();
 }
 
-KNumber CalcEngine_p::AreaSinHyp(const KNumber &input)
+KNumber CalcEngineP::areaSinHyp(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
-        if (input == KNumber::NaN)
+        if (input == KNumber::NaN) {
             return KNumber::NaN;
-        if (input == KNumber::PosInfinity)
+        }
+        if (input == KNumber::PosInfinity) {
             return KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity)
+        }
+        if (input == KNumber::NegInfinity) {
             return KNumber::NegInfinity;
+        }
     }
 
     if (input == KNumber::Zero) {
@@ -302,7 +319,7 @@ KNumber CalcEngine_p::AreaSinHyp(const KNumber &input)
     return input.asinh();
 }
 
-KNumber CalcEngine_p::AreaTangensHyp(const KNumber &input)
+KNumber CalcEngineP::areaTangensHyp(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
@@ -317,7 +334,7 @@ KNumber CalcEngine_p::AreaTangensHyp(const KNumber &input)
     return input.atanh();
 }
 
-KNumber CalcEngine_p::Complement(const KNumber &input)
+KNumber CalcEngineP::complement(const KNumber &input)
 {
     if (input.type() != KNumber::TypeInteger) {
         return KNumber::NaN;
@@ -326,35 +343,36 @@ KNumber CalcEngine_p::Complement(const KNumber &input)
     return ~input;
 }
 
-KNumber CalcEngine_p::CosDeg(const KNumber &input)
+KNumber CalcEngineP::cosDeg(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
-    KNumber trunc_input = moveIntoDegInterval(input);
+    KNumber truncInput = moveIntoDegInterval(input);
 
-    if (trunc_input.type() == KNumber::TypeInteger) {
-        KNumber mult = trunc_input / KNumber(90);
+    if (truncInput.type() == KNumber::TypeInteger) {
+        KNumber mult = truncInput / KNumber(90);
         if (mult.type() == KNumber::TypeInteger) {
-            if (mult == KNumber::Zero)
+            if (mult == KNumber::Zero) {
                 return KNumber::One;
-            else if (mult == KNumber::One)
+            } else if (mult == KNumber::One) {
                 return KNumber::Zero;
-            else if (mult == KNumber(2))
+            } else if (mult == KNumber(2)) {
                 return KNumber::NegOne;
-            else if (mult == KNumber(3))
+            } else if (mult == KNumber(3)) {
                 return KNumber::Zero;
-            else
+            } else {
                 return KNumber::NaN;
+            }
         }
     }
 
-    trunc_input = Deg2Rad(trunc_input);
-    return trunc_input.cos();
+    truncInput = deg2Rad(truncInput);
+    return truncInput.cos();
 }
 
-KNumber CalcEngine_p::CosRad(const KNumber &input)
+KNumber CalcEngineP::cosRad(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
@@ -363,89 +381,100 @@ KNumber CalcEngine_p::CosRad(const KNumber &input)
     return input.cos();
 }
 
-KNumber CalcEngine_p::CosGrad(const KNumber &input)
+KNumber CalcEngineP::cosGrad(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
-    KNumber trunc_input = moveIntoGradInterval(input);
-    if (trunc_input.type() == KNumber::TypeInteger) {
-        KNumber mult = trunc_input / KNumber(100);
+    KNumber truncInput = moveIntoGradInterval(input);
+    if (truncInput.type() == KNumber::TypeInteger) {
+        KNumber mult = truncInput / KNumber(100);
         if (mult.type() == KNumber::TypeInteger) {
-            if (mult == KNumber::Zero)
+            if (mult == KNumber::Zero) {
                 return KNumber::One;
-            else if (mult == KNumber::One)
+            } else if (mult == KNumber::One) {
                 return KNumber::Zero;
-            else if (mult == KNumber(2))
+            } else if (mult == KNumber(2)) {
                 return KNumber::NegOne;
-            else if (mult == KNumber(3))
+            } else if (mult == KNumber(3)) {
                 return KNumber::Zero;
-            else
+            } else {
                 return KNumber::NaN;
+            }
         }
     }
-    trunc_input = Gra2Rad(trunc_input);
+    truncInput = gra2Rad(truncInput);
 
-    return trunc_input.cos();
+    return truncInput.cos();
 }
 
-KNumber CalcEngine_p::CosHyp(const KNumber &input)
+KNumber CalcEngineP::cosHyp(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
-        if (input == KNumber::NaN)
+        if (input == KNumber::NaN) {
             return KNumber::NaN;
-        if (input == KNumber::PosInfinity)
+        }
+        if (input == KNumber::PosInfinity) {
             return KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity)
+        }
+        if (input == KNumber::NegInfinity) {
             return KNumber::PosInfinity;
+        }
         return KNumber::NaN;
     }
 
     return input.cosh();
 }
 
-KNumber CalcEngine_p::Cube(const KNumber &input)
+KNumber CalcEngineP::cube(const KNumber &input)
 {
     return input * input * input;
 }
 
-KNumber CalcEngine_p::CubeRoot(const KNumber &input)
+KNumber CalcEngineP::cubeRoot(const KNumber &input)
 {
     return input.cbrt();
 }
 
-KNumber CalcEngine_p::Exp(const KNumber &input)
+KNumber CalcEngineP::exp(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
-        if (input == KNumber::NaN)
+        if (input == KNumber::NaN) {
             return KNumber::NaN;
-        if (input == KNumber::PosInfinity)
+        }
+        if (input == KNumber::PosInfinity) {
             return KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity)
+        }
+        if (input == KNumber::NegInfinity) {
             return KNumber::Zero;
+        }
         return KNumber::NaN;
     }
     return KNumber::Euler().pow(input);
 }
 
-KNumber CalcEngine_p::Exp10(const KNumber &input)
+KNumber CalcEngineP::exp10(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
-        if (input == KNumber::NaN)
+        if (input == KNumber::NaN) {
             return KNumber::NaN;
-        if (input == KNumber::PosInfinity)
+        }
+        if (input == KNumber::PosInfinity) {
             return KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity)
+        }
+        if (input == KNumber::NegInfinity) {
             return KNumber::Zero;
+        }
         return KNumber::NaN;
     }
     return KNumber(10).pow(input);
 }
 
-KNumber CalcEngine_p::Factorial(const KNumber &input)
+KNumber CalcEngineP::factorial(const KNumber &input)
 {
-    if (input == KNumber::PosInfinity)
+    if (input == KNumber::PosInfinity) {
         return KNumber::PosInfinity;
+    }
     if ((input.type() == KNumber::TypeInteger && input < KNumber::Zero) || input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
@@ -453,10 +482,11 @@ KNumber CalcEngine_p::Factorial(const KNumber &input)
     return input.factorial();
 }
 
-KNumber CalcEngine_p::Gamma(const KNumber &input)
+KNumber CalcEngineP::gamma(const KNumber &input)
 {
-    if (input == KNumber::PosInfinity)
+    if (input == KNumber::PosInfinity) {
         return KNumber::PosInfinity;
+    }
     if ((input.type() == KNumber::TypeInteger && input <= KNumber::Zero) || input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
@@ -464,62 +494,63 @@ KNumber CalcEngine_p::Gamma(const KNumber &input)
     return input.tgamma();
 }
 
-KNumber CalcEngine_p::InvertSign(const KNumber &input)
+KNumber CalcEngineP::invertSign(const KNumber &input)
 {
     return -input;
 }
 
-KNumber CalcEngine_p::Ln(const KNumber &input)
+KNumber CalcEngineP::ln(const KNumber &input)
 {
-    if (input == KNumber::One)
+    if (input == KNumber::One) {
         return KNumber::Zero;
-    else {
+    } else {
         return input.ln();
     }
 }
 
-KNumber CalcEngine_p::Log10(const KNumber &input)
+KNumber CalcEngineP::log10(const KNumber &input)
 {
-    if (input == KNumber::One)
+    if (input == KNumber::One) {
         return KNumber::Zero;
-    else {
+    } else {
         return input.log10();
     }
 }
 
-KNumber CalcEngine_p::Reciprocal(const KNumber &input)
+KNumber CalcEngineP::reciprocal(const KNumber &input)
 {
     return KNumber::One / input;
 }
 
-KNumber CalcEngine_p::SinDeg(const KNumber &input)
+KNumber CalcEngineP::sinDeg(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
-    KNumber trunc_input = moveIntoDegInterval(input);
-    if (trunc_input.type() == KNumber::TypeInteger) {
-        KNumber mult = trunc_input / KNumber(90);
+    KNumber truncInput = moveIntoDegInterval(input);
+    if (truncInput.type() == KNumber::TypeInteger) {
+        KNumber mult = truncInput / KNumber(90);
         if (mult.type() == KNumber::TypeInteger) {
-            if (mult == KNumber::Zero)
+            if (mult == KNumber::Zero) {
                 return KNumber::Zero;
-            else if (mult == KNumber::One)
+            } else if (mult == KNumber::One) {
                 return KNumber::One;
-            else if (mult == KNumber(2))
+            } else if (mult == KNumber(2)) {
                 return KNumber::Zero;
-            else if (mult == KNumber(3))
+            } else if (mult == KNumber(3)) {
                 return KNumber::NegOne;
-            else
+            } else {
                 return KNumber::NaN;
+            }
         }
     }
-    trunc_input = Deg2Rad(trunc_input);
+    truncInput = deg2Rad(truncInput);
 
-    return trunc_input.sin();
+    return truncInput.sin();
 }
 
-KNumber CalcEngine_p::SinRad(const KNumber &input)
+KNumber CalcEngineP::sinRad(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
@@ -528,238 +559,245 @@ KNumber CalcEngine_p::SinRad(const KNumber &input)
     return input.sin();
 }
 
-KNumber CalcEngine_p::SinGrad(const KNumber &input)
+KNumber CalcEngineP::sinGrad(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
-    KNumber trunc_input = moveIntoGradInterval(input);
-    if (trunc_input.type() == KNumber::TypeInteger) {
-        KNumber mult = trunc_input / KNumber(100);
+    KNumber truncInput = moveIntoGradInterval(input);
+    if (truncInput.type() == KNumber::TypeInteger) {
+        KNumber mult = truncInput / KNumber(100);
         if (mult.type() == KNumber::TypeInteger) {
-            if (mult == KNumber::Zero)
+            if (mult == KNumber::Zero) {
                 return KNumber::Zero;
-            else if (mult == KNumber::One)
+            } else if (mult == KNumber::One) {
                 return KNumber::One;
-            else if (mult == KNumber(2))
+            } else if (mult == KNumber(2)) {
                 return KNumber::Zero;
-            else if (mult == KNumber(3))
+            } else if (mult == KNumber(3)) {
                 return KNumber::NegOne;
-            else
+            } else {
                 return KNumber::NaN;
+            }
         }
     }
 
-    trunc_input = Gra2Rad(trunc_input);
+    truncInput = gra2Rad(truncInput);
 
-    return trunc_input.sin();
+    return truncInput.sin();
 }
 
-KNumber CalcEngine_p::SinHyp(const KNumber &input)
+KNumber CalcEngineP::sinHyp(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
-        if (input == KNumber::NaN)
+        if (input == KNumber::NaN) {
             return KNumber::NaN;
-        if (input == KNumber::PosInfinity)
+        }
+        if (input == KNumber::PosInfinity) {
             return KNumber::PosInfinity;
-        if (input == KNumber::NegInfinity)
+        }
+        if (input == KNumber::NegInfinity) {
             return KNumber::NegInfinity;
+        }
         return KNumber::NaN;
     }
 
     return input.sinh();
 }
 
-KNumber CalcEngine_p::Square(const KNumber &input)
+KNumber CalcEngineP::square(const KNumber &input)
 {
     return input * input;
 }
 
-KNumber CalcEngine_p::SquareRoot(const KNumber &input)
+KNumber CalcEngineP::squareRoot(const KNumber &input)
 {
     return input.sqrt();
 }
 
-KNumber CalcEngine_p::Percentage(const KNumber &input)
+KNumber CalcEngineP::percentage(const KNumber &input)
 {
-    return ExecDivide(input, KNumber::OneHundred);
+    return execDivide(input, KNumber::OneHundred);
 }
 
-void CalcEngine_p::StatClearAll(const KNumber &input)
-{
-    Q_UNUSED(input);
-    stats.clearAll();
-}
-
-KNumber CalcEngine_p::StatCount(const KNumber &input)
+void CalcEngineP::statClearAll(const KNumber &input)
 {
     Q_UNUSED(input);
-    return KNumber(stats.count());
+    m_stats.clearAll();
 }
 
-void CalcEngine_p::StatDataNew(const KNumber &input)
-{
-    stats.enterData(input);
-}
-
-void CalcEngine_p::StatDataDel(const KNumber &input)
+KNumber CalcEngineP::statCount(const KNumber &input)
 {
     Q_UNUSED(input);
-    stats.clearLast();
+    return KNumber(m_stats.count());
 }
 
-KNumber CalcEngine_p::StatMean(const KNumber &input)
+void CalcEngineP::statDataNew(const KNumber &input)
+{
+    m_stats.enterData(input);
+}
+
+void CalcEngineP::statDataDel(const KNumber &input)
 {
     Q_UNUSED(input);
-    return stats.mean();
+    m_stats.clearLast();
 }
 
-KNumber CalcEngine_p::StatMedian(const KNumber &input)
+KNumber CalcEngineP::statMean(const KNumber &input)
 {
     Q_UNUSED(input);
-    return stats.median();
+    return m_stats.mean();
 }
 
-KNumber CalcEngine_p::StatStdDeviation(const KNumber &input)
+KNumber CalcEngineP::statMedian(const KNumber &input)
 {
     Q_UNUSED(input);
-    return stats.std();
+    return m_stats.median();
 }
 
-KNumber CalcEngine_p::StatStdSample(const KNumber &input)
+KNumber CalcEngineP::statStdDeviation(const KNumber &input)
 {
     Q_UNUSED(input);
-    return stats.sample_std();
+    return m_stats.std();
 }
 
-KNumber CalcEngine_p::StatSum(const KNumber &input)
+KNumber CalcEngineP::statStdSample(const KNumber &input)
 {
     Q_UNUSED(input);
-    return stats.sum();
+    return m_stats.sample_std();
 }
 
-KNumber CalcEngine_p::StatSumSquares(const KNumber &input)
+KNumber CalcEngineP::statSum(const KNumber &input)
 {
     Q_UNUSED(input);
-    return stats.sum_of_squares();
+    return m_stats.sum();
 }
 
-KNumber CalcEngine_p::TangensDeg(const KNumber &input)
+KNumber CalcEngineP::statSumSquares(const KNumber &input)
+{
+    Q_UNUSED(input);
+    return m_stats.sum_of_squares();
+}
+
+KNumber CalcEngineP::tangensDeg(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
-    KNumber arg1 = SinDeg(input);
-    KNumber arg2 = CosDeg(input);
+    KNumber arg1 = sinDeg(input);
+    KNumber arg2 = cosDeg(input);
 
     return arg1 / arg2;
 }
 
-KNumber CalcEngine_p::TangensRad(const KNumber &input)
+KNumber CalcEngineP::tangensRad(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
-    KNumber arg1 = SinRad(input);
-    KNumber arg2 = CosRad(input);
+    KNumber arg1 = sinRad(input);
+    KNumber arg2 = cosRad(input);
 
     return arg1 / arg2;
 }
 
-KNumber CalcEngine_p::TangensGrad(const KNumber &input)
+KNumber CalcEngineP::tangensGrad(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
-    KNumber arg1 = SinGrad(input);
-    KNumber arg2 = CosGrad(input);
+    KNumber arg1 = sinGrad(input);
+    KNumber arg2 = cosGrad(input);
 
     return arg1 / arg2;
 }
 
-KNumber CalcEngine_p::PolarDeg(const KNumber &input)
+KNumber CalcEngineP::polarDeg(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
-    KNumber arg1 = CosDeg(input);
-    KNumber arg2 = SinDeg(input);
+    KNumber arg1 = cosDeg(input);
+    KNumber arg2 = sinDeg(input);
 
     return arg1 + arg2 * KNumber(QStringLiteral("i"));
 }
 
-KNumber CalcEngine_p::PolarRad(const KNumber &input)
+KNumber CalcEngineP::polarRad(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
-    KNumber arg1 = CosRad(input);
-    KNumber arg2 = SinRad(input);
+    KNumber arg1 = cosRad(input);
+    KNumber arg2 = sinRad(input);
 
     return arg1 + arg2 * KNumber(QStringLiteral("i"));
 }
 
-KNumber CalcEngine_p::PolarGrad(const KNumber &input)
+KNumber CalcEngineP::polarGrad(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
         return KNumber::NaN;
     }
 
-    KNumber arg1 = CosGrad(input);
-    KNumber arg2 = SinGrad(input);
+    KNumber arg1 = cosGrad(input);
+    KNumber arg2 = sinGrad(input);
 
     return arg1 + arg2 * KNumber(QStringLiteral("i"));
 }
 
-KNumber CalcEngine_p::TangensHyp(const KNumber &input)
+KNumber CalcEngineP::tangensHyp(const KNumber &input)
 {
     if (input.type() == KNumber::TypeError) {
-        if (input == KNumber::NaN)
+        if (input == KNumber::NaN) {
             return KNumber::NaN;
-        if (input == KNumber::PosInfinity)
+        }
+        if (input == KNumber::PosInfinity) {
             return KNumber::One;
-        if (input == KNumber::NegInfinity)
+        }
+        if (input == KNumber::NegInfinity) {
             return KNumber::NegOne;
+        }
         return KNumber::NaN;
     }
 
     return input.tanh();
 }
 
-KNumber CalcEngine_p::Conjugate(const KNumber &input)
+KNumber CalcEngineP::conjugate(const KNumber &input)
 {
     return input.conj();
 }
 
-KNumber CalcEngine_p::ArgumentDeg(const KNumber &input)
+KNumber CalcEngineP::argumentDeg(const KNumber &input)
 {
     if (input.realPart() == KNumber::Zero) {
         return (input.imaginaryPart() > KNumber::Zero) ? KNumber(90) : KNumber(-90);
     } else if (input.imaginaryPart() == KNumber::Zero) {
         return (input.realPart() >= KNumber::Zero) ? KNumber::Zero : KNumber(180);
     } else {
-        return Rad2Deg(input.arg());
+        return rad2Deg(input.arg());
     }
 }
 
-KNumber CalcEngine_p::ArgumentGrad(const KNumber &input)
+KNumber CalcEngineP::argumentGrad(const KNumber &input)
 {
     if (input.realPart() == KNumber::Zero) {
         return (input.imaginaryPart() > KNumber::Zero) ? KNumber(100) : KNumber(-100);
     } else if (input.imaginaryPart() == KNumber::Zero) {
         return (input.realPart() >= KNumber::Zero) ? KNumber::Zero : KNumber(200);
     } else {
-        return Rad2Gra(input.arg());
+        return rad2Gra(input.arg());
     }
 }
 
-KNumber CalcEngine_p::ArgumentRad(const KNumber &input)
+KNumber CalcEngineP::argumentRad(const KNumber &input)
 {
     if (input.realPart() == KNumber::Zero) {
         return (input.imaginaryPart() > KNumber::Zero) ? KNumber::Pi() / KNumber(2) : -KNumber::Pi() / KNumber(2);
@@ -770,12 +808,12 @@ KNumber CalcEngine_p::ArgumentRad(const KNumber &input)
     }
 }
 
-KNumber CalcEngine_p::Real(const KNumber &input)
+KNumber CalcEngineP::real(const KNumber &input)
 {
     return input.realPart();
 }
 
-KNumber CalcEngine_p::Imaginary(const KNumber &input)
+KNumber CalcEngineP::imaginary(const KNumber &input)
 {
     return input.imaginaryPart();
 }
