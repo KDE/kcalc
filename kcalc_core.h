@@ -19,50 +19,50 @@ public:
     CalcEngine();
 
     enum ResultCode {
-        SUCCESS,
-        EMPTY_INPUT,
-        MATH_ERROR,
-        MISSING_LEFT_UNARY_ARG,
-        MISSING_RIGHT_UNARY_ARG,
-        MISSING_RIGHT_BINARY_ARG,
-        INCOMPLETE_INPUT,
-        SYNTAX_ERROR
+        Success,
+        EmptyInput,
+        MathError,
+        MissingLeftUnaryArg,
+        MissingRightUnaryArg,
+        MissingRightBinaryArg,
+        IncompleteInput,
+        SyntaxError
     };
 
-    ResultCode calculate(const QQueue<KCalcToken> tokenBuffer, int &errorIndex); // returs 0 on success
+    ResultCode calculate(const QQueue<KCalcToken> &tokenBuffer, int &errorIndex); // returs 0 on success
     KNumber getResult();
 
     KNumber lastOutput(bool &error) const;
 
 public:
-    void StatClearAll();
-    void StatCount(const KNumber &input);
-    void StatDataNew(const KNumber &input);
-    void StatDataDel();
-    void StatMean(const KNumber &input);
-    void StatMedian(const KNumber &input);
-    void StatStdDeviation(const KNumber &input);
-    void StatStdSample(const KNumber &input);
-    void StatSum(const KNumber &input);
-    void StatSumSquares(const KNumber &input);
+    void statClearAll();
+    void statCount(const KNumber &input);
+    void statDataNew(const KNumber &input);
+    void statDataDel();
+    void statMean(const KNumber &input);
+    void statMedian(const KNumber &input);
+    void statStdDeviation(const KNumber &input);
+    void statStdSample(const KNumber &input);
+    void statSum(const KNumber &input);
+    void statSumSquares(const KNumber &input);
 
 public:
-    void Reset();
+    void reset();
 
 private:
     KStats stats;
 
-    QList<KCalcToken> token_stack_;
+    QList<KCalcToken> m_tokenStack;
 
-    const KCalcToken multiplication_Token_ = KCalcToken(KCalcToken::TokenCode::MULTIPLICATION);
+    const KCalcToken m_multiplicationToken = KCalcToken(KCalcToken::TokenCode::MULTIPLICATION);
 
-    int reduce_Stack_(bool toParentheses = true);
-    int insert_Binary_Function_Token_In_Stack_(const KCalcToken &token);
-    int insert_KNumber_Token_In_Stack_(const KCalcToken &token);
-    int insert_percentage_Token_In_Stack_();
+    int reduceStack(bool toParentheses = true);
+    int insertBinaryFunctionTokenInStack(const KCalcToken &token);
+    int insertKNumberTokenInStack(const KCalcToken &token);
+    int insertPercentageTokenInStack();
 
-    void printStacks_();
-    bool error_;
+    void printStacks();
+    bool m_errorGlobal;
 
-    KNumber buffer_result_;
+    KNumber m_bufferResult;
 };

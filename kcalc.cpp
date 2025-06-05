@@ -1430,13 +1430,13 @@ void KCalculator::slotInputChanged()
         return;
     } else if (calculation_failure_) {
         switch (calculation_result_code_) {
-        case CalcEngine::ResultCode::MISSING_RIGHT_UNARY_ARG:
-        case CalcEngine::ResultCode::MISSING_RIGHT_BINARY_ARG:
+        case CalcEngine::ResultCode::MissingRightUnaryArg:
+        case CalcEngine::ResultCode::MissingRightBinaryArg:
             if (calc_display->text().isEmpty()) {
                 numeralSystemView->clearNumber();
             }
             break;
-        case CalcEngine::ResultCode::MATH_ERROR:
+        case CalcEngine::ResultCode::MathError:
             updateDisplay(UPDATE_CLEAR);
             break;
         default:
@@ -1513,12 +1513,12 @@ void KCalculator::slotStatNumclicked()
     this->input_display->slotSetHardOverwrite();
 
     if (!shift_mode_) {
-        core.StatCount(KNumber::Zero);
+        core.statCount(KNumber::Zero);
         this->calc_history->addToHistory(i18n("Number of data entered = "), false);
         this->input_display->insert(i18n("Number of data entered ="));
     } else {
         pbShift->setChecked(false);
-        core.StatSum(KNumber::Zero);
+        core.statSum(KNumber::Zero);
         calc_history->addToHistory(QString::fromUtf8("\xce\xa3") + QLatin1Char('x') + QLatin1Char('='), false);
         this->input_display->insert(i18n("Sum of all data items ="));
     }
@@ -1537,12 +1537,12 @@ void KCalculator::slotStatMeanclicked()
     this->input_display->slotSetHardOverwrite();
 
     if (!shift_mode_) {
-        core.StatMean(KNumber::Zero);
+        core.statMean(KNumber::Zero);
         this->input_display->insert(QStringLiteral("Mean ="));
         calc_history->addToHistory(i18n("Mean = "), false);
     } else {
         pbShift->setChecked(false);
-        core.StatSumSquares(KNumber::Zero);
+        core.statSumSquares(KNumber::Zero);
         this->input_display->insert(i18n("Sum of squares ="));
         calc_history->addToHistory(QString::fromUtf8("\xce\xa3") + QStringLiteral("x<sub>i</sub><sup>2</sup> = "), false);
     }
@@ -1562,12 +1562,12 @@ void KCalculator::slotStatStdDevclicked()
 
     if (shift_mode_) {
         // std (n-1)
-        core.StatStdSample(KNumber::Zero);
+        core.statStdSample(KNumber::Zero);
         pbShift->setChecked(false);
         this->input_display->insert(QString::fromUtf8("\xcf\x83") + QStringLiteral("<sub>N-1</sub> ="));
         calc_history->addToHistory(QString::fromUtf8("\xcf\x83") + QStringLiteral("<sub>N-1</sub> = "), false);
     } else {
-        core.StatStdDeviation(KNumber::Zero);
+        core.statStdDeviation(KNumber::Zero);
         this->input_display->insert(QString::fromUtf8("\xcf\x83") + QStringLiteral("N ="));
         calc_history->addToHistory(QString::fromUtf8("&sigma;") + QStringLiteral("<sub>N</sub> = "), false);
     }
@@ -1585,7 +1585,7 @@ void KCalculator::slotStatMedianclicked()
     this->input_display->clear();
     this->input_display->slotSetHardOverwrite();
 
-    core.StatMedian(KNumber::Zero);
+    core.statMedian(KNumber::Zero);
     input_display->insert(i18n("Median ="));
     calc_history->addToHistory(i18n("Median = "), false);
 
@@ -1618,7 +1618,7 @@ void KCalculator::slotStatDataInputclicked()
             KNumber result = calc_display->getAmount();
             QString resultQString = calc_display->getAmountQString();
 
-            core.StatDataNew(result);
+            core.statDataNew(result);
 
             this->input_display->clear();
             input_display->insert(i18n("DAT [") + core.lastOutput(tmp_error).toQString() + i18n("] = ") + resultQString);
@@ -1630,7 +1630,7 @@ void KCalculator::slotStatDataInputclicked()
         this->input_display->clear();
         this->input_display->slotSetHardOverwrite();
         input_display->insert(i18n("Last stat data erased"));
-        core.StatDataDel();
+        core.statDataDel();
         statusBar()->showMessage(i18n("Last stat data erased"), 3000);
         calc_history->addToHistory(i18n("Last stat data erased"), true);
         updateDisplay(UPDATE_CLEAR);
@@ -1646,7 +1646,7 @@ void KCalculator::slotStatClearDataclicked()
     this->input_display->clear();
     this->input_display->insert(i18n("Stat mem cleared"));
     this->input_display->slotSetHardOverwrite();
-    core.StatClearAll();
+    core.statClearAll();
     statusBar()->showMessage(i18n("Stat mem cleared"), 3000);
     calc_history->addToHistory(i18n("Stat mem cleared"), true);
 
@@ -2405,7 +2405,7 @@ int KCalculator::commit_Input_()
     } else {
         parsing_failure_ = false;
         calculation_result_code_ = core.calculate(token_Queue_, calculation_error_token_index_);
-        if (calculation_result_code_ != CalcEngine::ResultCode::SUCCESS) {
+        if (calculation_result_code_ != CalcEngine::ResultCode::Success) {
             input_error_index_ = token_Queue_.at(calculation_error_token_index_).getStringIndex();
             calculation_failure_ = true;
             return -1;
@@ -2459,16 +2459,16 @@ void inline KCalculator::handle_Calculation_Error_()
     input_display->setCursorPosition(input_error_index_);
     input_display->setFocus();
     switch (calculation_result_code_) {
-    case CalcEngine::ResultCode::MISSING_LEFT_UNARY_ARG:
-    case CalcEngine::ResultCode::MISSING_RIGHT_UNARY_ARG:
-    case CalcEngine::ResultCode::MISSING_RIGHT_BINARY_ARG:
-    case CalcEngine::ResultCode::INCOMPLETE_INPUT:
+    case CalcEngine::ResultCode::MissingLeftUnaryArg:
+    case CalcEngine::ResultCode::MissingRightUnaryArg:
+    case CalcEngine::ResultCode::MissingRightBinaryArg:
+    case CalcEngine::ResultCode::IncompleteInput:
         updateDisplay(UPDATE_MALFORMED_EXPRESSION);
         break;
-    case CalcEngine::ResultCode::MATH_ERROR:
+    case CalcEngine::ResultCode::MathError:
         updateDisplay(UPDATE_MATH_ERROR);
         break;
-    case CalcEngine::ResultCode::SYNTAX_ERROR:
+    case CalcEngine::ResultCode::SyntaxError:
         updateDisplay(UPDATE_MALFORMED_EXPRESSION);
         break;
     default:
