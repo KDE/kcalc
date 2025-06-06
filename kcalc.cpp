@@ -918,7 +918,7 @@ void KCalculator::slotAngleSelected(QAbstractButton *button, bool checked)
 //------------------------------------------------------------------------------
 void KCalculator::slotEEclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::EXP_10);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Exp10);
 }
 
 //------------------------------------------------------------------------------
@@ -1011,16 +1011,16 @@ void KCalculator::slotSinclicked()
     if (hyp_mode_) {
         // sinh or arcsinh
         if (!shift_mode_) {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::SINH);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Sinh);
         } else {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::ASINH);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Asinh);
         }
     } else {
         // sin or arcsin
         if (!shift_mode_) {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::SIN);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Sin);
         } else {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::ASIN);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Asin);
         }
     }
 }
@@ -1033,10 +1033,10 @@ void KCalculator::slotPlusMinusclicked()
 {
     this->input_display->slotClearOverwrite();
     this->input_display->home(false);
-    this->insertToInputDisplay(KCalcToken::TokenCode::INVERT_SIGN);
-    this->insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
+    this->insertToInputDisplay(KCalcToken::TokenCode::InvertSign);
+    this->insertToInputDisplay(KCalcToken::TokenCode::OpeningParenthesis);
     this->input_display->end(false);
-    this->insertToInputDisplay(KCalcToken::TokenCode::CLOSING_PARENTHESIS);
+    this->insertToInputDisplay(KCalcToken::TokenCode::ClosingParenthesis);
     this->slotEqualclicked();
 }
 
@@ -1087,16 +1087,16 @@ void KCalculator::slotCosclicked()
     if (hyp_mode_) {
         // cosh or arcosh
         if (!shift_mode_) {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::COSH);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Cosh);
         } else {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::ACOSH);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Acosh);
         }
     } else {
         // cosine or arccosine
         if (!shift_mode_) {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::COS);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Cos);
         } else {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::ACOS);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Acos);
         }
     }
 }
@@ -1108,9 +1108,9 @@ void KCalculator::slotCosclicked()
 void KCalculator::slotReciclicked()
 {
     if (shift_mode_) {
-        this->insertToInputDisplay(KCalcToken::TokenCode::BINOMIAL);
+        this->insertToInputDisplay(KCalcToken::TokenCode::Binomial);
     } else {
-        this->insertToInputDisplay(KCalcToken::TokenCode::RECIPROCAL);
+        this->insertToInputDisplay(KCalcToken::TokenCode::Reciprocal);
     }
 }
 
@@ -1123,16 +1123,16 @@ void KCalculator::slotTanclicked()
     if (hyp_mode_) {
         // tanh or artanh
         if (!shift_mode_) {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::TANH);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Tanh);
         } else {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::ATANH);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Atanh);
         }
     } else {
         // tan or arctan
         if (!shift_mode_) {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::TAN);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Tan);
         } else {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::ATAN);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Atan);
         }
     }
 }
@@ -1143,14 +1143,11 @@ void KCalculator::slotTanclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotFactorialclicked()
 {
-    // Set WaitCursor, as this operation may take a long
-    // time and the UI freezes with large numbers. User needs some
-    // visual feedback.
     QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
     if (!shift_mode_) {
-        this->insertToInputDisplay(KCalcToken::TokenCode::FACTORIAL);
+        this->insertToInputDisplay(KCalcToken::TokenCode::Factorial);
     } else {
-        insertFunctionToInputDisplay(KCalcToken::TokenCode::GAMMA);
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::Gamma);
     }
     QApplication::restoreOverrideCursor();
 }
@@ -1162,10 +1159,10 @@ void KCalculator::slotFactorialclicked()
 void KCalculator::slotLogclicked()
 {
     if (!shift_mode_) {
-        insertFunctionToInputDisplay(KCalcToken::TokenCode::LOG_10);
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::Log10);
     } else {
         update_history_window_ = false;
-        this->insertToInputDisplay(KCalcToken::TokenCode::EXP_10);
+        this->insertToInputDisplay(KCalcToken::TokenCode::Exp10);
     }
 }
 
@@ -1176,9 +1173,9 @@ void KCalculator::slotLogclicked()
 void KCalculator::slotSquareclicked()
 {
     if (!shift_mode_) {
-        insertToInputDisplay(KCalcToken::TokenCode::SQUARE);
+        insertToInputDisplay(KCalcToken::TokenCode::Square);
     } else {
-        insertToInputDisplay(KCalcToken::TokenCode::CUBE);
+        insertToInputDisplay(KCalcToken::TokenCode::Cube);
     }
 }
 
@@ -1189,9 +1186,9 @@ void KCalculator::slotSquareclicked()
 void KCalculator::slotSqrtclicked()
 {
     if (!shift_mode_) {
-        insertFunctionToInputDisplay(KCalcToken::TokenCode::SQUARE_ROOT);
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::SquareRoot);
     } else {
-        insertFunctionToInputDisplay(KCalcToken::TokenCode::CUBIC_ROOT);
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::CubicRoot);
     }
 }
 
@@ -1202,9 +1199,9 @@ void KCalculator::slotSqrtclicked()
 void KCalculator::slotLnclicked()
 {
     if (!shift_mode_) {
-        insertFunctionToInputDisplay(KCalcToken::TokenCode::LN);
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::Ln);
     } else {
-        insertFunctionToInputDisplay(KCalcToken::TokenCode::EXP);
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::Exp);
     }
 }
 
@@ -1213,7 +1210,7 @@ void KCalculator::slotIclicked()
     if (!shift_mode_) {
         this->insertToInputDisplay(KCalcToken::TokenCode::I);
     } else {
-        insertFunctionToInputDisplay(KCalcToken::TokenCode::POLAR);
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::Polar);
     }
 }
 
@@ -1224,9 +1221,9 @@ void KCalculator::slotIclicked()
 void KCalculator::slotPowerclicked()
 {
     if (shift_mode_) {
-        this->insertToInputDisplay(KCalcToken::TokenCode::POWER_ROOT);
+        this->insertToInputDisplay(KCalcToken::TokenCode::PowerRoot);
     } else {
-        this->insertToInputDisplay(KCalcToken::TokenCode::POWER);
+        this->insertToInputDisplay(KCalcToken::TokenCode::Power);
     }
 }
 
@@ -1285,7 +1282,7 @@ void KCalculator::slotAllClearclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotParenOpenclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
+    this->insertToInputDisplay(KCalcToken::TokenCode::OpeningParenthesis);
 }
 
 //------------------------------------------------------------------------------
@@ -1294,7 +1291,7 @@ void KCalculator::slotParenOpenclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotParenCloseclicked()
 {
-    insertToInputDisplay(KCalcToken::TokenCode::CLOSING_PARENTHESIS);
+    insertToInputDisplay(KCalcToken::TokenCode::ClosingParenthesis);
 }
 
 //------------------------------------------------------------------------------
@@ -1303,7 +1300,7 @@ void KCalculator::slotParenCloseclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotANDclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::AND);
+    this->insertToInputDisplay(KCalcToken::TokenCode::And);
 }
 
 //------------------------------------------------------------------------------
@@ -1312,7 +1309,7 @@ void KCalculator::slotANDclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotMultiplicationclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::MULTIPLICATION);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Multiplication);
 }
 
 //------------------------------------------------------------------------------
@@ -1321,7 +1318,7 @@ void KCalculator::slotMultiplicationclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotDivisionclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::DIVISION);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Division);
 }
 
 //------------------------------------------------------------------------------
@@ -1330,7 +1327,7 @@ void KCalculator::slotDivisionclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotORclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::OR);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Or);
 }
 
 //------------------------------------------------------------------------------
@@ -1339,7 +1336,7 @@ void KCalculator::slotORclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotXORclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::XOR);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Xor);
 }
 
 //------------------------------------------------------------------------------
@@ -1348,7 +1345,7 @@ void KCalculator::slotXORclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotPlusclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::PLUS);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Plus);
 }
 
 //------------------------------------------------------------------------------
@@ -1357,7 +1354,7 @@ void KCalculator::slotPlusclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotMinusclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::MINUS);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Minus);
 }
 
 //------------------------------------------------------------------------------
@@ -1366,7 +1363,7 @@ void KCalculator::slotMinusclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotLeftShiftclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::LSH);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Lsh);
 }
 
 //------------------------------------------------------------------------------
@@ -1375,7 +1372,7 @@ void KCalculator::slotLeftShiftclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotRightShiftclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::RSH);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Rsh);
 }
 
 //------------------------------------------------------------------------------
@@ -1384,7 +1381,7 @@ void KCalculator::slotRightShiftclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotPeriodclicked()
 {
-    this->insertNumericToInputDisplay(KCalcToken::TokenCode::DECIMAL_POINT);
+    this->insertNumericToInputDisplay(KCalcToken::TokenCode::DecimalPoint);
 }
 
 //------------------------------------------------------------------------------
@@ -1477,7 +1474,7 @@ void KCalculator::slotClearResult()
 //------------------------------------------------------------------------------
 void KCalculator::slotPercentclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::PERCENTAGE);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Percentage);
 }
 
 //------------------------------------------------------------------------------
@@ -1487,7 +1484,7 @@ void KCalculator::slotPercentclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotNegateclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::ONE_S_COMPLEMENT);
+    this->insertToInputDisplay(KCalcToken::TokenCode::OnesComplement);
 }
 
 //------------------------------------------------------------------------------
@@ -1497,9 +1494,9 @@ void KCalculator::slotNegateclicked()
 void KCalculator::slotModclicked()
 {
     if (shift_mode_) {
-        this->insertToInputDisplay(KCalcToken::TokenCode::INTEGER_DIVISION);
+        this->insertToInputDisplay(KCalcToken::TokenCode::IntegerDivision);
     } else {
-        this->insertToInputDisplay(KCalcToken::TokenCode::MODULO);
+        this->insertToInputDisplay(KCalcToken::TokenCode::Modulo);
     }
 }
 

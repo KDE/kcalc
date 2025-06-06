@@ -54,7 +54,7 @@ private:
 
     QList<KCalcToken> m_tokenStack;
 
-    const KCalcToken m_multiplicationToken = KCalcToken(KCalcToken::TokenCode::MULTIPLICATION);
+    const KCalcToken m_multiplicationToken = KCalcToken(KCalcToken::TokenCode::Multiplication);
 
     int reduceStack(bool toParentheses = true);
     int insertBinaryFunctionTokenInStack(const KCalcToken &token);

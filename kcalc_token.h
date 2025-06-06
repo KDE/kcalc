@@ -17,112 +17,112 @@ public:
     ~KCalcToken();
 
     enum TokenCode {
-        KNUMBER,
-        DECIMAL_POINT,
-        PLUS,
-        MINUS,
-        INVERT_SIGN,
-        DIVISION,
-        SLASH,
-        MULTIPLICATION,
-        DOT,
-        ASTERISK,
-        PERCENTAGE,
-        PERMILLE,
-        OPENING_PARENTHESIS,
-        CLOSING_PARENTHESIS,
-        SQUARE,
-        CUBE,
-        SQUARE_ROOT,
-        CUBIC_ROOT,
-        DEGREE,
-        GRADIAN,
-        RADIAN,
-        SIN,
-        SIN_RAD,
-        SIN_DEG,
-        SIN_GRAD,
-        COS,
-        COS_RAD,
-        COS_DEG,
-        COS_GRAD,
-        TAN,
-        TAN_RAD,
-        TAN_DEG,
-        TAN_GRAD,
-        ASIN,
-        ASIN_RAD,
-        ASIN_DEG,
-        ASIN_GRAD,
-        ACOS,
-        ACOS_RAD,
-        ACOS_DEG,
-        ACOS_GRAD,
-        ATAN,
-        ATAN_RAD,
-        ATAN_DEG,
-        ATAN_GRAD,
-        POLAR_RAD,
-        POLAR_DEG,
-        POLAR_GRAD,
-        ARG_RAD,
-        ARG_DEG,
-        ARG_GRAD,
-        SINH,
-        COSH,
-        TANH,
-        ASINH,
-        ACOSH,
-        ATANH,
+        Knumber,
+        DecimalPoint,
+        Plus,
+        Minus,
+        InvertSign,
+        Division,
+        Slash,
+        Multiplication,
+        Dot,
+        Asterisk,
+        Percentage,
+        Permille,
+        OpeningParenthesis,
+        ClosingParenthesis,
+        Square,
+        Cube,
+        SquareRoot,
+        CubicRoot,
+        Degree,
+        Gradian,
+        Radian,
+        Sin,
+        SinRad,
+        SinDeg,
+        SinGrad,
+        Cos,
+        CosRad,
+        CosDeg,
+        CosGrad,
+        Tan,
+        TanRad,
+        TanDeg,
+        TanGrad,
+        Asin,
+        AsinRad,
+        AsinDeg,
+        AsinGrad,
+        Acos,
+        AcosRad,
+        AcosDeg,
+        AcosGrad,
+        Atan,
+        AtanRad,
+        AtanDeg,
+        AtanGrad,
+        PolarRad,
+        PolarDeg,
+        PolarGrad,
+        ArgRad,
+        ArgDeg,
+        ArgGrad,
+        Sinh,
+        Cosh,
+        Tanh,
+        Asinh,
+        Acosh,
+        Atanh,
         E,
-        PI,
-        PHI,
+        Pi,
+        Phi,
         I,
-        POLAR,
-        RE,
-        IM,
-        CONJ,
-        POS_INFINITY,
-        NEG_INFINITY,
-        VACUUM_PERMITIVITY,
-        VACUUM_PERMEABILITY,
-        VACUUM_IMPEDANCE,
-        PLANCK_S_CONSTANT,
-        PLANCK_OVER_2PI,
-        EXP,
-        EXP_10,
-        POWER,
-        POWER_ROOT,
-        FACTORIAL,
-        DOUBLE_FACTORIAL,
-        GAMMA,
-        LN,
-        LOG_10,
-        RECIPROCAL,
-        BINOMIAL,
-        MODULO,
-        INTEGER_DIVISION,
-        AND,
-        OR,
-        XOR,
-        ONE_S_COMPLEMENT,
-        TWO_S_COMPLEMENT,
-        RSH,
-        LSH,
-        EQUAL,
-        ANS,
-        INVALID_TOKEN,
-        STUB
+        Polar,
+        Re,
+        Im,
+        Conj,
+        PosInfinity,
+        NegInfinity,
+        VacuumPermitivity,
+        VacuumPermeability,
+        VacuumImpedance,
+        PlanckSConstant,
+        PlanckOver2Pi,
+        Exp,
+        Exp10,
+        Power,
+        PowerRoot,
+        Factorial,
+        DoubleFactorial,
+        Gamma,
+        Ln,
+        Log10,
+        Reciprocal,
+        Binomial,
+        Modulo,
+        IntegerDivision,
+        And,
+        Or,
+        Xor,
+        OnesComplement,
+        TwosComplement,
+        Rsh,
+        Lsh,
+        Equal,
+        Ans,
+        InvalidToken,
+        Stub
     };
 
     enum TokenType {
-        KNUMBER_TYPE,
-        RIGHT_UNARY_FUNCTION_TYPE,
-        LEFT_UNARY_FUNCTION_TYPE,
-        BINARY_FUNCTION_TYPE,
-        OPENING_PARENTHESES_TYPE,
-        CLOSING_PARENTHESES_TYPE,
-        NOT_INITIALIZED
+        KNumberType,
+        RightUnaryFunctionType,
+        LeftUnaryFunctionType,
+        BinaryFunctionType,
+        OpeningParenthesesType,
+        ClosingParenthesesType,
+        NotInitialized
     };
 
     KCalcToken(TokenCode tokenCode);
@@ -160,29 +160,29 @@ private:
     typedef KNumber (*Unary_Function_Ptr)(const KNumber &);
     typedef KNumber (*Binary_Function_Ptr)(const KNumber &, const KNumber &);
 
-    const KNumber *key_;
-    KNumber kNumber_;
-    TokenCode token_Code_;
-    TokenType token_Type_;
-    Unary_Function_Ptr unary_Function_Ptr_;
-    Binary_Function_Ptr binary_Function_Ptr_;
+    KNumber *m_key;
+    KNumber m_kNumber;
+    TokenCode m_tokenCode;
+    TokenType m_tokenType;
+    Unary_Function_Ptr m_unaryFunctionPtr;
+    Binary_Function_Ptr m_binaryFunctionPtr;
 
-    bool is_KNumber_;
-    bool is_Right_Unary_Function_;
-    bool is_Left_Unary_Function_;
-    bool is_Binary_Function_;
-    bool is_Opening_Parentheses_;
-    bool is_Closing_Parentheses_;
+    bool m_isKNumber;
+    bool m_isRightUnaryFunction;
+    bool m_isLeftUnaryFunction;
+    bool m_isBinaryFunction;
+    bool m_isOpeningParentheses;
+    bool m_isClosingParentheses;
 
-    bool invert_Sign_First_Arg_;
-    bool invert_Sign_Second_Arg_;
+    bool m_invertSignFirstArg;
+    bool m_invertSignSecondArg;
 
-    int priority_level_;
-    int string_index_;
+    int m_priorityLevel;
+    int m_stringIndex;
 
-    void setToken_(TokenCode tokenCode);
-    void inline set_Left_Unary_Token_(Unary_Function_Ptr function, int priorityLevel);
-    void inline set_Right_UnaryToken_(Unary_Function_Ptr function, int priorityLevel);
-    void inline set_Binary_Token_(Binary_Function_Ptr function, int priorityLevel);
-    void resetToken_();
+    void setToken(TokenCode tokenCode);
+    void inline setLeftUnaryToken(Unary_Function_Ptr function, int priorityLevel);
+    void inline setRightUnaryToken(Unary_Function_Ptr function, int priorityLevel);
+    void inline setBinaryToken(Binary_Function_Ptr function, int priorityLevel);
+    void resetToken();
 };

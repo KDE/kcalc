@@ -116,22 +116,22 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> &tokenBuff
         qCDebug(KCALC_LOG) << "Processing token queue at: " << tokenIndex;
         KCalcToken::TokenCode tokenCode = tokenBuffer.at(tokenIndex).getTokenCode();
 
-        if (tokenCode == KCalcToken::TokenCode::EQUAL) {
+        if (tokenCode == KCalcToken::TokenCode::Equal) {
             tokenIndex++;
             continue;
         }
 
         tokenType = tokenBuffer.at(tokenIndex).getTokenType();
         switch (tokenType) {
-        case KCalcToken::TokenType::KNUMBER_TYPE:
-            if (tokenCode == KCalcToken::TokenCode::ANS) {
+        case KCalcToken::TokenType::KNumberType:
+            if (tokenCode == KCalcToken::TokenCode::Ans) {
                 insertKNumberTokenInStack(KCalcToken(m_bufferResult));
             } else {
                 insertKNumberTokenInStack(tokenBuffer.at(tokenIndex));
             }
             tokenIndex++;
             break;
-        case KCalcToken::TokenType::RIGHT_UNARY_FUNCTION_TYPE:
+        case KCalcToken::TokenType::RightUnaryFunctionType:
             if (tokenIndex + 1 >= bufferSize) {
                 errorIndex = tokenIndex;
                 return ResultCode::MissingRightUnaryArg;
@@ -145,7 +145,7 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> &tokenBuff
             m_tokenStack.push_back(tokenBuffer.at(tokenIndex));
             tokenIndex++;
             break;
-        case KCalcToken::TokenType::LEFT_UNARY_FUNCTION_TYPE:
+        case KCalcToken::TokenType::LeftUnaryFunctionType:
             if (m_tokenStack.isEmpty()) {
                 errorIndex = tokenIndex;
                 return ResultCode::MissingLeftUnaryArg;
@@ -169,7 +169,7 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> &tokenBuff
                 }
             }
 
-            if (tokenCode == KCalcToken::TokenCode::PERCENTAGE) {
+            if (tokenCode == KCalcToken::TokenCode::Percentage) {
                 insertPercentageTokenInStack();
             }
 
@@ -180,7 +180,7 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> &tokenBuff
             insertKNumberTokenInStack(KCalcToken(result));
             tokenIndex++;
             break;
-        case KCalcToken::TokenType::BINARY_FUNCTION_TYPE:
+        case KCalcToken::TokenType::BinaryFunctionType:
             if (tokenIndex + 1 >= bufferSize) {
                 errorIndex = tokenIndex;
                 return ResultCode::MissingRightBinaryArg;
@@ -188,8 +188,8 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> &tokenBuff
 
             if (m_tokenStack.isEmpty()) {
                 switch (tokenCode) {
-                case KCalcToken::TokenCode::PLUS:
-                case KCalcToken::TokenCode::MINUS:
+                case KCalcToken::TokenCode::Plus:
+                case KCalcToken::TokenCode::Minus:
                     m_tokenStack.push_back(KCalcToken(KNumber::Zero));
                     break;
                 default:
@@ -200,11 +200,11 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> &tokenBuff
             }
 
             switch (m_tokenStack.last().getTokenType()) {
-            case KCalcToken::TokenType::BINARY_FUNCTION_TYPE:
-                if (tokenCode == KCalcToken::TokenCode::PLUS) {
+            case KCalcToken::TokenType::BinaryFunctionType:
+                if (tokenCode == KCalcToken::TokenCode::Plus) {
                     tokenIndex++;
                     continue;
-                } else if (tokenCode == KCalcToken::TokenCode::MINUS) {
+                } else if (tokenCode == KCalcToken::TokenCode::Minus) {
                     m_tokenStack.last().invertSignSecondArg();
                     tokenIndex++;
                     continue;
@@ -213,18 +213,18 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> &tokenBuff
                     return ResultCode::SyntaxError;
                 }
                 break;
-            case KCalcToken::TokenType::RIGHT_UNARY_FUNCTION_TYPE:
-                if (tokenCode == KCalcToken::TokenCode::MINUS) {
+            case KCalcToken::TokenType::RightUnaryFunctionType:
+                if (tokenCode == KCalcToken::TokenCode::Minus) {
                     m_tokenStack.last().invertSignFirstArg();
                     tokenIndex++;
                     continue;
-                } else if (tokenCode == KCalcToken::TokenCode::PLUS) {
+                } else if (tokenCode == KCalcToken::TokenCode::Plus) {
                     tokenIndex++;
                     continue;
                 }
                 break;
-            case KCalcToken::TokenType::OPENING_PARENTHESES_TYPE:
-                if (tokenCode == KCalcToken::TokenCode::PLUS || tokenCode == KCalcToken::TokenCode::MINUS) {
+            case KCalcToken::TokenType::OpeningParenthesesType:
+                if (tokenCode == KCalcToken::TokenCode::Plus || tokenCode == KCalcToken::TokenCode::Minus) {
                     m_tokenStack.push_back(KCalcToken(KNumber::Zero));
                 } else {
                     errorIndex = tokenIndex;
@@ -238,12 +238,12 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> &tokenBuff
             insertBinaryFunctionTokenInStack(tokenBuffer.at(tokenIndex));
             tokenIndex++;
             break;
-        case KCalcToken::TokenType::OPENING_PARENTHESES_TYPE:
+        case KCalcToken::TokenType::OpeningParenthesesType:
             if (!m_tokenStack.isEmpty()) {
                 switch (m_tokenStack.last().getTokenType()) {
-                case KCalcToken::TokenType::KNUMBER_TYPE:
-                case KCalcToken::TokenType::LEFT_UNARY_FUNCTION_TYPE:
-                case KCalcToken::TokenType::CLOSING_PARENTHESES_TYPE:
+                case KCalcToken::TokenType::KNumberType:
+                case KCalcToken::TokenType::LeftUnaryFunctionType:
+                case KCalcToken::TokenType::ClosingParenthesesType:
                     insertBinaryFunctionTokenInStack(m_multiplicationToken);
                     break;
                 default:
@@ -253,14 +253,14 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> &tokenBuff
             m_tokenStack.push_back(tokenBuffer.at(tokenIndex));
             tokenIndex++;
             break;
-        case KCalcToken::TokenType::CLOSING_PARENTHESES_TYPE:
+        case KCalcToken::TokenType::ClosingParenthesesType:
             if (m_tokenStack.isEmpty()) {
                 errorIndex = tokenIndex;
                 return ResultCode::SyntaxError;
             }
             switch (m_tokenStack.last().getTokenType()) {
-            case KCalcToken::TokenType::BINARY_FUNCTION_TYPE:
-            case KCalcToken::TokenType::RIGHT_UNARY_FUNCTION_TYPE:
+            case KCalcToken::TokenType::BinaryFunctionType:
+            case KCalcToken::TokenType::RightUnaryFunctionType:
                 errorIndex = tokenIndex;
                 return ResultCode::SyntaxError;
                 break;
@@ -375,7 +375,7 @@ int CalcEngine::insertPercentageTokenInStack()
     } else if (m_tokenStack.last().isKNumber() && m_tokenStack.at(m_tokenStack.size() - 3).isKNumber()
                && m_tokenStack.at(m_tokenStack.size() - 2).isBinaryFunction()) {
         KCalcToken::TokenCode binaryToken = m_tokenStack.at(m_tokenStack.size() - 2).getTokenCode();
-        if (binaryToken == KCalcToken::TokenCode::PLUS || binaryToken == KCalcToken::TokenCode::MINUS) {
+        if (binaryToken == KCalcToken::TokenCode::Plus || binaryToken == KCalcToken::TokenCode::Minus) {
             // recover tokens
             KCalcToken percentage = m_tokenStack.last();
             m_tokenStack.pop_back();
@@ -523,7 +523,7 @@ int CalcEngine::reduceStack(bool toParentheses /*= true*/)
 
             if (m_tokenStack.at(m_tokenStack.size() - 1).isKNumber() && m_tokenStack.at(m_tokenStack.size() - 2).isBinaryFunction()
                 && m_tokenStack.at(m_tokenStack.size() - 3).isBinaryFunction() && m_tokenStack.at(m_tokenStack.size() - 4).isKNumber()) {
-                if (m_tokenStack.at(m_tokenStack.size() - 2).getTokenCode() != KCalcToken::TokenCode::MINUS) {
+                if (m_tokenStack.at(m_tokenStack.size() - 2).getTokenCode() != KCalcToken::TokenCode::Minus) {
                     return -1;
                 }
 
@@ -540,9 +540,9 @@ int CalcEngine::reduceStack(bool toParentheses /*= true*/)
             }
             if (m_tokenStack.at(m_tokenStack.size() - 1).isKNumber() && m_tokenStack.at(m_tokenStack.size() - 2).isBinaryFunction()
                 && m_tokenStack.at(m_tokenStack.size() - 3).isKNumber() && m_tokenStack.at(m_tokenStack.size() - 4).isBinaryFunction()) {
-                if (m_tokenStack.at(m_tokenStack.size() - 2).getTokenCode() == KCalcToken::TokenCode::MINUS
-                    || m_tokenStack.at(m_tokenStack.size() - 2).getTokenCode() == KCalcToken::TokenCode::PLUS) {
-                    if (m_tokenStack.at(m_tokenStack.size() - 4).getTokenCode() == KCalcToken::TokenCode::MINUS) {
+                if (m_tokenStack.at(m_tokenStack.size() - 2).getTokenCode() == KCalcToken::TokenCode::Minus
+                    || m_tokenStack.at(m_tokenStack.size() - 2).getTokenCode() == KCalcToken::TokenCode::Plus) {
+                    if (m_tokenStack.at(m_tokenStack.size() - 4).getTokenCode() == KCalcToken::TokenCode::Minus) {
                         tokenSecondArg = &m_tokenStack.at(m_tokenStack.size() - 1);
                         tokenFunction = &m_tokenStack.at(m_tokenStack.size() - 2);
                         tokenFirstArg = &m_tokenStack.at(m_tokenStack.size() - 3);
@@ -555,7 +555,7 @@ int CalcEngine::reduceStack(bool toParentheses /*= true*/)
                         m_tokenStack.pop_back();
                         m_tokenStack.pop_back();
                         m_tokenStack.pop_back();
-                        m_tokenStack.last().updateToken(KCalcToken::TokenCode::PLUS);
+                        m_tokenStack.last().updateToken(KCalcToken::TokenCode::Plus);
                         m_tokenStack.push_back(KCalcToken(result));
                         continue;
                     }
@@ -579,7 +579,7 @@ int CalcEngine::reduceStack(bool toParentheses /*= true*/)
             }
             if (m_tokenStack.at(m_tokenStack.size() - 1).isKNumber() && m_tokenStack.at(m_tokenStack.size() - 2).isBinaryFunction()
                 && m_tokenStack.at(m_tokenStack.size() - 3).isBinaryFunction()) {
-                if (m_tokenStack.at(m_tokenStack.size() - 2).getTokenCode() != KCalcToken::TokenCode::MINUS) {
+                if (m_tokenStack.at(m_tokenStack.size() - 2).getTokenCode() != KCalcToken::TokenCode::Minus) {
                     return -1;
                 }
                 KNumber result = -m_tokenStack.last().getKNumber();
@@ -590,7 +590,7 @@ int CalcEngine::reduceStack(bool toParentheses /*= true*/)
         }
 
         if (m_tokenStack.at(m_tokenStack.size() - 1).isKNumber() && m_tokenStack.at(m_tokenStack.size() - 2).isBinaryFunction()) {
-            if (m_tokenStack.at(m_tokenStack.size() - 2).getTokenCode() != KCalcToken::TokenCode::MINUS) {
+            if (m_tokenStack.at(m_tokenStack.size() - 2).getTokenCode() != KCalcToken::TokenCode::Minus) {
                 return -1;
             }
             KNumber result = -m_tokenStack.last().getKNumber();
