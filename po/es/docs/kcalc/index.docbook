@@ -744,7 +744,7 @@
 ><guimenu
 >Preferencias</guimenu
 ><guimenuitem
->Configurar &kcalc;...</guimenuitem
+>Configurar &kcalc;…</guimenuitem
 ></menuchoice
 > para mostrar el diálogo de configuración y modificar las preferencias de la página <guilabel
 >General</guilabel
@@ -1645,7 +1645,7 @@
 ><userinput
 >101 Cmp</userinput
 > obtiene <emphasis
->111...111010</emphasis
+>111…111010</emphasis
 ></para
 > </listitem>
 </varlistentry>
@@ -1747,7 +1747,7 @@
 ><guimenu
 >Preferencias</guimenu
 > <guimenuitem
->Configurar &kcalc;...</guimenuitem
+>Configurar &kcalc;…</guimenuitem
 ></menuchoice
 > en el menú para que se muestre el diálogo de configuración. Marque <guilabel
 >Fijar precisión decimal</guilabel
