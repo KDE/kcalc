@@ -239,7 +239,7 @@ protected Q_SLOTS:
     void slotChooseScientificConst4(const science_constant &);
     void slotChooseScientificConst5(const science_constant &);
 
-    void slotBitsetChanged(quint64);
+    void slotBitsetChanged(qint64 value);
     void slotUpdateBitset(const KNumber &);
 
     void slotBaseModeAmountChanged(const KNumber &number);

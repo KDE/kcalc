@@ -17,7 +17,7 @@ class KCalcBitset : public QWidget
 
 public:
     explicit KCalcBitset(QWidget *parent = nullptr);
-    Q_REQUIRED_RESULT quint64 getValue() const;
+    Q_REQUIRED_RESULT qint64 getValue() const;
 
     void calculateMaxSize();
 
@@ -25,16 +25,16 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 public Q_SLOTS:
-    void setValue(quint64 value);
+    void setValue(qint64 value);
     void slotToggleBit(QAbstractButton *button);
     void setReadOnly(bool readOnly);
     void clear();
 
 Q_SIGNALS:
-    void valueChanged(quint64 value);
+    void valueChanged(qint64 value);
 
 private:
     QButtonGroup *const bit_button_group_;
-    quint64 value_;
+    qint64 value_;
     bool m_readOnly;
 };

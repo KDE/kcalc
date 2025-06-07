@@ -2287,7 +2287,7 @@ void KCalculator::changeButtonNames()
 // Desc: updates the bitset display
 // NOTE: sets display to *unsigned* value
 //------------------------------------------------------------------------------
-void KCalculator::slotBitsetChanged(quint64 value)
+void KCalculator::slotBitsetChanged(qint64 value)
 {
     input_display->clear();
     input_display->insert(QString::number(value, base_mode_).toUpper());
