@@ -452,24 +452,49 @@ KNumberBase *KNumberError::atan()
 
 KNumberBase *KNumberError::sinh()
 {
+    if (m_error == ComplexInfinity) {
+        m_error = Undefined;
+    }
     return this;
 }
 
 KNumberBase *KNumberError::cosh()
 {
-    m_error = Undefined;
-    return this;
+    switch (m_error) {
+    case Undefined:
+        return this;
+    case PositiveInfinity:
+        return this;
+    case NegativeInfinity:
+        m_error = PositiveInfinity;
+        return this;
+    case ComplexInfinity:
+        m_error = Undefined;
+        return this;
+    default:
+        Q_UNREACHABLE();
+        m_error = Undefined;
+        return this;
+    }
 }
 
 KNumberBase *KNumberError::tanh()
 {
-    if (sign() > 0) {
+    switch (m_error) {
+    case Undefined:
+        return this;
+    case PositiveInfinity:
         delete this;
         return new KNumberInteger(1);
-    } else if (sign() < 0) {
+    case NegativeInfinity:
         delete this;
         return new KNumberInteger(-1);
-    } else {
+    case ComplexInfinity:
+        m_error = Undefined;
+        return this;
+    default:
+        Q_UNREACHABLE();
+        m_error = Undefined;
         return this;
     }
 }
@@ -481,17 +506,43 @@ KNumberBase *KNumberError::asinh()
 
 KNumberBase *KNumberError::acosh()
 {
-    if (sign() < 0) {
+    switch (m_error) {
+    case Undefined:
+        return this;
+    case PositiveInfinity:
+        return this;
+    case NegativeInfinity:
+        m_error = PositiveInfinity;
+        return this;
+    case ComplexInfinity:
+        m_error = PositiveInfinity;
+        return this;
+    default:
+        Q_UNREACHABLE();
         m_error = Undefined;
+        return this;
     }
-
-    return this;
 }
 
 KNumberBase *KNumberError::atanh()
 {
-    m_error = Undefined;
-    return this;
+    switch (m_error) {
+    case Undefined:
+        return this;
+    case PositiveInfinity:
+        delete this;
+        return new KNumberComplex(0.0, -M_PI / 2.0);
+    case NegativeInfinity:
+        delete this;
+        return new KNumberComplex(0.0, M_PI / 2.0);
+    case ComplexInfinity:
+        m_error = Undefined;
+        return this;
+    default:
+        Q_UNREACHABLE();
+        m_error = Undefined;
+        return this;
+    }
 }
 
 int KNumberError::compare(KNumberBase *rhs)
