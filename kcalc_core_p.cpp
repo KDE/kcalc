@@ -665,7 +665,7 @@ KNumber CalcEngineP::statStdDeviation(const KNumber &input)
 KNumber CalcEngineP::statStdSample(const KNumber &input)
 {
     Q_UNUSED(input);
-    return m_stats.sample_std();
+    return m_stats.sampleStd();
 }
 
 KNumber CalcEngineP::statSum(const KNumber &input)
@@ -677,7 +677,7 @@ KNumber CalcEngineP::statSum(const KNumber &input)
 KNumber CalcEngineP::statSumSquares(const KNumber &input)
 {
     Q_UNUSED(input);
-    return m_stats.sum_of_squares();
+    return m_stats.sumOfSquares();
 }
 
 KNumber CalcEngineP::tangensDeg(const KNumber &input)

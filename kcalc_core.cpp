@@ -74,7 +74,7 @@ void CalcEngine::statStdDeviation(const KNumber &input)
 void CalcEngine::statStdSample(const KNumber &input)
 {
     Q_UNUSED(input);
-    m_bufferResult = stats.sample_std();
+    m_bufferResult = stats.sampleStd();
 
     m_errorGlobal = stats.error();
 }
@@ -88,7 +88,7 @@ void CalcEngine::statSum(const KNumber &input)
 void CalcEngine::statSumSquares(const KNumber &input)
 {
     Q_UNUSED(input);
-    m_bufferResult = stats.sum_of_squares();
+    m_bufferResult = stats.sumOfSquares();
 
     m_errorGlobal = stats.error();
 }
