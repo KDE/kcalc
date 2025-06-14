@@ -4,8 +4,8 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KCALC_HISTORY_H_
-#define KCALC_HISTORY_H_
+#ifndef KCALC_HISTORY_H
+#define KCALC_HISTORY_H
 
 #include <QTextEdit>
 
@@ -36,9 +36,9 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
-    bool add_new_line_ = false;
-    QFont baseFont_;
-    double idealPointSizeF_;
+    bool m_addNewLine = false;
+    QFont m_baseFont;
+    double m_idealPointSizeF;
     void updateFont(double zoomFactor = 1.0);
 };
 
