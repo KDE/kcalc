@@ -740,7 +740,7 @@ void KCalculator::updateGeometry()
 // Name: slotConstantToDisplay
 // Desc: inserts a constant
 //------------------------------------------------------------------------------
-void KCalculator::slotConstantToDisplay(const science_constant &const_chosen)
+void KCalculator::slotConstantToDisplay(const ScienceConstant &const_chosen)
 {
     QString val = const_chosen.label;
     this->insertToInputDisplay(val);
@@ -1756,7 +1756,7 @@ void KCalculator::showSettings()
 // Name: slotChooseScientificConst0
 // Desc: updates constants value
 //------------------------------------------------------------------------------
-void KCalculator::slotChooseScientificConst0(const science_constant &chosen_const)
+void KCalculator::slotChooseScientificConst0(const ScienceConstant &chosen_const)
 {
     constants_->kcfg_valueConstant0->setText(chosen_const.value);
     constants_->kcfg_nameConstant0->setText(chosen_const.label);
@@ -1766,7 +1766,7 @@ void KCalculator::slotChooseScientificConst0(const science_constant &chosen_cons
 // Name: slotChooseScientificConst1
 // Desc: updates constants value
 //------------------------------------------------------------------------------
-void KCalculator::slotChooseScientificConst1(const science_constant &chosen_const)
+void KCalculator::slotChooseScientificConst1(const ScienceConstant &chosen_const)
 {
     constants_->kcfg_valueConstant1->setText(chosen_const.value);
     constants_->kcfg_nameConstant1->setText(chosen_const.label);
@@ -1776,7 +1776,7 @@ void KCalculator::slotChooseScientificConst1(const science_constant &chosen_cons
 // Name: slotChooseScientificConst2
 // Desc: updates constants value
 //------------------------------------------------------------------------------
-void KCalculator::slotChooseScientificConst2(const science_constant &chosen_const)
+void KCalculator::slotChooseScientificConst2(const ScienceConstant &chosen_const)
 {
     constants_->kcfg_valueConstant2->setText(chosen_const.value);
     constants_->kcfg_nameConstant2->setText(chosen_const.label);
@@ -1786,7 +1786,7 @@ void KCalculator::slotChooseScientificConst2(const science_constant &chosen_cons
 // Name: slotChooseScientificConst3
 // Desc: updates constants value
 //------------------------------------------------------------------------------
-void KCalculator::slotChooseScientificConst3(const science_constant &chosen_const)
+void KCalculator::slotChooseScientificConst3(const ScienceConstant &chosen_const)
 {
     constants_->kcfg_valueConstant3->setText(chosen_const.value);
     constants_->kcfg_nameConstant3->setText(chosen_const.label);
@@ -1796,7 +1796,7 @@ void KCalculator::slotChooseScientificConst3(const science_constant &chosen_cons
 // Name: slotChooseScientificConst4
 // Desc: updates constants value
 //------------------------------------------------------------------------------
-void KCalculator::slotChooseScientificConst4(const science_constant &chosen_const)
+void KCalculator::slotChooseScientificConst4(const ScienceConstant &chosen_const)
 {
     constants_->kcfg_valueConstant4->setText(chosen_const.value);
     constants_->kcfg_nameConstant4->setText(chosen_const.label);
@@ -1806,7 +1806,7 @@ void KCalculator::slotChooseScientificConst4(const science_constant &chosen_cons
 // Name: slotChooseScientificConst5
 // Desc: updates constants value
 //------------------------------------------------------------------------------
-void KCalculator::slotChooseScientificConst5(const science_constant &chosen_const)
+void KCalculator::slotChooseScientificConst5(const ScienceConstant &chosen_const)
 {
     constants_->kcfg_valueConstant5->setText(chosen_const.value);
     constants_->kcfg_nameConstant5->setText(chosen_const.label);
@@ -2495,7 +2495,7 @@ int KCalculator::load_Constants_(const QString &filePath)
     file.close();
 
     parser.loadConstants(doc);
-    KCalcConstMenu::init_consts(doc);
+    KCalcConstMenu::initConsts(doc);
 
     return 0;
 }

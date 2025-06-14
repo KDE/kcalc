@@ -231,13 +231,13 @@ protected Q_SLOTS:
     void slotInputChanged();
     void slotClearResult();
 
-    void slotConstantToDisplay(const science_constant &const_chosen);
-    void slotChooseScientificConst0(const science_constant &);
-    void slotChooseScientificConst1(const science_constant &);
-    void slotChooseScientificConst2(const science_constant &);
-    void slotChooseScientificConst3(const science_constant &);
-    void slotChooseScientificConst4(const science_constant &);
-    void slotChooseScientificConst5(const science_constant &);
+    void slotConstantToDisplay(const ScienceConstant &const_chosen);
+    void slotChooseScientificConst0(const ScienceConstant &);
+    void slotChooseScientificConst1(const ScienceConstant &);
+    void slotChooseScientificConst2(const ScienceConstant &);
+    void slotChooseScientificConst3(const ScienceConstant &);
+    void slotChooseScientificConst4(const ScienceConstant &);
+    void slotChooseScientificConst5(const ScienceConstant &);
 
     void slotBitsetChanged(qint64 value);
     void slotUpdateBitset(const KNumber &);

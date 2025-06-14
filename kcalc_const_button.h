@@ -9,7 +9,7 @@
 
 #include "kcalc_button.h"
 
-struct science_constant;
+struct ScienceConstant;
 
 class KCalcConstButton : public KCalcButton
 {
@@ -31,12 +31,12 @@ Q_SIGNALS:
 
 private Q_SLOTS:
     void slotConfigureButton();
-    void slotChooseScientificConst(const science_constant &const_chosen);
+    void slotChooseScientificConst(const ScienceConstant &constChosen);
     void slotClicked();
 
 private:
     void initPopupMenu();
 
 private:
-    int button_num_ = -1;
+    int m_buttonNum = -1;
 };
