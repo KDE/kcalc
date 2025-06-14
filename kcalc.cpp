@@ -794,13 +794,13 @@ void KCalculator::slotBaseSelected()
     }
 
     // Only enable the decimal point in decimal
-    pbPeriod->setEnabled(current_base == KCalcDisplay::NumBase::NB_DECIMAL);
+    pbPeriod->setEnabled(current_base == KCalcDisplay::NumBase::NbDecimal);
 
     // Only enable the x*10^y button in decimal
-    pbEE->setEnabled(current_base == KCalcDisplay::NumBase::NB_DECIMAL);
+    pbEE->setEnabled(current_base == KCalcDisplay::NumBase::NbDecimal);
 
     // Disable buttons that make only sense with floating point numbers
-    if (current_base != KCalcDisplay::NumBase::NB_DECIMAL) {
+    if (current_base != KCalcDisplay::NumBase::NbDecimal) {
         for (QAbstractButton *btn : std::as_const(scientific_buttons_)) {
             btn->setEnabled(false);
         }

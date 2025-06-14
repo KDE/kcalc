@@ -175,12 +175,12 @@ private:
     static const inline QString errorStr = QStringLiteral("error");
 
 private:
-    QHash<QString, QString> constants;
+    QHash<QString, QString> m_constants;
     bool constantSymbolToValue(const QString &constantSymbol);
 
-    QString tokenKNumber;
-    bool mInputHasConstants = false;
-    int trigonometricMode = Degrees;
-    bool mNumeralMode = false;
-    ParsingResult parsingResult = Empty;
+    QString m_tokenKNumber;
+    bool m_inputHasConstants = false;
+    int m_trigonometricMode = Degrees;
+    bool m_numeralMode = false;
+    ParsingResult m_parsingResult = Empty;
 };

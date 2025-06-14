@@ -15,8 +15,6 @@ class CalcEngine;
 class QTimer;
 class QStyleOptionFrame;
 
-#define NUM_STATUS_TEXT 4
-
 /*
   This class provides a pocket calculator display.
 
@@ -48,16 +46,16 @@ public:
     };
 
     enum NumBase {
-        NB_BINARY = 2,
-        NB_OCTAL = 8,
-        NB_DECIMAL = 10,
-        NB_HEX = 16,
+        NbBinary = 2,
+        NbOctal = 8,
+        NbDecimal = 10,
+        NbHex = 16,
     };
 
     bool sendEvent(Event event);
     const KNumber &getAmount() const;
     QString getAmountQString(bool addPreffix = true) const;
-    bool setAmount(const KNumber &new_amount);
+    bool setAmount(const KNumber &newAmount);
     int setBase(NumBase base);
     void setBeep(bool flag);
     void setGroupDigits(bool flag);
@@ -94,7 +92,7 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
-    QString formatNumber(QString string);
+    QString formatNumber(const QString &string);
     QString formatDecimalNumber(QString string);
     QString groupDigits(const QString &displayString, int numDigits);
 
@@ -110,31 +108,35 @@ private Q_SLOTS:
     void slotDisplaySelected();
 
 private:
-    QString text_;
+    enum {
+        NumStatusText = 4,
+    };
+
+    QString m_text;
     bool m_usingTempSettings;
-    bool beep_;
-    bool groupdigits_;
-    bool twoscomplement_;
-    int binaryGrouping_;
-    int octalGrouping_;
-    int hexadecimalGrouping_;
-    int button_;
-    bool lit_;
-    NumBase num_base_;
+    bool m_beep;
+    bool m_groupDigits;
+    bool m_twosComplement;
+    int m_binaryGrouping{};
+    int m_octalGrouping{};
+    int m_hexadecimalGrouping{};
+    int m_button;
+    bool m_lit;
+    NumBase m_numBase;
 
-    int precision_;
-    int fixed_precision_; // "-1" = no fixed_precision
+    int m_precision;
+    int m_fixedPrecision; // "-1" = no fixed_precision
 
-    KNumber display_amount_;
+    KNumber m_displayAmount;
 
-    QFont baseFont_;
-    QPalette basePalette_;
+    QFont m_baseFont;
+    QPalette m_basePalette;
 
     // only used for input of new numbers
-    QString str_status_[NUM_STATUS_TEXT];
+    QString m_strStatus[NumStatusText];
 
-    QTimer *const selection_timer_;
-    static const QString m_MathErrorText;
-    static const QString m_SyntaxErrorText;
-    static const QString m_MalformedExpressionText;
+    QTimer *const m_selectionTimer;
+    static const QString m_mathErrorText;
+    static const QString m_syntaxErrorText;
+    static const QString m_malformedExpressionText;
 };

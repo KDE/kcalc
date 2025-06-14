@@ -54,7 +54,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
         QRegularExpressionMatch match;
         int numIndex = buffer.indexOf(hexNumberDigitsRegex, index + hexNumberPrefixStr.length(), &match);
         if (numIndex == index + hexNumberPrefixStr.length()) {
-            tokenKNumber = hexNumberPrefixStr + match.captured();
+            m_tokenKNumber = hexNumberPrefixStr + match.captured();
             if (match.captured().size() > 16) {
                 return KCalcToken::TokenCode::InvalidToken;
             }
@@ -70,7 +70,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
         QRegularExpressionMatch match;
         int numIndex = buffer.indexOf(binaryNumberDigitsRegex, index + binaryNumberPrefixStr.length(), &match);
         if (numIndex == index + binaryNumberPrefixStr.length()) {
-            tokenKNumber = binaryNumberPrefixStr + match.captured();
+            m_tokenKNumber = binaryNumberPrefixStr + match.captured();
             if (match.captured().size() > 64) {
                 return KCalcToken::TokenCode::InvalidToken;
             }
@@ -86,7 +86,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
         QRegularExpressionMatch match;
         int numIndex = buffer.indexOf(octalNumberDigitsRegex, index + octalNumberPrefixStr.length(), &match);
         if (numIndex == index + octalNumberPrefixStr.length()) {
-            tokenKNumber = octalNumberPrefixStrCStyle + match.captured();
+            m_tokenKNumber = octalNumberPrefixStrCStyle + match.captured();
             if (match.captured().size() > 21) {
                 return KCalcToken::TokenCode::InvalidToken;
             }
@@ -105,25 +105,25 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
         switch (base) {
         case 2:
             numIndex = buffer.indexOf(binaryNumberDigitsRegex, index, &match);
-            tokenKNumber = binaryNumberPrefixStr;
+            m_tokenKNumber = binaryNumberPrefixStr;
             if (match.captured().size() > 64) {
                 return KCalcToken::TokenCode::InvalidToken;
             }
             break;
         case 8:
             numIndex = buffer.indexOf(octalNumberDigitsRegex, index, &match);
-            tokenKNumber = octalNumberPrefixStrCStyle;
+            m_tokenKNumber = octalNumberPrefixStrCStyle;
             if (match.captured().size() > 21) {
                 return KCalcToken::TokenCode::InvalidToken;
             }
             break;
         case 10:
             numIndex = buffer.indexOf(decimalNumberRegex, index, &match);
-            tokenKNumber.clear();
+            m_tokenKNumber.clear();
             break;
         case 16:
             numIndex = buffer.indexOf(hexNumberDigitsRegex, index, &match);
-            tokenKNumber = hexNumberPrefixStr;
+            m_tokenKNumber = hexNumberPrefixStr;
             if (match.captured().size() > 16) {
                 return KCalcToken::TokenCode::InvalidToken;
             }
@@ -133,9 +133,9 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
         }
         if (numIndex == index) {
             if (base == 10) {
-                tokenKNumber += match.captured(2);
+                m_tokenKNumber += match.captured(2);
             } else {
-                tokenKNumber += match.captured();
+                m_tokenKNumber += match.captured();
             }
             index += match.captured().size();
             return KCalcToken::TokenCode::KNumber;
@@ -146,7 +146,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
 
     if (angleStr == s.first(1)) {
         index++;
-        switch (trigonometricMode) {
+        switch (m_trigonometricMode) {
         case Radians:
             return KCalcToken::TokenCode::PolarRad;
         case Gradians:
@@ -201,7 +201,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
     }
     if (s.startsWith(iStr) && !s.startsWith(imStr)) {
         index++;
-        tokenKNumber = iStr;
+        m_tokenKNumber = iStr;
         return KCalcToken::TokenCode::KNumber;
     }
     if (s.startsWith(divisionStr) || s.startsWith(slashStr) || s.startsWith(divisionSlashStr)) {
@@ -274,7 +274,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
 
     if (s.startsWith(asinStr)) {
         index += 4;
-        switch (trigonometricMode) {
+        switch (m_trigonometricMode) {
         case Radians:
             return KCalcToken::TokenCode::AsinRad;
         case Gradians:
@@ -287,7 +287,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
     }
     if (s.startsWith(acosStr)) {
         index += 4;
-        switch (trigonometricMode) {
+        switch (m_trigonometricMode) {
         case Radians:
             return KCalcToken::TokenCode::AcosRad;
         case Gradians:
@@ -300,7 +300,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
     }
     if (s.startsWith(atanStr)) {
         index += 4;
-        switch (trigonometricMode) {
+        switch (m_trigonometricMode) {
         case Radians:
             return KCalcToken::TokenCode::AtanRad;
         case Gradians:
@@ -331,7 +331,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
 
     if (s.startsWith(sinStr)) {
         index += 3;
-        switch (trigonometricMode) {
+        switch (m_trigonometricMode) {
         case Radians:
             return KCalcToken::TokenCode::SinRad;
         case Gradians:
@@ -344,7 +344,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
     }
     if (s.startsWith(cosStr)) {
         index += 3;
-        switch (trigonometricMode) {
+        switch (m_trigonometricMode) {
         case Radians:
             return KCalcToken::TokenCode::CosRad;
         case Gradians:
@@ -357,7 +357,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
     }
     if (s.startsWith(tanStr)) {
         index += 3;
-        switch (trigonometricMode) {
+        switch (m_trigonometricMode) {
         case Radians:
             return KCalcToken::TokenCode::TanRad;
         case Gradians:
@@ -371,7 +371,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
 
     if (s.startsWith(argStr)) {
         index += 3;
-        switch (trigonometricMode) {
+        switch (m_trigonometricMode) {
         case Radians:
             return KCalcToken::TokenCode::ArgRad;
         case Gradians:
@@ -476,13 +476,13 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
     s = buffer.sliced(index, 1);
 
     if ((aLowerCaseStr <= s.first(1) && s.first(1) <= fLowerCaseStr)) {
-        if (mNumeralMode && base == 16) {
+        if (m_numeralMode && base == 16) {
             QRegularExpressionMatch match;
             int numIndex = buffer.indexOf(hexNumberDigitsRegex, index, &match);
             if (match.captured().size() > 16 || numIndex != index) {
                 return KCalcToken::TokenCode::InvalidToken;
             }
-            tokenKNumber = hexNumberPrefixStr + match.captured();
+            m_tokenKNumber = hexNumberPrefixStr + match.captured();
             index += match.captured().size();
             return KCalcToken::TokenCode::KNumber;
         }
@@ -493,7 +493,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
         return KCalcToken::TokenCode::KNumber;
     }
 
-    parsingResult = InvalidToken;
+    m_parsingResult = InvalidToken;
     return KCalcToken::TokenCode::InvalidToken;
 }
 
@@ -504,7 +504,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
 KCalcParser::ParsingResult KCalcParser::stringToTokenQueue(const QString &buffer, int base, QQueue<KCalcToken> &tokenQueue, int &errorIndex)
 {
     tokenQueue.clear();
-    mInputHasConstants = false;
+    m_inputHasConstants = false;
     int bufferIndex = 0;
     int bufferSize = buffer.size();
     qCDebug(KCALC_LOG) << "Parsing string to TokenQueue";
@@ -514,7 +514,7 @@ KCalcParser::ParsingResult KCalcParser::stringToTokenQueue(const QString &buffer
 
     if (bufferSize == 0) {
         errorIndex = -1;
-        parsingResult = Empty;
+        m_parsingResult = Empty;
         return ParsingResult::Empty;
     }
 
@@ -525,7 +525,7 @@ KCalcParser::ParsingResult KCalcParser::stringToTokenQueue(const QString &buffer
         tokenCode = stringToToken(buffer, bufferIndex, base);
 
         if (tokenCode == KCalcToken::TokenCode::InvalidToken) {
-            parsingResult = InvalidToken;
+            m_parsingResult = InvalidToken;
             errorIndex = bufferIndex; // this indicates where the error was found
             return ParsingResult::InvalidToken; // in the input string
         }
@@ -535,10 +535,10 @@ KCalcParser::ParsingResult KCalcParser::stringToTokenQueue(const QString &buffer
         }
 
         if (tokenCode == KCalcToken::TokenCode::KNumber) {
-            qCDebug(KCALC_LOG) << "String KNumber converted: " << tokenKNumber;
-            tokenKNumber.replace(commaStr, KNumber::decimalSeparator());
-            tokenKNumber.replace(pointStr, KNumber::decimalSeparator());
-            operand = KNumber(tokenKNumber);
+            qCDebug(KCALC_LOG) << "String KNumber converted: " << m_tokenKNumber;
+            m_tokenKNumber.replace(commaStr, KNumber::decimalSeparator());
+            m_tokenKNumber.replace(pointStr, KNumber::decimalSeparator());
+            operand = KNumber(m_tokenKNumber);
 
             tokenQueue.enqueue(KCalcToken(operand, bufferIndex));
         } else {
@@ -554,13 +554,13 @@ KCalcParser::ParsingResult KCalcParser::stringToTokenQueue(const QString &buffer
     if (tokenQueue.length() > 2) {
         return ParsingResult::Success;
     } else if (tokenQueue.length() == 2) {
-        if (!mInputHasConstants && tokenQueue.first().getTokenCode() == KCalcToken::TokenCode::Minus && tokenQueue.at(1).isKNumber()) {
+        if (!m_inputHasConstants && tokenQueue.first().getTokenCode() == KCalcToken::TokenCode::Minus && tokenQueue.at(1).isKNumber()) {
             return ParsingResult::SuccessSingleKNumber;
         } else {
             return ParsingResult::Success;
         }
     } else if (tokenQueue.length() == 1) {
-        if (!mInputHasConstants && tokenQueue.first().isKNumber()) {
+        if (!m_inputHasConstants && tokenQueue.first().isKNumber()) {
             return ParsingResult::SuccessSingleKNumber;
         } else {
             return ParsingResult::Success;
@@ -576,7 +576,7 @@ KCalcParser::ParsingResult KCalcParser::stringToTokenQueue(const QString &buffer
 //------------------------------------------------------------------------------
 void KCalcParser::setTrigonometricMode(int mode)
 {
-    trigonometricMode = mode;
+    m_trigonometricMode = mode;
 }
 
 //------------------------------------------------------------------------------
@@ -585,17 +585,17 @@ void KCalcParser::setTrigonometricMode(int mode)
 //------------------------------------------------------------------------------
 int KCalcParser::getTrigonometricMode()
 {
-    return trigonometricMode;
+    return m_trigonometricMode;
 }
 
 void KCalcParser::setNumeralMode(bool numeralMode)
 {
-    mNumeralMode = numeralMode;
+    m_numeralMode = numeralMode;
 }
 
 bool KCalcParser::getNumeralMode() const
 {
-    return mNumeralMode;
+    return m_numeralMode;
 }
 
 //------------------------------------------------------------------------------
@@ -604,7 +604,7 @@ bool KCalcParser::getNumeralMode() const
 //------------------------------------------------------------------------------
 KCalcParser::ParsingResult KCalcParser::getParsingResult()
 {
-    return parsingResult;
+    return m_parsingResult;
 }
 
 //------------------------------------------------------------------------------
@@ -843,7 +843,7 @@ int KCalcParser::loadConstants(const QDomDocument &doc)
             const QString value = e.attributeNode(QStringLiteral("value")).value();
             const QString symbol = e.attributeNode(QStringLiteral("symbol")).value();
 
-            constants.insert(symbol, value);
+            m_constants.insert(symbol, value);
         }
         n = n.nextSibling();
     }
@@ -858,9 +858,9 @@ int KCalcParser::loadConstants(const QDomDocument &doc)
 //------------------------------------------------------------------------------
 bool KCalcParser::constantSymbolToValue(const QString &constantSymbol)
 {
-    if (constants.contains(constantSymbol)) {
-        tokenKNumber = constants.value(constantSymbol);
-        mInputHasConstants = true;
+    if (m_constants.contains(constantSymbol)) {
+        m_tokenKNumber = m_constants.value(constantSymbol);
+        m_inputHasConstants = true;
         return true;
     }
 
