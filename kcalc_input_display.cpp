@@ -11,10 +11,10 @@
 //------------------------------------------------------------------------------
 KCalcInputDisplay::KCalcInputDisplay(QWidget *parent)
     : QLineEdit(parent)
+    , m_overwrite(false)
+    , m_hardOverwrite(false)
+    , m_hasResult(false)
 {
-    overwrite_ = false;
-    hard_overwrite_ = false;
-    has_result_ = false;
     setFrame(false);
 }
 
@@ -31,9 +31,9 @@ KCalcInputDisplay::~KCalcInputDisplay() = default;
 void KCalcInputDisplay::reset(bool clearRedoUndo /*=false*/)
 {
     this->clear();
-    overwrite_ = false;
-    hard_overwrite_ = false;
-    has_result_ = false;
+    m_overwrite = false;
+    m_hardOverwrite = false;
+    m_hasResult = false;
     if (clearRedoUndo) {
         this->setText(QStringLiteral(""));
     }
@@ -45,14 +45,14 @@ void KCalcInputDisplay::reset(bool clearRedoUndo /*=false*/)
 //------------------------------------------------------------------------------
 void KCalcInputDisplay::insertToken(const QString &token)
 {
-    if (overwrite_ || hard_overwrite_) {
+    if (m_overwrite || m_hardOverwrite) {
         this->clear();
-        overwrite_ = false;
-        hard_overwrite_ = false;
+        m_overwrite = false;
+        m_hardOverwrite = false;
     }
 
     this->insert(token);
-    has_result_ = false;
+    m_hasResult = false;
 }
 
 //------------------------------------------------------------------------------
@@ -61,11 +61,11 @@ void KCalcInputDisplay::insertToken(const QString &token)
 //------------------------------------------------------------------------------
 void KCalcInputDisplay::insertTokenNumeric(const QString &token)
 {
-    if (overwrite_ || hard_overwrite_ || has_result_) {
+    if (m_overwrite || m_hardOverwrite || m_hasResult) {
         this->clear();
-        overwrite_ = false;
-        hard_overwrite_ = false;
-        has_result_ = false;
+        m_overwrite = false;
+        m_hardOverwrite = false;
+        m_hasResult = false;
     }
 
     this->insert(token);
@@ -77,13 +77,13 @@ void KCalcInputDisplay::insertTokenNumeric(const QString &token)
 //------------------------------------------------------------------------------
 void KCalcInputDisplay::insertTokenFunction(const QString &token)
 {
-    if (overwrite_ || hard_overwrite_) {
-        overwrite_ = false;
-        hard_overwrite_ = false;
+    if (m_overwrite || m_hardOverwrite) {
+        m_overwrite = false;
+        m_hardOverwrite = false;
         this->clear();
         this->insert(token);
         this->insert(QStringLiteral("("));
-    } else if (has_result_) {
+    } else if (m_hasResult) {
         this->home(false);
         this->insert(token);
         this->insert(QStringLiteral("("));
@@ -101,7 +101,7 @@ void KCalcInputDisplay::insertTokenFunction(const QString &token)
 //------------------------------------------------------------------------------
 void KCalcInputDisplay::setHasResult()
 {
-    has_result_ = true;
+    m_hasResult = true;
     this->clearFocus();
 }
 
@@ -112,7 +112,7 @@ void KCalcInputDisplay::setHasResult()
 //------------------------------------------------------------------------------
 void KCalcInputDisplay::slotSetOverwrite()
 {
-    overwrite_ = true;
+    m_overwrite = true;
     this->clearFocus();
     // this->focusNextChild(); /* workaround to defocus the QWidget,
     // although it works, it can lead to
@@ -126,8 +126,8 @@ void KCalcInputDisplay::slotSetOverwrite()
 //------------------------------------------------------------------------------
 void KCalcInputDisplay::slotSetHardOverwrite()
 {
-    hard_overwrite_ = true;
-    overwrite_ = true;
+    m_hardOverwrite = true;
+    m_overwrite = true;
     this->focusNextChild(); /* workaround to defocus the QWidget,
                                although it works, it can lead to
                                issues if the GUI changes */
@@ -139,7 +139,7 @@ void KCalcInputDisplay::slotSetHardOverwrite()
 //------------------------------------------------------------------------------
 void KCalcInputDisplay::clearHasResult()
 {
-    has_result_ = false;
+    m_hasResult = false;
 }
 
 //------------------------------------------------------------------------------
@@ -149,16 +149,16 @@ void KCalcInputDisplay::clearHasResult()
 //------------------------------------------------------------------------------
 void KCalcInputDisplay::slotClearOverwrite()
 {
-    overwrite_ = false;
-    int tmp_cursorPosition = this->cursorPosition();
+    m_overwrite = false;
+    int tmpCursorPosition = this->cursorPosition();
     if (this->text().endsWith(QLatin1String("="))) {
         this->end(false);
         this->backspace();
     }
-    this->setCursorPosition(tmp_cursorPosition);
+    this->setCursorPosition(tmpCursorPosition);
 
-    if (hard_overwrite_) {
-        hard_overwrite_ = false;
+    if (m_hardOverwrite) {
+        m_hardOverwrite = false;
         this->clear();
     }
 }
