@@ -107,12 +107,12 @@ Q_SIGNALS:
 
 public:
     enum UpdateFlag {
-        UPDATE_FROM_CORE = 1,
-        UPDATE_STORE_RESULT = 2,
-        UPDATE_MATH_ERROR = 4,
-        UPDATE_SYNTAX_ERROR = 8,
-        UPDATE_MALFORMED_EXPRESSION = 16,
-        UPDATE_CLEAR = 32,
+        UpdateFromCore = 1,
+        UpdateStoreResult = 2,
+        UpdateMathError = 4,
+        UpdateSyntaxError = 8,
+        UpdateMalformedExpression = 16,
+        UpdateClear = 32,
     };
 
     Q_DECLARE_FLAGS(UpdateFlags, UpdateFlag)
@@ -231,7 +231,7 @@ protected Q_SLOTS:
     void slotInputChanged();
     void slotClearResult();
 
-    void slotConstantToDisplay(const ScienceConstant &const_chosen);
+    void slotConstantToDisplay(const ScienceConstant &constChosen);
     void slotChooseScientificConst0(const ScienceConstant &);
     void slotChooseScientificConst1(const ScienceConstant &);
     void slotChooseScientificConst2(const ScienceConstant &);
@@ -269,61 +269,61 @@ private:
     };
 
 private:
-    int commit_Input_();
-    void commit_Result_(bool toHistory = true);
-    int load_Constants_(const QString &filePath);
+    int commitInput();
+    void commitResult(bool toHistory = true);
+    int loadConstants(const QString &filePath);
 
-    bool numeral_system_mode_ = false;
-    bool shift_mode_ = false;
-    bool hyp_mode_ = false;
-    bool update_history_window_ = false;
-    QQueue<KCalcToken> token_Queue_;
-    KNumber memory_num_;
+    bool m_numeralSystemMode = false;
+    bool m_shiftMode = false;
+    bool m_hypMode = false;
+    bool m_updateHistoryWindow = false;
+    QQueue<KCalcToken> m_tokenQueue;
+    KNumber m_memoryNum;
 
-    int angle_mode_; // angle modes for trigonometric values
-    int base_mode_;
+    int m_angleMode{}; // angle modes for trigonometric values
+    int m_baseMode;
 
-    KCalcParser::ParsingResult m_parsingResult;
-    bool parsing_failure_;
-    bool calculation_failure_;
-    CalcEngine::ResultCode calculation_result_code_;
-    int input_error_index_;
-    int calculation_error_token_index_;
-    void inline handle_Parsing_Error_();
-    void inline handle_Calculation_Error_();
+    KCalcParser::ParsingResult m_ParsingResult;
+    bool m_parsingFailure{};
+    bool m_calculationFailure{};
+    CalcEngine::ResultCode m_calculationResultCode;
+    int m_inputErrorIndex{};
+    int m_calculationErrorTokenIndex{};
+    void inline handleParsingError();
+    void inline handleCalculationError();
 
-    KCalcConstMenu *constants_menu_ = nullptr;
+    KCalcConstMenu *m_constantsMenu = nullptr;
 
-    Constants *constants_ = nullptr; // this is the dialog for configuring const buttons
+    Constants *m_constants = nullptr; // this is the dialog for configuring const buttons
 
-    QButtonGroup *angle_choose_group_ = nullptr;
+    QButtonGroup *m_angleChooseGroup = nullptr;
     // num_button_group_: 0-9 = digits, 0xA-0xF = hex-keys
-    QButtonGroup *num_button_group_ = nullptr;
+    QButtonGroup *m_numButtonGroup = nullptr;
 
-    QList<QAbstractButton *> logic_buttons_;
-    QList<QAbstractButton *> scientific_buttons_;
-    QList<QAbstractButton *> stat_buttons_;
-    QList<QAbstractButton *> const_buttons_;
+    QList<QAbstractButton *> m_logicButtons;
+    QList<QAbstractButton *> m_scientificButtons;
+    QList<QAbstractButton *> m_statButtons;
+    QList<QAbstractButton *> m_constButtons;
 
-    KToggleAction *action_history_show_ = nullptr;
-    KToggleAction *action_bitset_show_ = nullptr;
-    KToggleAction *action_constants_show_ = nullptr;
+    KToggleAction *m_actionHistoryShow = nullptr;
+    KToggleAction *m_actionBitsetShow = nullptr;
+    KToggleAction *m_actionConstantsShow = nullptr;
 
-    KToggleAction *action_mode_simple_ = nullptr;
-    KToggleAction *action_mode_science_ = nullptr;
-    KToggleAction *action_mode_statistic_ = nullptr;
-    KToggleAction *action_mode_numeral_ = nullptr;
+    KToggleAction *m_actionModeSimple = nullptr;
+    KToggleAction *m_actionModeScience = nullptr;
+    KToggleAction *m_actionModeStatistic = nullptr;
+    KToggleAction *m_actionModeNumeral = nullptr;
 
-    QList<QAbstractButton *> function_button_list_;
-    QList<QAbstractButton *> stat_button_list_;
-    QList<QAbstractButton *> mem_button_list_;
-    QList<QAbstractButton *> operation_button_list_;
+    QList<QAbstractButton *> m_functionButtonList;
+    QList<QAbstractButton *> m_statButtonList;
+    QList<QAbstractButton *> m_memButtonList;
+    QList<QAbstractButton *> m_operationButtonList;
 
-    QFont baseFont_;
-    bool is_still_in_launch_ = true; // necessary for startup at minimum size
+    QFont m_baseFont;
+    bool m_isStillInLaunch = true; // necessary for startup at minimum size
 
-    CalcEngine core;
-    KCalcParser parser;
+    CalcEngine m_core;
+    KCalcParser m_parser;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(KCalculator::UpdateFlags)
