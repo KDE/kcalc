@@ -34,7 +34,7 @@ Q_SIGNALS:
     void valueChanged(qint64 value);
 
 private:
-    QButtonGroup *const bit_button_group_;
-    qint64 value_;
+    QButtonGroup *const m_bitButtonGroup;
+    qint64 m_value;
     bool m_readOnly;
 };
