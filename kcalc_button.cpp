@@ -18,8 +18,8 @@
 //------------------------------------------------------------------------------
 KCalcButton::KCalcButton(QWidget *parent)
     : QPushButton(parent)
-    , mode_flags_(ModeNormal)
-    , size_()
+    , m_modeFlags(ModeNormal)
+
 {
     setAcceptDrops(true); // allow color drops
     setFocusPolicy(Qt::TabFocus);
@@ -36,8 +36,8 @@ KCalcButton::KCalcButton(QWidget *parent)
 //------------------------------------------------------------------------------
 KCalcButton::KCalcButton(const QString &label, QWidget *parent, const QString &tooltip)
     : QPushButton(label, parent)
-    , mode_flags_(ModeNormal)
-    , size_()
+    , m_modeFlags(ModeNormal)
+
 {
     setAutoDefault(false);
     addMode(ModeNormal, label, tooltip);
@@ -53,11 +53,11 @@ KCalcButton::KCalcButton(const QString &label, QWidget *parent, const QString &t
 //------------------------------------------------------------------------------
 void KCalcButton::addMode(ButtonModeFlags mode, const QString &label, const QString &tooltip)
 {
-    if (mode_.contains(mode)) {
-        mode_.remove(mode);
+    if (this->m_mode.contains(mode)) {
+        this->m_mode.remove(mode);
     }
 
-    mode_[mode] = ButtonMode(label, tooltip);
+    this->m_mode[mode] = ButtonMode(label, tooltip);
     calcSizeHint();
 
     // Need to put each button into default mode first
@@ -72,31 +72,31 @@ void KCalcButton::addMode(ButtonModeFlags mode, const QString &label, const QStr
 //------------------------------------------------------------------------------
 void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
 {
-    ButtonModeFlags new_mode;
+    ButtonModeFlags newMode;
 
     if (flag) { // if the specified mode is to be set (i.e. flag = true)
-        new_mode = ButtonModeFlags(mode_flags_ | mode);
-    } else if (mode_flags_ & mode) { // if the specified mode is to be cleared (i.e. flag = false)
-        new_mode = ButtonModeFlags(mode_flags_ - mode);
+        newMode = ButtonModeFlags(m_modeFlags | mode);
+    } else if (m_modeFlags & mode) { // if the specified mode is to be cleared (i.e. flag = false)
+        newMode = ButtonModeFlags(m_modeFlags - mode);
     } else {
         return; // nothing to do
     }
 
-    if (mode_.contains(new_mode)) {
+    if (this->m_mode.contains(newMode)) {
         // save shortcut, because setting label erases it
-        QKeySequence current_shortcut = shortcut();
+        QKeySequence currentShortcut = shortcut();
 
-        setText(mode_[new_mode].label);
-        this->setToolTip(mode_[new_mode].tooltip);
-        mode_flags_ = new_mode;
+        setText(this->m_mode[newMode].label);
+        this->setToolTip(this->m_mode[newMode].tooltip);
+        m_modeFlags = newMode;
 
         // restore shortcut
-        setShortcut(current_shortcut);
+        setShortcut(currentShortcut);
     }
 
     // this is necessary for people pressing CTRL and changing mode at
     // the same time...
-    if (show_shortcut_mode_) {
+    if (m_showShortcutMode) {
         slotSetAccelDisplayMode(true);
     }
 
@@ -109,19 +109,19 @@ void KCalcButton::slotSetMode(ButtonModeFlags mode, bool flag)
 //------------------------------------------------------------------------------
 void KCalcButton::slotSetAccelDisplayMode(bool flag)
 {
-    show_shortcut_mode_ = flag;
+    m_showShortcutMode = flag;
 
     // save shortcut, because setting label erases it
-    QKeySequence current_shortcut = shortcut();
+    QKeySequence currentShortcut = shortcut();
 
     if (flag) {
         setText(shortcut().toString(QKeySequence::NativeText));
     } else {
-        setText(mode_[mode_flags_].label);
+        setText(m_mode[m_modeFlags].label);
     }
 
     // restore shortcut
-    setShortcut(current_shortcut);
+    setShortcut(currentShortcut);
     update();
 }
 
@@ -134,9 +134,9 @@ void KCalcButton::paintEvent(QPaintEvent *)
     QPainter p(this);
     QStyleOptionButton option;
     initStyleOption(&option);
-    const bool is_down = isDown() || isChecked();
-    const int x_offset = is_down ? style()->pixelMetric(QStyle::PM_ButtonShiftHorizontal, &option, this) : 0;
-    const int y_offset = is_down ? style()->pixelMetric(QStyle::PM_ButtonShiftVertical, &option, this) : 0;
+    const bool isDownFlag = isDown() || isChecked();
+    const int xOffset = isDownFlag ? style()->pixelMetric(QStyle::PM_ButtonShiftHorizontal, &option, this) : 0;
+    const int yOffset = isDownFlag ? style()->pixelMetric(QStyle::PM_ButtonShiftVertical, &option, this) : 0;
 
     // draw bevel
     style()->drawControl(QStyle::CE_PushButtonBevel, &option, &p, this);
@@ -150,13 +150,13 @@ void KCalcButton::paintEvent(QPaintEvent *)
     doc.setHtml(QLatin1String("<center>") + text() + QLatin1String("</center>"));
     doc.setDefaultFont(font());
     context.palette = palette();
-    QColor color = text_color_;
+    QColor color = m_textColor;
     if (!isEnabled()) {
         color.setAlphaF(0.6);
     }
     context.palette.setColor(QPalette::Text, color);
 
-    p.translate((width() / 2 - doc.size().width() / 2) + x_offset, (height() / 2 - doc.size().height() / 2) + y_offset);
+    p.translate((width() / 2 - doc.size().width() / 2) + xOffset, (height() / 2 - doc.size().height() / 2) + yOffset);
     doc.documentLayout()->draw(&p, context);
     p.restore();
 
@@ -176,7 +176,7 @@ void KCalcButton::paintEvent(QPaintEvent *)
 QSize KCalcButton::sizeHint() const
 {
     // reimplemented to provide a smaller button
-    return size_;
+    return m_size;
 }
 
 //------------------------------------------------------------------------------
@@ -191,9 +191,9 @@ void KCalcButton::calcSizeHint()
     margin = qMax(margin / 2, 3);
 
     // simply use font size of a single letter
-    size_ = fontMetrics().size(0, QStringLiteral("M"));
+    m_size = fontMetrics().size(0, QStringLiteral("M"));
 
-    size_ += QSize(margin * 2, margin * 2);
+    m_size += QSize(margin * 2, margin * 2);
 }
 
 //------------------------------------------------------------------------------
@@ -212,7 +212,7 @@ void KCalcButton::setFont(const QFont &fnt)
 //------------------------------------------------------------------------------
 void KCalcButton::setTextColor(const QColor &color)
 {
-    text_color_ = color;
+    m_textColor = color;
     update();
 }
 
@@ -225,8 +225,8 @@ void KCalcButton::setText(const QString &text)
     QPushButton::setText(text);
 
     // normal mode may not have been explicitly set
-    if (mode_[ModeNormal].label.isEmpty()) {
-        mode_[ModeNormal].label = text;
+    if (m_mode[ModeNormal].label.isEmpty()) {
+        m_mode[ModeNormal].label = text;
     }
 
     calcSizeHint();
@@ -241,8 +241,8 @@ void KCalcButton::setToolTip(const QString &tip)
     QPushButton::setToolTip(tip);
 
     // normal mode may not have been explicitly set
-    if (mode_[ModeNormal].tooltip.isEmpty()) {
-        mode_[ModeNormal].tooltip = tip;
+    if (m_mode[ModeNormal].tooltip.isEmpty()) {
+        m_mode[ModeNormal].tooltip = tip;
     }
 }
 
