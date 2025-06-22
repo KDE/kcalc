@@ -3,13 +3,13 @@
 # Tamas Krutki <negusnyul@gmail.com>, 2011.
 # Kristóf Kiszel <ulysses@kubuntu.org>, 2012, 2014, 2015, 2020.
 # Balázs Úr <urbalazs@gmail.com>, 2012, 2013.
-# SPDX-FileCopyrightText: 2021, 2024 Kristof Kiszel <ulysses@fsf.hu>
+# SPDX-FileCopyrightText: 2021, 2024, 2025 Kristof Kiszel <ulysses@fsf.hu>
 msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-02-01 00:44+0000\n"
-"PO-Revision-Date: 2024-08-01 22:04+0200\n"
+"PO-Revision-Date: 2025-06-21 22:48+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.05.2\n"
+"X-Generator: Lokalize 25.04.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -595,29 +595,26 @@ msgid "Exponential function"
 msgstr "Exponenciális függvény"
 
 #: kcalc.cpp:480
-#, fuzzy, kde-format
-#| msgid "Pi"
+#, kde-format
 msgctxt "Imaginary unit"
 msgid "i"
-msgstr "Pi"
+msgstr "i"
 
 #: kcalc.cpp:480
 #, kde-format
 msgid "Imaginary unit"
-msgstr ""
+msgstr "Képzetes egység"
 
 #: kcalc.cpp:481
-#, fuzzy, kde-format
-#| msgctxt "- calculator button"
-#| msgid "−"
+#, kde-format
 msgctxt "Polar complex"
 msgid "∠"
-msgstr "−"
+msgstr "∠"
 
 #: kcalc.cpp:481
 #, kde-format
 msgid "Polar complex"
-msgstr ""
+msgstr "Poláris forma"
 
 #: kcalc.cpp:499
 #, kde-format
@@ -915,7 +912,7 @@ msgstr ""
 #: kcalc.cpp:2923
 #, kde-format
 msgid "Gabriel Barrantes"
-msgstr ""
+msgstr "Gabriel Barrantes"
 
 #: kcalc.cpp:2923
 #, kde-format
@@ -1685,15 +1682,14 @@ msgstr "Ln"
 #: kcalc.ui:1017
 #, kde-format
 msgid "Imaginary Unit"
-msgstr ""
+msgstr "Képzetes egység"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbI)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbI)
 #: kcalc.ui:1020 kcalc.ui:1023
-#, fuzzy, kde-format
-#| msgid "Pi"
+#, kde-format
 msgid "i"
-msgstr "Pi"
+msgstr "i"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMed)
 #: kcalc.ui:1036
