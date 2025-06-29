@@ -144,6 +144,17 @@ void KCalcParserCoreTest::testParserCore_data()
     QTest::newRow("+ test 5") << QS("+7-20+30") << 10 << QS("17");
     QTest::newRow("+ test 6") << QS("+7----1") << 10 << QS("8");
 
+    QTest::newRow("order test 1") << QS("(-58) >> 2") << 10 << QS("-15");
+    QTest::newRow("order test 2") << QS("-58 >> 2") << 10 << QS("-15");
+    QTest::newRow("order test 3") << QS("58 >> 2") << 10 << QS("14");
+    QTest::newRow("order test 4") << QS("-1&2") << 10 << QS("2");
+    QTest::newRow("order test 5") << QS("-7 div 2") << 10 << QS("-3");
+    QTest::newRow("order test 6") << QS("-42 mod 256") << 10 << QS("-42");
+    QTest::newRow("order test 7") << QS("- 5 nCm  4") << 10 << QS("-5");
+    QTest::newRow("order test 8") << QS("(- 5) nCm  4") << 10 << QS("70");
+    QTest::newRow("order test 9") << QS("- (5 nCm 4)") << 10 << QS("-5");
+    QTest::newRow("order test 10") << QS("-2*2⊕4") << 10 << QS("-8");
+
     QTest::newRow("0b test 1") << QS("0b010") << 10 << QS("2");
     QTest::newRow("0b test 2") << QS("0b111") << 10 << QS("7");
     QTest::newRow("0o (octal) test 1") << QS("0o777") << 10 << QS("511");
