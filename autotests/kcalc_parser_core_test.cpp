@@ -325,6 +325,7 @@ void KCalcParserCoreTest::testParserError_data()
 
 void KCalcParserCoreTest::testParserError()
 {
+    // Testing
     QFETCH(QString, input);
     QFETCH(int, expectedErrorIndex);
 
