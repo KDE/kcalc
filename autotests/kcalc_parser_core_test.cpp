@@ -326,6 +326,9 @@ void KCalcParserCoreTest::testParserError_data()
 void KCalcParserCoreTest::testParserError()
 {
     // Testing
+    if (qEnvironmentVariableIntValue("KDECI_CANNOT_CREATE_WINDOWS")) {
+        QSKIP("KDE CI can't create a window on this platform, skipping this test", SkipSingle);
+    }
     QFETCH(QString, input);
     QFETCH(int, expectedErrorIndex);
 
