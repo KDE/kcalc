@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-05-18 00:45+0000\n"
-"PO-Revision-Date: 2025-02-15 19:39+0200\n"
+"PO-Revision-Date: 2025-07-10 19:37+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -41,7 +41,7 @@ msgstr ""
 #: colors.ui:17
 #, kde-format
 msgid "Follow system color scheme"
-msgstr ""
+msgstr "Seuraa järjestelmän väriteemaa"
 
 #. i18n: ectx: property (title), widget (QGroupBox, displayColorsBox)
 #: colors.ui:30
