@@ -367,7 +367,7 @@ int CalcEngine::insert_KNumber_Token_In_Stack_(const KCalcToken &token)
 
 //------------------------------------------------------------------------------
 // Name: insert_percentage_Token_In_Stack_
-// Desc: rearanges the stack acordingly to insert a percentage token
+// Desc: rearranges the stack accordingly in order to insert a percentage token
 //------------------------------------------------------------------------------
 int CalcEngine::insert_percentage_Token_In_Stack_()
 {
