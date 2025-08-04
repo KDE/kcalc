@@ -184,7 +184,7 @@ protected Q_SLOTS:
     void slotBaseSelected();
     void slotNumberclicked(QAbstractButton *button);
     void slotEEclicked();
-    void slotShifttoggled(bool myboolean);
+    void slotShifttoggled(bool flag);
     void slotMemRecallclicked();
     void slotMemStoreclicked();
     void slotSinclicked();

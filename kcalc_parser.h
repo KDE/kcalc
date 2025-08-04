@@ -51,7 +51,7 @@ public:
     const QString TokenToString(KCalcToken::TokenCode tokenCode);
 
 private:
-    KCalcToken::TokenCode stringToToken(const QString &string, int &index, int base = 10);
+    KCalcToken::TokenCode stringToToken(const QString &buffer, int &index, int base = 10);
 
     static const inline QString SPACE_STR = QStringLiteral(" ");
     static const inline QString THIN_SPACE_STR = QStringLiteral(" ");
