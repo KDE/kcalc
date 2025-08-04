@@ -174,7 +174,6 @@ private:
 
     static const inline QString ERROR_STR = QStringLiteral("error");
 
-private:
     QHash<QString, QString> constants_;
     bool constantSymbolToValue_(const QString &constantSymbol);
 

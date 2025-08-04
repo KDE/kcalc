@@ -37,6 +37,5 @@ private Q_SLOTS:
 private:
     void initPopupMenu();
 
-private:
     int button_num_ = -1;
 };

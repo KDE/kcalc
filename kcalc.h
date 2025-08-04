@@ -268,7 +268,6 @@ private:
         HexMode = 16
     };
 
-private:
     int commit_Input_();
     void commit_Result_(bool toHistory = true);
     int load_Constants_(const QString &filePath);

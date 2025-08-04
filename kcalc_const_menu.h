@@ -35,7 +35,6 @@ public:
     explicit KCalcConstMenu(QWidget *parent = nullptr);
     explicit KCalcConstMenu(const QString &title, QWidget *parent = nullptr);
 
-public:
     static void init_consts(QDomDocument &doc);
 
 Q_SIGNALS:

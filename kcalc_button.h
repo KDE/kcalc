@@ -67,7 +67,6 @@ protected:
 private:
     void calcSizeHint();
 
-private:
     bool show_shortcut_mode_ = false;
     ButtonModeFlags mode_flags_;
     QMap<ButtonModeFlags, ButtonMode> mode_;
