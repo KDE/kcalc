@@ -1637,7 +1637,7 @@ msgstr "Cmp"
 #: kcalc.ui:916
 #, kde-format
 msgid "Clear data store"
-msgstr "امسح مخزن المعلومات"
+msgstr "امحُ مخزن المعلومات"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbCSt)
 #: kcalc.ui:919
@@ -2077,7 +2077,7 @@ msgstr "("
 #: kcalc.ui:1605 kcalc.ui:1608
 #, kde-format
 msgid "Clear"
-msgstr "امسح"
+msgstr "امحُ"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMemPlusMinus)
 #: kcalc.ui:1624
