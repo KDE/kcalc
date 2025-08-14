@@ -313,7 +313,7 @@ msgid ""
 "numbers. This is a common notation to represent negative numbers for non-"
 "decimal numbers in computers."
 msgstr ""
-"اختر استخدام المتمم الثنائي للأرقام الثانئية و الثمانية و الستة عشر ، هذه "
+"اختر استخدام المتمم الثنائي للأرقام الثانئية و الثمانية و الستة عشر، هذه "
 "طريقة عامة لعرض الأرقام السالبة للأرقام غير العشرية في الحواسيب."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_TwosComplement)
@@ -1175,7 +1175,7 @@ msgid ""
 msgstr ""
 "\n"
 "        اختر استخدام المتمم الثنائي للأرقام الثنائية و الثمانية \n"
-"        و الستة عشر ، هذه طريقة عامة لعرض الأرقام السالبة\n"
+"        و الستة عشر، هذه طريقة عامة لعرض الأرقام السالبة\n"
 "         للأرقام غير العشرية في الحواسيب.\n"
 "       "
 
@@ -1220,7 +1220,7 @@ msgstr "نمط بأزرار إحصائية إضافية و اختياريا أز
 #, kde-format
 msgid ""
 "Mode with logic buttons and selectable base. Optional bit edit available."
-msgstr "نمط بأزرار منطقية بالإعتماد على الإختيار ، و اختياريا يمكن تحرير البت."
+msgstr "نمط بأزرار منطقية بالإعتماد على الإختيار، و اختياريا يمكن تحرير البت."
 
 #. i18n: ectx: label, entry (ShowBitset), group (General)
 #: kcalc.kcfg:168
@@ -1244,7 +1244,7 @@ msgstr "إذا ما يجب إظهار نافذة التاريخ"
 #: kcalc.kcfg:180
 #, kde-format
 msgid "Degrees, radians or grads"
-msgstr "الدرجات ، أو الراديان ، أو جراديان"
+msgstr "الدرجات، أو الراديان، أو جراديان"
 
 #. i18n: ectx: label, entry (BaseMode), group (General)
 #: kcalc.kcfg:184
