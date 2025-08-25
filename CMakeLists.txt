@@ -47,6 +47,7 @@ find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     ConfigWidgets
     GuiAddons
     I18n
+    IconThemes
     Notifications
     XmlGui
 )
@@ -138,6 +139,7 @@ target_link_libraries(kcalc
     KF6::ConfigWidgets
     KF6::GuiAddons
     KF6::I18n
+    KF6::IconThemes
     KF6::Notifications
     KF6::XmlGui
     KF6::Crash
