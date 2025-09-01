@@ -60,7 +60,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
             }
             index += hexNumberPrefixStr.length();
             index += match.captured().size();
-            return KCalcToken::TokenCode::KNumber;
+            return KCalcToken::TokenCode::Knumber;
         } else {
             return KCalcToken::TokenCode::InvalidToken;
         }
@@ -76,7 +76,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
             }
             index += binaryNumberPrefixStr.length();
             index += match.captured().size();
-            return KCalcToken::TokenCode::KNumber;
+            return KCalcToken::TokenCode::Knumber;
         } else {
             return KCalcToken::TokenCode::InvalidToken;
         }
@@ -92,7 +92,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
             }
             index += octalNumberPrefixStr.length();
             index += match.captured().size();
-            return KCalcToken::TokenCode::KNumber;
+            return KCalcToken::TokenCode::Knumber;
         }
         // Code execution continues, since an entry could
         // start with a 0 but not be a valid octal number
@@ -138,7 +138,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
                 m_tokenKNumber += match.captured();
             }
             index += match.captured().size();
-            return KCalcToken::TokenCode::KNumber;
+            return KCalcToken::TokenCode::Knumber;
         } else {
             return KCalcToken::TokenCode::InvalidToken;
         }
@@ -202,7 +202,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
     if (s.startsWith(iStr) && !s.startsWith(imStr)) {
         index++;
         m_tokenKNumber = iStr;
-        return KCalcToken::TokenCode::KNumber;
+        return KCalcToken::TokenCode::Knumber;
     }
     if (s.startsWith(divisionStr) || s.startsWith(slashStr) || s.startsWith(divisionSlashStr)) {
         index++;
@@ -457,7 +457,7 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
         s = buffer.sliced(index, 2);
         if (constantSymbolToValue(s)) {
             index += 2;
-            return KCalcToken::TokenCode::KNumber;
+            return KCalcToken::TokenCode::Knumber;
         }
     }
     if (s.startsWith(onesCompStr)) {
@@ -484,13 +484,13 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
             }
             m_tokenKNumber = hexNumberPrefixStr + match.captured();
             index += match.captured().size();
-            return KCalcToken::TokenCode::KNumber;
+            return KCalcToken::TokenCode::Knumber;
         }
     }
 
     if (constantSymbolToValue(s)) {
         index++;
-        return KCalcToken::TokenCode::KNumber;
+        return KCalcToken::TokenCode::Knumber;
     }
 
     m_parsingResult = InvalidToken;
@@ -534,7 +534,7 @@ KCalcParser::ParsingResult KCalcParser::stringToTokenQueue(const QString &buffer
             continue;
         }
 
-        if (tokenCode == KCalcToken::TokenCode::KNumber) {
+        if (tokenCode == KCalcToken::TokenCode::Knumber) {
             qCDebug(KCALC_LOG) << "String KNumber converted: " << m_tokenKNumber;
             m_tokenKNumber.replace(commaStr, KNumber::decimalSeparator());
             m_tokenKNumber.replace(pointStr, KNumber::decimalSeparator());

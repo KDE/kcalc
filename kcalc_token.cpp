@@ -366,7 +366,7 @@ bool KCalcToken::isClosingParentheses() const
     return m_isClosingParentheses;
 }
 
-KNumber KCalcToken::getKNumber() const
+const KNumber KCalcToken::getKNumber() const
 {
     return m_kNumber;
 }
