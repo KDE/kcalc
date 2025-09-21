@@ -5,9 +5,6 @@
 
 #include "kcalc_input_display.h"
 
-#include <QKeyEvent>
-#include <QLineEdit>
-
 //------------------------------------------------------------------------------
 // Name: KCalcInputDisplay
 // Desc: constructor

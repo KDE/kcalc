@@ -9,10 +9,6 @@
 
 #include "kcalc_core.h"
 #include "kcalc_debug.h"
-#include "kcalc_stats.h"
-#include "kcalc_token.h"
-#include "knumber.h"
-#include <QQueue>
 
 #include <QDebug>
 

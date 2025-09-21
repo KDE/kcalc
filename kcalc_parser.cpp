@@ -5,17 +5,9 @@
 
 #include "kcalc_parser.h"
 #include "kcalc_debug.h"
-#include "kcalc_token.h"
-#include "knumber/knumber.h"
 
-#include <QDebug>
-#include <QDomDocument>
-#include <QHash>
-#include <QLocale>
-#include <QQueue>
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
-#include <QString>
 
 const QString KCalcParser::BINARY_DIGITS_PATTERN = QStringLiteral("[0-1]{1,}");
 const QString KCalcParser::OCTAL_DIGITS_PATTERN = QStringLiteral("[0-7]{1,}");

@@ -10,7 +10,6 @@
 #include "knumber_fraction.h"
 #include "knumber_integer.h"
 
-#include <mpc.h>
 #include <mpfr.h>
 
 #include <QDebug>

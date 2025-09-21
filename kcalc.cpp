@@ -37,7 +37,6 @@
 #include "kcalc_const_menu.h"
 #include "kcalc_display.h"
 #include "kcalc_history.h"
-#include "kcalc_parser.h"
 #include "kcalc_settings.h"
 #include "kcalc_statusbar.h"
 

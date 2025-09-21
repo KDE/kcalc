@@ -4,9 +4,7 @@
 */
 
 #include "kcalc_token.h"
-#include "kcalc_core_p.h"
 #include "kcalc_debug.h"
-#include <QDebug>
 
 //------------------------------------------------------------------------------
 // Name: KCalcToken

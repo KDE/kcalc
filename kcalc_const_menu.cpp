@@ -9,7 +9,6 @@
 #include "kcalc_debug.h"
 
 #include <QDebug>
-#include <QDomDocument>
 
 #include <KLocalizedString>
 

@@ -13,7 +13,6 @@
 #include <cmath>
 
 #include <gmp.h>
-#include <mpfr.h>
 
 namespace detail
 {
