@@ -1773,7 +1773,7 @@
 >Configuración</guibutton
 > de &kcalc; de modo que los anteriores cálculos se hagan de forma correcta. Le recomiendo una precisión de 14 si el tipo de datos fundamental de su copia de &kcalc; es <type
 >long double</type
->, y 8 ó 10 en cualquier otro caso.</para>
+>, y 8 o 10 en cualquier otro caso.</para>
 
 <para
 >Una precisión mayor no llevará necesariamente a mejores resultados. Juegue con la precisión para comprender esto.</para>
