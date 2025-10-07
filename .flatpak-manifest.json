@@ -5,6 +5,10 @@
     "sdk": "org.kde.Sdk",
     "command": "kcalc",
     "rename-icon": "accessories-calculator",
+    "tags": [
+        "nightly"
+    ],
+    "desktop-file-name-suffix": " (Nightly)",
     "finish-args": [
         "--device=dri",
         "--share=ipc",
