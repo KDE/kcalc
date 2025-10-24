@@ -276,7 +276,7 @@ void KCalcParserCoreTest::testParserCore()
     KCalcParser::ParsingResult parsing_result;
     int calculation_result, errorIndex;
     parsing_result = parser.stringToTokenQueue(input, base, token_Queue_, errorIndex);
-    QCOMPARE_NE(parsing_result, KCalcParser::ParsingResult::INVALID_TOKEN); // successful parsing
+    QCOMPARE_NE(parsing_result, KCalcParser::ParsingResult::InvalidToken); // successful parsing
 
     calculation_result = core.calculate(token_Queue_, errorIndex);
 
@@ -309,7 +309,7 @@ void KCalcParserCoreTest::testParserCoreNumeralSystem()
     KCalcParser::ParsingResult parsing_result;
     int calculation_result, errorIndex;
     parsing_result = parser.stringToTokenQueue(input, base, token_Queue_, errorIndex);
-    QCOMPARE_NE(parsing_result, KCalcParser::ParsingResult::INVALID_TOKEN); // successful parsing
+    QCOMPARE_NE(parsing_result, KCalcParser::ParsingResult::InvalidToken); // successful parsing
 
     calculation_result = core.calculate(token_Queue_, errorIndex);
 
@@ -343,7 +343,7 @@ void KCalcParserCoreTest::testParserError()
     int errorIndex;
     parsing_result = parser.stringToTokenQueue(input, 10, token_Queue_, errorIndex);
 
-    QCOMPARE_EQ(parsing_result, KCalcParser::ParsingResult::INVALID_TOKEN); // fail on parsing
+    QCOMPARE_EQ(parsing_result, KCalcParser::ParsingResult::InvalidToken); // fail on parsing
     QCOMPARE(errorIndex, expectedErrorIndex); // index indicating error position
 }
 

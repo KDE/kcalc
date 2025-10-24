@@ -23,16 +23,16 @@ public:
     ~KCalcParser();
 
     enum ParsingResult {
-        SUCCESS,
-        SUCCESS_SINGLE_KNUMBER,
-        EMPTY,
-        INVALID_TOKEN,
+        Success,
+        SuccessSingleKNumber,
+        Empty,
+        InvalidToken,
     };
 
     enum TrigonometricMode {
-        DEGREES,
-        RADIANS,
-        GRADIANS
+        Degrees,
+        Radians,
+        Gradians
     };
 
     int loadConstants(const QDomDocument &doc);
@@ -48,139 +48,139 @@ public:
     ParsingResult stringToTokenQueue(const QString &buffer, int base, QQueue<KCalcToken> &tokenQueue, int &errorIndex);
     /*TODO: int stringToHTMLString(const QString& buffer, QString& htmlText);*/
 
-    const QString TokenToString(KCalcToken::TokenCode tokenCode);
+    const QString tokenToString(KCalcToken::TokenCode tokenCode);
 
 private:
     KCalcToken::TokenCode stringToToken(const QString &string, int &index, int base = 10);
 
-    static const inline QString SPACE_STR = QStringLiteral(" ");
-    static const inline QString THIN_SPACE_STR = QStringLiteral(" ");
+    static const inline QString spaceStr = QStringLiteral(" ");
+    static const inline QString thinSpaceStr = QStringLiteral(" ");
 
-    static const inline QString ZERO_STR = QStringLiteral("0");
-    static const inline QString NINE_STR = QStringLiteral("9");
-    static const inline QString DECIMAL_POINT_STR = QLocale().decimalPoint();
-    static const inline QString COMMA_STR = QLatin1String(",");
-    static const inline QString POINT_STR = QLatin1String(".");
+    static const inline QString zeroStr = QStringLiteral("0");
+    static const inline QString nineStr = QStringLiteral("9");
+    static const inline QString decimalPointStr = QLocale().decimalPoint();
+    static const inline QString commaStr = QLatin1String(",");
+    static const inline QString pointStr = QLatin1String(".");
 
-    static const inline QString A_STR = QStringLiteral("A");
-    static const inline QString F_STR = QStringLiteral("F");
-    static const inline QString A_LOWER_CASE_STR = QStringLiteral("a");
-    static const inline QString F_LOWER_CASE_STR = QStringLiteral("f");
-    static const inline QString B_STR = QStringLiteral("b");
-    static const inline QString X_STR = QStringLiteral("x");
+    static const inline QString aStr = QStringLiteral("A");
+    static const inline QString fStr = QStringLiteral("F");
+    static const inline QString aLowerCaseStr = QStringLiteral("a");
+    static const inline QString fLowerCaseStr = QStringLiteral("f");
+    static const inline QString bStr = QStringLiteral("b");
+    static const inline QString xStr = QStringLiteral("x");
 
-    static const inline QString ANGLE_STR = QStringLiteral("∠");
+    static const inline QString angleStr = QStringLiteral("∠");
 
-    static const inline QString BINARY_NUMBER_PREFIX_STR = QStringLiteral("0b");
-    static const inline QString OCTAL_NUMBER_PREFIX_STR = QStringLiteral("0o");
-    static const inline QString OCTAL_NUMBER_PREFIX_STR_C_STYLE = QStringLiteral("0");
-    static const inline QString HEX_NUMBER_PREFIX_STR = QStringLiteral("0x");
+    static const inline QString binaryNumberPrefixStr = QStringLiteral("0b");
+    static const inline QString octalNumberPrefixStr = QStringLiteral("0o");
+    static const inline QString octalNumberPrefixStrCStyle = QStringLiteral("0");
+    static const inline QString hexNumberPrefixStr = QStringLiteral("0x");
 
-    static const QString BINARY_DIGITS_PATTERN;
-    static const QString OCTAL_DIGITS_PATTERN;
-    static const QString HEX_DIGITS_PATTERN;
+    static const QString binaryDigitsPattern;
+    static const QString octalDigitsPattern;
+    static const QString hexDigitsPattern;
 
-    static const QRegularExpression BINARY_NUMBER_DIGITS_REGEX;
-    static const QRegularExpression OCTAL_NUMBER_DIGITS_REGEX;
-    static const QRegularExpression HEX_NUMBER_DIGITS_REGEX;
+    static const QRegularExpression binaryNumberDigitsRegex;
+    static const QRegularExpression octalNumberDigitsRegex;
+    static const QRegularExpression hexNumberDigitsRegex;
 
-    static const QString DECIMAL_NUMBER_PATTERN;
-    static const QRegularExpression DECIMAL_NUMBER_REGEX;
+    static const QString decimalNumberPattern;
+    static const QRegularExpression decimalNumberRegex;
 
-    static const inline QString E_STR = QStringLiteral("e");
-    static const inline QString PI_STR = QStringLiteral("π");
-    static const inline QString PHI_STR = QStringLiteral("ϕ");
-    static const inline QString I_STR = QStringLiteral("i");
-    static const inline QString POS_INFINITY_STR = QStringLiteral("∞");
-    static const inline QString NEG_INFINITY_STR = QStringLiteral("-∞");
+    static const inline QString eStr = QStringLiteral("e");
+    static const inline QString piStr = QStringLiteral("π");
+    static const inline QString phiStr = QStringLiteral("ϕ");
+    static const inline QString iStr = QStringLiteral("i");
+    static const inline QString posInfinityStr = QStringLiteral("∞");
+    static const inline QString negInfinityStr = QStringLiteral("-∞");
 
-    static const inline QString VACUUM_PERMITIVITY_STR = QStringLiteral("ε₀");
-    static const inline QString VACUUM_PERMEABILITY_STR = QStringLiteral("μ₀");
-    static const inline QString VACUUM_IMPEDANCE_STR = QStringLiteral("Z₀");
+    static const inline QString vacuumPermitivityStr = QStringLiteral("ε₀");
+    static const inline QString vacuumPermeabilityStr = QStringLiteral("μ₀");
+    static const inline QString vacuumImpedanceStr = QStringLiteral("Z₀");
 
-    static const inline QString PLANCK_S_CONSTANT_STR = QStringLiteral("ℎ");
-    static const inline QString PLANCK_S_OVER_2PI_STR = QStringLiteral("ℏ");
+    static const inline QString plancksConstantStr = QStringLiteral("ℎ");
+    static const inline QString plancksOver2PiStr = QStringLiteral("ℏ");
 
-    static const inline QString PLUS_STR = QStringLiteral("+");
-    static const inline QString HYPHEN_MINUS_STR = QStringLiteral("-");
-    static const inline QString MINUS_SIGN_STR = QStringLiteral("−");
-    static const inline QString MULTIPLICATION_STR = QStringLiteral("×");
-    static const inline QString DIVISION_STR = QStringLiteral("÷");
-    static const inline QString DIVISION_SLASH_STR = QStringLiteral("∕");
-    static const inline QString SLASH_STR = QStringLiteral("/");
-    static const inline QString DOT_STR = QStringLiteral("⋅");
-    static const inline QString ASTERISK_STR = QStringLiteral("*");
-    static const inline QString PERCENTAGE_STR = QStringLiteral("%");
-    static const inline QString PERMILLE_STR = QStringLiteral("‰");
+    static const inline QString plusStr = QStringLiteral("+");
+    static const inline QString hyphenMinusStr = QStringLiteral("-");
+    static const inline QString minusSignStr = QStringLiteral("−");
+    static const inline QString multiplicationStr = QStringLiteral("×");
+    static const inline QString divisionStr = QStringLiteral("÷");
+    static const inline QString divisionSlashStr = QStringLiteral("∕");
+    static const inline QString slashStr = QStringLiteral("/");
+    static const inline QString dotStr = QStringLiteral("⋅");
+    static const inline QString asteriskStr = QStringLiteral("*");
+    static const inline QString percentageStr = QStringLiteral("%");
+    static const inline QString permilleStr = QStringLiteral("‰");
 
-    static const inline QString BINOMIAL_STR = QStringLiteral("nCm");
-    static const inline QString MODULO_STR = QStringLiteral("mod");
-    static const inline QString INTEGER_DIVISION_STR = QStringLiteral("div");
+    static const inline QString binomialStr = QStringLiteral("nCm");
+    static const inline QString moduloStr = QStringLiteral("mod");
+    static const inline QString integerDivisionStr = QStringLiteral("div");
 
-    static const inline QString OPENING_PARENTHESIS_STR = QStringLiteral("(");
-    static const inline QString CLOSING_PARENTHESIS_STR = QStringLiteral(")");
+    static const inline QString openingParenthesisStr = QStringLiteral("(");
+    static const inline QString closingParenthesisStr = QStringLiteral(")");
 
-    static const inline QString SQUARE_STR = QStringLiteral("²");
-    static const inline QString CUBE_STR = QStringLiteral("³");
-    static const inline QString RECIPROCAL_STR = QStringLiteral("⁻¹");
+    static const inline QString squareStr = QStringLiteral("²");
+    static const inline QString cubeStr = QStringLiteral("³");
+    static const inline QString reciprocalStr = QStringLiteral("⁻¹");
 
-    static const inline QString LOG_10_STR = QStringLiteral("log");
-    static const inline QString LN_STR = QStringLiteral("ln");
-    static const inline QString EXP_STR = QStringLiteral("exp");
-    static const inline QString EXP_10_STR = QStringLiteral("⏨");
-    static const inline QString POWER_STR = QStringLiteral("^");
-    static const inline QString POWER_ROOT_STR = QStringLiteral("⌄");
-    static const inline QString SQUARE_ROOT_STR = QStringLiteral("√");
-    static const inline QString CUBIC_ROOT_STR = QStringLiteral("∛");
+    static const inline QString log10Str = QStringLiteral("log");
+    static const inline QString lnStr = QStringLiteral("ln");
+    static const inline QString expStr = QStringLiteral("exp");
+    static const inline QString exp10Str = QStringLiteral("⏨");
+    static const inline QString powerStr = QStringLiteral("^");
+    static const inline QString powerRootStr = QStringLiteral("⌄");
+    static const inline QString squareRootStr = QStringLiteral("√");
+    static const inline QString cubicRootStr = QStringLiteral("∛");
 
-    static const inline QString FACTORIAL_STR = QStringLiteral("!");
-    static const inline QString DOUBLE_FACTORIAL_STR = QStringLiteral("‼");
-    static const inline QString GAMMA_STR = QStringLiteral("Γ");
-    static const inline QString INVERT_SIGN_STR = QStringLiteral("–");
+    static const inline QString factorialStr = QStringLiteral("!");
+    static const inline QString doubleFactorialStr = QStringLiteral("‼");
+    static const inline QString gammaStr = QStringLiteral("Γ");
+    static const inline QString invertSignStr = QStringLiteral("–");
 
-    static const inline QString DEGREE_STR = QStringLiteral("°");
-    static const inline QString GRADIAN_STR = QStringLiteral("gon");
-    static const inline QString RADIAN_STR = QStringLiteral("rad");
-    static const inline QString SIN_STR = QStringLiteral("sin");
-    static const inline QString COS_STR = QStringLiteral("cos");
-    static const inline QString TAN_STR = QStringLiteral("tan");
-    static const inline QString ASIN_STR = QStringLiteral("asin");
-    static const inline QString ACOS_STR = QStringLiteral("acos");
-    static const inline QString ATAN_STR = QStringLiteral("atan");
+    static const inline QString degreeStr = QStringLiteral("°");
+    static const inline QString gradianStr = QStringLiteral("gon");
+    static const inline QString radianStr = QStringLiteral("rad");
+    static const inline QString sinStr = QStringLiteral("sin");
+    static const inline QString cosStr = QStringLiteral("cos");
+    static const inline QString tanStr = QStringLiteral("tan");
+    static const inline QString asinStr = QStringLiteral("asin");
+    static const inline QString acosStr = QStringLiteral("acos");
+    static const inline QString atanStr = QStringLiteral("atan");
 
-    static const inline QString SINH_STR = QStringLiteral("sinh");
-    static const inline QString COSH_STR = QStringLiteral("cosh");
-    static const inline QString TANH_STR = QStringLiteral("tanh");
-    static const inline QString ASINH_STR = QStringLiteral("asinh");
-    static const inline QString ACOSH_STR = QStringLiteral("acosh");
-    static const inline QString ATANH_STR = QStringLiteral("atanh");
+    static const inline QString sinhStr = QStringLiteral("sinh");
+    static const inline QString coshStr = QStringLiteral("cosh");
+    static const inline QString tanhStr = QStringLiteral("tanh");
+    static const inline QString asinhStr = QStringLiteral("asinh");
+    static const inline QString acoshStr = QStringLiteral("acosh");
+    static const inline QString atanhStr = QStringLiteral("atanh");
 
-    static const inline QString CONJ_STR = QStringLiteral("conj");
-    static const inline QString ARG_STR = QStringLiteral("arg");
-    static const inline QString RE_STR = QStringLiteral("re");
-    static const inline QString IM_STR = QStringLiteral("im");
+    static const inline QString conjStr = QStringLiteral("conj");
+    static const inline QString argStr = QStringLiteral("arg");
+    static const inline QString reStr = QStringLiteral("re");
+    static const inline QString imStr = QStringLiteral("im");
 
-    static const inline QString AND_STR = QStringLiteral("&");
-    static const inline QString OR_STR = QStringLiteral("|");
-    static const inline QString XOR_STR = QStringLiteral("⊕");
-    static const inline QString XOR_LETTER_STR = QStringLiteral("XOR");
-    static const inline QString RSH_STR = QStringLiteral(">>");
-    static const inline QString LSH_STR = QStringLiteral("<<");
-    static const inline QString ONE_S_COMP_STR = QStringLiteral("~");
-    static const inline QString TWO_S_COMP_STR = QStringLiteral("~₂");
+    static const inline QString andStr = QStringLiteral("&");
+    static const inline QString orStr = QStringLiteral("|");
+    static const inline QString xorStr = QStringLiteral("⊕");
+    static const inline QString xorLetterStr = QStringLiteral("XOR");
+    static const inline QString rshStr = QStringLiteral(">>");
+    static const inline QString lshStr = QStringLiteral("<<");
+    static const inline QString onesCompStr = QStringLiteral("~");
+    static const inline QString twosCompStr = QStringLiteral("~₂");
 
-    static const inline QString EQUAL_STR = QStringLiteral("=");
-    static const inline QString ANS_STR = QStringLiteral("ans");
+    static const inline QString equalStr = QStringLiteral("=");
+    static const inline QString ansStr = QStringLiteral("ans");
 
-    static const inline QString ERROR_STR = QStringLiteral("error");
+    static const inline QString errorStr = QStringLiteral("error");
 
 private:
-    QHash<QString, QString> constants_;
-    bool constantSymbolToValue_(const QString &constantSymbol);
+    QHash<QString, QString> constants;
+    bool constantSymbolToValue(const QString &constantSymbol);
 
-    QString token_KNumber_;
-    bool m_inputHasConstants = false;
-    int trigonometric_Mode_ = DEGREES;
-    bool m_numeralMode = false;
-    ParsingResult parsing_Result_ = EMPTY;
+    QString tokenKNumber;
+    bool mInputHasConstants = false;
+    int trigonometricMode = Degrees;
+    bool mNumeralMode = false;
+    ParsingResult parsingResult = Empty;
 };

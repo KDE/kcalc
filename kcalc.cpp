@@ -1441,7 +1441,7 @@ void KCalculator::slotInputChanged()
             break;
         }
         return;
-    } else if (m_parsingResult == KCalcParser::ParsingResult::SUCCESS_SINGLE_KNUMBER) {
+    } else if (m_parsingResult == KCalcParser::ParsingResult::SuccessSingleKNumber) {
         updateDisplay(UPDATE_CLEAR);
         if (base_mode_) {
             slotBaseModeAmountChanged(core.getResult());
@@ -2057,7 +2057,7 @@ void KCalculator::slotBaseModeAmountChanged(const KNumber &number)
 //------------------------------------------------------------------------------
 void KCalculator::slotClearBaseModeAmount()
 {
-    if (m_parsingResult != KCalcParser::ParsingResult::SUCCESS_SINGLE_KNUMBER) {
+    if (m_parsingResult != KCalcParser::ParsingResult::SuccessSingleKNumber) {
         numeralSystemView->clearNumber();
     }
 }
@@ -2355,7 +2355,7 @@ void KCalculator::updateDisplay(UpdateFlags flags)
 
 void inline KCalculator::insertNumericToInputDisplay(KCalcToken::TokenCode token)
 {
-    input_display->insertTokenNumeric(parser.TokenToString(token));
+    input_display->insertTokenNumeric(parser.tokenToString(token));
 }
 
 //------------------------------------------------------------------------------
@@ -2365,7 +2365,7 @@ void inline KCalculator::insertNumericToInputDisplay(KCalcToken::TokenCode token
 
 void inline KCalculator::insertFunctionToInputDisplay(KCalcToken::TokenCode token)
 {
-    input_display->insertTokenFunction(parser.TokenToString(token));
+    input_display->insertTokenFunction(parser.tokenToString(token));
 }
 
 //------------------------------------------------------------------------------
@@ -2375,7 +2375,7 @@ void inline KCalculator::insertFunctionToInputDisplay(KCalcToken::TokenCode toke
 
 void inline KCalculator::insertToInputDisplay(KCalcToken::TokenCode token)
 {
-    input_display->insertToken(parser.TokenToString(token));
+    input_display->insertToken(parser.tokenToString(token));
 }
 
 //------------------------------------------------------------------------------
@@ -2396,7 +2396,7 @@ int KCalculator::commit_Input_()
 {
     m_parsingResult = parser.stringToTokenQueue(input_display->text(), base_mode_, token_Queue_, input_error_index_);
 
-    if (m_parsingResult == KCalcParser::ParsingResult::EMPTY || m_parsingResult == KCalcParser::ParsingResult::INVALID_TOKEN) {
+    if (m_parsingResult == KCalcParser::ParsingResult::Empty || m_parsingResult == KCalcParser::ParsingResult::InvalidToken) {
         parsing_failure_ = true;
         return -1;
     } else {
@@ -2431,17 +2431,17 @@ void KCalculator::commit_Result_(bool toHistory /*=true*/)
 
 //------------------------------------------------------------------------------
 // Name: handle_Parsing_Error_
-// Desc: moves cursor to found error position, when input is empty does nothing
+// Desc: moves cursor to found error position, when input is Empty does nothing
 //------------------------------------------------------------------------------
 void inline KCalculator::handle_Parsing_Error_()
 {
     switch (this->parser.getParsingResult()) {
-    case KCalcParser::INVALID_TOKEN:
+    case KCalcParser::InvalidToken:
         input_display->setCursorPosition(input_error_index_);
         input_display->setFocus();
         updateDisplay(UPDATE_SYNTAX_ERROR);
         break;
-    case KCalcParser::EMPTY:
+    case KCalcParser::Empty:
     default:
         break;
     }
