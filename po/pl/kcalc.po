@@ -1,5 +1,5 @@
 # translation of kcalc.po to Polish
-# Version: $Revision: 1710141 $
+# Version: $Revision: 1721061 $
 # translation of kcalc.po to
 # KTranslator Generated File
 # SPDX-FileCopyrightText: 2012, 2013, 2014, 2015, 2017, 2018, 2019, 2021, 2022, 2023, 2024, 2025 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
@@ -15,16 +15,16 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-05-18 00:45+0000\n"
-"PO-Revision-Date: 2025-05-31 09:23+0200\n"
+"PO-Revision-Date: 2025-10-25 08:40+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
-"Language-Team: Polish <kde-i18n-doc@kde.org>\n"
+"Language-Team: pl\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 24.12.3\n"
+"X-Generator: Lokalize 25.08.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -700,7 +700,7 @@ msgstr "Usuń ostatnią wprowadzoną daną"
 #, kde-format
 msgctxt "Modulo"
 msgid "mod"
-msgstr "dzieleniemodulo"
+msgstr "mod"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMod)
 #: kcalc.cpp:582 kcalc.ui:629
@@ -1405,19 +1405,19 @@ msgstr "Kliknij na bicie, by go przełączyć."
 #: kcalc.ui:405
 #, kde-format
 msgid "&Deg"
-msgstr "&Stopień"
+msgstr "&Stopnie"
 
 #. i18n: ectx: property (text), widget (QRadioButton, radRadio)
 #: kcalc.ui:412
 #, kde-format
 msgid "&Rad"
-msgstr "&Radian"
+msgstr "&Radiany"
 
 #. i18n: ectx: property (text), widget (QRadioButton, gradRadio)
 #: kcalc.ui:419
 #, kde-format
 msgid "&Grad"
-msgstr "&Stopień"
+msgstr "&Grady"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, numeralSystemComboBox)
 #: kcalc.ui:426
