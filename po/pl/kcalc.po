@@ -1,5 +1,5 @@
 # translation of kcalc.po to Polish
-# Version: $Revision: 1721061 $
+# Version: $Revision: 1721831 $
 # translation of kcalc.po to
 # KTranslator Generated File
 # SPDX-FileCopyrightText: 2012, 2013, 2014, 2015, 2017, 2018, 2019, 2021, 2022, 2023, 2024, 2025 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-09-23 00:46+0000\n"
-"PO-Revision-Date: 2025-10-25 08:40+0200\n"
+"PO-Revision-Date: 2025-11-01 09:29+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: pl\n"
 "Language: pl\n"
@@ -136,7 +136,7 @@ msgstr "Stałe"
 #: constants.ui:117 constants.ui:138
 #, kde-format
 msgid "Predefined"
-msgstr "Z zestawu"
+msgstr "Ze stałych"
 
 #. i18n: ectx: property (text), widget (QLabel, buttonlabel)
 #: fonts.ui:21
