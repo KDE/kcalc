@@ -9,25 +9,23 @@
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
 
-const QString KCalcParser::BINARY_DIGITS_PATTERN = QStringLiteral("[0-1]{1,}");
-const QString KCalcParser::OCTAL_DIGITS_PATTERN = QStringLiteral("[0-7]{1,}");
-const QString KCalcParser::HEX_DIGITS_PATTERN = QStringLiteral("[0-9A-Fa-f]{1,}");
+const QString KCalcParser::binaryDigitsPattern = QStringLiteral("[0-1]{1,}");
+const QString KCalcParser::octalDigitsPattern = QStringLiteral("[0-7]{1,}");
+const QString KCalcParser::hexDigitsPattern = QStringLiteral("[0-9A-Fa-f]{1,}");
 
-const QString KCalcParser::DECIMAL_NUMBER_PATTERN = QLatin1String("(0*)((\\d*)[.,]?\\d+([e|E]([+-]?\\d+))?)");
+const QString KCalcParser::decimalNumberPattern = QLatin1String("(0*)((\\d*)[.,]?\\d+([e|E]([+-]?\\d+))?)");
 
-const QRegularExpression KCalcParser::BINARY_NUMBER_DIGITS_REGEX = QRegularExpression(KCalcParser::BINARY_DIGITS_PATTERN);
-const QRegularExpression KCalcParser::OCTAL_NUMBER_DIGITS_REGEX = QRegularExpression(KCalcParser::OCTAL_DIGITS_PATTERN);
-const QRegularExpression KCalcParser::HEX_NUMBER_DIGITS_REGEX = QRegularExpression(KCalcParser::HEX_DIGITS_PATTERN);
+const QRegularExpression KCalcParser::binaryNumberDigitsRegex = QRegularExpression(KCalcParser::binaryDigitsPattern);
+const QRegularExpression KCalcParser::octalNumberDigitsRegex = QRegularExpression(KCalcParser::octalDigitsPattern);
+const QRegularExpression KCalcParser::hexNumberDigitsRegex = QRegularExpression(KCalcParser::hexDigitsPattern);
 
-const QRegularExpression KCalcParser::DECIMAL_NUMBER_REGEX = QRegularExpression(KCalcParser::DECIMAL_NUMBER_PATTERN);
+const QRegularExpression KCalcParser::decimalNumberRegex = QRegularExpression(KCalcParser::decimalNumberPattern);
 
 //------------------------------------------------------------------------------
 // Name: KCalcParser
 // Desc: constructor
 //------------------------------------------------------------------------------
-KCalcParser::KCalcParser()
-{
-}
+KCalcParser::KCalcParser() = default;
 
 //------------------------------------------------------------------------------
 // Name: ~KCalcParser
@@ -47,88 +45,87 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
     QString s = buffer.sliced(index, maxTokenLength);
 
     // TODO: change this to be switch table on the first char
-    if (s.startsWith(SPACE_STR) || s.startsWith(THIN_SPACE_STR)) {
+    if (s.startsWith(spaceStr) || s.startsWith(thinSpaceStr)) {
         index++;
-        return KCalcToken::TokenCode::STUB;
+        return KCalcToken::TokenCode::Stub;
     }
 
-    if (s.startsWith(HEX_NUMBER_PREFIX_STR)) {
+    if (s.startsWith(hexNumberPrefixStr)) {
         QRegularExpressionMatch match;
-        int numIndex = buffer.indexOf(HEX_NUMBER_DIGITS_REGEX, index + HEX_NUMBER_PREFIX_STR.length(), &match);
-        if (numIndex == index + HEX_NUMBER_PREFIX_STR.length()) {
-            token_KNumber_ = HEX_NUMBER_PREFIX_STR + match.captured();
+        int numIndex = buffer.indexOf(hexNumberDigitsRegex, index + hexNumberPrefixStr.length(), &match);
+        if (numIndex == index + hexNumberPrefixStr.length()) {
+            m_tokenKNumber = hexNumberPrefixStr + match.captured();
             if (match.captured().size() > 16) {
-                return KCalcToken::TokenCode::INVALID_TOKEN;
+                return KCalcToken::TokenCode::InvalidToken;
             }
-            index += HEX_NUMBER_PREFIX_STR.length();
+            index += hexNumberPrefixStr.length();
             index += match.captured().size();
-            return KCalcToken::TokenCode::KNUMBER;
+            return KCalcToken::TokenCode::Knumber;
         } else {
-            return KCalcToken::TokenCode::INVALID_TOKEN;
+            return KCalcToken::TokenCode::InvalidToken;
         }
     }
 
-    if (s.startsWith(BINARY_NUMBER_PREFIX_STR)) {
+    if (s.startsWith(binaryNumberPrefixStr)) {
         QRegularExpressionMatch match;
-        int numIndex = buffer.indexOf(BINARY_NUMBER_DIGITS_REGEX, index + BINARY_NUMBER_PREFIX_STR.length(), &match);
-        if (numIndex == index + BINARY_NUMBER_PREFIX_STR.length()) {
-            token_KNumber_ = BINARY_NUMBER_PREFIX_STR + match.captured();
+        int numIndex = buffer.indexOf(binaryNumberDigitsRegex, index + binaryNumberPrefixStr.length(), &match);
+        if (numIndex == index + binaryNumberPrefixStr.length()) {
+            m_tokenKNumber = binaryNumberPrefixStr + match.captured();
             if (match.captured().size() > 64) {
-                return KCalcToken::TokenCode::INVALID_TOKEN;
+                return KCalcToken::TokenCode::InvalidToken;
             }
-            index += BINARY_NUMBER_PREFIX_STR.length();
+            index += binaryNumberPrefixStr.length();
             index += match.captured().size();
-            return KCalcToken::TokenCode::KNUMBER;
+            return KCalcToken::TokenCode::Knumber;
         } else {
-            return KCalcToken::TokenCode::INVALID_TOKEN;
+            return KCalcToken::TokenCode::InvalidToken;
         }
     }
 
-    if (s.startsWith(OCTAL_NUMBER_PREFIX_STR)) {
+    if (s.startsWith(octalNumberPrefixStr)) {
         QRegularExpressionMatch match;
-        int numIndex = buffer.indexOf(OCTAL_NUMBER_DIGITS_REGEX, index + OCTAL_NUMBER_PREFIX_STR.length(), &match);
-        if (numIndex == index + OCTAL_NUMBER_PREFIX_STR.length()) {
-            token_KNumber_ = OCTAL_NUMBER_PREFIX_STR_C_STYLE + match.captured();
+        int numIndex = buffer.indexOf(octalNumberDigitsRegex, index + octalNumberPrefixStr.length(), &match);
+        if (numIndex == index + octalNumberPrefixStr.length()) {
+            m_tokenKNumber = octalNumberPrefixStrCStyle + match.captured();
             if (match.captured().size() > 21) {
-                return KCalcToken::TokenCode::INVALID_TOKEN;
+                return KCalcToken::TokenCode::InvalidToken;
             }
-            index += OCTAL_NUMBER_PREFIX_STR.length();
+            index += octalNumberPrefixStr.length();
             index += match.captured().size();
-            return KCalcToken::TokenCode::KNUMBER;
+            return KCalcToken::TokenCode::Knumber;
         }
         // Code execution continues, since an entry could
         // start with a 0 but not be a valid octal number
         // being a number in base 10 or 16
     }
 
-    if ((A_STR <= s.first(1) && s.first(1) <= F_STR) || (ZERO_STR <= s.first(1) && s.first(1) <= NINE_STR)
-        || (s.first(1) == COMMA_STR || s.first(1) == POINT_STR)) {
+    if ((aStr <= s.first(1) && s.first(1) <= fStr) || (zeroStr <= s.first(1) && s.first(1) <= nineStr) || (s.first(1) == commaStr || s.first(1) == pointStr)) {
         int numIndex = -1;
         QRegularExpressionMatch match;
         switch (base) {
         case 2:
-            numIndex = buffer.indexOf(BINARY_NUMBER_DIGITS_REGEX, index, &match);
-            token_KNumber_ = BINARY_NUMBER_PREFIX_STR;
+            numIndex = buffer.indexOf(binaryNumberDigitsRegex, index, &match);
+            m_tokenKNumber = binaryNumberPrefixStr;
             if (match.captured().size() > 64) {
-                return KCalcToken::TokenCode::INVALID_TOKEN;
+                return KCalcToken::TokenCode::InvalidToken;
             }
             break;
         case 8:
-            numIndex = buffer.indexOf(OCTAL_NUMBER_DIGITS_REGEX, index, &match);
-            token_KNumber_ = OCTAL_NUMBER_PREFIX_STR_C_STYLE;
+            numIndex = buffer.indexOf(octalNumberDigitsRegex, index, &match);
+            m_tokenKNumber = octalNumberPrefixStrCStyle;
             if (match.captured().size() > 21) {
-                return KCalcToken::TokenCode::INVALID_TOKEN;
+                return KCalcToken::TokenCode::InvalidToken;
             }
             break;
         case 10:
-            numIndex = buffer.indexOf(DECIMAL_NUMBER_REGEX, index, &match);
-            token_KNumber_.clear();
+            numIndex = buffer.indexOf(decimalNumberRegex, index, &match);
+            m_tokenKNumber.clear();
             break;
         case 16:
-            numIndex = buffer.indexOf(HEX_NUMBER_DIGITS_REGEX, index, &match);
-            token_KNumber_ = HEX_NUMBER_PREFIX_STR;
+            numIndex = buffer.indexOf(hexNumberDigitsRegex, index, &match);
+            m_tokenKNumber = hexNumberPrefixStr;
             if (match.captured().size() > 16) {
-                return KCalcToken::TokenCode::INVALID_TOKEN;
+                return KCalcToken::TokenCode::InvalidToken;
             }
             break;
         default:
@@ -136,389 +133,368 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
         }
         if (numIndex == index) {
             if (base == 10) {
-                token_KNumber_ += match.captured(2);
+                m_tokenKNumber += match.captured(2);
             } else {
-                token_KNumber_ += match.captured();
+                m_tokenKNumber += match.captured();
             }
             index += match.captured().size();
-            return KCalcToken::TokenCode::KNUMBER;
+            return KCalcToken::TokenCode::Knumber;
         } else {
-            return KCalcToken::TokenCode::INVALID_TOKEN;
+            return KCalcToken::TokenCode::InvalidToken;
         }
     }
 
-    if (ANGLE_STR == s.first(1)) {
+    if (angleStr == s.first(1)) {
         index++;
-        switch (trigonometric_Mode_) {
-        case RADIANS:
-            return KCalcToken::TokenCode::POLAR_RAD;
-        case GRADIANS:
-            return KCalcToken::TokenCode::POLAR_GRAD;
-        case DEGREES:
-            return KCalcToken::TokenCode::POLAR_DEG;
+        switch (m_trigonometricMode) {
+        case Radians:
+            return KCalcToken::TokenCode::PolarRad;
+        case Gradians:
+            return KCalcToken::TokenCode::PolarGrad;
+        case Degrees:
+            return KCalcToken::TokenCode::PolarDeg;
         default:
             Q_UNREACHABLE();
-            return KCalcToken::TokenCode::INVALID_TOKEN;
+            return KCalcToken::TokenCode::InvalidToken;
         }
     }
 
-    if (s.startsWith(PLUS_STR)) {
+    if (s.startsWith(plusStr)) {
         index++;
-        return KCalcToken::TokenCode::PLUS;
+        return KCalcToken::TokenCode::Plus;
     }
-    if (s.startsWith(HYPHEN_MINUS_STR) || s.startsWith(MINUS_SIGN_STR)) {
+    if (s.startsWith(hyphenMinusStr) || s.startsWith(minusSignStr)) {
         index++;
-        return KCalcToken::TokenCode::MINUS;
+        return KCalcToken::TokenCode::Minus;
     }
-    if (s.startsWith(EQUAL_STR)) {
+    if (s.startsWith(equalStr)) {
         index++;
-        return KCalcToken::TokenCode::EQUAL;
+        return KCalcToken::TokenCode::Equal;
     }
-    if (s.startsWith(SQUARE_STR)) {
+    if (s.startsWith(squareStr)) {
         index++;
-        return KCalcToken::TokenCode::SQUARE;
+        return KCalcToken::TokenCode::Square;
     }
-    if (s.startsWith(CUBE_STR)) {
+    if (s.startsWith(cubeStr)) {
         index++;
-        return KCalcToken::TokenCode::CUBE;
+        return KCalcToken::TokenCode::Cube;
     }
-    if (s.startsWith(POWER_STR)) {
+    if (s.startsWith(powerStr)) {
         index++;
-        return KCalcToken::TokenCode::POWER;
+        return KCalcToken::TokenCode::Power;
     }
-    if (s.startsWith(POWER_ROOT_STR)) {
+    if (s.startsWith(powerRootStr)) {
         index++;
-        return KCalcToken::TokenCode::POWER_ROOT;
+        return KCalcToken::TokenCode::PowerRoot;
     }
-    if (s.startsWith(EXP_10_STR)) {
+    if (s.startsWith(exp10Str)) {
         index++;
-        return KCalcToken::TokenCode::EXP_10;
+        return KCalcToken::TokenCode::Exp10;
     }
-    if (s.startsWith(PERCENTAGE_STR)) {
+    if (s.startsWith(percentageStr)) {
         index++;
-        return KCalcToken::TokenCode::PERCENTAGE;
+        return KCalcToken::TokenCode::Percentage;
     }
-    if (s.startsWith(PERMILLE_STR)) {
+    if (s.startsWith(permilleStr)) {
         index++;
-        return KCalcToken::TokenCode::PERMILLE;
+        return KCalcToken::TokenCode::Permille;
     }
-    if (s.startsWith(I_STR) && !s.startsWith(IM_STR)) {
+    if (s.startsWith(iStr) && !s.startsWith(imStr)) {
         index++;
-        token_KNumber_ = I_STR;
-        return KCalcToken::TokenCode::KNUMBER;
+        m_tokenKNumber = iStr;
+        return KCalcToken::TokenCode::Knumber;
     }
-    if (s.startsWith(DIVISION_STR) || s.startsWith(SLASH_STR) || s.startsWith(DIVISION_SLASH_STR)) {
+    if (s.startsWith(divisionStr) || s.startsWith(slashStr) || s.startsWith(divisionSlashStr)) {
         index++;
-        return KCalcToken::TokenCode::DIVISION;
+        return KCalcToken::TokenCode::Division;
     }
-    if (s.startsWith(GAMMA_STR)) {
+    if (s.startsWith(gammaStr)) {
         index++;
-        return KCalcToken::TokenCode::GAMMA;
+        return KCalcToken::TokenCode::Gamma;
     }
-    if (s.startsWith(SQUARE_ROOT_STR)) {
+    if (s.startsWith(squareRootStr)) {
         index++;
-        return KCalcToken::TokenCode::SQUARE_ROOT;
+        return KCalcToken::TokenCode::SquareRoot;
     }
-    if (s.startsWith(CUBIC_ROOT_STR)) {
+    if (s.startsWith(cubicRootStr)) {
         index++;
-        return KCalcToken::TokenCode::CUBIC_ROOT;
+        return KCalcToken::TokenCode::CubicRoot;
     }
-    if (s.startsWith(OPENING_PARENTHESIS_STR)) {
+    if (s.startsWith(openingParenthesisStr)) {
         index++;
-        return KCalcToken::TokenCode::OPENING_PARENTHESIS;
+        return KCalcToken::TokenCode::OpeningParenthesis;
     }
-    if (s.startsWith(CLOSING_PARENTHESIS_STR)) {
+    if (s.startsWith(closingParenthesisStr)) {
         index++;
-        return KCalcToken::TokenCode::CLOSING_PARENTHESIS;
+        return KCalcToken::TokenCode::ClosingParenthesis;
     }
-    if (s.startsWith(INVERT_SIGN_STR)) {
+    if (s.startsWith(invertSignStr)) {
         index++;
-        return KCalcToken::TokenCode::INVERT_SIGN;
-    }
-
-    if (s.startsWith(MULTIPLICATION_STR) || s.startsWith(DOT_STR) || s.startsWith(ASTERISK_STR)) {
-        index++;
-        return KCalcToken::TokenCode::MULTIPLICATION;
+        return KCalcToken::TokenCode::InvertSign;
     }
 
-    if (s.startsWith(DEGREE_STR)) {
+    if (s.startsWith(multiplicationStr) || s.startsWith(dotStr) || s.startsWith(asteriskStr)) {
         index++;
-        return KCalcToken::TokenCode::DEGREE;
+        return KCalcToken::TokenCode::Multiplication;
     }
-    if (s.startsWith(AND_STR)) {
+
+    if (s.startsWith(degreeStr)) {
         index++;
-        return KCalcToken::TokenCode::AND;
+        return KCalcToken::TokenCode::Degree;
     }
-    if (s.startsWith(OR_STR)) {
+    if (s.startsWith(andStr)) {
         index++;
-        return KCalcToken::TokenCode::OR;
+        return KCalcToken::TokenCode::And;
     }
-    if (s.startsWith(XOR_STR)) {
+    if (s.startsWith(orStr)) {
         index++;
-        return KCalcToken::TokenCode::XOR;
+        return KCalcToken::TokenCode::Or;
     }
-    if (s.startsWith(XOR_LETTER_STR, Qt::CaseSensitivity::CaseInsensitive)) {
+    if (s.startsWith(xorStr)) {
+        index++;
+        return KCalcToken::TokenCode::Xor;
+    }
+    if (s.startsWith(xorLetterStr, Qt::CaseSensitivity::CaseInsensitive)) {
         index += 3;
-        return KCalcToken::TokenCode::XOR;
+        return KCalcToken::TokenCode::Xor;
     }
 
-    if (s.startsWith(ASINH_STR)) {
+    if (s.startsWith(asinhStr)) {
         index += 5;
-        return KCalcToken::TokenCode::ASINH;
+        return KCalcToken::TokenCode::Asinh;
     }
-    if (s.startsWith(ACOSH_STR)) {
+    if (s.startsWith(acoshStr)) {
         index += 5;
-        return KCalcToken::TokenCode::ACOSH;
+        return KCalcToken::TokenCode::Acosh;
     }
-    if (s.startsWith(ATANH_STR)) {
+    if (s.startsWith(atanhStr)) {
         index += 5;
-        return KCalcToken::TokenCode::ATANH;
+        return KCalcToken::TokenCode::Atanh;
     }
 
-    if (s.startsWith(ASIN_STR)) {
+    if (s.startsWith(asinStr)) {
         index += 4;
-        switch (trigonometric_Mode_) {
-        case RADIANS:
-            return KCalcToken::TokenCode::ASIN_RAD;
-            break;
-        case GRADIANS:
-            return KCalcToken::TokenCode::ASIN_GRAD;
-            break;
-        case DEGREES:
-            return KCalcToken::TokenCode::ASIN_DEG;
-            break;
+        switch (m_trigonometricMode) {
+        case Radians:
+            return KCalcToken::TokenCode::AsinRad;
+        case Gradians:
+            return KCalcToken::TokenCode::AsinGrad;
+        case Degrees:
+            return KCalcToken::TokenCode::AsinDeg;
         default:
             break;
         }
     }
-    if (s.startsWith(ACOS_STR)) {
+    if (s.startsWith(acosStr)) {
         index += 4;
-        switch (trigonometric_Mode_) {
-        case RADIANS:
-            return KCalcToken::TokenCode::ACOS_RAD;
-            break;
-        case GRADIANS:
-            return KCalcToken::TokenCode::ACOS_GRAD;
-            break;
-        case DEGREES:
-            return KCalcToken::TokenCode::ACOS_DEG;
-            break;
+        switch (m_trigonometricMode) {
+        case Radians:
+            return KCalcToken::TokenCode::AcosRad;
+        case Gradians:
+            return KCalcToken::TokenCode::AcosGrad;
+        case Degrees:
+            return KCalcToken::TokenCode::AcosDeg;
         default:
             break;
         }
     }
-    if (s.startsWith(ATAN_STR)) {
+    if (s.startsWith(atanStr)) {
         index += 4;
-        switch (trigonometric_Mode_) {
-        case RADIANS:
-            return KCalcToken::TokenCode::ATAN_RAD;
-            break;
-        case GRADIANS:
-            return KCalcToken::TokenCode::ATAN_GRAD;
-            break;
-        case DEGREES:
-            return KCalcToken::TokenCode::ATAN_DEG;
-            break;
+        switch (m_trigonometricMode) {
+        case Radians:
+            return KCalcToken::TokenCode::AtanRad;
+        case Gradians:
+            return KCalcToken::TokenCode::AtanGrad;
+        case Degrees:
+            return KCalcToken::TokenCode::AtanDeg;
         default:
             break;
         }
     }
 
-    if (s.startsWith(SINH_STR)) {
+    if (s.startsWith(sinhStr)) {
         index += 4;
-        return KCalcToken::TokenCode::SINH;
+        return KCalcToken::TokenCode::Sinh;
     }
-    if (s.startsWith(COSH_STR)) {
+    if (s.startsWith(coshStr)) {
         index += 4;
-        return KCalcToken::TokenCode::COSH;
+        return KCalcToken::TokenCode::Cosh;
     }
-    if (s.startsWith(TANH_STR)) {
+    if (s.startsWith(tanhStr)) {
         index += 4;
-        return KCalcToken::TokenCode::TANH;
+        return KCalcToken::TokenCode::Tanh;
     }
-    if (s.startsWith(CONJ_STR)) {
+    if (s.startsWith(conjStr)) {
         index += 4;
-        return KCalcToken::TokenCode::CONJ;
+        return KCalcToken::TokenCode::Conj;
     }
 
-    if (s.startsWith(SIN_STR)) {
+    if (s.startsWith(sinStr)) {
         index += 3;
-        switch (trigonometric_Mode_) {
-        case RADIANS:
-            return KCalcToken::TokenCode::SIN_RAD;
-            break;
-        case GRADIANS:
-            return KCalcToken::TokenCode::SIN_GRAD;
-            break;
-        case DEGREES:
-            return KCalcToken::TokenCode::SIN_DEG;
-            break;
+        switch (m_trigonometricMode) {
+        case Radians:
+            return KCalcToken::TokenCode::SinRad;
+        case Gradians:
+            return KCalcToken::TokenCode::SinGrad;
+        case Degrees:
+            return KCalcToken::TokenCode::SinDeg;
         default:
             break;
         }
     }
-    if (s.startsWith(COS_STR)) {
+    if (s.startsWith(cosStr)) {
         index += 3;
-        switch (trigonometric_Mode_) {
-        case RADIANS:
-            return KCalcToken::TokenCode::COS_RAD;
-            break;
-        case GRADIANS:
-            return KCalcToken::TokenCode::COS_GRAD;
-            break;
-        case DEGREES:
-            return KCalcToken::TokenCode::COS_DEG;
-            break;
+        switch (m_trigonometricMode) {
+        case Radians:
+            return KCalcToken::TokenCode::CosRad;
+        case Gradians:
+            return KCalcToken::TokenCode::CosGrad;
+        case Degrees:
+            return KCalcToken::TokenCode::CosDeg;
         default:
             break;
         }
     }
-    if (s.startsWith(TAN_STR)) {
+    if (s.startsWith(tanStr)) {
         index += 3;
-        switch (trigonometric_Mode_) {
-        case RADIANS:
-            return KCalcToken::TokenCode::TAN_RAD;
-            break;
-        case GRADIANS:
-            return KCalcToken::TokenCode::TAN_GRAD;
-            break;
-        case DEGREES:
-            return KCalcToken::TokenCode::TAN_DEG;
-            break;
+        switch (m_trigonometricMode) {
+        case Radians:
+            return KCalcToken::TokenCode::TanRad;
+        case Gradians:
+            return KCalcToken::TokenCode::TanGrad;
+        case Degrees:
+            return KCalcToken::TokenCode::TanDeg;
         default:
             break;
         }
     }
 
-    if (s.startsWith(ARG_STR)) {
+    if (s.startsWith(argStr)) {
         index += 3;
-        switch (trigonometric_Mode_) {
-        case RADIANS:
-            return KCalcToken::TokenCode::ARG_RAD;
-            break;
-        case GRADIANS:
-            return KCalcToken::TokenCode::ARG_GRAD;
-            break;
-        case DEGREES:
-            return KCalcToken::TokenCode::ARG_DEG;
-            break;
+        switch (m_trigonometricMode) {
+        case Radians:
+            return KCalcToken::TokenCode::ArgRad;
+        case Gradians:
+            return KCalcToken::TokenCode::ArgGrad;
+        case Degrees:
+            return KCalcToken::TokenCode::ArgDeg;
         default:
             break;
         }
     }
 
-    if (s.startsWith(EXP_STR)) {
+    if (s.startsWith(expStr)) {
         index += 3;
-        return KCalcToken::TokenCode::EXP;
+        return KCalcToken::TokenCode::Exp;
     }
 
-    if (s.startsWith(LOG_10_STR)) {
+    if (s.startsWith(log10Str)) {
         index += 3;
-        return KCalcToken::TokenCode::LOG_10;
+        return KCalcToken::TokenCode::Log10;
     }
 
-    if (s.startsWith(ANS_STR)) {
+    if (s.startsWith(ansStr)) {
         index += 3;
-        return KCalcToken::TokenCode::ANS;
+        return KCalcToken::TokenCode::Ans;
     }
 
-    if (s.startsWith(BINOMIAL_STR)) {
+    if (s.startsWith(binomialStr)) {
         index += 3;
-        return KCalcToken::TokenCode::BINOMIAL;
+        return KCalcToken::TokenCode::Binomial;
     }
 
-    if (s.startsWith(MODULO_STR)) {
+    if (s.startsWith(moduloStr)) {
         index += 3;
-        return KCalcToken::TokenCode::MODULO;
+        return KCalcToken::TokenCode::Modulo;
     }
 
-    if (s.startsWith(INTEGER_DIVISION_STR)) {
+    if (s.startsWith(integerDivisionStr)) {
         index += 3;
-        return KCalcToken::TokenCode::INTEGER_DIVISION;
+        return KCalcToken::TokenCode::IntegerDivision;
     }
 
-    if (s.startsWith(GRADIAN_STR)) {
+    if (s.startsWith(gradianStr)) {
         index += 3;
-        return KCalcToken::TokenCode::GRADIAN;
+        return KCalcToken::TokenCode::Gradian;
     }
 
-    if (s.startsWith(RADIAN_STR)) {
+    if (s.startsWith(radianStr)) {
         index += 3;
-        return KCalcToken::TokenCode::RADIAN;
+        return KCalcToken::TokenCode::Radian;
     }
 
-    if (s.startsWith(RSH_STR)) {
+    if (s.startsWith(rshStr)) {
         index += 2;
-        return KCalcToken::TokenCode::RSH;
+        return KCalcToken::TokenCode::Rsh;
     }
-    if (s.startsWith(LSH_STR)) {
+    if (s.startsWith(lshStr)) {
         index += 2;
-        return KCalcToken::TokenCode::LSH;
+        return KCalcToken::TokenCode::Lsh;
     }
-    if (s.startsWith(TWO_S_COMP_STR)) {
+    if (s.startsWith(twosCompStr)) {
         index += 2;
-        return KCalcToken::TokenCode::TWO_S_COMPLEMENT;
+        return KCalcToken::TokenCode::TwosComplement;
     }
 
-    if (s.startsWith(RECIPROCAL_STR)) {
+    if (s.startsWith(reciprocalStr)) {
         index += 2;
-        return KCalcToken::TokenCode::RECIPROCAL;
+        return KCalcToken::TokenCode::Reciprocal;
     }
-    if (s.startsWith(LN_STR)) {
+    if (s.startsWith(lnStr)) {
         index += 2;
-        return KCalcToken::TokenCode::LN;
+        return KCalcToken::TokenCode::Ln;
     }
-    if (s.startsWith(RE_STR)) {
+    if (s.startsWith(reStr)) {
         index += 2;
-        return KCalcToken::TokenCode::RE;
+        return KCalcToken::TokenCode::Re;
     }
-    if (s.startsWith(IM_STR)) {
+    if (s.startsWith(imStr)) {
         index += 2;
-        return KCalcToken::TokenCode::IM;
+        return KCalcToken::TokenCode::Im;
     }
 
     if (index + 2 <= buffer.size()) {
         s = buffer.sliced(index, 2);
-        if (constantSymbolToValue_(s)) {
+        if (constantSymbolToValue(s)) {
             index += 2;
-            return KCalcToken::TokenCode::KNUMBER;
+            return KCalcToken::TokenCode::Knumber;
         }
     }
-    if (s.startsWith(ONE_S_COMP_STR)) {
+    if (s.startsWith(onesCompStr)) {
         index++;
-        return KCalcToken::TokenCode::ONE_S_COMPLEMENT;
+        return KCalcToken::TokenCode::OnesComplement;
     }
-    if (s.startsWith(FACTORIAL_STR)) {
+    if (s.startsWith(factorialStr)) {
         index++;
-        return KCalcToken::TokenCode::FACTORIAL;
+        return KCalcToken::TokenCode::Factorial;
     }
-    if (s.startsWith(DOUBLE_FACTORIAL_STR)) {
+    if (s.startsWith(doubleFactorialStr)) {
         index++;
-        return KCalcToken::TokenCode::DOUBLE_FACTORIAL;
+        return KCalcToken::TokenCode::DoubleFactorial;
     }
 
     s = buffer.sliced(index, 1);
 
-    if ((A_LOWER_CASE_STR <= s.first(1) && s.first(1) <= F_LOWER_CASE_STR)) {
+    if ((aLowerCaseStr <= s.first(1) && s.first(1) <= fLowerCaseStr)) {
         if (m_numeralMode && base == 16) {
             QRegularExpressionMatch match;
-            int numIndex = buffer.indexOf(HEX_NUMBER_DIGITS_REGEX, index, &match);
+            int numIndex = buffer.indexOf(hexNumberDigitsRegex, index, &match);
             if (match.captured().size() > 16 || numIndex != index) {
-                return KCalcToken::TokenCode::INVALID_TOKEN;
+                return KCalcToken::TokenCode::InvalidToken;
             }
-            token_KNumber_ = HEX_NUMBER_PREFIX_STR + match.captured();
+            m_tokenKNumber = hexNumberPrefixStr + match.captured();
             index += match.captured().size();
-            return KCalcToken::TokenCode::KNUMBER;
+            return KCalcToken::TokenCode::Knumber;
         }
     }
 
-    if (constantSymbolToValue_(s)) {
+    if (constantSymbolToValue(s)) {
         index++;
-        return KCalcToken::TokenCode::KNUMBER;
+        return KCalcToken::TokenCode::Knumber;
     }
 
-    parsing_Result_ = INVALID_TOKEN;
-    return KCalcToken::TokenCode::INVALID_TOKEN;
+    m_parsingResult = InvalidToken;
+    return KCalcToken::TokenCode::InvalidToken;
 }
 
 //------------------------------------------------------------------------------
@@ -529,68 +505,68 @@ KCalcParser::ParsingResult KCalcParser::stringToTokenQueue(const QString &buffer
 {
     tokenQueue.clear();
     m_inputHasConstants = false;
-    int buffer_index = 0;
-    int buffer_size = buffer.size();
+    int bufferIndex = 0;
+    int bufferSize = buffer.size();
     qCDebug(KCALC_LOG) << "Parsing string to TokenQueue";
     qCDebug(KCALC_LOG) << "Buffer string to parse: " << buffer;
 
-    KCalcToken::TokenCode tokenCode = KCalcToken::TokenCode::INVALID_TOKEN;
+    KCalcToken::TokenCode tokenCode = KCalcToken::TokenCode::InvalidToken;
 
-    if (buffer_size == 0) {
+    if (bufferSize == 0) {
         errorIndex = -1;
-        parsing_Result_ = EMPTY;
-        return ParsingResult::EMPTY;
+        m_parsingResult = Empty;
+        return ParsingResult::Empty;
     }
 
-    while (buffer_index < buffer_size) {
-        tokenCode = KCalcToken::TokenCode::INVALID_TOKEN;
+    while (bufferIndex < bufferSize) {
+        tokenCode = KCalcToken::TokenCode::InvalidToken;
         KNumber operand;
 
-        tokenCode = stringToToken(buffer, buffer_index, base);
+        tokenCode = stringToToken(buffer, bufferIndex, base);
 
-        if (tokenCode == KCalcToken::TokenCode::INVALID_TOKEN) {
-            parsing_Result_ = INVALID_TOKEN;
-            errorIndex = buffer_index; // this indicates where the error was found
-            return ParsingResult::INVALID_TOKEN; // in the input string
+        if (tokenCode == KCalcToken::TokenCode::InvalidToken) {
+            m_parsingResult = InvalidToken;
+            errorIndex = bufferIndex; // this indicates where the error was found
+            return ParsingResult::InvalidToken; // in the input string
         }
 
-        if (tokenCode == KCalcToken::TokenCode::STUB) {
+        if (tokenCode == KCalcToken::TokenCode::Stub) {
             continue;
         }
 
-        if (tokenCode == KCalcToken::TokenCode::KNUMBER) {
-            qCDebug(KCALC_LOG) << "String KNumber converted: " << token_KNumber_;
-            token_KNumber_.replace(COMMA_STR, KNumber::decimalSeparator());
-            token_KNumber_.replace(POINT_STR, KNumber::decimalSeparator());
-            operand = KNumber(token_KNumber_);
+        if (tokenCode == KCalcToken::TokenCode::Knumber) {
+            qCDebug(KCALC_LOG) << "String KNumber converted: " << m_tokenKNumber;
+            m_tokenKNumber.replace(commaStr, KNumber::decimalSeparator());
+            m_tokenKNumber.replace(pointStr, KNumber::decimalSeparator());
+            operand = KNumber(m_tokenKNumber);
 
-            tokenQueue.enqueue(KCalcToken(operand, buffer_index));
+            tokenQueue.enqueue(KCalcToken(operand, bufferIndex));
         } else {
-            tokenQueue.enqueue(KCalcToken(tokenCode, buffer_index));
+            tokenQueue.enqueue(KCalcToken(tokenCode, bufferIndex));
             qCDebug(KCALC_LOG) << "KCalcToken converted with code: " << tokenCode;
         }
 
-        qCDebug(KCALC_LOG) << "Parsing index after this previous step: " << buffer_index;
+        qCDebug(KCALC_LOG) << "Parsing index after this previous step: " << bufferIndex;
     }
 
-    qCDebug(KCALC_LOG) << "Parsing done, index after parsing: " << buffer_index;
+    qCDebug(KCALC_LOG) << "Parsing done, index after parsing: " << bufferIndex;
 
     if (tokenQueue.length() > 2) {
-        return ParsingResult::SUCCESS;
+        return ParsingResult::Success;
     } else if (tokenQueue.length() == 2) {
-        if (!m_inputHasConstants && tokenQueue.first().getTokenCode() == KCalcToken::TokenCode::MINUS && tokenQueue.at(1).isKNumber()) {
-            return ParsingResult::SUCCESS_SINGLE_KNUMBER;
+        if (!m_inputHasConstants && tokenQueue.first().getTokenCode() == KCalcToken::TokenCode::Minus && tokenQueue.at(1).isKNumber()) {
+            return ParsingResult::SuccessSingleKNumber;
         } else {
-            return ParsingResult::SUCCESS;
+            return ParsingResult::Success;
         }
     } else if (tokenQueue.length() == 1) {
         if (!m_inputHasConstants && tokenQueue.first().isKNumber()) {
-            return ParsingResult::SUCCESS_SINGLE_KNUMBER;
+            return ParsingResult::SuccessSingleKNumber;
         } else {
-            return ParsingResult::SUCCESS;
+            return ParsingResult::Success;
         }
     } else {
-        return ParsingResult::EMPTY;
+        return ParsingResult::Empty;
     }
 }
 
@@ -600,7 +576,7 @@ KCalcParser::ParsingResult KCalcParser::stringToTokenQueue(const QString &buffer
 //------------------------------------------------------------------------------
 void KCalcParser::setTrigonometricMode(int mode)
 {
-    trigonometric_Mode_ = mode;
+    m_trigonometricMode = mode;
 }
 
 //------------------------------------------------------------------------------
@@ -609,7 +585,7 @@ void KCalcParser::setTrigonometricMode(int mode)
 //------------------------------------------------------------------------------
 int KCalcParser::getTrigonometricMode()
 {
-    return trigonometric_Mode_;
+    return m_trigonometricMode;
 }
 
 void KCalcParser::setNumeralMode(bool numeralMode)
@@ -628,233 +604,233 @@ bool KCalcParser::getNumeralMode() const
 //------------------------------------------------------------------------------
 KCalcParser::ParsingResult KCalcParser::getParsingResult()
 {
-    return parsing_Result_;
+    return m_parsingResult;
 }
 
 //------------------------------------------------------------------------------
 // Name: TokenToString
 // Desc:
 //------------------------------------------------------------------------------
-const QString KCalcParser::TokenToString(KCalcToken::TokenCode tokenCode)
+const QString KCalcParser::tokenToString(KCalcToken::TokenCode tokenCode)
 {
     switch (tokenCode) {
-    case KCalcToken::TokenCode::DECIMAL_POINT:
-        return DECIMAL_POINT_STR;
+    case KCalcToken::TokenCode::DecimalPoint:
+        return decimalPointStr;
         break;
-    case KCalcToken::TokenCode::PLUS:
-        return PLUS_STR;
+    case KCalcToken::TokenCode::Plus:
+        return plusStr;
         break;
-    case KCalcToken::TokenCode::MINUS:
-        return HYPHEN_MINUS_STR;
+    case KCalcToken::TokenCode::Minus:
+        return hyphenMinusStr;
         break;
-    case KCalcToken::TokenCode::DIVISION:
-        return DIVISION_STR;
+    case KCalcToken::TokenCode::Division:
+        return divisionStr;
         break;
-    case KCalcToken::TokenCode::SLASH:
-        return SLASH_STR;
+    case KCalcToken::TokenCode::Slash:
+        return slashStr;
         break;
-    case KCalcToken::TokenCode::MULTIPLICATION:
-        return MULTIPLICATION_STR;
+    case KCalcToken::TokenCode::Multiplication:
+        return multiplicationStr;
         break;
-    case KCalcToken::TokenCode::DOT:
-        return DOT_STR;
+    case KCalcToken::TokenCode::Dot:
+        return dotStr;
         break;
-    case KCalcToken::TokenCode::ASTERISK:
-        return ASTERISK_STR;
+    case KCalcToken::TokenCode::Asterisk:
+        return asteriskStr;
         break;
-    case KCalcToken::TokenCode::PERCENTAGE:
-        return PERCENTAGE_STR;
+    case KCalcToken::TokenCode::Percentage:
+        return percentageStr;
         break;
-    case KCalcToken::TokenCode::OPENING_PARENTHESIS:
-        return OPENING_PARENTHESIS_STR;
+    case KCalcToken::TokenCode::OpeningParenthesis:
+        return openingParenthesisStr;
         break;
-    case KCalcToken::TokenCode::CLOSING_PARENTHESIS:
-        return CLOSING_PARENTHESIS_STR;
+    case KCalcToken::TokenCode::ClosingParenthesis:
+        return closingParenthesisStr;
         break;
-    case KCalcToken::TokenCode::SQUARE:
-        return SQUARE_STR;
+    case KCalcToken::TokenCode::Square:
+        return squareStr;
         break;
-    case KCalcToken::TokenCode::CUBE:
-        return CUBE_STR;
+    case KCalcToken::TokenCode::Cube:
+        return cubeStr;
         break;
-    case KCalcToken::TokenCode::SQUARE_ROOT:
-        return SQUARE_ROOT_STR;
+    case KCalcToken::TokenCode::SquareRoot:
+        return squareRootStr;
         break;
-    case KCalcToken::TokenCode::CUBIC_ROOT:
-        return CUBIC_ROOT_STR;
+    case KCalcToken::TokenCode::CubicRoot:
+        return cubicRootStr;
         break;
-    case KCalcToken::TokenCode::DEGREE:
-        return DEGREE_STR;
+    case KCalcToken::TokenCode::Degree:
+        return degreeStr;
         break;
-    case KCalcToken::TokenCode::GRADIAN:
-        return GRADIAN_STR;
+    case KCalcToken::TokenCode::Gradian:
+        return gradianStr;
         break;
-    case KCalcToken::TokenCode::RADIAN:
-        return RADIAN_STR;
+    case KCalcToken::TokenCode::Radian:
+        return radianStr;
         break;
-    case KCalcToken::TokenCode::SIN:
-    case KCalcToken::TokenCode::SIN_RAD:
-    case KCalcToken::TokenCode::SIN_GRAD:
-    case KCalcToken::TokenCode::SIN_DEG:
-        return SIN_STR;
+    case KCalcToken::TokenCode::Sin:
+    case KCalcToken::TokenCode::SinRad:
+    case KCalcToken::TokenCode::SinGrad:
+    case KCalcToken::TokenCode::SinDeg:
+        return sinStr;
         break;
-    case KCalcToken::TokenCode::COS:
-    case KCalcToken::TokenCode::COS_RAD:
-    case KCalcToken::TokenCode::COS_GRAD:
-    case KCalcToken::TokenCode::COS_DEG:
-        return COS_STR;
+    case KCalcToken::TokenCode::Cos:
+    case KCalcToken::TokenCode::CosRad:
+    case KCalcToken::TokenCode::CosGrad:
+    case KCalcToken::TokenCode::CosDeg:
+        return cosStr;
         break;
-    case KCalcToken::TokenCode::TAN:
-    case KCalcToken::TokenCode::TAN_RAD:
-    case KCalcToken::TokenCode::TAN_GRAD:
-    case KCalcToken::TokenCode::TAN_DEG:
-        return TAN_STR;
+    case KCalcToken::TokenCode::Tan:
+    case KCalcToken::TokenCode::TanRad:
+    case KCalcToken::TokenCode::TanGrad:
+    case KCalcToken::TokenCode::TanDeg:
+        return tanStr;
         break;
-    case KCalcToken::TokenCode::ASIN:
-    case KCalcToken::TokenCode::ASIN_RAD:
-    case KCalcToken::TokenCode::ASIN_DEG:
-    case KCalcToken::TokenCode::ASIN_GRAD:
-        return ASIN_STR;
+    case KCalcToken::TokenCode::Asin:
+    case KCalcToken::TokenCode::AsinRad:
+    case KCalcToken::TokenCode::AsinDeg:
+    case KCalcToken::TokenCode::AsinGrad:
+        return asinStr;
         break;
-    case KCalcToken::TokenCode::ACOS:
-    case KCalcToken::TokenCode::ACOS_RAD:
-    case KCalcToken::TokenCode::ACOS_DEG:
-    case KCalcToken::TokenCode::ACOS_GRAD:
-        return ACOS_STR;
+    case KCalcToken::TokenCode::Acos:
+    case KCalcToken::TokenCode::AcosRad:
+    case KCalcToken::TokenCode::AcosDeg:
+    case KCalcToken::TokenCode::AcosGrad:
+        return acosStr;
         break;
-    case KCalcToken::TokenCode::ATAN:
-    case KCalcToken::TokenCode::ATAN_RAD:
-    case KCalcToken::TokenCode::ATAN_DEG:
-    case KCalcToken::TokenCode::ATAN_GRAD:
-        return ATAN_STR;
+    case KCalcToken::TokenCode::Atan:
+    case KCalcToken::TokenCode::AtanRad:
+    case KCalcToken::TokenCode::AtanDeg:
+    case KCalcToken::TokenCode::AtanGrad:
+        return atanStr;
         break;
-    case KCalcToken::TokenCode::SINH:
-        return SINH_STR;
+    case KCalcToken::TokenCode::Sinh:
+        return sinhStr;
         break;
-    case KCalcToken::TokenCode::COSH:
-        return COSH_STR;
+    case KCalcToken::TokenCode::Cosh:
+        return coshStr;
         break;
-    case KCalcToken::TokenCode::TANH:
-        return TANH_STR;
+    case KCalcToken::TokenCode::Tanh:
+        return tanhStr;
         break;
-    case KCalcToken::TokenCode::ASINH:
-        return ASINH_STR;
+    case KCalcToken::TokenCode::Asinh:
+        return asinhStr;
         break;
-    case KCalcToken::TokenCode::ACOSH:
-        return ACOSH_STR;
+    case KCalcToken::TokenCode::Acosh:
+        return acoshStr;
         break;
-    case KCalcToken::TokenCode::ATANH:
-        return ATANH_STR;
+    case KCalcToken::TokenCode::Atanh:
+        return atanhStr;
         break;
     case KCalcToken::TokenCode::E:
-        return E_STR;
+        return eStr;
         break;
-    case KCalcToken::TokenCode::PI:
-        return PI_STR;
+    case KCalcToken::TokenCode::Pi:
+        return piStr;
         break;
-    case KCalcToken::TokenCode::PHI:
-        return PHI_STR;
+    case KCalcToken::TokenCode::Phi:
+        return phiStr;
         break;
     case KCalcToken::TokenCode::I:
-        return I_STR;
+        return iStr;
         break;
-    case KCalcToken::TokenCode::POLAR:
-        return ANGLE_STR;
+    case KCalcToken::TokenCode::Polar:
+        return angleStr;
         break;
-    case KCalcToken::TokenCode::POS_INFINITY:
-        return POS_INFINITY_STR;
+    case KCalcToken::TokenCode::PosInfinity:
+        return posInfinityStr;
         break;
-    case KCalcToken::TokenCode::NEG_INFINITY:
-        return NEG_INFINITY_STR;
+    case KCalcToken::TokenCode::NegInfinity:
+        return negInfinityStr;
         break;
-    case KCalcToken::TokenCode::VACUUM_PERMITIVITY:
-        return VACUUM_PERMITIVITY_STR;
+    case KCalcToken::TokenCode::VacuumPermitivity:
+        return vacuumPermitivityStr;
         break;
-    case KCalcToken::TokenCode::VACUUM_PERMEABILITY:
-        return VACUUM_PERMEABILITY_STR;
+    case KCalcToken::TokenCode::VacuumPermeability:
+        return vacuumPermeabilityStr;
         break;
-    case KCalcToken::TokenCode::VACUUM_IMPEDANCE:
-        return VACUUM_IMPEDANCE_STR;
+    case KCalcToken::TokenCode::VacuumImpedance:
+        return vacuumImpedanceStr;
         break;
-    case KCalcToken::TokenCode::PLANCK_S_CONSTANT:
-        return PLANCK_S_CONSTANT_STR;
+    case KCalcToken::TokenCode::PlanckSConstant:
+        return plancksConstantStr;
         break;
-    case KCalcToken::TokenCode::PLANCK_OVER_2PI:
-        return PLANCK_S_OVER_2PI_STR;
+    case KCalcToken::TokenCode::PlanckOver2Pi:
+        return plancksOver2PiStr;
         break;
-    case KCalcToken::TokenCode::EXP:
-        return EXP_STR;
+    case KCalcToken::TokenCode::Exp:
+        return expStr;
         break;
-    case KCalcToken::TokenCode::EXP_10:
-        return EXP_10_STR;
+    case KCalcToken::TokenCode::Exp10:
+        return exp10Str;
         break;
-    case KCalcToken::TokenCode::POWER:
-        return POWER_STR;
+    case KCalcToken::TokenCode::Power:
+        return powerStr;
         break;
-    case KCalcToken::TokenCode::POWER_ROOT:
-        return POWER_ROOT_STR;
+    case KCalcToken::TokenCode::PowerRoot:
+        return powerRootStr;
         break;
-    case KCalcToken::TokenCode::FACTORIAL:
-        return FACTORIAL_STR;
+    case KCalcToken::TokenCode::Factorial:
+        return factorialStr;
         break;
-    case KCalcToken::TokenCode::DOUBLE_FACTORIAL:
-        return DOUBLE_FACTORIAL_STR;
+    case KCalcToken::TokenCode::DoubleFactorial:
+        return doubleFactorialStr;
         break;
-    case KCalcToken::TokenCode::GAMMA:
-        return GAMMA_STR;
+    case KCalcToken::TokenCode::Gamma:
+        return gammaStr;
         break;
-    case KCalcToken::TokenCode::INVERT_SIGN:
-        return INVERT_SIGN_STR;
+    case KCalcToken::TokenCode::InvertSign:
+        return invertSignStr;
         break;
-    case KCalcToken::TokenCode::LN:
-        return LN_STR;
+    case KCalcToken::TokenCode::Ln:
+        return lnStr;
         break;
-    case KCalcToken::TokenCode::LOG_10:
-        return LOG_10_STR;
+    case KCalcToken::TokenCode::Log10:
+        return log10Str;
         break;
-    case KCalcToken::TokenCode::RECIPROCAL:
-        return RECIPROCAL_STR;
+    case KCalcToken::TokenCode::Reciprocal:
+        return reciprocalStr;
         break;
-    case KCalcToken::TokenCode::BINOMIAL:
-        return THIN_SPACE_STR + BINOMIAL_STR + THIN_SPACE_STR;
+    case KCalcToken::TokenCode::Binomial:
+        return thinSpaceStr + binomialStr + thinSpaceStr;
         break;
-    case KCalcToken::TokenCode::MODULO:
-        return THIN_SPACE_STR + MODULO_STR + THIN_SPACE_STR;
+    case KCalcToken::TokenCode::Modulo:
+        return thinSpaceStr + moduloStr + thinSpaceStr;
         break;
-    case KCalcToken::TokenCode::INTEGER_DIVISION:
-        return THIN_SPACE_STR + INTEGER_DIVISION_STR + THIN_SPACE_STR;
+    case KCalcToken::TokenCode::IntegerDivision:
+        return thinSpaceStr + integerDivisionStr + thinSpaceStr;
         break;
-    case KCalcToken::TokenCode::AND:
-        return THIN_SPACE_STR + AND_STR + THIN_SPACE_STR;
+    case KCalcToken::TokenCode::And:
+        return thinSpaceStr + andStr + thinSpaceStr;
         break;
-    case KCalcToken::TokenCode::OR:
-        return THIN_SPACE_STR + OR_STR + THIN_SPACE_STR;
+    case KCalcToken::TokenCode::Or:
+        return thinSpaceStr + orStr + thinSpaceStr;
         break;
-    case KCalcToken::TokenCode::XOR:
-        return THIN_SPACE_STR + XOR_STR + THIN_SPACE_STR;
+    case KCalcToken::TokenCode::Xor:
+        return thinSpaceStr + xorStr + thinSpaceStr;
         break;
-    case KCalcToken::TokenCode::ONE_S_COMPLEMENT:
-        return ONE_S_COMP_STR;
+    case KCalcToken::TokenCode::OnesComplement:
+        return onesCompStr;
         break;
-    case KCalcToken::TokenCode::TWO_S_COMPLEMENT:
-        return TWO_S_COMP_STR;
+    case KCalcToken::TokenCode::TwosComplement:
+        return twosCompStr;
         break;
-    case KCalcToken::TokenCode::RSH:
-        return THIN_SPACE_STR + RSH_STR + THIN_SPACE_STR;
+    case KCalcToken::TokenCode::Rsh:
+        return thinSpaceStr + rshStr + thinSpaceStr;
         break;
-    case KCalcToken::TokenCode::LSH:
-        return THIN_SPACE_STR + LSH_STR + THIN_SPACE_STR;
+    case KCalcToken::TokenCode::Lsh:
+        return thinSpaceStr + lshStr + thinSpaceStr;
         break;
-    case KCalcToken::TokenCode::ANS:
-        return THIN_SPACE_STR + ANS_STR + THIN_SPACE_STR;
+    case KCalcToken::TokenCode::Ans:
+        return thinSpaceStr + ansStr + thinSpaceStr;
         break;
-    case KCalcToken::TokenCode::EQUAL:
-        return EQUAL_STR;
+    case KCalcToken::TokenCode::Equal:
+        return equalStr;
         break;
     default:
         break;
     }
-    return ERROR_STR;
+    return errorStr;
 }
 
 int KCalcParser::loadConstants(const QDomDocument &doc)
@@ -867,7 +843,7 @@ int KCalcParser::loadConstants(const QDomDocument &doc)
             const QString value = e.attributeNode(QStringLiteral("value")).value();
             const QString symbol = e.attributeNode(QStringLiteral("symbol")).value();
 
-            constants_.insert(symbol, value);
+            m_constants.insert(symbol, value);
         }
         n = n.nextSibling();
     }
@@ -878,12 +854,12 @@ int KCalcParser::loadConstants(const QDomDocument &doc)
 //------------------------------------------------------------------------------
 // Name: constantSymbolToValue_
 // Desc: tries to find a given constant in the stored constants list, returns
-//       true if found, loads value in token_KNumber_
+//       true if found, loads value in tokenKNumber
 //------------------------------------------------------------------------------
-bool KCalcParser::constantSymbolToValue_(const QString &constantSymbol)
+bool KCalcParser::constantSymbolToValue(const QString &constantSymbol)
 {
-    if (constants_.contains(constantSymbol)) {
-        token_KNumber_ = constants_.value(constantSymbol);
+    if (m_constants.contains(constantSymbol)) {
+        m_tokenKNumber = m_constants.value(constantSymbol);
         m_inputHasConstants = true;
         return true;
     }

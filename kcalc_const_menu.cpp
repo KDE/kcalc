@@ -14,7 +14,7 @@
 
 namespace
 {
-QList<science_constant> scienceConstantList;
+QList<ScienceConstant> scienceConstantList;
 
 ConstantCategory stringToCategory(const QString &s)
 {
@@ -42,9 +42,9 @@ ConstantCategory stringToCategory(const QString &s)
     return Mathematics;
 }
 
-}
+} // namespace
 
-void KCalcConstMenu::init_consts(QDomDocument &doc)
+void KCalcConstMenu::initConsts(QDomDocument &doc)
 {
     // print out the element names of all elements that are direct children
     // of the outermost element.
@@ -54,67 +54,72 @@ void KCalcConstMenu::init_consts(QDomDocument &doc)
     while (!n.isNull()) {
         QDomElement e = n.toElement(); // try to convert the node to an element.
         if (!e.isNull() && e.tagName() == QLatin1String("constant")) {
-            science_constant tmp_const;
+            ScienceConstant tmpConst;
 
-            tmp_const.name = e.attributeNode(QStringLiteral("name")).value();
-            tmp_const.label = e.attributeNode(QStringLiteral("symbol")).value();
-            tmp_const.value = e.attributeNode(QStringLiteral("value")).value();
+            tmpConst.name = e.attributeNode(QStringLiteral("name")).value();
+            tmpConst.label = e.attributeNode(QStringLiteral("symbol")).value();
+            tmpConst.value = e.attributeNode(QStringLiteral("value")).value();
 
-            QString tmp_str_category = e.attributeNode(QStringLiteral("category")).value();
+            QString tmpStrCategory = e.attributeNode(QStringLiteral("category")).value();
 
-            tmp_const.category = stringToCategory(tmp_str_category);
-            tmp_const.whatsthis = e.firstChildElement(QStringLiteral("description")).text();
+            tmpConst.category = stringToCategory(tmpStrCategory);
+            tmpConst.whatsthis = e.firstChildElement(QStringLiteral("description")).text();
 
-            scienceConstantList.append(tmp_const);
+            scienceConstantList.append(tmpConst);
         }
         n = n.nextSibling();
     }
 }
 
-void KCalcConstMenu::init_all()
+void KCalcConstMenu::initAll()
 {
-    QMenu *math_menu = addMenu(i18n("Mathematics"));
-    QMenu *em_menu = addMenu(i18n("Electromagnetism"));
-    QMenu *nuclear_menu = addMenu(i18n("Atomic && Nuclear"));
-    QMenu *thermo_menu = addMenu(i18n("Thermodynamics"));
-    QMenu *gravitation_menu = addMenu(i18n("Gravitation"));
+    QMenu *mathMenu = addMenu(i18n("Mathematics"));
+    QMenu *emMenu = addMenu(i18n("Electromagnetism"));
+    QMenu *nuclearMenu = addMenu(i18n("Atomic && Nuclear"));
+    QMenu *thermoMenu = addMenu(i18n("Thermodynamics"));
+    QMenu *gravitationMenu = addMenu(i18n("Gravitation"));
 
     connect(this, &KCalcConstMenu::triggered, this, &KCalcConstMenu::slotPassSignalThrough);
 
     for (int i = 0, total = scienceConstantList.size(); i < total; ++i) {
         const auto scienceConstantListItem = scienceConstantList.at(i);
-        auto tmp_action = new QAction(i18n(scienceConstantListItem.name.toLatin1().data()), this);
-        tmp_action->setData(QVariant(i));
-        if (scienceConstantListItem.category & Mathematics)
-            math_menu->addAction(tmp_action);
-        if (scienceConstantListItem.category & Electromagnetic)
-            em_menu->addAction(tmp_action);
-        if (scienceConstantListItem.category & Nuclear)
-            nuclear_menu->addAction(tmp_action);
-        if (scienceConstantListItem.category & Thermodynamics)
-            thermo_menu->addAction(tmp_action);
-        if (scienceConstantListItem.category & Gravitation)
-            gravitation_menu->addAction(tmp_action);
+        auto tmpAction = new QAction(i18n(scienceConstantListItem.name.toLatin1().data()), this);
+        tmpAction->setData(QVariant(i));
+        if (scienceConstantListItem.category & Mathematics) {
+            mathMenu->addAction(tmpAction);
+        }
+        if (scienceConstantListItem.category & Electromagnetic) {
+            emMenu->addAction(tmpAction);
+        }
+        if (scienceConstantListItem.category & Nuclear) {
+            nuclearMenu->addAction(tmpAction);
+        }
+        if (scienceConstantListItem.category & Thermodynamics) {
+            thermoMenu->addAction(tmpAction);
+        }
+        if (scienceConstantListItem.category & Gravitation) {
+            gravitationMenu->addAction(tmpAction);
+        }
     }
 }
 
-void KCalcConstMenu::slotPassSignalThrough(QAction *chosen_const)
+void KCalcConstMenu::slotPassSignalThrough(QAction *chosenConst)
 {
-    bool tmp_bool;
-    int chosen_const_idx = (chosen_const->data()).toInt(&tmp_bool);
-    Q_EMIT triggeredConstant(scienceConstantList.at(chosen_const_idx));
+    bool tmpBool = false;
+    int chosenConstIdx = (chosenConst->data()).toInt(&tmpBool);
+    Q_EMIT triggeredConstant(scienceConstantList.at(chosenConstIdx));
 }
 
 KCalcConstMenu::KCalcConstMenu(const QString &title, QWidget *parent)
     : QMenu(title, parent)
 {
-    init_all();
+    initAll();
 }
 
 KCalcConstMenu::KCalcConstMenu(QWidget *parent)
     : QMenu(parent)
 {
-    init_all();
+    initAll();
 }
 
 #include "moc_kcalc_const_menu.cpp"

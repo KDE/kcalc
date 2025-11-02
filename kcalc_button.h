@@ -68,9 +68,9 @@ private:
     void calcSizeHint();
 
 private:
-    bool show_shortcut_mode_ = false;
-    ButtonModeFlags mode_flags_;
-    QMap<ButtonModeFlags, ButtonMode> mode_;
-    QSize size_;
-    QColor text_color_;
+    bool m_showShortcutMode = false;
+    ButtonModeFlags m_modeFlags;
+    QMap<ButtonModeFlags, ButtonMode> m_mode;
+    QSize m_size;
+    QColor m_textColor;
 };

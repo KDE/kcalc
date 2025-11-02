@@ -6,6 +6,7 @@
 
 #include "kcalc_history.h"
 #include "kcalc_settings.h"
+#include <math.h>
 
 //------------------------------------------------------------------------------
 // Name: KCalcHistory
@@ -13,13 +14,11 @@
 //------------------------------------------------------------------------------
 KCalcHistory::KCalcHistory(QWidget *parent)
     : QTextEdit(parent)
+    , m_idealPointSizeF(currentFont().pointSizeF())
 {
     setReadOnly(true);
     setWordWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
     setProperty("_breeze_borders_sides", QVariant::fromValue(QFlags{Qt::LeftEdge}));
-
-    // Initialize idealPointSizeF_
-    idealPointSizeF_ = currentFont().pointSizeF();
 }
 
 //------------------------------------------------------------------------------
@@ -32,32 +31,32 @@ KCalcHistory::~KCalcHistory() = default;
 // Name: addToHistory
 // Desc: Adds the latest calculations to  history window
 //------------------------------------------------------------------------------
-void KCalcHistory::addToHistory(const QString &str, bool set_new_line_)
+void KCalcHistory::addToHistory(const QString &str, bool setNewLine)
 {
     // QTextEdit's cursor location might be changed by mouse clicks.
     // We have to move the cursor to correct position.
 
     //  Ensures the cursor goes back to topmost line's end during a calculation.
     //  1 + 1 + _
-    if (!add_new_line_ && !set_new_line_) {
+    if (!m_addNewLine && !setNewLine) {
         moveCursor(QTextCursor::Start);
         moveCursor(QTextCursor::EndOfLine);
     }
 
     // add_new_line_ is false on launch and after clearHistory()
     // so the first line doesn't get an unnecessary new line
-    if (add_new_line_) {
+    if (m_addNewLine) {
         moveCursor(QTextCursor::Start);
         insertHtml(QStringLiteral("<br>"));
         moveCursor(QTextCursor::Start);
-        add_new_line_ = false;
+        m_addNewLine = false;
     }
 
     insertHtml(str);
 
-    if (set_new_line_) {
+    if (setNewLine) {
         moveCursor(QTextCursor::Start);
-        add_new_line_ = true;
+        m_addNewLine = true;
     }
 
     setAlignment(Qt::AlignRight);
@@ -69,9 +68,9 @@ void KCalcHistory::addToHistory(const QString &str, bool set_new_line_)
 // Desc: Used mostly for functions that are not in CalcEngine::Operation
 //       adds "=" and the result with newline endings
 //------------------------------------------------------------------------------
-void KCalcHistory::addResultToHistory(const QString &display_content)
+void KCalcHistory::addResultToHistory(const QString &displayContent)
 {
-    addToHistory(/*QStringLiteral("&nbsp;=&nbsp;") +*/ display_content, true);
+    addToHistory(/*QStringLiteral("&nbsp;=&nbsp;") +*/ displayContent, true);
 }
 
 //------------------------------------------------------------------------------
@@ -91,7 +90,7 @@ void KCalcHistory::addFuncToHistory(const QString &func)
 void KCalcHistory::clearHistory()
 {
     clear();
-    add_new_line_ = false;
+    m_addNewLine = false;
 }
 
 //------------------------------------------------------------------------------
@@ -118,7 +117,7 @@ void KCalcHistory::changeSettings()
 void KCalcHistory::setFont(const QFont &font)
 {
     // Overwrite current baseFont
-    baseFont_ = font;
+    m_baseFont = font;
     updateFont();
 }
 
@@ -133,8 +132,8 @@ void KCalcHistory::updateFont(double zoomFactor)
 
     // Calculate actual font size by keeping the ratio, keeping previous zoomFactor, using historyFont as minimum size
     double ratio = (minimumSize().width() - contentsMargins().left() - contentsMargins().right()) / baseFont().pointSizeF();
-    idealPointSizeF_ = contentsRect().width() / ratio;
-    newFont.setPointSizeF(qMax(double(baseFont().pointSizeF()), idealPointSizeF_) * zoomFactor);
+    m_idealPointSizeF = contentsRect().width() / ratio;
+    newFont.setPointSizeF(qMax(double(baseFont().pointSizeF()), m_idealPointSizeF) * zoomFactor);
 
     // Apply font
     QTextEdit::setFont(newFont);
@@ -146,7 +145,7 @@ void KCalcHistory::updateFont(double zoomFactor)
 //------------------------------------------------------------------------------
 const QFont &KCalcHistory::baseFont() const
 {
-    return baseFont_;
+    return m_baseFont;
 }
 
 //------------------------------------------------------------------------------
@@ -158,7 +157,7 @@ void KCalcHistory::resizeEvent(QResizeEvent *event)
     QTextEdit::resizeEvent(event);
 
     // Determine current zoom
-    double zoomFactor = currentFont().pointSizeF() / idealPointSizeF_;
+    double zoomFactor = currentFont().pointSizeF() / m_idealPointSizeF;
 
     // Update font size
     updateFont(zoomFactor);

@@ -12,433 +12,433 @@
 //------------------------------------------------------------------------------
 KCalcToken::KCalcToken()
 {
-    this->resetToken_();
+    this->resetToken();
 }
 
-KCalcToken::KCalcToken(const KNumber &kNumber)
+KCalcToken::KCalcToken(const class KNumber &kNumber)
     : KCalcToken()
 {
-    kNumber_ = kNumber;
-    token_Code_ = KNUMBER;
-    is_KNumber_ = true;
-    token_Type_ = KNUMBER_TYPE;
+    this->m_kNumber = kNumber;
+    m_tokenCode = Knumber;
+    m_isKNumber = true;
+    m_tokenType = KNumberType;
 }
 
-KCalcToken::KCalcToken(const KNumber &kNumber, int stringIndex)
+KCalcToken::KCalcToken(const class KNumber &kNumber, int stringIndex)
     : KCalcToken(kNumber)
 {
-    string_index_ = stringIndex;
+    m_stringIndex = stringIndex;
 }
 
 KCalcToken::KCalcToken(TokenCode tokenCode)
     : KCalcToken()
 {
-    this->setToken_(tokenCode);
+    this->setToken(tokenCode);
 }
 
 KCalcToken::KCalcToken(TokenCode tokenCode, int stringIndex)
     : KCalcToken(tokenCode)
 {
-    string_index_ = stringIndex;
+    m_stringIndex = stringIndex;
 }
 
-void KCalcToken::updateToken(const KNumber &kNumber)
+void KCalcToken::updateToken(const class KNumber &kNumber)
 {
-    this->resetToken_();
-    kNumber_ = kNumber;
-    token_Code_ = KNUMBER;
-    is_KNumber_ = true;
-    token_Type_ = KNUMBER_TYPE;
+    this->resetToken();
+    this->m_kNumber = kNumber;
+    m_tokenCode = Knumber;
+    m_isKNumber = true;
+    m_tokenType = KNumberType;
 }
 
 void KCalcToken::updateToken(TokenCode tokenCode)
 {
-    this->resetToken_();
-    this->setToken_(tokenCode);
+    this->resetToken();
+    this->setToken(tokenCode);
 }
 
-void KCalcToken::setToken_(TokenCode tokenCode)
+void KCalcToken::setToken(TokenCode tokenCode)
 {
-    token_Code_ = tokenCode;
+    this->m_tokenCode = tokenCode;
 
     switch (tokenCode) {
-    case KNUMBER:
-        is_KNumber_ = true;
-        token_Type_ = KNUMBER_TYPE;
+    case Knumber:
+        m_isKNumber = true;
+        m_tokenType = KNumberType;
         break;
-    case DECIMAL_POINT:
+    case DecimalPoint:
         break;
-    case PLUS:
-        set_Binary_Token_(CalcEngine_p::ExecAdd, ADD_PRIORITY_LEVEL);
+    case Plus:
+        setBinaryToken(CalcEngineP::execAdd, ADD_PRIORITY_LEVEL);
         break;
-    case MINUS:
-        set_Binary_Token_(CalcEngine_p::ExecSubtract, SUB_PRIORITY_LEVEL);
+    case Minus:
+        setBinaryToken(CalcEngineP::execSubtract, SUB_PRIORITY_LEVEL);
         break;
-    case DIVISION:
-    case SLASH:
-        set_Binary_Token_(CalcEngine_p::ExecDivide, DIV_PRIORITY_LEVEL);
+    case Division:
+    case Slash:
+        setBinaryToken(CalcEngineP::execDivide, DIV_PRIORITY_LEVEL);
         break;
-    case MULTIPLICATION:
-    case DOT:
-    case ASTERISK:
-        set_Binary_Token_(CalcEngine_p::ExecMultiply, MUL_PRIORITY_LEVEL);
+    case Multiplication:
+    case Dot:
+    case Asterisk:
+        setBinaryToken(CalcEngineP::execMultiply, MUL_PRIORITY_LEVEL);
         break;
-    case PERCENTAGE:
-        set_Left_Unary_Token_(CalcEngine_p::Percentage, PERCENTAGE_PRIORITY_LEVEL);
+    case Percentage:
+        setLeftUnaryToken(CalcEngineP::percentage, PERCENTAGE_PRIORITY_LEVEL);
         break;
-    case OPENING_PARENTHESIS:
-        is_Opening_Parentheses_ = true;
-        token_Type_ = OPENING_PARENTHESES_TYPE;
+    case OpeningParenthesis:
+        m_isOpeningParentheses = true;
+        m_tokenType = OpeningParenthesesType;
         break;
-    case CLOSING_PARENTHESIS:
-        is_Closing_Parentheses_ = true;
-        token_Type_ = CLOSING_PARENTHESES_TYPE;
+    case ClosingParenthesis:
+        m_isClosingParentheses = true;
+        m_tokenType = ClosingParenthesesType;
         break;
-    case SQUARE:
-        set_Left_Unary_Token_(CalcEngine_p::Square, SQUARE_PRIORITY_LEVEL);
+    case Square:
+        setLeftUnaryToken(CalcEngineP::square, SQUARE_PRIORITY_LEVEL);
         break;
-    case CUBE:
-        set_Left_Unary_Token_(CalcEngine_p::Cube, CUBE_PRIORITY_LEVEL);
+    case Cube:
+        setLeftUnaryToken(CalcEngineP::cube, CUBE_PRIORITY_LEVEL);
         break;
-    case SQUARE_ROOT:
-        set_Right_UnaryToken_(CalcEngine_p::SquareRoot, SQUARE_ROOT_PRIORITY_LEVEL);
+    case SquareRoot:
+        setRightUnaryToken(CalcEngineP::squareRoot, SQUARE_ROOT_PRIORITY_LEVEL);
         break;
-    case CUBIC_ROOT:
-        set_Right_UnaryToken_(CalcEngine_p::CubeRoot, CUBIC_ROOT_PRIORITY_LEVEL);
+    case CubicRoot:
+        setRightUnaryToken(CalcEngineP::cubeRoot, CUBIC_ROOT_PRIORITY_LEVEL);
         break;
-    case SIN:
-    case SIN_RAD:
-        set_Right_UnaryToken_(CalcEngine_p::SinRad, SIN_PRIORITY_LEVEL);
+    case Sin:
+    case SinRad:
+        setRightUnaryToken(CalcEngineP::sinRad, SIN_PRIORITY_LEVEL);
         break;
-    case COS:
-    case COS_RAD:
-        set_Right_UnaryToken_(CalcEngine_p::CosRad, COS_PRIORITY_LEVEL);
+    case Cos:
+    case CosRad:
+        setRightUnaryToken(CalcEngineP::cosRad, COS_PRIORITY_LEVEL);
         break;
-    case TAN:
-    case TAN_RAD:
-        set_Right_UnaryToken_(CalcEngine_p::TangensRad, TAN_PRIORITY_LEVEL);
+    case Tan:
+    case TanRad:
+        setRightUnaryToken(CalcEngineP::tangensRad, TAN_PRIORITY_LEVEL);
         break;
-    case SIN_DEG:
-        set_Right_UnaryToken_(CalcEngine_p::SinDeg, SIN_PRIORITY_LEVEL);
+    case SinDeg:
+        setRightUnaryToken(CalcEngineP::sinDeg, SIN_PRIORITY_LEVEL);
         break;
-    case COS_DEG:
-        set_Right_UnaryToken_(CalcEngine_p::CosDeg, COS_PRIORITY_LEVEL);
+    case CosDeg:
+        setRightUnaryToken(CalcEngineP::cosDeg, COS_PRIORITY_LEVEL);
         break;
-    case TAN_DEG:
-        set_Right_UnaryToken_(CalcEngine_p::TangensDeg, TAN_PRIORITY_LEVEL);
+    case TanDeg:
+        setRightUnaryToken(CalcEngineP::tangensDeg, TAN_PRIORITY_LEVEL);
         break;
-    case SIN_GRAD:
-        set_Right_UnaryToken_(CalcEngine_p::SinGrad, SIN_PRIORITY_LEVEL);
+    case SinGrad:
+        setRightUnaryToken(CalcEngineP::sinGrad, SIN_PRIORITY_LEVEL);
         break;
-    case COS_GRAD:
-        set_Right_UnaryToken_(CalcEngine_p::CosGrad, COS_PRIORITY_LEVEL);
+    case CosGrad:
+        setRightUnaryToken(CalcEngineP::cosGrad, COS_PRIORITY_LEVEL);
         break;
-    case TAN_GRAD:
-        set_Right_UnaryToken_(CalcEngine_p::TangensGrad, TAN_PRIORITY_LEVEL);
+    case TanGrad:
+        setRightUnaryToken(CalcEngineP::tangensGrad, TAN_PRIORITY_LEVEL);
         break;
-    case POLAR_RAD:
-        set_Right_UnaryToken_(CalcEngine_p::PolarRad, POLAR_PRIORITY_LEVEL);
+    case PolarRad:
+        setRightUnaryToken(CalcEngineP::polarRad, POLAR_PRIORITY_LEVEL);
         break;
-    case POLAR_DEG:
-        set_Right_UnaryToken_(CalcEngine_p::PolarDeg, POLAR_PRIORITY_LEVEL);
+    case PolarDeg:
+        setRightUnaryToken(CalcEngineP::polarDeg, POLAR_PRIORITY_LEVEL);
         break;
-    case POLAR_GRAD:
-        set_Right_UnaryToken_(CalcEngine_p::PolarGrad, POLAR_PRIORITY_LEVEL);
+    case PolarGrad:
+        setRightUnaryToken(CalcEngineP::polarGrad, POLAR_PRIORITY_LEVEL);
         break;
-    case ARG_RAD:
-        set_Right_UnaryToken_(CalcEngine_p::ArgumentRad, TAN_PRIORITY_LEVEL);
+    case ArgRad:
+        setRightUnaryToken(CalcEngineP::argumentRad, TAN_PRIORITY_LEVEL);
         break;
-    case ARG_DEG:
-        set_Right_UnaryToken_(CalcEngine_p::ArgumentDeg, TAN_PRIORITY_LEVEL);
+    case ArgDeg:
+        setRightUnaryToken(CalcEngineP::argumentDeg, TAN_PRIORITY_LEVEL);
         break;
-    case ARG_GRAD:
-        set_Right_UnaryToken_(CalcEngine_p::ArgumentGrad, TAN_PRIORITY_LEVEL);
+    case ArgGrad:
+        setRightUnaryToken(CalcEngineP::argumentGrad, TAN_PRIORITY_LEVEL);
         break;
-    case RE:
-        set_Right_UnaryToken_(CalcEngine_p::Real, TAN_PRIORITY_LEVEL);
+    case Re:
+        setRightUnaryToken(CalcEngineP::real, TAN_PRIORITY_LEVEL);
         break;
-    case IM:
-        set_Right_UnaryToken_(CalcEngine_p::Imaginary, TAN_PRIORITY_LEVEL);
+    case Im:
+        setRightUnaryToken(CalcEngineP::imaginary, TAN_PRIORITY_LEVEL);
         break;
-    case CONJ:
-        set_Right_UnaryToken_(CalcEngine_p::Conjugate, TAN_PRIORITY_LEVEL);
+    case Conj:
+        setRightUnaryToken(CalcEngineP::conjugate, TAN_PRIORITY_LEVEL);
         break;
-    case ASIN:
-    case ASIN_RAD:
-        set_Right_UnaryToken_(CalcEngine_p::ArcSinRad, ASIN_PRIORITY_LEVEL);
+    case Asin:
+    case AsinRad:
+        setRightUnaryToken(CalcEngineP::arcSinRad, ASIN_PRIORITY_LEVEL);
         break;
-    case ASIN_DEG:
-        set_Right_UnaryToken_(CalcEngine_p::ArcSinDeg, ASIN_PRIORITY_LEVEL);
+    case AsinDeg:
+        setRightUnaryToken(CalcEngineP::arcSinDeg, ASIN_PRIORITY_LEVEL);
         break;
-    case ASIN_GRAD:
-        set_Right_UnaryToken_(CalcEngine_p::ArcSinGrad, ASIN_PRIORITY_LEVEL);
+    case AsinGrad:
+        setRightUnaryToken(CalcEngineP::arcSinGrad, ASIN_PRIORITY_LEVEL);
         break;
-    case ACOS:
-    case ACOS_RAD:
-        set_Right_UnaryToken_(CalcEngine_p::ArcCosRad, ACOS_PRIORITY_LEVEL);
+    case Acos:
+    case AcosRad:
+        setRightUnaryToken(CalcEngineP::arcCosRad, ACOS_PRIORITY_LEVEL);
         break;
-    case ACOS_DEG:
-        set_Right_UnaryToken_(CalcEngine_p::ArcCosDeg, ACOS_PRIORITY_LEVEL);
+    case AcosDeg:
+        setRightUnaryToken(CalcEngineP::arcCosDeg, ACOS_PRIORITY_LEVEL);
         break;
-    case ACOS_GRAD:
-        set_Right_UnaryToken_(CalcEngine_p::ArcCosGrad, ACOS_PRIORITY_LEVEL);
+    case AcosGrad:
+        setRightUnaryToken(CalcEngineP::arcCosGrad, ACOS_PRIORITY_LEVEL);
         break;
-    case ATAN:
-    case ATAN_RAD:
-        set_Right_UnaryToken_(CalcEngine_p::ArcTangensRad, ATAN_PRIORITY_LEVEL);
+    case Atan:
+    case AtanRad:
+        setRightUnaryToken(CalcEngineP::arcTangensRad, ATAN_PRIORITY_LEVEL);
         break;
-    case ATAN_DEG:
-        set_Right_UnaryToken_(CalcEngine_p::ArcTangensDeg, ATAN_PRIORITY_LEVEL);
+    case AtanDeg:
+        setRightUnaryToken(CalcEngineP::arcTangensDeg, ATAN_PRIORITY_LEVEL);
         break;
-    case ATAN_GRAD:
-        set_Right_UnaryToken_(CalcEngine_p::ArcTangensGrad, ATAN_PRIORITY_LEVEL);
+    case AtanGrad:
+        setRightUnaryToken(CalcEngineP::arcTangensGrad, ATAN_PRIORITY_LEVEL);
         break;
-    case SINH:
-        set_Right_UnaryToken_(CalcEngine_p::SinHyp, SINH_PRIORITY_LEVEL);
+    case Sinh:
+        setRightUnaryToken(CalcEngineP::sinHyp, SINH_PRIORITY_LEVEL);
         break;
-    case COSH:
-        set_Right_UnaryToken_(CalcEngine_p::CosHyp, COSH_PRIORITY_LEVEL);
+    case Cosh:
+        setRightUnaryToken(CalcEngineP::cosHyp, COSH_PRIORITY_LEVEL);
         break;
-    case TANH:
-        set_Right_UnaryToken_(CalcEngine_p::TangensHyp, TANH_PRIORITY_LEVEL);
+    case Tanh:
+        setRightUnaryToken(CalcEngineP::tangensHyp, TANH_PRIORITY_LEVEL);
         break;
-    case ASINH:
-        set_Right_UnaryToken_(CalcEngine_p::AreaSinHyp, ASINH_PRIORITY_LEVEL);
+    case Asinh:
+        setRightUnaryToken(CalcEngineP::areaSinHyp, ASINH_PRIORITY_LEVEL);
         break;
-    case ACOSH:
-        set_Right_UnaryToken_(CalcEngine_p::AreaCosHyp, ACOSH_PRIORITY_LEVEL);
+    case Acosh:
+        setRightUnaryToken(CalcEngineP::areaCosHyp, ACOSH_PRIORITY_LEVEL);
         break;
-    case ATANH:
-        set_Right_UnaryToken_(CalcEngine_p::AreaTangensHyp, ATANH_PRIORITY_LEVEL);
+    case Atanh:
+        setRightUnaryToken(CalcEngineP::areaTangensHyp, ATANH_PRIORITY_LEVEL);
         break;
-    case GAMMA:
-        set_Right_UnaryToken_(CalcEngine_p::Gamma, GAMMA_PRIORITY_LEVEL);
+    case Gamma:
+        setRightUnaryToken(CalcEngineP::gamma, GAMMA_PRIORITY_LEVEL);
         break;
-    case FACTORIAL:
-        set_Left_Unary_Token_(CalcEngine_p::Factorial, FACTORIAL_PRIORITY_LEVEL);
+    case Factorial:
+        setLeftUnaryToken(CalcEngineP::factorial, FACTORIAL_PRIORITY_LEVEL);
         break;
-    case POWER:
-        set_Binary_Token_(CalcEngine_p::ExecPower, POWER_PRIORITY_LEVEL);
+    case Power:
+        setBinaryToken(CalcEngineP::execPower, POWER_PRIORITY_LEVEL);
         break;
-    case POWER_ROOT:
-        set_Binary_Token_(CalcEngine_p::ExecPwrRoot, POWER_ROOT_PRIORITY_LEVEL);
+    case PowerRoot:
+        setBinaryToken(CalcEngineP::execPwrRoot, POWER_ROOT_PRIORITY_LEVEL);
         break;
-    case EXP:
-        set_Right_UnaryToken_(CalcEngine_p::Exp, EXP_PRIORITY_LEVEL);
+    case Exp:
+        setRightUnaryToken(CalcEngineP::exp, EXP_PRIORITY_LEVEL);
         break;
-    case EXP_10:
-        set_Right_UnaryToken_(CalcEngine_p::Exp10, EXP_10_PRIORITY_LEVEL);
+    case Exp10:
+        setRightUnaryToken(CalcEngineP::exp10, EXP_10_PRIORITY_LEVEL);
         break;
-    case LN:
-        set_Right_UnaryToken_(CalcEngine_p::Ln, LN_PRIORITY_LEVEL);
+    case Ln:
+        setRightUnaryToken(CalcEngineP::ln, LN_PRIORITY_LEVEL);
         break;
-    case LOG_10:
-        set_Right_UnaryToken_(CalcEngine_p::Log10, LOG_10_PRIORITY_LEVEL);
+    case Log10:
+        setRightUnaryToken(CalcEngineP::log10, LOG_10_PRIORITY_LEVEL);
         break;
-    case INVERT_SIGN:
-        set_Right_UnaryToken_(CalcEngine_p::InvertSign, INVERTSIGN_PRIORITY_LEVEL);
+    case InvertSign:
+        setRightUnaryToken(CalcEngineP::invertSign, INVERTSIGN_PRIORITY_LEVEL);
         break;
-    case RECIPROCAL:
-        set_Left_Unary_Token_(CalcEngine_p::Reciprocal, RECIPROCAL_ROOT_PRIORITY_LEVEL);
+    case Reciprocal:
+        setLeftUnaryToken(CalcEngineP::reciprocal, RECIPROCAL_ROOT_PRIORITY_LEVEL);
         break;
-    case BINOMIAL:
-        set_Binary_Token_(CalcEngine_p::ExecBinom, BINOMIAL_PRIORITY_LEVEL);
+    case Binomial:
+        setBinaryToken(CalcEngineP::execBinom, BINOMIAL_PRIORITY_LEVEL);
         break;
-    case MODULO:
-        set_Binary_Token_(CalcEngine_p::ExecMod, MODULO_PRIORITY_LEVEL);
+    case Modulo:
+        setBinaryToken(CalcEngineP::execMod, MODULO_PRIORITY_LEVEL);
         break;
-    case INTEGER_DIVISION:
-        set_Binary_Token_(CalcEngine_p::ExecIntDiv, INTEGER_DIVISION_PRIORITY_LEVEL);
+    case IntegerDivision:
+        setBinaryToken(CalcEngineP::execIntDiv, INTEGER_DIVISION_PRIORITY_LEVEL);
         break;
-    case AND:
-        set_Binary_Token_(CalcEngine_p::ExecAnd, AND_PRIORITY_LEVEL);
+    case And:
+        setBinaryToken(CalcEngineP::execAnd, AND_PRIORITY_LEVEL);
         break;
-    case OR:
-        set_Binary_Token_(CalcEngine_p::ExecOr, OR_PRIORITY_LEVEL);
+    case Or:
+        setBinaryToken(CalcEngineP::execOr, OR_PRIORITY_LEVEL);
         break;
-    case XOR:
-        set_Binary_Token_(CalcEngine_p::ExecXor, XOR_PRIORITY_LEVEL);
+    case Xor:
+        setBinaryToken(CalcEngineP::execXor, XOR_PRIORITY_LEVEL);
         break;
-    case ONE_S_COMPLEMENT:
-        set_Right_UnaryToken_(CalcEngine_p::Complement, ONE_S_COMPLEMENT_PRIORITY_LEVEL);
+    case OnesComplement:
+        setRightUnaryToken(CalcEngineP::complement, ONE_S_COMPLEMENT_PRIORITY_LEVEL);
         break;
-    case RSH:
-        set_Binary_Token_(CalcEngine_p::ExecRsh, RSH_STR_PRIORITY_LEVEL);
+    case Rsh:
+        setBinaryToken(CalcEngineP::execRsh, RSH_STR_PRIORITY_LEVEL);
         break;
-    case LSH:
-        set_Binary_Token_(CalcEngine_p::ExecLsh, LSH_STR_PRIORITY_LEVEL);
+    case Lsh:
+        setBinaryToken(CalcEngineP::execLsh, LSH_STR_PRIORITY_LEVEL);
         break;
-    case ANS:
-        is_KNumber_ = true;
-        token_Type_ = KNUMBER_TYPE;
+    case Ans:
+        m_isKNumber = true;
+        m_tokenType = KNumberType;
         break;
-    case EQUAL:
+    case Equal:
         break;
-    case INVALID_TOKEN:
+    case InvalidToken:
         break;
-    case PERMILLE:
-    case TWO_S_COMPLEMENT:
-    case DOUBLE_FACTORIAL:
-    case DEGREE:
-    case GRADIAN:
-    case RADIAN:
+    case Permille:
+    case TwosComplement:
+    case DoubleFactorial:
+    case Degree:
+    case Gradian:
+    case Radian:
     default:
         qCDebug(KCALC_LOG) << "Not implemented token ";
         break;
     }
 }
 
-void inline KCalcToken::set_Left_Unary_Token_(Unary_Function_Ptr function, int priorityLevel)
+void inline KCalcToken::setLeftUnaryToken(Unary_Function_Ptr function, int priorityLevel)
 {
-    unary_Function_Ptr_ = function;
-    priority_level_ = priorityLevel;
-    is_Left_Unary_Function_ = true;
-    token_Type_ = LEFT_UNARY_FUNCTION_TYPE;
+    m_unaryFunctionPtr = function;
+    m_priorityLevel = priorityLevel;
+    m_isLeftUnaryFunction = true;
+    m_tokenType = LeftUnaryFunctionType;
 }
 
-void inline KCalcToken::set_Right_UnaryToken_(Unary_Function_Ptr function, int priorityLevel)
+void inline KCalcToken::setRightUnaryToken(Unary_Function_Ptr function, int priorityLevel)
 {
-    unary_Function_Ptr_ = function;
-    priority_level_ = priorityLevel;
-    is_Right_Unary_Function_ = true;
-    token_Type_ = RIGHT_UNARY_FUNCTION_TYPE;
+    m_unaryFunctionPtr = function;
+    m_priorityLevel = priorityLevel;
+    m_isRightUnaryFunction = true;
+    m_tokenType = RightUnaryFunctionType;
 }
 
-void inline KCalcToken::set_Binary_Token_(Binary_Function_Ptr function, int priorityLevel)
+void inline KCalcToken::setBinaryToken(Binary_Function_Ptr function, int priorityLevel)
 {
-    binary_Function_Ptr_ = function;
-    is_Binary_Function_ = true;
-    token_Type_ = BINARY_FUNCTION_TYPE;
-    priority_level_ = priorityLevel;
+    m_binaryFunctionPtr = function;
+    m_priorityLevel = priorityLevel;
+    m_isBinaryFunction = true;
+    m_tokenType = BinaryFunctionType;
 }
 
-void KCalcToken::resetToken_()
+void KCalcToken::resetToken()
 {
-    key_ = (nullptr);
-    kNumber_ = KNumber::NaN;
-    token_Code_ = INVALID_TOKEN;
+    m_key = nullptr;
+    m_kNumber = KNumber::NaN;
+    m_tokenCode = InvalidToken;
 
-    unary_Function_Ptr_ = nullptr;
-    binary_Function_Ptr_ = nullptr;
+    m_unaryFunctionPtr = nullptr;
+    m_binaryFunctionPtr = nullptr;
 
-    is_KNumber_ = false;
-    is_Right_Unary_Function_ = false;
-    is_Left_Unary_Function_ = false;
-    is_Binary_Function_ = false;
-    is_Opening_Parentheses_ = false;
-    is_Closing_Parentheses_ = false;
+    m_isKNumber = false;
+    m_isRightUnaryFunction = false;
+    m_isLeftUnaryFunction = false;
+    m_isBinaryFunction = false;
+    m_isOpeningParentheses = false;
+    m_isClosingParentheses = false;
 
-    invert_Sign_First_Arg_ = false;
-    invert_Sign_Second_Arg_ = false;
+    m_invertSignFirstArg = false;
+    m_invertSignSecondArg = false;
 
-    priority_level_ = NO_LEVEL;
+    m_priorityLevel = NO_LEVEL;
 
-    string_index_ = -1;
+    m_stringIndex = -1;
 }
 
 bool KCalcToken::isKNumber() const
 {
-    return is_KNumber_;
+    return m_isKNumber;
 }
 
 bool KCalcToken::isRightUnaryFunction() const
 {
-    return is_Right_Unary_Function_;
+    return m_isRightUnaryFunction;
 }
 
 bool KCalcToken::isLeftUnaryFunction() const
 {
-    return is_Left_Unary_Function_;
+    return m_isLeftUnaryFunction;
 }
 
 bool KCalcToken::isBinaryFunction() const
 {
-    return is_Binary_Function_;
+    return m_isBinaryFunction;
 }
 
 bool KCalcToken::isOpeningParentheses() const
 {
-    return is_Opening_Parentheses_;
+    return m_isOpeningParentheses;
 }
 
 bool KCalcToken::isClosingParentheses() const
 {
-    return is_Closing_Parentheses_;
+    return m_isClosingParentheses;
 }
 
 const KNumber KCalcToken::getKNumber() const
 {
-    return kNumber_;
+    return m_kNumber;
 }
 
 KCalcToken::TokenCode KCalcToken::getTokenCode() const
 {
-    return token_Code_;
+    return m_tokenCode;
 }
 
 KCalcToken::TokenType KCalcToken::getTokenType() const
 {
-    return token_Type_;
+    return m_tokenType;
 }
 
 int KCalcToken::getPriorityLevel() const
 {
-    return priority_level_;
+    return m_priorityLevel;
 }
 
 int KCalcToken::getStringIndex() const
 {
-    return string_index_;
+    return m_stringIndex;
 }
 
-KNumber KCalcToken::evaluate(const KNumber &kNumber) const
+KNumber KCalcToken::evaluate(const class KNumber &kNumber) const
 {
-    if (unary_Function_Ptr_ == nullptr) {
+    if (m_unaryFunctionPtr == nullptr) {
         return KNumber::NaN; // safety code
     } else {
-        if (invert_Sign_First_Arg_) {
-            return unary_Function_Ptr_(-kNumber);
+        if (m_invertSignFirstArg) {
+            return m_unaryFunctionPtr(-kNumber);
         } else {
-            return unary_Function_Ptr_(kNumber);
+            return m_unaryFunctionPtr(kNumber);
         }
     }
 }
 
-KNumber KCalcToken::evaluate(const KNumber &kNumberLeft, const KNumber &kNumberRight) const
+KNumber KCalcToken::evaluate(const class KNumber &kNumberLeft, const class KNumber &kNumberRight) const
 {
-    if (binary_Function_Ptr_ == nullptr) {
+    if (m_binaryFunctionPtr == nullptr) {
         return KNumber::NaN; // safety code
     } else {
-        if (!invert_Sign_First_Arg_ && !invert_Sign_Second_Arg_) {
-            return binary_Function_Ptr_(kNumberLeft, kNumberRight);
-        } else if (invert_Sign_First_Arg_ && !invert_Sign_Second_Arg_) {
-            return binary_Function_Ptr_(-kNumberLeft, kNumberRight);
-        } else if (!invert_Sign_First_Arg_ && invert_Sign_Second_Arg_) {
-            return binary_Function_Ptr_(kNumberLeft, -kNumberRight);
+        if (!m_invertSignFirstArg && !m_invertSignSecondArg) {
+            return m_binaryFunctionPtr(kNumberLeft, kNumberRight);
+        } else if (m_invertSignFirstArg && !m_invertSignSecondArg) {
+            return m_binaryFunctionPtr(-kNumberLeft, kNumberRight);
+        } else if (!m_invertSignFirstArg && m_invertSignSecondArg) {
+            return m_binaryFunctionPtr(kNumberLeft, -kNumberRight);
         } else {
-            return binary_Function_Ptr_(-kNumberLeft, -kNumberRight);
+            return m_binaryFunctionPtr(-kNumberLeft, -kNumberRight);
         }
     }
 }
 
 void KCalcToken::invertSignFirstArg()
 {
-    invert_Sign_First_Arg_ = !invert_Sign_First_Arg_;
+    m_invertSignFirstArg = !m_invertSignFirstArg;
 }
 
 void KCalcToken::invertSignSecondArg()
 {
-    invert_Sign_Second_Arg_ = !invert_Sign_Second_Arg_;
+    m_invertSignSecondArg = !m_invertSignSecondArg;
 }
 
 bool KCalcToken::isFirstArgInverted() const
 {
-    return invert_Sign_First_Arg_;
+    return m_invertSignFirstArg;
 }
 
 bool KCalcToken::isSecondArgInverted() const
 {
-    return invert_Sign_Second_Arg_;
+    return m_invertSignSecondArg;
 }
 
 //------------------------------------------------------------------------------

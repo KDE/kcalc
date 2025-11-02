@@ -38,8 +38,8 @@ private:
     QLabel *addIndicator(const QList<QString> &indicatorTexts);
 
 private:
-    QLabel *const shift_indicator_;
-    QLabel *const base_indicator_;
-    QLabel *const angle_mode_indicator_;
-    QLabel *const memory_indicator_;
+    QLabel *const m_shiftIndicator;
+    QLabel *const m_baseIndicator;
+    QLabel *const m_angleModeIndicator;
+    QLabel *const m_memoryIndicator;
 };

@@ -29,13 +29,13 @@ using namespace Qt::Literals::StringLiterals;
 //------------------------------------------------------------------------------
 KCalcBitset::KCalcBitset(QWidget *parent)
     : QWidget(parent)
-    , bit_button_group_(new QButtonGroup(this))
-    , value_(0)
+    , m_bitButtonGroup(new QButtonGroup(this))
+    , m_value(0)
     , m_readOnly(false)
 {
-    bit_button_group_->setExclusive(false);
+    m_bitButtonGroup->setExclusive(false);
 
-    connect(bit_button_group_, &QButtonGroup::buttonClicked, this, &KCalcBitset::slotToggleBit);
+    connect(m_bitButtonGroup, &QButtonGroup::buttonClicked, this, &KCalcBitset::slotToggleBit);
 
     // smaller label font
     QFont fnt = font();
@@ -66,7 +66,7 @@ KCalcBitset::KCalcBitset(QWidget *parent)
                 auto const tmpBitButton = new BitButton(this);
                 tmpBitButton->setToolTip(i18nc("@info:tooltip", "Bit %1 = %2", bitCounter, 1ULL << bitCounter));
                 wordlayout->addWidget(tmpBitButton, 1);
-                bit_button_group_->addButton(tmpBitButton, bitCounter);
+                m_bitButtonGroup->addButton(tmpBitButton, bitCounter);
                 bitCounter--;
             }
 
@@ -101,16 +101,16 @@ void KCalcBitset::setReadOnly(bool readOnly)
 //------------------------------------------------------------------------------
 void KCalcBitset::setValue(qint64 value)
 {
-    if (value_ == value) {
+    if (this->m_value == value) {
         // don't waste time if there was no change.
         return;
     }
 
-    value_ = value;
+    this->m_value = value;
 
     // set each bit button
     for (int i = 0; i < 64; i++) {
-        if (auto bb = qobject_cast<BitButton *>(bit_button_group_->button(i))) {
+        if (auto bb = qobject_cast<BitButton *>(m_bitButtonGroup->button(i))) {
             bb->setOn(value & 1);
         }
         value >>= 1;
@@ -134,7 +134,7 @@ void KCalcBitset::clear()
 //------------------------------------------------------------------------------
 qint64 KCalcBitset::getValue() const
 {
-    return value_;
+    return m_value;
 }
 
 //------------------------------------------------------------------------------
@@ -161,10 +161,10 @@ void KCalcBitset::calculateMaxSize()
 void KCalcBitset::slotToggleBit(QAbstractButton *button)
 {
     if (button && !m_readOnly) {
-        const int bit = bit_button_group_->id(button);
+        const int bit = m_bitButtonGroup->id(button);
         const qint64 nv = getValue() ^ (1LL << bit);
         setValue(nv);
-        Q_EMIT valueChanged(value_);
+        Q_EMIT valueChanged(m_value);
     }
 }
 
@@ -180,7 +180,7 @@ void KCalcBitset::resizeEvent(QResizeEvent *event)
     // Get the minimum size of all buttons
     int minWidth = INT_MAX;
     int minHeight = INT_MAX;
-    for (QObject *obj : bit_button_group_->buttons()) {
+    for (QObject *obj : m_bitButtonGroup->buttons()) {
         if (auto const button = qobject_cast<BitButton *>(obj)) {
             minWidth = qMin(minWidth, button->rect().width());
             minHeight = qMin(minHeight, button->rect().height());
@@ -190,14 +190,15 @@ void KCalcBitset::resizeEvent(QResizeEvent *event)
     // If this worked, set the renderSize for all BitButtons
     if (minWidth != INT_MAX && minHeight != INT_MAX) {
         // Make sure the size is square
-        if (minWidth > minHeight)
+        if (minWidth > minHeight) {
             minWidth = minHeight;
-        else if (minHeight > minWidth)
+        } else if (minHeight > minWidth) {
             minHeight = minWidth;
+        }
 
         // Set it for all buttons
-        for (QObject *obj : bit_button_group_->buttons()) {
-            if (auto const button = qobject_cast<BitButton *>(obj)) {
+        for (QObject *obj : m_bitButtonGroup->buttons()) {
+            if (auto *const button = qobject_cast<BitButton *>(obj)) {
                 QSize size = QSize(button->renderSize());
                 size.setWidth(minWidth);
                 size.setHeight(minHeight);

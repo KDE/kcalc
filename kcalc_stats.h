@@ -21,16 +21,16 @@ public:
     void enterData(const KNumber &data);
     void clearLast();
     KNumber sum() const;
-    KNumber sum_of_squares() const;
+    KNumber sumOfSquares() const;
     KNumber mean();
     KNumber median();
-    KNumber std_kernel();
+    KNumber stdKernel();
     KNumber std();
-    KNumber sample_std();
+    KNumber sampleStd();
     int count() const;
     bool error();
 
 private:
-    QList<KNumber> data_;
-    bool error_flag_ = false;
+    QList<KNumber> m_data;
+    bool m_errorFlag = false;
 };

@@ -40,7 +40,7 @@ protected:
 private Q_SLOTS:
 
 private:
-    bool overwrite_;
-    bool hard_overwrite_;
-    bool has_result_;
+    bool m_overwrite;
+    bool m_hardOverwrite;
+    bool m_hasResult;
 };

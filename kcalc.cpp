@@ -51,9 +51,9 @@ const int maxprecision = 1000;
 //------------------------------------------------------------------------------
 KCalculator::KCalculator(QWidget *parent)
     : KXmlGuiWindow(parent)
-    , memory_num_(0.0)
-    , base_mode_(10)
-    , core()
+    , m_memoryNum(0.0)
+    , m_baseMode(10)
+    , m_core()
 {
     // central widget to contain all the elements
     auto const central = new QWidget(this);
@@ -63,8 +63,8 @@ KCalculator::KCalculator(QWidget *parent)
 
     setAutoSaveSettings(QStringLiteral("KCalcMainWindow"));
 
-    // load science constants_ from xml-file
-    load_Constants_(QStringLiteral(":/kcalc/scienceconstants.xml"));
+    // load science constants from xml-file
+    loadConstants(QStringLiteral(":/kcalc/scienceconstants.xml"));
 
     // setup interface (order is critical)
     setupUi(central);
@@ -86,16 +86,16 @@ KCalculator::KCalculator(QWidget *parent)
         KCalcSettings::setBaseMode(numeralSystemComboBox->currentData().toInt());
     });
 
-    angle_choose_group_ = new QButtonGroup(this);
-    angle_choose_group_->setExclusive(true);
-    angle_choose_group_->addButton(degRadio, DegMode);
-    angle_choose_group_->addButton(radRadio, RadMode);
-    angle_choose_group_->addButton(gradRadio, GradMode);
-    connect(angle_choose_group_, &QButtonGroup::buttonToggled, this, &KCalculator::slotAngleSelected);
+    m_angleChooseGroup = new QButtonGroup(this);
+    m_angleChooseGroup->setExclusive(true);
+    m_angleChooseGroup->addButton(degRadio, DegMode);
+    m_angleChooseGroup->addButton(radRadio, RadMode);
+    m_angleChooseGroup->addButton(gradRadio, GradMode);
+    connect(m_angleChooseGroup, &QButtonGroup::buttonToggled, this, &KCalculator::slotAngleSelected);
 
     // additional menu setup
-    constants_menu_ = createConstantsMenu();
-    menuBar()->insertMenu((menuBar()->actions)()[2], constants_menu_);
+    m_constantsMenu = createConstantsMenu();
+    menuBar()->insertMenu((menuBar()->actions)()[2], m_constantsMenu);
 
     // misc setup
     setColors();
@@ -109,12 +109,12 @@ KCalculator::KCalculator(QWidget *parent)
 
     calc_display->changeSettings();
     calc_history->changeSettings();
-    update_history_window_ = true;
+    m_updateHistoryWindow = true;
     setPrecision();
 
     updateGeometry();
 
-    updateDisplay(UPDATE_CLEAR);
+    updateDisplay(UpdateClear);
     // clear history, otherwise we have a leading "0" in it
     calc_history->clearHistory();
 
@@ -127,19 +127,19 @@ KCalculator::KCalculator(QWidget *parent)
 
     switch (calculatorMode) {
     case KCalcSettings::EnumCalculatorMode::science:
-        action_mode_science_->trigger();
+        m_actionModeScience->trigger();
         break;
     case KCalcSettings::EnumCalculatorMode::statistics:
-        action_mode_statistic_->trigger();
+        m_actionModeStatistic->trigger();
         break;
     case KCalcSettings::EnumCalculatorMode::numeral:
-        action_mode_numeral_->trigger();
+        m_actionModeNumeral->trigger();
         break;
     case KCalcSettings::EnumCalculatorMode::simple:
     default:
-        action_mode_simple_->trigger();
+        m_actionModeSimple->trigger();
     }
-    is_still_in_launch_ = false;
+    m_isStillInLaunch = false;
 
     calc_display->setFocus();
 }
@@ -172,42 +172,42 @@ void KCalculator::setupMainActions()
     // mode menu
     auto modeGroup = new QActionGroup(this);
 
-    action_mode_simple_ = actionCollection()->add<KToggleAction>(QStringLiteral("mode_simple"));
-    action_mode_simple_->setActionGroup(modeGroup);
-    action_mode_simple_->setText(i18n("Simple Mode"));
-    connect(action_mode_simple_, &KToggleAction::triggered, this, &KCalculator::slotSetSimpleMode);
+    m_actionModeSimple = actionCollection()->add<KToggleAction>(QStringLiteral("mode_simple"));
+    m_actionModeSimple->setActionGroup(modeGroup);
+    m_actionModeSimple->setText(i18n("Simple Mode"));
+    connect(m_actionModeSimple, &KToggleAction::triggered, this, &KCalculator::slotSetSimpleMode);
 
-    action_mode_science_ = actionCollection()->add<KToggleAction>(QStringLiteral("mode_science"));
-    action_mode_science_->setActionGroup(modeGroup);
-    action_mode_science_->setText(i18n("Science Mode"));
-    connect(action_mode_science_, &KToggleAction::triggered, this, &KCalculator::slotSetScienceMode);
+    m_actionModeScience = actionCollection()->add<KToggleAction>(QStringLiteral("mode_science"));
+    m_actionModeScience->setActionGroup(modeGroup);
+    m_actionModeScience->setText(i18n("Science Mode"));
+    connect(m_actionModeScience, &KToggleAction::triggered, this, &KCalculator::slotSetScienceMode);
 
-    action_mode_statistic_ = actionCollection()->add<KToggleAction>(QStringLiteral("mode_statistics"));
-    action_mode_statistic_->setActionGroup(modeGroup);
-    action_mode_statistic_->setText(i18n("Statistic Mode"));
-    connect(action_mode_statistic_, &KToggleAction::triggered, this, &KCalculator::slotSetStatisticMode);
+    m_actionModeStatistic = actionCollection()->add<KToggleAction>(QStringLiteral("mode_statistics"));
+    m_actionModeStatistic->setActionGroup(modeGroup);
+    m_actionModeStatistic->setText(i18n("Statistic Mode"));
+    connect(m_actionModeStatistic, &KToggleAction::triggered, this, &KCalculator::slotSetStatisticMode);
 
-    action_mode_numeral_ = actionCollection()->add<KToggleAction>(QStringLiteral("mode_numeral"));
-    action_mode_numeral_->setActionGroup(modeGroup);
-    action_mode_numeral_->setText(i18n("Numeral System Mode"));
-    connect(action_mode_numeral_, &KToggleAction::triggered, this, &KCalculator::slotSetNumeralMode);
+    m_actionModeNumeral = actionCollection()->add<KToggleAction>(QStringLiteral("mode_numeral"));
+    m_actionModeNumeral->setActionGroup(modeGroup);
+    m_actionModeNumeral->setText(i18n("Numeral System Mode"));
+    connect(m_actionModeNumeral, &KToggleAction::triggered, this, &KCalculator::slotSetNumeralMode);
 
     // settings menu
-    action_history_show_ = actionCollection()->add<KToggleAction>(QStringLiteral("show_history"));
-    action_history_show_->setText(i18n("Show &History"));
-    action_history_show_->setChecked(true);
-    actionCollection()->setDefaultShortcut(action_history_show_, Qt::CTRL | Qt::Key_H);
-    connect(action_history_show_, &KToggleAction::toggled, this, &KCalculator::slotHistoryshow);
+    m_actionHistoryShow = actionCollection()->add<KToggleAction>(QStringLiteral("show_history"));
+    m_actionHistoryShow->setText(i18n("Show &History"));
+    m_actionHistoryShow->setChecked(true);
+    actionCollection()->setDefaultShortcut(m_actionHistoryShow, Qt::CTRL | Qt::Key_H);
+    connect(m_actionHistoryShow, &KToggleAction::toggled, this, &KCalculator::slotHistoryshow);
 
-    action_constants_show_ = actionCollection()->add<KToggleAction>(QStringLiteral("show_constants"));
-    action_constants_show_->setText(i18n("Constants &Buttons"));
-    action_constants_show_->setChecked(true);
-    connect(action_constants_show_, &KToggleAction::toggled, this, &KCalculator::slotConstantsShow);
+    m_actionConstantsShow = actionCollection()->add<KToggleAction>(QStringLiteral("show_constants"));
+    m_actionConstantsShow->setText(i18n("Constants &Buttons"));
+    m_actionConstantsShow->setChecked(true);
+    connect(m_actionConstantsShow, &KToggleAction::toggled, this, &KCalculator::slotConstantsShow);
 
-    action_bitset_show_ = actionCollection()->add<KToggleAction>(QStringLiteral("show_bitset"));
-    action_bitset_show_->setText(i18n("Show B&it Edit"));
-    action_bitset_show_->setChecked(true);
-    connect(action_bitset_show_, &KToggleAction::toggled, this, &KCalculator::slotBitsetshow);
+    m_actionBitsetShow = actionCollection()->add<KToggleAction>(QStringLiteral("show_bitset"));
+    m_actionBitsetShow->setText(i18n("Show B&it Edit"));
+    m_actionBitsetShow->setChecked(true);
+    connect(m_actionBitsetShow, &KToggleAction::toggled, this, &KCalculator::slotBitsetshow);
 
     KStandardAction::preferences(this, &KCalculator::showSettings, actionCollection());
 
@@ -240,25 +240,25 @@ KCalcStatusBar *KCalculator::statusBar()
 //------------------------------------------------------------------------------
 void KCalculator::setupNumberKeys()
 {
-    num_button_group_ = new QButtonGroup(this);
-    connect(num_button_group_, &QButtonGroup::buttonClicked, this, &KCalculator::slotNumberclicked);
+    m_numButtonGroup = new QButtonGroup(this);
+    connect(m_numButtonGroup, &QButtonGroup::buttonClicked, this, &KCalculator::slotNumberclicked);
 
-    num_button_group_->addButton(pb0, 0);
-    num_button_group_->addButton(pb1, 1);
-    num_button_group_->addButton(pb2, 2);
-    num_button_group_->addButton(pb3, 3);
-    num_button_group_->addButton(pb4, 4);
-    num_button_group_->addButton(pb5, 5);
-    num_button_group_->addButton(pb6, 6);
-    num_button_group_->addButton(pb7, 7);
-    num_button_group_->addButton(pb8, 8);
-    num_button_group_->addButton(pb9, 9);
-    num_button_group_->addButton(pbA, 0xA);
-    num_button_group_->addButton(pbB, 0xB);
-    num_button_group_->addButton(pbC, 0xC);
-    num_button_group_->addButton(pbD, 0xD);
-    num_button_group_->addButton(pbE, 0xE);
-    num_button_group_->addButton(pbF, 0xF);
+    m_numButtonGroup->addButton(pb0, 0);
+    m_numButtonGroup->addButton(pb1, 1);
+    m_numButtonGroup->addButton(pb2, 2);
+    m_numButtonGroup->addButton(pb3, 3);
+    m_numButtonGroup->addButton(pb4, 4);
+    m_numButtonGroup->addButton(pb5, 5);
+    m_numButtonGroup->addButton(pb6, 6);
+    m_numButtonGroup->addButton(pb7, 7);
+    m_numButtonGroup->addButton(pb8, 8);
+    m_numButtonGroup->addButton(pb9, 9);
+    m_numButtonGroup->addButton(pbA, 0xA);
+    m_numButtonGroup->addButton(pbB, 0xB);
+    m_numButtonGroup->addButton(pbC, 0xC);
+    m_numButtonGroup->addButton(pbD, 0xD);
+    m_numButtonGroup->addButton(pbE, 0xE);
+    m_numButtonGroup->addButton(pbF, 0xF);
     connect(this, &KCalculator::switchShowAccels, pb0, &KCalcButton::slotSetAccelDisplayMode);
     connect(this, &KCalculator::switchShowAccels, pb1, &KCalcButton::slotSetAccelDisplayMode);
     connect(this, &KCalculator::switchShowAccels, pb2, &KCalcButton::slotSetAccelDisplayMode);
@@ -394,12 +394,12 @@ void KCalculator::setupNumericKeypad()
 //------------------------------------------------------------------------------
 void KCalculator::setupLogicKeys()
 {
-    logic_buttons_.append(pbAND);
-    logic_buttons_.append(pbOR);
-    logic_buttons_.append(pbXOR);
-    logic_buttons_.append(pbLsh);
-    logic_buttons_.append(pbRsh);
-    logic_buttons_.append(pbCmp);
+    m_logicButtons.append(pbAND);
+    m_logicButtons.append(pbOR);
+    m_logicButtons.append(pbXOR);
+    m_logicButtons.append(pbLsh);
+    m_logicButtons.append(pbRsh);
+    m_logicButtons.append(pbCmp);
 
     pbAND->setShortcut(QKeySequence(Qt::Key_Ampersand));
     connect(this, &KCalculator::switchShowAccels, pbAND, &KCalcButton::slotSetAccelDisplayMode);
@@ -431,13 +431,13 @@ void KCalculator::setupLogicKeys()
 //------------------------------------------------------------------------------
 void KCalculator::setupScientificKeys()
 {
-    scientific_buttons_.append(pbHyp);
-    scientific_buttons_.append(pbSin);
-    scientific_buttons_.append(pbCos);
-    scientific_buttons_.append(pbTan);
-    scientific_buttons_.append(pbLog);
-    scientific_buttons_.append(pbLn);
-    scientific_buttons_.append(pbI);
+    m_scientificButtons.append(pbHyp);
+    m_scientificButtons.append(pbSin);
+    m_scientificButtons.append(pbCos);
+    m_scientificButtons.append(pbTan);
+    m_scientificButtons.append(pbLog);
+    m_scientificButtons.append(pbLn);
+    m_scientificButtons.append(pbI);
 
     connect(this, &KCalculator::switchShowAccels, pbHyp, &KCalcButton::slotSetAccelDisplayMode);
     connect(pbHyp, &KCalcButton::toggled, this, &KCalculator::slotHyptoggled);
@@ -488,12 +488,12 @@ void KCalculator::setupScientificKeys()
 //------------------------------------------------------------------------------
 void KCalculator::setupStatisticKeys()
 {
-    stat_buttons_.append(pbNData);
-    stat_buttons_.append(pbMean);
-    stat_buttons_.append(pbSd);
-    stat_buttons_.append(pbMed);
-    stat_buttons_.append(pbDat);
-    stat_buttons_.append(pbCSt);
+    m_statButtons.append(pbNData);
+    m_statButtons.append(pbMean);
+    m_statButtons.append(pbSd);
+    m_statButtons.append(pbMed);
+    m_statButtons.append(pbDat);
+    m_statButtons.append(pbCSt);
 
     pbNData->addMode(ModeNormal, i18nc("Number of data entered", "N"), i18n("Number of data entered"));
     pbNData->addMode(ModeShift, QString::fromUtf8("\xce\xa3") + QLatin1Char('x'), i18n("Sum of all data items"));
@@ -532,12 +532,12 @@ void KCalculator::setupStatisticKeys()
 //------------------------------------------------------------------------------
 void KCalculator::setupConstantsKeys()
 {
-    const_buttons_.append(pbC1);
-    const_buttons_.append(pbC2);
-    const_buttons_.append(pbC3);
-    const_buttons_.append(pbC4);
-    const_buttons_.append(pbC5);
-    const_buttons_.append(pbC6);
+    m_constButtons.append(pbC1);
+    m_constButtons.append(pbC2);
+    m_constButtons.append(pbC3);
+    m_constButtons.append(pbC4);
+    m_constButtons.append(pbC5);
+    m_constButtons.append(pbC6);
 
     pbC1->setButtonNumber(0);
     connect(this, &KCalculator::switchShowAccels, pbC1, &KCalcConstButton::slotSetAccelDisplayMode);
@@ -649,46 +649,46 @@ void KCalculator::setupKeys()
 
     // other button lists
 
-    function_button_list_.append(pbHyp);
-    function_button_list_.append(pbShift);
-    function_button_list_.append(pbEE);
-    function_button_list_.append(pbSin);
-    function_button_list_.append(pbPlusMinus);
-    function_button_list_.append(pbCos);
-    function_button_list_.append(pbReci);
-    function_button_list_.append(pbTan);
-    function_button_list_.append(pbFactorial);
-    function_button_list_.append(pbLog);
-    function_button_list_.append(pbSquare);
-    function_button_list_.append(pbLn);
-    function_button_list_.append(pbI);
-    function_button_list_.append(pbPower);
-    function_button_list_.append(pbSqrt);
+    m_functionButtonList.append(pbHyp);
+    m_functionButtonList.append(pbShift);
+    m_functionButtonList.append(pbEE);
+    m_functionButtonList.append(pbSin);
+    m_functionButtonList.append(pbPlusMinus);
+    m_functionButtonList.append(pbCos);
+    m_functionButtonList.append(pbReci);
+    m_functionButtonList.append(pbTan);
+    m_functionButtonList.append(pbFactorial);
+    m_functionButtonList.append(pbLog);
+    m_functionButtonList.append(pbSquare);
+    m_functionButtonList.append(pbLn);
+    m_functionButtonList.append(pbI);
+    m_functionButtonList.append(pbPower);
+    m_functionButtonList.append(pbSqrt);
 
-    mem_button_list_.append(pbMemRecall);
-    mem_button_list_.append(pbMemPlusMinus);
-    mem_button_list_.append(pbMemStore);
-    mem_button_list_.append(pbMemClear);
-    mem_button_list_.append(pbClear);
-    mem_button_list_.append(pbAllClear);
-    mem_button_list_.append(pbBackspace);
+    m_memButtonList.append(pbMemRecall);
+    m_memButtonList.append(pbMemPlusMinus);
+    m_memButtonList.append(pbMemStore);
+    m_memButtonList.append(pbMemClear);
+    m_memButtonList.append(pbClear);
+    m_memButtonList.append(pbAllClear);
+    m_memButtonList.append(pbBackspace);
 
-    operation_button_list_.append(pbMultiplication);
-    operation_button_list_.append(pbParenOpen);
-    operation_button_list_.append(pbParenClose);
-    operation_button_list_.append(pbAND);
-    operation_button_list_.append(pbDivision);
-    operation_button_list_.append(pbOR);
-    operation_button_list_.append(pbXOR);
-    operation_button_list_.append(pbPlus);
-    operation_button_list_.append(pbMinus);
-    operation_button_list_.append(pbLsh);
-    operation_button_list_.append(pbRsh);
-    operation_button_list_.append(pbPeriod);
-    operation_button_list_.append(pbEqual);
-    operation_button_list_.append(pbPercent);
-    operation_button_list_.append(pbCmp);
-    operation_button_list_.append(pbMod);
+    m_operationButtonList.append(pbMultiplication);
+    m_operationButtonList.append(pbParenOpen);
+    m_operationButtonList.append(pbParenClose);
+    m_operationButtonList.append(pbAND);
+    m_operationButtonList.append(pbDivision);
+    m_operationButtonList.append(pbOR);
+    m_operationButtonList.append(pbXOR);
+    m_operationButtonList.append(pbPlus);
+    m_operationButtonList.append(pbMinus);
+    m_operationButtonList.append(pbLsh);
+    m_operationButtonList.append(pbRsh);
+    m_operationButtonList.append(pbPeriod);
+    m_operationButtonList.append(pbEqual);
+    m_operationButtonList.append(pbPercent);
+    m_operationButtonList.append(pbCmp);
+    m_operationButtonList.append(pbMod);
 }
 
 //------------------------------------------------------------------------------
@@ -740,9 +740,9 @@ void KCalculator::updateGeometry()
 // Name: slotConstantToDisplay
 // Desc: inserts a constant
 //------------------------------------------------------------------------------
-void KCalculator::slotConstantToDisplay(const science_constant &const_chosen)
+void KCalculator::slotConstantToDisplay(const ScienceConstant &constChosen)
 {
-    QString val = const_chosen.label;
+    QString val = constChosen.label;
     this->insertToInputDisplay(val);
 }
 
@@ -753,30 +753,30 @@ void KCalculator::slotConstantToDisplay(const science_constant &const_chosen)
 void KCalculator::slotBaseSelected()
 {
     const int base = numeralSystemComboBox->currentData().toInt();
-    int current_base;
+    int currentBase = 0;
 
     // set display & statusbar (if item exist in statusbar)
     statusBar()->setBase(base);
     switch (base) {
     case BinMode:
-        current_base = calc_display->setBase(KCalcDisplay::NumBase(2));
+        currentBase = calc_display->setBase(KCalcDisplay::NumBase(2));
         base_label->setText(QStringLiteral("Bin"));
-        base_mode_ = 2;
+        m_baseMode = 2;
         break;
     case OctMode:
-        current_base = calc_display->setBase(KCalcDisplay::NumBase(8));
+        currentBase = calc_display->setBase(KCalcDisplay::NumBase(8));
         base_label->setText(QStringLiteral("Oct"));
-        base_mode_ = 8;
+        m_baseMode = 8;
         break;
     case DecMode:
-        current_base = calc_display->setBase(KCalcDisplay::NumBase(10));
+        currentBase = calc_display->setBase(KCalcDisplay::NumBase(10));
         base_label->setText(QStringLiteral("Dec"));
-        base_mode_ = 10;
+        m_baseMode = 10;
         break;
     case HexMode:
-        current_base = calc_display->setBase(KCalcDisplay::NumBase(16));
+        currentBase = calc_display->setBase(KCalcDisplay::NumBase(16));
         base_label->setText(QStringLiteral("Hex"));
-        base_mode_ = 16;
+        m_baseMode = 16;
         break;
     default:
         base_label->setText(QStringLiteral("Error"));
@@ -784,28 +784,28 @@ void KCalculator::slotBaseSelected()
     }
 
     // Enable the buttons available in this base
-    for (int i = 0; i < current_base; ++i) {
-        (num_button_group_->buttons().at(i))->setEnabled(true);
+    for (int i = 0; i < currentBase; ++i) {
+        (m_numButtonGroup->buttons().at(i))->setEnabled(true);
     }
 
     // Disable the buttons not available in this base
-    for (int i = current_base; i < 16; ++i) {
-        (num_button_group_->buttons().at(i))->setEnabled(false);
+    for (int i = currentBase; i < 16; ++i) {
+        (m_numButtonGroup->buttons().at(i))->setEnabled(false);
     }
 
     // Only enable the decimal point in decimal
-    pbPeriod->setEnabled(current_base == KCalcDisplay::NumBase::NB_DECIMAL);
+    pbPeriod->setEnabled(currentBase == KCalcDisplay::NumBase::NbDecimal);
 
     // Only enable the x*10^y button in decimal
-    pbEE->setEnabled(current_base == KCalcDisplay::NumBase::NB_DECIMAL);
+    pbEE->setEnabled(currentBase == KCalcDisplay::NumBase::NbDecimal);
 
     // Disable buttons that make only sense with floating point numbers
-    if (current_base != KCalcDisplay::NumBase::NB_DECIMAL) {
-        for (QAbstractButton *btn : std::as_const(scientific_buttons_)) {
+    if (currentBase != KCalcDisplay::NumBase::NbDecimal) {
+        for (QAbstractButton *btn : std::as_const(m_scientificButtons)) {
             btn->setEnabled(false);
         }
     } else {
-        for (QAbstractButton *btn : std::as_const(scientific_buttons_)) {
+        for (QAbstractButton *btn : std::as_const(m_scientificButtons)) {
             btn->setEnabled(true);
         }
     }
@@ -888,9 +888,9 @@ void KCalculator::keyReleaseEvent(QKeyEvent *e)
 void KCalculator::slotAngleSelected(QAbstractButton *button, bool checked)
 {
     if (checked) {
-        const int mode = angle_choose_group_->id(button);
-        angle_mode_ = mode;
-        parser.setTrigonometricMode(angle_mode_);
+        const int mode = m_angleChooseGroup->id(button);
+        m_angleMode = mode;
+        m_parser.setTrigonometricMode(m_angleMode);
 
         statusBar()->setAngleMode(KCalcStatusBar::AngleMode(mode));
         switch (mode) {
@@ -904,10 +904,10 @@ void KCalculator::slotAngleSelected(QAbstractButton *button, bool checked)
             angle_units_label->setText(QStringLiteral("Gra"));
             break;
         default: // we shouldn't ever end up here
-            angle_mode_ = RadMode;
+            m_angleMode = RadMode;
         }
 
-        KCalcSettings::setAngleMode(angle_mode_);
+        KCalcSettings::setAngleMode(m_angleMode);
         slotInputChanged();
     }
 }
@@ -918,7 +918,7 @@ void KCalculator::slotAngleSelected(QAbstractButton *button, bool checked)
 //------------------------------------------------------------------------------
 void KCalculator::slotEEclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::EXP_10);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Exp10);
 }
 
 //------------------------------------------------------------------------------
@@ -927,12 +927,12 @@ void KCalculator::slotEEclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotShifttoggled(bool flag)
 {
-    shift_mode_ = flag;
+    m_shiftMode = flag;
 
     Q_EMIT switchMode(ModeShift, flag);
 
-    statusBar()->setShiftIndicator(shift_mode_);
-    if (shift_mode_) {
+    statusBar()->setShiftIndicator(m_shiftMode);
+    if (m_shiftMode) {
         shift_label->setText(i18nc("Second function mode", "Shift"));
     } else {
         shift_label->setText(QStringLiteral(""));
@@ -946,7 +946,7 @@ void KCalculator::slotShifttoggled(bool flag)
 void KCalculator::slotHyptoggled(bool flag)
 {
     // toggle between hyperbolic and standard trig functions
-    hyp_mode_ = flag;
+    m_hypMode = flag;
 
     Q_EMIT switchMode(ModeHyperbolic, flag);
 }
@@ -957,7 +957,7 @@ void KCalculator::slotHyptoggled(bool flag)
 //------------------------------------------------------------------------------
 void KCalculator::slotMemRecallclicked()
 {
-    input_display->insertToken(memory_num_.toQString(KCalcSettings::precision()));
+    input_display->insertToken(m_memoryNum.toQString(KCalcSettings::precision()));
 }
 
 //------------------------------------------------------------------------------
@@ -966,21 +966,21 @@ void KCalculator::slotMemRecallclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotMemStoreclicked()
 {
-    this->commit_Input_();
+    this->commitInput();
 
-    if (parsing_failure_) {
-        handle_Parsing_Error_();
-    } else if (calculation_failure_) {
-        handle_Calculation_Error_();
+    if (m_parsingFailure) {
+        handleParsingError();
+    } else if (m_calculationFailure) {
+        handleCalculationError();
     } else {
-        updateDisplay(UPDATE_FROM_CORE);
+        updateDisplay(UpdateFromCore);
         pbMemRecall->setEnabled(true);
         statusBar()->setMemoryIndicator(true);
         memory_label->setText(QStringLiteral("M"));
 
         calc_history->addToHistory(QStringLiteral("M ="), false);
         calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
-        memory_num_ = calc_display->getAmount();
+        m_memoryNum = calc_display->getAmount();
         QString result = calc_display->getAmountQString();
 
         input_display->clear();
@@ -996,8 +996,8 @@ void KCalculator::slotMemStoreclicked()
 void KCalculator::slotNumberclicked(QAbstractButton *button)
 {
     if (button) {
-        const int number_clicked = num_button_group_->id(button);
-        QString s = QString::number(number_clicked, base_mode_).toUpper();
+        const int numberClicked = m_numButtonGroup->id(button);
+        QString s = QString::number(numberClicked, m_baseMode).toUpper();
         this->input_display->insertTokenNumeric(s);
     }
 }
@@ -1008,19 +1008,19 @@ void KCalculator::slotNumberclicked(QAbstractButton *button)
 //------------------------------------------------------------------------------
 void KCalculator::slotSinclicked()
 {
-    if (hyp_mode_) {
+    if (m_hypMode) {
         // sinh or arcsinh
-        if (!shift_mode_) {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::SINH);
+        if (!m_shiftMode) {
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Sinh);
         } else {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::ASINH);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Asinh);
         }
     } else {
         // sin or arcsin
-        if (!shift_mode_) {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::SIN);
+        if (!m_shiftMode) {
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Sin);
         } else {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::ASIN);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Asin);
         }
     }
 }
@@ -1033,10 +1033,10 @@ void KCalculator::slotPlusMinusclicked()
 {
     this->input_display->slotClearOverwrite();
     this->input_display->home(false);
-    this->insertToInputDisplay(KCalcToken::TokenCode::INVERT_SIGN);
-    this->insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
+    this->insertToInputDisplay(KCalcToken::TokenCode::InvertSign);
+    this->insertToInputDisplay(KCalcToken::TokenCode::OpeningParenthesis);
     this->input_display->end(false);
-    this->insertToInputDisplay(KCalcToken::TokenCode::CLOSING_PARENTHESIS);
+    this->insertToInputDisplay(KCalcToken::TokenCode::ClosingParenthesis);
     this->slotEqualclicked();
 }
 
@@ -1046,32 +1046,32 @@ void KCalculator::slotPlusMinusclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotMemPlusMinusclicked()
 {
-    bool tmp_shift_mode = shift_mode_; // store this, because next command deletes shift_mode_
+    bool tmpShiftMode = m_shiftMode; // store this, because next command deletes shiftMode
 
     pbShift->setChecked(false);
 
-    this->commit_Input_();
+    this->commitInput();
     //
-    if (parsing_failure_) {
-        handle_Parsing_Error_();
-    } else if (calculation_failure_) {
-        handle_Calculation_Error_();
+    if (m_parsingFailure) {
+        handleParsingError();
+    } else if (m_calculationFailure) {
+        handleCalculationError();
     } else {
-        updateDisplay(UPDATE_FROM_CORE);
+        updateDisplay(UpdateFromCore);
         KNumber result = calc_display->getAmount();
         QString resultQString = calc_display->getAmountQString();
         pbMemRecall->setEnabled(true);
         statusBar()->setMemoryIndicator(true);
         memory_label->setText(QStringLiteral("M"));
         input_display->clear();
-        if (!tmp_shift_mode) {
+        if (!tmpShiftMode) {
             input_display->insert(QStringLiteral("M+=") + resultQString);
             calc_history->addToHistory(QStringLiteral("M+="), false);
-            memory_num_ += result;
+            m_memoryNum += result;
         } else {
             input_display->insert(QStringLiteral("M-=") + resultQString);
             calc_history->addToHistory(QStringLiteral("M-="), false);
-            memory_num_ -= result;
+            m_memoryNum -= result;
         }
         calc_history->addResultToHistory(resultQString);
         input_display->slotSetHardOverwrite();
@@ -1084,19 +1084,19 @@ void KCalculator::slotMemPlusMinusclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotCosclicked()
 {
-    if (hyp_mode_) {
+    if (m_hypMode) {
         // cosh or arcosh
-        if (!shift_mode_) {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::COSH);
+        if (!m_shiftMode) {
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Cosh);
         } else {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::ACOSH);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Acosh);
         }
     } else {
         // cosine or arccosine
-        if (!shift_mode_) {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::COS);
+        if (!m_shiftMode) {
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Cos);
         } else {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::ACOS);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Acos);
         }
     }
 }
@@ -1107,10 +1107,10 @@ void KCalculator::slotCosclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotReciclicked()
 {
-    if (shift_mode_) {
-        this->insertToInputDisplay(KCalcToken::TokenCode::BINOMIAL);
+    if (m_shiftMode) {
+        this->insertToInputDisplay(KCalcToken::TokenCode::Binomial);
     } else {
-        this->insertToInputDisplay(KCalcToken::TokenCode::RECIPROCAL);
+        this->insertToInputDisplay(KCalcToken::TokenCode::Reciprocal);
     }
 }
 
@@ -1120,19 +1120,19 @@ void KCalculator::slotReciclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotTanclicked()
 {
-    if (hyp_mode_) {
+    if (m_hypMode) {
         // tanh or artanh
-        if (!shift_mode_) {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::TANH);
+        if (!m_shiftMode) {
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Tanh);
         } else {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::ATANH);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Atanh);
         }
     } else {
         // tan or arctan
-        if (!shift_mode_) {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::TAN);
+        if (!m_shiftMode) {
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Tan);
         } else {
-            insertFunctionToInputDisplay(KCalcToken::TokenCode::ATAN);
+            insertFunctionToInputDisplay(KCalcToken::TokenCode::Atan);
         }
     }
 }
@@ -1143,14 +1143,11 @@ void KCalculator::slotTanclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotFactorialclicked()
 {
-    // Set WaitCursor, as this operation may take a long
-    // time and the UI freezes with large numbers. User needs some
-    // visual feedback.
     QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-    if (!shift_mode_) {
-        this->insertToInputDisplay(KCalcToken::TokenCode::FACTORIAL);
+    if (!m_shiftMode) {
+        this->insertToInputDisplay(KCalcToken::TokenCode::Factorial);
     } else {
-        insertFunctionToInputDisplay(KCalcToken::TokenCode::GAMMA);
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::Gamma);
     }
     QApplication::restoreOverrideCursor();
 }
@@ -1161,11 +1158,11 @@ void KCalculator::slotFactorialclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotLogclicked()
 {
-    if (!shift_mode_) {
-        insertFunctionToInputDisplay(KCalcToken::TokenCode::LOG_10);
+    if (!m_shiftMode) {
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::Log10);
     } else {
-        update_history_window_ = false;
-        this->insertToInputDisplay(KCalcToken::TokenCode::EXP_10);
+        m_updateHistoryWindow = false;
+        this->insertToInputDisplay(KCalcToken::TokenCode::Exp10);
     }
 }
 
@@ -1175,10 +1172,10 @@ void KCalculator::slotLogclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotSquareclicked()
 {
-    if (!shift_mode_) {
-        insertToInputDisplay(KCalcToken::TokenCode::SQUARE);
+    if (!m_shiftMode) {
+        insertToInputDisplay(KCalcToken::TokenCode::Square);
     } else {
-        insertToInputDisplay(KCalcToken::TokenCode::CUBE);
+        insertToInputDisplay(KCalcToken::TokenCode::Cube);
     }
 }
 
@@ -1188,10 +1185,10 @@ void KCalculator::slotSquareclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotSqrtclicked()
 {
-    if (!shift_mode_) {
-        insertFunctionToInputDisplay(KCalcToken::TokenCode::SQUARE_ROOT);
+    if (!m_shiftMode) {
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::SquareRoot);
     } else {
-        insertFunctionToInputDisplay(KCalcToken::TokenCode::CUBIC_ROOT);
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::CubicRoot);
     }
 }
 
@@ -1201,19 +1198,19 @@ void KCalculator::slotSqrtclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotLnclicked()
 {
-    if (!shift_mode_) {
-        insertFunctionToInputDisplay(KCalcToken::TokenCode::LN);
+    if (!m_shiftMode) {
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::Ln);
     } else {
-        insertFunctionToInputDisplay(KCalcToken::TokenCode::EXP);
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::Exp);
     }
 }
 
 void KCalculator::slotIclicked()
 {
-    if (!shift_mode_) {
+    if (!m_shiftMode) {
         this->insertToInputDisplay(KCalcToken::TokenCode::I);
     } else {
-        insertFunctionToInputDisplay(KCalcToken::TokenCode::POLAR);
+        insertFunctionToInputDisplay(KCalcToken::TokenCode::Polar);
     }
 }
 
@@ -1223,10 +1220,10 @@ void KCalculator::slotIclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotPowerclicked()
 {
-    if (shift_mode_) {
-        this->insertToInputDisplay(KCalcToken::TokenCode::POWER_ROOT);
+    if (m_shiftMode) {
+        this->insertToInputDisplay(KCalcToken::TokenCode::PowerRoot);
     } else {
-        this->insertToInputDisplay(KCalcToken::TokenCode::POWER);
+        this->insertToInputDisplay(KCalcToken::TokenCode::Power);
     }
 }
 
@@ -1236,7 +1233,7 @@ void KCalculator::slotPowerclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotMemClearclicked()
 {
-    memory_num_ = KNumber::Zero;
+    m_memoryNum = KNumber::Zero;
     statusBar()->setMemoryIndicator(false);
     memory_label->setText(QStringLiteral(""));
     pbMemRecall->setDisabled(true);
@@ -1245,7 +1242,7 @@ void KCalculator::slotMemClearclicked()
     this->input_display->slotSetHardOverwrite();
     this->input_display->insert(i18nc("Memory cleared", "M cleared"));
     calc_history->addToHistory(i18nc("Memory cleared", "M cleared"), true);
-    updateDisplay(UPDATE_CLEAR);
+    updateDisplay(UpdateClear);
 }
 
 //------------------------------------------------------------------------------
@@ -1255,7 +1252,7 @@ void KCalculator::slotMemClearclicked()
 void KCalculator::slotBackspaceclicked()
 {
     this->input_display->slotClearOverwrite();
-    updateDisplay(UPDATE_CLEAR);
+    updateDisplay(UpdateClear);
     this->input_display->backspace();
 }
 
@@ -1266,7 +1263,7 @@ void KCalculator::slotBackspaceclicked()
 void KCalculator::slotClearclicked()
 {
     this->input_display->reset();
-    updateDisplay(UPDATE_CLEAR);
+    updateDisplay(UpdateClear);
 }
 
 //------------------------------------------------------------------------------
@@ -1276,7 +1273,7 @@ void KCalculator::slotClearclicked()
 void KCalculator::slotAllClearclicked()
 {
     this->input_display->reset(true);
-    updateDisplay(UPDATE_CLEAR);
+    updateDisplay(UpdateClear);
 }
 
 //------------------------------------------------------------------------------
@@ -1285,7 +1282,7 @@ void KCalculator::slotAllClearclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotParenOpenclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::OPENING_PARENTHESIS);
+    this->insertToInputDisplay(KCalcToken::TokenCode::OpeningParenthesis);
 }
 
 //------------------------------------------------------------------------------
@@ -1294,7 +1291,7 @@ void KCalculator::slotParenOpenclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotParenCloseclicked()
 {
-    insertToInputDisplay(KCalcToken::TokenCode::CLOSING_PARENTHESIS);
+    insertToInputDisplay(KCalcToken::TokenCode::ClosingParenthesis);
 }
 
 //------------------------------------------------------------------------------
@@ -1303,7 +1300,7 @@ void KCalculator::slotParenCloseclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotANDclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::AND);
+    this->insertToInputDisplay(KCalcToken::TokenCode::And);
 }
 
 //------------------------------------------------------------------------------
@@ -1312,7 +1309,7 @@ void KCalculator::slotANDclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotMultiplicationclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::MULTIPLICATION);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Multiplication);
 }
 
 //------------------------------------------------------------------------------
@@ -1321,7 +1318,7 @@ void KCalculator::slotMultiplicationclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotDivisionclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::DIVISION);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Division);
 }
 
 //------------------------------------------------------------------------------
@@ -1330,7 +1327,7 @@ void KCalculator::slotDivisionclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotORclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::OR);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Or);
 }
 
 //------------------------------------------------------------------------------
@@ -1339,7 +1336,7 @@ void KCalculator::slotORclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotXORclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::XOR);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Xor);
 }
 
 //------------------------------------------------------------------------------
@@ -1348,7 +1345,7 @@ void KCalculator::slotXORclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotPlusclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::PLUS);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Plus);
 }
 
 //------------------------------------------------------------------------------
@@ -1357,7 +1354,7 @@ void KCalculator::slotPlusclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotMinusclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::MINUS);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Minus);
 }
 
 //------------------------------------------------------------------------------
@@ -1366,7 +1363,7 @@ void KCalculator::slotMinusclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotLeftShiftclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::LSH);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Lsh);
 }
 
 //------------------------------------------------------------------------------
@@ -1375,7 +1372,7 @@ void KCalculator::slotLeftShiftclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotRightShiftclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::RSH);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Rsh);
 }
 
 //------------------------------------------------------------------------------
@@ -1384,7 +1381,7 @@ void KCalculator::slotRightShiftclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotPeriodclicked()
 {
-    this->insertNumericToInputDisplay(KCalcToken::TokenCode::DECIMAL_POINT);
+    this->insertNumericToInputDisplay(KCalcToken::TokenCode::DecimalPoint);
 }
 
 //------------------------------------------------------------------------------
@@ -1393,7 +1390,7 @@ void KCalculator::slotPeriodclicked()
 //------------------------------------------------------------------------------
 void KCalculator::updateResultDisplay()
 {
-    updateDisplay(UPDATE_FROM_CORE);
+    updateDisplay(UpdateFromCore);
 }
 
 //------------------------------------------------------------------------------
@@ -1402,14 +1399,14 @@ void KCalculator::updateResultDisplay()
 //------------------------------------------------------------------------------
 void KCalculator::slotEqualclicked()
 {
-    this->commit_Input_();
+    this->commitInput();
 
-    if (parsing_failure_) {
-        handle_Parsing_Error_();
-    } else if (calculation_failure_) {
-        handle_Calculation_Error_();
+    if (m_parsingFailure) {
+        handleParsingError();
+    } else if (m_calculationFailure) {
+        handleCalculationError();
     } else {
-        commit_Result_();
+        commitResult();
         QString result = calc_display->getAmountQString(false);
         this->input_display->clear();
         this->input_display->insert(result);
@@ -1423,38 +1420,38 @@ void KCalculator::slotEqualclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotInputChanged()
 {
-    this->commit_Input_();
+    this->commitInput();
 
-    if (parsing_failure_) {
-        updateDisplay(UPDATE_CLEAR);
+    if (m_parsingFailure) {
+        updateDisplay(UpdateClear);
         return;
-    } else if (calculation_failure_) {
-        switch (calculation_result_code_) {
-        case CalcEngine::ResultCode::MISSING_RIGHT_UNARY_ARG:
-        case CalcEngine::ResultCode::MISSING_RIGHT_BINARY_ARG:
+    } else if (m_calculationFailure) {
+        switch (m_calculationResultCode) {
+        case CalcEngine::ResultCode::MissingRightUnaryArg:
+        case CalcEngine::ResultCode::MissingRightBinaryArg:
             if (calc_display->text().isEmpty()) {
                 numeralSystemView->clearNumber();
             }
             break;
-        case CalcEngine::ResultCode::MATH_ERROR:
-            updateDisplay(UPDATE_CLEAR);
+        case CalcEngine::ResultCode::MathError:
+            updateDisplay(UpdateClear);
             break;
         default:
-            updateDisplay(UPDATE_CLEAR);
+            updateDisplay(UpdateClear);
             break;
         }
         return;
-    } else if (m_parsingResult == KCalcParser::ParsingResult::SUCCESS_SINGLE_KNUMBER) {
-        updateDisplay(UPDATE_CLEAR);
-        if (base_mode_) {
-            slotBaseModeAmountChanged(core.getResult());
-            slotUpdateBitset(core.getResult());
+    } else if (m_ParsingResult == KCalcParser::ParsingResult::SuccessSingleKNumber) {
+        updateDisplay(UpdateClear);
+        if (m_baseMode) {
+            slotBaseModeAmountChanged(m_core.getResult());
+            slotUpdateBitset(m_core.getResult());
             mBitset->setReadOnly(false);
         }
         return;
     } else {
-        this->commit_Result_(false);
-        slotUpdateBitset(core.getResult());
+        this->commitResult(false);
+        slotUpdateBitset(m_core.getResult());
         mBitset->setReadOnly(true);
         return;
     }
@@ -1477,7 +1474,7 @@ void KCalculator::slotClearResult()
 //------------------------------------------------------------------------------
 void KCalculator::slotPercentclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::PERCENTAGE);
+    this->insertToInputDisplay(KCalcToken::TokenCode::Percentage);
 }
 
 //------------------------------------------------------------------------------
@@ -1487,7 +1484,7 @@ void KCalculator::slotPercentclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotNegateclicked()
 {
-    this->insertToInputDisplay(KCalcToken::TokenCode::ONE_S_COMPLEMENT);
+    this->insertToInputDisplay(KCalcToken::TokenCode::OnesComplement);
 }
 
 //------------------------------------------------------------------------------
@@ -1496,10 +1493,10 @@ void KCalculator::slotNegateclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotModclicked()
 {
-    if (shift_mode_) {
-        this->insertToInputDisplay(KCalcToken::TokenCode::INTEGER_DIVISION);
+    if (m_shiftMode) {
+        this->insertToInputDisplay(KCalcToken::TokenCode::IntegerDivision);
     } else {
-        this->insertToInputDisplay(KCalcToken::TokenCode::MODULO);
+        this->insertToInputDisplay(KCalcToken::TokenCode::Modulo);
     }
 }
 
@@ -1512,18 +1509,18 @@ void KCalculator::slotStatNumclicked()
     this->input_display->clear();
     this->input_display->slotSetHardOverwrite();
 
-    if (!shift_mode_) {
-        core.StatCount(KNumber::Zero);
+    if (!m_shiftMode) {
+        m_core.statCount(KNumber::Zero);
         this->calc_history->addToHistory(i18n("Number of data entered = "), false);
         this->input_display->insert(i18n("Number of data entered ="));
     } else {
         pbShift->setChecked(false);
-        core.StatSum(KNumber::Zero);
+        m_core.statSum(KNumber::Zero);
         calc_history->addToHistory(QString::fromUtf8("\xce\xa3") + QLatin1Char('x') + QLatin1Char('='), false);
         this->input_display->insert(i18n("Sum of all data items ="));
     }
 
-    updateDisplay(UPDATE_FROM_CORE);
+    updateDisplay(UpdateFromCore);
     calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
 }
 
@@ -1536,18 +1533,18 @@ void KCalculator::slotStatMeanclicked()
     this->input_display->clear();
     this->input_display->slotSetHardOverwrite();
 
-    if (!shift_mode_) {
-        core.StatMean(KNumber::Zero);
+    if (!m_shiftMode) {
+        m_core.statMean(KNumber::Zero);
         this->input_display->insert(QStringLiteral("Mean ="));
         calc_history->addToHistory(i18n("Mean = "), false);
     } else {
         pbShift->setChecked(false);
-        core.StatSumSquares(KNumber::Zero);
+        m_core.statSumSquares(KNumber::Zero);
         this->input_display->insert(i18n("Sum of squares ="));
         calc_history->addToHistory(QString::fromUtf8("\xce\xa3") + QStringLiteral("x<sub>i</sub><sup>2</sup> = "), false);
     }
 
-    updateDisplay(UPDATE_FROM_CORE);
+    updateDisplay(UpdateFromCore);
     calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
 }
 
@@ -1560,19 +1557,19 @@ void KCalculator::slotStatStdDevclicked()
     this->input_display->clear();
     this->input_display->slotSetHardOverwrite();
 
-    if (shift_mode_) {
+    if (m_shiftMode) {
         // std (n-1)
-        core.StatStdSample(KNumber::Zero);
+        m_core.statStdSample(KNumber::Zero);
         pbShift->setChecked(false);
         this->input_display->insert(QString::fromUtf8("\xcf\x83") + QStringLiteral("<sub>N-1</sub> ="));
         calc_history->addToHistory(QString::fromUtf8("\xcf\x83") + QStringLiteral("<sub>N-1</sub> = "), false);
     } else {
-        core.StatStdDeviation(KNumber::Zero);
+        m_core.statStdDeviation(KNumber::Zero);
         this->input_display->insert(QString::fromUtf8("\xcf\x83") + QStringLiteral("N ="));
         calc_history->addToHistory(QString::fromUtf8("&sigma;") + QStringLiteral("<sub>N</sub> = "), false);
     }
 
-    updateDisplay(UPDATE_FROM_CORE);
+    updateDisplay(UpdateFromCore);
     calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
 }
 
@@ -1585,15 +1582,15 @@ void KCalculator::slotStatMedianclicked()
     this->input_display->clear();
     this->input_display->slotSetHardOverwrite();
 
-    core.StatMedian(KNumber::Zero);
+    m_core.statMedian(KNumber::Zero);
     input_display->insert(i18n("Median ="));
     calc_history->addToHistory(i18n("Median = "), false);
 
-    if (shift_mode_) {
+    if (m_shiftMode) {
         pbShift->setChecked(false);
     }
 
-    updateDisplay(UPDATE_FROM_CORE);
+    updateDisplay(UpdateFromCore);
     calc_history->addResultToHistory(calc_display->getAmount().toQString(KCalcSettings::precision()));
 }
 
@@ -1603,26 +1600,26 @@ void KCalculator::slotStatMedianclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotStatDataInputclicked()
 {
-    if (!shift_mode_) {
-        this->commit_Input_();
+    if (!m_shiftMode) {
+        this->commitInput();
         //
-        if (parsing_failure_) {
-            handle_Parsing_Error_();
-        } else if (calculation_failure_) {
-            handle_Calculation_Error_();
+        if (m_parsingFailure) {
+            handleParsingError();
+        } else if (m_calculationFailure) {
+            handleCalculationError();
         } else {
-            commit_Result_(false);
+            commitResult(false);
 
-            bool tmp_error;
+            bool tmpError = false;
 
             KNumber result = calc_display->getAmount();
             QString resultQString = calc_display->getAmountQString();
 
-            core.StatDataNew(result);
+            m_core.statDataNew(result);
 
             this->input_display->clear();
-            input_display->insert(i18n("DAT [") + core.lastOutput(tmp_error).toQString() + i18n("] = ") + resultQString);
-            calc_history->addToHistory(i18n("DAT [") + core.lastOutput(tmp_error).toQString() + i18n("] = ") + resultQString, true);
+            input_display->insert(i18n("DAT [") + m_core.lastOutput(tmpError).toQString() + i18n("] = ") + resultQString);
+            calc_history->addToHistory(i18n("DAT [") + m_core.lastOutput(tmpError).toQString() + i18n("] = ") + resultQString, true);
             this->input_display->slotSetHardOverwrite();
         }
     } else {
@@ -1630,10 +1627,10 @@ void KCalculator::slotStatDataInputclicked()
         this->input_display->clear();
         this->input_display->slotSetHardOverwrite();
         input_display->insert(i18n("Last stat data erased"));
-        core.StatDataDel();
+        m_core.statDataDel();
         statusBar()->showMessage(i18n("Last stat data erased"), 3000);
         calc_history->addToHistory(i18n("Last stat data erased"), true);
-        updateDisplay(UPDATE_CLEAR);
+        updateDisplay(UpdateClear);
     }
 }
 
@@ -1646,14 +1643,14 @@ void KCalculator::slotStatClearDataclicked()
     this->input_display->clear();
     this->input_display->insert(i18n("Stat mem cleared"));
     this->input_display->slotSetHardOverwrite();
-    core.StatClearAll();
+    m_core.statClearAll();
     statusBar()->showMessage(i18n("Stat mem cleared"), 3000);
     calc_history->addToHistory(i18n("Stat mem cleared"), true);
 
-    if (shift_mode_) {
+    if (m_shiftMode) {
         pbShift->setChecked(false);
     }
-    updateDisplay(UPDATE_CLEAR);
+    updateDisplay(UpdateClear);
 }
 
 //------------------------------------------------------------------------------
@@ -1662,8 +1659,8 @@ void KCalculator::slotStatClearDataclicked()
 //------------------------------------------------------------------------------
 void KCalculator::slotConstclicked(int button)
 {
-    if (auto btn = qobject_cast<KCalcConstButton *>(const_buttons_[button])) {
-        if (!shift_mode_) {
+    if (auto btn = qobject_cast<KCalcConstButton *>(m_constButtons[button])) {
+        if (!m_shiftMode) {
             // set the display to the configured value of constant button
             // internally, we deal with C locale style numbers, we need to convert
             QString val = btn->constant();
@@ -1700,49 +1697,49 @@ void KCalculator::showSettings()
     auto const dialog = new KConfigDialog(this, QStringLiteral("settings"), KCalcSettings::self());
 
     // general settings
-    auto const general = new General(nullptr);
+    auto *const general = new General(nullptr);
     general->kcfg_Precision->setMaximum(maxprecision);
     dialog->addPage(general, i18n("General"), QStringLiteral("accessories-calculator"), i18n("General Settings"));
 
     // font settings
-    auto const fonts = new Fonts(nullptr);
+    auto *const fonts = new Fonts(nullptr);
     dialog->addPage(fonts, i18n("Fonts"), QStringLiteral("preferences-desktop-font"), i18n("Fonts"));
 
     // color settings
-    auto const color = new Colors(nullptr);
+    auto *const color = new Colors(nullptr);
     dialog->addPage(color, i18n("Colors"), QStringLiteral("preferences-desktop-color"), i18n("Button & Display Colors"));
 
     // constant settings
-    if (!constants_) {
-        constants_ = new Constants(nullptr);
+    if (!m_constants) {
+        m_constants = new Constants(nullptr);
 
-        KCalcConstMenu *tmp_menu;
-        tmp_menu = new KCalcConstMenu(constants_);
-        connect(tmp_menu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotChooseScientificConst0);
-        constants_->pushButton0->setMenu(tmp_menu);
+        KCalcConstMenu *tmpMenu = nullptr;
+        tmpMenu = new KCalcConstMenu(m_constants);
+        connect(tmpMenu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotChooseScientificConst0);
+        m_constants->pushButton0->setMenu(tmpMenu);
 
-        tmp_menu = new KCalcConstMenu(constants_);
-        connect(tmp_menu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotChooseScientificConst1);
-        constants_->pushButton1->setMenu(tmp_menu);
+        tmpMenu = new KCalcConstMenu(m_constants);
+        connect(tmpMenu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotChooseScientificConst1);
+        m_constants->pushButton1->setMenu(tmpMenu);
 
-        tmp_menu = new KCalcConstMenu(constants_);
-        connect(tmp_menu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotChooseScientificConst2);
-        constants_->pushButton2->setMenu(tmp_menu);
+        tmpMenu = new KCalcConstMenu(m_constants);
+        connect(tmpMenu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotChooseScientificConst2);
+        m_constants->pushButton2->setMenu(tmpMenu);
 
-        tmp_menu = new KCalcConstMenu(constants_);
-        connect(tmp_menu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotChooseScientificConst3);
-        constants_->pushButton3->setMenu(tmp_menu);
+        tmpMenu = new KCalcConstMenu(m_constants);
+        connect(tmpMenu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotChooseScientificConst3);
+        m_constants->pushButton3->setMenu(tmpMenu);
 
-        tmp_menu = new KCalcConstMenu(constants_);
-        connect(tmp_menu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotChooseScientificConst4);
-        constants_->pushButton4->setMenu(tmp_menu);
+        tmpMenu = new KCalcConstMenu(m_constants);
+        connect(tmpMenu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotChooseScientificConst4);
+        m_constants->pushButton4->setMenu(tmpMenu);
 
-        tmp_menu = new KCalcConstMenu(constants_);
-        connect(tmp_menu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotChooseScientificConst5);
-        constants_->pushButton5->setMenu(tmp_menu);
+        tmpMenu = new KCalcConstMenu(m_constants);
+        connect(tmpMenu, &KCalcConstMenu::triggeredConstant, this, &KCalculator::slotChooseScientificConst5);
+        m_constants->pushButton5->setMenu(tmpMenu);
     }
 
-    dialog->addPage(constants_, i18n("Constants"), QStringLiteral("preferences-kcalc-constants"), i18n("Define Constants"));
+    dialog->addPage(m_constants, i18n("Constants"), QStringLiteral("preferences-kcalc-constants"), i18n("Define Constants"));
 
     // When the user clicks OK or Apply we want to update our settings.
     connect(dialog, &KConfigDialog::settingsChanged, this, &KCalculator::updateSettings);
@@ -1759,60 +1756,60 @@ void KCalculator::showSettings()
 // Name: slotChooseScientificConst0
 // Desc: updates constants value
 //------------------------------------------------------------------------------
-void KCalculator::slotChooseScientificConst0(const science_constant &chosen_const)
+void KCalculator::slotChooseScientificConst0(const ScienceConstant &chosenConst)
 {
-    constants_->kcfg_valueConstant0->setText(chosen_const.value);
-    constants_->kcfg_nameConstant0->setText(chosen_const.label);
+    m_constants->kcfg_valueConstant0->setText(chosenConst.value);
+    m_constants->kcfg_nameConstant0->setText(chosenConst.label);
 }
 
 //------------------------------------------------------------------------------
 // Name: slotChooseScientificConst1
 // Desc: updates constants value
 //------------------------------------------------------------------------------
-void KCalculator::slotChooseScientificConst1(const science_constant &chosen_const)
+void KCalculator::slotChooseScientificConst1(const ScienceConstant &chosenConst)
 {
-    constants_->kcfg_valueConstant1->setText(chosen_const.value);
-    constants_->kcfg_nameConstant1->setText(chosen_const.label);
+    m_constants->kcfg_valueConstant1->setText(chosenConst.value);
+    m_constants->kcfg_nameConstant1->setText(chosenConst.label);
 }
 
 //------------------------------------------------------------------------------
 // Name: slotChooseScientificConst2
 // Desc: updates constants value
 //------------------------------------------------------------------------------
-void KCalculator::slotChooseScientificConst2(const science_constant &chosen_const)
+void KCalculator::slotChooseScientificConst2(const ScienceConstant &chosenConst)
 {
-    constants_->kcfg_valueConstant2->setText(chosen_const.value);
-    constants_->kcfg_nameConstant2->setText(chosen_const.label);
+    m_constants->kcfg_valueConstant2->setText(chosenConst.value);
+    m_constants->kcfg_nameConstant2->setText(chosenConst.label);
 }
 
 //------------------------------------------------------------------------------
 // Name: slotChooseScientificConst3
 // Desc: updates constants value
 //------------------------------------------------------------------------------
-void KCalculator::slotChooseScientificConst3(const science_constant &chosen_const)
+void KCalculator::slotChooseScientificConst3(const ScienceConstant &chosenConst)
 {
-    constants_->kcfg_valueConstant3->setText(chosen_const.value);
-    constants_->kcfg_nameConstant3->setText(chosen_const.label);
+    m_constants->kcfg_valueConstant3->setText(chosenConst.value);
+    m_constants->kcfg_nameConstant3->setText(chosenConst.label);
 }
 
 //------------------------------------------------------------------------------
 // Name: slotChooseScientificConst4
 // Desc: updates constants value
 //------------------------------------------------------------------------------
-void KCalculator::slotChooseScientificConst4(const science_constant &chosen_const)
+void KCalculator::slotChooseScientificConst4(const ScienceConstant &chosenConst)
 {
-    constants_->kcfg_valueConstant4->setText(chosen_const.value);
-    constants_->kcfg_nameConstant4->setText(chosen_const.label);
+    m_constants->kcfg_valueConstant4->setText(chosenConst.value);
+    m_constants->kcfg_nameConstant4->setText(chosenConst.label);
 }
 
 //------------------------------------------------------------------------------
 // Name: slotChooseScientificConst5
 // Desc: updates constants value
 //------------------------------------------------------------------------------
-void KCalculator::slotChooseScientificConst5(const science_constant &chosen_const)
+void KCalculator::slotChooseScientificConst5(const ScienceConstant &chosenConst)
 {
-    constants_->kcfg_valueConstant5->setText(chosen_const.value);
-    constants_->kcfg_nameConstant5->setText(chosen_const.label);
+    m_constants->kcfg_valueConstant5->setText(chosenConst.value);
+    m_constants->kcfg_nameConstant5->setText(chosenConst.label);
 }
 
 //------------------------------------------------------------------------------
@@ -1823,18 +1820,18 @@ void KCalculator::slotSetSimpleMode()
 {
     bool wasMinimumSize = isMinimumSize();
 
-    this->parser.setNumeralMode(false);
+    this->m_parser.setNumeralMode(false);
 
-    action_constants_show_->setChecked(false);
-    action_constants_show_->setEnabled(false);
-    action_bitset_show_->setEnabled(false);
-    action_history_show_->setChecked(KCalcSettings::showHistory());
+    m_actionConstantsShow->setChecked(false);
+    m_actionConstantsShow->setEnabled(false);
+    m_actionBitsetShow->setEnabled(false);
+    m_actionHistoryShow->setChecked(KCalcSettings::showHistory());
     showMemButtons(false);
     showScienceButtons(false);
     showStatButtons(false);
     showLogicButtons(false);
 
-    if (shift_mode_) {
+    if (m_shiftMode) {
         slotShifttoggled(false);
     }
     // hide some individual buttons, which are not in one of the above groups
@@ -1848,13 +1845,13 @@ void KCalculator::slotSetSimpleMode()
     pbEE->hide();
 
     // delete the constant menu since it doesn't fit
-    delete constants_menu_;
-    constants_menu_ = nullptr;
+    delete m_constantsMenu;
+    m_constantsMenu = nullptr;
 
     KCalcSettings::setCalculatorMode(KCalcSettings::EnumCalculatorMode::simple);
     // must be done after setting the calculator mode because the
     // slotBitsetshow slot should save the state only in numeral mode
-    action_bitset_show_->setChecked(false);
+    m_actionBitsetShow->setChecked(false);
 
     // disable leftPad from affecting the layout
     setLeftPadLayoutActive(false);
@@ -1864,7 +1861,7 @@ void KCalculator::slotSetSimpleMode()
     setFonts();
     updateGeometry();
 
-    if (!is_still_in_launch_) {
+    if (!m_isStillInLaunch) {
         forceResizeEvent();
         QApplication::processEvents();
         if (wasMinimumSize) {
@@ -1881,12 +1878,12 @@ void KCalculator::slotSetScienceMode()
 {
     bool wasMinimumSize = isMinimumSize();
 
-    this->parser.setNumeralMode(false);
+    this->m_parser.setNumeralMode(false);
 
-    action_constants_show_->setEnabled(true);
-    action_constants_show_->setChecked(KCalcSettings::showConstants());
-    action_bitset_show_->setEnabled(false);
-    action_history_show_->setChecked(KCalcSettings::showHistory());
+    m_actionConstantsShow->setEnabled(true);
+    m_actionConstantsShow->setChecked(KCalcSettings::showConstants());
+    m_actionBitsetShow->setEnabled(false);
+    m_actionHistoryShow->setChecked(KCalcSettings::showHistory());
 
     // show some individual buttons
     pbShift->show();
@@ -1904,15 +1901,15 @@ void KCalculator::slotSetScienceMode()
     showMemButtons(true);
     showScienceButtons(true);
 
-    if (!constants_menu_) {
-        constants_menu_ = createConstantsMenu();
-        menuBar()->insertMenu((menuBar()->actions)()[2], constants_menu_);
+    if (!m_constantsMenu) {
+        m_constantsMenu = createConstantsMenu();
+        menuBar()->insertMenu((menuBar()->actions)()[2], m_constantsMenu);
     }
 
     KCalcSettings::setCalculatorMode(KCalcSettings::EnumCalculatorMode::science);
     // must be done after setting the calculator mode because the
     // slotBitsetshow slot should save the state only in numeral mode
-    action_bitset_show_->setChecked(false);
+    m_actionBitsetShow->setChecked(false);
 
     // enable leftPad to affect the layout
     setLeftPadLayoutActive(true);
@@ -1922,7 +1919,7 @@ void KCalculator::slotSetScienceMode()
     setFonts();
     updateGeometry();
 
-    if (!is_still_in_launch_) {
+    if (!m_isStillInLaunch) {
         forceResizeEvent();
         QApplication::processEvents();
         if (wasMinimumSize) {
@@ -1939,12 +1936,12 @@ void KCalculator::slotSetStatisticMode()
 {
     bool wasMinimumSize = isMinimumSize();
 
-    this->parser.setNumeralMode(false);
+    this->m_parser.setNumeralMode(false);
 
-    action_constants_show_->setEnabled(true);
-    action_constants_show_->setChecked(KCalcSettings::showConstants());
-    action_bitset_show_->setEnabled(false);
-    action_history_show_->setChecked(KCalcSettings::showHistory());
+    m_actionConstantsShow->setEnabled(true);
+    m_actionConstantsShow->setChecked(KCalcSettings::showConstants());
+    m_actionBitsetShow->setEnabled(false);
+    m_actionHistoryShow->setChecked(KCalcSettings::showHistory());
 
     // show some individual buttons
     pbShift->show();
@@ -1962,15 +1959,15 @@ void KCalculator::slotSetStatisticMode()
     showScienceButtons(true);
     showStatButtons(true);
 
-    if (!constants_menu_) {
-        constants_menu_ = createConstantsMenu();
-        menuBar()->insertMenu((menuBar()->actions)()[2], constants_menu_);
+    if (!m_constantsMenu) {
+        m_constantsMenu = createConstantsMenu();
+        menuBar()->insertMenu((menuBar()->actions)()[2], m_constantsMenu);
     }
 
     KCalcSettings::setCalculatorMode(KCalcSettings::EnumCalculatorMode::statistics);
     // must be done after setting the calculator mode because the
     // slotBitsetshow slot should save the state only in numeral mode
-    action_bitset_show_->setChecked(false);
+    m_actionBitsetShow->setChecked(false);
 
     // enable leftPad to affect the layout
     setLeftPadLayoutActive(true);
@@ -1980,7 +1977,7 @@ void KCalculator::slotSetStatisticMode()
     setFonts();
     updateGeometry();
 
-    if (!is_still_in_launch_) {
+    if (!m_isStillInLaunch) {
         forceResizeEvent();
         QApplication::processEvents();
         if (wasMinimumSize) {
@@ -1997,13 +1994,13 @@ void KCalculator::slotSetNumeralMode()
 {
     bool wasMinimumSize = isMinimumSize();
 
-    this->parser.setNumeralMode(true);
+    this->m_parser.setNumeralMode(true);
 
-    action_constants_show_->setChecked(false);
-    action_constants_show_->setEnabled(false);
-    action_bitset_show_->setEnabled(true);
-    action_bitset_show_->setChecked(KCalcSettings::showBitset());
-    action_history_show_->setChecked(KCalcSettings::showHistory());
+    m_actionConstantsShow->setChecked(false);
+    m_actionConstantsShow->setEnabled(false);
+    m_actionBitsetShow->setEnabled(true);
+    m_actionBitsetShow->setChecked(KCalcSettings::showBitset());
+    m_actionHistoryShow->setChecked(KCalcSettings::showHistory());
 
     // show some individual buttons
     pbShift->show();
@@ -2021,9 +2018,9 @@ void KCalculator::slotSetNumeralMode()
     showMemButtons(true);
     showLogicButtons(true);
 
-    if (!constants_menu_) {
-        constants_menu_ = createConstantsMenu();
-        menuBar()->insertMenu((menuBar()->actions)()[2], constants_menu_);
+    if (!m_constantsMenu) {
+        m_constantsMenu = createConstantsMenu();
+        menuBar()->insertMenu((menuBar()->actions)()[2], m_constantsMenu);
     }
 
     KCalcSettings::setCalculatorMode(KCalcSettings::EnumCalculatorMode::numeral);
@@ -2036,7 +2033,7 @@ void KCalculator::slotSetNumeralMode()
     setFonts();
     updateGeometry();
 
-    if (!is_still_in_launch_) {
+    if (!m_isStillInLaunch) {
         forceResizeEvent();
         QApplication::processEvents();
         if (wasMinimumSize) {
@@ -2051,7 +2048,7 @@ void KCalculator::slotSetNumeralMode()
 //------------------------------------------------------------------------------
 void KCalculator::slotBaseModeAmountChanged(const KNumber &number)
 {
-    numeralSystemView->setNumber(number.toUint64(), base_mode_);
+    numeralSystemView->setNumber(number.toUint64(), m_baseMode);
 }
 
 //------------------------------------------------------------------------------
@@ -2060,7 +2057,7 @@ void KCalculator::slotBaseModeAmountChanged(const KNumber &number)
 //------------------------------------------------------------------------------
 void KCalculator::slotClearBaseModeAmount()
 {
-    if (m_parsingResult != KCalcParser::ParsingResult::SUCCESS_SINGLE_KNUMBER) {
+    if (m_ParsingResult != KCalcParser::ParsingResult::SuccessSingleKNumber) {
         numeralSystemView->clearNumber();
     }
 }
@@ -2072,15 +2069,15 @@ void KCalculator::slotClearBaseModeAmount()
 void KCalculator::showMemButtons(bool toggled)
 {
     if (toggled) {
-        for (QAbstractButton *btn : std::as_const(mem_button_list_)) {
+        for (QAbstractButton *btn : std::as_const(m_memButtonList)) {
             btn->show();
         }
     } else {
-        for (QAbstractButton *btn : std::as_const(mem_button_list_)) {
+        for (QAbstractButton *btn : std::as_const(m_memButtonList)) {
             btn->hide();
         }
 
-        // these are in the mem_button_list_ but should not be hidden
+        // these are in the memButtonList but should not be hidden
         pbClear->show();
         pbAllClear->show();
     }
@@ -2093,11 +2090,11 @@ void KCalculator::showMemButtons(bool toggled)
 void KCalculator::showStatButtons(bool toggled)
 {
     if (toggled) {
-        for (QAbstractButton *btn : std::as_const(stat_buttons_)) {
+        for (QAbstractButton *btn : std::as_const(m_statButtons)) {
             btn->show();
         }
     } else {
-        for (QAbstractButton *btn : std::as_const(stat_buttons_)) {
+        for (QAbstractButton *btn : std::as_const(m_statButtons)) {
             btn->hide();
         }
     }
@@ -2111,10 +2108,10 @@ void KCalculator::showScienceButtons(bool toggled)
 {
     if (toggled) {
         angle_units_label->show();
-        for (QAbstractButton *btn : std::as_const(scientific_buttons_)) {
+        for (QAbstractButton *btn : std::as_const(m_scientificButtons)) {
             btn->show();
         }
-        const auto buttons = angle_choose_group_->buttons();
+        const auto buttons = m_angleChooseGroup->buttons();
         for (QAbstractButton *btn : buttons) {
             btn->show();
         }
@@ -2123,11 +2120,11 @@ void KCalculator::showScienceButtons(bool toggled)
         statusBar()->setAngleModeIndicatorVisible(true);
     } else {
         angle_units_label->hide();
-        for (QAbstractButton *btn : std::as_const(scientific_buttons_)) {
+        for (QAbstractButton *btn : std::as_const(m_scientificButtons)) {
             btn->hide();
         }
 
-        const auto buttons = angle_choose_group_->buttons();
+        const auto buttons = m_angleChooseGroup->buttons();
         for (QAbstractButton *btn : buttons) {
             btn->hide();
         }
@@ -2148,7 +2145,7 @@ void KCalculator::showLogicButtons(bool toggled)
         connect(mBitset, &KCalcBitset::valueChanged, this, &KCalculator::slotBitsetChanged);
         connect(calc_display, &KCalcDisplay::changedAmount, this, &KCalculator::slotUpdateBitset);
 
-        for (QAbstractButton *btn : std::as_const(logic_buttons_)) {
+        for (QAbstractButton *btn : std::as_const(m_logicButtons)) {
             btn->show();
         }
 
@@ -2161,7 +2158,7 @@ void KCalculator::showLogicButtons(bool toggled)
         connect(calc_display, &KCalcDisplay::changedAmount, this, &KCalculator::slotBaseModeAmountChanged);
 
         for (int i = 10; i < 16; ++i) {
-            (num_button_group_->button(i))->show();
+            (m_numButtonGroup->button(i))->show();
         }
     } else {
         base_label->hide();
@@ -2169,7 +2166,7 @@ void KCalculator::showLogicButtons(bool toggled)
         disconnect(mBitset, &KCalcBitset::valueChanged, this, &KCalculator::slotBitsetChanged);
         disconnect(calc_display, &KCalcDisplay::changedAmount, this, &KCalculator::slotUpdateBitset);
 
-        for (QAbstractButton *btn : std::as_const(logic_buttons_)) {
+        for (QAbstractButton *btn : std::as_const(m_logicButtons)) {
             btn->hide();
         }
 
@@ -2183,7 +2180,7 @@ void KCalculator::showLogicButtons(bool toggled)
         statusBar()->setBaseIndicatorVisible(false);
         base_label->setText(QStringLiteral("Dec"));
         for (int i = 10; i < 16; ++i) {
-            (num_button_group_->button(i))->hide();
+            (m_numButtonGroup->button(i))->hide();
         }
     }
 }
@@ -2200,7 +2197,7 @@ void KCalculator::slotHistoryshow(bool toggled)
     KCalcSettings::setShowHistory(toggled);
     updateGeometry();
 
-    if (!is_still_in_launch_) {
+    if (!m_isStillInLaunch) {
         forceResizeEvent();
         QApplication::processEvents();
         if (wasMinimumSize) {
@@ -2218,11 +2215,11 @@ void KCalculator::slotConstantsShow(bool toggled)
     bool wasMinimumSize = isMinimumSize();
 
     if (toggled) {
-        for (QAbstractButton *btn : std::as_const(const_buttons_)) {
+        for (QAbstractButton *btn : std::as_const(m_constButtons)) {
             btn->show();
         }
     } else {
-        for (QAbstractButton *btn : std::as_const(const_buttons_)) {
+        for (QAbstractButton *btn : std::as_const(m_constButtons)) {
             btn->hide();
         }
     }
@@ -2230,7 +2227,7 @@ void KCalculator::slotConstantsShow(bool toggled)
     KCalcSettings::setShowConstants(toggled);
     updateGeometry();
 
-    if (!is_still_in_launch_) {
+    if (!m_isStillInLaunch) {
         forceResizeEvent();
         QApplication::processEvents();
         if (wasMinimumSize) {
@@ -2257,7 +2254,7 @@ void KCalculator::slotBitsetshow(bool toggled)
     }
     updateGeometry();
 
-    if (!is_still_in_launch_) {
+    if (!m_isStillInLaunch) {
         forceResizeEvent();
         QApplication::processEvents();
         if (wasMinimumSize) {
@@ -2274,7 +2271,7 @@ void KCalculator::slotBitsetshow(bool toggled)
 //------------------------------------------------------------------------------
 void KCalculator::changeButtonNames()
 {
-    for (QAbstractButton *btn : std::as_const(const_buttons_)) {
+    for (QAbstractButton *btn : std::as_const(m_constButtons)) {
         if (auto const constbtn = qobject_cast<KCalcConstButton *>(btn)) {
             constbtn->setLabelAndTooltip();
         }
@@ -2289,7 +2286,7 @@ void KCalculator::changeButtonNames()
 void KCalculator::slotBitsetChanged(qint64 value)
 {
     input_display->clear();
-    input_display->insert(QString::number(value, base_mode_).toUpper());
+    input_display->insert(QString::number(value, m_baseMode).toUpper());
 }
 
 //------------------------------------------------------------------------------
@@ -2334,15 +2331,15 @@ void KCalculator::updateSettings()
 
 void KCalculator::updateDisplay(UpdateFlags flags)
 {
-    if (flags & UPDATE_FROM_CORE) {
-        calc_display->updateFromCore(core);
-    } else if (flags & UPDATE_MATH_ERROR) {
+    if (flags & UpdateFromCore) {
+        calc_display->updateFromCore(m_core);
+    } else if (flags & UpdateMathError) {
         calc_display->showErrorMessage(KCalcDisplay::ErrorMessage::MathError);
-    } else if (flags & UPDATE_SYNTAX_ERROR) {
+    } else if (flags & UpdateSyntaxError) {
         calc_display->showErrorMessage(KCalcDisplay::ErrorMessage::SyntaxError);
-    } else if (flags & UPDATE_MALFORMED_EXPRESSION) {
+    } else if (flags & UpdateMalformedExpression) {
         calc_display->showErrorMessage(KCalcDisplay::ErrorMessage::MalformedExpression);
-    } else if (flags & UPDATE_CLEAR) {
+    } else if (flags & UpdateClear) {
         slotClearResult();
     } else {
         calc_display->update();
@@ -2358,7 +2355,7 @@ void KCalculator::updateDisplay(UpdateFlags flags)
 
 void inline KCalculator::insertNumericToInputDisplay(KCalcToken::TokenCode token)
 {
-    input_display->insertTokenNumeric(parser.TokenToString(token));
+    input_display->insertTokenNumeric(m_parser.tokenToString(token));
 }
 
 //------------------------------------------------------------------------------
@@ -2368,7 +2365,7 @@ void inline KCalculator::insertNumericToInputDisplay(KCalcToken::TokenCode token
 
 void inline KCalculator::insertFunctionToInputDisplay(KCalcToken::TokenCode token)
 {
-    input_display->insertTokenFunction(parser.TokenToString(token));
+    input_display->insertTokenFunction(m_parser.tokenToString(token));
 }
 
 //------------------------------------------------------------------------------
@@ -2378,7 +2375,7 @@ void inline KCalculator::insertFunctionToInputDisplay(KCalcToken::TokenCode toke
 
 void inline KCalculator::insertToInputDisplay(KCalcToken::TokenCode token)
 {
-    input_display->insertToken(parser.TokenToString(token));
+    input_display->insertToken(m_parser.tokenToString(token));
 }
 
 //------------------------------------------------------------------------------
@@ -2392,25 +2389,25 @@ void inline KCalculator::insertToInputDisplay(const QString &token)
 }
 
 //------------------------------------------------------------------------------
-// Name: commit_Input_
+// Name: commitInput
 // Desc: takes string from display and queries parsing, if success, queries calculation
 //------------------------------------------------------------------------------
-int KCalculator::commit_Input_()
+int KCalculator::commitInput()
 {
-    m_parsingResult = parser.stringToTokenQueue(input_display->text(), base_mode_, token_Queue_, input_error_index_);
+    m_ParsingResult = m_parser.stringToTokenQueue(input_display->text(), m_baseMode, m_tokenQueue, m_inputErrorIndex);
 
-    if (m_parsingResult == KCalcParser::ParsingResult::EMPTY || m_parsingResult == KCalcParser::ParsingResult::INVALID_TOKEN) {
-        parsing_failure_ = true;
+    if (m_ParsingResult == KCalcParser::ParsingResult::Empty || m_ParsingResult == KCalcParser::ParsingResult::InvalidToken) {
+        m_parsingFailure = true;
         return -1;
     } else {
-        parsing_failure_ = false;
-        calculation_result_code_ = core.calculate(token_Queue_, calculation_error_token_index_);
-        if (calculation_result_code_ != CalcEngine::ResultCode::SUCCESS) {
-            input_error_index_ = token_Queue_.at(calculation_error_token_index_).getStringIndex();
-            calculation_failure_ = true;
+        m_parsingFailure = false;
+        m_calculationResultCode = m_core.calculate(m_tokenQueue, m_calculationErrorTokenIndex);
+        if (m_calculationResultCode != CalcEngine::ResultCode::Success) {
+            m_inputErrorIndex = m_tokenQueue.at(m_calculationErrorTokenIndex).getStringIndex();
+            m_calculationFailure = true;
             return -1;
         } else {
-            calculation_failure_ = false;
+            m_calculationFailure = false;
         }
     }
     return 0;
@@ -2420,7 +2417,7 @@ int KCalculator::commit_Input_()
 // Name: commit_Result_
 // Desc: updates result display with last core output, and history if requested
 //------------------------------------------------------------------------------
-void KCalculator::commit_Result_(bool toHistory /*=true*/)
+void KCalculator::commitResult(bool toHistory /*=true*/)
 {
     updateResultDisplay();
     if (toHistory) {
@@ -2433,55 +2430,55 @@ void KCalculator::commit_Result_(bool toHistory /*=true*/)
 }
 
 //------------------------------------------------------------------------------
-// Name: handle_Parsing_Error_
-// Desc: moves cursor to found error position, when input is empty does nothing
+// Name: handleParsingError
+// Desc: moves cursor to found error position, when input is Empty does nothing
 //------------------------------------------------------------------------------
-void inline KCalculator::handle_Parsing_Error_()
+void inline KCalculator::handleParsingError()
 {
-    switch (this->parser.getParsingResult()) {
-    case KCalcParser::INVALID_TOKEN:
-        input_display->setCursorPosition(input_error_index_);
+    switch (this->m_parser.getParsingResult()) {
+    case KCalcParser::InvalidToken:
+        input_display->setCursorPosition(m_inputErrorIndex);
         input_display->setFocus();
-        updateDisplay(UPDATE_SYNTAX_ERROR);
+        updateDisplay(UpdateSyntaxError);
         break;
-    case KCalcParser::EMPTY:
+    case KCalcParser::Empty:
     default:
         break;
     }
 }
 
 //------------------------------------------------------------------------------
-// Name: handle_Calculation_Error_
+// Name: handleCalculationError
 // Desc: moves cursor to found error position during calculaton
 //------------------------------------------------------------------------------
-void inline KCalculator::handle_Calculation_Error_()
+void inline KCalculator::handleCalculationError()
 {
-    input_display->setCursorPosition(input_error_index_);
+    input_display->setCursorPosition(m_inputErrorIndex);
     input_display->setFocus();
-    switch (calculation_result_code_) {
-    case CalcEngine::ResultCode::MISSING_LEFT_UNARY_ARG:
-    case CalcEngine::ResultCode::MISSING_RIGHT_UNARY_ARG:
-    case CalcEngine::ResultCode::MISSING_RIGHT_BINARY_ARG:
-    case CalcEngine::ResultCode::INCOMPLETE_INPUT:
-        updateDisplay(UPDATE_MALFORMED_EXPRESSION);
+    switch (m_calculationResultCode) {
+    case CalcEngine::ResultCode::MissingLeftUnaryArg:
+    case CalcEngine::ResultCode::MissingRightUnaryArg:
+    case CalcEngine::ResultCode::MissingRightBinaryArg:
+    case CalcEngine::ResultCode::IncompleteInput:
+        updateDisplay(UpdateMalformedExpression);
         break;
-    case CalcEngine::ResultCode::MATH_ERROR:
-        updateDisplay(UPDATE_MATH_ERROR);
+    case CalcEngine::ResultCode::MathError:
+        updateDisplay(UpdateMathError);
         break;
-    case CalcEngine::ResultCode::SYNTAX_ERROR:
-        updateDisplay(UPDATE_MALFORMED_EXPRESSION);
+    case CalcEngine::ResultCode::SyntaxError:
+        updateDisplay(UpdateMalformedExpression);
         break;
     default:
-        updateDisplay(UPDATE_MALFORMED_EXPRESSION);
+        updateDisplay(UpdateMalformedExpression);
         break;
     }
 }
 
 //------------------------------------------------------------------------------
-// Name: load_Constants_
+// Name: load_constants
 // Desc: loads science constants into menu and parser.
 //------------------------------------------------------------------------------
-int KCalculator::load_Constants_(const QString &filePath)
+int KCalculator::loadConstants(const QString &filePath)
 {
     QDomDocument doc(QStringLiteral("list_of_constants"));
     QFile file(filePath);
@@ -2497,8 +2494,8 @@ int KCalculator::load_Constants_(const QString &filePath)
     }
     file.close();
 
-    parser.loadConstants(doc);
-    KCalcConstMenu::init_consts(doc);
+    m_parser.loadConstants(doc);
+    KCalcConstMenu::initConsts(doc);
 
     return 0;
 }
@@ -2516,36 +2513,36 @@ void KCalculator::setColors()
 
     const QColor numFontColor(KCalcSettings::followSystemTheme() ? schemeFonts.foreground().color() : KCalcSettings::numberFontsColor());
     for (int i = 0; i < 10; ++i) {
-        qobject_cast<KCalcButton *>((num_button_group_->button(i)))->setTextColor(numFontColor);
+        qobject_cast<KCalcButton *>((m_numButtonGroup->button(i)))->setTextColor(numFontColor);
     }
 
     const QColor funcFontColor(KCalcSettings::followSystemTheme() ? schemeFonts.foreground().color() : KCalcSettings::functionFontsColor());
-    for (QAbstractButton *btn : std::as_const(function_button_list_)) {
+    for (QAbstractButton *btn : std::as_const(m_functionButtonList)) {
         qobject_cast<KCalcButton *>(btn)->setTextColor(funcFontColor);
     }
 
     const QColor statFontColor(KCalcSettings::followSystemTheme() ? schemeFonts.foreground().color() : KCalcSettings::statFontsColor());
-    for (QAbstractButton *btn : std::as_const(stat_buttons_)) {
+    for (QAbstractButton *btn : std::as_const(m_statButtons)) {
         qobject_cast<KCalcButton *>(btn)->setTextColor(statFontColor);
     }
 
     const QColor hexFontColor(KCalcSettings::followSystemTheme() ? schemeFonts.foreground().color() : KCalcSettings::hexFontsColor());
     for (int i = 10; i < 16; ++i) {
-        qobject_cast<KCalcButton *>((num_button_group_->button(i)))->setTextColor(hexFontColor);
+        qobject_cast<KCalcButton *>((m_numButtonGroup->button(i)))->setTextColor(hexFontColor);
     }
 
     const QColor memFontColor(KCalcSettings::followSystemTheme() ? schemeFonts.foreground().color() : KCalcSettings::memoryFontsColor());
-    for (QAbstractButton *btn : std::as_const(mem_button_list_)) {
+    for (QAbstractButton *btn : std::as_const(m_memButtonList)) {
         qobject_cast<KCalcButton *>(btn)->setTextColor(memFontColor);
     }
 
     const QColor opFontColor(KCalcSettings::followSystemTheme() ? schemeFonts.foreground().color() : KCalcSettings::operationFontsColor());
-    for (QAbstractButton *btn : std::as_const(operation_button_list_)) {
+    for (QAbstractButton *btn : std::as_const(m_operationButtonList)) {
         qobject_cast<KCalcButton *>(btn)->setTextColor(opFontColor);
     }
 
     const QColor coFontColor(KCalcSettings::followSystemTheme() ? schemeFonts.foreground().color() : KCalcSettings::constantsFontsColor());
-    for (QAbstractButton *btn : std::as_const(const_buttons_)) {
+    for (QAbstractButton *btn : std::as_const(m_constButtons)) {
         qobject_cast<KCalcButton *>(btn)->setTextColor(coFontColor);
     }
 
@@ -2554,14 +2551,14 @@ void KCalculator::setColors()
     const QColor numPal(KCalcSettings::numberButtonsColor());
     for (int i = 0; i < 10; ++i) {
         if (KCalcSettings::followSystemTheme()) {
-            (num_button_group_->button(i))->setStyleSheet(QStringLiteral(""));
+            (m_numButtonGroup->button(i))->setStyleSheet(QStringLiteral(""));
         } else {
-            (num_button_group_->button(i))->setStyleSheet(sheet.arg(numPal.name()));
+            (m_numButtonGroup->button(i))->setStyleSheet(sheet.arg(numPal.name()));
         }
     }
 
     const QColor funcPal(KCalcSettings::functionButtonsColor());
-    for (QAbstractButton *btn : std::as_const(function_button_list_)) {
+    for (QAbstractButton *btn : std::as_const(m_functionButtonList)) {
         if (KCalcSettings::followSystemTheme()) {
             btn->setStyleSheet(QStringLiteral(""));
         } else {
@@ -2570,7 +2567,7 @@ void KCalculator::setColors()
     }
 
     const QColor statPal(KCalcSettings::statButtonsColor());
-    for (QAbstractButton *btn : std::as_const(stat_buttons_)) {
+    for (QAbstractButton *btn : std::as_const(m_statButtons)) {
         if (KCalcSettings::followSystemTheme()) {
             btn->setStyleSheet(QStringLiteral(""));
         } else {
@@ -2581,14 +2578,14 @@ void KCalculator::setColors()
     const QColor hexPal(KCalcSettings::hexButtonsColor());
     for (int i = 10; i < 16; ++i) {
         if (KCalcSettings::followSystemTheme()) {
-            (num_button_group_->button(i))->setStyleSheet(QStringLiteral(""));
+            (m_numButtonGroup->button(i))->setStyleSheet(QStringLiteral(""));
         } else {
-            (num_button_group_->button(i))->setStyleSheet(sheet.arg(hexPal.name()));
+            (m_numButtonGroup->button(i))->setStyleSheet(sheet.arg(hexPal.name()));
         }
     }
 
     const QColor memPal(KCalcSettings::memoryButtonsColor());
-    for (QAbstractButton *btn : std::as_const(mem_button_list_)) {
+    for (QAbstractButton *btn : std::as_const(m_memButtonList)) {
         if (KCalcSettings::followSystemTheme()) {
             btn->setStyleSheet(QStringLiteral(""));
         } else {
@@ -2597,7 +2594,7 @@ void KCalculator::setColors()
     }
 
     const QColor opPal(KCalcSettings::operationButtonsColor());
-    for (QAbstractButton *btn : std::as_const(operation_button_list_)) {
+    for (QAbstractButton *btn : std::as_const(m_operationButtonList)) {
         if (KCalcSettings::followSystemTheme()) {
             btn->setStyleSheet(QStringLiteral(""));
         } else {
@@ -2606,7 +2603,7 @@ void KCalculator::setColors()
     }
 
     const QColor coPal(KCalcSettings::constantsButtonsColor());
-    for (QAbstractButton *btn : std::as_const(const_buttons_)) {
+    for (QAbstractButton *btn : std::as_const(m_constButtons)) {
         if (KCalcSettings::followSystemTheme()) {
             btn->setStyleSheet(QStringLiteral(""));
         } else {
@@ -2667,7 +2664,7 @@ void KCalculator::setFonts()
 
     // Step 2: If step 1 worked, calculate new font size
 
-    if (!(minButtonWidth == INT_MAX || minButtonHeight == INT_MAX)) {
+    if (minButtonWidth != INT_MAX && minButtonHeight != INT_MAX) {
         // Calculate new font size. Use the font size from the settings as minimum font size.
         // Please note these constants are arbitrarily chosen for lack of a better solution.
         // If issues with scaling arise (due to abnormally wide/tall fonts), increase them to compensate.
@@ -2702,7 +2699,7 @@ void KCalculator::setFonts()
 void KCalculator::setBaseFont(const QFont &font)
 {
     // Overwrite current baseFont
-    baseFont_ = font;
+    m_baseFont = font;
 }
 
 //------------------------------------------------------------------------------
@@ -2711,7 +2708,7 @@ void KCalculator::setBaseFont(const QFont &font)
 //------------------------------------------------------------------------------
 const QFont &KCalculator::baseFont() const
 {
-    return baseFont_;
+    return m_baseFont;
 }
 
 //------------------------------------------------------------------------------
@@ -2792,7 +2789,7 @@ void KCalculator::setPrecision()
 //------------------------------------------------------------------------------
 void KCalculator::setAngle()
 {
-    if (QAbstractButton *const btn = angle_choose_group_->button(KCalcSettings::angleMode())) {
+    if (QAbstractButton *const btn = m_angleChooseGroup->button(KCalcSettings::angleMode())) {
         btn->click();
         slotAngleSelected(btn, true);
     }
@@ -2815,7 +2812,7 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
 {
     switch (e->type()) {
     case QEvent::DragEnter: {
-        auto const ev = reinterpret_cast<QDragEnterEvent *>(e);
+        auto *const ev = reinterpret_cast<QDragEnterEvent *>(e);
         ev->setAccepted(KColorMimeData::canDecode(ev->mimeData()));
         return true;
     }
@@ -2828,41 +2825,41 @@ bool KCalculator::eventFilter(QObject *o, QEvent *e)
             return false;
         }
 
-        auto const ev = reinterpret_cast<QDropEvent *>(e);
+        auto *const ev = reinterpret_cast<QDropEvent *>(e);
         QColor c = KColorMimeData::fromMimeData(ev->mimeData());
 
         if (c.isValid()) {
             QString cn = c.name();
             QString sheet = QStringLiteral("background-color: %1");
 
-            QList<QAbstractButton *> *list;
-            const int num_but = num_button_group_->buttons().indexOf(calcButton);
-            if (num_but != -1) {
+            QList<QAbstractButton *> *list = nullptr;
+            const int numBut = m_numButtonGroup->buttons().indexOf(calcButton);
+            if (numBut != -1) {
                 // Was it hex-button or normal digit??
-                if (num_but < 10) {
+                if (numBut < 10) {
                     for (int i = 0; i < 10; ++i) {
-                        (num_button_group_->buttons().at(i))->setStyleSheet(sheet.arg(cn));
+                        (m_numButtonGroup->buttons().at(i))->setStyleSheet(sheet.arg(cn));
                     }
                 } else {
                     for (int i = 10; i < 16; ++i) {
-                        (num_button_group_->buttons().at(i))->setStyleSheet(sheet.arg(cn));
+                        (m_numButtonGroup->buttons().at(i))->setStyleSheet(sheet.arg(cn));
                     }
                 }
                 return true;
-            } else if (function_button_list_.contains(calcButton)) {
-                list = &function_button_list_;
-            } else if (stat_button_list_.contains(calcButton)) {
-                list = &stat_button_list_;
-            } else if (mem_button_list_.contains(calcButton)) {
-                list = &mem_button_list_;
-            } else if (operation_button_list_.contains(calcButton)) {
-                list = &operation_button_list_;
+            } else if (m_functionButtonList.contains(calcButton)) {
+                list = &m_functionButtonList;
+            } else if (m_statButtonList.contains(calcButton)) {
+                list = &m_statButtonList;
+            } else if (m_memButtonList.contains(calcButton)) {
+                list = &m_memButtonList;
+            } else if (m_operationButtonList.contains(calcButton)) {
+                list = &m_operationButtonList;
             } else {
                 return false;
             }
 
-            for (int i = 0; i < list->size(); ++i) {
-                list->at(i)->setStyleSheet(sheet.arg(cn));
+            for (auto i : *list) {
+                i->setStyleSheet(sheet.arg(cn));
             }
         }
         return true;
@@ -2965,7 +2962,7 @@ int main(int argc, char *argv[])
     KAboutData::setApplicationData(aboutData);
     KCrash::initialize();
 
-    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("accessories-calculator"), app.windowIcon()));
+    QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("accessories-calculator"), QApplication::windowIcon()));
 
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);
@@ -2975,10 +2972,10 @@ int main(int argc, char *argv[])
     KNumber::setGroupSeparator(QLocale().groupSeparator());
     KNumber::setDecimalSeparator(QLocale().decimalPoint());
 
-    auto calc = new KCalculator(nullptr);
+    auto *calc = new KCalculator(nullptr);
 
     calc->show();
-    return app.exec();
+    return QApplication::exec();
 }
 
 #include "moc_kcalc.cpp"

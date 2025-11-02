@@ -28,7 +28,7 @@ private:
     void focusInEvent(QFocusEvent *event) override;
     void focusOutEvent(QFocusEvent *event) override;
     void leaveEvent(QEvent *event) override;
-    bool on_ = false;
-    bool over_ = false;
-    QSize renderSize_;
+    bool m_on = false;
+    bool m_over = false;
+    QSize m_renderSize;
 };

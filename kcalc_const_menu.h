@@ -19,7 +19,7 @@ enum ConstantCategory {
     Gravitation = 16
 };
 
-struct science_constant {
+struct ScienceConstant {
     QString label;
     QString name;
     QString whatsthis;
@@ -36,14 +36,14 @@ public:
     explicit KCalcConstMenu(const QString &title, QWidget *parent = nullptr);
 
 public:
-    static void init_consts(QDomDocument &doc);
+    static void initConsts(QDomDocument &doc);
 
 Q_SIGNALS:
-    void triggeredConstant(const science_constant &);
+    void triggeredConstant(const ScienceConstant &);
 
 private:
-    void init_all();
+    void initAll();
 
 public Q_SLOTS:
-    void slotPassSignalThrough(QAction *chosen_const);
+    void slotPassSignalThrough(QAction *chosenConst);
 };

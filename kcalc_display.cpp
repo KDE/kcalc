@@ -22,25 +22,27 @@
 #include "kcalc_core.h"
 #include "kcalc_settings.h"
 
-#define ERROR_TEXT_FONTPOINT_REDUCTION 6
+enum {
+    ErrorTextFontpointReduction = 6
+};
 
-const QString KCalcDisplay::m_MathErrorText = QStringLiteral("Math error");
-const QString KCalcDisplay::m_SyntaxErrorText = QStringLiteral("Syntax error");
-const QString KCalcDisplay::m_MalformedExpressionText = QStringLiteral("Malformed expression");
+const QString KCalcDisplay::m_mathErrorText = QStringLiteral("Math error");
+const QString KCalcDisplay::m_syntaxErrorText = QStringLiteral("Syntax error");
+const QString KCalcDisplay::m_malformedExpressionText = QStringLiteral("Malformed expression");
 
 KCalcDisplay::KCalcDisplay(QWidget *parent)
     : QFrame(parent)
     , m_usingTempSettings(false)
-    , beep_(false)
-    , groupdigits_(true)
-    , twoscomplement_(true)
-    , button_(0)
-    , lit_(false)
-    , num_base_(NB_DECIMAL)
-    , precision_(9)
-    , fixed_precision_(-1)
-    , display_amount_(0)
-    , selection_timer_(new QTimer(this))
+    , m_beep(false)
+    , m_groupDigits(true)
+    , m_twosComplement(true)
+    , m_button(0)
+    , m_lit(false)
+    , m_numBase(NbDecimal)
+    , m_precision(9)
+    , m_fixedPrecision(-1)
+    , m_displayAmount(0)
+    , m_selectionTimer(new QTimer(this))
 {
     setAccessibleDescription(i18nc("@label accessibility description of the calculation result display", "Result Display"));
     setFocusPolicy(Qt::StrongFocus);
@@ -56,7 +58,7 @@ KCalcDisplay::KCalcDisplay(QWidget *parent)
     KNumber::setDefaultFractionalInput(true);
 
     connect(this, &KCalcDisplay::clicked, this, &KCalcDisplay::slotDisplaySelected);
-    connect(selection_timer_, &QTimer::timeout, this, &KCalcDisplay::slotSelectionTimedOut);
+    connect(m_selectionTimer, &QTimer::timeout, this, &KCalcDisplay::slotSelectionTimedOut);
     connect(this, &KCalcDisplay::changedText, this, &KCalcDisplay::restoreSettings);
     connect(this, &KCalcDisplay::changedAmount, this, &KCalcDisplay::restoreSettings);
 
@@ -68,11 +70,11 @@ KCalcDisplay::~KCalcDisplay() = default;
 void KCalcDisplay::changeSettings()
 {
     KColorScheme schemeView(QPalette::Active, KColorScheme::View);
-    basePalette_ = palette();
-    baseFont_ = KCalcSettings::displayFont();
+    m_basePalette = palette();
+    m_baseFont = KCalcSettings::displayFont();
 
-    basePalette_.setColor(QPalette::Text, KCalcSettings::followSystemTheme() ? schemeView.foreground().color() : KCalcSettings::foreColor());
-    basePalette_.setColor(QPalette::Base, KCalcSettings::followSystemTheme() ? schemeView.background().color() : KCalcSettings::backColor());
+    m_basePalette.setColor(QPalette::Text, KCalcSettings::followSystemTheme() ? schemeView.foreground().color() : KCalcSettings::foreColor());
+    m_basePalette.setColor(QPalette::Base, KCalcSettings::followSystemTheme() ? schemeView.background().color() : KCalcSettings::backColor());
 
     setPrecision(KCalcSettings::precision());
 
@@ -91,15 +93,15 @@ void KCalcDisplay::changeSettings()
 
     updateFont();
     if (!m_usingTempSettings) {
-        setPalette(basePalette_);
+        setPalette(m_basePalette);
         updateDisplay();
     }
 }
 
 void KCalcDisplay::updateFromCore(const CalcEngine &core)
 {
-    bool tmp_error;
-    const KNumber &output = core.lastOutput(tmp_error);
+    bool tmpError = false;
+    const KNumber &output = core.lastOutput(tmpError);
     setAmount(output);
 }
 
@@ -108,8 +110,8 @@ bool KCalcDisplay::sendEvent(Event event)
     switch (event) {
     case EventClear:
     case EventReset:
-        display_amount_ = KNumber::Zero;
-        text_.clear();
+        m_displayAmount = KNumber::Zero;
+        m_text.clear();
 
         updateDisplay();
 
@@ -130,7 +132,7 @@ void KCalcDisplay::setTempSettings()
     }
     QFont newFont = font();
     newFont.setWeight(QFont::Weight::ExtraLight);
-    newFont.setPointSize(newFont.pointSize() - ERROR_TEXT_FONTPOINT_REDUCTION);
+    newFont.setPointSize(newFont.pointSize() - ErrorTextFontpointReduction);
     QFrame::setFont(newFont);
 
     QPalette tmpPalette = parentWidget()->palette();
@@ -147,19 +149,19 @@ void KCalcDisplay::showErrorMessage(ErrorMessage errorMessage)
 
     switch (errorMessage) {
     case MathError:
-        setUnformattedText(m_MathErrorText);
+        setUnformattedText(m_mathErrorText);
         break;
     case SyntaxError:
-        setUnformattedText(m_SyntaxErrorText);
+        setUnformattedText(m_syntaxErrorText);
         break;
     case MalformedExpression:
-        setUnformattedText(m_MalformedExpressionText);
+        setUnformattedText(m_malformedExpressionText);
         break;
     default:
         Q_UNREACHABLE();
     }
 
-    if (beep_) {
+    if (m_beep) {
         KNotification::beep();
     }
 }
@@ -172,22 +174,22 @@ void KCalcDisplay::slotCut()
 
 void KCalcDisplay::slotCopy()
 {
-    QString txt = text_;
+    QString txt = m_text;
 
-    switch (num_base_) {
-    case NB_HEX:
+    switch (m_numBase) {
+    case NbHex:
         txt.prepend(QLatin1String("0x"));
         txt.remove(QLatin1Char(' '));
         break;
-    case NB_BINARY:
+    case NbBinary:
         txt.prepend(QLatin1String("0b"));
         txt.remove(QLatin1Char(' '));
         break;
-    case NB_OCTAL:
+    case NbOctal:
         txt.prepend(QLatin1String("0o"));
         txt.remove(QLatin1Char(' '));
         break;
-    case NB_DECIMAL:
+    case NbDecimal:
         txt.remove(QLocale().groupSeparator());
         break;
     }
@@ -198,12 +200,12 @@ void KCalcDisplay::slotCopy()
 
 void KCalcDisplay::slotDisplaySelected()
 {
-    if (button_ == Qt::LeftButton) {
-        if (lit_) {
+    if (m_button == Qt::LeftButton) {
+        if (m_lit) {
             slotCopy();
-            selection_timer_->start(100);
+            m_selectionTimer->start(100);
         } else {
-            selection_timer_->stop();
+            m_selectionTimer->stop();
         }
 
         invertColors();
@@ -212,26 +214,26 @@ void KCalcDisplay::slotDisplaySelected()
 
 void KCalcDisplay::slotSelectionTimedOut()
 {
-    lit_ = false;
+    m_lit = false;
     invertColors();
-    selection_timer_->stop();
+    m_selectionTimer->stop();
 }
 
 void KCalcDisplay::invertColors()
 {
-    QPalette tmp_palette = palette();
-    tmp_palette.setColor(QPalette::Base, palette().color(QPalette::Text));
-    tmp_palette.setColor(QPalette::Text, palette().color(QPalette::Base));
-    setPalette(tmp_palette);
+    QPalette tmpPalette = palette();
+    tmpPalette.setColor(QPalette::Base, palette().color(QPalette::Text));
+    tmpPalette.setColor(QPalette::Text, palette().color(QPalette::Base));
+    setPalette(tmpPalette);
 }
 
 void KCalcDisplay::mousePressEvent(QMouseEvent *e)
 {
     if (e->button() == Qt::LeftButton) {
-        lit_ = !lit_;
-        button_ = Qt::LeftButton;
+        m_lit = !m_lit;
+        m_button = Qt::LeftButton;
     } else {
-        button_ = Qt::MiddleButton;
+        m_button = Qt::MiddleButton;
     }
 
     Q_EMIT clicked();
@@ -239,147 +241,147 @@ void KCalcDisplay::mousePressEvent(QMouseEvent *e)
 
 void KCalcDisplay::setPrecision(int precision)
 {
-    precision_ = precision;
+    m_precision = precision;
 }
 
 void KCalcDisplay::setFixedPrecision(int precision)
 {
-    if (fixed_precision_ > precision_) {
-        fixed_precision_ = -1;
+    if (m_fixedPrecision > m_precision) {
+        m_fixedPrecision = -1;
     } else {
-        fixed_precision_ = precision;
+        m_fixedPrecision = precision;
     }
 }
 
 void KCalcDisplay::setBeep(bool flag)
 {
-    beep_ = flag;
+    m_beep = flag;
 }
 
 void KCalcDisplay::setGroupDigits(bool flag)
 {
-    groupdigits_ = flag;
+    m_groupDigits = flag;
 }
 
 void KCalcDisplay::setTwosComplement(bool flag)
 {
-    twoscomplement_ = flag;
+    m_twosComplement = flag;
 }
 
 void KCalcDisplay::setBinaryGrouping(int digits)
 {
-    binaryGrouping_ = digits;
+    m_binaryGrouping = digits;
 }
 
 void KCalcDisplay::setOctalGrouping(int digits)
 {
-    octalGrouping_ = digits;
+    m_octalGrouping = digits;
 }
 
 void KCalcDisplay::setHexadecimalGrouping(int digits)
 {
-    hexadecimalGrouping_ = digits;
+    m_hexadecimalGrouping = digits;
 }
 
 const KNumber &KCalcDisplay::getAmount() const
 {
-    return display_amount_;
+    return m_displayAmount;
 }
 
 QString KCalcDisplay::getAmountQString(bool addPreffix /*= true*/) const
 {
-    QString amountQString = text_;
+    QString amountQString = m_text;
 
-    switch (num_base_) {
-    case NB_HEX:
+    switch (m_numBase) {
+    case NbHex:
         if (addPreffix) {
             amountQString.prepend(QLatin1String("0x"));
         }
         amountQString.remove(QLatin1Char(' '));
         break;
-    case NB_BINARY:
+    case NbBinary:
         if (addPreffix) {
             amountQString.prepend(QLatin1String("0b"));
         }
         amountQString.remove(QLatin1Char(' '));
         break;
-    case NB_OCTAL:
+    case NbOctal:
         if (addPreffix) {
             amountQString.prepend(QLatin1String("0o"));
         }
         amountQString.remove(QLatin1Char(' '));
         break;
-    case NB_DECIMAL:
+    case NbDecimal:
         amountQString.remove(QLocale().groupSeparator());
         break;
     }
     return amountQString;
 }
 
-bool KCalcDisplay::setAmount(const KNumber &new_amount)
+bool KCalcDisplay::setAmount(const KNumber &newAmount)
 {
-    QString display_str;
+    QString displayStr;
 
-    if ((num_base_ != NB_DECIMAL) && (new_amount.type() != KNumber::TypeError)) {
-        display_amount_ = new_amount.integerPart();
+    if ((m_numBase != NbDecimal) && (newAmount.type() != KNumber::TypeError)) {
+        m_displayAmount = newAmount.integerPart();
 
-        if (twoscomplement_) {
+        if (m_twosComplement) {
             // treat number as 64-bit unsigned
-            const quint64 tmp_workaround = display_amount_.toUint64();
-            display_str = QString::number(tmp_workaround, num_base_).toUpper();
+            const quint64 tmpWorkaround = m_displayAmount.toUint64();
+            displayStr = QString::number(tmpWorkaround, m_numBase).toUpper();
         } else {
             // QString::number treats non-decimal as unsigned
-            qint64 tmp_workaround = display_amount_.toInt64();
-            const bool neg = tmp_workaround < 0;
+            qint64 tmpWorkaround = m_displayAmount.toInt64();
+            const bool neg = tmpWorkaround < 0;
             if (neg) {
-                tmp_workaround = qAbs(tmp_workaround);
+                tmpWorkaround = qAbs(tmpWorkaround);
             }
 
-            display_str = QString::number(tmp_workaround, num_base_).toUpper();
+            displayStr = QString::number(tmpWorkaround, m_numBase).toUpper();
             if (neg) {
-                display_str.prepend(QLocale().negativeSign());
+                displayStr.prepend(QLocale().negativeSign());
             }
         }
     } else {
-        // num_base_ == NB_DECIMAL || new_amount.type() == KNumber::TypeError
-        display_amount_ = new_amount;
-        display_str = display_amount_.toQString(KCalcSettings::precision(), fixed_precision_);
+        // numBase == NbDecimal || newAmount.type() == KNumber::TypeError
+        m_displayAmount = newAmount;
+        displayStr = m_displayAmount.toQString(KCalcSettings::precision(), m_fixedPrecision);
     }
 
     // TODO: to avoid code duplication, don't format complex number for now,
     //       we need to mode this functionality to the KNumber library
-    if (display_amount_.type() != KNumber::TypeComplex) {
-        display_str = formatNumber(display_str);
+    if (m_displayAmount.type() != KNumber::TypeComplex) {
+        displayStr = formatNumber(displayStr);
     }
 
-    setText(display_str);
+    setText(displayStr);
 
-    Q_EMIT changedAmount(display_amount_);
+    Q_EMIT changedAmount(m_displayAmount);
     return true;
 }
 
 void KCalcDisplay::setUnformattedText(const QString &string)
 {
-    text_ = string;
+    m_text = string;
     update();
-    setAccessibleName(text_);
+    setAccessibleName(m_text);
 }
 
 void KCalcDisplay::setText(const QString &string)
 {
     // note that "C" locale is being used internally
-    text_ = string;
-    // text_ = formatNumber(text_);
+    m_text = string;
+    // m_text = formatNumber(m_text);
 
     update();
-    setAccessibleName(text_); // "Labels should be represented by only QAccessibleInterface and return their text as name"
-    Q_EMIT changedText(text_);
+    setAccessibleName(m_text); // "Labels should be represented by only QAccessibleInterface and return their text as name"
+    Q_EMIT changedText(m_text);
 }
 
 void KCalcDisplay::setFont(const QFont &font)
 {
     // Overwrite current baseFont
-    baseFont_ = font;
+    m_baseFont = font;
     updateFont();
 }
 
@@ -403,16 +405,16 @@ void KCalcDisplay::restoreSettings()
     if (m_usingTempSettings) {
         m_usingTempSettings = false;
         updateFont();
-        setPalette(basePalette_);
+        setPalette(m_basePalette);
     }
 }
 
 const QFont &KCalcDisplay::baseFont() const
 {
-    return baseFont_;
+    return m_baseFont;
 }
 
-QString KCalcDisplay::formatNumber(QString string)
+QString KCalcDisplay::formatNumber(const QString &string)
 {
     QString formattedNumber = string;
     const bool special = (string.contains(QLatin1String("nan")) || string.contains(QLatin1String("inf")));
@@ -420,19 +422,19 @@ QString KCalcDisplay::formatNumber(QString string)
     // The decimal mode needs special treatment for two reasons, because: a) it uses KGlobal::locale() to get a localized
     // format and b) it has possible numbers after the decimal place. Neither applies to Binary, Hexadecimal or Octal.
 
-    if ((groupdigits_ || num_base_ == NB_DECIMAL) && !special) {
-        switch (num_base_) {
-        case NB_DECIMAL:
+    if ((m_groupDigits || m_numBase == NbDecimal) && !special) {
+        switch (m_numBase) {
+        case NbDecimal:
             formattedNumber = formatDecimalNumber(string);
             break;
-        case NB_BINARY:
-            formattedNumber = groupDigits(string, binaryGrouping_);
+        case NbBinary:
+            formattedNumber = groupDigits(string, m_binaryGrouping);
             break;
-        case NB_OCTAL:
-            formattedNumber = groupDigits(string, octalGrouping_);
+        case NbOctal:
+            formattedNumber = groupDigits(string, m_octalGrouping);
             break;
-        case NB_HEX:
-            formattedNumber = groupDigits(string, hexadecimalGrouping_);
+        case NbHex:
+            formattedNumber = groupDigits(string, m_hexadecimalGrouping);
             break;
         }
     }
@@ -446,7 +448,7 @@ QString KCalcDisplay::formatDecimalNumber(QString string)
 
     string.replace(QLatin1Char('.'), locale.decimalPoint());
 
-    if (groupdigits_ && !(locale.numberOptions() & QLocale::OmitGroupSeparator)) {
+    if (m_groupDigits && !(locale.numberOptions() & QLocale::OmitGroupSeparator)) {
         // find position after last digit
         int pos = string.indexOf(locale.decimalPoint());
         if (pos < 0) {
@@ -518,37 +520,37 @@ QString KCalcDisplay::groupDigits(const QString &displayString, int numDigits)
 
 QString KCalcDisplay::text() const
 {
-    return text_;
+    return m_text;
 }
 
 int KCalcDisplay::setBase(NumBase base)
 {
     switch (base) {
-    case NB_HEX:
-        num_base_ = NB_HEX;
+    case NbHex:
+        m_numBase = NbHex;
         break;
-    case NB_DECIMAL:
-        num_base_ = NB_DECIMAL;
+    case NbDecimal:
+        m_numBase = NbDecimal;
         break;
-    case NB_OCTAL:
-        num_base_ = NB_OCTAL;
+    case NbOctal:
+        m_numBase = NbOctal;
         break;
-    case NB_BINARY:
-        num_base_ = NB_BINARY;
+    case NbBinary:
+        m_numBase = NbBinary;
         break;
     default:
         Q_ASSERT(0);
     }
 
-    setAmount(display_amount_);
+    setAmount(m_displayAmount);
 
-    return num_base_;
+    return m_numBase;
 }
 
 void KCalcDisplay::setStatusText(int i, const QString &text)
 {
-    if (i < NUM_STATUS_TEXT) {
-        str_status_[i] = text;
+    if (i < NumStatusText) {
+        m_strStatus[i] = text;
     }
 
     update();
@@ -556,9 +558,9 @@ void KCalcDisplay::setStatusText(int i, const QString &text)
 
 void KCalcDisplay::updateDisplay()
 {
-    QString txt = text_;
+    QString txt = m_text;
     txt.remove(QLatin1Char(' '));
-    if (num_base_ == NB_DECIMAL) {
+    if (m_numBase == NbDecimal) {
         txt.remove(QLocale().groupSeparator());
     }
 
@@ -599,7 +601,7 @@ void KCalcDisplay::paintEvent(QPaintEvent *)
     cr.adjust(margin * 2, 0, -margin * 2, 0); // provide a margin
 
     const int align = QStyle::visualAlignment(layoutDirection(), Qt::AlignRight | Qt::AlignVCenter);
-    painter.drawText(cr, align | Qt::TextSingleLine, text_);
+    painter.drawText(cr, align | Qt::TextSingleLine, m_text);
 
     // draw the status texts using half of the normal
     // font size but not smaller than 7pt
@@ -611,8 +613,8 @@ void KCalcDisplay::paintEvent(QPaintEvent *)
     const uint w = fm.boundingRect(QStringLiteral("________")).width();
     const uint h = fm.height();
 
-    for (int n = 0; n < NUM_STATUS_TEXT; ++n) {
-        painter.drawText(5 + n * w, h, str_status_[n]);
+    for (int n = 0; n < NumStatusText; ++n) {
+        painter.drawText(5 + n * w, h, m_strStatus[n]);
     }
 }
 

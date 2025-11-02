@@ -46,12 +46,12 @@ void BitButton::paintEvent(QPaintEvent *)
     painter.setRenderHint(QPainter::Antialiasing, true);
     QPen pen(palette().highlight(), 2);
     pen.setJoinStyle(Qt::MiterJoin);
-    painter.setPen(over_ ? pen : Qt::NoPen);
+    painter.setPen(m_over ? pen : Qt::NoPen);
 
     if (isDown()) {
         painter.setBrush(palette().highlight());
     } else {
-        painter.setBrush(on_ ? palette().text() : palette().base());
+        painter.setBrush(m_on ? palette().text() : palette().base());
     }
 
     // Prepare button size (should be square)
@@ -60,9 +60,9 @@ void BitButton::paintEvent(QPaintEvent *)
 
     painter.translate(QPoint(0, (rect().height() - square.height()) / 2)); // center button
     painter.drawRoundedRect(square, 3.0, 3.0);
-    pen.setColor(palette().color(isDown() ? QPalette::HighlightedText : (on_ ? QPalette::Window : QPalette::Text)));
+    pen.setColor(palette().color(isDown() ? QPalette::HighlightedText : (m_on ? QPalette::Window : QPalette::Text)));
     painter.setPen(pen);
-    painter.drawText(square, Qt::AlignCenter, QString::number(on_ ? 1 : 0));
+    painter.drawText(square, Qt::AlignCenter, QString::number(m_on ? 1 : 0));
 }
 
 //------------------------------------------------------------------------------
@@ -71,7 +71,7 @@ void BitButton::paintEvent(QPaintEvent *)
 //------------------------------------------------------------------------------
 bool BitButton::isOn() const
 {
-    return on_;
+    return m_on;
 }
 
 //------------------------------------------------------------------------------
@@ -80,7 +80,7 @@ bool BitButton::isOn() const
 //------------------------------------------------------------------------------
 void BitButton::setOn(bool value)
 {
-    on_ = value;
+    m_on = value;
     update();
 }
 
@@ -90,13 +90,14 @@ void BitButton::setOn(bool value)
 //------------------------------------------------------------------------------
 void BitButton::setRenderSize(const QSize &size)
 {
-    if (size == renderSize_)
+    if (size == m_renderSize) {
         return;
+    }
 
-    renderSize_ = size;
+    m_renderSize = size;
     // resize font for painting 0/1
     auto actualFont = font();
-    actualFont.setPixelSize(qFloor(renderSize_.height() * 0.9));
+    actualFont.setPixelSize(qFloor(m_renderSize.height() * 0.9));
     setFont(actualFont);
 }
 
@@ -106,7 +107,7 @@ void BitButton::setRenderSize(const QSize &size)
 //------------------------------------------------------------------------------
 QSize BitButton::renderSize() const
 {
-    return renderSize_;
+    return m_renderSize;
 }
 
 //------------------------------------------------------------------------------
@@ -116,7 +117,7 @@ QSize BitButton::renderSize() const
 void BitButton::enterEvent(QEnterEvent *event)
 {
     Q_UNUSED(event)
-    over_ = true;
+    m_over = true;
     update();
 }
 
@@ -127,7 +128,7 @@ void BitButton::enterEvent(QEnterEvent *event)
 void BitButton::leaveEvent(QEvent *event)
 {
     if (event->type() == QEvent::Leave) {
-        over_ = false;
+        m_over = false;
         update();
     }
 }
@@ -139,7 +140,7 @@ void BitButton::leaveEvent(QEvent *event)
 void BitButton::focusInEvent(QFocusEvent *event)
 {
     Q_UNUSED(event)
-    over_ = true;
+    m_over = true;
     update();
 }
 
@@ -150,7 +151,7 @@ void BitButton::focusInEvent(QFocusEvent *event)
 void BitButton::focusOutEvent(QFocusEvent *event)
 {
     Q_UNUSED(event)
-    over_ = false;
+    m_over = false;
     update();
 }
 
