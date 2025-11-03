@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-09-23 00:46+0000\n"
+"POT-Creation-Date: 2025-11-03 00:45+0000\n"
 "PO-Revision-Date: 2025-08-21 10:37+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -126,7 +126,7 @@ msgid "&Constants:"
 msgstr "&ثوابت:"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
-#: constants.ui:13 kcalc.cpp:1745
+#: constants.ui:13 kcalc.cpp:1742
 #, kde-format
 msgid "Constants"
 msgstr "ثوابت"
@@ -180,7 +180,7 @@ msgid "The font to use in the history"
 msgstr "الخط المستخدم في التاريخ"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
-#: general.ui:14 kcalc.cpp:1705
+#: general.ui:14 kcalc.cpp:1702
 #, kde-format
 msgid "General"
 msgstr "عام"
@@ -814,104 +814,104 @@ msgctxt "Second function mode"
 msgid "Shift"
 msgstr "Shift"
 
-#: kcalc.cpp:1246 kcalc.cpp:1247
+#: kcalc.cpp:1243 kcalc.cpp:1244
 #, kde-format
 msgctxt "Memory cleared"
 msgid "M cleared"
 msgstr "تفريغ الذاكرة"
 
-#: kcalc.cpp:1517
+#: kcalc.cpp:1514
 #, kde-format
 msgid "Number of data entered = "
 msgstr "عدد المعلومات المدخلة ="
 
-#: kcalc.cpp:1518
+#: kcalc.cpp:1515
 #, kde-format
 msgid "Number of data entered ="
 msgstr "عدد المعلومات المدخلة ="
 
-#: kcalc.cpp:1523
+#: kcalc.cpp:1520
 #, kde-format
 msgid "Sum of all data items ="
 msgstr "مجموع كل العناصر البيانية ="
 
-#: kcalc.cpp:1542
+#: kcalc.cpp:1539
 #, kde-format
 msgid "Mean = "
 msgstr "المعدَل ="
 
-#: kcalc.cpp:1546
+#: kcalc.cpp:1543
 #, kde-format
 msgid "Sum of squares ="
 msgstr "مجموع المربعات ="
 
-#: kcalc.cpp:1589
+#: kcalc.cpp:1586
 #, kde-format
 msgid "Median ="
 msgstr "متوسط -"
 
-#: kcalc.cpp:1590
+#: kcalc.cpp:1587
 #, kde-format
 msgid "Median = "
 msgstr "متوسط ="
 
-#: kcalc.cpp:1624 kcalc.cpp:1625
+#: kcalc.cpp:1621 kcalc.cpp:1622
 #, kde-format
 msgid "DAT ["
 msgstr "DAT ["
 
-#: kcalc.cpp:1624 kcalc.cpp:1625
+#: kcalc.cpp:1621 kcalc.cpp:1622
 #, kde-format
 msgid "] = "
 msgstr "] = "
 
-#: kcalc.cpp:1632 kcalc.cpp:1634 kcalc.cpp:1635
+#: kcalc.cpp:1629 kcalc.cpp:1631 kcalc.cpp:1632
 #, kde-format
 msgid "Last stat data erased"
 msgstr "أزيل آخر مواد الإحصاء"
 
-#: kcalc.cpp:1647 kcalc.cpp:1650 kcalc.cpp:1651
+#: kcalc.cpp:1644 kcalc.cpp:1647 kcalc.cpp:1648
 #, kde-format
 msgid "Stat mem cleared"
 msgstr "مسح ذاكرة Stat"
 
-#: kcalc.cpp:1705
+#: kcalc.cpp:1702
 #, kde-format
 msgid "General Settings"
 msgstr "الإعدادات العامة"
 
-#: kcalc.cpp:1709
+#: kcalc.cpp:1706
 #, kde-format
 msgid "Fonts"
 msgstr "الخطوط"
 
-#: kcalc.cpp:1713
+#: kcalc.cpp:1710
 #, kde-format
 msgid "Colors"
 msgstr "الألوان"
 
-#: kcalc.cpp:1713
+#: kcalc.cpp:1710
 #, kde-format
 msgid "Button & Display Colors"
 msgstr "زر عرض الألوان"
 
-#: kcalc.cpp:1745
+#: kcalc.cpp:1742
 #, kde-format
 msgid "Define Constants"
 msgstr "عرف الثوابت"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2927 kcalc.ui:20
+#: kcalc.cpp:2924 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "KCalc"
 
-#: kcalc.cpp:2929
+#: kcalc.cpp:2926
 #, kde-format
 msgid "KDE Calculator"
 msgstr "حاسبة كِيدِي"
 
-#: kcalc.cpp:2931
+#: kcalc.cpp:2928
 #, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
@@ -924,67 +924,67 @@ msgstr ""
 "حقوق الطبع والنشر © 2003-2005، كلاوس نيدركروغر\n"
 "حقوق الطبع والنشر © 1996-2000، بيرند يوهانس ووبين"
 
-#: kcalc.cpp:2941
+#: kcalc.cpp:2938
 #, kde-format
 msgid "Gabriel Barrantes"
 msgstr "غابرييل بارانتيس"
 
-#: kcalc.cpp:2941
+#: kcalc.cpp:2938
 #, kde-format
 msgid "Maintainer"
 msgstr "المشرف"
 
-#: kcalc.cpp:2942
+#: kcalc.cpp:2939
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr "كلاوس نيديركروجر"
 
-#: kcalc.cpp:2947
+#: kcalc.cpp:2944
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr "بيرند يوهانس ووبين"
 
-#: kcalc.cpp:2948
+#: kcalc.cpp:2945
 #, kde-format
 msgid "Evan Teran"
 msgstr "إيفان تيران"
 
-#: kcalc.cpp:2949
+#: kcalc.cpp:2946
 #, kde-format
 msgid "Espen Sand"
 msgstr "أسبن ساند"
 
-#: kcalc.cpp:2950
+#: kcalc.cpp:2947
 #, kde-format
 msgid "Chris Howells"
 msgstr "كريس هاولز"
 
-#: kcalc.cpp:2951
+#: kcalc.cpp:2948
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr "آرون ج. سيجو"
 
-#: kcalc.cpp:2952
+#: kcalc.cpp:2949
 #, kde-format
 msgid "Charles Samuels"
 msgstr "تشارلز صامويلز"
 
-#: kcalc.cpp:2954
+#: kcalc.cpp:2951
 #, kde-format
 msgid "René Mérou"
 msgstr "رينيه ميرو"
 
-#: kcalc.cpp:2961
+#: kcalc.cpp:2958
 #, kde-format
 msgid "Michel Marti"
 msgstr "ميتشيل مارتي"
 
-#: kcalc.cpp:2962
+#: kcalc.cpp:2959
 #, kde-format
 msgid "David Johnson"
 msgstr "ديفيد جونسون"
 
-#: kcalc.cpp:2963
+#: kcalc.cpp:2960
 #, kde-format
 msgid "Niklas Freund"
 msgstr "نيكلاس فرويند"
@@ -2216,7 +2216,7 @@ msgstr "الحركية الحرارية"
 msgid "Gravitation"
 msgstr "الثقالة"
 
-#: kcalc_display.cpp:45
+#: kcalc_display.cpp:47
 #, kde-format
 msgctxt "@label accessibility description of the calculation result display"
 msgid "Result Display"

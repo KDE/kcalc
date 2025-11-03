@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-09-23 00:46+0000\n"
+"POT-Creation-Date: 2025-11-03 00:45+0000\n"
 "PO-Revision-Date: 2025-05-18 11:52+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -114,7 +114,7 @@ msgid "&Constants:"
 msgstr "Ко&нстанти:"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
-#: constants.ui:13 kcalc.cpp:1745
+#: constants.ui:13 kcalc.cpp:1742
 #, kde-format
 msgid "Constants"
 msgstr "Константи"
@@ -168,7 +168,7 @@ msgid "The font to use in the history"
 msgstr "Шрифт, който да се използва за екрана"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
-#: general.ui:14 kcalc.cpp:1705
+#: general.ui:14 kcalc.cpp:1702
 #, kde-format
 msgid "General"
 msgstr "Общи"
@@ -804,104 +804,104 @@ msgctxt "Second function mode"
 msgid "Shift"
 msgstr "Shift"
 
-#: kcalc.cpp:1246 kcalc.cpp:1247
+#: kcalc.cpp:1243 kcalc.cpp:1244
 #, kde-format
 msgctxt "Memory cleared"
 msgid "M cleared"
 msgstr "Паметта е изчистена"
 
-#: kcalc.cpp:1517
+#: kcalc.cpp:1514
 #, kde-format
 msgid "Number of data entered = "
 msgstr "Брой на въведените данни = "
 
-#: kcalc.cpp:1518
+#: kcalc.cpp:1515
 #, kde-format
 msgid "Number of data entered ="
 msgstr "Брой на въведените данни ="
 
-#: kcalc.cpp:1523
+#: kcalc.cpp:1520
 #, kde-format
 msgid "Sum of all data items ="
 msgstr "Сума на всички въведени данни ="
 
-#: kcalc.cpp:1542
+#: kcalc.cpp:1539
 #, kde-format
 msgid "Mean = "
 msgstr "Средно аритметично = "
 
-#: kcalc.cpp:1546
+#: kcalc.cpp:1543
 #, kde-format
 msgid "Sum of squares ="
 msgstr "Сума на квадратите ="
 
-#: kcalc.cpp:1589
+#: kcalc.cpp:1586
 #, kde-format
 msgid "Median ="
 msgstr "Статистическа медиана ="
 
-#: kcalc.cpp:1590
+#: kcalc.cpp:1587
 #, kde-format
 msgid "Median = "
 msgstr "Статистическа медиана = "
 
-#: kcalc.cpp:1624 kcalc.cpp:1625
+#: kcalc.cpp:1621 kcalc.cpp:1622
 #, kde-format
 msgid "DAT ["
 msgstr "DAT ["
 
-#: kcalc.cpp:1624 kcalc.cpp:1625
+#: kcalc.cpp:1621 kcalc.cpp:1622
 #, kde-format
 msgid "] = "
 msgstr "] = "
 
-#: kcalc.cpp:1632 kcalc.cpp:1634 kcalc.cpp:1635
+#: kcalc.cpp:1629 kcalc.cpp:1631 kcalc.cpp:1632
 #, kde-format
 msgid "Last stat data erased"
 msgstr "Изтриване на последния елемент от статистиката"
 
-#: kcalc.cpp:1647 kcalc.cpp:1650 kcalc.cpp:1651
+#: kcalc.cpp:1644 kcalc.cpp:1647 kcalc.cpp:1648
 #, kde-format
 msgid "Stat mem cleared"
 msgstr "Паметта на статистиката е изчистена"
 
-#: kcalc.cpp:1705
+#: kcalc.cpp:1702
 #, kde-format
 msgid "General Settings"
 msgstr "Общи настройки"
 
-#: kcalc.cpp:1709
+#: kcalc.cpp:1706
 #, kde-format
 msgid "Fonts"
 msgstr "Шрифтове"
 
-#: kcalc.cpp:1713
+#: kcalc.cpp:1710
 #, kde-format
 msgid "Colors"
 msgstr "Цветове"
 
-#: kcalc.cpp:1713
+#: kcalc.cpp:1710
 #, kde-format
 msgid "Button & Display Colors"
 msgstr "Цветове на дисплея и бутоните"
 
-#: kcalc.cpp:1745
+#: kcalc.cpp:1742
 #, kde-format
 msgid "Define Constants"
 msgstr "Настройки на константи"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2927 kcalc.ui:20
+#: kcalc.cpp:2924 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "KCalc"
 
-#: kcalc.cpp:2929
+#: kcalc.cpp:2926
 #, kde-format
 msgid "KDE Calculator"
 msgstr "Калкулатор"
 
-#: kcalc.cpp:2931
+#: kcalc.cpp:2928
 #, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
@@ -914,67 +914,67 @@ msgstr ""
 "Copyright © 2003-2005, Klaus Niederkrüger\n"
 "Copyright © 1996-2000, Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2941
+#: kcalc.cpp:2938
 #, kde-format
 msgid "Gabriel Barrantes"
 msgstr "Gabriel Barrantes"
 
-#: kcalc.cpp:2941
+#: kcalc.cpp:2938
 #, kde-format
 msgid "Maintainer"
 msgstr "Поддръжка"
 
-#: kcalc.cpp:2942
+#: kcalc.cpp:2939
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr "Klaus Niederkrüger"
 
-#: kcalc.cpp:2947
+#: kcalc.cpp:2944
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
 
-#: kcalc.cpp:2948
+#: kcalc.cpp:2945
 #, kde-format
 msgid "Evan Teran"
 msgstr "Evan Teran"
 
-#: kcalc.cpp:2949
+#: kcalc.cpp:2946
 #, kde-format
 msgid "Espen Sand"
 msgstr "Espen Sand"
 
-#: kcalc.cpp:2950
+#: kcalc.cpp:2947
 #, kde-format
 msgid "Chris Howells"
 msgstr "Chris Howells"
 
-#: kcalc.cpp:2951
+#: kcalc.cpp:2948
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr "Aaron J. Seigo"
 
-#: kcalc.cpp:2952
+#: kcalc.cpp:2949
 #, kde-format
 msgid "Charles Samuels"
 msgstr "Charles Samuels"
 
-#: kcalc.cpp:2954
+#: kcalc.cpp:2951
 #, kde-format
 msgid "René Mérou"
 msgstr "René Mérou"
 
-#: kcalc.cpp:2961
+#: kcalc.cpp:2958
 #, kde-format
 msgid "Michel Marti"
 msgstr "Michel Marti"
 
-#: kcalc.cpp:2962
+#: kcalc.cpp:2959
 #, kde-format
 msgid "David Johnson"
 msgstr "David Johnson"
 
-#: kcalc.cpp:2963
+#: kcalc.cpp:2960
 #, kde-format
 msgid "Niklas Freund"
 msgstr "Niklas Freund"
@@ -2223,7 +2223,7 @@ msgstr "Термодинамика"
 msgid "Gravitation"
 msgstr "Гравитация"
 
-#: kcalc_display.cpp:45
+#: kcalc_display.cpp:47
 #, kde-format
 msgctxt "@label accessibility description of the calculation result display"
 msgid "Result Display"
