@@ -99,7 +99,7 @@
 <para
 >Astuce : en pressant (et maintenant) la touche <keycap
 >&Ctrl;</keycap
->, apparaît sur chaque bouton, le raccourci clavier correspondant.</para>
+>, apparait sur chaque bouton, le raccourci clavier correspondant.</para>
 </listitem>
 </itemizedlist>
 
@@ -191,7 +191,7 @@
 </listitem>
 <listitem>
 <para
->Il est toujours possible de faire des copier / coller en cliquant sur l'affichage de &kcalc;, mais cela devrait disparaître dans les versions futures.</para>
+>Il est toujours possible de faire des copier / coller en cliquant sur l'affichage de &kcalc;, mais cela devrait disparaitre dans les versions futures.</para>
 </listitem>
 </itemizedlist>
 </para
@@ -562,7 +562,7 @@
 >Dat</guibutton
 >. Pour créer une liste de données numérales, saisissez un nombre dans la calculatrice et cliquez sur <guibutton
 >Dat</guibutton
->. Un nombre séquentiellement croissant apparaît sur l'affichage indiquant quelle position le nombre occupe dans la <quote
+>. Un nombre séquentiellement croissant apparait sur l'affichage indiquant quelle position le nombre occupe dans la <quote
 >liste</quote
 > de données. Une calculatrice traditionnelle stocke seulement trois valeurs pour les fonctions statistiques : le nombre d'objets discrets dans une liste, la somme des données saisies et la somme des carrés de toutes les données de la liste. &kcalc; est différent et vous permet de calculer la valeur médiane des données puisqu'il stocke chaque valeur discrète. </para>
 
@@ -722,7 +722,7 @@
 ><guimenuitem
 >Configurer &kcalc;...</guimenuitem
 ></menuchoice
-> pour afficher la boîte de dialogue de configuration et modifier les paramètres que vous souhaitez sur la page <guilabel
+> pour afficher la boite de dialogue de configuration et modifier les paramètres que vous souhaitez sur la page <guilabel
 >Général</guilabel
 >.</para>
 
@@ -903,7 +903,7 @@
 <para
 >Si une valeur est stockée en mémoire, un <guilabel
 >M</guilabel
->apparaît dans la barre d'état, près de l'indicateur du mode de calcul </para>
+>apparait dans la barre d'état, près de l'indicateur du mode de calcul </para>
 </sect2>
 
 <sect2 id="constant_buttons">
@@ -949,7 +949,7 @@
 >C1</guibutton
 > à <guibutton
 >C6</guibutton
->. Un menu apparaît, cliquez sur <guilabel
+>. Un menu apparait, cliquez sur <guilabel
 >Définir le nom</guilabel
 >. </para>
 
@@ -958,7 +958,7 @@
 >C1</guibutton
 > à <guibutton
 >C6</guibutton
->. Pour cela, sélectionnez, dans le menu qui apparaît au clic droit, <guilabel
+>. Pour cela, sélectionnez, dans le menu qui apparait au clic droit, <guilabel
 >Choisir dans la liste</guilabel
 >. Les constantes prédéfinies sont également accessibles par le menu <guimenu
 >Constantes</guimenu
@@ -982,7 +982,7 @@
 <para
 >Pendant un calcul, vous pouvez toujours appuyer sur <keycap
 >&Ctrl;</keycap
-> pour faire apparaître le raccourci clavier de chaque bouton. </para>
+> pour faire apparaitre le raccourci clavier de chaque bouton. </para>
 <!-- Shift works like Caps Lock-->
 <informaltable
 ><tgroup cols="3">
@@ -1721,7 +1721,7 @@
 ><guimenuitem
 > Configurer &kcalc;...</guimenuitem
 ></menuchoice
->. Ceci affichera la boîte de dialogue de configuration. Veuillez cocher l'option <guilabel
+>. Ceci affichera la boite de dialogue de configuration. Veuillez cocher l'option <guilabel
 >Définir la précision décimale</guilabel
 > et régler le compteur de manière à ce qu'il affiche 2.</para
 ></answer
@@ -1741,7 +1741,7 @@
 <para
 >Ajustez la <guilabel
 >précision</guilabel
-> dans la boîte de dialogue de <guibutton
+> dans la boite de dialogue de <guibutton
 >Configuration</guibutton
 > de &kcalc; de manière à ce que les calculs mentionnés ci-dessus s'effectuent correctement. Je recommande une précision de 14 si le type de données de base de &kcalc; est <type
 >long double</type
