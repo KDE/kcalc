@@ -745,7 +745,7 @@ msgstr "阶乘"
 #: kcalc.cpp:595
 #, kde-format
 msgid "Gamma"
-msgstr "伽玛"
+msgstr "伽马"
 
 #: kcalc.cpp:601
 #, kde-format
