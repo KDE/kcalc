@@ -109,6 +109,7 @@ KCalculator::KCalculator(QWidget *parent)
 
     calc_display->changeSettings();
     calc_history->changeSettings();
+    numeralSystemView->changeSettings();
     m_updateHistoryWindow = true;
     setPrecision();
 
@@ -759,22 +760,22 @@ void KCalculator::slotBaseSelected()
     statusBar()->setBase(base);
     switch (base) {
     case BinMode:
-        currentBase = calc_display->setBase(KCalcDisplay::NumBase(2));
+        currentBase = calc_display->setBase(KCalcNumberBase(2));
         base_label->setText(QStringLiteral("Bin"));
         m_baseMode = 2;
         break;
     case OctMode:
-        currentBase = calc_display->setBase(KCalcDisplay::NumBase(8));
+        currentBase = calc_display->setBase(KCalcNumberBase(8));
         base_label->setText(QStringLiteral("Oct"));
         m_baseMode = 8;
         break;
     case DecMode:
-        currentBase = calc_display->setBase(KCalcDisplay::NumBase(10));
+        currentBase = calc_display->setBase(KCalcNumberBase(10));
         base_label->setText(QStringLiteral("Dec"));
         m_baseMode = 10;
         break;
     case HexMode:
-        currentBase = calc_display->setBase(KCalcDisplay::NumBase(16));
+        currentBase = calc_display->setBase(KCalcNumberBase(16));
         base_label->setText(QStringLiteral("Hex"));
         m_baseMode = 16;
         break;
@@ -794,13 +795,13 @@ void KCalculator::slotBaseSelected()
     }
 
     // Only enable the decimal point in decimal
-    pbPeriod->setEnabled(currentBase == KCalcDisplay::NumBase::NbDecimal);
+    pbPeriod->setEnabled(currentBase == KCalcNumberBase::NbDecimal);
 
     // Only enable the x*10^y button in decimal
-    pbEE->setEnabled(currentBase == KCalcDisplay::NumBase::NbDecimal);
+    pbEE->setEnabled(currentBase == KCalcNumberBase::NbDecimal);
 
     // Disable buttons that make only sense with floating point numbers
-    if (currentBase != KCalcDisplay::NumBase::NbDecimal) {
+    if (currentBase != KCalcNumberBase::NbDecimal) {
         for (QAbstractButton *btn : std::as_const(m_scientificButtons)) {
             btn->setEnabled(false);
         }
@@ -2048,7 +2049,7 @@ void KCalculator::slotSetNumeralMode()
 //------------------------------------------------------------------------------
 void KCalculator::slotBaseModeAmountChanged(const KNumber &number)
 {
-    numeralSystemView->setNumber(number.toUint64(), m_baseMode);
+    numeralSystemView->setNumber(number.toUint64(), KCalcNumberBase(m_baseMode));
 }
 
 //------------------------------------------------------------------------------
@@ -2321,6 +2322,7 @@ void KCalculator::updateSettings()
 
     calc_display->changeSettings();
     calc_history->changeSettings();
+    numeralSystemView->changeSettings();
     updateGeometry();
 }
 

@@ -14,6 +14,8 @@
 #include <KLocalizedString>
 #include <KSqueezedTextLabel>
 
+#include "kcalc_settings.h"
+
 // KCalcNumeralSystemLabel
 
 KCalcNumeralSystemLabel::KCalcNumeralSystemLabel(QWidget *parent)
@@ -42,12 +44,21 @@ KCalcNumeralSystemLabel::KCalcNumeralSystemLabel(QWidget *parent)
     updateAlignment();
 }
 
-void KCalcNumeralSystemLabel::setNumber(quint64 number, int base)
+void KCalcNumeralSystemLabel::setNumber(quint64 number, KCalcNumberBase base)
 {
-    m_textLabel->setText(QString::number(number, base).toUpper());
+    number_ = number;
+    number_base_ = base;
+
+    updateLabel();
+}
+
+void KCalcNumeralSystemLabel::updateLabel()
+{
+    QString num_str = QString::number(number_, number_base_).toUpper();
+    m_textLabel->setText(KCalcNumberFormatter::formatNumber(num_str, number_base_));
     m_textLabel->setAccessibleName(m_textLabel->fullText());
 
-    m_numeralSystemLabel->setText(QStringLiteral("<sub><b>%1</b></sub>").arg(base));
+    m_numeralSystemLabel->setText(QStringLiteral("<sub><b>%1</b></sub>").arg(number_base_));
 }
 
 void KCalcNumeralSystemLabel::changeEvent(QEvent *event)
@@ -85,7 +96,7 @@ KCalcNumeralSystemView::KCalcNumeralSystemView(QWidget *parent)
     updateLabels();
 }
 
-void KCalcNumeralSystemView::setNumber(quint64 number, int base)
+void KCalcNumeralSystemView::setNumber(quint64 number, KCalcNumberBase base)
 {
     if (m_number == number && m_base == base) {
         return;
@@ -108,31 +119,36 @@ void KCalcNumeralSystemView::clearNumber()
     updateLabels();
 }
 
+void KCalcNumeralSystemView::changeSettings()
+{
+    updateLabels();
+}
+
 void KCalcNumeralSystemView::updateLabels()
 {
     const bool isValidNumber = m_number.has_value();
     if (isValidNumber) {
         const quint64 number = m_number.value();
         switch (m_base) {
-        case 16:
-            m_label1->setNumber(number, 10);
-            m_label2->setNumber(number, 8);
-            m_label3->setNumber(number, 2);
+        case NbHex:
+            m_label1->setNumber(number, NbDecimal);
+            m_label2->setNumber(number, NbOctal);
+            m_label3->setNumber(number, NbBinary);
             break;
-        case 8:
-            m_label1->setNumber(number, 16);
-            m_label2->setNumber(number, 10);
-            m_label3->setNumber(number, 2);
+        case NbOctal:
+            m_label1->setNumber(number, NbHex);
+            m_label2->setNumber(number, NbDecimal);
+            m_label3->setNumber(number, NbBinary);
             break;
-        case 2:
-            m_label1->setNumber(number, 16);
-            m_label2->setNumber(number, 10);
-            m_label3->setNumber(number, 8);
+        case NbBinary:
+            m_label1->setNumber(number, NbHex);
+            m_label2->setNumber(number, NbDecimal);
+            m_label3->setNumber(number, NbOctal);
             break;
-        default: // 10
-            m_label1->setNumber(number, 16);
-            m_label2->setNumber(number, 8);
-            m_label3->setNumber(number, 2);
+        default: // NbDecimal
+            m_label1->setNumber(number, NbHex);
+            m_label2->setNumber(number, NbOctal);
+            m_label3->setNumber(number, NbBinary);
             break;
         }
     }

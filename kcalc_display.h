@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include "kcalc_number_format.h"
 #include "knumber.h"
 #include <QFrame>
 #include <QList>
@@ -45,24 +46,13 @@ public:
         MalformedExpression,
     };
 
-    enum NumBase {
-        NbBinary = 2,
-        NbOctal = 8,
-        NbDecimal = 10,
-        NbHex = 16,
-    };
-
     bool sendEvent(Event event);
     const KNumber &getAmount() const;
     QString getAmountQString(bool addPreffix = true) const;
     bool setAmount(const KNumber &newAmount);
-    int setBase(NumBase base);
+    int setBase(KCalcNumberBase base);
     void setBeep(bool flag);
-    void setGroupDigits(bool flag);
     void setTwosComplement(bool flag);
-    void setBinaryGrouping(int digits);
-    void setOctalGrouping(int digits);
-    void setHexadecimalGrouping(int digits);
     void setFixedPrecision(int precision);
     void setPrecision(int precision);
     void setText(const QString &string);
@@ -92,10 +82,6 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
-    QString formatNumber(const QString &string);
-    QString formatDecimalNumber(QString string);
-    QString groupDigits(const QString &displayString, int numDigits);
-
     void invertColors();
     void initStyleOption(QStyleOptionFrame *option) const override;
     void setUnformattedText(const QString &string);
@@ -115,14 +101,10 @@ private:
     QString m_text;
     bool m_usingTempSettings;
     bool m_beep;
-    bool m_groupDigits;
     bool m_twosComplement;
-    int m_binaryGrouping{};
-    int m_octalGrouping{};
-    int m_hexadecimalGrouping{};
     int m_button;
     bool m_lit;
-    NumBase m_numBase;
+    KCalcNumberBase m_numBase;
 
     int m_precision;
     int m_fixedPrecision; // "-1" = no fixed_precision

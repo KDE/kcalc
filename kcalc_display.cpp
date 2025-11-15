@@ -34,7 +34,6 @@ KCalcDisplay::KCalcDisplay(QWidget *parent)
     : QFrame(parent)
     , m_usingTempSettings(false)
     , m_beep(false)
-    , m_groupDigits(true)
     , m_twosComplement(true)
     , m_button(0)
     , m_lit(false)
@@ -85,11 +84,7 @@ void KCalcDisplay::changeSettings()
     }
 
     setBeep(KCalcSettings::beep());
-    setGroupDigits(KCalcSettings::groupDigits());
     setTwosComplement(KCalcSettings::twosComplement());
-    setBinaryGrouping(KCalcSettings::binaryGrouping());
-    setOctalGrouping(KCalcSettings::octalGrouping());
-    setHexadecimalGrouping(KCalcSettings::hexadecimalGrouping());
 
     updateFont();
     if (!m_usingTempSettings) {
@@ -258,29 +253,9 @@ void KCalcDisplay::setBeep(bool flag)
     m_beep = flag;
 }
 
-void KCalcDisplay::setGroupDigits(bool flag)
-{
-    m_groupDigits = flag;
-}
-
 void KCalcDisplay::setTwosComplement(bool flag)
 {
     m_twosComplement = flag;
-}
-
-void KCalcDisplay::setBinaryGrouping(int digits)
-{
-    m_binaryGrouping = digits;
-}
-
-void KCalcDisplay::setOctalGrouping(int digits)
-{
-    m_octalGrouping = digits;
-}
-
-void KCalcDisplay::setHexadecimalGrouping(int digits)
-{
-    m_hexadecimalGrouping = digits;
 }
 
 const KNumber &KCalcDisplay::getAmount() const
@@ -351,7 +326,7 @@ bool KCalcDisplay::setAmount(const KNumber &newAmount)
     // TODO: to avoid code duplication, don't format complex number for now,
     //       we need to mode this functionality to the KNumber library
     if (m_displayAmount.type() != KNumber::TypeComplex) {
-        displayStr = formatNumber(displayStr);
+        displayStr = KCalcNumberFormatter::formatNumber(displayStr, m_numBase);
     }
 
     setText(displayStr);
@@ -414,116 +389,12 @@ const QFont &KCalcDisplay::baseFont() const
     return m_baseFont;
 }
 
-QString KCalcDisplay::formatNumber(const QString &string)
-{
-    QString formattedNumber = string;
-    const bool special = (string.contains(QLatin1String("nan")) || string.contains(QLatin1String("inf")));
-
-    // The decimal mode needs special treatment for two reasons, because: a) it uses KGlobal::locale() to get a localized
-    // format and b) it has possible numbers after the decimal place. Neither applies to Binary, Hexadecimal or Octal.
-
-    if ((m_groupDigits || m_numBase == NbDecimal) && !special) {
-        switch (m_numBase) {
-        case NbDecimal:
-            formattedNumber = formatDecimalNumber(string);
-            break;
-        case NbBinary:
-            formattedNumber = groupDigits(string, m_binaryGrouping);
-            break;
-        case NbOctal:
-            formattedNumber = groupDigits(string, m_octalGrouping);
-            break;
-        case NbHex:
-            formattedNumber = groupDigits(string, m_hexadecimalGrouping);
-            break;
-        }
-    }
-
-    return formattedNumber;
-}
-
-QString KCalcDisplay::formatDecimalNumber(QString string)
-{
-    QLocale locale;
-
-    string.replace(QLatin1Char('.'), locale.decimalPoint());
-
-    if (m_groupDigits && !(locale.numberOptions() & QLocale::OmitGroupSeparator)) {
-        // find position after last digit
-        int pos = string.indexOf(locale.decimalPoint());
-        if (pos < 0) {
-            // do not group digits after the exponent part
-            const int expPos = string.indexOf(QLatin1Char('e'));
-            if (expPos > 0) {
-                pos = expPos;
-            } else {
-                pos = string.length();
-            }
-        }
-
-        // find first digit to not group leading spaces or signs
-        int firstDigitPos = 0;
-        for (int i = 0, total = string.length(); i < total; ++i) {
-            if (string.at(i).isDigit()) {
-                firstDigitPos = i;
-                break;
-            }
-        }
-
-        const auto groupSeparator = locale.groupSeparator();
-        const int groupSize = 3;
-
-        string.reserve(string.length() + (pos - 1) / groupSize);
-        while ((pos -= groupSize) > firstDigitPos) {
-            string.insert(pos, groupSeparator);
-        }
-    }
-
-    string.replace(QLatin1Char('-'), locale.negativeSign());
-    string.replace(QLatin1Char('+'), locale.positiveSign());
-
-    // Digits in unicode is encoded in contiguous range and with the digit zero as the first.
-    // To convert digits to other locales,
-    // just add the digit value and the leading zero's code point.
-    // ref: Unicode15 chapter 4.6 Numeric Value https://www.unicode.org/versions/Unicode15.0.0/ch04.pdf
-
-    // QLocale switched return type of many functions from QChar to QString,
-    // because UTF-16 may need surrogate pairs to represent these fields.
-    // We only need digits, thus we only need the first QChar with Qt>=6.
-
-    auto zero = locale.zeroDigit().at(0).unicode();
-
-    for (auto &i : string) {
-        if (i.isDigit()) {
-            i = QChar(zero + i.digitValue());
-        }
-    }
-
-    return string;
-}
-
-QString KCalcDisplay::groupDigits(const QString &displayString, int numDigits)
-{
-    QString tmpDisplayString;
-    const int stringLength = displayString.length();
-
-    for (int i = stringLength; i > 0; i--) {
-        if (i % numDigits == 0 && i != stringLength) {
-            tmpDisplayString = tmpDisplayString + QLatin1Char(' ');
-        }
-
-        tmpDisplayString = tmpDisplayString + displayString[stringLength - i];
-    }
-
-    return tmpDisplayString;
-}
-
 QString KCalcDisplay::text() const
 {
     return m_text;
 }
 
-int KCalcDisplay::setBase(NumBase base)
+int KCalcDisplay::setBase(KCalcNumberBase base)
 {
     switch (base) {
     case NbHex:
@@ -564,7 +435,7 @@ void KCalcDisplay::updateDisplay()
         txt.remove(QLocale().groupSeparator());
     }
 
-    setText(formatNumber(txt));
+    setText(KCalcNumberFormatter::formatNumber(txt, m_numBase));
 }
 
 void KCalcDisplay::initStyleOption(QStyleOptionFrame *option) const

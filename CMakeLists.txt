@@ -74,6 +74,7 @@ target_sources(kcalc PRIVATE
    kcalc_core.cpp
    kcalc_core_p.cpp
    kcalc_input_display.cpp
+   kcalc_number_format.cpp
    kcalc_display_frame.cpp
    kcalc_parser.cpp
    kcalc_token.cpp
@@ -93,6 +94,7 @@ target_sources(kcalc PRIVATE
    kcalc_const_button.h
    kcalc_statusbar.h
    kcalc_input_display.h
+   kcalc_number_format.h
    kcalc_display_frame.h
    kcalc_parser.h
    kcalc_token.h

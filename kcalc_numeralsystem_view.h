@@ -8,6 +8,8 @@
 
 #include <QWidget>
 
+#include "kcalc_number_format.h"
+
 class QLabel;
 
 class KSqueezedTextLabel;
@@ -20,7 +22,9 @@ class KCalcNumeralSystemLabel : public QWidget
 public:
     explicit KCalcNumeralSystemLabel(QWidget *parent = nullptr);
 
-    void setNumber(quint64 number, int base);
+    void setNumber(quint64 number, KCalcNumberBase base);
+
+    void updateLabel();
 
 protected:
     void changeEvent(QEvent *event) override;
@@ -30,6 +34,8 @@ private:
 
     KSqueezedTextLabel *m_textLabel;
     QLabel *m_numeralSystemLabel;
+    quint64 number_;
+    KCalcNumberBase number_base_ = NbDecimal;
 };
 
 // KCalcNumeralSystemView
@@ -40,8 +46,9 @@ class KCalcNumeralSystemView : public QWidget
 public:
     explicit KCalcNumeralSystemView(QWidget *parent = nullptr);
 
-    void setNumber(quint64 number, int base);
+    void setNumber(quint64 number, KCalcNumberBase base);
     void clearNumber();
+    void changeSettings();
 
 private:
     void updateLabels();
@@ -51,7 +58,7 @@ private:
     KCalcNumeralSystemLabel *m_label3 = nullptr;
 
     std::optional<quint64> m_number;
-    int m_base = 10;
+    KCalcNumberBase m_base = NbDecimal;
 };
 
 #endif // KCALCNUMERALSYSTEMVIEW_H
