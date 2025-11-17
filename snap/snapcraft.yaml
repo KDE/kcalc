@@ -1,0 +1,109 @@
+# SPDX-FileCopyrightText: 2023-2025 Scarlett Moore <sgmoore@kde.org>
+#
+# SPDX-License-Identifier: CC0-1.0
+---
+name: kcalc
+confinement: strict
+grade: stable
+base: core24
+adopt-info: kcalc
+apps:
+    kcalc:
+        extensions:
+            - kde-neon-6  # Completes plugs/command-chain/environment/hooks/layout
+        common-id: org.kde.kcalc.desktop
+        desktop: usr/share/applications/org.kde.kcalc.desktop
+        command: usr/bin/kcalc
+        plugs: []
+        command-chain: []
+assumes:
+    - snapd2.58.3
+compression: lzo
+plugs: {}
+environment: {}
+hooks: {}
+layout: {}
+package-repositories:
+    - type: apt
+      components:
+          - main
+      suites:
+          - noble
+      key-id: 444DABCF3667D0283F894EDDE6D4736255751E5D
+      url: http://archive.neon.kde.org/user
+      key-server: keyserver.ubuntu.com
+parts:
+    kcalc:
+        parse-info:
+            - usr/share/metainfo/org.kde.kcalc.appdata.xml
+        plugin: cmake
+        build-packages:
+            - libmpfr-dev
+            - libgmp-dev
+            - docbook-xml
+            - docbook-xsl
+            - gettext
+            - libxkbcommon-dev
+            - libmpc-dev
+            - libpulse0
+        stage-packages:
+            - libmpfr6
+            - libgmp10
+            - breeze-icon-theme
+            - libxkbcommon0
+            - manpages
+            - libmpc3
+        source: https://invent.kde.org//utilities/kcalc.git
+        source-branch: release/25.08
+        cmake-parameters:
+            - "--log-level=STATUS"
+            - "-DBUILD_TESTING=OFF"
+            - "-DBUILD_WITH_QT6=ON"
+            - "-DCMAKE_BUILD_TYPE=Release"
+            - "-DCMAKE_EXPORT_NO_PACKAGE_REGISTRY=ON"
+            - "-DCMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY=ON"
+            - "-DCMAKE_FIND_ROOT_PATH=$CRAFT_STAGE\\;/snap/kde-qt6-core24-sdk/current\\;/snap/kf6-core24-sdk/current\\;/usr"
+            - "-DCMAKE_FIND_USE_PACKAGE_REGISTRY=OFF"
+            - "-DCMAKE_INSTALL_LIBDIR=lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR"
+            - "-DCMAKE_INSTALL_LOCALSTATEDIR=/var"
+            - "-DCMAKE_INSTALL_PREFIX=/usr"
+            - "-DCMAKE_INSTALL_RUNSTATEDIR=/run"
+            - "-DCMAKE_INSTALL_SYSCONFDIR=/etc"
+            - "-DCMAKE_LIBRARY_PATH=lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR"
+            - "-DCMAKE_PREFIX_PATH=$CRAFT_STAGE\\;/snap/kde-qt6-core24-sdk/current\\;/snap/kf6-core24-sdk/current\\;/usr"
+            - "-DCMAKE_SKIP_INSTALL_ALL_DEPENDENCY=ON"
+            - "-DCMAKE_VERBOSE_MAKEFILE=ON"
+            - "-DENABLE_TESTING=OFF"
+            - "-DKDE_INSTALL_FULL_APPDIR=$SNAP/usr/share/applications"
+            - "-DKDE_INSTALL_PLUGINDIR=/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/plugins/"
+            - "-DKDE_INSTALL_USE_QT_SYS_PATHS=FALSE"
+            - "-DKDE_SKIP_TEST_SETTINGS=ON"
+            - "-DQT_MAJOR_VERSION=6"
+        prime:
+            - "-usr/lib/*/cmake/*"
+            - "-usr/include/*"
+            - "-usr/share/ECM/*"
+            - "-usr/share/man/*"
+            - "-usr/bin/X11"
+            - "-usr/lib/gcc/$CRAFT_ARCH_TRIPLET_BUILD_FOR/6.0.0"
+            - "-usr/lib/aspell/*"
+            - "-usr/share/lintian"
+            - "-usr/share/kglobalaccel/org.kde.kcalc.desktop"
+        build-environment:
+            - PATH: /snap/kde-qt6-core24-sdk/current/usr/bin:/snap/kf6-core24-sdk/current/usr/bin${PATH:+:$PATH}
+            - XDG_DATA_DIRS: $CRAFT_STAGE/usr/share:/snap/kde-qt6-core24-sdk/current/usr/share:/snap/kf6-core24-sdk/current/usr/share:/usr/share${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}
+            - XDG_CONFIG_HOME: $CRAFT_STAGE/etc/xdg:/snap/kde-qt6-core24-sdk/etc/xdg:/snap/kf6-core24-sdk/etc/xdg:/etc/xdg${XDG_CONFIG_HOME:+:$XDG_CONFIG_HOME}
+            - LD_LIBRARY_PATH: /snap/kde-qt6-core24-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:/snap/kf6-core24-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:/snap/kde-qt6-core24-sdk/current/usr/lib:/snap/kf6-core24-sdk/current/usr/lib:/snap/kde-qt6-core24-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy:$CRAFT_STAGE/usr/lib:CRAFT_STAGE/usr/lib:$CRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR{LD_LIBRARY_PATH:+:LD_LIBRARY_PATH}
+    cleanup:
+        after:
+            - kcalc
+        plugin: nil
+        build-snaps:
+            - core24
+            - kf6-core24
+        override-prime: |
+            set -eux
+            for snap in "core24" "kf6-core24"
+            do
+                cd "/snap/$snap/current" && find . -type f,l -exec rm -rf "$CRAFT_PRIME/{}" \;
+            done
