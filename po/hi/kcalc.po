@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:43+0000\n"
+"POT-Creation-Date: 2025-11-23 02:39+0000\n"
 "PO-Revision-Date: 2008-02-03 12:40+0530\n"
 "Last-Translator: Ravishankar Shrivastava <aviratlami@aol.in>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
@@ -118,7 +118,7 @@ msgid "&Constants:"
 msgstr "स्थिरांक (&C)"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
-#: constants.ui:13 kcalc.cpp:1742
+#: constants.ui:13 kcalc.cpp:1748
 #, kde-format
 msgid "Constants"
 msgstr "स्थिरांक"
@@ -178,7 +178,7 @@ msgid "The font to use in the history"
 msgstr "प्रदर्शन के लिए उपयोग में फ़ॉन्ट"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
-#: general.ui:14 kcalc.cpp:1702
+#: general.ui:14 kcalc.cpp:1708
 #, kde-format
 msgid "General"
 msgstr "सामान्य"
@@ -324,118 +324,118 @@ msgstr ""
 msgid "Two's complement"
 msgstr "किसी का अवयव"
 
-#: kcalc.cpp:79
+#: kcalc.cpp:85
 #, fuzzy, kde-format
 #| msgid "He&x"
 msgctxt "Hexadecimal numeral system"
 msgid "Hex"
 msgstr "हेक्स (&x)"
 
-#: kcalc.cpp:80
+#: kcalc.cpp:86
 #, fuzzy, kde-format
 #| msgid "&Dec"
 msgctxt "Decimal numeral system"
 msgid "Dec"
 msgstr "दश. (&D)"
 
-#: kcalc.cpp:81
+#: kcalc.cpp:87
 #, fuzzy, kde-format
 #| msgid "&Oct"
 msgctxt "Octal numeral system"
 msgid "Oct"
 msgstr "ऑक्टल (&O)"
 
-#: kcalc.cpp:82
+#: kcalc.cpp:88
 #, fuzzy, kde-format
 #| msgid "&Bin"
 msgctxt "Binary numeral system"
 msgid "Bin"
 msgstr "बाइनरी (&B)"
 
-#: kcalc.cpp:177
+#: kcalc.cpp:183
 #, kde-format
 msgid "Simple Mode"
 msgstr ""
 
-#: kcalc.cpp:182
+#: kcalc.cpp:188
 #, kde-format
 msgid "Science Mode"
 msgstr ""
 
-#: kcalc.cpp:187
+#: kcalc.cpp:193
 #, fuzzy, kde-format
 #| msgid "&Statistic Buttons"
 msgid "Statistic Mode"
 msgstr "आंकड़ा बटन (&S)"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
-#: kcalc.cpp:192 kcalc.kcfg:162
+#: kcalc.cpp:198 kcalc.kcfg:162
 #, kde-format
 msgid "Numeral System Mode"
 msgstr ""
 
-#: kcalc.cpp:197
+#: kcalc.cpp:203
 #, kde-format
 msgid "Show &History"
 msgstr ""
 
-#: kcalc.cpp:203
+#: kcalc.cpp:209
 #, fuzzy, kde-format
 #| msgid "&Constants Buttons"
 msgid "Constants &Buttons"
 msgstr "स्थिरांक बटन (&C)"
 
-#: kcalc.cpp:208
+#: kcalc.cpp:214
 #, kde-format
 msgid "Show B&it Edit"
 msgstr ""
 
-#: kcalc.cpp:223
+#: kcalc.cpp:229
 #, kde-format
 msgid "&Constants"
 msgstr "स्थिरांक (&C)"
 
-#: kcalc.cpp:321
+#: kcalc.cpp:327
 #, fuzzy, kde-format
 #| msgid "M+"
 msgctxt "Add display to memory"
 msgid "M+"
 msgstr "M+"
 
-#: kcalc.cpp:321
+#: kcalc.cpp:327
 #, kde-format
 msgid "Add display to memory"
 msgstr "मेमोरी में प्रदर्शन जोड़ें"
 
-#: kcalc.cpp:322
+#: kcalc.cpp:328
 #, kde-format
 msgctxt "Subtract from memory"
 msgid "M−"
 msgstr ""
 
-#: kcalc.cpp:322
+#: kcalc.cpp:328
 #, kde-format
 msgid "Subtract from memory"
 msgstr "मेमोरी से घटाएँ"
 
-#: kcalc.cpp:345
+#: kcalc.cpp:351
 #, kde-format
 msgctxt "Square root"
 msgid "&radic;x"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSqrt)
-#: kcalc.cpp:345 kcalc.ui:1107
+#: kcalc.cpp:351 kcalc.ui:1107
 #, kde-format
 msgid "Square root"
 msgstr "वर्ग मूल"
 
-#: kcalc.cpp:346
+#: kcalc.cpp:352
 #, kde-format
 msgid "Cube root"
 msgstr "घन रूट"
 
-#: kcalc.cpp:445
+#: kcalc.cpp:451
 #, fuzzy, kde-format
 #| msgid "Arc sine"
 msgctxt "Sine"
@@ -444,47 +444,47 @@ msgstr "आर्क ज्या"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSin)
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbSin)
-#: kcalc.cpp:445 kcalc.ui:556 kcalc.ui:559
+#: kcalc.cpp:451 kcalc.ui:556 kcalc.ui:559
 #, kde-format
 msgid "Sine"
 msgstr "ज्या"
 
-#: kcalc.cpp:446
+#: kcalc.cpp:452
 #, kde-format
 msgctxt "Arc sine"
 msgid "asin"
 msgstr ""
 
-#: kcalc.cpp:446
+#: kcalc.cpp:452
 #, kde-format
 msgid "Arc sine"
 msgstr "आर्क ज्या"
 
-#: kcalc.cpp:447
+#: kcalc.cpp:453
 #, fuzzy, kde-format
 #| msgid "Arc sine"
 msgctxt "Hyperbolic sine"
 msgid "sinh"
 msgstr "आर्क ज्या"
 
-#: kcalc.cpp:447
+#: kcalc.cpp:453
 #, kde-format
 msgid "Hyperbolic sine"
 msgstr "हाइपरबोलिक ज्या"
 
-#: kcalc.cpp:448
+#: kcalc.cpp:454
 #, fuzzy, kde-format
 #| msgid "Arc sine"
 msgctxt "Inverse hyperbolic sine"
 msgid "asinh"
 msgstr "आर्क ज्या"
 
-#: kcalc.cpp:448
+#: kcalc.cpp:454
 #, kde-format
 msgid "Inverse hyperbolic sine"
 msgstr "इनवर्स हाइपरबोलिक कोज्या"
 
-#: kcalc.cpp:453
+#: kcalc.cpp:459
 #, fuzzy, kde-format
 #| msgid "Cos"
 msgctxt "Cosine"
@@ -493,45 +493,45 @@ msgstr "कोज्या"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbCos)
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbCos)
-#: kcalc.cpp:453 kcalc.ui:948 kcalc.ui:951
+#: kcalc.cpp:459 kcalc.ui:948 kcalc.ui:951
 #, kde-format
 msgid "Cosine"
 msgstr "कोटिज्या"
 
-#: kcalc.cpp:454
+#: kcalc.cpp:460
 #, kde-format
 msgctxt "Arc cosine"
 msgid "acos"
 msgstr ""
 
-#: kcalc.cpp:454
+#: kcalc.cpp:460
 #, kde-format
 msgid "Arc cosine"
 msgstr "आर्क कोज्या"
 
-#: kcalc.cpp:455
+#: kcalc.cpp:461
 #, kde-format
 msgctxt "Hyperbolic cosine"
 msgid "cosh"
 msgstr ""
 
-#: kcalc.cpp:455
+#: kcalc.cpp:461
 #, kde-format
 msgid "Hyperbolic cosine"
 msgstr "हाइपरबोलिक कोज्या"
 
-#: kcalc.cpp:456
+#: kcalc.cpp:462
 #, kde-format
 msgctxt "Inverse hyperbolic cosine"
 msgid "acosh"
 msgstr ""
 
-#: kcalc.cpp:456
+#: kcalc.cpp:462
 #, kde-format
 msgid "Inverse hyperbolic cosine"
 msgstr "इनवर्स हाइपरबोलिक कोज्या"
 
-#: kcalc.cpp:461
+#: kcalc.cpp:467
 #, fuzzy, kde-format
 #| msgid "Tan"
 msgctxt "Tangent"
@@ -539,45 +539,45 @@ msgid "tan"
 msgstr "टैन"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbTan)
-#: kcalc.cpp:461 kcalc.ui:680
+#: kcalc.cpp:467 kcalc.ui:680
 #, kde-format
 msgid "Tangent"
 msgstr "स्पर्शज्या"
 
-#: kcalc.cpp:462
+#: kcalc.cpp:468
 #, kde-format
 msgctxt "Arc tangent"
 msgid "atan"
 msgstr ""
 
-#: kcalc.cpp:462
+#: kcalc.cpp:468
 #, kde-format
 msgid "Arc tangent"
 msgstr "आर्क स्पर्शज्या"
 
-#: kcalc.cpp:463
+#: kcalc.cpp:469
 #, kde-format
 msgctxt "Hyperbolic tangent"
 msgid "tanh"
 msgstr ""
 
-#: kcalc.cpp:463
+#: kcalc.cpp:469
 #, kde-format
 msgid "Hyperbolic tangent"
 msgstr "हाइपरबोलिक स्पर्शज्या"
 
-#: kcalc.cpp:464
+#: kcalc.cpp:470
 #, kde-format
 msgctxt "Inverse hyperbolic tangent"
 msgid "atanh"
 msgstr ""
 
-#: kcalc.cpp:464
+#: kcalc.cpp:470
 #, kde-format
 msgid "Inverse hyperbolic tangent"
 msgstr "इनवर्स हाइपरबोलिक स्पर्शज्या"
 
-#: kcalc.cpp:469
+#: kcalc.cpp:475
 #, fuzzy, kde-format
 #| msgid "Log"
 msgctxt "Logarithm to base 10"
@@ -585,68 +585,68 @@ msgid "log"
 msgstr "लॉग"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLog)
-#: kcalc.cpp:469 kcalc.ui:661
+#: kcalc.cpp:475 kcalc.ui:661
 #, kde-format
 msgid "Logarithm to base 10"
 msgstr "बेस 10 का लघुगणक"
 
-#: kcalc.cpp:470
+#: kcalc.cpp:476
 #, kde-format
 msgctxt "10 to the power of x"
 msgid "10<sup>x</sup>"
 msgstr ""
 
-#: kcalc.cpp:470
+#: kcalc.cpp:476
 #, kde-format
 msgid "10 to the power of x"
 msgstr "x का घात 10"
 
-#: kcalc.cpp:474
+#: kcalc.cpp:480
 #, kde-format
 msgctxt "Natural log"
 msgid "ln"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLn)
-#: kcalc.cpp:474 kcalc.ui:989
+#: kcalc.cpp:480 kcalc.ui:989
 #, kde-format
 msgid "Natural log"
 msgstr "सामान्य लॉग"
 
-#: kcalc.cpp:475
+#: kcalc.cpp:481
 #, kde-format
 msgctxt "Exponential function"
 msgid "e<sup>x</sup>"
 msgstr ""
 
-#: kcalc.cpp:475
+#: kcalc.cpp:481
 #, kde-format
 msgid "Exponential function"
 msgstr "एक्सपोनेंशियल फंक्शन"
 
-#: kcalc.cpp:479
+#: kcalc.cpp:485
 #, kde-format
 msgctxt "Imaginary unit"
 msgid "i"
 msgstr ""
 
-#: kcalc.cpp:479
+#: kcalc.cpp:485
 #, kde-format
 msgid "Imaginary unit"
 msgstr ""
 
-#: kcalc.cpp:480
+#: kcalc.cpp:486
 #, kde-format
 msgctxt "Polar complex"
 msgid "∠"
 msgstr ""
 
-#: kcalc.cpp:480
+#: kcalc.cpp:486
 #, kde-format
 msgid "Polar complex"
 msgstr ""
 
-#: kcalc.cpp:498
+#: kcalc.cpp:504
 #, fuzzy, kde-format
 #| msgid "N"
 msgctxt "Number of data entered"
@@ -654,17 +654,17 @@ msgid "N"
 msgstr "उ"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbNData)
-#: kcalc.cpp:498 kcalc.ui:645
+#: kcalc.cpp:504 kcalc.ui:645
 #, kde-format
 msgid "Number of data entered"
 msgstr "प्रविष्टित डाटा संख्या"
 
-#: kcalc.cpp:499
+#: kcalc.cpp:505
 #, kde-format
 msgid "Sum of all data items"
 msgstr "सभी डाटा वस्तु का योग"
 
-#: kcalc.cpp:504
+#: kcalc.cpp:510
 #, fuzzy, kde-format
 #| msgid "Mea"
 msgctxt "Mean"
@@ -672,28 +672,28 @@ msgid "Mea"
 msgstr "Mea"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMean)
-#: kcalc.cpp:504 kcalc.ui:833
+#: kcalc.cpp:510 kcalc.ui:833
 #, kde-format
 msgid "Mean"
 msgstr "औसत"
 
-#: kcalc.cpp:505
+#: kcalc.cpp:511
 #, kde-format
 msgid "Sum of all data items squared"
 msgstr "सभी डाटा वस्तु के वर्ग का योग"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSd)
-#: kcalc.cpp:510 kcalc.ui:1075
+#: kcalc.cpp:516 kcalc.ui:1075
 #, kde-format
 msgid "Standard deviation"
 msgstr "मानक विचलन"
 
-#: kcalc.cpp:511
+#: kcalc.cpp:517
 #, kde-format
 msgid "Sample standard deviation"
 msgstr "सेंपल मानक विचलन"
 
-#: kcalc.cpp:519
+#: kcalc.cpp:525
 #, fuzzy, kde-format
 #| msgid "Dat"
 msgctxt "Enter data"
@@ -701,24 +701,24 @@ msgid "Dat"
 msgstr "Dat"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbDat)
-#: kcalc.cpp:519 kcalc.ui:865
+#: kcalc.cpp:525 kcalc.ui:865
 #, kde-format
 msgid "Enter data"
 msgstr "डाटा भरें"
 
-#: kcalc.cpp:520
+#: kcalc.cpp:526
 #, fuzzy, kde-format
 #| msgid "Dat"
 msgctxt "Delete last data item"
 msgid "CDat"
 msgstr "Dat"
 
-#: kcalc.cpp:520
+#: kcalc.cpp:526
 #, kde-format
 msgid "Delete last data item"
 msgstr "पिछला डाटा वस्तु मिटाएँ"
 
-#: kcalc.cpp:581
+#: kcalc.cpp:587
 #, fuzzy, kde-format
 #| msgid "Mod"
 msgctxt "Modulo"
@@ -726,24 +726,24 @@ msgid "mod"
 msgstr "मॉड"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMod)
-#: kcalc.cpp:581 kcalc.ui:629
+#: kcalc.cpp:587 kcalc.ui:629
 #, kde-format
 msgid "Modulo"
 msgstr "मॉड्यूलो"
 
-#: kcalc.cpp:582
+#: kcalc.cpp:588
 #, fuzzy, kde-format
 #| msgid "Inv"
 msgctxt "Integer division"
 msgid "IntDiv"
 msgstr "Inv"
 
-#: kcalc.cpp:582
+#: kcalc.cpp:588
 #, kde-format
 msgid "Integer division"
 msgstr "अंक डिवीजन"
 
-#: kcalc.cpp:588
+#: kcalc.cpp:594
 #, fuzzy, kde-format
 #| msgid "1/X"
 msgctxt "Reciprocal"
@@ -751,24 +751,24 @@ msgid "1/x"
 msgstr "1/X"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbReci)
-#: kcalc.cpp:588 kcalc.ui:970
+#: kcalc.cpp:594 kcalc.ui:970
 #, kde-format
 msgid "Reciprocal"
 msgstr "रेसिप्रोकल"
 
-#: kcalc.cpp:589
+#: kcalc.cpp:595
 #, fuzzy, kde-format
 #| msgid "Cmp"
 msgctxt "n Choose m"
 msgid "nCm"
 msgstr "Cmp"
 
-#: kcalc.cpp:589
+#: kcalc.cpp:595
 #, kde-format
 msgid "n Choose m"
 msgstr "n चुनें m"
 
-#: kcalc.cpp:594
+#: kcalc.cpp:600
 #, fuzzy, kde-format
 #| msgid "x!"
 msgctxt "Factorial"
@@ -776,177 +776,177 @@ msgid "x!"
 msgstr "x!"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbFactorial)
-#: kcalc.cpp:594 kcalc.ui:849
+#: kcalc.cpp:600 kcalc.ui:849
 #, kde-format
 msgid "Factorial"
 msgstr "फैक्टोरियल"
 
-#: kcalc.cpp:595
+#: kcalc.cpp:601
 #, kde-format
 msgid "Gamma"
 msgstr ""
 
-#: kcalc.cpp:601
+#: kcalc.cpp:607
 #, kde-format
 msgctxt "Square"
 msgid "x<sup>2</sup>"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSquare)
-#: kcalc.cpp:601 kcalc.ui:492
+#: kcalc.cpp:607 kcalc.ui:492
 #, kde-format
 msgid "Square"
 msgstr "वर्ग"
 
-#: kcalc.cpp:602
+#: kcalc.cpp:608
 #, kde-format
 msgid "Third power"
 msgstr "तृतीय घात"
 
-#: kcalc.cpp:609
+#: kcalc.cpp:615
 #, kde-format
 msgctxt "x to the power of y"
 msgid "x<sup>y</sup>"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbPower)
-#: kcalc.cpp:609 kcalc.ui:1123
+#: kcalc.cpp:615 kcalc.ui:1123
 #, kde-format
 msgid "x to the power of y"
 msgstr "x का घात y"
 
-#: kcalc.cpp:610
+#: kcalc.cpp:616
 #, kde-format
 msgctxt "x to the power of 1/y"
 msgid "x<sup>1/y</sup>"
 msgstr ""
 
-#: kcalc.cpp:610
+#: kcalc.cpp:616
 #, kde-format
 msgid "x to the power of 1/y"
 msgstr "x का घात 1/y"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbEE)
-#: kcalc.cpp:620 kcalc.ui:610
+#: kcalc.cpp:626 kcalc.ui:610
 #, kde-format
 msgid "Exponent"
 msgstr "एक्सपोनेंट"
 
-#: kcalc.cpp:936
+#: kcalc.cpp:942
 #, fuzzy, kde-format
 #| msgid "Shift+:"
 msgctxt "Second function mode"
 msgid "Shift"
 msgstr "शिफ्ट+:"
 
-#: kcalc.cpp:1243 kcalc.cpp:1244
+#: kcalc.cpp:1249 kcalc.cpp:1250
 #, fuzzy, kde-format
 #| msgid "Memory clear"
 msgctxt "Memory cleared"
 msgid "M cleared"
 msgstr "मेमोरी साफ करें"
 
-#: kcalc.cpp:1514
+#: kcalc.cpp:1520
 #, fuzzy, kde-format
 #| msgid "Number of data entered"
 msgid "Number of data entered = "
 msgstr "प्रविष्टित डाटा संख्या"
 
-#: kcalc.cpp:1515
+#: kcalc.cpp:1521
 #, fuzzy, kde-format
 #| msgid "Number of data entered"
 msgid "Number of data entered ="
 msgstr "प्रविष्टित डाटा संख्या"
 
-#: kcalc.cpp:1520
+#: kcalc.cpp:1526
 #, fuzzy, kde-format
 #| msgid "Sum of all data items"
 msgid "Sum of all data items ="
 msgstr "सभी डाटा वस्तु का योग"
 
-#: kcalc.cpp:1539
+#: kcalc.cpp:1545
 #, fuzzy, kde-format
 #| msgid "Mean"
 msgid "Mean = "
 msgstr "औसत"
 
-#: kcalc.cpp:1543
+#: kcalc.cpp:1549
 #, kde-format
 msgid "Sum of squares ="
 msgstr ""
 
-#: kcalc.cpp:1586
+#: kcalc.cpp:1592
 #, fuzzy, kde-format
 #| msgid "Median"
 msgid "Median ="
 msgstr "मेडियन"
 
-#: kcalc.cpp:1587
+#: kcalc.cpp:1593
 #, fuzzy, kde-format
 #| msgid "Mean"
 msgid "Median = "
 msgstr "औसत"
 
-#: kcalc.cpp:1621 kcalc.cpp:1622
+#: kcalc.cpp:1627 kcalc.cpp:1628
 #, kde-format
 msgid "DAT ["
 msgstr ""
 
-#: kcalc.cpp:1621 kcalc.cpp:1622
+#: kcalc.cpp:1627 kcalc.cpp:1628
 #, kde-format
 msgid "] = "
 msgstr ""
 
-#: kcalc.cpp:1629 kcalc.cpp:1631 kcalc.cpp:1632
+#: kcalc.cpp:1635 kcalc.cpp:1637 kcalc.cpp:1638
 #, fuzzy, kde-format
 #| msgid "Last stat item erased"
 msgid "Last stat data erased"
 msgstr "पिछली वस्तु मिटाई"
 
-#: kcalc.cpp:1644 kcalc.cpp:1647 kcalc.cpp:1648
+#: kcalc.cpp:1650 kcalc.cpp:1653 kcalc.cpp:1654
 #, kde-format
 msgid "Stat mem cleared"
 msgstr "स्टेट मेम. मिटाई"
 
-#: kcalc.cpp:1702
+#: kcalc.cpp:1708
 #, kde-format
 msgid "General Settings"
 msgstr "सामान्य विन्यास"
 
-#: kcalc.cpp:1706
+#: kcalc.cpp:1712
 #, fuzzy, kde-format
 #| msgid "Font"
 msgid "Fonts"
 msgstr "फ़ॉन्ट"
 
-#: kcalc.cpp:1710
+#: kcalc.cpp:1716
 #, kde-format
 msgid "Colors"
 msgstr "रंग"
 
-#: kcalc.cpp:1710
+#: kcalc.cpp:1716
 #, kde-format
 msgid "Button & Display Colors"
 msgstr "बटन व प्रदर्शक रंग"
 
-#: kcalc.cpp:1742
+#: kcalc.cpp:1748
 #, fuzzy, kde-format
 #| msgid "Define constants"
 msgid "Define Constants"
 msgstr "स्थिरांक पारिभाषित करें"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2924 kcalc.ui:20
+#: kcalc.cpp:2952 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "के-केल्क"
 
-#: kcalc.cpp:2926
+#: kcalc.cpp:2954
 #, kde-format
 msgid "KDE Calculator"
 msgstr "केडीई गणक"
 
-#: kcalc.cpp:2928
+#: kcalc.cpp:2956
 #, fuzzy, kde-format
 #| msgid ""
 #| "(c) 2003-2005, Klaus Niederkrüger\n"
@@ -962,67 +962,67 @@ msgstr ""
 "(c) 1996-2000, बेर्न्द जोहान्स वुएबेन\n"
 "(c) 2000-2005, केडीई टोली"
 
-#: kcalc.cpp:2938
+#: kcalc.cpp:2966
 #, kde-format
 msgid "Gabriel Barrantes"
 msgstr ""
 
-#: kcalc.cpp:2938
+#: kcalc.cpp:2966
 #, kde-format
 msgid "Maintainer"
 msgstr ""
 
-#: kcalc.cpp:2939
+#: kcalc.cpp:2967
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr "क्लास निएदरक्रुगर"
 
-#: kcalc.cpp:2944
+#: kcalc.cpp:2972
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr "बर्नड जॉन्स वुएबेन"
 
-#: kcalc.cpp:2945
+#: kcalc.cpp:2973
 #, kde-format
 msgid "Evan Teran"
 msgstr "इवान टेरान"
 
-#: kcalc.cpp:2946
+#: kcalc.cpp:2974
 #, kde-format
 msgid "Espen Sand"
 msgstr "एस्पन सैंड"
 
-#: kcalc.cpp:2947
+#: kcalc.cpp:2975
 #, kde-format
 msgid "Chris Howells"
 msgstr "क्रिस हॉवेल्स"
 
-#: kcalc.cpp:2948
+#: kcalc.cpp:2976
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr "एरॉन जे. सीगो"
 
-#: kcalc.cpp:2949
+#: kcalc.cpp:2977
 #, kde-format
 msgid "Charles Samuels"
 msgstr "चार्ल्स सेमुएल्स"
 
-#: kcalc.cpp:2951
+#: kcalc.cpp:2979
 #, kde-format
 msgid "René Mérou"
 msgstr "रीनी मेरोऊ"
 
-#: kcalc.cpp:2958
+#: kcalc.cpp:2986
 #, kde-format
 msgid "Michel Marti"
 msgstr "माइकल मार्टी"
 
-#: kcalc.cpp:2959
+#: kcalc.cpp:2987
 #, kde-format
 msgid "David Johnson"
 msgstr "डेविड जान्सन"
 
-#: kcalc.cpp:2960
+#: kcalc.cpp:2988
 #, kde-format
 msgid "Niklas Freund"
 msgstr ""
