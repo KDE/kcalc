@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-23 00:46+0000\n"
+"POT-Creation-Date: 2025-11-28 00:45+0000\n"
 "PO-Revision-Date: 2022-03-12 18:09-0800\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -34,6 +34,36 @@ msgid "Your emails"
 msgstr ""
 "imura@cs.titech.ac.jp,shinobo@leo.bekkoame.ne.jp,okushi@kde.gr.jp,"
 "kmuto@debian.org,21r.suga@gmail.com"
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C1"
+msgstr "C1"
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C2"
+msgstr "C2"
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C3"
+msgstr "C3"
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C4"
+msgstr "C4"
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C5"
+msgstr "C5"
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C6"
+msgstr "C6"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FollowSystemTheme)
 #: colors.ui:17
@@ -1378,42 +1408,6 @@ msgstr ""
 #, kde-format
 msgid "Name of the user programmable constants."
 msgstr "ユーザ定義定数の名前"
-
-#: kcalc.kcfg:229
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C1"
-msgstr "C1"
-
-#: kcalc.kcfg:230
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C2"
-msgstr "C2"
-
-#: kcalc.kcfg:231
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C3"
-msgstr "C3"
-
-#: kcalc.kcfg:232
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C4"
-msgstr "C4"
-
-#: kcalc.kcfg:233
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C5"
-msgstr "C5"
-
-#: kcalc.kcfg:234
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C6"
-msgstr "C6"
 
 #. i18n: ectx: label, entry (valueConstant$(ConstIndex)), group (UserConstants)
 #: kcalc.kcfg:238

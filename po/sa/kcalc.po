@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-23 00:46+0000\n"
+"POT-Creation-Date: 2025-11-28 00:45+0000\n"
 "PO-Revision-Date: 2024-12-24 20:39+0530\n"
 "Last-Translator: kali <shreekantkalwar@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -28,6 +28,36 @@ msgstr "श्रीकान्त् कलवार्"
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "skkalwar999@gmail.com"
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C1"
+msgstr "ग1"
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C2"
+msgstr "ग2"
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C3"
+msgstr "ग3"
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C4"
+msgstr "ग4"
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C5"
+msgstr "ग5"
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C6"
+msgstr "ग6"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FollowSystemTheme)
 #: colors.ui:17
@@ -1325,42 +1355,6 @@ msgstr ""
 #, kde-format
 msgid "Name of the user programmable constants."
 msgstr "उपयोक्तुः प्रोग्रामेबल स्थिरांकानाम् नाम ।"
-
-#: kcalc.kcfg:229
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C1"
-msgstr "ग1"
-
-#: kcalc.kcfg:230
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C2"
-msgstr "ग2"
-
-#: kcalc.kcfg:231
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C3"
-msgstr "ग3"
-
-#: kcalc.kcfg:232
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C4"
-msgstr "ग4"
-
-#: kcalc.kcfg:233
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C5"
-msgstr "ग5"
-
-#: kcalc.kcfg:234
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C6"
-msgstr "ग6"
 
 #. i18n: ectx: label, entry (valueConstant$(ConstIndex)), group (UserConstants)
 #: kcalc.kcfg:238

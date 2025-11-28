@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-23 00:46+0000\n"
+"POT-Creation-Date: 2025-11-28 00:45+0000\n"
 "PO-Revision-Date: 2023-10-25 10:07+0200\n"
 "Last-Translator: Enol P. <enolp@softastur.org>\n"
 "Language-Team: \n"
@@ -26,6 +26,36 @@ msgstr "Softastur"
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "alministradores@softastur.org"
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C1"
+msgstr ""
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C2"
+msgstr ""
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C3"
+msgstr ""
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C4"
+msgstr ""
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C5"
+msgstr ""
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C6"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FollowSystemTheme)
 #: colors.ui:17
@@ -1280,42 +1310,6 @@ msgstr ""
 #: kcalc.kcfg:219
 #, kde-format
 msgid "Name of the user programmable constants."
-msgstr ""
-
-#: kcalc.kcfg:229
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C1"
-msgstr ""
-
-#: kcalc.kcfg:230
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C2"
-msgstr ""
-
-#: kcalc.kcfg:231
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C3"
-msgstr ""
-
-#: kcalc.kcfg:232
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C4"
-msgstr ""
-
-#: kcalc.kcfg:233
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C5"
-msgstr ""
-
-#: kcalc.kcfg:234
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C6"
 msgstr ""
 
 #. i18n: ectx: label, entry (valueConstant$(ConstIndex)), group (UserConstants)

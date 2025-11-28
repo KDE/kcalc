@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-23 00:46+0000\n"
+"POT-Creation-Date: 2025-11-28 00:45+0000\n"
 "PO-Revision-Date: 2008-02-03 12:40+0530\n"
 "Last-Translator: Ravishankar Shrivastava <aviratlami@aol.in>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
@@ -29,6 +29,42 @@ msgstr "रविशंकर श्रीवास्तव, जी. करू�
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "raviratlami@aol.in"
+
+#, fuzzy, kde-format
+#| msgid "C1"
+msgctxt "Name of the user programmable constant"
+msgid "C1"
+msgstr "सी1"
+
+#, fuzzy, kde-format
+#| msgid "C2"
+msgctxt "Name of the user programmable constant"
+msgid "C2"
+msgstr "सी2"
+
+#, fuzzy, kde-format
+#| msgid "C3"
+msgctxt "Name of the user programmable constant"
+msgid "C3"
+msgstr "सी3"
+
+#, fuzzy, kde-format
+#| msgid "C4"
+msgctxt "Name of the user programmable constant"
+msgid "C4"
+msgstr "सी4"
+
+#, fuzzy, kde-format
+#| msgid "C5"
+msgctxt "Name of the user programmable constant"
+msgid "C5"
+msgstr "सी5"
+
+#, fuzzy, kde-format
+#| msgid "C6"
+msgctxt "Name of the user programmable constant"
+msgid "C6"
+msgstr "सी6"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FollowSystemTheme)
 #: colors.ui:17
@@ -1357,48 +1393,6 @@ msgstr ""
 #, kde-format
 msgid "Name of the user programmable constants."
 msgstr "उपयोक्ता प्रोग्राम-योग्य स्थिरांक नाम"
-
-#: kcalc.kcfg:229
-#, fuzzy, kde-format
-#| msgid "C1"
-msgctxt "Name of the user programmable constant"
-msgid "C1"
-msgstr "सी1"
-
-#: kcalc.kcfg:230
-#, fuzzy, kde-format
-#| msgid "C2"
-msgctxt "Name of the user programmable constant"
-msgid "C2"
-msgstr "सी2"
-
-#: kcalc.kcfg:231
-#, fuzzy, kde-format
-#| msgid "C3"
-msgctxt "Name of the user programmable constant"
-msgid "C3"
-msgstr "सी3"
-
-#: kcalc.kcfg:232
-#, fuzzy, kde-format
-#| msgid "C4"
-msgctxt "Name of the user programmable constant"
-msgid "C4"
-msgstr "सी4"
-
-#: kcalc.kcfg:233
-#, fuzzy, kde-format
-#| msgid "C5"
-msgctxt "Name of the user programmable constant"
-msgid "C5"
-msgstr "सी5"
-
-#: kcalc.kcfg:234
-#, fuzzy, kde-format
-#| msgid "C6"
-msgctxt "Name of the user programmable constant"
-msgid "C6"
-msgstr "सी6"
 
 #. i18n: ectx: label, entry (valueConstant$(ConstIndex)), group (UserConstants)
 #: kcalc.kcfg:238

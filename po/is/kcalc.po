@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-23 00:46+0000\n"
+"POT-Creation-Date: 2025-11-28 00:45+0000\n"
 "PO-Revision-Date: 2025-07-11 19:17+0000\n"
 "Last-Translator: Gummi <gudmundure@gmail.com>\n"
 "Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
@@ -37,6 +37,36 @@ msgid "Your emails"
 msgstr ""
 "bre@mmedia.is, ra@ra.is, gudjonh@hi.is, pjetur@pjetur.net, gudmundure@gmail."
 "com"
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C1"
+msgstr "F1"
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C2"
+msgstr "F2"
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C3"
+msgstr "F3"
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C4"
+msgstr "F4"
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C5"
+msgstr "F5"
+
+#, kde-format
+msgctxt "Name of the user programmable constant"
+msgid "C6"
+msgstr "F6"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FollowSystemTheme)
 #: colors.ui:17
@@ -1337,42 +1367,6 @@ msgstr ""
 #, kde-format
 msgid "Name of the user programmable constants."
 msgstr "Heiti forritanlegra fasta notanda."
-
-#: kcalc.kcfg:229
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C1"
-msgstr "F1"
-
-#: kcalc.kcfg:230
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C2"
-msgstr "F2"
-
-#: kcalc.kcfg:231
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C3"
-msgstr "F3"
-
-#: kcalc.kcfg:232
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C4"
-msgstr "F4"
-
-#: kcalc.kcfg:233
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C5"
-msgstr "F5"
-
-#: kcalc.kcfg:234
-#, kde-format
-msgctxt "Name of the user programmable constant"
-msgid "C6"
-msgstr "F6"
 
 #. i18n: ectx: label, entry (valueConstant$(ConstIndex)), group (UserConstants)
 #: kcalc.kcfg:238
