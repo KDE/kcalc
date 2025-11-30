@@ -31,15 +31,12 @@ public:
     explicit KNumberInteger(mpz_t mpz);
     ~KNumberInteger() override;
 
-public:
     KNumberBase *clone() override;
 
-public:
     QString toString(int precision) const override;
     quint64 toUint64() const override;
     qint64 toInt64() const override;
 
-public:
     virtual bool isEven() const;
     virtual bool isOdd() const;
     bool isReal() const override;
@@ -47,20 +44,17 @@ public:
     bool isZero() const override;
     int sign() const override;
 
-public:
     KNumberBase *add(KNumberBase *rhs) override;
     KNumberBase *sub(KNumberBase *rhs) override;
     KNumberBase *mul(KNumberBase *rhs) override;
     KNumberBase *div(KNumberBase *rhs) override;
     KNumberBase *mod(KNumberBase *rhs) override;
 
-public:
     KNumberBase *bitwiseAnd(KNumberBase *rhs) override;
     KNumberBase *bitwiseXor(KNumberBase *rhs) override;
     KNumberBase *bitwiseOr(KNumberBase *rhs) override;
     KNumberBase *bitwiseShift(KNumberBase *rhs) override;
 
-public:
     KNumberBase *pow(KNumberBase *rhs) override;
     KNumberBase *neg() override;
     KNumberBase *cmp() override;
@@ -70,7 +64,6 @@ public:
     KNumberBase *factorial() override;
     KNumberBase *reciprocal() override;
 
-public:
     KNumberBase *log2() override;
     KNumberBase *log10() override;
     KNumberBase *ln() override;
@@ -85,7 +78,6 @@ public:
     KNumberBase *conj() override;
     KNumberBase *bin(KNumberBase *rhs) override;
 
-public:
     KNumberBase *sin() override;
     KNumberBase *cos() override;
     KNumberBase *tan() override;
@@ -100,7 +92,6 @@ public:
     KNumberBase *atanh() override;
     KNumberBase *tgamma() override;
 
-public:
     int compare(KNumberBase *rhs) override;
 
 private:
@@ -111,7 +102,6 @@ private:
     explicit KNumberInteger(const KNumberComplex *value);
     explicit KNumberInteger(const KNumberError *value);
 
-private:
     mpz_t m_mpz;
 };
 

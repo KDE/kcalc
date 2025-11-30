@@ -33,7 +33,6 @@ public:
         TypeFraction,
     };
 
-public:
     // useful constants
     static const KNumber Zero;
     static const KNumber One;
@@ -45,11 +44,9 @@ public:
     static const KNumber NegInfinity;
     static const KNumber NaN;
 
-public:
     static KNumber Pi();
     static KNumber Euler();
 
-public:
     // construction/destruction
     KNumber();
     explicit KNumber(const QString &s);
@@ -72,14 +69,11 @@ public:
     KNumber(const KNumber &other);
     ~KNumber();
 
-public:
     Type type() const;
 
-public:
     // assignment
     KNumber &operator=(const KNumber &rhs);
 
-public:
     // basic math operators
     KNumber &operator+=(const KNumber &rhs);
     KNumber &operator-=(const KNumber &rhs);
@@ -87,7 +81,6 @@ public:
     KNumber &operator/=(const KNumber &rhs);
     KNumber &operator%=(const KNumber &rhs);
 
-public:
     // bitwise operators
     KNumber &operator&=(const KNumber &rhs);
     KNumber &operator|=(const KNumber &rhs);
@@ -95,17 +88,14 @@ public:
     KNumber &operator<<=(const KNumber &rhs);
     KNumber &operator>>=(const KNumber &rhs);
 
-public:
     // neg/cmp
     KNumber operator-() const;
     KNumber operator~() const;
 
-public:
     KNumber integerPart() const;
     KNumber realPart() const;
     KNumber imaginaryPart() const;
 
-public:
     QString toQString(int width = -1, int precision = -1) const;
     quint64 toUint64() const;
     qint64 toInt64() const;
@@ -147,7 +137,6 @@ public:
     KNumber conj() const;
     KNumber bin(const KNumber &x) const;
 
-public:
     static void setDefaultFloatPrecision(int precision);
     static void setSplitoffIntegerForFractionOutput(bool x);
     static void setDefaultFractionalInput(bool x);
@@ -158,19 +147,15 @@ public:
     static QString groupSeparator();
     static const QString decimalSeparator();
 
-public:
     void swap(KNumber &other);
 
 private:
     void simplify();
 
-private:
     detail::KNumberBase *m_value;
 
-private:
     static void localizeDecimalSeparator(QString &knumber);
 
-private:
     static QString GroupSeparator;
     static QString DecimalSeparator;
 };

@@ -18,14 +18,12 @@ public:
     explicit KCalcStatusBar(QWidget *parent = nullptr);
     ~KCalcStatusBar() override = default;
 
-public:
     enum AngleMode {
         DegMode,
         RadMode,
         GradMode
     };
 
-public:
     void setBaseIndicatorVisible(bool visible);
     void setAngleModeIndicatorVisible(bool visible);
 
@@ -37,7 +35,6 @@ public:
 private:
     QLabel *addIndicator(const QList<QString> &indicatorTexts);
 
-private:
     QLabel *const m_shiftIndicator;
     QLabel *const m_baseIndicator;
     QLabel *const m_angleModeIndicator;

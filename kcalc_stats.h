@@ -16,7 +16,6 @@ public:
     KStats();
     ~KStats();
 
-public:
     void clearAll();
     void enterData(const KNumber &data);
     void clearLast();

@@ -27,46 +27,38 @@ public:
     static bool defaultFractionalOutput;
     static bool splitOffIntegerForFractionOutput;
 
-public:
     static void setDefaultFractionalInput(bool value);
     static void setDefaultFractionalOutput(bool value);
     static void setSplitOffIntegerForFractionOutput(bool value);
 
-public:
     explicit KNumberFraction(const QString &s);
     KNumberFraction(qint64 num, quint64 den);
     KNumberFraction(quint64 num, quint64 den);
     explicit KNumberFraction(mpq_t mpq);
     ~KNumberFraction() override;
 
-public:
     KNumberBase *clone() override;
 
-public:
     QString toString(int precision) const override;
     quint64 toUint64() const override;
     qint64 toInt64() const override;
 
-public:
     bool isReal() const override;
     bool isInteger() const override;
     bool isZero() const override;
     int sign() const override;
 
-public:
     KNumberBase *add(KNumberBase *rhs) override;
     KNumberBase *sub(KNumberBase *rhs) override;
     KNumberBase *mul(KNumberBase *rhs) override;
     KNumberBase *div(KNumberBase *rhs) override;
     KNumberBase *mod(KNumberBase *rhs) override;
 
-public:
     KNumberBase *bitwiseAnd(KNumberBase *rhs) override;
     KNumberBase *bitwiseXor(KNumberBase *rhs) override;
     KNumberBase *bitwiseOr(KNumberBase *rhs) override;
     KNumberBase *bitwiseShift(KNumberBase *rhs) override;
 
-public:
     KNumberBase *pow(KNumberBase *rhs) override;
     KNumberBase *neg() override;
     KNumberBase *cmp() override;
@@ -77,7 +69,6 @@ public:
     KNumberBase *reciprocal() override;
     KNumberBase *tgamma() override;
 
-public:
     KNumberBase *log2() override;
     KNumberBase *log10() override;
     KNumberBase *ln() override;
@@ -92,7 +83,6 @@ public:
     KNumberBase *conj() override;
     KNumberBase *bin(KNumberBase *rhs) override;
 
-public:
     KNumberBase *sin() override;
     KNumberBase *cos() override;
     KNumberBase *tan() override;
@@ -106,14 +96,12 @@ public:
     KNumberBase *acosh() override;
     KNumberBase *atanh() override;
 
-public:
     int compare(KNumberBase *rhs) override;
 
 private:
     KNumberInteger *numerator() const;
     KNumberInteger *denominator() const;
 
-private:
     // conversion constructors
     explicit KNumberFraction(const KNumberInteger *value);
     explicit KNumberFraction(const KNumberFraction *value);
@@ -126,7 +114,6 @@ private:
 #endif
     explicit KNumberFraction(const KNumberError *value);
 
-private:
     mpq_t m_mpq;
 };
 

@@ -34,7 +34,6 @@ public:
 
     KNumber lastOutput(bool &error) const;
 
-public:
     void statClearAll();
     void statCount(const KNumber &input);
     void statDataNew(const KNumber &input);
@@ -46,7 +45,6 @@ public:
     void statSum(const KNumber &input);
     void statSumSquares(const KNumber &input);
 
-public:
     void reset();
 
 private:
