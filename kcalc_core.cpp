@@ -607,11 +607,9 @@ int CalcEngine::reduceStack(bool toParentheses /*= true*/)
 
 void CalcEngine::printStacks()
 {
-    int tokenStaskSize = m_tokenStack.size();
-
     qCDebug(KCALC_LOG) << "Printing current stack:";
 
-    for (int i = 0; i < tokenStaskSize; i++) {
+    for (int i = 0; i < m_tokenStack.size(); i++) {
         if (m_tokenStack.at(i).isKNumber()) {
             qCDebug(KCALC_LOG) << "TokenStack at:" << i << " is KNumber   = " << (m_tokenStack.at(i).getKNumber()).toQString();
 
