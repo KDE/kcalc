@@ -1,7 +1,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Lukáš Tinkl <ltinkl@redhat.com>, 2010, 2012.
-# SPDX-FileCopyrightText: 2010, 2011, 2012, 2013, 2014, 2015, 2017, 2018, 2019, 2023, 2024 Vít Pelčák <vit@pelcak.org>
+# SPDX-FileCopyrightText: 2010, 2011, 2012, 2013, 2014, 2015, 2017, 2018, 2019, 2023, 2024, 2025 Vít Pelčák <vit@pelcak.org>
 # SPDX-FileCopyrightText: 2021, 2022, 2023, 2024 Vit Pelcak <vit@pelcak.org>
 #
 msgid ""
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-28 00:45+0000\n"
-"PO-Revision-Date: 2024-07-18 10:41+0200\n"
+"PO-Revision-Date: 2025-12-05 10:44+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 24.05.2\n"
+"X-Generator: Lokalize 25.08.3\n"
 "X-Language: cs_CZ\n"
 "X-Source-Language: en_US\n"
 
@@ -67,7 +67,7 @@ msgstr "C6"
 #: colors.ui:17
 #, kde-format
 msgid "Follow system color scheme"
-msgstr ""
+msgstr "Následovat barevné schéma systému"
 
 #. i18n: ectx: property (title), widget (QGroupBox, displayColorsBox)
 #: colors.ui:30
@@ -634,18 +634,18 @@ msgstr "Exponenciální funkce"
 #, kde-format
 msgctxt "Imaginary unit"
 msgid "i"
-msgstr ""
+msgstr "i"
 
 #: kcalc.cpp:486
 #, kde-format
 msgid "Imaginary unit"
-msgstr ""
+msgstr "Imaginární jednotka"
 
 #: kcalc.cpp:487
 #, kde-format
 msgctxt "Polar complex"
 msgid "∠"
-msgstr ""
+msgstr "∠"
 
 #: kcalc.cpp:487
 #, kde-format
@@ -1669,14 +1669,14 @@ msgstr "Ln"
 #: kcalc.ui:1008
 #, kde-format
 msgid "Imaginary Unit"
-msgstr ""
+msgstr "Imaginární jednotka"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbI)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbI)
 #: kcalc.ui:1011 kcalc.ui:1014
 #, kde-format
 msgid "i"
-msgstr ""
+msgstr "i"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMed)
 #: kcalc.ui:1027
