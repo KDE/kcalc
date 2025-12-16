@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-28 00:45+0000\n"
-"PO-Revision-Date: 2025-11-20 22:06+0900\n"
+"PO-Revision-Date: 2025-12-16 21:25+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -825,11 +825,13 @@ msgstr "X的Y方根"
 msgid "Exponent"
 msgstr "指數"
 
+# 真的就是鍵盤按鍵的shift.
+# --Kisaragi
 #: kcalc.cpp:943
 #, kde-format
 msgctxt "Second function mode"
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 #: kcalc.cpp:1250 kcalc.cpp:1251
 #, kde-format
