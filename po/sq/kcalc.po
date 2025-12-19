@@ -3,20 +3,21 @@
 # This file is distributed under the same license as the kdeutils package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
+# SPDX-FileCopyrightText: 2025 Agron Selimaj <as9902613@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kdeutils\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-28 00:45+0000\n"
-"PO-Revision-Date: 2010-02-20 05:37+0000\n"
-"Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
-"Language-Team: Albanian <sq@li.org>\n"
+"PO-Revision-Date: 2025-12-18 18:35-0500\n"
+"Last-Translator: Agron Selimaj <as9902613@gmail.com>\n"
+"Language-Team: sq\n"
 "Language: sq\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2011-04-21 22:17+0000\n"
-"X-Generator: Launchpad (build 12883)\n"
+"X-Generator: Lokalize 25.12.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -32,32 +33,32 @@ msgstr "kde-shqip@yahoogroups.com,vilsongjeci@gmail.com"
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C1"
-msgstr ""
+msgstr "C1"
 
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C2"
-msgstr ""
+msgstr "C2"
 
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C3"
-msgstr ""
+msgstr "C3"
 
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C4"
-msgstr ""
+msgstr "C4"
 
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C5"
-msgstr ""
+msgstr "C5"
 
 #, kde-format
 msgctxt "Name of the user programmable constant"
 msgid "C6"
-msgstr ""
+msgstr "C6"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FollowSystemTheme)
 #: colors.ui:17
@@ -91,10 +92,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
 #: colors.ui:121
-#, fuzzy, kde-format
-#| msgid "&Background:"
+#, kde-format
 msgid "Background"
-msgstr "&Sfondi:"
+msgstr "Sfondi"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: colors.ui:131
@@ -107,7 +107,7 @@ msgstr "&Përpara:"
 #: colors.ui:141
 #, kde-format
 msgid "&Functions:"
-msgstr ""
+msgstr "&Funksionet:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel4)
 #: colors.ui:168
@@ -125,7 +125,7 @@ msgstr ""
 #: colors.ui:222
 #, kde-format
 msgid "&Numbers:"
-msgstr ""
+msgstr "&Numrat:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel10)
 #: colors.ui:249
@@ -141,10 +141,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel13)
 #: colors.ui:303
-#, fuzzy, kde-format
-#| msgid "Constants"
+#, kde-format
 msgid "&Constants:"
-msgstr "Konstantet"
+msgstr "&Konstantet:"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
 #: constants.ui:13 kcalc.cpp:1749
@@ -168,7 +167,7 @@ msgstr ""
 #: fonts.ui:21
 #, kde-format
 msgid "&Button font:"
-msgstr ""
+msgstr "Fonti i &Pullës:"
 
 #. i18n: ectx: property (toolTip), widget (KFontRequester, kcfg_ButtonFont)
 #: fonts.ui:34
@@ -180,7 +179,7 @@ msgstr ""
 #: fonts.ui:41
 #, kde-format
 msgid "&Display font:"
-msgstr ""
+msgstr "Fonti i &Ekranit:"
 
 #. i18n: ectx: property (toolTip), widget (KFontRequester, kcfg_DisplayFont)
 #: fonts.ui:54
@@ -192,7 +191,7 @@ msgstr ""
 #: fonts.ui:61
 #, kde-format
 msgid "&History font:"
-msgstr ""
+msgstr "Fonti i &historisë:"
 
 #. i18n: ectx: property (toolTip), widget (KFontRequester, kcfg_HistoryFont)
 #: fonts.ui:74
@@ -216,7 +215,7 @@ msgstr "Saktësia"
 #: general.ui:28
 #, kde-format
 msgid "&Maximum number of digits:"
-msgstr ""
+msgstr "&Numri maksimal shifrave:"
 
 #. i18n: ectx: property (toolTip), widget (QSpinBox, kcfg_Precision)
 #: general.ui:41
@@ -261,7 +260,7 @@ msgstr ""
 #: general.ui:97
 #, kde-format
 msgid "Whether to group digits"
-msgstr ""
+msgstr "Nëse duhet ti grupojmë shifrat"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_GroupDigits)
 #: general.ui:100
@@ -273,7 +272,7 @@ msgstr ""
 #: general.ui:115
 #, kde-format
 msgid "Binary"
-msgstr ""
+msgstr "Binar"
 
 #. i18n: ectx: property (text), widget (QLabel, grouping_octal_lb)
 #: general.ui:122
@@ -297,13 +296,13 @@ msgstr "Të Ndryshme"
 #: general.ui:160
 #, kde-format
 msgid "Whether to beep on error"
-msgstr ""
+msgstr "Nëse duhet ti biem ziles në rast gabimi"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_Beep)
 #: general.ui:163
 #, kde-format
 msgid "&Beep on error"
-msgstr ""
+msgstr "Bjeri ziles në rast gabimi"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_CaptionResult)
 #: general.ui:173
@@ -336,7 +335,7 @@ msgstr ""
 #: general.ui:189
 #, kde-format
 msgid "Two's complement"
-msgstr ""
+msgstr "Komplimenti i dyshit"
 
 #: kcalc.cpp:85
 #, fuzzy, kde-format
@@ -364,7 +363,7 @@ msgstr "&Oct"
 #| msgid "&Bin"
 msgctxt "Binary numeral system"
 msgid "Bin"
-msgstr "&Bin"
+msgstr "Bin"
 
 #: kcalc.cpp:184
 #, kde-format
@@ -406,7 +405,7 @@ msgstr ""
 #: kcalc.cpp:230
 #, kde-format
 msgid "&Constants"
-msgstr ""
+msgstr "&Konstantet"
 
 #: kcalc.cpp:328
 #, kde-format
@@ -434,7 +433,7 @@ msgstr ""
 #, kde-format
 msgctxt "Square root"
 msgid "&radic;x"
-msgstr ""
+msgstr "&radic;x"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSqrt)
 #: kcalc.cpp:352 kcalc.ui:1107
@@ -448,12 +447,10 @@ msgid "Cube root"
 msgstr ""
 
 #: kcalc.cpp:452
-#, fuzzy, kde-format
-#| msgctxt "Arc sine"
-#| msgid "Asin"
+#, kde-format
 msgctxt "Sine"
 msgid "sin"
-msgstr "Asin"
+msgstr "sin"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSin)
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbSin)
@@ -466,20 +463,18 @@ msgstr "Sinus"
 #, kde-format
 msgctxt "Arc sine"
 msgid "asin"
-msgstr ""
+msgstr "asin"
 
 #: kcalc.cpp:453
 #, kde-format
 msgid "Arc sine"
-msgstr ""
+msgstr "Sinusi i harkut"
 
 #: kcalc.cpp:454
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic sine"
-#| msgid "Asinh"
+#, kde-format
 msgctxt "Hyperbolic sine"
 msgid "sinh"
-msgstr "Asinh"
+msgstr "sinh"
 
 #: kcalc.cpp:454
 #, kde-format
@@ -487,12 +482,10 @@ msgid "Hyperbolic sine"
 msgstr ""
 
 #: kcalc.cpp:455
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic sine"
-#| msgid "Asinh"
+#, kde-format
 msgctxt "Inverse hyperbolic sine"
 msgid "asinh"
-msgstr "Asinh"
+msgstr "asinh"
 
 #: kcalc.cpp:455
 #, kde-format
@@ -500,12 +493,10 @@ msgid "Inverse hyperbolic sine"
 msgstr ""
 
 #: kcalc.cpp:460
-#, fuzzy, kde-format
-#| msgctxt "Arc cosine"
-#| msgid "Acos"
+#, kde-format
 msgctxt "Cosine"
 msgid "cos"
-msgstr "Acos"
+msgstr "cos"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbCos)
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbCos)
@@ -518,20 +509,18 @@ msgstr "Kosinus"
 #, kde-format
 msgctxt "Arc cosine"
 msgid "acos"
-msgstr ""
+msgstr "acos"
 
 #: kcalc.cpp:461
 #, kde-format
 msgid "Arc cosine"
-msgstr "Arc cosine"
+msgstr "Kosinusi i harkut"
 
 #: kcalc.cpp:462
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic cosine"
-#| msgid "Acosh"
+#, kde-format
 msgctxt "Hyperbolic cosine"
 msgid "cosh"
-msgstr "Acosh"
+msgstr "cosh"
 
 #: kcalc.cpp:462
 #, kde-format
@@ -539,12 +528,10 @@ msgid "Hyperbolic cosine"
 msgstr ""
 
 #: kcalc.cpp:463
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic cosine"
-#| msgid "Acosh"
+#, kde-format
 msgctxt "Inverse hyperbolic cosine"
 msgid "acosh"
-msgstr "Acosh"
+msgstr "acosh"
 
 #: kcalc.cpp:463
 #, kde-format
@@ -552,12 +539,10 @@ msgid "Inverse hyperbolic cosine"
 msgstr ""
 
 #: kcalc.cpp:468
-#, fuzzy, kde-format
-#| msgctxt "Arc tangent"
-#| msgid "Atan"
+#, kde-format
 msgctxt "Tangent"
 msgid "tan"
-msgstr "Atan"
+msgstr "tan"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbTan)
 #: kcalc.cpp:468 kcalc.ui:680
@@ -569,20 +554,18 @@ msgstr "Tangjent"
 #, kde-format
 msgctxt "Arc tangent"
 msgid "atan"
-msgstr ""
+msgstr "atan"
 
 #: kcalc.cpp:469
 #, kde-format
 msgid "Arc tangent"
-msgstr "Arc tangent"
+msgstr "Tangjent i harkut"
 
 #: kcalc.cpp:470
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic tangent"
-#| msgid "Atanh"
+#, kde-format
 msgctxt "Hyperbolic tangent"
 msgid "tanh"
-msgstr "Atanh"
+msgstr "tanh"
 
 #: kcalc.cpp:470
 #, kde-format
@@ -590,12 +573,10 @@ msgid "Hyperbolic tangent"
 msgstr ""
 
 #: kcalc.cpp:471
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic tangent"
-#| msgid "Atanh"
+#, kde-format
 msgctxt "Inverse hyperbolic tangent"
 msgid "atanh"
-msgstr "Atanh"
+msgstr "atanh"
 
 #: kcalc.cpp:471
 #, kde-format
@@ -603,12 +584,10 @@ msgid "Inverse hyperbolic tangent"
 msgstr ""
 
 #: kcalc.cpp:476
-#, fuzzy, kde-format
-#| msgctxt "Logarithm to base 10"
-#| msgid "Log"
+#, kde-format
 msgctxt "Logarithm to base 10"
 msgid "log"
-msgstr "Regjistri"
+msgstr "log"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLog)
 #: kcalc.cpp:476 kcalc.ui:661
@@ -620,18 +599,18 @@ msgstr ""
 #, kde-format
 msgctxt "10 to the power of x"
 msgid "10<sup>x</sup>"
-msgstr ""
+msgstr "10<sup>x</sup>"
 
 #: kcalc.cpp:477
 #, kde-format
 msgid "10 to the power of x"
-msgstr ""
+msgstr "10 në fuqi të x"
 
 #: kcalc.cpp:481
 #, kde-format
 msgctxt "Natural log"
 msgid "ln"
-msgstr ""
+msgstr "ln"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLn)
 #: kcalc.cpp:481 kcalc.ui:989
@@ -651,11 +630,10 @@ msgid "Exponential function"
 msgstr ""
 
 #: kcalc.cpp:486
-#, fuzzy, kde-format
-#| msgid "Pi"
+#, kde-format
 msgctxt "Imaginary unit"
 msgid "i"
-msgstr "Pi"
+msgstr "i"
 
 #: kcalc.cpp:486
 #, kde-format
@@ -666,7 +644,7 @@ msgstr ""
 #, kde-format
 msgctxt "Polar complex"
 msgid "∠"
-msgstr ""
+msgstr "∠"
 
 #: kcalc.cpp:487
 #, kde-format
@@ -742,12 +720,10 @@ msgid "Delete last data item"
 msgstr ""
 
 #: kcalc.cpp:588
-#, fuzzy, kde-format
-#| msgctxt "Modulo"
-#| msgid "Mod"
+#, kde-format
 msgctxt "Modulo"
 msgid "mod"
-msgstr "Mod"
+msgstr "mod"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMod)
 #: kcalc.cpp:588 kcalc.ui:629
@@ -787,7 +763,7 @@ msgstr "nCm"
 #: kcalc.cpp:596
 #, kde-format
 msgid "n Choose m"
-msgstr ""
+msgstr "n Zgjidhni m"
 
 #: kcalc.cpp:601
 #, kde-format
@@ -821,7 +797,7 @@ msgstr "Në katror"
 #: kcalc.cpp:609
 #, kde-format
 msgid "Third power"
-msgstr ""
+msgstr "Në fuqinë e tretë"
 
 #: kcalc.cpp:616
 #, kde-format
@@ -844,7 +820,7 @@ msgstr "x<sup>1/y</sup>"
 #: kcalc.cpp:617
 #, kde-format
 msgid "x to the power of 1/y"
-msgstr ""
+msgstr "x në fuqi të 1/y"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbEE)
 #: kcalc.cpp:627 kcalc.ui:610
@@ -911,7 +887,7 @@ msgstr ""
 #: kcalc.cpp:1628 kcalc.cpp:1629
 #, kde-format
 msgid "] = "
-msgstr ""
+msgstr "] = "
 
 #: kcalc.cpp:1636 kcalc.cpp:1638 kcalc.cpp:1639
 #, kde-format
@@ -1173,6 +1149,12 @@ msgid ""
 "\ti.e. notation of the type 2.34e12.\n"
 "      "
 msgstr ""
+"\n"
+"\tKCalc mund të llogarisë me shumë më tepër shifra sesa numri që\n"
+"\tpërshtatet në ekran. Ky cilësim jep numrin maksimal të\n"
+"\tshifrave të shfaqura, përpara se KCalc të fillojë të përdorë notacionin\n"
+"\tshkencor,domethënë notacionin e tipit 2.34e12.\n"
+"      "
 
 #. i18n: ectx: label, entry (FixedPrecision), group (Precision)
 #: kcalc.kcfg:117
@@ -1190,7 +1172,7 @@ msgstr ""
 #: kcalc.kcfg:127
 #, kde-format
 msgid "Whether to beep on error."
-msgstr ""
+msgstr "Nëse duhet ti biem ziles në rast gabimi."
 
 #. i18n: ectx: label, entry (CaptionResult), group (General)
 #: kcalc.kcfg:131
@@ -1202,7 +1184,7 @@ msgstr ""
 #: kcalc.kcfg:135
 #, kde-format
 msgid "Whether to group digits."
-msgstr ""
+msgstr "Nëse duhet ti grupojmë shifrat."
 
 #. i18n: ectx: label, entry (TwosComplement), group (General)
 #: kcalc.kcfg:139
@@ -1220,6 +1202,13 @@ msgid ""
 "        negative numbers in computers.\n"
 "      "
 msgstr ""
+"\n"
+"        Zgjidhni të përdorni shënimin e Komplementit të Dyshit për numrat "
+"Binarë, Oktalë\n"
+"        dhe Heksadecimalë. Ky është një shënim i zakonshëm për të "
+"përfaqësuar\n"
+"        numrat negativë në kompjuterë.\n"
+"      "
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
 #: kcalc.kcfg:150
@@ -1232,6 +1221,7 @@ msgstr ""
 #, kde-format
 msgid "A very simple mode where only the basic calculator buttons are shown"
 msgstr ""
+"Një modalitet shumë i thjeshtë ku shfaqen vetëm pullat bazë të llogaritësit"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
 #: kcalc.kcfg:154
@@ -1274,7 +1264,7 @@ msgstr ""
 #: kcalc.kcfg:172
 #, kde-format
 msgid "Whether to show constant buttons."
-msgstr ""
+msgstr "Nëse duhet ti shfaqim pullat e konstanteve."
 
 #. i18n: ectx: label, entry (ShowHistory), group (General)
 #: kcalc.kcfg:176
@@ -1312,6 +1302,14 @@ msgid ""
 "            4, thus inserting a whitespace after every 4th digit.\n"
 "        "
 msgstr ""
+"\n"
+"            Për lexim më të lehtë është e mundur të që shifrat të grupohen "
+"vizualishtnë çifte\n"
+"            për shembull, në vend të 10111001, mund të shfaqet 1011 1001, "
+"duke e vendosur cilësimin në\n"
+"            4, duke futur kështu një hapësirë ​​të bardhë pas çdo shifre të 4-"
+"të.\n"
+"       "
 
 #. i18n: ectx: label, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:199
@@ -1331,6 +1329,14 @@ msgid ""
 "            4, thus inserting a whitespace after every 4th digit.\n"
 "        "
 msgstr ""
+"\n"
+"            Për lexim më të lehtë është e mundur të që shifrat të grupohen "
+"vizualishtnë çifte\n"
+"            për shembull, në vend të 42140213, mund të shfaqet 4214 0213, "
+"duke e vendosur cilësimin në\n"
+"            4, duke futur kështu një hapësirë ​​të bardhë pas çdo shifre të 4-"
+"të.\n"
+"       "
 
 #. i18n: ectx: label, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:208
@@ -1351,6 +1357,14 @@ msgid ""
 "            2, thus inserting a whitespace after every 2nd digit.\n"
 "        "
 msgstr ""
+"\n"
+"            Për lexim më të lehtë është e mundur të që shifrat të grupohen "
+"vizualishtnë çifte\n"
+"            për shembull, në vend të AF1C42, mund të shfaqet AF 1C 42, duke "
+"e vendosur cilësimin në\n"
+"            2, duke futur kështu një hapësirë ​​të bardhë pas çdo shifre të 2-"
+"të.\n"
+"       "
 
 #. i18n: ectx: label, entry (nameConstant$(ConstIndex)), group (UserConstants)
 #: kcalc.kcfg:219
@@ -1388,20 +1402,19 @@ msgstr ""
 #: kcalc.ui:405
 #, kde-format
 msgid "&Deg"
-msgstr ""
+msgstr "&Deg"
 
 #. i18n: ectx: property (text), widget (QRadioButton, radRadio)
 #: kcalc.ui:412
 #, kde-format
 msgid "&Rad"
-msgstr ""
+msgstr "&Rad"
 
 #. i18n: ectx: property (text), widget (QRadioButton, gradRadio)
 #: kcalc.ui:419
-#, fuzzy, kde-format
-#| msgid "Grad"
+#, kde-format
 msgid "&Grad"
-msgstr "Grad"
+msgstr "&Grad"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, numeralSystemComboBox)
 #: kcalc.ui:426
@@ -1681,10 +1694,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (KCalcButton, pbI)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbI)
 #: kcalc.ui:1011 kcalc.ui:1014
-#, fuzzy, kde-format
-#| msgid "Pi"
+#, kde-format
 msgid "i"
-msgstr "Pi"
+msgstr "i"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMed)
 #: kcalc.ui:1027
@@ -1732,7 +1744,7 @@ msgstr "Lsh"
 #: kcalc.ui:1110
 #, kde-format
 msgid "sqrt"
-msgstr ""
+msgstr "sqrt"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPower)
 #: kcalc.ui:1126
@@ -1758,7 +1770,7 @@ msgstr "6"
 #: kcalc.ui:1185
 #, kde-format
 msgid "Two"
-msgstr ""
+msgstr "Dy"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb2)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb2)
@@ -1842,7 +1854,7 @@ msgstr ""
 #, kde-format
 msgctxt "- calculator button"
 msgid "−"
-msgstr ""
+msgstr "−"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbPlus)
 #: kcalc.ui:1299
@@ -1854,14 +1866,14 @@ msgstr "Plus"
 #: kcalc.ui:1302
 #, kde-format
 msgid "Add"
-msgstr ""
+msgstr "Shto"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPlus)
 #: kcalc.ui:1305
 #, kde-format
 msgctxt "+ calculator button"
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pb1)
 #: kcalc.ui:1318
@@ -1892,7 +1904,7 @@ msgstr ""
 #: kcalc.ui:1343
 #, kde-format
 msgid "÷"
-msgstr ""
+msgstr "÷"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMultiplication)
 #: kcalc.ui:1356
@@ -1911,13 +1923,13 @@ msgstr "Shumëzim"
 #: kcalc.ui:1362
 #, kde-format
 msgid "×"
-msgstr ""
+msgstr "×"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pb0)
 #: kcalc.ui:1375
 #, kde-format
 msgid "Zero"
-msgstr ""
+msgstr "Zero"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb0)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb0)
@@ -1938,13 +1950,13 @@ msgstr "Presja dhjetore"
 #, kde-format
 msgctxt ". calculator button"
 msgid "."
-msgstr ""
+msgstr "."
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pb3)
 #: kcalc.ui:1413
 #, kde-format
 msgid "Three"
-msgstr ""
+msgstr "Tre"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb3)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb3)
@@ -1970,7 +1982,7 @@ msgstr ""
 #, kde-format
 msgctxt "= calculator button"
 msgid "="
-msgstr ""
+msgstr "="
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pb7)
 #: kcalc.ui:1451
@@ -2006,10 +2018,9 @@ msgstr "Pastroji të gjitha"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbAllClear)
 #: kcalc.ui:1519
-#, fuzzy, kde-format
-#| msgid "Stat mem cleared"
+#, kde-format
 msgid "All clear"
-msgstr "Stat mem cleared"
+msgstr "Pastro krejt"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbAllClear)
 #: kcalc.ui:1522
@@ -2053,7 +2064,7 @@ msgstr "Ndrysho shenjën"
 #: kcalc.ui:1576
 #, kde-format
 msgid "+/−"
-msgstr ""
+msgstr "+/−"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbParenOpen)
 #: kcalc.ui:1589
@@ -2066,7 +2077,7 @@ msgstr "Hap Kllapë"
 #, kde-format
 msgctxt "( calculator button"
 msgid "("
-msgstr ""
+msgstr "("
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbClear)
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbClear)
@@ -2079,7 +2090,7 @@ msgstr "Pastro"
 #: kcalc.ui:1624
 #, kde-format
 msgid "Add to memory"
-msgstr ""
+msgstr "Shto në kujtesë"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMemPlusMinus)
 #: kcalc.ui:1627
@@ -2111,7 +2122,7 @@ msgstr "Mbyll Kllapë"
 #, kde-format
 msgctxt ") calculator button"
 msgid ")"
-msgstr ""
+msgstr ")"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbBackspace)
 #: kcalc.ui:1675
@@ -2123,13 +2134,13 @@ msgstr ""
 #: kcalc.ui:1678
 #, kde-format
 msgid "←"
-msgstr ""
+msgstr "←"
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbBackspace)
 #: kcalc.ui:1681
 #, kde-format
 msgid "Backspace"
-msgstr ""
+msgstr "Fshi mbrapa"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbShift)
 #: kcalc.ui:1694
@@ -2223,7 +2234,7 @@ msgstr "Rezultati"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Copy"
-msgstr ""
+msgstr "&Kopjo"
 
 #: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:58
 #, kde-format
@@ -2247,7 +2258,7 @@ msgstr ""
 #, kde-format
 msgctxt "Binary indicator in status bar"
 msgid "BIN"
-msgstr ""
+msgstr "BIN"
 
 #: kcalc_statusbar.cpp:18
 #, kde-format
@@ -2291,7 +2302,7 @@ msgstr "M"
 #: kcalc_statusbar.cpp:67
 #, kde-format
 msgid "BIN"
-msgstr ""
+msgstr "BIN"
 
 #: kcalc_statusbar.cpp:70
 #, kde-format
@@ -2414,7 +2425,7 @@ msgstr ""
 #: scienceconstants.xml:60
 #, kde-format
 msgid "Atomic Mass Unit"
-msgstr ""
+msgstr "Njësia e Masës Atomike"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:64
@@ -2432,7 +2443,7 @@ msgstr ""
 #: scienceconstants.xml:72
 #, kde-format
 msgid "Avogadro's Number"
-msgstr ""
+msgstr "Numri i Avogadros"
 
 #~ msgid "&Dec"
 #~ msgstr "&Dec"
