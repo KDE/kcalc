@@ -53,7 +53,7 @@
 >&FDLNotice;</legalnotice>
 
 <date
->2016-07-25</date>
+>2016‒07‒25</date>
 <releaseinfo
 >Uygulamalar 16.08</releaseinfo>
 
@@ -80,7 +80,7 @@
 >&kcalc; ilk bakışta göze çarpandan çok daha fazla matematiksel işlev sunar. Kullanılabilecek birçok işlev hakkında daha fazla bilgi edinmek için lütfen bu el kitabındaki klavye ivmelendiricileri ve kipleri bölümünü inceleyin.</para>
 
 <para
->Birçok bilimsel hesap makinesinin olağan işlevselliğine ek olarak, &kcalc;'ın işaret etmeye değer şeyler sunduğunu düşünüyorum:</para>
+>Birçok bilimsel hesap makinesinin olağan işlevselliğine ek olarak, &kcalc;’ın işaret etmeye değer şeyler sunduğunu düşünüyorum:</para>
 
 <itemizedlist>
 <listitem>
@@ -99,19 +99,19 @@
 </listitem>
 <listitem>
 <para
->&kcalc;'ın görüntü renklerini ve yazıtipini yapılandırabilirsiniz.</para>
+>&kcalc;’ın görüntü renklerini ve yazıtipini yapılandırabilirsiniz.</para>
 </listitem>
 <listitem>
 <para
->Ayarlar iletişim kutusundaki &kcalc;'ın duyarlılığını, görüntülenen basamak sayısını ve virgülden sonraki basamak sayısını yapılandırabilirsiniz.</para>
+>Ayarlar iletişim kutusundaki &kcalc;’ın duyarlılığını, görüntülenen basamak sayısını ve virgülden sonraki basamak sayısını yapılandırabilirsiniz.</para>
 </listitem>
 <listitem>
 <para
->&kcalc; bir işaretleme aygıtı kullanmadan &kcalc;'i kullanmayı sağlayan, çok sayıda yararlı <link linkend="key-accels"
+>&kcalc; bir işaretleme aygıtı kullanmadan &kcalc;’ı kullanmayı sağlayan, çok sayıda yararlı <link linkend="key-accels"
 >düğme bağıntıları</link
 > sunar.</para>
 <para
->İpucu: &Ctrl;- ikilisine basmak (ve basılı tutmak), her düğme üzerindeki ilgili düğme bağıntısını gösterir.</para>
+>İpucu: &Ctrl;− ikilisine basmak (ve basılı tutmak), her düğme üzerindeki ilgili düğme bağıntısını gösterir.</para>
 </listitem>
 </itemizedlist>
 
@@ -122,7 +122,7 @@
 >anında yürütme</ulink
 > yerine okullarda öğretildiği biçimiyle düzgün işlem sırası sağlayan <ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Infix_notation"
 >Infix simgelemi</ulink
->'ni kullanır. </para
+>’ni kullanır. </para
 ></note>
 
 <para
@@ -215,7 +215,7 @@
 >Gelişmiş işlevler</term>
 <listitem>
 <para
->&kcalc;'i ilk defa başlattığınızda, hesap makinesi yalnızca temel aritmetik hesaplamalar için düğmeler görüntüler.</para>
+>&kcalc;’ı ilk defa başlattığınızda, hesap makinesi yalnızca temel aritmetik hesaplamalar için düğmeler görüntüler.</para>
 <para
 ><guimenu
 >Ayarlar</guimenu
@@ -237,7 +237,7 @@
 >Düğme Yerleşimi</term>
 <listitem>
 <para
->&kcalc; içerisindeki gelişmiş kiplere kolay erişim sağlamak için, çoğu düğme ikinci bir yerleşime sahiptir. Düğmelerin ikinci yerleşimini görünür kılmak için <guibutton
+>&kcalc; içerisindeki gelişmiş kiplere kolay erişim sağlamak için çoğu düğme ikinci bir yerleşime sahiptir. Düğmelerin ikinci yerleşimini görünür kılmak için <guibutton
 >&Shift;</guibutton
 > veya <keycombo action="simul"
 >&Ctrl;<keycap
@@ -255,9 +255,9 @@
 >Geçmiş</term>
 <listitem>
 <para
->Geçmiş alanı, &kcalc;'ın etkin oturumu dahilinde &kcalc;'ta yapılan tüm hesaplamaları gösterir. Geçmiş içeriğini temizlemek için <guibutton
+>Geçmiş alanı, &kcalc;’ın etkin oturumu dahilinde &kcalc;’ta yapılan tüm hesaplamaları gösterir. Geçmiş içeriğini temizlemek için <guibutton
 >AC</guibutton
->'ye tıklayın veya <keycap
+>’ye tıklayın veya <keycap
 >Sil</keycap
 > düğmesine basın. Geçmişi etkinleştirmek veya devre dışı bırakmak için menü çubuğundan <guimenu
 >Ayarlar</guimenu
@@ -491,7 +491,7 @@
 >x²</guibutton
 ></entry>
 <entry
->X 'in karesini hesapla</entry
+>x’in karesini hesapla</entry
 ></row>
 
  <row
@@ -504,7 +504,7 @@
 >√x</guibutton
 ></entry>
 <entry
->x 'in karekökünü hesapla</entry
+>x’in karekökünü hesapla</entry
 ></row>
 
 <row
@@ -533,7 +533,7 @@
 >x³</guibutton
 ></entry>
 <entry
->x 'in üçüncü (kübik) kuvvetini hesaplar</entry
+>x’in üçüncü (kübik) kuvvetini hesaplar</entry
 ></row>
 
 <row
@@ -576,7 +576,7 @@
 >Dat</guibutton
 > düğmesinin çevresinde ortalanır. Bir sayı veri listesi oluşturmak için hesap makinesine bir sayı girin ve <guibutton
 >Dat</guibutton
-> 'a basın. Art arda artan sayı, görüntüdeki veri <quote
+>’a basın. Art arda artan sayı, görüntüdeki veri <quote
 >listesinin</quote
 > hangi konumda yer aldığını gösterir. Geleneksel bir hesap makinesi yalnızca istatistiksel işlevler için üç değer saklar: Bir listedeki ayrı öge sayısı, girilen veri ögelerinin toplamı ve listedeki tüm veri ögelerinin karesinin toplamı. &kcalc; aslında her ayrı değeri saklarken, verinin ortanca değerini hesaplamanıza izin vererek farklılık gösterir. </para>
 
@@ -652,10 +652,10 @@
 > &sgr;<subscript
 >N</subscript
 > veya &sgr;<subscript
->N-1</subscript
+>N−1</subscript
 > </entry>
 <entry
->Popülasyonun standart sapmasını göster (n-1)</entry
+>Popülasyonun standart sapmasını göster (n−1)</entry
 ></row>
 
 <row
@@ -717,15 +717,13 @@
 >Bu kip, ikilik, onaltılık, sekizlik ve ondalık olarak hesaplamak için düğmeler ve işlevler içerir.</para>
 
 <para
->Sağdaki radyo düğmeleri ile sayı sistemini seçersiniz. Örneğin onaltılık bir sayı eklemek için aşağıdakileri yapın: Radyo düğmelerinden <guilabel
+>Soldaki açılır menü ile tabanı seçersiniz. Örneğin onaltılık bir sayı eklemek için aşağıdakileri yapın: Açılır menüden <guilabel
 >Hex</guilabel
-> ’i seçin. Ardından bir numara girin ve 9’dan büyük sayılar için <guibutton
+>’i seçin. Ardından bir numara girin ve 9’dan büyük rakamlar için <guibutton
 >A</guibutton
 > ve <guibutton
 >F</guibutton
-> harflerini kullanabilirsiniz. Bu sayıyı ikili olarak görmek isterseniz <guilabel
->Bin</guilabel
-> düğmesine basın.</para>
+> harflerini kullanabilirsiniz. Rakam sistemi görünümünde, sayının ondalık, sekizlik ve ikilik sisteme dönüştürüldüğünü görebilirsiniz.</para>
 
  <para
 >İkilik, sekizlik ve onaltılık sayılar, boşluklarla ayrılmaş basamak grupları olarak görüntülenebilirler. Bu tür gruplandırmalar sayıların okunabilirliğini artırır. Örneğin, <emphasis
@@ -738,7 +736,7 @@
 ><guimenu
 >Ayarlar</guimenu
 ><guimenuitem
->&kcalc; Uygulamasını Yapılandır...</guimenuitem
+>&kcalc; Uygulamasını Yapılandır…</guimenuitem
 ></menuchoice
 > yolunu izleyin.</para>
 
@@ -747,7 +745,7 @@
 >Ayarlar</guimenu
 > menüsünden <guimenu
 >Bit Düzenini Göster</guimenu
-> 'i seçmek isteyebilirsiniz.</para>
+>’i seçmek isteyebilirsiniz.</para>
 
 <para
 >Bu kipte mantık işleçleri kullanılabilirdir. Bu işleçler şunlardır: <informaltable
@@ -937,9 +935,9 @@
 >Sabit Düğmeleri</guilabel
 > etkinleştirilmişse görünür olur. <guilabel
 >Bilim Kipi</guilabel
-> ve <guilabel
+>’nde ve <guilabel
 >İstatistik Kipi</guilabel
->'nde kullanılabilirler</para>
+>’nde kullanılabilirler.</para>
 
 <para
 >Her bir sabitte saklanan değeri görmek için fareyi düğmenin üzerinde gezdirin.</para>
@@ -1112,7 +1110,7 @@
 ></entry>
 <entry
 ><guibutton
->+/-</guibutton
+>+/−</guibutton
 ></entry>
 <entry
 >İşareti değiştir</entry
@@ -1408,7 +1406,7 @@
 ><entry
 >&Alt;+<keycap
 >6</keycap
-> -> &Alt;+<keycap
+> → &Alt;+<keycap
 >1</keycap
 ></entry>
 <entry
@@ -1498,7 +1496,7 @@
 ><itemizedlist>
 <listitem>
 <para
->Eğer son işleç + ya da - ise ikinci değişken ilk işlenenin yüzdesi olarak yorumlanır. </para>
+>Eğer son işleç + ya da − ise ikinci değişken ilk işlenenin yüzdesi olarak yorumlanır. </para>
 </listitem>
 <listitem>
 <para
@@ -1536,8 +1534,8 @@
 ><userinput
 >45 / 55 %</userinput
 > sonucu <emphasis
->81.81...</emphasis
-> (45, 81.81.. 55 yüzdesi)</para>
+>81.81…</emphasis
+> (45, 81.81… 55 yüzdesi)</para>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -1629,7 +1627,7 @@
 ><userinput
 >101 Cmp</userinput
 > <emphasis
->111...111010</emphasis
+>111…111010</emphasis
 > verir</para
 > </listitem>
 </varlistentry>
@@ -1731,11 +1729,11 @@
 ><guimenu
 >Ayarlar</guimenu
 ><guimenuitem
-> &kcalc; Uygulamasına Yapılandır...</guimenuitem
+> &kcalc; Uygulamasını Yapılandır…</guimenuitem
 ></menuchoice
 > ögesini seçin, bu size bir yapılandırma penceresi açacaktır. <guilabel
 >Ondalık kesinlik ayarlayıcısı</guilabel
->'nı denetleyin ve denetleyiciyi 2 gösterecek biçimde ayarlayın.</para
+>’nı denetleyin ve denetleyiciyi 2 gösterecek biçimde ayarlayın.</para
 ></answer
 > </qandaentry>
 
@@ -1776,11 +1774,11 @@
 <para
 >&kcalc; Program Telif Hakkı &copy;:</para>
 <para
->&Bernd.Johannes.Wuebben; 1996-2000</para>
+>&Bernd.Johannes.Wuebben; 1996–2000</para>
 <para
->&kde; Takımı 2000-2008</para>
+>&kde; takımı 2000–2008</para>
 <para
->&Evan.Teran; 2008-2013</para>
+>&Evan.Teran; 2008–2013</para>
 
 <itemizedlist>
 <listitem
@@ -1814,15 +1812,15 @@
 </itemizedlist>
 
 <para
->&kcalc; <personname
+>&kcalc;, <personname
 ><firstname
 >Martin</firstname
 > <surname
 >Bartlett</surname
 ></personname
->'in yığın motoru hâlâ &kcalc;'in ibr parçası olan <application
+>’in yığın işletkesi hâlâ &kcalc;’ın bir parçası olan <application
 >xfrmcalc</application
->'inden esinlenilmiştir.</para>
+>’dan esinlenilmiştir.</para>
 
 <para
 >Belgelendirme Telif Hakkı &copy; 2001,2002,2005, 2006,2010:</para>
