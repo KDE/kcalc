@@ -2974,7 +2974,7 @@ int main(int argc, char *argv[])
                          i18n("KDE Calculator"),
                          KAboutLicense::GPL,
                          i18n("Copyright © 2008-2013, Evan Teran\n"
-                              "Copyright © 2000-2008, The KDE Team\n"
+                              "Copyright © 2000-2026, The KDE Team\n"
                               "Copyright © 2003-2005, Klaus Niederkr"
                               "\xc3\xbc"
                               "ger\n"
