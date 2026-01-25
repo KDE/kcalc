@@ -2925,7 +2925,7 @@ void KCalculator::resizeEvent(QResizeEvent *event)
 int main(int argc, char *argv[])
 {
     /**
-     * trigger initialisation of proper icon theme
+     * trigger initialization of proper icon theme
      */
 #if KICONTHEMES_VERSION >= QT_VERSION_CHECK(6, 3, 0)
     KIconTheme::initTheme();
@@ -2935,7 +2935,7 @@ int main(int argc, char *argv[])
 
 #if HAVE_STYLE_MANAGER
     /**
-     * trigger initialisation of proper application style
+     * trigger initialization of proper application style
      */
     KStyleManager::initStyle();
 #else
