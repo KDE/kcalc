@@ -81,6 +81,7 @@
   <summary xml:lang="nl">Wetenschappelijke rekenmachine</summary>
   <summary xml:lang="pl">Kalkulator naukowy</summary>
   <summary xml:lang="pt-BR">Calculadora científica</summary>
+  <summary xml:lang="ro">Calculator științific</summary>
   <summary xml:lang="ru">Калькулятор</summary>
   <summary xml:lang="sa">वैज्ञानिक गणकयंत्र</summary>
   <summary xml:lang="sl">Znanstveno računalo</summary>
@@ -128,6 +129,7 @@
     <p xml:lang="pl">KCalc ma wszystko czego można by oczekiwać od kalkulatora naukowego, plus:</p>
     <p xml:lang="pt">O KCalc tem tudo o que poderá esperar de uma calculadora científica, e ainda mais:</p>
     <p xml:lang="pt-BR">O KCalc tem tudo o necessário para uma calculadora científica e adicionalmente:</p>
+    <p xml:lang="ro">KCalc oferă tot ce puteți aștepta de la un calculator științific, plus:</p>
     <p xml:lang="ru">В калькуляторе KCalc есть всё, что только можно ожидать от научного калькулятора, а также:</p>
     <p xml:lang="sa">KCalc इत्यत्र सर्वं अस्ति यत् भवान् वैज्ञानिकगणकयन्त्रात् अपेक्षते, अपि च:</p>
     <p xml:lang="sk">KCalc má všetko, čo by ste očakávali od vedeckej kalkulačky, plus:</p>
@@ -174,6 +176,7 @@
       <li xml:lang="pl">Funkcje trygonometryczne, działania logiczne i obliczenia statystyczne</li>
       <li xml:lang="pt">Funções trigonométricas, operações lógicas e cálculos estatísticos</li>
       <li xml:lang="pt-BR">Funções trigonométricas, operações de lógica e cálculos estatísticos</li>
+      <li xml:lang="ro">Funcții trigonometrice, operații logice și calcule statistice</li>
       <li xml:lang="ru">Тригонометрические функции, логические операции и статистические расчёты;</li>
       <li xml:lang="sa">त्रिकोणमितीय फलनानि, तर्कक्रियाः तथा सांख्यिकीयगणनाः</li>
       <li xml:lang="sk">Trigonometrické funkcie, logické operácie a štatistické výpočty</li>
@@ -215,6 +218,7 @@
       <li xml:lang="pl">Stos wyników, który umożliwia wygodne przywoływanie wyników poprzednich obliczeń</li>
       <li xml:lang="pt">Uma pilha de resultados que permite a reposição adequada dos resultados de cálculos anteriores</li>
       <li xml:lang="pt-BR">Uma pilha de resultados que permite a recuperação conveniente de resultados de cálculos anteriores</li>
+      <li xml:lang="ro">Stivă de rezultate ce permite preluarea convenabilă a rezultatelor calculelor anterioare</li>
       <li xml:lang="ru">Стек результатов, который позволяет легко получать доступ к предыдущим результатам;</li>
       <li xml:lang="sa">एकः परिणामस्य ढेरः यः पूर्वगणनापरिणामानां सुविधाजनकं स्मरणं सक्षमं करोति</li>
       <li xml:lang="sk">Zásobník výsledkov, ktorý umožní ľahké zavolanie predošlých výsledkov výpočtov</li>
