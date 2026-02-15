@@ -282,7 +282,7 @@ private:
     int m_angleMode{}; // angle modes for trigonometric values
     int m_baseMode;
 
-    KCalcParser::ParsingResult m_ParsingResult;
+    KCalcParser::ParsingResult m_ParsingResult = KCalcParser::ParsingResult::Empty;
     bool m_parsingFailure{};
     bool m_calculationFailure{};
     CalcEngine::ResultCode m_calculationResultCode;
