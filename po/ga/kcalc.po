@@ -59,17 +59,15 @@ msgstr "Dathanna Cnaipí"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
 #: colors.ui:121
-#, fuzzy, kde-format
-#| msgid "&Background:"
+#, kde-format
 msgid "Background"
-msgstr "&Cúlra:"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: colors.ui:131
-#, fuzzy, kde-format
-#| msgid "&Foreground:"
+#, kde-format
 msgid "Foreground"
-msgstr "&Tulra:"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel5)
 #: colors.ui:141
@@ -109,10 +107,9 @@ msgstr "Oi&bríochtaí:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel13)
 #: colors.ui:303
-#, fuzzy, kde-format
-#| msgid "&Constants"
+#, kde-format
 msgid "&Constants:"
-msgstr "&Tairisigh"
+msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
 #: constants.ui:13 kcalc.cpp:1748
@@ -158,17 +155,15 @@ msgstr "An cló le húsáid sa taispeáint"
 
 #. i18n: ectx: property (text), widget (QLabel, historylabel)
 #: fonts.ui:61
-#, fuzzy, kde-format
-#| msgid "&Display font:"
+#, kde-format
 msgid "&History font:"
-msgstr "Cló &taispeána:"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KFontRequester, kcfg_HistoryFont)
 #: fonts.ui:74
-#, fuzzy, kde-format
-#| msgid "The font to use in the display"
+#, kde-format
 msgid "The font to use in the history"
-msgstr "An cló le húsáid sa taispeáint"
+msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
 #: general.ui:14 kcalc.cpp:1708
@@ -227,10 +222,9 @@ msgstr "Líon na ndigití seasta deachúlacha"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: general.ui:89
-#, fuzzy, kde-format
-#| msgid "Group digits"
+#, kde-format
 msgid "Grouping"
-msgstr "Grúpáil digití"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GroupDigits)
 #: general.ui:97
@@ -258,10 +252,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, grouping_hexadecimal_lb)
 #: general.ui:129
-#, fuzzy, kde-format
-#| msgid "He&xadecimals:"
+#, kde-format
 msgid "Hexadecimal"
-msgstr "Hei&csidheachúlaigh:"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, miscGroupBox)
 #: general.ui:152
@@ -321,32 +314,28 @@ msgid "Two's complement"
 msgstr "Comhlánú le Dónna"
 
 #: kcalc.cpp:85
-#, fuzzy, kde-format
-#| msgid "He&x"
+#, kde-format
 msgctxt "Hexadecimal numeral system"
 msgid "Hex"
-msgstr "Hei&cs"
+msgstr ""
 
 #: kcalc.cpp:86
-#, fuzzy, kde-format
-#| msgid "&Dec"
+#, kde-format
 msgctxt "Decimal numeral system"
 msgid "Dec"
-msgstr "&Deach"
+msgstr ""
 
 #: kcalc.cpp:87
-#, fuzzy, kde-format
-#| msgid "&Oct"
+#, kde-format
 msgctxt "Octal numeral system"
 msgid "Oct"
-msgstr "&Ocht"
+msgstr ""
 
 #: kcalc.cpp:88
-#, fuzzy, kde-format
-#| msgid "&Bin"
+#, kde-format
 msgctxt "Binary numeral system"
 msgid "Bin"
-msgstr "&Dénár"
+msgstr ""
 
 #: kcalc.cpp:183
 #, kde-format
@@ -429,12 +418,10 @@ msgid "Cube root"
 msgstr "Fréamh chiúbach"
 
 #: kcalc.cpp:451
-#, fuzzy, kde-format
-#| msgctxt "Arc sine"
-#| msgid "Asin"
+#, kde-format
 msgctxt "Sine"
 msgid "sin"
-msgstr "Asín"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSin)
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbSin)
@@ -455,12 +442,10 @@ msgid "Arc sine"
 msgstr "Arcshíneas"
 
 #: kcalc.cpp:453
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic sine"
-#| msgid "Asinh"
+#, kde-format
 msgctxt "Hyperbolic sine"
 msgid "sinh"
-msgstr "Asính"
+msgstr ""
 
 #: kcalc.cpp:453
 #, kde-format
@@ -468,12 +453,10 @@ msgid "Hyperbolic sine"
 msgstr "Síneas hipearbóileach"
 
 #: kcalc.cpp:454
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic sine"
-#| msgid "Asinh"
+#, kde-format
 msgctxt "Inverse hyperbolic sine"
 msgid "asinh"
-msgstr "Asính"
+msgstr ""
 
 #: kcalc.cpp:454
 #, kde-format
@@ -481,12 +464,10 @@ msgid "Inverse hyperbolic sine"
 msgstr "Síneas hipearbóileach inbhéartach"
 
 #: kcalc.cpp:459
-#, fuzzy, kde-format
-#| msgctxt "Arc cosine"
-#| msgid "Acos"
+#, kde-format
 msgctxt "Cosine"
 msgid "cos"
-msgstr "Acos"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbCos)
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbCos)
@@ -507,12 +488,10 @@ msgid "Arc cosine"
 msgstr "Arc-chomhshíneas"
 
 #: kcalc.cpp:461
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic cosine"
-#| msgid "Acosh"
+#, kde-format
 msgctxt "Hyperbolic cosine"
 msgid "cosh"
-msgstr "Acosh"
+msgstr ""
 
 #: kcalc.cpp:461
 #, kde-format
@@ -520,12 +499,10 @@ msgid "Hyperbolic cosine"
 msgstr "Comhshíneas hipearbóileach"
 
 #: kcalc.cpp:462
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic cosine"
-#| msgid "Acosh"
+#, kde-format
 msgctxt "Inverse hyperbolic cosine"
 msgid "acosh"
-msgstr "Acosh"
+msgstr ""
 
 #: kcalc.cpp:462
 #, kde-format
@@ -533,12 +510,10 @@ msgid "Inverse hyperbolic cosine"
 msgstr "Comhshíneas hipearbóileach inbhéartach"
 
 #: kcalc.cpp:467
-#, fuzzy, kde-format
-#| msgctxt "Arc tangent"
-#| msgid "Atan"
+#, kde-format
 msgctxt "Tangent"
 msgid "tan"
-msgstr "Atan"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbTan)
 #: kcalc.cpp:467 kcalc.ui:680
@@ -558,12 +533,10 @@ msgid "Arc tangent"
 msgstr "Arcthangant"
 
 #: kcalc.cpp:469
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic tangent"
-#| msgid "Atanh"
+#, kde-format
 msgctxt "Hyperbolic tangent"
 msgid "tanh"
-msgstr "Atanh"
+msgstr ""
 
 #: kcalc.cpp:469
 #, kde-format
@@ -571,12 +544,10 @@ msgid "Hyperbolic tangent"
 msgstr "Tangant hipearbóileach"
 
 #: kcalc.cpp:470
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic tangent"
-#| msgid "Atanh"
+#, kde-format
 msgctxt "Inverse hyperbolic tangent"
 msgid "atanh"
-msgstr "Atanh"
+msgstr ""
 
 #: kcalc.cpp:470
 #, kde-format
@@ -584,12 +555,10 @@ msgid "Inverse hyperbolic tangent"
 msgstr "Tangant hipearbóileach inbhéartach"
 
 #: kcalc.cpp:475
-#, fuzzy, kde-format
-#| msgctxt "Logarithm to base 10"
-#| msgid "Log"
+#, kde-format
 msgctxt "Logarithm to base 10"
 msgid "log"
-msgstr "Log"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLog)
 #: kcalc.cpp:475 kcalc.ui:661
@@ -632,11 +601,10 @@ msgid "Exponential function"
 msgstr "Feidhm easpónantúil"
 
 #: kcalc.cpp:485
-#, fuzzy, kde-format
-#| msgid "Pi"
+#, kde-format
 msgctxt "Imaginary unit"
 msgid "i"
-msgstr "Pí"
+msgstr ""
 
 #: kcalc.cpp:485
 #, kde-format
@@ -644,12 +612,10 @@ msgid "Imaginary unit"
 msgstr ""
 
 #: kcalc.cpp:486
-#, fuzzy, kde-format
-#| msgctxt "- calculator button"
-#| msgid "−"
+#, kde-format
 msgctxt "Polar complex"
 msgid "∠"
-msgstr "−"
+msgstr ""
 
 #: kcalc.cpp:486
 #, kde-format
@@ -725,12 +691,10 @@ msgid "Delete last data item"
 msgstr "Scrios an mhír sonraí deiridh"
 
 #: kcalc.cpp:587
-#, fuzzy, kde-format
-#| msgctxt "Modulo"
-#| msgid "Mod"
+#, kde-format
 msgctxt "Modulo"
 msgid "mod"
-msgstr "Mod"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMod)
 #: kcalc.cpp:587 kcalc.ui:629
@@ -837,42 +801,36 @@ msgid "Exponent"
 msgstr "Easpónant"
 
 #: kcalc.cpp:942
-#, fuzzy, kde-format
-#| msgid "Shift"
+#, kde-format
 msgctxt "Second function mode"
 msgid "Shift"
-msgstr "Iomlaoid"
+msgstr ""
 
 #: kcalc.cpp:1249 kcalc.cpp:1250
-#, fuzzy, kde-format
-#| msgid "Memory clear"
+#, kde-format
 msgctxt "Memory cleared"
 msgid "M cleared"
-msgstr "Glan cuimhne"
+msgstr ""
 
 #: kcalc.cpp:1520
-#, fuzzy, kde-format
-#| msgid "Number of data entered"
+#, kde-format
 msgid "Number of data entered = "
-msgstr "Líon na sonraí a iontráladh"
+msgstr ""
 
 #: kcalc.cpp:1521
-#, fuzzy, kde-format
-#| msgid "Number of data entered"
+#, kde-format
 msgid "Number of data entered ="
-msgstr "Líon na sonraí a iontráladh"
+msgstr ""
 
 #: kcalc.cpp:1526
-#, fuzzy, kde-format
-#| msgid "Sum of all data items"
+#, kde-format
 msgid "Sum of all data items ="
-msgstr "Suim de na míreanna sonraí"
+msgstr ""
 
 #: kcalc.cpp:1545
-#, fuzzy, kde-format
-#| msgid "Mean"
+#, kde-format
 msgid "Mean = "
-msgstr "Meán"
+msgstr ""
 
 #: kcalc.cpp:1549
 #, kde-format
@@ -880,16 +838,14 @@ msgid "Sum of squares ="
 msgstr ""
 
 #: kcalc.cpp:1592
-#, fuzzy, kde-format
-#| msgid "Median"
+#, kde-format
 msgid "Median ="
-msgstr "Airmheán"
+msgstr ""
 
 #: kcalc.cpp:1593
-#, fuzzy, kde-format
-#| msgid "Mean"
+#, kde-format
 msgid "Median = "
-msgstr "Meán"
+msgstr ""
 
 #: kcalc.cpp:1627 kcalc.cpp:1628
 #, kde-format
@@ -902,10 +858,9 @@ msgid "] = "
 msgstr ""
 
 #: kcalc.cpp:1635 kcalc.cpp:1637 kcalc.cpp:1638
-#, fuzzy, kde-format
-#| msgid "Last stat item erased"
+#, kde-format
 msgid "Last stat data erased"
-msgstr "Léirscriosadh an mhír staitistiúil dheireanach"
+msgstr ""
 
 #: kcalc.cpp:1650 kcalc.cpp:1653 kcalc.cpp:1654
 #, kde-format
@@ -949,22 +904,13 @@ msgid "KDE Calculator"
 msgstr "Áireamhán KDE"
 
 #: kcalc.cpp:2956
-#, fuzzy, kde-format
-#| msgid ""
-#| "&copy; 2008-2012, Evan Teran\n"
-#| "&copy; 2000-2008, The KDE Team\n"
-#| "&copy; 2003-2005, Klaus Niederkrüger\n"
-#| "&copy; 1996-2000, Bernd Johannes Wuebben"
+#, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
 "Copyright © 2000-2008, The KDE Team\n"
 "Copyright © 2003-2005, Klaus Niederkrüger\n"
 "Copyright © 1996-2000, Bernd Johannes Wuebben"
 msgstr ""
-"&copy; 2008-2012, Evan Teran\n"
-"&copy; 2000-2008, Foireann KDE\n"
-"&copy; 2003-2005, Klaus Niederkrüger\n"
-"&copy; 1996-2000, Bernd Johannes Wuebben"
 
 #: kcalc.cpp:2966
 #, kde-format
@@ -1081,59 +1027,51 @@ msgstr "Dath na gcnaipí oibríochta."
 
 #. i18n: ectx: label, entry (ConstantsButtonsColor), group (Colors)
 #: kcalc.kcfg:52
-#, fuzzy, kde-format
-#| msgid "The color of statistical buttons."
+#, kde-format
 msgid "The color of constants buttons."
-msgstr "Dath na gcnaipí staitistiúla."
+msgstr ""
 
 #. i18n: ectx: label, entry (NumberFontsColor), group (Colors)
 #: kcalc.kcfg:56
-#, fuzzy, kde-format
-#| msgid "The color of number buttons."
+#, kde-format
 msgid "The color of number fonts."
-msgstr "Dath na gcnaipí uimhreacha."
+msgstr ""
 
 #. i18n: ectx: label, entry (FunctionFontsColor), group (Colors)
 #: kcalc.kcfg:62
-#, fuzzy, kde-format
-#| msgid "The color of function buttons."
+#, kde-format
 msgid "The color of function fonts."
-msgstr "Dath na gcnaipí feidhmeanna."
+msgstr ""
 
 #. i18n: ectx: label, entry (StatFontsColor), group (Colors)
 #: kcalc.kcfg:66
-#, fuzzy, kde-format
-#| msgid "The color of statistical buttons."
+#, kde-format
 msgid "The color of statistical fonts."
-msgstr "Dath na gcnaipí staitistiúla."
+msgstr ""
 
 #. i18n: ectx: label, entry (HexFontsColor), group (Colors)
 #: kcalc.kcfg:70
-#, fuzzy, kde-format
-#| msgid "The color of hex buttons."
+#, kde-format
 msgid "The color of hex fonts."
-msgstr "Dath na gcnaipí heicsidheachúlacha."
+msgstr ""
 
 #. i18n: ectx: label, entry (MemoryFontsColor), group (Colors)
 #: kcalc.kcfg:74
-#, fuzzy, kde-format
-#| msgid "The color of memory buttons."
+#, kde-format
 msgid "The color of memory fonts."
-msgstr "Dath na gcnaipí cuimhne."
+msgstr ""
 
 #. i18n: ectx: label, entry (OperationFontsColor), group (Colors)
 #: kcalc.kcfg:78
-#, fuzzy, kde-format
-#| msgid "The color of operation buttons."
+#, kde-format
 msgid "The color of operation font."
-msgstr "Dath na gcnaipí oibríochta."
+msgstr ""
 
 #. i18n: ectx: label, entry (ConstantsFontsColor), group (Colors)
 #: kcalc.kcfg:82
-#, fuzzy, kde-format
-#| msgid "The color of statistical buttons."
+#, kde-format
 msgid "The color of constants fonts."
-msgstr "Dath na gcnaipí staitistiúla."
+msgstr ""
 
 #. i18n: ectx: label, entry (ButtonFont), group (Font)
 #: kcalc.kcfg:88
@@ -1149,10 +1087,9 @@ msgstr "An cló le húsáid sa taispeáint."
 
 #. i18n: ectx: label, entry (HistoryFont), group (Font)
 #: kcalc.kcfg:99
-#, fuzzy, kde-format
-#| msgid "The font to use in the display."
+#, kde-format
 msgid "The font to use in the history."
-msgstr "An cló le húsáid sa taispeáint."
+msgstr ""
 
 #. i18n: ectx: label, entry (Precision), group (Precision)
 #: kcalc.kcfg:105
@@ -1295,11 +1232,9 @@ msgstr "Cé acu a thaispeánfar cnaipí tairisigh nó nach dtaispeánfar."
 
 #. i18n: ectx: label, entry (ShowHistory), group (General)
 #: kcalc.kcfg:176
-#, fuzzy, kde-format
-#| msgid "Whether to show the bit edit widget."
+#, kde-format
 msgid "Whether to show the history window."
 msgstr ""
-"Cé acu a thaispeánfar giuirléid eagarthóireachta giotán nó nach dtaispeánfar."
 
 #. i18n: ectx: label, entry (AngleMode), group (General)
 #: kcalc.kcfg:180
@@ -1421,17 +1356,15 @@ msgstr "Liosta de thairisigh inchláraithe ag an úsáideoir"
 
 #. i18n: ectx: property (text), widget (QLabel, base_label)
 #: kcalc.ui:173
-#, fuzzy, kde-format
-#| msgid "&Dec"
+#, kde-format
 msgid "Dec"
-msgstr "&Deach"
+msgstr ""
 
 #. i18n: ectx: property (accessibleDescription), widget (KCalcDisplay, calc_display)
 #: kcalc.ui:348
-#, fuzzy, kde-format
-#| msgid "Select Display Font"
+#, kde-format
 msgid "Result Display"
-msgstr "Roghnaigh Cló Taispeána"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcBitset, mBitset)
 #: kcalc.ui:382
@@ -1453,17 +1386,15 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, gradRadio)
 #: kcalc.ui:419
-#, fuzzy, kde-format
-#| msgid "Grad"
+#, kde-format
 msgid "&Grad"
-msgstr "Graid"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, numeralSystemComboBox)
 #: kcalc.ui:426
-#, fuzzy, kde-format
-#| msgid "Switch base to octal."
+#, kde-format
 msgid "Switch base"
-msgstr "Úsáid an bonn ochtnártha."
+msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbSquare)
 #: kcalc.ui:495
@@ -1737,10 +1668,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (KCalcButton, pbI)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbI)
 #: kcalc.ui:1011 kcalc.ui:1014
-#, fuzzy, kde-format
-#| msgid "Pi"
+#, kde-format
 msgid "i"
-msgstr "Pí"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMed)
 #: kcalc.ui:1027
@@ -1798,10 +1728,9 @@ msgstr "cumh"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pb6)
 #: kcalc.ui:1166
-#, fuzzy, kde-format
-#| msgid "Sin"
+#, kde-format
 msgid "Six"
-msgstr "Sín"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb6)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb6)
@@ -1831,10 +1760,9 @@ msgstr "Céatadán"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbPercent)
 #: kcalc.ui:1207
-#, fuzzy, kde-format
-#| msgid "Percent"
+#, kde-format
 msgid "Percentage"
-msgstr "Céatadán"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPercent)
 #: kcalc.ui:1210
@@ -1889,10 +1817,9 @@ msgstr "Míneas"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbMinus)
 #: kcalc.ui:1283
-#, fuzzy, kde-format
-#| msgid "Subtraction"
+#, kde-format
 msgid "Subtract"
-msgstr "Dealú"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMinus)
 #: kcalc.ui:1286
@@ -1959,10 +1886,9 @@ msgstr "Iolrú"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbMultiplication)
 #: kcalc.ui:1359
-#, fuzzy, kde-format
-#| msgid "Multiplication"
+#, kde-format
 msgid "Multiply"
-msgstr "Iolrú"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMultiplication)
 #: kcalc.ui:1362
@@ -2063,10 +1989,9 @@ msgstr "Glan uile"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbAllClear)
 #: kcalc.ui:1519
-#, fuzzy, kde-format
-#| msgid "Memory clear"
+#, kde-format
 msgid "All clear"
-msgstr "Glan cuimhne"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbAllClear)
 #: kcalc.ui:1522
@@ -2270,11 +2195,10 @@ msgid "Gravitation"
 msgstr "Imtharraingt"
 
 #: kcalc_display.cpp:47
-#, fuzzy, kde-format
-#| msgid "Select Display Font"
+#, kde-format
 msgctxt "@label accessibility description of the calculation result display"
 msgid "Result Display"
-msgstr "Roghnaigh Cló Taispeána"
+msgstr ""
 
 #: kcalc_numeralsystem_view.cpp:38
 #, kde-format
@@ -2313,11 +2237,10 @@ msgid "OCT"
 msgstr ""
 
 #: kcalc_statusbar.cpp:18
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgctxt "Hexadecimal indicator in status bar"
 msgid "HEX"
-msgstr "EASP"
+msgstr ""
 
 #: kcalc_statusbar.cpp:19
 #, kde-format
@@ -2326,11 +2249,10 @@ msgid "DEG"
 msgstr ""
 
 #: kcalc_statusbar.cpp:19
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgctxt "Radian indicator in status bar"
 msgid "RAD"
-msgstr "AGUS"
+msgstr ""
 
 #: kcalc_statusbar.cpp:20
 #, kde-format
@@ -2339,11 +2261,10 @@ msgid "GRA"
 msgstr ""
 
 #: kcalc_statusbar.cpp:21 kcalc_statusbar.cpp:103
-#, fuzzy, kde-format
-#| msgid "M"
+#, kde-format
 msgctxt "Memory indicator in status bar"
 msgid "M"
-msgstr "C"
+msgstr ""
 
 #: kcalc_statusbar.cpp:67
 #, kde-format
@@ -2361,10 +2282,9 @@ msgid "DEC"
 msgstr ""
 
 #: kcalc_statusbar.cpp:77
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgid "HEX"
-msgstr "EASP"
+msgstr ""
 
 #: kcalc_statusbar.cpp:89
 #, kde-format
@@ -2372,10 +2292,9 @@ msgid "DEG"
 msgstr ""
 
 #: kcalc_statusbar.cpp:92
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgid "RAD"
-msgstr "AGUS"
+msgstr ""
 
 #: kcalc_statusbar.cpp:95
 #, kde-format
@@ -2490,152 +2409,3 @@ msgstr "Tairiseach Stefan-Boltzmann"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Uimhir Avogadro"
-
-#~ msgid "Switch base to hexadecimal."
-#~ msgstr "Úsáid an bonn heicsidheachúlach."
-
-#~ msgid "Switch base to decimal."
-#~ msgstr "Úsáid an bonn deachúlach."
-
-#~ msgid "&Dec"
-#~ msgstr "&Deach"
-
-#~ msgid "Switch base to binary."
-#~ msgstr "Úsáid an bonn dénártha."
-
-#~ msgid "Font"
-#~ msgstr "Cló"
-
-#~ msgid "Select Display Font"
-#~ msgstr "Roghnaigh Cló Taispeána"
-
-#~ msgctxt "Third power"
-#~ msgid "x<sup>3</sup>"
-#~ msgstr "x<sup>3</sup>"
-
-#~ msgid "Cube"
-#~ msgstr "Ciúb"
-
-#~ msgid "x3"
-#~ msgstr "×3"
-
-#~ msgid "M"
-#~ msgstr "C"
-
-#~ msgctxt "Sine"
-#~ msgid "Sin"
-#~ msgstr "Sín"
-
-#~ msgctxt "Hyperbolic sine"
-#~ msgid "Sinh"
-#~ msgstr "Sính"
-
-#~ msgctxt "Cosine"
-#~ msgid "Cos"
-#~ msgstr "Cos"
-
-#~ msgctxt "Hyperbolic cosine"
-#~ msgid "Cosh"
-#~ msgstr "Cosh"
-
-#~ msgctxt "Tangent"
-#~ msgid "Tan"
-#~ msgstr "Tan"
-
-#~ msgctxt "Hyperbolic tangent"
-#~ msgid "Tanh"
-#~ msgstr "Tanh"
-
-#~ msgctxt "Natural log"
-#~ msgid "Ln"
-#~ msgstr "Ln"
-
-#~ msgid "Deg"
-#~ msgstr "Céim"
-
-#~ msgid "Rad"
-#~ msgstr "Raid"
-
-#~ msgid "Numbers"
-#~ msgstr "Uimhreacha"
-
-#~ msgid "sr"
-#~ msgstr "sr"
-
-#~ msgid "Inverse mode"
-#~ msgstr "Mód inbhéartach"
-
-#~ msgid "Inv"
-#~ msgstr "Inbh"
-
-#~ msgid "I"
-#~ msgstr "I"
-
-#~ msgid "Science/&Engineering Buttons"
-#~ msgstr "Cnaipí &Eolaíochta/Innealtóireachta"
-
-#~ msgid "&Logic Buttons"
-#~ msgstr "Cnaipí &Loighce"
-
-#~ msgid "&Show All"
-#~ msgstr "&Taispeáin Uile"
-
-#~ msgid "&Hide All"
-#~ msgstr "Folaig&h Uile"
-
-#~ msgid "Whether to show statistical buttons."
-#~ msgstr "Cé acu a thaispeánfar cnaipí staitistiúla nó nach dtaispeánfar."
-
-#~ msgid "Whether to show logic buttons."
-#~ msgstr "Cé acu a thaispeánfar cnaipí loighce nó nach dtaispeánfar."
-
-#~ msgid "/"
-#~ msgstr "/"
-
-#~ msgid "X"
-#~ msgstr "×"
-
-#~ msgid "+/-"
-#~ msgstr "±"
-
-#~ msgid "Constant of Gravitation"
-#~ msgstr "Tairiseach na hImtharraingthe"
-
-#~ msgid "Alt+1"
-#~ msgstr "Alt+1"
-
-#~ msgid "Alt+2"
-#~ msgstr "Alt+2"
-
-#~ msgid "Alt+3"
-#~ msgstr "Alt+3"
-
-#~ msgid "Alt+4"
-#~ msgstr "Alt+4"
-
-#~ msgid "Alt+5"
-#~ msgstr "Alt+5"
-
-#~ msgid "Alt+6"
-#~ msgstr "Alt+6"
-
-#~ msgid "Stack processing error - empty stack"
-#~ msgstr "Earráid phróiseáil cruaiche - cruach fholamh"
-
-#~ msgid "Del"
-#~ msgstr "Scr"
-
-#~ msgid "Base"
-#~ msgstr "Bonn"
-
-#~ msgid "&Angle"
-#~ msgstr "&Uillinn"
-
-#~ msgid "Addition"
-#~ msgstr "Suimiú"
-
-#~ msgid "Clear memory"
-#~ msgstr "Glan an chuimhne"
-
-#~ msgid "Decimal &digits:"
-#~ msgstr "Digití &deachúlach:"
