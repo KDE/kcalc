@@ -111,7 +111,7 @@
 >düğme bağıntıları</link
 > sunar.</para>
 <para
->İpucu: &Ctrl;− ikilisine basmak (ve basılı tutmak), her düğme üzerindeki ilgili düğme bağıntısını gösterir.</para>
+>İpucu: &Ctrl; düğmesine basmak (ve basılı tutmak), her düğme üzerindeki ilgili düğme bağıntısını gösterir.</para>
 </listitem>
 </itemizedlist>
 
@@ -947,21 +947,21 @@
 >&Shift;</guibutton
 > düğmesine ve sonrasında <guibutton
 >C1</guibutton
->-<guibutton
+>–<guibutton
 >C6</guibutton
 > arasındaki istediğiniz düğmeye basın.</para>
 
 <para
 >Bir hesaplamada sabitlerden herhangi birini kullanmak için yalnızca istenen düğmeye basın (<guibutton
 >C1</guibutton
->-<guibutton
+>–<guibutton
 >C6</guibutton
 >), ilişkili sayı görüntülenecektir. </para>
 
 <para
 >Sabitler düğmesinin etiketini hangi düğmenin hangi sabiti tuttuğunu hatırlamasını kolaylaştırmak için değiştirmek olanaklıdır. <guibutton
 >C1</guibutton
->-<guibutton
+>–<guibutton
 >C6</guibutton
 > düğmelerinin üzerine farenin sağ düğmesi ile tıklayın. <guilabel
 >Ad Ayarla</guilabel
@@ -970,7 +970,7 @@
 <para
 ><guibutton
 >C1</guibutton
->-<guibutton
+>–<guibutton
 >C6</guibutton
 > düğmelerinden birine tıklanıp açılan menüden <guilabel
 >Listeden Seç</guilabel
@@ -1496,7 +1496,7 @@
 ><itemizedlist>
 <listitem>
 <para
->Eğer son işleç + ya da − ise ikinci değişken ilk işlenenin yüzdesi olarak yorumlanır. </para>
+>Eğer son işleç + veya − ise ikinci değişken ilk işlenenin yüzdesi olarak yorumlanır. </para>
 </listitem>
 <listitem>
 <para
@@ -1772,7 +1772,7 @@
 >Emeği Geçenler ve Lisans</title>
 
 <para
->&kcalc; Program Telif Hakkı &copy;:</para>
+>&kcalc; program telif hakkı ©:</para>
 <para
 >&Bernd.Johannes.Wuebben; 1996–2000</para>
 <para
@@ -1823,7 +1823,7 @@
 >’dan esinlenilmiştir.</para>
 
 <para
->Belgelendirme Telif Hakkı &copy; 2001,2002,2005, 2006,2010:</para>
+>Belgelendirme telif hakkı © 2001, 2002, 2005, 2006, 2010:</para>
 <itemizedlist>
 <listitem
 ><para
