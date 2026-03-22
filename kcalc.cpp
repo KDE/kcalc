@@ -2282,7 +2282,7 @@ void KCalculator::slotBitsetshow(bool toggled)
 //------------------------------------------------------------------------------
 void KCalculator::slotToggleScientificOutput()
 {
-    calc_display->toggleScientificOutput(m_actionScientificOutput->isChecked());
+    calc_display->setScientificOutputMode(m_actionScientificOutput->isChecked());
 }
 
 //------------------------------------------------------------------------------

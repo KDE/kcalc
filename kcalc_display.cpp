@@ -52,6 +52,7 @@ KCalcDisplay::KCalcDisplay(QWidget *parent)
     setForegroundRole(QPalette::Text);
     setFrameStyle(QFrame::NoFrame); // set in kalc.ui
     setContentsMargins(6, 0, 6, 6);
+    setScientificOutputMode(false);
 
     KNumber::setDefaultFloatOutput(true);
     KNumber::setDefaultFractionalInput(true);
@@ -93,10 +94,9 @@ void KCalcDisplay::changeSettings()
     }
 }
 
-void KCalcDisplay::toggleScientificOutput(bool enabled)
+void KCalcDisplay::setScientificOutputMode(bool enabled)
 {
     this->m_scientificOutputMode = enabled;
-    // this->updateDisplay();
 }
 
 void KCalcDisplay::updateFromCore(const CalcEngine &core)
@@ -331,7 +331,7 @@ bool KCalcDisplay::setAmount(const KNumber &newAmount)
             KNumber divider(10);
             divider = divider.pow(exponent);
             m_displayAmount.operator/=(divider);
-            displayStr = m_displayAmount.toQString(KCalcSettings::precision(), m_fixedPrecision) + QString::fromStdString(" x 10^")
+            displayStr = m_displayAmount.toQString(KCalcSettings::precision(), m_fixedPrecision) + QString::fromStdString(" × 10^")
                 + QString::number(exponent.toInt64());
         } else {
             displayStr = m_displayAmount.toQString(KCalcSettings::precision(), m_fixedPrecision);

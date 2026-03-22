@@ -43,7 +43,7 @@ QString KCalcNumberFormatter::formatDecimalNumber(QString string, bool explicitG
 
     string.replace(QLatin1Char('.'), locale.decimalPoint());
 
-    if (explicitGrouping && !(locale.numberOptions() & QLocale::OmitGroupSeparator)) {
+    if (explicitGrouping && !(locale.numberOptions() & QLocale::OmitGroupSeparator) && !string.contains(u'^')) {
         // find position after last digit
         int pos = string.indexOf(locale.decimalPoint());
         if (pos < 0) {

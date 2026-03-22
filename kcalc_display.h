@@ -62,7 +62,7 @@ public:
     void updateDisplay();
     void setStatusText(int i, const QString &text);
     QSize sizeHint() const override;
-    void toggleScientificOutput(bool enabled);
+    void setScientificOutputMode(bool enabled);
 
     void changeSettings();
     void updateFromCore(const CalcEngine &core);
