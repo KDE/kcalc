@@ -93,6 +93,12 @@ void KCalcDisplay::changeSettings()
     }
 }
 
+void KCalcDisplay::toggleScientificOutput(bool enabled)
+{
+    this->m_scientificOutputMode = enabled;
+    // this->updateDisplay();
+}
+
 void KCalcDisplay::updateFromCore(const CalcEngine &core)
 {
     bool tmpError = false;
@@ -320,7 +326,16 @@ bool KCalcDisplay::setAmount(const KNumber &newAmount)
     } else {
         // numBase == NbDecimal || newAmount.type() == KNumber::TypeError
         m_displayAmount = newAmount;
-        displayStr = m_displayAmount.toQString(KCalcSettings::precision(), m_fixedPrecision);
+        if (m_scientificOutputMode && newAmount.type() != KNumber::TypeError) {
+            KNumber exponent(m_displayAmount.integerPart().abs().toQString().length() - 1); // used this because exp10() doesn't work on KNumber
+            KNumber divider(10);
+            divider = divider.pow(exponent);
+            m_displayAmount.operator/=(divider);
+            displayStr = m_displayAmount.toQString(KCalcSettings::precision(), m_fixedPrecision) + QString::fromStdString(" x 10^")
+                + QString::number(exponent.toInt64());
+        } else {
+            displayStr = m_displayAmount.toQString(KCalcSettings::precision(), m_fixedPrecision);
+        }
     }
 
     // TODO: to avoid code duplication, don't format complex number for now,

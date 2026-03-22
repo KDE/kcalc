@@ -216,6 +216,11 @@ void KCalculator::setupMainActions()
     m_actionBitsetShow->setChecked(true);
     connect(m_actionBitsetShow, &KToggleAction::toggled, this, &KCalculator::slotBitsetshow);
 
+    m_actionScientificOutput = actionCollection()->add<KToggleAction>(QStringLiteral("scientific_output"));
+    m_actionScientificOutput->setText(i18n("Enable scientific output"));
+    m_actionScientificOutput->setChecked(false);
+    connect(m_actionScientificOutput, &KToggleAction::toggled, this, &KCalculator::slotToggleScientificOutput);
+
     KStandardAction::preferences(this, &KCalculator::showSettings, actionCollection());
 
     KStandardAction::keyBindings(guiFactory(), &KXMLGUIFactory::showConfigureShortcutsDialog, actionCollection());
@@ -2268,6 +2273,16 @@ void KCalculator::slotBitsetshow(bool toggled)
             resize(minimumSize());
         }
     }
+}
+
+//------------------------------------------------------------------------------
+// Name: slotToggleScientificOutput
+// Desc: changes between output in scientific format (e.g. 1.7235 x 10^4)
+//       and standard output like 17 235. Refresh is done when output changes
+//------------------------------------------------------------------------------
+void KCalculator::slotToggleScientificOutput()
+{
+    calc_display->toggleScientificOutput(m_actionScientificOutput->isChecked());
 }
 
 //------------------------------------------------------------------------------

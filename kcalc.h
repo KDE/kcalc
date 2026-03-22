@@ -230,6 +230,7 @@ protected Q_SLOTS:
     void slotBackspaceclicked();
     void slotInputChanged();
     void slotClearResult();
+    void slotToggleScientificOutput();
 
     void slotConstantToDisplay(const ScienceConstant &constChosen);
     void slotChooseScientificConst0(const ScienceConstant &);
@@ -307,6 +308,7 @@ private:
     KToggleAction *m_actionHistoryShow = nullptr;
     KToggleAction *m_actionBitsetShow = nullptr;
     KToggleAction *m_actionConstantsShow = nullptr;
+    KToggleAction *m_actionScientificOutput = nullptr;
 
     KToggleAction *m_actionModeSimple = nullptr;
     KToggleAction *m_actionModeScience = nullptr;

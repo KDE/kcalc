@@ -62,6 +62,7 @@ public:
     void updateDisplay();
     void setStatusText(int i, const QString &text);
     QSize sizeHint() const override;
+    void toggleScientificOutput(bool enabled);
 
     void changeSettings();
     void updateFromCore(const CalcEngine &core);
@@ -108,6 +109,8 @@ private:
 
     int m_precision;
     int m_fixedPrecision; // "-1" = no fixed_precision
+
+    bool m_scientificOutputMode;
 
     KNumber m_displayAmount;
 
