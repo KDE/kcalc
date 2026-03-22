@@ -293,7 +293,7 @@ QString KCalcDisplay::getAmountQString(bool addPreffix /*= true*/) const
         amountQString.remove(QLatin1Char(' '));
         break;
     case NbDecimal:
-        amountQString.remove(QLocale().groupSeparator());
+        amountQString = m_lastDecimalAmount;
         break;
     }
     return amountQString;
@@ -327,6 +327,7 @@ bool KCalcDisplay::setAmount(const KNumber &newAmount)
         // numBase == NbDecimal || newAmount.type() == KNumber::TypeError
         m_displayAmount = newAmount;
         if (m_scientificOutputMode && newAmount.type() != KNumber::TypeError) {
+            m_lastDecimalAmount = m_displayAmount.toQString(KCalcSettings::precision(), m_fixedPrecision);
             KNumber exponent(m_displayAmount.integerPart().abs().toQString().length() - 1); // used this because exp10() doesn't work on KNumber
             KNumber divider(10);
             divider = divider.pow(exponent);
@@ -335,6 +336,7 @@ bool KCalcDisplay::setAmount(const KNumber &newAmount)
                 + QString::number(exponent.toInt64());
         } else {
             displayStr = m_displayAmount.toQString(KCalcSettings::precision(), m_fixedPrecision);
+            m_lastDecimalAmount = displayStr;
         }
     }
 

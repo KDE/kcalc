@@ -117,6 +117,8 @@ private:
     QFont m_baseFont;
     QPalette m_basePalette;
 
+    QString m_lastDecimalAmount;
+
     // only used for input of new numbers
     QString m_strStatus[NumStatusText];
 
