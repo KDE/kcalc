@@ -10,6 +10,16 @@
 #include <QString>
 #include <QTest>
 
+#ifndef Q_OS_WIN
+void initLocale()
+{
+    // force locale for . expectation in results
+    qputenv("LC_ALL", "en_US.UTF-8");
+}
+
+Q_CONSTRUCTOR_FUNCTION(initLocale)
+#endif
+
 class KNumberMiscTest : public QObject
 {
     Q_OBJECT
