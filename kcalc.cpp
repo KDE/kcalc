@@ -216,6 +216,11 @@ void KCalculator::setupMainActions()
     m_actionBitsetShow->setChecked(true);
     connect(m_actionBitsetShow, &KToggleAction::toggled, this, &KCalculator::slotBitsetshow);
 
+    m_actionForceScientificNotation = actionCollection()->add<KToggleAction>(QStringLiteral("force_scientific_notation"));
+    m_actionForceScientificNotation->setText(i18nc("Show calculation result on the output display always in scientific notation", "Force scientific notation"));
+    m_actionForceScientificNotation->setChecked(KCalcSettings::forceScientificNotation());
+    connect(m_actionForceScientificNotation, &KToggleAction::toggled, this, &KCalculator::slotToggleForceScientificNotation);
+
     KStandardAction::preferences(this, &KCalculator::showSettings, actionCollection());
 
     KStandardAction::keyBindings(guiFactory(), &KXMLGUIFactory::showConfigureShortcutsDialog, actionCollection());
@@ -2267,6 +2272,19 @@ void KCalculator::slotBitsetshow(bool toggled)
         if (wasMinimumSize) {
             resize(minimumSize());
         }
+    }
+}
+
+//------------------------------------------------------------------------------
+// Name: slotToggleForceScientificNotation
+// Desc: enable or disable showing calculation result always
+//       in scientific notation (e.g. 17 235 is shown as 1,7235e+4)
+//------------------------------------------------------------------------------
+void KCalculator::slotToggleForceScientificNotation()
+{
+    KCalcSettings::setForceScientificNotation(m_actionForceScientificNotation->isChecked());
+    if (!calc_display->text().isEmpty()) {
+        this->updateResultDisplay();
     }
 }
 

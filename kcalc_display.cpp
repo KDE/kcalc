@@ -287,7 +287,7 @@ QString KCalcDisplay::getAmountQString(bool addPreffix /*= true*/) const
         amountQString.remove(QLatin1Char(' '));
         break;
     case NbDecimal:
-        amountQString.remove(QLocale().groupSeparator());
+        amountQString = m_lastDecimalAmount;
         break;
     }
     return amountQString;
@@ -320,7 +320,23 @@ bool KCalcDisplay::setAmount(const KNumber &newAmount)
     } else {
         // numBase == NbDecimal || newAmount.type() == KNumber::TypeError
         m_displayAmount = newAmount;
-        displayStr = m_displayAmount.toQString(KCalcSettings::precision(), m_fixedPrecision);
+        m_lastDecimalAmount = m_displayAmount.toQString(KCalcSettings::precision(), m_fixedPrecision);
+        if (KCalcSettings::forceScientificNotation() && newAmount.type() != KNumber::TypeError && m_displayAmount.toInt64() != 0
+            && !m_lastDecimalAmount.contains(QLatin1String("e"))) {
+            QString displayAmountNoLocale = m_lastDecimalAmount.replace(KNumber::decimalSeparator(), QLatin1String("."));
+            double precision = displayAmountNoLocale.length() - displayAmountNoLocale.count(QLatin1String(".")) - 1;
+            if (m_displayAmount.integerPart().toInt64() < 0)
+                precision--;
+            for (int i = precision; i >= 0; i--) {
+                if (displayAmountNoLocale.at(i).toLatin1() == '0')
+                    precision--;
+                else
+                    break;
+            }
+            displayStr = QString::number(displayAmountNoLocale.toDouble(), 'e', precision);
+        } else {
+            displayStr = m_lastDecimalAmount;
+        }
     }
 
     // TODO: to avoid code duplication, don't format complex number for now,

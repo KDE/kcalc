@@ -184,6 +184,10 @@
       <label>Numeric base</label>
       <default>10</default>
     </entry>
+    <entry name="ForceScientificNotation" type="Bool">
+      <label>Force to show calculation results in scientific notation.</label>
+      <default>false</default>
+    </entry>
   </group>
   <group name="Grouping">
     <entry name="BinaryGrouping" type="UInt" key="binaryGrouping">
