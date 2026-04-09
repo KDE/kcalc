@@ -2962,7 +2962,8 @@ int main(int argc, char *argv[])
                               "ger\n"
                               "Copyright © 1996-2000, Bernd Johannes Wuebben"),
                          QString(),
-                         QStringLiteral("https://apps.kde.org/kcalc/"));
+                         QStringLiteral("https://apps.kde.org/kcalc"));
+    aboutData.addLicense(KAboutLicense::GPL_V3);
 
     // Klaus Niederkrueger
     aboutData.addAuthor(i18n("Gabriel Barrantes"), i18n("Maintainer"), QStringLiteral("gabriel.barrantes.dev@outlook.com"));

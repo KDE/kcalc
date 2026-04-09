@@ -6,9 +6,7 @@
 # <img src="logo.png" width="40"/> KCalc
 
 
-[![KDE](https://img.shields.io/badge/KDE-Applications-blue)](https://kde.org/applications)
-[![License](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
-[![License](https://img.shields.io/badge/License-BSD--3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+[![KDE](https://img.shields.io/badge/KDE-Applications-blue)](https://apps.kde.org)
 
 ## Features
 
@@ -28,6 +26,6 @@ KCalc has everything you would expect from a scientific calculator, plus:
 
 ## Useful links
 * [Code repository](https://invent.kde.org/utilities/kcalc)
-* [Develop](https://community.kde.org/Get_Involved/development)
+* [Develop](https://develop.kde.org/docs/getting-started/building)
 * [Issues](https://bugs.kde.org/buglist.cgi?product=kcalc&resolution=---)
-* [Project home page](https://apps.kde.org/kcalc/)
+* [Project home page](https://apps.kde.org/kcalc)
