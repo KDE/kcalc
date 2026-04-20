@@ -1581,7 +1581,7 @@
 
 <sect1 id="and-or-xor">
 <title
->Cmp, Et, Ou et Xor</title>
+>CMP, ET, OU et XOR</title>
 
 <para
 >Les fonctions <guibutton
