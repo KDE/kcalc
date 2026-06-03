@@ -51,6 +51,7 @@
   <name xml:lang="sv">Kcalc</name>
   <name xml:lang="ta">கேக்கால்க்</name>
   <name xml:lang="tr">K Hesap</name>
+  <name xml:lang="ug">K ھېسابلىغۇچ</name>
   <name xml:lang="uk">KCalc</name>
   <name xml:lang="zh-CN">KCalc 计算器</name>
   <name xml:lang="zh-TW">KDE 計算機</name>
@@ -449,6 +450,7 @@
       <caption xml:lang="sv">Huvudfönstret i miniräknaren</caption>
       <caption xml:lang="ta">கேக்கால்க்கின் பிரதான சாளரம்</caption>
       <caption xml:lang="tr">K Hesap ana penceresi</caption>
+      <caption xml:lang="ug">K ھېسابلىغۇچنىڭ ئاساسىي كۆزنىكى</caption>
       <caption xml:lang="uk">Головне вікно KCalc</caption>
       <caption xml:lang="zh-CN">KCalc 主窗口</caption>
       <caption xml:lang="zh-TW">KDE 計算機的主視窗</caption>
