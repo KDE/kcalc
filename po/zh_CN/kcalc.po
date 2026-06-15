@@ -288,7 +288,7 @@ msgstr "十六进制"
 #: general.ui:152
 #, kde-format
 msgid "Misc"
-msgstr "杂项"
+msgstr "其他"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_Beep)
 #: general.ui:160
