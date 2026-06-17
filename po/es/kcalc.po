@@ -1,16 +1,16 @@
 # Spanish translations for kcalc.po package.
-# Copyright (C) 1999-2025 This file is copyright:
+# Copyright (C) 1999-2026 This file is copyright:
 # This file is distributed under the same license as the kcalc package.
 #
 # SPDX-FileCopyrightText: 1999 Alonso Lara <jlaram@nexo.es>
 # SPDX-FileCopyrightText: 2000-2002 Pablo de Vicente <vicente@oan.es>
-# SPDX-FileCopyrightText: 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Eloy Cuadra <ecuadra@eloihr.net>
+# SPDX-FileCopyrightText: 2003-2015, 2018-2026 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-06-16 00:48+0000\n"
-"PO-Revision-Date: 2025-05-18 11:45+0100\n"
+"PO-Revision-Date: 2026-06-16 15:39+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "First Translator: Alonso Lara <jlaram@nexo.es>\n"
-"X-Generator: Lokalize 25.04.1\n"
+"X-Generator: Lokalize 26.04.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -409,7 +409,7 @@ msgstr "Mostrar editor de b&its"
 msgctxt ""
 "Show calculation result on the output display always in scientific notation"
 msgid "Force scientific notation"
-msgstr ""
+msgstr "Forzar notación científica"
 
 #: kcalc.cpp:235
 #, kde-format
@@ -1292,7 +1292,7 @@ msgstr "Base numérica"
 #: kcalc.kcfg:188
 #, kde-format
 msgid "Force to show calculation results in scientific notation."
-msgstr ""
+msgstr "Forzar visualización de resultados en notación científica."
 
 #. i18n: ectx: label, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:194
