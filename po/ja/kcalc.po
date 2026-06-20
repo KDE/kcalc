@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-06-16 00:48+0000\n"
-"PO-Revision-Date: 2026-02-21 17:28+0900\n"
+"PO-Revision-Date: 2026-06-14 21:28+0900\n"
 "Last-Translator: Mint <5602mint@gmail.com>\n"
 "Language-Team: Japanese <kde-i18n-doc@kde.org>\n"
 "Language: ja\n"
@@ -22,19 +22,19 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
-"X-Generator: Lokalize 25.12.2\n"
+"X-Generator: Lokalize 26.04.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "R. Imura,Noboru Sinohara,Fumiaki Okushi,Kenshi Muto,R.Suga"
+msgstr "R. Imura,Noboru Sinohara,Fumiaki Okushi,Kenshi Muto,R.Suga,Mint"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
 "imura@cs.titech.ac.jp,shinobo@leo.bekkoame.ne.jp,okushi@kde.gr.jp,"
-"kmuto@debian.org,21r.suga@gmail.com"
+"kmuto@debian.org,21r.suga@gmail.com,5602mint@gmail.com"
 
 #, kde-format
 msgctxt "Name of the user programmable constant"
@@ -652,7 +652,7 @@ msgstr "i"
 #: kcalc.cpp:491
 #, kde-format
 msgid "Imaginary unit"
-msgstr ""
+msgstr "虚数単位"
 
 #: kcalc.cpp:492
 #, kde-format
@@ -663,7 +663,7 @@ msgstr "∠"
 #: kcalc.cpp:492
 #, kde-format
 msgid "Polar complex"
-msgstr ""
+msgstr "極形式"
 
 #: kcalc.cpp:510
 #, kde-format
@@ -965,7 +965,7 @@ msgstr ""
 #: kcalc.cpp:2987
 #, kde-format
 msgid "Gabriel Barrantes"
-msgstr ""
+msgstr "Gabriel Barrantes"
 
 #: kcalc.cpp:2987
 #, kde-format
@@ -1698,7 +1698,7 @@ msgstr "Ln"
 #: kcalc.ui:1008
 #, kde-format
 msgid "Imaginary Unit"
-msgstr ""
+msgstr "虚数単位"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbI)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbI)
@@ -1753,7 +1753,7 @@ msgstr "Lsh"
 #: kcalc.ui:1110
 #, kde-format
 msgid "sqrt"
-msgstr ""
+msgstr "sqrt"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPower)
 #: kcalc.ui:1126
@@ -2239,7 +2239,7 @@ msgstr "演算結果ディスプレイ"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Copy"
-msgstr ""
+msgstr "コピー(&C)"
 
 #: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:58
 #, kde-format
