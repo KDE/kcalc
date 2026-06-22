@@ -122,7 +122,6 @@ public:
         BinaryFunctionType,
         OpeningParenthesesType,
         ClosingParenthesesType,
-        NotInitialized
     };
 
     KCalcToken(TokenCode tokenCode);

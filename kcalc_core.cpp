@@ -270,8 +270,6 @@ CalcEngine::ResultCode CalcEngine::calculate(const QQueue<KCalcToken> &tokenBuff
             }
             tokenIndex++;
             break;
-        default:
-            break;
         }
     }
 
