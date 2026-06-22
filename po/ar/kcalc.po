@@ -1,6 +1,6 @@
 # translation of kcalc.po to
 # Copyright (C) 2004, 2006, 2007 Free Software Foundation, Inc.
-# SPDX-FileCopyrightText: 2010, 2021, 2022, 2023, 2024, 2025 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
+# SPDX-FileCopyrightText: 2010, 2021, 2022, 2023, 2024, 2025, 2026 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
 # Waseem Bakr <bakr@mit.edu>, 2001.
 # Ahmad M. Zawawi <azawawi@emirates.net.ae>, 2004.
 # Youssef Chahibi <chahibi@gmail.com>, 2006, 2007.
