@@ -15,13 +15,13 @@
 # tahmar1900 <tahmar1900@gmail.com>, 2005, 2006, 2007.
 # Diego Iastrubni <elcuco@kde.org>, 2005.
 # Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
-# SPDX-FileCopyrightText: 2023, 2024, 2025 Yaron Shahrabani <sh.yaron@gmail.com>
+# SPDX-FileCopyrightText: 2023-2026 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-06-16 00:48+0000\n"
-"PO-Revision-Date: 2025-05-18 17:02+0300\n"
+"PO-Revision-Date: 2026-06-16 10:13+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 25.04.1\n"
+"X-Generator: Lokalize 26.04.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -419,7 +419,7 @@ msgstr "הצגת עריכת &סיביות"
 msgctxt ""
 "Show calculation result on the output display always in scientific notation"
 msgid "Force scientific notation"
-msgstr ""
+msgstr "אילוץ כתיבה מדעית"
 
 #: kcalc.cpp:235
 #, kde-format
@@ -1293,7 +1293,7 @@ msgstr "בסיס מספרי"
 #: kcalc.kcfg:188
 #, kde-format
 msgid "Force to show calculation results in scientific notation."
-msgstr ""
+msgstr "אילוץ להציג את תוצאות החישוב בכתיבה מדעית."
 
 #. i18n: ectx: label, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:194
