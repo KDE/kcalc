@@ -5,21 +5,21 @@
 # Bjarni R. Einarsson, <bre@mmedia.is>, 1998.
 # Richard Allen, <ra@ra.is>, 1999.
 # Pjetur G. Hjaltason <pjetur@pjetur.net>, 2003.
-# Sveinn í Felli <sveinki@nett.is>, 2009.
+# SPDX-FileCopyrightText: 2009, 2026 Sveinn í Felli <sveinki@nett.is>
 # SPDX-FileCopyrightText: 2023, 2024, 2025 Guðmundur Erlingsson <gudmundure@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-06-16 00:48+0000\n"
-"PO-Revision-Date: 2025-07-11 19:17+0000\n"
-"Last-Translator: Gummi <gudmundure@gmail.com>\n"
-"Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
+"PO-Revision-Date: 2026-06-24 10:57+0000\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
+"Language-Team: Icelandic\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.12.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 "Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
 "\n"
 "\n"
@@ -29,14 +29,14 @@ msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr ""
 "Bjarni R. Einarsson, Richard Allen, Guðjón I. Guðjónsson, Pjetur G. "
-"Hjaltason, Guðmundur Erlingsson"
+"Hjaltason, Guðmundur Erlingsson, Sveinn í Felli"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
 "bre@mmedia.is, ra@ra.is, gudjonh@hi.is, pjetur@pjetur.net, gudmundure@gmail."
-"com"
+"com, sv1@fellsnet.is"
 
 #, kde-format
 msgctxt "Name of the user programmable constant"
@@ -415,7 +415,7 @@ msgstr "Sýna b&itaritil"
 msgctxt ""
 "Show calculation result on the output display always in scientific notation"
 msgid "Force scientific notation"
-msgstr ""
+msgstr "Þvinga fram vísindasnið"
 
 #: kcalc.cpp:235
 #, kde-format
@@ -1294,7 +1294,7 @@ msgstr "Talnakerfisgrunnur"
 #: kcalc.kcfg:188
 #, kde-format
 msgid "Force to show calculation results in scientific notation."
-msgstr ""
+msgstr "Þvinga fram birtingu útreikninga á vísindasniði."
 
 #. i18n: ectx: label, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:194
