@@ -1,30 +1,31 @@
-# SPDX-FileCopyrightText: 2009, 2010, 2023, 2024 Johannes Obermayr <johannesobermayr@gmx.de>
-# SPDX-FileCopyrightText: 2003, 2004, 2005 Gregor Zumstein <zumstein@ssd.ethz.ch>
 # SPDX-FileCopyrightText: 2003 Thomas Diehl <thd@kde.org>
-# SPDX-FileCopyrightText: 2005, 2006, 2010 Thomas Reitelbach <tr@erdfunkstelle.de>
-# SPDX-FileCopyrightText: 2005, 2006 Stephan Johach <hunsum@gmx.de>
-# SPDX-FileCopyrightText: 2007, 2008, 2009 Gregor Zumstein <gz@orchester-bremgarten.ch>
-# SPDX-FileCopyrightText: 2008, 2009, 2012, 2013, 2014, 2015, 2018, 2019, 2021 Burkhard Lück <lueck@hube-lueck.de>
-# SPDX-FileCopyrightText: 2009, 2010 Panagiotis Papadopoulos <pano_90@gmx.net>
+# SPDX-FileCopyrightText: 2003-2005 Gregor Zumstein <zumstein@ssd.ethz.ch>
+# SPDX-FileCopyrightText: 2005-006, 2010 Thomas Reitelbach <tr@erdfunkstelle.de>
+# SPDX-FileCopyrightText: 2005-2006 Stephan Johach <hunsum@gmx.de>
+# SPDX-FileCopyrightText: 2007-2009 Gregor Zumstein <gz@orchester-bremgarten.ch>
+# SPDX-FileCopyrightText: 2008-2009, 2012-2015, 2018-2019, 2021 Burkhard Lück <lueck@hube-lueck.de>
 # SPDX-FileCopyrightText: 2009 Rolf Eike Beer <kde@opensource.sf-tec.de>
-# SPDX-FileCopyrightText: 2010, 2011, 2016, 2021, 2022 Frederik Schwarzer <schwarzer@kde.org>
+# SPDX-FileCopyrightText: 2009-2010 Panagiotis Papadopoulos <pano_90@gmx.net>
+# SPDX-FileCopyrightText: 2009-2010, 2023-2024 Johannes Obermayr <johannesobermayr@gmx.de>
+# SPDX-FileCopyrightText: 2010-2011, 2016, 2021-2022 Frederik Schwarzer <schwarzer@kde.org>
 # SPDX-FileCopyrightText: 2024 Mirko Schaal <mirsch@mirsch.me>
-# SPDX-FileCopyrightText: 2025 Philipp Kiemle <l10n.daphipz@fastmail.de>
 # SPDX-FileCopyrightText: 2025 Frank Steinmetzger <dev-kde@felsenfleischer.de>
+# SPDX-FileCopyrightText: 2025 Philipp Kiemle <l10n.daphipz@fastmail.de>
+# SPDX-FileCopyrightText: 2026 Alexander Becker <alex-at-kde-l10n-de@freenet.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-06-16 00:48+0000\n"
-"PO-Revision-Date: 2025-07-22 11:55+0200\n"
-"Last-Translator: Frank Steinmetzger <dev-kde@felsenfleischer.de>\n"
+"PO-Revision-Date: 2026-06-25 22:47+0200\n"
+"Last-Translator: Alexander Becker <alex-at-kde-l10n-de@freenet.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.04.2\n"
+"X-Generator: Lokalize 26.04.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -417,7 +418,7 @@ msgstr "Bitbearbeitung zeigen"
 msgctxt ""
 "Show calculation result on the output display always in scientific notation"
 msgid "Force scientific notation"
-msgstr ""
+msgstr "Wissenschaftliche Notation erzwingen"
 
 #: kcalc.cpp:235
 #, kde-format
@@ -849,7 +850,7 @@ msgstr "Exponent"
 #, kde-format
 msgctxt "Second function mode"
 msgid "Shift"
-msgstr "Verschiebung"
+msgstr "Umsch"
 
 #: kcalc.cpp:1255 kcalc.cpp:1256
 #, kde-format
@@ -1307,6 +1308,7 @@ msgstr "Zahlenbasis"
 #, kde-format
 msgid "Force to show calculation results in scientific notation."
 msgstr ""
+"Anzeige der Berechnungsergebnisse in wissenschaftlicher Notation erzwingen."
 
 #. i18n: ectx: label, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:194
@@ -2176,7 +2178,7 @@ msgstr "Zweite Funktion der Taste"
 #: kcalc.ui:1697 kcalc.ui:1700
 #, kde-format
 msgid "Shift"
-msgstr "Verschiebung"
+msgstr "Umschalten"
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbShift)
 #: kcalc.ui:1703
@@ -2268,7 +2270,7 @@ msgstr "NORM"
 #, kde-format
 msgctxt "Second button functions are active"
 msgid "SHIFT"
-msgstr "SHIFT"
+msgstr "UMSCH"
 
 #: kcalc_statusbar.cpp:17
 #, kde-format
