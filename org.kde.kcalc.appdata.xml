@@ -367,7 +367,7 @@
       <li xml:lang="bg">Използването на клавишни свързвания прави възможно по-лесната му употреба без посочващо устройство</li>
       <li xml:lang="ca">L'ús dels lligams de tecla facilita l'ús sense un dispositiu apuntador</li>
       <li xml:lang="ca-valencia">L'ús dels lligams de tecla facilita l'ús sense un dispositiu apuntador</li>
-      <li xml:lang="de">Tastenbelegungen ermöglichen das Arbeiten ohne Zeigergerät</li>
+      <li xml:lang="de">Tastenbelegungen ermöglichen das Arbeiten ohne Zeigegerät</li>
       <li xml:lang="el">Η χρήση συνδυασμών πλήκτρων διευκολύνει τη χρήση αν δεν υπάρχει συσκευή δεικτοδότησης</li>
       <li xml:lang="en-GB">The use of key-bindings make it easy to use without a pointing device</li>
       <li xml:lang="eo">La uzo de klavbindoj faciligas uzi sen indika aparato</li>
@@ -509,7 +509,7 @@
       <caption xml:lang="bg">Прозорец на KCalc в режим на научен калкулатор</caption>
       <caption xml:lang="ca">Finestra del KCalc en mode de sistema científic</caption>
       <caption xml:lang="ca-valencia">Finestra de KCalc en mode de sistema científic</caption>
-      <caption xml:lang="de">KCalc-Fenster im Wissenschafts-Modus</caption>
+      <caption xml:lang="de">KCalc-Fenster im wissenschaftlichen Modus</caption>
       <caption xml:lang="el">Παράθυρο KCalc σε επιστημονική λειτουργία</caption>
       <caption xml:lang="en-GB">Kcalc window in scientific mode</caption>
       <caption xml:lang="eo">Kcalc-fenestro en scienca reĝimo</caption>
