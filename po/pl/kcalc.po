@@ -1,5 +1,5 @@
 # translation of kcalc.po to Polish
-# Version: $Revision: 1739199 $
+# Version: $Revision: 1741238 $
 # translation of kcalc.po to
 # KTranslator Generated File
 # SPDX-FileCopyrightText: 2012, 2013, 2014, 2015, 2017, 2018, 2019, 2021, 2022, 2023, 2024, 2025 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-16 00:48+0000\n"
+"POT-Creation-Date: 2026-07-13 00:47+0000\n"
 "PO-Revision-Date: 2025-11-01 09:29+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: pl\n"
@@ -946,10 +946,15 @@ msgid "KDE Calculator"
 msgstr "Kalkulator KDE"
 
 #: kcalc.cpp:2976
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Copyright © 2008-2013, Evan Teran\n"
+#| "Copyright © 2000-2008, The KDE Team\n"
+#| "Copyright © 2003-2005, Klaus Niederkrüger\n"
+#| "Copyright © 1996-2000, Bernd Johannes Wuebben"
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
-"Copyright © 2000-2008, The KDE Team\n"
+"Copyright © 2000-2026, The KDE Team\n"
 "Copyright © 2003-2005, Klaus Niederkrüger\n"
 "Copyright © 1996-2000, Bernd Johannes Wuebben"
 msgstr ""
