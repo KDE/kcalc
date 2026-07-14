@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-13 00:47+0000\n"
-"PO-Revision-Date: 2026-06-16 06:09+0200\n"
+"PO-Revision-Date: 2026-07-13 06:46+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -945,22 +945,17 @@ msgid "KDE Calculator"
 msgstr "KDE-jevo računalo"
 
 #: kcalc.cpp:2976
-#, fuzzy, kde-format
-#| msgid ""
-#| "Copyright © 2008-2013, Evan Teran\n"
-#| "Copyright © 2000-2008, The KDE Team\n"
-#| "Copyright © 2003-2005, Klaus Niederkrüger\n"
-#| "Copyright © 1996-2000, Bernd Johannes Wuebben"
+#, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
 "Copyright © 2000-2026, The KDE Team\n"
 "Copyright © 2003-2005, Klaus Niederkrüger\n"
 "Copyright © 1996-2000, Bernd Johannes Wuebben"
 msgstr ""
-"Avtorske pravice © 2008-2013, Evan Teran\n"
-"Avtorske pravice © 2000-2008, ekipa KDE\n"
-"Avtorske pravice © 2003-2005, Klaus Niederkrüger\n"
-"Avtorske pravice © 1996-2000, Bernd Johannes Wuebben"
+"Copyright © 2008-2013, Evan Teran\n"
+"Copyright © 2000-2026, The KDE Team\n"
+"Copyright © 2003-2005, Klaus Niederkrüger\n"
+"Copyright © 1996-2000, Bernd Johannes Wuebben"
 
 #: kcalc.cpp:2987
 #, kde-format
