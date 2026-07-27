@@ -279,7 +279,6 @@ void KCalcToken::setToken(TokenCode tokenCode)
     case Permille:
     case TwosComplement:
     case DoubleFactorial:
-    case Degree:
     case Gradian:
     case Radian:
     default:

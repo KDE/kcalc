@@ -35,7 +35,6 @@ public:
         Cube,
         SquareRoot,
         CubicRoot,
-        Degree,
         Gradian,
         Radian,
         Sin,

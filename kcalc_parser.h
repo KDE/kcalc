@@ -138,7 +138,6 @@ private:
     static const inline QString gammaStr = QStringLiteral("Γ");
     static const inline QString invertSignStr = QStringLiteral("–");
 
-    static const inline QString degreeStr = QStringLiteral("°");
     static const inline QString gradianStr = QStringLiteral("gon");
     static const inline QString radianStr = QStringLiteral("rad");
     static const inline QString sinStr = QStringLiteral("sin");

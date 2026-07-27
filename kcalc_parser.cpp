@@ -238,10 +238,6 @@ KCalcToken::TokenCode KCalcParser::stringToToken(const QString &buffer, int &ind
         return KCalcToken::TokenCode::Multiplication;
     }
 
-    if (s.startsWith(degreeStr)) {
-        index++;
-        return KCalcToken::TokenCode::Degree;
-    }
     if (s.startsWith(andStr)) {
         index++;
         return KCalcToken::TokenCode::And;
@@ -658,9 +654,6 @@ const QString KCalcParser::tokenToString(KCalcToken::TokenCode tokenCode)
         break;
     case KCalcToken::TokenCode::CubicRoot:
         return cubicRootStr;
-        break;
-    case KCalcToken::TokenCode::Degree:
-        return degreeStr;
         break;
     case KCalcToken::TokenCode::Gradian:
         return gradianStr;
