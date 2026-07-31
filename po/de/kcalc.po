@@ -240,7 +240,7 @@ msgstr ""
 "KCalc kann mit weitaus mehr Ziffern rechnen als auf dem Bildschirm "
 "dargestellt werden können. Mit dieser Einstellung definieren Sie die Anzahl "
 "Ziffern, die dargestellt werden können. Sind es mehr, verwendet KCalc die "
-"wissenschaftliche Notation, z. B. 2,34e+12."
+"wissenschaftliche Notation, z. B. 2,34e+12."
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_Fixed)
 #: general.ui:51
@@ -345,7 +345,7 @@ msgstr ""
 "Wählen Sie, ob die Schreibweise als Zweierkomplement für Binär-, Oktal- und "
 "Hexadezimalzahlen verwendet werden soll. Diese Schreibweise wird "
 "üblicherweise für die Darstellung von negativen Nicht-Dezimalzahlen in der "
-"Datenverarbeitung benutzt."
+"Datenverarbeitung verwendet."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_TwosComplement)
 #: general.ui:189
@@ -1167,7 +1167,7 @@ msgstr ""
 "\tKCalc kann mit weitaus mehr Ziffern rechnen als auf dem Bildschirm\n"
 "\tdargestellt werden können. Mit dieser Einstellung definieren Sie die\n"
 "\tAnzahl Ziffern, die dargestellt werden können. Sind es mehr, verwendet\n"
-"\tKCalc die wissenschaftliche Notation, z. B. 2.34e12.\n"
+"\tKCalc die wissenschaftliche Notation, z. B. 2.34e12.\n"
 "      "
 
 #. i18n: ectx: label, entry (FixedPrecision), group (Precision)
@@ -1225,7 +1225,7 @@ msgstr ""
 "        Hexadezimalzahlen verwendet werden soll. Diese Schreibweise wird "
 "üblicherweise\n"
 "        für die Darstellung von negativen Nicht-Dezimalzahlen in der "
-"Datenverarbeitung benutzt.\n"
+"Datenverarbeitung verwendet.\n"
 "      "
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
