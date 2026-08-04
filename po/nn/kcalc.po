@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-13 00:47+0000\n"
-"PO-Revision-Date: 2026-08-02 19:19+0200\n"
+"PO-Revision-Date: 2026-08-03 19:31+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@nuug.no>\n"
 "Language: nn\n"
@@ -646,7 +646,7 @@ msgstr "i"
 #: kcalc.cpp:491
 #, kde-format
 msgid "Imaginary unit"
-msgstr ""
+msgstr "Imaginær eining"
 
 #: kcalc.cpp:492
 #, kde-format
@@ -657,7 +657,7 @@ msgstr "∠"
 #: kcalc.cpp:492
 #, kde-format
 msgid "Polar complex"
-msgstr ""
+msgstr "Polar kompleks"
 
 #: kcalc.cpp:510
 #, kde-format
@@ -837,16 +837,16 @@ msgid "Exponent"
 msgstr "Eksponent"
 
 #: kcalc.cpp:948
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Second function mode"
 msgid "Shift"
 msgstr "Skift"
 
 #: kcalc.cpp:1255 kcalc.cpp:1256
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Memory cleared"
 msgid "M cleared"
-msgstr "Tøm minnet"
+msgstr "M tømt"
 
 #: kcalc.cpp:1526
 #, kde-format
@@ -894,9 +894,9 @@ msgid "] = "
 msgstr "] = "
 
 #: kcalc.cpp:1641 kcalc.cpp:1643 kcalc.cpp:1644
-#, fuzzy, kde-format
+#, kde-format
 msgid "Last stat data erased"
-msgstr "Siste statistikkverdi sletta"
+msgstr "Siste statistikkverdi fjerna"
 
 #: kcalc.cpp:1656 kcalc.cpp:1659 kcalc.cpp:1660
 #, kde-format
@@ -1290,7 +1290,7 @@ msgstr "Grunntal"
 #: kcalc.kcfg:188
 #, kde-format
 msgid "Force to show calculation results in scientific notation."
-msgstr ""
+msgstr "Tving vising av resultat med vitskapleg notasjon."
 
 #. i18n: ectx: label, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:194
@@ -1300,7 +1300,7 @@ msgstr "Binærtal vert skilde med mellomrom etter kvart x-te siffer."
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:199
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1327,7 +1327,7 @@ msgstr "Oktaltal vert skilde med mellomrom etter kvart x-te siffer."
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:208
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1355,7 +1355,7 @@ msgstr "Heksadesimaltal vert skilde med mellomrom etter kvart x-te siffer."
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:217
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1696,7 +1696,7 @@ msgstr "Ln"
 #: kcalc.ui:1008
 #, kde-format
 msgid "Imaginary Unit"
-msgstr ""
+msgstr "Imaginær eining"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbI)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbI)
@@ -1751,7 +1751,7 @@ msgstr "Lsh"
 #: kcalc.ui:1110
 #, kde-format
 msgid "sqrt"
-msgstr ""
+msgstr "kvadratrot"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPower)
 #: kcalc.ui:1126
@@ -2132,7 +2132,7 @@ msgstr ")"
 #: kcalc.ui:1675
 #, kde-format
 msgid "Return"
-msgstr ""
+msgstr "Enter"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbBackspace)
 #: kcalc.ui:1678
