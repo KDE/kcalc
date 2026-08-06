@@ -1,4 +1,4 @@
-# translation of kcalc.po to Greek
+# SPDX-FileCopyrightText: 2026 translation of kcalc.po to Greek
 # translation of kcalc.po to
 # translation of kcalc.po to
 # translation of kcalc.po to
@@ -17,7 +17,7 @@
 # Dimitrios Glentadakis <dglent@gmail.com>, 2012.
 # Stelios <sstavra@gmail.com>, 2012, 2014, 2019, 2020, 2021, 2023.
 # Dimitris Kardarakos <dimkard@gmail.com>, 2015.
-# Long Run <pvidalis@gmail.com>, 2018.
+# SPDX-FileCopyrightText: 2018, 2026 Long Run <pvidalis@gmail.com>
 # SPDX-FileCopyrightText: 2024 George Stefanakis <george.stefanakis@gmail.com>
 # SPDX-FileCopyrightText: 2024 Antonis Geralis <capoiosct@gmail.com>
 msgid ""
@@ -25,15 +25,15 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-06-16 00:48+0000\n"
-"PO-Revision-Date: 2024-09-20 13:41+0300\n"
-"Last-Translator: Antonis Geralis <capoiosct@gmail.com>\n"
+"PO-Revision-Date: 2026-08-05 22:11+0300\n"
+"Last-Translator: Petros Vidalis <pvidalis@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.08.1\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -83,7 +83,7 @@ msgstr "C6"
 #: colors.ui:17
 #, kde-format
 msgid "Follow system color scheme"
-msgstr ""
+msgstr "Να ακολουθείται το σχήμα χρώματος"
 
 #. i18n: ectx: property (title), widget (QGroupBox, displayColorsBox)
 #: colors.ui:30
@@ -430,7 +430,7 @@ msgstr "Εμφάν&ιση επεξεργασίας bit"
 msgctxt ""
 "Show calculation result on the output display always in scientific notation"
 msgid "Force scientific notation"
-msgstr ""
+msgstr "Επιβολή επιστημονικής σημειογραφίας"
 
 #: kcalc.cpp:235
 #, kde-format
@@ -660,29 +660,26 @@ msgid "Exponential function"
 msgstr "Εκθετική (exp) συνάρτηση"
 
 #: kcalc.cpp:491
-#, fuzzy, kde-format
-#| msgid "Pi"
+#, kde-format
 msgctxt "Imaginary unit"
 msgid "i"
-msgstr "π"
+msgstr "i"
 
 #: kcalc.cpp:491
 #, kde-format
 msgid "Imaginary unit"
-msgstr ""
+msgstr "Φανταστική μονάδα"
 
 #: kcalc.cpp:492
-#, fuzzy, kde-format
-#| msgctxt "- calculator button"
-#| msgid "−"
+#, kde-format
 msgctxt "Polar complex"
 msgid "∠"
-msgstr "−"
+msgstr "∠"
 
 #: kcalc.cpp:492
 #, kde-format
 msgid "Polar complex"
-msgstr ""
+msgstr "Πολικό σύμπλεγμα"
 
 #: kcalc.cpp:510
 #, kde-format
@@ -919,10 +916,9 @@ msgid "] = "
 msgstr "] = "
 
 #: kcalc.cpp:1641 kcalc.cpp:1643 kcalc.cpp:1644
-#, fuzzy, kde-format
-#| msgid "Last stat item erased"
+#, kde-format
 msgid "Last stat data erased"
-msgstr "Το τελευταίο στατιστικό αντικείμενο διαγράφηκε"
+msgstr "Τα τελευταία στατιστικά δεδομένα διαγράφηκαν"
 
 #: kcalc.cpp:1656 kcalc.cpp:1659 kcalc.cpp:1660
 #, kde-format
@@ -981,7 +977,7 @@ msgstr ""
 #: kcalc.cpp:2987
 #, kde-format
 msgid "Gabriel Barrantes"
-msgstr ""
+msgstr "Gabriel Barrantes"
 
 #: kcalc.cpp:2987
 #, kde-format
@@ -1316,6 +1312,8 @@ msgstr "Αριθμητική βάση"
 #, kde-format
 msgid "Force to show calculation results in scientific notation."
 msgstr ""
+"Αναγκαστική εμφάνιση των αποτελεσμάτων υπολογισμών σε επιστημονική "
+"σημειογραφία."
 
 #. i18n: ectx: label, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:194
@@ -1446,10 +1444,9 @@ msgstr "&Grad"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, numeralSystemComboBox)
 #: kcalc.ui:426
-#, fuzzy, kde-format
-#| msgid "Switch base to octal."
+#, kde-format
 msgid "Switch base"
-msgstr "Αλλαγή βάσης σε οκταδική."
+msgstr "Αλλαγή βάσης"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbSquare)
 #: kcalc.ui:495
@@ -1718,15 +1715,14 @@ msgstr "Ln"
 #: kcalc.ui:1008
 #, kde-format
 msgid "Imaginary Unit"
-msgstr ""
+msgstr "Φανταστική μονάδα"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbI)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbI)
 #: kcalc.ui:1011 kcalc.ui:1014
-#, fuzzy, kde-format
-#| msgid "Pi"
+#, kde-format
 msgid "i"
-msgstr "π"
+msgstr "i"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMed)
 #: kcalc.ui:1027
@@ -1942,8 +1938,7 @@ msgstr "Πολλαπλασιασμός"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbMultiplication)
 #: kcalc.ui:1359
-#, fuzzy, kde-format
-#| msgid "Multiplication"
+#, kde-format
 msgid "Multiply"
 msgstr "Πολλαπλασιασμός"
 
@@ -2046,10 +2041,9 @@ msgstr "Καθαρισμός όλων"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbAllClear)
 #: kcalc.ui:1519
-#, fuzzy, kde-format
-#| msgid "Memory clear"
+#, kde-format
 msgid "All clear"
-msgstr "Καθαρισμός μνήμης"
+msgstr "Εκκαθάριση"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbAllClear)
 #: kcalc.ui:1522
