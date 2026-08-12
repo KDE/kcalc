@@ -59,7 +59,7 @@
 
 <abstract
 ><para
->&kcalc; ist ein Taschenrechner für Ihre Arbeitsumgebung. Im einfachen Modus kann das Programm für grundlegende arithmetische Operationen benutzt werden, aber es gibt zusätzlich noch erweitere Modi für wissenschaftliche, statistische und numerische Berechnungen.</para
+>&kcalc; ist ein Taschenrechner für Ihre Arbeitsumgebung. Im einfachen Modus kann das Programm für grundlegende arithmetische Operationen verwendet werden, aber es gibt zusätzlich noch erweitere Modi für wissenschaftliche, statistische und numerische Berechnungen.</para
 ></abstract>
 
 <keywordset>
@@ -713,26 +713,24 @@
 >In diesem Modus werden Tasten und Funktionen für Berechnungen in den Zahlensystemen Binär, Hexadezimal, Oktal und Dezimal angezeigt.</para>
 
 <para
->Das Zahlensystem wird mit den Auswahlknöpfen rechts im Fenster eingestellt. Eine hexadezimale Zahl geben Sie zum Beispiel auf folgende Weise ein: Wählen Sie den Auswahlknopf <guilabel
+>Die Basis wird mithilfe des Aufklappmenüs links festgelegt. Eine hexadezimale Zahl geben Sie zum Beispiel auf folgende Weise ein: Wählen Sie <guilabel
 >Hex</guilabel
-> und geben dann eine Zahl ein. Dabei können Sie alle Zahlen und die Buchstaben <keycap
->A</keycap
-> bis <keycap
->F</keycap
-> für hexadezimale Zahlen größer 9 benutzen, Möchten Sie diese Zahl im Binärformat sehen, klicken Sie den auf Auswahlknopf <guilabel
->Bin</guilabel
-> </para>
+> im Aufklappmenü aus und geben Sie dann eine Zahl ein. Dabei können Sie alle Ziffern und für Hexadezimalzahlen größer 9 die Buchstaben <guibutton
+>A</guibutton
+> bis <guibutton
+>F</guibutton
+> verwenden. In der „Logik-Modus“-Ansicht können Sie die Zahl auch im Dezimal-, Oktal- oder Binärformat sehen.</para>
 
  <para
 >Binäre, oktale und hexadezimale Zahlen können als Zifferngruppen mit Leerzeichen als Trennzeichen dargestellt werden. Diese Gruppierung verbessert die Lesbarkeit der Zahlen. Zum Beispiel kann die hexadezimale Zahl <emphasis
 >AF1C42</emphasis
 > als <emphasis
 >AF 1C 42</emphasis
-> mit Trennung zwischen je zwei Zeichen angezeigt werden. Die Gruppierung kann abgeschaltet und eingerichtet werden. Wählen Sie <menuchoice
+> mit Trennung zwischen je zwei Zeichen angezeigt werden. Die Gruppierung kann deaktiviert oder optimiert werden. Wählen Sie <menuchoice
 ><guimenu
 >Einstellungen</guimenu
 ><guimenuitem
->&kcalc; einrichten ...</guimenuitem
+>&kcalc; einrichten …</guimenuitem
 ></menuchoice
 >, um den Einrichtungsdialog zu öffnen und die Einstellungen auf der Seite <guilabel
 >Allgemein</guilabel
@@ -950,7 +948,7 @@
 >.</para>
 
 <para
->Um den in einer Konstanten gespeicherten Wert in einer Berechnung zu benutzen, drücken Sie die gewünschte Taste (<guibutton
+>Um den in einer Konstanten gespeicherten Wert in einer Berechnung zu verwenden, drücken Sie die gewünschte Taste (<guibutton
 >K1</guibutton
 > bis <guibutton
 >K6</guibutton
@@ -974,7 +972,7 @@
 >Aus Liste wählen</guilabel
 >. Obwohl Sie die vordefinierten Konstanten auch im Menü mit <guimenu
 >Konstanten</guimenu
-> einfügen können, ist die Belegung einer Konstantentaste sehr praktisch, wenn Sie einen Wert mehrfach verwenden wollen.</para>
+> einfügen können, ist die Belegung einer Konstantentaste sehr praktisch, wenn Sie einen Wert mehrfach verwenden möchten.</para>
 
 </sect2>
 
@@ -985,7 +983,7 @@
 >Bedeutung der Tasten und Knöpfe</title>
 
 <para
->Um die Eingabe für die Berechnungen zu vereinfachen, benutzt &kcalc; einzelne Tasten auf der Tastatur für die meisten Funktionen. Zum Beispiel führt die Eingabe von <userinput
+>Um die Eingabe für die Berechnungen zu vereinfachen, verwendet &kcalc; einzelne Tasten auf der Tastatur für die meisten Funktionen. Zum Beispiel führt die Eingabe von <userinput
 >7R</userinput
 > oder <userinput
 >7r</userinput
@@ -1096,7 +1094,7 @@
 >Shift</guibutton
 ></entry>
 <entry
->Die zweite Funktion dieser Taste. Wenn Sie &eg; den Arcussinus von x berechnen wollen, tippen Sie <userinput
+>Die zweite Funktion dieser Taste. Wenn Sie &eg; den Arcussinus von x berechnen möchten, tippen Sie <userinput
 >Shift-2 + s</userinput
 ></entry
 ></row>
@@ -1412,7 +1410,7 @@
 >K1</guibutton
 ></entry>
 <entry
->benutzt den Wert aus Speicher K1 bis K6</entry
+>verwendet den Wert aus Speicher K1 bis K6</entry
 ></row>
 
 </tbody
@@ -1704,7 +1702,7 @@
 > <keycap
 >N</keycap
 ></userinput
-> auf der Tastatur oder benutzen Sie im Menü <menuchoice
+> auf der Tastatur oder verwenden Sie im Menü <menuchoice
 ><guimenu
 >Konstanten</guimenu
 ><guimenuitem
@@ -1725,11 +1723,11 @@
 ><guimenu
 >Einstellungen</guimenu
 ><guimenuitem
->&kcalc; einrichten ...</guimenuitem
+>&kcalc; einrichten …</guimenuitem
 ></menuchoice
 > in der Menüleiste. Damit öffnen Sie den Einrichtungsdialog, in dem Sie <guilabel
->Genauigkeit für Dezimal setzen</guilabel
-> ankreuzen können und mit dem Drehfeld die Anzahl Nachkommastellen auf 2 einstellen können.</para
+>Dezimale Genauigkeit festlegen</guilabel
+> aktivieren und mit dem Drehfeld die Anzahl Nachkommastellen auf 2 einstellen können.</para
 ></answer
 > </qandaentry>
 
