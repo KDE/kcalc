@@ -414,7 +414,7 @@ msgstr "Zobraziť úpravu &bitov"
 msgctxt ""
 "Show calculation result on the output display always in scientific notation"
 msgid "Force scientific notation"
-msgstr ""
+msgstr "Vynútiť vedecký zápis"
 
 #: kcalc.cpp:235
 #, kde-format
@@ -946,12 +946,7 @@ msgid "KDE Calculator"
 msgstr "Kalkulačka pre KDE"
 
 #: kcalc.cpp:2976
-#, fuzzy, kde-format
-#| msgid ""
-#| "Copyright © 2008-2013, Evan Teran\n"
-#| "Copyright © 2000-2008, The KDE Team\n"
-#| "Copyright © 2003-2005, Klaus Niederkrüger\n"
-#| "Copyright © 1996-2000, Bernd Johannes Wuebben"
+#, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
 "Copyright © 2000-2026, The KDE Team\n"
@@ -959,7 +954,7 @@ msgid ""
 "Copyright © 1996-2000, Bernd Johannes Wuebben"
 msgstr ""
 "Copyright © 2008-2013, Evan Teran\n"
-"Copyright © 2000-2008, The KDE Team\n"
+"Copyright © 2000-2026, The KDE Team\n"
 "Copyright © 2003-2005, Klaus Niederkrüger\n"
 "Copyright © 1996-2000, Bernd Johannes Wuebben"
 
@@ -1301,7 +1296,7 @@ msgstr "Číselná sústava"
 #: kcalc.kcfg:188
 #, kde-format
 msgid "Force to show calculation results in scientific notation."
-msgstr ""
+msgstr "Vynútiť zobrazovanie výsledkov výpočtu vo vedeckom zápise."
 
 #. i18n: ectx: label, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:194
