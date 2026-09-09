@@ -30,7 +30,7 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ftpmirror.gnu.org/gnu/mpfr/mpfr-4.2.2.tar.xz",
+                    "url": "https://files.kde.org/craft/sources/libs/mpfr/mpfr-4.2.2.tar.xz",
                     "sha256": "b67ba0383ef7e8a8563734e2e889ef5ec3c3b898a01d00fa0a6869ad81c6ce01",
                     "gpg-key-url": "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x5831D11A0D4DB02A",
                     "gpg-key-fingerprint": "A534BE3F83E241D918280AEB5831D11A0D4DB02A",
