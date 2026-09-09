@@ -30,11 +30,11 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ftpmirror.gnu.org/gnu/mpc/mpc-1.4.1.tar.xz",
+                    "url": "https://files.kde.org/craft/sources/libs/mpc/mpc-1.4.1.tar.xz",
                     "sha256": "91204cd32f164bd3b7c992d4a6a8ce6519511aadab30f78b6982d0bf8d73e931",
                     "gpg-key-url": "https://www.multiprecision.org/downloads/enge.gpg",
                     "gpg-key-fingerprint": "AD17A21EF8AED8F1CC02DBD9F7D5C9BF765C61E3",
-                    "gpg-signature-url": "https://ftpmirror.gnu.org/gnu/mpc/mpc-1.4.1.tar.xz.sig",
+                    "gpg-signature-url": "https://files.kde.org/craft/sources/libs/mpc/mpc-1.4.1.tar.xz.sig",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 1667,
