@@ -1441,9 +1441,8 @@ void KCalculator::slotInputChanged()
         switch (m_calculationResultCode) {
         case CalcEngine::ResultCode::MissingRightUnaryArg:
         case CalcEngine::ResultCode::MissingRightBinaryArg:
-            if (calc_display->text().isEmpty()) {
-                numeralSystemView->clearNumber();
-            }
+            updateDisplay(UpdateClear);
+            numeralSystemView->clearNumber();
             break;
         case CalcEngine::ResultCode::MathError:
             updateDisplay(UpdateClear);
