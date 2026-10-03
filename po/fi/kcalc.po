@@ -1,5 +1,5 @@
 # Translation of kcalc.po into finnish
-# SPDX-FileCopyrightText: 2010, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Tommi Nieminen <translator@legisign.org>
+# SPDX-FileCopyrightText: 2010, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026 Tommi Nieminen <translator@legisign.org>
 # Teemu Rytilahti <teemu.rytilahti@d5k.net>, 2003.
 # Kim Enkovaara <kim.enkovaara@iki.fi>, 2003.
 # Mikko Ikola <ikola@iki.fi>, 2003.
@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-13 00:47+0000\n"
-"PO-Revision-Date: 2025-07-21 18:53+0300\n"
+"PO-Revision-Date: 2026-08-25 20:14+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 25.04.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -414,7 +414,7 @@ msgstr "Näytä &bittimuokkaus"
 msgctxt ""
 "Show calculation result on the output display always in scientific notation"
 msgid "Force scientific notation"
-msgstr ""
+msgstr "Pakota tieteellinen muoto"
 
 #: kcalc.cpp:235
 #, kde-format
@@ -948,12 +948,7 @@ msgid "KDE Calculator"
 msgstr "KDE-laskin"
 
 #: kcalc.cpp:2976
-#, fuzzy, kde-format
-#| msgid ""
-#| "Copyright © 2008-2013, Evan Teran\n"
-#| "Copyright © 2000-2008, The KDE Team\n"
-#| "Copyright © 2003-2005, Klaus Niederkrüger\n"
-#| "Copyright © 1996-2000, Bernd Johannes Wuebben"
+#, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
 "Copyright © 2000-2026, The KDE Team\n"
@@ -961,7 +956,7 @@ msgid ""
 "Copyright © 1996-2000, Bernd Johannes Wuebben"
 msgstr ""
 "Copyright © 2008–2013 Evan Teran\n"
-"Copyright © 2000–2008 KDE-kehitysryhmä\n"
+"Copyright © 2000–2026 KDE-kehitysryhmä\n"
 "Copyright © 2003–2005 Klaus Niederkrüger\n"
 "Copyright © 1996–2000 Bernd Johannes Wuebben"
 
@@ -1303,7 +1298,7 @@ msgstr "Kantaluku"
 #: kcalc.kcfg:188
 #, kde-format
 msgid "Force to show calculation results in scientific notation."
-msgstr ""
+msgstr "Pakota näyttämään laskennan tulokset tieteellisessä muodossa."
 
 #. i18n: ectx: label, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:194
