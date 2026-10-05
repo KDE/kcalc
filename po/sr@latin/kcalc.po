@@ -4,13 +4,14 @@
 # Toplica Tanaskovic <toptan@kde.org.yu>, 2003.
 # Slobodan Simic <slsimic@gmail.com>, 2005, 2007, 2008, 2009.
 # Dalibor Djuric <daliborddjuric@gmail.com>, 2010, 2011.
+# Nemanja Hiršl <nemhirsl@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-13 00:47+0000\n"
-"PO-Revision-Date: 2015-01-31 12:56+0100\n"
-"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"PO-Revision-Date: 2026-10-04 23:13+0200\n"
+"Last-Translator: Nemanja Hiršl <nemhirsl@gmail.com>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
 "Language: sr@latin\n"
 "MIME-Version: 1.0\n"
@@ -25,12 +26,14 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Slobodan Mišković,Časlav Ilić,Slobodan Simić"
+msgstr "Slobodan Mišković,Časlav Ilić,Slobodan Simić,Nemanja Hiršl"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "yugoslavia@canada.com,caslav.ilic@gmx.net,slsimic@gmail.com"
+msgstr ""
+"yugoslavia@canada.com,caslav.ilic@gmx.net,slsimic@gmail.com,nemhirsl@gmail."
+"com"
 
 #, kde-format
 msgctxt "Name of the user programmable constant"
@@ -66,7 +69,7 @@ msgstr "C6"
 #: colors.ui:17
 #, kde-format
 msgid "Follow system color scheme"
-msgstr ""
+msgstr "Prati sistemsku šemu boja"
 
 #. i18n: ectx: property (title), widget (QGroupBox, displayColorsBox)
 #: colors.ui:30
@@ -94,17 +97,15 @@ msgstr "Boje dugmadi"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
 #: colors.ui:121
-#, fuzzy, kde-format
-#| msgid "&Background:"
+#, kde-format
 msgid "Background"
-msgstr "&Pozadina:"
+msgstr "Pozadina"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: colors.ui:131
-#, fuzzy, kde-format
-#| msgid "&Foreground:"
+#, kde-format
 msgid "Foreground"
-msgstr "&Boja ispisa:"
+msgstr "Ispis"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel5)
 #: colors.ui:141
@@ -144,10 +145,9 @@ msgstr "O&peracije:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel13)
 #: colors.ui:303
-#, fuzzy, kde-format
-#| msgid "&Constants"
+#, kde-format
 msgid "&Constants:"
-msgstr "&Konstante"
+msgstr "Ko&nstante:"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
 #: constants.ui:13 kcalc.cpp:1754
@@ -193,17 +193,15 @@ msgstr "Font koji se koristi za prikaz."
 
 #. i18n: ectx: property (text), widget (QLabel, historylabel)
 #: fonts.ui:61
-#, fuzzy, kde-format
-#| msgid "&Display font:"
+#, kde-format
 msgid "&History font:"
-msgstr "Font &prikaza:"
+msgstr "Font &istorijata:"
 
 #. i18n: ectx: property (toolTip), widget (KFontRequester, kcfg_HistoryFont)
 #: fonts.ui:74
-#, fuzzy, kde-format
-#| msgid "The font to use in the display"
+#, kde-format
 msgid "The font to use in the history"
-msgstr "Font koji se koristi za prikaz."
+msgstr "Font koji se koristi za istorijat"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
 #: general.ui:14 kcalc.cpp:1714
@@ -350,32 +348,28 @@ msgid "Two's complement"
 msgstr "Dvojni komplement"
 
 #: kcalc.cpp:85
-#, fuzzy, kde-format
-#| msgid "He&x"
+#, kde-format
 msgctxt "Hexadecimal numeral system"
 msgid "Hex"
-msgstr "&Heks."
+msgstr "Heks."
 
 #: kcalc.cpp:86
-#, fuzzy, kde-format
-#| msgid "&Dec"
+#, kde-format
 msgctxt "Decimal numeral system"
 msgid "Dec"
-msgstr "&Dek."
+msgstr "Dek."
 
 #: kcalc.cpp:87
-#, fuzzy, kde-format
-#| msgid "Octal"
+#, kde-format
 msgctxt "Octal numeral system"
 msgid "Oct"
-msgstr "oktalno"
+msgstr "Okt."
 
 #: kcalc.cpp:88
-#, fuzzy, kde-format
-#| msgid "&Bin"
+#, kde-format
 msgctxt "Binary numeral system"
 msgid "Bin"
-msgstr "&Bin."
+msgstr "Bin."
 
 #: kcalc.cpp:184
 #, kde-format
@@ -401,7 +395,7 @@ msgstr "Režim brojevnih sistema"
 #: kcalc.cpp:204
 #, kde-format
 msgid "Show &History"
-msgstr ""
+msgstr "Prikaži &istorijat"
 
 #: kcalc.cpp:210
 #, kde-format
@@ -418,7 +412,7 @@ msgstr "&Uređivanje bitova"
 msgctxt ""
 "Show calculation result on the output display always in scientific notation"
 msgid "Force scientific notation"
-msgstr ""
+msgstr "Nametni naučni zapis"
 
 #: kcalc.cpp:235
 #, kde-format
@@ -451,7 +445,7 @@ msgstr "Oduzmi od memorije"
 #, kde-format
 msgctxt "Square root"
 msgid "&radic;x"
-msgstr ""
+msgstr "√x"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSqrt)
 #: kcalc.cpp:357 kcalc.ui:1107
@@ -465,12 +459,10 @@ msgid "Cube root"
 msgstr "Kubni koren"
 
 #: kcalc.cpp:457
-#, fuzzy, kde-format
-#| msgctxt "Arc sine"
-#| msgid "Asin"
+#, kde-format
 msgctxt "Sine"
 msgid "sin"
-msgstr "Asin"
+msgstr "sin"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbSin)
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbSin)
@@ -483,7 +475,7 @@ msgstr "Sinus"
 #, kde-format
 msgctxt "Arc sine"
 msgid "asin"
-msgstr ""
+msgstr "asin"
 
 #: kcalc.cpp:458
 #, kde-format
@@ -491,12 +483,10 @@ msgid "Arc sine"
 msgstr "Arkus sinus"
 
 #: kcalc.cpp:459
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic sine"
-#| msgid "Asinh"
+#, kde-format
 msgctxt "Hyperbolic sine"
 msgid "sinh"
-msgstr "Asinh"
+msgstr "sinh"
 
 #: kcalc.cpp:459
 #, kde-format
@@ -504,12 +494,10 @@ msgid "Hyperbolic sine"
 msgstr "Sinus hiperbolički"
 
 #: kcalc.cpp:460
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic sine"
-#| msgid "Asinh"
+#, kde-format
 msgctxt "Inverse hyperbolic sine"
 msgid "asinh"
-msgstr "Asinh"
+msgstr "asinh"
 
 #: kcalc.cpp:460
 #, kde-format
@@ -517,12 +505,10 @@ msgid "Inverse hyperbolic sine"
 msgstr "Inverzni sinus hiperbolički"
 
 #: kcalc.cpp:465
-#, fuzzy, kde-format
-#| msgctxt "Arc cosine"
-#| msgid "Acos"
+#, kde-format
 msgctxt "Cosine"
 msgid "cos"
-msgstr "Acos"
+msgstr "cos"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbCos)
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbCos)
@@ -535,7 +521,7 @@ msgstr "Kosinus"
 #, kde-format
 msgctxt "Arc cosine"
 msgid "acos"
-msgstr ""
+msgstr "acos"
 
 #: kcalc.cpp:466
 #, kde-format
@@ -543,12 +529,10 @@ msgid "Arc cosine"
 msgstr "Arkus kosinus"
 
 #: kcalc.cpp:467
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic cosine"
-#| msgid "Acosh"
+#, kde-format
 msgctxt "Hyperbolic cosine"
 msgid "cosh"
-msgstr "Acosh"
+msgstr "cosh"
 
 #: kcalc.cpp:467
 #, kde-format
@@ -556,12 +540,10 @@ msgid "Hyperbolic cosine"
 msgstr "Kosinus hiperbolički"
 
 #: kcalc.cpp:468
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic cosine"
-#| msgid "Acosh"
+#, kde-format
 msgctxt "Inverse hyperbolic cosine"
 msgid "acosh"
-msgstr "Acosh"
+msgstr "acosh"
 
 #: kcalc.cpp:468
 #, kde-format
@@ -569,12 +551,10 @@ msgid "Inverse hyperbolic cosine"
 msgstr "Inverzni kosinus hiperbolički"
 
 #: kcalc.cpp:473
-#, fuzzy, kde-format
-#| msgctxt "Arc tangent"
-#| msgid "Atan"
+#, kde-format
 msgctxt "Tangent"
 msgid "tan"
-msgstr "Atan"
+msgstr "tan"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbTan)
 #: kcalc.cpp:473 kcalc.ui:680
@@ -586,7 +566,7 @@ msgstr "Tangens"
 #, kde-format
 msgctxt "Arc tangent"
 msgid "atan"
-msgstr ""
+msgstr "atan"
 
 #: kcalc.cpp:474
 #, kde-format
@@ -594,12 +574,10 @@ msgid "Arc tangent"
 msgstr "Arkus tangens"
 
 #: kcalc.cpp:475
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic tangent"
-#| msgid "Atanh"
+#, kde-format
 msgctxt "Hyperbolic tangent"
 msgid "tanh"
-msgstr "Atanh"
+msgstr "tanh"
 
 #: kcalc.cpp:475
 #, kde-format
@@ -607,12 +585,10 @@ msgid "Hyperbolic tangent"
 msgstr "Tangens hiperbolički"
 
 #: kcalc.cpp:476
-#, fuzzy, kde-format
-#| msgctxt "Inverse hyperbolic tangent"
-#| msgid "Atanh"
+#, kde-format
 msgctxt "Inverse hyperbolic tangent"
 msgid "atanh"
-msgstr "Atanh"
+msgstr "atanh"
 
 #: kcalc.cpp:476
 #, kde-format
@@ -621,12 +597,10 @@ msgstr "Inverzni tangens hiperbolički"
 
 # skip-rule: t-log, t-log_g
 #: kcalc.cpp:481
-#, fuzzy, kde-format
-#| msgctxt "Logarithm to base 10"
-#| msgid "Log"
+#, kde-format
 msgctxt "Logarithm to base 10"
 msgid "log"
-msgstr "Log"
+msgstr "log"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLog)
 #: kcalc.cpp:481 kcalc.ui:661
@@ -649,7 +623,7 @@ msgstr "10 na x"
 #, kde-format
 msgctxt "Natural log"
 msgid "ln"
-msgstr ""
+msgstr "ln"
 
 # skip-rule: t-log, t-log_g
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbLn)
@@ -670,29 +644,26 @@ msgid "Exponential function"
 msgstr "Eksponencijalna funkcija"
 
 #: kcalc.cpp:491
-#, fuzzy, kde-format
-#| msgid "Pi"
+#, kde-format
 msgctxt "Imaginary unit"
 msgid "i"
-msgstr "π"
+msgstr "i"
 
 #: kcalc.cpp:491
 #, kde-format
 msgid "Imaginary unit"
-msgstr ""
+msgstr "Imaginarna jedinica"
 
 #: kcalc.cpp:492
-#, fuzzy, kde-format
-#| msgctxt "- calculator button"
-#| msgid "−"
+#, kde-format
 msgctxt "Polar complex"
 msgid "∠"
-msgstr "−"
+msgstr "∠"
 
 #: kcalc.cpp:492
 #, kde-format
 msgid "Polar complex"
-msgstr ""
+msgstr "Kompleksni broj u polarnom obliku"
 
 #: kcalc.cpp:510
 #, kde-format
@@ -763,12 +734,10 @@ msgid "Delete last data item"
 msgstr "Obriši poslednji podatak"
 
 #: kcalc.cpp:593
-#, fuzzy, kde-format
-#| msgctxt "Modulo"
-#| msgid "Mod"
+#, kde-format
 msgctxt "Modulo"
 msgid "mod"
-msgstr "Mod"
+msgstr "mod"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMod)
 #: kcalc.cpp:593 kcalc.ui:629
@@ -874,75 +843,66 @@ msgid "Exponent"
 msgstr "Izložilac"
 
 #: kcalc.cpp:948
-#, fuzzy, kde-format
-#| msgid "Shift"
+#, kde-format
 msgctxt "Second function mode"
 msgid "Shift"
 msgstr "Shift"
 
 #: kcalc.cpp:1255 kcalc.cpp:1256
-#, fuzzy, kde-format
-#| msgid "Memory clear"
+#, kde-format
 msgctxt "Memory cleared"
 msgid "M cleared"
-msgstr "Očisti memoriju"
+msgstr "Memorija je očišćena"
 
 #: kcalc.cpp:1526
-#, fuzzy, kde-format
-#| msgid "Number of data entered"
+#, kde-format
 msgid "Number of data entered = "
-msgstr "Broj unetih podataka"
+msgstr "Broj unetih podataka = "
 
 #: kcalc.cpp:1527
-#, fuzzy, kde-format
-#| msgid "Number of data entered"
+#, kde-format
 msgid "Number of data entered ="
-msgstr "Broj unetih podataka"
+msgstr "Broj unetih podataka ="
 
 #: kcalc.cpp:1532
-#, fuzzy, kde-format
-#| msgid "Sum of all data items"
+#, kde-format
 msgid "Sum of all data items ="
-msgstr "Zbir svih podataka"
+msgstr "Zbir svih podataka ="
 
 #: kcalc.cpp:1551
-#, fuzzy, kde-format
-#| msgid "Mean"
+#, kde-format
 msgid "Mean = "
-msgstr "Srednja vrednost"
+msgstr "Srednja vrednost = "
 
 #: kcalc.cpp:1555
 #, kde-format
 msgid "Sum of squares ="
-msgstr ""
+msgstr "Zbir kvadrata ="
 
 #: kcalc.cpp:1598
-#, fuzzy, kde-format
-#| msgid "Median"
+#, kde-format
 msgid "Median ="
-msgstr "Medijan"
+msgstr "Medijan ="
 
 #: kcalc.cpp:1599
-#, fuzzy, kde-format
-#| msgid "Mean"
+#, kde-format
 msgid "Median = "
-msgstr "Srednja vrednost"
+msgstr "Medijan = "
 
 #: kcalc.cpp:1633 kcalc.cpp:1634
 #, kde-format
 msgid "DAT ["
-msgstr ""
+msgstr "DAT ["
 
 #: kcalc.cpp:1633 kcalc.cpp:1634
 #, kde-format
 msgid "] = "
-msgstr ""
+msgstr "] = "
 
 #: kcalc.cpp:1641 kcalc.cpp:1643 kcalc.cpp:1644
-#, fuzzy, kde-format
-#| msgid "Last stat item erased"
+#, kde-format
 msgid "Last stat data erased"
-msgstr "Poslednja statistička stavka je izbrisana"
+msgstr "Poslednji statistički podatak je obrisan"
 
 #: kcalc.cpp:1656 kcalc.cpp:1659 kcalc.cpp:1660
 #, kde-format
@@ -955,10 +915,9 @@ msgid "General Settings"
 msgstr "Opšte postavke"
 
 #: kcalc.cpp:1718
-#, fuzzy, kde-format
-#| msgid "Font"
+#, kde-format
 msgid "Fonts"
-msgstr "Font"
+msgstr "Fontovi"
 
 #: kcalc.cpp:1722
 #, kde-format
@@ -988,27 +947,22 @@ msgid "KDE Calculator"
 msgstr "KDE‑ov kalkulator"
 
 #: kcalc.cpp:2976
-#, fuzzy, kde-format
-#| msgid ""
-#| "Copyright © 2008-2013, Evan Teran\n"
-#| "Copyright © 2000-2008, The KDE Team\n"
-#| "Copyright © 2003-2005, Klaus Niederkrüger\n"
-#| "Copyright © 1996-2000, Bernd Johannes Wuebben"
+#, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
 "Copyright © 2000-2026, The KDE Team\n"
 "Copyright © 2003-2005, Klaus Niederkrüger\n"
 "Copyright © 1996-2000, Bernd Johannes Wuebben"
 msgstr ""
-"© 2008-2013, Ivan Teran\n"
-"© 2000-2008, tim KDE‑a\n"
-"© 2003-2005, Klaus Niderkriger\n"
-"© 1996-2000, Bernd Johanes Viben"
+"© 2008–2013, Ivan Teran\n"
+"© 2000–2026, tim KDE‑a\n"
+"© 2003–2005, Klaus Niderkriger\n"
+"© 1996–2000, Bernd Johanes Viben"
 
 #: kcalc.cpp:2987
 #, kde-format
 msgid "Gabriel Barrantes"
-msgstr ""
+msgstr "Gabriel Barrantes"
 
 #: kcalc.cpp:2987
 #, kde-format
@@ -1068,7 +1022,7 @@ msgstr "Dejvid Džonson"
 #: kcalc.cpp:3009
 #, kde-format
 msgid "Niklas Freund"
-msgstr ""
+msgstr "Niklas Freund"
 
 #. i18n: ectx: label, entry (ForeColor), group (Colors)
 #: kcalc.kcfg:15
@@ -1120,59 +1074,51 @@ msgstr "Boja dugmadi s operacijama."
 
 #. i18n: ectx: label, entry (ConstantsButtonsColor), group (Colors)
 #: kcalc.kcfg:52
-#, fuzzy, kde-format
-#| msgid "The color of statistical buttons."
+#, kde-format
 msgid "The color of constants buttons."
-msgstr "Boja statističkih dugmadi."
+msgstr "Boja dugmadi konstanti."
 
 #. i18n: ectx: label, entry (NumberFontsColor), group (Colors)
 #: kcalc.kcfg:56
-#, fuzzy, kde-format
-#| msgid "The color of number buttons."
+#, kde-format
 msgid "The color of number fonts."
-msgstr "Boja dugmadi s brojevima."
+msgstr "Boja fonta dugmadi s brojevima."
 
 #. i18n: ectx: label, entry (FunctionFontsColor), group (Colors)
 #: kcalc.kcfg:62
-#, fuzzy, kde-format
-#| msgid "The color of function buttons."
+#, kde-format
 msgid "The color of function fonts."
-msgstr "Boja funkcijskih dugmadi."
+msgstr "Boja fonta funkcijskih dugmadi."
 
 #. i18n: ectx: label, entry (StatFontsColor), group (Colors)
 #: kcalc.kcfg:66
-#, fuzzy, kde-format
-#| msgid "The color of statistical buttons."
+#, kde-format
 msgid "The color of statistical fonts."
-msgstr "Boja statističkih dugmadi."
+msgstr "Boja fonta statističkih dugmadi."
 
 #. i18n: ectx: label, entry (HexFontsColor), group (Colors)
 #: kcalc.kcfg:70
-#, fuzzy, kde-format
-#| msgid "The color of hex buttons."
+#, kde-format
 msgid "The color of hex fonts."
-msgstr "Boja heksadekadnih dugmadi."
+msgstr "Boja fonta heksadekadnih dugmadi."
 
 #. i18n: ectx: label, entry (MemoryFontsColor), group (Colors)
 #: kcalc.kcfg:74
-#, fuzzy, kde-format
-#| msgid "The color of memory buttons."
+#, kde-format
 msgid "The color of memory fonts."
-msgstr "Boja memorijskih dugmadi."
+msgstr "Boja fonta memorijskih dugmadi."
 
 #. i18n: ectx: label, entry (OperationFontsColor), group (Colors)
 #: kcalc.kcfg:78
-#, fuzzy, kde-format
-#| msgid "The color of operation buttons."
+#, kde-format
 msgid "The color of operation font."
-msgstr "Boja dugmadi s operacijama."
+msgstr "Boja fonta dugmadi s operacijama."
 
 #. i18n: ectx: label, entry (ConstantsFontsColor), group (Colors)
 #: kcalc.kcfg:82
-#, fuzzy, kde-format
-#| msgid "The color of statistical buttons."
+#, kde-format
 msgid "The color of constants fonts."
-msgstr "Boja statističkih dugmadi."
+msgstr "Boja fonta dugmadi konstanti."
 
 #. i18n: ectx: label, entry (ButtonFont), group (Font)
 #: kcalc.kcfg:88
@@ -1188,10 +1134,9 @@ msgstr "Font koji se koristiti za prikaz."
 
 #. i18n: ectx: label, entry (HistoryFont), group (Font)
 #: kcalc.kcfg:99
-#, fuzzy, kde-format
-#| msgid "The font to use in the display."
+#, kde-format
 msgid "The font to use in the history."
-msgstr "Font koji se koristiti za prikaz."
+msgstr "Font koji se koristi za istorijat."
 
 #. i18n: ectx: label, entry (Precision), group (Precision)
 #: kcalc.kcfg:105
@@ -1326,10 +1271,9 @@ msgstr "Da li prikazivati dugmad konstanti."
 
 #. i18n: ectx: label, entry (ShowHistory), group (General)
 #: kcalc.kcfg:176
-#, fuzzy, kde-format
-#| msgid "Whether to show the bit edit widget."
+#, kde-format
 msgid "Whether to show the history window."
-msgstr "Da li prikazivati vidžet za uređivanje bitova."
+msgstr "Da li prikazivati prozor istorijata."
 
 #. i18n: ectx: label, entry (AngleMode), group (General)
 #: kcalc.kcfg:180
@@ -1347,7 +1291,7 @@ msgstr "Brojevna osnova"
 #: kcalc.kcfg:188
 #, kde-format
 msgid "Force to show calculation results in scientific notation."
-msgstr ""
+msgstr "Nametni prikaz rezultata u naučnom zapisu."
 
 #. i18n: ectx: label, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:194
@@ -1357,15 +1301,7 @@ msgstr "Binarni nizovi će biti razdvojeni prazninom posle svake n‑te cifre."
 
 #. i18n: ectx: whatsthis, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:199
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 10111001 you can display 1011 1001, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1376,9 +1312,12 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"Radi bolje preglednosti, moguće je vizuelno grupisati pojedinačne cifre u "
-"celine. Na primer, da bi se mesto 10111001 videlo 1011 1001, postavite ovu "
-"vrednost na 4, što znači umetanje praznine posle svake četiri cifre."
+"            Radi lakšeg čitanja, moguće je vizuelno grupisati pojedinačne "
+"cifre u celine.\n"
+"            Na primer, da bi se umesto 10111001 videlo 1011 1001, postavite "
+"ovu vrednost na\n"
+"            4, što znači umetanje praznine posle svake četiri cifre.\n"
+"        "
 
 #. i18n: ectx: label, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:203
@@ -1388,15 +1327,7 @@ msgstr "Oktalni nizovi će biti razdvojeni prazninom posle svake n‑te cifre."
 
 #. i18n: ectx: whatsthis, entry (OctalGrouping), group (Grouping)
 #: kcalc.kcfg:208
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of 42140213 you can display 4214 0213, by "
-#| "setting the setting to\n"
-#| "            4, thus inserting a whitespace after every 4th digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1407,9 +1338,12 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"Radi bolje preglednosti, moguće je vizuelno grupisati pojedinačne cifre u "
-"celine. Na primer, da bi se mesto 42140213 videlo 4214 0213, postavite ovu "
-"vrednost na 4, što znači umetanje praznine posle svake četiri cifre."
+"            Radi lakšeg čitanja, moguće je vizuelno grupisati pojedinačne "
+"cifre u celine.\n"
+"            Na primer, da bi se umesto 42140213 videlo 4214 0213, postavite "
+"ovu vrednost na\n"
+"            4, što znači umetanje praznine posle svake četiri cifre.\n"
+"        "
 
 #. i18n: ectx: label, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:212
@@ -1421,15 +1355,7 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry (HexadecimalGrouping), group (Grouping)
 #: kcalc.kcfg:217
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "            For easier readability it's possible to visible group the "
-#| "individual digits into pairs\n"
-#| "            for example instead of AF1C42 you can display AF 1C 42, by "
-#| "setting the setting to\n"
-#| "            2, thus inserting a whitespace after every 2nd digit.\n"
-#| "        "
+#, kde-format
 msgid ""
 "\n"
 "            For easier reading it's possible to visually group the "
@@ -1440,9 +1366,12 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"Radi bolje preglednosti, moguće je vizuelno grupisati pojedinačne cifre u "
-"celine. Na primer, da bi se mesto AF1C42 videlo AF 1C 42, postavite ovu "
-"vrednost na 2, što znači umetanje praznine posle svake dve cifre."
+"            Radi lakšeg čitanja, moguće je vizuelno grupisati pojedinačne "
+"cifre u celine.\n"
+"            Na primer, da bi se umesto AF1C42 videlo AF 1C 42, postavite ovu "
+"vrednost na\n"
+"            2, što znači umetanje praznine posle svake dve cifre.\n"
+"        "
 
 #. i18n: ectx: label, entry (nameConstant$(ConstIndex)), group (UserConstants)
 #: kcalc.kcfg:223
@@ -1458,18 +1387,16 @@ msgstr "Spisak korisnički programabilnih konstanti"
 
 #. i18n: ectx: property (text), widget (QLabel, base_label)
 #: kcalc.ui:173
-#, fuzzy, kde-format
-#| msgid "&Dec"
+#, kde-format
 msgid "Dec"
-msgstr "&Dek."
+msgstr "Dek."
 
 # >> @title:window
 #. i18n: ectx: property (accessibleDescription), widget (KCalcDisplay, calc_display)
 #: kcalc.ui:348
-#, fuzzy, kde-format
-#| msgid "Select Display Font"
+#, kde-format
 msgid "Result Display"
-msgstr "Izbor fonta prikaza"
+msgstr "Prikaz rezultata"
 
 #. i18n: ectx: property (toolTip), widget (KCalcBitset, mBitset)
 #: kcalc.ui:382
@@ -1481,27 +1408,25 @@ msgstr "Kliknite na bit da biste ga izvrnuli."
 #: kcalc.ui:405
 #, kde-format
 msgid "&Deg"
-msgstr ""
+msgstr "&Step."
 
 #. i18n: ectx: property (text), widget (QRadioButton, radRadio)
 #: kcalc.ui:412
 #, kde-format
 msgid "&Rad"
-msgstr ""
+msgstr "&Rad."
 
 #. i18n: ectx: property (text), widget (QRadioButton, gradRadio)
 #: kcalc.ui:419
-#, fuzzy, kde-format
-#| msgid "Grad"
+#, kde-format
 msgid "&Grad"
-msgstr "Grad."
+msgstr "&Grad."
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, numeralSystemComboBox)
 #: kcalc.ui:426
-#, fuzzy, kde-format
-#| msgid "Switch base to octal."
+#, kde-format
 msgid "Switch base"
-msgstr "Prebaci osnovu na oktalnu."
+msgstr "Prebaci osnovu"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbSquare)
 #: kcalc.ui:495
@@ -1772,15 +1697,14 @@ msgstr "Ln"
 #: kcalc.ui:1008
 #, kde-format
 msgid "Imaginary Unit"
-msgstr ""
+msgstr "Imaginarna jedinica"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbI)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbI)
 #: kcalc.ui:1011 kcalc.ui:1014
-#, fuzzy, kde-format
-#| msgid "Pi"
+#, kde-format
 msgid "i"
-msgstr "π"
+msgstr "i"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbMed)
 #: kcalc.ui:1027
@@ -1828,7 +1752,7 @@ msgstr "Lsh"
 #: kcalc.ui:1110
 #, kde-format
 msgid "sqrt"
-msgstr ""
+msgstr "sqrt"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPower)
 #: kcalc.ui:1126
@@ -1838,10 +1762,9 @@ msgstr "Pow"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pb6)
 #: kcalc.ui:1166
-#, fuzzy, kde-format
-#| msgid "Sin"
+#, kde-format
 msgid "Six"
-msgstr "Sin"
+msgstr "Šest"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb6)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb6)
@@ -1854,7 +1777,7 @@ msgstr "6"
 #: kcalc.ui:1185
 #, kde-format
 msgid "Two"
-msgstr ""
+msgstr "Dva"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb2)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb2)
@@ -1871,8 +1794,7 @@ msgstr "Procenat"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbPercent)
 #: kcalc.ui:1207
-#, fuzzy, kde-format
-#| msgid "Percent"
+#, kde-format
 msgid "Percentage"
 msgstr "Procenat"
 
@@ -1886,7 +1808,7 @@ msgstr "%"
 #: kcalc.ui:1223
 #, kde-format
 msgid "Nine"
-msgstr ""
+msgstr "Devet"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb9)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb9)
@@ -1899,7 +1821,7 @@ msgstr "9"
 #: kcalc.ui:1242
 #, kde-format
 msgid "Four"
-msgstr ""
+msgstr "Četiri"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb4)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb4)
@@ -1912,7 +1834,7 @@ msgstr "4"
 #: kcalc.ui:1261
 #, kde-format
 msgid "Five"
-msgstr ""
+msgstr "Pet"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb5)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb5)
@@ -1931,7 +1853,7 @@ msgstr "Oduzimanje"
 #: kcalc.ui:1283
 #, kde-format
 msgid "Subtract"
-msgstr ""
+msgstr "Oduzmi"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMinus)
 #: kcalc.ui:1286
@@ -1950,7 +1872,7 @@ msgstr "Sabiranje"
 #: kcalc.ui:1302
 #, kde-format
 msgid "Add"
-msgstr ""
+msgstr "Saberi"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbPlus)
 #: kcalc.ui:1305
@@ -1963,7 +1885,7 @@ msgstr "+"
 #: kcalc.ui:1318
 #, kde-format
 msgid "One"
-msgstr ""
+msgstr "Jedan"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb1)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb1)
@@ -1982,7 +1904,7 @@ msgstr "Deljenje"
 #: kcalc.ui:1340
 #, kde-format
 msgid "Divide"
-msgstr ""
+msgstr "Podeli"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbDivision)
 #: kcalc.ui:1343
@@ -1998,10 +1920,9 @@ msgstr "Množenje"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbMultiplication)
 #: kcalc.ui:1359
-#, fuzzy, kde-format
-#| msgid "Multiplication"
+#, kde-format
 msgid "Multiply"
-msgstr "Množenje"
+msgstr "Pomnoži"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMultiplication)
 #: kcalc.ui:1362
@@ -2013,7 +1934,7 @@ msgstr "×"
 #: kcalc.ui:1375
 #, kde-format
 msgid "Zero"
-msgstr ""
+msgstr "Nula"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb0)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb0)
@@ -2040,7 +1961,7 @@ msgstr ","
 #: kcalc.ui:1413
 #, kde-format
 msgid "Three"
-msgstr ""
+msgstr "Tri"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb3)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb3)
@@ -2059,7 +1980,7 @@ msgstr "Rezultat"
 #: kcalc.ui:1435
 #, kde-format
 msgid "Equals"
-msgstr ""
+msgstr "Jednako"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbEqual)
 #: kcalc.ui:1438
@@ -2072,7 +1993,7 @@ msgstr "="
 #: kcalc.ui:1451
 #, kde-format
 msgid "Seven"
-msgstr ""
+msgstr "Sedam"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb7)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb7)
@@ -2085,7 +2006,7 @@ msgstr "7"
 #: kcalc.ui:1470
 #, kde-format
 msgid "Eight"
-msgstr ""
+msgstr "Osam"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pb8)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pb8)
@@ -2102,10 +2023,9 @@ msgstr "Očisti sve"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pbAllClear)
 #: kcalc.ui:1519
-#, fuzzy, kde-format
-#| msgid "Memory clear"
+#, kde-format
 msgid "All clear"
-msgstr "Očisti memoriju"
+msgstr "Očisti sve"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbAllClear)
 #: kcalc.ui:1522
@@ -2213,7 +2133,7 @@ msgstr ")"
 #: kcalc.ui:1675
 #, kde-format
 msgid "Return"
-msgstr ""
+msgstr "Povratak"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbBackspace)
 #: kcalc.ui:1678
@@ -2250,7 +2170,7 @@ msgstr "Ctrl+2"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Bit %1 = %2"
-msgstr ""
+msgstr "Bit %1 = %2"
 
 #: kcalc_const_button.cpp:25 kcalc_const_button.cpp:39
 #, kde-format
@@ -2310,17 +2230,16 @@ msgstr "Gravitacija"
 
 # >> @title:window
 #: kcalc_display.cpp:46
-#, fuzzy, kde-format
-#| msgid "Select Display Font"
+#, kde-format
 msgctxt "@label accessibility description of the calculation result display"
 msgid "Result Display"
-msgstr "Izbor fonta prikaza"
+msgstr "Prikaz rezultata"
 
 #: kcalc_numeralsystem_view.cpp:40
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Copy"
-msgstr ""
+msgstr "&Kopiraj"
 
 #: kcalc_statusbar.cpp:16 kcalc_statusbar.cpp:58
 #, kde-format
@@ -2338,45 +2257,43 @@ msgstr "SHIFT"
 #, kde-format
 msgctxt "Decimal indicator in status bar"
 msgid "DEC"
-msgstr ""
+msgstr "DEC"
 
 #: kcalc_statusbar.cpp:17
 #, kde-format
 msgctxt "Binary indicator in status bar"
 msgid "BIN"
-msgstr ""
+msgstr "BIN"
 
 #: kcalc_statusbar.cpp:18
 #, kde-format
 msgctxt "Octal indicator in status bar"
 msgid "OCT"
-msgstr ""
+msgstr "OCT"
 
 #: kcalc_statusbar.cpp:18
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgctxt "Hexadecimal indicator in status bar"
 msgid "HEX"
-msgstr "Exp"
+msgstr "HEX"
 
 #: kcalc_statusbar.cpp:19
 #, kde-format
 msgctxt "Degree indicator in status bar"
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: kcalc_statusbar.cpp:19
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgctxt "Radian indicator in status bar"
 msgid "RAD"
-msgstr "AND"
+msgstr "RAD"
 
 #: kcalc_statusbar.cpp:20
 #, kde-format
 msgctxt "Grad indicator in status bar"
 msgid "GRA"
-msgstr ""
+msgstr "GRA"
 
 #: kcalc_statusbar.cpp:21 kcalc_statusbar.cpp:103
 #, kde-format
@@ -2387,39 +2304,37 @@ msgstr "M"
 #: kcalc_statusbar.cpp:67
 #, kde-format
 msgid "BIN"
-msgstr ""
+msgstr "BIN"
 
 #: kcalc_statusbar.cpp:70
 #, kde-format
 msgid "OCT"
-msgstr ""
+msgstr "OCT"
 
 #: kcalc_statusbar.cpp:74
 #, kde-format
 msgid "DEC"
-msgstr ""
+msgstr "DEC"
 
 #: kcalc_statusbar.cpp:77
-#, fuzzy, kde-format
-#| msgid "EXP"
+#, kde-format
 msgid "HEX"
-msgstr "Exp"
+msgstr "HEX"
 
 #: kcalc_statusbar.cpp:89
 #, kde-format
 msgid "DEG"
-msgstr ""
+msgstr "DEG"
 
 #: kcalc_statusbar.cpp:92
-#, fuzzy, kde-format
-#| msgid "AND"
+#, kde-format
 msgid "RAD"
-msgstr "AND"
+msgstr "RAD"
 
 #: kcalc_statusbar.cpp:95
 #, kde-format
 msgid "GRA"
-msgstr ""
+msgstr "GRA"
 
 #. i18n: ectx: Menu (settings)
 #: kcalcui.rc:4
@@ -2529,60 +2444,3 @@ msgstr "Štefan-Bolcmanova konstanta"
 #, kde-format
 msgid "Avogadro's Number"
 msgstr "Avogadrov broj"
-
-#~ msgid "Switch base to hexadecimal."
-#~ msgstr "Prebaci osnovu na heksadekadnu."
-
-#~ msgid "Switch base to decimal."
-#~ msgstr "Prebaci osnovu na dekadnu."
-
-#~ msgid "&Dec"
-#~ msgstr "&Dek."
-
-#~ msgid "Switch base to binary."
-#~ msgstr "Prebaci osnovu na binarnu."
-
-# >> @title:window
-#~ msgid "Select Display Font"
-#~ msgstr "Izbor fonta prikaza"
-
-#~ msgctxt "Third power"
-#~ msgid "x<sup>3</sup>"
-#~ msgstr "x<sup>3</sup>"
-
-#~ msgid "Cube"
-#~ msgstr "Kub"
-
-#~ msgid "x3"
-#~ msgstr "×3"
-
-#~ msgid "M"
-#~ msgstr "M"
-
-#~ msgctxt "Sine"
-#~ msgid "Sin"
-#~ msgstr "Sin"
-
-#~ msgctxt "Hyperbolic sine"
-#~ msgid "Sinh"
-#~ msgstr "Sinh"
-
-#~ msgctxt "Cosine"
-#~ msgid "Cos"
-#~ msgstr "Cos"
-
-#~ msgctxt "Hyperbolic cosine"
-#~ msgid "Cosh"
-#~ msgstr "Cosh"
-
-#~ msgctxt "Tangent"
-#~ msgid "Tan"
-#~ msgstr "Tan"
-
-#~ msgctxt "Hyperbolic tangent"
-#~ msgid "Tanh"
-#~ msgstr "Tanh"
-
-#~ msgctxt "Natural log"
-#~ msgid "Ln"
-#~ msgstr "Ln"
