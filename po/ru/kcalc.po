@@ -82,13 +82,13 @@ msgstr "Использовать системную цветовую схему"
 #: colors.ui:30
 #, kde-format
 msgid "Display Colors"
-msgstr "Цвета экрана"
+msgstr "Цвета дисплея"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel1)
 #: colors.ui:38
 #, kde-format
 msgid "&Foreground:"
-msgstr "&Передний план:"
+msgstr "&Текст:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
 #: colors.ui:65
@@ -245,7 +245,7 @@ msgstr ""
 "KCalc может производить вычисление с количеством разрядов большим, чем "
 "показывается на дисплее. Этот параметр устанавливает максимальное количество "
 "показываемых разрядов. Если число не помещается на дисплее, оно будет "
-"показано в инженерном виде, например, 2,34e12."
+"показано в экспоненциальной записи, например, 2,34e12."
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_Fixed)
 #: general.ui:51
@@ -347,9 +347,7 @@ msgid ""
 msgstr ""
 "Использовать дополнительный код для показа чисел в двоичной, восьмеричной и "
 "шестнадцатеричной системе счисления. Это наиболее распространённый способ "
-"представления отрицательных целых чисел в компьютерах. Дополнительный код "
-"отрицательного числа получается инвертированием двоичного числа и "
-"прибавлением к нему единицы."
+"представления отрицательных целых чисел в компьютерах."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_TwosComplement)
 #: general.ui:189
@@ -751,7 +749,7 @@ msgstr "mod"
 #: kcalc.cpp:593 kcalc.ui:629
 #, kde-format
 msgid "Modulo"
-msgstr "По модулю"
+msgstr "Остаток от деления"
 
 #: kcalc.cpp:594
 #, kde-format
@@ -935,7 +933,7 @@ msgstr "Цвета"
 #: kcalc.cpp:1722
 #, kde-format
 msgid "Button & Display Colors"
-msgstr "Цвета кнопок и экрана"
+msgstr "Цвета кнопок и дисплея"
 
 #: kcalc.cpp:1754
 #, kde-format
@@ -974,7 +972,7 @@ msgstr "Gabriel Barrantes"
 #: kcalc.cpp:2987
 #, kde-format
 msgid "Maintainer"
-msgstr "Сопровождение"
+msgstr "Сопровождающий"
 
 #: kcalc.cpp:2988
 #, kde-format
@@ -1035,13 +1033,13 @@ msgstr "Niklas Freund"
 #: kcalc.kcfg:15
 #, kde-format
 msgid "The foreground color of the display."
-msgstr "Цвет переднего плана экрана."
+msgstr "Цвет текста дисплея."
 
 #. i18n: ectx: label, entry (BackColor), group (Colors)
 #: kcalc.kcfg:21
 #, kde-format
 msgid "The background color of the display."
-msgstr "Цвет фона экрана."
+msgstr "Цвет фона дисплея."
 
 #. i18n: ectx: label, entry (NumberButtonsColor), group (Colors)
 #: kcalc.kcfg:26
@@ -1059,7 +1057,7 @@ msgstr "Цвет функциональных кнопок."
 #: kcalc.kcfg:36
 #, kde-format
 msgid "The color of statistical buttons."
-msgstr "Цвет статистических кнопок"
+msgstr "Цвет статистических кнопок."
 
 #. i18n: ectx: label, entry (HexButtonsColor), group (Colors)
 #: kcalc.kcfg:40
@@ -1077,7 +1075,7 @@ msgstr "Цвет кнопок памяти."
 #: kcalc.kcfg:48
 #, kde-format
 msgid "The color of operation buttons."
-msgstr "Цвет кнопок операций"
+msgstr "Цвет кнопок операций."
 
 #. i18n: ectx: label, entry (ConstantsButtonsColor), group (Colors)
 #: kcalc.kcfg:52
@@ -1125,7 +1123,7 @@ msgstr "Цвет шрифта кнопок операций."
 #: kcalc.kcfg:82
 #, kde-format
 msgid "The color of constants fonts."
-msgstr "Цвет шрифта констант."
+msgstr "Цвет шрифта кнопок констант."
 
 #. i18n: ectx: label, entry (ButtonFont), group (Font)
 #: kcalc.kcfg:88
@@ -1165,8 +1163,8 @@ msgstr ""
 "\n"
 "\tKCalc производит вычисление с количеством разрядов больше, чем \n"
 "\tпоказывается на экране. Этот параметр устанавливает максимальное \n"
-"\tколичество отображаемых разрядов. Если число не помещается на\n"
-"\tэкране, оно будет показано в инженерном виде, например, 2,34e12.\n"
+"\tколичество показываемых разрядов. Если число не помещается на\n"
+"\tэкране, оно будет показано в экспоненциальной записи, например, 2,34e12.\n"
 "      "
 
 #. i18n: ectx: label, entry (FixedPrecision), group (Precision)
@@ -1307,7 +1305,7 @@ msgstr "Основание числа"
 #: kcalc.kcfg:188
 #, kde-format
 msgid "Force to show calculation results in scientific notation."
-msgstr "Принудительно показывать результаты в научной нотации"
+msgstr "Принудительно показывать результаты в экспоненциальной записи."
 
 #. i18n: ectx: label, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:194
@@ -1332,7 +1330,7 @@ msgstr ""
 "отдельные цифры:\n"
 "            например, 10111001 может показываться как 1011 1001, если этот "
 "параметр равен\n"
-"            4 (пробелы будут вставляться после каждой 4-ой цифры).\n"
+"            4 (пробелы будут вставляться после каждой 4-й цифры).\n"
 "        "
 
 #. i18n: ectx: label, entry (OctalGrouping), group (Grouping)
@@ -1358,7 +1356,7 @@ msgstr ""
 "отдельные цифры:\n"
 "            например, 42140213 может показываться как 4214 0213, если этот "
 "параметр равен\n"
-"            4 (пробелы будут вставляться после каждой 4-ой цифры).\n"
+"            4 (пробелы будут вставляться после каждой 4-й цифры).\n"
 "        "
 
 #. i18n: ectx: label, entry (HexadecimalGrouping), group (Grouping)
@@ -1386,7 +1384,7 @@ msgstr ""
 "отдельные цифры:\n"
 "            например, AF1C42 может показываться как AF 1C 42, если этот "
 "параметр равен\n"
-"            2 (пробелы будут вставляться после каждой 2-ой цифры).\n"
+"            2 (пробелы будут вставляться после каждой 2-й цифры).\n"
 "        "
 
 #. i18n: ectx: label, entry (nameConstant$(ConstIndex)), group (UserConstants)
@@ -1417,7 +1415,7 @@ msgstr "Вывод результата"
 #: kcalc.ui:382
 #, kde-format
 msgid "Click on a Bit to toggle it."
-msgstr "Щёлкните на бите для переключения его значения."
+msgstr "Щёлкните по биту, чтобы переключить его значение."
 
 #. i18n: ectx: property (text), widget (QRadioButton, degRadio)
 #: kcalc.ui:405
@@ -1614,7 +1612,7 @@ msgstr "H"
 #: kcalc.ui:817
 #, kde-format
 msgid "Bitwise XOR"
-msgstr "Побитовое ИСКЛЮЧАЮЩЕЕ ИЛИ "
+msgstr "Побитовое ИСКЛЮЧАЮЩЕЕ ИЛИ"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbXOR)
 #: kcalc.ui:820
@@ -1650,7 +1648,7 @@ msgstr "C3"
 #: kcalc.ui:900
 #, kde-format
 msgid "One's complement"
-msgstr "Дополнение"
+msgstr "Обратный код"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbCmp)
 #: kcalc.ui:903
@@ -2064,7 +2062,7 @@ msgstr "MC"
 #: kcalc.ui:1554 kcalc.ui:1557
 #, kde-format
 msgid "Memory recall"
-msgstr "Запрос памяти"
+msgstr "Вызов из памяти"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMemRecall)
 #: kcalc.ui:1560
@@ -2229,7 +2227,7 @@ msgstr "Электромагнетизм"
 #: kcalc_const_menu.cpp:78
 #, kde-format
 msgid "Atomic && Nuclear"
-msgstr "Элементарные частицы"
+msgstr "Атомная и ядерная физика"
 
 #: kcalc_const_menu.cpp:79
 #, kde-format
