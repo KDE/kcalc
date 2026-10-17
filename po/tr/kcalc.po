@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-13 00:47+0000\n"
-"PO-Revision-Date: 2026-10-12 09:41+0300\n"
+"PO-Revision-Date: 2026-10-16 20:11+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -757,7 +757,7 @@ msgstr "IntDiv"
 #: kcalc.cpp:594
 #, kde-format
 msgid "Integer division"
-msgstr "Tamsayı bölmesi"
+msgstr "Tam sayı bölmesi"
 
 #: kcalc.cpp:600
 #, kde-format
