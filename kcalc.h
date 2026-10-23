@@ -277,6 +277,7 @@ private:
     bool m_shiftMode = false;
     bool m_hypMode = false;
     bool m_updateHistoryWindow = false;
+    bool m_firstResize = true;
     QQueue<KCalcToken> m_tokenQueue;
     KNumber m_memoryNum;
 

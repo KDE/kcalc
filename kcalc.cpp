@@ -2927,9 +2927,10 @@ void KCalculator::resizeEvent(QResizeEvent *event)
     setFonts();
 
     // Update mBitset max size
-    if (mBitset->isVisible()) {
+    if (mBitset->isVisible() || m_firstResize) {
         mBitset->calculateMaxSize();
     }
+    m_firstResize = false;
 }
 
 ////////////////////////////////////////////////////////////////
