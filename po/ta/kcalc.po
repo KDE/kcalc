@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcalc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-13 00:47+0000\n"
+"POT-Creation-Date: 2026-10-25 00:54+0000\n"
 "PO-Revision-Date: 2025-05-18 21:09+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -153,7 +153,7 @@ msgid "&Constants:"
 msgstr "&மாறிலிகள்:"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
-#: constants.ui:13 kcalc.cpp:1754
+#: constants.ui:13 kcalc.cpp:1753
 #, kde-format
 msgid "Constants"
 msgstr "மாறிலிகள்"
@@ -207,7 +207,7 @@ msgid "The font to use in the history"
 msgstr "வரலாற்றில் பயன்படுத்த வேண்டிய எழுத்துரு"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
-#: general.ui:14 kcalc.cpp:1714
+#: general.ui:14 kcalc.cpp:1713
 #, kde-format
 msgid "General"
 msgstr "பொதுவானவை"
@@ -862,105 +862,105 @@ msgctxt "Memory cleared"
 msgid "M cleared"
 msgstr "நினைவகத்தை பெறு"
 
-#: kcalc.cpp:1526
+#: kcalc.cpp:1525
 #, fuzzy, kde-format
 #| msgid "Number of data entered"
 msgid "Number of data entered = "
 msgstr "உள்ளிடப்பட்ட தரவுகளின் எண்ணிக்கை "
 
-#: kcalc.cpp:1527
+#: kcalc.cpp:1526
 #, fuzzy, kde-format
 #| msgid "Number of data entered"
 msgid "Number of data entered ="
 msgstr "உள்ளிடப்பட்ட தரவுகளின் எண்ணிக்கை "
 
-#: kcalc.cpp:1532
+#: kcalc.cpp:1531
 #, fuzzy, kde-format
 #| msgid "Sum of all data items"
 msgid "Sum of all data items ="
 msgstr "அனைத்து தரவு உருப்படிகளின் எண்ணிக்கை"
 
-#: kcalc.cpp:1551
+#: kcalc.cpp:1550
 #, fuzzy, kde-format
 #| msgid "Mean"
 msgid "Mean = "
 msgstr "சராசரி"
 
-#: kcalc.cpp:1555
+#: kcalc.cpp:1554
 #, kde-format
 msgid "Sum of squares ="
 msgstr ""
 
-#: kcalc.cpp:1598
+#: kcalc.cpp:1597
 #, fuzzy, kde-format
 #| msgid "Median"
 msgid "Median ="
 msgstr "இடைநிலை"
 
-#: kcalc.cpp:1599
+#: kcalc.cpp:1598
 #, fuzzy, kde-format
 #| msgid "Mean"
 msgid "Median = "
 msgstr "சராசரி"
 
-#: kcalc.cpp:1633 kcalc.cpp:1634
+#: kcalc.cpp:1632 kcalc.cpp:1633
 #, kde-format
 msgid "DAT ["
 msgstr ""
 
-#: kcalc.cpp:1633 kcalc.cpp:1634
+#: kcalc.cpp:1632 kcalc.cpp:1633
 #, kde-format
 msgid "] = "
 msgstr ""
 
-#: kcalc.cpp:1641 kcalc.cpp:1643 kcalc.cpp:1644
+#: kcalc.cpp:1640 kcalc.cpp:1642 kcalc.cpp:1643
 #, fuzzy, kde-format
 #| msgid "Last stat item erased"
 msgid "Last stat data erased"
 msgstr "கடைசி நிகழ்நிலை பொருள் அழிக்கபட்டது"
 
-#: kcalc.cpp:1656 kcalc.cpp:1659 kcalc.cpp:1660
+#: kcalc.cpp:1655 kcalc.cpp:1658 kcalc.cpp:1659
 #, kde-format
 msgid "Stat mem cleared"
 msgstr "புள்ளிவிவர நினைவகம் துடைக்கபட்டது"
 
-#: kcalc.cpp:1714
+#: kcalc.cpp:1713
 #, kde-format
 msgid "General Settings"
 msgstr "பொதுவான அமைப்புகள்"
 
-#: kcalc.cpp:1718
+#: kcalc.cpp:1717
 #, kde-format
 msgid "Fonts"
 msgstr ""
 
-#: kcalc.cpp:1722
+#: kcalc.cpp:1721
 #, kde-format
 msgid "Colors"
 msgstr "நிறங்கள்"
 
-#: kcalc.cpp:1722
+#: kcalc.cpp:1721
 #, kde-format
 msgid "Button & Display Colors"
 msgstr "பொத்தன்&திரைவண்ணம்"
 
-#: kcalc.cpp:1754
+#: kcalc.cpp:1753
 #, fuzzy, kde-format
 msgid "Define Constants"
 msgstr "மாறிலிகளை வடிவமமை"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, KCalculator)
-#: kcalc.cpp:2972 kcalc.ui:20
+#: kcalc.cpp:2971 kcalc.ui:20
 #, kde-format
 msgid "KCalc"
 msgstr "கேகணிப்பான்"
 
-#: kcalc.cpp:2974
+#: kcalc.cpp:2973
 #, kde-format
 msgid "KDE Calculator"
 msgstr "KDE கணிப்பான்"
 
-#: kcalc.cpp:2976
+#: kcalc.cpp:2975
 #, fuzzy, kde-format
 msgid ""
 "Copyright © 2008-2013, Evan Teran\n"
@@ -971,67 +971,67 @@ msgstr ""
 "(c) 1996-2000,பெர்ன்ட் ஜொஹானஸ் வியுப்பர்\n"
 "்(c) 2000-2003, KDE அணி"
 
-#: kcalc.cpp:2987
+#: kcalc.cpp:2986
 #, kde-format
 msgid "Gabriel Barrantes"
 msgstr ""
 
-#: kcalc.cpp:2987
+#: kcalc.cpp:2986
 #, kde-format
 msgid "Maintainer"
 msgstr ""
 
-#: kcalc.cpp:2988
+#: kcalc.cpp:2987
 #, kde-format
 msgid "Klaus Niederkrüger"
 msgstr ""
 
-#: kcalc.cpp:2993
+#: kcalc.cpp:2992
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr ""
 
-#: kcalc.cpp:2994
+#: kcalc.cpp:2993
 #, kde-format
 msgid "Evan Teran"
 msgstr ""
 
-#: kcalc.cpp:2995
+#: kcalc.cpp:2994
 #, kde-format
 msgid "Espen Sand"
 msgstr ""
 
-#: kcalc.cpp:2996
+#: kcalc.cpp:2995
 #, kde-format
 msgid "Chris Howells"
 msgstr ""
 
-#: kcalc.cpp:2997
+#: kcalc.cpp:2996
 #, kde-format
 msgid "Aaron J. Seigo"
 msgstr ""
 
-#: kcalc.cpp:2998
+#: kcalc.cpp:2997
 #, kde-format
 msgid "Charles Samuels"
 msgstr ""
 
-#: kcalc.cpp:3000
+#: kcalc.cpp:2999
 #, kde-format
 msgid "René Mérou"
 msgstr ""
 
-#: kcalc.cpp:3007
+#: kcalc.cpp:3006
 #, kde-format
 msgid "Michel Marti"
 msgstr ""
 
-#: kcalc.cpp:3008
+#: kcalc.cpp:3007
 #, kde-format
 msgid "David Johnson"
 msgstr ""
 
-#: kcalc.cpp:3009
+#: kcalc.cpp:3008
 #, kde-format
 msgid "Niklas Freund"
 msgstr ""
