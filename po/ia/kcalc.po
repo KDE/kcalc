@@ -2441,7 +2441,7 @@ msgstr "Numero de Avogadro"
 #~ msgstr "Error de ingresso"
 
 #~ msgid "Repeat operation for each result"
-#~ msgstr "Repite le operation per cata exito"
+#~ msgstr "Repete le operation per cata exito"
 
 #~ msgid "Enables that the last operation is repeated when \"=\" is pressed"
 #~ msgstr ""
