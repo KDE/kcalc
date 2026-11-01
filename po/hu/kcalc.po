@@ -3,13 +3,13 @@
 # Tamas Krutki <negusnyul@gmail.com>, 2011.
 # Kristóf Kiszel <ulysses@kubuntu.org>, 2012, 2014, 2015, 2020.
 # Balázs Úr <urbalazs@gmail.com>, 2012, 2013.
-# SPDX-FileCopyrightText: 2021, 2024, 2025 Kristof Kiszel <ulysses@fsf.hu>
+# SPDX-FileCopyrightText: 2021, 2024-2026 Kristof Kiszel <ulysses@fsf.hu>
 msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-06-16 00:48+0000\n"
-"PO-Revision-Date: 2025-07-08 22:11+0200\n"
+"PO-Revision-Date: 2026-10-31 23:12+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.04.3\n"
+"X-Generator: Lokalize 26.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -408,7 +408,7 @@ msgstr "B&itszerkesztő"
 msgctxt ""
 "Show calculation result on the output display always in scientific notation"
 msgid "Force scientific notation"
-msgstr ""
+msgstr "Tudományos jelölés kényszerítése"
 
 #: kcalc.cpp:235
 #, kde-format
@@ -1291,6 +1291,8 @@ msgstr "Alap"
 #, kde-format
 msgid "Force to show calculation results in scientific notation."
 msgstr ""
+"A számítási eredmények tudományos jelölésben való megjelenítésének "
+"kényszerítése."
 
 #. i18n: ectx: label, entry (BinaryGrouping), group (Grouping)
 #: kcalc.kcfg:194
