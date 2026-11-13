@@ -1,0 +1,1870 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Arabic "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY commands SYSTEM "commands.docbook">
+]>
+
+<book id="kcalc" lang="&language;">
+<bookinfo>
+<title
+>دليل حاسبة ك</title>
+
+<authorgroup>
+<author
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail; </author>
+
+<author
+>&Pamela.Roberts;&Pamela.Roberts.mail; </author>
+<author
+>&Anne-Marie.Mahfouf;&Anne-Marie.Mahfouf.mail; </author>
+<othercredit role="translator"
+><firstname
+>زايد</firstname
+><surname
+>السعيدي</surname
+><affiliation
+><address
+><email
+>zayed.alsaidi@gmail.com</email
+></address
+></affiliation
+><contrib
+>التّرجمة العربيّة</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2001</year
+> <year
+>2002</year
+> <year
+>2005</year
+>	<year
+>2006</year>
+<holder
+>&Bernd.Johannes.Wuebben;, &Pamela.Roberts;, &Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2016-07-25</date>
+<releaseinfo
+>تطبيقات 16.08</releaseinfo>
+
+<abstract
+><para
+>حاسبة ك هي آلة حاسبة لبيئة سطح المكتب لديك. في الوضع البسيط، يمكن استخدامها للعمليات الحسابية الأساسية، ولكنها توفر أوضاعًا متقدمة للحسابات العلمية والإحصائية وأنظمة الأعداد.</para
+></abstract>
+
+<keywordset>
+<keyword
+>كيدي</keyword>
+<keyword
+>حاسبة ك</keyword>
+<keyword
+>حاسبة</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>مقدمة</title>
+
+<para
+>توفر حاسبة ك العديد من الدوال الرياضية أكثر مما يبدو للوهلة الأولى. يُرجى دراسة القسم الخاص بمفاتيح الاختصار والأوضاع في هذا الدليل لمعرفة المزيد عن الدوال العديدة المتاحة.</para>
+
+<para
+>بالإضافة إلى الوظائف المعتادة التي توفرها معظم الآلات الحاسبة العلمية، تقدم حاسبة ك عددًا من الميزات التي أعتقد أنها جديرة بالذكر:</para>
+
+<itemizedlist>
+<listitem>
+<para
+>توفر حاسبة ك دوالًا مثلثية، وعمليات منطقية، وهي قادرة على إجراء حسابات إحصائية.</para>
+</listitem>
+<listitem>
+<para
+>تسمح لك حاسبة ك بقص ولصق الأرقام من/إلى شاشة عرضها.</para>
+</listitem>
+<listitem>
+<para
+>تتميز حاسبة ك بـ <firstterm
+>كومة نتائج</firstterm
+> تتيح لك استدعاء النتائج السابقة بسهولة.</para>
+</listitem>
+<listitem>
+<para
+>يمكنك ضبط ألوان وخط شاشة عرض حاسبة ك.</para>
+</listitem>
+<listitem>
+<para
+>يمكنك ضبط دقة حاسبة ك، وعدد الأرقام المعروضة، وعدد الأرقام بعد الفاصلة في حوار الإعدادات.</para>
+</listitem>
+<listitem>
+<para
+>تقدم حاسبة ك عددًا كبيرًا من <link linkend="key-accels"
+>ارتباطات المفاتيح</link
+> المفيدة، مما يسهل استخدام حاسبة ك دون استخدام جهاز تأشير.</para>
+<para
+>تلميح: الضغط (مع الاستمرار) على مفتاح &Ctrl; يعرض على كل زر ارتباط المفتاح المقابل له.</para>
+</listitem>
+</itemizedlist>
+
+<!--see https://bugs.kde.org/show_bug.cgi?id=326481-->
+<note
+><para
+>تستخدم حاسبة ك <ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Infix_notation"
+>ترميزًا بينيًا</ulink
+> يفرض الترتيب الصحيح للعمليات كما يُدرس في المدرسة؛ على عكس <ulink url="https://en.wikipedia.org/wiki/Calculator_input_methods#Immediate_execution"
+>التنفيذ الفوري</ulink
+> المستخدم في العديد من الآلات الحاسبة البسيطة. </para
+></note>
+
+<para
+>استمتع باستخدام حاسبة ك!</para>
+
+<para
+>&Bernd.Johannes.Wuebben;</para>
+
+</chapter>
+
+
+<chapter id="usage">
+<title
+>الاستخدام</title>
+<sect1 id="general-usage">
+<title
+>الاستخدام العام</title>
+
+<para
+>الاستخدام العام مباشر ومشابه لطريقة عمل معظم الآلات الحاسبة العلمية البسيطة، لكن لاحظ ميزات حاسبة ك الخاصة التالية:</para>
+
+<variablelist>
+<varlistentry>
+<term
+>كومة النتائج</term>
+<listitem
+><para
+>في كل مرة تنقر فيها بزر الفأرة الأيسر &LMB; على الزر <guibutton
+>=</guibutton
+> أو تضغط على مفتاح &Enter; أو <keysym
+>=</keysym
+> في لوحة المفاتيح، تُكتب النتيجة المعروضة إلى كومة نتائج حاسبة ك. يمكنك التنقل عبر كومة النتائج باستخدام المفتاحين <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> و <keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>Z</keycap
+></keycombo
+> في لوحة المفاتيح.</para
+> 
+</listitem>
+</varlistentry
+> 
+
+<varlistentry>
+<term
+>دالة النسبة المئوية</term>
+<listitem>
+<para
+>تعمل دالة النسبة المئوية بشكل مختلف بعض الشيء عن تلك الموجودة في معظم الآلات الحاسبة. ومع ذلك، بمجرد فهمها، تثبت وظائفها المحسنة فائدتها. انظر القسم الخاص بدالة <link linkend="percent"
+>النسبة المئوية</link
+> لمزيد من التفاصيل.</para>
+</listitem
+></varlistentry>
+      
+<varlistentry>
+<term
+>قص ولصق</term>
+<listitem>
+<para
+><itemizedlist>
+<listitem>
+<para
+>الضغط على <keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> سيضع الرقم المعروض على الحافظة.</para>
+</listitem>
+<listitem>
+<para
+>الضغط على <keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> سيلصق محتوى الحافظة في الشاشة إذا كان محتوى الحافظة رقمًا عشريًا صحيحًا.</para>
+</listitem>
+<listitem>
+<para
+>لا يزال من الممكن النسخ/اللصق بالنقر على شاشة عرض حاسبة ك، لكن هذا قد يختفي في الإصدارات المستقبلية.</para>
+</listitem>
+</itemizedlist>
+</para
+></listitem
+></varlistentry>
+
+<varlistentry>
+<term
+>وظائف متقدمة</term>
+<listitem>
+<para
+>عند تشغيل حاسبة ك لأول مرة، ستعرض الآلة الحاسبة أزرارًا للعمليات الحسابية الأساسية فقط.</para>
+<para
+>تحت إدخال القائمة <guimenu
+>الإعدادات</guimenu
+>، يمكن تحديد وضع لـ حاسبة ك: يمكن اختيار وضع <link linkend="simple-mode"
+>بسيط</link
+> أو <link linkend="science-mode"
+>علمي</link
+> أو <link linkend="statistical-mode"
+>إحصائي</link
+> أو <link linkend="numeral-system-mode"
+>نظام أعداد</link
+>. يُرجى ملاحظة أن هذه الأوضاع ستتغير قليلًا مع تطور حاسبة ك.</para
+> 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>تخطيط الأزرار</term>
+<listitem>
+<para
+>لتوفير سهولة الوصول إلى جميع الدوال في الأوضاع المتقدمة في حاسبة ك، تحتوي العديد من المفاتيح على تخطيط ثانٍ. انقر على <guibutton
+>&Shift;</guibutton
+> أو اضغط على الاختصار <keycombo action="simul"
+>&Ctrl;<keycap
+>2</keycap
+></keycombo
+> لجعل التخطيط الثاني للأزرار مرئيًا.</para
+> 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>التاريخ</term>
+<listitem>
+<para
+>تعرض منطقة السجل جميع العمليات الحسابية التي تمت في حاسبة ك للجلسة النشطة لـ حاسبة ك. انقر على <guibutton
+>AC</guibutton
+> أو اضغط على الاختصار <keycap
+>Del</keycap
+> لمسح محتوى السجل. لتنشيطه أو إلغاء تنشيطه، استخدم العنصر <guilabel
+>إظهار السجل</guilabel
+> في القائمة <guimenu
+>الإعدادات</guimenu
+> لشريط القوائم، أو اضغط على <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+>.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+
+
+<!-- describing MODES here -->
+
+<sect1 id="simple-mode">
+<title
+>الوضع البسيط</title>
+<para
+>يحتوي هذا الوضع فقط على تلك الأزرار والدوال الأساسية الضرورية للعمليات الحسابية الأساسية.</para>
+<para
+>إذا كنت ترغب فقط في جمع جميع العناصر في فاتورة، فقد يكون هذا الوضع هو اختيارك.</para>
+</sect1>
+
+
+<sect1 id="science-mode">
+<title
+>الوضع العملي</title>
+
+<para
+>في هذا الوضع، يُخصص العمود الأيسر من الأزرار للدوال المثلثية:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>الأزرار</entry>
+<entry
+>الدالة</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>أدخل الوضع الفرعي الزائدي. على سبيل المثال، Hyp Sin هو الجيب الزائدي: sinh</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+>احسب الجيب</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>جيب</guibutton
+> أو <guibutton
+>قوس جيب</guibutton
+></entry>
+<entry
+>احسب قوس الجيب</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+>احسب جيب التمام</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>جيب تمام</guibutton
+> أو <guibutton
+>قوس جيب تمام</guibutton
+></entry>
+<entry
+>احسب قوس جيب التمام</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+>احسب الظل</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>ظل</guibutton
+> أو <guibutton
+>قوس ظل</guibutton
+></entry>
+<entry
+>احسب قوس الظل</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>احسب اللوغاريتم للأساس 10</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>لوغ</guibutton
+> أو 10<superscript
+>س</superscript
+></entry>
+<entry
+>احسب 10 مرفوعة للقوة س</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>احسب اللوغاريتم الطبيعي، أي اللوغاريتم للأساس هـ</entry
+></row>
+
+<row
+><entry
+>&Shift; <guibutton
+>لن</guibutton
+> أو هـ<superscript
+>س</superscript
+></entry>
+<entry
+>احسب هـ (أساس اللوغاريتم الطبيعي) مرفوعًا للقوة س</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>العمود الثاني يحتوي على أزرار للدوال الجبرية:</para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>الأزرار</entry>
+<entry
+>الدالة</entry
+></row>
+</thead>
+<tbody>
+<row
+><entry
+><guibutton
+>Mod</guibutton
+></entry>
+<entry
+>احسب الباقي في القسمة الإقليدية</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>باقي</guibutton
+> أو <guibutton
+>قسمة صحيحة</guibutton
+></entry>
+<entry
+>القسمة الصحيحة (الجزء الصحيح من ناتج القسمة)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>احسب مقلوب عدد</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>1/س</guibutton
+> أو <guibutton
+>توافيق</guibutton
+></entry>
+<entry
+>احسب عدد المجموعات الجزئية المكونة من عناصر المعامل الثاني المميزة التي يمكن تكوينها من أي مجموعة تحتوي على عناصر المعامل الأول (معامل ذو الحدين)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x!</guibutton
+></entry>
+<entry
+>احسب حاصل ضرب جميع الأعداد الصحيحة الموجبة الأصغر من أو تساوي المعامل الصحيح الحالي (المضروب)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x²</guibutton
+></entry>
+<entry
+>احسب مربع س</entry
+></row>
+
+ <row
+><entry
+>&Shift; <guibutton
+>س²</guibutton
+> أو <guibutton
+>√س</guibutton
+></entry>
+<entry
+>احسب الجذر التربيعي لـ س</entry
+></row>
+
+<row
+><entry
+><guibutton
+>xʸ</guibutton
+></entry>
+<entry
+>س مرفوعة للقوة ص</entry
+></row>
+
+<row
+><entry
+>&Shift; س<superscript
+>ص</superscript
+> أو س<superscript
+>1/ص</superscript
+></entry>
+<entry
+>س مرفوعة للقوة 1/ص</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x³</guibutton
+></entry>
+<entry
+>يحسب القوة الثالثة (التكعيبية) لـ س</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>x³</guibutton
+> أو <guibutton
+>∛x</guibutton
+></entry>
+<entry
+>يحسب الجذر التكعيبي (الثالث) لـ x</entry
+></row>
+
+<row
+><entry
+><guibutton
+>x·10ʸ</guibutton
+></entry>
+<entry
+>يحسب حاصل ضرب المعامل الأول والأس العشري للمعامل الثاني</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+
+
+<sect1 id="statistical-mode">
+<title
+>الوضع الإحصائي</title>
+
+<para
+>في هذا الوضع، يُخصص العمود الأيسر من الأزرار للدوال الإحصائية:</para>
+<para
+>تتركز معظم الوظائف في هذا الوضع حول الزر <guibutton
+>Dat</guibutton
+>. لإنشاء قائمة بيانات من الأرقام، أدخل رقمًا في الحاسبة واضغط <guibutton
+>Dat</guibutton
+>. يُظهر عرض الحاسبة رقمًا متزايدًا بالتسلسل يشير إلى الموضع الذي يشغله الرقم في <quote
+>قائمة</quote
+> البيانات. تخزن الحاسبة التقليدية ثلاث قيم فقط للدوال الإحصائية: عدد العناصر المنفصلة في القائمة، ومجموع عناصر البيانات المُدخلة، ومجموع مربعات جميع عناصر البيانات في القائمة. تختلف حاسبة ك بتخزين كل قيمة منفصلة فعليًا، مما يسمح لك بحساب القيمة الوسيطة للبيانات. </para>
+
+<informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>الأزرار</entry>
+<entry
+>الدالة</entry
+></row
+></thead>
+
+<tbody>
+<row
+><entry
+><guibutton
+>N</guibutton
+></entry>
+<entry
+>استدعاء عدد عناصر البيانات المُدخلة</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>N</guibutton
+> أو <guibutton
+>&Sgr;x</guibutton
+></entry>
+<entry
+>عرض مجموع جميع عناصر البيانات المُدخلة</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Mea</guibutton
+></entry>
+<entry
+>عرض متوسط عناصر البيانات المُدخلة</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Mea</guibutton
+> أو <guibutton
+>&Sgr;x²</guibutton
+></entry>
+<entry
+>عرض مجموع مربعات جميع عناصر البيانات المُدخلة</entry
+></row>
+
+<row
+><entry
+>&sgr;<subscript
+>N</subscript
+></entry>
+<entry
+>عرض الانحراف المعياري (n)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> &sgr;<subscript
+>N</subscript
+> أو &sgr;<subscript
+>N-1</subscript
+> </entry>
+<entry
+>عرض الانحراف المعياري للسكان (n-1)</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Med</guibutton
+></entry>
+<entry
+>عرض الوسيط</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>إدخال عنصر بيانات</entry
+></row>
+
+<row
+><entry
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>Dat</guibutton
+> أو <guibutton
+>CDat</guibutton
+></entry>
+<entry
+>مسح آخر عنصر بيانات مُدخل</entry
+></row>
+
+<row
+><entry
+><guibutton
+>CSt</guibutton
+></entry>
+<entry
+>مسح تخزين جميع عناصر البيانات المُدخلة</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+<para
+>يحمل العمودان التاليان الأزرار ذات الدوال المثلثية والجبرية الموصوفة في قسم وضع <link linkend="science-mode"
+>العلم</link
+>.</para>
+
+</sect1>
+
+
+<sect1 id="numeral-system-mode">
+<title
+>نمط الوضع الرقمي</title>
+<para
+>يحتوي هذا الوضع على أزرار ودوال للحساب في النظام الثنائي والست عشري والثماني والعشري.</para>
+
+<para
+>تحدد الأساس من القائمة المنسدلة على اليسار. لإدراج رقم ست عشري على سبيل المثال، فقط افعل التالي: اختر <guilabel
+>ست عشري</guilabel
+> من القائمة المنسدلة. ثم أدخل رقمًا ولاحظ أنه يمكنك استخدام الأحرف <guibutton
+>A</guibutton
+> إلى <guibutton
+>F</guibutton
+> للأرقام الأكبر من 9. في عرض نظام الأرقام، يمكنك رؤية الرقم مُحوّلًا إلى عشري وثماني وثنائي.</para>
+
+ <para
+>يمكن عرض الأرقام الثنائية والثمانية والست عشرية كمجموعات من الأرقام مفصولة بمسافات بيضاء. يمكن لمثل هذا التجميع تحسين قابلية قراءة الأرقام. على سبيل المثال، يمكن عرض الرقم الست عشري <emphasis
+>AF1C42</emphasis
+> كـ <emphasis
+>AF 1C 42</emphasis
+> مع فصل كل رقمين. يمكن إيقاف التجميع أو تعديله. اختر <menuchoice
+><guimenu
+>إعدادات</guimenu
+><guimenuitem
+>اضبط حاسبة ك...</guimenuitem
+></menuchoice
+> لإظهار حوار الضبط وغيّر الإعداد على صفحة <guilabel
+>عام</guilabel
+> حسب المناسب.</para>
+
+<para
+>قد ترغب في اختيار <guimenu
+>إظهار تحرير البتات</guimenu
+> من قائمة <guimenu
+>إعدادات</guimenu
+> لرؤية البتات المحددة.</para>
+
+<para
+>توجد عوامل منطقية متاحة في هذا الوضع. هذه العوامل هي: <informaltable
+><tgroup cols="2">
+<thead>
+<row
+><entry
+>الأزرار</entry>
+<entry
+>الدالة</entry
+></row
+></thead>
+<tbody>
+<row
+><entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>يُجرى AND منطقي لرقمين</entry
+></row>
+
+<row
+><entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>يُجرى OR منطقي لرقمين</entry
+></row>
+
+<row
+><entry
+><guibutton
+>XOR</guibutton
+></entry>
+<entry
+>يُجرى XOR منطقي لرقمين</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>انقل القيمة إلى اليسار</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>انقل القيمة إلى اليمين</entry
+></row>
+
+<row
+><entry
+><guibutton
+>Cmp</guibutton
+></entry>
+<entry
+>نفّذ المتمّم الأحادي</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+</para>
+
+<para
+>يحوي العمود الثاني الأزرار ذات الدوال الجبرية الموصوفة في قسم وضع <link linkend="science-mode"
+>العلم</link
+>.</para>
+
+<para
+>العمود الثالث الذي يحوي الأزرار <guibutton
+>A</guibutton
+> إلى <guibutton
+>F</guibutton
+> يُفعّل فقط في وضع <guilabel
+>سداسي عشري</guilabel
+>. </para>
+</sect1>
+
+<!-- end of MODES -->
+
+
+<sect1 id="memory-operations">
+<title
+>عمليات الذاكرة</title>
+
+<para
+>يدعم حاسبة ك عمليات الذاكرة التي تقدّمها الآلات الحاسبة القياسية بالإضافة إلى 6 فتحات لحفظ الثوابت.</para>
+
+<sect2 id="standard_memory">
+<title
+>عمليات الذاكرة القياسية</title>
+
+<para
+>يستطيع حاسبة ك تذكّر نتائج العمليات الحسابية لك، وإعادة استخدامها في حسابات لاحقة. يمكنك الوصول إلى هذه الدوال عبر عدة أزرار موسومة بـ <guibutton
+>MR</guibutton
+> و <guibutton
+>MS</guibutton
+> و <guibutton
+>M+</guibutton
+> و <guibutton
+>MC</guibutton
+>.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>MS</guibutton
+></term>
+<listitem
+><para
+>يخزّن الزر <guibutton
+>MS</guibutton
+> النتيجة المعروضة حاليًا في الذاكرة.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>M+</guibutton
+></term>
+<listitem
+><para
+>يضيف الزر <guibutton
+>M+</guibutton
+> النتيجة الحالية إلى النتيجة في الذاكرة. لذا، إذا كنت قد خزّنت 20، وكانت النتيجة الحالية 5، فستحتوي ذاكرتك على 25 عند الضغط عليه. إذا كانت الذاكرة فارغة، فإنه يعمل مثل <guibutton
+>MS</guibutton
+> ويخزّن النتيجة ببساطة.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MR</guibutton
+></term>
+<listitem
+><para
+>يجلب الزر <guibutton
+>MR</guibutton
+> القيمة المخزّنة في الذاكرة ويضعها في شاشة العرض.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>MC</guibutton
+></term>
+<listitem
+><para
+>يمسح الزر <guibutton
+>MC</guibutton
+> الذاكرة.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>إذا خُزّنت قيمة في الذاكرة، فسيظهر حرف <guilabel
+>M</guilabel
+> في شريط الحالة، بجانب مؤشّر وضع الآلة الحاسبة.</para>
+</sect2>
+
+<sect2 id="constant_buttons">
+<title
+>ثوابت</title>
+
+<para
+>ستظهر أزرار الثوابت الستة <guibutton
+>C1</guibutton
+> إلى <guibutton
+>C6</guibutton
+> فقط بعد تفعيل العنصر <guilabel
+>أزرار الثوابت</guilabel
+> في القائمة <guimenu
+>إعدادات</guimenu
+> لشريط القوائم. وهي متوفرة في <guilabel
+>وضع العلم</guilabel
+> و <guilabel
+>وضع الإحصاء</guilabel
+>.</para>
+
+<para
+>لرؤية القيمة المخزّنة في كل ثابت، مرّر مؤشّر الفأرة فوق الزر.</para>
+
+<para
+>لتخزين الرقم المعروض في شاشة حاسبة ك في أحد الثوابت الستة، اضغط أولًا <guibutton
+>&Shift;</guibutton
+> متبوعًا بزر الثابت المطلوب <guibutton
+>C1</guibutton
+> حتى <guibutton
+>C6</guibutton
+>.</para>
+
+<para
+>لاستخدام القيمة المخزّنة في أي من الثوابت في عملية حسابية، اضغط فقط الزر المطلوب (<guibutton
+>C1</guibutton
+> إلى <guibutton
+>C6</guibutton
+>)، وسيظهر الرقم المقابل في شاشة العرض. </para>
+
+<para
+>من الممكن تغيير تسمية زر الثابت لتسهيل تذكّر أي ثابت يحمله كل زر. انقر بزر الفأرة الأيمن على أحد الأزرار <guibutton
+>C1</guibutton
+> إلى <guibutton
+>C6</guibutton
+>. تظهر قائمة منبثقة، تختار منها <guilabel
+>تعيين اسم</guilabel
+>. </para>
+
+<para
+>هناك العديد من الثوابت المحدّدة مسبقًا (فيزيائية في الغالب)، يمكن وضعها على أي من الأزرار الستة <guibutton
+>C1</guibutton
+> - <guibutton
+>C6</guibutton
+> باختيار الثابت المطلوب في القائمة المنبثقة التي تظهر بعد النقر بزر الفأرة الأيمن على أحد أزرار الثوابت واختيار <guilabel
+>اختيار من القائمة</guilabel
+>. على الرغم من أنه يمكن الوصول إلى الثوابت المحدّدة مسبقًا أيضًا عبر <guimenu
+>الثوابت</guimenu
+> في شريط القوائم، إلا أن تخزينها على زر ثابت يكون مفيدًا جدًا إذا كان الرقم يُستخدم بشكل متكرر.</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="key-accels">
+<title
+>مفاتيح الاختصار المفردة</title>
+
+<para
+>لتبسيط إدخال العمليات الحسابية من لوحة المفاتيح، يوفر حاسبة ك مفاتيح اختصار مفردة لمعظم الدوال. على سبيل المثال، إدخال <userinput
+>7R</userinput
+> أو <userinput
+>7r</userinput
+> سيحسب مقلوب 7 (1/7).</para>
+
+<para
+>أثناء عملية حسابية، يمكنك دائمًا الضغط على &Ctrl; لجعل كل زر يعرض مفتاح الربط الخاص به.</para>
+<!-- Shift works like Caps Lock-->
+<informaltable
+><tgroup cols="3">
+<thead>
+<row
+><entry
+>مفتاح</entry>
+<entry
+>الدالة</entry>
+<entry
+>ملاحظات</entry
+></row>
+</thead>
+<tbody>
+
+<row
+><entry
+><keycap
+>H</keycap
+></entry>
+<entry
+><guibutton
+>Hyp</guibutton
+></entry>
+<entry
+>الزائدية كما في Hyp Sin، أي sinh</entry
+></row>
+
+<row
+><entry
+><keycap
+>S</keycap
+></entry>
+<entry
+><guibutton
+>Sin</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>C</keycap
+></entry>
+<entry
+><guibutton
+>Cos</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>T</keycap
+></entry>
+<entry
+><guibutton
+>Tan</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>N</keycap
+></entry>
+<entry
+><guibutton
+>Ln</guibutton
+></entry>
+<entry
+>لوغاريتم للأساس e</entry
+></row>
+
+<row
+><entry
+><keycap
+>L</keycap
+></entry>
+<entry
+><guibutton
+>Log</guibutton
+></entry>
+<entry
+>لوغاريتم للأساس 10</entry
+></row>
+
+<row
+><entry
+><keycap
+>Ctrl-2</keycap
+></entry>
+<entry
+> <guibutton
+>&Shift;</guibutton
+></entry>
+<entry
+>الوظيفة الثانية لهذا الزر. مثلًا إذا أردت arcsin فاكتب <userinput
+>Ctrl-2 s </userinput
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>\</keysym
+></entry>
+<entry
+><guibutton
+>+/-</guibutton
+></entry>
+<entry
+>غير الإشارة</entry
+></row>
+
+<row
+><entry
+><keysym
+>[</keysym
+></entry>
+<entry
+><guibutton
+>x^2</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>^</keysym
+></entry>
+<entry
+><guibutton
+>x^y</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keysym
+>!</keysym
+></entry>
+<entry
+><guibutton
+>x!</guibutton
+></entry>
+<entry
+>مضروب</entry
+></row>
+
+<row
+><entry
+><keysym
+>E</keysym
+></entry>
+<entry
+>x10<superscript
+>y</superscript
+></entry>
+<entry
+>القوَة</entry
+></row>
+
+<row
+><entry
+><keysym
+>&lt;</keysym
+></entry>
+<entry
+><guibutton
+>Lsh</guibutton
+></entry>
+<entry
+>‏Shift اليسار</entry
+></row>
+<!-- no "<" on Lsh key only "
+>" on Rsh key-->
+<row
+><entry
+><keysym
+>&gt;</keysym
+></entry>
+<entry
+><guibutton
+>Rsh</guibutton
+></entry>
+<entry
+>‏Shift اليمين</entry
+></row>
+<row
+><entry
+><keysym
+>&amp;</keysym
+></entry>
+<entry
+><guibutton
+>AND</guibutton
+></entry>
+<entry
+>AND المنطقي</entry
+></row>
+
+<row
+><entry
+><keysym
+>x</keysym
+> أو <keysym
+>*</keysym
+></entry>
+<entry
+><guibutton
+>X</guibutton
+></entry>
+<entry
+>ضرب</entry
+></row>
+
+<row
+><entry
+><keysym
+>/</keysym
+></entry>
+<entry
+><guibutton
+>/</guibutton
+></entry>
+<entry
+>قسمة</entry
+></row>
+
+<row
+><entry
+><keycap
+>D</keycap
+></entry>
+<entry
+><guibutton
+>Dat</guibutton
+></entry>
+<entry
+>أدخل عنصر بيانات في الوضع الإحصائي</entry
+></row>
+
+<row
+><entry
+><keycap
+>|</keycap
+></entry>
+<entry
+><guibutton
+>OR</guibutton
+></entry>
+<entry
+>أو المنطقي. ملاحظة: <guibutton
+>&Shift;</guibutton
+> <guibutton
+>OR</guibutton
+> هو XOR</entry
+></row>
+
+<row
+><entry
+><keycap
+>R</keycap
+></entry>
+<entry
+><guibutton
+>1/x</guibutton
+></entry>
+<entry
+>مقلوب</entry
+></row>
+
+<row
+><entry
+>&Enter;</entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+><keycap
+>إرجاع</keycap
+></entry>
+<entry
+><guibutton
+>=</guibutton
+></entry>
+<entry
+></entry
+></row>
+
+<row
+><entry
+>&Backspace;</entry>
+<entry
+><guibutton
+>&lt;=</guibutton
+></entry>
+<entry
+>احذف آخر رقم</entry
+></row>
+
+<row
+><entry
+><keycap
+>PgUp</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>امحُ</entry
+></row>
+
+<row
+><entry
+>&Esc;</entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>امحُ</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Prior</keycap
+></entry>
+<entry
+><guibutton
+>C</guibutton
+></entry>
+<entry
+>Clear</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>PgDown</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>امحُ الكلّ</entry
+></row>
+<!--
+<row
+><entry
+><keycap
+>Next</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>Clear all</entry
+></row>
+-->
+<row
+><entry
+><keycap
+>Del</keycap
+></entry>
+<entry
+><guibutton
+>AC</guibutton
+></entry>
+<entry
+>امحُ الكلّ</entry
+></row>
+
+<row
+><entry
+><keycap
+>:</keycap
+></entry>
+<entry
+><guibutton
+>Mod</guibutton
+></entry>
+<entry
+>باقي القسمة</entry
+></row>
+
+<row
+><entry
+>&Alt;+<keycap
+>1</keycap
+> إلى &Alt;+<keycap
+>6</keycap
+></entry>
+<entry
+><guibutton
+>C1</guibutton
+></entry>
+<entry
+>استخدم القيمة المخزنة في C1 إلى C6</entry
+></row>
+
+</tbody
+></tgroup
+></informaltable>
+
+</sect1>
+</chapter>
+
+<chapter id="comments-on-specific-functions">
+<title
+>تعليقات على دوال محددة</title>
+
+<sect1 id="mod">
+<title
+>مود والقسمة الصحيحة</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>مود</guibutton
+> يعطي باقي قسمة الرقم المعروض على رقم الإدخال التالي.</term>
+<listitem
+><para
+><userinput
+>22 مود 8 = </userinput
+> سيعطي النتيجة <emphasis
+>6</emphasis
+></para>
+<para
+><userinput
+>22.345 مود 8 = </userinput
+> سيعطي النتيجة <emphasis
+>6.345</emphasis
+></para>
+</listitem
+></varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>&Shift;</guibutton
+> <guibutton
+>قسمة صحيحة</guibutton
+> يقوم بقسمة صحيحة للرقم المعروض على رقم الإدخال التالي.</term>
+<listitem
+><para
+><userinput
+>22 Shift قسمة صحيحة 8 = </userinput
+> سيعطي النتيجة <emphasis
+>2</emphasis
+></para>
+<para
+><userinput
+>22.345 Shift قسمة صحيحة 8 = </userinput
+> يعطي أيضًا <emphasis
+>2</emphasis
+> </para
+></listitem
+></varlistentry>
+</variablelist>
+
+</sect1>
+
+
+<sect1 id="percent">
+<title
+>&percnt;</title>
+
+<para
+>يُستخدم بدلًا من مفتاح <guibutton
+>=</guibutton
+>، يفسر <guibutton
+>%</guibutton
+> العملية النهائية المنفذة في الحساب الحالي كما يلي:</para>
+
+<para
+><itemizedlist>
+<listitem>
+<para
+>إذا كان العامل النهائي هو + أو -، يُفسر الوسيط الثاني كنسبة مئوية من المعامل الأول. </para>
+</listitem>
+<listitem>
+<para
+>إذا كان العامل النهائي هو *، اقسم نتيجة الضرب على 100. </para>
+</listitem>
+<listitem>
+<para
+>إذا كان العامل النهائي هو /، أعط المعامل الأيسر كنسبة مئوية من المعامل الأيمن. </para>
+</listitem>
+<listitem>
+<para
+>في جميع الحالات الأخرى، يعطي مفتاح &percnt; نتائج مطابقة لمفتاح =. </para>
+</listitem>
+</itemizedlist
+></para>
+
+<variablelist>
+<varlistentry>
+<term
+>أمثلة:</term>
+<listitem>
+<para
+><userinput
+>150 + 50 %</userinput
+> يعطي <emphasis
+>225</emphasis
+> (150 زائد 50 بالمئة من هذا المبلغ)</para>
+<para
+><userinput
+>42 * 3 %</userinput
+> gives <emphasis
+>1.26</emphasis
+> (42 * 3 / 100)</para>
+<para
+><userinput
+>45 / 55 %</userinput
+> يعطي <emphasis
+>81.81...</emphasis
+> (45 هو 81.81.. بالمئة من 55)</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="lsh-rsh">
+<title
+>إزاحة يسرى وإزاحة يمنى</title>
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>إزاحة يسرى</guibutton
+> يزيح الجزء الصحيح من القيمة المعروضة إلى اليسار (يضربها في 2) n مرة، حيث n هو رقم الإدخال التالي، ويعطي نتيجة صحيحة (الأساس مضبوط على <guibutton
+>ثنائي</guibutton
+>):</term>
+<listitem
+><para
+><userinput
+>10 إزاحة يسرى 3 =</userinput
+> يعطي <emphasis
+>80</emphasis
+> (10 مضروب في 2 ثلاث مرات).</para>
+<para
+><userinput
+>10.345 إزاحة يسرى 3 =</userinput
+> يعطي أيضًا <emphasis
+>80</emphasis
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>إزاحة يمنى</guibutton
+> يزيح القيمة إلى اليمين (ينفذ قسمة صحيحة على 2) n مرة.</term>
+<listitem
+><para
+><userinput
+>16 إزاحة يمنى 2 =</userinput
+> يعطي <emphasis
+>4</emphasis
+> (16 مقسوم على 2 مرتين).</para>
+<para
+><userinput
+>16.999 إزاحة يمنى 2 =</userinput
+> يعطي أيضًا <emphasis
+>4</emphasis
+>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="and-or-xor">
+<title
+>متمم، و، أو، و أو الحصري</title>
+
+<para
+>تقوم دوال <guibutton
+>متمم</guibutton
+> و<guibutton
+>و</guibutton
+> و<guibutton
+>أو</guibutton
+> بعمليات منطقية بتية، وبالتالي تظهر أكثر معنى إذا ضبط الأساس على <guilabel
+>سداسي عشري</guilabel
+> أو <guilabel
+>ثماني</guilabel
+> أو <guilabel
+>ثنائي</guilabel
+> بدلًا من <guilabel
+>عشري</guilabel
+>. في الأمثلة التالية، الأساس مضبوط على <guilabel
+>ثنائي</guilabel
+>.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>متمم</guibutton
+> ينفذ متمم الواحد (يعكس البتات).</term>
+<listitem
+><para
+><userinput
+>101 Cmp</userinput
+> يعطي <emphasis
+>111...111010</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>AND</guibutton
+> ينفذ عملية AND المنطقية.</term>
+<listitem
+><para
+><userinput
+>101 AND 110 =</userinput
+> يعطي <emphasis
+>100</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>OR</guibutton
+> ينفذ عملية OR المنطقية.</term>
+<listitem
+><para
+><userinput
+>101 OR 110 =</userinput
+> يعطي <emphasis
+>111</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>XOR</guibutton
+> ينفذ عملية XOR المنطقية (OR الحصري).</term>
+<listitem
+><para
+><userinput
+>101 XOR 110 =</userinput
+> يعطي <emphasis
+>11</emphasis
+></para
+> </listitem>
+</varlistentry>
+
+</variablelist>
+</sect1>
+</chapter>
+
+
+<chapter id="questions-and-answers">
+<title
+>أسئلة وأجوبة</title>
+
+<qandaset>
+
+
+<qandaentry>
+<question
+><para
+>كيف أحصل على e، عدد أويلر؟</para
+></question>
+<answer
+><para
+>اضغط <userinput
+>1 Shift e<superscript
+>x</superscript
+></userinput
+> في نافذة حاسبة ك، أو اضغط <userinput
+>1 <keycombo action="simul"
+>&Ctrl;<keycap
+>2</keycap
+></keycombo
+> <keycap
+>N</keycap
+></userinput
+> على لوحة المفاتيح، أو استخدم قائمة <menuchoice
+><guimenu
+>الثوابت</guimenu
+><guimenuitem
+>الرياضيات</guimenuitem
+> </menuchoice
+>.</para
+></answer>
+</qandaentry>
+
+<qandaentry>
+<question
+><para
+>كيف أحصل على رقمين ثابتين بعد الفاصلة؟</para
+></question>
+<answer
+><para
+>اختر <menuchoice
+><guimenu
+>الإعدادات</guimenu
+><guimenuitem
+>اضبط حاسبة ك...</guimenuitem
+></menuchoice
+> على شريط القوائم، سيظهر حوار الضبط. فعّل <guilabel
+>ضبط الدقة العشرية</guilabel
+> واضبط عنصر التحكم الدوار ليظهر الرقم 2.</para
+></answer
+> </qandaentry>
+
+<qandaentry>
+<question
+><para
+>ماذا عن الدقة؟</para
+></question>
+<answer
+><para
+>العامل الرئيس المحدد لدقة حاسبة ك هو ما إذا كانت مكتبتا libc و libmath تدعمان نوع البيانات C <type
+>long double</type
+>. إذا كان الأمر كذلك، سيكتشف حاسبة ك ذلك وقت الترجمة ويستخدمه كنوع بيانات أساسي لتمثيل الأعداد. </para>
+
+<para
+>اضبط <guilabel
+>الدقة</guilabel
+> في حوار <guibutton
+>اضبط</guibutton
+> في حاسبة ك لتعمل الحسابات أعلاه بشكل صحيح. أوصي بدقة 14 إذا كان نوع البيانات الأساسي لنسختك من حاسبة ك هو <type
+>long double</type
+>، وإلا فاستخدم 8 أو 10.</para>
+
+<para
+>الدقة الأعلى لا تؤدي بالضرورة إلى نتائج أفضل. جرب الدقة وسترى ما أعنيه.</para>
+</answer>
+</qandaentry>
+
+</qandaset>
+</chapter>
+
+&commands;
+
+<chapter id="copyright">
+<title
+>الحقوق والترخيص</title>
+
+<para
+>حقوق نشر برنامج حاسبة ك &copy;:</para>
+<para
+>&Bernd.Johannes.Wuebben; 1996-2000</para>
+<para
+>فريق كِيدِي 2000-2008</para>
+<para
+>&Evan.Teran; 2008-2013</para>
+
+<itemizedlist>
+<listitem
+><para
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+>&Evan.Teran; &Evan.Teran.mail;</para
+></listitem>
+<listitem
+><para
+>&Espen.Sand; &Espen.Sand.mail;</para
+></listitem>
+<listitem
+><para
+>&Chris.Howells; &Chris.Howells.mail;</para
+></listitem>
+<listitem
+><para
+>&Aaron.J.Seigo; &Aaron.J.Seigo.mail;</para
+></listitem>
+<listitem
+><para
+>&Charles.Samuels; &Charles.Samuels.mail;</para
+></listitem>
+<listitem
+><para
+>&David.Johnson; &David.Johnson.mail;</para
+></listitem>
+</itemizedlist>
+
+<para
+>استُلهم حاسبة ك من <application
+>xfrmcalc</application
+> لـ <personname
+><firstname
+>Martin</firstname
+> <surname
+>Bartlett</surname
+></personname
+>، الذي لا يزال محرك مكدسه جزءًا من حاسبة ك.</para>
+
+<para
+>حقوق نشر التوثيق &copy; 2001,2002,2005, 2006,2010:</para>
+<itemizedlist>
+<listitem
+><para
+>&Bernd.Johannes.Wuebben; &Bernd.Johannes.Wuebben.mail;</para
+></listitem>
+<listitem
+><para
+>&Pamela.Roberts; &Pamela.Roberts.mail;</para
+></listitem>
+<listitem
+><para
+>&J.Hall; &J.Hall.mail;</para
+></listitem>
+<listitem
+><para
+>&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail;</para
+></listitem>
+<listitem
+><para
+><personname
+><firstname
+>Eike</firstname
+><surname
+>Krumbacher</surname
+></personname
+> <email
+>eike.krumbacher@x-eike.de</email
+></para
+></listitem>
+</itemizedlist>
+
+<para
+>الترجمة: زايد السعيدي <email
+>zayed.alsaidi@gmail.com</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->
