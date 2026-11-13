@@ -1,0 +1,255 @@
+<chapter id="commands">
+
+<title
+>مرجع الأوامر</title>
+
+<sect1 id="menus">
+<title
+>عناصر القائمة</title>
+
+ <para
+>لمحة موجزة عن بعض عناصر القوائم الخاصة في حاسبة ك:</para>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>الثوابت</guimenu
+> <guimenuitem
+>الرياضيات</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>اعرض باي أو عدد أويلر أو النسبة الذهبية.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>الثوابت</guimenu
+> <guimenuitem
+>الكهرومغناطيسية</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>اعرض سرعة الضوء أو الشحنة الأولية أو معاوقة الفراغ أو نفاذية الفراغ أو سماحية الفراغ.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>الثوابت</guimenu
+> <guimenuitem
+>الذرية والنووية</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>اعرض ثابت بلانك أو الشحنة الأولية أو ثابت البنية الدقيقة.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>الثوابت</guimenu
+> <guimenuitem
+>الديناميكا الحرارية</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>اعرض ثابت بولتزمان أو وحدة الكتلة الذرية أو ثابت الغاز المولي أو ثابت ستيفان-بولتزمان أو عدد أفوجادرو.</action
+> 
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>الثوابت</guimenu
+> <guimenuitem
+>الجاذبية</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>اعرض ثابت الجاذبية أو تسارع الأرض. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>الإعدادات</guimenu
+> <guimenuitem
+>الوضع البسيط</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>يعرض أزرار الرياضيات البسيطة.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>الإعدادات</guimenu
+> <guimenuitem
+>الوضع العلمي</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>يعرض أزرار المثلثات والعلم.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>الإعدادات</guimenu
+> <guimenuitem
+>الوضع الإحصائي</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>يعرض <link linkend="statistical-mode"
+>أزرار الإحصاء.</link
+></action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>الإعدادات</guimenu
+> <guimenuitem
+>وضع نظام الأعداد</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>يعرض <link linkend="and-or-xor"
+>أزرار المنطق</link
+> ويسمح بتغيير نظام الأعداد.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>الإعدادات</guimenu
+> <guimenuitem
+>أظهر السجل</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>اعرض السجل.</action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>الإعدادات</guimenu
+> <guimenuitem
+>أزرار الثوابت</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>اعرض أزرار الثوابت. وهي متوفرة في <link linkend="science-mode"
+>الوضع العلمي</link
+> و<link linkend="statistical-mode"
+>الوضع الإحصائي</link
+>. </action>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>الإعدادات</guimenu
+> <guimenuitem
+>أظهر تحرير البتات</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>يعرض حقل تحرير بتات. انقر على بت لتبديله. متوفر فقط في <link linkend="numeral-system-mode"
+>وضع نظام الأعداد</link
+>.</action>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>بالإضافة إلى ذلك، يحتوي حاسبة ك على عناصر القوائم الشائعة <guimenu
+>ملف</guimenu
+> و<guimenu
+>تحرير</guimenu
+> و<guimenu
+>إعدادات</guimenu
+> و<guimenu
+>مساعدة</guimenu
+>، لمزيد من المعلومات اقرأ الأقسام حول <ulink url="help:/fundamentals/menus.html"
+>القوائم</ulink
+> في أساسيات &kde;. </para>
+
+</sect1>
+
+</chapter>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-parent-document: ("index.docbook" "book" "chapter")
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->
