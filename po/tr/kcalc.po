@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-25 00:54+0000\n"
-"PO-Revision-Date: 2026-10-16 20:11+0300\n"
+"PO-Revision-Date: 2026-11-15 20:12+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 26.08.0\n"
+"X-Generator: Lokalize 26.08.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -175,37 +175,37 @@ msgstr "Önceden tanımlı"
 #: fonts.ui:21
 #, kde-format
 msgid "&Button font:"
-msgstr "D&üğme yazıtipi:"
+msgstr "D&üğme yazı tipi:"
 
 #. i18n: ectx: property (toolTip), widget (KFontRequester, kcfg_ButtonFont)
 #: fonts.ui:34
 #, kde-format
 msgid "The font to use for the buttons"
-msgstr "Düğmeler için kullanılacak yazıtipi"
+msgstr "Düğmeler için kullanılacak yazı tipi"
 
 #. i18n: ectx: property (text), widget (QLabel, displaylabel)
 #: fonts.ui:41
 #, kde-format
 msgid "&Display font:"
-msgstr "&Görüntü yazıtipi:"
+msgstr "&Görüntü yazı tipi:"
 
 #. i18n: ectx: property (toolTip), widget (KFontRequester, kcfg_DisplayFont)
 #: fonts.ui:54
 #, kde-format
 msgid "The font to use in the display"
-msgstr "Görüntüde kullanılacak yazıtipi"
+msgstr "Görüntüde kullanılacak yazı tipi"
 
 #. i18n: ectx: property (text), widget (QLabel, historylabel)
 #: fonts.ui:61
 #, kde-format
 msgid "&History font:"
-msgstr "G&eçmiş yazıtipi:"
+msgstr "G&eçmiş yazı tipi:"
 
 #. i18n: ectx: property (toolTip), widget (KFontRequester, kcfg_HistoryFont)
 #: fonts.ui:74
 #, kde-format
 msgid "The font to use in the history"
-msgstr "Geçmişte kullanılacak yazıtipi"
+msgstr "Geçmişte kullanılacak yazı tipi"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, General)
 #: general.ui:14 kcalc.cpp:1713
@@ -920,7 +920,7 @@ msgstr "Genel Ayarlar"
 #: kcalc.cpp:1717
 #, kde-format
 msgid "Fonts"
-msgstr "Yazıtipleri"
+msgstr "Yazı Tipleri"
 
 #: kcalc.cpp:1721
 #, kde-format
@@ -1084,61 +1084,61 @@ msgstr "Sabitler düğmelerinin renkleri."
 #: kcalc.kcfg:56
 #, kde-format
 msgid "The color of number fonts."
-msgstr "Sayı yazıtiplerinin renkleri."
+msgstr "Sayı yazı tiplerinin renkleri."
 
 #. i18n: ectx: label, entry (FunctionFontsColor), group (Colors)
 #: kcalc.kcfg:62
 #, kde-format
 msgid "The color of function fonts."
-msgstr "İşlev yazıtiplerinin renkleri."
+msgstr "İşlev yazı tiplerinin renkleri."
 
 #. i18n: ectx: label, entry (StatFontsColor), group (Colors)
 #: kcalc.kcfg:66
 #, kde-format
 msgid "The color of statistical fonts."
-msgstr "İstatistiksel yazıtiplerinin renkleri."
+msgstr "İstatistiksel yazı tiplerinin renkleri."
 
 #. i18n: ectx: label, entry (HexFontsColor), group (Colors)
 #: kcalc.kcfg:70
 #, kde-format
 msgid "The color of hex fonts."
-msgstr "Onaltılılık yazıtiplerinin renkleri."
+msgstr "Onaltılılık yazı tiplerinin renkleri."
 
 #. i18n: ectx: label, entry (MemoryFontsColor), group (Colors)
 #: kcalc.kcfg:74
 #, kde-format
 msgid "The color of memory fonts."
-msgstr "Bellek yazıtiplerinin renkleri."
+msgstr "Bellek yazı tiplerinin renkleri."
 
 #. i18n: ectx: label, entry (OperationFontsColor), group (Colors)
 #: kcalc.kcfg:78
 #, kde-format
 msgid "The color of operation font."
-msgstr "İşlem yazıtiplerinin renkleri."
+msgstr "İşlem yazı tiplerinin renkleri."
 
 #. i18n: ectx: label, entry (ConstantsFontsColor), group (Colors)
 #: kcalc.kcfg:82
 #, kde-format
 msgid "The color of constants fonts."
-msgstr "Sabit yazıtiplerinin renkleri."
+msgstr "Sabit yazı tiplerinin renkleri."
 
 #. i18n: ectx: label, entry (ButtonFont), group (Font)
 #: kcalc.kcfg:88
 #, kde-format
 msgid "The font to use for the buttons."
-msgstr "Düğmeler için kullanılacak yazıtipi."
+msgstr "Düğmeler için kullanılacak yazı tipi."
 
 #. i18n: ectx: label, entry (DisplayFont), group (Font)
 #: kcalc.kcfg:92
 #, kde-format
 msgid "The font to use in the display."
-msgstr "Görüntüde kullanılacak yazıtipi."
+msgstr "Görüntüde kullanılacak yazı tipi."
 
 #. i18n: ectx: label, entry (HistoryFont), group (Font)
 #: kcalc.kcfg:99
 #, kde-format
 msgid "The font to use in the history."
-msgstr "Geçmişte kullanılacak yazıtipi."
+msgstr "Geçmişte kullanılacak yazı tipi."
 
 #. i18n: ectx: label, entry (Precision), group (Precision)
 #: kcalc.kcfg:105
