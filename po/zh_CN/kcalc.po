@@ -139,7 +139,7 @@ msgstr "操作符(&P)："
 #: colors.ui:303
 #, kde-format
 msgid "&Constants:"
-msgstr "常量(&C)："
+msgstr "常数(&C)："
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Constants)
 #: constants.ui:13 kcalc.cpp:1753
@@ -181,7 +181,7 @@ msgstr "显示字体(&D)："
 #: fonts.ui:54
 #, kde-format
 msgid "The font to use in the display"
-msgstr "按钮所用的字体"
+msgstr "显示所用的字体"
 
 #. i18n: ectx: property (text), widget (QLabel, historylabel)
 #: fonts.ui:61
@@ -234,7 +234,7 @@ msgstr ""
 #: general.ui:51
 #, kde-format
 msgid "Whether to use fixed decimal places"
-msgstr "在何处使用固定小数位"
+msgstr "是否使用固定小数位"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_Fixed)
 #: general.ui:54
@@ -424,7 +424,7 @@ msgstr "将显示内容加入存储中"
 #, kde-format
 msgctxt "Subtract from memory"
 msgid "M−"
-msgstr "M-"
+msgstr "M−"
 
 #: kcalc.cpp:334
 #, kde-format
@@ -691,12 +691,12 @@ msgstr "全部数据的平方和"
 #: kcalc.cpp:522 kcalc.ui:1075
 #, kde-format
 msgid "Standard deviation"
-msgstr "标准方差"
+msgstr "标准差"
 
 #: kcalc.cpp:523
 #, kde-format
 msgid "Sample standard deviation"
-msgstr "样本标准方差"
+msgstr "样本标准差"
 
 #: kcalc.cpp:531
 #, kde-format
@@ -890,7 +890,7 @@ msgstr "] = "
 #: kcalc.cpp:1640 kcalc.cpp:1642 kcalc.cpp:1643
 #, kde-format
 msgid "Last stat data erased"
-msgstr "已清除上一次状态数据"
+msgstr "已清除上一条统计数据"
 
 #: kcalc.cpp:1655 kcalc.cpp:1658 kcalc.cpp:1659
 #, kde-format
@@ -1063,7 +1063,7 @@ msgstr "操作按钮的颜色。"
 #: kcalc.kcfg:52
 #, kde-format
 msgid "The color of constants buttons."
-msgstr "常量按钮的颜色。"
+msgstr "常数按钮的颜色。"
 
 #. i18n: ectx: label, entry (NumberFontsColor), group (Colors)
 #: kcalc.kcfg:56
@@ -1105,7 +1105,7 @@ msgstr "操作符字体的颜色。"
 #: kcalc.kcfg:82
 #, kde-format
 msgid "The color of constants fonts."
-msgstr "常量字体的颜色。"
+msgstr "常数字体的颜色。"
 
 #. i18n: ectx: label, entry (ButtonFont), group (Font)
 #: kcalc.kcfg:88
@@ -1157,7 +1157,7 @@ msgstr "定点小数的位数。"
 #: kcalc.kcfg:121
 #, kde-format
 msgid "Whether to use fixed decimal places."
-msgstr "在何处使用固定小数位。"
+msgstr "是否使用固定小数位。"
 
 #. i18n: ectx: label, entry (Beep), group (General)
 #: kcalc.kcfg:127
@@ -1208,19 +1208,19 @@ msgstr "简单计算器模式"
 #: kcalc.kcfg:151
 #, kde-format
 msgid "A very simple mode where only the basic calculator buttons are shown"
-msgstr "非常简单的模式，只显示常见计算机的按钮"
+msgstr "非常简单的模式，只显示基本计算器按钮"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
 #: kcalc.kcfg:154
 #, kde-format
 msgid "Science Calculator Mode"
-msgstr "科学计算机模式"
+msgstr "科学计算器模式"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
 #: kcalc.kcfg:155
 #, kde-format
 msgid "Mode with science buttons and optional constants buttons"
-msgstr "带有科学按钮和可选常量按钮的模式"
+msgstr "带有科学按钮和可选常数按钮的模式"
 
 #. i18n: ectx: label, entry (CalculatorMode), group (General)
 #: kcalc.kcfg:158
@@ -1232,7 +1232,7 @@ msgstr "统计计算器模式"
 #: kcalc.kcfg:159
 #, kde-format
 msgid "Mode with additional statistics buttons and optional constants buttons"
-msgstr "带有额外统计学按钮和可选常量按钮的模式"
+msgstr "带有额外统计学按钮和可选常数按钮的模式"
 
 #. i18n: ectx: whatsthis, entry (CalculatorMode), group (General)
 #: kcalc.kcfg:163
@@ -1263,13 +1263,13 @@ msgstr "是否显示历史记录窗口。"
 #: kcalc.kcfg:180
 #, kde-format
 msgid "Degrees, radians or grads"
-msgstr "角度、弧度或梯度"
+msgstr "角度、弧度或百分度"
 
 #. i18n: ectx: label, entry (BaseMode), group (General)
 #: kcalc.kcfg:184
 #, kde-format
 msgid "Numeric base"
-msgstr "数字基准"
+msgstr "数字基数"
 
 #. i18n: ectx: label, entry (ForceScientificNotation), group (General)
 #: kcalc.kcfg:188
@@ -1360,7 +1360,7 @@ msgstr "用户可编程的常数的名称。"
 #: kcalc.kcfg:242
 #, kde-format
 msgid "List of user programmable constants"
-msgstr "列出用户可编程的常数"
+msgstr "用户可编程的常数列表"
 
 #. i18n: ectx: property (text), widget (QLabel, base_label)
 #: kcalc.ui:173
@@ -1441,7 +1441,7 @@ msgstr "E"
 #: kcalc.ui:562
 #, kde-format
 msgid "Sin"
-msgstr "正弦"
+msgstr "Sin"
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbSin)
 #: kcalc.ui:565
@@ -1474,7 +1474,7 @@ msgstr "EXP"
 #: kcalc.ui:632
 #, kde-format
 msgid "Mod"
-msgstr "模"
+msgstr "Mod"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbNData)
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbLn)
@@ -1499,7 +1499,7 @@ msgstr "L"
 #: kcalc.ui:683
 #, kde-format
 msgid "Tan"
-msgstr "正切"
+msgstr "Tan"
 
 #. i18n: ectx: property (shortcut), widget (KCalcButton, pbTan)
 #: kcalc.ui:686
@@ -1587,7 +1587,7 @@ msgstr "XOR"
 #: kcalc.ui:836
 #, kde-format
 msgid "Mea"
-msgstr "均值"
+msgstr "Mea"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbFactorial)
 #: kcalc.ui:852
@@ -1611,7 +1611,7 @@ msgstr "C3"
 #: kcalc.ui:900
 #, kde-format
 msgid "One's complement"
-msgstr "补码"
+msgstr "二进制反码"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbCmp)
 #: kcalc.ui:903
@@ -1647,7 +1647,7 @@ msgstr "Rsh"
 #: kcalc.ui:954
 #, kde-format
 msgid "Cos"
-msgstr "余弦"
+msgstr "Cos"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbReci)
 #: kcalc.ui:973
@@ -1684,7 +1684,7 @@ msgstr "i"
 #: kcalc.ui:1027
 #, kde-format
 msgid "Median"
-msgstr "Median"
+msgstr "中位数"
 
 #. i18n: ectx: property (text), widget (KCalcButton, pbMed)
 #: kcalc.ui:1030
@@ -1834,7 +1834,7 @@ msgstr "减"
 #, kde-format
 msgctxt "- calculator button"
 msgid "−"
-msgstr "-"
+msgstr "−"
 
 #. i18n: ectx: property (toolTip), widget (KCalcButton, pbPlus)
 #: kcalc.ui:1299
@@ -1853,7 +1853,7 @@ msgstr "加"
 #, kde-format
 msgctxt "+ calculator button"
 msgid "+"
-msgstr "＋"
+msgstr "+"
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pb1)
 #: kcalc.ui:1318
@@ -1961,7 +1961,7 @@ msgstr "等于"
 #, kde-format
 msgctxt "= calculator button"
 msgid "="
-msgstr "＝"
+msgstr "="
 
 #. i18n: ectx: property (accessibleName), widget (KCalcButton, pb7)
 #: kcalc.ui:1451
@@ -2392,7 +2392,7 @@ msgstr "真空电容率"
 #: scienceconstants.xml:55
 #, kde-format
 msgid "Boltzmann Constant"
-msgstr "波尔兹曼常数"
+msgstr "玻尔兹曼常数"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:60
@@ -2410,10 +2410,10 @@ msgstr "摩尔气体常数"
 #: scienceconstants.xml:68
 #, kde-format
 msgid "Stefan-Boltzmann Constant"
-msgstr "斯蒂芬·波尔兹曼常数"
+msgstr "斯特藩-玻尔兹曼常数"
 
 #. i18n: tag constant attribute name
 #: scienceconstants.xml:72
 #, kde-format
 msgid "Avogadro's Number"
-msgstr "阿伏加德罗氏数"
+msgstr "阿伏伽德罗常数"
