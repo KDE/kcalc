@@ -99,7 +99,7 @@
 </listitem>
 <listitem>
 <para
->&kcalc;’ın görüntü renklerini ve yazıtipini yapılandırabilirsiniz.</para>
+>&kcalc;’ın görüntü renklerini ve yazı tipini yapılandırabilirsiniz.</para>
 </listitem>
 <listitem>
 <para
@@ -451,7 +451,7 @@
 >IntDiv</guibutton
 ></entry>
 <entry
->Tamsayı bölme (bölümün tamsayı kısmı)</entry
+>Tam sayı bölme (bölümün tam sayı kısmı)</entry
 ></row>
 
 <row
@@ -482,7 +482,7 @@
 >xl</guibutton
 ></entry>
 <entry
->Şu anki tamsayı işlenene (faktöriyel) eşit veya küçük olan tüm pozitif tamsayıların çarpımını hesapla</entry
+>Şu anki tam sayı işlenene (faktöriyel) eşit veya küçük olan tüm pozitif tam sayıların çarpımını hesapla</entry
 ></row>
 
 <row
@@ -1550,7 +1550,7 @@
 <term
 ><guibutton
 >Lsh</guibutton
-> sola görüntülenen değerin tamsayı bölümünü sola kaydırır (2 ile çarpar), n bir sonraki giriş numarasıdır ve bir tamsayı sonucu verir (taban <guibutton
+> sola görüntülenen değerin tam sayı bölümünü sola kaydırır (2 ile çarpar), n bir sonraki giriş numarasıdır ve bir tam sayı sonucu verir (taban <guibutton
 >Bin</guibutton
 > olarak ayarlanır):</term>
 <listitem
